@@ -7,17 +7,6 @@ use crate::Foundation::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
-    pub enum NSTextAlignment {
-        NSTextAlignmentLeft = 0,
-        NSTextAlignmentRight = 1,
-        NSTextAlignmentCenter = 2,
-        NSTextAlignmentJustified = 3,
-        NSTextAlignmentNatural = 4,
-    }
-);
-
-ns_enum!(
-    #[underlying(NSInteger)]
     pub enum NSWritingDirection {
         NSWritingDirectionNatural = -1,
         NSWritingDirectionLeftToRight = 0,

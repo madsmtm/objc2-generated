@@ -34,14 +34,6 @@ ns_enum!(
     }
 );
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSImageResizingMode {
-        NSImageResizingModeStretch = 0,
-        NSImageResizingModeTile = 1,
-    }
-);
-
 extern_class!(
     #[derive(Debug)]
     pub struct NSImage;

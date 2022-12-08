@@ -1496,8 +1496,7 @@ pub use self::__NSImage::{
     NSImageNameTouchBarUserGroupTemplate, NSImageNameTouchBarUserTemplate,
     NSImageNameTouchBarVolumeDownTemplate, NSImageNameTouchBarVolumeUpTemplate,
     NSImageNameTrashEmpty, NSImageNameTrashFull, NSImageNameUser, NSImageNameUserAccounts,
-    NSImageNameUserGroup, NSImageNameUserGuest, NSImageResizingMode, NSImageResizingModeStretch,
-    NSImageResizingModeTile, NSImageSymbolConfiguration, NSImageSymbolScale,
+    NSImageNameUserGroup, NSImageNameUserGuest, NSImageSymbolConfiguration, NSImageSymbolScale,
     NSImageSymbolScaleLarge, NSImageSymbolScaleMedium, NSImageSymbolScaleSmall,
 };
 pub use self::__NSImageCell::{
@@ -1562,9 +1561,7 @@ pub use self::__NSKeyValueBinding::{
     NSValuePathBinding, NSValueTransformerBindingOption, NSValueTransformerNameBindingOption,
     NSValueURLBinding, NSVisibleBinding, NSWarningValueBinding, NSWidthBinding,
 };
-pub use self::__NSLayoutAnchor::{
-    NSLayoutAnchor, NSLayoutDimension, NSLayoutXAxisAnchor, NSLayoutYAxisAnchor,
-};
+pub use self::__NSLayoutAnchor::{NSLayoutDimension, NSLayoutXAxisAnchor, NSLayoutYAxisAnchor};
 pub use self::__NSLayoutConstraint::{
     NSLayoutAttribute, NSLayoutAttributeBaseline, NSLayoutAttributeBottom,
     NSLayoutAttributeCenterX, NSLayoutAttributeCenterY, NSLayoutAttributeFirstBaseline,
@@ -1746,8 +1743,8 @@ pub use self::__NSPopUpButtonCell::{
     NSPopUpButtonCellWillPopUpNotification, NSPopUpNoArrow,
 };
 pub use self::__NSPopover::{
-    NSPopover, NSPopoverAppearance, NSPopoverAppearanceHUD, NSPopoverAppearanceMinimal,
-    NSPopoverBehavior, NSPopoverBehaviorApplicationDefined, NSPopoverBehaviorSemitransient,
+    NSPopoverAppearance, NSPopoverAppearanceHUD, NSPopoverAppearanceMinimal, NSPopoverBehavior,
+    NSPopoverBehaviorApplicationDefined, NSPopoverBehaviorSemitransient,
     NSPopoverBehaviorTransient, NSPopoverCloseReasonDetachToWindow, NSPopoverCloseReasonKey,
     NSPopoverCloseReasonStandard, NSPopoverCloseReasonValue, NSPopoverDelegate,
     NSPopoverDidCloseNotification, NSPopoverDidShowNotification, NSPopoverWillCloseNotification,
@@ -2075,9 +2072,7 @@ pub use self::__NSText::{
     NSLeftTextAlignment, NSLeftTextMovement, NSLineSeparatorCharacter, NSNaturalTextAlignment,
     NSNewlineCharacter, NSOtherTextMovement, NSParagraphSeparatorCharacter, NSReturnTextMovement,
     NSRightTextAlignment, NSRightTextMovement, NSTabCharacter, NSTabTextMovement, NSText,
-    NSTextAlignment, NSTextAlignmentCenter, NSTextAlignmentJustified, NSTextAlignmentLeft,
-    NSTextAlignmentNatural, NSTextAlignmentRight, NSTextDelegate,
-    NSTextDidBeginEditingNotification, NSTextDidChangeNotification,
+    NSTextDelegate, NSTextDidBeginEditingNotification, NSTextDidChangeNotification,
     NSTextDidEndEditingNotification, NSTextMovement, NSTextMovementBacktab, NSTextMovementCancel,
     NSTextMovementDown, NSTextMovementLeft, NSTextMovementOther, NSTextMovementReturn,
     NSTextMovementRight, NSTextMovementTab, NSTextMovementUp, NSTextMovementUserInfoKey,
