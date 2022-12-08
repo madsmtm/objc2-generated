@@ -15,7 +15,7 @@ extern_enum!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(PartialEq, Eq, Hash)]
     pub struct NSBundle;
 
     unsafe impl ClassType for NSBundle {
@@ -280,7 +280,7 @@ extern_static!(NSBundleDidLoadNotification: &'static NSNotificationName);
 extern_static!(NSLoadedClasses: &'static NSString);
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSBundleResourceRequest;
 
     unsafe impl ClassType for NSBundleResourceRequest {

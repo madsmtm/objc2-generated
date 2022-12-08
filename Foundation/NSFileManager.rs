@@ -60,7 +60,7 @@ extern_static!(NSFileManagerUnmountDissentingProcessIdentifierErrorKey: &'static
 extern_static!(NSUbiquityIdentityDidChangeNotification: &'static NSNotificationName);
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileManager;
 
     unsafe impl ClassType for NSFileManager {
@@ -678,7 +678,7 @@ extern_protocol!(
 );
 
 __inner_extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDirectoryEnumerator<
         ObjectType: Message = Object,
         ObjectTypeOwnership: Ownership = Shared,
@@ -722,7 +722,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileProviderService;
 
     unsafe impl ClassType for NSFileProviderService {

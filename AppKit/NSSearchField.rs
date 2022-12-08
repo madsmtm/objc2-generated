@@ -22,7 +22,7 @@ extern_protocol!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSearchField;
 
     unsafe impl ClassType for NSSearchField {

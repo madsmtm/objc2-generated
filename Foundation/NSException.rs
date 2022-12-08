@@ -34,7 +34,7 @@ extern_static!(NSOldStyleException: &'static NSExceptionName);
 extern_static!(NSInconsistentArchiveException: &'static NSExceptionName);
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(PartialEq, Eq, Hash)]
     pub struct NSException;
 
     unsafe impl ClassType for NSException {
@@ -97,7 +97,7 @@ extern_fn!(
 extern_static!(NSAssertionHandlerKey: &'static NSString);
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAssertionHandler;
 
     unsafe impl ClassType for NSAssertionHandler {

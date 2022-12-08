@@ -4,7 +4,7 @@ use crate::common::*;
 use crate::Foundation::*;
 
 __inner_extern_class!(
-    #[derive(Debug)]
+    #[derive(PartialEq, Eq, Hash)]
     pub struct NSDictionary<
         KeyType: Message = Object,
         ObjectType: Message = Object,
@@ -289,7 +289,7 @@ extern_methods!(
 );
 
 __inner_extern_class!(
-    #[derive(Debug)]
+    #[derive(PartialEq, Eq, Hash)]
     pub struct NSMutableDictionary<
         KeyType: Message = Object,
         ObjectType: Message = Object,

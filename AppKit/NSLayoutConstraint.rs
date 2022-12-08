@@ -81,7 +81,7 @@ ns_options!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSLayoutConstraint;
 
     unsafe impl ClassType for NSLayoutConstraint {

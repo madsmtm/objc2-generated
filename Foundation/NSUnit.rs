@@ -4,7 +4,7 @@ use crate::common::*;
 use crate::Foundation::*;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitConverter;
 
     unsafe impl ClassType for NSUnitConverter {
@@ -23,7 +23,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitConverterLinear;
 
     unsafe impl ClassType for NSUnitConverterLinear {
@@ -55,7 +55,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnit;
 
     unsafe impl ClassType for NSUnit {
@@ -83,7 +83,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDimension;
 
     unsafe impl ClassType for NSDimension {
@@ -109,7 +109,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitAcceleration;
 
     unsafe impl ClassType for NSUnitAcceleration {
@@ -128,7 +128,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitAngle;
 
     unsafe impl ClassType for NSUnitAngle {
@@ -159,7 +159,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitArea;
 
     unsafe impl ClassType for NSUnitArea {
@@ -214,7 +214,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitConcentrationMass;
 
     unsafe impl ClassType for NSUnitConcentrationMass {
@@ -238,7 +238,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitDispersion;
 
     unsafe impl ClassType for NSUnitDispersion {
@@ -254,7 +254,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitDuration;
 
     unsafe impl ClassType for NSUnitDuration {
@@ -288,7 +288,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitElectricCharge;
 
     unsafe impl ClassType for NSUnitElectricCharge {
@@ -319,7 +319,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitElectricCurrent;
 
     unsafe impl ClassType for NSUnitElectricCurrent {
@@ -347,7 +347,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitElectricPotentialDifference;
 
     unsafe impl ClassType for NSUnitElectricPotentialDifference {
@@ -375,7 +375,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitElectricResistance;
 
     unsafe impl ClassType for NSUnitElectricResistance {
@@ -403,7 +403,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitEnergy;
 
     unsafe impl ClassType for NSUnitEnergy {
@@ -431,7 +431,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitFrequency;
 
     unsafe impl ClassType for NSUnitFrequency {
@@ -471,7 +471,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitFuelEfficiency;
 
     unsafe impl ClassType for NSUnitFuelEfficiency {
@@ -493,7 +493,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitInformationStorage;
 
     unsafe impl ClassType for NSUnitInformationStorage {
@@ -611,7 +611,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitLength;
 
     unsafe impl ClassType for NSUnitLength {
@@ -690,7 +690,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitIlluminance;
 
     unsafe impl ClassType for NSUnitIlluminance {
@@ -706,7 +706,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitMass;
 
     unsafe impl ClassType for NSUnitMass {
@@ -767,7 +767,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitPower;
 
     unsafe impl ClassType for NSUnitPower {
@@ -813,7 +813,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitPressure;
 
     unsafe impl ClassType for NSUnitPressure {
@@ -856,7 +856,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitSpeed;
 
     unsafe impl ClassType for NSUnitSpeed {
@@ -881,7 +881,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitTemperature;
 
     unsafe impl ClassType for NSUnitTemperature {
@@ -903,7 +903,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitVolume;
 
     unsafe impl ClassType for NSUnitVolume {

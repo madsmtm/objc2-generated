@@ -22,7 +22,7 @@ pub type NSTableViewDiffableDataSourceSectionHeaderViewProvider =
     *mut Block<(NonNull<NSTableView>, NSInteger, NonNull<Object>), NonNull<NSView>>;
 
 __inner_extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTableViewDiffableDataSource<
         SectionIdentifierType: Message = Object,
         ItemIdentifierType: Message = Object,

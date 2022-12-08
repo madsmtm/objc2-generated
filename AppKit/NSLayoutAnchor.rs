@@ -6,7 +6,7 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSLayoutXAxisAnchor;
 
     unsafe impl ClassType for NSLayoutXAxisAnchor {
@@ -46,7 +46,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSLayoutYAxisAnchor;
 
     unsafe impl ClassType for NSLayoutYAxisAnchor {
@@ -86,7 +86,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSLayoutDimension;
 
     unsafe impl ClassType for NSLayoutDimension {

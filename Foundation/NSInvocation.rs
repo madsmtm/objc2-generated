@@ -4,7 +4,7 @@ use crate::common::*;
 use crate::Foundation::*;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSInvocation;
 
     unsafe impl ClassType for NSInvocation {

@@ -11,7 +11,7 @@ extern_enum!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCharacterSet;
 
     unsafe impl ClassType for NSCharacterSet {
@@ -111,7 +111,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMutableCharacterSet;
 
     unsafe impl ClassType for NSMutableCharacterSet {

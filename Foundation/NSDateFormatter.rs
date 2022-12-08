@@ -24,7 +24,7 @@ ns_enum!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDateFormatter;
 
     unsafe impl ClassType for NSDateFormatter {

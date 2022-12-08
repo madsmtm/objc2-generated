@@ -15,7 +15,7 @@ extern_static!(ASAuthorizationOperationRefresh: &'static ASAuthorizationOpenIDOp
 extern_static!(ASAuthorizationOperationLogout: &'static ASAuthorizationOpenIDOperation);
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAuthorizationOpenIDRequest;
 
     unsafe impl ClassType for ASAuthorizationOpenIDRequest {

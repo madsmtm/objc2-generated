@@ -4,7 +4,7 @@ use crate::common::*;
 use crate::Foundation::*;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSConnection;
 
     unsafe impl ClassType for NSConnection {
@@ -232,7 +232,7 @@ extern_static!(NSFailedAuthenticationException: &'static NSString);
 extern_static!(NSConnectionDidInitializeNotification: &'static NSString);
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDistantObjectRequest;
 
     unsafe impl ClassType for NSDistantObjectRequest {

@@ -12,7 +12,7 @@ pub type NSHelpAnchorName = NSString;
 pub type NSHelpManagerContextHelpKey = NSString;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSHelpManager;
 
     unsafe impl ClassType for NSHelpManager {

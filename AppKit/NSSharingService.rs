@@ -48,7 +48,7 @@ extern_static!(NSSharingServiceNamePostVideoOnTudou: &'static NSSharingServiceNa
 extern_static!(NSSharingServiceNameCloudSharing: &'static NSSharingServiceName);
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSharingService;
 
     unsafe impl ClassType for NSSharingService {
@@ -264,7 +264,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSharingServicePicker;
 
     unsafe impl ClassType for NSSharingServicePicker {

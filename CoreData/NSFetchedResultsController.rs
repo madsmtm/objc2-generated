@@ -5,7 +5,7 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 __inner_extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFetchedResultsController<
         ResultType: Message = Object,
         ResultTypeOwnership: Ownership = Shared,

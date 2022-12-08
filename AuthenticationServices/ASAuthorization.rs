@@ -11,7 +11,7 @@ extern_static!(ASAuthorizationScopeFullName: &'static ASAuthorizationScope);
 extern_static!(ASAuthorizationScopeEmail: &'static ASAuthorizationScope);
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAuthorization;
 
     unsafe impl ClassType for ASAuthorization {

@@ -6,7 +6,7 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSScrubberLayoutAttributes;
 
     unsafe impl ClassType for NSScrubberLayoutAttributes {
@@ -40,7 +40,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSScrubberLayout;
 
     unsafe impl ClassType for NSScrubberLayout {
@@ -123,7 +123,7 @@ extern_protocol!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSScrubberFlowLayout;
 
     unsafe impl ClassType for NSScrubberFlowLayout {
@@ -151,7 +151,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSScrubberProportionalLayout;
 
     unsafe impl ClassType for NSScrubberProportionalLayout {

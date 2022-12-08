@@ -32,7 +32,7 @@ pub type NSTextTabOptionKey = NSString;
 extern_static!(NSTabColumnTerminatorsAttributeName: &'static NSTextTabOptionKey);
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextTab;
 
     unsafe impl ClassType for NSTextTab {
@@ -67,7 +67,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSParagraphStyle;
 
     unsafe impl ClassType for NSParagraphStyle {
@@ -154,7 +154,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMutableParagraphStyle;
 
     unsafe impl ClassType for NSMutableParagraphStyle {

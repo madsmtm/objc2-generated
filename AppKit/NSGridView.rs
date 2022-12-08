@@ -32,7 +32,7 @@ ns_enum!(
 extern_static!(NSGridViewSizeForContent: CGFloat);
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSGridView;
 
     unsafe impl ClassType for NSGridView {
@@ -166,7 +166,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSGridRow;
 
     unsafe impl ClassType for NSGridRow {
@@ -227,7 +227,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSGridColumn;
 
     unsafe impl ClassType for NSGridColumn {
@@ -282,7 +282,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSGridCell;
 
     unsafe impl ClassType for NSGridCell {

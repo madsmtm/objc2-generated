@@ -12,7 +12,7 @@ pub type NSSoundName = NSString;
 pub type NSSoundPlaybackDeviceIdentifier = NSString;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSound;
 
     unsafe impl ClassType for NSSound {

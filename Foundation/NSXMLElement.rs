@@ -4,7 +4,7 @@ use crate::common::*;
 use crate::Foundation::*;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSXMLElement;
 
     unsafe impl ClassType for NSXMLElement {

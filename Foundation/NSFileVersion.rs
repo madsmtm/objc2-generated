@@ -18,7 +18,7 @@ ns_options!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileVersion;
 
     unsafe impl ClassType for NSFileVersion {

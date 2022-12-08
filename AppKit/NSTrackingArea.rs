@@ -22,7 +22,7 @@ ns_options!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTrackingArea;
 
     unsafe impl ClassType for NSTrackingArea {

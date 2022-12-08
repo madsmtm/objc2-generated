@@ -6,7 +6,7 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 __inner_extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDiffableDataSourceSnapshot<
         SectionIdentifierType: Message = Object,
         ItemIdentifierType: Message = Object,
@@ -192,7 +192,7 @@ pub type NSCollectionViewDiffableDataSourceSupplementaryViewProvider = *mut Bloc
 >;
 
 __inner_extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionViewDiffableDataSource<
         SectionIdentifierType: Message = Object,
         ItemIdentifierType: Message = Object,

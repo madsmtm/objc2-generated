@@ -48,7 +48,7 @@ ns_enum!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMorphology;
 
     unsafe impl ClassType for NSMorphology {
@@ -97,7 +97,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMorphologyCustomPronoun;
 
     unsafe impl ClassType for NSMorphologyCustomPronoun {

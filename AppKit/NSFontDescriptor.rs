@@ -52,7 +52,7 @@ pub type NSFontTextStyle = NSString;
 pub type NSFontTextStyleOptionKey = NSString;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFontDescriptor;
 
     unsafe impl ClassType for NSFontDescriptor {

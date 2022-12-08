@@ -33,7 +33,7 @@ ns_options!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSXPCConnection;
 
     unsafe impl ClassType for NSXPCConnection {
@@ -134,7 +134,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSXPCListener;
 
     unsafe impl ClassType for NSXPCListener {
@@ -191,7 +191,7 @@ extern_protocol!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSXPCInterface;
 
     unsafe impl ClassType for NSXPCInterface {
@@ -247,7 +247,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSXPCListenerEndpoint;
 
     unsafe impl ClassType for NSXPCListenerEndpoint {
@@ -260,7 +260,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSXPCCoder;
 
     unsafe impl ClassType for NSXPCCoder {

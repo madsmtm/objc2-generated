@@ -97,7 +97,7 @@ extern_static!(NSPrintCancelJob: &'static NSPrintJobDispositionValue);
 pub type NSPrintInfoSettingKey = NSString;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPrintInfo;
 
     unsafe impl ClassType for NSPrintInfo {

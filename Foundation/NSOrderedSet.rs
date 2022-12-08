@@ -4,7 +4,7 @@ use crate::common::*;
 use crate::Foundation::*;
 
 __inner_extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSOrderedSet<ObjectType: Message = Object, ObjectTypeOwnership: Ownership = Shared> {
         _inner0: PhantomData<*mut (ObjectType, ObjectTypeOwnership)>,
     }
@@ -348,7 +348,7 @@ extern_methods!(
 );
 
 __inner_extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMutableOrderedSet<
         ObjectType: Message = Object,
         ObjectTypeOwnership: Ownership = Shared,

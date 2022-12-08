@@ -23,7 +23,7 @@ ns_enum!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSXMLNode;
 
     unsafe impl ClassType for NSXMLNode {

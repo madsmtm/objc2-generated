@@ -4,7 +4,7 @@ use crate::common::*;
 use crate::Foundation::*;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSInflectionRule;
 
     unsafe impl ClassType for NSInflectionRule {
@@ -23,7 +23,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSInflectionRuleExplicit;
 
     unsafe impl ClassType for NSInflectionRuleExplicit {

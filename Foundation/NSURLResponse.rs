@@ -4,7 +4,7 @@ use crate::common::*;
 use crate::Foundation::*;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLResponse;
 
     unsafe impl ClassType for NSURLResponse {
@@ -41,7 +41,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSHTTPURLResponse;
 
     unsafe impl ClassType for NSHTTPURLResponse {

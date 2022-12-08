@@ -22,7 +22,7 @@ ns_options!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSNotificationQueue;
 
     unsafe impl ClassType for NSNotificationQueue {

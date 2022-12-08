@@ -41,7 +41,7 @@ extern_methods!(
 );
 
 __inner_extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFetchRequest<ResultType: Message = Object, ResultTypeOwnership: Ownership = Shared> {
         _inner0: PhantomData<*mut (ResultType, ResultTypeOwnership)>,
     }
@@ -199,7 +199,7 @@ pub type NSPersistentStoreAsynchronousFetchResultCompletionBlock =
     *mut Block<(NonNull<NSAsynchronousFetchResult>,), ()>;
 
 __inner_extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAsynchronousFetchRequest<
         ResultType: Message = Object,
         ResultTypeOwnership: Ownership = Shared,

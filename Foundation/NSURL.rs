@@ -339,7 +339,7 @@ ns_options!(
 pub type NSURLBookmarkFileCreationOptions = NSUInteger;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURL;
 
     unsafe impl ClassType for NSURL {
@@ -676,7 +676,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLQueryItem;
 
     unsafe impl ClassType for NSURLQueryItem {
@@ -708,7 +708,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLComponents;
 
     unsafe impl ClassType for NSURLComponents {
@@ -980,7 +980,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileSecurity;
 
     unsafe impl ClassType for NSFileSecurity {

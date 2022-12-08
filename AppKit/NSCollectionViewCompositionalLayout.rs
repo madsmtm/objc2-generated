@@ -58,7 +58,7 @@ inline_fn!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionViewCompositionalLayoutConfiguration;
 
     unsafe impl ClassType for NSCollectionViewCompositionalLayoutConfiguration {
@@ -97,7 +97,7 @@ pub type NSCollectionViewCompositionalLayoutSectionProvider =
     *mut Block<(NSInteger, NonNull<NSCollectionLayoutEnvironment>), *mut NSCollectionLayoutSection>;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionViewCompositionalLayout;
 
     unsafe impl ClassType for NSCollectionViewCompositionalLayout {
@@ -174,7 +174,7 @@ pub type NSCollectionLayoutSectionVisibleItemsInvalidationHandler = *mut Block<
 >;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutSection;
 
     unsafe impl ClassType for NSCollectionLayoutSection {
@@ -261,7 +261,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutItem;
 
     unsafe impl ClassType for NSCollectionLayoutItem {
@@ -309,7 +309,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutGroupCustomItem;
 
     unsafe impl ClassType for NSCollectionLayoutGroupCustomItem {
@@ -348,7 +348,7 @@ pub type NSCollectionLayoutGroupCustomItemProvider = *mut Block<
 >;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutGroup;
 
     unsafe impl ClassType for NSCollectionLayoutGroup {
@@ -425,7 +425,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutDimension;
 
     unsafe impl ClassType for NSCollectionLayoutDimension {
@@ -471,7 +471,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutSize;
 
     unsafe impl ClassType for NSCollectionLayoutSize {
@@ -502,7 +502,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutSpacing;
 
     unsafe impl ClassType for NSCollectionLayoutSpacing {
@@ -536,7 +536,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutEdgeSpacing;
 
     unsafe impl ClassType for NSCollectionLayoutEdgeSpacing {
@@ -575,7 +575,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutSupplementaryItem;
 
     unsafe impl ClassType for NSCollectionLayoutSupplementaryItem {
@@ -624,7 +624,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutBoundarySupplementaryItem;
 
     unsafe impl ClassType for NSCollectionLayoutBoundarySupplementaryItem {
@@ -676,7 +676,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutDecorationItem;
 
     unsafe impl ClassType for NSCollectionLayoutDecorationItem {
@@ -709,7 +709,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutAnchor;
 
     unsafe impl ClassType for NSCollectionLayoutAnchor {

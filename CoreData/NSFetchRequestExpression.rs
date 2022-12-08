@@ -7,7 +7,7 @@ use crate::Foundation::*;
 extern_static!(NSFetchRequestExpressionType: NSExpressionType = 50);
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFetchRequestExpression;
 
     unsafe impl ClassType for NSFetchRequestExpression {

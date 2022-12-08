@@ -40,7 +40,7 @@ ns_enum!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLRequest;
 
     unsafe impl ClassType for NSURLRequest {
@@ -107,7 +107,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMutableURLRequest;
 
     unsafe impl ClassType for NSMutableURLRequest {

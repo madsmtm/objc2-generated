@@ -31,7 +31,7 @@ extern_protocol!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAuthorizationProviderExtensionAuthorizationRequest;
 
     unsafe impl ClassType for ASAuthorizationProviderExtensionAuthorizationRequest {

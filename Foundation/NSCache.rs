@@ -4,7 +4,7 @@ use crate::common::*;
 use crate::Foundation::*;
 
 __inner_extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCache<
         KeyType: Message = Object,
         ObjectType: Message = Object,

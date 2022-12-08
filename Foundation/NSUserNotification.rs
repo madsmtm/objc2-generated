@@ -15,7 +15,7 @@ ns_enum!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUserNotification;
 
     unsafe impl ClassType for NSUserNotification {
@@ -149,7 +149,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUserNotificationAction;
 
     unsafe impl ClassType for NSUserNotificationAction {
@@ -176,7 +176,7 @@ extern_methods!(
 extern_static!(NSUserNotificationDefaultSoundName: &'static NSString);
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUserNotificationCenter;
 
     unsafe impl ClassType for NSUserNotificationCenter {

@@ -14,7 +14,7 @@ ns_enum!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSXMLDocument;
 
     unsafe impl ClassType for NSXMLDocument {

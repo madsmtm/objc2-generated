@@ -68,7 +68,7 @@ extern_protocol!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextContentManager;
 
     unsafe impl ClassType for NSTextContentManager {
@@ -194,7 +194,7 @@ extern_protocol!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextContentStorage;
 
     unsafe impl ClassType for NSTextContentStorage {

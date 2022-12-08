@@ -44,7 +44,7 @@ extern_protocol!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSGlyphGenerator;
 
     unsafe impl ClassType for NSGlyphGenerator {

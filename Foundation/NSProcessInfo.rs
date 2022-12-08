@@ -25,7 +25,7 @@ extern_struct!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(PartialEq, Eq, Hash)]
     pub struct NSProcessInfo;
 
     unsafe impl ClassType for NSProcessInfo {

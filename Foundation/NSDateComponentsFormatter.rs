@@ -32,7 +32,7 @@ ns_options!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDateComponentsFormatter;
 
     unsafe impl ClassType for NSDateComponentsFormatter {

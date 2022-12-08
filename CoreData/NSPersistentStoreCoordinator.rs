@@ -95,7 +95,7 @@ extern_static!(NSPersistentStoreURLKey: &'static NSString);
 extern_static!(NSPersistentHistoryTokenKey: &'static NSString);
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPersistentStoreCoordinator;
 
     unsafe impl ClassType for NSPersistentStoreCoordinator {

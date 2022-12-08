@@ -14,7 +14,7 @@ extern_static!(NSAppleScriptErrorBriefMessage: &'static NSString);
 extern_static!(NSAppleScriptErrorRange: &'static NSString);
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAppleScript;
 
     unsafe impl ClassType for NSAppleScript {

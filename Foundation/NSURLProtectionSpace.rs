@@ -34,7 +34,7 @@ extern_static!(NSURLAuthenticationMethodClientCertificate: &'static NSString);
 extern_static!(NSURLAuthenticationMethodServerTrust: &'static NSString);
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLProtectionSpace;
 
     unsafe impl ClassType for NSURLProtectionSpace {

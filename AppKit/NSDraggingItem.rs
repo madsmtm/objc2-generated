@@ -12,7 +12,7 @@ extern_static!(NSDraggingImageComponentIconKey: &'static NSDraggingImageComponen
 extern_static!(NSDraggingImageComponentLabelKey: &'static NSDraggingImageComponentKey);
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDraggingImageComponent;
 
     unsafe impl ClassType for NSDraggingImageComponent {
@@ -57,7 +57,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDraggingItem;
 
     unsafe impl ClassType for NSDraggingItem {

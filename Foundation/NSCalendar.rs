@@ -96,7 +96,7 @@ extern_enum!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCalendar;
 
     unsafe impl ClassType for NSCalendar {
@@ -484,7 +484,7 @@ ns_enum!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDateComponents;
 
     unsafe impl ClassType for NSDateComponents {

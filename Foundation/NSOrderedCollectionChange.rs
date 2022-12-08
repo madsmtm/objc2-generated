@@ -12,7 +12,7 @@ ns_enum!(
 );
 
 __inner_extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSOrderedCollectionChange<
         ObjectType: Message = Object,
         ObjectTypeOwnership: Ownership = Shared,

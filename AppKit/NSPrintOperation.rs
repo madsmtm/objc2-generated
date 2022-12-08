@@ -26,7 +26,7 @@ ns_enum!(
 extern_static!(NSPrintOperationExistsException: &'static NSExceptionName);
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPrintOperation;
 
     unsafe impl ClassType for NSPrintOperation {

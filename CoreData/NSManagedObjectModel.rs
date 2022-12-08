@@ -5,7 +5,7 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSManagedObjectModel;
 
     unsafe impl ClassType for NSManagedObjectModel {

@@ -4,7 +4,7 @@ use crate::common::*;
 use crate::Foundation::*;
 
 __inner_extern_class!(
-    #[derive(Debug)]
+    #[derive(PartialEq, Eq, Hash)]
     pub struct NSSet<ObjectType: Message = Object, ObjectTypeOwnership: Ownership = Shared> {
         _inner0: PhantomData<*mut (ObjectType, ObjectTypeOwnership)>,
     }
@@ -178,7 +178,7 @@ extern_methods!(
 );
 
 __inner_extern_class!(
-    #[derive(Debug)]
+    #[derive(PartialEq, Eq, Hash)]
     pub struct NSMutableSet<ObjectType: Message = Object, ObjectTypeOwnership: Ownership = Shared> {
         _inner0: PhantomData<*mut (ObjectType, ObjectTypeOwnership)>,
     }
@@ -253,7 +253,7 @@ extern_methods!(
 );
 
 __inner_extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCountedSet<ObjectType: Message = Object, ObjectTypeOwnership: Ownership = Shared> {
         _inner0: PhantomData<*mut (ObjectType, ObjectTypeOwnership)>,
     }

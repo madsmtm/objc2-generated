@@ -8,7 +8,7 @@ use crate::Foundation::*;
 pub type NSStoryboardSegueIdentifier = NSString;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSStoryboardSegue;
 
     unsafe impl ClassType for NSStoryboardSegue {

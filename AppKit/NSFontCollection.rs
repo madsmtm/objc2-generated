@@ -29,7 +29,7 @@ extern_static!(
 pub type NSFontCollectionName = NSString;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFontCollection;
 
     unsafe impl ClassType for NSFontCollection {
@@ -117,7 +117,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMutableFontCollection;
 
     unsafe impl ClassType for NSMutableFontCollection {

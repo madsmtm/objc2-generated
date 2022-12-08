@@ -27,7 +27,7 @@ extern_fn!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor;
 
     unsafe impl ClassType for ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor {

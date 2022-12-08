@@ -23,7 +23,7 @@ ns_options!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPointerFunctions;
 
     unsafe impl ClassType for NSPointerFunctions {

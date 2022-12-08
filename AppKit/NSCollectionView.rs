@@ -97,7 +97,7 @@ extern_protocol!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionViewItem;
 
     unsafe impl ClassType for NSCollectionViewItem {
@@ -142,7 +142,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionView;
 
     unsafe impl ClassType for NSCollectionView {

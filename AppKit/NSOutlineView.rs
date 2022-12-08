@@ -13,7 +13,7 @@ extern_enum!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSOutlineView;
 
     unsafe impl ClassType for NSOutlineView {

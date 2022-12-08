@@ -67,7 +67,7 @@ extern_static!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPasteboard;
 
     unsafe impl ClassType for NSPasteboard {

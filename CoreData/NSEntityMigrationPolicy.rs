@@ -17,7 +17,7 @@ extern_static!(NSMigrationPropertyMappingKey: &'static NSString);
 extern_static!(NSMigrationEntityPolicyKey: &'static NSString);
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSEntityMigrationPolicy;
 
     unsafe impl ClassType for NSEntityMigrationPolicy {

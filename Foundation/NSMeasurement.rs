@@ -4,7 +4,7 @@ use crate::common::*;
 use crate::Foundation::*;
 
 __inner_extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMeasurement<UnitType: Message = Object, UnitTypeOwnership: Ownership = Shared> {
         _inner0: PhantomData<*mut (UnitType, UnitTypeOwnership)>,
     }

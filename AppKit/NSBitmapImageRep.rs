@@ -89,7 +89,7 @@ extern_static!(NSImageIPTCData: &'static NSBitmapImageRepPropertyKey);
 extern_static!(NSImageFallbackBackgroundColor: &'static NSBitmapImageRepPropertyKey);
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSBitmapImageRep;
 
     unsafe impl ClassType for NSBitmapImageRep {

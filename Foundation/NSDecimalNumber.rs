@@ -33,7 +33,7 @@ extern_protocol!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDecimalNumber;
 
     unsafe impl ClassType for NSDecimalNumber {
@@ -215,7 +215,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDecimalNumberHandler;
 
     unsafe impl ClassType for NSDecimalNumberHandler {

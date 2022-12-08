@@ -21,7 +21,7 @@ ns_options!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSViewController;
 
     unsafe impl ClassType for NSViewController {

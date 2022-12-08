@@ -41,7 +41,7 @@ inline_fn!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTouch;
 
     unsafe impl ClassType for NSTouch {

@@ -22,7 +22,7 @@ extern_static!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionViewFlowLayoutInvalidationContext;
 
     unsafe impl ClassType for NSCollectionViewFlowLayoutInvalidationContext {
@@ -113,7 +113,7 @@ extern_protocol!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionViewFlowLayout;
 
     unsafe impl ClassType for NSCollectionViewFlowLayout {

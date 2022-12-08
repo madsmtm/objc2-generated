@@ -31,7 +31,7 @@ ns_enum!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSGraphicsContext;
 
     unsafe impl ClassType for NSGraphicsContext {

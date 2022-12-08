@@ -15,7 +15,7 @@ pub type NSProgressPublishingHandler =
     *mut Block<(NonNull<NSProgress>,), NSProgressUnpublishingHandler>;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSProgress;
 
     unsafe impl ClassType for NSProgress {

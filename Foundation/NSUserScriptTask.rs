@@ -6,7 +6,7 @@ use crate::Foundation::*;
 pub type NSUserScriptTaskCompletionHandler = *mut Block<(*mut NSError,), ()>;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUserScriptTask;
 
     unsafe impl ClassType for NSUserScriptTask {
@@ -36,7 +36,7 @@ extern_methods!(
 pub type NSUserUnixTaskCompletionHandler = *mut Block<(*mut NSError,), ()>;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUserUnixTask;
 
     unsafe impl ClassType for NSUserUnixTask {
@@ -77,7 +77,7 @@ pub type NSUserAppleScriptTaskCompletionHandler =
     *mut Block<(*mut NSAppleEventDescriptor, *mut NSError), ()>;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUserAppleScriptTask;
 
     unsafe impl ClassType for NSUserAppleScriptTask {
@@ -99,7 +99,7 @@ extern_methods!(
 pub type NSUserAutomatorTaskCompletionHandler = *mut Block<(*mut Object, *mut NSError), ()>;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUserAutomatorTask;
 
     unsafe impl ClassType for NSUserAutomatorTask {

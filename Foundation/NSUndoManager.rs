@@ -8,7 +8,7 @@ extern_static!(NSUndoCloseGroupingRunLoopOrdering: NSUInteger = 350000);
 extern_static!(NSUndoManagerGroupIsDiscardableKey: &'static NSString);
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUndoManager;
 
     unsafe impl ClassType for NSUndoManager {

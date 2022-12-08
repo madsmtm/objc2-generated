@@ -8,7 +8,7 @@ use crate::Foundation::*;
 extern_static!(NSSplitViewControllerAutomaticDimension: CGFloat);
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSplitViewController;
 
     unsafe impl ClassType for NSSplitViewController {

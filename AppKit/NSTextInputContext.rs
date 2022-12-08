@@ -8,7 +8,7 @@ use crate::Foundation::*;
 pub type NSTextInputSourceIdentifier = NSString;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextInputContext;
 
     unsafe impl ClassType for NSTextInputContext {

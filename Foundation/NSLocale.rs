@@ -6,7 +6,7 @@ use crate::Foundation::*;
 pub type NSLocaleKey = NSString;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSLocale;
 
     unsafe impl ClassType for NSLocale {

@@ -171,7 +171,7 @@ pub type NSWindowPersistableFrameDescriptor = NSString;
 pub type NSWindowTabbingIdentifier = NSString;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSWindow;
 
     unsafe impl ClassType for NSWindow {

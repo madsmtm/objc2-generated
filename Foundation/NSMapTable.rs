@@ -21,7 +21,7 @@ extern_static!(NSMapTableWeakMemory: NSPointerFunctionsOptions = NSPointerFuncti
 pub type NSMapTableOptions = NSUInteger;
 
 __inner_extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMapTable<
         KeyType: Message = Object,
         ObjectType: Message = Object,

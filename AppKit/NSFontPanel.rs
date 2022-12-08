@@ -47,7 +47,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFontPanel;
 
     unsafe impl ClassType for NSFontPanel {

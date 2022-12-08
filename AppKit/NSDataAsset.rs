@@ -8,7 +8,7 @@ use crate::Foundation::*;
 pub type NSDataAssetName = NSString;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDataAsset;
 
     unsafe impl ClassType for NSDataAsset {

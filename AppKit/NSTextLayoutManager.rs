@@ -27,7 +27,7 @@ ns_options!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextLayoutManager;
 
     unsafe impl ClassType for NSTextLayoutManager {

@@ -16,7 +16,7 @@ extern_static!(NSToolbarItemVisibilityPriorityHigh: NSToolbarItemVisibilityPrior
 extern_static!(NSToolbarItemVisibilityPriorityUser: NSToolbarItemVisibilityPriority = 2000);
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSToolbarItem;
 
     unsafe impl ClassType for NSToolbarItem {

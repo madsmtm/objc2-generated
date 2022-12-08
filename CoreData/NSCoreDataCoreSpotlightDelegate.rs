@@ -9,7 +9,7 @@ extern_static!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCoreDataCoreSpotlightDelegate;
 
     unsafe impl ClassType for NSCoreDataCoreSpotlightDelegate {

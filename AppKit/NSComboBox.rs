@@ -70,7 +70,7 @@ extern_protocol!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSComboBox;
 
     unsafe impl ClassType for NSComboBox {

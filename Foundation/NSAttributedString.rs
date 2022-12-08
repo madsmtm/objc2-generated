@@ -6,7 +6,7 @@ use crate::Foundation::*;
 pub type NSAttributedStringKey = NSString;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(PartialEq, Eq, Hash)]
     pub struct NSAttributedString;
 
     unsafe impl ClassType for NSAttributedString {
@@ -122,7 +122,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(PartialEq, Eq, Hash)]
     pub struct NSMutableAttributedString;
 
     unsafe impl ClassType for NSMutableAttributedString {
@@ -239,7 +239,7 @@ ns_enum!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAttributedStringMarkdownParsingOptions;
 
     unsafe impl ClassType for NSAttributedStringMarkdownParsingOptions {
@@ -377,7 +377,7 @@ ns_enum!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPresentationIntent;
 
     unsafe impl ClassType for NSPresentationIntent {

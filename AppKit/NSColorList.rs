@@ -10,7 +10,7 @@ pub type NSColorListName = NSString;
 pub type NSColorName = NSString;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSColorList;
 
     unsafe impl ClassType for NSColorList {

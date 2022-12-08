@@ -82,7 +82,7 @@ pub type NSItemProviderLoadHandler = *mut Block<
 >;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSItemProvider;
 
     unsafe impl ClassType for NSItemProvider {

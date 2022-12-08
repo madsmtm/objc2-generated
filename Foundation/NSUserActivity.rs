@@ -6,7 +6,7 @@ use crate::Foundation::*;
 pub type NSUserActivityPersistentIdentifier = NSString;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUserActivity;
 
     unsafe impl ClassType for NSUserActivity {

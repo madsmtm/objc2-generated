@@ -8,7 +8,7 @@ use crate::Foundation::*;
 pub type NSTouchBarCustomizationIdentifier = NSString;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTouchBar;
 
     unsafe impl ClassType for NSTouchBar {

@@ -39,7 +39,7 @@ extern_protocol!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextViewportLayoutController;
 
     unsafe impl ClassType for NSTextViewportLayoutController {

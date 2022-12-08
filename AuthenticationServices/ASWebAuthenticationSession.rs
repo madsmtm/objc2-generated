@@ -18,7 +18,7 @@ ns_error_enum!(
 pub type ASWebAuthenticationSessionCompletionHandler = *mut Block<(*mut NSURL, *mut NSError), ()>;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASWebAuthenticationSession;
 
     unsafe impl ClassType for ASWebAuthenticationSession {

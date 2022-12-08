@@ -20,7 +20,7 @@ ns_enum!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSColorSpace;
 
     unsafe impl ClassType for NSColorSpace {

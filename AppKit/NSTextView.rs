@@ -25,7 +25,7 @@ ns_enum!(
 extern_static!(NSAllRomanInputSourcesLocaleIdentifier: &'static NSString);
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextView;
 
     unsafe impl ClassType for NSTextView {

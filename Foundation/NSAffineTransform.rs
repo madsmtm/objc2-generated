@@ -15,7 +15,7 @@ extern_struct!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAffineTransform;
 
     unsafe impl ClassType for NSAffineTransform {

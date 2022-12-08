@@ -21,7 +21,7 @@ extern_static!(NSAlertSecondButtonReturn: NSModalResponse = 1001);
 extern_static!(NSAlertThirdButtonReturn: NSModalResponse = 1002);
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAlert;
 
     unsafe impl ClassType for NSAlert {

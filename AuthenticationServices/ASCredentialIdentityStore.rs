@@ -16,7 +16,7 @@ ns_error_enum!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASCredentialIdentityStore;
 
     unsafe impl ClassType for ASCredentialIdentityStore {

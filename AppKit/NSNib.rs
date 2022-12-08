@@ -8,7 +8,7 @@ use crate::Foundation::*;
 pub type NSNibName = NSString;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSNib;
 
     unsafe impl ClassType for NSNib {

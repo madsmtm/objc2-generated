@@ -21,7 +21,7 @@ ns_options!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAppleEventDescriptor;
 
     unsafe impl ClassType for NSAppleEventDescriptor {

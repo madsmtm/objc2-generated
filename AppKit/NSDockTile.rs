@@ -8,7 +8,7 @@ use crate::Foundation::*;
 extern_static!(NSAppKitVersionNumberWithDockTilePlugInSupport: NSAppKitVersion = 1001.0);
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDockTile;
 
     unsafe impl ClassType for NSDockTile {

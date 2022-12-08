@@ -12,7 +12,7 @@ extern_protocol!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAlignmentFeedbackFilter;
 
     unsafe impl ClassType for NSAlignmentFeedbackFilter {

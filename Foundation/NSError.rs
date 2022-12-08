@@ -42,7 +42,7 @@ extern_static!(NSURLErrorKey: &'static NSErrorUserInfoKey);
 extern_static!(NSFilePathErrorKey: &'static NSErrorUserInfoKey);
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(PartialEq, Eq, Hash)]
     pub struct NSError;
 
     unsafe impl ClassType for NSError {

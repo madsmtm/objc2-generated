@@ -8,7 +8,7 @@ use crate::Foundation::*;
 pub type NSAppearanceName = NSString;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAppearance;
 
     unsafe impl ClassType for NSAppearance {

@@ -13,7 +13,7 @@ ns_options!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFontAssetRequest;
 
     unsafe impl ClassType for NSFontAssetRequest {

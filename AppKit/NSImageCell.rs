@@ -32,7 +32,7 @@ ns_enum!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSImageCell;
 
     unsafe impl ClassType for NSImageCell {

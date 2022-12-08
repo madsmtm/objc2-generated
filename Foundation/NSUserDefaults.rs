@@ -10,7 +10,7 @@ extern_static!(NSArgumentDomain: &'static NSString);
 extern_static!(NSRegistrationDomain: &'static NSString);
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUserDefaults;
 
     unsafe impl ClassType for NSUserDefaults {

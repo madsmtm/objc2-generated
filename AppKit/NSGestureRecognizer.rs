@@ -19,7 +19,7 @@ ns_enum!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSGestureRecognizer;
 
     unsafe impl ClassType for NSGestureRecognizer {

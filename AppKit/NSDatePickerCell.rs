@@ -35,7 +35,7 @@ ns_options!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDatePickerCell;
 
     unsafe impl ClassType for NSDatePickerCell {

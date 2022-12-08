@@ -41,7 +41,7 @@ extern_protocol!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAccountAuthenticationModificationController;
 
     unsafe impl ClassType for ASAccountAuthenticationModificationController {

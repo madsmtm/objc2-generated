@@ -37,7 +37,7 @@ extern_protocol!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSHapticFeedbackManager;
 
     unsafe impl ClassType for NSHapticFeedbackManager {

@@ -26,7 +26,7 @@ ns_options!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSJSONSerialization;
 
     unsafe impl ClassType for NSJSONSerialization {

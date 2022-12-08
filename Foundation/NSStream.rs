@@ -32,7 +32,7 @@ ns_options!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSStream;
 
     unsafe impl ClassType for NSStream {
@@ -82,7 +82,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSInputStream;
 
     unsafe impl ClassType for NSInputStream {
@@ -120,7 +120,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSOutputStream;
 
     unsafe impl ClassType for NSOutputStream {

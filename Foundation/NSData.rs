@@ -55,7 +55,7 @@ ns_options!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(PartialEq, Eq, Hash)]
     pub struct NSData;
 
     unsafe impl ClassType for NSData {
@@ -326,7 +326,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(PartialEq, Eq, Hash)]
     pub struct NSMutableData;
 
     unsafe impl ClassType for NSMutableData {
@@ -419,7 +419,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPurgeableData;
 
     unsafe impl ClassType for NSPurgeableData {

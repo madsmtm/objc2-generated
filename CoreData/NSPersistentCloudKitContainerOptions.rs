@@ -5,7 +5,7 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPersistentCloudKitContainerOptions;
 
     unsafe impl ClassType for NSPersistentCloudKitContainerOptions {

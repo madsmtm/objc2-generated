@@ -24,7 +24,7 @@ extern_static!(NSRulerViewUnitPoints: &'static NSRulerViewUnitName);
 extern_static!(NSRulerViewUnitPicas: &'static NSRulerViewUnitName);
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSRulerView;
 
     unsafe impl ClassType for NSRulerView {

@@ -22,7 +22,7 @@ extern_static!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionViewLayoutAttributes;
 
     unsafe impl ClassType for NSCollectionViewLayoutAttributes {
@@ -110,7 +110,7 @@ ns_enum!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionViewUpdateItem;
 
     unsafe impl ClassType for NSCollectionViewUpdateItem {
@@ -132,7 +132,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionViewLayoutInvalidationContext;
 
     unsafe impl ClassType for NSCollectionViewLayoutInvalidationContext {
@@ -197,7 +197,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionViewLayout;
 
     unsafe impl ClassType for NSCollectionViewLayout {

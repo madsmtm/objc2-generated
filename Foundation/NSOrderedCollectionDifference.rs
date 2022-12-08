@@ -13,7 +13,7 @@ ns_options!(
 );
 
 __inner_extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSOrderedCollectionDifference<
         ObjectType: Message = Object,
         ObjectTypeOwnership: Ownership = Shared,

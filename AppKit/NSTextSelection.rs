@@ -25,7 +25,7 @@ ns_enum!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextSelection;
 
     unsafe impl ClassType for NSTextSelection {

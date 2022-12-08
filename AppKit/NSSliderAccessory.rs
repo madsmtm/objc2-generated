@@ -6,7 +6,7 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSliderAccessory;
 
     unsafe impl ClassType for NSSliderAccessory {
@@ -38,7 +38,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSliderAccessoryBehavior;
 
     unsafe impl ClassType for NSSliderAccessoryBehavior {

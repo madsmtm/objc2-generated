@@ -69,7 +69,7 @@ extern_protocol!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextAttachment;
 
     unsafe impl ClassType for NSTextAttachment {
@@ -167,7 +167,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextAttachmentViewProvider;
 
     unsafe impl ClassType for NSTextAttachmentViewProvider {

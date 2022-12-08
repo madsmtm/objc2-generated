@@ -18,7 +18,7 @@ ns_enum!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSScriptWhoseTest;
 
     unsafe impl ClassType for NSScriptWhoseTest {
@@ -43,7 +43,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSLogicalTest;
 
     unsafe impl ClassType for NSLogicalTest {
@@ -74,7 +74,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSpecifierTest;
 
     unsafe impl ClassType for NSSpecifierTest {

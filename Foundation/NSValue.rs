@@ -4,7 +4,7 @@ use crate::common::*;
 use crate::Foundation::*;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Hash)]
     pub struct NSValue;
 
     unsafe impl ClassType for NSValue {
@@ -73,7 +73,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Hash)]
     pub struct NSNumber;
 
     unsafe impl ClassType for NSNumber {

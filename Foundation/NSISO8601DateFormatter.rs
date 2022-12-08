@@ -24,7 +24,7 @@ ns_options!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSISO8601DateFormatter;
 
     unsafe impl ClassType for NSISO8601DateFormatter {

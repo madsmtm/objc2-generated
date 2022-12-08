@@ -8,7 +8,7 @@ extern_static!(NSDefaultRunLoopMode: &'static NSRunLoopMode);
 extern_static!(NSRunLoopCommonModes: &'static NSRunLoopMode);
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSRunLoop;
 
     unsafe impl ClassType for NSRunLoop {

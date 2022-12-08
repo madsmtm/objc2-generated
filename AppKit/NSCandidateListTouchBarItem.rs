@@ -6,7 +6,7 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 __inner_extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCandidateListTouchBarItem<
         CandidateType: Message = Object,
         CandidateTypeOwnership: Ownership = Shared,

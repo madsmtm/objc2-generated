@@ -15,7 +15,7 @@ ns_enum!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSOperation;
 
     unsafe impl ClassType for NSOperation {
@@ -97,7 +97,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSBlockOperation;
 
     unsafe impl ClassType for NSBlockOperation {
@@ -116,7 +116,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSInvocationOperation;
 
     unsafe impl ClassType for NSInvocationOperation {
@@ -155,7 +155,7 @@ extern_static!(NSInvocationOperationCancelledException: &'static NSExceptionName
 extern_static!(NSOperationQueueDefaultMaxConcurrentOperationCount: NSInteger = -1);
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSOperationQueue;
 
     unsafe impl ClassType for NSOperationQueue {

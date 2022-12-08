@@ -48,7 +48,7 @@ ns_enum!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSVisualEffectView;
 
     unsafe impl ClassType for NSVisualEffectView {

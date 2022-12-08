@@ -16,7 +16,7 @@ extern_protocol!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSLock;
 
     unsafe impl ClassType for NSLock {
@@ -41,7 +41,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSConditionLock;
 
     unsafe impl ClassType for NSConditionLock {
@@ -91,7 +91,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSRecursiveLock;
 
     unsafe impl ClassType for NSRecursiveLock {
@@ -116,7 +116,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCondition;
 
     unsafe impl ClassType for NSCondition {

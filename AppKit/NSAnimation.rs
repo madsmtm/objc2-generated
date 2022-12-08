@@ -31,7 +31,7 @@ extern_static!(NSAnimationProgressMarkNotification: &'static NSNotificationName)
 extern_static!(NSAnimationProgressMark: &'static NSString);
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAnimation;
 
     unsafe impl ClassType for NSAnimation {
@@ -194,7 +194,7 @@ extern_static!(NSViewAnimationFadeInEffect: &'static NSViewAnimationEffectName);
 extern_static!(NSViewAnimationFadeOutEffect: &'static NSViewAnimationEffectName);
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSViewAnimation;
 
     unsafe impl ClassType for NSViewAnimation {

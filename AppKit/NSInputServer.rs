@@ -106,7 +106,7 @@ extern_protocol!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSInputServer;
 
     unsafe impl ClassType for NSInputServer {

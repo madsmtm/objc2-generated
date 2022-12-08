@@ -17,7 +17,7 @@ ns_options!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSManagedObject;
 
     unsafe impl ClassType for NSManagedObject {

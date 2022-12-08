@@ -6,7 +6,7 @@ use crate::Foundation::*;
 extern_static!(NSURLSessionTransferSizeUnknown: i64);
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLSession;
 
     unsafe impl ClassType for NSURLSession {
@@ -231,7 +231,7 @@ ns_enum!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLSessionTask;
 
     unsafe impl ClassType for NSURLSessionTask {
@@ -346,7 +346,7 @@ extern_static!(NSURLSessionTaskPriorityLow: c_float);
 extern_static!(NSURLSessionTaskPriorityHigh: c_float);
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLSessionDataTask;
 
     unsafe impl ClassType for NSURLSessionDataTask {
@@ -365,7 +365,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLSessionUploadTask;
 
     unsafe impl ClassType for NSURLSessionUploadTask {
@@ -384,7 +384,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLSessionDownloadTask;
 
     unsafe impl ClassType for NSURLSessionDownloadTask {
@@ -409,7 +409,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLSessionStreamTask;
 
     unsafe impl ClassType for NSURLSessionStreamTask {
@@ -468,7 +468,7 @@ ns_enum!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLSessionWebSocketMessage;
 
     unsafe impl ClassType for NSURLSessionWebSocketMessage {
@@ -527,7 +527,7 @@ ns_enum!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLSessionWebSocketTask;
 
     unsafe impl ClassType for NSURLSessionWebSocketTask {
@@ -594,7 +594,7 @@ ns_enum!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLSessionConfiguration;
 
     unsafe impl ClassType for NSURLSessionConfiguration {
@@ -1135,7 +1135,7 @@ ns_enum!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLSessionTaskTransactionMetrics;
 
     unsafe impl ClassType for NSURLSessionTaskTransactionMetrics {
@@ -1258,7 +1258,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLSessionTaskMetrics;
 
     unsafe impl ClassType for NSURLSessionTaskMetrics {

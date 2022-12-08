@@ -15,7 +15,7 @@ ns_options!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMediaLibraryBrowserController;
 
     unsafe impl ClassType for NSMediaLibraryBrowserController {

@@ -12,7 +12,7 @@ extern_static!(NSAppleEventTimeOutNone: c_double);
 extern_static!(NSAppleEventManagerWillProcessFirstEventNotification: &'static NSNotificationName);
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAppleEventManager;
 
     unsafe impl ClassType for NSAppleEventManager {

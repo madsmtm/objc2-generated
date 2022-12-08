@@ -18,7 +18,7 @@ extern_static!(NSKeyedUnarchiveFromDataTransformerName: &'static NSValueTransfor
 extern_static!(NSSecureUnarchiveFromDataTransformerName: &'static NSValueTransformerName);
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSValueTransformer;
 
     unsafe impl ClassType for NSValueTransformer {
@@ -61,7 +61,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSecureUnarchiveFromDataTransformer;
 
     unsafe impl ClassType for NSSecureUnarchiveFromDataTransformer {

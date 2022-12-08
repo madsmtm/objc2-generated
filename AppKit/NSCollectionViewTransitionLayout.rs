@@ -8,7 +8,7 @@ use crate::Foundation::*;
 pub type NSCollectionViewTransitionLayoutAnimatedKey = NSString;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionViewTransitionLayout;
 
     unsafe impl ClassType for NSCollectionViewTransitionLayout {

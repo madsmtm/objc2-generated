@@ -100,7 +100,7 @@ ns_options!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTableView;
 
     unsafe impl ClassType for NSTableView {

@@ -47,7 +47,7 @@ ns_enum!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSScriptObjectSpecifier;
 
     unsafe impl ClassType for NSScriptObjectSpecifier {
@@ -180,7 +180,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSIndexSpecifier;
 
     unsafe impl ClassType for NSIndexSpecifier {
@@ -208,7 +208,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMiddleSpecifier;
 
     unsafe impl ClassType for NSMiddleSpecifier {
@@ -221,7 +221,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSNameSpecifier;
 
     unsafe impl ClassType for NSNameSpecifier {
@@ -255,7 +255,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPositionalSpecifier;
 
     unsafe impl ClassType for NSPositionalSpecifier {
@@ -302,7 +302,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPropertySpecifier;
 
     unsafe impl ClassType for NSPropertySpecifier {
@@ -315,7 +315,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSRandomSpecifier;
 
     unsafe impl ClassType for NSRandomSpecifier {
@@ -328,7 +328,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSRangeSpecifier;
 
     unsafe impl ClassType for NSRangeSpecifier {
@@ -369,7 +369,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSRelativeSpecifier;
 
     unsafe impl ClassType for NSRelativeSpecifier {
@@ -410,7 +410,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUniqueIDSpecifier;
 
     unsafe impl ClassType for NSUniqueIDSpecifier {
@@ -444,7 +444,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSWhoseSpecifier;
 
     unsafe impl ClassType for NSWhoseSpecifier {

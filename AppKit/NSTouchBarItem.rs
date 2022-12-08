@@ -16,7 +16,7 @@ extern_static!(NSTouchBarItemPriorityNormal: NSTouchBarItemPriority = 0);
 extern_static!(NSTouchBarItemPriorityLow: NSTouchBarItemPriority = -1000);
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTouchBarItem;
 
     unsafe impl ClassType for NSTouchBarItem {

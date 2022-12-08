@@ -53,7 +53,7 @@ ns_enum!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextBlock;
 
     unsafe impl ClassType for NSTextBlock {
@@ -174,7 +174,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextTableBlock;
 
     unsafe impl ClassType for NSTextTableBlock {
@@ -212,7 +212,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextTable;
 
     unsafe impl ClassType for NSTextTable {

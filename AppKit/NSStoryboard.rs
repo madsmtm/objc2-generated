@@ -12,7 +12,7 @@ pub type NSStoryboardSceneIdentifier = NSString;
 pub type NSStoryboardControllerCreator = *mut Block<(NonNull<NSCoder>,), *mut Object>;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSStoryboard;
 
     unsafe impl ClassType for NSStoryboard {

@@ -18,7 +18,7 @@ ns_enum!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSLengthFormatter;
 
     unsafe impl ClassType for NSLengthFormatter {

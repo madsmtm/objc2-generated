@@ -10,7 +10,7 @@ extern_static!(NSInvalidUnarchiveOperationException: &'static NSExceptionName);
 extern_static!(NSKeyedArchiveRootObjectKey: &'static NSString);
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSKeyedArchiver;
 
     unsafe impl ClassType for NSKeyedArchiver {
@@ -110,7 +110,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSKeyedUnarchiver;
 
     unsafe impl ClassType for NSKeyedUnarchiver {

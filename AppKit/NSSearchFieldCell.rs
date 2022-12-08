@@ -14,7 +14,7 @@ extern_static!(NSSearchFieldClearRecentsMenuItemTag: NSInteger = 1002);
 extern_static!(NSSearchFieldNoRecentsMenuItemTag: NSInteger = 1003);
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSearchFieldCell;
 
     unsafe impl ClassType for NSSearchFieldCell {

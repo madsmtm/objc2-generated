@@ -13,7 +13,7 @@ ns_enum!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCloneCommand;
 
     unsafe impl ClassType for NSCloneCommand {
@@ -32,7 +32,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCloseCommand;
 
     unsafe impl ClassType for NSCloseCommand {
@@ -48,7 +48,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCountCommand;
 
     unsafe impl ClassType for NSCountCommand {
@@ -61,7 +61,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCreateCommand;
 
     unsafe impl ClassType for NSCreateCommand {
@@ -80,7 +80,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDeleteCommand;
 
     unsafe impl ClassType for NSDeleteCommand {
@@ -99,7 +99,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSExistsCommand;
 
     unsafe impl ClassType for NSExistsCommand {
@@ -112,7 +112,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSGetCommand;
 
     unsafe impl ClassType for NSGetCommand {
@@ -125,7 +125,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMoveCommand;
 
     unsafe impl ClassType for NSMoveCommand {
@@ -144,7 +144,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSQuitCommand;
 
     unsafe impl ClassType for NSQuitCommand {
@@ -160,7 +160,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSetCommand;
 
     unsafe impl ClassType for NSSetCommand {

@@ -65,7 +65,7 @@ extern_protocol!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLHandle;
 
     unsafe impl ClassType for NSURLHandle {

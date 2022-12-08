@@ -12,7 +12,7 @@ extern_enum!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSavePanel;
 
     unsafe impl ClassType for NSSavePanel {

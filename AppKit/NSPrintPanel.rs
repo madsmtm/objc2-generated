@@ -51,7 +51,7 @@ extern_protocol!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPrintPanel;
 
     unsafe impl ClassType for NSPrintPanel {

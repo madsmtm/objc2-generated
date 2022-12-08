@@ -31,7 +31,7 @@ ns_options!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSNetService;
 
     unsafe impl ClassType for NSNetService {
@@ -134,7 +134,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSNetServiceBrowser;
 
     unsafe impl ClassType for NSNetServiceBrowser {

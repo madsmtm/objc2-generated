@@ -36,7 +36,7 @@ ns_enum!(
 pub type NSTextCheckingKey = NSString;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextCheckingResult;
 
     unsafe impl ClassType for NSTextCheckingResult {

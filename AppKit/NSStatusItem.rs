@@ -16,7 +16,7 @@ ns_options!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSStatusItem;
 
     unsafe impl ClassType for NSStatusItem {

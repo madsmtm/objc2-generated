@@ -60,7 +60,7 @@ ns_options!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(PartialEq, Eq, Hash)]
     pub struct NSString;
 
     unsafe impl ClassType for NSString {
@@ -733,7 +733,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(PartialEq, Eq, Hash)]
     pub struct NSMutableString;
 
     unsafe impl ClassType for NSMutableString {
@@ -909,7 +909,7 @@ ns_enum!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSimpleCString;
 
     unsafe impl ClassType for NSSimpleCString {
@@ -922,7 +922,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSConstantString;
 
     unsafe impl ClassType for NSConstantString {

@@ -15,7 +15,7 @@ ns_enum!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSScrollView;
 
     unsafe impl ClassType for NSScrollView {

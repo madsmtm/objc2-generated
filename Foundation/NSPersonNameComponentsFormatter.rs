@@ -22,7 +22,7 @@ ns_options!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPersonNameComponentsFormatter;
 
     unsafe impl ClassType for NSPersonNameComponentsFormatter {

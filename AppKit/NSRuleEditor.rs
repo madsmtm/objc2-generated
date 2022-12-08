@@ -40,7 +40,7 @@ ns_enum!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSRuleEditor;
 
     unsafe impl ClassType for NSRuleEditor {

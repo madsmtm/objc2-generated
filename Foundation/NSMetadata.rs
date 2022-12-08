@@ -4,7 +4,7 @@ use crate::common::*;
 use crate::Foundation::*;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMetadataQuery;
 
     unsafe impl ClassType for NSMetadataQuery {
@@ -190,7 +190,7 @@ extern_static!(NSMetadataQueryUbiquitousDataScope: &'static NSString);
 extern_static!(NSMetadataQueryAccessibleUbiquitousExternalDocumentsScope: &'static NSString);
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMetadataItem;
 
     unsafe impl ClassType for NSMetadataItem {
@@ -221,7 +221,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMetadataQueryAttributeValueTuple;
 
     unsafe impl ClassType for NSMetadataQueryAttributeValueTuple {
@@ -243,7 +243,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMetadataQueryResultGroup;
 
     unsafe impl ClassType for NSMetadataQueryResultGroup {

@@ -14,7 +14,7 @@ ns_options!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSWorkspace;
 
     unsafe impl ClassType for NSWorkspace {
@@ -191,7 +191,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSWorkspaceOpenConfiguration;
 
     unsafe impl ClassType for NSWorkspaceOpenConfiguration {
@@ -324,7 +324,7 @@ ns_enum!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSWorkspaceAuthorization;
 
     unsafe impl ClassType for NSWorkspaceAuthorization {

@@ -44,7 +44,7 @@ ns_enum!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPersistentStoreResult;
 
     unsafe impl ClassType for NSPersistentStoreResult {
@@ -57,7 +57,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPersistentStoreAsynchronousResult;
 
     unsafe impl ClassType for NSPersistentStoreAsynchronousResult {
@@ -82,7 +82,7 @@ extern_methods!(
 );
 
 __inner_extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAsynchronousFetchResult<
         ResultType: Message = Object,
         ResultTypeOwnership: Ownership = Shared,
@@ -110,7 +110,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSBatchInsertResult;
 
     unsafe impl ClassType for NSBatchInsertResult {
@@ -129,7 +129,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSBatchUpdateResult;
 
     unsafe impl ClassType for NSBatchUpdateResult {
@@ -148,7 +148,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSBatchDeleteResult;
 
     unsafe impl ClassType for NSBatchDeleteResult {
@@ -167,7 +167,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPersistentHistoryResult;
 
     unsafe impl ClassType for NSPersistentHistoryResult {
@@ -194,7 +194,7 @@ ns_enum!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPersistentCloudKitContainerEventResult;
 
     unsafe impl ClassType for NSPersistentCloudKitContainerEventResult {

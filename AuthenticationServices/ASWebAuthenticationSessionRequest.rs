@@ -27,7 +27,7 @@ extern_protocol!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASWebAuthenticationSessionRequest;
 
     unsafe impl ClassType for ASWebAuthenticationSessionRequest {

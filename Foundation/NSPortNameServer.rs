@@ -4,7 +4,7 @@ use crate::common::*;
 use crate::Foundation::*;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPortNameServer;
 
     unsafe impl ClassType for NSPortNameServer {
@@ -36,7 +36,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMachBootstrapServer;
 
     unsafe impl ClassType for NSMachBootstrapServer {
@@ -68,7 +68,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMessagePortNameServer;
 
     unsafe impl ClassType for NSMessagePortNameServer {
@@ -94,7 +94,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSocketPortNameServer;
 
     unsafe impl ClassType for NSSocketPortNameServer {

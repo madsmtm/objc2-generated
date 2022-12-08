@@ -6,7 +6,7 @@ use crate::Foundation::*;
 pub type NSNotificationName = NSString;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSNotification;
 
     unsafe impl ClassType for NSNotification {
@@ -63,7 +63,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSNotificationCenter;
 
     unsafe impl ClassType for NSNotificationCenter {

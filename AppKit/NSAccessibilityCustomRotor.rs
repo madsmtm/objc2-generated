@@ -42,7 +42,7 @@ ns_enum!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAccessibilityCustomRotor;
 
     unsafe impl ClassType for NSAccessibilityCustomRotor {
@@ -103,7 +103,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAccessibilityCustomRotorSearchParameters;
 
     unsafe impl ClassType for NSAccessibilityCustomRotorSearchParameters {
@@ -142,7 +142,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAccessibilityCustomRotorItemResult;
 
     unsafe impl ClassType for NSAccessibilityCustomRotorItemResult {

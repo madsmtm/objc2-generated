@@ -62,7 +62,7 @@ pub type NSTrackingRectTag = NSInteger;
 pub type NSToolTipTag = NSInteger;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSView;
 
     unsafe impl ClassType for NSView {

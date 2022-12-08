@@ -6,7 +6,7 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMagnificationGestureRecognizer;
 
     unsafe impl ClassType for NSMagnificationGestureRecognizer {

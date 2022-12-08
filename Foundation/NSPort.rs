@@ -8,7 +8,7 @@ pub type NSSocketNativeHandle = c_int;
 extern_static!(NSPortDidBecomeInvalidNotification: &'static NSNotificationName);
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPort;
 
     unsafe impl ClassType for NSPort {
@@ -99,7 +99,7 @@ ns_options!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMachPort;
 
     unsafe impl ClassType for NSMachPort {
@@ -159,7 +159,7 @@ extern_protocol!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMessagePort;
 
     unsafe impl ClassType for NSMessagePort {
@@ -172,7 +172,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSocketPort;
 
     unsafe impl ClassType for NSSocketPort {

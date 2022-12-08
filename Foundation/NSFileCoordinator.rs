@@ -25,7 +25,7 @@ ns_options!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileAccessIntent;
 
     unsafe impl ClassType for NSFileAccessIntent {
@@ -53,7 +53,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileCoordinator;
 
     unsafe impl ClassType for NSFileCoordinator {

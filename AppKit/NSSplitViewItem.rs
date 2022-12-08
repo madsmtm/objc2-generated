@@ -27,7 +27,7 @@ ns_enum!(
 extern_static!(NSSplitViewItemUnspecifiedDimension: CGFloat);
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSplitViewItem;
 
     unsafe impl ClassType for NSSplitViewItem {

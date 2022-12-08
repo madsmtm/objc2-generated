@@ -18,7 +18,7 @@ extern_static!(NSPersistentCloudKitContainerEventChangedNotification: &'static N
 extern_static!(NSPersistentCloudKitContainerEventUserInfoKey: &'static NSString);
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPersistentCloudKitContainerEvent;
 
     unsafe impl ClassType for NSPersistentCloudKitContainerEvent {

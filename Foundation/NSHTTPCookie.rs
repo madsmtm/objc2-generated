@@ -40,7 +40,7 @@ extern_static!(NSHTTPCookieSameSiteLax: &'static NSHTTPCookieStringPolicy);
 extern_static!(NSHTTPCookieSameSiteStrict: &'static NSHTTPCookieStringPolicy);
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSHTTPCookie;
 
     unsafe impl ClassType for NSHTTPCookie {

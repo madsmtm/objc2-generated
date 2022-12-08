@@ -13,7 +13,7 @@ ns_options!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMeasurementFormatter;
 
     unsafe impl ClassType for NSMeasurementFormatter {

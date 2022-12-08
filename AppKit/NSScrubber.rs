@@ -82,7 +82,7 @@ ns_enum!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSScrubberSelectionStyle;
 
     unsafe impl ClassType for NSScrubberSelectionStyle {
@@ -113,7 +113,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSScrubber;
 
     unsafe impl ClassType for NSScrubber {

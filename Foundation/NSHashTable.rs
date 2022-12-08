@@ -21,7 +21,7 @@ extern_static!(NSHashTableWeakMemory: NSPointerFunctionsOptions = NSPointerFunct
 pub type NSHashTableOptions = NSUInteger;
 
 __inner_extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSHashTable<ObjectType: Message = Object, ObjectTypeOwnership: Ownership = Shared> {
         _inner0: PhantomData<*mut (ObjectType, ObjectTypeOwnership)>,
     }

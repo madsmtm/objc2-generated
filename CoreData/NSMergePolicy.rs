@@ -16,7 +16,7 @@ ns_enum!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMergeConflict;
 
     unsafe impl ClassType for NSMergeConflict {
@@ -62,7 +62,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSConstraintConflict;
 
     unsafe impl ClassType for NSConstraintConflict {
@@ -104,7 +104,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMergePolicy;
 
     unsafe impl ClassType for NSMergePolicy {

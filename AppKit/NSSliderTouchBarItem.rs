@@ -12,7 +12,7 @@ extern_static!(NSSliderAccessoryWidthDefault: NSSliderAccessoryWidth);
 extern_static!(NSSliderAccessoryWidthWide: NSSliderAccessoryWidth);
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSliderTouchBarItem;
 
     unsafe impl ClassType for NSSliderTouchBarItem {

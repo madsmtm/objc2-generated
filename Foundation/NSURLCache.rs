@@ -13,7 +13,7 @@ ns_enum!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCachedURLResponse;
 
     unsafe impl ClassType for NSCachedURLResponse {
@@ -54,7 +54,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLCache;
 
     unsafe impl ClassType for NSURLCache {

@@ -5,7 +5,7 @@ use crate::AuthenticationServices::*;
 use crate::Foundation::*;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAuthorizationPasswordProvider;
 
     unsafe impl ClassType for ASAuthorizationPasswordProvider {

@@ -39,7 +39,7 @@ extern_static!(
 extern_static!(NSStackViewVisibilityPriorityNotVisible: NSStackViewVisibilityPriority = 0);
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSStackView;
 
     unsafe impl ClassType for NSStackView {

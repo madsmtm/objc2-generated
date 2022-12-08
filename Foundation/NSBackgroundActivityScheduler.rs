@@ -14,7 +14,7 @@ ns_enum!(
 pub type NSBackgroundActivityCompletionHandler = *mut Block<(NSBackgroundActivityResult,), ()>;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSBackgroundActivityScheduler;
 
     unsafe impl ClassType for NSBackgroundActivityScheduler {

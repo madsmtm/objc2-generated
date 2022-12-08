@@ -6,7 +6,7 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSecureTextField;
 
     unsafe impl ClassType for NSSecureTextField {
@@ -19,7 +19,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSecureTextFieldCell;
 
     unsafe impl ClassType for NSSecureTextFieldCell {

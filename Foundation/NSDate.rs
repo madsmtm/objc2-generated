@@ -8,7 +8,7 @@ extern_static!(NSSystemClockDidChangeNotification: &'static NSNotificationName);
 pub type NSTimeInterval = c_double;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDate;
 
     unsafe impl ClassType for NSDate {

@@ -10,7 +10,7 @@ pub type NSBindingName = NSString;
 pub type NSBindingOption = NSString;
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSBindingSelectionMarker;
 
     unsafe impl ClassType for NSBindingSelectionMarker {

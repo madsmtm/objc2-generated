@@ -14,7 +14,7 @@ ns_options!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPersistentCloudKitContainer;
 
     unsafe impl ClassType for NSPersistentCloudKitContainer {

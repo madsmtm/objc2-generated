@@ -19,7 +19,7 @@ extern_static!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAuthorizationAppleIDProvider;
 
     unsafe impl ClassType for ASAuthorizationAppleIDProvider {

@@ -8,7 +8,7 @@ use crate::Foundation::*;
 extern_static!(NSFontIdentityMatrix: NonNull<CGFloat>);
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFont;
 
     unsafe impl ClassType for NSFont {

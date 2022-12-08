@@ -36,7 +36,7 @@ extern_static!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDistributedNotificationCenter;
 
     unsafe impl ClassType for NSDistributedNotificationCenter {

@@ -17,7 +17,7 @@ ns_enum!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPageController;
 
     unsafe impl ClassType for NSPageController {

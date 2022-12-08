@@ -20,7 +20,7 @@ ns_options!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileWrapper;
 
     unsafe impl ClassType for NSFileWrapper {

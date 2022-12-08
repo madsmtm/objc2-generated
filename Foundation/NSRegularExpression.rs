@@ -17,7 +17,7 @@ ns_options!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSRegularExpression;
 
     unsafe impl ClassType for NSRegularExpression {
@@ -158,7 +158,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDataDetector;
 
     unsafe impl ClassType for NSDataDetector {
