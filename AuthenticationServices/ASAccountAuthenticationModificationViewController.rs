@@ -9,7 +9,7 @@ extern_class!(
     pub struct ASAccountAuthenticationModificationViewController;
 
     unsafe impl ClassType for ASAccountAuthenticationModificationViewController {
-        type Super = ASViewController;
+        type Super = ASViewController<ASViewController, ASViewControllerOwnership>;
     }
 );
 

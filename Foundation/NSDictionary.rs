@@ -308,7 +308,7 @@ __inner_extern_class!(
         > ClassType
         for NSMutableDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
     {
-        type Super = NSDictionary;
+        type Super = NSDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>;
     }
 );
 

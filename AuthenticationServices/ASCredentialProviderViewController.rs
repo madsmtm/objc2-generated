@@ -9,7 +9,7 @@ extern_class!(
     pub struct ASCredentialProviderViewController;
 
     unsafe impl ClassType for ASCredentialProviderViewController {
-        type Super = ASViewController;
+        type Super = ASViewController<ASViewController, ASViewControllerOwnership>;
     }
 );
 
