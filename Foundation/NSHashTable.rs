@@ -22,17 +22,21 @@ pub type NSHashTableOptions = NSUInteger;
 
 __inner_extern_class!(
     #[derive(Debug)]
-    pub struct NSHashTable<ObjectType: Message = Object> {
-        _inner0: PhantomData<*mut ObjectType>,
+    pub struct NSHashTable<ObjectType: Message = Object, ObjectTypeOwnership: Ownership = Shared> {
+        _inner0: PhantomData<*mut (ObjectType, ObjectTypeOwnership)>,
     }
 
-    unsafe impl<ObjectType: Message> ClassType for NSHashTable<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> ClassType
+        for NSHashTable<ObjectType, ObjectTypeOwnership>
+    {
         type Super = NSObject;
     }
 );
 
 extern_methods!(
-    unsafe impl<ObjectType: Message> NSHashTable<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSHashTable<ObjectType, ObjectTypeOwnership>
+    {
         #[method_id(@__retain_semantics Init initWithOptions:capacity:)]
         pub unsafe fn initWithOptions_capacity(
             this: Option<Allocated<Self>>,

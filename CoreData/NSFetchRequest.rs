@@ -42,17 +42,21 @@ extern_methods!(
 
 __inner_extern_class!(
     #[derive(Debug)]
-    pub struct NSFetchRequest<ResultType: Message = Object> {
-        _inner0: PhantomData<*mut ResultType>,
+    pub struct NSFetchRequest<ResultType: Message = Object, ResultTypeOwnership: Ownership = Shared> {
+        _inner0: PhantomData<*mut (ResultType, ResultTypeOwnership)>,
     }
 
-    unsafe impl<ResultType: Message> ClassType for NSFetchRequest<ResultType> {
+    unsafe impl<ResultType: Message, ResultTypeOwnership: Ownership> ClassType
+        for NSFetchRequest<ResultType, ResultTypeOwnership>
+    {
         type Super = NSPersistentStoreRequest;
     }
 );
 
 extern_methods!(
-    unsafe impl<ResultType: Message> NSFetchRequest<ResultType> {
+    unsafe impl<ResultType: Message, ResultTypeOwnership: Ownership>
+        NSFetchRequest<ResultType, ResultTypeOwnership>
+    {
         #[method_id(@__retain_semantics Other fetchRequestWithEntityName:)]
         pub unsafe fn fetchRequestWithEntityName(entityName: &NSString) -> Id<Self, Shared>;
 
@@ -196,17 +200,24 @@ pub type NSPersistentStoreAsynchronousFetchResultCompletionBlock =
 
 __inner_extern_class!(
     #[derive(Debug)]
-    pub struct NSAsynchronousFetchRequest<ResultType: Message = Object> {
-        _inner0: PhantomData<*mut ResultType>,
+    pub struct NSAsynchronousFetchRequest<
+        ResultType: Message = Object,
+        ResultTypeOwnership: Ownership = Shared,
+    > {
+        _inner0: PhantomData<*mut (ResultType, ResultTypeOwnership)>,
     }
 
-    unsafe impl<ResultType: Message> ClassType for NSAsynchronousFetchRequest<ResultType> {
+    unsafe impl<ResultType: Message, ResultTypeOwnership: Ownership> ClassType
+        for NSAsynchronousFetchRequest<ResultType, ResultTypeOwnership>
+    {
         type Super = NSPersistentStoreRequest;
     }
 );
 
 extern_methods!(
-    unsafe impl<ResultType: Message> NSAsynchronousFetchRequest<ResultType> {
+    unsafe impl<ResultType: Message, ResultTypeOwnership: Ownership>
+        NSAsynchronousFetchRequest<ResultType, ResultTypeOwnership>
+    {
         #[method_id(@__retain_semantics Other fetchRequest)]
         pub unsafe fn fetchRequest(&self) -> Id<NSFetchRequest<ResultType>, Shared>;
 

@@ -92,7 +92,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSSortDescriptorSorting
-    unsafe impl<ObjectType: Message> NSSet<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSSet<ObjectType, ObjectTypeOwnership>
+    {
         #[method_id(@__retain_semantics Other sortedArrayUsingDescriptors:)]
         pub unsafe fn sortedArrayUsingDescriptors(
             &self,
@@ -103,7 +105,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSSortDescriptorSorting
-    unsafe impl<ObjectType: Message> NSArray<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSArray<ObjectType, ObjectTypeOwnership>
+    {
         #[method_id(@__retain_semantics Other sortedArrayUsingDescriptors:)]
         pub unsafe fn sortedArrayUsingDescriptors(
             &self,
@@ -114,7 +118,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSSortDescriptorSorting
-    unsafe impl<ObjectType: Message> NSMutableArray<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSMutableArray<ObjectType, ObjectTypeOwnership>
+    {
         #[method(sortUsingDescriptors:)]
         pub unsafe fn sortUsingDescriptors(&self, sortDescriptors: &NSArray<NSSortDescriptor>);
     }
@@ -122,7 +128,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSKeyValueSorting
-    unsafe impl<ObjectType: Message> NSOrderedSet<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSOrderedSet<ObjectType, ObjectTypeOwnership>
+    {
         #[method_id(@__retain_semantics Other sortedArrayUsingDescriptors:)]
         pub unsafe fn sortedArrayUsingDescriptors(
             &self,
@@ -133,7 +141,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSKeyValueSorting
-    unsafe impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSMutableOrderedSet<ObjectType, ObjectTypeOwnership>
+    {
         #[method(sortUsingDescriptors:)]
         pub unsafe fn sortUsingDescriptors(&self, sortDescriptors: &NSArray<NSSortDescriptor>);
     }

@@ -59,7 +59,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSPredicateSupport
-    unsafe impl<ObjectType: Message> NSArray<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSArray<ObjectType, ObjectTypeOwnership>
+    {
         #[method_id(@__retain_semantics Other filteredArrayUsingPredicate:)]
         pub unsafe fn filteredArrayUsingPredicate(
             &self,
@@ -70,7 +72,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSPredicateSupport
-    unsafe impl<ObjectType: Message> NSMutableArray<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSMutableArray<ObjectType, ObjectTypeOwnership>
+    {
         #[method(filterUsingPredicate:)]
         pub unsafe fn filterUsingPredicate(&self, predicate: &NSPredicate);
     }
@@ -78,7 +82,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSPredicateSupport
-    unsafe impl<ObjectType: Message> NSSet<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSSet<ObjectType, ObjectTypeOwnership>
+    {
         #[method_id(@__retain_semantics Other filteredSetUsingPredicate:)]
         pub unsafe fn filteredSetUsingPredicate(
             &self,
@@ -89,7 +95,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSPredicateSupport
-    unsafe impl<ObjectType: Message> NSMutableSet<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSMutableSet<ObjectType, ObjectTypeOwnership>
+    {
         #[method(filterUsingPredicate:)]
         pub unsafe fn filterUsingPredicate(&self, predicate: &NSPredicate);
     }
@@ -97,7 +105,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSPredicateSupport
-    unsafe impl<ObjectType: Message> NSOrderedSet<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSOrderedSet<ObjectType, ObjectTypeOwnership>
+    {
         #[method_id(@__retain_semantics Other filteredOrderedSetUsingPredicate:)]
         pub unsafe fn filteredOrderedSetUsingPredicate(
             &self,
@@ -108,7 +118,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSPredicateSupport
-    unsafe impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSMutableOrderedSet<ObjectType, ObjectTypeOwnership>
+    {
         #[method(filterUsingPredicate:)]
         pub unsafe fn filterUsingPredicate(&self, p: &NSPredicate);
     }

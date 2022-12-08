@@ -7,17 +7,24 @@ use crate::Foundation::*;
 
 __inner_extern_class!(
     #[derive(Debug)]
-    pub struct NSCandidateListTouchBarItem<CandidateType: Message = Object> {
-        _inner0: PhantomData<*mut CandidateType>,
+    pub struct NSCandidateListTouchBarItem<
+        CandidateType: Message = Object,
+        CandidateTypeOwnership: Ownership = Shared,
+    > {
+        _inner0: PhantomData<*mut (CandidateType, CandidateTypeOwnership)>,
     }
 
-    unsafe impl<CandidateType: Message> ClassType for NSCandidateListTouchBarItem<CandidateType> {
+    unsafe impl<CandidateType: Message, CandidateTypeOwnership: Ownership> ClassType
+        for NSCandidateListTouchBarItem<CandidateType, CandidateTypeOwnership>
+    {
         type Super = NSTouchBarItem;
     }
 );
 
 extern_methods!(
-    unsafe impl<CandidateType: Message> NSCandidateListTouchBarItem<CandidateType> {
+    unsafe impl<CandidateType: Message, CandidateTypeOwnership: Ownership>
+        NSCandidateListTouchBarItem<CandidateType, CandidateTypeOwnership>
+    {
         #[method_id(@__retain_semantics Other client)]
         pub unsafe fn client(&self) -> Option<Id<TodoProtocols, Shared>>;
 

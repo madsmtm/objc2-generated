@@ -5,17 +5,21 @@ use crate::Foundation::*;
 
 __inner_extern_class!(
     #[derive(Debug)]
-    pub struct NSOrderedSet<ObjectType: Message = Object> {
-        _inner0: PhantomData<*mut ObjectType>,
+    pub struct NSOrderedSet<ObjectType: Message = Object, ObjectTypeOwnership: Ownership = Shared> {
+        _inner0: PhantomData<*mut (ObjectType, ObjectTypeOwnership)>,
     }
 
-    unsafe impl<ObjectType: Message> ClassType for NSOrderedSet<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> ClassType
+        for NSOrderedSet<ObjectType, ObjectTypeOwnership>
+    {
         type Super = NSObject;
     }
 );
 
 extern_methods!(
-    unsafe impl<ObjectType: Message> NSOrderedSet<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSOrderedSet<ObjectType, ObjectTypeOwnership>
+    {
         #[method(count)]
         pub unsafe fn count(&self) -> NSUInteger;
 
@@ -45,7 +49,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSExtendedOrderedSet
-    unsafe impl<ObjectType: Message> NSOrderedSet<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSOrderedSet<ObjectType, ObjectTypeOwnership>
+    {
         #[method(getObjects:range:)]
         pub unsafe fn getObjects_range(&self, objects: *mut NonNull<ObjectType>, range: NSRange);
 
@@ -200,7 +206,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSOrderedSetCreation
-    unsafe impl<ObjectType: Message> NSOrderedSet<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSOrderedSet<ObjectType, ObjectTypeOwnership>
+    {
         #[method_id(@__retain_semantics Other orderedSet)]
         pub unsafe fn orderedSet() -> Id<Self, Shared>;
 
@@ -307,7 +315,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSOrderedSetDiffing
-    unsafe impl<ObjectType: Message> NSOrderedSet<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSOrderedSet<ObjectType, ObjectTypeOwnership>
+    {
         #[method_id(@__retain_semantics Other differenceFromOrderedSet:withOptions:usingEquivalenceTest:)]
         pub unsafe fn differenceFromOrderedSet_withOptions_usingEquivalenceTest(
             &self,
@@ -339,17 +349,24 @@ extern_methods!(
 
 __inner_extern_class!(
     #[derive(Debug)]
-    pub struct NSMutableOrderedSet<ObjectType: Message = Object> {
-        _inner0: PhantomData<*mut ObjectType>,
+    pub struct NSMutableOrderedSet<
+        ObjectType: Message = Object,
+        ObjectTypeOwnership: Ownership = Shared,
+    > {
+        _inner0: PhantomData<*mut (ObjectType, ObjectTypeOwnership)>,
     }
 
-    unsafe impl<ObjectType: Message> ClassType for NSMutableOrderedSet<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> ClassType
+        for NSMutableOrderedSet<ObjectType, ObjectTypeOwnership>
+    {
         type Super = NSOrderedSet;
     }
 );
 
 extern_methods!(
-    unsafe impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSMutableOrderedSet<ObjectType, ObjectTypeOwnership>
+    {
         #[method(insertObject:atIndex:)]
         pub unsafe fn insertObject_atIndex(&self, object: &ObjectType, idx: NSUInteger);
 
@@ -378,7 +395,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSExtendedMutableOrderedSet
-    unsafe impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSMutableOrderedSet<ObjectType, ObjectTypeOwnership>
+    {
         #[method(addObject:)]
         pub unsafe fn addObject(&self, object: &ObjectType);
 
@@ -481,7 +500,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSMutableOrderedSetCreation
-    unsafe impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSMutableOrderedSet<ObjectType, ObjectTypeOwnership>
+    {
         #[method_id(@__retain_semantics Other orderedSetWithCapacity:)]
         pub unsafe fn orderedSetWithCapacity(numItems: NSUInteger) -> Id<Self, Shared>;
     }
@@ -489,7 +510,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSMutableOrderedSetDiffing
-    unsafe impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSMutableOrderedSet<ObjectType, ObjectTypeOwnership>
+    {
         #[method(applyDifference:)]
         pub unsafe fn applyDifference(
             &self,

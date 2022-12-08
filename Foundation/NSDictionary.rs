@@ -5,18 +5,35 @@ use crate::Foundation::*;
 
 __inner_extern_class!(
     #[derive(Debug)]
-    pub struct NSDictionary<KeyType: Message = Object, ObjectType: Message = Object> {
-        _inner0: PhantomData<*mut KeyType>,
-        _inner1: PhantomData<*mut ObjectType>,
+    pub struct NSDictionary<
+        KeyType: Message = Object,
+        ObjectType: Message = Object,
+        KeyTypeOwnership: Ownership = Shared,
+        ObjectTypeOwnership: Ownership = Shared,
+    > {
+        _inner0: PhantomData<*mut (KeyType, KeyTypeOwnership)>,
+        _inner1: PhantomData<*mut (ObjectType, ObjectTypeOwnership)>,
     }
 
-    unsafe impl<KeyType: Message, ObjectType: Message> ClassType for NSDictionary<KeyType, ObjectType> {
+    unsafe impl<
+            KeyType: Message,
+            ObjectType: Message,
+            KeyTypeOwnership: Ownership,
+            ObjectTypeOwnership: Ownership,
+        > ClassType for NSDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
+    {
         type Super = NSObject;
     }
 );
 
 extern_methods!(
-    unsafe impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
+    unsafe impl<
+            KeyType: Message,
+            ObjectType: Message,
+            KeyTypeOwnership: Ownership,
+            ObjectTypeOwnership: Ownership,
+        > NSDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
+    {
         #[method(count)]
         pub unsafe fn count(&self) -> NSUInteger;
 
@@ -47,7 +64,13 @@ extern_methods!(
 
 extern_methods!(
     /// NSExtendedDictionary
-    unsafe impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
+    unsafe impl<
+            KeyType: Message,
+            ObjectType: Message,
+            KeyTypeOwnership: Ownership,
+            ObjectTypeOwnership: Ownership,
+        > NSDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
+    {
         #[method_id(@__retain_semantics Other allKeys)]
         pub unsafe fn allKeys(&self) -> Id<NSArray<KeyType>, Shared>;
 
@@ -159,7 +182,13 @@ extern_methods!(
 
 extern_methods!(
     /// NSDeprecated
-    unsafe impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
+    unsafe impl<
+            KeyType: Message,
+            ObjectType: Message,
+            KeyTypeOwnership: Ownership,
+            ObjectTypeOwnership: Ownership,
+        > NSDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
+    {
         #[method(getObjects:andKeys:)]
         pub unsafe fn getObjects_andKeys(
             &self,
@@ -203,7 +232,13 @@ extern_methods!(
 
 extern_methods!(
     /// NSDictionaryCreation
-    unsafe impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
+    unsafe impl<
+            KeyType: Message,
+            ObjectType: Message,
+            KeyTypeOwnership: Ownership,
+            ObjectTypeOwnership: Ownership,
+        > NSDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
+    {
         #[method_id(@__retain_semantics Other dictionary)]
         pub unsafe fn dictionary() -> Id<Self, Shared>;
 
@@ -255,20 +290,36 @@ extern_methods!(
 
 __inner_extern_class!(
     #[derive(Debug)]
-    pub struct NSMutableDictionary<KeyType: Message = Object, ObjectType: Message = Object> {
-        _inner0: PhantomData<*mut KeyType>,
-        _inner1: PhantomData<*mut ObjectType>,
+    pub struct NSMutableDictionary<
+        KeyType: Message = Object,
+        ObjectType: Message = Object,
+        KeyTypeOwnership: Ownership = Shared,
+        ObjectTypeOwnership: Ownership = Shared,
+    > {
+        _inner0: PhantomData<*mut (KeyType, KeyTypeOwnership)>,
+        _inner1: PhantomData<*mut (ObjectType, ObjectTypeOwnership)>,
     }
 
-    unsafe impl<KeyType: Message, ObjectType: Message> ClassType
-        for NSMutableDictionary<KeyType, ObjectType>
+    unsafe impl<
+            KeyType: Message,
+            ObjectType: Message,
+            KeyTypeOwnership: Ownership,
+            ObjectTypeOwnership: Ownership,
+        > ClassType
+        for NSMutableDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
     {
         type Super = NSDictionary;
     }
 );
 
 extern_methods!(
-    unsafe impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
+    unsafe impl<
+            KeyType: Message,
+            ObjectType: Message,
+            KeyTypeOwnership: Ownership,
+            ObjectTypeOwnership: Ownership,
+        > NSMutableDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
+    {
         #[method(removeObjectForKey:)]
         pub unsafe fn removeObjectForKey(&self, aKey: &KeyType);
 
@@ -294,7 +345,13 @@ extern_methods!(
 
 extern_methods!(
     /// NSExtendedMutableDictionary
-    unsafe impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
+    unsafe impl<
+            KeyType: Message,
+            ObjectType: Message,
+            KeyTypeOwnership: Ownership,
+            ObjectTypeOwnership: Ownership,
+        > NSMutableDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
+    {
         #[method(addEntriesFromDictionary:)]
         pub unsafe fn addEntriesFromDictionary(
             &self,
@@ -317,7 +374,13 @@ extern_methods!(
 
 extern_methods!(
     /// NSMutableDictionaryCreation
-    unsafe impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
+    unsafe impl<
+            KeyType: Message,
+            ObjectType: Message,
+            KeyTypeOwnership: Ownership,
+            ObjectTypeOwnership: Ownership,
+        > NSMutableDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
+    {
         #[method_id(@__retain_semantics Other dictionaryWithCapacity:)]
         pub unsafe fn dictionaryWithCapacity(numItems: NSUInteger) -> Id<Self, Shared>;
 
@@ -347,7 +410,13 @@ extern_methods!(
 
 extern_methods!(
     /// NSSharedKeySetDictionary
-    unsafe impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
+    unsafe impl<
+            KeyType: Message,
+            ObjectType: Message,
+            KeyTypeOwnership: Ownership,
+            ObjectTypeOwnership: Ownership,
+        > NSDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
+    {
         #[method_id(@__retain_semantics Other sharedKeySetForKeys:)]
         pub unsafe fn sharedKeySetForKeys(keys: &NSArray<NSCopying>) -> Id<Object, Shared>;
     }
@@ -355,7 +424,13 @@ extern_methods!(
 
 extern_methods!(
     /// NSSharedKeySetDictionary
-    unsafe impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
+    unsafe impl<
+            KeyType: Message,
+            ObjectType: Message,
+            KeyTypeOwnership: Ownership,
+            ObjectTypeOwnership: Ownership,
+        > NSMutableDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
+    {
         #[method_id(@__retain_semantics Other dictionaryWithSharedKeySet:)]
         pub unsafe fn dictionaryWithSharedKeySet(
             keyset: &Object,
@@ -365,7 +440,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSGenericFastEnumeraiton
-    unsafe impl<K: Message, V: Message> NSDictionary<K, V> {
+    unsafe impl<K: Message, V: Message, KOwnership: Ownership, VOwnership: Ownership>
+        NSDictionary<K, V, KOwnership, VOwnership>
+    {
         #[method(countByEnumeratingWithState:objects:count:)]
         pub unsafe fn countByEnumeratingWithState_objects_count(
             &self,

@@ -28,17 +28,21 @@ extern_protocol!(
 
 __inner_extern_class!(
     #[derive(Debug)]
-    pub struct NSEnumerator<ObjectType: Message = Object> {
-        _inner0: PhantomData<*mut ObjectType>,
+    pub struct NSEnumerator<ObjectType: Message = Object, ObjectTypeOwnership: Ownership = Shared> {
+        _inner0: PhantomData<*mut (ObjectType, ObjectTypeOwnership)>,
     }
 
-    unsafe impl<ObjectType: Message> ClassType for NSEnumerator<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> ClassType
+        for NSEnumerator<ObjectType, ObjectTypeOwnership>
+    {
         type Super = NSObject;
     }
 );
 
 extern_methods!(
-    unsafe impl<ObjectType: Message> NSEnumerator<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSEnumerator<ObjectType, ObjectTypeOwnership>
+    {
         #[method_id(@__retain_semantics Other nextObject)]
         pub unsafe fn nextObject(&self) -> Option<Id<ObjectType, Shared>>;
     }
@@ -46,7 +50,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSExtendedEnumerator
-    unsafe impl<ObjectType: Message> NSEnumerator<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSEnumerator<ObjectType, ObjectTypeOwnership>
+    {
         #[method_id(@__retain_semantics Other allObjects)]
         pub unsafe fn allObjects(&self) -> Id<NSArray<ObjectType>, Shared>;
     }

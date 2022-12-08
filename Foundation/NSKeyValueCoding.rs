@@ -116,7 +116,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSKeyValueCoding
-    unsafe impl<ObjectType: Message> NSArray<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSArray<ObjectType, ObjectTypeOwnership>
+    {
         #[method_id(@__retain_semantics Other valueForKey:)]
         pub unsafe fn valueForKey(&self, key: &NSString) -> Id<Object, Shared>;
 
@@ -127,7 +129,13 @@ extern_methods!(
 
 extern_methods!(
     /// NSKeyValueCoding
-    unsafe impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
+    unsafe impl<
+            KeyType: Message,
+            ObjectType: Message,
+            KeyTypeOwnership: Ownership,
+            ObjectTypeOwnership: Ownership,
+        > NSDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
+    {
         #[method_id(@__retain_semantics Other valueForKey:)]
         pub unsafe fn valueForKey(&self, key: &NSString) -> Option<Id<ObjectType, Shared>>;
     }
@@ -135,7 +143,13 @@ extern_methods!(
 
 extern_methods!(
     /// NSKeyValueCoding
-    unsafe impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
+    unsafe impl<
+            KeyType: Message,
+            ObjectType: Message,
+            KeyTypeOwnership: Ownership,
+            ObjectTypeOwnership: Ownership,
+        > NSMutableDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
+    {
         #[method(setValue:forKey:)]
         pub unsafe fn setValue_forKey(&self, value: Option<&ObjectType>, key: &NSString);
     }
@@ -143,7 +157,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSKeyValueCoding
-    unsafe impl<ObjectType: Message> NSOrderedSet<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSOrderedSet<ObjectType, ObjectTypeOwnership>
+    {
         #[method_id(@__retain_semantics Other valueForKey:)]
         pub unsafe fn valueForKey(&self, key: &NSString) -> Id<Object, Shared>;
 
@@ -154,7 +170,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSKeyValueCoding
-    unsafe impl<ObjectType: Message> NSSet<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSSet<ObjectType, ObjectTypeOwnership>
+    {
         #[method_id(@__retain_semantics Other valueForKey:)]
         pub unsafe fn valueForKey(&self, key: &NSString) -> Id<Object, Shared>;
 

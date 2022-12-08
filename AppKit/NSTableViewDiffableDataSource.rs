@@ -26,21 +26,43 @@ __inner_extern_class!(
     pub struct NSTableViewDiffableDataSource<
         SectionIdentifierType: Message = Object,
         ItemIdentifierType: Message = Object,
+        SectionIdentifierTypeOwnership: Ownership = Shared,
+        ItemIdentifierTypeOwnership: Ownership = Shared,
     > {
-        _inner0: PhantomData<*mut SectionIdentifierType>,
-        _inner1: PhantomData<*mut ItemIdentifierType>,
+        _inner0: PhantomData<*mut (SectionIdentifierType, SectionIdentifierTypeOwnership)>,
+        _inner1: PhantomData<*mut (ItemIdentifierType, ItemIdentifierTypeOwnership)>,
     }
 
-    unsafe impl<SectionIdentifierType: Message, ItemIdentifierType: Message> ClassType
-        for NSTableViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
+    unsafe impl<
+            SectionIdentifierType: Message,
+            ItemIdentifierType: Message,
+            SectionIdentifierTypeOwnership: Ownership,
+            ItemIdentifierTypeOwnership: Ownership,
+        > ClassType
+        for NSTableViewDiffableDataSource<
+            SectionIdentifierType,
+            ItemIdentifierType,
+            SectionIdentifierTypeOwnership,
+            ItemIdentifierTypeOwnership,
+        >
     {
         type Super = NSObject;
     }
 );
 
 extern_methods!(
-    unsafe impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
-        NSTableViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
+    unsafe impl<
+            SectionIdentifierType: Message,
+            ItemIdentifierType: Message,
+            SectionIdentifierTypeOwnership: Ownership,
+            ItemIdentifierTypeOwnership: Ownership,
+        >
+        NSTableViewDiffableDataSource<
+            SectionIdentifierType,
+            ItemIdentifierType,
+            SectionIdentifierTypeOwnership,
+            ItemIdentifierTypeOwnership,
+        >
     {
         #[method_id(@__retain_semantics Init initWithTableView:cellProvider:)]
         pub unsafe fn initWithTableView_cellProvider(

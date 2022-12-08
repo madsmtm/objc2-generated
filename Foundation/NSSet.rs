@@ -5,17 +5,21 @@ use crate::Foundation::*;
 
 __inner_extern_class!(
     #[derive(Debug)]
-    pub struct NSSet<ObjectType: Message = Object> {
-        _inner0: PhantomData<*mut ObjectType>,
+    pub struct NSSet<ObjectType: Message = Object, ObjectTypeOwnership: Ownership = Shared> {
+        _inner0: PhantomData<*mut (ObjectType, ObjectTypeOwnership)>,
     }
 
-    unsafe impl<ObjectType: Message> ClassType for NSSet<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> ClassType
+        for NSSet<ObjectType, ObjectTypeOwnership>
+    {
         type Super = NSObject;
     }
 );
 
 extern_methods!(
-    unsafe impl<ObjectType: Message> NSSet<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSSet<ObjectType, ObjectTypeOwnership>
+    {
         #[method(count)]
         pub unsafe fn count(&self) -> NSUInteger;
 
@@ -45,7 +49,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSExtendedSet
-    unsafe impl<ObjectType: Message> NSSet<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSSet<ObjectType, ObjectTypeOwnership>
+    {
         #[method_id(@__retain_semantics Other allObjects)]
         pub unsafe fn allObjects(&self) -> Id<NSArray<ObjectType>, Shared>;
 
@@ -129,7 +135,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSSetCreation
-    unsafe impl<ObjectType: Message> NSSet<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSSet<ObjectType, ObjectTypeOwnership>
+    {
         #[method_id(@__retain_semantics Other set)]
         pub unsafe fn set() -> Id<Self, Shared>;
 
@@ -171,17 +179,21 @@ extern_methods!(
 
 __inner_extern_class!(
     #[derive(Debug)]
-    pub struct NSMutableSet<ObjectType: Message = Object> {
-        _inner0: PhantomData<*mut ObjectType>,
+    pub struct NSMutableSet<ObjectType: Message = Object, ObjectTypeOwnership: Ownership = Shared> {
+        _inner0: PhantomData<*mut (ObjectType, ObjectTypeOwnership)>,
     }
 
-    unsafe impl<ObjectType: Message> ClassType for NSMutableSet<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> ClassType
+        for NSMutableSet<ObjectType, ObjectTypeOwnership>
+    {
         type Super = NSSet;
     }
 );
 
 extern_methods!(
-    unsafe impl<ObjectType: Message> NSMutableSet<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSMutableSet<ObjectType, ObjectTypeOwnership>
+    {
         #[method(addObject:)]
         pub unsafe fn addObject(&self, object: &ObjectType);
 
@@ -207,7 +219,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSExtendedMutableSet
-    unsafe impl<ObjectType: Message> NSMutableSet<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSMutableSet<ObjectType, ObjectTypeOwnership>
+    {
         #[method(addObjectsFromArray:)]
         pub unsafe fn addObjectsFromArray(&self, array: &NSArray<ObjectType>);
 
@@ -230,7 +244,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSMutableSetCreation
-    unsafe impl<ObjectType: Message> NSMutableSet<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSMutableSet<ObjectType, ObjectTypeOwnership>
+    {
         #[method_id(@__retain_semantics Other setWithCapacity:)]
         pub unsafe fn setWithCapacity(numItems: NSUInteger) -> Id<Self, Shared>;
     }
@@ -238,17 +254,21 @@ extern_methods!(
 
 __inner_extern_class!(
     #[derive(Debug)]
-    pub struct NSCountedSet<ObjectType: Message = Object> {
-        _inner0: PhantomData<*mut ObjectType>,
+    pub struct NSCountedSet<ObjectType: Message = Object, ObjectTypeOwnership: Ownership = Shared> {
+        _inner0: PhantomData<*mut (ObjectType, ObjectTypeOwnership)>,
     }
 
-    unsafe impl<ObjectType: Message> ClassType for NSCountedSet<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> ClassType
+        for NSCountedSet<ObjectType, ObjectTypeOwnership>
+    {
         type Super = NSMutableSet;
     }
 );
 
 extern_methods!(
-    unsafe impl<ObjectType: Message> NSCountedSet<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSCountedSet<ObjectType, ObjectTypeOwnership>
+    {
         #[method_id(@__retain_semantics Init initWithCapacity:)]
         pub unsafe fn initWithCapacity(
             this: Option<Allocated<Self>>,

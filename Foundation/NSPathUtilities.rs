@@ -77,7 +77,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSArrayPathExtensions
-    unsafe impl<ObjectType: Message> NSArray<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSArray<ObjectType, ObjectTypeOwnership>
+    {
         #[method_id(@__retain_semantics Other pathsMatchingExtensions:)]
         pub unsafe fn pathsMatchingExtensions(
             &self,

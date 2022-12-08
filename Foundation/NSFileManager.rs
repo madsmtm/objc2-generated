@@ -679,17 +679,24 @@ extern_protocol!(
 
 __inner_extern_class!(
     #[derive(Debug)]
-    pub struct NSDirectoryEnumerator<ObjectType: Message = Object> {
-        _inner0: PhantomData<*mut ObjectType>,
+    pub struct NSDirectoryEnumerator<
+        ObjectType: Message = Object,
+        ObjectTypeOwnership: Ownership = Shared,
+    > {
+        _inner0: PhantomData<*mut (ObjectType, ObjectTypeOwnership)>,
     }
 
-    unsafe impl<ObjectType: Message> ClassType for NSDirectoryEnumerator<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> ClassType
+        for NSDirectoryEnumerator<ObjectType, ObjectTypeOwnership>
+    {
         type Super = NSEnumerator;
     }
 );
 
 extern_methods!(
-    unsafe impl<ObjectType: Message> NSDirectoryEnumerator<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSDirectoryEnumerator<ObjectType, ObjectTypeOwnership>
+    {
         #[method_id(@__retain_semantics Other fileAttributes)]
         pub unsafe fn fileAttributes(
             &self,
@@ -808,7 +815,13 @@ extern_static!(NSFileSystemFreeNodes: &'static NSFileAttributeKey);
 
 extern_methods!(
     /// NSFileAttributes
-    unsafe impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
+    unsafe impl<
+            KeyType: Message,
+            ObjectType: Message,
+            KeyTypeOwnership: Ownership,
+            ObjectTypeOwnership: Ownership,
+        > NSDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
+    {
         #[method(fileSize)]
         pub unsafe fn fileSize(&self) -> c_ulonglong;
 

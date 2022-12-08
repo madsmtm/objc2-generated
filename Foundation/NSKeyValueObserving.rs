@@ -86,7 +86,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSKeyValueObserverRegistration
-    unsafe impl<ObjectType: Message> NSArray<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSArray<ObjectType, ObjectTypeOwnership>
+    {
         #[method(addObserver:toObjectsAtIndexes:forKeyPath:options:context:)]
         pub unsafe fn addObserver_toObjectsAtIndexes_forKeyPath_options_context(
             &self,
@@ -138,7 +140,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSKeyValueObserverRegistration
-    unsafe impl<ObjectType: Message> NSOrderedSet<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSOrderedSet<ObjectType, ObjectTypeOwnership>
+    {
         #[method(addObserver:forKeyPath:options:context:)]
         pub unsafe fn addObserver_forKeyPath_options_context(
             &self,
@@ -163,7 +167,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSKeyValueObserverRegistration
-    unsafe impl<ObjectType: Message> NSSet<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSSet<ObjectType, ObjectTypeOwnership>
+    {
         #[method(addObserver:forKeyPath:options:context:)]
         pub unsafe fn addObserver_forKeyPath_options_context(
             &self,

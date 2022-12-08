@@ -13,17 +13,24 @@ ns_enum!(
 
 __inner_extern_class!(
     #[derive(Debug)]
-    pub struct NSOrderedCollectionChange<ObjectType: Message = Object> {
-        _inner0: PhantomData<*mut ObjectType>,
+    pub struct NSOrderedCollectionChange<
+        ObjectType: Message = Object,
+        ObjectTypeOwnership: Ownership = Shared,
+    > {
+        _inner0: PhantomData<*mut (ObjectType, ObjectTypeOwnership)>,
     }
 
-    unsafe impl<ObjectType: Message> ClassType for NSOrderedCollectionChange<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> ClassType
+        for NSOrderedCollectionChange<ObjectType, ObjectTypeOwnership>
+    {
         type Super = NSObject;
     }
 );
 
 extern_methods!(
-    unsafe impl<ObjectType: Message> NSOrderedCollectionChange<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSOrderedCollectionChange<ObjectType, ObjectTypeOwnership>
+    {
         #[method_id(@__retain_semantics Other changeWithObject:type:index:)]
         pub unsafe fn changeWithObject_type_index(
             anObject: Option<&ObjectType>,

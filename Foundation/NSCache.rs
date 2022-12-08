@@ -5,18 +5,35 @@ use crate::Foundation::*;
 
 __inner_extern_class!(
     #[derive(Debug)]
-    pub struct NSCache<KeyType: Message = Object, ObjectType: Message = Object> {
-        _inner0: PhantomData<*mut KeyType>,
-        _inner1: PhantomData<*mut ObjectType>,
+    pub struct NSCache<
+        KeyType: Message = Object,
+        ObjectType: Message = Object,
+        KeyTypeOwnership: Ownership = Shared,
+        ObjectTypeOwnership: Ownership = Shared,
+    > {
+        _inner0: PhantomData<*mut (KeyType, KeyTypeOwnership)>,
+        _inner1: PhantomData<*mut (ObjectType, ObjectTypeOwnership)>,
     }
 
-    unsafe impl<KeyType: Message, ObjectType: Message> ClassType for NSCache<KeyType, ObjectType> {
+    unsafe impl<
+            KeyType: Message,
+            ObjectType: Message,
+            KeyTypeOwnership: Ownership,
+            ObjectTypeOwnership: Ownership,
+        > ClassType for NSCache<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
+    {
         type Super = NSObject;
     }
 );
 
 extern_methods!(
-    unsafe impl<KeyType: Message, ObjectType: Message> NSCache<KeyType, ObjectType> {
+    unsafe impl<
+            KeyType: Message,
+            ObjectType: Message,
+            KeyTypeOwnership: Ownership,
+            ObjectTypeOwnership: Ownership,
+        > NSCache<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
+    {
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Id<NSString, Shared>;
 

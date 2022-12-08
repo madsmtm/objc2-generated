@@ -5,17 +5,21 @@ use crate::Foundation::*;
 
 __inner_extern_class!(
     #[derive(Debug)]
-    pub struct NSArray<ObjectType: Message = Object> {
-        _inner0: PhantomData<*mut ObjectType>,
+    pub struct NSArray<ObjectType: Message = Object, ObjectTypeOwnership: Ownership = Shared> {
+        _inner0: PhantomData<*mut (ObjectType, ObjectTypeOwnership)>,
     }
 
-    unsafe impl<ObjectType: Message> ClassType for NSArray<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> ClassType
+        for NSArray<ObjectType, ObjectTypeOwnership>
+    {
         type Super = NSObject;
     }
 );
 
 extern_methods!(
-    unsafe impl<ObjectType: Message> NSArray<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSArray<ObjectType, ObjectTypeOwnership>
+    {
         #[method(count)]
         pub unsafe fn count(&self) -> NSUInteger;
 
@@ -51,7 +55,9 @@ ns_options!(
 
 extern_methods!(
     /// NSExtendedArray
-    unsafe impl<ObjectType: Message> NSArray<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSArray<ObjectType, ObjectTypeOwnership>
+    {
         #[method_id(@__retain_semantics Other arrayByAddingObject:)]
         pub unsafe fn arrayByAddingObject(
             &self,
@@ -279,7 +285,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSArrayCreation
-    unsafe impl<ObjectType: Message> NSArray<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSArray<ObjectType, ObjectTypeOwnership>
+    {
         #[method_id(@__retain_semantics Other array)]
         pub unsafe fn array() -> Id<Self, Shared>;
 
@@ -323,7 +331,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSArrayDiffing
-    unsafe impl<ObjectType: Message> NSArray<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSArray<ObjectType, ObjectTypeOwnership>
+    {
         #[method_id(@__retain_semantics Other differenceFromArray:withOptions:usingEquivalenceTest:)]
         pub unsafe fn differenceFromArray_withOptions_usingEquivalenceTest(
             &self,
@@ -355,7 +365,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSDeprecated
-    unsafe impl<ObjectType: Message> NSArray<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSArray<ObjectType, ObjectTypeOwnership>
+    {
         #[method(getObjects:)]
         pub unsafe fn getObjects(&self, objects: NonNull<NonNull<ObjectType>>);
 
@@ -395,17 +407,21 @@ extern_methods!(
 
 __inner_extern_class!(
     #[derive(Debug)]
-    pub struct NSMutableArray<ObjectType: Message = Object> {
-        _inner0: PhantomData<*mut ObjectType>,
+    pub struct NSMutableArray<ObjectType: Message = Object, ObjectTypeOwnership: Ownership = Shared> {
+        _inner0: PhantomData<*mut (ObjectType, ObjectTypeOwnership)>,
     }
 
-    unsafe impl<ObjectType: Message> ClassType for NSMutableArray<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> ClassType
+        for NSMutableArray<ObjectType, ObjectTypeOwnership>
+    {
         type Super = NSArray;
     }
 );
 
 extern_methods!(
-    unsafe impl<ObjectType: Message> NSMutableArray<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSMutableArray<ObjectType, ObjectTypeOwnership>
+    {
         #[method(addObject:)]
         pub unsafe fn addObject(&self, anObject: &ObjectType);
 
@@ -444,7 +460,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSExtendedMutableArray
-    unsafe impl<ObjectType: Message> NSMutableArray<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSMutableArray<ObjectType, ObjectTypeOwnership>
+    {
         #[method(addObjectsFromArray:)]
         pub unsafe fn addObjectsFromArray(&self, otherArray: &NSArray<ObjectType>);
 
@@ -549,7 +567,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSMutableArrayCreation
-    unsafe impl<ObjectType: Message> NSMutableArray<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSMutableArray<ObjectType, ObjectTypeOwnership>
+    {
         #[method_id(@__retain_semantics Other arrayWithCapacity:)]
         pub unsafe fn arrayWithCapacity(numItems: NSUInteger) -> Id<Self, Shared>;
 
@@ -579,7 +599,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSMutableArrayDiffing
-    unsafe impl<ObjectType: Message> NSMutableArray<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSMutableArray<ObjectType, ObjectTypeOwnership>
+    {
         #[method(applyDifference:)]
         pub unsafe fn applyDifference(
             &self,

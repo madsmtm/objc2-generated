@@ -83,17 +83,24 @@ extern_methods!(
 
 __inner_extern_class!(
     #[derive(Debug)]
-    pub struct NSAsynchronousFetchResult<ResultType: Message = Object> {
-        _inner0: PhantomData<*mut ResultType>,
+    pub struct NSAsynchronousFetchResult<
+        ResultType: Message = Object,
+        ResultTypeOwnership: Ownership = Shared,
+    > {
+        _inner0: PhantomData<*mut (ResultType, ResultTypeOwnership)>,
     }
 
-    unsafe impl<ResultType: Message> ClassType for NSAsynchronousFetchResult<ResultType> {
+    unsafe impl<ResultType: Message, ResultTypeOwnership: Ownership> ClassType
+        for NSAsynchronousFetchResult<ResultType, ResultTypeOwnership>
+    {
         type Super = NSPersistentStoreAsynchronousResult;
     }
 );
 
 extern_methods!(
-    unsafe impl<ResultType: Message> NSAsynchronousFetchResult<ResultType> {
+    unsafe impl<ResultType: Message, ResultTypeOwnership: Ownership>
+        NSAsynchronousFetchResult<ResultType, ResultTypeOwnership>
+    {
         #[method_id(@__retain_semantics Other fetchRequest)]
         pub unsafe fn fetchRequest(&self) -> Id<NSAsynchronousFetchRequest<ResultType>, Shared>;
 

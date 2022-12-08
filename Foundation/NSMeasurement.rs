@@ -5,17 +5,21 @@ use crate::Foundation::*;
 
 __inner_extern_class!(
     #[derive(Debug)]
-    pub struct NSMeasurement<UnitType: Message = Object> {
-        _inner0: PhantomData<*mut UnitType>,
+    pub struct NSMeasurement<UnitType: Message = Object, UnitTypeOwnership: Ownership = Shared> {
+        _inner0: PhantomData<*mut (UnitType, UnitTypeOwnership)>,
     }
 
-    unsafe impl<UnitType: Message> ClassType for NSMeasurement<UnitType> {
+    unsafe impl<UnitType: Message, UnitTypeOwnership: Ownership> ClassType
+        for NSMeasurement<UnitType, UnitTypeOwnership>
+    {
         type Super = NSObject;
     }
 );
 
 extern_methods!(
-    unsafe impl<UnitType: Message> NSMeasurement<UnitType> {
+    unsafe impl<UnitType: Message, UnitTypeOwnership: Ownership>
+        NSMeasurement<UnitType, UnitTypeOwnership>
+    {
         #[method_id(@__retain_semantics Other unit)]
         pub unsafe fn unit(&self) -> Id<UnitType, Shared>;
 

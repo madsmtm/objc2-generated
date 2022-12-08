@@ -14,17 +14,24 @@ ns_options!(
 
 __inner_extern_class!(
     #[derive(Debug)]
-    pub struct NSOrderedCollectionDifference<ObjectType: Message = Object> {
-        _inner0: PhantomData<*mut ObjectType>,
+    pub struct NSOrderedCollectionDifference<
+        ObjectType: Message = Object,
+        ObjectTypeOwnership: Ownership = Shared,
+    > {
+        _inner0: PhantomData<*mut (ObjectType, ObjectTypeOwnership)>,
     }
 
-    unsafe impl<ObjectType: Message> ClassType for NSOrderedCollectionDifference<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> ClassType
+        for NSOrderedCollectionDifference<ObjectType, ObjectTypeOwnership>
+    {
         type Super = NSObject;
     }
 );
 
 extern_methods!(
-    unsafe impl<ObjectType: Message> NSOrderedCollectionDifference<ObjectType> {
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSOrderedCollectionDifference<ObjectType, ObjectTypeOwnership>
+    {
         #[method_id(@__retain_semantics Init initWithChanges:)]
         pub unsafe fn initWithChanges(
             this: Option<Allocated<Self>>,

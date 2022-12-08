@@ -6,17 +6,24 @@ use crate::Foundation::*;
 
 __inner_extern_class!(
     #[derive(Debug)]
-    pub struct NSFetchedResultsController<ResultType: Message = Object> {
-        _inner0: PhantomData<*mut ResultType>,
+    pub struct NSFetchedResultsController<
+        ResultType: Message = Object,
+        ResultTypeOwnership: Ownership = Shared,
+    > {
+        _inner0: PhantomData<*mut (ResultType, ResultTypeOwnership)>,
     }
 
-    unsafe impl<ResultType: Message> ClassType for NSFetchedResultsController<ResultType> {
+    unsafe impl<ResultType: Message, ResultTypeOwnership: Ownership> ClassType
+        for NSFetchedResultsController<ResultType, ResultTypeOwnership>
+    {
         type Super = NSObject;
     }
 );
 
 extern_methods!(
-    unsafe impl<ResultType: Message> NSFetchedResultsController<ResultType> {
+    unsafe impl<ResultType: Message, ResultTypeOwnership: Ownership>
+        NSFetchedResultsController<ResultType, ResultTypeOwnership>
+    {
         #[method_id(@__retain_semantics Init initWithFetchRequest:managedObjectContext:sectionNameKeyPath:cacheName:)]
         pub unsafe fn initWithFetchRequest_managedObjectContext_sectionNameKeyPath_cacheName(
             this: Option<Allocated<Self>>,
