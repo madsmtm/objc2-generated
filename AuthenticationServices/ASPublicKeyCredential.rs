@@ -7,7 +7,7 @@ use crate::Foundation::*;
 extern_protocol!(
     pub struct ASPublicKeyCredential;
 
-    unsafe impl ASPublicKeyCredential {
+    unsafe impl ProtocolType for ASPublicKeyCredential {
         #[method_id(@__retain_semantics Other rawClientDataJSON)]
         pub unsafe fn rawClientDataJSON(&self) -> Id<NSData, Shared>;
 

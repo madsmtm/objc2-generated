@@ -14,7 +14,7 @@ extern_static!(NSDecimalNumberDivideByZeroException: &'static NSExceptionName);
 extern_protocol!(
     pub struct NSDecimalNumberBehaviors;
 
-    unsafe impl NSDecimalNumberBehaviors {
+    unsafe impl ProtocolType for NSDecimalNumberBehaviors {
         #[method(roundingMode)]
         pub unsafe fn roundingMode(&self) -> NSRoundingMode;
 

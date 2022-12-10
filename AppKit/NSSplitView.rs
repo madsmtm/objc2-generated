@@ -126,7 +126,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSSplitViewDelegate;
 
-    unsafe impl NSSplitViewDelegate {
+    unsafe impl ProtocolType for NSSplitViewDelegate {
         #[optional]
         #[method(splitView:canCollapseSubview:)]
         pub unsafe fn splitView_canCollapseSubview(

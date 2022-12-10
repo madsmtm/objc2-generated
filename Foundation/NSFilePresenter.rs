@@ -6,7 +6,7 @@ use crate::Foundation::*;
 extern_protocol!(
     pub struct NSFilePresenter;
 
-    unsafe impl NSFilePresenter {
+    unsafe impl ProtocolType for NSFilePresenter {
         #[method_id(@__retain_semantics Other presentedItemURL)]
         pub unsafe fn presentedItemURL(&self) -> Option<Id<NSURL, Shared>>;
 

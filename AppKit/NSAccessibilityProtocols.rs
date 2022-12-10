@@ -8,13 +8,13 @@ use crate::Foundation::*;
 extern_protocol!(
     pub struct NSAccessibilityGroup;
 
-    unsafe impl NSAccessibilityGroup {}
+    unsafe impl ProtocolType for NSAccessibilityGroup {}
 );
 
 extern_protocol!(
     pub struct NSAccessibilityButton;
 
-    unsafe impl NSAccessibilityButton {
+    unsafe impl ProtocolType for NSAccessibilityButton {
         #[method_id(@__retain_semantics Other accessibilityLabel)]
         pub unsafe fn accessibilityLabel(&self) -> Option<Id<NSString, Shared>>;
 
@@ -26,7 +26,7 @@ extern_protocol!(
 extern_protocol!(
     pub struct NSAccessibilitySwitch;
 
-    unsafe impl NSAccessibilitySwitch {
+    unsafe impl ProtocolType for NSAccessibilitySwitch {
         #[method_id(@__retain_semantics Other accessibilityValue)]
         pub unsafe fn accessibilityValue(&self) -> Option<Id<NSString, Shared>>;
 
@@ -43,7 +43,7 @@ extern_protocol!(
 extern_protocol!(
     pub struct NSAccessibilityRadioButton;
 
-    unsafe impl NSAccessibilityRadioButton {
+    unsafe impl ProtocolType for NSAccessibilityRadioButton {
         #[method_id(@__retain_semantics Other accessibilityValue)]
         pub unsafe fn accessibilityValue(&self) -> Option<Id<NSNumber, Shared>>;
     }
@@ -52,7 +52,7 @@ extern_protocol!(
 extern_protocol!(
     pub struct NSAccessibilityCheckBox;
 
-    unsafe impl NSAccessibilityCheckBox {
+    unsafe impl ProtocolType for NSAccessibilityCheckBox {
         #[method_id(@__retain_semantics Other accessibilityValue)]
         pub unsafe fn accessibilityValue(&self) -> Option<Id<NSNumber, Shared>>;
     }
@@ -61,7 +61,7 @@ extern_protocol!(
 extern_protocol!(
     pub struct NSAccessibilityStaticText;
 
-    unsafe impl NSAccessibilityStaticText {
+    unsafe impl ProtocolType for NSAccessibilityStaticText {
         #[method_id(@__retain_semantics Other accessibilityValue)]
         pub unsafe fn accessibilityValue(&self) -> Option<Id<NSString, Shared>>;
 
@@ -81,7 +81,7 @@ extern_protocol!(
 extern_protocol!(
     pub struct NSAccessibilityNavigableStaticText;
 
-    unsafe impl NSAccessibilityNavigableStaticText {
+    unsafe impl ProtocolType for NSAccessibilityNavigableStaticText {
         #[method_id(@__retain_semantics Other accessibilityStringForRange:)]
         pub unsafe fn accessibilityStringForRange(
             &self,
@@ -102,7 +102,7 @@ extern_protocol!(
 extern_protocol!(
     pub struct NSAccessibilityProgressIndicator;
 
-    unsafe impl NSAccessibilityProgressIndicator {
+    unsafe impl ProtocolType for NSAccessibilityProgressIndicator {
         #[method_id(@__retain_semantics Other accessibilityValue)]
         pub unsafe fn accessibilityValue(&self) -> Option<Id<NSNumber, Shared>>;
     }
@@ -111,7 +111,7 @@ extern_protocol!(
 extern_protocol!(
     pub struct NSAccessibilityStepper;
 
-    unsafe impl NSAccessibilityStepper {
+    unsafe impl ProtocolType for NSAccessibilityStepper {
         #[method_id(@__retain_semantics Other accessibilityLabel)]
         pub unsafe fn accessibilityLabel(&self) -> Option<Id<NSString, Shared>>;
 
@@ -130,7 +130,7 @@ extern_protocol!(
 extern_protocol!(
     pub struct NSAccessibilitySlider;
 
-    unsafe impl NSAccessibilitySlider {
+    unsafe impl ProtocolType for NSAccessibilitySlider {
         #[method_id(@__retain_semantics Other accessibilityLabel)]
         pub unsafe fn accessibilityLabel(&self) -> Option<Id<NSString, Shared>>;
 
@@ -148,7 +148,7 @@ extern_protocol!(
 extern_protocol!(
     pub struct NSAccessibilityImage;
 
-    unsafe impl NSAccessibilityImage {
+    unsafe impl ProtocolType for NSAccessibilityImage {
         #[method_id(@__retain_semantics Other accessibilityLabel)]
         pub unsafe fn accessibilityLabel(&self) -> Option<Id<NSString, Shared>>;
     }
@@ -157,7 +157,7 @@ extern_protocol!(
 extern_protocol!(
     pub struct NSAccessibilityContainsTransientUI;
 
-    unsafe impl NSAccessibilityContainsTransientUI {
+    unsafe impl ProtocolType for NSAccessibilityContainsTransientUI {
         #[method(accessibilityPerformShowAlternateUI)]
         pub unsafe fn accessibilityPerformShowAlternateUI(&self) -> bool;
 
@@ -172,7 +172,7 @@ extern_protocol!(
 extern_protocol!(
     pub struct NSAccessibilityTable;
 
-    unsafe impl NSAccessibilityTable {
+    unsafe impl ProtocolType for NSAccessibilityTable {
         #[method_id(@__retain_semantics Other accessibilityLabel)]
         pub unsafe fn accessibilityLabel(&self) -> Option<Id<NSString, Shared>>;
 
@@ -235,19 +235,19 @@ extern_protocol!(
 extern_protocol!(
     pub struct NSAccessibilityOutline;
 
-    unsafe impl NSAccessibilityOutline {}
+    unsafe impl ProtocolType for NSAccessibilityOutline {}
 );
 
 extern_protocol!(
     pub struct NSAccessibilityList;
 
-    unsafe impl NSAccessibilityList {}
+    unsafe impl ProtocolType for NSAccessibilityList {}
 );
 
 extern_protocol!(
     pub struct NSAccessibilityRow;
 
-    unsafe impl NSAccessibilityRow {
+    unsafe impl ProtocolType for NSAccessibilityRow {
         #[method(accessibilityIndex)]
         pub unsafe fn accessibilityIndex(&self) -> NSInteger;
 
@@ -260,7 +260,7 @@ extern_protocol!(
 extern_protocol!(
     pub struct NSAccessibilityLayoutArea;
 
-    unsafe impl NSAccessibilityLayoutArea {
+    unsafe impl ProtocolType for NSAccessibilityLayoutArea {
         #[method_id(@__retain_semantics Other accessibilityLabel)]
         pub unsafe fn accessibilityLabel(&self) -> Id<NSString, Shared>;
 
@@ -278,7 +278,7 @@ extern_protocol!(
 extern_protocol!(
     pub struct NSAccessibilityLayoutItem;
 
-    unsafe impl NSAccessibilityLayoutItem {
+    unsafe impl ProtocolType for NSAccessibilityLayoutItem {
         #[optional]
         #[method(setAccessibilityFrame:)]
         pub unsafe fn setAccessibilityFrame(&self, frame: NSRect);
@@ -288,7 +288,7 @@ extern_protocol!(
 extern_protocol!(
     pub struct NSAccessibilityElementLoading;
 
-    unsafe impl NSAccessibilityElementLoading {
+    unsafe impl ProtocolType for NSAccessibilityElementLoading {
         #[method_id(@__retain_semantics Other accessibilityElementWithToken:)]
         pub unsafe fn accessibilityElementWithToken(
             &self,
@@ -307,7 +307,7 @@ extern_protocol!(
 extern_protocol!(
     pub struct NSAccessibility;
 
-    unsafe impl NSAccessibility {
+    unsafe impl ProtocolType for NSAccessibility {
         #[method(isAccessibilityElement)]
         pub unsafe fn isAccessibilityElement(&self) -> bool;
 

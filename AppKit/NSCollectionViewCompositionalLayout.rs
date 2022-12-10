@@ -757,7 +757,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSCollectionLayoutContainer;
 
-    unsafe impl NSCollectionLayoutContainer {
+    unsafe impl ProtocolType for NSCollectionLayoutContainer {
         #[method(contentSize)]
         pub unsafe fn contentSize(&self) -> NSSize;
 
@@ -775,7 +775,7 @@ extern_protocol!(
 extern_protocol!(
     pub struct NSCollectionLayoutEnvironment;
 
-    unsafe impl NSCollectionLayoutEnvironment {
+    unsafe impl ProtocolType for NSCollectionLayoutEnvironment {
         #[method_id(@__retain_semantics Other container)]
         pub unsafe fn container(&self) -> Id<NSCollectionLayoutContainer, Shared>;
     }
@@ -784,7 +784,7 @@ extern_protocol!(
 extern_protocol!(
     pub struct NSCollectionLayoutVisibleItem;
 
-    unsafe impl NSCollectionLayoutVisibleItem {
+    unsafe impl ProtocolType for NSCollectionLayoutVisibleItem {
         #[method(alpha)]
         pub unsafe fn alpha(&self) -> CGFloat;
 

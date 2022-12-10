@@ -26,7 +26,7 @@ ns_enum!(
 extern_protocol!(
     pub struct NSHapticFeedbackPerformer;
 
-    unsafe impl NSHapticFeedbackPerformer {
+    unsafe impl ProtocolType for NSHapticFeedbackPerformer {
         #[method(performFeedbackPattern:performanceTime:)]
         pub unsafe fn performFeedbackPattern_performanceTime(
             &self,

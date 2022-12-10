@@ -38,7 +38,7 @@ ns_enum!(
 extern_protocol!(
     pub struct NSURLHandleClient;
 
-    unsafe impl NSURLHandleClient {
+    unsafe impl ProtocolType for NSURLHandleClient {
         #[method(URLHandle:resourceDataDidBecomeAvailable:)]
         pub unsafe fn URLHandle_resourceDataDidBecomeAvailable(
             &self,

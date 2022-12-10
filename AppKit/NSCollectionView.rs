@@ -45,7 +45,7 @@ pub type NSCollectionViewSupplementaryElementKind = NSString;
 extern_protocol!(
     pub struct NSCollectionViewElement;
 
-    unsafe impl NSCollectionViewElement {
+    unsafe impl ProtocolType for NSCollectionViewElement {
         #[optional]
         #[method(prepareForReuse)]
         pub unsafe fn prepareForReuse(&self);
@@ -85,7 +85,7 @@ extern_protocol!(
 extern_protocol!(
     pub struct NSCollectionViewSectionHeaderView;
 
-    unsafe impl NSCollectionViewSectionHeaderView {
+    unsafe impl ProtocolType for NSCollectionViewSectionHeaderView {
         #[optional]
         #[method_id(@__retain_semantics Other sectionCollapseButton)]
         pub unsafe fn sectionCollapseButton(&self) -> Option<Id<NSButton, Shared>>;
@@ -457,7 +457,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSCollectionViewDataSource;
 
-    unsafe impl NSCollectionViewDataSource {
+    unsafe impl ProtocolType for NSCollectionViewDataSource {
         #[method(collectionView:numberOfItemsInSection:)]
         pub unsafe fn collectionView_numberOfItemsInSection(
             &self,
@@ -493,7 +493,7 @@ extern_protocol!(
 extern_protocol!(
     pub struct NSCollectionViewPrefetching;
 
-    unsafe impl NSCollectionViewPrefetching {
+    unsafe impl ProtocolType for NSCollectionViewPrefetching {
         #[method(collectionView:prefetchItemsAtIndexPaths:)]
         pub unsafe fn collectionView_prefetchItemsAtIndexPaths(
             &self,
@@ -514,7 +514,7 @@ extern_protocol!(
 extern_protocol!(
     pub struct NSCollectionViewDelegate;
 
-    unsafe impl NSCollectionViewDelegate {
+    unsafe impl ProtocolType for NSCollectionViewDelegate {
         #[optional]
         #[method(collectionView:canDragItemsAtIndexPaths:withEvent:)]
         pub unsafe fn collectionView_canDragItemsAtIndexPaths_withEvent(

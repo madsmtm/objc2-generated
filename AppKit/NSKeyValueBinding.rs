@@ -129,7 +129,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSEditor;
 
-    unsafe impl NSEditor {
+    unsafe impl ProtocolType for NSEditor {
         #[method(discardEditing)]
         pub unsafe fn discardEditing(&self);
 
@@ -152,7 +152,7 @@ extern_protocol!(
 extern_protocol!(
     pub struct NSEditorRegistration;
 
-    unsafe impl NSEditorRegistration {
+    unsafe impl ProtocolType for NSEditorRegistration {
         #[optional]
         #[method(objectDidBeginEditing:)]
         pub unsafe fn objectDidBeginEditing(&self, editor: &NSEditor);

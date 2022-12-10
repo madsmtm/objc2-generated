@@ -178,7 +178,7 @@ extern_static!(NSConnectionDidDieNotification: &'static NSString);
 extern_protocol!(
     pub struct NSConnectionDelegate;
 
-    unsafe impl NSConnectionDelegate {
+    unsafe impl ProtocolType for NSConnectionDelegate {
         #[optional]
         #[method(makeNewConnection:sender:)]
         pub unsafe fn makeNewConnection_sender(

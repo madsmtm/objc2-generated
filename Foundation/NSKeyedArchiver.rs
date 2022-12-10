@@ -244,7 +244,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSKeyedArchiverDelegate;
 
-    unsafe impl NSKeyedArchiverDelegate {
+    unsafe impl ProtocolType for NSKeyedArchiverDelegate {
         #[optional]
         #[method_id(@__retain_semantics Other archiver:willEncodeObject:)]
         pub unsafe fn archiver_willEncodeObject(
@@ -283,7 +283,7 @@ extern_protocol!(
 extern_protocol!(
     pub struct NSKeyedUnarchiverDelegate;
 
-    unsafe impl NSKeyedUnarchiverDelegate {
+    unsafe impl ProtocolType for NSKeyedUnarchiverDelegate {
         #[optional]
         #[method(unarchiver:cannotDecodeObjectOfClassName:originalClasses:)]
         pub unsafe fn unarchiver_cannotDecodeObjectOfClassName_originalClasses(

@@ -8,7 +8,7 @@ use crate::Foundation::*;
 extern_protocol!(
     pub struct NSAlignmentFeedbackToken;
 
-    unsafe impl NSAlignmentFeedbackToken {}
+    unsafe impl ProtocolType for NSAlignmentFeedbackToken {}
 );
 
 extern_class!(

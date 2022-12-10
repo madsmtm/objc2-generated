@@ -7,7 +7,7 @@ use crate::Foundation::*;
 extern_protocol!(
     pub struct ASAccountAuthenticationModificationControllerDelegate;
 
-    unsafe impl ASAccountAuthenticationModificationControllerDelegate {
+    unsafe impl ProtocolType for ASAccountAuthenticationModificationControllerDelegate {
         #[optional]
         #[method(accountAuthenticationModificationController:didSuccessfullyCompleteRequest:withUserInfo:)]
         pub unsafe fn accountAuthenticationModificationController_didSuccessfullyCompleteRequest_withUserInfo(
@@ -31,7 +31,9 @@ extern_protocol!(
 extern_protocol!(
     pub struct ASAccountAuthenticationModificationControllerPresentationContextProviding;
 
-    unsafe impl ASAccountAuthenticationModificationControllerPresentationContextProviding {
+    unsafe impl ProtocolType
+        for ASAccountAuthenticationModificationControllerPresentationContextProviding
+    {
         #[method_id(@__retain_semantics Other presentationAnchorForAccountAuthenticationModificationController:)]
         pub unsafe fn presentationAnchorForAccountAuthenticationModificationController(
             &self,

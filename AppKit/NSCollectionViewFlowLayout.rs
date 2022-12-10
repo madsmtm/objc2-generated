@@ -55,7 +55,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSCollectionViewDelegateFlowLayout;
 
-    unsafe impl NSCollectionViewDelegateFlowLayout {
+    unsafe impl ProtocolType for NSCollectionViewDelegateFlowLayout {
         #[optional]
         #[method(collectionView:layout:sizeForItemAtIndexPath:)]
         pub unsafe fn collectionView_layout_sizeForItemAtIndexPath(

@@ -10,7 +10,7 @@ pub type NSUserInterfaceItemIdentifier = NSString;
 extern_protocol!(
     pub struct NSUserInterfaceItemIdentification;
 
-    unsafe impl NSUserInterfaceItemIdentification {
+    unsafe impl ProtocolType for NSUserInterfaceItemIdentification {
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Option<Id<NSUserInterfaceItemIdentifier, Shared>>;
 

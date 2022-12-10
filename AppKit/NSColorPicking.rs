@@ -8,7 +8,7 @@ use crate::Foundation::*;
 extern_protocol!(
     pub struct NSColorPickingDefault;
 
-    unsafe impl NSColorPickingDefault {
+    unsafe impl ProtocolType for NSColorPickingDefault {
         #[method_id(@__retain_semantics Init initWithPickerMask:colorPanel:)]
         pub unsafe fn initWithPickerMask_colorPanel(
             this: Option<Allocated<Self>>,
@@ -52,7 +52,7 @@ extern_protocol!(
 extern_protocol!(
     pub struct NSColorPickingCustom;
 
-    unsafe impl NSColorPickingCustom {
+    unsafe impl ProtocolType for NSColorPickingCustom {
         #[method(supportsMode:)]
         pub unsafe fn supportsMode(&self, mode: NSColorPanelMode) -> bool;
 

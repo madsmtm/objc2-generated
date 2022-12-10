@@ -51,7 +51,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSSeguePerforming;
 
-    unsafe impl NSSeguePerforming {
+    unsafe impl ProtocolType for NSSeguePerforming {
         #[optional]
         #[method(prepareForSegue:sender:)]
         pub unsafe fn prepareForSegue_sender(

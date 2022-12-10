@@ -8,7 +8,7 @@ use crate::Foundation::*;
 extern_protocol!(
     pub struct NSValidatedUserInterfaceItem;
 
-    unsafe impl NSValidatedUserInterfaceItem {
+    unsafe impl ProtocolType for NSValidatedUserInterfaceItem {
         #[method(action)]
         pub unsafe fn action(&self) -> OptionSel;
 
@@ -20,7 +20,7 @@ extern_protocol!(
 extern_protocol!(
     pub struct NSUserInterfaceValidations;
 
-    unsafe impl NSUserInterfaceValidations {
+    unsafe impl ProtocolType for NSUserInterfaceValidations {
         #[method(validateUserInterfaceItem:)]
         pub unsafe fn validateUserInterfaceItem(&self, item: &NSValidatedUserInterfaceItem)
             -> bool;

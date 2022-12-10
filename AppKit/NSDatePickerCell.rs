@@ -152,7 +152,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSDatePickerCellDelegate;
 
-    unsafe impl NSDatePickerCellDelegate {
+    unsafe impl ProtocolType for NSDatePickerCellDelegate {
         #[optional]
         #[method(datePickerCell:validateProposedDateValue:timeInterval:)]
         pub unsafe fn datePickerCell_validateProposedDateValue_timeInterval(

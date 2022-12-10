@@ -49,7 +49,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSFilePromiseProviderDelegate;
 
-    unsafe impl NSFilePromiseProviderDelegate {
+    unsafe impl ProtocolType for NSFilePromiseProviderDelegate {
         #[method_id(@__retain_semantics Other filePromiseProvider:fileNameForType:)]
         pub unsafe fn filePromiseProvider_fileNameForType(
             &self,

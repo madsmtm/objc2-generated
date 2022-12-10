@@ -15,7 +15,7 @@ extern_struct!(
 extern_protocol!(
     pub struct NSFastEnumeration;
 
-    unsafe impl NSFastEnumeration {
+    unsafe impl ProtocolType for NSFastEnumeration {
         #[method(countByEnumeratingWithState:objects:count:)]
         pub unsafe fn countByEnumeratingWithState_objects_count(
             &self,

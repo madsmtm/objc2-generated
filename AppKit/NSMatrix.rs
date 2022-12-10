@@ -397,5 +397,5 @@ extern_methods!(
 extern_protocol!(
     pub struct NSMatrixDelegate;
 
-    unsafe impl NSMatrixDelegate {}
+    unsafe impl ProtocolType for NSMatrixDelegate {}
 );

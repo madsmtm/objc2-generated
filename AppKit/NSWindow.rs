@@ -1223,7 +1223,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSWindowDelegate;
 
-    unsafe impl NSWindowDelegate {
+    unsafe impl ProtocolType for NSWindowDelegate {
         #[optional]
         #[method(windowShouldClose:)]
         pub unsafe fn windowShouldClose(&self, sender: &NSWindow) -> bool;

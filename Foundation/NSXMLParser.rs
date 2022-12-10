@@ -117,7 +117,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSXMLParserDelegate;
 
-    unsafe impl NSXMLParserDelegate {
+    unsafe impl ProtocolType for NSXMLParserDelegate {
         #[optional]
         #[method(parserDidStartDocument:)]
         pub unsafe fn parserDidStartDocument(&self, parser: &NSXMLParser);

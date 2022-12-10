@@ -829,7 +829,7 @@ ns_enum!(
 extern_protocol!(
     pub struct NSURLSessionDelegate;
 
-    unsafe impl NSURLSessionDelegate {
+    unsafe impl ProtocolType for NSURLSessionDelegate {
         #[optional]
         #[method(URLSession:didBecomeInvalidWithError:)]
         pub unsafe fn URLSession_didBecomeInvalidWithError(
@@ -862,7 +862,7 @@ extern_protocol!(
 extern_protocol!(
     pub struct NSURLSessionTaskDelegate;
 
-    unsafe impl NSURLSessionTaskDelegate {
+    unsafe impl ProtocolType for NSURLSessionTaskDelegate {
         #[optional]
         #[method(URLSession:task:willBeginDelayedRequest:completionHandler:)]
         pub unsafe fn URLSession_task_willBeginDelayedRequest_completionHandler(
@@ -951,7 +951,7 @@ extern_protocol!(
 extern_protocol!(
     pub struct NSURLSessionDataDelegate;
 
-    unsafe impl NSURLSessionDataDelegate {
+    unsafe impl ProtocolType for NSURLSessionDataDelegate {
         #[optional]
         #[method(URLSession:dataTask:didReceiveResponse:completionHandler:)]
         pub unsafe fn URLSession_dataTask_didReceiveResponse_completionHandler(
@@ -1004,7 +1004,7 @@ extern_protocol!(
 extern_protocol!(
     pub struct NSURLSessionDownloadDelegate;
 
-    unsafe impl NSURLSessionDownloadDelegate {
+    unsafe impl ProtocolType for NSURLSessionDownloadDelegate {
         #[method(URLSession:downloadTask:didFinishDownloadingToURL:)]
         pub unsafe fn URLSession_downloadTask_didFinishDownloadingToURL(
             &self,
@@ -1039,7 +1039,7 @@ extern_protocol!(
 extern_protocol!(
     pub struct NSURLSessionStreamDelegate;
 
-    unsafe impl NSURLSessionStreamDelegate {
+    unsafe impl ProtocolType for NSURLSessionStreamDelegate {
         #[optional]
         #[method(URLSession:readClosedForStreamTask:)]
         pub unsafe fn URLSession_readClosedForStreamTask(
@@ -1079,7 +1079,7 @@ extern_protocol!(
 extern_protocol!(
     pub struct NSURLSessionWebSocketDelegate;
 
-    unsafe impl NSURLSessionWebSocketDelegate {
+    unsafe impl ProtocolType for NSURLSessionWebSocketDelegate {
         #[optional]
         #[method(URLSession:webSocketTask:didOpenWithProtocol:)]
         pub unsafe fn URLSession_webSocketTask_didOpenWithProtocol(

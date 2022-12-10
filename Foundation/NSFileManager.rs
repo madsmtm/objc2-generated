@@ -526,7 +526,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSFileManagerDelegate;
 
-    unsafe impl NSFileManagerDelegate {
+    unsafe impl ProtocolType for NSFileManagerDelegate {
         #[optional]
         #[method(fileManager:shouldCopyItemAtPath:toPath:)]
         pub unsafe fn fileManager_shouldCopyItemAtPath_toPath(

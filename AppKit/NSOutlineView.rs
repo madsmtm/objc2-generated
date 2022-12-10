@@ -192,7 +192,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSOutlineViewDataSource;
 
-    unsafe impl NSOutlineViewDataSource {
+    unsafe impl ProtocolType for NSOutlineViewDataSource {
         #[optional]
         #[method(outlineView:numberOfChildrenOfItem:)]
         pub unsafe fn outlineView_numberOfChildrenOfItem(
@@ -340,7 +340,7 @@ extern_protocol!(
 extern_protocol!(
     pub struct NSOutlineViewDelegate;
 
-    unsafe impl NSOutlineViewDelegate {
+    unsafe impl ProtocolType for NSOutlineViewDelegate {
         #[optional]
         #[method_id(@__retain_semantics Other outlineView:viewForTableColumn:item:)]
         pub unsafe fn outlineView_viewForTableColumn_item(

@@ -50,7 +50,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSSharingServicePickerTouchBarItemDelegate;
 
-    unsafe impl NSSharingServicePickerTouchBarItemDelegate {
+    unsafe impl ProtocolType for NSSharingServicePickerTouchBarItemDelegate {
         #[method_id(@__retain_semantics Other itemsForSharingServicePickerTouchBarItem:)]
         pub unsafe fn itemsForSharingServicePickerTouchBarItem(
             &self,

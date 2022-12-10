@@ -6,7 +6,7 @@ use crate::Foundation::*;
 extern_protocol!(
     pub struct NSCopying;
 
-    unsafe impl NSCopying {
+    unsafe impl ProtocolType for NSCopying {
         #[method_id(@__retain_semantics CopyOrMutCopy copyWithZone:)]
         pub unsafe fn copyWithZone(&self, zone: *mut NSZone) -> Id<Object, Shared>;
     }
@@ -15,7 +15,7 @@ extern_protocol!(
 extern_protocol!(
     pub struct NSMutableCopying;
 
-    unsafe impl NSMutableCopying {
+    unsafe impl ProtocolType for NSMutableCopying {
         #[method_id(@__retain_semantics CopyOrMutCopy mutableCopyWithZone:)]
         pub unsafe fn mutableCopyWithZone(&self, zone: *mut NSZone) -> Id<Object, Shared>;
     }
@@ -24,7 +24,7 @@ extern_protocol!(
 extern_protocol!(
     pub struct NSCoding;
 
-    unsafe impl NSCoding {
+    unsafe impl ProtocolType for NSCoding {
         #[method(encodeWithCoder:)]
         pub unsafe fn encodeWithCoder(&self, coder: &NSCoder);
 
@@ -39,10 +39,7 @@ extern_protocol!(
 extern_protocol!(
     pub struct NSSecureCoding;
 
-    unsafe impl NSSecureCoding {
-        #[method(supportsSecureCoding)]
-        pub unsafe fn supportsSecureCoding() -> bool;
-    }
+    unsafe impl ProtocolType for NSSecureCoding {}
 );
 
 extern_methods!(
@@ -76,7 +73,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSDiscardableContent;
 
-    unsafe impl NSDiscardableContent {
+    unsafe impl ProtocolType for NSDiscardableContent {
         #[method(beginContentAccess)]
         pub unsafe fn beginContentAccess(&self) -> bool;
 

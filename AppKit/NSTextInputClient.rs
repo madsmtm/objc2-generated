@@ -8,7 +8,7 @@ use crate::Foundation::*;
 extern_protocol!(
     pub struct NSTextInputClient;
 
-    unsafe impl NSTextInputClient {
+    unsafe impl ProtocolType for NSTextInputClient {
         #[method(insertText:replacementRange:)]
         pub unsafe fn insertText_replacementRange(
             &self,

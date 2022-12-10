@@ -180,7 +180,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSTabViewDelegate;
 
-    unsafe impl NSTabViewDelegate {
+    unsafe impl ProtocolType for NSTabViewDelegate {
         #[optional]
         #[method(tabView:shouldSelectTabViewItem:)]
         pub unsafe fn tabView_shouldSelectTabViewItem(

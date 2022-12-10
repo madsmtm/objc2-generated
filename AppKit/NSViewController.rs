@@ -221,7 +221,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSViewControllerPresentationAnimator;
 
-    unsafe impl NSViewControllerPresentationAnimator {
+    unsafe impl ProtocolType for NSViewControllerPresentationAnimator {
         #[method(animatePresentationOfViewController:fromViewController:)]
         pub unsafe fn animatePresentationOfViewController_fromViewController(
             &self,

@@ -203,7 +203,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSSpeechSynthesizerDelegate;
 
-    unsafe impl NSSpeechSynthesizerDelegate {
+    unsafe impl ProtocolType for NSSpeechSynthesizerDelegate {
         #[optional]
         #[method(speechSynthesizer:didFinishSpeaking:)]
         pub unsafe fn speechSynthesizer_didFinishSpeaking(

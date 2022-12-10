@@ -6,7 +6,7 @@ use crate::Foundation::*;
 extern_protocol!(
     pub struct NSURLProtocolClient;
 
-    unsafe impl NSURLProtocolClient {
+    unsafe impl ProtocolType for NSURLProtocolClient {
         #[method(URLProtocol:wasRedirectedToRequest:redirectResponse:)]
         pub unsafe fn URLProtocol_wasRedirectedToRequest_redirectResponse(
             &self,

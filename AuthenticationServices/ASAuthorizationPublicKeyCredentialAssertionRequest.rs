@@ -7,7 +7,7 @@ use crate::Foundation::*;
 extern_protocol!(
     pub struct ASAuthorizationPublicKeyCredentialAssertionRequest;
 
-    unsafe impl ASAuthorizationPublicKeyCredentialAssertionRequest {
+    unsafe impl ProtocolType for ASAuthorizationPublicKeyCredentialAssertionRequest {
         #[method_id(@__retain_semantics Other challenge)]
         pub unsafe fn challenge(&self) -> Id<NSData, Shared>;
 

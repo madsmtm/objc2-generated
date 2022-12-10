@@ -16,7 +16,7 @@ ns_options!(
 extern_protocol!(
     pub struct NSTextElementProvider;
 
-    unsafe impl NSTextElementProvider {
+    unsafe impl ProtocolType for NSTextElementProvider {
         #[method_id(@__retain_semantics Other documentRange)]
         pub unsafe fn documentRange(&self) -> Id<NSTextRange, Shared>;
 
@@ -159,7 +159,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSTextContentManagerDelegate;
 
-    unsafe impl NSTextContentManagerDelegate {
+    unsafe impl ProtocolType for NSTextContentManagerDelegate {
         #[optional]
         #[method_id(@__retain_semantics Other textContentManager:textElementAtLocation:)]
         pub unsafe fn textContentManager_textElementAtLocation(
@@ -182,7 +182,7 @@ extern_protocol!(
 extern_protocol!(
     pub struct NSTextContentStorageDelegate;
 
-    unsafe impl NSTextContentStorageDelegate {
+    unsafe impl ProtocolType for NSTextContentStorageDelegate {
         #[optional]
         #[method_id(@__retain_semantics Other textContentStorage:textParagraphWithRange:)]
         pub unsafe fn textContentStorage_textParagraphWithRange(

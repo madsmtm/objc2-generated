@@ -129,7 +129,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSComboBoxCellDataSource;
 
-    unsafe impl NSComboBoxCellDataSource {
+    unsafe impl ProtocolType for NSComboBoxCellDataSource {
         #[optional]
         #[method(numberOfItemsInComboBoxCell:)]
         pub unsafe fn numberOfItemsInComboBoxCell(

@@ -7,5 +7,5 @@ use crate::Foundation::*;
 extern_protocol!(
     pub struct ASAuthorizationCredential;
 
-    unsafe impl ASAuthorizationCredential {}
+    unsafe impl ProtocolType for ASAuthorizationCredential {}
 );

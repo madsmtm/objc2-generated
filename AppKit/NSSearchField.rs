@@ -10,7 +10,7 @@ pub type NSSearchFieldRecentsAutosaveName = NSString;
 extern_protocol!(
     pub struct NSSearchFieldDelegate;
 
-    unsafe impl NSSearchFieldDelegate {
+    unsafe impl ProtocolType for NSSearchFieldDelegate {
         #[optional]
         #[method(searchFieldDidStartSearching:)]
         pub unsafe fn searchFieldDidStartSearching(&self, sender: &NSSearchField);

@@ -16,7 +16,7 @@ extern_static!(NSComboBoxSelectionIsChangingNotification: &'static NSNotificatio
 extern_protocol!(
     pub struct NSComboBoxDataSource;
 
-    unsafe impl NSComboBoxDataSource {
+    unsafe impl ProtocolType for NSComboBoxDataSource {
         #[optional]
         #[method(numberOfItemsInComboBox:)]
         pub unsafe fn numberOfItemsInComboBox(&self, comboBox: &NSComboBox) -> NSInteger;
@@ -50,7 +50,7 @@ extern_protocol!(
 extern_protocol!(
     pub struct NSComboBoxDelegate;
 
-    unsafe impl NSComboBoxDelegate {
+    unsafe impl ProtocolType for NSComboBoxDelegate {
         #[optional]
         #[method(comboBoxWillPopUp:)]
         pub unsafe fn comboBoxWillPopUp(&self, notification: &NSNotification);

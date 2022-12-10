@@ -79,7 +79,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSUserInterfaceCompression;
 
-    unsafe impl NSUserInterfaceCompression {
+    unsafe impl ProtocolType for NSUserInterfaceCompression {
         #[method(compressWithPrioritizedCompressionOptions:)]
         pub unsafe fn compressWithPrioritizedCompressionOptions(
             &self,

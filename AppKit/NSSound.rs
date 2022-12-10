@@ -141,7 +141,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSSoundDelegate;
 
-    unsafe impl NSSoundDelegate {
+    unsafe impl ProtocolType for NSSoundDelegate {
         #[optional]
         #[method(sound:didFinishPlaying:)]
         pub unsafe fn sound_didFinishPlaying(&self, sound: &NSSound, flag: bool);

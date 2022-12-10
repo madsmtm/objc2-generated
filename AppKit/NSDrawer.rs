@@ -112,7 +112,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSDrawerDelegate;
 
-    unsafe impl NSDrawerDelegate {
+    unsafe impl ProtocolType for NSDrawerDelegate {
         #[optional]
         #[method(drawerShouldOpen:)]
         pub unsafe fn drawerShouldOpen(&self, sender: &NSDrawer) -> bool;

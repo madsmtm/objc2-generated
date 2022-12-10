@@ -68,7 +68,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSURLConnectionDelegate;
 
-    unsafe impl NSURLConnectionDelegate {
+    unsafe impl ProtocolType for NSURLConnectionDelegate {
         #[optional]
         #[method(connection:didFailWithError:)]
         pub unsafe fn connection_didFailWithError(
@@ -121,7 +121,7 @@ extern_protocol!(
 extern_protocol!(
     pub struct NSURLConnectionDataDelegate;
 
-    unsafe impl NSURLConnectionDataDelegate {
+    unsafe impl ProtocolType for NSURLConnectionDataDelegate {
         #[optional]
         #[method_id(@__retain_semantics Other connection:willSendRequest:redirectResponse:)]
         pub unsafe fn connection_willSendRequest_redirectResponse(
@@ -178,7 +178,7 @@ extern_protocol!(
 extern_protocol!(
     pub struct NSURLConnectionDownloadDelegate;
 
-    unsafe impl NSURLConnectionDownloadDelegate {
+    unsafe impl ProtocolType for NSURLConnectionDownloadDelegate {
         #[optional]
         #[method(connection:didWriteData:totalBytesWritten:expectedTotalBytes:)]
         pub unsafe fn connection_didWriteData_totalBytesWritten_expectedTotalBytes(

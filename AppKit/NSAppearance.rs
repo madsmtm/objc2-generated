@@ -81,7 +81,7 @@ extern_static!(NSAppearanceNameAccessibilityHighContrastVibrantDark: &'static NS
 extern_protocol!(
     pub struct NSAppearanceCustomization;
 
-    unsafe impl NSAppearanceCustomization {
+    unsafe impl ProtocolType for NSAppearanceCustomization {
         #[method_id(@__retain_semantics Other appearance)]
         pub unsafe fn appearance(&self) -> Option<Id<NSAppearance, Shared>>;
 

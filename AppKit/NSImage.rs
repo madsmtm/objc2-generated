@@ -333,7 +333,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSImageDelegate;
 
-    unsafe impl NSImageDelegate {
+    unsafe impl ProtocolType for NSImageDelegate {
         #[optional]
         #[method_id(@__retain_semantics Other imageDidNotDraw:inRect:)]
         pub unsafe fn imageDidNotDraw_inRect(

@@ -220,7 +220,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSPasteboardTypeOwner;
 
-    unsafe impl NSPasteboardTypeOwner {
+    unsafe impl ProtocolType for NSPasteboardTypeOwner {
         #[method(pasteboard:provideDataForType:)]
         pub unsafe fn pasteboard_provideDataForType(
             &self,
@@ -259,7 +259,7 @@ ns_options!(
 extern_protocol!(
     pub struct NSPasteboardWriting;
 
-    unsafe impl NSPasteboardWriting {
+    unsafe impl ProtocolType for NSPasteboardWriting {
         #[method_id(@__retain_semantics Other writableTypesForPasteboard:)]
         pub unsafe fn writableTypesForPasteboard(
             &self,
@@ -295,7 +295,7 @@ ns_options!(
 extern_protocol!(
     pub struct NSPasteboardReading;
 
-    unsafe impl NSPasteboardReading {
+    unsafe impl ProtocolType for NSPasteboardReading {
         #[method_id(@__retain_semantics Other readableTypesForPasteboard:)]
         pub unsafe fn readableTypesForPasteboard(
             pasteboard: &NSPasteboard,

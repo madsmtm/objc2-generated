@@ -545,7 +545,7 @@ ns_enum!(
 extern_protocol!(
     pub struct NSApplicationDelegate;
 
-    unsafe impl NSApplicationDelegate {
+    unsafe impl ProtocolType for NSApplicationDelegate {
         #[optional]
         #[method(applicationShouldTerminate:)]
         pub unsafe fn applicationShouldTerminate(
@@ -855,7 +855,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSServicesMenuRequestor;
 
-    unsafe impl NSServicesMenuRequestor {
+    unsafe impl ProtocolType for NSServicesMenuRequestor {
         #[optional]
         #[method(writeSelectionToPasteboard:types:)]
         pub unsafe fn writeSelectionToPasteboard_types(

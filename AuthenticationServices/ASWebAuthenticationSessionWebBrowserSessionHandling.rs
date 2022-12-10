@@ -7,7 +7,7 @@ use crate::Foundation::*;
 extern_protocol!(
     pub struct ASWebAuthenticationSessionWebBrowserSessionHandling;
 
-    unsafe impl ASWebAuthenticationSessionWebBrowserSessionHandling {
+    unsafe impl ProtocolType for ASWebAuthenticationSessionWebBrowserSessionHandling {
         #[method(beginHandlingWebAuthenticationSessionRequest:)]
         pub unsafe fn beginHandlingWebAuthenticationSessionRequest(
             &self,

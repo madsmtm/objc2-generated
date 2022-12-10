@@ -249,7 +249,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSControlTextEditingDelegate;
 
-    unsafe impl NSControlTextEditingDelegate {
+    unsafe impl ProtocolType for NSControlTextEditingDelegate {
         #[optional]
         #[method(controlTextDidBeginEditing:)]
         pub unsafe fn controlTextDidBeginEditing(&self, obj: &NSNotification);

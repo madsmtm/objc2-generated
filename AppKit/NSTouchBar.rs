@@ -130,7 +130,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSTouchBarDelegate;
 
-    unsafe impl NSTouchBarDelegate {
+    unsafe impl ProtocolType for NSTouchBarDelegate {
         #[optional]
         #[method_id(@__retain_semantics Other touchBar:makeItemForIdentifier:)]
         pub unsafe fn touchBar_makeItemForIdentifier(
@@ -144,7 +144,7 @@ extern_protocol!(
 extern_protocol!(
     pub struct NSTouchBarProvider;
 
-    unsafe impl NSTouchBarProvider {
+    unsafe impl ProtocolType for NSTouchBarProvider {
         #[method_id(@__retain_semantics Other touchBar)]
         pub unsafe fn touchBar(&self) -> Option<Id<NSTouchBar, Shared>>;
     }

@@ -25,7 +25,7 @@ ns_options!(
 extern_protocol!(
     pub struct NSFontChanging;
 
-    unsafe impl NSFontChanging {
+    unsafe impl ProtocolType for NSFontChanging {
         #[optional]
         #[method(changeFont:)]
         pub unsafe fn changeFont(&self, sender: Option<&NSFontManager>);

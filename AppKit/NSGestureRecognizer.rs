@@ -139,7 +139,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSGestureRecognizerDelegate;
 
-    unsafe impl NSGestureRecognizerDelegate {
+    unsafe impl ProtocolType for NSGestureRecognizerDelegate {
         #[optional]
         #[method(gestureRecognizer:shouldAttemptToRecognizeWithEvent:)]
         pub unsafe fn gestureRecognizer_shouldAttemptToRecognizeWithEvent(

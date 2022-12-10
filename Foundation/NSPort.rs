@@ -82,7 +82,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSPortDelegate;
 
-    unsafe impl NSPortDelegate {
+    unsafe impl ProtocolType for NSPortDelegate {
         #[optional]
         #[method(handlePortMessage:)]
         pub unsafe fn handlePortMessage(&self, message: &NSPortMessage);
@@ -151,7 +151,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSMachPortDelegate;
 
-    unsafe impl NSMachPortDelegate {
+    unsafe impl ProtocolType for NSMachPortDelegate {
         #[optional]
         #[method(handleMachMessage:)]
         pub unsafe fn handleMachMessage(&self, msg: NonNull<c_void>);

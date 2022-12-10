@@ -8,7 +8,7 @@ use crate::Foundation::*;
 extern_protocol!(
     pub struct NSUserActivityRestoring;
 
-    unsafe impl NSUserActivityRestoring {
+    unsafe impl ProtocolType for NSUserActivityRestoring {
         #[method(restoreUserActivityState:)]
         pub unsafe fn restoreUserActivityState(&self, userActivity: &NSUserActivity);
     }

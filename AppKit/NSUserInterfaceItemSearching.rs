@@ -8,7 +8,7 @@ use crate::Foundation::*;
 extern_protocol!(
     pub struct NSUserInterfaceItemSearching;
 
-    unsafe impl NSUserInterfaceItemSearching {
+    unsafe impl ProtocolType for NSUserInterfaceItemSearching {
         #[method(searchForItemsWithSearchString:resultLimit:matchedItemHandler:)]
         pub unsafe fn searchForItemsWithSearchString_resultLimit_matchedItemHandler(
             &self,

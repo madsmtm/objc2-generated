@@ -235,7 +235,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSTextLayoutManagerDelegate;
 
-    unsafe impl NSTextLayoutManagerDelegate {
+    unsafe impl ProtocolType for NSTextLayoutManagerDelegate {
         #[optional]
         #[method_id(@__retain_semantics Other textLayoutManager:textLayoutFragmentForLocation:inTextElement:)]
         pub unsafe fn textLayoutManager_textLayoutFragmentForLocation_inTextElement(

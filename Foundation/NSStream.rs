@@ -244,7 +244,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSStreamDelegate;
 
-    unsafe impl NSStreamDelegate {
+    unsafe impl ProtocolType for NSStreamDelegate {
         #[optional]
         #[method(stream:handleEvent:)]
         pub unsafe fn stream_handleEvent(&self, aStream: &NSStream, eventCode: NSStreamEvent);

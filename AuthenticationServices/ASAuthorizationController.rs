@@ -7,7 +7,7 @@ use crate::Foundation::*;
 extern_protocol!(
     pub struct ASAuthorizationControllerDelegate;
 
-    unsafe impl ASAuthorizationControllerDelegate {
+    unsafe impl ProtocolType for ASAuthorizationControllerDelegate {
         #[optional]
         #[method(authorizationController:didCompleteWithAuthorization:)]
         pub unsafe fn authorizationController_didCompleteWithAuthorization(
@@ -37,7 +37,7 @@ extern_protocol!(
 extern_protocol!(
     pub struct ASAuthorizationControllerPresentationContextProviding;
 
-    unsafe impl ASAuthorizationControllerPresentationContextProviding {
+    unsafe impl ProtocolType for ASAuthorizationControllerPresentationContextProviding {
         #[method_id(@__retain_semantics Other presentationAnchorForAuthorizationController:)]
         pub unsafe fn presentationAnchorForAuthorizationController(
             &self,

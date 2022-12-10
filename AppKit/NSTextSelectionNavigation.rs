@@ -158,7 +158,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSTextSelectionDataSource;
 
-    unsafe impl NSTextSelectionDataSource {
+    unsafe impl ProtocolType for NSTextSelectionDataSource {
         #[method_id(@__retain_semantics Other documentRange)]
         pub unsafe fn documentRange(&self) -> Id<NSTextRange, Shared>;
 

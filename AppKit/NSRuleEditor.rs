@@ -208,7 +208,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSRuleEditorDelegate;
 
-    unsafe impl NSRuleEditorDelegate {
+    unsafe impl ProtocolType for NSRuleEditorDelegate {
         #[method(ruleEditor:numberOfChildrenForCriterion:withRowType:)]
         pub unsafe fn ruleEditor_numberOfChildrenForCriterion_withRowType(
             &self,

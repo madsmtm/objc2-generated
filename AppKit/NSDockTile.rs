@@ -50,7 +50,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSDockTilePlugIn;
 
-    unsafe impl NSDockTilePlugIn {
+    unsafe impl ProtocolType for NSDockTilePlugIn {
         #[method(setDockTile:)]
         pub unsafe fn setDockTile(&self, dockTile: Option<&NSDockTile>);
 

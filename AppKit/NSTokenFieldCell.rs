@@ -65,7 +65,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSTokenFieldCellDelegate;
 
-    unsafe impl NSTokenFieldCellDelegate {
+    unsafe impl ProtocolType for NSTokenFieldCellDelegate {
         #[optional]
         #[method_id(@__retain_semantics Other tokenFieldCell:completionsForSubstring:indexOfToken:indexOfSelectedItem:)]
         pub unsafe fn tokenFieldCell_completionsForSubstring_indexOfToken_indexOfSelectedItem(

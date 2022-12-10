@@ -131,7 +131,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSPathCellDelegate;
 
-    unsafe impl NSPathCellDelegate {
+    unsafe impl ProtocolType for NSPathCellDelegate {
         #[optional]
         #[method(pathCell:willDisplayOpenPanel:)]
         pub unsafe fn pathCell_willDisplayOpenPanel(

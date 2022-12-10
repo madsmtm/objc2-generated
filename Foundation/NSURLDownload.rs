@@ -55,7 +55,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSURLDownloadDelegate;
 
-    unsafe impl NSURLDownloadDelegate {
+    unsafe impl ProtocolType for NSURLDownloadDelegate {
         #[optional]
         #[method(downloadDidBegin:)]
         pub unsafe fn downloadDidBegin(&self, download: &NSURLDownload);

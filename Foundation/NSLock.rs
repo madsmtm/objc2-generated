@@ -6,7 +6,7 @@ use crate::Foundation::*;
 extern_protocol!(
     pub struct NSLocking;
 
-    unsafe impl NSLocking {
+    unsafe impl ProtocolType for NSLocking {
         #[method(lock)]
         pub unsafe fn lock(&self);
 

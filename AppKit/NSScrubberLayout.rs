@@ -110,7 +110,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSScrubberFlowLayoutDelegate;
 
-    unsafe impl NSScrubberFlowLayoutDelegate {
+    unsafe impl ProtocolType for NSScrubberFlowLayoutDelegate {
         #[optional]
         #[method(scrubber:layout:sizeForItemAtIndex:)]
         pub unsafe fn scrubber_layout_sizeForItemAtIndex(

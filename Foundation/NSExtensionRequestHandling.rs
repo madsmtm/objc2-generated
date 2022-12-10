@@ -6,7 +6,7 @@ use crate::Foundation::*;
 extern_protocol!(
     pub struct NSExtensionRequestHandling;
 
-    unsafe impl NSExtensionRequestHandling {
+    unsafe impl ProtocolType for NSExtensionRequestHandling {
         #[method(beginRequestWithExtensionContext:)]
         pub unsafe fn beginRequestWithExtensionContext(&self, context: &NSExtensionContext);
     }

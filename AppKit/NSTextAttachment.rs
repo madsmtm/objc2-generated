@@ -15,7 +15,7 @@ extern_enum!(
 extern_protocol!(
     pub struct NSTextAttachmentContainer;
 
-    unsafe impl NSTextAttachmentContainer {
+    unsafe impl ProtocolType for NSTextAttachmentContainer {
         #[method_id(@__retain_semantics Other imageForBounds:textContainer:characterIndex:)]
         pub unsafe fn imageForBounds_textContainer_characterIndex(
             &self,
@@ -38,7 +38,7 @@ extern_protocol!(
 extern_protocol!(
     pub struct NSTextAttachmentLayout;
 
-    unsafe impl NSTextAttachmentLayout {
+    unsafe impl ProtocolType for NSTextAttachmentLayout {
         #[method_id(@__retain_semantics Other imageForBounds:attributes:location:textContainer:)]
         pub unsafe fn imageForBounds_attributes_location_textContainer(
             &self,

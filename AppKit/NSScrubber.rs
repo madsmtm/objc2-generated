@@ -8,7 +8,7 @@ use crate::Foundation::*;
 extern_protocol!(
     pub struct NSScrubberDataSource;
 
-    unsafe impl NSScrubberDataSource {
+    unsafe impl ProtocolType for NSScrubberDataSource {
         #[method(numberOfItemsForScrubber:)]
         pub unsafe fn numberOfItemsForScrubber(&self, scrubber: &NSScrubber) -> NSInteger;
 
@@ -24,7 +24,7 @@ extern_protocol!(
 extern_protocol!(
     pub struct NSScrubberDelegate;
 
-    unsafe impl NSScrubberDelegate {
+    unsafe impl ProtocolType for NSScrubberDelegate {
         #[optional]
         #[method(scrubber:didSelectItemAtIndex:)]
         pub unsafe fn scrubber_didSelectItemAtIndex(

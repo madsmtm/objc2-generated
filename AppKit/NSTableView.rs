@@ -645,7 +645,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSTableViewDelegate;
 
-    unsafe impl NSTableViewDelegate {
+    unsafe impl ProtocolType for NSTableViewDelegate {
         #[optional]
         #[method_id(@__retain_semantics Other tableView:viewForTableColumn:row:)]
         pub unsafe fn tableView_viewForTableColumn_row(
@@ -889,7 +889,7 @@ extern_static!(NSTableViewRowViewKey: &'static NSUserInterfaceItemIdentifier);
 extern_protocol!(
     pub struct NSTableViewDataSource;
 
-    unsafe impl NSTableViewDataSource {
+    unsafe impl ProtocolType for NSTableViewDataSource {
         #[optional]
         #[method(numberOfRowsInTableView:)]
         pub unsafe fn numberOfRowsInTableView(&self, tableView: &NSTableView) -> NSInteger;

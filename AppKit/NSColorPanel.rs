@@ -123,7 +123,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSColorChanging;
 
-    unsafe impl NSColorChanging {
+    unsafe impl ProtocolType for NSColorChanging {
         #[method(changeColor:)]
         pub unsafe fn changeColor(&self, sender: Option<&NSColorPanel>);
     }

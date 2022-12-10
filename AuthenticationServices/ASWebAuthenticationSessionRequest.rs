@@ -7,7 +7,7 @@ use crate::Foundation::*;
 extern_protocol!(
     pub struct ASWebAuthenticationSessionRequestDelegate;
 
-    unsafe impl ASWebAuthenticationSessionRequestDelegate {
+    unsafe impl ProtocolType for ASWebAuthenticationSessionRequestDelegate {
         #[optional]
         #[method(authenticationSessionRequest:didCompleteWithCallbackURL:)]
         pub unsafe fn authenticationSessionRequest_didCompleteWithCallbackURL(

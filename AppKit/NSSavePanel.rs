@@ -157,7 +157,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSOpenSavePanelDelegate;
 
-    unsafe impl NSOpenSavePanelDelegate {
+    unsafe impl ProtocolType for NSOpenSavePanelDelegate {
         #[optional]
         #[method(panel:shouldEnableURL:)]
         pub unsafe fn panel_shouldEnableURL(&self, sender: &Object, url: &NSURL) -> bool;

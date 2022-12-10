@@ -430,7 +430,7 @@ extern_static!(NSBrowserColumnConfigurationDidChangeNotification: &'static NSNot
 extern_protocol!(
     pub struct NSBrowserDelegate;
 
-    unsafe impl NSBrowserDelegate {
+    unsafe impl ProtocolType for NSBrowserDelegate {
         #[optional]
         #[method(browser:numberOfRowsInColumn:)]
         pub unsafe fn browser_numberOfRowsInColumn(

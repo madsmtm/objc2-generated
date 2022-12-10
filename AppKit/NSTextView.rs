@@ -952,7 +952,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSTextViewDelegate;
 
-    unsafe impl NSTextViewDelegate {
+    unsafe impl ProtocolType for NSTextViewDelegate {
         #[optional]
         #[method(textView:clickedOnLink:atIndex:)]
         pub unsafe fn textView_clickedOnLink_atIndex(

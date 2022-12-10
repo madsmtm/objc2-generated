@@ -8,7 +8,7 @@ use crate::Foundation::*;
 extern_protocol!(
     pub struct NSInputServiceProvider;
 
-    unsafe impl NSInputServiceProvider {
+    unsafe impl ProtocolType for NSInputServiceProvider {
         #[method(insertText:client:)]
         pub unsafe fn insertText_client(&self, string: Option<&Object>, sender: Option<&Object>);
 
@@ -75,7 +75,7 @@ extern_protocol!(
 extern_protocol!(
     pub struct NSInputServerMouseTracker;
 
-    unsafe impl NSInputServerMouseTracker {
+    unsafe impl ProtocolType for NSInputServerMouseTracker {
         #[method(mouseDownOnCharacterIndex:atCoordinate:withModifier:client:)]
         pub unsafe fn mouseDownOnCharacterIndex_atCoordinate_withModifier_client(
             &self,

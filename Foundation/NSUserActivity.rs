@@ -166,7 +166,7 @@ extern_static!(NSUserActivityTypeBrowsingWeb: &'static NSString);
 extern_protocol!(
     pub struct NSUserActivityDelegate;
 
-    unsafe impl NSUserActivityDelegate {
+    unsafe impl ProtocolType for NSUserActivityDelegate {
         #[optional]
         #[method(userActivityWillSave:)]
         pub unsafe fn userActivityWillSave(&self, userActivity: &NSUserActivity);

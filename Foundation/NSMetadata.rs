@@ -137,7 +137,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSMetadataQueryDelegate;
 
-    unsafe impl NSMetadataQueryDelegate {
+    unsafe impl ProtocolType for NSMetadataQueryDelegate {
         #[optional]
         #[method_id(@__retain_semantics Other metadataQuery:replacementObjectForResultObject:)]
         pub unsafe fn metadataQuery_replacementObjectForResultObject(

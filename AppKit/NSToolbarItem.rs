@@ -158,7 +158,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSToolbarItemValidation;
 
-    unsafe impl NSToolbarItemValidation {
+    unsafe impl ProtocolType for NSToolbarItemValidation {
         #[method(validateToolbarItem:)]
         pub unsafe fn validateToolbarItem(&self, item: &NSToolbarItem) -> bool;
     }
@@ -175,7 +175,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSCloudSharingValidation;
 
-    unsafe impl NSCloudSharingValidation {
+    unsafe impl ProtocolType for NSCloudSharingValidation {
         #[method_id(@__retain_semantics Other cloudShareForUserInterfaceItem:)]
         pub unsafe fn cloudShareForUserInterfaceItem(
             &self,

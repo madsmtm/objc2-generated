@@ -307,7 +307,7 @@ extern_enum!(
 extern_protocol!(
     pub struct NSTextDelegate;
 
-    unsafe impl NSTextDelegate {
+    unsafe impl ProtocolType for NSTextDelegate {
         #[optional]
         #[method(textShouldBeginEditing:)]
         pub unsafe fn textShouldBeginEditing(&self, textObject: &NSText) -> bool;

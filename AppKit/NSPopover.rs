@@ -41,7 +41,7 @@ extern_static!(NSPopoverDidCloseNotification: &'static NSNotificationName);
 extern_protocol!(
     pub struct NSPopoverDelegate;
 
-    unsafe impl NSPopoverDelegate {
+    unsafe impl ProtocolType for NSPopoverDelegate {
         #[optional]
         #[method(popoverShouldClose:)]
         pub unsafe fn popoverShouldClose(&self, popover: &NSPopover) -> bool;

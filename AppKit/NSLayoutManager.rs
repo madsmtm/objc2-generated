@@ -38,7 +38,7 @@ ns_options!(
 extern_protocol!(
     pub struct NSTextLayoutOrientationProvider;
 
-    unsafe impl NSTextLayoutOrientationProvider {
+    unsafe impl ProtocolType for NSTextLayoutOrientationProvider {
         #[method(layoutOrientation)]
         pub unsafe fn layoutOrientation(&self) -> NSTextLayoutOrientation;
     }
@@ -712,7 +712,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSLayoutManagerDelegate;
 
-    unsafe impl NSLayoutManagerDelegate {
+    unsafe impl ProtocolType for NSLayoutManagerDelegate {
         #[optional]
         #[method(layoutManager:shouldGenerateGlyphs:properties:characterIndexes:font:forGlyphRange:)]
         pub unsafe fn layoutManager_shouldGenerateGlyphs_properties_characterIndexes_font_forGlyphRange(

@@ -17,7 +17,7 @@ extern_enum!(
 extern_protocol!(
     pub struct NSGlyphStorage;
 
-    unsafe impl NSGlyphStorage {
+    unsafe impl ProtocolType for NSGlyphStorage {
         #[method(insertGlyphs:length:forStartingGlyphAtIndex:characterIndex:)]
         pub unsafe fn insertGlyphs_length_forStartingGlyphAtIndex_characterIndex(
             &self,

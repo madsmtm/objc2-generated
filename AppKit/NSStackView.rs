@@ -159,7 +159,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSStackViewDelegate;
 
-    unsafe impl NSStackViewDelegate {
+    unsafe impl ProtocolType for NSStackViewDelegate {
         #[optional]
         #[method(stackView:willDetachViews:)]
         pub unsafe fn stackView_willDetachViews(

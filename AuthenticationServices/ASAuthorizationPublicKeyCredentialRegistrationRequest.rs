@@ -7,7 +7,7 @@ use crate::Foundation::*;
 extern_protocol!(
     pub struct ASAuthorizationPublicKeyCredentialRegistrationRequest;
 
-    unsafe impl ASAuthorizationPublicKeyCredentialRegistrationRequest {
+    unsafe impl ProtocolType for ASAuthorizationPublicKeyCredentialRegistrationRequest {
         #[method_id(@__retain_semantics Other relyingPartyIdentifier)]
         pub unsafe fn relyingPartyIdentifier(&self) -> Id<NSString, Shared>;
 

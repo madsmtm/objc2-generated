@@ -7,7 +7,7 @@ use crate::Foundation::*;
 extern_protocol!(
     pub struct ASAuthorizationPublicKeyCredentialDescriptor;
 
-    unsafe impl ASAuthorizationPublicKeyCredentialDescriptor {
+    unsafe impl ProtocolType for ASAuthorizationPublicKeyCredentialDescriptor {
         #[method_id(@__retain_semantics Other credentialID)]
         pub unsafe fn credentialID(&self) -> Id<NSData, Shared>;
 

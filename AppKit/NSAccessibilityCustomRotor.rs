@@ -194,7 +194,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSAccessibilityCustomRotorItemSearchDelegate;
 
-    unsafe impl NSAccessibilityCustomRotorItemSearchDelegate {
+    unsafe impl ProtocolType for NSAccessibilityCustomRotorItemSearchDelegate {
         #[method_id(@__retain_semantics Other rotor:resultForSearchParameters:)]
         pub unsafe fn rotor_resultForSearchParameters(
             &self,

@@ -74,7 +74,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSPageControllerDelegate;
 
-    unsafe impl NSPageControllerDelegate {
+    unsafe impl ProtocolType for NSPageControllerDelegate {
         #[optional]
         #[method_id(@__retain_semantics Other pageController:identifierForObject:)]
         pub unsafe fn pageController_identifierForObject(

@@ -8,7 +8,7 @@ use crate::Foundation::*;
 extern_protocol!(
     pub struct NSTextInput;
 
-    unsafe impl NSTextInput {
+    unsafe impl ProtocolType for NSTextInput {
         #[method(insertText:)]
         pub unsafe fn insertText(&self, string: Option<&Object>);
 

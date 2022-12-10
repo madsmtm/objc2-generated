@@ -93,7 +93,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSFetchedResultsSectionInfo;
 
-    unsafe impl NSFetchedResultsSectionInfo {
+    unsafe impl ProtocolType for NSFetchedResultsSectionInfo {
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Id<NSString, Shared>;
 
@@ -121,7 +121,7 @@ ns_enum!(
 extern_protocol!(
     pub struct NSFetchedResultsControllerDelegate;
 
-    unsafe impl NSFetchedResultsControllerDelegate {
+    unsafe impl ProtocolType for NSFetchedResultsControllerDelegate {
         #[optional]
         #[method(controller:didChangeContentWithSnapshot:)]
         pub unsafe fn controller_didChangeContentWithSnapshot(

@@ -118,7 +118,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSAlertDelegate;
 
-    unsafe impl NSAlertDelegate {
+    unsafe impl ProtocolType for NSAlertDelegate {
         #[optional]
         #[method(alertShowHelp:)]
         pub unsafe fn alertShowHelp(&self, alert: &NSAlert) -> bool;

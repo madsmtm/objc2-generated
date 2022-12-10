@@ -16,7 +16,7 @@ extern_static!(NSTextContentTypeOneTimeCode: &'static NSTextContentType);
 extern_protocol!(
     pub struct NSTextContent;
 
-    unsafe impl NSTextContent {
+    unsafe impl ProtocolType for NSTextContent {
         #[method_id(@__retain_semantics Other contentType)]
         pub unsafe fn contentType(&self) -> Option<Id<NSTextContentType, Shared>>;
 

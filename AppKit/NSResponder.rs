@@ -194,7 +194,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSStandardKeyBindingResponding;
 
-    unsafe impl NSStandardKeyBindingResponding {
+    unsafe impl ProtocolType for NSStandardKeyBindingResponding {
         #[optional]
         #[method(insertText:)]
         pub unsafe fn insertText(&self, insertString: &Object);

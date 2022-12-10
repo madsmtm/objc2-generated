@@ -66,7 +66,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSPasteboardItemDataProvider;
 
-    unsafe impl NSPasteboardItemDataProvider {
+    unsafe impl ProtocolType for NSPasteboardItemDataProvider {
         #[method(pasteboard:item:provideDataForType:)]
         pub unsafe fn pasteboard_item_provideDataForType(
             &self,

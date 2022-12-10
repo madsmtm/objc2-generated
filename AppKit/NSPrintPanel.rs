@@ -38,7 +38,7 @@ extern_static!(
 extern_protocol!(
     pub struct NSPrintPanelAccessorizing;
 
-    unsafe impl NSPrintPanelAccessorizing {
+    unsafe impl ProtocolType for NSPrintPanelAccessorizing {
         #[method_id(@__retain_semantics Other localizedSummaryItems)]
         pub unsafe fn localizedSummaryItems(
             &self,

@@ -8,7 +8,7 @@ use crate::Foundation::*;
 extern_protocol!(
     pub struct NSTokenFieldDelegate;
 
-    unsafe impl NSTokenFieldDelegate {
+    unsafe impl ProtocolType for NSTokenFieldDelegate {
         #[optional]
         #[method_id(@__retain_semantics Other tokenField:completionsForSubstring:indexOfToken:indexOfSelectedItem:)]
         pub unsafe fn tokenField_completionsForSubstring_indexOfToken_indexOfSelectedItem(

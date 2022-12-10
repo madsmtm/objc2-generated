@@ -100,7 +100,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSPathControlDelegate;
 
-    unsafe impl NSPathControlDelegate {
+    unsafe impl ProtocolType for NSPathControlDelegate {
         #[optional]
         #[method(pathControl:shouldDragItem:withPasteboard:)]
         pub unsafe fn pathControl_shouldDragItem_withPasteboard(

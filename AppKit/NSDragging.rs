@@ -60,7 +60,7 @@ ns_enum!(
 extern_protocol!(
     pub struct NSDraggingInfo;
 
-    unsafe impl NSDraggingInfo {
+    unsafe impl ProtocolType for NSDraggingInfo {
         #[method_id(@__retain_semantics Other draggingDestinationWindow)]
         pub unsafe fn draggingDestinationWindow(&self) -> Option<Id<NSWindow, Shared>>;
 
@@ -133,7 +133,7 @@ extern_protocol!(
 extern_protocol!(
     pub struct NSDraggingDestination;
 
-    unsafe impl NSDraggingDestination {
+    unsafe impl ProtocolType for NSDraggingDestination {
         #[optional]
         #[method(draggingEntered:)]
         pub unsafe fn draggingEntered(&self, sender: &NSDraggingInfo) -> NSDragOperation;
@@ -175,7 +175,7 @@ extern_protocol!(
 extern_protocol!(
     pub struct NSDraggingSource;
 
-    unsafe impl NSDraggingSource {
+    unsafe impl ProtocolType for NSDraggingSource {
         #[method(draggingSession:sourceOperationMaskForDraggingContext:)]
         pub unsafe fn draggingSession_sourceOperationMaskForDraggingContext(
             &self,
@@ -230,7 +230,7 @@ ns_options!(
 extern_protocol!(
     pub struct NSSpringLoadingDestination;
 
-    unsafe impl NSSpringLoadingDestination {
+    unsafe impl ProtocolType for NSSpringLoadingDestination {
         #[method(springLoadingActivated:draggingInfo:)]
         pub unsafe fn springLoadingActivated_draggingInfo(
             &self,

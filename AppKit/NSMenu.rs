@@ -230,7 +230,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSMenuItemValidation;
 
-    unsafe impl NSMenuItemValidation {
+    unsafe impl ProtocolType for NSMenuItemValidation {
         #[method(validateMenuItem:)]
         pub unsafe fn validateMenuItem(&self, menuItem: &NSMenuItem) -> bool;
     }
@@ -247,7 +247,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSMenuDelegate;
 
-    unsafe impl NSMenuDelegate {
+    unsafe impl ProtocolType for NSMenuDelegate {
         #[optional]
         #[method(menuNeedsUpdate:)]
         pub unsafe fn menuNeedsUpdate(&self, menu: &NSMenu);

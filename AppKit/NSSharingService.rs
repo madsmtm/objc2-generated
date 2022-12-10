@@ -145,7 +145,7 @@ ns_enum!(
 extern_protocol!(
     pub struct NSSharingServiceDelegate;
 
-    unsafe impl NSSharingServiceDelegate {
+    unsafe impl ProtocolType for NSSharingServiceDelegate {
         #[optional]
         #[method(sharingService:willShareItems:)]
         pub unsafe fn sharingService_willShareItems(
@@ -222,7 +222,7 @@ ns_options!(
 extern_protocol!(
     pub struct NSCloudSharingServiceDelegate;
 
-    unsafe impl NSCloudSharingServiceDelegate {
+    unsafe impl ProtocolType for NSCloudSharingServiceDelegate {
         #[optional]
         #[method(sharingService:didCompleteForItems:error:)]
         pub unsafe fn sharingService_didCompleteForItems_error(
@@ -302,7 +302,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSSharingServicePickerDelegate;
 
-    unsafe impl NSSharingServicePickerDelegate {
+    unsafe impl ProtocolType for NSSharingServicePickerDelegate {
         #[optional]
         #[method_id(@__retain_semantics Other sharingServicePicker:sharingServicesForItems:proposedSharingServices:)]
         pub unsafe fn sharingServicePicker_sharingServicesForItems_proposedSharingServices(

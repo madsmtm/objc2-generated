@@ -223,7 +223,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSProgressReporting;
 
-    unsafe impl NSProgressReporting {
+    unsafe impl ProtocolType for NSProgressReporting {
         #[method_id(@__retain_semantics Other progress)]
         pub unsafe fn progress(&self) -> Id<NSProgress, Shared>;
     }

@@ -48,7 +48,7 @@ extern_static!(NSGrammarCorrections: &'static NSString);
 extern_protocol!(
     pub struct NSSpellServerDelegate;
 
-    unsafe impl NSSpellServerDelegate {
+    unsafe impl ProtocolType for NSSpellServerDelegate {
         #[optional]
         #[method(spellServer:findMisspelledWordInString:language:wordCount:countOnly:)]
         pub unsafe fn spellServer_findMisspelledWordInString_language_wordCount_countOnly(

@@ -8,7 +8,7 @@ use crate::Foundation::*;
 extern_protocol!(
     pub struct NSTextLocation;
 
-    unsafe impl NSTextLocation {
+    unsafe impl ProtocolType for NSTextLocation {
         #[method(compare:)]
         pub unsafe fn compare(&self, location: &NSTextLocation) -> NSComparisonResult;
     }

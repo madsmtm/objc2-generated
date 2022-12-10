@@ -146,7 +146,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSAnimationDelegate;
 
-    unsafe impl NSAnimationDelegate {
+    unsafe impl ProtocolType for NSAnimationDelegate {
         #[optional]
         #[method(animationShouldStart:)]
         pub unsafe fn animationShouldStart(&self, animation: &NSAnimation) -> bool;
@@ -228,7 +228,7 @@ pub type NSAnimatablePropertyKey = NSString;
 extern_protocol!(
     pub struct NSAnimatablePropertyContainer;
 
-    unsafe impl NSAnimatablePropertyContainer {
+    unsafe impl ProtocolType for NSAnimatablePropertyContainer {
         #[method_id(@__retain_semantics Other animator)]
         pub unsafe fn animator(&self) -> Id<Self, Shared>;
 

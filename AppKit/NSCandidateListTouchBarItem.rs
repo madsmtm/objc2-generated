@@ -99,7 +99,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSCandidateListTouchBarItemDelegate;
 
-    unsafe impl NSCandidateListTouchBarItemDelegate {
+    unsafe impl ProtocolType for NSCandidateListTouchBarItemDelegate {
         #[optional]
         #[method(candidateListTouchBarItem:beginSelectingCandidateAtIndex:)]
         pub unsafe fn candidateListTouchBarItem_beginSelectingCandidateAtIndex(

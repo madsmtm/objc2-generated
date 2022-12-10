@@ -186,7 +186,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSNetServiceDelegate;
 
-    unsafe impl NSNetServiceDelegate {
+    unsafe impl ProtocolType for NSNetServiceDelegate {
         #[optional]
         #[method(netServiceWillPublish:)]
         pub unsafe fn netServiceWillPublish(&self, sender: &NSNetService);
@@ -245,7 +245,7 @@ extern_protocol!(
 extern_protocol!(
     pub struct NSNetServiceBrowserDelegate;
 
-    unsafe impl NSNetServiceBrowserDelegate {
+    unsafe impl ProtocolType for NSNetServiceBrowserDelegate {
         #[optional]
         #[method(netServiceBrowserWillSearch:)]
         pub unsafe fn netServiceBrowserWillSearch(&self, browser: &NSNetServiceBrowser);

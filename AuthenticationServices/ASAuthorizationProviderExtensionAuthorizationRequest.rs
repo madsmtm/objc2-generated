@@ -14,7 +14,7 @@ extern_static!(
 extern_protocol!(
     pub struct ASAuthorizationProviderExtensionAuthorizationRequestHandler;
 
-    unsafe impl ASAuthorizationProviderExtensionAuthorizationRequestHandler {
+    unsafe impl ProtocolType for ASAuthorizationProviderExtensionAuthorizationRequestHandler {
         #[method(beginAuthorizationWithRequest:)]
         pub unsafe fn beginAuthorizationWithRequest(
             &self,

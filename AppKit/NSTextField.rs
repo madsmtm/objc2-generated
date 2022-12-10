@@ -197,7 +197,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSTextFieldDelegate;
 
-    unsafe impl NSTextFieldDelegate {
+    unsafe impl ProtocolType for NSTextFieldDelegate {
         #[optional]
         #[method_id(@__retain_semantics Other textField:textView:candidatesForSelectedRange:)]
         pub unsafe fn textField_textView_candidatesForSelectedRange(

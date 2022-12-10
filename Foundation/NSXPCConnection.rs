@@ -6,7 +6,7 @@ use crate::Foundation::*;
 extern_protocol!(
     pub struct NSXPCProxyCreating;
 
-    unsafe impl NSXPCProxyCreating {
+    unsafe impl ProtocolType for NSXPCProxyCreating {
         #[method_id(@__retain_semantics Other remoteObjectProxy)]
         pub unsafe fn remoteObjectProxy(&self) -> Id<Object, Shared>;
 
@@ -179,7 +179,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSXPCListenerDelegate;
 
-    unsafe impl NSXPCListenerDelegate {
+    unsafe impl ProtocolType for NSXPCListenerDelegate {
         #[optional]
         #[method(listener:shouldAcceptNewConnection:)]
         pub unsafe fn listener_shouldAcceptNewConnection(

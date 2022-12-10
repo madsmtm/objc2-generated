@@ -82,7 +82,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSTextStorageDelegate;
 
-    unsafe impl NSTextStorageDelegate {
+    unsafe impl ProtocolType for NSTextStorageDelegate {
         #[optional]
         #[method(textStorage:willProcessEditing:range:changeInLength:)]
         pub unsafe fn textStorage_willProcessEditing_range_changeInLength(
@@ -112,7 +112,7 @@ extern_static!(NSTextStorageDidProcessEditingNotification: &'static NSNotificati
 extern_protocol!(
     pub struct NSTextStorageObserving;
 
-    unsafe impl NSTextStorageObserving {
+    unsafe impl ProtocolType for NSTextStorageObserving {
         #[method_id(@__retain_semantics Other textStorage)]
         pub unsafe fn textStorage(&self) -> Option<Id<NSTextStorage, Shared>>;
 

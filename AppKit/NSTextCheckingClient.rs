@@ -17,7 +17,7 @@ ns_enum!(
 extern_protocol!(
     pub struct NSTextInputTraits;
 
-    unsafe impl NSTextInputTraits {
+    unsafe impl ProtocolType for NSTextInputTraits {
         #[optional]
         #[method(autocorrectionType)]
         pub unsafe fn autocorrectionType(&self) -> NSTextInputTraitType;
@@ -103,7 +103,7 @@ extern_protocol!(
 extern_protocol!(
     pub struct NSTextCheckingClient;
 
-    unsafe impl NSTextCheckingClient {
+    unsafe impl ProtocolType for NSTextCheckingClient {
         #[method_id(@__retain_semantics Other annotatedSubstringForProposedRange:actualRange:)]
         pub unsafe fn annotatedSubstringForProposedRange_actualRange(
             &self,

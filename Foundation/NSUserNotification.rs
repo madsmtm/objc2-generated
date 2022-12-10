@@ -227,7 +227,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSUserNotificationCenterDelegate;
 
-    unsafe impl NSUserNotificationCenterDelegate {
+    unsafe impl ProtocolType for NSUserNotificationCenterDelegate {
         #[optional]
         #[method(userNotificationCenter:didDeliverNotification:)]
         pub unsafe fn userNotificationCenter_didDeliverNotification(

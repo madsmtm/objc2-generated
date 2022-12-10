@@ -8,7 +8,7 @@ use crate::Foundation::*;
 extern_protocol!(
     pub struct NSChangeSpelling;
 
-    unsafe impl NSChangeSpelling {
+    unsafe impl ProtocolType for NSChangeSpelling {
         #[method(changeSpelling:)]
         pub unsafe fn changeSpelling(&self, sender: Option<&Object>);
     }
@@ -17,7 +17,7 @@ extern_protocol!(
 extern_protocol!(
     pub struct NSIgnoreMisspelledWords;
 
-    unsafe impl NSIgnoreMisspelledWords {
+    unsafe impl ProtocolType for NSIgnoreMisspelledWords {
         #[method(ignoreSpelling:)]
         pub unsafe fn ignoreSpelling(&self, sender: Option<&Object>);
     }

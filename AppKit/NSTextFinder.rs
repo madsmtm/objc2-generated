@@ -119,7 +119,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSTextFinderClient;
 
-    unsafe impl NSTextFinderClient {
+    unsafe impl ProtocolType for NSTextFinderClient {
         #[optional]
         #[method(isSelectable)]
         pub unsafe fn isSelectable(&self) -> bool;
@@ -209,7 +209,7 @@ extern_protocol!(
 extern_protocol!(
     pub struct NSTextFinderBarContainer;
 
-    unsafe impl NSTextFinderBarContainer {
+    unsafe impl ProtocolType for NSTextFinderBarContainer {
         #[method_id(@__retain_semantics Other findBarView)]
         pub unsafe fn findBarView(&self) -> Option<Id<NSView, Shared>>;
 

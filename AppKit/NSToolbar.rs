@@ -156,7 +156,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSToolbarDelegate;
 
-    unsafe impl NSToolbarDelegate {
+    unsafe impl ProtocolType for NSToolbarDelegate {
         #[optional]
         #[method_id(@__retain_semantics Other toolbar:itemForItemIdentifier:willBeInsertedIntoToolbar:)]
         pub unsafe fn toolbar_itemForItemIdentifier_willBeInsertedIntoToolbar(

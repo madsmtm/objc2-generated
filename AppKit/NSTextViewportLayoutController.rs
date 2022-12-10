@@ -8,7 +8,7 @@ use crate::Foundation::*;
 extern_protocol!(
     pub struct NSTextViewportLayoutControllerDelegate;
 
-    unsafe impl NSTextViewportLayoutControllerDelegate {
+    unsafe impl ProtocolType for NSTextViewportLayoutControllerDelegate {
         #[method(viewportBoundsForTextViewportLayoutController:)]
         pub unsafe fn viewportBoundsForTextViewportLayoutController(
             &self,

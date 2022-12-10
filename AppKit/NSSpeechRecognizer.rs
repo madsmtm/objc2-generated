@@ -60,7 +60,7 @@ extern_methods!(
 extern_protocol!(
     pub struct NSSpeechRecognizerDelegate;
 
-    unsafe impl NSSpeechRecognizerDelegate {
+    unsafe impl ProtocolType for NSSpeechRecognizerDelegate {
         #[optional]
         #[method(speechRecognizer:didRecognizeCommand:)]
         pub unsafe fn speechRecognizer_didRecognizeCommand(

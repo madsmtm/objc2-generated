@@ -6,7 +6,7 @@ use crate::Foundation::*;
 extern_protocol!(
     pub struct NSURLAuthenticationChallengeSender;
 
-    unsafe impl NSURLAuthenticationChallengeSender {
+    unsafe impl ProtocolType for NSURLAuthenticationChallengeSender {
         #[method(useCredential:forAuthenticationChallenge:)]
         pub unsafe fn useCredential_forAuthenticationChallenge(
             &self,
