@@ -21,7 +21,7 @@ extern_methods!(
         NSArray<ObjectType, ObjectTypeOwnership>
     {
         #[method(count)]
-        pub unsafe fn count(&self) -> NSUInteger;
+        pub fn count(&self) -> NSUInteger;
 
         #[method_id(@__retain_semantics Other objectAtIndex:)]
         pub unsafe fn objectAtIndex(&self, index: NSUInteger) -> Id<ObjectType, Shared>;
@@ -474,7 +474,7 @@ extern_methods!(
         );
 
         #[method(removeAllObjects)]
-        pub unsafe fn removeAllObjects(&self);
+        pub fn removeAllObjects(&self);
 
         #[method(removeObject:inRange:)]
         pub unsafe fn removeObject_inRange(&self, anObject: &ObjectType, range: NSRange);

@@ -35,10 +35,10 @@ extern_methods!(
         > NSDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
     {
         #[method(count)]
-        pub unsafe fn count(&self) -> NSUInteger;
+        pub fn count(&self) -> NSUInteger;
 
         #[method_id(@__retain_semantics Other objectForKey:)]
-        pub unsafe fn objectForKey(&self, aKey: &KeyType) -> Option<Id<ObjectType, Shared>>;
+        pub fn objectForKey(&self, aKey: &KeyType) -> Option<Id<ObjectType, Shared>>;
 
         #[method_id(@__retain_semantics Other keyEnumerator)]
         pub unsafe fn keyEnumerator(&self) -> Id<NSEnumerator<KeyType>, Shared>;
@@ -72,7 +72,7 @@ extern_methods!(
         > NSDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
     {
         #[method_id(@__retain_semantics Other allKeys)]
-        pub unsafe fn allKeys(&self) -> Id<NSArray<KeyType>, Shared>;
+        pub fn allKeys(&self) -> Id<NSArray<KeyType>, Shared>;
 
         #[method_id(@__retain_semantics Other allKeysForObject:)]
         pub unsafe fn allKeysForObject(
@@ -81,7 +81,7 @@ extern_methods!(
         ) -> Id<NSArray<KeyType>, Shared>;
 
         #[method_id(@__retain_semantics Other allValues)]
-        pub unsafe fn allValues(&self) -> Id<NSArray<ObjectType>, Shared>;
+        pub fn allValues(&self) -> Id<NSArray<ObjectType>, Shared>;
 
         #[method_id(@__retain_semantics Other description)]
         pub unsafe fn description(&self) -> Id<NSString, Shared>;
@@ -321,7 +321,7 @@ extern_methods!(
         > NSMutableDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
     {
         #[method(removeObjectForKey:)]
-        pub unsafe fn removeObjectForKey(&self, aKey: &KeyType);
+        pub fn removeObjectForKey(&self, aKey: &KeyType);
 
         #[method(setObject:forKey:)]
         pub unsafe fn setObject_forKey(&self, anObject: &ObjectType, aKey: &NSCopying);
@@ -359,13 +359,13 @@ extern_methods!(
         );
 
         #[method(removeAllObjects)]
-        pub unsafe fn removeAllObjects(&self);
+        pub fn removeAllObjects(&self);
 
         #[method(removeObjectsForKeys:)]
         pub unsafe fn removeObjectsForKeys(&self, keyArray: &NSArray<KeyType>);
 
         #[method(setDictionary:)]
-        pub unsafe fn setDictionary(&self, otherDictionary: &NSDictionary<KeyType, ObjectType>);
+        pub fn setDictionary(&self, otherDictionary: &NSDictionary<KeyType, ObjectType>);
 
         #[method(setObject:forKeyedSubscript:)]
         pub unsafe fn setObject_forKeyedSubscript(&self, obj: Option<&ObjectType>, key: &NSCopying);

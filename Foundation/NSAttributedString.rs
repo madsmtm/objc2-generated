@@ -17,7 +17,7 @@ extern_class!(
 extern_methods!(
     unsafe impl NSAttributedString {
         #[method_id(@__retain_semantics Other string)]
-        pub unsafe fn string(&self) -> Id<NSString, Shared>;
+        pub fn string(&self) -> Id<NSString, Shared>;
 
         #[method_id(@__retain_semantics Other attributesAtIndex:effectiveRange:)]
         pub unsafe fn attributesAtIndex_effectiveRange(
@@ -40,7 +40,7 @@ extern_methods!(
     /// NSExtendedAttributedString
     unsafe impl NSAttributedString {
         #[method(length)]
-        pub unsafe fn length(&self) -> NSUInteger;
+        pub fn length(&self) -> NSUInteger;
 
         #[method_id(@__retain_semantics Other attribute:atIndex:effectiveRange:)]
         pub unsafe fn attribute_atIndex_effectiveRange(
@@ -77,10 +77,7 @@ extern_methods!(
         pub unsafe fn isEqualToAttributedString(&self, other: &NSAttributedString) -> bool;
 
         #[method_id(@__retain_semantics Init initWithString:)]
-        pub unsafe fn initWithString(
-            this: Option<Allocated<Self>>,
-            str: &NSString,
-        ) -> Id<Self, Shared>;
+        pub fn initWithString(this: Option<Allocated<Self>>, str: &NSString) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Init initWithString:attributes:)]
         pub unsafe fn initWithString_attributes(
@@ -90,7 +87,7 @@ extern_methods!(
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Init initWithAttributedString:)]
-        pub unsafe fn initWithAttributedString(
+        pub fn initWithAttributedString(
             this: Option<Allocated<Self>>,
             attrStr: &NSAttributedString,
         ) -> Id<Self, Shared>;

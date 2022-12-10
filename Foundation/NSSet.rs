@@ -21,7 +21,7 @@ extern_methods!(
         NSSet<ObjectType, ObjectTypeOwnership>
     {
         #[method(count)]
-        pub unsafe fn count(&self) -> NSUInteger;
+        pub fn count(&self) -> NSUInteger;
 
         #[method_id(@__retain_semantics Other member:)]
         pub unsafe fn member(&self, object: &ObjectType) -> Option<Id<ObjectType, Shared>>;
@@ -232,7 +232,7 @@ extern_methods!(
         pub unsafe fn minusSet(&self, otherSet: &NSSet<ObjectType>);
 
         #[method(removeAllObjects)]
-        pub unsafe fn removeAllObjects(&self);
+        pub fn removeAllObjects(&self);
 
         #[method(unionSet:)]
         pub unsafe fn unionSet(&self, otherSet: &NSSet<ObjectType>);

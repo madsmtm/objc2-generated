@@ -15,7 +15,7 @@ extern_class!(
 extern_methods!(
     unsafe impl NSThread {
         #[method_id(@__retain_semantics Other currentThread)]
-        pub unsafe fn currentThread() -> Id<NSThread, Shared>;
+        pub fn currentThread() -> Id<NSThread, Shared>;
 
         #[method(detachNewThreadWithBlock:)]
         pub unsafe fn detachNewThreadWithBlock(block: &Block<(), ()>);
@@ -61,10 +61,10 @@ extern_methods!(
         pub unsafe fn callStackSymbols() -> Id<NSArray<NSString>, Shared>;
 
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Option<Id<NSString, Shared>>;
+        pub fn name(&self) -> Option<Id<NSString, Shared>>;
 
         #[method(setName:)]
-        pub unsafe fn setName(&self, name: Option<&NSString>);
+        pub fn setName(&self, name: Option<&NSString>);
 
         #[method(stackSize)]
         pub unsafe fn stackSize(&self) -> NSUInteger;
@@ -73,7 +73,7 @@ extern_methods!(
         pub unsafe fn setStackSize(&self, stackSize: NSUInteger);
 
         #[method_id(@__retain_semantics Other mainThread)]
-        pub unsafe fn mainThread() -> Id<NSThread, Shared>;
+        pub fn mainThread() -> Id<NSThread, Shared>;
 
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;

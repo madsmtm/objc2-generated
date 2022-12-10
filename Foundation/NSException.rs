@@ -60,22 +60,19 @@ extern_methods!(
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSExceptionName, Shared>;
+        pub fn name(&self) -> Id<NSExceptionName, Shared>;
 
         #[method_id(@__retain_semantics Other reason)]
-        pub unsafe fn reason(&self) -> Option<Id<NSString, Shared>>;
+        pub fn reason(&self) -> Option<Id<NSString, Shared>>;
 
         #[method_id(@__retain_semantics Other userInfo)]
-        pub unsafe fn userInfo(&self) -> Option<Id<NSDictionary, Shared>>;
+        pub fn userInfo(&self) -> Option<Id<NSDictionary, Shared>>;
 
         #[method_id(@__retain_semantics Other callStackReturnAddresses)]
         pub unsafe fn callStackReturnAddresses(&self) -> Id<NSArray<NSNumber>, Shared>;
 
         #[method_id(@__retain_semantics Other callStackSymbols)]
         pub unsafe fn callStackSymbols(&self) -> Id<NSArray<NSString>, Shared>;
-
-        #[method(raise)]
-        pub unsafe fn raise(&self);
     }
 );
 

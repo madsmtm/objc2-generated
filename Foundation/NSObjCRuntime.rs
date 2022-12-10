@@ -41,15 +41,6 @@ extern_fn!(
     ) -> NonNull<c_char>;
 );
 
-ns_closed_enum!(
-    #[underlying(NSInteger)]
-    pub enum NSComparisonResult {
-        NSOrderedAscending = -1,
-        NSOrderedSame = 0,
-        NSOrderedDescending = 1,
-    }
-);
-
 pub type NSComparator = *mut Block<(NonNull<Object>, NonNull<Object>), NSComparisonResult>;
 
 ns_options!(

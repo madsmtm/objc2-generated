@@ -33,10 +33,10 @@ extern_methods!(
         pub unsafe fn lockBeforeDate(&self, limit: &NSDate) -> bool;
 
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Option<Id<NSString, Shared>>;
+        pub fn name(&self) -> Option<Id<NSString, Shared>>;
 
         #[method(setName:)]
-        pub unsafe fn setName(&self, name: Option<&NSString>);
+        pub fn setName(&self, name: Option<&NSString>);
     }
 );
 

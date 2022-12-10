@@ -68,16 +68,16 @@ extern_methods!(
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Other domain)]
-        pub unsafe fn domain(&self) -> Id<NSErrorDomain, Shared>;
+        pub fn domain(&self) -> Id<NSErrorDomain, Shared>;
 
         #[method(code)]
-        pub unsafe fn code(&self) -> NSInteger;
+        pub fn code(&self) -> NSInteger;
 
         #[method_id(@__retain_semantics Other userInfo)]
-        pub unsafe fn userInfo(&self) -> Id<NSDictionary<NSErrorUserInfoKey, Object>, Shared>;
+        pub fn userInfo(&self) -> Id<NSDictionary<NSErrorUserInfoKey, Object>, Shared>;
 
         #[method_id(@__retain_semantics Other localizedDescription)]
-        pub unsafe fn localizedDescription(&self) -> Id<NSString, Shared>;
+        pub fn localizedDescription(&self) -> Id<NSString, Shared>;
 
         #[method_id(@__retain_semantics Other localizedFailureReason)]
         pub unsafe fn localizedFailureReason(&self) -> Option<Id<NSString, Shared>>;

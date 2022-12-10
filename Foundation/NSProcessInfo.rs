@@ -36,7 +36,7 @@ extern_class!(
 extern_methods!(
     unsafe impl NSProcessInfo {
         #[method_id(@__retain_semantics Other processInfo)]
-        pub unsafe fn processInfo() -> Id<NSProcessInfo, Shared>;
+        pub fn processInfo() -> Id<NSProcessInfo, Shared>;
 
         #[method_id(@__retain_semantics Other environment)]
         pub unsafe fn environment(&self) -> Id<NSDictionary<NSString, NSString>, Shared>;

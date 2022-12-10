@@ -964,9 +964,8 @@ pub use self::__NSNumberFormatter::{
     NSNumberFormatterSpellOutStyle, NSNumberFormatterStyle,
 };
 pub use self::__NSObjCRuntime::{
-    NSClassFromString, NSComparator, NSComparisonResult, NSEnumerationConcurrent,
-    NSEnumerationOptions, NSEnumerationReverse, NSExceptionName, NSFoundationVersionNumber,
-    NSGetSizeAndAlignment, NSOrderedAscending, NSOrderedDescending, NSOrderedSame,
+    NSClassFromString, NSComparator, NSEnumerationConcurrent, NSEnumerationOptions,
+    NSEnumerationReverse, NSExceptionName, NSFoundationVersionNumber, NSGetSizeAndAlignment,
     NSProtocolFromString, NSQualityOfService, NSQualityOfServiceBackground,
     NSQualityOfServiceDefault, NSQualityOfServiceUserInitiated, NSQualityOfServiceUserInteractive,
     NSQualityOfServiceUtility, NSRunLoopMode, NSSelectorFromString, NSSortConcurrent,
@@ -1074,8 +1073,7 @@ pub use self::__NSPropertyList::{
 };
 pub use self::__NSProtocolChecker::NSProtocolChecker;
 pub use self::__NSRange::{
-    NSIntersectionRange, NSRange, NSRangeFromString, NSRangePointer, NSStringFromRange,
-    NSUnionRange,
+    NSIntersectionRange, NSRangeFromString, NSRangePointer, NSStringFromRange, NSUnionRange,
 };
 pub use self::__NSRegularExpression::{
     NSDataDetector, NSMatchingAnchored, NSMatchingCompleted, NSMatchingFlags, NSMatchingHitEnd,

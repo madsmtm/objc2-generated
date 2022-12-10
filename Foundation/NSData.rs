@@ -66,10 +66,7 @@ extern_class!(
 extern_methods!(
     unsafe impl NSData {
         #[method(length)]
-        pub unsafe fn length(&self) -> NSUInteger;
-
-        #[method(bytes)]
-        pub unsafe fn bytes(&self) -> NonNull<c_void>;
+        pub fn length(&self) -> NSUInteger;
     }
 );
 
@@ -231,13 +228,10 @@ extern_methods!(
         ) -> Option<Id<Self, Shared>>;
 
         #[method_id(@__retain_semantics Init initWithData:)]
-        pub unsafe fn initWithData(
-            this: Option<Allocated<Self>>,
-            data: &NSData,
-        ) -> Id<Self, Shared>;
+        pub fn initWithData(this: Option<Allocated<Self>>, data: &NSData) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Other dataWithData:)]
-        pub unsafe fn dataWithData(data: &NSData) -> Id<Self, Shared>;
+        pub fn dataWithData(data: &NSData) -> Id<Self, Shared>;
     }
 );
 
@@ -337,13 +331,7 @@ extern_class!(
 extern_methods!(
     unsafe impl NSMutableData {
         #[method(mutableBytes)]
-        pub unsafe fn mutableBytes(&self) -> NonNull<c_void>;
-
-        #[method(length)]
-        pub unsafe fn length(&self) -> NSUInteger;
-
-        #[method(setLength:)]
-        pub unsafe fn setLength(&self, length: NSUInteger);
+        pub fn mutableBytes(&self) -> NonNull<c_void>;
     }
 );
 
@@ -382,13 +370,13 @@ extern_methods!(
     /// NSMutableDataCreation
     unsafe impl NSMutableData {
         #[method_id(@__retain_semantics Other dataWithCapacity:)]
-        pub unsafe fn dataWithCapacity(aNumItems: NSUInteger) -> Option<Id<Self, Shared>>;
+        pub fn dataWithCapacity(aNumItems: NSUInteger) -> Option<Id<Self, Shared>>;
 
         #[method_id(@__retain_semantics Other dataWithLength:)]
         pub unsafe fn dataWithLength(length: NSUInteger) -> Option<Id<Self, Shared>>;
 
         #[method_id(@__retain_semantics Init initWithCapacity:)]
-        pub unsafe fn initWithCapacity(
+        pub fn initWithCapacity(
             this: Option<Allocated<Self>>,
             capacity: NSUInteger,
         ) -> Option<Id<Self, Shared>>;

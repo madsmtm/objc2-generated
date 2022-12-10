@@ -3,13 +3,6 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-extern_struct!(
-    pub struct NSRange {
-        pub location: NSUInteger,
-        pub length: NSUInteger,
-    }
-);
-
 pub type NSRangePointer = *mut NSRange;
 
 inline_fn!(

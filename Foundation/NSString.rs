@@ -77,7 +77,7 @@ extern_methods!(
         pub unsafe fn characterAtIndex(&self, index: NSUInteger) -> unichar;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
@@ -153,7 +153,7 @@ extern_methods!(
         pub unsafe fn getCharacters_range(&self, buffer: NonNull<unichar>, range: NSRange);
 
         #[method(compare:)]
-        pub unsafe fn compare(&self, string: &NSString) -> NSComparisonResult;
+        pub fn compare(&self, string: &NSString) -> NSComparisonResult;
 
         #[method(compare:options:)]
         pub unsafe fn compare_options(
@@ -198,10 +198,10 @@ extern_methods!(
         pub unsafe fn isEqualToString(&self, aString: &NSString) -> bool;
 
         #[method(hasPrefix:)]
-        pub unsafe fn hasPrefix(&self, str: &NSString) -> bool;
+        pub fn hasPrefix(&self, str: &NSString) -> bool;
 
         #[method(hasSuffix:)]
-        pub unsafe fn hasSuffix(&self, str: &NSString) -> bool;
+        pub fn hasSuffix(&self, str: &NSString) -> bool;
 
         #[method_id(@__retain_semantics Other commonPrefixWithString:options:)]
         pub unsafe fn commonPrefixWithString_options(
@@ -561,7 +561,7 @@ extern_methods!(
         ) -> Option<Id<Self, Shared>>;
 
         #[method_id(@__retain_semantics Init initWithString:)]
-        pub unsafe fn initWithString(
+        pub fn initWithString(
             this: Option<Allocated<Self>>,
             aString: &NSString,
         ) -> Id<Self, Shared>;
@@ -603,7 +603,7 @@ extern_methods!(
         pub unsafe fn string() -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Other stringWithString:)]
-        pub unsafe fn stringWithString(string: &NSString) -> Id<Self, Shared>;
+        pub fn stringWithString(string: &NSString) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Other stringWithCharacters:length:)]
         pub unsafe fn stringWithCharacters_length(
@@ -786,13 +786,13 @@ extern_methods!(
         ) -> bool;
 
         #[method_id(@__retain_semantics Init initWithCapacity:)]
-        pub unsafe fn initWithCapacity(
+        pub fn initWithCapacity(
             this: Option<Allocated<Self>>,
             capacity: NSUInteger,
         ) -> Id<NSMutableString, Shared>;
 
         #[method_id(@__retain_semantics Other stringWithCapacity:)]
-        pub unsafe fn stringWithCapacity(capacity: NSUInteger) -> Id<NSMutableString, Shared>;
+        pub fn stringWithCapacity(capacity: NSUInteger) -> Id<NSMutableString, Shared>;
     }
 );
 

@@ -220,7 +220,7 @@ extern_methods!(
         pub unsafe fn bundleIdentifier(&self) -> Option<Id<NSString, Shared>>;
 
         #[method_id(@__retain_semantics Other infoDictionary)]
-        pub unsafe fn infoDictionary(&self) -> Option<Id<NSDictionary<NSString, Object>, Shared>>;
+        pub fn infoDictionary(&self) -> Option<Id<NSDictionary<NSString, Object>, Shared>>;
 
         #[method_id(@__retain_semantics Other localizedInfoDictionary)]
         pub unsafe fn localizedInfoDictionary(
