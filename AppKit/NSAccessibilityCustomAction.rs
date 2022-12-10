@@ -50,9 +50,9 @@ extern_methods!(
         pub unsafe fn setTarget(&self, target: Option<&NSObject>);
 
         #[method(selector)]
-        pub unsafe fn selector(&self) -> OptionSel;
+        pub unsafe fn selector(&self) -> Option<Sel>;
 
         #[method(setSelector:)]
-        pub unsafe fn setSelector(&self, selector: OptionSel);
+        pub unsafe fn setSelector(&self, selector: Option<Sel>);
     }
 );

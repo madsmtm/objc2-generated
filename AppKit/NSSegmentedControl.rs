@@ -209,7 +209,7 @@ extern_methods!(
             labels: &NSArray<NSString>,
             trackingMode: NSSegmentSwitchTracking,
             target: Option<&Object>,
-            action: OptionSel,
+            action: Option<Sel>,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Other segmentedControlWithImages:trackingMode:target:action:)]
@@ -217,7 +217,7 @@ extern_methods!(
             images: &NSArray<NSImage>,
             trackingMode: NSSegmentSwitchTracking,
             target: Option<&Object>,
-            action: OptionSel,
+            action: Option<Sel>,
         ) -> Id<Self, Shared>;
     }
 );

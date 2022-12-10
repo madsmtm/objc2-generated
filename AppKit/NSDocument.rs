@@ -219,7 +219,7 @@ extern_methods!(
         pub unsafe fn saveDocumentWithDelegate_didSaveSelector_contextInfo(
             &self,
             delegate: Option<&Object>,
-            didSaveSelector: OptionSel,
+            didSaveSelector: Option<Sel>,
             contextInfo: *mut c_void,
         );
 
@@ -228,7 +228,7 @@ extern_methods!(
             &self,
             saveOperation: NSSaveOperationType,
             delegate: Option<&Object>,
-            didSaveSelector: OptionSel,
+            didSaveSelector: Option<Sel>,
             contextInfo: *mut c_void,
         );
 
@@ -251,7 +251,7 @@ extern_methods!(
             typeName: &NSString,
             saveOperation: NSSaveOperationType,
             delegate: Option<&Object>,
-            didSaveSelector: OptionSel,
+            didSaveSelector: Option<Sel>,
             contextInfo: *mut c_void,
         );
 
@@ -286,7 +286,7 @@ extern_methods!(
         pub unsafe fn autosaveDocumentWithDelegate_didAutosaveSelector_contextInfo(
             &self,
             delegate: Option<&Object>,
-            didAutosaveSelector: OptionSel,
+            didAutosaveSelector: Option<Sel>,
             contextInfo: *mut c_void,
         );
 
@@ -331,7 +331,7 @@ extern_methods!(
         pub unsafe fn canCloseDocumentWithDelegate_shouldCloseSelector_contextInfo(
             &self,
             delegate: &Object,
-            shouldCloseSelector: OptionSel,
+            shouldCloseSelector: Option<Sel>,
             contextInfo: *mut c_void,
         );
 
@@ -345,7 +345,7 @@ extern_methods!(
         pub unsafe fn duplicateDocumentWithDelegate_didDuplicateSelector_contextInfo(
             &self,
             delegate: Option<&Object>,
-            didDuplicateSelector: OptionSel,
+            didDuplicateSelector: Option<Sel>,
             contextInfo: *mut c_void,
         );
 
@@ -417,7 +417,7 @@ extern_methods!(
             &self,
             printInfo: &NSPrintInfo,
             delegate: Option<&Object>,
-            didRunSelector: OptionSel,
+            didRunSelector: Option<Sel>,
             contextInfo: *mut c_void,
         );
 
@@ -442,7 +442,7 @@ extern_methods!(
             printSettings: &NSDictionary<NSPrintInfoAttributeKey, Object>,
             showPrintPanel: bool,
             delegate: Option<&Object>,
-            didPrintSelector: OptionSel,
+            didPrintSelector: Option<Sel>,
             contextInfo: *mut c_void,
         );
 
@@ -457,7 +457,7 @@ extern_methods!(
             &self,
             printOperation: &NSPrintOperation,
             delegate: Option<&Object>,
-            didRunSelector: OptionSel,
+            didRunSelector: Option<Sel>,
             contextInfo: *mut c_void,
         );
 
@@ -523,7 +523,7 @@ extern_methods!(
             error: &NSError,
             window: &NSWindow,
             delegate: Option<&Object>,
-            didPresentSelector: OptionSel,
+            didPresentSelector: Option<Sel>,
             contextInfo: *mut c_void,
         );
 
@@ -568,7 +568,7 @@ extern_methods!(
             &self,
             windowController: &NSWindowController,
             delegate: Option<&Object>,
-            shouldCloseSelector: OptionSel,
+            shouldCloseSelector: Option<Sel>,
             contextInfo: *mut c_void,
         );
 
@@ -702,7 +702,7 @@ extern_methods!(
             fileName: &NSString,
             saveOperation: NSSaveOperationType,
             delegate: Option<&Object>,
-            didSaveSelector: OptionSel,
+            didSaveSelector: Option<Sel>,
             contextInfo: *mut c_void,
         );
 

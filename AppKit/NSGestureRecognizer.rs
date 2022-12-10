@@ -33,7 +33,7 @@ extern_methods!(
         pub unsafe fn initWithTarget_action(
             this: Option<Allocated<Self>>,
             target: Option<&Object>,
-            action: OptionSel,
+            action: Option<Sel>,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
@@ -49,10 +49,10 @@ extern_methods!(
         pub unsafe fn setTarget(&self, target: Option<&Object>);
 
         #[method(action)]
-        pub unsafe fn action(&self) -> OptionSel;
+        pub unsafe fn action(&self) -> Option<Sel>;
 
         #[method(setAction:)]
-        pub unsafe fn setAction(&self, action: OptionSel);
+        pub unsafe fn setAction(&self, action: Option<Sel>);
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSGestureRecognizerDelegate, Shared>>;

@@ -611,7 +611,7 @@ extern_methods!(
             error: &NSError,
             window: &NSWindow,
             delegate: Option<&Object>,
-            didPresentSelector: OptionSel,
+            didPresentSelector: Option<Sel>,
             contextInfo: *mut c_void,
         );
 

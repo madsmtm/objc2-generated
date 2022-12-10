@@ -10,7 +10,7 @@ extern_protocol!(
 
     unsafe impl ProtocolType for NSValidatedUserInterfaceItem {
         #[method(action)]
-        pub unsafe fn action(&self) -> OptionSel;
+        pub unsafe fn action(&self) -> Option<Sel>;
 
         #[method(tag)]
         pub unsafe fn tag(&self) -> NSInteger;

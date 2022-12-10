@@ -40,7 +40,7 @@ extern_methods!(
             labels: &NSArray<NSString>,
             selectionMode: NSPickerTouchBarItemSelectionMode,
             target: Option<&Object>,
-            action: OptionSel,
+            action: Option<Sel>,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Other pickerTouchBarItemWithIdentifier:images:selectionMode:target:action:)]
@@ -49,7 +49,7 @@ extern_methods!(
             images: &NSArray<NSImage>,
             selectionMode: NSPickerTouchBarItemSelectionMode,
             target: Option<&Object>,
-            action: OptionSel,
+            action: Option<Sel>,
         ) -> Id<Self, Shared>;
 
         #[method(controlRepresentation)]
@@ -122,10 +122,10 @@ extern_methods!(
         pub unsafe fn setTarget(&self, target: Option<&Object>);
 
         #[method(action)]
-        pub unsafe fn action(&self) -> OptionSel;
+        pub unsafe fn action(&self) -> Option<Sel>;
 
         #[method(setAction:)]
-        pub unsafe fn setAction(&self, action: OptionSel);
+        pub unsafe fn setAction(&self, action: Option<Sel>);
 
         #[method(isEnabled)]
         pub unsafe fn isEnabled(&self) -> bool;

@@ -242,7 +242,7 @@ extern_methods!(
             name: Option<&NSString>,
             docWindow: Option<&NSWindow>,
             delegate: Option<&Object>,
-            didEndSelector: OptionSel,
+            didEndSelector: Option<Sel>,
             contextInfo: *mut c_void,
         );
 

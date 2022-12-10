@@ -140,7 +140,7 @@ extern_protocol!(
         pub unsafe fn commitEditingWithDelegate_didCommitSelector_contextInfo(
             &self,
             delegate: Option<&Object>,
-            didCommitSelector: OptionSel,
+            didCommitSelector: Option<Sel>,
             contextInfo: *mut c_void,
         );
 
@@ -176,7 +176,7 @@ extern_methods!(
         pub unsafe fn commitEditingWithDelegate_didCommitSelector_contextInfo(
             &self,
             delegate: Option<&Object>,
-            didCommitSelector: OptionSel,
+            didCommitSelector: Option<Sel>,
             contextInfo: *mut c_void,
         );
 

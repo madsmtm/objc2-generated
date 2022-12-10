@@ -29,7 +29,7 @@ extern_methods!(
         pub unsafe fn initWithTitle_action_keyEquivalent(
             this: Option<Allocated<Self>>,
             string: &NSString,
-            selector: OptionSel,
+            selector: Option<Sel>,
             charCode: &NSString,
         ) -> Id<Self, Shared>;
 
@@ -169,10 +169,10 @@ extern_methods!(
         pub unsafe fn setTarget(&self, target: Option<&Object>);
 
         #[method(action)]
-        pub unsafe fn action(&self) -> OptionSel;
+        pub unsafe fn action(&self) -> Option<Sel>;
 
         #[method(setAction:)]
-        pub unsafe fn setAction(&self, action: OptionSel);
+        pub unsafe fn setAction(&self, action: Option<Sel>);
 
         #[method(tag)]
         pub unsafe fn tag(&self) -> NSInteger;

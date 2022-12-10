@@ -35,7 +35,7 @@ extern_methods!(
         ) -> Id<Self, Shared>;
 
         #[method(drawSelector)]
-        pub unsafe fn drawSelector(&self) -> OptionSel;
+        pub unsafe fn drawSelector(&self) -> Option<Sel>;
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<Object, Shared>>;

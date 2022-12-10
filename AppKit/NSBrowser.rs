@@ -49,10 +49,10 @@ extern_methods!(
         pub unsafe fn isLoaded(&self) -> bool;
 
         #[method(doubleAction)]
-        pub unsafe fn doubleAction(&self) -> OptionSel;
+        pub unsafe fn doubleAction(&self) -> Option<Sel>;
 
         #[method(setDoubleAction:)]
-        pub unsafe fn setDoubleAction(&self, doubleAction: OptionSel);
+        pub unsafe fn setDoubleAction(&self, doubleAction: Option<Sel>);
 
         #[method(setCellClass:)]
         pub unsafe fn setCellClass(&self, factoryId: &Class);

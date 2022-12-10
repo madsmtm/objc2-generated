@@ -13,7 +13,7 @@ extern_protocol!(
         pub unsafe fn insertText(&self, string: Option<&Object>);
 
         #[method(doCommandBySelector:)]
-        pub unsafe fn doCommandBySelector(&self, selector: OptionSel);
+        pub unsafe fn doCommandBySelector(&self, selector: Option<Sel>);
 
         #[method(setMarkedText:selectedRange:)]
         pub unsafe fn setMarkedText_selectedRange(

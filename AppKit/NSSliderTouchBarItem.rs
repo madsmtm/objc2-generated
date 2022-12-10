@@ -86,10 +86,10 @@ extern_methods!(
         pub unsafe fn setTarget(&self, target: Option<&Object>);
 
         #[method(action)]
-        pub unsafe fn action(&self) -> OptionSel;
+        pub unsafe fn action(&self) -> Option<Sel>;
 
         #[method(setAction:)]
-        pub unsafe fn setAction(&self, action: OptionSel);
+        pub unsafe fn setAction(&self, action: Option<Sel>);
 
         #[method_id(@__retain_semantics Other customizationLabel)]
         pub unsafe fn customizationLabel(&self) -> Id<NSString, Shared>;

@@ -436,7 +436,7 @@ extern_fn!(
         centerLocation: NSPoint,
         size: NSSize,
         animationDelegate: Option<&Object>,
-        didEndSelector: OptionSel,
+        didEndSelector: Option<Sel>,
         contextInfo: *mut c_void,
     );
 );

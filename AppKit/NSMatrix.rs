@@ -279,10 +279,10 @@ extern_methods!(
         pub unsafe fn cellWithTag(&self, tag: NSInteger) -> Option<Id<NSCell, Shared>>;
 
         #[method(doubleAction)]
-        pub unsafe fn doubleAction(&self) -> OptionSel;
+        pub unsafe fn doubleAction(&self) -> Option<Sel>;
 
         #[method(setDoubleAction:)]
-        pub unsafe fn setDoubleAction(&self, doubleAction: OptionSel);
+        pub unsafe fn setDoubleAction(&self, doubleAction: Option<Sel>);
 
         #[method(autosizesCells)]
         pub unsafe fn autosizesCells(&self) -> bool;

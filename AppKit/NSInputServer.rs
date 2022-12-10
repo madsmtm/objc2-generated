@@ -15,7 +15,7 @@ extern_protocol!(
         #[method(doCommandBySelector:client:)]
         pub unsafe fn doCommandBySelector_client(
             &self,
-            selector: OptionSel,
+            selector: Option<Sel>,
             sender: Option<&Object>,
         );
 

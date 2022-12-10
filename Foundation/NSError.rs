@@ -119,7 +119,7 @@ extern_methods!(
             error: &NSError,
             recoveryOptionIndex: NSUInteger,
             delegate: Option<&Object>,
-            didRecoverSelector: OptionSel,
+            didRecoverSelector: Option<Sel>,
             contextInfo: *mut c_void,
         );
 

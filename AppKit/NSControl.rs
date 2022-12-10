@@ -35,10 +35,10 @@ extern_methods!(
         pub unsafe fn setTarget(&self, target: Option<&Object>);
 
         #[method(action)]
-        pub unsafe fn action(&self) -> OptionSel;
+        pub unsafe fn action(&self) -> Option<Sel>;
 
         #[method(setAction:)]
-        pub unsafe fn setAction(&self, action: OptionSel);
+        pub unsafe fn setAction(&self, action: Option<Sel>);
 
         #[method(tag)]
         pub unsafe fn tag(&self) -> NSInteger;
@@ -140,7 +140,7 @@ extern_methods!(
         pub unsafe fn sendActionOn(&self, mask: NSEventMask) -> NSInteger;
 
         #[method(sendAction:to:)]
-        pub unsafe fn sendAction_to(&self, action: OptionSel, target: Option<&Object>) -> bool;
+        pub unsafe fn sendAction_to(&self, action: Option<Sel>, target: Option<&Object>) -> bool;
 
         #[method(takeIntValueFrom:)]
         pub unsafe fn takeIntValueFrom(&self, sender: Option<&Object>);
