@@ -92,17 +92,3 @@ extern_methods!(
         pub unsafe fn replaceObject_withObject(&self, object: &Object, newObject: &Object);
     }
 );
-
-extern_methods!(
-    /// NSArchiverCallback
-    unsafe impl NSObject {
-        #[method(classForArchiver)]
-        pub unsafe fn classForArchiver(&self) -> Option<&'static Class>;
-
-        #[method_id(@__retain_semantics Other replacementObjectForArchiver:)]
-        pub unsafe fn replacementObjectForArchiver(
-            &self,
-            archiver: &NSArchiver,
-        ) -> Option<Id<Object, Shared>>;
-    }
-);

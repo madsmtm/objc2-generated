@@ -283,23 +283,3 @@ extern_methods!(
         pub unsafe fn orderFrontStylesPanel(&self, sender: Option<&Object>);
     }
 );
-
-extern_methods!(
-    /// NSFontManagerDelegate
-    unsafe impl NSObject {
-        #[method(fontManager:willIncludeFont:)]
-        pub unsafe fn fontManager_willIncludeFont(
-            &self,
-            sender: &Object,
-            fontName: &NSString,
-        ) -> bool;
-    }
-);
-
-extern_methods!(
-    /// NSFontManagerResponderMethod
-    unsafe impl NSObject {
-        #[method(changeFont:)]
-        pub unsafe fn changeFont(&self, sender: Option<&Object>);
-    }
-);

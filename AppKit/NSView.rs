@@ -708,29 +708,10 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// NSLayerDelegateContentsScaleUpdating
-    unsafe impl NSObject {}
-);
-
 extern_protocol!(
     pub struct NSViewToolTipOwner;
 
     unsafe impl ProtocolType for NSViewToolTipOwner {
-        #[method_id(@__retain_semantics Other view:stringForToolTip:point:userData:)]
-        pub unsafe fn view_stringForToolTip_point_userData(
-            &self,
-            view: &NSView,
-            tag: NSToolTipTag,
-            point: NSPoint,
-            data: *mut c_void,
-        ) -> Id<NSString, Shared>;
-    }
-);
-
-extern_methods!(
-    /// NSToolTipOwner
-    unsafe impl NSObject {
         #[method_id(@__retain_semantics Other view:stringForToolTip:point:userData:)]
         pub unsafe fn view_stringForToolTip_point_userData(
             &self,

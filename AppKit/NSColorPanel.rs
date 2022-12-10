@@ -129,14 +129,6 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// NSColorPanelResponderMethod
-    unsafe impl NSObject {
-        #[method(changeColor:)]
-        pub unsafe fn changeColor(&self, sender: Option<&Object>);
-    }
-);
-
 extern_static!(NSColorPanelColorDidChangeNotification: &'static NSNotificationName);
 
 extern_static!(NSNoModeColorPanel: NSColorPanelMode = NSColorPanelModeNone);

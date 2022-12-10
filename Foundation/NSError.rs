@@ -109,25 +109,3 @@ extern_methods!(
         ) -> *mut Block<(NonNull<NSError>, NonNull<NSErrorUserInfoKey>), *mut Object>;
     }
 );
-
-extern_methods!(
-    /// NSErrorRecoveryAttempting
-    unsafe impl NSObject {
-        #[method(attemptRecoveryFromError:optionIndex:delegate:didRecoverSelector:contextInfo:)]
-        pub unsafe fn attemptRecoveryFromError_optionIndex_delegate_didRecoverSelector_contextInfo(
-            &self,
-            error: &NSError,
-            recoveryOptionIndex: NSUInteger,
-            delegate: Option<&Object>,
-            didRecoverSelector: Option<Sel>,
-            contextInfo: *mut c_void,
-        );
-
-        #[method(attemptRecoveryFromError:optionIndex:)]
-        pub unsafe fn attemptRecoveryFromError_optionIndex(
-            &self,
-            error: &NSError,
-            recoveryOptionIndex: NSUInteger,
-        ) -> bool;
-    }
-);

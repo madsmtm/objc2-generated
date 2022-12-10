@@ -999,27 +999,6 @@ extern_methods!(
 );
 
 extern_methods!(
-    /// NSURLClient
-    unsafe impl NSObject {
-        #[method(URL:resourceDataDidBecomeAvailable:)]
-        pub unsafe fn URL_resourceDataDidBecomeAvailable(&self, sender: &NSURL, newBytes: &NSData);
-
-        #[method(URLResourceDidFinishLoading:)]
-        pub unsafe fn URLResourceDidFinishLoading(&self, sender: &NSURL);
-
-        #[method(URLResourceDidCancelLoading:)]
-        pub unsafe fn URLResourceDidCancelLoading(&self, sender: &NSURL);
-
-        #[method(URL:resourceDidFailLoadingWithReason:)]
-        pub unsafe fn URL_resourceDidFailLoadingWithReason(
-            &self,
-            sender: &NSURL,
-            reason: &NSString,
-        );
-    }
-);
-
-extern_methods!(
     /// NSURLLoading
     unsafe impl NSURL {
         #[method_id(@__retain_semantics Other resourceDataUsingCache:)]

@@ -15,15 +15,3 @@ extern_methods!(
         pub unsafe fn orderedWindows(&self) -> Id<NSArray<NSWindow>, Shared>;
     }
 );
-
-extern_methods!(
-    /// NSApplicationScriptingDelegation
-    unsafe impl NSObject {
-        #[method(application:delegateHandlesKey:)]
-        pub unsafe fn application_delegateHandlesKey(
-            &self,
-            sender: &NSApplication,
-            key: &NSString,
-        ) -> bool;
-    }
-);

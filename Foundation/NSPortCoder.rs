@@ -48,17 +48,3 @@ extern_methods!(
         pub unsafe fn dispatch(&self);
     }
 );
-
-extern_methods!(
-    /// NSDistributedObjects
-    unsafe impl NSObject {
-        #[method(classForPortCoder)]
-        pub unsafe fn classForPortCoder(&self) -> &'static Class;
-
-        #[method_id(@__retain_semantics Other replacementObjectForPortCoder:)]
-        pub unsafe fn replacementObjectForPortCoder(
-            &self,
-            coder: &NSPortCoder,
-        ) -> Option<Id<Object, Shared>>;
-    }
-);

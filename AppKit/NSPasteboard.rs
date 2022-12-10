@@ -234,21 +234,6 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// NSPasteboardOwner
-    unsafe impl NSObject {
-        #[method(pasteboard:provideDataForType:)]
-        pub unsafe fn pasteboard_provideDataForType(
-            &self,
-            sender: &NSPasteboard,
-            type_: &NSPasteboardType,
-        );
-
-        #[method(pasteboardChangedOwner:)]
-        pub unsafe fn pasteboardChangedOwner(&self, sender: &NSPasteboard);
-    }
-);
-
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum NSPasteboardWritingOptions {

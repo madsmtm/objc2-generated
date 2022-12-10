@@ -194,30 +194,6 @@ extern_protocol!(
 );
 
 extern_methods!(
-    /// NSSavePanelDelegateDeprecated
-    unsafe impl NSObject {
-        #[method(panel:isValidFilename:)]
-        pub unsafe fn panel_isValidFilename(&self, sender: &Object, filename: &NSString) -> bool;
-
-        #[method(panel:directoryDidChange:)]
-        pub unsafe fn panel_directoryDidChange(&self, sender: &Object, path: &NSString);
-
-        #[method(panel:compareFilename:with:caseSensitive:)]
-        pub unsafe fn panel_compareFilename_with_caseSensitive(
-            &self,
-            sender: &Object,
-            name1: &NSString,
-            name2: &NSString,
-            caseSensitive: bool,
-        ) -> NSComparisonResult;
-
-        #[method(panel:shouldShowFilename:)]
-        pub unsafe fn panel_shouldShowFilename(&self, sender: &Object, filename: &NSString)
-            -> bool;
-    }
-);
-
-extern_methods!(
     /// NSDeprecated
     unsafe impl NSSavePanel {
         #[method_id(@__retain_semantics Other filename)]

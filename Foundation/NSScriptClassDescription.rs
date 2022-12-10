@@ -105,14 +105,3 @@ extern_methods!(
         pub unsafe fn isReadOnlyKey(&self, key: &NSString) -> bool;
     }
 );
-
-extern_methods!(
-    /// NSScriptClassDescription
-    unsafe impl NSObject {
-        #[method(classCode)]
-        pub unsafe fn classCode(&self) -> FourCharCode;
-
-        #[method_id(@__retain_semantics Other className)]
-        pub unsafe fn className(&self) -> Id<NSString, Shared>;
-    }
-);

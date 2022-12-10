@@ -19,17 +19,6 @@ extern_methods!(
 );
 
 extern_methods!(
-    /// NSNibAwaking
-    unsafe impl NSObject {
-        #[method(awakeFromNib)]
-        pub unsafe fn awakeFromNib(&self);
-
-        #[method(prepareForInterfaceBuilder)]
-        pub unsafe fn prepareForInterfaceBuilder(&self);
-    }
-);
-
-extern_methods!(
     /// NSNibLoadingDeprecated
     unsafe impl NSBundle {
         #[method(loadNibNamed:owner:)]

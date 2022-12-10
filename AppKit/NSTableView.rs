@@ -998,19 +998,6 @@ extern_protocol!(
 );
 
 extern_methods!(
-    /// NSTableViewDataSourceDeprecated
-    unsafe impl NSObject {
-        #[method(tableView:writeRows:toPasteboard:)]
-        pub unsafe fn tableView_writeRows_toPasteboard(
-            &self,
-            tableView: &NSTableView,
-            rows: &NSArray,
-            pboard: &NSPasteboard,
-        ) -> bool;
-    }
-);
-
-extern_methods!(
     /// NSDeprecated
     unsafe impl NSTableView {
         #[method(setDrawsGrid:)]

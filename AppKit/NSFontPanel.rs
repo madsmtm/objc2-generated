@@ -37,15 +37,6 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// NSFontPanelValidationAdditions
-    unsafe impl NSObject {
-        #[method(validModesForFontPanel:)]
-        pub unsafe fn validModesForFontPanel(&self, fontPanel: &NSFontPanel)
-            -> NSFontPanelModeMask;
-    }
-);
-
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFontPanel;

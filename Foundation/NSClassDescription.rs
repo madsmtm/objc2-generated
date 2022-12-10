@@ -45,27 +45,4 @@ extern_methods!(
     }
 );
 
-extern_methods!(
-    /// NSClassDescriptionPrimitives
-    unsafe impl NSObject {
-        #[method_id(@__retain_semantics Other classDescription)]
-        pub unsafe fn classDescription(&self) -> Id<NSClassDescription, Shared>;
-
-        #[method_id(@__retain_semantics Other attributeKeys)]
-        pub unsafe fn attributeKeys(&self) -> Id<NSArray<NSString>, Shared>;
-
-        #[method_id(@__retain_semantics Other toOneRelationshipKeys)]
-        pub unsafe fn toOneRelationshipKeys(&self) -> Id<NSArray<NSString>, Shared>;
-
-        #[method_id(@__retain_semantics Other toManyRelationshipKeys)]
-        pub unsafe fn toManyRelationshipKeys(&self) -> Id<NSArray<NSString>, Shared>;
-
-        #[method_id(@__retain_semantics Other inverseForRelationshipKey:)]
-        pub unsafe fn inverseForRelationshipKey(
-            &self,
-            relationshipKey: &NSString,
-        ) -> Option<Id<NSString, Shared>>;
-    }
-);
-
 extern_static!(NSClassDescriptionNeededForClassNotification: &'static NSNotificationName);

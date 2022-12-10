@@ -67,65 +67,6 @@ extern_static!(NSObservedKeyPathKey: &'static NSBindingInfoKey);
 
 extern_static!(NSOptionsKey: &'static NSBindingInfoKey);
 
-extern_methods!(
-    /// NSKeyValueBindingCreation
-    unsafe impl NSObject {
-        #[method(exposeBinding:)]
-        pub unsafe fn exposeBinding(binding: &NSBindingName);
-
-        #[method_id(@__retain_semantics Other exposedBindings)]
-        pub unsafe fn exposedBindings(&self) -> Id<NSArray<NSBindingName>, Shared>;
-
-        #[method(valueClassForBinding:)]
-        pub unsafe fn valueClassForBinding(
-            &self,
-            binding: &NSBindingName,
-        ) -> Option<&'static Class>;
-
-        #[method(bind:toObject:withKeyPath:options:)]
-        pub unsafe fn bind_toObject_withKeyPath_options(
-            &self,
-            binding: &NSBindingName,
-            observable: &Object,
-            keyPath: &NSString,
-            options: Option<&NSDictionary<NSBindingOption, Object>>,
-        );
-
-        #[method(unbind:)]
-        pub unsafe fn unbind(&self, binding: &NSBindingName);
-
-        #[method_id(@__retain_semantics Other infoForBinding:)]
-        pub unsafe fn infoForBinding(
-            &self,
-            binding: &NSBindingName,
-        ) -> Option<Id<NSDictionary<NSBindingInfoKey, Object>, Shared>>;
-
-        #[method_id(@__retain_semantics Other optionDescriptionsForBinding:)]
-        pub unsafe fn optionDescriptionsForBinding(
-            &self,
-            binding: &NSBindingName,
-        ) -> Id<NSArray<NSAttributeDescription>, Shared>;
-    }
-);
-
-extern_methods!(
-    /// NSPlaceholders
-    unsafe impl NSObject {
-        #[method(setDefaultPlaceholder:forMarker:withBinding:)]
-        pub unsafe fn setDefaultPlaceholder_forMarker_withBinding(
-            placeholder: Option<&Object>,
-            marker: Option<&Object>,
-            binding: &NSBindingName,
-        );
-
-        #[method_id(@__retain_semantics Other defaultPlaceholderForMarker:withBinding:)]
-        pub unsafe fn defaultPlaceholderForMarker_withBinding(
-            marker: Option<&Object>,
-            binding: &NSBindingName,
-        ) -> Option<Id<Object, Shared>>;
-    }
-);
-
 extern_protocol!(
     pub struct NSEditor;
 
@@ -158,39 +99,6 @@ extern_protocol!(
         pub unsafe fn objectDidBeginEditing(&self, editor: &NSEditor);
 
         #[optional]
-        #[method(objectDidEndEditing:)]
-        pub unsafe fn objectDidEndEditing(&self, editor: &NSEditor);
-    }
-);
-
-extern_methods!(
-    /// NSEditor
-    unsafe impl NSObject {
-        #[method(discardEditing)]
-        pub unsafe fn discardEditing(&self);
-
-        #[method(commitEditing)]
-        pub unsafe fn commitEditing(&self) -> bool;
-
-        #[method(commitEditingWithDelegate:didCommitSelector:contextInfo:)]
-        pub unsafe fn commitEditingWithDelegate_didCommitSelector_contextInfo(
-            &self,
-            delegate: Option<&Object>,
-            didCommitSelector: Option<Sel>,
-            contextInfo: *mut c_void,
-        );
-
-        #[method(commitEditingAndReturnError:)]
-        pub unsafe fn commitEditingAndReturnError(&self) -> Result<(), Id<NSError, Shared>>;
-    }
-);
-
-extern_methods!(
-    /// NSEditorRegistration
-    unsafe impl NSObject {
-        #[method(objectDidBeginEditing:)]
-        pub unsafe fn objectDidBeginEditing(&self, editor: &NSEditor);
-
         #[method(objectDidEndEditing:)]
         pub unsafe fn objectDidEndEditing(&self, editor: &NSEditor);
     }

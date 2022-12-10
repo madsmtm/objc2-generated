@@ -76,38 +76,6 @@ extern_methods!(
 );
 
 extern_methods!(
-    /// NSDelayedPerforming
-    unsafe impl NSObject {
-        #[method(performSelector:withObject:afterDelay:inModes:)]
-        pub unsafe fn performSelector_withObject_afterDelay_inModes(
-            &self,
-            aSelector: Sel,
-            anArgument: Option<&Object>,
-            delay: NSTimeInterval,
-            modes: &NSArray<NSRunLoopMode>,
-        );
-
-        #[method(performSelector:withObject:afterDelay:)]
-        pub unsafe fn performSelector_withObject_afterDelay(
-            &self,
-            aSelector: Sel,
-            anArgument: Option<&Object>,
-            delay: NSTimeInterval,
-        );
-
-        #[method(cancelPreviousPerformRequestsWithTarget:selector:object:)]
-        pub unsafe fn cancelPreviousPerformRequestsWithTarget_selector_object(
-            aTarget: &Object,
-            aSelector: Sel,
-            anArgument: Option<&Object>,
-        );
-
-        #[method(cancelPreviousPerformRequestsWithTarget:)]
-        pub unsafe fn cancelPreviousPerformRequestsWithTarget(aTarget: &Object);
-    }
-);
-
-extern_methods!(
     /// NSOrderedPerform
     unsafe impl NSRunLoop {
         #[method(performSelector:target:argument:order:modes:)]

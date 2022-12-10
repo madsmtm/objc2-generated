@@ -139,14 +139,3 @@ extern_protocol!(
 );
 
 pub type NSTextStorageEditedOptions = NSUInteger;
-
-extern_methods!(
-    /// NSDeprecatedTextStorageDelegateInterface
-    unsafe impl NSObject {
-        #[method(textStorageWillProcessEditing:)]
-        pub unsafe fn textStorageWillProcessEditing(&self, notification: &NSNotification);
-
-        #[method(textStorageDidProcessEditing:)]
-        pub unsafe fn textStorageDidProcessEditing(&self, notification: &NSNotification);
-    }
-);

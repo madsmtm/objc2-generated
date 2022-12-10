@@ -164,14 +164,6 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// NSToolbarItemValidation
-    unsafe impl NSObject {
-        #[method(validateToolbarItem:)]
-        pub unsafe fn validateToolbarItem(&self, item: &NSToolbarItem) -> bool;
-    }
-);
-
 extern_protocol!(
     pub struct NSCloudSharingValidation;
 

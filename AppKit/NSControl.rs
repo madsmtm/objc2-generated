@@ -383,17 +383,3 @@ extern_methods!(
         pub unsafe fn selectCell(&self, cell: &NSCell);
     }
 );
-
-extern_methods!(
-    /// NSControlSubclassNotifications
-    unsafe impl NSObject {
-        #[method(controlTextDidBeginEditing:)]
-        pub unsafe fn controlTextDidBeginEditing(&self, obj: &NSNotification);
-
-        #[method(controlTextDidEndEditing:)]
-        pub unsafe fn controlTextDidEndEditing(&self, obj: &NSNotification);
-
-        #[method(controlTextDidChange:)]
-        pub unsafe fn controlTextDidChange(&self, obj: &NSNotification);
-    }
-);

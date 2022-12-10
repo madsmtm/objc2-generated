@@ -236,14 +236,6 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// NSMenuValidation
-    unsafe impl NSObject {
-        #[method(validateMenuItem:)]
-        pub unsafe fn validateMenuItem(&self, menuItem: &NSMenuItem) -> bool;
-    }
-);
-
 extern_protocol!(
     pub struct NSMenuDelegate;
 

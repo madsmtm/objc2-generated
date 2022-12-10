@@ -508,21 +508,6 @@ extern_methods!(
     }
 );
 
-extern_methods!(
-    /// NSCopyLinkMoveHandler
-    unsafe impl NSObject {
-        #[method(fileManager:shouldProceedAfterError:)]
-        pub unsafe fn fileManager_shouldProceedAfterError(
-            &self,
-            fm: &NSFileManager,
-            errorInfo: &NSDictionary,
-        ) -> bool;
-
-        #[method(fileManager:willProcessPath:)]
-        pub unsafe fn fileManager_willProcessPath(&self, fm: &NSFileManager, path: &NSString);
-    }
-);
-
 extern_protocol!(
     pub struct NSFileManagerDelegate;
 

@@ -311,28 +311,3 @@ extern_protocol!(
         pub unsafe fn unarchiverDidFinish(&self, unarchiver: &NSKeyedUnarchiver);
     }
 );
-
-extern_methods!(
-    /// NSKeyedArchiverObjectSubstitution
-    unsafe impl NSObject {
-        #[method(classForKeyedArchiver)]
-        pub unsafe fn classForKeyedArchiver(&self) -> Option<&'static Class>;
-
-        #[method_id(@__retain_semantics Other replacementObjectForKeyedArchiver:)]
-        pub unsafe fn replacementObjectForKeyedArchiver(
-            &self,
-            archiver: &NSKeyedArchiver,
-        ) -> Option<Id<Object, Shared>>;
-
-        #[method_id(@__retain_semantics Other classFallbacksForKeyedArchiver)]
-        pub unsafe fn classFallbacksForKeyedArchiver() -> Id<NSArray<NSString>, Shared>;
-    }
-);
-
-extern_methods!(
-    /// NSKeyedUnarchiverObjectSubstitution
-    unsafe impl NSObject {
-        #[method(classForKeyedUnarchiver)]
-        pub unsafe fn classForKeyedUnarchiver() -> &'static Class;
-    }
-);

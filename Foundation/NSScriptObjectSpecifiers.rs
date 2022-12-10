@@ -165,20 +165,6 @@ extern_methods!(
     }
 );
 
-extern_methods!(
-    /// NSScriptObjectSpecifiers
-    unsafe impl NSObject {
-        #[method_id(@__retain_semantics Other objectSpecifier)]
-        pub unsafe fn objectSpecifier(&self) -> Option<Id<NSScriptObjectSpecifier, Shared>>;
-
-        #[method_id(@__retain_semantics Other indicesOfObjectsByEvaluatingObjectSpecifier:)]
-        pub unsafe fn indicesOfObjectsByEvaluatingObjectSpecifier(
-            &self,
-            specifier: &NSScriptObjectSpecifier,
-        ) -> Option<Id<NSArray<NSNumber>, Shared>>;
-    }
-);
-
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSIndexSpecifier;
