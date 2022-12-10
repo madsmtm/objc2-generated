@@ -38,7 +38,7 @@ extern_methods!(
         pub unsafe fn setURL(&self, URL: Option<&NSURL>);
 
         #[method(setObjectValue:)]
-        pub unsafe fn setObjectValue(&self, obj: Option<&NSCopying>);
+        pub unsafe fn setObjectValue(&self, obj: Option<&Object>);
 
         #[method_id(@__retain_semantics Other allowedTypes)]
         pub unsafe fn allowedTypes(&self) -> Option<Id<NSArray<NSString>, Shared>>;

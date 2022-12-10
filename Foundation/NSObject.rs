@@ -4,24 +4,6 @@ use crate::common::*;
 use crate::Foundation::*;
 
 extern_protocol!(
-    pub struct NSCopying;
-
-    unsafe impl ProtocolType for NSCopying {
-        #[method_id(@__retain_semantics CopyOrMutCopy copyWithZone:)]
-        pub unsafe fn copyWithZone(&self, zone: *mut NSZone) -> Id<Object, Shared>;
-    }
-);
-
-extern_protocol!(
-    pub struct NSMutableCopying;
-
-    unsafe impl ProtocolType for NSMutableCopying {
-        #[method_id(@__retain_semantics CopyOrMutCopy mutableCopyWithZone:)]
-        pub unsafe fn mutableCopyWithZone(&self, zone: *mut NSZone) -> Id<Object, Shared>;
-    }
-);
-
-extern_protocol!(
     pub struct NSCoding;
 
     unsafe impl ProtocolType for NSCoding {

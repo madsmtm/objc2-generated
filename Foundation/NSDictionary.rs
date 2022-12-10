@@ -50,7 +50,7 @@ extern_methods!(
         pub unsafe fn initWithObjects_forKeys_count(
             this: Option<Allocated<Self>>,
             objects: *mut NonNull<ObjectType>,
-            keys: *mut NonNull<NSCopying>,
+            keys: *mut NonNull<Object>,
             cnt: NSUInteger,
         ) -> Id<Self, Shared>;
 
@@ -245,13 +245,13 @@ extern_methods!(
         #[method_id(@__retain_semantics Other dictionaryWithObject:forKey:)]
         pub unsafe fn dictionaryWithObject_forKey(
             object: &ObjectType,
-            key: &NSCopying,
+            key: &Object,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Other dictionaryWithObjects:forKeys:count:)]
         pub unsafe fn dictionaryWithObjects_forKeys_count(
             objects: *mut NonNull<ObjectType>,
-            keys: *mut NonNull<NSCopying>,
+            keys: *mut NonNull<Object>,
             cnt: NSUInteger,
         ) -> Id<Self, Shared>;
 
@@ -263,7 +263,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other dictionaryWithObjects:forKeys:)]
         pub unsafe fn dictionaryWithObjects_forKeys(
             objects: &NSArray<ObjectType>,
-            keys: &NSArray<NSCopying>,
+            keys: &NSArray<Object>,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Init initWithDictionary:)]
@@ -283,7 +283,7 @@ extern_methods!(
         pub unsafe fn initWithObjects_forKeys(
             this: Option<Allocated<Self>>,
             objects: &NSArray<ObjectType>,
-            keys: &NSArray<NSCopying>,
+            keys: &NSArray<Object>,
         ) -> Id<Self, Shared>;
     }
 );
@@ -324,7 +324,7 @@ extern_methods!(
         pub fn removeObjectForKey(&self, aKey: &KeyType);
 
         #[method(setObject:forKey:)]
-        pub unsafe fn setObject_forKey(&self, anObject: &ObjectType, aKey: &NSCopying);
+        pub unsafe fn setObject_forKey(&self, anObject: &ObjectType, aKey: &Object);
 
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
@@ -368,7 +368,7 @@ extern_methods!(
         pub fn setDictionary(&self, otherDictionary: &NSDictionary<KeyType, ObjectType>);
 
         #[method(setObject:forKeyedSubscript:)]
-        pub unsafe fn setObject_forKeyedSubscript(&self, obj: Option<&ObjectType>, key: &NSCopying);
+        pub unsafe fn setObject_forKeyedSubscript(&self, obj: Option<&ObjectType>, key: &Object);
     }
 );
 
@@ -418,7 +418,7 @@ extern_methods!(
         > NSDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
     {
         #[method_id(@__retain_semantics Other sharedKeySetForKeys:)]
-        pub unsafe fn sharedKeySetForKeys(keys: &NSArray<NSCopying>) -> Id<Object, Shared>;
+        pub unsafe fn sharedKeySetForKeys(keys: &NSArray<Object>) -> Id<Object, Shared>;
     }
 );
 

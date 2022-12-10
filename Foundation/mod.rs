@@ -972,9 +972,9 @@ pub use self::__NSObjCRuntime::{
     NSSortOptions, NSSortStable, NSStringFromClass, NSStringFromProtocol, NSStringFromSelector,
 };
 pub use self::__NSObject::{
-    NSAllocateObject, NSCoding, NSCopyObject, NSCopying, NSDeallocateObject,
-    NSDecrementExtraRefCountWasZero, NSDiscardableContent, NSExtraRefCount,
-    NSIncrementExtraRefCount, NSMutableCopying, NSSecureCoding, NSShouldRetainWithZone,
+    NSAllocateObject, NSCoding, NSCopyObject, NSDeallocateObject, NSDecrementExtraRefCountWasZero,
+    NSDiscardableContent, NSExtraRefCount, NSIncrementExtraRefCount, NSSecureCoding,
+    NSShouldRetainWithZone,
 };
 pub use self::__NSOperation::{
     NSBlockOperation, NSInvocationOperation, NSInvocationOperationCancelledException,
