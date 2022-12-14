@@ -311,7 +311,7 @@ extern_methods!(
         > NSMutableDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
     {
         #[method(removeObjectForKey:)]
-        pub fn removeObjectForKey(&self, aKey: &KeyType);
+        pub fn removeObjectForKey(&mut self, aKey: &KeyType);
 
         #[method(setObject:forKey:)]
         pub unsafe fn setObject_forKey(&self, anObject: &ObjectType, aKey: &Object);
@@ -349,13 +349,13 @@ extern_methods!(
         );
 
         #[method(removeAllObjects)]
-        pub fn removeAllObjects(&self);
+        pub fn removeAllObjects(&mut self);
 
         #[method(removeObjectsForKeys:)]
         pub unsafe fn removeObjectsForKeys(&self, keyArray: &NSArray<KeyType>);
 
         #[method(setDictionary:)]
-        pub fn setDictionary(&self, otherDictionary: &NSDictionary<KeyType, ObjectType>);
+        pub fn setDictionary(&mut self, otherDictionary: &NSDictionary<KeyType, ObjectType>);
 
         #[method(setObject:forKeyedSubscript:)]
         pub unsafe fn setObject_forKeyedSubscript(&self, obj: Option<&ObjectType>, key: &Object);

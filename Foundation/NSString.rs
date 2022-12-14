@@ -762,10 +762,10 @@ extern_methods!(
         pub unsafe fn deleteCharactersInRange(&self, range: NSRange);
 
         #[method(appendString:)]
-        pub unsafe fn appendString(&self, aString: &NSString);
+        pub fn appendString(&mut self, aString: &NSString);
 
         #[method(setString:)]
-        pub unsafe fn setString(&self, aString: &NSString);
+        pub fn setString(&mut self, aString: &NSString);
 
         #[method(replaceOccurrencesOfString:withString:options:range:)]
         pub unsafe fn replaceOccurrencesOfString_withString_options_range(

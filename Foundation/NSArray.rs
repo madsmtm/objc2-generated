@@ -407,20 +407,20 @@ extern_methods!(
         NSMutableArray<ObjectType, ObjectTypeOwnership>
     {
         #[method(addObject:)]
-        pub unsafe fn addObject(&self, anObject: &ObjectType);
+        pub unsafe fn addObject(&mut self, anObject: &ObjectType);
 
         #[method(insertObject:atIndex:)]
-        pub unsafe fn insertObject_atIndex(&self, anObject: &ObjectType, index: NSUInteger);
+        pub unsafe fn insertObject_atIndex(&mut self, anObject: &ObjectType, index: NSUInteger);
 
         #[method(removeLastObject)]
-        pub unsafe fn removeLastObject(&self);
+        pub unsafe fn removeLastObject(&mut self);
 
         #[method(removeObjectAtIndex:)]
-        pub unsafe fn removeObjectAtIndex(&self, index: NSUInteger);
+        pub unsafe fn removeObjectAtIndex(&mut self, index: NSUInteger);
 
         #[method(replaceObjectAtIndex:withObject:)]
         pub unsafe fn replaceObjectAtIndex_withObject(
-            &self,
+            &mut self,
             index: NSUInteger,
             anObject: &ObjectType,
         );
@@ -458,7 +458,7 @@ extern_methods!(
         );
 
         #[method(removeAllObjects)]
-        pub fn removeAllObjects(&self);
+        pub fn removeAllObjects(&mut self);
 
         #[method(removeObject:inRange:)]
         pub unsafe fn removeObject_inRange(&self, anObject: &ObjectType, range: NSRange);
@@ -505,7 +505,7 @@ extern_methods!(
 
         #[method(sortUsingFunction:context:)]
         pub unsafe fn sortUsingFunction_context(
-            &self,
+            &mut self,
             compare: unsafe extern "C" fn(
                 NonNull<ObjectType>,
                 NonNull<ObjectType>,

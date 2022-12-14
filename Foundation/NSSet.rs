@@ -197,7 +197,7 @@ extern_methods!(
         NSMutableSet<ObjectType, ObjectTypeOwnership>
     {
         #[method(addObject:)]
-        pub unsafe fn addObject(&self, object: &ObjectType);
+        pub unsafe fn addObject(&mut self, object: &ObjectType);
 
         #[method(removeObject:)]
         pub unsafe fn removeObject(&self, object: &ObjectType);
@@ -234,7 +234,7 @@ extern_methods!(
         pub unsafe fn minusSet(&self, otherSet: &NSSet<ObjectType>);
 
         #[method(removeAllObjects)]
-        pub fn removeAllObjects(&self);
+        pub fn removeAllObjects(&mut self);
 
         #[method(unionSet:)]
         pub unsafe fn unionSet(&self, otherSet: &NSSet<ObjectType>);

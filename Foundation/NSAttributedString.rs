@@ -186,7 +186,7 @@ extern_methods!(
         pub unsafe fn deleteCharactersInRange(&self, range: NSRange);
 
         #[method(setAttributedString:)]
-        pub unsafe fn setAttributedString(&self, attrString: &NSAttributedString);
+        pub fn setAttributedString(&mut self, attrString: &NSAttributedString);
 
         #[method(beginEditing)]
         pub unsafe fn beginEditing(&self);
