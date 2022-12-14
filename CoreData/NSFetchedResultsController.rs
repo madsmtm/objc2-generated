@@ -124,14 +124,6 @@ extern_protocol!(
 
     unsafe impl ProtocolType for NSFetchedResultsControllerDelegate {
         #[optional]
-        #[method(controller:didChangeContentWithSnapshot:)]
-        pub unsafe fn controller_didChangeContentWithSnapshot(
-            &self,
-            controller: &NSFetchedResultsController,
-            snapshot: &NSDiffableDataSourceSnapshot<NSString, NSManagedObjectID>,
-        );
-
-        #[optional]
         #[method(controller:didChangeContentWithDifference:)]
         pub unsafe fn controller_didChangeContentWithDifference(
             &self,
