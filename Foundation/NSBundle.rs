@@ -26,7 +26,7 @@ extern_class!(
 extern_methods!(
     unsafe impl NSBundle {
         #[method_id(@__retain_semantics Other mainBundle)]
-        pub unsafe fn mainBundle() -> Id<NSBundle, Shared>;
+        pub fn mainBundle() -> Id<NSBundle, Shared>;
 
         #[method_id(@__retain_semantics Other bundleWithPath:)]
         pub unsafe fn bundleWithPath(path: &NSString) -> Option<Id<Self, Shared>>;

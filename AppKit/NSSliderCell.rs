@@ -61,6 +61,9 @@ extern_methods!(
         #[method(setSliderType:)]
         pub unsafe fn setSliderType(&self, sliderType: NSSliderType);
 
+        #[method(setVertical:)]
+        pub unsafe fn setVertical(&self, vertical: bool);
+
         #[method(trackRect)]
         pub unsafe fn trackRect(&self) -> NSRect;
 

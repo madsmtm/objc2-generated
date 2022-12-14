@@ -575,9 +575,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other displayName)]
         pub unsafe fn displayName(&self) -> Id<NSString, Shared>;
 
-        #[method(setDisplayName:)]
-        pub unsafe fn setDisplayName(&self, displayName: Option<&NSString>);
-
         #[method_id(@__retain_semantics Other defaultDraftName)]
         pub unsafe fn defaultDraftName(&self) -> Id<NSString, Shared>;
 

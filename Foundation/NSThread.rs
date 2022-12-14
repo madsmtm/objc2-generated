@@ -42,12 +42,6 @@ extern_methods!(
         #[method(exit)]
         pub unsafe fn exit();
 
-        #[method(threadPriority)]
-        pub unsafe fn threadPriority() -> c_double;
-
-        #[method(setThreadPriority:)]
-        pub unsafe fn setThreadPriority(p: c_double) -> bool;
-
         #[method(qualityOfService)]
         pub unsafe fn qualityOfService(&self) -> NSQualityOfService;
 
@@ -64,7 +58,7 @@ extern_methods!(
         pub fn name(&self) -> Option<Id<NSString, Shared>>;
 
         #[method(setName:)]
-        pub fn setName(&self, name: Option<&NSString>);
+        pub unsafe fn setName(&self, name: Option<&NSString>);
 
         #[method(stackSize)]
         pub unsafe fn stackSize(&self) -> NSUInteger;

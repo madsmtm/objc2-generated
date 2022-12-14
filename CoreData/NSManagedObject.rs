@@ -49,9 +49,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other managedObjectContext)]
         pub unsafe fn managedObjectContext(&self) -> Option<Id<NSManagedObjectContext, Shared>>;
 
-        #[method_id(@__retain_semantics Other entity)]
-        pub unsafe fn entity(&self) -> Id<NSEntityDescription, Shared>;
-
         #[method_id(@__retain_semantics Other objectID)]
         pub unsafe fn objectID(&self) -> Id<NSManagedObjectID, Shared>;
 

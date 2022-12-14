@@ -192,6 +192,9 @@ extern_protocol!(
 extern_methods!(
     /// NSSubclassUse
     unsafe impl NSGestureRecognizer {
+        #[method(setState:)]
+        pub unsafe fn setState(&self, state: NSGestureRecognizerState);
+
         #[method(reset)]
         pub unsafe fn reset(&self);
 

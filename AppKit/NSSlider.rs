@@ -46,6 +46,9 @@ extern_methods!(
         #[method(acceptsFirstMouse:)]
         pub unsafe fn acceptsFirstMouse(&self, event: Option<&NSEvent>) -> bool;
 
+        #[method(setVertical:)]
+        pub unsafe fn setVertical(&self, vertical: bool);
+
         #[method_id(@__retain_semantics Other trackFillColor)]
         pub unsafe fn trackFillColor(&self) -> Option<Id<NSColor, Shared>>;
 

@@ -34,9 +34,6 @@ extern_methods!(
             image: Option<&NSImage>,
         ) -> Id<Self, Shared>;
 
-        #[method(titleWidth)]
-        pub unsafe fn titleWidth(&self) -> CGFloat;
-
         #[method(setTitleWidth:)]
         pub unsafe fn setTitleWidth(&self, titleWidth: CGFloat);
 
