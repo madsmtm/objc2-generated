@@ -28,7 +28,7 @@ extern_methods!(
         );
 
         #[method(isMultiThreaded)]
-        pub unsafe fn isMultiThreaded() -> bool;
+        pub fn isMultiThreaded() -> bool;
 
         #[method_id(@__retain_semantics Other threadDictionary)]
         pub unsafe fn threadDictionary(&self) -> Id<NSMutableDictionary, Shared>;
