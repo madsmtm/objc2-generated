@@ -317,12 +317,6 @@ extern_methods!(
             flag: bool,
         ) -> Id<Self, Shared>;
 
-        #[method_id(@__retain_semantics Init initWithContentsOfURL:error:)]
-        pub unsafe fn initWithContentsOfURL_error(
-            this: Option<Allocated<Self>>,
-            url: &NSURL,
-        ) -> Result<Id<NSArray<ObjectType>, Shared>, Id<NSError, Shared>>;
-
         #[method_id(@__retain_semantics Other arrayWithContentsOfURL:error:)]
         pub unsafe fn arrayWithContentsOfURL_error(
             url: &NSURL,
@@ -379,18 +373,6 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other arrayWithContentsOfURL:)]
         pub unsafe fn arrayWithContentsOfURL(
-            url: &NSURL,
-        ) -> Option<Id<NSArray<ObjectType>, Shared>>;
-
-        #[method_id(@__retain_semantics Init initWithContentsOfFile:)]
-        pub unsafe fn initWithContentsOfFile(
-            this: Option<Allocated<Self>>,
-            path: &NSString,
-        ) -> Option<Id<NSArray<ObjectType>, Shared>>;
-
-        #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
-        pub unsafe fn initWithContentsOfURL(
-            this: Option<Allocated<Self>>,
             url: &NSURL,
         ) -> Option<Id<NSArray<ObjectType>, Shared>>;
 
@@ -582,18 +564,6 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other arrayWithContentsOfURL:)]
         pub unsafe fn arrayWithContentsOfURL(
-            url: &NSURL,
-        ) -> Option<Id<NSMutableArray<ObjectType>, Shared>>;
-
-        #[method_id(@__retain_semantics Init initWithContentsOfFile:)]
-        pub unsafe fn initWithContentsOfFile(
-            this: Option<Allocated<Self>>,
-            path: &NSString,
-        ) -> Option<Id<NSMutableArray<ObjectType>, Shared>>;
-
-        #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
-        pub unsafe fn initWithContentsOfURL(
-            this: Option<Allocated<Self>>,
             url: &NSURL,
         ) -> Option<Id<NSMutableArray<ObjectType>, Shared>>;
     }

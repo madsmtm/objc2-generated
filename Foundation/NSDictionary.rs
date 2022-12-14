@@ -207,18 +207,6 @@ extern_methods!(
             url: &NSURL,
         ) -> Option<Id<NSDictionary<KeyType, ObjectType>, Shared>>;
 
-        #[method_id(@__retain_semantics Init initWithContentsOfFile:)]
-        pub unsafe fn initWithContentsOfFile(
-            this: Option<Allocated<Self>>,
-            path: &NSString,
-        ) -> Option<Id<NSDictionary<KeyType, ObjectType>, Shared>>;
-
-        #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
-        pub unsafe fn initWithContentsOfURL(
-            this: Option<Allocated<Self>>,
-            url: &NSURL,
-        ) -> Option<Id<NSDictionary<KeyType, ObjectType>, Shared>>;
-
         #[method(writeToFile:atomically:)]
         pub unsafe fn writeToFile_atomically(
             &self,
@@ -393,18 +381,6 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other dictionaryWithContentsOfURL:)]
         pub unsafe fn dictionaryWithContentsOfURL(
-            url: &NSURL,
-        ) -> Option<Id<NSMutableDictionary<KeyType, ObjectType>, Shared>>;
-
-        #[method_id(@__retain_semantics Init initWithContentsOfFile:)]
-        pub unsafe fn initWithContentsOfFile(
-            this: Option<Allocated<Self>>,
-            path: &NSString,
-        ) -> Option<Id<NSMutableDictionary<KeyType, ObjectType>, Shared>>;
-
-        #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
-        pub unsafe fn initWithContentsOfURL(
-            this: Option<Allocated<Self>>,
             url: &NSURL,
         ) -> Option<Id<NSMutableDictionary<KeyType, ObjectType>, Shared>>;
     }
