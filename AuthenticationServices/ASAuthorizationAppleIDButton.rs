@@ -23,15 +23,6 @@ ns_enum!(
     }
 );
 
-extern_class!(
-    #[derive(Debug, PartialEq, Eq, Hash)]
-    pub struct ASAuthorizationAppleIDButton;
-
-    unsafe impl ClassType for ASAuthorizationAppleIDButton {
-        type Super = ASControl;
-    }
-);
-
 extern_methods!(
     unsafe impl ASAuthorizationAppleIDButton {
         #[method_id(@__retain_semantics Other buttonWithType:style:)]

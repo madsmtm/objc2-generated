@@ -129,16 +129,15 @@ pub use self::__ASAccountAuthenticationModificationExtensionContext::ASAccountAu
 pub use self::__ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest::ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest;
 pub use self::__ASAccountAuthenticationModificationRequest::ASAccountAuthenticationModificationRequest;
 pub use self::__ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest::ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest;
-pub use self::__ASAccountAuthenticationModificationViewController::ASAccountAuthenticationModificationViewController;
 pub use self::__ASAuthorization::{
     ASAuthorization, ASAuthorizationScope, ASAuthorizationScopeEmail, ASAuthorizationScopeFullName,
 };
 pub use self::__ASAuthorizationAppleIDButton::{
-    ASAuthorizationAppleIDButton, ASAuthorizationAppleIDButtonStyle,
-    ASAuthorizationAppleIDButtonStyleBlack, ASAuthorizationAppleIDButtonStyleWhite,
-    ASAuthorizationAppleIDButtonStyleWhiteOutline, ASAuthorizationAppleIDButtonType,
-    ASAuthorizationAppleIDButtonTypeContinue, ASAuthorizationAppleIDButtonTypeDefault,
-    ASAuthorizationAppleIDButtonTypeSignIn, ASAuthorizationAppleIDButtonTypeSignUp,
+    ASAuthorizationAppleIDButtonStyle, ASAuthorizationAppleIDButtonStyleBlack,
+    ASAuthorizationAppleIDButtonStyleWhite, ASAuthorizationAppleIDButtonStyleWhiteOutline,
+    ASAuthorizationAppleIDButtonType, ASAuthorizationAppleIDButtonTypeContinue,
+    ASAuthorizationAppleIDButtonTypeDefault, ASAuthorizationAppleIDButtonTypeSignIn,
+    ASAuthorizationAppleIDButtonTypeSignUp,
 };
 pub use self::__ASAuthorizationAppleIDCredential::{
     ASAuthorizationAppleIDCredential, ASUserDetectionStatus, ASUserDetectionStatusLikelyReal,
@@ -237,7 +236,6 @@ pub use self::__ASCredentialIdentityStore::{
 };
 pub use self::__ASCredentialIdentityStoreState::ASCredentialIdentityStoreState;
 pub use self::__ASCredentialProviderExtensionContext::ASCredentialProviderExtensionContext;
-pub use self::__ASCredentialProviderViewController::ASCredentialProviderViewController;
 pub use self::__ASCredentialServiceIdentifier::{
     ASCredentialServiceIdentifier, ASCredentialServiceIdentifierType,
     ASCredentialServiceIdentifierTypeDomain, ASCredentialServiceIdentifierTypeURL,

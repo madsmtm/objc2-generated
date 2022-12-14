@@ -4,15 +4,6 @@ use crate::common::*;
 use crate::AuthenticationServices::*;
 use crate::Foundation::*;
 
-extern_class!(
-    #[derive(Debug, PartialEq, Eq, Hash)]
-    pub struct ASCredentialProviderViewController;
-
-    unsafe impl ClassType for ASCredentialProviderViewController {
-        type Super = ASViewController<ASViewController, ASViewControllerOwnership>;
-    }
-);
-
 extern_methods!(
     unsafe impl ASCredentialProviderViewController {
         #[method_id(@__retain_semantics Other extensionContext)]

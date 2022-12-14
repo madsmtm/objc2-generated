@@ -2,3 +2,40 @@
 //! DO NOT EDIT
 use crate::common::*;
 use crate::Foundation::*;
+
+extern_methods!(
+    unsafe impl NSProxy {
+        #[method(class)]
+        pub unsafe fn class() -> &'static Class;
+
+        #[method(forwardInvocation:)]
+        pub unsafe fn forwardInvocation(&self, invocation: &NSInvocation);
+
+        #[method_id(@__retain_semantics Other methodSignatureForSelector:)]
+        pub unsafe fn methodSignatureForSelector(
+            &self,
+            sel: Sel,
+        ) -> Option<Id<NSMethodSignature, Shared>>;
+
+        #[method(dealloc)]
+        pub unsafe fn dealloc(&self);
+
+        #[method(finalize)]
+        pub unsafe fn finalize(&self);
+
+        #[method_id(@__retain_semantics Other description)]
+        pub unsafe fn description(&self) -> Id<NSString, Shared>;
+
+        #[method_id(@__retain_semantics Other debugDescription)]
+        pub unsafe fn debugDescription(&self) -> Id<NSString, Shared>;
+
+        #[method(respondsToSelector:)]
+        pub unsafe fn respondsToSelector(aSelector: Sel) -> bool;
+
+        #[method(allowsWeakReference)]
+        pub unsafe fn allowsWeakReference(&self) -> bool;
+
+        #[method(retainWeakReference)]
+        pub unsafe fn retainWeakReference(&self) -> bool;
+    }
+);
