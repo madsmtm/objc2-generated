@@ -281,18 +281,6 @@ extern_protocol!(
     pub struct NSPasteboardReading;
 
     unsafe impl ProtocolType for NSPasteboardReading {
-        #[method_id(@__retain_semantics Other readableTypesForPasteboard:)]
-        pub unsafe fn readableTypesForPasteboard(
-            pasteboard: &NSPasteboard,
-        ) -> Id<NSArray<NSPasteboardType>, Shared>;
-
-        #[optional]
-        #[method(readingOptionsForType:pasteboard:)]
-        pub unsafe fn readingOptionsForType_pasteboard(
-            type_: &NSPasteboardType,
-            pasteboard: &NSPasteboard,
-        ) -> NSPasteboardReadingOptions;
-
         #[optional]
         #[method_id(@__retain_semantics Init initWithPasteboardPropertyList:ofType:)]
         pub unsafe fn initWithPasteboardPropertyList_ofType(
