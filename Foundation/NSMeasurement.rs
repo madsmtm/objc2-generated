@@ -7,6 +7,7 @@ __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMeasurement<UnitType: Message = Object, UnitTypeOwnership: Ownership = Shared> {
         _inner0: PhantomData<*mut (UnitType, UnitTypeOwnership)>,
+        notunwindsafe: PhantomData<&'static mut ()>,
     }
 
     unsafe impl<UnitType: Message, UnitTypeOwnership: Ownership> ClassType

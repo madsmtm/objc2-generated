@@ -88,6 +88,7 @@ __inner_extern_class!(
         ResultTypeOwnership: Ownership = Shared,
     > {
         _inner0: PhantomData<*mut (ResultType, ResultTypeOwnership)>,
+        notunwindsafe: PhantomData<&'static mut ()>,
     }
 
     unsafe impl<ResultType: Message, ResultTypeOwnership: Ownership> ClassType

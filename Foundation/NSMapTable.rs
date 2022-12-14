@@ -30,6 +30,7 @@ __inner_extern_class!(
     > {
         _inner0: PhantomData<*mut (KeyType, KeyTypeOwnership)>,
         _inner1: PhantomData<*mut (ObjectType, ObjectTypeOwnership)>,
+        notunwindsafe: PhantomData<&'static mut ()>,
     }
 
     unsafe impl<

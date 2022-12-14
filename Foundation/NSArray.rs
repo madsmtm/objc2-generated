@@ -7,6 +7,7 @@ __inner_extern_class!(
     #[derive(PartialEq, Eq, Hash)]
     pub struct NSArray<ObjectType: Message = Object, ObjectTypeOwnership: Ownership = Shared> {
         _inner0: PhantomData<*mut (ObjectType, ObjectTypeOwnership)>,
+        notunwindsafe: PhantomData<&'static mut ()>,
     }
 
     unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> ClassType
@@ -409,6 +410,7 @@ __inner_extern_class!(
     #[derive(PartialEq, Eq, Hash)]
     pub struct NSMutableArray<ObjectType: Message = Object, ObjectTypeOwnership: Ownership = Shared> {
         _inner0: PhantomData<*mut (ObjectType, ObjectTypeOwnership)>,
+        notunwindsafe: PhantomData<&'static mut ()>,
     }
 
     unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> ClassType

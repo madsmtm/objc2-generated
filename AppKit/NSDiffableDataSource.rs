@@ -15,6 +15,7 @@ __inner_extern_class!(
     > {
         _inner0: PhantomData<*mut (SectionIdentifierType, SectionIdentifierTypeOwnership)>,
         _inner1: PhantomData<*mut (ItemIdentifierType, ItemIdentifierTypeOwnership)>,
+        notunwindsafe: PhantomData<&'static mut ()>,
     }
 
     unsafe impl<
@@ -201,6 +202,7 @@ __inner_extern_class!(
     > {
         _inner0: PhantomData<*mut (SectionIdentifierType, SectionIdentifierTypeOwnership)>,
         _inner1: PhantomData<*mut (ItemIdentifierType, ItemIdentifierTypeOwnership)>,
+        notunwindsafe: PhantomData<&'static mut ()>,
     }
 
     unsafe impl<

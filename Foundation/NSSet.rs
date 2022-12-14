@@ -7,6 +7,7 @@ __inner_extern_class!(
     #[derive(PartialEq, Eq, Hash)]
     pub struct NSSet<ObjectType: Message = Object, ObjectTypeOwnership: Ownership = Shared> {
         _inner0: PhantomData<*mut (ObjectType, ObjectTypeOwnership)>,
+        notunwindsafe: PhantomData<&'static mut ()>,
     }
 
     unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> ClassType
@@ -181,6 +182,7 @@ __inner_extern_class!(
     #[derive(PartialEq, Eq, Hash)]
     pub struct NSMutableSet<ObjectType: Message = Object, ObjectTypeOwnership: Ownership = Shared> {
         _inner0: PhantomData<*mut (ObjectType, ObjectTypeOwnership)>,
+        notunwindsafe: PhantomData<&'static mut ()>,
     }
 
     unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> ClassType
@@ -256,6 +258,7 @@ __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCountedSet<ObjectType: Message = Object, ObjectTypeOwnership: Ownership = Shared> {
         _inner0: PhantomData<*mut (ObjectType, ObjectTypeOwnership)>,
+        notunwindsafe: PhantomData<&'static mut ()>,
     }
 
     unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> ClassType
