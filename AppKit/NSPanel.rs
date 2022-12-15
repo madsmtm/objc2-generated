@@ -37,8 +37,28 @@ extern_methods!(
     }
 );
 
+extern_fn!(
+    pub unsafe fn NSReleaseAlertPanel(panel: Option<&Object>);
+);
+
+extern_enum!(
+    #[underlying(c_int)]
+    pub enum {
+        NSAlertDefaultReturn = 1,
+        NSAlertAlternateReturn = 0,
+        NSAlertOtherReturn = -1,
+        NSAlertErrorReturn = -2,
+    }
+);
+
+extern_enum!(
+    #[underlying(c_uint)]
+    pub enum {
+    }
+);
+
 extern_methods!(
-    /// Methods declared on superclasses
+    /// Methods declared on superclass `NSWindow`
     unsafe impl NSPanel {
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer(
@@ -63,25 +83,5 @@ extern_methods!(
         pub unsafe fn windowWithContentViewController(
             contentViewController: &NSViewController,
         ) -> Id<Self, Shared>;
-    }
-);
-
-extern_fn!(
-    pub unsafe fn NSReleaseAlertPanel(panel: Option<&Object>);
-);
-
-extern_enum!(
-    #[underlying(c_int)]
-    pub enum {
-        NSAlertDefaultReturn = 1,
-        NSAlertAlternateReturn = 0,
-        NSAlertOtherReturn = -1,
-        NSAlertErrorReturn = -2,
-    }
-);
-
-extern_enum!(
-    #[underlying(c_uint)]
-    pub enum {
     }
 );

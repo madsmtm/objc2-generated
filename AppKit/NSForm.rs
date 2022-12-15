@@ -87,22 +87,12 @@ extern_methods!(
 );
 
 extern_methods!(
-    /// Methods declared on superclasses
+    /// Methods declared on superclass `NSMatrix`
     unsafe impl NSForm {
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
             frameRect: NSRect,
-        ) -> Id<Self, Shared>;
-
-        #[method_id(@__retain_semantics Init initWithFrame:mode:cellClass:numberOfRows:numberOfColumns:)]
-        pub unsafe fn initWithFrame_mode_cellClass_numberOfRows_numberOfColumns(
-            this: Option<Allocated<Self>>,
-            frameRect: NSRect,
-            mode: NSMatrixMode,
-            factoryId: Option<&Class>,
-            rowsHigh: NSInteger,
-            colsWide: NSInteger,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Init initWithFrame:mode:prototype:numberOfRows:numberOfColumns:)]
@@ -111,6 +101,16 @@ extern_methods!(
             frameRect: NSRect,
             mode: NSMatrixMode,
             cell: &NSCell,
+            rowsHigh: NSInteger,
+            colsWide: NSInteger,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithFrame:mode:cellClass:numberOfRows:numberOfColumns:)]
+        pub unsafe fn initWithFrame_mode_cellClass_numberOfRows_numberOfColumns(
+            this: Option<Allocated<Self>>,
+            frameRect: NSRect,
+            mode: NSMatrixMode,
+            factoryId: Option<&Class>,
             rowsHigh: NSInteger,
             colsWide: NSInteger,
         ) -> Id<Self, Shared>;

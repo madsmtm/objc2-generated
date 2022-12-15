@@ -177,7 +177,7 @@ extern_methods!(
 );
 
 extern_methods!(
-    /// Methods declared on superclasses
+    /// Methods declared on superclass `NSObjectController`
     unsafe impl NSTreeController {
         #[method_id(@__retain_semantics Init initWithContent:)]
         pub unsafe fn initWithContent(

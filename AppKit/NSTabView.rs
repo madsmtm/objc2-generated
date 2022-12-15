@@ -178,17 +178,6 @@ extern_methods!(
     }
 );
 
-extern_methods!(
-    /// Methods declared on superclasses
-    unsafe impl NSTabView {
-        #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frameRect: NSRect,
-        ) -> Id<Self, Shared>;
-    }
-);
-
 extern_protocol!(
     pub struct NSTabViewDelegate;
 
@@ -220,5 +209,16 @@ extern_protocol!(
         #[optional]
         #[method(tabViewDidChangeNumberOfTabViewItems:)]
         pub unsafe fn tabViewDidChangeNumberOfTabViewItems(&self, tabView: &NSTabView);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSView`
+    unsafe impl NSTabView {
+        #[method_id(@__retain_semantics Init initWithFrame:)]
+        pub unsafe fn initWithFrame(
+            this: Option<Allocated<Self>>,
+            frameRect: NSRect,
+        ) -> Id<Self, Shared>;
     }
 );

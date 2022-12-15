@@ -32,7 +32,7 @@ extern_methods!(
 );
 
 extern_methods!(
-    /// Methods declared on superclasses
+    /// Methods declared on superclass `NSToolbarItem`
     unsafe impl NSMenuToolbarItem {
         #[method_id(@__retain_semantics Init initWithItemIdentifier:)]
         pub unsafe fn initWithItemIdentifier(

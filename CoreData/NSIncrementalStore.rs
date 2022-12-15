@@ -78,7 +78,7 @@ extern_methods!(
 );
 
 extern_methods!(
-    /// Methods declared on superclasses
+    /// Methods declared on superclass `NSPersistentStore`
     unsafe impl NSIncrementalStore {
         #[method_id(@__retain_semantics Init initWithPersistentStoreCoordinator:configurationName:URL:options:)]
         pub unsafe fn initWithPersistentStoreCoordinator_configurationName_URL_options(

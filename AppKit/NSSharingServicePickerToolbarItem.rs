@@ -30,17 +30,6 @@ extern_methods!(
     }
 );
 
-extern_methods!(
-    /// Methods declared on superclasses
-    unsafe impl NSSharingServicePickerToolbarItem {
-        #[method_id(@__retain_semantics Init initWithItemIdentifier:)]
-        pub unsafe fn initWithItemIdentifier(
-            this: Option<Allocated<Self>>,
-            itemIdentifier: &NSToolbarItemIdentifier,
-        ) -> Id<Self, Shared>;
-    }
-);
-
 extern_protocol!(
     pub struct NSSharingServicePickerToolbarItemDelegate;
 
@@ -50,5 +39,16 @@ extern_protocol!(
             &self,
             pickerToolbarItem: &NSSharingServicePickerToolbarItem,
         ) -> Id<NSArray, Shared>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSToolbarItem`
+    unsafe impl NSSharingServicePickerToolbarItem {
+        #[method_id(@__retain_semantics Init initWithItemIdentifier:)]
+        pub unsafe fn initWithItemIdentifier(
+            this: Option<Allocated<Self>>,
+            itemIdentifier: &NSToolbarItemIdentifier,
+        ) -> Id<Self, Shared>;
     }
 );

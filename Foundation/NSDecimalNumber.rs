@@ -215,108 +215,6 @@ extern_methods!(
     }
 );
 
-extern_methods!(
-    /// Methods declared on superclasses
-    unsafe impl NSDecimalNumber {
-        #[method_id(@__retain_semantics Init initWithBool:)]
-        pub unsafe fn initWithBool(
-            this: Option<Allocated<Self>>,
-            value: bool,
-        ) -> Id<NSNumber, Shared>;
-
-        #[method_id(@__retain_semantics Init initWithBytes:objCType:)]
-        pub unsafe fn initWithBytes_objCType(
-            this: Option<Allocated<Self>>,
-            value: NonNull<c_void>,
-            type_: NonNull<c_char>,
-        ) -> Id<Self, Shared>;
-
-        #[method_id(@__retain_semantics Init initWithChar:)]
-        pub unsafe fn initWithChar(
-            this: Option<Allocated<Self>>,
-            value: c_char,
-        ) -> Id<NSNumber, Shared>;
-
-        #[method_id(@__retain_semantics Init initWithDouble:)]
-        pub unsafe fn initWithDouble(
-            this: Option<Allocated<Self>>,
-            value: c_double,
-        ) -> Id<NSNumber, Shared>;
-
-        #[method_id(@__retain_semantics Init initWithFloat:)]
-        pub unsafe fn initWithFloat(
-            this: Option<Allocated<Self>>,
-            value: c_float,
-        ) -> Id<NSNumber, Shared>;
-
-        #[method_id(@__retain_semantics Init initWithInt:)]
-        pub unsafe fn initWithInt(
-            this: Option<Allocated<Self>>,
-            value: c_int,
-        ) -> Id<NSNumber, Shared>;
-
-        #[method_id(@__retain_semantics Init initWithInteger:)]
-        pub unsafe fn initWithInteger(
-            this: Option<Allocated<Self>>,
-            value: NSInteger,
-        ) -> Id<NSNumber, Shared>;
-
-        #[method_id(@__retain_semantics Init initWithLong:)]
-        pub unsafe fn initWithLong(
-            this: Option<Allocated<Self>>,
-            value: c_long,
-        ) -> Id<NSNumber, Shared>;
-
-        #[method_id(@__retain_semantics Init initWithLongLong:)]
-        pub unsafe fn initWithLongLong(
-            this: Option<Allocated<Self>>,
-            value: c_longlong,
-        ) -> Id<NSNumber, Shared>;
-
-        #[method_id(@__retain_semantics Init initWithShort:)]
-        pub unsafe fn initWithShort(
-            this: Option<Allocated<Self>>,
-            value: c_short,
-        ) -> Id<NSNumber, Shared>;
-
-        #[method_id(@__retain_semantics Init initWithUnsignedChar:)]
-        pub unsafe fn initWithUnsignedChar(
-            this: Option<Allocated<Self>>,
-            value: c_uchar,
-        ) -> Id<NSNumber, Shared>;
-
-        #[method_id(@__retain_semantics Init initWithUnsignedInt:)]
-        pub unsafe fn initWithUnsignedInt(
-            this: Option<Allocated<Self>>,
-            value: c_uint,
-        ) -> Id<NSNumber, Shared>;
-
-        #[method_id(@__retain_semantics Init initWithUnsignedInteger:)]
-        pub unsafe fn initWithUnsignedInteger(
-            this: Option<Allocated<Self>>,
-            value: NSUInteger,
-        ) -> Id<NSNumber, Shared>;
-
-        #[method_id(@__retain_semantics Init initWithUnsignedLong:)]
-        pub unsafe fn initWithUnsignedLong(
-            this: Option<Allocated<Self>>,
-            value: c_ulong,
-        ) -> Id<NSNumber, Shared>;
-
-        #[method_id(@__retain_semantics Init initWithUnsignedLongLong:)]
-        pub unsafe fn initWithUnsignedLongLong(
-            this: Option<Allocated<Self>>,
-            value: c_ulonglong,
-        ) -> Id<NSNumber, Shared>;
-
-        #[method_id(@__retain_semantics Init initWithUnsignedShort:)]
-        pub unsafe fn initWithUnsignedShort(
-            this: Option<Allocated<Self>>,
-            value: c_ushort,
-        ) -> Id<NSNumber, Shared>;
-    }
-);
-
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDecimalNumberHandler;
@@ -367,5 +265,17 @@ extern_methods!(
     unsafe impl NSScanner {
         #[method(scanDecimal:)]
         pub unsafe fn scanDecimal(&self, dcm: *mut NSDecimal) -> bool;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSValue`
+    unsafe impl NSDecimalNumber {
+        #[method_id(@__retain_semantics Init initWithBytes:objCType:)]
+        pub unsafe fn initWithBytes_objCType(
+            this: Option<Allocated<Self>>,
+            value: NonNull<c_void>,
+            type_: NonNull<c_char>,
+        ) -> Id<Self, Shared>;
     }
 );

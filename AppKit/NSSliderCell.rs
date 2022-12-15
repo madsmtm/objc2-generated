@@ -83,23 +83,6 @@ extern_methods!(
 );
 
 extern_methods!(
-    /// Methods declared on superclasses
-    unsafe impl NSSliderCell {
-        #[method_id(@__retain_semantics Init initImageCell:)]
-        pub unsafe fn initImageCell(
-            this: Option<Allocated<Self>>,
-            image: Option<&NSImage>,
-        ) -> Id<Self, Shared>;
-
-        #[method_id(@__retain_semantics Init initTextCell:)]
-        pub unsafe fn initTextCell(
-            this: Option<Allocated<Self>>,
-            string: &NSString,
-        ) -> Id<Self, Shared>;
-    }
-);
-
-extern_methods!(
     /// NSSliderCellVerticalGetter
     unsafe impl NSSliderCell {}
 );
@@ -191,3 +174,20 @@ extern_static!(NSTickMarkRight: NSTickMarkPosition = NSTickMarkPositionTrailing)
 extern_static!(NSLinearSlider: NSSliderType = NSSliderTypeLinear);
 
 extern_static!(NSCircularSlider: NSSliderType = NSSliderTypeCircular);
+
+extern_methods!(
+    /// Methods declared on superclass `NSCell`
+    unsafe impl NSSliderCell {
+        #[method_id(@__retain_semantics Init initTextCell:)]
+        pub unsafe fn initTextCell(
+            this: Option<Allocated<Self>>,
+            string: &NSString,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initImageCell:)]
+        pub unsafe fn initImageCell(
+            this: Option<Allocated<Self>>,
+            image: Option<&NSImage>,
+        ) -> Id<Self, Shared>;
+    }
+);

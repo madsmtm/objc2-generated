@@ -70,13 +70,23 @@ extern_methods!(
 );
 
 extern_methods!(
-    /// Methods declared on superclasses
+    /// NSDeprecated
     unsafe impl NSPersistentDocument {
-        #[method_id(@__retain_semantics Init initForURL:withContentsOfURL:ofType:error:)]
-        pub unsafe fn initForURL_withContentsOfURL_ofType_error(
+        #[method(configurePersistentStoreCoordinatorForURL:ofType:error:)]
+        pub unsafe fn configurePersistentStoreCoordinatorForURL_ofType_error(
+            &self,
+            url: Option<&NSURL>,
+            fileType: Option<&NSString>,
+        ) -> Result<(), Id<NSError, Shared>>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSDocument`
+    unsafe impl NSPersistentDocument {
+        #[method_id(@__retain_semantics Init initWithType:error:)]
+        pub unsafe fn initWithType_error(
             this: Option<Allocated<Self>>,
-            urlOrNil: Option<&NSURL>,
-            contentsURL: &NSURL,
             typeName: &NSString,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
@@ -87,22 +97,33 @@ extern_methods!(
             typeName: &NSString,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Init initWithType:error:)]
-        pub unsafe fn initWithType_error(
+        #[method_id(@__retain_semantics Init initForURL:withContentsOfURL:ofType:error:)]
+        pub unsafe fn initForURL_withContentsOfURL_ofType_error(
             this: Option<Allocated<Self>>,
+            urlOrNil: Option<&NSURL>,
+            contentsURL: &NSURL,
             typeName: &NSString,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
     }
 );
 
 extern_methods!(
+    /// Methods declared on superclass `NSDocument`
+    ///
     /// NSDeprecated
     unsafe impl NSPersistentDocument {
-        #[method(configurePersistentStoreCoordinatorForURL:ofType:error:)]
-        pub unsafe fn configurePersistentStoreCoordinatorForURL_ofType_error(
-            &self,
-            url: Option<&NSURL>,
-            fileType: Option<&NSString>,
-        ) -> Result<(), Id<NSError, Shared>>;
+        #[method_id(@__retain_semantics Init initWithContentsOfFile:ofType:)]
+        pub unsafe fn initWithContentsOfFile_ofType(
+            this: Option<Allocated<Self>>,
+            absolutePath: &NSString,
+            typeName: &NSString,
+        ) -> Option<Id<Self, Shared>>;
+
+        #[method_id(@__retain_semantics Init initWithContentsOfURL:ofType:)]
+        pub unsafe fn initWithContentsOfURL_ofType(
+            this: Option<Allocated<Self>>,
+            url: &NSURL,
+            typeName: &NSString,
+        ) -> Option<Id<Self, Shared>>;
     }
 );

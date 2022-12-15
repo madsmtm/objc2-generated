@@ -87,7 +87,7 @@ extern_methods!(
 );
 
 extern_methods!(
-    /// Methods declared on superclasses
+    /// Methods declared on superclass `NSTouchBarItem`
     unsafe impl NSButtonTouchBarItem {
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(

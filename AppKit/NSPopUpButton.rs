@@ -138,16 +138,11 @@ extern_methods!(
     }
 );
 
-extern_methods!(
-    /// Methods declared on superclasses
-    unsafe impl NSPopUpButton {
-        #[method_id(@__retain_semantics Other buttonWithImage:target:action:)]
-        pub unsafe fn buttonWithImage_target_action(
-            image: &NSImage,
-            target: Option<&Object>,
-            action: Option<Sel>,
-        ) -> Id<Self, Shared>;
+extern_static!(NSPopUpButtonWillPopUpNotification: &'static NSNotificationName);
 
+extern_methods!(
+    /// Methods declared on superclass `NSButton`
+    unsafe impl NSPopUpButton {
         #[method_id(@__retain_semantics Other buttonWithTitle:image:target:action:)]
         pub unsafe fn buttonWithTitle_image_target_action(
             title: &NSString,
@@ -163,17 +158,18 @@ extern_methods!(
             action: Option<Sel>,
         ) -> Id<Self, Shared>;
 
+        #[method_id(@__retain_semantics Other buttonWithImage:target:action:)]
+        pub unsafe fn buttonWithImage_target_action(
+            image: &NSImage,
+            target: Option<&Object>,
+            action: Option<Sel>,
+        ) -> Id<Self, Shared>;
+
         #[method_id(@__retain_semantics Other checkboxWithTitle:target:action:)]
         pub unsafe fn checkboxWithTitle_target_action(
             title: &NSString,
             target: Option<&Object>,
             action: Option<Sel>,
-        ) -> Id<Self, Shared>;
-
-        #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frameRect: NSRect,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Other radioButtonWithTitle:target:action:)]
@@ -185,4 +181,13 @@ extern_methods!(
     }
 );
 
-extern_static!(NSPopUpButtonWillPopUpNotification: &'static NSNotificationName);
+extern_methods!(
+    /// Methods declared on superclass `NSControl`
+    unsafe impl NSPopUpButton {
+        #[method_id(@__retain_semantics Init initWithFrame:)]
+        pub unsafe fn initWithFrame(
+            this: Option<Allocated<Self>>,
+            frameRect: NSRect,
+        ) -> Id<Self, Shared>;
+    }
+);

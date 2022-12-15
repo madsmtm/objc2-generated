@@ -129,23 +129,6 @@ extern_methods!(
     }
 );
 
-extern_methods!(
-    /// Methods declared on superclasses
-    unsafe impl NSPathCell {
-        #[method_id(@__retain_semantics Init initImageCell:)]
-        pub unsafe fn initImageCell(
-            this: Option<Allocated<Self>>,
-            image: Option<&NSImage>,
-        ) -> Id<Self, Shared>;
-
-        #[method_id(@__retain_semantics Init initTextCell:)]
-        pub unsafe fn initTextCell(
-            this: Option<Allocated<Self>>,
-            string: &NSString,
-        ) -> Id<Self, Shared>;
-    }
-);
-
 extern_protocol!(
     pub struct NSPathCellDelegate;
 
@@ -161,5 +144,22 @@ extern_protocol!(
         #[optional]
         #[method(pathCell:willPopUpMenu:)]
         pub unsafe fn pathCell_willPopUpMenu(&self, pathCell: &NSPathCell, menu: &NSMenu);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSCell`
+    unsafe impl NSPathCell {
+        #[method_id(@__retain_semantics Init initTextCell:)]
+        pub unsafe fn initTextCell(
+            this: Option<Allocated<Self>>,
+            string: &NSString,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initImageCell:)]
+        pub unsafe fn initImageCell(
+            this: Option<Allocated<Self>>,
+            image: Option<&NSImage>,
+        ) -> Id<Self, Shared>;
     }
 );

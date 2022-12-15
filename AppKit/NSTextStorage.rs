@@ -140,3 +140,155 @@ extern_protocol!(
 );
 
 pub type NSTextStorageEditedOptions = NSUInteger;
+
+extern_methods!(
+    /// Methods declared on superclass `NSAttributedString`
+    ///
+    /// NSAttributedStringDocumentFormats
+    unsafe impl NSTextStorage {
+        #[method_id(@__retain_semantics Init initWithURL:options:documentAttributes:error:)]
+        pub unsafe fn initWithURL_options_documentAttributes_error(
+            this: Option<Allocated<Self>>,
+            url: &NSURL,
+            options: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, Object>,
+            dict: *mut *mut NSDictionary<NSAttributedStringDocumentAttributeKey, Object>,
+        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+
+        #[method_id(@__retain_semantics Init initWithData:options:documentAttributes:error:)]
+        pub unsafe fn initWithData_options_documentAttributes_error(
+            this: Option<Allocated<Self>>,
+            data: &NSData,
+            options: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, Object>,
+            dict: *mut *mut NSDictionary<NSAttributedStringDocumentAttributeKey, Object>,
+        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+
+        #[method_id(@__retain_semantics Init initWithRTF:documentAttributes:)]
+        pub unsafe fn initWithRTF_documentAttributes(
+            this: Option<Allocated<Self>>,
+            data: &NSData,
+            dict: *mut *mut NSDictionary<NSAttributedStringDocumentAttributeKey, Object>,
+        ) -> Option<Id<Self, Shared>>;
+
+        #[method_id(@__retain_semantics Init initWithRTFD:documentAttributes:)]
+        pub unsafe fn initWithRTFD_documentAttributes(
+            this: Option<Allocated<Self>>,
+            data: &NSData,
+            dict: *mut *mut NSDictionary<NSAttributedStringDocumentAttributeKey, Object>,
+        ) -> Option<Id<Self, Shared>>;
+
+        #[method_id(@__retain_semantics Init initWithHTML:documentAttributes:)]
+        pub unsafe fn initWithHTML_documentAttributes(
+            this: Option<Allocated<Self>>,
+            data: &NSData,
+            dict: *mut *mut NSDictionary<NSAttributedStringDocumentAttributeKey, Object>,
+        ) -> Option<Id<Self, Shared>>;
+
+        #[method_id(@__retain_semantics Init initWithHTML:baseURL:documentAttributes:)]
+        pub unsafe fn initWithHTML_baseURL_documentAttributes(
+            this: Option<Allocated<Self>>,
+            data: &NSData,
+            base: &NSURL,
+            dict: *mut *mut NSDictionary<NSAttributedStringDocumentAttributeKey, Object>,
+        ) -> Option<Id<Self, Shared>>;
+
+        #[method_id(@__retain_semantics Init initWithDocFormat:documentAttributes:)]
+        pub unsafe fn initWithDocFormat_documentAttributes(
+            this: Option<Allocated<Self>>,
+            data: &NSData,
+            dict: *mut *mut NSDictionary<NSAttributedStringDocumentAttributeKey, Object>,
+        ) -> Option<Id<Self, Shared>>;
+
+        #[method_id(@__retain_semantics Init initWithHTML:options:documentAttributes:)]
+        pub unsafe fn initWithHTML_options_documentAttributes(
+            this: Option<Allocated<Self>>,
+            data: &NSData,
+            options: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, Object>,
+            dict: *mut *mut NSDictionary<NSAttributedStringDocumentAttributeKey, Object>,
+        ) -> Option<Id<Self, Shared>>;
+
+        #[method_id(@__retain_semantics Init initWithRTFDFileWrapper:documentAttributes:)]
+        pub unsafe fn initWithRTFDFileWrapper_documentAttributes(
+            this: Option<Allocated<Self>>,
+            wrapper: &NSFileWrapper,
+            dict: *mut *mut NSDictionary<NSAttributedStringDocumentAttributeKey, Object>,
+        ) -> Option<Id<Self, Shared>>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSAttributedString`
+    ///
+    /// NSDeprecatedKitAdditions
+    unsafe impl NSTextStorage {
+        #[method_id(@__retain_semantics Init initWithURL:documentAttributes:)]
+        pub unsafe fn initWithURL_documentAttributes(
+            this: Option<Allocated<Self>>,
+            url: &NSURL,
+            dict: *mut *mut NSDictionary,
+        ) -> Option<Id<Self, Shared>>;
+
+        #[method_id(@__retain_semantics Init initWithPath:documentAttributes:)]
+        pub unsafe fn initWithPath_documentAttributes(
+            this: Option<Allocated<Self>>,
+            path: &NSString,
+            dict: *mut *mut NSDictionary,
+        ) -> Option<Id<Self, Shared>>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSAttributedString`
+    ///
+    /// NSExtendedAttributedString
+    unsafe impl NSTextStorage {
+        #[method_id(@__retain_semantics Init initWithString:)]
+        pub unsafe fn initWithString(
+            this: Option<Allocated<Self>>,
+            str: &NSString,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithString:attributes:)]
+        pub unsafe fn initWithString_attributes(
+            this: Option<Allocated<Self>>,
+            str: &NSString,
+            attrs: Option<&NSDictionary<NSAttributedStringKey, Object>>,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithAttributedString:)]
+        pub unsafe fn initWithAttributedString(
+            this: Option<Allocated<Self>>,
+            attrStr: &NSAttributedString,
+        ) -> Id<Self, Shared>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSAttributedString`
+    ///
+    /// NSAttributedStringCreateFromMarkdown
+    unsafe impl NSTextStorage {
+        #[method_id(@__retain_semantics Init initWithContentsOfMarkdownFileAtURL:options:baseURL:error:)]
+        pub unsafe fn initWithContentsOfMarkdownFileAtURL_options_baseURL_error(
+            this: Option<Allocated<Self>>,
+            markdownFile: &NSURL,
+            options: Option<&NSAttributedStringMarkdownParsingOptions>,
+            baseURL: Option<&NSURL>,
+        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+
+        #[method_id(@__retain_semantics Init initWithMarkdown:options:baseURL:error:)]
+        pub unsafe fn initWithMarkdown_options_baseURL_error(
+            this: Option<Allocated<Self>>,
+            markdown: &NSData,
+            options: Option<&NSAttributedStringMarkdownParsingOptions>,
+            baseURL: Option<&NSURL>,
+        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+
+        #[method_id(@__retain_semantics Init initWithMarkdownString:options:baseURL:error:)]
+        pub unsafe fn initWithMarkdownString_options_baseURL_error(
+            this: Option<Allocated<Self>>,
+            markdownString: &NSString,
+            options: Option<&NSAttributedStringMarkdownParsingOptions>,
+            baseURL: Option<&NSURL>,
+        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+    }
+);

@@ -107,7 +107,15 @@ extern_methods!(
 );
 
 extern_methods!(
-    /// Methods declared on superclasses
+    /// NSSplitViewControllerToggleSidebarAction
+    unsafe impl NSSplitViewController {
+        #[method(toggleSidebar:)]
+        pub unsafe fn toggleSidebar(&self, sender: Option<&Object>);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSViewController`
     unsafe impl NSSplitViewController {
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
@@ -115,13 +123,5 @@ extern_methods!(
             nibNameOrNil: Option<&NSNibName>,
             nibBundleOrNil: Option<&NSBundle>,
         ) -> Id<Self, Shared>;
-    }
-);
-
-extern_methods!(
-    /// NSSplitViewControllerToggleSidebarAction
-    unsafe impl NSSplitViewController {
-        #[method(toggleSidebar:)]
-        pub unsafe fn toggleSidebar(&self, sender: Option<&Object>);
     }
 );

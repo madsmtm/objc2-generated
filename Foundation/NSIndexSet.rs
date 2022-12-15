@@ -210,7 +210,7 @@ extern_methods!(
 );
 
 extern_methods!(
-    /// Methods declared on superclasses
+    /// Methods declared on superclass `NSIndexSet`
     unsafe impl NSMutableIndexSet {
         #[method_id(@__retain_semantics Other indexSet)]
         pub unsafe fn indexSet() -> Id<Self, Shared>;
@@ -221,10 +221,10 @@ extern_methods!(
         #[method_id(@__retain_semantics Other indexSetWithIndexesInRange:)]
         pub unsafe fn indexSetWithIndexesInRange(range: NSRange) -> Id<Self, Shared>;
 
-        #[method_id(@__retain_semantics Init initWithIndex:)]
-        pub unsafe fn initWithIndex(
+        #[method_id(@__retain_semantics Init initWithIndexesInRange:)]
+        pub unsafe fn initWithIndexesInRange(
             this: Option<Allocated<Self>>,
-            value: NSUInteger,
+            range: NSRange,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Init initWithIndexSet:)]
@@ -233,10 +233,10 @@ extern_methods!(
             indexSet: &NSIndexSet,
         ) -> Id<Self, Shared>;
 
-        #[method_id(@__retain_semantics Init initWithIndexesInRange:)]
-        pub unsafe fn initWithIndexesInRange(
+        #[method_id(@__retain_semantics Init initWithIndex:)]
+        pub unsafe fn initWithIndex(
             this: Option<Allocated<Self>>,
-            range: NSRange,
+            value: NSUInteger,
         ) -> Id<Self, Shared>;
     }
 );

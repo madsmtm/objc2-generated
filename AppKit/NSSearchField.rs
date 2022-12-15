@@ -92,17 +92,6 @@ extern_methods!(
 );
 
 extern_methods!(
-    /// Methods declared on superclasses
-    unsafe impl NSSearchField {
-        #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frameRect: NSRect,
-        ) -> Id<Self, Shared>;
-    }
-);
-
-extern_methods!(
     /// NSSearchField_Deprecated
     unsafe impl NSSearchField {
         #[method(rectForSearchTextWhenCentered:)]
@@ -119,5 +108,37 @@ extern_methods!(
 
         #[method(setCentersPlaceholder:)]
         pub unsafe fn setCentersPlaceholder(&self, centersPlaceholder: bool);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSTextField`
+    ///
+    /// NSTextFieldConvenience
+    unsafe impl NSSearchField {
+        #[method_id(@__retain_semantics Other labelWithString:)]
+        pub unsafe fn labelWithString(stringValue: &NSString) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Other wrappingLabelWithString:)]
+        pub unsafe fn wrappingLabelWithString(stringValue: &NSString) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Other labelWithAttributedString:)]
+        pub unsafe fn labelWithAttributedString(
+            attributedStringValue: &NSAttributedString,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Other textFieldWithString:)]
+        pub unsafe fn textFieldWithString(stringValue: &NSString) -> Id<Self, Shared>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSControl`
+    unsafe impl NSSearchField {
+        #[method_id(@__retain_semantics Init initWithFrame:)]
+        pub unsafe fn initWithFrame(
+            this: Option<Allocated<Self>>,
+            frameRect: NSRect,
+        ) -> Id<Self, Shared>;
     }
 );

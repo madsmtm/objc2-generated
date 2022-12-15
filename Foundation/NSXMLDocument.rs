@@ -155,7 +155,7 @@ extern_methods!(
 );
 
 extern_methods!(
-    /// Methods declared on superclasses
+    /// Methods declared on superclass `NSXMLNode`
     unsafe impl NSXMLDocument {
         #[method_id(@__retain_semantics Init initWithKind:)]
         pub unsafe fn initWithKind(

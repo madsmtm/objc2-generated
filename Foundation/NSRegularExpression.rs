@@ -186,7 +186,7 @@ extern_methods!(
 );
 
 extern_methods!(
-    /// Methods declared on superclasses
+    /// Methods declared on superclass `NSRegularExpression`
     unsafe impl NSDataDetector {
         #[method_id(@__retain_semantics Init initWithPattern:options:error:)]
         pub unsafe fn initWithPattern_options_error(

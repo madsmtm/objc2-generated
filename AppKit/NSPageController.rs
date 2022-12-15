@@ -72,18 +72,6 @@ extern_methods!(
     }
 );
 
-extern_methods!(
-    /// Methods declared on superclasses
-    unsafe impl NSPageController {
-        #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
-        pub unsafe fn initWithNibName_bundle(
-            this: Option<Allocated<Self>>,
-            nibNameOrNil: Option<&NSNibName>,
-            nibBundleOrNil: Option<&NSBundle>,
-        ) -> Id<Self, Shared>;
-    }
-);
-
 extern_protocol!(
     pub struct NSPageControllerDelegate;
 
@@ -139,5 +127,17 @@ extern_protocol!(
         #[optional]
         #[method(pageControllerDidEndLiveTransition:)]
         pub unsafe fn pageControllerDidEndLiveTransition(&self, pageController: &NSPageController);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSViewController`
+    unsafe impl NSPageController {
+        #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
+        pub unsafe fn initWithNibName_bundle(
+            this: Option<Allocated<Self>>,
+            nibNameOrNil: Option<&NSNibName>,
+            nibBundleOrNil: Option<&NSBundle>,
+        ) -> Id<Self, Shared>;
     }
 );

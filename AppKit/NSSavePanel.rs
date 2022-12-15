@@ -155,35 +155,6 @@ extern_methods!(
     }
 );
 
-extern_methods!(
-    /// Methods declared on superclasses
-    unsafe impl NSSavePanel {
-        #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:)]
-        pub unsafe fn initWithContentRect_styleMask_backing_defer(
-            this: Option<Allocated<Self>>,
-            contentRect: NSRect,
-            style: NSWindowStyleMask,
-            backingStoreType: NSBackingStoreType,
-            flag: bool,
-        ) -> Id<Self, Shared>;
-
-        #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:screen:)]
-        pub unsafe fn initWithContentRect_styleMask_backing_defer_screen(
-            this: Option<Allocated<Self>>,
-            contentRect: NSRect,
-            style: NSWindowStyleMask,
-            backingStoreType: NSBackingStoreType,
-            flag: bool,
-            screen: Option<&NSScreen>,
-        ) -> Id<Self, Shared>;
-
-        #[method_id(@__retain_semantics Other windowWithContentViewController:)]
-        pub unsafe fn windowWithContentViewController(
-            contentViewController: &NSViewController,
-        ) -> Id<Self, Shared>;
-    }
-);
-
 extern_protocol!(
     pub struct NSOpenSavePanelDelegate;
 
@@ -267,5 +238,34 @@ extern_methods!(
 
         #[method(setAllowedFileTypes:)]
         pub unsafe fn setAllowedFileTypes(&self, allowedFileTypes: Option<&NSArray<NSString>>);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSWindow`
+    unsafe impl NSSavePanel {
+        #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:)]
+        pub unsafe fn initWithContentRect_styleMask_backing_defer(
+            this: Option<Allocated<Self>>,
+            contentRect: NSRect,
+            style: NSWindowStyleMask,
+            backingStoreType: NSBackingStoreType,
+            flag: bool,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:screen:)]
+        pub unsafe fn initWithContentRect_styleMask_backing_defer_screen(
+            this: Option<Allocated<Self>>,
+            contentRect: NSRect,
+            style: NSWindowStyleMask,
+            backingStoreType: NSBackingStoreType,
+            flag: bool,
+            screen: Option<&NSScreen>,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Other windowWithContentViewController:)]
+        pub unsafe fn windowWithContentViewController(
+            contentViewController: &NSViewController,
+        ) -> Id<Self, Shared>;
     }
 );

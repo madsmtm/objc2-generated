@@ -225,18 +225,6 @@ extern_methods!(
 );
 
 extern_methods!(
-    /// Methods declared on superclasses
-    unsafe impl NSNumber {
-        #[method_id(@__retain_semantics Init initWithBytes:objCType:)]
-        pub unsafe fn initWithBytes_objCType(
-            this: Option<Allocated<Self>>,
-            value: NonNull<c_void>,
-            type_: NonNull<c_char>,
-        ) -> Id<Self, Shared>;
-    }
-);
-
-extern_methods!(
     /// NSNumberCreation
     unsafe impl NSNumber {
         #[method_id(@__retain_semantics Other numberWithChar:)]
@@ -291,5 +279,17 @@ extern_methods!(
     unsafe impl NSValue {
         #[method(getValue:)]
         pub unsafe fn getValue(&self, value: NonNull<c_void>);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSValue`
+    unsafe impl NSNumber {
+        #[method_id(@__retain_semantics Init initWithBytes:objCType:)]
+        pub unsafe fn initWithBytes_objCType(
+            this: Option<Allocated<Self>>,
+            value: NonNull<c_void>,
+            type_: NonNull<c_char>,
+        ) -> Id<Self, Shared>;
     }
 );

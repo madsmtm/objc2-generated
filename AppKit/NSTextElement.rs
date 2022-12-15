@@ -69,7 +69,7 @@ extern_methods!(
 );
 
 extern_methods!(
-    /// Methods declared on superclasses
+    /// Methods declared on superclass `NSTextElement`
     unsafe impl NSTextParagraph {
         #[method_id(@__retain_semantics Init initWithTextContentManager:)]
         pub unsafe fn initWithTextContentManager(

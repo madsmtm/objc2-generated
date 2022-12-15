@@ -221,20 +221,6 @@ extern_methods!(
 );
 
 extern_methods!(
-    /// Methods declared on superclasses
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
-        NSMutableSet<ObjectType, ObjectTypeOwnership>
-    {
-        #[method_id(@__retain_semantics Init initWithObjects:count:)]
-        pub unsafe fn initWithObjects_count(
-            this: Option<Allocated<Self>>,
-            objects: *mut NonNull<ObjectType>,
-            cnt: NSUInteger,
-        ) -> Id<Self, Shared>;
-    }
-);
-
-extern_methods!(
     /// NSExtendedMutableSet
     unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
         NSMutableSet<ObjectType, ObjectTypeOwnership>
@@ -321,21 +307,121 @@ extern_methods!(
 );
 
 extern_methods!(
-    /// Methods declared on superclasses
+    /// Methods declared on superclass `NSSet`
     unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
-        NSCountedSet<ObjectType, ObjectTypeOwnership>
+        NSMutableSet<ObjectType, ObjectTypeOwnership>
     {
-        #[method_id(@__retain_semantics Init initWithCapacity:)]
-        pub unsafe fn initWithCapacity(
-            this: Option<Allocated<Self>>,
-            numItems: NSUInteger,
-        ) -> Id<Self, Shared>;
-
         #[method_id(@__retain_semantics Init initWithObjects:count:)]
         pub unsafe fn initWithObjects_count(
             this: Option<Allocated<Self>>,
             objects: *mut NonNull<ObjectType>,
             cnt: NSUInteger,
+        ) -> Id<Self, Shared>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSSet`
+    ///
+    /// NSSetCreation
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSMutableSet<ObjectType, ObjectTypeOwnership>
+    {
+        #[method_id(@__retain_semantics Other set)]
+        pub unsafe fn set() -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Other setWithObject:)]
+        pub unsafe fn setWithObject(object: &ObjectType) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Other setWithObjects:count:)]
+        pub unsafe fn setWithObjects_count(
+            objects: NonNull<NonNull<ObjectType>>,
+            cnt: NSUInteger,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Other setWithSet:)]
+        pub unsafe fn setWithSet(set: &NSSet<ObjectType>) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Other setWithArray:)]
+        pub unsafe fn setWithArray(array: &NSArray<ObjectType>) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithSet:)]
+        pub unsafe fn initWithSet(
+            this: Option<Allocated<Self>>,
+            set: &NSSet<ObjectType>,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithSet:copyItems:)]
+        pub unsafe fn initWithSet_copyItems(
+            this: Option<Allocated<Self>>,
+            set: &NSSet<ObjectType>,
+            flag: bool,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithArray:)]
+        pub unsafe fn initWithArray(
+            this: Option<Allocated<Self>>,
+            array: &NSArray<ObjectType>,
+        ) -> Id<Self, Shared>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSMutableSet`
+    ///
+    /// NSMutableSetCreation
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSCountedSet<ObjectType, ObjectTypeOwnership>
+    {
+        #[method_id(@__retain_semantics Other setWithCapacity:)]
+        pub unsafe fn setWithCapacity(numItems: NSUInteger) -> Id<Self, Shared>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSSet`
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSCountedSet<ObjectType, ObjectTypeOwnership>
+    {
+        #[method_id(@__retain_semantics Init initWithObjects:count:)]
+        pub unsafe fn initWithObjects_count(
+            this: Option<Allocated<Self>>,
+            objects: *mut NonNull<ObjectType>,
+            cnt: NSUInteger,
+        ) -> Id<Self, Shared>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSSet`
+    ///
+    /// NSSetCreation
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSCountedSet<ObjectType, ObjectTypeOwnership>
+    {
+        #[method_id(@__retain_semantics Other set)]
+        pub unsafe fn set() -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Other setWithObject:)]
+        pub unsafe fn setWithObject(object: &ObjectType) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Other setWithObjects:count:)]
+        pub unsafe fn setWithObjects_count(
+            objects: NonNull<NonNull<ObjectType>>,
+            cnt: NSUInteger,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Other setWithSet:)]
+        pub unsafe fn setWithSet(set: &NSSet<ObjectType>) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Other setWithArray:)]
+        pub unsafe fn setWithArray(array: &NSArray<ObjectType>) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithSet:copyItems:)]
+        pub unsafe fn initWithSet_copyItems(
+            this: Option<Allocated<Self>>,
+            set: &NSSet<ObjectType>,
+            flag: bool,
         ) -> Id<Self, Shared>;
     }
 );

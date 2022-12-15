@@ -118,17 +118,6 @@ extern_methods!(
     }
 );
 
-extern_methods!(
-    /// Methods declared on superclasses
-    unsafe impl NSScroller {
-        #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frameRect: NSRect,
-        ) -> Id<Self, Shared>;
-    }
-);
-
 extern_static!(NSPreferredScrollerStyleDidChangeNotification: &'static NSNotificationName);
 
 ns_enum!(
@@ -184,5 +173,16 @@ extern_methods!(
 
         #[method(drawArrow:highlight:)]
         pub unsafe fn drawArrow_highlight(&self, whichArrow: NSScrollerArrow, flag: bool);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSControl`
+    unsafe impl NSScroller {
+        #[method_id(@__retain_semantics Init initWithFrame:)]
+        pub unsafe fn initWithFrame(
+            this: Option<Allocated<Self>>,
+            frameRect: NSRect,
+        ) -> Id<Self, Shared>;
     }
 );

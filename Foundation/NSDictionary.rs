@@ -335,25 +335,6 @@ extern_methods!(
 );
 
 extern_methods!(
-    /// Methods declared on superclasses
-    unsafe impl<
-            KeyType: Message,
-            ObjectType: Message,
-            KeyTypeOwnership: Ownership,
-            ObjectTypeOwnership: Ownership,
-        > NSMutableDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
-    {
-        #[method_id(@__retain_semantics Init initWithObjects:forKeys:count:)]
-        pub unsafe fn initWithObjects_forKeys_count(
-            this: Option<Allocated<Self>>,
-            objects: *mut NonNull<ObjectType>,
-            keys: *mut NonNull<Object>,
-            cnt: NSUInteger,
-        ) -> Id<Self, Shared>;
-    }
-);
-
-extern_methods!(
     /// NSExtendedMutableDictionary
     unsafe impl<
             KeyType: Message,
@@ -448,5 +429,84 @@ extern_methods!(
             buffer: NonNull<*mut K>,
             len: NSUInteger,
         ) -> NSUInteger;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSDictionary`
+    unsafe impl<
+            KeyType: Message,
+            ObjectType: Message,
+            KeyTypeOwnership: Ownership,
+            ObjectTypeOwnership: Ownership,
+        > NSMutableDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
+    {
+        #[method_id(@__retain_semantics Init initWithObjects:forKeys:count:)]
+        pub unsafe fn initWithObjects_forKeys_count(
+            this: Option<Allocated<Self>>,
+            objects: *mut NonNull<ObjectType>,
+            keys: *mut NonNull<Object>,
+            cnt: NSUInteger,
+        ) -> Id<Self, Shared>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSDictionary`
+    ///
+    /// NSDictionaryCreation
+    unsafe impl<
+            KeyType: Message,
+            ObjectType: Message,
+            KeyTypeOwnership: Ownership,
+            ObjectTypeOwnership: Ownership,
+        > NSMutableDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
+    {
+        #[method_id(@__retain_semantics Other dictionary)]
+        pub unsafe fn dictionary() -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Other dictionaryWithObject:forKey:)]
+        pub unsafe fn dictionaryWithObject_forKey(
+            object: &ObjectType,
+            key: &Object,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Other dictionaryWithObjects:forKeys:count:)]
+        pub unsafe fn dictionaryWithObjects_forKeys_count(
+            objects: *mut NonNull<ObjectType>,
+            keys: *mut NonNull<Object>,
+            cnt: NSUInteger,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Other dictionaryWithDictionary:)]
+        pub unsafe fn dictionaryWithDictionary(
+            dict: &NSDictionary<KeyType, ObjectType>,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Other dictionaryWithObjects:forKeys:)]
+        pub unsafe fn dictionaryWithObjects_forKeys(
+            objects: &NSArray<ObjectType>,
+            keys: &NSArray<Object>,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithDictionary:)]
+        pub unsafe fn initWithDictionary(
+            this: Option<Allocated<Self>>,
+            otherDictionary: &NSDictionary<KeyType, ObjectType>,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithDictionary:copyItems:)]
+        pub unsafe fn initWithDictionary_copyItems(
+            this: Option<Allocated<Self>>,
+            otherDictionary: &NSDictionary<KeyType, ObjectType>,
+            flag: bool,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithObjects:forKeys:)]
+        pub unsafe fn initWithObjects_forKeys(
+            this: Option<Allocated<Self>>,
+            objects: &NSArray<ObjectType>,
+            keys: &NSArray<Object>,
+        ) -> Id<Self, Shared>;
     }
 );

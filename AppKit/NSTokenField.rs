@@ -143,7 +143,28 @@ extern_methods!(
 );
 
 extern_methods!(
-    /// Methods declared on superclasses
+    /// Methods declared on superclass `NSTextField`
+    ///
+    /// NSTextFieldConvenience
+    unsafe impl NSTokenField {
+        #[method_id(@__retain_semantics Other labelWithString:)]
+        pub unsafe fn labelWithString(stringValue: &NSString) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Other wrappingLabelWithString:)]
+        pub unsafe fn wrappingLabelWithString(stringValue: &NSString) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Other labelWithAttributedString:)]
+        pub unsafe fn labelWithAttributedString(
+            attributedStringValue: &NSAttributedString,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Other textFieldWithString:)]
+        pub unsafe fn textFieldWithString(stringValue: &NSString) -> Id<Self, Shared>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSControl`
     unsafe impl NSTokenField {
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(

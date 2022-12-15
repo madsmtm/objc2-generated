@@ -163,17 +163,6 @@ extern_methods!(
 );
 
 extern_methods!(
-    /// Methods declared on superclasses
-    unsafe impl NSCalendarDate {
-        #[method_id(@__retain_semantics Init initWithTimeIntervalSinceReferenceDate:)]
-        pub unsafe fn initWithTimeIntervalSinceReferenceDate(
-            this: Option<Allocated<Self>>,
-            ti: NSTimeInterval,
-        ) -> Id<Self, Shared>;
-    }
-);
-
-extern_methods!(
     /// NSCalendarDateExtras
     unsafe impl NSDate {
         #[method_id(@__retain_semantics Other dateWithNaturalLanguageString:locale:)]
@@ -210,5 +199,62 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             description: &NSString,
         ) -> Option<Id<Self, Shared>>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSDate`
+    unsafe impl NSCalendarDate {
+        #[method_id(@__retain_semantics Init initWithTimeIntervalSinceReferenceDate:)]
+        pub unsafe fn initWithTimeIntervalSinceReferenceDate(
+            this: Option<Allocated<Self>>,
+            ti: NSTimeInterval,
+        ) -> Id<Self, Shared>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSDate`
+    ///
+    /// NSDateCreation
+    unsafe impl NSCalendarDate {
+        #[method_id(@__retain_semantics Other date)]
+        pub unsafe fn date() -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Other dateWithTimeIntervalSinceNow:)]
+        pub unsafe fn dateWithTimeIntervalSinceNow(secs: NSTimeInterval) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Other dateWithTimeIntervalSinceReferenceDate:)]
+        pub unsafe fn dateWithTimeIntervalSinceReferenceDate(
+            ti: NSTimeInterval,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Other dateWithTimeIntervalSince1970:)]
+        pub unsafe fn dateWithTimeIntervalSince1970(secs: NSTimeInterval) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Other dateWithTimeInterval:sinceDate:)]
+        pub unsafe fn dateWithTimeInterval_sinceDate(
+            secsToBeAdded: NSTimeInterval,
+            date: &NSDate,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithTimeIntervalSinceNow:)]
+        pub unsafe fn initWithTimeIntervalSinceNow(
+            this: Option<Allocated<Self>>,
+            secs: NSTimeInterval,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithTimeIntervalSince1970:)]
+        pub unsafe fn initWithTimeIntervalSince1970(
+            this: Option<Allocated<Self>>,
+            secs: NSTimeInterval,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithTimeInterval:sinceDate:)]
+        pub unsafe fn initWithTimeInterval_sinceDate(
+            this: Option<Allocated<Self>>,
+            secsToBeAdded: NSTimeInterval,
+            date: &NSDate,
+        ) -> Id<Self, Shared>;
     }
 );

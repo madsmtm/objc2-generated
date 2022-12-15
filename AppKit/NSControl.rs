@@ -212,17 +212,6 @@ extern_methods!(
 );
 
 extern_methods!(
-    /// Methods declared on superclasses
-    unsafe impl NSControl {
-        #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frameRect: NSRect,
-        ) -> Id<Self, Shared>;
-    }
-);
-
-extern_methods!(
     /// NSControlEditableTextMethods
     unsafe impl NSControl {
         #[method_id(@__retain_semantics Other currentEditor)]

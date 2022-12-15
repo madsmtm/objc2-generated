@@ -63,23 +63,6 @@ extern_methods!(
     }
 );
 
-extern_methods!(
-    /// Methods declared on superclasses
-    unsafe impl NSTokenFieldCell {
-        #[method_id(@__retain_semantics Init initImageCell:)]
-        pub unsafe fn initImageCell(
-            this: Option<Allocated<Self>>,
-            image: Option<&NSImage>,
-        ) -> Id<Self, Shared>;
-
-        #[method_id(@__retain_semantics Init initTextCell:)]
-        pub unsafe fn initTextCell(
-            this: Option<Allocated<Self>>,
-            string: &NSString,
-        ) -> Id<Self, Shared>;
-    }
-);
-
 extern_protocol!(
     pub struct NSTokenFieldCellDelegate;
 
@@ -175,3 +158,20 @@ extern_static!(NSDefaultTokenStyle: NSTokenStyle = NSTokenStyleDefault);
 extern_static!(NSPlainTextTokenStyle: NSTokenStyle = NSTokenStyleNone);
 
 extern_static!(NSRoundedTokenStyle: NSTokenStyle = NSTokenStyleRounded);
+
+extern_methods!(
+    /// Methods declared on superclass `NSTextFieldCell`
+    unsafe impl NSTokenFieldCell {
+        #[method_id(@__retain_semantics Init initTextCell:)]
+        pub unsafe fn initTextCell(
+            this: Option<Allocated<Self>>,
+            string: &NSString,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initImageCell:)]
+        pub unsafe fn initImageCell(
+            this: Option<Allocated<Self>>,
+            image: Option<&NSImage>,
+        ) -> Id<Self, Shared>;
+    }
+);

@@ -102,17 +102,6 @@ extern_methods!(
 );
 
 extern_methods!(
-    /// Methods declared on superclasses
-    unsafe impl NSSplitView {
-        #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frameRect: NSRect,
-        ) -> Id<Self, Shared>;
-    }
-);
-
-extern_methods!(
     /// NSSplitViewArrangedSubviews
     unsafe impl NSSplitView {
         #[method(arrangesAllSubviews)]
@@ -247,5 +236,16 @@ extern_methods!(
 
         #[method(isPaneSplitter)]
         pub unsafe fn isPaneSplitter(&self) -> bool;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSView`
+    unsafe impl NSSplitView {
+        #[method_id(@__retain_semantics Init initWithFrame:)]
+        pub unsafe fn initWithFrame(
+            this: Option<Allocated<Self>>,
+            frameRect: NSRect,
+        ) -> Id<Self, Shared>;
     }
 );
