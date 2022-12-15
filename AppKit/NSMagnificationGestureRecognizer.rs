@@ -24,3 +24,15 @@ extern_methods!(
         pub unsafe fn setMagnification(&self, magnification: CGFloat);
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSMagnificationGestureRecognizer {
+        #[method_id(@__retain_semantics Init initWithTarget:action:)]
+        pub unsafe fn initWithTarget_action(
+            this: Option<Allocated<Self>>,
+            target: Option<&Object>,
+            action: Option<Sel>,
+        ) -> Id<Self, Shared>;
+    }
+);

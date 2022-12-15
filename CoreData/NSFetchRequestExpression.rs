@@ -35,3 +35,14 @@ extern_methods!(
         pub unsafe fn isCountOnlyRequest(&self) -> bool;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSFetchRequestExpression {
+        #[method_id(@__retain_semantics Init initWithExpressionType:)]
+        pub unsafe fn initWithExpressionType(
+            this: Option<Allocated<Self>>,
+            type_: NSExpressionType,
+        ) -> Id<Self, Shared>;
+    }
+);

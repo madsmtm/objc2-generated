@@ -187,6 +187,32 @@ extern_methods!(
 );
 
 extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSMutableURLRequest {
+        #[method_id(@__retain_semantics Init initWithURL:)]
+        pub unsafe fn initWithURL(this: Option<Allocated<Self>>, URL: &NSURL) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithURL:cachePolicy:timeoutInterval:)]
+        pub unsafe fn initWithURL_cachePolicy_timeoutInterval(
+            this: Option<Allocated<Self>>,
+            URL: &NSURL,
+            cachePolicy: NSURLRequestCachePolicy,
+            timeoutInterval: NSTimeInterval,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Other requestWithURL:)]
+        pub unsafe fn requestWithURL(URL: &NSURL) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Other requestWithURL:cachePolicy:timeoutInterval:)]
+        pub unsafe fn requestWithURL_cachePolicy_timeoutInterval(
+            URL: &NSURL,
+            cachePolicy: NSURLRequestCachePolicy,
+            timeoutInterval: NSTimeInterval,
+        ) -> Id<Self, Shared>;
+    }
+);
+
+extern_methods!(
     /// NSHTTPURLRequest
     unsafe impl NSURLRequest {
         #[method_id(@__retain_semantics Other HTTPMethod)]

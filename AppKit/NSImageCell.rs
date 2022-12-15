@@ -62,3 +62,20 @@ extern_methods!(
         pub unsafe fn setImageFrameStyle(&self, imageFrameStyle: NSImageFrameStyle);
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSImageCell {
+        #[method_id(@__retain_semantics Init initImageCell:)]
+        pub unsafe fn initImageCell(
+            this: Option<Allocated<Self>>,
+            image: Option<&NSImage>,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initTextCell:)]
+        pub unsafe fn initTextCell(
+            this: Option<Allocated<Self>>,
+            string: &NSString,
+        ) -> Id<Self, Shared>;
+    }
+);

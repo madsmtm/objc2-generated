@@ -163,6 +163,17 @@ extern_methods!(
 );
 
 extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSCalendarDate {
+        #[method_id(@__retain_semantics Init initWithTimeIntervalSinceReferenceDate:)]
+        pub unsafe fn initWithTimeIntervalSinceReferenceDate(
+            this: Option<Allocated<Self>>,
+            ti: NSTimeInterval,
+        ) -> Id<Self, Shared>;
+    }
+);
+
+extern_methods!(
     /// NSCalendarDateExtras
     unsafe impl NSDate {
         #[method_id(@__retain_semantics Other dateWithNaturalLanguageString:locale:)]

@@ -224,6 +224,18 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSViewAnimation {
+        #[method_id(@__retain_semantics Init initWithDuration:animationCurve:)]
+        pub unsafe fn initWithDuration_animationCurve(
+            this: Option<Allocated<Self>>,
+            duration: NSTimeInterval,
+            animationCurve: NSAnimationCurve,
+        ) -> Id<Self, Shared>;
+    }
+);
+
 pub type NSAnimatablePropertyKey = NSString;
 
 extern_protocol!(

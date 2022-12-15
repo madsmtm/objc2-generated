@@ -221,6 +221,20 @@ extern_methods!(
 );
 
 extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSMutableSet<ObjectType, ObjectTypeOwnership>
+    {
+        #[method_id(@__retain_semantics Init initWithObjects:count:)]
+        pub unsafe fn initWithObjects_count(
+            this: Option<Allocated<Self>>,
+            objects: *mut NonNull<ObjectType>,
+            cnt: NSUInteger,
+        ) -> Id<Self, Shared>;
+    }
+);
+
+extern_methods!(
     /// NSExtendedMutableSet
     unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
         NSMutableSet<ObjectType, ObjectTypeOwnership>
@@ -303,5 +317,25 @@ extern_methods!(
 
         #[method(removeObject:)]
         pub unsafe fn removeObject(&self, object: &ObjectType);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSCountedSet<ObjectType, ObjectTypeOwnership>
+    {
+        #[method_id(@__retain_semantics Init initWithCapacity:)]
+        pub unsafe fn initWithCapacity(
+            this: Option<Allocated<Self>>,
+            numItems: NSUInteger,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithObjects:count:)]
+        pub unsafe fn initWithObjects_count(
+            this: Option<Allocated<Self>>,
+            objects: *mut NonNull<ObjectType>,
+            cnt: NSUInteger,
+        ) -> Id<Self, Shared>;
     }
 );

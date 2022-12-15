@@ -79,3 +79,17 @@ extern_methods!(
         ) -> Id<Object, Shared>;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSAtomicStore {
+        #[method_id(@__retain_semantics Init initWithPersistentStoreCoordinator:configurationName:URL:options:)]
+        pub unsafe fn initWithPersistentStoreCoordinator_configurationName_URL_options(
+            this: Option<Allocated<Self>>,
+            root: Option<&NSPersistentStoreCoordinator>,
+            name: Option<&NSString>,
+            url: &NSURL,
+            options: Option<&NSDictionary>,
+        ) -> Id<Self, Shared>;
+    }
+);

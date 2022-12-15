@@ -32,6 +32,17 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSCloneCommand {
+        #[method_id(@__retain_semantics Init initWithCommandDescription:)]
+        pub unsafe fn initWithCommandDescription(
+            this: Option<Allocated<Self>>,
+            commandDef: &NSScriptCommandDescription,
+        ) -> Id<Self, Shared>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCloseCommand;
@@ -49,6 +60,17 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSCloseCommand {
+        #[method_id(@__retain_semantics Init initWithCommandDescription:)]
+        pub unsafe fn initWithCommandDescription(
+            this: Option<Allocated<Self>>,
+            commandDef: &NSScriptCommandDescription,
+        ) -> Id<Self, Shared>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCountCommand;
@@ -61,6 +83,17 @@ extern_class!(
 
 extern_methods!(
     unsafe impl NSCountCommand {}
+);
+
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSCountCommand {
+        #[method_id(@__retain_semantics Init initWithCommandDescription:)]
+        pub unsafe fn initWithCommandDescription(
+            this: Option<Allocated<Self>>,
+            commandDef: &NSScriptCommandDescription,
+        ) -> Id<Self, Shared>;
+    }
 );
 
 extern_class!(
@@ -80,6 +113,17 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other resolvedKeyDictionary)]
         pub unsafe fn resolvedKeyDictionary(&self) -> Id<NSDictionary<NSString, Object>, Shared>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSCreateCommand {
+        #[method_id(@__retain_semantics Init initWithCommandDescription:)]
+        pub unsafe fn initWithCommandDescription(
+            this: Option<Allocated<Self>>,
+            commandDef: &NSScriptCommandDescription,
+        ) -> Id<Self, Shared>;
     }
 );
 
@@ -103,6 +147,17 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSDeleteCommand {
+        #[method_id(@__retain_semantics Init initWithCommandDescription:)]
+        pub unsafe fn initWithCommandDescription(
+            this: Option<Allocated<Self>>,
+            commandDef: &NSScriptCommandDescription,
+        ) -> Id<Self, Shared>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSExistsCommand;
@@ -117,6 +172,17 @@ extern_methods!(
     unsafe impl NSExistsCommand {}
 );
 
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSExistsCommand {
+        #[method_id(@__retain_semantics Init initWithCommandDescription:)]
+        pub unsafe fn initWithCommandDescription(
+            this: Option<Allocated<Self>>,
+            commandDef: &NSScriptCommandDescription,
+        ) -> Id<Self, Shared>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSGetCommand;
@@ -129,6 +195,17 @@ extern_class!(
 
 extern_methods!(
     unsafe impl NSGetCommand {}
+);
+
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSGetCommand {
+        #[method_id(@__retain_semantics Init initWithCommandDescription:)]
+        pub unsafe fn initWithCommandDescription(
+            this: Option<Allocated<Self>>,
+            commandDef: &NSScriptCommandDescription,
+        ) -> Id<Self, Shared>;
+    }
 );
 
 extern_class!(
@@ -151,6 +228,17 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSMoveCommand {
+        #[method_id(@__retain_semantics Init initWithCommandDescription:)]
+        pub unsafe fn initWithCommandDescription(
+            this: Option<Allocated<Self>>,
+            commandDef: &NSScriptCommandDescription,
+        ) -> Id<Self, Shared>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSQuitCommand;
@@ -165,6 +253,17 @@ extern_methods!(
     unsafe impl NSQuitCommand {
         #[method(saveOptions)]
         pub unsafe fn saveOptions(&self) -> NSSaveOptions;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSQuitCommand {
+        #[method_id(@__retain_semantics Init initWithCommandDescription:)]
+        pub unsafe fn initWithCommandDescription(
+            this: Option<Allocated<Self>>,
+            commandDef: &NSScriptCommandDescription,
+        ) -> Id<Self, Shared>;
     }
 );
 
@@ -185,5 +284,16 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other keySpecifier)]
         pub unsafe fn keySpecifier(&self) -> Id<NSScriptObjectSpecifier, Shared>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSSetCommand {
+        #[method_id(@__retain_semantics Init initWithCommandDescription:)]
+        pub unsafe fn initWithCommandDescription(
+            this: Option<Allocated<Self>>,
+            commandDef: &NSScriptCommandDescription,
+        ) -> Id<Self, Shared>;
     }
 );

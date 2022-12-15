@@ -397,6 +397,20 @@ extern_methods!(
 );
 
 extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
+        NSMutableOrderedSet<ObjectType, ObjectTypeOwnership>
+    {
+        #[method_id(@__retain_semantics Init initWithObjects:count:)]
+        pub unsafe fn initWithObjects_count(
+            this: Option<Allocated<Self>>,
+            objects: *mut NonNull<ObjectType>,
+            cnt: NSUInteger,
+        ) -> Id<Self, Shared>;
+    }
+);
+
+extern_methods!(
     /// NSExtendedMutableOrderedSet
     unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
         NSMutableOrderedSet<ObjectType, ObjectTypeOwnership>

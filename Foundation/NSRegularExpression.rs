@@ -184,3 +184,15 @@ extern_methods!(
         pub unsafe fn checkingTypes(&self) -> NSTextCheckingTypes;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSDataDetector {
+        #[method_id(@__retain_semantics Init initWithPattern:options:error:)]
+        pub unsafe fn initWithPattern_options_error(
+            this: Option<Allocated<Self>>,
+            pattern: &NSString,
+            options: NSRegularExpressionOptions,
+        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+    }
+);

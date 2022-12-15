@@ -175,3 +175,14 @@ extern_methods!(
         pub unsafe fn leafKeyPathForNode(&self, node: &NSTreeNode) -> Option<Id<NSString, Shared>>;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSTreeController {
+        #[method_id(@__retain_semantics Init initWithContent:)]
+        pub unsafe fn initWithContent(
+            this: Option<Allocated<Self>>,
+            content: Option<&Object>,
+        ) -> Id<Self, Shared>;
+    }
+);

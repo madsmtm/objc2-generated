@@ -89,3 +89,14 @@ extern_methods!(
         pub unsafe fn isSelectedAtIndex(&self, index: NSInteger) -> bool;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSToolbarItemGroup {
+        #[method_id(@__retain_semantics Init initWithItemIdentifier:)]
+        pub unsafe fn initWithItemIdentifier(
+            this: Option<Allocated<Self>>,
+            itemIdentifier: &NSToolbarItemIdentifier,
+        ) -> Id<Self, Shared>;
+    }
+);

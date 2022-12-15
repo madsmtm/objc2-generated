@@ -30,3 +30,14 @@ extern_methods!(
         pub unsafe fn setShowsIndicator(&self, showsIndicator: bool);
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSMenuToolbarItem {
+        #[method_id(@__retain_semantics Init initWithItemIdentifier:)]
+        pub unsafe fn initWithItemIdentifier(
+            this: Option<Allocated<Self>>,
+            itemIdentifier: &NSToolbarItemIdentifier,
+        ) -> Id<Self, Shared>;
+    }
+);

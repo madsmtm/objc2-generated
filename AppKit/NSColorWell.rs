@@ -45,3 +45,14 @@ extern_methods!(
         pub unsafe fn setColor(&self, color: &NSColor);
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSColorWell {
+        #[method_id(@__retain_semantics Init initWithFrame:)]
+        pub unsafe fn initWithFrame(
+            this: Option<Allocated<Self>>,
+            frameRect: NSRect,
+        ) -> Id<Self, Shared>;
+    }
+);

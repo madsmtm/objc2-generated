@@ -142,6 +142,18 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSCollectionViewItem {
+        #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
+        pub unsafe fn initWithNibName_bundle(
+            this: Option<Allocated<Self>>,
+            nibNameOrNil: Option<&NSNibName>,
+            nibBundleOrNil: Option<&NSBundle>,
+        ) -> Id<Self, Shared>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionView;
@@ -453,6 +465,17 @@ extern_methods!(
             event: &NSEvent,
             dragImageOffset: NSPointPointer,
         ) -> Id<NSImage, Shared>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSCollectionView {
+        #[method_id(@__retain_semantics Init initWithFrame:)]
+        pub unsafe fn initWithFrame(
+            this: Option<Allocated<Self>>,
+            frameRect: NSRect,
+        ) -> Id<Self, Shared>;
     }
 );
 

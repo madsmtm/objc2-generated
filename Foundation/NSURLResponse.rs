@@ -77,3 +77,17 @@ extern_methods!(
         pub unsafe fn localizedStringForStatusCode(statusCode: NSInteger) -> Id<NSString, Shared>;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSHTTPURLResponse {
+        #[method_id(@__retain_semantics Init initWithURL:MIMEType:expectedContentLength:textEncodingName:)]
+        pub unsafe fn initWithURL_MIMEType_expectedContentLength_textEncodingName(
+            this: Option<Allocated<Self>>,
+            URL: &NSURL,
+            MIMEType: Option<&NSString>,
+            length: NSInteger,
+            name: Option<&NSString>,
+        ) -> Id<Self, Shared>;
+    }
+);

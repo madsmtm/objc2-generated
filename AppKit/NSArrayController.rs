@@ -174,3 +174,14 @@ extern_methods!(
         pub unsafe fn removeObjects(&self, objects: &NSArray);
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSArrayController {
+        #[method_id(@__retain_semantics Init initWithContent:)]
+        pub unsafe fn initWithContent(
+            this: Option<Allocated<Self>>,
+            content: Option<&Object>,
+        ) -> Id<Self, Shared>;
+    }
+);

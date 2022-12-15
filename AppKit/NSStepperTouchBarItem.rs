@@ -72,3 +72,14 @@ extern_methods!(
         pub unsafe fn setCustomizationLabel(&self, customizationLabel: Option<&NSString>);
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSStepperTouchBarItem {
+        #[method_id(@__retain_semantics Init initWithIdentifier:)]
+        pub unsafe fn initWithIdentifier(
+            this: Option<Allocated<Self>>,
+            identifier: &NSTouchBarItemIdentifier,
+        ) -> Id<Self, Shared>;
+    }
+);

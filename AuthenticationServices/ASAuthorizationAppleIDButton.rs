@@ -45,3 +45,14 @@ extern_methods!(
         pub unsafe fn setCornerRadius(&self, cornerRadius: CGFloat);
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl ASAuthorizationAppleIDButton {
+        #[method_id(@__retain_semantics Init initWithFrame:)]
+        pub unsafe fn initWithFrame(
+            this: Option<Allocated<Self>>,
+            frameRect: NSRect,
+        ) -> Id<Self, Shared>;
+    }
+);

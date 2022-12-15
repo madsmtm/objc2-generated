@@ -31,3 +31,15 @@ extern_methods!(
         pub unsafe fn prepareInterfaceForExtensionConfiguration(&self);
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl ASCredentialProviderViewController {
+        #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
+        pub unsafe fn initWithNibName_bundle(
+            this: Option<Allocated<Self>>,
+            nibNameOrNil: Option<&NSNibName>,
+            nibBundleOrNil: Option<&NSBundle>,
+        ) -> Id<Self, Shared>;
+    }
+);

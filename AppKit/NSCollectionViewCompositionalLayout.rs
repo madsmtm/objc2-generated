@@ -426,6 +426,20 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSCollectionLayoutGroup {
+        #[method_id(@__retain_semantics Other itemWithLayoutSize:)]
+        pub unsafe fn itemWithLayoutSize(layoutSize: &NSCollectionLayoutSize) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Other itemWithLayoutSize:supplementaryItems:)]
+        pub unsafe fn itemWithLayoutSize_supplementaryItems(
+            layoutSize: &NSCollectionLayoutSize,
+            supplementaryItems: &NSArray<NSCollectionLayoutSupplementaryItem>,
+        ) -> Id<Self, Shared>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutDimension;
@@ -626,6 +640,20 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSCollectionLayoutSupplementaryItem {
+        #[method_id(@__retain_semantics Other itemWithLayoutSize:)]
+        pub unsafe fn itemWithLayoutSize(layoutSize: &NSCollectionLayoutSize) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Other itemWithLayoutSize:supplementaryItems:)]
+        pub unsafe fn itemWithLayoutSize_supplementaryItems(
+            layoutSize: &NSCollectionLayoutSize,
+            supplementaryItems: &NSArray<NSCollectionLayoutSupplementaryItem>,
+        ) -> Id<Self, Shared>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutBoundarySupplementaryItem;
@@ -679,6 +707,35 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSCollectionLayoutBoundarySupplementaryItem {
+        #[method_id(@__retain_semantics Other itemWithLayoutSize:)]
+        pub unsafe fn itemWithLayoutSize(layoutSize: &NSCollectionLayoutSize) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Other itemWithLayoutSize:supplementaryItems:)]
+        pub unsafe fn itemWithLayoutSize_supplementaryItems(
+            layoutSize: &NSCollectionLayoutSize,
+            supplementaryItems: &NSArray<NSCollectionLayoutSupplementaryItem>,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Other supplementaryItemWithLayoutSize:elementKind:containerAnchor:)]
+        pub unsafe fn supplementaryItemWithLayoutSize_elementKind_containerAnchor(
+            layoutSize: &NSCollectionLayoutSize,
+            elementKind: &NSString,
+            containerAnchor: &NSCollectionLayoutAnchor,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Other supplementaryItemWithLayoutSize:elementKind:containerAnchor:itemAnchor:)]
+        pub unsafe fn supplementaryItemWithLayoutSize_elementKind_containerAnchor_itemAnchor(
+            layoutSize: &NSCollectionLayoutSize,
+            elementKind: &NSString,
+            containerAnchor: &NSCollectionLayoutAnchor,
+            itemAnchor: &NSCollectionLayoutAnchor,
+        ) -> Id<Self, Shared>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionLayoutDecorationItem;
@@ -710,6 +767,20 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other elementKind)]
         pub unsafe fn elementKind(&self) -> Id<NSString, Shared>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSCollectionLayoutDecorationItem {
+        #[method_id(@__retain_semantics Other itemWithLayoutSize:)]
+        pub unsafe fn itemWithLayoutSize(layoutSize: &NSCollectionLayoutSize) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Other itemWithLayoutSize:supplementaryItems:)]
+        pub unsafe fn itemWithLayoutSize_supplementaryItems(
+            layoutSize: &NSCollectionLayoutSize,
+            supplementaryItems: &NSArray<NSCollectionLayoutSupplementaryItem>,
+        ) -> Id<Self, Shared>;
     }
 );
 

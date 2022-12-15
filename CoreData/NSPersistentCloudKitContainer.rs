@@ -47,3 +47,30 @@ extern_methods!(
         pub unsafe fn canModifyManagedObjectsInStore(&self, store: &NSPersistentStore) -> bool;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSPersistentCloudKitContainer {
+        #[method_id(@__retain_semantics Init initWithName:)]
+        pub unsafe fn initWithName(
+            this: Option<Allocated<Self>>,
+            name: &NSString,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithName:managedObjectModel:)]
+        pub unsafe fn initWithName_managedObjectModel(
+            this: Option<Allocated<Self>>,
+            name: &NSString,
+            model: &NSManagedObjectModel,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Other persistentContainerWithName:)]
+        pub unsafe fn persistentContainerWithName(name: &NSString) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Other persistentContainerWithName:managedObjectModel:)]
+        pub unsafe fn persistentContainerWithName_managedObjectModel(
+            name: &NSString,
+            model: &NSManagedObjectModel,
+        ) -> Id<Self, Shared>;
+    }
+);

@@ -208,3 +208,35 @@ extern_methods!(
         pub unsafe fn shiftIndexesStartingAtIndex_by(&self, index: NSUInteger, delta: NSInteger);
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSMutableIndexSet {
+        #[method_id(@__retain_semantics Other indexSet)]
+        pub unsafe fn indexSet() -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Other indexSetWithIndex:)]
+        pub unsafe fn indexSetWithIndex(value: NSUInteger) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Other indexSetWithIndexesInRange:)]
+        pub unsafe fn indexSetWithIndexesInRange(range: NSRange) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithIndex:)]
+        pub unsafe fn initWithIndex(
+            this: Option<Allocated<Self>>,
+            value: NSUInteger,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithIndexSet:)]
+        pub unsafe fn initWithIndexSet(
+            this: Option<Allocated<Self>>,
+            indexSet: &NSIndexSet,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithIndexesInRange:)]
+        pub unsafe fn initWithIndexesInRange(
+            this: Option<Allocated<Self>>,
+            range: NSRange,
+        ) -> Id<Self, Shared>;
+    }
+);

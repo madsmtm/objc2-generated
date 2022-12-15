@@ -70,6 +70,32 @@ extern_methods!(
 );
 
 extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSPersistentDocument {
+        #[method_id(@__retain_semantics Init initForURL:withContentsOfURL:ofType:error:)]
+        pub unsafe fn initForURL_withContentsOfURL_ofType_error(
+            this: Option<Allocated<Self>>,
+            urlOrNil: Option<&NSURL>,
+            contentsURL: &NSURL,
+            typeName: &NSString,
+        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+
+        #[method_id(@__retain_semantics Init initWithContentsOfURL:ofType:error:)]
+        pub unsafe fn initWithContentsOfURL_ofType_error(
+            this: Option<Allocated<Self>>,
+            url: &NSURL,
+            typeName: &NSString,
+        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+
+        #[method_id(@__retain_semantics Init initWithType:error:)]
+        pub unsafe fn initWithType_error(
+            this: Option<Allocated<Self>>,
+            typeName: &NSString,
+        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+    }
+);
+
+extern_methods!(
     /// NSDeprecated
     unsafe impl NSPersistentDocument {
         #[method(configurePersistentStoreCoordinatorForURL:ofType:error:)]

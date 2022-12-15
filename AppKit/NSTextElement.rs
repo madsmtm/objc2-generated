@@ -67,3 +67,14 @@ extern_methods!(
         pub unsafe fn paragraphSeparatorRange(&self) -> Option<Id<NSTextRange, Shared>>;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSTextParagraph {
+        #[method_id(@__retain_semantics Init initWithTextContentManager:)]
+        pub unsafe fn initWithTextContentManager(
+            this: Option<Allocated<Self>>,
+            textContentManager: Option<&NSTextContentManager>,
+        ) -> Id<Self, Shared>;
+    }
+);

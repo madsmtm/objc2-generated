@@ -161,6 +161,17 @@ extern_methods!(
 );
 
 extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSRulerView {
+        #[method_id(@__retain_semantics Init initWithFrame:)]
+        pub unsafe fn initWithFrame(
+            this: Option<Allocated<Self>>,
+            frameRect: NSRect,
+        ) -> Id<Self, Shared>;
+    }
+);
+
+extern_methods!(
     /// NSRulerMarkerClientViewDelegation
     unsafe impl NSView {
         #[method(rulerView:shouldMoveMarker:)]

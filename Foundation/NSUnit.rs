@@ -110,6 +110,17 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSDimension {
+        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        pub unsafe fn initWithSymbol(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+        ) -> Id<Self, Shared>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitAcceleration;
@@ -127,6 +138,27 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other gravity)]
         pub unsafe fn gravity() -> Id<NSUnitAcceleration, Shared>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSUnitAcceleration {
+        #[method_id(@__retain_semantics Other baseUnit)]
+        pub unsafe fn baseUnit() -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        pub unsafe fn initWithSymbol(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        pub unsafe fn initWithSymbol_converter(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+            converter: &NSUnitConverter,
+        ) -> Id<Self, Shared>;
     }
 );
 
@@ -159,6 +191,27 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other revolutions)]
         pub unsafe fn revolutions() -> Id<NSUnitAngle, Shared>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSUnitAngle {
+        #[method_id(@__retain_semantics Other baseUnit)]
+        pub unsafe fn baseUnit() -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        pub unsafe fn initWithSymbol(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        pub unsafe fn initWithSymbol_converter(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+            converter: &NSUnitConverter,
+        ) -> Id<Self, Shared>;
     }
 );
 
@@ -218,6 +271,27 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSUnitArea {
+        #[method_id(@__retain_semantics Other baseUnit)]
+        pub unsafe fn baseUnit() -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        pub unsafe fn initWithSymbol(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        pub unsafe fn initWithSymbol_converter(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+            converter: &NSUnitConverter,
+        ) -> Id<Self, Shared>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitConcentrationMass;
@@ -243,6 +317,27 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSUnitConcentrationMass {
+        #[method_id(@__retain_semantics Other baseUnit)]
+        pub unsafe fn baseUnit() -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        pub unsafe fn initWithSymbol(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        pub unsafe fn initWithSymbol_converter(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+            converter: &NSUnitConverter,
+        ) -> Id<Self, Shared>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitDispersion;
@@ -257,6 +352,27 @@ extern_methods!(
     unsafe impl NSUnitDispersion {
         #[method_id(@__retain_semantics Other partsPerMillion)]
         pub unsafe fn partsPerMillion() -> Id<NSUnitDispersion, Shared>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSUnitDispersion {
+        #[method_id(@__retain_semantics Other baseUnit)]
+        pub unsafe fn baseUnit() -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        pub unsafe fn initWithSymbol(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        pub unsafe fn initWithSymbol_converter(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+            converter: &NSUnitConverter,
+        ) -> Id<Self, Shared>;
     }
 );
 
@@ -295,6 +411,27 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSUnitDuration {
+        #[method_id(@__retain_semantics Other baseUnit)]
+        pub unsafe fn baseUnit() -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        pub unsafe fn initWithSymbol(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        pub unsafe fn initWithSymbol_converter(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+            converter: &NSUnitConverter,
+        ) -> Id<Self, Shared>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitElectricCharge;
@@ -327,6 +464,27 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSUnitElectricCharge {
+        #[method_id(@__retain_semantics Other baseUnit)]
+        pub unsafe fn baseUnit() -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        pub unsafe fn initWithSymbol(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        pub unsafe fn initWithSymbol_converter(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+            converter: &NSUnitConverter,
+        ) -> Id<Self, Shared>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitElectricCurrent;
@@ -353,6 +511,27 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other microamperes)]
         pub unsafe fn microamperes() -> Id<NSUnitElectricCurrent, Shared>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSUnitElectricCurrent {
+        #[method_id(@__retain_semantics Other baseUnit)]
+        pub unsafe fn baseUnit() -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        pub unsafe fn initWithSymbol(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        pub unsafe fn initWithSymbol_converter(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+            converter: &NSUnitConverter,
+        ) -> Id<Self, Shared>;
     }
 );
 
@@ -385,6 +564,27 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSUnitElectricPotentialDifference {
+        #[method_id(@__retain_semantics Other baseUnit)]
+        pub unsafe fn baseUnit() -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        pub unsafe fn initWithSymbol(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        pub unsafe fn initWithSymbol_converter(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+            converter: &NSUnitConverter,
+        ) -> Id<Self, Shared>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitElectricResistance;
@@ -414,6 +614,27 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSUnitElectricResistance {
+        #[method_id(@__retain_semantics Other baseUnit)]
+        pub unsafe fn baseUnit() -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        pub unsafe fn initWithSymbol(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        pub unsafe fn initWithSymbol_converter(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+            converter: &NSUnitConverter,
+        ) -> Id<Self, Shared>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitEnergy;
@@ -440,6 +661,27 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other kilowattHours)]
         pub unsafe fn kilowattHours() -> Id<NSUnitEnergy, Shared>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSUnitEnergy {
+        #[method_id(@__retain_semantics Other baseUnit)]
+        pub unsafe fn baseUnit() -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        pub unsafe fn initWithSymbol(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        pub unsafe fn initWithSymbol_converter(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+            converter: &NSUnitConverter,
+        ) -> Id<Self, Shared>;
     }
 );
 
@@ -484,6 +726,27 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSUnitFrequency {
+        #[method_id(@__retain_semantics Other baseUnit)]
+        pub unsafe fn baseUnit() -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        pub unsafe fn initWithSymbol(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        pub unsafe fn initWithSymbol_converter(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+            converter: &NSUnitConverter,
+        ) -> Id<Self, Shared>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitFuelEfficiency;
@@ -504,6 +767,27 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other milesPerGallon)]
         pub unsafe fn milesPerGallon() -> Id<NSUnitFuelEfficiency, Shared>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSUnitFuelEfficiency {
+        #[method_id(@__retain_semantics Other baseUnit)]
+        pub unsafe fn baseUnit() -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        pub unsafe fn initWithSymbol(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        pub unsafe fn initWithSymbol_converter(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+            converter: &NSUnitConverter,
+        ) -> Id<Self, Shared>;
     }
 );
 
@@ -626,6 +910,27 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSUnitInformationStorage {
+        #[method_id(@__retain_semantics Other baseUnit)]
+        pub unsafe fn baseUnit() -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        pub unsafe fn initWithSymbol(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        pub unsafe fn initWithSymbol_converter(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+            converter: &NSUnitConverter,
+        ) -> Id<Self, Shared>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitLength;
@@ -706,6 +1011,27 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSUnitLength {
+        #[method_id(@__retain_semantics Other baseUnit)]
+        pub unsafe fn baseUnit() -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        pub unsafe fn initWithSymbol(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        pub unsafe fn initWithSymbol_converter(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+            converter: &NSUnitConverter,
+        ) -> Id<Self, Shared>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitIlluminance;
@@ -720,6 +1046,27 @@ extern_methods!(
     unsafe impl NSUnitIlluminance {
         #[method_id(@__retain_semantics Other lux)]
         pub unsafe fn lux() -> Id<NSUnitIlluminance, Shared>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSUnitIlluminance {
+        #[method_id(@__retain_semantics Other baseUnit)]
+        pub unsafe fn baseUnit() -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        pub unsafe fn initWithSymbol(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        pub unsafe fn initWithSymbol_converter(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+            converter: &NSUnitConverter,
+        ) -> Id<Self, Shared>;
     }
 );
 
@@ -785,6 +1132,27 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSUnitMass {
+        #[method_id(@__retain_semantics Other baseUnit)]
+        pub unsafe fn baseUnit() -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        pub unsafe fn initWithSymbol(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        pub unsafe fn initWithSymbol_converter(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+            converter: &NSUnitConverter,
+        ) -> Id<Self, Shared>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitPower;
@@ -832,6 +1200,27 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSUnitPower {
+        #[method_id(@__retain_semantics Other baseUnit)]
+        pub unsafe fn baseUnit() -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        pub unsafe fn initWithSymbol(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        pub unsafe fn initWithSymbol_converter(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+            converter: &NSUnitConverter,
+        ) -> Id<Self, Shared>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitPressure;
@@ -876,6 +1265,27 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSUnitPressure {
+        #[method_id(@__retain_semantics Other baseUnit)]
+        pub unsafe fn baseUnit() -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        pub unsafe fn initWithSymbol(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        pub unsafe fn initWithSymbol_converter(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+            converter: &NSUnitConverter,
+        ) -> Id<Self, Shared>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitSpeed;
@@ -902,6 +1312,27 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSUnitSpeed {
+        #[method_id(@__retain_semantics Other baseUnit)]
+        pub unsafe fn baseUnit() -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        pub unsafe fn initWithSymbol(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        pub unsafe fn initWithSymbol_converter(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+            converter: &NSUnitConverter,
+        ) -> Id<Self, Shared>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitTemperature;
@@ -922,6 +1353,27 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other fahrenheit)]
         pub unsafe fn fahrenheit() -> Id<NSUnitTemperature, Shared>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSUnitTemperature {
+        #[method_id(@__retain_semantics Other baseUnit)]
+        pub unsafe fn baseUnit() -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        pub unsafe fn initWithSymbol(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        pub unsafe fn initWithSymbol_converter(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+            converter: &NSUnitConverter,
+        ) -> Id<Self, Shared>;
     }
 );
 
@@ -1029,5 +1481,26 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other metricCups)]
         pub unsafe fn metricCups() -> Id<NSUnitVolume, Shared>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSUnitVolume {
+        #[method_id(@__retain_semantics Other baseUnit)]
+        pub unsafe fn baseUnit() -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        pub unsafe fn initWithSymbol(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        pub unsafe fn initWithSymbol_converter(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+            converter: &NSUnitConverter,
+        ) -> Id<Self, Shared>;
     }
 );

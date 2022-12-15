@@ -48,6 +48,17 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSSharingServicePickerTouchBarItem {
+        #[method_id(@__retain_semantics Init initWithIdentifier:)]
+        pub unsafe fn initWithIdentifier(
+            this: Option<Allocated<Self>>,
+            identifier: &NSTouchBarItemIdentifier,
+        ) -> Id<Self, Shared>;
+    }
+);
+
 extern_protocol!(
     pub struct NSSharingServicePickerTouchBarItemDelegate;
 

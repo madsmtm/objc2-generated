@@ -335,6 +335,25 @@ extern_methods!(
 );
 
 extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl<
+            KeyType: Message,
+            ObjectType: Message,
+            KeyTypeOwnership: Ownership,
+            ObjectTypeOwnership: Ownership,
+        > NSMutableDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
+    {
+        #[method_id(@__retain_semantics Init initWithObjects:forKeys:count:)]
+        pub unsafe fn initWithObjects_forKeys_count(
+            this: Option<Allocated<Self>>,
+            objects: *mut NonNull<ObjectType>,
+            keys: *mut NonNull<Object>,
+            cnt: NSUInteger,
+        ) -> Id<Self, Shared>;
+    }
+);
+
+extern_methods!(
     /// NSExtendedMutableDictionary
     unsafe impl<
             KeyType: Message,

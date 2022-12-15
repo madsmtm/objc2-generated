@@ -36,3 +36,20 @@ extern_methods!(
         pub unsafe fn setTag(&self, tag: NSInteger);
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSActionCell {
+        #[method_id(@__retain_semantics Init initImageCell:)]
+        pub unsafe fn initImageCell(
+            this: Option<Allocated<Self>>,
+            image: Option<&NSImage>,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initTextCell:)]
+        pub unsafe fn initTextCell(
+            this: Option<Allocated<Self>>,
+            string: &NSString,
+        ) -> Id<Self, Shared>;
+    }
+);

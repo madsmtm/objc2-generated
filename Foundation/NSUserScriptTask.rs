@@ -74,6 +74,17 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSUserUnixTask {
+        #[method_id(@__retain_semantics Init initWithURL:error:)]
+        pub unsafe fn initWithURL_error(
+            this: Option<Allocated<Self>>,
+            url: &NSURL,
+        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+    }
+);
+
 pub type NSUserAppleScriptTaskCompletionHandler =
     *mut Block<(*mut NSAppleEventDescriptor, *mut NSError), ()>;
 
@@ -95,6 +106,17 @@ extern_methods!(
             event: Option<&NSAppleEventDescriptor>,
             handler: NSUserAppleScriptTaskCompletionHandler,
         );
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSUserAppleScriptTask {
+        #[method_id(@__retain_semantics Init initWithURL:error:)]
+        pub unsafe fn initWithURL_error(
+            this: Option<Allocated<Self>>,
+            url: &NSURL,
+        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
     }
 );
 
@@ -124,5 +146,16 @@ extern_methods!(
             input: Option<&NSSecureCoding>,
             handler: NSUserAutomatorTaskCompletionHandler,
         );
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSUserAutomatorTask {
+        #[method_id(@__retain_semantics Init initWithURL:error:)]
+        pub unsafe fn initWithURL_error(
+            this: Option<Allocated<Self>>,
+            url: &NSURL,
+        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
     }
 );

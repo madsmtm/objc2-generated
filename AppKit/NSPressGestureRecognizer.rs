@@ -42,3 +42,15 @@ extern_methods!(
         pub unsafe fn setNumberOfTouchesRequired(&self, numberOfTouchesRequired: NSInteger);
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSPressGestureRecognizer {
+        #[method_id(@__retain_semantics Init initWithTarget:action:)]
+        pub unsafe fn initWithTarget_action(
+            this: Option<Allocated<Self>>,
+            target: Option<&Object>,
+            action: Option<Sel>,
+        ) -> Id<Self, Shared>;
+    }
+);

@@ -141,6 +141,24 @@ extern_methods!(
 );
 
 extern_methods!(
+    /// Methods declared on superclasses
+    unsafe impl NSXMLElement {
+        #[method_id(@__retain_semantics Init initWithKind:)]
+        pub unsafe fn initWithKind(
+            this: Option<Allocated<Self>>,
+            kind: NSXMLNodeKind,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithKind:options:)]
+        pub unsafe fn initWithKind_options(
+            this: Option<Allocated<Self>>,
+            kind: NSXMLNodeKind,
+            options: NSXMLNodeOptions,
+        ) -> Id<Self, Shared>;
+    }
+);
+
+extern_methods!(
     /// NSDeprecated
     unsafe impl NSXMLElement {
         #[method(setAttributesAsDictionary:)]
