@@ -27,6 +27,7 @@ extern_class!(
     pub struct NSInflectionRuleExplicit;
 
     unsafe impl ClassType for NSInflectionRuleExplicit {
+        #[inherits(NSObject)]
         type Super = NSInflectionRule;
     }
 );

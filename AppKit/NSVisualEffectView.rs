@@ -52,6 +52,7 @@ extern_class!(
     pub struct NSVisualEffectView;
 
     unsafe impl ClassType for NSVisualEffectView {
+        #[inherits(NSResponder, NSObject)]
         type Super = NSView;
     }
 );

@@ -9,6 +9,7 @@ extern_class!(
     pub struct NSIncrementalStore;
 
     unsafe impl ClassType for NSIncrementalStore {
+        #[inherits(NSObject)]
         type Super = NSPersistentStore;
     }
 );

@@ -40,6 +40,7 @@ extern_class!(
     pub struct NSColorPanel;
 
     unsafe impl ClassType for NSColorPanel {
+        #[inherits(NSWindow, NSResponder, NSObject)]
         type Super = NSPanel;
     }
 );

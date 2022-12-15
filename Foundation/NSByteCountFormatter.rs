@@ -35,6 +35,7 @@ extern_class!(
     pub struct NSByteCountFormatter;
 
     unsafe impl ClassType for NSByteCountFormatter {
+        #[inherits(NSObject)]
         type Super = NSFormatter;
     }
 );

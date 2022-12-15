@@ -10,6 +10,7 @@ extern_class!(
     pub struct NSForm;
 
     unsafe impl ClassType for NSForm {
+        #[inherits(NSControl, NSView, NSResponder, NSObject)]
         type Super = NSMatrix;
     }
 );

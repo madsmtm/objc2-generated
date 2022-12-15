@@ -9,6 +9,7 @@ extern_class!(
     pub struct NSPersistentHistoryChangeRequest;
 
     unsafe impl ClassType for NSPersistentHistoryChangeRequest {
+        #[inherits(NSObject)]
         type Super = NSPersistentStoreRequest;
     }
 );

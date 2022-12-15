@@ -10,6 +10,7 @@ extern_class!(
     pub struct NSATSTypesetter;
 
     unsafe impl ClassType for NSATSTypesetter {
+        #[inherits(NSObject)]
         type Super = NSTypesetter;
     }
 );

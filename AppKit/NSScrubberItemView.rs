@@ -10,6 +10,7 @@ extern_class!(
     pub struct NSScrubberArrangedView;
 
     unsafe impl ClassType for NSScrubberArrangedView {
+        #[inherits(NSResponder, NSObject)]
         type Super = NSView;
     }
 );
@@ -38,6 +39,7 @@ extern_class!(
     pub struct NSScrubberSelectionView;
 
     unsafe impl ClassType for NSScrubberSelectionView {
+        #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSScrubberArrangedView;
     }
 );
@@ -51,6 +53,7 @@ extern_class!(
     pub struct NSScrubberItemView;
 
     unsafe impl ClassType for NSScrubberItemView {
+        #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSScrubberArrangedView;
     }
 );
@@ -64,6 +67,7 @@ extern_class!(
     pub struct NSScrubberTextItemView;
 
     unsafe impl ClassType for NSScrubberTextItemView {
+        #[inherits(NSScrubberArrangedView, NSView, NSResponder, NSObject)]
         type Super = NSScrubberItemView;
     }
 );
@@ -86,6 +90,7 @@ extern_class!(
     pub struct NSScrubberImageItemView;
 
     unsafe impl ClassType for NSScrubberImageItemView {
+        #[inherits(NSScrubberArrangedView, NSView, NSResponder, NSObject)]
         type Super = NSScrubberItemView;
     }
 );

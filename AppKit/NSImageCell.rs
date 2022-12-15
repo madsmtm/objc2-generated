@@ -36,6 +36,7 @@ extern_class!(
     pub struct NSImageCell;
 
     unsafe impl ClassType for NSImageCell {
+        #[inherits(NSObject)]
         type Super = NSCell;
     }
 );

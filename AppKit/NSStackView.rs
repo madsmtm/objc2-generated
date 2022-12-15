@@ -43,6 +43,7 @@ extern_class!(
     pub struct NSStackView;
 
     unsafe impl ClassType for NSStackView {
+        #[inherits(NSResponder, NSObject)]
         type Super = NSView;
     }
 );

@@ -10,6 +10,7 @@ extern_class!(
     pub struct NSArrayController;
 
     unsafe impl ClassType for NSArrayController {
+        #[inherits(NSController, NSObject)]
         type Super = NSObjectController;
     }
 );

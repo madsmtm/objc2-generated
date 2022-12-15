@@ -49,6 +49,7 @@ extern_class!(
     pub struct NSScroller;
 
     unsafe impl ClassType for NSScroller {
+        #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSControl;
     }
 );

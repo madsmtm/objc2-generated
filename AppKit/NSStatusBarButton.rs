@@ -10,6 +10,7 @@ extern_class!(
     pub struct NSStatusBarButton;
 
     unsafe impl ClassType for NSStatusBarButton {
+        #[inherits(NSControl, NSView, NSResponder, NSObject)]
         type Super = NSButton;
     }
 );

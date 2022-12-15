@@ -65,6 +65,7 @@ extern_class!(
     pub struct NSSecureUnarchiveFromDataTransformer;
 
     unsafe impl ClassType for NSSecureUnarchiveFromDataTransformer {
+        #[inherits(NSObject)]
         type Super = NSValueTransformer;
     }
 );

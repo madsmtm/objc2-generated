@@ -19,6 +19,7 @@ extern_class!(
     pub struct NSPathCell;
 
     unsafe impl ClassType for NSPathCell {
+        #[inherits(NSCell, NSObject)]
         type Super = NSActionCell;
     }
 );

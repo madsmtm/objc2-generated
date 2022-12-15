@@ -10,6 +10,7 @@ extern_class!(
     pub struct NSLayoutXAxisAnchor;
 
     unsafe impl ClassType for NSLayoutXAxisAnchor {
+        #[inherits(NSObject)]
         type Super = NSLayoutAnchor;
     }
 );
@@ -50,6 +51,7 @@ extern_class!(
     pub struct NSLayoutYAxisAnchor;
 
     unsafe impl ClassType for NSLayoutYAxisAnchor {
+        #[inherits(NSObject)]
         type Super = NSLayoutAnchor;
     }
 );
@@ -90,6 +92,7 @@ extern_class!(
     pub struct NSLayoutDimension;
 
     unsafe impl ClassType for NSLayoutDimension {
+        #[inherits(NSObject)]
         type Super = NSLayoutAnchor;
     }
 );

@@ -10,6 +10,7 @@ extern_class!(
     pub struct NSSharingServicePickerTouchBarItem;
 
     unsafe impl ClassType for NSSharingServicePickerTouchBarItem {
+        #[inherits(NSObject)]
         type Super = NSTouchBarItem;
     }
 );

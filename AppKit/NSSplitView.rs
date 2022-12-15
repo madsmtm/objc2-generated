@@ -21,6 +21,7 @@ extern_class!(
     pub struct NSSplitView;
 
     unsafe impl ClassType for NSSplitView {
+        #[inherits(NSResponder, NSObject)]
         type Super = NSView;
     }
 );

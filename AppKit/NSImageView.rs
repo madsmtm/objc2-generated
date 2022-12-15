@@ -10,6 +10,7 @@ extern_class!(
     pub struct NSImageView;
 
     unsafe impl ClassType for NSImageView {
+        #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSControl;
     }
 );

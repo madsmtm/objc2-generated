@@ -17,6 +17,7 @@ extern_class!(
     pub struct NSCompoundPredicate;
 
     unsafe impl ClassType for NSCompoundPredicate {
+        #[inherits(NSObject)]
         type Super = NSPredicate;
     }
 );

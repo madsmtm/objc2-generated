@@ -178,6 +178,7 @@ extern_class!(
     pub struct NSTextTableBlock;
 
     unsafe impl ClassType for NSTextTableBlock {
+        #[inherits(NSObject)]
         type Super = NSTextBlock;
     }
 );
@@ -216,6 +217,7 @@ extern_class!(
     pub struct NSTextTable;
 
     unsafe impl ClassType for NSTextTable {
+        #[inherits(NSObject)]
         type Super = NSTextBlock;
     }
 );

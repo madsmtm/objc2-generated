@@ -115,6 +115,7 @@ extern_class!(
     pub struct NSMutableCharacterSet;
 
     unsafe impl ClassType for NSMutableCharacterSet {
+        #[inherits(NSObject)]
         type Super = NSCharacterSet;
     }
 );

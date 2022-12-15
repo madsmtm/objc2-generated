@@ -18,6 +18,7 @@ extern_class!(
     pub struct NSPersistentCloudKitContainer;
 
     unsafe impl ClassType for NSPersistentCloudKitContainer {
+        #[inherits(NSObject)]
         type Super = NSPersistentContainer;
     }
 );

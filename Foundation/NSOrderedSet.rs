@@ -361,6 +361,7 @@ __inner_extern_class!(
     unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> ClassType
         for NSMutableOrderedSet<ObjectType, ObjectTypeOwnership>
     {
+        #[inherits(NSObject)]
         type Super = NSOrderedSet<ObjectType, ObjectTypeOwnership>;
     }
 );

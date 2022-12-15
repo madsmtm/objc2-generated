@@ -162,6 +162,7 @@ extern_class!(
     pub struct NSDataDetector;
 
     unsafe impl ClassType for NSDataDetector {
+        #[inherits(NSObject)]
         type Super = NSRegularExpression;
     }
 );

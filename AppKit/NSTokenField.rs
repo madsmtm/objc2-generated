@@ -100,6 +100,7 @@ extern_class!(
     pub struct NSTokenField;
 
     unsafe impl ClassType for NSTokenField {
+        #[inherits(NSControl, NSView, NSResponder, NSObject)]
         type Super = NSTextField;
     }
 );

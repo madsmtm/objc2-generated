@@ -45,6 +45,7 @@ extern_class!(
     pub struct NSButtonCell;
 
     unsafe impl ClassType for NSButtonCell {
+        #[inherits(NSCell, NSObject)]
         type Super = NSActionCell;
     }
 );

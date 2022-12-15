@@ -28,6 +28,7 @@ extern_class!(
     pub struct NSISO8601DateFormatter;
 
     unsafe impl ClassType for NSISO8601DateFormatter {
+        #[inherits(NSObject)]
         type Super = NSFormatter;
     }
 );

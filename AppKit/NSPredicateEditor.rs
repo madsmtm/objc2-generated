@@ -10,6 +10,7 @@ extern_class!(
     pub struct NSPredicateEditor;
 
     unsafe impl ClassType for NSPredicateEditor {
+        #[inherits(NSControl, NSView, NSResponder, NSObject)]
         type Super = NSRuleEditor;
     }
 );

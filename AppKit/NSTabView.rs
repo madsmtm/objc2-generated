@@ -45,6 +45,7 @@ extern_class!(
     pub struct NSTabView;
 
     unsafe impl ClassType for NSTabView {
+        #[inherits(NSResponder, NSObject)]
         type Super = NSView;
     }
 );

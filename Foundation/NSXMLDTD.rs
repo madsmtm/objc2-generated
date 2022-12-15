@@ -8,6 +8,7 @@ extern_class!(
     pub struct NSXMLDTD;
 
     unsafe impl ClassType for NSXMLDTD {
+        #[inherits(NSObject)]
         type Super = NSXMLNode;
     }
 );

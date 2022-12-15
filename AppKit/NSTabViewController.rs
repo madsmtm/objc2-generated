@@ -20,6 +20,7 @@ extern_class!(
     pub struct NSTabViewController;
 
     unsafe impl ClassType for NSTabViewController {
+        #[inherits(NSResponder, NSObject)]
         type Super = NSViewController;
     }
 );

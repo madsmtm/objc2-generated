@@ -10,6 +10,7 @@ extern_class!(
     pub struct NSRotationGestureRecognizer;
 
     unsafe impl ClassType for NSRotationGestureRecognizer {
+        #[inherits(NSObject)]
         type Super = NSGestureRecognizer;
     }
 );

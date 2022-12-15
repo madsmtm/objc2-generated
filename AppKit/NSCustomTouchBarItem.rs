@@ -10,6 +10,7 @@ extern_class!(
     pub struct NSCustomTouchBarItem;
 
     unsafe impl ClassType for NSCustomTouchBarItem {
+        #[inherits(NSObject)]
         type Super = NSTouchBarItem;
     }
 );

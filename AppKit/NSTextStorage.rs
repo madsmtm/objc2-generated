@@ -18,6 +18,7 @@ extern_class!(
     pub struct NSTextStorage;
 
     unsafe impl ClassType for NSTextStorage {
+        #[inherits(NSAttributedString, NSObject)]
         type Super = NSMutableAttributedString;
     }
 );

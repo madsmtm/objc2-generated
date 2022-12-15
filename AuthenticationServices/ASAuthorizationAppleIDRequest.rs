@@ -9,6 +9,7 @@ extern_class!(
     pub struct ASAuthorizationAppleIDRequest;
 
     unsafe impl ClassType for ASAuthorizationAppleIDRequest {
+        #[inherits(ASAuthorizationRequest, NSObject)]
         type Super = ASAuthorizationOpenIDRequest;
     }
 );

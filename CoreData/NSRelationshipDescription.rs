@@ -19,6 +19,7 @@ extern_class!(
     pub struct NSRelationshipDescription;
 
     unsafe impl ClassType for NSRelationshipDescription {
+        #[inherits(NSObject)]
         type Super = NSPropertyDescription;
     }
 );

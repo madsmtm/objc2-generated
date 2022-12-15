@@ -8,6 +8,7 @@ extern_class!(
     pub struct NSScriptClassDescription;
 
     unsafe impl ClassType for NSScriptClassDescription {
+        #[inherits(NSObject)]
         type Super = NSClassDescription;
     }
 );

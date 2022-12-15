@@ -18,6 +18,7 @@ extern_class!(
     pub struct NSXMLDocument;
 
     unsafe impl ClassType for NSXMLDocument {
+        #[inherits(NSObject)]
         type Super = NSXMLNode;
     }
 );

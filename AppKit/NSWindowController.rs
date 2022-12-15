@@ -10,6 +10,7 @@ extern_class!(
     pub struct NSWindowController;
 
     unsafe impl ClassType for NSWindowController {
+        #[inherits(NSObject)]
         type Super = NSResponder;
     }
 );

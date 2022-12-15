@@ -11,6 +11,7 @@ extern_class!(
     unsafe impl ClassType
         for ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest
     {
+        #[inherits(NSObject)]
         type Super = ASAccountAuthenticationModificationRequest;
     }
 );

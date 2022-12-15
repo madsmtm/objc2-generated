@@ -10,6 +10,7 @@ extern_class!(
     pub struct NSPathComponentCell;
 
     unsafe impl ClassType for NSPathComponentCell {
+        #[inherits(NSActionCell, NSCell, NSObject)]
         type Super = NSTextFieldCell;
     }
 );

@@ -45,6 +45,7 @@ extern_class!(
     pub struct NSHTTPURLResponse;
 
     unsafe impl ClassType for NSHTTPURLResponse {
+        #[inherits(NSObject)]
         type Super = NSURLResponse;
     }
 );

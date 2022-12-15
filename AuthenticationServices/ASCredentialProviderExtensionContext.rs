@@ -9,6 +9,7 @@ extern_class!(
     pub struct ASCredentialProviderExtensionContext;
 
     unsafe impl ClassType for ASCredentialProviderExtensionContext {
+        #[inherits(NSObject)]
         type Super = NSExtensionContext;
     }
 );

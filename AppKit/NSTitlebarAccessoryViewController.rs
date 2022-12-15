@@ -10,6 +10,7 @@ extern_class!(
     pub struct NSTitlebarAccessoryViewController;
 
     unsafe impl ClassType for NSTitlebarAccessoryViewController {
+        #[inherits(NSResponder, NSObject)]
         type Super = NSViewController;
     }
 );

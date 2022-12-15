@@ -17,6 +17,7 @@ extern_class!(
     pub struct NSCloneCommand;
 
     unsafe impl ClassType for NSCloneCommand {
+        #[inherits(NSObject)]
         type Super = NSScriptCommand;
     }
 );
@@ -36,6 +37,7 @@ extern_class!(
     pub struct NSCloseCommand;
 
     unsafe impl ClassType for NSCloseCommand {
+        #[inherits(NSObject)]
         type Super = NSScriptCommand;
     }
 );
@@ -52,6 +54,7 @@ extern_class!(
     pub struct NSCountCommand;
 
     unsafe impl ClassType for NSCountCommand {
+        #[inherits(NSObject)]
         type Super = NSScriptCommand;
     }
 );
@@ -65,6 +68,7 @@ extern_class!(
     pub struct NSCreateCommand;
 
     unsafe impl ClassType for NSCreateCommand {
+        #[inherits(NSObject)]
         type Super = NSScriptCommand;
     }
 );
@@ -84,6 +88,7 @@ extern_class!(
     pub struct NSDeleteCommand;
 
     unsafe impl ClassType for NSDeleteCommand {
+        #[inherits(NSObject)]
         type Super = NSScriptCommand;
     }
 );
@@ -103,6 +108,7 @@ extern_class!(
     pub struct NSExistsCommand;
 
     unsafe impl ClassType for NSExistsCommand {
+        #[inherits(NSObject)]
         type Super = NSScriptCommand;
     }
 );
@@ -116,6 +122,7 @@ extern_class!(
     pub struct NSGetCommand;
 
     unsafe impl ClassType for NSGetCommand {
+        #[inherits(NSObject)]
         type Super = NSScriptCommand;
     }
 );
@@ -129,6 +136,7 @@ extern_class!(
     pub struct NSMoveCommand;
 
     unsafe impl ClassType for NSMoveCommand {
+        #[inherits(NSObject)]
         type Super = NSScriptCommand;
     }
 );
@@ -148,6 +156,7 @@ extern_class!(
     pub struct NSQuitCommand;
 
     unsafe impl ClassType for NSQuitCommand {
+        #[inherits(NSObject)]
         type Super = NSScriptCommand;
     }
 );
@@ -164,6 +173,7 @@ extern_class!(
     pub struct NSSetCommand;
 
     unsafe impl ClassType for NSSetCommand {
+        #[inherits(NSObject)]
         type Super = NSScriptCommand;
     }
 );

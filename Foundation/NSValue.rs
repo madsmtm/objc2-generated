@@ -77,6 +77,7 @@ extern_class!(
     pub struct NSNumber;
 
     unsafe impl ClassType for NSNumber {
+        #[inherits(NSObject)]
         type Super = NSValue;
     }
 );

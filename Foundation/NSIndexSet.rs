@@ -176,6 +176,7 @@ extern_class!(
     pub struct NSMutableIndexSet;
 
     unsafe impl ClassType for NSMutableIndexSet {
+        #[inherits(NSObject)]
         type Super = NSIndexSet;
     }
 );

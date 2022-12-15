@@ -19,6 +19,7 @@ extern_class!(
     pub struct NSText;
 
     unsafe impl ClassType for NSText {
+        #[inherits(NSResponder, NSObject)]
         type Super = NSView;
     }
 );

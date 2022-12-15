@@ -20,6 +20,7 @@ extern_class!(
     pub struct NSLevelIndicatorCell;
 
     unsafe impl ClassType for NSLevelIndicatorCell {
+        #[inherits(NSCell, NSObject)]
         type Super = NSActionCell;
     }
 );

@@ -9,6 +9,7 @@ extern_class!(
     pub struct NSBatchInsertRequest;
 
     unsafe impl ClassType for NSBatchInsertRequest {
+        #[inherits(NSObject)]
         type Super = NSPersistentStoreRequest;
     }
 );

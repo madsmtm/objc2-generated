@@ -18,6 +18,7 @@ extern_class!(
     pub struct NSEnergyFormatter;
 
     unsafe impl ClassType for NSEnergyFormatter {
+        #[inherits(NSObject)]
         type Super = NSFormatter;
     }
 );

@@ -10,6 +10,7 @@ extern_class!(
     pub struct NSStepper;
 
     unsafe impl ClassType for NSStepper {
+        #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSControl;
     }
 );

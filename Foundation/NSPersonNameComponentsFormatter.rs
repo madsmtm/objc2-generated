@@ -26,6 +26,7 @@ extern_class!(
     pub struct NSPersonNameComponentsFormatter;
 
     unsafe impl ClassType for NSPersonNameComponentsFormatter {
+        #[inherits(NSObject)]
         type Super = NSFormatter;
     }
 );

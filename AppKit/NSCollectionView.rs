@@ -101,6 +101,7 @@ extern_class!(
     pub struct NSCollectionViewItem;
 
     unsafe impl ClassType for NSCollectionViewItem {
+        #[inherits(NSResponder, NSObject)]
         type Super = NSViewController;
     }
 );
@@ -146,6 +147,7 @@ extern_class!(
     pub struct NSCollectionView;
 
     unsafe impl ClassType for NSCollectionView {
+        #[inherits(NSResponder, NSObject)]
         type Super = NSView;
     }
 );

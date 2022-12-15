@@ -198,6 +198,7 @@ extern_class!(
     pub struct NSTextContentStorage;
 
     unsafe impl ClassType for NSTextContentStorage {
+        #[inherits(NSObject)]
         type Super = NSTextContentManager;
     }
 );

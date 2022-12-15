@@ -10,6 +10,7 @@ extern_class!(
     pub struct NSFormCell;
 
     unsafe impl ClassType for NSFormCell {
+        #[inherits(NSCell, NSObject)]
         type Super = NSActionCell;
     }
 );

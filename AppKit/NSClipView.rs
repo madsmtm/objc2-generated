@@ -10,6 +10,7 @@ extern_class!(
     pub struct NSClipView;
 
     unsafe impl ClassType for NSClipView {
+        #[inherits(NSResponder, NSObject)]
         type Super = NSView;
     }
 );

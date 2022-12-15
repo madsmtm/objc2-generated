@@ -117,6 +117,7 @@ extern_class!(
     pub struct NSScrubber;
 
     unsafe impl ClassType for NSScrubber {
+        #[inherits(NSResponder, NSObject)]
         type Super = NSView;
     }
 );

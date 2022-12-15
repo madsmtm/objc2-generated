@@ -18,6 +18,7 @@ __inner_extern_class!(
     unsafe impl<CandidateType: Message, CandidateTypeOwnership: Ownership> ClassType
         for NSCandidateListTouchBarItem<CandidateType, CandidateTypeOwnership>
     {
+        #[inherits(NSObject)]
         type Super = NSTouchBarItem;
     }
 );

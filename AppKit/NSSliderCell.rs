@@ -28,6 +28,7 @@ extern_class!(
     pub struct NSSliderCell;
 
     unsafe impl ClassType for NSSliderCell {
+        #[inherits(NSCell, NSObject)]
         type Super = NSActionCell;
     }
 );

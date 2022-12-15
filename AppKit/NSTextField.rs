@@ -10,6 +10,7 @@ extern_class!(
     pub struct NSTextField;
 
     unsafe impl ClassType for NSTextField {
+        #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSControl;
     }
 );

@@ -12,6 +12,7 @@ extern_class!(
     pub struct NSSplitViewController;
 
     unsafe impl ClassType for NSSplitViewController {
+        #[inherits(NSResponder, NSObject)]
         type Super = NSViewController;
     }
 );

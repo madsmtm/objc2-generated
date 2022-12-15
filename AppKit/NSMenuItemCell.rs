@@ -10,6 +10,7 @@ extern_class!(
     pub struct NSMenuItemCell;
 
     unsafe impl ClassType for NSMenuItemCell {
+        #[inherits(NSActionCell, NSCell, NSObject)]
         type Super = NSButtonCell;
     }
 );

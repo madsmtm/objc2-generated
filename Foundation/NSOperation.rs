@@ -101,6 +101,7 @@ extern_class!(
     pub struct NSBlockOperation;
 
     unsafe impl ClassType for NSBlockOperation {
+        #[inherits(NSObject)]
         type Super = NSOperation;
     }
 );
@@ -120,6 +121,7 @@ extern_class!(
     pub struct NSInvocationOperation;
 
     unsafe impl ClassType for NSInvocationOperation {
+        #[inherits(NSObject)]
         type Super = NSOperation;
     }
 );

@@ -66,6 +66,7 @@ extern_class!(
     pub struct NSView;
 
     unsafe impl ClassType for NSView {
+        #[inherits(NSObject)]
         type Super = NSResponder;
     }
 );

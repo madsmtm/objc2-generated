@@ -33,6 +33,7 @@ extern_class!(
     pub struct NSBrowser;
 
     unsafe impl ClassType for NSBrowser {
+        #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSControl;
     }
 );

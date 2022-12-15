@@ -10,6 +10,7 @@ extern_class!(
     pub struct NSTrackingSeparatorToolbarItem;
 
     unsafe impl ClassType for NSTrackingSeparatorToolbarItem {
+        #[inherits(NSObject)]
         type Super = NSToolbarItem;
     }
 );

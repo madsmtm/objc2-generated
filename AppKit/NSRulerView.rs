@@ -28,6 +28,7 @@ extern_class!(
     pub struct NSRulerView;
 
     unsafe impl ClassType for NSRulerView {
+        #[inherits(NSResponder, NSObject)]
         type Super = NSView;
     }
 );

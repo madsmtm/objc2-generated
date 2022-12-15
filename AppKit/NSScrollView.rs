@@ -19,6 +19,7 @@ extern_class!(
     pub struct NSScrollView;
 
     unsafe impl ClassType for NSScrollView {
+        #[inherits(NSResponder, NSObject)]
         type Super = NSView;
     }
 );

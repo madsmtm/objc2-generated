@@ -10,6 +10,7 @@ extern_class!(
     pub struct NSPathControl;
 
     unsafe impl ClassType for NSPathControl {
+        #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSControl;
     }
 );

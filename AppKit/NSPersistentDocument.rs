@@ -10,6 +10,7 @@ extern_class!(
     pub struct NSPersistentDocument;
 
     unsafe impl ClassType for NSPersistentDocument {
+        #[inherits(NSObject)]
         type Super = NSDocument;
     }
 );

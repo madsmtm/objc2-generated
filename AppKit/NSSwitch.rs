@@ -10,6 +10,7 @@ extern_class!(
     pub struct NSSwitch;
 
     unsafe impl ClassType for NSSwitch {
+        #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSControl;
     }
 );

@@ -8,6 +8,7 @@ extern_class!(
     pub struct NSListFormatter;
 
     unsafe impl ClassType for NSListFormatter {
+        #[inherits(NSObject)]
         type Super = NSFormatter;
     }
 );

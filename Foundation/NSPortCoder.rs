@@ -8,6 +8,7 @@ extern_class!(
     pub struct NSPortCoder;
 
     unsafe impl ClassType for NSPortCoder {
+        #[inherits(NSObject)]
         type Super = NSCoder;
     }
 );

@@ -9,6 +9,7 @@ extern_class!(
     pub struct NSPersistentCloudKitContainerEventRequest;
 
     unsafe impl ClassType for NSPersistentCloudKitContainerEventRequest {
+        #[inherits(NSObject)]
         type Super = NSPersistentStoreRequest;
     }
 );

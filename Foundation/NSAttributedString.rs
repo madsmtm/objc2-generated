@@ -123,6 +123,7 @@ extern_class!(
     pub struct NSMutableAttributedString;
 
     unsafe impl ClassType for NSMutableAttributedString {
+        #[inherits(NSObject)]
         type Super = NSAttributedString;
     }
 );

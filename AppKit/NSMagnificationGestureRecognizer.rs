@@ -10,6 +10,7 @@ extern_class!(
     pub struct NSMagnificationGestureRecognizer;
 
     unsafe impl ClassType for NSMagnificationGestureRecognizer {
+        #[inherits(NSObject)]
         type Super = NSGestureRecognizer;
     }
 );

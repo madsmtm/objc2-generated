@@ -18,6 +18,7 @@ extern_class!(
     pub struct NSSearchFieldCell;
 
     unsafe impl ClassType for NSSearchFieldCell {
+        #[inherits(NSActionCell, NSCell, NSObject)]
         type Super = NSTextFieldCell;
     }
 );

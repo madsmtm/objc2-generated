@@ -10,6 +10,7 @@ extern_class!(
     pub struct NSSegmentedCell;
 
     unsafe impl ClassType for NSSegmentedCell {
+        #[inherits(NSCell, NSObject)]
         type Super = NSActionCell;
     }
 );

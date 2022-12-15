@@ -20,6 +20,7 @@ extern_class!(
     pub struct NSMatrix;
 
     unsafe impl ClassType for NSMatrix {
+        #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSControl;
     }
 );

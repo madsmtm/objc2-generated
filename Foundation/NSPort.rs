@@ -103,6 +103,7 @@ extern_class!(
     pub struct NSMachPort;
 
     unsafe impl ClassType for NSMachPort {
+        #[inherits(NSObject)]
         type Super = NSPort;
     }
 );
@@ -163,6 +164,7 @@ extern_class!(
     pub struct NSMessagePort;
 
     unsafe impl ClassType for NSMessagePort {
+        #[inherits(NSObject)]
         type Super = NSPort;
     }
 );
@@ -176,6 +178,7 @@ extern_class!(
     pub struct NSSocketPort;
 
     unsafe impl ClassType for NSSocketPort {
+        #[inherits(NSObject)]
         type Super = NSPort;
     }
 );

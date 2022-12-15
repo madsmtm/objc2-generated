@@ -9,6 +9,7 @@ extern_class!(
     pub struct NSFetchedPropertyDescription;
 
     unsafe impl ClassType for NSFetchedPropertyDescription {
+        #[inherits(NSObject)]
         type Super = NSPropertyDescription;
     }
 );

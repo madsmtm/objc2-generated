@@ -19,6 +19,7 @@ extern_class!(
     pub struct NSLevelIndicator;
 
     unsafe impl ClassType for NSLevelIndicator {
+        #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSControl;
     }
 );

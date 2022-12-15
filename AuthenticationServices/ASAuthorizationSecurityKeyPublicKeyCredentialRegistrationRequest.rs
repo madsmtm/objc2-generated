@@ -9,6 +9,7 @@ extern_class!(
     pub struct ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest;
 
     unsafe impl ClassType for ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest {
+        #[inherits(NSObject)]
         type Super = ASAuthorizationRequest;
     }
 );

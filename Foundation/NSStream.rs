@@ -86,6 +86,7 @@ extern_class!(
     pub struct NSInputStream;
 
     unsafe impl ClassType for NSInputStream {
+        #[inherits(NSObject)]
         type Super = NSStream;
     }
 );
@@ -124,6 +125,7 @@ extern_class!(
     pub struct NSOutputStream;
 
     unsafe impl ClassType for NSOutputStream {
+        #[inherits(NSObject)]
         type Super = NSStream;
     }
 );

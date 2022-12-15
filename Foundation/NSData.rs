@@ -324,6 +324,7 @@ extern_class!(
     pub struct NSMutableData;
 
     unsafe impl ClassType for NSMutableData {
+        #[inherits(NSObject)]
         type Super = NSData;
     }
 );
@@ -414,6 +415,7 @@ extern_class!(
     pub struct NSPurgeableData;
 
     unsafe impl ClassType for NSPurgeableData {
+        #[inherits(NSData, NSObject)]
         type Super = NSMutableData;
     }
 );

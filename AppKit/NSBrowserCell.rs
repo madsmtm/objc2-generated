@@ -10,6 +10,7 @@ extern_class!(
     pub struct NSBrowserCell;
 
     unsafe impl ClassType for NSBrowserCell {
+        #[inherits(NSObject)]
         type Super = NSCell;
     }
 );

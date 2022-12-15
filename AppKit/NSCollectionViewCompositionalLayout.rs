@@ -101,6 +101,7 @@ extern_class!(
     pub struct NSCollectionViewCompositionalLayout;
 
     unsafe impl ClassType for NSCollectionViewCompositionalLayout {
+        #[inherits(NSObject)]
         type Super = NSCollectionViewLayout;
     }
 );
@@ -352,6 +353,7 @@ extern_class!(
     pub struct NSCollectionLayoutGroup;
 
     unsafe impl ClassType for NSCollectionLayoutGroup {
+        #[inherits(NSObject)]
         type Super = NSCollectionLayoutItem;
     }
 );
@@ -579,6 +581,7 @@ extern_class!(
     pub struct NSCollectionLayoutSupplementaryItem;
 
     unsafe impl ClassType for NSCollectionLayoutSupplementaryItem {
+        #[inherits(NSObject)]
         type Super = NSCollectionLayoutItem;
     }
 );
@@ -628,6 +631,7 @@ extern_class!(
     pub struct NSCollectionLayoutBoundarySupplementaryItem;
 
     unsafe impl ClassType for NSCollectionLayoutBoundarySupplementaryItem {
+        #[inherits(NSCollectionLayoutItem, NSObject)]
         type Super = NSCollectionLayoutSupplementaryItem;
     }
 );
@@ -680,6 +684,7 @@ extern_class!(
     pub struct NSCollectionLayoutDecorationItem;
 
     unsafe impl ClassType for NSCollectionLayoutDecorationItem {
+        #[inherits(NSObject)]
         type Super = NSCollectionLayoutItem;
     }
 );

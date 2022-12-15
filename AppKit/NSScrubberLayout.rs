@@ -127,6 +127,7 @@ extern_class!(
     pub struct NSScrubberFlowLayout;
 
     unsafe impl ClassType for NSScrubberFlowLayout {
+        #[inherits(NSObject)]
         type Super = NSScrubberLayout;
     }
 );
@@ -155,6 +156,7 @@ extern_class!(
     pub struct NSScrubberProportionalLayout;
 
     unsafe impl ClassType for NSScrubberProportionalLayout {
+        #[inherits(NSObject)]
         type Super = NSScrubberLayout;
     }
 );

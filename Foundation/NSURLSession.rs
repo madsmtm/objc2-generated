@@ -350,6 +350,7 @@ extern_class!(
     pub struct NSURLSessionDataTask;
 
     unsafe impl ClassType for NSURLSessionDataTask {
+        #[inherits(NSObject)]
         type Super = NSURLSessionTask;
     }
 );
@@ -369,6 +370,7 @@ extern_class!(
     pub struct NSURLSessionUploadTask;
 
     unsafe impl ClassType for NSURLSessionUploadTask {
+        #[inherits(NSURLSessionTask, NSObject)]
         type Super = NSURLSessionDataTask;
     }
 );
@@ -388,6 +390,7 @@ extern_class!(
     pub struct NSURLSessionDownloadTask;
 
     unsafe impl ClassType for NSURLSessionDownloadTask {
+        #[inherits(NSObject)]
         type Super = NSURLSessionTask;
     }
 );
@@ -413,6 +416,7 @@ extern_class!(
     pub struct NSURLSessionStreamTask;
 
     unsafe impl ClassType for NSURLSessionStreamTask {
+        #[inherits(NSObject)]
         type Super = NSURLSessionTask;
     }
 );
@@ -531,6 +535,7 @@ extern_class!(
     pub struct NSURLSessionWebSocketTask;
 
     unsafe impl ClassType for NSURLSessionWebSocketTask {
+        #[inherits(NSObject)]
         type Super = NSURLSessionTask;
     }
 );

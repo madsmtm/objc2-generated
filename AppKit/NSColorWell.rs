@@ -10,6 +10,7 @@ extern_class!(
     pub struct NSColorWell;
 
     unsafe impl ClassType for NSColorWell {
+        #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSControl;
     }
 );

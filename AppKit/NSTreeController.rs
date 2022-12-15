@@ -10,6 +10,7 @@ extern_class!(
     pub struct NSTreeController;
 
     unsafe impl ClassType for NSTreeController {
+        #[inherits(NSController, NSObject)]
         type Super = NSObjectController;
     }
 );

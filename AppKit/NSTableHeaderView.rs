@@ -10,6 +10,7 @@ extern_class!(
     pub struct NSTableHeaderView;
 
     unsafe impl ClassType for NSTableHeaderView {
+        #[inherits(NSResponder, NSObject)]
         type Super = NSView;
     }
 );

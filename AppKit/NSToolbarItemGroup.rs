@@ -28,6 +28,7 @@ extern_class!(
     pub struct NSToolbarItemGroup;
 
     unsafe impl ClassType for NSToolbarItemGroup {
+        #[inherits(NSObject)]
         type Super = NSToolbarItem;
     }
 );

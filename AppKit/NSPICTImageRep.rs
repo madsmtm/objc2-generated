@@ -10,6 +10,7 @@ extern_class!(
     pub struct NSPICTImageRep;
 
     unsafe impl ClassType for NSPICTImageRep {
+        #[inherits(NSObject)]
         type Super = NSImageRep;
     }
 );

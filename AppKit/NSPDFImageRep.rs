@@ -10,6 +10,7 @@ extern_class!(
     pub struct NSPDFImageRep;
 
     unsafe impl ClassType for NSPDFImageRep {
+        #[inherits(NSObject)]
         type Super = NSImageRep;
     }
 );

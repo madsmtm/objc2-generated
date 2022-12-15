@@ -9,6 +9,7 @@ extern_class!(
     pub struct NSDerivedAttributeDescription;
 
     unsafe impl ClassType for NSDerivedAttributeDescription {
+        #[inherits(NSPropertyDescription, NSObject)]
         type Super = NSAttributeDescription;
     }
 );

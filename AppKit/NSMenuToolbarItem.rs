@@ -10,6 +10,7 @@ extern_class!(
     pub struct NSMenuToolbarItem;
 
     unsafe impl ClassType for NSMenuToolbarItem {
+        #[inherits(NSObject)]
         type Super = NSToolbarItem;
     }
 );

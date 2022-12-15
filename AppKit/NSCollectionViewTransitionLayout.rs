@@ -12,6 +12,7 @@ extern_class!(
     pub struct NSCollectionViewTransitionLayout;
 
     unsafe impl ClassType for NSCollectionViewTransitionLayout {
+        #[inherits(NSObject)]
         type Super = NSCollectionViewLayout;
     }
 );

@@ -10,6 +10,7 @@ extern_class!(
     pub struct NSPressGestureRecognizer;
 
     unsafe impl ClassType for NSPressGestureRecognizer {
+        #[inherits(NSObject)]
         type Super = NSGestureRecognizer;
     }
 );

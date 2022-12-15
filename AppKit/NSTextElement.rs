@@ -44,6 +44,7 @@ extern_class!(
     pub struct NSTextParagraph;
 
     unsafe impl ClassType for NSTextParagraph {
+        #[inherits(NSObject)]
         type Super = NSTextElement;
     }
 );

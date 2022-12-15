@@ -27,6 +27,7 @@ extern_class!(
     pub struct NSUnitConverterLinear;
 
     unsafe impl ClassType for NSUnitConverterLinear {
+        #[inherits(NSObject)]
         type Super = NSUnitConverter;
     }
 );
@@ -87,6 +88,7 @@ extern_class!(
     pub struct NSDimension;
 
     unsafe impl ClassType for NSDimension {
+        #[inherits(NSObject)]
         type Super = NSUnit;
     }
 );
@@ -113,6 +115,7 @@ extern_class!(
     pub struct NSUnitAcceleration;
 
     unsafe impl ClassType for NSUnitAcceleration {
+        #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
     }
 );
@@ -132,6 +135,7 @@ extern_class!(
     pub struct NSUnitAngle;
 
     unsafe impl ClassType for NSUnitAngle {
+        #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
     }
 );
@@ -163,6 +167,7 @@ extern_class!(
     pub struct NSUnitArea;
 
     unsafe impl ClassType for NSUnitArea {
+        #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
     }
 );
@@ -218,6 +223,7 @@ extern_class!(
     pub struct NSUnitConcentrationMass;
 
     unsafe impl ClassType for NSUnitConcentrationMass {
+        #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
     }
 );
@@ -242,6 +248,7 @@ extern_class!(
     pub struct NSUnitDispersion;
 
     unsafe impl ClassType for NSUnitDispersion {
+        #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
     }
 );
@@ -258,6 +265,7 @@ extern_class!(
     pub struct NSUnitDuration;
 
     unsafe impl ClassType for NSUnitDuration {
+        #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
     }
 );
@@ -292,6 +300,7 @@ extern_class!(
     pub struct NSUnitElectricCharge;
 
     unsafe impl ClassType for NSUnitElectricCharge {
+        #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
     }
 );
@@ -323,6 +332,7 @@ extern_class!(
     pub struct NSUnitElectricCurrent;
 
     unsafe impl ClassType for NSUnitElectricCurrent {
+        #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
     }
 );
@@ -351,6 +361,7 @@ extern_class!(
     pub struct NSUnitElectricPotentialDifference;
 
     unsafe impl ClassType for NSUnitElectricPotentialDifference {
+        #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
     }
 );
@@ -379,6 +390,7 @@ extern_class!(
     pub struct NSUnitElectricResistance;
 
     unsafe impl ClassType for NSUnitElectricResistance {
+        #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
     }
 );
@@ -407,6 +419,7 @@ extern_class!(
     pub struct NSUnitEnergy;
 
     unsafe impl ClassType for NSUnitEnergy {
+        #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
     }
 );
@@ -435,6 +448,7 @@ extern_class!(
     pub struct NSUnitFrequency;
 
     unsafe impl ClassType for NSUnitFrequency {
+        #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
     }
 );
@@ -475,6 +489,7 @@ extern_class!(
     pub struct NSUnitFuelEfficiency;
 
     unsafe impl ClassType for NSUnitFuelEfficiency {
+        #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
     }
 );
@@ -497,6 +512,7 @@ extern_class!(
     pub struct NSUnitInformationStorage;
 
     unsafe impl ClassType for NSUnitInformationStorage {
+        #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
     }
 );
@@ -615,6 +631,7 @@ extern_class!(
     pub struct NSUnitLength;
 
     unsafe impl ClassType for NSUnitLength {
+        #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
     }
 );
@@ -694,6 +711,7 @@ extern_class!(
     pub struct NSUnitIlluminance;
 
     unsafe impl ClassType for NSUnitIlluminance {
+        #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
     }
 );
@@ -710,6 +728,7 @@ extern_class!(
     pub struct NSUnitMass;
 
     unsafe impl ClassType for NSUnitMass {
+        #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
     }
 );
@@ -771,6 +790,7 @@ extern_class!(
     pub struct NSUnitPower;
 
     unsafe impl ClassType for NSUnitPower {
+        #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
     }
 );
@@ -817,6 +837,7 @@ extern_class!(
     pub struct NSUnitPressure;
 
     unsafe impl ClassType for NSUnitPressure {
+        #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
     }
 );
@@ -860,6 +881,7 @@ extern_class!(
     pub struct NSUnitSpeed;
 
     unsafe impl ClassType for NSUnitSpeed {
+        #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
     }
 );
@@ -885,6 +907,7 @@ extern_class!(
     pub struct NSUnitTemperature;
 
     unsafe impl ClassType for NSUnitTemperature {
+        #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
     }
 );
@@ -907,6 +930,7 @@ extern_class!(
     pub struct NSUnitVolume;
 
     unsafe impl ClassType for NSUnitVolume {
+        #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
     }
 );

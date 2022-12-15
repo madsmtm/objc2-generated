@@ -32,6 +32,7 @@ extern_class!(
     pub struct NSBox;
 
     unsafe impl ClassType for NSBox {
+        #[inherits(NSResponder, NSObject)]
         type Super = NSView;
     }
 );

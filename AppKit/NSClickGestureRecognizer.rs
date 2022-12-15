@@ -10,6 +10,7 @@ extern_class!(
     pub struct NSClickGestureRecognizer;
 
     unsafe impl ClassType for NSClickGestureRecognizer {
+        #[inherits(NSObject)]
         type Super = NSGestureRecognizer;
     }
 );

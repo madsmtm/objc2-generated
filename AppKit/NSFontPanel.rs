@@ -42,6 +42,7 @@ extern_class!(
     pub struct NSFontPanel;
 
     unsafe impl ClassType for NSFontPanel {
+        #[inherits(NSWindow, NSResponder, NSObject)]
         type Super = NSPanel;
     }
 );

@@ -10,6 +10,7 @@ extern_class!(
     pub struct NSControl;
 
     unsafe impl ClassType for NSControl {
+        #[inherits(NSResponder, NSObject)]
         type Super = NSView;
     }
 );

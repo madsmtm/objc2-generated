@@ -56,6 +56,7 @@ extern_class!(
     pub struct NSNumberFormatter;
 
     unsafe impl ClassType for NSNumberFormatter {
+        #[inherits(NSObject)]
         type Super = NSFormatter;
     }
 );

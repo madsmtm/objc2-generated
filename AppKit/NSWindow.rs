@@ -175,6 +175,7 @@ extern_class!(
     pub struct NSWindow;
 
     unsafe impl ClassType for NSWindow {
+        #[inherits(NSObject)]
         type Super = NSResponder;
     }
 );

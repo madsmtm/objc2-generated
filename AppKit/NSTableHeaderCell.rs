@@ -10,6 +10,7 @@ extern_class!(
     pub struct NSTableHeaderCell;
 
     unsafe impl ClassType for NSTableHeaderCell {
+        #[inherits(NSActionCell, NSCell, NSObject)]
         type Super = NSTextFieldCell;
     }
 );

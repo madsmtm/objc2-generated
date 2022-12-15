@@ -50,6 +50,7 @@ __inner_extern_class!(
     unsafe impl<ResultType: Message, ResultTypeOwnership: Ownership> ClassType
         for NSFetchRequest<ResultType, ResultTypeOwnership>
     {
+        #[inherits(NSObject)]
         type Super = NSPersistentStoreRequest;
     }
 );
@@ -212,6 +213,7 @@ __inner_extern_class!(
     unsafe impl<ResultType: Message, ResultTypeOwnership: Ownership> ClassType
         for NSAsynchronousFetchRequest<ResultType, ResultTypeOwnership>
     {
+        #[inherits(NSObject)]
         type Super = NSPersistentStoreRequest;
     }
 );

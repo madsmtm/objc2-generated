@@ -675,6 +675,7 @@ __inner_extern_class!(
     unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> ClassType
         for NSDirectoryEnumerator<ObjectType, ObjectTypeOwnership>
     {
+        #[inherits(NSObject)]
         type Super = NSEnumerator<ObjectType, ObjectTypeOwnership>;
     }
 );

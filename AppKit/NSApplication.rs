@@ -208,6 +208,7 @@ extern_class!(
     pub struct NSApplication;
 
     unsafe impl ClassType for NSApplication {
+        #[inherits(NSObject)]
         type Super = NSResponder;
     }
 );

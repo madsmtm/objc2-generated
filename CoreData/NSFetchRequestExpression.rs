@@ -11,6 +11,7 @@ extern_class!(
     pub struct NSFetchRequestExpression;
 
     unsafe impl ClassType for NSFetchRequestExpression {
+        #[inherits(NSObject)]
         type Super = NSExpression;
     }
 );

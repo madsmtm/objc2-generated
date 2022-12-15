@@ -10,6 +10,7 @@ extern_class!(
     pub struct NSSharingServicePickerToolbarItem;
 
     unsafe impl ClassType for NSSharingServicePickerToolbarItem {
+        #[inherits(NSObject)]
         type Super = NSToolbarItem;
     }
 );

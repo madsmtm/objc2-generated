@@ -198,6 +198,7 @@ extern_class!(
     pub struct NSViewAnimation;
 
     unsafe impl ClassType for NSViewAnimation {
+        #[inherits(NSObject)]
         type Super = NSAnimation;
     }
 );

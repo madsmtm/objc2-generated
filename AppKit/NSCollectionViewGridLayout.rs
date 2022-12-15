@@ -10,6 +10,7 @@ extern_class!(
     pub struct NSCollectionViewGridLayout;
 
     unsafe impl ClassType for NSCollectionViewGridLayout {
+        #[inherits(NSObject)]
         type Super = NSCollectionViewLayout;
     }
 );

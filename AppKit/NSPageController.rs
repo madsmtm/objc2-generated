@@ -21,6 +21,7 @@ extern_class!(
     pub struct NSPageController;
 
     unsafe impl ClassType for NSPageController {
+        #[inherits(NSResponder, NSObject)]
         type Super = NSViewController;
     }
 );

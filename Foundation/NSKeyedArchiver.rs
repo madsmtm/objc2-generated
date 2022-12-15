@@ -14,6 +14,7 @@ extern_class!(
     pub struct NSKeyedArchiver;
 
     unsafe impl ClassType for NSKeyedArchiver {
+        #[inherits(NSObject)]
         type Super = NSCoder;
     }
 );
@@ -114,6 +115,7 @@ extern_class!(
     pub struct NSKeyedUnarchiver;
 
     unsafe impl ClassType for NSKeyedUnarchiver {
+        #[inherits(NSObject)]
         type Super = NSCoder;
     }
 );

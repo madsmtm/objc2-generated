@@ -10,6 +10,7 @@ extern_class!(
     pub struct NSComboBoxCell;
 
     unsafe impl ClassType for NSComboBoxCell {
+        #[inherits(NSActionCell, NSCell, NSObject)]
         type Super = NSTextFieldCell;
     }
 );

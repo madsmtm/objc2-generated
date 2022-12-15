@@ -25,6 +25,7 @@ extern_class!(
     pub struct NSViewController;
 
     unsafe impl ClassType for NSViewController {
+        #[inherits(NSObject)]
         type Super = NSResponder;
     }
 );

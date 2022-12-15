@@ -737,6 +737,7 @@ extern_class!(
     pub struct NSMutableString;
 
     unsafe impl ClassType for NSMutableString {
+        #[inherits(NSObject)]
         type Super = NSString;
     }
 );
@@ -913,6 +914,7 @@ extern_class!(
     pub struct NSSimpleCString;
 
     unsafe impl ClassType for NSSimpleCString {
+        #[inherits(NSObject)]
         type Super = NSString;
     }
 );
@@ -926,6 +928,7 @@ extern_class!(
     pub struct NSConstantString;
 
     unsafe impl ClassType for NSConstantString {
+        #[inherits(NSString, NSObject)]
         type Super = NSSimpleCString;
     }
 );

@@ -40,6 +40,7 @@ extern_class!(
     pub struct NSMachBootstrapServer;
 
     unsafe impl ClassType for NSMachBootstrapServer {
+        #[inherits(NSObject)]
         type Super = NSPortNameServer;
     }
 );
@@ -72,6 +73,7 @@ extern_class!(
     pub struct NSMessagePortNameServer;
 
     unsafe impl ClassType for NSMessagePortNameServer {
+        #[inherits(NSObject)]
         type Super = NSPortNameServer;
     }
 );
@@ -98,6 +100,7 @@ extern_class!(
     pub struct NSSocketPortNameServer;
 
     unsafe impl ClassType for NSSocketPortNameServer {
+        #[inherits(NSObject)]
         type Super = NSPortNameServer;
     }
 );

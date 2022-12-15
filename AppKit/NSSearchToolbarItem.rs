@@ -10,6 +10,7 @@ extern_class!(
     pub struct NSSearchToolbarItem;
 
     unsafe impl ClassType for NSSearchToolbarItem {
+        #[inherits(NSObject)]
         type Super = NSToolbarItem;
     }
 );

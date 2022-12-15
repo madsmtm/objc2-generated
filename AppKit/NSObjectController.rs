@@ -10,6 +10,7 @@ extern_class!(
     pub struct NSObjectController;
 
     unsafe impl ClassType for NSObjectController {
+        #[inherits(NSObject)]
         type Super = NSController;
     }
 );

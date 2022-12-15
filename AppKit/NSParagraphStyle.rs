@@ -158,6 +158,7 @@ extern_class!(
     pub struct NSMutableParagraphStyle;
 
     unsafe impl ClassType for NSMutableParagraphStyle {
+        #[inherits(NSObject)]
         type Super = NSParagraphStyle;
     }
 );

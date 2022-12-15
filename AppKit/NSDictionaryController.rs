@@ -47,6 +47,7 @@ extern_class!(
     pub struct NSDictionaryController;
 
     unsafe impl ClassType for NSDictionaryController {
+        #[inherits(NSObjectController, NSController, NSObject)]
         type Super = NSArrayController;
     }
 );

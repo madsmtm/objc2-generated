@@ -22,6 +22,7 @@ extern_class!(
     pub struct NSLengthFormatter;
 
     unsafe impl ClassType for NSLengthFormatter {
+        #[inherits(NSObject)]
         type Super = NSFormatter;
     }
 );

@@ -26,6 +26,7 @@ extern_class!(
     pub struct NSSearchField;
 
     unsafe impl ClassType for NSSearchField {
+        #[inherits(NSControl, NSView, NSResponder, NSObject)]
         type Super = NSTextField;
     }
 );

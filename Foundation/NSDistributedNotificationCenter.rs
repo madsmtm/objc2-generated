@@ -40,6 +40,7 @@ extern_class!(
     pub struct NSDistributedNotificationCenter;
 
     unsafe impl ClassType for NSDistributedNotificationCenter {
+        #[inherits(NSObject)]
         type Super = NSNotificationCenter;
     }
 );

@@ -47,6 +47,7 @@ extern_class!(
     pub struct NSLogicalTest;
 
     unsafe impl ClassType for NSLogicalTest {
+        #[inherits(NSObject)]
         type Super = NSScriptWhoseTest;
     }
 );
@@ -78,6 +79,7 @@ extern_class!(
     pub struct NSSpecifierTest;
 
     unsafe impl ClassType for NSSpecifierTest {
+        #[inherits(NSObject)]
         type Super = NSScriptWhoseTest;
     }
 );

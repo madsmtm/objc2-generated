@@ -10,6 +10,7 @@ extern_class!(
     pub struct NSPopoverTouchBarItem;
 
     unsafe impl ClassType for NSPopoverTouchBarItem {
+        #[inherits(NSObject)]
         type Super = NSTouchBarItem;
     }
 );

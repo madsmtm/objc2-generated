@@ -10,6 +10,7 @@ extern_class!(
     pub struct NSSlider;
 
     unsafe impl ClassType for NSSlider {
+        #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSControl;
     }
 );

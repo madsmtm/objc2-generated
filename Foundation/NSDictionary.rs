@@ -298,6 +298,7 @@ __inner_extern_class!(
         > ClassType
         for NSMutableDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
     {
+        #[inherits(NSObject)]
         type Super = NSDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>;
     }
 );

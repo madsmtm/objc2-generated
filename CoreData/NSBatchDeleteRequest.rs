@@ -9,6 +9,7 @@ extern_class!(
     pub struct NSBatchDeleteRequest;
 
     unsafe impl ClassType for NSBatchDeleteRequest {
+        #[inherits(NSObject)]
         type Super = NSPersistentStoreRequest;
     }
 );

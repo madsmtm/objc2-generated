@@ -8,6 +8,7 @@ extern_class!(
     pub struct NSArchiver;
 
     unsafe impl ClassType for NSArchiver {
+        #[inherits(NSObject)]
         type Super = NSCoder;
     }
 );
@@ -58,6 +59,7 @@ extern_class!(
     pub struct NSUnarchiver;
 
     unsafe impl ClassType for NSUnarchiver {
+        #[inherits(NSObject)]
         type Super = NSCoder;
     }
 );

@@ -170,6 +170,7 @@ extern_class!(
     pub struct NSIndexSpecifier;
 
     unsafe impl ClassType for NSIndexSpecifier {
+        #[inherits(NSObject)]
         type Super = NSScriptObjectSpecifier;
     }
 );
@@ -198,6 +199,7 @@ extern_class!(
     pub struct NSMiddleSpecifier;
 
     unsafe impl ClassType for NSMiddleSpecifier {
+        #[inherits(NSObject)]
         type Super = NSScriptObjectSpecifier;
     }
 );
@@ -211,6 +213,7 @@ extern_class!(
     pub struct NSNameSpecifier;
 
     unsafe impl ClassType for NSNameSpecifier {
+        #[inherits(NSObject)]
         type Super = NSScriptObjectSpecifier;
     }
 );
@@ -292,6 +295,7 @@ extern_class!(
     pub struct NSPropertySpecifier;
 
     unsafe impl ClassType for NSPropertySpecifier {
+        #[inherits(NSObject)]
         type Super = NSScriptObjectSpecifier;
     }
 );
@@ -305,6 +309,7 @@ extern_class!(
     pub struct NSRandomSpecifier;
 
     unsafe impl ClassType for NSRandomSpecifier {
+        #[inherits(NSObject)]
         type Super = NSScriptObjectSpecifier;
     }
 );
@@ -318,6 +323,7 @@ extern_class!(
     pub struct NSRangeSpecifier;
 
     unsafe impl ClassType for NSRangeSpecifier {
+        #[inherits(NSObject)]
         type Super = NSScriptObjectSpecifier;
     }
 );
@@ -359,6 +365,7 @@ extern_class!(
     pub struct NSRelativeSpecifier;
 
     unsafe impl ClassType for NSRelativeSpecifier {
+        #[inherits(NSObject)]
         type Super = NSScriptObjectSpecifier;
     }
 );
@@ -400,6 +407,7 @@ extern_class!(
     pub struct NSUniqueIDSpecifier;
 
     unsafe impl ClassType for NSUniqueIDSpecifier {
+        #[inherits(NSObject)]
         type Super = NSScriptObjectSpecifier;
     }
 );
@@ -434,6 +442,7 @@ extern_class!(
     pub struct NSWhoseSpecifier;
 
     unsafe impl ClassType for NSWhoseSpecifier {
+        #[inherits(NSObject)]
         type Super = NSScriptObjectSpecifier;
     }
 );

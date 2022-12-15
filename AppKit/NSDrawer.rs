@@ -20,6 +20,7 @@ extern_class!(
     pub struct NSDrawer;
 
     unsafe impl ClassType for NSDrawer {
+        #[inherits(NSObject)]
         type Super = NSResponder;
     }
 );

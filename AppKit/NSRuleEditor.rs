@@ -44,6 +44,7 @@ extern_class!(
     pub struct NSRuleEditor;
 
     unsafe impl ClassType for NSRuleEditor {
+        #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSControl;
     }
 );

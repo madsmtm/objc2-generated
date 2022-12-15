@@ -9,6 +9,7 @@ extern_class!(
     pub struct NSExpressionDescription;
 
     unsafe impl ClassType for NSExpressionDescription {
+        #[inherits(NSObject)]
         type Super = NSPropertyDescription;
     }
 );

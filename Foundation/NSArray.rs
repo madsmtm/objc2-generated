@@ -398,6 +398,7 @@ __inner_extern_class!(
     unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> ClassType
         for NSMutableArray<ObjectType, ObjectTypeOwnership>
     {
+        #[inherits(NSObject)]
         type Super = NSArray<ObjectType, ObjectTypeOwnership>;
     }
 );

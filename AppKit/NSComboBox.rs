@@ -74,6 +74,7 @@ extern_class!(
     pub struct NSComboBox;
 
     unsafe impl ClassType for NSComboBox {
+        #[inherits(NSControl, NSView, NSResponder, NSObject)]
         type Super = NSTextField;
     }
 );

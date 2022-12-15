@@ -18,6 +18,7 @@ extern_class!(
     pub struct NSProgressIndicator;
 
     unsafe impl ClassType for NSProgressIndicator {
+        #[inherits(NSResponder, NSObject)]
         type Super = NSView;
     }
 );

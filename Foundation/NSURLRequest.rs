@@ -111,6 +111,7 @@ extern_class!(
     pub struct NSMutableURLRequest;
 
     unsafe impl ClassType for NSMutableURLRequest {
+        #[inherits(NSObject)]
         type Super = NSURLRequest;
     }
 );

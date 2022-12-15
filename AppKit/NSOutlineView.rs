@@ -17,6 +17,7 @@ extern_class!(
     pub struct NSOutlineView;
 
     unsafe impl ClassType for NSOutlineView {
+        #[inherits(NSControl, NSView, NSResponder, NSObject)]
         type Super = NSTableView;
     }
 );

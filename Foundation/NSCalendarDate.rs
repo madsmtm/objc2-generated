@@ -8,6 +8,7 @@ extern_class!(
     pub struct NSCalendarDate;
 
     unsafe impl ClassType for NSCalendarDate {
+        #[inherits(NSObject)]
         type Super = NSDate;
     }
 );

@@ -39,6 +39,7 @@ extern_class!(
     pub struct NSDatePickerCell;
 
     unsafe impl ClassType for NSDatePickerCell {
+        #[inherits(NSCell, NSObject)]
         type Super = NSActionCell;
     }
 );

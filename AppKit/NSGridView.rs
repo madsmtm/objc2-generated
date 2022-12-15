@@ -36,6 +36,7 @@ extern_class!(
     pub struct NSGridView;
 
     unsafe impl ClassType for NSGridView {
+        #[inherits(NSResponder, NSObject)]
         type Super = NSView;
     }
 );

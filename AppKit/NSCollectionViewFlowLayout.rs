@@ -26,6 +26,7 @@ extern_class!(
     pub struct NSCollectionViewFlowLayoutInvalidationContext;
 
     unsafe impl ClassType for NSCollectionViewFlowLayoutInvalidationContext {
+        #[inherits(NSObject)]
         type Super = NSCollectionViewLayoutInvalidationContext;
     }
 );
@@ -117,6 +118,7 @@ extern_class!(
     pub struct NSCollectionViewFlowLayout;
 
     unsafe impl ClassType for NSCollectionViewFlowLayout {
+        #[inherits(NSObject)]
         type Super = NSCollectionViewLayout;
     }
 );

@@ -264,6 +264,7 @@ extern_class!(
     pub struct NSXPCCoder;
 
     unsafe impl ClassType for NSXPCCoder {
+        #[inherits(NSObject)]
         type Super = NSCoder;
     }
 );

@@ -40,6 +40,7 @@ extern_class!(
     pub struct NSUserUnixTask;
 
     unsafe impl ClassType for NSUserUnixTask {
+        #[inherits(NSObject)]
         type Super = NSUserScriptTask;
     }
 );
@@ -81,6 +82,7 @@ extern_class!(
     pub struct NSUserAppleScriptTask;
 
     unsafe impl ClassType for NSUserAppleScriptTask {
+        #[inherits(NSObject)]
         type Super = NSUserScriptTask;
     }
 );
@@ -103,6 +105,7 @@ extern_class!(
     pub struct NSUserAutomatorTask;
 
     unsafe impl ClassType for NSUserAutomatorTask {
+        #[inherits(NSObject)]
         type Super = NSUserScriptTask;
     }
 );

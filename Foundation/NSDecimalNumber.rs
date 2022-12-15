@@ -37,6 +37,7 @@ extern_class!(
     pub struct NSDecimalNumber;
 
     unsafe impl ClassType for NSDecimalNumber {
+        #[inherits(NSValue, NSObject)]
         type Super = NSNumber;
     }
 );

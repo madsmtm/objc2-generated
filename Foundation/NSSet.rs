@@ -188,6 +188,7 @@ __inner_extern_class!(
     unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> ClassType
         for NSMutableSet<ObjectType, ObjectTypeOwnership>
     {
+        #[inherits(NSObject)]
         type Super = NSSet<ObjectType, ObjectTypeOwnership>;
     }
 );
@@ -264,6 +265,7 @@ __inner_extern_class!(
     unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> ClassType
         for NSCountedSet<ObjectType, ObjectTypeOwnership>
     {
+        #[inherits(NSSet<ObjectType, ObjectTypeOwnership, >, NSObject)]
         type Super = NSMutableSet<ObjectType, ObjectTypeOwnership>;
     }
 );

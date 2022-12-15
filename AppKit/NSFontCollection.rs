@@ -121,6 +121,7 @@ extern_class!(
     pub struct NSMutableFontCollection;
 
     unsafe impl ClassType for NSMutableFontCollection {
+        #[inherits(NSObject)]
         type Super = NSFontCollection;
     }
 );

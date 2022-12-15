@@ -26,6 +26,7 @@ extern_class!(
     pub struct NSRelativeDateTimeFormatter;
 
     unsafe impl ClassType for NSRelativeDateTimeFormatter {
+        #[inherits(NSObject)]
         type Super = NSFormatter;
     }
 );

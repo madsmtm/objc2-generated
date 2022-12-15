@@ -17,6 +17,7 @@ extern_class!(
     pub struct NSMeasurementFormatter;
 
     unsafe impl ClassType for NSMeasurementFormatter {
+        #[inherits(NSObject)]
         type Super = NSFormatter;
     }
 );

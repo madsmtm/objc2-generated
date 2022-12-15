@@ -18,6 +18,7 @@ extern_class!(
     pub struct NSTextFieldCell;
 
     unsafe impl ClassType for NSTextFieldCell {
+        #[inherits(NSCell, NSObject)]
         type Super = NSActionCell;
     }
 );

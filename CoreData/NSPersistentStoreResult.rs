@@ -61,6 +61,7 @@ extern_class!(
     pub struct NSPersistentStoreAsynchronousResult;
 
     unsafe impl ClassType for NSPersistentStoreAsynchronousResult {
+        #[inherits(NSObject)]
         type Super = NSPersistentStoreResult;
     }
 );
@@ -94,6 +95,7 @@ __inner_extern_class!(
     unsafe impl<ResultType: Message, ResultTypeOwnership: Ownership> ClassType
         for NSAsynchronousFetchResult<ResultType, ResultTypeOwnership>
     {
+        #[inherits(NSPersistentStoreResult, NSObject)]
         type Super = NSPersistentStoreAsynchronousResult;
     }
 );
@@ -115,6 +117,7 @@ extern_class!(
     pub struct NSBatchInsertResult;
 
     unsafe impl ClassType for NSBatchInsertResult {
+        #[inherits(NSObject)]
         type Super = NSPersistentStoreResult;
     }
 );
@@ -134,6 +137,7 @@ extern_class!(
     pub struct NSBatchUpdateResult;
 
     unsafe impl ClassType for NSBatchUpdateResult {
+        #[inherits(NSObject)]
         type Super = NSPersistentStoreResult;
     }
 );
@@ -153,6 +157,7 @@ extern_class!(
     pub struct NSBatchDeleteResult;
 
     unsafe impl ClassType for NSBatchDeleteResult {
+        #[inherits(NSObject)]
         type Super = NSPersistentStoreResult;
     }
 );
@@ -172,6 +177,7 @@ extern_class!(
     pub struct NSPersistentHistoryResult;
 
     unsafe impl ClassType for NSPersistentHistoryResult {
+        #[inherits(NSObject)]
         type Super = NSPersistentStoreResult;
     }
 );
@@ -199,6 +205,7 @@ extern_class!(
     pub struct NSPersistentCloudKitContainerEventResult;
 
     unsafe impl ClassType for NSPersistentCloudKitContainerEventResult {
+        #[inherits(NSObject)]
         type Super = NSPersistentStoreResult;
     }
 );

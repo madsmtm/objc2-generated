@@ -19,6 +19,7 @@ extern_class!(
     pub struct NSPopUpButtonCell;
 
     unsafe impl ClassType for NSPopUpButtonCell {
+        #[inherits(NSButtonCell, NSActionCell, NSCell, NSObject)]
         type Super = NSMenuItemCell;
     }
 );

@@ -21,6 +21,7 @@ extern_class!(
     pub struct NSTokenFieldCell;
 
     unsafe impl ClassType for NSTokenFieldCell {
+        #[inherits(NSActionCell, NSCell, NSObject)]
         type Super = NSTextFieldCell;
     }
 );
