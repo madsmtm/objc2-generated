@@ -530,7 +530,7 @@ extern_methods!(
             -> Id<Self, Owned>;
 
         #[method_id(@__retain_semantics Other dataWithData:)]
-        pub unsafe fn dataWithData(data: &NSData) -> Id<Self, Owned>;
+        pub fn dataWithData(data: &NSData) -> Id<Self, Owned>;
     }
 );
 

@@ -512,10 +512,7 @@ extern_methods!(
     /// NSExtendedAttributedString
     unsafe impl NSMutableAttributedString {
         #[method_id(@__retain_semantics Init initWithString:)]
-        pub unsafe fn initWithString(
-            this: Option<Allocated<Self>>,
-            str: &NSString,
-        ) -> Id<Self, Owned>;
+        pub fn initWithString(this: Option<Allocated<Self>>, str: &NSString) -> Id<Self, Owned>;
 
         #[method_id(@__retain_semantics Init initWithString:attributes:)]
         pub unsafe fn initWithString_attributes(
@@ -525,7 +522,7 @@ extern_methods!(
         ) -> Id<Self, Owned>;
 
         #[method_id(@__retain_semantics Init initWithAttributedString:)]
-        pub unsafe fn initWithAttributedString(
+        pub fn initWithAttributedString(
             this: Option<Allocated<Self>>,
             attrStr: &NSAttributedString,
         ) -> Id<Self, Owned>;

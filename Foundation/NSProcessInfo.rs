@@ -48,7 +48,7 @@ extern_methods!(
         pub unsafe fn hostName(&self) -> Id<NSString, Shared>;
 
         #[method_id(@__retain_semantics Other processName)]
-        pub unsafe fn processName(&self) -> Id<NSString, Shared>;
+        pub fn processName(&self) -> Id<NSString, Shared>;
 
         #[method(setProcessName:)]
         pub unsafe fn setProcessName(&self, processName: &NSString);

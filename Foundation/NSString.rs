@@ -972,10 +972,8 @@ extern_methods!(
         ) -> Option<Id<Self, Owned>>;
 
         #[method_id(@__retain_semantics Init initWithString:)]
-        pub unsafe fn initWithString(
-            this: Option<Allocated<Self>>,
-            aString: &NSString,
-        ) -> Id<Self, Owned>;
+        pub fn initWithString(this: Option<Allocated<Self>>, aString: &NSString)
+            -> Id<Self, Owned>;
 
         #[method_id(@__retain_semantics Init initWithData:encoding:)]
         pub unsafe fn initWithData_encoding(
@@ -1014,7 +1012,7 @@ extern_methods!(
         pub unsafe fn string() -> Id<Self, Owned>;
 
         #[method_id(@__retain_semantics Other stringWithString:)]
-        pub unsafe fn stringWithString(string: &NSString) -> Id<Self, Owned>;
+        pub fn stringWithString(string: &NSString) -> Id<Self, Owned>;
 
         #[method_id(@__retain_semantics Other stringWithCharacters:length:)]
         pub unsafe fn stringWithCharacters_length(
