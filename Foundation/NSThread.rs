@@ -31,7 +31,7 @@ extern_methods!(
         pub fn isMultiThreaded() -> bool;
 
         #[method_id(@__retain_semantics Other threadDictionary)]
-        pub unsafe fn threadDictionary(&self) -> Id<NSMutableDictionary, Shared>;
+        pub unsafe fn threadDictionary(&self) -> Id<NSMutableDictionary, Owned>;
 
         #[method(sleepUntilDate:)]
         pub unsafe fn sleepUntilDate(date: &NSDate);

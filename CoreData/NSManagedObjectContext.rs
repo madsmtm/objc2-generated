@@ -109,7 +109,7 @@ extern_methods!(
         pub unsafe fn hasChanges(&self) -> bool;
 
         #[method_id(@__retain_semantics Other userInfo)]
-        pub unsafe fn userInfo(&self) -> Id<NSMutableDictionary, Shared>;
+        pub unsafe fn userInfo(&self) -> Id<NSMutableDictionary, Owned>;
 
         #[method(concurrencyType)]
         pub unsafe fn concurrencyType(&self) -> NSManagedObjectContextConcurrencyType;

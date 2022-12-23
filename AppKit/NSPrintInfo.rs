@@ -131,7 +131,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other dictionary)]
         pub unsafe fn dictionary(
             &self,
-        ) -> Id<NSMutableDictionary<NSPrintInfoAttributeKey, Object>, Shared>;
+        ) -> Id<NSMutableDictionary<NSPrintInfoAttributeKey, Object>, Owned>;
 
         #[method_id(@__retain_semantics Other paperName)]
         pub unsafe fn paperName(&self) -> Option<Id<NSPrinterPaperName, Shared>>;
@@ -235,7 +235,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other printSettings)]
         pub unsafe fn printSettings(
             &self,
-        ) -> Id<NSMutableDictionary<NSPrintInfoSettingKey, Object>, Shared>;
+        ) -> Id<NSMutableDictionary<NSPrintInfoSettingKey, Object>, Owned>;
 
         #[method(PMPrintSession)]
         pub unsafe fn PMPrintSession(&self) -> NonNull<c_void>;

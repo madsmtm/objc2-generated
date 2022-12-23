@@ -49,6 +49,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other attributes)]
         pub unsafe fn attributes(
             &self,
-        ) -> Id<NSMutableDictionary<NSPrintInfoAttributeKey, Object>, Shared>;
+        ) -> Id<NSMutableDictionary<NSPrintInfoAttributeKey, Object>, Owned>;
     }
 );

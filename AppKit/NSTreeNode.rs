@@ -40,7 +40,7 @@ extern_methods!(
         pub unsafe fn childNodes(&self) -> Option<Id<NSArray<NSTreeNode>, Shared>>;
 
         #[method_id(@__retain_semantics Other mutableChildNodes)]
-        pub unsafe fn mutableChildNodes(&self) -> Id<NSMutableArray<NSTreeNode>, Shared>;
+        pub unsafe fn mutableChildNodes(&self) -> Id<NSMutableArray<NSTreeNode>, Owned>;
 
         #[method_id(@__retain_semantics Other descendantNodeAtIndexPath:)]
         pub unsafe fn descendantNodeAtIndexPath(

@@ -144,66 +144,66 @@ extern_methods!(
         pub unsafe fn invert(&self);
 
         #[method_id(@__retain_semantics Other controlCharacterSet)]
-        pub unsafe fn controlCharacterSet() -> Id<NSMutableCharacterSet, Shared>;
+        pub unsafe fn controlCharacterSet() -> Id<NSMutableCharacterSet, Owned>;
 
         #[method_id(@__retain_semantics Other whitespaceCharacterSet)]
-        pub unsafe fn whitespaceCharacterSet() -> Id<NSMutableCharacterSet, Shared>;
+        pub unsafe fn whitespaceCharacterSet() -> Id<NSMutableCharacterSet, Owned>;
 
         #[method_id(@__retain_semantics Other whitespaceAndNewlineCharacterSet)]
-        pub unsafe fn whitespaceAndNewlineCharacterSet() -> Id<NSMutableCharacterSet, Shared>;
+        pub unsafe fn whitespaceAndNewlineCharacterSet() -> Id<NSMutableCharacterSet, Owned>;
 
         #[method_id(@__retain_semantics Other decimalDigitCharacterSet)]
-        pub unsafe fn decimalDigitCharacterSet() -> Id<NSMutableCharacterSet, Shared>;
+        pub unsafe fn decimalDigitCharacterSet() -> Id<NSMutableCharacterSet, Owned>;
 
         #[method_id(@__retain_semantics Other letterCharacterSet)]
-        pub unsafe fn letterCharacterSet() -> Id<NSMutableCharacterSet, Shared>;
+        pub unsafe fn letterCharacterSet() -> Id<NSMutableCharacterSet, Owned>;
 
         #[method_id(@__retain_semantics Other lowercaseLetterCharacterSet)]
-        pub unsafe fn lowercaseLetterCharacterSet() -> Id<NSMutableCharacterSet, Shared>;
+        pub unsafe fn lowercaseLetterCharacterSet() -> Id<NSMutableCharacterSet, Owned>;
 
         #[method_id(@__retain_semantics Other uppercaseLetterCharacterSet)]
-        pub unsafe fn uppercaseLetterCharacterSet() -> Id<NSMutableCharacterSet, Shared>;
+        pub unsafe fn uppercaseLetterCharacterSet() -> Id<NSMutableCharacterSet, Owned>;
 
         #[method_id(@__retain_semantics Other nonBaseCharacterSet)]
-        pub unsafe fn nonBaseCharacterSet() -> Id<NSMutableCharacterSet, Shared>;
+        pub unsafe fn nonBaseCharacterSet() -> Id<NSMutableCharacterSet, Owned>;
 
         #[method_id(@__retain_semantics Other alphanumericCharacterSet)]
-        pub unsafe fn alphanumericCharacterSet() -> Id<NSMutableCharacterSet, Shared>;
+        pub unsafe fn alphanumericCharacterSet() -> Id<NSMutableCharacterSet, Owned>;
 
         #[method_id(@__retain_semantics Other decomposableCharacterSet)]
-        pub unsafe fn decomposableCharacterSet() -> Id<NSMutableCharacterSet, Shared>;
+        pub unsafe fn decomposableCharacterSet() -> Id<NSMutableCharacterSet, Owned>;
 
         #[method_id(@__retain_semantics Other illegalCharacterSet)]
-        pub unsafe fn illegalCharacterSet() -> Id<NSMutableCharacterSet, Shared>;
+        pub unsafe fn illegalCharacterSet() -> Id<NSMutableCharacterSet, Owned>;
 
         #[method_id(@__retain_semantics Other punctuationCharacterSet)]
-        pub unsafe fn punctuationCharacterSet() -> Id<NSMutableCharacterSet, Shared>;
+        pub unsafe fn punctuationCharacterSet() -> Id<NSMutableCharacterSet, Owned>;
 
         #[method_id(@__retain_semantics Other capitalizedLetterCharacterSet)]
-        pub unsafe fn capitalizedLetterCharacterSet() -> Id<NSMutableCharacterSet, Shared>;
+        pub unsafe fn capitalizedLetterCharacterSet() -> Id<NSMutableCharacterSet, Owned>;
 
         #[method_id(@__retain_semantics Other symbolCharacterSet)]
-        pub unsafe fn symbolCharacterSet() -> Id<NSMutableCharacterSet, Shared>;
+        pub unsafe fn symbolCharacterSet() -> Id<NSMutableCharacterSet, Owned>;
 
         #[method_id(@__retain_semantics Other newlineCharacterSet)]
-        pub unsafe fn newlineCharacterSet() -> Id<NSMutableCharacterSet, Shared>;
+        pub unsafe fn newlineCharacterSet() -> Id<NSMutableCharacterSet, Owned>;
 
         #[method_id(@__retain_semantics Other characterSetWithRange:)]
-        pub unsafe fn characterSetWithRange(aRange: NSRange) -> Id<NSMutableCharacterSet, Shared>;
+        pub unsafe fn characterSetWithRange(aRange: NSRange) -> Id<NSMutableCharacterSet, Owned>;
 
         #[method_id(@__retain_semantics Other characterSetWithCharactersInString:)]
         pub unsafe fn characterSetWithCharactersInString(
             aString: &NSString,
-        ) -> Id<NSMutableCharacterSet, Shared>;
+        ) -> Id<NSMutableCharacterSet, Owned>;
 
         #[method_id(@__retain_semantics Other characterSetWithBitmapRepresentation:)]
         pub unsafe fn characterSetWithBitmapRepresentation(
             data: &NSData,
-        ) -> Id<NSMutableCharacterSet, Shared>;
+        ) -> Id<NSMutableCharacterSet, Owned>;
 
         #[method_id(@__retain_semantics Other characterSetWithContentsOfFile:)]
         pub unsafe fn characterSetWithContentsOfFile(
             fName: &NSString,
-        ) -> Option<Id<NSMutableCharacterSet, Shared>>;
+        ) -> Option<Id<NSMutableCharacterSet, Owned>>;
     }
 );

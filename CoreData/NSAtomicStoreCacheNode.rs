@@ -27,7 +27,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other propertyCache)]
         pub unsafe fn propertyCache(
             &self,
-        ) -> Option<Id<NSMutableDictionary<NSString, Object>, Shared>>;
+        ) -> Option<Id<NSMutableDictionary<NSString, Object>, Owned>>;
 
         #[method(setPropertyCache:)]
         pub unsafe fn setPropertyCache(

@@ -207,16 +207,16 @@ extern_methods!(
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self, Owned>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Owned>;
 
         #[method_id(@__retain_semantics Init initWithCapacity:)]
         pub unsafe fn initWithCapacity(
             this: Option<Allocated<Self>>,
             numItems: NSUInteger,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self, Owned>;
     }
 );
 
@@ -251,7 +251,7 @@ extern_methods!(
         NSMutableSet<ObjectType, ObjectTypeOwnership>
     {
         #[method_id(@__retain_semantics Other setWithCapacity:)]
-        pub unsafe fn setWithCapacity(numItems: NSUInteger) -> Id<Self, Shared>;
+        pub unsafe fn setWithCapacity(numItems: NSUInteger) -> Id<Self, Owned>;
     }
 );
 
@@ -316,7 +316,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             objects: *mut NonNull<ObjectType>,
             cnt: NSUInteger,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self, Owned>;
     }
 );
 
@@ -328,41 +328,41 @@ extern_methods!(
         NSMutableSet<ObjectType, ObjectTypeOwnership>
     {
         #[method_id(@__retain_semantics Other set)]
-        pub unsafe fn set() -> Id<Self, Shared>;
+        pub unsafe fn set() -> Id<Self, Owned>;
 
         #[method_id(@__retain_semantics Other setWithObject:)]
-        pub unsafe fn setWithObject(object: &ObjectType) -> Id<Self, Shared>;
+        pub unsafe fn setWithObject(object: &ObjectType) -> Id<Self, Owned>;
 
         #[method_id(@__retain_semantics Other setWithObjects:count:)]
         pub unsafe fn setWithObjects_count(
             objects: NonNull<NonNull<ObjectType>>,
             cnt: NSUInteger,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self, Owned>;
 
         #[method_id(@__retain_semantics Other setWithSet:)]
-        pub unsafe fn setWithSet(set: &NSSet<ObjectType>) -> Id<Self, Shared>;
+        pub unsafe fn setWithSet(set: &NSSet<ObjectType>) -> Id<Self, Owned>;
 
         #[method_id(@__retain_semantics Other setWithArray:)]
-        pub unsafe fn setWithArray(array: &NSArray<ObjectType>) -> Id<Self, Shared>;
+        pub unsafe fn setWithArray(array: &NSArray<ObjectType>) -> Id<Self, Owned>;
 
         #[method_id(@__retain_semantics Init initWithSet:)]
         pub unsafe fn initWithSet(
             this: Option<Allocated<Self>>,
             set: &NSSet<ObjectType>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self, Owned>;
 
         #[method_id(@__retain_semantics Init initWithSet:copyItems:)]
         pub unsafe fn initWithSet_copyItems(
             this: Option<Allocated<Self>>,
             set: &NSSet<ObjectType>,
             flag: bool,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self, Owned>;
 
         #[method_id(@__retain_semantics Init initWithArray:)]
         pub unsafe fn initWithArray(
             this: Option<Allocated<Self>>,
             array: &NSArray<ObjectType>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self, Owned>;
     }
 );
 

@@ -383,16 +383,16 @@ extern_methods!(
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self, Owned>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Owned>;
 
         #[method_id(@__retain_semantics Init initWithCapacity:)]
         pub unsafe fn initWithCapacity(
             this: Option<Allocated<Self>>,
             numItems: NSUInteger,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self, Owned>;
     }
 );
 
@@ -507,7 +507,7 @@ extern_methods!(
         NSMutableOrderedSet<ObjectType, ObjectTypeOwnership>
     {
         #[method_id(@__retain_semantics Other orderedSetWithCapacity:)]
-        pub unsafe fn orderedSetWithCapacity(numItems: NSUInteger) -> Id<Self, Shared>;
+        pub unsafe fn orderedSetWithCapacity(numItems: NSUInteger) -> Id<Self, Owned>;
     }
 );
 
@@ -534,7 +534,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             objects: *mut NonNull<ObjectType>,
             cnt: NSUInteger,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self, Owned>;
     }
 );
 
@@ -546,64 +546,64 @@ extern_methods!(
         NSMutableOrderedSet<ObjectType, ObjectTypeOwnership>
     {
         #[method_id(@__retain_semantics Other orderedSet)]
-        pub unsafe fn orderedSet() -> Id<Self, Shared>;
+        pub unsafe fn orderedSet() -> Id<Self, Owned>;
 
         #[method_id(@__retain_semantics Other orderedSetWithObject:)]
-        pub unsafe fn orderedSetWithObject(object: &ObjectType) -> Id<Self, Shared>;
+        pub unsafe fn orderedSetWithObject(object: &ObjectType) -> Id<Self, Owned>;
 
         #[method_id(@__retain_semantics Other orderedSetWithObjects:count:)]
         pub unsafe fn orderedSetWithObjects_count(
             objects: NonNull<NonNull<ObjectType>>,
             cnt: NSUInteger,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self, Owned>;
 
         #[method_id(@__retain_semantics Other orderedSetWithOrderedSet:)]
-        pub unsafe fn orderedSetWithOrderedSet(set: &NSOrderedSet<ObjectType>) -> Id<Self, Shared>;
+        pub unsafe fn orderedSetWithOrderedSet(set: &NSOrderedSet<ObjectType>) -> Id<Self, Owned>;
 
         #[method_id(@__retain_semantics Other orderedSetWithOrderedSet:range:copyItems:)]
         pub unsafe fn orderedSetWithOrderedSet_range_copyItems(
             set: &NSOrderedSet<ObjectType>,
             range: NSRange,
             flag: bool,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self, Owned>;
 
         #[method_id(@__retain_semantics Other orderedSetWithArray:)]
-        pub unsafe fn orderedSetWithArray(array: &NSArray<ObjectType>) -> Id<Self, Shared>;
+        pub unsafe fn orderedSetWithArray(array: &NSArray<ObjectType>) -> Id<Self, Owned>;
 
         #[method_id(@__retain_semantics Other orderedSetWithArray:range:copyItems:)]
         pub unsafe fn orderedSetWithArray_range_copyItems(
             array: &NSArray<ObjectType>,
             range: NSRange,
             flag: bool,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self, Owned>;
 
         #[method_id(@__retain_semantics Other orderedSetWithSet:)]
-        pub unsafe fn orderedSetWithSet(set: &NSSet<ObjectType>) -> Id<Self, Shared>;
+        pub unsafe fn orderedSetWithSet(set: &NSSet<ObjectType>) -> Id<Self, Owned>;
 
         #[method_id(@__retain_semantics Other orderedSetWithSet:copyItems:)]
         pub unsafe fn orderedSetWithSet_copyItems(
             set: &NSSet<ObjectType>,
             flag: bool,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self, Owned>;
 
         #[method_id(@__retain_semantics Init initWithObject:)]
         pub unsafe fn initWithObject(
             this: Option<Allocated<Self>>,
             object: &ObjectType,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self, Owned>;
 
         #[method_id(@__retain_semantics Init initWithOrderedSet:)]
         pub unsafe fn initWithOrderedSet(
             this: Option<Allocated<Self>>,
             set: &NSOrderedSet<ObjectType>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self, Owned>;
 
         #[method_id(@__retain_semantics Init initWithOrderedSet:copyItems:)]
         pub unsafe fn initWithOrderedSet_copyItems(
             this: Option<Allocated<Self>>,
             set: &NSOrderedSet<ObjectType>,
             flag: bool,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self, Owned>;
 
         #[method_id(@__retain_semantics Init initWithOrderedSet:range:copyItems:)]
         pub unsafe fn initWithOrderedSet_range_copyItems(
@@ -611,20 +611,20 @@ extern_methods!(
             set: &NSOrderedSet<ObjectType>,
             range: NSRange,
             flag: bool,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self, Owned>;
 
         #[method_id(@__retain_semantics Init initWithArray:)]
         pub unsafe fn initWithArray(
             this: Option<Allocated<Self>>,
             array: &NSArray<ObjectType>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self, Owned>;
 
         #[method_id(@__retain_semantics Init initWithArray:copyItems:)]
         pub unsafe fn initWithArray_copyItems(
             this: Option<Allocated<Self>>,
             set: &NSArray<ObjectType>,
             flag: bool,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self, Owned>;
 
         #[method_id(@__retain_semantics Init initWithArray:range:copyItems:)]
         pub unsafe fn initWithArray_range_copyItems(
@@ -632,19 +632,19 @@ extern_methods!(
             set: &NSArray<ObjectType>,
             range: NSRange,
             flag: bool,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self, Owned>;
 
         #[method_id(@__retain_semantics Init initWithSet:)]
         pub unsafe fn initWithSet(
             this: Option<Allocated<Self>>,
             set: &NSSet<ObjectType>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self, Owned>;
 
         #[method_id(@__retain_semantics Init initWithSet:copyItems:)]
         pub unsafe fn initWithSet_copyItems(
             this: Option<Allocated<Self>>,
             set: &NSSet<ObjectType>,
             flag: bool,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self, Owned>;
     }
 );

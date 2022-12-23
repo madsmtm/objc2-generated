@@ -22,7 +22,7 @@ extern_methods!(
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Other archiverData)]
-        pub unsafe fn archiverData(&self) -> Id<NSMutableData, Shared>;
+        pub unsafe fn archiverData(&self) -> Id<NSMutableData, Owned>;
 
         #[method(encodeRootObject:)]
         pub unsafe fn encodeRootObject(&self, rootObject: &Object);

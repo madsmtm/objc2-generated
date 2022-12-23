@@ -427,19 +427,19 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Owned>;
 
         #[method_id(@__retain_semantics Init initWithCapacity:)]
         pub unsafe fn initWithCapacity(
             this: Option<Allocated<Self>>,
             numItems: NSUInteger,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self, Owned>;
 
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self, Owned>>;
     }
 );
 
@@ -556,17 +556,17 @@ extern_methods!(
         NSMutableArray<ObjectType, ObjectTypeOwnership>
     {
         #[method_id(@__retain_semantics Other arrayWithCapacity:)]
-        pub unsafe fn arrayWithCapacity(numItems: NSUInteger) -> Id<Self, Shared>;
+        pub unsafe fn arrayWithCapacity(numItems: NSUInteger) -> Id<Self, Owned>;
 
         #[method_id(@__retain_semantics Other arrayWithContentsOfFile:)]
         pub unsafe fn arrayWithContentsOfFile(
             path: &NSString,
-        ) -> Option<Id<NSMutableArray<ObjectType>, Shared>>;
+        ) -> Option<Id<NSMutableArray<ObjectType>, Owned>>;
 
         #[method_id(@__retain_semantics Other arrayWithContentsOfURL:)]
         pub unsafe fn arrayWithContentsOfURL(
             url: &NSURL,
-        ) -> Option<Id<NSMutableArray<ObjectType>, Shared>>;
+        ) -> Option<Id<NSMutableArray<ObjectType>, Owned>>;
     }
 );
 
@@ -593,7 +593,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             objects: *mut NonNull<ObjectType>,
             cnt: NSUInteger,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self, Owned>;
     }
 );
 
@@ -605,31 +605,31 @@ extern_methods!(
         NSMutableArray<ObjectType, ObjectTypeOwnership>
     {
         #[method_id(@__retain_semantics Other array)]
-        pub unsafe fn array() -> Id<Self, Shared>;
+        pub unsafe fn array() -> Id<Self, Owned>;
 
         #[method_id(@__retain_semantics Other arrayWithObject:)]
-        pub unsafe fn arrayWithObject(anObject: &ObjectType) -> Id<Self, Shared>;
+        pub unsafe fn arrayWithObject(anObject: &ObjectType) -> Id<Self, Owned>;
 
         #[method_id(@__retain_semantics Other arrayWithObjects:count:)]
         pub unsafe fn arrayWithObjects_count(
             objects: NonNull<NonNull<ObjectType>>,
             cnt: NSUInteger,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self, Owned>;
 
         #[method_id(@__retain_semantics Other arrayWithArray:)]
-        pub unsafe fn arrayWithArray(array: &NSArray<ObjectType>) -> Id<Self, Shared>;
+        pub unsafe fn arrayWithArray(array: &NSArray<ObjectType>) -> Id<Self, Owned>;
 
         #[method_id(@__retain_semantics Init initWithArray:)]
         pub unsafe fn initWithArray(
             this: Option<Allocated<Self>>,
             array: &NSArray<ObjectType>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self, Owned>;
 
         #[method_id(@__retain_semantics Init initWithArray:copyItems:)]
         pub unsafe fn initWithArray_copyItems(
             this: Option<Allocated<Self>>,
             array: &NSArray<ObjectType>,
             flag: bool,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self, Owned>;
     }
 );
