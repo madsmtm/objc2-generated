@@ -56,7 +56,9 @@ ns_options!(
     }
 );
 
-pub type NSBitmapImageRepPropertyKey = NSString;
+typed_extensible_enum!(
+    pub type NSBitmapImageRepPropertyKey = NSString;
+);
 
 extern_static!(NSImageCompressionMethod: &'static NSBitmapImageRepPropertyKey);
 

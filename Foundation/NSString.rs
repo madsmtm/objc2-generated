@@ -101,7 +101,9 @@ ns_options!(
     }
 );
 
-pub type NSStringTransform = NSString;
+typed_extensible_enum!(
+    pub type NSStringTransform = NSString;
+);
 
 extern_static!(NSStringTransformLatinToKatakana: &'static NSStringTransform);
 
@@ -681,7 +683,9 @@ extern_methods!(
     }
 );
 
-pub type NSStringEncodingDetectionOptionsKey = NSString;
+typed_enum!(
+    pub type NSStringEncodingDetectionOptionsKey = NSString;
+);
 
 extern_static!(
     NSStringEncodingDetectionSuggestedEncodingsKey: &'static NSStringEncodingDetectionOptionsKey

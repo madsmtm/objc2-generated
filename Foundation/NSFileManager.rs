@@ -3,13 +3,21 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-pub type NSFileAttributeKey = NSString;
+typed_extensible_enum!(
+    pub type NSFileAttributeKey = NSString;
+);
 
-pub type NSFileAttributeType = NSString;
+typed_enum!(
+    pub type NSFileAttributeType = NSString;
+);
 
-pub type NSFileProtectionType = NSString;
+typed_enum!(
+    pub type NSFileProtectionType = NSString;
+);
 
-pub type NSFileProviderServiceName = NSString;
+typed_extensible_enum!(
+    pub type NSFileProviderServiceName = NSString;
+);
 
 ns_options!(
     #[underlying(NSUInteger)]

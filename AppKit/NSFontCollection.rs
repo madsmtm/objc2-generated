@@ -14,7 +14,9 @@ ns_options!(
     }
 );
 
-pub type NSFontCollectionMatchingOptionKey = NSString;
+typed_enum!(
+    pub type NSFontCollectionMatchingOptionKey = NSString;
+);
 
 extern_static!(
     NSFontCollectionIncludeDisabledFontsOption: &'static NSFontCollectionMatchingOptionKey
@@ -26,7 +28,9 @@ extern_static!(
     NSFontCollectionDisallowAutoActivationOption: &'static NSFontCollectionMatchingOptionKey
 );
 
-pub type NSFontCollectionName = NSString;
+typed_extensible_enum!(
+    pub type NSFontCollectionName = NSString;
+);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -181,7 +185,9 @@ extern_methods!(
 
 extern_static!(NSFontCollectionDidChangeNotification: &'static NSNotificationName);
 
-pub type NSFontCollectionUserInfoKey = NSString;
+typed_enum!(
+    pub type NSFontCollectionUserInfoKey = NSString;
+);
 
 extern_static!(NSFontCollectionActionKey: &'static NSFontCollectionUserInfoKey);
 
@@ -191,7 +197,9 @@ extern_static!(NSFontCollectionOldNameKey: &'static NSFontCollectionUserInfoKey)
 
 extern_static!(NSFontCollectionVisibilityKey: &'static NSFontCollectionUserInfoKey);
 
-pub type NSFontCollectionActionTypeKey = NSString;
+typed_enum!(
+    pub type NSFontCollectionActionTypeKey = NSString;
+);
 
 extern_static!(NSFontCollectionWasShown: &'static NSFontCollectionActionTypeKey);
 

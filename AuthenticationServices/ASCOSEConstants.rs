@@ -4,10 +4,14 @@ use crate::common::*;
 use crate::AuthenticationServices::*;
 use crate::Foundation::*;
 
-pub type ASCOSEAlgorithmIdentifier = NSInteger;
+typed_extensible_enum!(
+    pub type ASCOSEAlgorithmIdentifier = NSInteger;
+);
 
 extern_static!(ASCOSEAlgorithmIdentifierES256: ASCOSEAlgorithmIdentifier = -7);
 
-pub type ASCOSEEllipticCurveIdentifier = NSInteger;
+typed_extensible_enum!(
+    pub type ASCOSEEllipticCurveIdentifier = NSInteger;
+);
 
 extern_static!(ASCOSEEllipticCurveIdentifierP256: ASCOSEEllipticCurveIdentifier = 1);

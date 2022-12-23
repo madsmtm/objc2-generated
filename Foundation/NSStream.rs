@@ -3,7 +3,9 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-pub type NSStreamPropertyKey = NSString;
+typed_extensible_enum!(
+    pub type NSStreamPropertyKey = NSString;
+);
 
 ns_enum!(
     #[underlying(NSUInteger)]
@@ -255,7 +257,9 @@ extern_protocol!(
 
 extern_static!(NSStreamSocketSecurityLevelKey: &'static NSStreamPropertyKey);
 
-pub type NSStreamSocketSecurityLevel = NSString;
+typed_enum!(
+    pub type NSStreamSocketSecurityLevel = NSString;
+);
 
 extern_static!(NSStreamSocketSecurityLevelNone: &'static NSStreamSocketSecurityLevel);
 
@@ -269,7 +273,9 @@ extern_static!(NSStreamSocketSecurityLevelNegotiatedSSL: &'static NSStreamSocket
 
 extern_static!(NSStreamSOCKSProxyConfigurationKey: &'static NSStreamPropertyKey);
 
-pub type NSStreamSOCKSProxyConfiguration = NSString;
+typed_enum!(
+    pub type NSStreamSOCKSProxyConfiguration = NSString;
+);
 
 extern_static!(NSStreamSOCKSProxyHostKey: &'static NSStreamSOCKSProxyConfiguration);
 
@@ -281,7 +287,9 @@ extern_static!(NSStreamSOCKSProxyUserKey: &'static NSStreamSOCKSProxyConfigurati
 
 extern_static!(NSStreamSOCKSProxyPasswordKey: &'static NSStreamSOCKSProxyConfiguration);
 
-pub type NSStreamSOCKSProxyVersion = NSString;
+typed_enum!(
+    pub type NSStreamSOCKSProxyVersion = NSString;
+);
 
 extern_static!(NSStreamSOCKSProxyVersion4: &'static NSStreamSOCKSProxyVersion);
 
@@ -297,7 +305,9 @@ extern_static!(NSStreamSOCKSErrorDomain: &'static NSErrorDomain);
 
 extern_static!(NSStreamNetworkServiceType: &'static NSStreamPropertyKey);
 
-pub type NSStreamNetworkServiceTypeValue = NSString;
+typed_enum!(
+    pub type NSStreamNetworkServiceTypeValue = NSString;
+);
 
 extern_static!(NSStreamNetworkServiceTypeVoIP: &'static NSStreamNetworkServiceTypeValue);
 

@@ -5,7 +5,9 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-pub type NSPasteboardType = NSString;
+typed_extensible_enum!(
+    pub type NSPasteboardType = NSString;
+);
 
 extern_static!(NSPasteboardTypeString: &'static NSPasteboardType);
 
@@ -39,7 +41,9 @@ extern_static!(NSPasteboardTypeURL: &'static NSPasteboardType);
 
 extern_static!(NSPasteboardTypeFileURL: &'static NSPasteboardType);
 
-pub type NSPasteboardName = NSString;
+typed_extensible_enum!(
+    pub type NSPasteboardName = NSString;
+);
 
 extern_static!(NSPasteboardNameGeneral: &'static NSPasteboardName);
 
@@ -58,7 +62,9 @@ ns_options!(
     }
 );
 
-pub type NSPasteboardReadingOptionKey = NSString;
+typed_enum!(
+    pub type NSPasteboardReadingOptionKey = NSString;
+);
 
 extern_static!(NSPasteboardURLReadingFileURLsOnlyKey: &'static NSPasteboardReadingOptionKey);
 

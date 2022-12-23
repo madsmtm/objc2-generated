@@ -3,7 +3,9 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-pub type NSLinguisticTagScheme = NSString;
+typed_extensible_enum!(
+    pub type NSLinguisticTagScheme = NSString;
+);
 
 extern_static!(NSLinguisticTagSchemeTokenType: &'static NSLinguisticTagScheme);
 
@@ -19,7 +21,9 @@ extern_static!(NSLinguisticTagSchemeLanguage: &'static NSLinguisticTagScheme);
 
 extern_static!(NSLinguisticTagSchemeScript: &'static NSLinguisticTagScheme);
 
-pub type NSLinguisticTag = NSString;
+typed_extensible_enum!(
+    pub type NSLinguisticTag = NSString;
+);
 
 extern_static!(NSLinguisticTagWord: &'static NSLinguisticTag);
 

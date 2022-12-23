@@ -4,7 +4,9 @@ use crate::common::*;
 use crate::AuthenticationServices::*;
 use crate::Foundation::*;
 
-pub type ASAuthorizationOpenIDOperation = NSString;
+typed_extensible_enum!(
+    pub type ASAuthorizationOpenIDOperation = NSString;
+);
 
 extern_static!(ASAuthorizationOperationImplicit: &'static ASAuthorizationOpenIDOperation);
 

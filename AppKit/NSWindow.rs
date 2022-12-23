@@ -94,7 +94,9 @@ ns_options!(
     }
 );
 
-pub type NSWindowLevel = NSInteger;
+typed_extensible_enum!(
+    pub type NSWindowLevel = NSInteger;
+);
 
 ns_enum!(
     #[underlying(NSUInteger)]

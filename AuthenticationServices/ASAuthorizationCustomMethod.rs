@@ -4,7 +4,9 @@ use crate::common::*;
 use crate::AuthenticationServices::*;
 use crate::Foundation::*;
 
-pub type ASAuthorizationCustomMethod = NSString;
+typed_enum!(
+    pub type ASAuthorizationCustomMethod = NSString;
+);
 
 extern_static!(
     ASAuthorizationCustomMethodVideoSubscriberAccount: &'static ASAuthorizationCustomMethod

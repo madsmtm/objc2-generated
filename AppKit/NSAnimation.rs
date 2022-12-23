@@ -177,7 +177,9 @@ extern_protocol!(
     }
 );
 
-pub type NSViewAnimationKey = NSString;
+typed_enum!(
+    pub type NSViewAnimationKey = NSString;
+);
 
 extern_static!(NSViewAnimationTargetKey: &'static NSViewAnimationKey);
 
@@ -187,7 +189,9 @@ extern_static!(NSViewAnimationEndFrameKey: &'static NSViewAnimationKey);
 
 extern_static!(NSViewAnimationEffectKey: &'static NSViewAnimationKey);
 
-pub type NSViewAnimationEffectName = NSString;
+typed_enum!(
+    pub type NSViewAnimationEffectName = NSString;
+);
 
 extern_static!(NSViewAnimationFadeInEffect: &'static NSViewAnimationEffectName);
 

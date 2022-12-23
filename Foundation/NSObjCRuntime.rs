@@ -5,9 +5,13 @@ use crate::Foundation::*;
 
 extern_static!(NSFoundationVersionNumber: c_double);
 
-pub type NSExceptionName = NSString;
+typed_extensible_enum!(
+    pub type NSExceptionName = NSString;
+);
 
-pub type NSRunLoopMode = NSString;
+typed_extensible_enum!(
+    pub type NSRunLoopMode = NSString;
+);
 
 extern_fn!(
     pub unsafe fn NSStringFromSelector(aSelector: Sel) -> NonNull<NSString>;

@@ -19,7 +19,9 @@ ns_options!(
     }
 );
 
-pub type NSPrintPanelJobStyleHint = NSString;
+typed_enum!(
+    pub type NSPrintPanelJobStyleHint = NSString;
+);
 
 extern_static!(NSPrintPhotoJobStyleHint: &'static NSPrintPanelJobStyleHint);
 
@@ -27,7 +29,9 @@ extern_static!(NSPrintAllPresetsJobStyleHint: &'static NSPrintPanelJobStyleHint)
 
 extern_static!(NSPrintNoPresetsJobStyleHint: &'static NSPrintPanelJobStyleHint);
 
-pub type NSPrintPanelAccessorySummaryKey = NSString;
+typed_enum!(
+    pub type NSPrintPanelAccessorySummaryKey = NSString;
+);
 
 extern_static!(NSPrintPanelAccessorySummaryItemNameKey: &'static NSPrintPanelAccessorySummaryKey);
 

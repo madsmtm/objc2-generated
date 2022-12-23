@@ -5,7 +5,9 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-pub type NSImageHintKey = NSString;
+typed_enum!(
+    pub type NSImageHintKey = NSString;
+);
 
 extern_enum!(
     #[underlying(c_uint)]

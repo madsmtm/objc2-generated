@@ -28,7 +28,9 @@ ns_enum!(
     }
 );
 
-pub type NSStackViewVisibilityPriority = c_float;
+typed_extensible_enum!(
+    pub type NSStackViewVisibilityPriority = c_float;
+);
 
 extern_static!(NSStackViewVisibilityPriorityMustHold: NSStackViewVisibilityPriority = 1000);
 

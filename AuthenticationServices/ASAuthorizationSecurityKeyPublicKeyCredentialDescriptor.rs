@@ -4,7 +4,9 @@ use crate::common::*;
 use crate::AuthenticationServices::*;
 use crate::Foundation::*;
 
-pub type ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport = NSString;
+typed_extensible_enum!(
+    pub type ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport = NSString;
+);
 
 extern_static!(
     ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransportUSB:

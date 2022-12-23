@@ -1272,7 +1272,9 @@ ns_enum!(
 
 extern_static!(NSFindPanelSearchOptionsPboardType: &'static NSPasteboardType);
 
-pub type NSPasteboardTypeFindPanelSearchOptionKey = NSString;
+typed_enum!(
+    pub type NSPasteboardTypeFindPanelSearchOptionKey = NSString;
+);
 
 extern_static!(NSFindPanelCaseInsensitiveSearch: &'static NSPasteboardTypeFindPanelSearchOptionKey);
 

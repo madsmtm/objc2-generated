@@ -22,7 +22,9 @@ ns_enum!(
     }
 );
 
-pub type NSPrintInfoAttributeKey = NSString;
+typed_extensible_enum!(
+    pub type NSPrintInfoAttributeKey = NSString;
+);
 
 extern_static!(NSPrintPaperName: &'static NSPrintInfoAttributeKey);
 
@@ -84,7 +86,9 @@ extern_static!(NSPrintJobSavingFileNameExtensionHidden: &'static NSPrintInfoAttr
 
 extern_static!(NSPrintHeaderAndFooter: &'static NSPrintInfoAttributeKey);
 
-pub type NSPrintJobDispositionValue = NSString;
+typed_enum!(
+    pub type NSPrintJobDispositionValue = NSString;
+);
 
 extern_static!(NSPrintSpoolJob: &'static NSPrintJobDispositionValue);
 

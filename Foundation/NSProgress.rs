@@ -3,11 +3,17 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-pub type NSProgressKind = NSString;
+typed_extensible_enum!(
+    pub type NSProgressKind = NSString;
+);
 
-pub type NSProgressUserInfoKey = NSString;
+typed_extensible_enum!(
+    pub type NSProgressUserInfoKey = NSString;
+);
 
-pub type NSProgressFileOperationKind = NSString;
+typed_extensible_enum!(
+    pub type NSProgressFileOperationKind = NSString;
+);
 
 pub type NSProgressUnpublishingHandler = *mut Block<(), ()>;
 

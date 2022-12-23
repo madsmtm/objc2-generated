@@ -153,7 +153,9 @@ ns_enum!(
     }
 );
 
-pub type NSColorSpaceName = NSString;
+typed_enum!(
+    pub type NSColorSpaceName = NSString;
+);
 
 extern_static!(NSCalibratedWhiteColorSpace: &'static NSColorSpaceName);
 
@@ -234,7 +236,9 @@ ns_enum!(
     }
 );
 
-pub type NSDeviceDescriptionKey = NSString;
+typed_extensible_enum!(
+    pub type NSDeviceDescriptionKey = NSString;
+);
 
 extern_static!(NSDeviceResolution: &'static NSDeviceDescriptionKey);
 

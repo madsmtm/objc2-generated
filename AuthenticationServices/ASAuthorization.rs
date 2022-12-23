@@ -4,7 +4,9 @@ use crate::common::*;
 use crate::AuthenticationServices::*;
 use crate::Foundation::*;
 
-pub type ASAuthorizationScope = NSString;
+typed_extensible_enum!(
+    pub type ASAuthorizationScope = NSString;
+);
 
 extern_static!(ASAuthorizationScopeFullName: &'static ASAuthorizationScope);
 

@@ -3,7 +3,9 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-pub type NSAttributedStringKey = NSString;
+typed_extensible_enum!(
+    pub type NSAttributedStringKey = NSString;
+);
 
 extern_class!(
     #[derive(PartialEq, Eq, Hash)]

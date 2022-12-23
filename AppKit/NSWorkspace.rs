@@ -281,7 +281,9 @@ extern_methods!(
     }
 );
 
-pub type NSWorkspaceDesktopImageOptionKey = NSString;
+typed_enum!(
+    pub type NSWorkspaceDesktopImageOptionKey = NSString;
+);
 
 extern_static!(NSWorkspaceDesktopImageScalingKey: &'static NSWorkspaceDesktopImageOptionKey);
 
@@ -408,7 +410,9 @@ extern_static!(NSWorkspaceDidChangeFileLabelsNotification: &'static NSNotificati
 
 extern_static!(NSWorkspaceActiveSpaceDidChangeNotification: &'static NSNotificationName);
 
-pub type NSWorkspaceFileOperationName = NSString;
+typed_enum!(
+    pub type NSWorkspaceFileOperationName = NSString;
+);
 
 ns_options!(
     #[underlying(NSUInteger)]
@@ -428,7 +432,9 @@ ns_options!(
     }
 );
 
-pub type NSWorkspaceLaunchConfigurationKey = NSString;
+typed_enum!(
+    pub type NSWorkspaceLaunchConfigurationKey = NSString;
+);
 
 extern_static!(
     NSWorkspaceLaunchConfigurationAppleEvent: &'static NSWorkspaceLaunchConfigurationKey

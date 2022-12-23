@@ -5,7 +5,9 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-pub type NSGraphicsContextAttributeKey = NSString;
+typed_enum!(
+    pub type NSGraphicsContextAttributeKey = NSString;
+);
 
 extern_static!(NSGraphicsContextDestinationAttributeName: &'static NSGraphicsContextAttributeKey);
 
@@ -13,7 +15,9 @@ extern_static!(
     NSGraphicsContextRepresentationFormatAttributeName: &'static NSGraphicsContextAttributeKey
 );
 
-pub type NSGraphicsContextRepresentationFormatName = NSString;
+typed_enum!(
+    pub type NSGraphicsContextRepresentationFormatName = NSString;
+);
 
 extern_static!(NSGraphicsContextPSFormat: &'static NSGraphicsContextRepresentationFormatName);
 

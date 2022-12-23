@@ -5,7 +5,9 @@ use crate::Foundation::*;
 
 extern_static!(NSUndefinedKeyException: &'static NSExceptionName);
 
-pub type NSKeyValueOperator = NSString;
+typed_enum!(
+    pub type NSKeyValueOperator = NSString;
+);
 
 extern_static!(NSAverageKeyValueOperator: &'static NSKeyValueOperator);
 

@@ -5,7 +5,9 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-pub type NSRuleEditorPredicatePartKey = NSString;
+typed_enum!(
+    pub type NSRuleEditorPredicatePartKey = NSString;
+);
 
 extern_static!(NSRuleEditorPredicateLeftExpression: &'static NSRuleEditorPredicatePartKey);
 

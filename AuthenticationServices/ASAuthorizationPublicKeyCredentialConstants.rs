@@ -4,7 +4,9 @@ use crate::common::*;
 use crate::AuthenticationServices::*;
 use crate::Foundation::*;
 
-pub type ASAuthorizationPublicKeyCredentialUserVerificationPreference = NSString;
+typed_extensible_enum!(
+    pub type ASAuthorizationPublicKeyCredentialUserVerificationPreference = NSString;
+);
 
 extern_static!(
     ASAuthorizationPublicKeyCredentialUserVerificationPreferencePreferred:
@@ -21,7 +23,9 @@ extern_static!(
         Option<&'static ASAuthorizationPublicKeyCredentialUserVerificationPreference>
 );
 
-pub type ASAuthorizationPublicKeyCredentialAttestationKind = NSString;
+typed_extensible_enum!(
+    pub type ASAuthorizationPublicKeyCredentialAttestationKind = NSString;
+);
 
 extern_static!(
     ASAuthorizationPublicKeyCredentialAttestationKindNone:
@@ -43,7 +47,9 @@ extern_static!(
         Option<&'static ASAuthorizationPublicKeyCredentialAttestationKind>
 );
 
-pub type ASAuthorizationPublicKeyCredentialResidentKeyPreference = NSString;
+typed_extensible_enum!(
+    pub type ASAuthorizationPublicKeyCredentialResidentKeyPreference = NSString;
+);
 
 extern_static!(
     ASAuthorizationPublicKeyCredentialResidentKeyPreferenceDiscouraged:

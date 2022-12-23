@@ -5,7 +5,9 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-pub type NSToolbarItemVisibilityPriority = NSInteger;
+typed_extensible_enum!(
+    pub type NSToolbarItemVisibilityPriority = NSInteger;
+);
 
 extern_static!(NSToolbarItemVisibilityPriorityStandard: NSToolbarItemVisibilityPriority = 0);
 

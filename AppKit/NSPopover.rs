@@ -96,7 +96,9 @@ extern_methods!(
 
 extern_static!(NSPopoverCloseReasonKey: &'static NSString);
 
-pub type NSPopoverCloseReasonValue = NSString;
+typed_enum!(
+    pub type NSPopoverCloseReasonValue = NSString;
+);
 
 extern_static!(NSPopoverCloseReasonStandard: &'static NSPopoverCloseReasonValue);
 

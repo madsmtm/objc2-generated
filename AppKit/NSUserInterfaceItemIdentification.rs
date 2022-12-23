@@ -5,7 +5,9 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-pub type NSUserInterfaceItemIdentifier = NSString;
+typed_extensible_enum!(
+    pub type NSUserInterfaceItemIdentifier = NSString;
+);
 
 extern_protocol!(
     pub struct NSUserInterfaceItemIdentification;

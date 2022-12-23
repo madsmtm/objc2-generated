@@ -5,7 +5,9 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-pub type NSSliderAccessoryWidth = CGFloat;
+typed_extensible_enum!(
+    pub type NSSliderAccessoryWidth = CGFloat;
+);
 
 extern_static!(NSSliderAccessoryWidthDefault: NSSliderAccessoryWidth);
 

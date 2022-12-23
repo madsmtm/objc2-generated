@@ -3,9 +3,13 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-pub type NSHTTPCookiePropertyKey = NSString;
+typed_extensible_enum!(
+    pub type NSHTTPCookiePropertyKey = NSString;
+);
 
-pub type NSHTTPCookieStringPolicy = NSString;
+typed_enum!(
+    pub type NSHTTPCookieStringPolicy = NSString;
+);
 
 extern_static!(NSHTTPCookieName: &'static NSHTTPCookiePropertyKey);
 

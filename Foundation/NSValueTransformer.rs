@@ -3,7 +3,9 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-pub type NSValueTransformerName = NSString;
+typed_extensible_enum!(
+    pub type NSValueTransformerName = NSString;
+);
 
 extern_static!(NSNegateBooleanTransformerName: &'static NSValueTransformerName);
 

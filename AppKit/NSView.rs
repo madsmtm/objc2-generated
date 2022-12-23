@@ -856,7 +856,9 @@ extern_methods!(
     }
 );
 
-pub type NSViewFullScreenModeOptionKey = NSString;
+typed_enum!(
+    pub type NSViewFullScreenModeOptionKey = NSString;
+);
 
 extern_static!(NSFullScreenModeAllScreens: &'static NSViewFullScreenModeOptionKey);
 
@@ -889,11 +891,15 @@ extern_methods!(
     }
 );
 
-pub type NSDefinitionOptionKey = NSString;
+typed_enum!(
+    pub type NSDefinitionOptionKey = NSString;
+);
 
 extern_static!(NSDefinitionPresentationTypeKey: &'static NSDefinitionOptionKey);
 
-pub type NSDefinitionPresentationType = NSString;
+typed_enum!(
+    pub type NSDefinitionPresentationType = NSString;
+);
 
 extern_static!(NSDefinitionPresentationTypeOverlay: &'static NSDefinitionPresentationType);
 

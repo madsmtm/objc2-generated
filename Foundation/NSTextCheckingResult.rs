@@ -31,7 +31,9 @@ ns_enum!(
     }
 );
 
-pub type NSTextCheckingKey = NSString;
+typed_extensible_enum!(
+    pub type NSTextCheckingKey = NSString;
+);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

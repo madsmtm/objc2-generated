@@ -3,7 +3,9 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-pub type NSURLResourceKey = NSString;
+typed_extensible_enum!(
+    pub type NSURLResourceKey = NSString;
+);
 
 extern_static!(NSURLFileScheme: &'static NSString);
 
@@ -109,7 +111,9 @@ extern_static!(NSURLIsPurgeableKey: &'static NSURLResourceKey);
 
 extern_static!(NSURLIsSparseKey: &'static NSURLResourceKey);
 
-pub type NSURLFileResourceType = NSString;
+typed_enum!(
+    pub type NSURLFileResourceType = NSString;
+);
 
 extern_static!(NSURLFileResourceTypeNamedPipe: &'static NSURLFileResourceType);
 
@@ -131,7 +135,9 @@ extern_static!(NSURLThumbnailDictionaryKey: &'static NSURLResourceKey);
 
 extern_static!(NSURLThumbnailKey: &'static NSURLResourceKey);
 
-pub type NSURLThumbnailDictionaryItem = NSString;
+typed_extensible_enum!(
+    pub type NSURLThumbnailDictionaryItem = NSString;
+);
 
 extern_static!(NSThumbnail1024x1024SizeKey: &'static NSURLThumbnailDictionaryItem);
 
@@ -147,7 +153,9 @@ extern_static!(NSURLIsAliasFileKey: &'static NSURLResourceKey);
 
 extern_static!(NSURLFileProtectionKey: &'static NSURLResourceKey);
 
-pub type NSURLFileProtectionType = NSString;
+typed_enum!(
+    pub type NSURLFileProtectionType = NSString;
+);
 
 extern_static!(NSURLFileProtectionNone: &'static NSURLFileProtectionType);
 
@@ -283,7 +291,9 @@ extern_static!(
     NSURLUbiquitousSharedItemMostRecentEditorNameComponentsKey: &'static NSURLResourceKey
 );
 
-pub type NSURLUbiquitousItemDownloadingStatus = NSString;
+typed_enum!(
+    pub type NSURLUbiquitousItemDownloadingStatus = NSString;
+);
 
 extern_static!(
     NSURLUbiquitousItemDownloadingStatusNotDownloaded:
@@ -298,13 +308,17 @@ extern_static!(
     NSURLUbiquitousItemDownloadingStatusCurrent: &'static NSURLUbiquitousItemDownloadingStatus
 );
 
-pub type NSURLUbiquitousSharedItemRole = NSString;
+typed_enum!(
+    pub type NSURLUbiquitousSharedItemRole = NSString;
+);
 
 extern_static!(NSURLUbiquitousSharedItemRoleOwner: &'static NSURLUbiquitousSharedItemRole);
 
 extern_static!(NSURLUbiquitousSharedItemRoleParticipant: &'static NSURLUbiquitousSharedItemRole);
 
-pub type NSURLUbiquitousSharedItemPermissions = NSString;
+typed_enum!(
+    pub type NSURLUbiquitousSharedItemPermissions = NSString;
+);
 
 extern_static!(
     NSURLUbiquitousSharedItemPermissionsReadOnly: &'static NSURLUbiquitousSharedItemPermissions

@@ -5,7 +5,9 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-pub type NSLayoutPriority = c_float;
+typed_extensible_enum!(
+    pub type NSLayoutPriority = c_float;
+);
 
 extern_static!(NSLayoutPriorityRequired: NSLayoutPriority = 1000);
 

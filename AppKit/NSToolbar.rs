@@ -7,7 +7,9 @@ use crate::Foundation::*;
 
 pub type NSToolbarIdentifier = NSString;
 
-pub type NSToolbarItemIdentifier = NSString;
+typed_extensible_enum!(
+    pub type NSToolbarItemIdentifier = NSString;
+);
 
 ns_enum!(
     #[underlying(NSUInteger)]

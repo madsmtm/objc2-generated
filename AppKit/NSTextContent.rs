@@ -5,7 +5,9 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-pub type NSTextContentType = NSString;
+typed_enum!(
+    pub type NSTextContentType = NSString;
+);
 
 extern_static!(NSTextContentTypeUsername: &'static NSTextContentType);
 

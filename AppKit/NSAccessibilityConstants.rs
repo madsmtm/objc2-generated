@@ -7,7 +7,9 @@ use crate::Foundation::*;
 
 extern_static!(NSAccessibilityErrorCodeExceptionInfo: &'static NSString);
 
-pub type NSAccessibilityAttributeName = NSString;
+typed_enum!(
+    pub type NSAccessibilityAttributeName = NSString;
+);
 
 extern_static!(NSAccessibilityRoleAttribute: &'static NSAccessibilityAttributeName);
 
@@ -139,7 +141,9 @@ extern_static!(
 
 extern_static!(NSAccessibilitySelectedTextRangesAttribute: &'static NSAccessibilityAttributeName);
 
-pub type NSAccessibilityParameterizedAttributeName = NSString;
+typed_enum!(
+    pub type NSAccessibilityParameterizedAttributeName = NSString;
+);
 
 extern_static!(
     NSAccessibilityLineForIndexParameterizedAttribute:
@@ -228,7 +232,9 @@ extern_static!(NSAccessibilityCustomTextAttribute: &'static NSAttributedStringKe
 
 extern_static!(NSAccessibilityAnnotationTextAttribute: &'static NSAttributedStringKey);
 
-pub type NSAccessibilityAnnotationAttributeKey = NSString;
+typed_enum!(
+    pub type NSAccessibilityAnnotationAttributeKey = NSString;
+);
 
 extern_static!(NSAccessibilityAnnotationLabel: &'static NSAccessibilityAnnotationAttributeKey);
 
@@ -245,7 +251,9 @@ ns_enum!(
     }
 );
 
-pub type NSAccessibilityFontAttributeKey = NSString;
+typed_enum!(
+    pub type NSAccessibilityFontAttributeKey = NSString;
+);
 
 extern_static!(NSAccessibilityFontNameKey: &'static NSAccessibilityFontAttributeKey);
 
@@ -306,7 +314,9 @@ ns_enum!(
 
 extern_static!(NSAccessibilityOrientationAttribute: &'static NSAccessibilityAttributeName);
 
-pub type NSAccessibilityOrientationValue = NSString;
+typed_enum!(
+    pub type NSAccessibilityOrientationValue = NSString;
+);
 
 extern_static!(NSAccessibilityVerticalOrientationValue: &'static NSAccessibilityOrientationValue);
 
@@ -389,7 +399,9 @@ extern_static!(
 
 extern_static!(NSAccessibilityHandlesAttribute: &'static NSAccessibilityAttributeName);
 
-pub type NSAccessibilitySortDirectionValue = NSString;
+typed_enum!(
+    pub type NSAccessibilitySortDirectionValue = NSString;
+);
 
 extern_static!(
     NSAccessibilityAscendingSortDirectionValue: &'static NSAccessibilitySortDirectionValue
@@ -450,7 +462,9 @@ extern_static!(
 
 extern_static!(NSAccessibilityIdentifierAttribute: &'static NSAccessibilityAttributeName);
 
-pub type NSAccessibilityRulerMarkerTypeValue = NSString;
+typed_enum!(
+    pub type NSAccessibilityRulerMarkerTypeValue = NSString;
+);
 
 extern_static!(
     NSAccessibilityLeftTabStopMarkerTypeValue: &'static NSAccessibilityRulerMarkerTypeValue
@@ -496,7 +510,9 @@ ns_enum!(
     }
 );
 
-pub type NSAccessibilityRulerUnitValue = NSString;
+typed_enum!(
+    pub type NSAccessibilityRulerUnitValue = NSString;
+);
 
 extern_static!(NSAccessibilityInchesUnitValue: &'static NSAccessibilityRulerUnitValue);
 
@@ -519,7 +535,9 @@ ns_enum!(
     }
 );
 
-pub type NSAccessibilityActionName = NSString;
+typed_extensible_enum!(
+    pub type NSAccessibilityActionName = NSString;
+);
 
 extern_static!(NSAccessibilityPressAction: &'static NSAccessibilityActionName);
 
@@ -543,7 +561,9 @@ extern_static!(NSAccessibilityShowAlternateUIAction: &'static NSAccessibilityAct
 
 extern_static!(NSAccessibilityShowDefaultUIAction: &'static NSAccessibilityActionName);
 
-pub type NSAccessibilityNotificationName = NSString;
+typed_enum!(
+    pub type NSAccessibilityNotificationName = NSString;
+);
 
 extern_static!(
     NSAccessibilityMainWindowChangedNotification: &'static NSAccessibilityNotificationName
@@ -647,7 +667,9 @@ extern_static!(
     NSAccessibilityAnnouncementRequestedNotification: &'static NSAccessibilityNotificationName
 );
 
-pub type NSAccessibilityRole = NSString;
+typed_enum!(
+    pub type NSAccessibilityRole = NSString;
+);
 
 extern_static!(NSAccessibilityUnknownRole: &'static NSAccessibilityRole);
 
@@ -761,7 +783,9 @@ extern_static!(NSAccessibilityLayoutItemRole: &'static NSAccessibilityRole);
 
 extern_static!(NSAccessibilityHandleRole: &'static NSAccessibilityRole);
 
-pub type NSAccessibilitySubrole = NSString;
+typed_enum!(
+    pub type NSAccessibilitySubrole = NSString;
+);
 
 extern_static!(NSAccessibilityUnknownSubrole: &'static NSAccessibilitySubrole);
 
@@ -827,7 +851,9 @@ extern_static!(NSAccessibilityCollectionListSubrole: &'static NSAccessibilitySub
 
 extern_static!(NSAccessibilitySectionListSubrole: &'static NSAccessibilitySubrole);
 
-pub type NSAccessibilityNotificationUserInfoKey = NSString;
+typed_enum!(
+    pub type NSAccessibilityNotificationUserInfoKey = NSString;
+);
 
 extern_static!(NSAccessibilityUIElementsKey: &'static NSAccessibilityNotificationUserInfoKey);
 

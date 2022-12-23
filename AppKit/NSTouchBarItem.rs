@@ -5,9 +5,13 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-pub type NSTouchBarItemIdentifier = NSString;
+typed_extensible_enum!(
+    pub type NSTouchBarItemIdentifier = NSString;
+);
 
-pub type NSTouchBarItemPriority = c_float;
+typed_extensible_enum!(
+    pub type NSTouchBarItemPriority = c_float;
+);
 
 extern_static!(NSTouchBarItemPriorityHigh: NSTouchBarItemPriority = 1000);
 

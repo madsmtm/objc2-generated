@@ -27,7 +27,9 @@ ns_options!(
     }
 );
 
-pub type NSTextTabOptionKey = NSString;
+typed_enum!(
+    pub type NSTextTabOptionKey = NSString;
+);
 
 extern_static!(NSTabColumnTerminatorsAttributeName: &'static NSTextTabOptionKey);
 

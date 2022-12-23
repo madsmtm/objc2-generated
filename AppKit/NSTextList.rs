@@ -5,7 +5,9 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-pub type NSTextListMarkerFormat = NSString;
+typed_extensible_enum!(
+    pub type NSTextListMarkerFormat = NSString;
+);
 
 extern_static!(NSTextListMarkerBox: &'static NSTextListMarkerFormat);
 

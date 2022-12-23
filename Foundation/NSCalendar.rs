@@ -3,7 +3,9 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-pub type NSCalendarIdentifier = NSString;
+typed_extensible_enum!(
+    pub type NSCalendarIdentifier = NSString;
+);
 
 extern_static!(NSCalendarIdentifierGregorian: &'static NSCalendarIdentifier);
 

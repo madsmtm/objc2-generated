@@ -87,7 +87,9 @@ ns_enum!(
     }
 );
 
-pub type NSTextEffectStyle = NSString;
+typed_enum!(
+    pub type NSTextEffectStyle = NSString;
+);
 
 extern_static!(NSTextEffectLetterpressStyle: &'static NSTextEffectStyle);
 
@@ -116,7 +118,9 @@ extern_methods!(
     }
 );
 
-pub type NSAttributedStringDocumentType = NSString;
+typed_extensible_enum!(
+    pub type NSAttributedStringDocumentType = NSString;
+);
 
 extern_static!(NSPlainTextDocumentType: &'static NSAttributedStringDocumentType);
 
@@ -138,7 +142,9 @@ extern_static!(NSOfficeOpenXMLTextDocumentType: &'static NSAttributedStringDocum
 
 extern_static!(NSOpenDocumentTextDocumentType: &'static NSAttributedStringDocumentType);
 
-pub type NSTextLayoutSectionKey = NSString;
+typed_enum!(
+    pub type NSTextLayoutSectionKey = NSString;
+);
 
 extern_static!(NSTextLayoutSectionOrientation: &'static NSTextLayoutSectionKey);
 
@@ -152,7 +158,9 @@ ns_enum!(
     }
 );
 
-pub type NSAttributedStringDocumentAttributeKey = NSString;
+typed_extensible_enum!(
+    pub type NSAttributedStringDocumentAttributeKey = NSString;
+);
 
 extern_static!(NSDocumentTypeDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
@@ -244,7 +252,9 @@ extern_static!(
     NSSourceTextScalingDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey
 );
 
-pub type NSAttributedStringDocumentReadingOptionKey = NSString;
+typed_extensible_enum!(
+    pub type NSAttributedStringDocumentReadingOptionKey = NSString;
+);
 
 extern_static!(NSDocumentTypeDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey);
 

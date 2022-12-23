@@ -24,7 +24,9 @@ ns_enum!(
     }
 );
 
-pub type NSPasteboardTypeTextFinderOptionKey = NSString;
+typed_enum!(
+    pub type NSPasteboardTypeTextFinderOptionKey = NSString;
+);
 
 extern_static!(NSTextFinderCaseInsensitiveKey: &'static NSPasteboardTypeTextFinderOptionKey);
 

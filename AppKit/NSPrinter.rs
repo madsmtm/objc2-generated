@@ -14,9 +14,13 @@ ns_enum!(
     }
 );
 
-pub type NSPrinterTypeName = NSString;
+typed_extensible_enum!(
+    pub type NSPrinterTypeName = NSString;
+);
 
-pub type NSPrinterPaperName = NSString;
+typed_extensible_enum!(
+    pub type NSPrinterPaperName = NSString;
+);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

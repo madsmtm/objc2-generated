@@ -5,7 +5,9 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-pub type NSDraggingImageComponentKey = NSString;
+typed_extensible_enum!(
+    pub type NSDraggingImageComponentKey = NSString;
+);
 
 extern_static!(NSDraggingImageComponentIconKey: &'static NSDraggingImageComponentKey);
 

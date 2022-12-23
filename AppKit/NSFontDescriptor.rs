@@ -35,21 +35,37 @@ ns_options!(
     }
 );
 
-pub type NSFontDescriptorAttributeName = NSString;
+typed_extensible_enum!(
+    pub type NSFontDescriptorAttributeName = NSString;
+);
 
-pub type NSFontDescriptorTraitKey = NSString;
+typed_enum!(
+    pub type NSFontDescriptorTraitKey = NSString;
+);
 
-pub type NSFontDescriptorVariationKey = NSString;
+typed_enum!(
+    pub type NSFontDescriptorVariationKey = NSString;
+);
 
-pub type NSFontDescriptorFeatureKey = NSString;
+typed_extensible_enum!(
+    pub type NSFontDescriptorFeatureKey = NSString;
+);
 
-pub type NSFontWeight = CGFloat;
+typed_extensible_enum!(
+    pub type NSFontWeight = CGFloat;
+);
 
-pub type NSFontDescriptorSystemDesign = NSString;
+typed_enum!(
+    pub type NSFontDescriptorSystemDesign = NSString;
+);
 
-pub type NSFontTextStyle = NSString;
+typed_enum!(
+    pub type NSFontTextStyle = NSString;
+);
 
-pub type NSFontTextStyleOptionKey = NSString;
+typed_enum!(
+    pub type NSFontTextStyleOptionKey = NSString;
+);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

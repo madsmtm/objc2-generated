@@ -3,7 +3,9 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-pub type NSDistributedNotificationCenterType = NSString;
+typed_extensible_enum!(
+    pub type NSDistributedNotificationCenterType = NSString;
+);
 
 extern_static!(NSLocalNotificationCenterType: &'static NSDistributedNotificationCenterType);
 

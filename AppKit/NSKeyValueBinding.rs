@@ -5,9 +5,13 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-pub type NSBindingName = NSString;
+typed_extensible_enum!(
+    pub type NSBindingName = NSString;
+);
 
-pub type NSBindingOption = NSString;
+typed_enum!(
+    pub type NSBindingOption = NSString;
+);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -59,7 +63,9 @@ extern_fn!(
     pub unsafe fn NSIsControllerMarker(object: Option<&Object>) -> Bool;
 );
 
-pub type NSBindingInfoKey = NSString;
+typed_enum!(
+    pub type NSBindingInfoKey = NSString;
+);
 
 extern_static!(NSObservedObjectKey: &'static NSBindingInfoKey);
 

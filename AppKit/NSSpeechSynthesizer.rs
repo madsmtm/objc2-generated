@@ -5,9 +5,13 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-pub type NSSpeechSynthesizerVoiceName = NSString;
+typed_enum!(
+    pub type NSSpeechSynthesizerVoiceName = NSString;
+);
 
-pub type NSVoiceAttributeKey = NSString;
+typed_enum!(
+    pub type NSVoiceAttributeKey = NSString;
+);
 
 extern_static!(NSVoiceName: &'static NSVoiceAttributeKey);
 
@@ -25,7 +29,9 @@ extern_static!(NSVoiceSupportedCharacters: &'static NSVoiceAttributeKey);
 
 extern_static!(NSVoiceIndividuallySpokenCharacters: &'static NSVoiceAttributeKey);
 
-pub type NSSpeechDictionaryKey = NSString;
+typed_enum!(
+    pub type NSSpeechDictionaryKey = NSString;
+);
 
 extern_static!(NSSpeechDictionaryLocaleIdentifier: &'static NSSpeechDictionaryKey);
 
@@ -39,7 +45,9 @@ extern_static!(NSSpeechDictionaryEntrySpelling: &'static NSSpeechDictionaryKey);
 
 extern_static!(NSSpeechDictionaryEntryPhonemes: &'static NSSpeechDictionaryKey);
 
-pub type NSVoiceGenderName = NSString;
+typed_enum!(
+    pub type NSVoiceGenderName = NSString;
+);
 
 extern_static!(NSVoiceGenderNeuter: &'static NSVoiceGenderName);
 
@@ -49,7 +57,9 @@ extern_static!(NSVoiceGenderFemale: &'static NSVoiceGenderName);
 
 extern_static!(NSVoiceGenderNeutral: &'static NSVoiceGenderName);
 
-pub type NSSpeechPropertyKey = NSString;
+typed_enum!(
+    pub type NSSpeechPropertyKey = NSString;
+);
 
 extern_static!(NSSpeechStatusProperty: &'static NSSpeechPropertyKey);
 
@@ -249,7 +259,9 @@ extern_protocol!(
     }
 );
 
-pub type NSSpeechMode = NSString;
+typed_enum!(
+    pub type NSSpeechMode = NSString;
+);
 
 extern_static!(NSSpeechModeText: &'static NSSpeechMode);
 
@@ -259,7 +271,9 @@ extern_static!(NSSpeechModeNormal: &'static NSSpeechMode);
 
 extern_static!(NSSpeechModeLiteral: &'static NSSpeechMode);
 
-pub type NSSpeechStatusKey = NSString;
+typed_enum!(
+    pub type NSSpeechStatusKey = NSString;
+);
 
 extern_static!(NSSpeechStatusOutputBusy: &'static NSSpeechStatusKey);
 
@@ -269,7 +283,9 @@ extern_static!(NSSpeechStatusNumberOfCharactersLeft: &'static NSSpeechStatusKey)
 
 extern_static!(NSSpeechStatusPhonemeCode: &'static NSSpeechStatusKey);
 
-pub type NSSpeechErrorKey = NSString;
+typed_enum!(
+    pub type NSSpeechErrorKey = NSString;
+);
 
 extern_static!(NSSpeechErrorCount: &'static NSSpeechErrorKey);
 
@@ -281,13 +297,17 @@ extern_static!(NSSpeechErrorNewestCode: &'static NSSpeechErrorKey);
 
 extern_static!(NSSpeechErrorNewestCharacterOffset: &'static NSSpeechErrorKey);
 
-pub type NSSpeechSynthesizerInfoKey = NSString;
+typed_enum!(
+    pub type NSSpeechSynthesizerInfoKey = NSString;
+);
 
 extern_static!(NSSpeechSynthesizerInfoIdentifier: &'static NSSpeechSynthesizerInfoKey);
 
 extern_static!(NSSpeechSynthesizerInfoVersion: &'static NSSpeechSynthesizerInfoKey);
 
-pub type NSSpeechPhonemeInfoKey = NSString;
+typed_enum!(
+    pub type NSSpeechPhonemeInfoKey = NSString;
+);
 
 extern_static!(NSSpeechPhonemeInfoOpcode: &'static NSSpeechPhonemeInfoKey);
 
@@ -299,7 +319,9 @@ extern_static!(NSSpeechPhonemeInfoHiliteStart: &'static NSSpeechPhonemeInfoKey);
 
 extern_static!(NSSpeechPhonemeInfoHiliteEnd: &'static NSSpeechPhonemeInfoKey);
 
-pub type NSSpeechCommandDelimiterKey = NSString;
+typed_enum!(
+    pub type NSSpeechCommandDelimiterKey = NSString;
+);
 
 extern_static!(NSSpeechCommandPrefix: &'static NSSpeechCommandDelimiterKey);
 

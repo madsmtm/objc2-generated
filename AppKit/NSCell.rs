@@ -65,7 +65,9 @@ ns_enum!(
     }
 );
 
-pub type NSControlStateValue = NSInteger;
+typed_extensible_enum!(
+    pub type NSControlStateValue = NSInteger;
+);
 
 extern_static!(NSControlStateValueMixed: NSControlStateValue = -1);
 

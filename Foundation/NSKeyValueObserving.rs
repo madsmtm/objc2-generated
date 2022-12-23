@@ -33,7 +33,9 @@ ns_enum!(
     }
 );
 
-pub type NSKeyValueChangeKey = NSString;
+typed_enum!(
+    pub type NSKeyValueChangeKey = NSString;
+);
 
 extern_static!(NSKeyValueChangeKindKey: &'static NSKeyValueChangeKey);
 

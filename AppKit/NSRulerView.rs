@@ -13,7 +13,9 @@ ns_enum!(
     }
 );
 
-pub type NSRulerViewUnitName = NSString;
+typed_extensible_enum!(
+    pub type NSRulerViewUnitName = NSString;
+);
 
 extern_static!(NSRulerViewUnitInches: &'static NSRulerViewUnitName);
 

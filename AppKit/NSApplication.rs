@@ -5,7 +5,9 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-pub type NSAppKitVersion = c_double;
+typed_extensible_enum!(
+    pub type NSAppKitVersion = c_double;
+);
 
 extern_static!(NSAppKitVersionNumber: NSAppKitVersion);
 
@@ -133,7 +135,9 @@ extern_static!(NSModalPanelRunLoopMode: &'static NSRunLoopMode);
 
 extern_static!(NSEventTrackingRunLoopMode: &'static NSRunLoopMode);
 
-pub type NSModalResponse = NSInteger;
+typed_extensible_enum!(
+    pub type NSModalResponse = NSInteger;
+);
 
 extern_static!(NSModalResponseStop: NSModalResponse = -1000);
 
@@ -866,7 +870,9 @@ extern_methods!(
     }
 );
 
-pub type NSAboutPanelOptionKey = NSString;
+typed_enum!(
+    pub type NSAboutPanelOptionKey = NSString;
+);
 
 extern_static!(NSAboutPanelOptionCredits: &'static NSAboutPanelOptionKey);
 

@@ -5,7 +5,9 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-pub type NSSharingServiceName = NSString;
+typed_extensible_enum!(
+    pub type NSSharingServiceName = NSString;
+);
 
 extern_static!(NSSharingServiceNameComposeEmail: &'static NSSharingServiceName);
 
