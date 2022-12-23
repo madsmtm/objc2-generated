@@ -127,7 +127,7 @@ ns_options!(
         NSEventMaskPressure = 1 << NSEventTypePressure,
         NSEventMaskDirectTouch = 1 << NSEventTypeDirectTouch,
         NSEventMaskChangeMode = 1 << NSEventTypeChangeMode,
-        NSEventMaskAny = NSUIntegerMax,
+        NSEventMaskAny = NSUIntegerMax as _,
     }
 );
 

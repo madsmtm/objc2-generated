@@ -15,7 +15,7 @@ ns_options!(
         NSDragOperationPrivate = 8,
         NSDragOperationMove = 16,
         NSDragOperationDelete = 32,
-        NSDragOperationEvery = NSUIntegerMax,
+        NSDragOperationEvery = NSUIntegerMax as _,
         NSDragOperationAll_Obsolete = 15,
         NSDragOperationAll = NSDragOperationAll_Obsolete,
     }
