@@ -20,11 +20,9 @@ ns_options!(
     }
 );
 
-pub type NSStringEncoding = NSUInteger;
-
 ns_enum!(
-    #[underlying(NSStringEncoding)]
-    pub enum {
+    #[underlying(NSUInteger)]
+    pub enum NSStringEncoding {
         NSASCIIStringEncoding = 1,
         NSNEXTSTEPStringEncoding = 2,
         NSJapaneseEUCStringEncoding = 3,
@@ -899,13 +897,6 @@ extern_methods!(
 
         #[method(getCharacters:)]
         pub unsafe fn getCharacters(&self, buffer: NonNull<unichar>);
-    }
-);
-
-ns_enum!(
-    #[underlying(NSStringEncoding)]
-    pub enum {
-        NSProprietaryStringEncoding = 65536,
     }
 );
 

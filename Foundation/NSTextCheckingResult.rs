@@ -22,14 +22,12 @@ ns_options!(
     }
 );
 
-pub type NSTextCheckingTypes = u64;
-
 ns_enum!(
-    #[underlying(NSTextCheckingTypes)]
-    pub enum {
+    #[underlying(u64)]
+    pub enum NSTextCheckingTypes {
         NSTextCheckingAllSystemTypes = 0xffffffff,
-        NSTextCheckingAllCustomTypes = 0xffffffff<<32,
-        NSTextCheckingAllTypes = NSTextCheckingAllSystemTypes|NSTextCheckingAllCustomTypes,
+        NSTextCheckingAllCustomTypes = 0xffffffff << 32,
+        NSTextCheckingAllTypes = NSTextCheckingAllSystemTypes | NSTextCheckingAllCustomTypes,
     }
 );
 
