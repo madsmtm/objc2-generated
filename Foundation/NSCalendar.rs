@@ -89,12 +89,6 @@ ns_options!(
     }
 );
 
-extern_enum!(
-    #[underlying(c_uint)]
-    pub enum {
-    }
-);
-
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCalendar;

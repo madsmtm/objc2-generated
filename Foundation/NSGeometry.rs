@@ -3,37 +3,17 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-pub type NSPoint = CGPoint;
-
 pub type NSPointPointer = *mut NSPoint;
 
 pub type NSPointArray = *mut NSPoint;
-
-pub type NSSize = CGSize;
 
 pub type NSSizePointer = *mut NSSize;
 
 pub type NSSizeArray = *mut NSSize;
 
-pub type NSRect = CGRect;
-
 pub type NSRectPointer = *mut NSRect;
 
 pub type NSRectArray = *mut NSRect;
-
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSRectEdge {
-        NSRectEdgeMinX = 0,
-        NSRectEdgeMinY = 1,
-        NSRectEdgeMaxX = 2,
-        NSRectEdgeMaxY = 3,
-        NSMinXEdge = 0,
-        NSMinYEdge = 1,
-        NSMaxXEdge = 2,
-        NSMaxYEdge = 3,
-    }
-);
 
 extern_struct!(
     pub struct NSEdgeInsets {

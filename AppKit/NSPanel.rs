@@ -51,12 +51,6 @@ extern_enum!(
     }
 );
 
-extern_enum!(
-    #[underlying(c_uint)]
-    pub enum {
-    }
-);
-
 extern_methods!(
     /// Methods declared on superclass `NSWindow`
     unsafe impl NSPanel {

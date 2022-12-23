@@ -670,11 +670,10 @@ pub use self::__NSGeometry::{
     NSAlignWidthNearest, NSAlignWidthOutward, NSAlignmentOptions, NSContainsRect, NSDivideRect,
     NSEdgeInsets, NSEdgeInsetsEqual, NSEdgeInsetsZero, NSEqualPoints, NSEqualRects, NSEqualSizes,
     NSInsetRect, NSIntegralRect, NSIntegralRectWithOptions, NSIntersectionRect, NSIntersectsRect,
-    NSIsEmptyRect, NSMaxXEdge, NSMaxYEdge, NSMinXEdge, NSMinYEdge, NSMouseInRect, NSOffsetRect,
-    NSPoint, NSPointArray, NSPointFromString, NSPointInRect, NSPointPointer, NSRect, NSRectArray,
-    NSRectEdge, NSRectEdgeMaxX, NSRectEdgeMaxY, NSRectEdgeMinX, NSRectEdgeMinY, NSRectFromString,
-    NSRectPointer, NSSize, NSSizeArray, NSSizeFromString, NSSizePointer, NSStringFromPoint,
-    NSStringFromRect, NSStringFromSize, NSUnionRect, NSZeroPoint, NSZeroRect, NSZeroSize,
+    NSIsEmptyRect, NSMouseInRect, NSOffsetRect, NSPointArray, NSPointFromString, NSPointInRect,
+    NSPointPointer, NSRectArray, NSRectFromString, NSRectPointer, NSSizeArray, NSSizeFromString,
+    NSSizePointer, NSStringFromPoint, NSStringFromRect, NSStringFromSize, NSUnionRect, NSZeroPoint,
+    NSZeroRect, NSZeroSize,
 };
 pub use self::__NSHFSFileTypes::{
     NSFileTypeForHFSTypeCode, NSHFSTypeCodeFromFileType, NSHFSTypeOfFile,

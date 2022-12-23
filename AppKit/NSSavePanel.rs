@@ -5,12 +5,6 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-extern_enum!(
-    #[underlying(c_uint)]
-    pub enum {
-    }
-);
-
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSavePanel;

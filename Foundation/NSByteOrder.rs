@@ -3,12 +3,6 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-extern_enum!(
-    #[underlying(c_uint)]
-    pub enum {
-    }
-);
-
 inline_fn!(
     pub unsafe fn NSHostByteOrder() -> c_long {
         todo!()
