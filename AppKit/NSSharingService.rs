@@ -239,22 +239,6 @@ extern_protocol!(
             cloudKitSharingService: &NSSharingService,
             provider: &NSItemProvider,
         ) -> NSCloudKitSharingServiceOptions;
-
-        #[optional]
-        #[method(sharingService:didSaveShare:)]
-        pub unsafe fn sharingService_didSaveShare(
-            &self,
-            sharingService: &NSSharingService,
-            share: &CKShare,
-        );
-
-        #[optional]
-        #[method(sharingService:didStopSharing:)]
-        pub unsafe fn sharingService_didStopSharing(
-            &self,
-            sharingService: &NSSharingService,
-            share: &CKShare,
-        );
     }
 );
 

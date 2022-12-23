@@ -164,18 +164,6 @@ extern_protocol!(
     }
 );
 
-extern_protocol!(
-    pub struct NSCloudSharingValidation;
-
-    unsafe impl ProtocolType for NSCloudSharingValidation {
-        #[method_id(@__retain_semantics Other cloudShareForUserInterfaceItem:)]
-        pub unsafe fn cloudShareForUserInterfaceItem(
-            &self,
-            item: &NSValidatedUserInterfaceItem,
-        ) -> Option<Id<CKShare, Shared>>;
-    }
-);
-
 extern_static!(NSToolbarSeparatorItemIdentifier: &'static NSToolbarItemIdentifier);
 
 extern_static!(NSToolbarSpaceItemIdentifier: &'static NSToolbarItemIdentifier);

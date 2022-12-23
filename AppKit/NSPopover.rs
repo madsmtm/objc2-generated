@@ -22,6 +22,84 @@ ns_enum!(
     }
 );
 
+extern_methods!(
+    unsafe impl NSPopover {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithCoder:)]
+        pub unsafe fn initWithCoder(
+            this: Option<Allocated<Self>>,
+            coder: &NSCoder,
+        ) -> Option<Id<Self, Shared>>;
+
+        #[method_id(@__retain_semantics Other delegate)]
+        pub unsafe fn delegate(&self) -> Option<Id<NSPopoverDelegate, Shared>>;
+
+        #[method(setDelegate:)]
+        pub unsafe fn setDelegate(&self, delegate: Option<&NSPopoverDelegate>);
+
+        #[method(appearance)]
+        pub unsafe fn appearance(&self) -> NSPopoverAppearance;
+
+        #[method(setAppearance:)]
+        pub unsafe fn setAppearance(&self, appearance: NSPopoverAppearance);
+
+        #[method(behavior)]
+        pub unsafe fn behavior(&self) -> NSPopoverBehavior;
+
+        #[method(setBehavior:)]
+        pub unsafe fn setBehavior(&self, behavior: NSPopoverBehavior);
+
+        #[method(animates)]
+        pub unsafe fn animates(&self) -> bool;
+
+        #[method(setAnimates:)]
+        pub unsafe fn setAnimates(&self, animates: bool);
+
+        #[method_id(@__retain_semantics Other contentViewController)]
+        pub unsafe fn contentViewController(&self) -> Option<Id<NSViewController, Shared>>;
+
+        #[method(setContentViewController:)]
+        pub unsafe fn setContentViewController(
+            &self,
+            contentViewController: Option<&NSViewController>,
+        );
+
+        #[method(contentSize)]
+        pub unsafe fn contentSize(&self) -> NSSize;
+
+        #[method(setContentSize:)]
+        pub unsafe fn setContentSize(&self, contentSize: NSSize);
+
+        #[method(isShown)]
+        pub unsafe fn isShown(&self) -> bool;
+
+        #[method(isDetached)]
+        pub unsafe fn isDetached(&self) -> bool;
+
+        #[method(positioningRect)]
+        pub unsafe fn positioningRect(&self) -> NSRect;
+
+        #[method(setPositioningRect:)]
+        pub unsafe fn setPositioningRect(&self, positioningRect: NSRect);
+
+        #[method(showRelativeToRect:ofView:preferredEdge:)]
+        pub unsafe fn showRelativeToRect_ofView_preferredEdge(
+            &self,
+            positioningRect: NSRect,
+            positioningView: &NSView,
+            preferredEdge: NSRectEdge,
+        );
+
+        #[method(performClose:)]
+        pub unsafe fn performClose(&self, sender: Option<&Object>);
+
+        #[method(close)]
+        pub unsafe fn close(&self);
+    }
+);
+
 extern_static!(NSPopoverCloseReasonKey: &'static NSString);
 
 pub type NSPopoverCloseReasonValue = NSString;

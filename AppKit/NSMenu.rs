@@ -259,16 +259,6 @@ extern_protocol!(
         ) -> bool;
 
         #[optional]
-        #[method(menuHasKeyEquivalent:forEvent:target:action:)]
-        pub unsafe fn menuHasKeyEquivalent_forEvent_target_action(
-            &self,
-            menu: &NSMenu,
-            event: &NSEvent,
-            target: NonNull<*mut Object>,
-            action: NonNull<Option<Sel>>,
-        ) -> bool;
-
-        #[optional]
         #[method(menuWillOpen:)]
         pub unsafe fn menuWillOpen(&self, menu: &NSMenu);
 

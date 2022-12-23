@@ -714,18 +714,6 @@ extern_protocol!(
 
     unsafe impl ProtocolType for NSLayoutManagerDelegate {
         #[optional]
-        #[method(layoutManager:shouldGenerateGlyphs:properties:characterIndexes:font:forGlyphRange:)]
-        pub unsafe fn layoutManager_shouldGenerateGlyphs_properties_characterIndexes_font_forGlyphRange(
-            &self,
-            layoutManager: &NSLayoutManager,
-            glyphs: NonNull<CGGlyph>,
-            props: NonNull<NSGlyphProperty>,
-            charIndexes: NonNull<NSUInteger>,
-            aFont: &NSFont,
-            glyphRange: NSRange,
-        ) -> NSUInteger;
-
-        #[optional]
         #[method(layoutManager:lineSpacingAfterGlyphAtIndex:withProposedLineFragmentRect:)]
         pub unsafe fn layoutManager_lineSpacingAfterGlyphAtIndex_withProposedLineFragmentRect(
             &self,

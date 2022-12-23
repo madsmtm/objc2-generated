@@ -5,8 +5,65 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+extern_methods!(
+    unsafe impl<AnchorType: Message, AnchorTypeOwnership: Ownership>
+        NSLayoutAnchor<AnchorType, AnchorTypeOwnership>
+    {
+        #[method_id(@__retain_semantics Other constraintEqualToAnchor:)]
+        pub unsafe fn constraintEqualToAnchor(
+            &self,
+            anchor: &NSLayoutAnchor<AnchorType>,
+        ) -> Id<NSLayoutConstraint, Shared>;
+
+        #[method_id(@__retain_semantics Other constraintGreaterThanOrEqualToAnchor:)]
+        pub unsafe fn constraintGreaterThanOrEqualToAnchor(
+            &self,
+            anchor: &NSLayoutAnchor<AnchorType>,
+        ) -> Id<NSLayoutConstraint, Shared>;
+
+        #[method_id(@__retain_semantics Other constraintLessThanOrEqualToAnchor:)]
+        pub unsafe fn constraintLessThanOrEqualToAnchor(
+            &self,
+            anchor: &NSLayoutAnchor<AnchorType>,
+        ) -> Id<NSLayoutConstraint, Shared>;
+
+        #[method_id(@__retain_semantics Other constraintEqualToAnchor:constant:)]
+        pub unsafe fn constraintEqualToAnchor_constant(
+            &self,
+            anchor: &NSLayoutAnchor<AnchorType>,
+            c: CGFloat,
+        ) -> Id<NSLayoutConstraint, Shared>;
+
+        #[method_id(@__retain_semantics Other constraintGreaterThanOrEqualToAnchor:constant:)]
+        pub unsafe fn constraintGreaterThanOrEqualToAnchor_constant(
+            &self,
+            anchor: &NSLayoutAnchor<AnchorType>,
+            c: CGFloat,
+        ) -> Id<NSLayoutConstraint, Shared>;
+
+        #[method_id(@__retain_semantics Other constraintLessThanOrEqualToAnchor:constant:)]
+        pub unsafe fn constraintLessThanOrEqualToAnchor_constant(
+            &self,
+            anchor: &NSLayoutAnchor<AnchorType>,
+            c: CGFloat,
+        ) -> Id<NSLayoutConstraint, Shared>;
+
+        #[method_id(@__retain_semantics Other name)]
+        pub unsafe fn name(&self) -> Id<NSString, Shared>;
+
+        #[method_id(@__retain_semantics Other item)]
+        pub unsafe fn item(&self) -> Option<Id<Object, Shared>>;
+
+        #[method(hasAmbiguousLayout)]
+        pub unsafe fn hasAmbiguousLayout(&self) -> bool;
+
+        #[method_id(@__retain_semantics Other constraintsAffectingLayout)]
+        pub unsafe fn constraintsAffectingLayout(&self) -> Id<NSArray<NSLayoutConstraint>, Shared>;
+    }
+);
+
 extern_class!(
-    #[derive(Debug, PartialEq, Eq, Hash)]
+    #[derive(Debug)]
     pub struct NSLayoutXAxisAnchor;
 
     unsafe impl ClassType for NSLayoutXAxisAnchor {
@@ -47,7 +104,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug, PartialEq, Eq, Hash)]
+    #[derive(Debug)]
     pub struct NSLayoutYAxisAnchor;
 
     unsafe impl ClassType for NSLayoutYAxisAnchor {
@@ -88,7 +145,7 @@ extern_methods!(
 );
 
 extern_class!(
-    #[derive(Debug, PartialEq, Eq, Hash)]
+    #[derive(Debug)]
     pub struct NSLayoutDimension;
 
     unsafe impl ClassType for NSLayoutDimension {

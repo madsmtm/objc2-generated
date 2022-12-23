@@ -695,21 +695,6 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct NSViewLayerContentScaleDelegate;
-
-    unsafe impl ProtocolType for NSViewLayerContentScaleDelegate {
-        #[optional]
-        #[method(layer:shouldInheritContentsScale:fromWindow:)]
-        pub unsafe fn layer_shouldInheritContentsScale_fromWindow(
-            &self,
-            layer: &CALayer,
-            newScale: CGFloat,
-            window: &NSWindow,
-        ) -> bool;
-    }
-);
-
-extern_protocol!(
     pub struct NSViewToolTipOwner;
 
     unsafe impl ProtocolType for NSViewToolTipOwner {

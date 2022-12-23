@@ -679,14 +679,6 @@ extern_protocol!(
         pub unsafe fn applicationSupportsSecureRestorableState(&self, app: &NSApplication) -> bool;
 
         #[optional]
-        #[method_id(@__retain_semantics Other application:handlerForIntent:)]
-        pub unsafe fn application_handlerForIntent(
-            &self,
-            application: &NSApplication,
-            intent: &INIntent,
-        ) -> Option<Id<Object, Shared>>;
-
-        #[optional]
         #[method(application:willEncodeRestorableState:)]
         pub unsafe fn application_willEncodeRestorableState(
             &self,
@@ -734,14 +726,6 @@ extern_protocol!(
             &self,
             application: &NSApplication,
             userActivity: &NSUserActivity,
-        );
-
-        #[optional]
-        #[method(application:userDidAcceptCloudKitShareWithMetadata:)]
-        pub unsafe fn application_userDidAcceptCloudKitShareWithMetadata(
-            &self,
-            application: &NSApplication,
-            metadata: &CKShareMetadata,
         );
 
         #[optional]
