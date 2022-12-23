@@ -478,7 +478,7 @@ extern_static!(NSCalendarDayChangedNotification: &'static NSNotificationName);
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum {
-        NSDateComponentUndefined = 9223372036854775807,
+        NSDateComponentUndefined = NSIntegerMax,
         NSUndefinedDateComponent = NSDateComponentUndefined,
     }
 );

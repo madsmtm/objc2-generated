@@ -14,7 +14,7 @@ ns_options!(
         NSTouchPhaseEnded = 1 << 3,
         NSTouchPhaseCancelled = 1 << 4,
         NSTouchPhaseTouching = NSTouchPhaseBegan | NSTouchPhaseMoved | NSTouchPhaseStationary,
-        NSTouchPhaseAny = 18446744073709551615,
+        NSTouchPhaseAny = NSUIntegerMax,
     }
 );
 
