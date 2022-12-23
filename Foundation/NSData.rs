@@ -331,9 +331,6 @@ extern_class!(
 
 extern_methods!(
     unsafe impl NSMutableData {
-        #[method(mutableBytes)]
-        pub fn mutableBytes(&mut self) -> NonNull<c_void>;
-
         #[method(setLength:)]
         pub fn setLength(&mut self, length: NSUInteger);
     }
