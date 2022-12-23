@@ -39,12 +39,6 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&NSPopoverDelegate>);
 
-        #[method(appearance)]
-        pub unsafe fn appearance(&self) -> NSPopoverAppearance;
-
-        #[method(setAppearance:)]
-        pub unsafe fn setAppearance(&self, appearance: NSPopoverAppearance);
-
         #[method(behavior)]
         pub unsafe fn behavior(&self) -> NSPopoverBehavior;
 
