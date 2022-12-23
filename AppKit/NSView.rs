@@ -645,13 +645,6 @@ extern_methods!(
         #[method(rectPreservedDuringLiveResize)]
         pub unsafe fn rectPreservedDuringLiveResize(&self) -> NSRect;
 
-        #[method(getRectsExposedDuringLiveResize:count:)]
-        pub unsafe fn getRectsExposedDuringLiveResize_count(
-            &self,
-            exposedRects: [NSRect; 4],
-            count: NonNull<NSInteger>,
-        );
-
         #[method_id(@__retain_semantics Other inputContext)]
         pub unsafe fn inputContext(&self) -> Option<Id<NSTextInputContext, Shared>>;
 

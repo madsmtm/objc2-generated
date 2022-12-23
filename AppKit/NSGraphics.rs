@@ -352,22 +352,6 @@ extern_fn!(
 );
 
 extern_fn!(
-    pub unsafe fn NSDrawBitmap(
-        rect: NSRect,
-        width: NSInteger,
-        height: NSInteger,
-        bps: NSInteger,
-        spp: NSInteger,
-        bpp: NSInteger,
-        bpr: NSInteger,
-        isPlanar: Bool,
-        hasAlpha: Bool,
-        colorSpaceName: &NSColorSpaceName,
-        data: [*const c_uchar; 5],
-    );
-);
-
-extern_fn!(
     pub unsafe fn NSHighlightRect(rect: NSRect);
 );
 
