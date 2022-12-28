@@ -41,10 +41,10 @@ extern_methods!(
         pub unsafe fn setRestorable(&self, restorable: bool);
 
         #[method_id(@__retain_semantics Other restorationClass)]
-        pub unsafe fn restorationClass(&self) -> Option<Id<TodoProtocols, Shared>>;
+        pub unsafe fn restorationClass(&self) -> Option<Id<TodoClass, Shared>>;
 
         #[method(setRestorationClass:)]
-        pub unsafe fn setRestorationClass(&self, restorationClass: Option<&TodoProtocols>);
+        pub unsafe fn setRestorationClass(&self, restorationClass: Option<&TodoClass>);
 
         #[method(disableSnapshotRestoration)]
         pub unsafe fn disableSnapshotRestoration(&self);
