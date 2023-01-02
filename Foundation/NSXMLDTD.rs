@@ -25,14 +25,14 @@ extern_methods!(
             options: NSXMLNodeOptions,
         ) -> Id<Self, Shared>;
 
-        #[method_id(@__retain_semantics Init initWithContentsOfURL:options:error:)]
+        #[method_id(@__retain_semantics Init initWithContentsOfURL:options:error:_)]
         pub unsafe fn initWithContentsOfURL_options_error(
             this: Option<Allocated<Self>>,
             url: &NSURL,
             mask: NSXMLNodeOptions,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Init initWithData:options:error:)]
+        #[method_id(@__retain_semantics Init initWithData:options:error:_)]
         pub unsafe fn initWithData_options_error(
             this: Option<Allocated<Self>>,
             data: &NSData,

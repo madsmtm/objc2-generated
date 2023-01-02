@@ -297,7 +297,7 @@ extern_static!(
 extern_methods!(
     /// NSAttributedStringDocumentFormats
     unsafe impl NSAttributedString {
-        #[method_id(@__retain_semantics Init initWithURL:options:documentAttributes:error:)]
+        #[method_id(@__retain_semantics Init initWithURL:options:documentAttributes:error:_)]
         pub unsafe fn initWithURL_options_documentAttributes_error(
             this: Option<Allocated<Self>>,
             url: &NSURL,
@@ -305,7 +305,7 @@ extern_methods!(
             dict: *mut *mut NSDictionary<NSAttributedStringDocumentAttributeKey, Object>,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Init initWithData:options:documentAttributes:error:)]
+        #[method_id(@__retain_semantics Init initWithData:options:documentAttributes:error:_)]
         pub unsafe fn initWithData_options_documentAttributes_error(
             this: Option<Allocated<Self>>,
             data: &NSData,
@@ -313,14 +313,14 @@ extern_methods!(
             dict: *mut *mut NSDictionary<NSAttributedStringDocumentAttributeKey, Object>,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Other dataFromRange:documentAttributes:error:)]
+        #[method_id(@__retain_semantics Other dataFromRange:documentAttributes:error:_)]
         pub unsafe fn dataFromRange_documentAttributes_error(
             &self,
             range: NSRange,
             dict: &NSDictionary<NSAttributedStringDocumentAttributeKey, Object>,
         ) -> Result<Id<NSData, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Other fileWrapperFromRange:documentAttributes:error:)]
+        #[method_id(@__retain_semantics Other fileWrapperFromRange:documentAttributes:error:_)]
         pub unsafe fn fileWrapperFromRange_documentAttributes_error(
             &self,
             range: NSRange,
@@ -411,7 +411,7 @@ extern_methods!(
 extern_methods!(
     /// NSMutableAttributedStringDocumentFormats
     unsafe impl NSMutableAttributedString {
-        #[method(readFromURL:options:documentAttributes:error:)]
+        #[method(readFromURL:options:documentAttributes:error:_)]
         pub unsafe fn readFromURL_options_documentAttributes_error(
             &self,
             url: &NSURL,
@@ -419,7 +419,7 @@ extern_methods!(
             dict: *mut *mut NSDictionary<NSAttributedStringDocumentAttributeKey, Object>,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[method(readFromData:options:documentAttributes:error:)]
+        #[method(readFromData:options:documentAttributes:error:_)]
         pub unsafe fn readFromData_options_documentAttributes_error(
             &self,
             data: &NSData,

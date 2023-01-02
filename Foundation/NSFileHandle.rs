@@ -30,48 +30,48 @@ extern_methods!(
             coder: &NSCoder,
         ) -> Option<Id<Self, Shared>>;
 
-        #[method_id(@__retain_semantics Other readDataToEndOfFileAndReturnError:)]
+        #[method_id(@__retain_semantics Other readDataToEndOfFileAndReturnError:_)]
         pub unsafe fn readDataToEndOfFileAndReturnError(
             &self,
         ) -> Result<Id<NSData, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Other readDataUpToLength:error:)]
+        #[method_id(@__retain_semantics Other readDataUpToLength:error:_)]
         pub unsafe fn readDataUpToLength_error(
             &self,
             length: NSUInteger,
         ) -> Result<Id<NSData, Shared>, Id<NSError, Shared>>;
 
-        #[method(writeData:error:)]
+        #[method(writeData:error:_)]
         pub unsafe fn writeData_error(&self, data: &NSData) -> Result<(), Id<NSError, Shared>>;
 
-        #[method(getOffset:error:)]
+        #[method(getOffset:error:_)]
         pub unsafe fn getOffset_error(
             &self,
             offsetInFile: NonNull<c_ulonglong>,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[method(seekToEndReturningOffset:error:)]
+        #[method(seekToEndReturningOffset:error:_)]
         pub unsafe fn seekToEndReturningOffset_error(
             &self,
             offsetInFile: *mut c_ulonglong,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[method(seekToOffset:error:)]
+        #[method(seekToOffset:error:_)]
         pub unsafe fn seekToOffset_error(
             &self,
             offset: c_ulonglong,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[method(truncateAtOffset:error:)]
+        #[method(truncateAtOffset:error:_)]
         pub unsafe fn truncateAtOffset_error(
             &self,
             offset: c_ulonglong,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[method(synchronizeAndReturnError:)]
+        #[method(synchronizeAndReturnError:_)]
         pub unsafe fn synchronizeAndReturnError(&self) -> Result<(), Id<NSError, Shared>>;
 
-        #[method(closeAndReturnError:)]
+        #[method(closeAndReturnError:_)]
         pub unsafe fn closeAndReturnError(&self) -> Result<(), Id<NSError, Shared>>;
     }
 );
@@ -100,17 +100,17 @@ extern_methods!(
         #[method_id(@__retain_semantics Other fileHandleForUpdatingAtPath:)]
         pub unsafe fn fileHandleForUpdatingAtPath(path: &NSString) -> Option<Id<Self, Shared>>;
 
-        #[method_id(@__retain_semantics Other fileHandleForReadingFromURL:error:)]
+        #[method_id(@__retain_semantics Other fileHandleForReadingFromURL:error:_)]
         pub unsafe fn fileHandleForReadingFromURL_error(
             url: &NSURL,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Other fileHandleForWritingToURL:error:)]
+        #[method_id(@__retain_semantics Other fileHandleForWritingToURL:error:_)]
         pub unsafe fn fileHandleForWritingToURL_error(
             url: &NSURL,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Other fileHandleForUpdatingURL:error:)]
+        #[method_id(@__retain_semantics Other fileHandleForUpdatingURL:error:_)]
         pub unsafe fn fileHandleForUpdatingURL_error(
             url: &NSURL,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;

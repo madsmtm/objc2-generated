@@ -27,13 +27,13 @@ extern_class!(
 
 extern_methods!(
     unsafe impl NSRegularExpression {
-        #[method_id(@__retain_semantics Other regularExpressionWithPattern:options:error:)]
+        #[method_id(@__retain_semantics Other regularExpressionWithPattern:options:error:_)]
         pub unsafe fn regularExpressionWithPattern_options_error(
             pattern: &NSString,
             options: NSRegularExpressionOptions,
         ) -> Result<Id<NSRegularExpression, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Init initWithPattern:options:error:)]
+        #[method_id(@__retain_semantics Init initWithPattern:options:error:_)]
         pub unsafe fn initWithPattern_options_error(
             this: Option<Allocated<Self>>,
             pattern: &NSString,
@@ -169,12 +169,12 @@ extern_class!(
 
 extern_methods!(
     unsafe impl NSDataDetector {
-        #[method_id(@__retain_semantics Other dataDetectorWithTypes:error:)]
+        #[method_id(@__retain_semantics Other dataDetectorWithTypes:error:_)]
         pub unsafe fn dataDetectorWithTypes_error(
             checkingTypes: NSTextCheckingTypes,
         ) -> Result<Id<NSDataDetector, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Init initWithTypes:error:)]
+        #[method_id(@__retain_semantics Init initWithTypes:error:_)]
         pub unsafe fn initWithTypes_error(
             this: Option<Allocated<Self>>,
             checkingTypes: NSTextCheckingTypes,
@@ -188,7 +188,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSRegularExpression`
     unsafe impl NSDataDetector {
-        #[method_id(@__retain_semantics Init initWithPattern:options:error:)]
+        #[method_id(@__retain_semantics Init initWithPattern:options:error:_)]
         pub unsafe fn initWithPattern_options_error(
             this: Option<Allocated<Self>>,
             pattern: &NSString,

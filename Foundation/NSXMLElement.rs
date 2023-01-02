@@ -35,7 +35,7 @@ extern_methods!(
             string: Option<&NSString>,
         ) -> Id<Self, Shared>;
 
-        #[method_id(@__retain_semantics Init initWithXMLString:error:)]
+        #[method_id(@__retain_semantics Init initWithXMLString:error:_)]
         pub unsafe fn initWithXMLString_error(
             this: Option<Allocated<Self>>,
             string: &NSString,

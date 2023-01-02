@@ -15,12 +15,12 @@ extern_class!(
 
 extern_methods!(
     unsafe impl NSPersistentStore {
-        #[method_id(@__retain_semantics Other metadataForPersistentStoreWithURL:error:)]
+        #[method_id(@__retain_semantics Other metadataForPersistentStoreWithURL:error:_)]
         pub unsafe fn metadataForPersistentStoreWithURL_error(
             url: &NSURL,
         ) -> Result<Id<NSDictionary<NSString, Object>, Shared>, Id<NSError, Shared>>;
 
-        #[method(setMetadata:forPersistentStoreWithURL:error:)]
+        #[method(setMetadata:forPersistentStoreWithURL:error:_)]
         pub unsafe fn setMetadata_forPersistentStoreWithURL_error(
             metadata: Option<&NSDictionary<NSString, Object>>,
             url: &NSURL,
@@ -41,7 +41,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
-        #[method(loadMetadata:)]
+        #[method(loadMetadata:_)]
         pub unsafe fn loadMetadata(&self) -> Result<(), Id<NSError, Shared>>;
 
         #[method_id(@__retain_semantics Other persistentStoreCoordinator)]

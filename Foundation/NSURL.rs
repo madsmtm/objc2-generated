@@ -551,7 +551,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other standardizedURL)]
         pub unsafe fn standardizedURL(&self) -> Option<Id<NSURL, Shared>>;
 
-        #[method(checkResourceIsReachableAndReturnError:)]
+        #[method(checkResourceIsReachableAndReturnError:_)]
         pub unsafe fn checkResourceIsReachableAndReturnError(
             &self,
         ) -> Result<(), Id<NSError, Shared>>;
@@ -565,27 +565,27 @@ extern_methods!(
         #[method_id(@__retain_semantics Other filePathURL)]
         pub unsafe fn filePathURL(&self) -> Option<Id<NSURL, Shared>>;
 
-        #[method(getResourceValue:forKey:error:)]
+        #[method(getResourceValue:forKey:error:_)]
         pub unsafe fn getResourceValue_forKey_error(
             &self,
             value: NonNull<*mut Object>,
             key: &NSURLResourceKey,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Other resourceValuesForKeys:error:)]
+        #[method_id(@__retain_semantics Other resourceValuesForKeys:error:_)]
         pub unsafe fn resourceValuesForKeys_error(
             &self,
             keys: &NSArray<NSURLResourceKey>,
         ) -> Result<Id<NSDictionary<NSURLResourceKey, Object>, Shared>, Id<NSError, Shared>>;
 
-        #[method(setResourceValue:forKey:error:)]
+        #[method(setResourceValue:forKey:error:_)]
         pub unsafe fn setResourceValue_forKey_error(
             &self,
             value: Option<&Object>,
             key: &NSURLResourceKey,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[method(setResourceValues:error:)]
+        #[method(setResourceValues:error:_)]
         pub unsafe fn setResourceValues_error(
             &self,
             keyedValues: &NSDictionary<NSURLResourceKey, Object>,
@@ -604,7 +604,7 @@ extern_methods!(
             key: &NSURLResourceKey,
         );
 
-        #[method_id(@__retain_semantics Other bookmarkDataWithOptions:includingResourceValuesForKeys:relativeToURL:error:)]
+        #[method_id(@__retain_semantics Other bookmarkDataWithOptions:includingResourceValuesForKeys:relativeToURL:error:_)]
         pub unsafe fn bookmarkDataWithOptions_includingResourceValuesForKeys_relativeToURL_error(
             &self,
             options: NSURLBookmarkCreationOptions,
@@ -612,7 +612,7 @@ extern_methods!(
             relativeURL: Option<&NSURL>,
         ) -> Result<Id<NSData, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Init initByResolvingBookmarkData:options:relativeToURL:bookmarkDataIsStale:error:)]
+        #[method_id(@__retain_semantics Init initByResolvingBookmarkData:options:relativeToURL:bookmarkDataIsStale:error:_)]
         pub unsafe fn initByResolvingBookmarkData_options_relativeToURL_bookmarkDataIsStale_error(
             this: Option<Allocated<Self>>,
             bookmarkData: &NSData,
@@ -621,7 +621,7 @@ extern_methods!(
             isStale: *mut Bool,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Other URLByResolvingBookmarkData:options:relativeToURL:bookmarkDataIsStale:error:)]
+        #[method_id(@__retain_semantics Other URLByResolvingBookmarkData:options:relativeToURL:bookmarkDataIsStale:error:_)]
         pub unsafe fn URLByResolvingBookmarkData_options_relativeToURL_bookmarkDataIsStale_error(
             bookmarkData: &NSData,
             options: NSURLBookmarkResolutionOptions,
@@ -635,19 +635,19 @@ extern_methods!(
             bookmarkData: &NSData,
         ) -> Option<Id<NSDictionary<NSURLResourceKey, Object>, Shared>>;
 
-        #[method(writeBookmarkData:toURL:options:error:)]
+        #[method(writeBookmarkData:toURL:options:error:_)]
         pub unsafe fn writeBookmarkData_toURL_options_error(
             bookmarkData: &NSData,
             bookmarkFileURL: &NSURL,
             options: NSURLBookmarkFileCreationOptions,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Other bookmarkDataWithContentsOfURL:error:)]
+        #[method_id(@__retain_semantics Other bookmarkDataWithContentsOfURL:error:_)]
         pub unsafe fn bookmarkDataWithContentsOfURL_error(
             bookmarkFileURL: &NSURL,
         ) -> Result<Id<NSData, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Other URLByResolvingAliasFileAtURL:options:error:)]
+        #[method_id(@__retain_semantics Other URLByResolvingAliasFileAtURL:options:error:_)]
         pub unsafe fn URLByResolvingAliasFileAtURL_options_error(
             url: &NSURL,
             options: NSURLBookmarkResolutionOptions,
@@ -664,20 +664,20 @@ extern_methods!(
 extern_methods!(
     /// NSPromisedItems
     unsafe impl NSURL {
-        #[method(getPromisedItemResourceValue:forKey:error:)]
+        #[method(getPromisedItemResourceValue:forKey:error:_)]
         pub unsafe fn getPromisedItemResourceValue_forKey_error(
             &self,
             value: NonNull<*mut Object>,
             key: &NSURLResourceKey,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Other promisedItemResourceValuesForKeys:error:)]
+        #[method_id(@__retain_semantics Other promisedItemResourceValuesForKeys:error:_)]
         pub unsafe fn promisedItemResourceValuesForKeys_error(
             &self,
             keys: &NSArray<NSURLResourceKey>,
         ) -> Result<Id<NSDictionary<NSURLResourceKey, Object>, Shared>, Id<NSError, Shared>>;
 
-        #[method(checkPromisedItemIsReachableAndReturnError:)]
+        #[method(checkPromisedItemIsReachableAndReturnError:_)]
         pub unsafe fn checkPromisedItemIsReachableAndReturnError(
             &self,
         ) -> Result<(), Id<NSError, Shared>>;

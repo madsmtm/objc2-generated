@@ -71,7 +71,7 @@ extern_methods!(
             entityName: &NSString,
         ) -> Id<Self, Shared>;
 
-        #[method_id(@__retain_semantics Other execute:)]
+        #[method_id(@__retain_semantics Other execute:_)]
         pub unsafe fn execute(
             &self,
         ) -> Result<Id<NSArray<ResultType>, Shared>, Id<NSError, Shared>>;

@@ -67,10 +67,10 @@ extern_methods!(
         #[method(unload)]
         pub unsafe fn unload(&self) -> bool;
 
-        #[method(preflightAndReturnError:)]
+        #[method(preflightAndReturnError:_)]
         pub unsafe fn preflightAndReturnError(&self) -> Result<(), Id<NSError, Shared>>;
 
-        #[method(loadAndReturnError:)]
+        #[method(loadAndReturnError:_)]
         pub unsafe fn loadAndReturnError(&self) -> Result<(), Id<NSError, Shared>>;
 
         #[method_id(@__retain_semantics Other bundleURL)]

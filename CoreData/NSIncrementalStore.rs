@@ -16,24 +16,24 @@ extern_class!(
 
 extern_methods!(
     unsafe impl NSIncrementalStore {
-        #[method(loadMetadata:)]
+        #[method(loadMetadata:_)]
         pub unsafe fn loadMetadata(&self) -> Result<(), Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Other executeRequest:withContext:error:)]
+        #[method_id(@__retain_semantics Other executeRequest:withContext:error:_)]
         pub unsafe fn executeRequest_withContext_error(
             &self,
             request: &NSPersistentStoreRequest,
             context: Option<&NSManagedObjectContext>,
         ) -> Result<Id<Object, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics New newValuesForObjectWithID:withContext:error:)]
+        #[method_id(@__retain_semantics New newValuesForObjectWithID:withContext:error:_)]
         pub unsafe fn newValuesForObjectWithID_withContext_error(
             &self,
             objectID: &NSManagedObjectID,
             context: &NSManagedObjectContext,
         ) -> Result<Id<NSIncrementalStoreNode, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics New newValueForRelationship:forObjectWithID:withContext:error:)]
+        #[method_id(@__retain_semantics New newValueForRelationship:forObjectWithID:withContext:error:_)]
         pub unsafe fn newValueForRelationship_forObjectWithID_withContext_error(
             &self,
             relationship: &NSRelationshipDescription,
@@ -44,7 +44,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other identifierForNewStoreAtURL:)]
         pub unsafe fn identifierForNewStoreAtURL(storeURL: &NSURL) -> Id<Object, Shared>;
 
-        #[method_id(@__retain_semantics Other obtainPermanentIDsForObjects:error:)]
+        #[method_id(@__retain_semantics Other obtainPermanentIDsForObjects:error:_)]
         pub unsafe fn obtainPermanentIDsForObjects_error(
             &self,
             array: &NSArray<NSManagedObject>,

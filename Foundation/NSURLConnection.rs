@@ -210,7 +210,7 @@ extern_protocol!(
 extern_methods!(
     /// NSURLConnectionSynchronousLoading
     unsafe impl NSURLConnection {
-        #[method_id(@__retain_semantics Other sendSynchronousRequest:returningResponse:error:)]
+        #[method_id(@__retain_semantics Other sendSynchronousRequest:returningResponse:error:_)]
         pub unsafe fn sendSynchronousRequest_returningResponse_error(
             request: &NSURLRequest,
             response: *mut *mut NSURLResponse,

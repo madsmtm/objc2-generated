@@ -91,7 +91,7 @@ extern_protocol!(
             contextInfo: *mut c_void,
         );
 
-        #[method(commitEditingAndReturnError:)]
+        #[method(commitEditingAndReturnError:_)]
         pub unsafe fn commitEditingAndReturnError(&self) -> Result<(), Id<NSError, Shared>>;
     }
 );

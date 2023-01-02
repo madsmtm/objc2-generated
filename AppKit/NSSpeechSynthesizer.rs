@@ -181,13 +181,13 @@ extern_methods!(
         #[method_id(@__retain_semantics Other phonemesFromText:)]
         pub unsafe fn phonemesFromText(&self, text: &NSString) -> Id<NSString, Shared>;
 
-        #[method_id(@__retain_semantics Other objectForProperty:error:)]
+        #[method_id(@__retain_semantics Other objectForProperty:error:_)]
         pub unsafe fn objectForProperty_error(
             &self,
             property: &NSSpeechPropertyKey,
         ) -> Result<Id<Object, Shared>, Id<NSError, Shared>>;
 
-        #[method(setObject:forProperty:error:)]
+        #[method(setObject:forProperty:error:_)]
         pub unsafe fn setObject_forProperty_error(
             &self,
             object: Option<&Object>,

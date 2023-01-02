@@ -141,19 +141,19 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
-        #[method(resolveConflicts:error:)]
+        #[method(resolveConflicts:error:_)]
         pub unsafe fn resolveConflicts_error(
             &self,
             list: &NSArray,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[method(resolveOptimisticLockingVersionConflicts:error:)]
+        #[method(resolveOptimisticLockingVersionConflicts:error:_)]
         pub unsafe fn resolveOptimisticLockingVersionConflicts_error(
             &self,
             list: &NSArray<NSMergeConflict>,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[method(resolveConstraintConflicts:error:)]
+        #[method(resolveConstraintConflicts:error:_)]
         pub unsafe fn resolveConstraintConflicts_error(
             &self,
             list: &NSArray<NSConstraintConflict>,

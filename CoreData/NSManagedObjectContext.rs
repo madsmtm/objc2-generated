@@ -126,19 +126,19 @@ extern_methods!(
             objectID: &NSManagedObjectID,
         ) -> Id<NSManagedObject, Shared>;
 
-        #[method_id(@__retain_semantics Other existingObjectWithID:error:)]
+        #[method_id(@__retain_semantics Other existingObjectWithID:error:_)]
         pub unsafe fn existingObjectWithID_error(
             &self,
             objectID: &NSManagedObjectID,
         ) -> Result<Id<NSManagedObject, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Other executeFetchRequest:error:)]
+        #[method_id(@__retain_semantics Other executeFetchRequest:error:_)]
         pub unsafe fn executeFetchRequest_error(
             &self,
             request: &NSFetchRequest,
         ) -> Result<Id<NSArray, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Other executeRequest:error:)]
+        #[method_id(@__retain_semantics Other executeRequest:error:_)]
         pub unsafe fn executeRequest_error(
             &self,
             request: &NSPersistentStoreRequest,
@@ -199,7 +199,7 @@ extern_methods!(
         #[method(rollback)]
         pub unsafe fn rollback(&self);
 
-        #[method(save:)]
+        #[method(save:_)]
         pub unsafe fn save(&self) -> Result<(), Id<NSError, Shared>>;
 
         #[method(refreshAllObjects)]
@@ -255,7 +255,7 @@ extern_methods!(
         #[method(setMergePolicy:)]
         pub unsafe fn setMergePolicy(&self, mergePolicy: &Object);
 
-        #[method(obtainPermanentIDsForObjects:error:)]
+        #[method(obtainPermanentIDsForObjects:error:_)]
         pub unsafe fn obtainPermanentIDsForObjects_error(
             &self,
             objects: &NSArray<NSManagedObject>,
@@ -276,7 +276,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other queryGenerationToken)]
         pub unsafe fn queryGenerationToken(&self) -> Option<Id<NSQueryGenerationToken, Shared>>;
 
-        #[method(setQueryGenerationFromToken:error:)]
+        #[method(setQueryGenerationFromToken:error:_)]
         pub unsafe fn setQueryGenerationFromToken_error(
             &self,
             generation: Option<&NSQueryGenerationToken>,

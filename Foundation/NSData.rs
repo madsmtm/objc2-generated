@@ -98,14 +98,14 @@ extern_methods!(
         #[method(writeToURL:atomically:)]
         pub unsafe fn writeToURL_atomically(&self, url: &NSURL, atomically: bool) -> bool;
 
-        #[method(writeToFile:options:error:)]
+        #[method(writeToFile:options:error:_)]
         pub unsafe fn writeToFile_options_error(
             &self,
             path: &NSString,
             writeOptionsMask: NSDataWritingOptions,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[method(writeToURL:options:error:)]
+        #[method(writeToURL:options:error:_)]
         pub unsafe fn writeToURL_options_error(
             &self,
             url: &NSURL,
@@ -153,13 +153,13 @@ extern_methods!(
             b: bool,
         ) -> Id<Self, Shared>;
 
-        #[method_id(@__retain_semantics Other dataWithContentsOfFile:options:error:)]
+        #[method_id(@__retain_semantics Other dataWithContentsOfFile:options:error:_)]
         pub unsafe fn dataWithContentsOfFile_options_error(
             path: &NSString,
             readOptionsMask: NSDataReadingOptions,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Other dataWithContentsOfURL:options:error:)]
+        #[method_id(@__retain_semantics Other dataWithContentsOfURL:options:error:_)]
         pub unsafe fn dataWithContentsOfURL_options_error(
             url: &NSURL,
             readOptionsMask: NSDataReadingOptions,
@@ -201,14 +201,14 @@ extern_methods!(
             deallocator: Option<&Block<(NonNull<c_void>, NSUInteger), ()>>,
         ) -> Id<Self, Shared>;
 
-        #[method_id(@__retain_semantics Init initWithContentsOfFile:options:error:)]
+        #[method_id(@__retain_semantics Init initWithContentsOfFile:options:error:_)]
         pub unsafe fn initWithContentsOfFile_options_error(
             this: Option<Allocated<Self>>,
             path: &NSString,
             readOptionsMask: NSDataReadingOptions,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Init initWithContentsOfURL:options:error:)]
+        #[method_id(@__retain_semantics Init initWithContentsOfURL:options:error:_)]
         pub unsafe fn initWithContentsOfURL_options_error(
             this: Option<Allocated<Self>>,
             url: &NSURL,
@@ -279,13 +279,13 @@ ns_enum!(
 extern_methods!(
     /// NSDataCompression
     unsafe impl NSData {
-        #[method_id(@__retain_semantics Other decompressedDataUsingAlgorithm:error:)]
+        #[method_id(@__retain_semantics Other decompressedDataUsingAlgorithm:error:_)]
         pub unsafe fn decompressedDataUsingAlgorithm_error(
             &self,
             algorithm: NSDataCompressionAlgorithm,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Other compressedDataUsingAlgorithm:error:)]
+        #[method_id(@__retain_semantics Other compressedDataUsingAlgorithm:error:_)]
         pub unsafe fn compressedDataUsingAlgorithm_error(
             &self,
             algorithm: NSDataCompressionAlgorithm,
@@ -393,13 +393,13 @@ extern_methods!(
 extern_methods!(
     /// NSMutableDataCompression
     unsafe impl NSMutableData {
-        #[method(decompressUsingAlgorithm:error:)]
+        #[method(decompressUsingAlgorithm:error:_)]
         pub unsafe fn decompressUsingAlgorithm_error(
             &self,
             algorithm: NSDataCompressionAlgorithm,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[method(compressUsingAlgorithm:error:)]
+        #[method(compressUsingAlgorithm:error:_)]
         pub unsafe fn compressUsingAlgorithm_error(
             &self,
             algorithm: NSDataCompressionAlgorithm,
@@ -448,13 +448,13 @@ extern_methods!(
             b: bool,
         ) -> Id<Self, Owned>;
 
-        #[method_id(@__retain_semantics Other dataWithContentsOfFile:options:error:)]
+        #[method_id(@__retain_semantics Other dataWithContentsOfFile:options:error:_)]
         pub unsafe fn dataWithContentsOfFile_options_error(
             path: &NSString,
             readOptionsMask: NSDataReadingOptions,
         ) -> Result<Id<Self, Owned>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Other dataWithContentsOfURL:options:error:)]
+        #[method_id(@__retain_semantics Other dataWithContentsOfURL:options:error:_)]
         pub unsafe fn dataWithContentsOfURL_options_error(
             url: &NSURL,
             readOptionsMask: NSDataReadingOptions,
@@ -496,14 +496,14 @@ extern_methods!(
             deallocator: Option<&Block<(NonNull<c_void>, NSUInteger), ()>>,
         ) -> Id<Self, Owned>;
 
-        #[method_id(@__retain_semantics Init initWithContentsOfFile:options:error:)]
+        #[method_id(@__retain_semantics Init initWithContentsOfFile:options:error:_)]
         pub unsafe fn initWithContentsOfFile_options_error(
             this: Option<Allocated<Self>>,
             path: &NSString,
             readOptionsMask: NSDataReadingOptions,
         ) -> Result<Id<Self, Owned>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Init initWithContentsOfURL:options:error:)]
+        #[method_id(@__retain_semantics Init initWithContentsOfURL:options:error:_)]
         pub unsafe fn initWithContentsOfURL_options_error(
             this: Option<Allocated<Self>>,
             url: &NSURL,
@@ -623,13 +623,13 @@ extern_methods!(
             b: bool,
         ) -> Id<Self, Shared>;
 
-        #[method_id(@__retain_semantics Other dataWithContentsOfFile:options:error:)]
+        #[method_id(@__retain_semantics Other dataWithContentsOfFile:options:error:_)]
         pub unsafe fn dataWithContentsOfFile_options_error(
             path: &NSString,
             readOptionsMask: NSDataReadingOptions,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Other dataWithContentsOfURL:options:error:)]
+        #[method_id(@__retain_semantics Other dataWithContentsOfURL:options:error:_)]
         pub unsafe fn dataWithContentsOfURL_options_error(
             url: &NSURL,
             readOptionsMask: NSDataReadingOptions,
@@ -671,14 +671,14 @@ extern_methods!(
             deallocator: Option<&Block<(NonNull<c_void>, NSUInteger), ()>>,
         ) -> Id<Self, Shared>;
 
-        #[method_id(@__retain_semantics Init initWithContentsOfFile:options:error:)]
+        #[method_id(@__retain_semantics Init initWithContentsOfFile:options:error:_)]
         pub unsafe fn initWithContentsOfFile_options_error(
             this: Option<Allocated<Self>>,
             path: &NSString,
             readOptionsMask: NSDataReadingOptions,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Init initWithContentsOfURL:options:error:)]
+        #[method_id(@__retain_semantics Init initWithContentsOfURL:options:error:_)]
         pub unsafe fn initWithContentsOfURL_options_error(
             this: Option<Allocated<Self>>,
             url: &NSURL,

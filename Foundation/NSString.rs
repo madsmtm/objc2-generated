@@ -509,7 +509,7 @@ extern_methods!(
             reverse: bool,
         ) -> Option<Id<NSString, Shared>>;
 
-        #[method(writeToURL:atomically:encoding:error:)]
+        #[method(writeToURL:atomically:encoding:error:_)]
         pub unsafe fn writeToURL_atomically_encoding_error(
             &self,
             url: &NSURL,
@@ -517,7 +517,7 @@ extern_methods!(
             enc: NSStringEncoding,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[method(writeToFile:atomically:encoding:error:)]
+        #[method(writeToFile:atomically:encoding:error:_)]
         pub unsafe fn writeToFile_atomically_encoding_error(
             &self,
             path: &NSString,
@@ -629,53 +629,53 @@ extern_methods!(
             enc: NSStringEncoding,
         ) -> Option<Id<Self, Shared>>;
 
-        #[method_id(@__retain_semantics Init initWithContentsOfURL:encoding:error:)]
+        #[method_id(@__retain_semantics Init initWithContentsOfURL:encoding:error:_)]
         pub unsafe fn initWithContentsOfURL_encoding_error(
             this: Option<Allocated<Self>>,
             url: &NSURL,
             enc: NSStringEncoding,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Init initWithContentsOfFile:encoding:error:)]
+        #[method_id(@__retain_semantics Init initWithContentsOfFile:encoding:error:_)]
         pub unsafe fn initWithContentsOfFile_encoding_error(
             this: Option<Allocated<Self>>,
             path: &NSString,
             enc: NSStringEncoding,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Other stringWithContentsOfURL:encoding:error:)]
+        #[method_id(@__retain_semantics Other stringWithContentsOfURL:encoding:error:_)]
         pub unsafe fn stringWithContentsOfURL_encoding_error(
             url: &NSURL,
             enc: NSStringEncoding,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Other stringWithContentsOfFile:encoding:error:)]
+        #[method_id(@__retain_semantics Other stringWithContentsOfFile:encoding:error:_)]
         pub unsafe fn stringWithContentsOfFile_encoding_error(
             path: &NSString,
             enc: NSStringEncoding,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Init initWithContentsOfURL:usedEncoding:error:)]
+        #[method_id(@__retain_semantics Init initWithContentsOfURL:usedEncoding:error:_)]
         pub unsafe fn initWithContentsOfURL_usedEncoding_error(
             this: Option<Allocated<Self>>,
             url: &NSURL,
             enc: *mut NSStringEncoding,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Init initWithContentsOfFile:usedEncoding:error:)]
+        #[method_id(@__retain_semantics Init initWithContentsOfFile:usedEncoding:error:_)]
         pub unsafe fn initWithContentsOfFile_usedEncoding_error(
             this: Option<Allocated<Self>>,
             path: &NSString,
             enc: *mut NSStringEncoding,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Other stringWithContentsOfURL:usedEncoding:error:)]
+        #[method_id(@__retain_semantics Other stringWithContentsOfURL:usedEncoding:error:_)]
         pub unsafe fn stringWithContentsOfURL_usedEncoding_error(
             url: &NSURL,
             enc: *mut NSStringEncoding,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Other stringWithContentsOfFile:usedEncoding:error:)]
+        #[method_id(@__retain_semantics Other stringWithContentsOfFile:usedEncoding:error:_)]
         pub unsafe fn stringWithContentsOfFile_usedEncoding_error(
             path: &NSString,
             enc: *mut NSStringEncoding,
@@ -1033,53 +1033,53 @@ extern_methods!(
             enc: NSStringEncoding,
         ) -> Option<Id<Self, Owned>>;
 
-        #[method_id(@__retain_semantics Init initWithContentsOfURL:encoding:error:)]
+        #[method_id(@__retain_semantics Init initWithContentsOfURL:encoding:error:_)]
         pub unsafe fn initWithContentsOfURL_encoding_error(
             this: Option<Allocated<Self>>,
             url: &NSURL,
             enc: NSStringEncoding,
         ) -> Result<Id<Self, Owned>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Init initWithContentsOfFile:encoding:error:)]
+        #[method_id(@__retain_semantics Init initWithContentsOfFile:encoding:error:_)]
         pub unsafe fn initWithContentsOfFile_encoding_error(
             this: Option<Allocated<Self>>,
             path: &NSString,
             enc: NSStringEncoding,
         ) -> Result<Id<Self, Owned>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Other stringWithContentsOfURL:encoding:error:)]
+        #[method_id(@__retain_semantics Other stringWithContentsOfURL:encoding:error:_)]
         pub unsafe fn stringWithContentsOfURL_encoding_error(
             url: &NSURL,
             enc: NSStringEncoding,
         ) -> Result<Id<Self, Owned>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Other stringWithContentsOfFile:encoding:error:)]
+        #[method_id(@__retain_semantics Other stringWithContentsOfFile:encoding:error:_)]
         pub unsafe fn stringWithContentsOfFile_encoding_error(
             path: &NSString,
             enc: NSStringEncoding,
         ) -> Result<Id<Self, Owned>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Init initWithContentsOfURL:usedEncoding:error:)]
+        #[method_id(@__retain_semantics Init initWithContentsOfURL:usedEncoding:error:_)]
         pub unsafe fn initWithContentsOfURL_usedEncoding_error(
             this: Option<Allocated<Self>>,
             url: &NSURL,
             enc: *mut NSStringEncoding,
         ) -> Result<Id<Self, Owned>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Init initWithContentsOfFile:usedEncoding:error:)]
+        #[method_id(@__retain_semantics Init initWithContentsOfFile:usedEncoding:error:_)]
         pub unsafe fn initWithContentsOfFile_usedEncoding_error(
             this: Option<Allocated<Self>>,
             path: &NSString,
             enc: *mut NSStringEncoding,
         ) -> Result<Id<Self, Owned>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Other stringWithContentsOfURL:usedEncoding:error:)]
+        #[method_id(@__retain_semantics Other stringWithContentsOfURL:usedEncoding:error:_)]
         pub unsafe fn stringWithContentsOfURL_usedEncoding_error(
             url: &NSURL,
             enc: *mut NSStringEncoding,
         ) -> Result<Id<Self, Owned>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Other stringWithContentsOfFile:usedEncoding:error:)]
+        #[method_id(@__retain_semantics Other stringWithContentsOfFile:usedEncoding:error:_)]
         pub unsafe fn stringWithContentsOfFile_usedEncoding_error(
             path: &NSString,
             enc: *mut NSStringEncoding,
@@ -1230,53 +1230,53 @@ extern_methods!(
             enc: NSStringEncoding,
         ) -> Option<Id<Self, Shared>>;
 
-        #[method_id(@__retain_semantics Init initWithContentsOfURL:encoding:error:)]
+        #[method_id(@__retain_semantics Init initWithContentsOfURL:encoding:error:_)]
         pub unsafe fn initWithContentsOfURL_encoding_error(
             this: Option<Allocated<Self>>,
             url: &NSURL,
             enc: NSStringEncoding,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Init initWithContentsOfFile:encoding:error:)]
+        #[method_id(@__retain_semantics Init initWithContentsOfFile:encoding:error:_)]
         pub unsafe fn initWithContentsOfFile_encoding_error(
             this: Option<Allocated<Self>>,
             path: &NSString,
             enc: NSStringEncoding,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Other stringWithContentsOfURL:encoding:error:)]
+        #[method_id(@__retain_semantics Other stringWithContentsOfURL:encoding:error:_)]
         pub unsafe fn stringWithContentsOfURL_encoding_error(
             url: &NSURL,
             enc: NSStringEncoding,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Other stringWithContentsOfFile:encoding:error:)]
+        #[method_id(@__retain_semantics Other stringWithContentsOfFile:encoding:error:_)]
         pub unsafe fn stringWithContentsOfFile_encoding_error(
             path: &NSString,
             enc: NSStringEncoding,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Init initWithContentsOfURL:usedEncoding:error:)]
+        #[method_id(@__retain_semantics Init initWithContentsOfURL:usedEncoding:error:_)]
         pub unsafe fn initWithContentsOfURL_usedEncoding_error(
             this: Option<Allocated<Self>>,
             url: &NSURL,
             enc: *mut NSStringEncoding,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Init initWithContentsOfFile:usedEncoding:error:)]
+        #[method_id(@__retain_semantics Init initWithContentsOfFile:usedEncoding:error:_)]
         pub unsafe fn initWithContentsOfFile_usedEncoding_error(
             this: Option<Allocated<Self>>,
             path: &NSString,
             enc: *mut NSStringEncoding,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Other stringWithContentsOfURL:usedEncoding:error:)]
+        #[method_id(@__retain_semantics Other stringWithContentsOfURL:usedEncoding:error:_)]
         pub unsafe fn stringWithContentsOfURL_usedEncoding_error(
             url: &NSURL,
             enc: *mut NSStringEncoding,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Other stringWithContentsOfFile:usedEncoding:error:)]
+        #[method_id(@__retain_semantics Other stringWithContentsOfFile:usedEncoding:error:_)]
         pub unsafe fn stringWithContentsOfFile_usedEncoding_error(
             path: &NSString,
             enc: *mut NSStringEncoding,
@@ -1427,53 +1427,53 @@ extern_methods!(
             enc: NSStringEncoding,
         ) -> Option<Id<Self, Shared>>;
 
-        #[method_id(@__retain_semantics Init initWithContentsOfURL:encoding:error:)]
+        #[method_id(@__retain_semantics Init initWithContentsOfURL:encoding:error:_)]
         pub unsafe fn initWithContentsOfURL_encoding_error(
             this: Option<Allocated<Self>>,
             url: &NSURL,
             enc: NSStringEncoding,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Init initWithContentsOfFile:encoding:error:)]
+        #[method_id(@__retain_semantics Init initWithContentsOfFile:encoding:error:_)]
         pub unsafe fn initWithContentsOfFile_encoding_error(
             this: Option<Allocated<Self>>,
             path: &NSString,
             enc: NSStringEncoding,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Other stringWithContentsOfURL:encoding:error:)]
+        #[method_id(@__retain_semantics Other stringWithContentsOfURL:encoding:error:_)]
         pub unsafe fn stringWithContentsOfURL_encoding_error(
             url: &NSURL,
             enc: NSStringEncoding,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Other stringWithContentsOfFile:encoding:error:)]
+        #[method_id(@__retain_semantics Other stringWithContentsOfFile:encoding:error:_)]
         pub unsafe fn stringWithContentsOfFile_encoding_error(
             path: &NSString,
             enc: NSStringEncoding,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Init initWithContentsOfURL:usedEncoding:error:)]
+        #[method_id(@__retain_semantics Init initWithContentsOfURL:usedEncoding:error:_)]
         pub unsafe fn initWithContentsOfURL_usedEncoding_error(
             this: Option<Allocated<Self>>,
             url: &NSURL,
             enc: *mut NSStringEncoding,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Init initWithContentsOfFile:usedEncoding:error:)]
+        #[method_id(@__retain_semantics Init initWithContentsOfFile:usedEncoding:error:_)]
         pub unsafe fn initWithContentsOfFile_usedEncoding_error(
             this: Option<Allocated<Self>>,
             path: &NSString,
             enc: *mut NSStringEncoding,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Other stringWithContentsOfURL:usedEncoding:error:)]
+        #[method_id(@__retain_semantics Other stringWithContentsOfURL:usedEncoding:error:_)]
         pub unsafe fn stringWithContentsOfURL_usedEncoding_error(
             url: &NSURL,
             enc: *mut NSStringEncoding,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Other stringWithContentsOfFile:usedEncoding:error:)]
+        #[method_id(@__retain_semantics Other stringWithContentsOfFile:usedEncoding:error:_)]
         pub unsafe fn stringWithContentsOfFile_usedEncoding_error(
             path: &NSString,
             enc: *mut NSStringEncoding,

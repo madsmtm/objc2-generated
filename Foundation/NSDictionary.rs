@@ -117,7 +117,7 @@ extern_methods!(
             marker: &ObjectType,
         ) -> Id<NSArray<ObjectType>, Shared>;
 
-        #[method(writeToURL:error:)]
+        #[method(writeToURL:error:_)]
         pub unsafe fn writeToURL_error(&self, url: &NSURL) -> Result<(), Id<NSError, Shared>>;
 
         #[method_id(@__retain_semantics Other keysSortedByValueUsingSelector:)]

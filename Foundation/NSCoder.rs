@@ -80,7 +80,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other decodeObject)]
         pub unsafe fn decodeObject(&self) -> Option<Id<Object, Shared>>;
 
-        #[method_id(@__retain_semantics Other decodeTopLevelObjectAndReturnError:)]
+        #[method_id(@__retain_semantics Other decodeTopLevelObjectAndReturnError:_)]
         pub unsafe fn decodeTopLevelObjectAndReturnError(
             &self,
         ) -> Result<Id<Object, Shared>, Id<NSError, Shared>>;
@@ -159,7 +159,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other decodeObjectForKey:)]
         pub unsafe fn decodeObjectForKey(&self, key: &NSString) -> Option<Id<Object, Shared>>;
 
-        #[method_id(@__retain_semantics Other decodeTopLevelObjectForKey:error:)]
+        #[method_id(@__retain_semantics Other decodeTopLevelObjectForKey:error:_)]
         pub unsafe fn decodeTopLevelObjectForKey_error(
             &self,
             key: &NSString,
@@ -206,7 +206,7 @@ extern_methods!(
             key: &NSString,
         ) -> Option<Id<Object, Shared>>;
 
-        #[method_id(@__retain_semantics Other decodeTopLevelObjectOfClass:forKey:error:)]
+        #[method_id(@__retain_semantics Other decodeTopLevelObjectOfClass:forKey:error:_)]
         pub unsafe fn decodeTopLevelObjectOfClass_forKey_error(
             &self,
             aClass: &Class,
@@ -235,7 +235,7 @@ extern_methods!(
             key: &NSString,
         ) -> Option<Id<Object, Shared>>;
 
-        #[method_id(@__retain_semantics Other decodeTopLevelObjectOfClasses:forKey:error:)]
+        #[method_id(@__retain_semantics Other decodeTopLevelObjectOfClasses:forKey:error:_)]
         pub unsafe fn decodeTopLevelObjectOfClasses_forKey_error(
             &self,
             classes: Option<&NSSet<TodoClass>>,

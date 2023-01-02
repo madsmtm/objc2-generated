@@ -22,7 +22,7 @@ extern_methods!(
             destinationModel: &NSManagedObjectModel,
         ) -> Id<Self, Shared>;
 
-        #[method(migrateStoreFromURL:type:options:withMappingModel:toDestinationURL:destinationType:destinationOptions:error:)]
+        #[method(migrateStoreFromURL:type:options:withMappingModel:toDestinationURL:destinationType:destinationOptions:error:_)]
         pub unsafe fn migrateStoreFromURL_type_options_withMappingModel_toDestinationURL_destinationType_destinationOptions_error(
             &self,
             sourceURL: &NSURL,

@@ -139,7 +139,7 @@ extern_methods!(
             store: &NSPersistentStore,
         ) -> bool;
 
-        #[method_id(@__retain_semantics Other addPersistentStoreWithType:configuration:URL:options:error:)]
+        #[method_id(@__retain_semantics Other addPersistentStoreWithType:configuration:URL:options:error:_)]
         pub unsafe fn addPersistentStoreWithType_configuration_URL_options_error(
             &self,
             storeType: &NSString,
@@ -155,7 +155,7 @@ extern_methods!(
             block: &Block<(NonNull<NSPersistentStoreDescription>, *mut NSError), ()>,
         );
 
-        #[method(removePersistentStore:error:)]
+        #[method(removePersistentStore:error:_)]
         pub unsafe fn removePersistentStore_error(
             &self,
             store: &NSPersistentStore,
@@ -180,7 +180,7 @@ extern_methods!(
             url: &NSURL,
         ) -> Option<Id<NSManagedObjectID, Shared>>;
 
-        #[method_id(@__retain_semantics Other executeRequest:withContext:error:)]
+        #[method_id(@__retain_semantics Other executeRequest:withContext:error:_)]
         pub unsafe fn executeRequest_withContext_error(
             &self,
             request: &NSPersistentStoreRequest,
@@ -196,14 +196,14 @@ extern_methods!(
             storeType: &NSString,
         );
 
-        #[method_id(@__retain_semantics Other metadataForPersistentStoreOfType:URL:options:error:)]
+        #[method_id(@__retain_semantics Other metadataForPersistentStoreOfType:URL:options:error:_)]
         pub unsafe fn metadataForPersistentStoreOfType_URL_options_error(
             storeType: &NSString,
             url: &NSURL,
             options: Option<&NSDictionary>,
         ) -> Result<Id<NSDictionary<NSString, Object>, Shared>, Id<NSError, Shared>>;
 
-        #[method(setMetadata:forPersistentStoreOfType:URL:options:error:)]
+        #[method(setMetadata:forPersistentStoreOfType:URL:options:error:_)]
         pub unsafe fn setMetadata_forPersistentStoreOfType_URL_options_error(
             metadata: Option<&NSDictionary<NSString, Object>>,
             storeType: &NSString,
@@ -216,7 +216,7 @@ extern_methods!(
             fileURL: &NSURL,
         ) -> Id<NSDictionary, Shared>;
 
-        #[method_id(@__retain_semantics Other importStoreWithIdentifier:fromExternalRecordsDirectory:toURL:options:withType:error:)]
+        #[method_id(@__retain_semantics Other importStoreWithIdentifier:fromExternalRecordsDirectory:toURL:options:withType:error:_)]
         pub unsafe fn importStoreWithIdentifier_fromExternalRecordsDirectory_toURL_options_withType_error(
             &self,
             storeIdentifier: Option<&NSString>,
@@ -226,7 +226,7 @@ extern_methods!(
             storeType: &NSString,
         ) -> Result<Id<NSPersistentStore, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Other migratePersistentStore:toURL:options:withType:error:)]
+        #[method_id(@__retain_semantics Other migratePersistentStore:toURL:options:withType:error:_)]
         pub unsafe fn migratePersistentStore_toURL_options_withType_error(
             &self,
             store: &NSPersistentStore,
@@ -235,7 +235,7 @@ extern_methods!(
             storeType: &NSString,
         ) -> Result<Id<NSPersistentStore, Shared>, Id<NSError, Shared>>;
 
-        #[method(destroyPersistentStoreAtURL:withType:options:error:)]
+        #[method(destroyPersistentStoreAtURL:withType:options:error:_)]
         pub unsafe fn destroyPersistentStoreAtURL_withType_options_error(
             &self,
             url: &NSURL,
@@ -243,7 +243,7 @@ extern_methods!(
             options: Option<&NSDictionary>,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[method(replacePersistentStoreAtURL:destinationOptions:withPersistentStoreFromURL:sourceOptions:storeType:error:)]
+        #[method(replacePersistentStoreAtURL:destinationOptions:withPersistentStoreFromURL:sourceOptions:storeType:error:_)]
         pub unsafe fn replacePersistentStoreAtURL_destinationOptions_withPersistentStoreFromURL_sourceOptions_storeType_error(
             &self,
             destinationURL: &NSURL,
@@ -265,7 +265,7 @@ extern_methods!(
             stores: Option<&NSArray>,
         ) -> Option<Id<NSPersistentHistoryToken, Shared>>;
 
-        #[method_id(@__retain_semantics Other metadataForPersistentStoreWithURL:error:)]
+        #[method_id(@__retain_semantics Other metadataForPersistentStoreWithURL:error:_)]
         pub unsafe fn metadataForPersistentStoreWithURL_error(
             url: &NSURL,
         ) -> Result<Id<NSDictionary, Shared>, Id<NSError, Shared>>;
@@ -279,20 +279,20 @@ extern_methods!(
         #[method(tryLock)]
         pub unsafe fn tryLock(&self) -> bool;
 
-        #[method_id(@__retain_semantics Other metadataForPersistentStoreOfType:URL:error:)]
+        #[method_id(@__retain_semantics Other metadataForPersistentStoreOfType:URL:error:_)]
         pub unsafe fn metadataForPersistentStoreOfType_URL_error(
             storeType: Option<&NSString>,
             url: &NSURL,
         ) -> Result<Id<NSDictionary<NSString, Object>, Shared>, Id<NSError, Shared>>;
 
-        #[method(setMetadata:forPersistentStoreOfType:URL:error:)]
+        #[method(setMetadata:forPersistentStoreOfType:URL:error:_)]
         pub unsafe fn setMetadata_forPersistentStoreOfType_URL_error(
             metadata: Option<&NSDictionary<NSString, Object>>,
             storeType: Option<&NSString>,
             url: &NSURL,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[method(removeUbiquitousContentAndPersistentStoreAtURL:options:error:)]
+        #[method(removeUbiquitousContentAndPersistentStoreAtURL:options:error:_)]
         pub unsafe fn removeUbiquitousContentAndPersistentStoreAtURL_options_error(
             storeURL: &NSURL,
             options: Option<&NSDictionary>,

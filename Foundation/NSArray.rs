@@ -175,7 +175,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other subarrayWithRange:)]
         pub unsafe fn subarrayWithRange(&self, range: NSRange) -> Id<NSArray<ObjectType>, Shared>;
 
-        #[method(writeToURL:error:)]
+        #[method(writeToURL:error:_)]
         pub unsafe fn writeToURL_error(&self, url: &NSURL) -> Result<(), Id<NSError, Shared>>;
 
         #[method(makeObjectsPerformSelector:)]
@@ -317,7 +317,7 @@ extern_methods!(
             flag: bool,
         ) -> Id<Self, Shared>;
 
-        #[method_id(@__retain_semantics Other arrayWithContentsOfURL:error:)]
+        #[method_id(@__retain_semantics Other arrayWithContentsOfURL:error:_)]
         pub unsafe fn arrayWithContentsOfURL_error(
             url: &NSURL,
         ) -> Result<Id<NSArray<ObjectType>, Shared>, Id<NSError, Shared>>;

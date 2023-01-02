@@ -160,20 +160,20 @@ extern_methods!(
             &self,
         ) -> Id<NSDictionary<NSString, Object>, Shared>;
 
-        #[method(validateValue:forKey:error:)]
+        #[method(validateValue:forKey:error:_)]
         pub unsafe fn validateValue_forKey_error(
             &self,
             value: NonNull<*mut Object>,
             key: &NSString,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[method(validateForDelete:)]
+        #[method(validateForDelete:_)]
         pub unsafe fn validateForDelete(&self) -> Result<(), Id<NSError, Shared>>;
 
-        #[method(validateForInsert:)]
+        #[method(validateForInsert:_)]
         pub unsafe fn validateForInsert(&self) -> Result<(), Id<NSError, Shared>>;
 
-        #[method(validateForUpdate:)]
+        #[method(validateForUpdate:_)]
         pub unsafe fn validateForUpdate(&self) -> Result<(), Id<NSError, Shared>>;
 
         #[method(setObservationInfo:)]

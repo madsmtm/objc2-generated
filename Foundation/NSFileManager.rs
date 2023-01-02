@@ -96,7 +96,7 @@ extern_methods!(
             completionHandler: &Block<(*mut NSError,), ()>,
         );
 
-        #[method_id(@__retain_semantics Other contentsOfDirectoryAtURL:includingPropertiesForKeys:options:error:)]
+        #[method_id(@__retain_semantics Other contentsOfDirectoryAtURL:includingPropertiesForKeys:options:error:_)]
         pub unsafe fn contentsOfDirectoryAtURL_includingPropertiesForKeys_options_error(
             &self,
             url: &NSURL,
@@ -111,7 +111,7 @@ extern_methods!(
             domainMask: NSSearchPathDomainMask,
         ) -> Id<NSArray<NSURL>, Shared>;
 
-        #[method_id(@__retain_semantics Other URLForDirectory:inDomain:appropriateForURL:create:error:)]
+        #[method_id(@__retain_semantics Other URLForDirectory:inDomain:appropriateForURL:create:error:_)]
         pub unsafe fn URLForDirectory_inDomain_appropriateForURL_create_error(
             &self,
             directory: NSSearchPathDirectory,
@@ -120,7 +120,7 @@ extern_methods!(
             shouldCreate: bool,
         ) -> Result<Id<NSURL, Shared>, Id<NSError, Shared>>;
 
-        #[method(getRelationship:ofDirectoryAtURL:toItemAtURL:error:)]
+        #[method(getRelationship:ofDirectoryAtURL:toItemAtURL:error:_)]
         pub unsafe fn getRelationship_ofDirectoryAtURL_toItemAtURL_error(
             &self,
             outRelationship: NonNull<NSURLRelationship>,
@@ -128,7 +128,7 @@ extern_methods!(
             otherURL: &NSURL,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[method(getRelationship:ofDirectory:inDomain:toItemAtURL:error:)]
+        #[method(getRelationship:ofDirectory:inDomain:toItemAtURL:error:_)]
         pub unsafe fn getRelationship_ofDirectory_inDomain_toItemAtURL_error(
             &self,
             outRelationship: NonNull<NSURLRelationship>,
@@ -137,7 +137,7 @@ extern_methods!(
             url: &NSURL,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[method(createDirectoryAtURL:withIntermediateDirectories:attributes:error:)]
+        #[method(createDirectoryAtURL:withIntermediateDirectories:attributes:error:_)]
         pub unsafe fn createDirectoryAtURL_withIntermediateDirectories_attributes_error(
             &self,
             url: &NSURL,
@@ -145,7 +145,7 @@ extern_methods!(
             attributes: Option<&NSDictionary<NSFileAttributeKey, Object>>,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[method(createSymbolicLinkAtURL:withDestinationURL:error:)]
+        #[method(createSymbolicLinkAtURL:withDestinationURL:error:_)]
         pub unsafe fn createSymbolicLinkAtURL_withDestinationURL_error(
             &self,
             url: &NSURL,
@@ -158,14 +158,14 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&NSFileManagerDelegate>);
 
-        #[method(setAttributes:ofItemAtPath:error:)]
+        #[method(setAttributes:ofItemAtPath:error:_)]
         pub unsafe fn setAttributes_ofItemAtPath_error(
             &self,
             attributes: &NSDictionary<NSFileAttributeKey, Object>,
             path: &NSString,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[method(createDirectoryAtPath:withIntermediateDirectories:attributes:error:)]
+        #[method(createDirectoryAtPath:withIntermediateDirectories:attributes:error:_)]
         pub unsafe fn createDirectoryAtPath_withIntermediateDirectories_attributes_error(
             &self,
             path: &NSString,
@@ -173,95 +173,95 @@ extern_methods!(
             attributes: Option<&NSDictionary<NSFileAttributeKey, Object>>,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Other contentsOfDirectoryAtPath:error:)]
+        #[method_id(@__retain_semantics Other contentsOfDirectoryAtPath:error:_)]
         pub unsafe fn contentsOfDirectoryAtPath_error(
             &self,
             path: &NSString,
         ) -> Result<Id<NSArray<NSString>, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Other subpathsOfDirectoryAtPath:error:)]
+        #[method_id(@__retain_semantics Other subpathsOfDirectoryAtPath:error:_)]
         pub unsafe fn subpathsOfDirectoryAtPath_error(
             &self,
             path: &NSString,
         ) -> Result<Id<NSArray<NSString>, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Other attributesOfItemAtPath:error:)]
+        #[method_id(@__retain_semantics Other attributesOfItemAtPath:error:_)]
         pub unsafe fn attributesOfItemAtPath_error(
             &self,
             path: &NSString,
         ) -> Result<Id<NSDictionary<NSFileAttributeKey, Object>, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Other attributesOfFileSystemForPath:error:)]
+        #[method_id(@__retain_semantics Other attributesOfFileSystemForPath:error:_)]
         pub unsafe fn attributesOfFileSystemForPath_error(
             &self,
             path: &NSString,
         ) -> Result<Id<NSDictionary<NSFileAttributeKey, Object>, Shared>, Id<NSError, Shared>>;
 
-        #[method(createSymbolicLinkAtPath:withDestinationPath:error:)]
+        #[method(createSymbolicLinkAtPath:withDestinationPath:error:_)]
         pub unsafe fn createSymbolicLinkAtPath_withDestinationPath_error(
             &self,
             path: &NSString,
             destPath: &NSString,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Other destinationOfSymbolicLinkAtPath:error:)]
+        #[method_id(@__retain_semantics Other destinationOfSymbolicLinkAtPath:error:_)]
         pub unsafe fn destinationOfSymbolicLinkAtPath_error(
             &self,
             path: &NSString,
         ) -> Result<Id<NSString, Shared>, Id<NSError, Shared>>;
 
-        #[method(copyItemAtPath:toPath:error:)]
+        #[method(copyItemAtPath:toPath:error:_)]
         pub unsafe fn copyItemAtPath_toPath_error(
             &self,
             srcPath: &NSString,
             dstPath: &NSString,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[method(moveItemAtPath:toPath:error:)]
+        #[method(moveItemAtPath:toPath:error:_)]
         pub unsafe fn moveItemAtPath_toPath_error(
             &self,
             srcPath: &NSString,
             dstPath: &NSString,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[method(linkItemAtPath:toPath:error:)]
+        #[method(linkItemAtPath:toPath:error:_)]
         pub unsafe fn linkItemAtPath_toPath_error(
             &self,
             srcPath: &NSString,
             dstPath: &NSString,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[method(removeItemAtPath:error:)]
+        #[method(removeItemAtPath:error:_)]
         pub unsafe fn removeItemAtPath_error(
             &self,
             path: &NSString,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[method(copyItemAtURL:toURL:error:)]
+        #[method(copyItemAtURL:toURL:error:_)]
         pub unsafe fn copyItemAtURL_toURL_error(
             &self,
             srcURL: &NSURL,
             dstURL: &NSURL,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[method(moveItemAtURL:toURL:error:)]
+        #[method(moveItemAtURL:toURL:error:_)]
         pub unsafe fn moveItemAtURL_toURL_error(
             &self,
             srcURL: &NSURL,
             dstURL: &NSURL,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[method(linkItemAtURL:toURL:error:)]
+        #[method(linkItemAtURL:toURL:error:_)]
         pub unsafe fn linkItemAtURL_toURL_error(
             &self,
             srcURL: &NSURL,
             dstURL: &NSURL,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[method(removeItemAtURL:error:)]
+        #[method(removeItemAtURL:error:_)]
         pub unsafe fn removeItemAtURL_error(&self, URL: &NSURL) -> Result<(), Id<NSError, Shared>>;
 
-        #[method(trashItemAtURL:resultingItemURL:error:)]
+        #[method(trashItemAtURL:resultingItemURL:error:_)]
         pub unsafe fn trashItemAtURL_resultingItemURL_error(
             &self,
             url: &NSURL,
@@ -431,7 +431,7 @@ extern_methods!(
             len: NSUInteger,
         ) -> Id<NSString, Shared>;
 
-        #[method(replaceItemAtURL:withItemAtURL:backupItemName:options:resultingItemURL:error:)]
+        #[method(replaceItemAtURL:withItemAtURL:backupItemName:options:resultingItemURL:error:_)]
         pub unsafe fn replaceItemAtURL_withItemAtURL_backupItemName_options_resultingItemURL_error(
             &self,
             originalItemURL: &NSURL,
@@ -441,7 +441,7 @@ extern_methods!(
             resultingURL: *mut *mut NSURL,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[method(setUbiquitous:itemAtURL:destinationURL:error:)]
+        #[method(setUbiquitous:itemAtURL:destinationURL:error:_)]
         pub unsafe fn setUbiquitous_itemAtURL_destinationURL_error(
             &self,
             flag: bool,
@@ -452,13 +452,13 @@ extern_methods!(
         #[method(isUbiquitousItemAtURL:)]
         pub unsafe fn isUbiquitousItemAtURL(&self, url: &NSURL) -> bool;
 
-        #[method(startDownloadingUbiquitousItemAtURL:error:)]
+        #[method(startDownloadingUbiquitousItemAtURL:error:_)]
         pub unsafe fn startDownloadingUbiquitousItemAtURL_error(
             &self,
             url: &NSURL,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[method(evictUbiquitousItemAtURL:error:)]
+        #[method(evictUbiquitousItemAtURL:error:_)]
         pub unsafe fn evictUbiquitousItemAtURL_error(
             &self,
             url: &NSURL,
@@ -470,7 +470,7 @@ extern_methods!(
             containerIdentifier: Option<&NSString>,
         ) -> Option<Id<NSURL, Shared>>;
 
-        #[method_id(@__retain_semantics Other URLForPublishingUbiquitousItemAtURL:expirationDate:error:)]
+        #[method_id(@__retain_semantics Other URLForPublishingUbiquitousItemAtURL:expirationDate:error:_)]
         pub unsafe fn URLForPublishingUbiquitousItemAtURL_expirationDate_error(
             &self,
             url: &NSURL,

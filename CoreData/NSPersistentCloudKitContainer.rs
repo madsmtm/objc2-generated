@@ -25,7 +25,7 @@ extern_class!(
 
 extern_methods!(
     unsafe impl NSPersistentCloudKitContainer {
-        #[method(initializeCloudKitSchemaWithOptions:error:)]
+        #[method(initializeCloudKitSchemaWithOptions:error:_)]
         pub unsafe fn initializeCloudKitSchemaWithOptions_error(
             &self,
             options: NSPersistentCloudKitContainerSchemaInitializationOptions,

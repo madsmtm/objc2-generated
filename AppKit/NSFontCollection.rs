@@ -56,20 +56,20 @@ extern_methods!(
             locale: &NSLocale,
         ) -> Option<Id<NSFontCollection, Shared>>;
 
-        #[method(showFontCollection:withName:visibility:error:)]
+        #[method(showFontCollection:withName:visibility:error:_)]
         pub unsafe fn showFontCollection_withName_visibility_error(
             collection: &NSFontCollection,
             name: &NSFontCollectionName,
             visibility: NSFontCollectionVisibility,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[method(hideFontCollectionWithName:visibility:error:)]
+        #[method(hideFontCollectionWithName:visibility:error:_)]
         pub unsafe fn hideFontCollectionWithName_visibility_error(
             name: &NSFontCollectionName,
             visibility: NSFontCollectionVisibility,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[method(renameFontCollectionWithName:visibility:toName:error:)]
+        #[method(renameFontCollectionWithName:visibility:toName:error:_)]
         pub unsafe fn renameFontCollectionWithName_visibility_toName_error(
             oldName: &NSFontCollectionName,
             visibility: NSFontCollectionVisibility,

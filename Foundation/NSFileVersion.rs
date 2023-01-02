@@ -53,7 +53,7 @@ extern_methods!(
             persistentIdentifier: &Object,
         ) -> Option<Id<NSFileVersion, Shared>>;
 
-        #[method_id(@__retain_semantics Other addVersionOfItemAtURL:withContentsOfURL:options:error:)]
+        #[method_id(@__retain_semantics Other addVersionOfItemAtURL:withContentsOfURL:options:error:_)]
         pub unsafe fn addVersionOfItemAtURL_withContentsOfURL_options_error(
             url: &NSURL,
             contentsURL: &NSURL,
@@ -105,17 +105,17 @@ extern_methods!(
         #[method(hasThumbnail)]
         pub unsafe fn hasThumbnail(&self) -> bool;
 
-        #[method_id(@__retain_semantics Other replaceItemAtURL:options:error:)]
+        #[method_id(@__retain_semantics Other replaceItemAtURL:options:error:_)]
         pub unsafe fn replaceItemAtURL_options_error(
             &self,
             url: &NSURL,
             options: NSFileVersionReplacingOptions,
         ) -> Result<Id<NSURL, Shared>, Id<NSError, Shared>>;
 
-        #[method(removeAndReturnError:)]
+        #[method(removeAndReturnError:_)]
         pub unsafe fn removeAndReturnError(&self) -> Result<(), Id<NSError, Shared>>;
 
-        #[method(removeOtherVersionsOfItemAtURL:error:)]
+        #[method(removeOtherVersionsOfItemAtURL:error:_)]
         pub unsafe fn removeOtherVersionsOfItemAtURL_error(
             url: &NSURL,
         ) -> Result<(), Id<NSError, Shared>>;

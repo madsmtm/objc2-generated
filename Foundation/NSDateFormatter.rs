@@ -41,7 +41,7 @@ extern_methods!(
         #[method(setFormattingContext:)]
         pub unsafe fn setFormattingContext(&self, formattingContext: NSFormattingContext);
 
-        #[method(getObjectValue:forString:range:error:)]
+        #[method(getObjectValue:forString:range:error:_)]
         pub unsafe fn getObjectValue_forString_range_error(
             &self,
             obj: *mut *mut Object,

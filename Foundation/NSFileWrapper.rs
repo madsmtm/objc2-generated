@@ -30,7 +30,7 @@ extern_class!(
 
 extern_methods!(
     unsafe impl NSFileWrapper {
-        #[method_id(@__retain_semantics Init initWithURL:options:error:)]
+        #[method_id(@__retain_semantics Init initWithURL:options:error:_)]
         pub unsafe fn initWithURL_options_error(
             this: Option<Allocated<Self>>,
             url: &NSURL,
@@ -97,14 +97,14 @@ extern_methods!(
         #[method(matchesContentsOfURL:)]
         pub unsafe fn matchesContentsOfURL(&self, url: &NSURL) -> bool;
 
-        #[method(readFromURL:options:error:)]
+        #[method(readFromURL:options:error:_)]
         pub unsafe fn readFromURL_options_error(
             &self,
             url: &NSURL,
             options: NSFileWrapperReadingOptions,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[method(writeToURL:options:originalContentsURL:error:)]
+        #[method(writeToURL:options:originalContentsURL:error:_)]
         pub unsafe fn writeToURL_options_originalContentsURL_error(
             &self,
             url: &NSURL,

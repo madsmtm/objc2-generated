@@ -67,7 +67,7 @@ extern_methods!(
         #[method(setStandardError:)]
         pub unsafe fn setStandardError(&self, standardError: Option<&Object>);
 
-        #[method(launchAndReturnError:)]
+        #[method(launchAndReturnError:_)]
         pub unsafe fn launchAndReturnError(&self) -> Result<(), Id<NSError, Shared>>;
 
         #[method(interrupt)]

@@ -113,7 +113,7 @@ extern_methods!(
         #[method(setFetchPredicate:)]
         pub unsafe fn setFetchPredicate(&self, fetchPredicate: Option<&NSPredicate>);
 
-        #[method(fetchWithRequest:merge:error:)]
+        #[method(fetchWithRequest:merge:error:_)]
         pub unsafe fn fetchWithRequest_merge_error(
             &self,
             fetchRequest: Option<&NSFetchRequest>,

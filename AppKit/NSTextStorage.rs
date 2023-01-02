@@ -146,7 +146,7 @@ extern_methods!(
     ///
     /// NSAttributedStringDocumentFormats
     unsafe impl NSTextStorage {
-        #[method_id(@__retain_semantics Init initWithURL:options:documentAttributes:error:)]
+        #[method_id(@__retain_semantics Init initWithURL:options:documentAttributes:error:_)]
         pub unsafe fn initWithURL_options_documentAttributes_error(
             this: Option<Allocated<Self>>,
             url: &NSURL,
@@ -154,7 +154,7 @@ extern_methods!(
             dict: *mut *mut NSDictionary<NSAttributedStringDocumentAttributeKey, Object>,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Init initWithData:options:documentAttributes:error:)]
+        #[method_id(@__retain_semantics Init initWithData:options:documentAttributes:error:_)]
         pub unsafe fn initWithData_options_documentAttributes_error(
             this: Option<Allocated<Self>>,
             data: &NSData,
@@ -267,7 +267,7 @@ extern_methods!(
     ///
     /// NSAttributedStringCreateFromMarkdown
     unsafe impl NSTextStorage {
-        #[method_id(@__retain_semantics Init initWithContentsOfMarkdownFileAtURL:options:baseURL:error:)]
+        #[method_id(@__retain_semantics Init initWithContentsOfMarkdownFileAtURL:options:baseURL:error:_)]
         pub unsafe fn initWithContentsOfMarkdownFileAtURL_options_baseURL_error(
             this: Option<Allocated<Self>>,
             markdownFile: &NSURL,
@@ -275,7 +275,7 @@ extern_methods!(
             baseURL: Option<&NSURL>,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Init initWithMarkdown:options:baseURL:error:)]
+        #[method_id(@__retain_semantics Init initWithMarkdown:options:baseURL:error:_)]
         pub unsafe fn initWithMarkdown_options_baseURL_error(
             this: Option<Allocated<Self>>,
             markdown: &NSData,
@@ -283,7 +283,7 @@ extern_methods!(
             baseURL: Option<&NSURL>,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Init initWithMarkdownString:options:baseURL:error:)]
+        #[method_id(@__retain_semantics Init initWithMarkdownString:options:baseURL:error:_)]
         pub unsafe fn initWithMarkdownString_options_baseURL_error(
             this: Option<Allocated<Self>>,
             markdownString: &NSString,

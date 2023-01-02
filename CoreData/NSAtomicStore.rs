@@ -25,10 +25,10 @@ extern_methods!(
             options: Option<&NSDictionary>,
         ) -> Id<Self, Shared>;
 
-        #[method(load:)]
+        #[method(load:_)]
         pub unsafe fn load(&self) -> Result<(), Id<NSError, Shared>>;
 
-        #[method(save:)]
+        #[method(save:_)]
         pub unsafe fn save(&self) -> Result<(), Id<NSError, Shared>>;
 
         #[method_id(@__retain_semantics New newCacheNodeForManagedObject:)]

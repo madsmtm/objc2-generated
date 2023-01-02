@@ -65,7 +65,7 @@ extern_methods!(
         #[method(isEditable)]
         pub unsafe fn isEditable(&self) -> bool;
 
-        #[method(writeToURL:error:)]
+        #[method(writeToURL:error:_)]
         pub unsafe fn writeToURL_error(
             &self,
             url: Option<&NSURL>,

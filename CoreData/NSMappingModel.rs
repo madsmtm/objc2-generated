@@ -22,7 +22,7 @@ extern_methods!(
             destinationModel: Option<&NSManagedObjectModel>,
         ) -> Option<Id<NSMappingModel, Shared>>;
 
-        #[method_id(@__retain_semantics Other inferredMappingModelForSourceModel:destinationModel:error:)]
+        #[method_id(@__retain_semantics Other inferredMappingModelForSourceModel:destinationModel:error:_)]
         pub unsafe fn inferredMappingModelForSourceModel_destinationModel_error(
             sourceModel: &NSManagedObjectModel,
             destinationModel: &NSManagedObjectModel,

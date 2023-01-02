@@ -125,7 +125,7 @@ extern_methods!(
         #[method(unmountAndEjectDeviceAtPath:)]
         pub unsafe fn unmountAndEjectDeviceAtPath(&self, path: &NSString) -> bool;
 
-        #[method(unmountAndEjectDeviceAtURL:error:)]
+        #[method(unmountAndEjectDeviceAtURL:error:_)]
         pub unsafe fn unmountAndEjectDeviceAtURL_error(
             &self,
             url: &NSURL,
@@ -294,7 +294,7 @@ extern_static!(NSWorkspaceDesktopImageFillColorKey: &'static NSWorkspaceDesktopI
 extern_methods!(
     /// NSDesktopImages
     unsafe impl NSWorkspace {
-        #[method(setDesktopImageURL:forScreen:options:error:)]
+        #[method(setDesktopImageURL:forScreen:options:error:_)]
         pub unsafe fn setDesktopImageURL_forScreen_options_error(
             &self,
             url: &NSURL,
@@ -474,7 +474,7 @@ extern_methods!(
         #[method(launchApplication:)]
         pub unsafe fn launchApplication(&self, appName: &NSString) -> bool;
 
-        #[method_id(@__retain_semantics Other launchApplicationAtURL:options:configuration:error:)]
+        #[method_id(@__retain_semantics Other launchApplicationAtURL:options:configuration:error:_)]
         pub unsafe fn launchApplicationAtURL_options_configuration_error(
             &self,
             url: &NSURL,
@@ -482,7 +482,7 @@ extern_methods!(
             configuration: &NSDictionary<NSWorkspaceLaunchConfigurationKey, Object>,
         ) -> Result<Id<NSRunningApplication, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Other openURL:options:configuration:error:)]
+        #[method_id(@__retain_semantics Other openURL:options:configuration:error:_)]
         pub unsafe fn openURL_options_configuration_error(
             &self,
             url: &NSURL,
@@ -490,7 +490,7 @@ extern_methods!(
             configuration: &NSDictionary<NSWorkspaceLaunchConfigurationKey, Object>,
         ) -> Result<Id<NSRunningApplication, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Other openURLs:withApplicationAtURL:options:configuration:error:)]
+        #[method_id(@__retain_semantics Other openURLs:withApplicationAtURL:options:configuration:error:_)]
         pub unsafe fn openURLs_withApplicationAtURL_options_configuration_error(
             &self,
             urls: &NSArray<NSURL>,
@@ -609,7 +609,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other iconForFileType:)]
         pub unsafe fn iconForFileType(&self, fileType: &NSString) -> Id<NSImage, Shared>;
 
-        #[method_id(@__retain_semantics Other typeOfFile:error:)]
+        #[method_id(@__retain_semantics Other typeOfFile:error:_)]
         pub unsafe fn typeOfFile_error(
             &self,
             absoluteFilePath: &NSString,

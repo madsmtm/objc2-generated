@@ -87,7 +87,7 @@ extern_methods!(
             language: &NSString,
         ) -> Option<Id<NSMorphologyCustomPronoun, Shared>>;
 
-        #[method(setCustomPronoun:forLanguage:error:)]
+        #[method(setCustomPronoun:forLanguage:error:_)]
         pub unsafe fn setCustomPronoun_forLanguage_error(
             &self,
             features: Option<&NSMorphologyCustomPronoun>,

@@ -28,21 +28,21 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
-        #[method_id(@__retain_semantics Init initWithXMLString:options:error:)]
+        #[method_id(@__retain_semantics Init initWithXMLString:options:error:_)]
         pub unsafe fn initWithXMLString_options_error(
             this: Option<Allocated<Self>>,
             string: &NSString,
             mask: NSXMLNodeOptions,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Init initWithContentsOfURL:options:error:)]
+        #[method_id(@__retain_semantics Init initWithContentsOfURL:options:error:_)]
         pub unsafe fn initWithContentsOfURL_options_error(
             this: Option<Allocated<Self>>,
             url: &NSURL,
             mask: NSXMLNodeOptions,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Init initWithData:options:error:)]
+        #[method_id(@__retain_semantics Init initWithData:options:error:_)]
         pub unsafe fn initWithData_options_error(
             this: Option<Allocated<Self>>,
             data: &NSData,
@@ -128,28 +128,28 @@ extern_methods!(
         #[method_id(@__retain_semantics Other XMLDataWithOptions:)]
         pub unsafe fn XMLDataWithOptions(&self, options: NSXMLNodeOptions) -> Id<NSData, Shared>;
 
-        #[method_id(@__retain_semantics Other objectByApplyingXSLT:arguments:error:)]
+        #[method_id(@__retain_semantics Other objectByApplyingXSLT:arguments:error:_)]
         pub unsafe fn objectByApplyingXSLT_arguments_error(
             &self,
             xslt: &NSData,
             arguments: Option<&NSDictionary<NSString, NSString>>,
         ) -> Result<Id<Object, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Other objectByApplyingXSLTString:arguments:error:)]
+        #[method_id(@__retain_semantics Other objectByApplyingXSLTString:arguments:error:_)]
         pub unsafe fn objectByApplyingXSLTString_arguments_error(
             &self,
             xslt: &NSString,
             arguments: Option<&NSDictionary<NSString, NSString>>,
         ) -> Result<Id<Object, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Other objectByApplyingXSLTAtURL:arguments:error:)]
+        #[method_id(@__retain_semantics Other objectByApplyingXSLTAtURL:arguments:error:_)]
         pub unsafe fn objectByApplyingXSLTAtURL_arguments_error(
             &self,
             xsltURL: &NSURL,
             argument: Option<&NSDictionary<NSString, NSString>>,
         ) -> Result<Id<Object, Shared>, Id<NSError, Shared>>;
 
-        #[method(validateAndReturnError:)]
+        #[method(validateAndReturnError:_)]
         pub unsafe fn validateAndReturnError(&self) -> Result<(), Id<NSError, Shared>>;
     }
 );

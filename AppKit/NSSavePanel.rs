@@ -158,7 +158,7 @@ extern_protocol!(
         pub unsafe fn panel_shouldEnableURL(&self, sender: &Object, url: &NSURL) -> bool;
 
         #[optional]
-        #[method(panel:validateURL:error:)]
+        #[method(panel:validateURL:error:_)]
         pub unsafe fn panel_validateURL_error(
             &self,
             sender: &Object,

@@ -53,13 +53,13 @@ extern_methods!(
         #[method(newDocument:)]
         pub unsafe fn newDocument(&self, sender: Option<&Object>);
 
-        #[method_id(@__retain_semantics Other openUntitledDocumentAndDisplay:error:)]
+        #[method_id(@__retain_semantics Other openUntitledDocumentAndDisplay:error:_)]
         pub unsafe fn openUntitledDocumentAndDisplay_error(
             &self,
             displayDocument: bool,
         ) -> Result<Id<NSDocument, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Other makeUntitledDocumentOfType:error:)]
+        #[method_id(@__retain_semantics Other makeUntitledDocumentOfType:error:_)]
         pub unsafe fn makeUntitledDocumentOfType_error(
             &self,
             typeName: &NSString,
@@ -100,7 +100,7 @@ extern_methods!(
             completionHandler: &Block<(*mut NSDocument, Bool, *mut NSError), ()>,
         );
 
-        #[method_id(@__retain_semantics Other makeDocumentWithContentsOfURL:ofType:error:)]
+        #[method_id(@__retain_semantics Other makeDocumentWithContentsOfURL:ofType:error:_)]
         pub unsafe fn makeDocumentWithContentsOfURL_ofType_error(
             &self,
             url: &NSURL,
@@ -116,7 +116,7 @@ extern_methods!(
             completionHandler: &Block<(*mut NSDocument, Bool, *mut NSError), ()>,
         );
 
-        #[method_id(@__retain_semantics Other makeDocumentForURL:withContentsOfURL:ofType:error:)]
+        #[method_id(@__retain_semantics Other makeDocumentForURL:withContentsOfURL:ofType:error:_)]
         pub unsafe fn makeDocumentForURL_withContentsOfURL_ofType_error(
             &self,
             urlOrNil: Option<&NSURL>,
@@ -154,7 +154,7 @@ extern_methods!(
             contextInfo: *mut c_void,
         );
 
-        #[method_id(@__retain_semantics Other duplicateDocumentWithContentsOfURL:copying:displayName:error:)]
+        #[method_id(@__retain_semantics Other duplicateDocumentWithContentsOfURL:copying:displayName:error:_)]
         pub unsafe fn duplicateDocumentWithContentsOfURL_copying_displayName_error(
             &self,
             url: &NSURL,
@@ -202,7 +202,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other defaultType)]
         pub unsafe fn defaultType(&self) -> Option<Id<NSString, Shared>>;
 
-        #[method_id(@__retain_semantics Other typeForContentsOfURL:error:)]
+        #[method_id(@__retain_semantics Other typeForContentsOfURL:error:_)]
         pub unsafe fn typeForContentsOfURL_error(
             &self,
             url: &NSURL,
@@ -229,14 +229,14 @@ extern_methods!(
 extern_methods!(
     /// NSDeprecated
     unsafe impl NSDocumentController {
-        #[method_id(@__retain_semantics Other openDocumentWithContentsOfURL:display:error:)]
+        #[method_id(@__retain_semantics Other openDocumentWithContentsOfURL:display:error:_)]
         pub unsafe fn openDocumentWithContentsOfURL_display_error(
             &self,
             url: &NSURL,
             displayDocument: bool,
         ) -> Result<Id<Object, Shared>, Id<NSError, Shared>>;
 
-        #[method(reopenDocumentForURL:withContentsOfURL:error:)]
+        #[method(reopenDocumentForURL:withContentsOfURL:error:_)]
         pub unsafe fn reopenDocumentForURL_withContentsOfURL_error(
             &self,
             url: Option<&NSURL>,

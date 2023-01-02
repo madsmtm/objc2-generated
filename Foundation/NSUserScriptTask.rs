@@ -16,7 +16,7 @@ extern_class!(
 
 extern_methods!(
     unsafe impl NSUserScriptTask {
-        #[method_id(@__retain_semantics Init initWithURL:error:)]
+        #[method_id(@__retain_semantics Init initWithURL:error:_)]
         pub unsafe fn initWithURL_error(
             this: Option<Allocated<Self>>,
             url: &NSURL,
@@ -130,7 +130,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUserScriptTask`
     unsafe impl NSUserUnixTask {
-        #[method_id(@__retain_semantics Init initWithURL:error:)]
+        #[method_id(@__retain_semantics Init initWithURL:error:_)]
         pub unsafe fn initWithURL_error(
             this: Option<Allocated<Self>>,
             url: &NSURL,
@@ -141,7 +141,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUserScriptTask`
     unsafe impl NSUserAppleScriptTask {
-        #[method_id(@__retain_semantics Init initWithURL:error:)]
+        #[method_id(@__retain_semantics Init initWithURL:error:_)]
         pub unsafe fn initWithURL_error(
             this: Option<Allocated<Self>>,
             url: &NSURL,
@@ -152,7 +152,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUserScriptTask`
     unsafe impl NSUserAutomatorTask {
-        #[method_id(@__retain_semantics Init initWithURL:error:)]
+        #[method_id(@__retain_semantics Init initWithURL:error:_)]
         pub unsafe fn initWithURL_error(
             this: Option<Allocated<Self>>,
             url: &NSURL,

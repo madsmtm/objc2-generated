@@ -45,7 +45,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
-        #[method_id(@__retain_semantics Init initWithType:error:)]
+        #[method_id(@__retain_semantics Init initWithType:error:_)]
         pub unsafe fn initWithType_error(
             this: Option<Allocated<Self>>,
             typeName: &NSString,
@@ -54,14 +54,14 @@ extern_methods!(
         #[method(canConcurrentlyReadDocumentsOfType:)]
         pub unsafe fn canConcurrentlyReadDocumentsOfType(typeName: &NSString) -> bool;
 
-        #[method_id(@__retain_semantics Init initWithContentsOfURL:ofType:error:)]
+        #[method_id(@__retain_semantics Init initWithContentsOfURL:ofType:error:_)]
         pub unsafe fn initWithContentsOfURL_ofType_error(
             this: Option<Allocated<Self>>,
             url: &NSURL,
             typeName: &NSString,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Init initForURL:withContentsOfURL:ofType:error:)]
+        #[method_id(@__retain_semantics Init initForURL:withContentsOfURL:ofType:error:_)]
         pub unsafe fn initForURL_withContentsOfURL_ofType_error(
             this: Option<Allocated<Self>>,
             urlOrNil: Option<&NSURL>,
@@ -118,28 +118,28 @@ extern_methods!(
         #[method(revertDocumentToSaved:)]
         pub unsafe fn revertDocumentToSaved(&self, sender: Option<&Object>);
 
-        #[method(revertToContentsOfURL:ofType:error:)]
+        #[method(revertToContentsOfURL:ofType:error:_)]
         pub unsafe fn revertToContentsOfURL_ofType_error(
             &self,
             url: &NSURL,
             typeName: &NSString,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[method(readFromURL:ofType:error:)]
+        #[method(readFromURL:ofType:error:_)]
         pub unsafe fn readFromURL_ofType_error(
             &self,
             url: &NSURL,
             typeName: &NSString,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[method(readFromFileWrapper:ofType:error:)]
+        #[method(readFromFileWrapper:ofType:error:_)]
         pub unsafe fn readFromFileWrapper_ofType_error(
             &self,
             fileWrapper: &NSFileWrapper,
             typeName: &NSString,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[method(readFromData:ofType:error:)]
+        #[method(readFromData:ofType:error:_)]
         pub unsafe fn readFromData_ofType_error(
             &self,
             data: &NSData,
@@ -149,20 +149,20 @@ extern_methods!(
         #[method(isEntireFileLoaded)]
         pub unsafe fn isEntireFileLoaded(&self) -> bool;
 
-        #[method(writeToURL:ofType:error:)]
+        #[method(writeToURL:ofType:error:_)]
         pub unsafe fn writeToURL_ofType_error(
             &self,
             url: &NSURL,
             typeName: &NSString,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Other fileWrapperOfType:error:)]
+        #[method_id(@__retain_semantics Other fileWrapperOfType:error:_)]
         pub unsafe fn fileWrapperOfType_error(
             &self,
             typeName: &NSString,
         ) -> Result<Id<NSFileWrapper, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Other dataOfType:error:)]
+        #[method_id(@__retain_semantics Other dataOfType:error:_)]
         pub unsafe fn dataOfType_error(
             &self,
             typeName: &NSString,
@@ -174,7 +174,7 @@ extern_methods!(
         #[method(autosavingIsImplicitlyCancellable)]
         pub unsafe fn autosavingIsImplicitlyCancellable(&self) -> bool;
 
-        #[method(writeSafelyToURL:ofType:forSaveOperation:error:)]
+        #[method(writeSafelyToURL:ofType:forSaveOperation:error:_)]
         pub unsafe fn writeSafelyToURL_ofType_forSaveOperation_error(
             &self,
             url: &NSURL,
@@ -182,7 +182,7 @@ extern_methods!(
             saveOperation: NSSaveOperationType,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[method(writeToURL:ofType:forSaveOperation:originalContentsURL:error:)]
+        #[method(writeToURL:ofType:forSaveOperation:originalContentsURL:error:_)]
         pub unsafe fn writeToURL_ofType_forSaveOperation_originalContentsURL_error(
             &self,
             url: &NSURL,
@@ -191,7 +191,7 @@ extern_methods!(
             absoluteOriginalContentsURL: Option<&NSURL>,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Other fileAttributesToWriteToURL:ofType:forSaveOperation:originalContentsURL:error:)]
+        #[method_id(@__retain_semantics Other fileAttributesToWriteToURL:ofType:forSaveOperation:originalContentsURL:error:_)]
         pub unsafe fn fileAttributesToWriteToURL_ofType_forSaveOperation_originalContentsURL_error(
             &self,
             url: &NSURL,
@@ -272,7 +272,7 @@ extern_methods!(
             saveOperation: NSSaveOperationType,
         ) -> bool;
 
-        #[method(checkAutosavingSafetyAndReturnError:)]
+        #[method(checkAutosavingSafetyAndReturnError:_)]
         pub unsafe fn checkAutosavingSafetyAndReturnError(&self)
             -> Result<(), Id<NSError, Shared>>;
 
@@ -349,7 +349,7 @@ extern_methods!(
             contextInfo: *mut c_void,
         );
 
-        #[method_id(@__retain_semantics Other duplicateAndReturnError:)]
+        #[method_id(@__retain_semantics Other duplicateAndReturnError:_)]
         pub unsafe fn duplicateAndReturnError(
             &self,
         ) -> Result<Id<NSDocument, Shared>, Id<NSError, Shared>>;
@@ -446,7 +446,7 @@ extern_methods!(
             contextInfo: *mut c_void,
         );
 
-        #[method_id(@__retain_semantics Other printOperationWithSettings:error:)]
+        #[method_id(@__retain_semantics Other printOperationWithSettings:error:_)]
         pub unsafe fn printOperationWithSettings_error(
             &self,
             printSettings: &NSDictionary<NSPrintInfoAttributeKey, Object>,
@@ -615,7 +615,7 @@ extern_methods!(
 extern_methods!(
     /// NSDeprecated
     unsafe impl NSDocument {
-        #[method(saveToURL:ofType:forSaveOperation:error:)]
+        #[method(saveToURL:ofType:forSaveOperation:error:_)]
         pub unsafe fn saveToURL_ofType_forSaveOperation_error(
             &self,
             url: &NSURL,

@@ -27,14 +27,14 @@ extern_class!(
 
 extern_methods!(
     unsafe impl NSEntityMigrationPolicy {
-        #[method(beginEntityMapping:manager:error:)]
+        #[method(beginEntityMapping:manager:error:_)]
         pub unsafe fn beginEntityMapping_manager_error(
             &self,
             mapping: &NSEntityMapping,
             manager: &NSMigrationManager,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[method(createDestinationInstancesForSourceInstance:entityMapping:manager:error:)]
+        #[method(createDestinationInstancesForSourceInstance:entityMapping:manager:error:_)]
         pub unsafe fn createDestinationInstancesForSourceInstance_entityMapping_manager_error(
             &self,
             sInstance: &NSManagedObject,
@@ -42,14 +42,14 @@ extern_methods!(
             manager: &NSMigrationManager,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[method(endInstanceCreationForEntityMapping:manager:error:)]
+        #[method(endInstanceCreationForEntityMapping:manager:error:_)]
         pub unsafe fn endInstanceCreationForEntityMapping_manager_error(
             &self,
             mapping: &NSEntityMapping,
             manager: &NSMigrationManager,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[method(createRelationshipsForDestinationInstance:entityMapping:manager:error:)]
+        #[method(createRelationshipsForDestinationInstance:entityMapping:manager:error:_)]
         pub unsafe fn createRelationshipsForDestinationInstance_entityMapping_manager_error(
             &self,
             dInstance: &NSManagedObject,
@@ -57,21 +57,21 @@ extern_methods!(
             manager: &NSMigrationManager,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[method(endRelationshipCreationForEntityMapping:manager:error:)]
+        #[method(endRelationshipCreationForEntityMapping:manager:error:_)]
         pub unsafe fn endRelationshipCreationForEntityMapping_manager_error(
             &self,
             mapping: &NSEntityMapping,
             manager: &NSMigrationManager,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[method(performCustomValidationForEntityMapping:manager:error:)]
+        #[method(performCustomValidationForEntityMapping:manager:error:_)]
         pub unsafe fn performCustomValidationForEntityMapping_manager_error(
             &self,
             mapping: &NSEntityMapping,
             manager: &NSMigrationManager,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[method(endEntityMapping:manager:error:)]
+        #[method(endEntityMapping:manager:error:_)]
         pub unsafe fn endEntityMapping_manager_error(
             &self,
             mapping: &NSEntityMapping,

@@ -212,20 +212,20 @@ extern_methods!(
             comments: bool,
         ) -> Id<NSString, Shared>;
 
-        #[method_id(@__retain_semantics Other nodesForXPath:error:)]
+        #[method_id(@__retain_semantics Other nodesForXPath:error:_)]
         pub unsafe fn nodesForXPath_error(
             &self,
             xpath: &NSString,
         ) -> Result<Id<NSArray<NSXMLNode>, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Other objectsForXQuery:constants:error:)]
+        #[method_id(@__retain_semantics Other objectsForXQuery:constants:error:_)]
         pub unsafe fn objectsForXQuery_constants_error(
             &self,
             xquery: &NSString,
             constants: Option<&NSDictionary<NSString, Object>>,
         ) -> Result<Id<NSArray, Shared>, Id<NSError, Shared>>;
 
-        #[method_id(@__retain_semantics Other objectsForXQuery:error:)]
+        #[method_id(@__retain_semantics Other objectsForXQuery:error:_)]
         pub unsafe fn objectsForXQuery_error(
             &self,
             xquery: &NSString,

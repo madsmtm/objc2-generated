@@ -34,7 +34,7 @@ extern_methods!(
             name: Option<&NSString>,
         ) -> Id<Self, Shared>;
 
-        #[method(performFetch:)]
+        #[method(performFetch:_)]
         pub unsafe fn performFetch(&self) -> Result<(), Id<NSError, Shared>>;
 
         #[method_id(@__retain_semantics Other fetchRequest)]
