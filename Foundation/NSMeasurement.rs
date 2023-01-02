@@ -22,7 +22,7 @@ extern_methods!(
         NSMeasurement<UnitType, UnitTypeOwnership>
     {
         #[method_id(@__retain_semantics Other unit)]
-        pub unsafe fn unit(&self) -> Id<UnitType, Shared>;
+        pub unsafe fn unit(&self) -> Id<UnitType, UnitTypeOwnership>;
 
         #[method(doubleValue)]
         pub unsafe fn doubleValue(&self) -> c_double;

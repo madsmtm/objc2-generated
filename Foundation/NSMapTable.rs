@@ -105,8 +105,10 @@ extern_methods!(
         pub unsafe fn valuePointerFunctions(&self) -> Id<NSPointerFunctions, Shared>;
 
         #[method_id(@__retain_semantics Other objectForKey:)]
-        pub unsafe fn objectForKey(&self, aKey: Option<&KeyType>)
-            -> Option<Id<ObjectType, Shared>>;
+        pub unsafe fn objectForKey(
+            &self,
+            aKey: Option<&KeyType>,
+        ) -> Option<Id<ObjectType, ObjectTypeOwnership>>;
 
         #[method(removeObjectForKey:)]
         pub unsafe fn removeObjectForKey(&self, aKey: Option<&KeyType>);

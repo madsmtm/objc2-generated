@@ -25,7 +25,10 @@ extern_methods!(
         pub fn count(&self) -> NSUInteger;
 
         #[method_id(@__retain_semantics Other member:)]
-        pub unsafe fn member(&self, object: &ObjectType) -> Option<Id<ObjectType, Shared>>;
+        pub unsafe fn member(
+            &self,
+            object: &ObjectType,
+        ) -> Option<Id<ObjectType, ObjectTypeOwnership>>;
 
         #[method_id(@__retain_semantics Other objectEnumerator)]
         pub unsafe fn objectEnumerator(&self) -> Id<NSEnumerator<ObjectType>, Shared>;
@@ -57,7 +60,7 @@ extern_methods!(
         pub unsafe fn allObjects(&self) -> Id<NSArray<ObjectType>, Shared>;
 
         #[method_id(@__retain_semantics Other anyObject)]
-        pub unsafe fn anyObject(&self) -> Option<Id<ObjectType, Shared>>;
+        pub unsafe fn anyObject(&self) -> Option<Id<ObjectType, ObjectTypeOwnership>>;
 
         #[method(containsObject:)]
         pub unsafe fn containsObject(&self, anObject: &ObjectType) -> bool;

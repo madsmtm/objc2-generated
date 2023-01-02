@@ -25,7 +25,7 @@ extern_methods!(
         pub unsafe fn count(&self) -> NSUInteger;
 
         #[method_id(@__retain_semantics Other objectAtIndex:)]
-        pub unsafe fn objectAtIndex(&self, idx: NSUInteger) -> Id<ObjectType, Shared>;
+        pub unsafe fn objectAtIndex(&self, idx: NSUInteger) -> Id<ObjectType, ObjectTypeOwnership>;
 
         #[method(indexOfObject:)]
         pub unsafe fn indexOfObject(&self, object: &ObjectType) -> NSUInteger;
@@ -63,10 +63,10 @@ extern_methods!(
         ) -> Id<NSArray<ObjectType>, Shared>;
 
         #[method_id(@__retain_semantics Other firstObject)]
-        pub unsafe fn firstObject(&self) -> Option<Id<ObjectType, Shared>>;
+        pub unsafe fn firstObject(&self) -> Option<Id<ObjectType, ObjectTypeOwnership>>;
 
         #[method_id(@__retain_semantics Other lastObject)]
-        pub unsafe fn lastObject(&self) -> Option<Id<ObjectType, Shared>>;
+        pub unsafe fn lastObject(&self) -> Option<Id<ObjectType, ObjectTypeOwnership>>;
 
         #[method(isEqualToOrderedSet:)]
         pub unsafe fn isEqualToOrderedSet(&self, other: &NSOrderedSet<ObjectType>) -> bool;
@@ -87,7 +87,10 @@ extern_methods!(
         pub unsafe fn isSubsetOfSet(&self, set: &NSSet<ObjectType>) -> bool;
 
         #[method_id(@__retain_semantics Other objectAtIndexedSubscript:)]
-        pub unsafe fn objectAtIndexedSubscript(&self, idx: NSUInteger) -> Id<ObjectType, Shared>;
+        pub unsafe fn objectAtIndexedSubscript(
+            &self,
+            idx: NSUInteger,
+        ) -> Id<ObjectType, ObjectTypeOwnership>;
 
         #[method_id(@__retain_semantics Other objectEnumerator)]
         pub unsafe fn objectEnumerator(&self) -> Id<NSEnumerator<ObjectType>, Shared>;

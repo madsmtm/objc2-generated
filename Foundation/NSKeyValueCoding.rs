@@ -54,7 +54,10 @@ extern_methods!(
         > NSDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
     {
         #[method_id(@__retain_semantics Other valueForKey:)]
-        pub unsafe fn valueForKey(&self, key: &NSString) -> Option<Id<ObjectType, Shared>>;
+        pub unsafe fn valueForKey(
+            &self,
+            key: &NSString,
+        ) -> Option<Id<ObjectType, ObjectTypeOwnership>>;
     }
 );
 

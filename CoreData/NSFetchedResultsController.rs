@@ -62,7 +62,10 @@ extern_methods!(
         pub unsafe fn fetchedObjects(&self) -> Option<Id<NSArray<ResultType>, Shared>>;
 
         #[method_id(@__retain_semantics Other objectAtIndexPath:)]
-        pub unsafe fn objectAtIndexPath(&self, indexPath: &NSIndexPath) -> Id<ResultType, Shared>;
+        pub unsafe fn objectAtIndexPath(
+            &self,
+            indexPath: &NSIndexPath,
+        ) -> Id<ResultType, ResultTypeOwnership>;
 
         #[method_id(@__retain_semantics Other indexPathForObject:)]
         pub unsafe fn indexPathForObject(

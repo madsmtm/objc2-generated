@@ -25,7 +25,10 @@ extern_methods!(
         pub fn count(&self) -> NSUInteger;
 
         #[method_id(@__retain_semantics Other objectAtIndex:)]
-        pub unsafe fn objectAtIndex(&self, index: NSUInteger) -> Id<ObjectType, Shared>;
+        pub unsafe fn objectAtIndex(
+            &self,
+            index: NSUInteger,
+        ) -> Id<ObjectType, ObjectTypeOwnership>;
 
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
@@ -96,7 +99,7 @@ extern_methods!(
         pub unsafe fn firstObjectCommonWithArray(
             &self,
             otherArray: &NSArray<ObjectType>,
-        ) -> Option<Id<ObjectType, Shared>>;
+        ) -> Option<Id<ObjectType, ObjectTypeOwnership>>;
 
         #[method(getObjects:range:)]
         pub unsafe fn getObjects_range(
@@ -129,10 +132,10 @@ extern_methods!(
         pub unsafe fn isEqualToArray(&self, otherArray: &NSArray<ObjectType>) -> bool;
 
         #[method_id(@__retain_semantics Other firstObject)]
-        pub unsafe fn firstObject(&self) -> Option<Id<ObjectType, Shared>>;
+        pub unsafe fn firstObject(&self) -> Option<Id<ObjectType, ObjectTypeOwnership>>;
 
         #[method_id(@__retain_semantics Other lastObject)]
-        pub unsafe fn lastObject(&self) -> Option<Id<ObjectType, Shared>>;
+        pub unsafe fn lastObject(&self) -> Option<Id<ObjectType, ObjectTypeOwnership>>;
 
         #[method_id(@__retain_semantics Other objectEnumerator)]
         pub unsafe fn objectEnumerator(&self) -> Id<NSEnumerator<ObjectType>, Shared>;
@@ -195,7 +198,10 @@ extern_methods!(
         ) -> Id<NSArray<ObjectType>, Shared>;
 
         #[method_id(@__retain_semantics Other objectAtIndexedSubscript:)]
-        pub unsafe fn objectAtIndexedSubscript(&self, idx: NSUInteger) -> Id<ObjectType, Shared>;
+        pub unsafe fn objectAtIndexedSubscript(
+            &self,
+            idx: NSUInteger,
+        ) -> Id<ObjectType, ObjectTypeOwnership>;
 
         #[method(enumerateObjectsUsingBlock:)]
         pub unsafe fn enumerateObjectsUsingBlock(

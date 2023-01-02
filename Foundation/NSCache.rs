@@ -48,7 +48,10 @@ extern_methods!(
         pub unsafe fn setDelegate(&self, delegate: Option<&NSCacheDelegate>);
 
         #[method_id(@__retain_semantics Other objectForKey:)]
-        pub unsafe fn objectForKey(&self, key: &KeyType) -> Option<Id<ObjectType, Shared>>;
+        pub unsafe fn objectForKey(
+            &self,
+            key: &KeyType,
+        ) -> Option<Id<ObjectType, ObjectTypeOwnership>>;
 
         #[method(setObject:forKey:)]
         pub unsafe fn setObject_forKey(&self, obj: &ObjectType, key: &KeyType);

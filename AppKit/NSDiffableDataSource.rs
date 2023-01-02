@@ -77,7 +77,7 @@ extern_methods!(
         pub unsafe fn sectionIdentifierForSectionContainingItemIdentifier(
             &self,
             itemIdentifier: &ItemIdentifierType,
-        ) -> Option<Id<SectionIdentifierType, Shared>>;
+        ) -> Option<Id<SectionIdentifierType, SectionIdentifierTypeOwnership>>;
 
         #[method(indexOfItemIdentifier:)]
         pub unsafe fn indexOfItemIdentifier(
@@ -258,7 +258,7 @@ extern_methods!(
         pub unsafe fn itemIdentifierForIndexPath(
             &self,
             indexPath: &NSIndexPath,
-        ) -> Option<Id<ItemIdentifierType, Shared>>;
+        ) -> Option<Id<ItemIdentifierType, ItemIdentifierTypeOwnership>>;
 
         #[method_id(@__retain_semantics Other indexPathForItemIdentifier:)]
         pub unsafe fn indexPathForItemIdentifier(

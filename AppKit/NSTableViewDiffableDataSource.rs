@@ -102,7 +102,7 @@ extern_methods!(
         pub unsafe fn itemIdentifierForRow(
             &self,
             row: NSInteger,
-        ) -> Option<Id<ItemIdentifierType, Shared>>;
+        ) -> Option<Id<ItemIdentifierType, ItemIdentifierTypeOwnership>>;
 
         #[method(rowForItemIdentifier:)]
         pub unsafe fn rowForItemIdentifier(&self, identifier: &ItemIdentifierType) -> NSInteger;
@@ -111,7 +111,7 @@ extern_methods!(
         pub unsafe fn sectionIdentifierForRow(
             &self,
             row: NSInteger,
-        ) -> Option<Id<SectionIdentifierType, Shared>>;
+        ) -> Option<Id<SectionIdentifierType, SectionIdentifierTypeOwnership>>;
 
         #[method(rowForSectionIdentifier:)]
         pub unsafe fn rowForSectionIdentifier(

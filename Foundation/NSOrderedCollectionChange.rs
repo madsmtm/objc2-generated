@@ -48,7 +48,7 @@ extern_methods!(
         ) -> Id<NSOrderedCollectionChange<ObjectType>, Shared>;
 
         #[method_id(@__retain_semantics Other object)]
-        pub unsafe fn object(&self) -> Option<Id<ObjectType, Shared>>;
+        pub unsafe fn object(&self) -> Option<Id<ObjectType, ObjectTypeOwnership>>;
 
         #[method(changeType)]
         pub unsafe fn changeType(&self) -> NSCollectionChangeType;

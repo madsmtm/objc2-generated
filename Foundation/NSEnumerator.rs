@@ -45,7 +45,7 @@ extern_methods!(
         NSEnumerator<ObjectType, ObjectTypeOwnership>
     {
         #[method_id(@__retain_semantics Other nextObject)]
-        pub unsafe fn nextObject(&self) -> Option<Id<ObjectType, Shared>>;
+        pub unsafe fn nextObject(&self) -> Option<Id<ObjectType, ObjectTypeOwnership>>;
     }
 );
 

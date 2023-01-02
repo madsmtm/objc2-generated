@@ -39,7 +39,7 @@ extern_methods!(
         pub fn count(&self) -> NSUInteger;
 
         #[method_id(@__retain_semantics Other objectForKey:)]
-        pub fn objectForKey(&self, aKey: &KeyType) -> Option<Id<ObjectType, Shared>>;
+        pub fn objectForKey(&self, aKey: &KeyType) -> Option<Id<ObjectType, ObjectTypeOwnership>>;
 
         #[method_id(@__retain_semantics Other keyEnumerator)]
         pub unsafe fn keyEnumerator(&self) -> Id<NSEnumerator<KeyType>, Shared>;
@@ -138,7 +138,7 @@ extern_methods!(
         pub unsafe fn objectForKeyedSubscript(
             &self,
             key: &KeyType,
-        ) -> Option<Id<ObjectType, Shared>>;
+        ) -> Option<Id<ObjectType, ObjectTypeOwnership>>;
 
         #[method(enumerateKeysAndObjectsUsingBlock:)]
         pub unsafe fn enumerateKeysAndObjectsUsingBlock(
