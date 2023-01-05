@@ -929,10 +929,10 @@ extern_methods!(
         pub unsafe fn setParentWindow(&self, parentWindow: Option<&NSWindow>);
 
         #[method_id(@__retain_semantics Other appearanceSource)]
-        pub unsafe fn appearanceSource(&self) -> Option<Id<TodoProtocols, Shared>>;
+        pub unsafe fn appearanceSource(&self) -> Option<Id<NSObject, Shared>>;
 
         #[method(setAppearanceSource:)]
-        pub unsafe fn setAppearanceSource(&self, appearanceSource: Option<&TodoProtocols>);
+        pub unsafe fn setAppearanceSource(&self, appearanceSource: Option<&NSObject>);
 
         #[method_id(@__retain_semantics Other colorSpace)]
         pub unsafe fn colorSpace(&self) -> Option<Id<NSColorSpace, Shared>>;

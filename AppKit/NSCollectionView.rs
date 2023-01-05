@@ -372,13 +372,13 @@ extern_methods!(
             &self,
             elementKind: &NSCollectionViewSupplementaryElementKind,
             indexPath: &NSIndexPath,
-        ) -> Option<Id<TodoProtocols, Shared>>;
+        ) -> Option<Id<NSView, Shared>>;
 
         #[method_id(@__retain_semantics Other visibleSupplementaryViewsOfKind:)]
         pub unsafe fn visibleSupplementaryViewsOfKind(
             &self,
             elementKind: &NSCollectionViewSupplementaryElementKind,
-        ) -> Id<NSArray<TodoProtocols>, Shared>;
+        ) -> Id<NSArray<NSView>, Shared>;
 
         #[method_id(@__retain_semantics Other indexPathsForVisibleSupplementaryElementsOfKind:)]
         pub unsafe fn indexPathsForVisibleSupplementaryElementsOfKind(

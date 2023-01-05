@@ -26,7 +26,7 @@ extern_class!(
 extern_methods!(
     unsafe impl NSSliderTouchBarItem {
         #[method_id(@__retain_semantics Other view)]
-        pub unsafe fn view(&self) -> Id<TodoProtocols, Shared>;
+        pub unsafe fn view(&self) -> Id<NSView, Shared>;
 
         #[method_id(@__retain_semantics Other slider)]
         pub unsafe fn slider(&self) -> Id<NSSlider, Shared>;

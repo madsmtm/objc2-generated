@@ -28,10 +28,10 @@ extern_methods!(
         NSCandidateListTouchBarItem<CandidateType, CandidateTypeOwnership>
     {
         #[method_id(@__retain_semantics Other client)]
-        pub unsafe fn client(&self) -> Option<Id<TodoProtocols, Shared>>;
+        pub unsafe fn client(&self) -> Option<Id<NSView, Shared>>;
 
         #[method(setClient:)]
-        pub unsafe fn setClient(&self, client: Option<&TodoProtocols>);
+        pub unsafe fn setClient(&self, client: Option<&NSView>);
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSCandidateListTouchBarItemDelegate, Shared>>;

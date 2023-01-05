@@ -69,10 +69,10 @@ extern_methods!(
         pub unsafe fn printPanel() -> Id<NSPrintPanel, Shared>;
 
         #[method(addAccessoryController:)]
-        pub unsafe fn addAccessoryController(&self, accessoryController: &TodoProtocols);
+        pub unsafe fn addAccessoryController(&self, accessoryController: &NSViewController);
 
         #[method(removeAccessoryController:)]
-        pub unsafe fn removeAccessoryController(&self, accessoryController: &TodoProtocols);
+        pub unsafe fn removeAccessoryController(&self, accessoryController: &NSViewController);
 
         #[method_id(@__retain_semantics Other accessoryControllers)]
         pub unsafe fn accessoryControllers(&self) -> Id<NSArray<NSViewController>, Shared>;
