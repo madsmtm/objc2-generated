@@ -65,10 +65,10 @@ extern_class!(
 extern_methods!(
     unsafe impl CALayer {
         #[method_id(@__retain_semantics Other layer)]
-        pub unsafe fn layer() -> Id<Self, Shared>;
+        pub fn layer() -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Init initWithLayer:)]
         pub unsafe fn initWithLayer(
@@ -92,73 +92,73 @@ extern_methods!(
         pub unsafe fn shouldArchiveValueForKey(&self, key: &NSString) -> bool;
 
         #[method(bounds)]
-        pub unsafe fn bounds(&self) -> CGRect;
+        pub fn bounds(&self) -> CGRect;
 
         #[method(setBounds:)]
-        pub unsafe fn setBounds(&self, bounds: CGRect);
+        pub fn setBounds(&self, bounds: CGRect);
 
         #[method(position)]
-        pub unsafe fn position(&self) -> CGPoint;
+        pub fn position(&self) -> CGPoint;
 
         #[method(setPosition:)]
-        pub unsafe fn setPosition(&self, position: CGPoint);
+        pub fn setPosition(&self, position: CGPoint);
 
         #[method(zPosition)]
-        pub unsafe fn zPosition(&self) -> CGFloat;
+        pub fn zPosition(&self) -> CGFloat;
 
         #[method(setZPosition:)]
-        pub unsafe fn setZPosition(&self, zPosition: CGFloat);
+        pub fn setZPosition(&self, zPosition: CGFloat);
 
         #[method(anchorPoint)]
-        pub unsafe fn anchorPoint(&self) -> CGPoint;
+        pub fn anchorPoint(&self) -> CGPoint;
 
         #[method(setAnchorPoint:)]
-        pub unsafe fn setAnchorPoint(&self, anchorPoint: CGPoint);
+        pub fn setAnchorPoint(&self, anchorPoint: CGPoint);
 
         #[method(anchorPointZ)]
-        pub unsafe fn anchorPointZ(&self) -> CGFloat;
+        pub fn anchorPointZ(&self) -> CGFloat;
 
         #[method(setAnchorPointZ:)]
-        pub unsafe fn setAnchorPointZ(&self, anchorPointZ: CGFloat);
+        pub fn setAnchorPointZ(&self, anchorPointZ: CGFloat);
 
         #[method(transform)]
-        pub unsafe fn transform(&self) -> CATransform3D;
+        pub fn transform(&self) -> CATransform3D;
 
         #[method(setTransform:)]
-        pub unsafe fn setTransform(&self, transform: CATransform3D);
+        pub fn setTransform(&self, transform: CATransform3D);
 
         #[method(frame)]
-        pub unsafe fn frame(&self) -> CGRect;
+        pub fn frame(&self) -> CGRect;
 
         #[method(setFrame:)]
-        pub unsafe fn setFrame(&self, frame: CGRect);
+        pub fn setFrame(&self, frame: CGRect);
 
         #[method(isHidden)]
-        pub unsafe fn isHidden(&self) -> bool;
+        pub fn isHidden(&self) -> bool;
 
         #[method(setHidden:)]
-        pub unsafe fn setHidden(&self, hidden: bool);
+        pub fn setHidden(&self, hidden: bool);
 
         #[method(isDoubleSided)]
-        pub unsafe fn isDoubleSided(&self) -> bool;
+        pub fn isDoubleSided(&self) -> bool;
 
         #[method(setDoubleSided:)]
-        pub unsafe fn setDoubleSided(&self, doubleSided: bool);
+        pub fn setDoubleSided(&self, doubleSided: bool);
 
         #[method(isGeometryFlipped)]
-        pub unsafe fn isGeometryFlipped(&self) -> bool;
+        pub fn isGeometryFlipped(&self) -> bool;
 
         #[method(setGeometryFlipped:)]
-        pub unsafe fn setGeometryFlipped(&self, geometryFlipped: bool);
+        pub fn setGeometryFlipped(&self, geometryFlipped: bool);
 
         #[method(contentsAreFlipped)]
-        pub unsafe fn contentsAreFlipped(&self) -> bool;
+        pub fn contentsAreFlipped(&self) -> bool;
 
         #[method_id(@__retain_semantics Other superlayer)]
-        pub unsafe fn superlayer(&self) -> Option<Id<CALayer, Shared>>;
+        pub fn superlayer(&self) -> Option<Id<CALayer, Shared>>;
 
         #[method(removeFromSuperlayer)]
-        pub unsafe fn removeFromSuperlayer(&self);
+        pub fn removeFromSuperlayer(&self);
 
         #[method_id(@__retain_semantics Other sublayers)]
         pub unsafe fn sublayers(&self) -> Option<Id<NSArray<CALayer>, Shared>>;
@@ -167,69 +167,66 @@ extern_methods!(
         pub unsafe fn setSublayers(&self, sublayers: Option<&NSArray<CALayer>>);
 
         #[method(addSublayer:)]
-        pub unsafe fn addSublayer(&self, layer: &CALayer);
+        pub fn addSublayer(&self, layer: &CALayer);
 
         #[method(insertSublayer:atIndex:)]
-        pub unsafe fn insertSublayer_atIndex(&self, layer: &CALayer, idx: c_uint);
+        pub fn insertSublayer_atIndex(&self, layer: &CALayer, idx: c_uint);
 
         #[method(insertSublayer:below:)]
-        pub unsafe fn insertSublayer_below(&self, layer: &CALayer, sibling: Option<&CALayer>);
+        pub fn insertSublayer_below(&self, layer: &CALayer, sibling: Option<&CALayer>);
 
         #[method(insertSublayer:above:)]
-        pub unsafe fn insertSublayer_above(&self, layer: &CALayer, sibling: Option<&CALayer>);
+        pub fn insertSublayer_above(&self, layer: &CALayer, sibling: Option<&CALayer>);
 
         #[method(replaceSublayer:with:)]
         pub unsafe fn replaceSublayer_with(&self, oldLayer: &CALayer, newLayer: &CALayer);
 
         #[method(sublayerTransform)]
-        pub unsafe fn sublayerTransform(&self) -> CATransform3D;
+        pub fn sublayerTransform(&self) -> CATransform3D;
 
         #[method(setSublayerTransform:)]
-        pub unsafe fn setSublayerTransform(&self, sublayerTransform: CATransform3D);
+        pub fn setSublayerTransform(&self, sublayerTransform: CATransform3D);
 
         #[method_id(@__retain_semantics Other mask)]
-        pub unsafe fn mask(&self) -> Option<Id<CALayer, Shared>>;
+        pub fn mask(&self) -> Option<Id<CALayer, Shared>>;
 
         #[method(setMask:)]
         pub unsafe fn setMask(&self, mask: Option<&CALayer>);
 
         #[method(masksToBounds)]
-        pub unsafe fn masksToBounds(&self) -> bool;
+        pub fn masksToBounds(&self) -> bool;
 
         #[method(setMasksToBounds:)]
-        pub unsafe fn setMasksToBounds(&self, masksToBounds: bool);
+        pub fn setMasksToBounds(&self, masksToBounds: bool);
 
         #[method(convertPoint:fromLayer:)]
-        pub unsafe fn convertPoint_fromLayer(&self, p: CGPoint, l: Option<&CALayer>) -> CGPoint;
+        pub fn convertPoint_fromLayer(&self, p: CGPoint, l: Option<&CALayer>) -> CGPoint;
 
         #[method(convertPoint:toLayer:)]
-        pub unsafe fn convertPoint_toLayer(&self, p: CGPoint, l: Option<&CALayer>) -> CGPoint;
+        pub fn convertPoint_toLayer(&self, p: CGPoint, l: Option<&CALayer>) -> CGPoint;
 
         #[method(convertRect:fromLayer:)]
-        pub unsafe fn convertRect_fromLayer(&self, r: CGRect, l: Option<&CALayer>) -> CGRect;
+        pub fn convertRect_fromLayer(&self, r: CGRect, l: Option<&CALayer>) -> CGRect;
 
         #[method(convertRect:toLayer:)]
-        pub unsafe fn convertRect_toLayer(&self, r: CGRect, l: Option<&CALayer>) -> CGRect;
+        pub fn convertRect_toLayer(&self, r: CGRect, l: Option<&CALayer>) -> CGRect;
 
         #[method(convertTime:fromLayer:)]
-        pub unsafe fn convertTime_fromLayer(
+        pub fn convertTime_fromLayer(
             &self,
             t: CFTimeInterval,
             l: Option<&CALayer>,
         ) -> CFTimeInterval;
 
         #[method(convertTime:toLayer:)]
-        pub unsafe fn convertTime_toLayer(
-            &self,
-            t: CFTimeInterval,
-            l: Option<&CALayer>,
-        ) -> CFTimeInterval;
+        pub fn convertTime_toLayer(&self, t: CFTimeInterval, l: Option<&CALayer>)
+            -> CFTimeInterval;
 
         #[method_id(@__retain_semantics Other hitTest:)]
-        pub unsafe fn hitTest(&self, p: CGPoint) -> Option<Id<CALayer, Shared>>;
+        pub fn hitTest(&self, p: CGPoint) -> Option<Id<CALayer, Shared>>;
 
         #[method(containsPoint:)]
-        pub unsafe fn containsPoint(&self, p: CGPoint) -> bool;
+        pub fn containsPoint(&self, p: CGPoint) -> bool;
 
         #[method_id(@__retain_semantics Other contents)]
         pub unsafe fn contents(&self) -> Option<Id<Object, Shared>>;
@@ -238,136 +235,136 @@ extern_methods!(
         pub unsafe fn setContents(&self, contents: Option<&Object>);
 
         #[method(contentsRect)]
-        pub unsafe fn contentsRect(&self) -> CGRect;
+        pub fn contentsRect(&self) -> CGRect;
 
         #[method(setContentsRect:)]
-        pub unsafe fn setContentsRect(&self, contentsRect: CGRect);
+        pub fn setContentsRect(&self, contentsRect: CGRect);
 
         #[method_id(@__retain_semantics Other contentsGravity)]
-        pub unsafe fn contentsGravity(&self) -> Id<CALayerContentsGravity, Shared>;
+        pub fn contentsGravity(&self) -> Id<CALayerContentsGravity, Shared>;
 
         #[method(setContentsGravity:)]
-        pub unsafe fn setContentsGravity(&self, contentsGravity: &CALayerContentsGravity);
+        pub fn setContentsGravity(&self, contentsGravity: &CALayerContentsGravity);
 
         #[method(contentsScale)]
-        pub unsafe fn contentsScale(&self) -> CGFloat;
+        pub fn contentsScale(&self) -> CGFloat;
 
         #[method(setContentsScale:)]
-        pub unsafe fn setContentsScale(&self, contentsScale: CGFloat);
+        pub fn setContentsScale(&self, contentsScale: CGFloat);
 
         #[method(contentsCenter)]
-        pub unsafe fn contentsCenter(&self) -> CGRect;
+        pub fn contentsCenter(&self) -> CGRect;
 
         #[method(setContentsCenter:)]
-        pub unsafe fn setContentsCenter(&self, contentsCenter: CGRect);
+        pub fn setContentsCenter(&self, contentsCenter: CGRect);
 
         #[method_id(@__retain_semantics Other contentsFormat)]
-        pub unsafe fn contentsFormat(&self) -> Id<CALayerContentsFormat, Shared>;
+        pub fn contentsFormat(&self) -> Id<CALayerContentsFormat, Shared>;
 
         #[method(setContentsFormat:)]
-        pub unsafe fn setContentsFormat(&self, contentsFormat: &CALayerContentsFormat);
+        pub fn setContentsFormat(&self, contentsFormat: &CALayerContentsFormat);
 
         #[method_id(@__retain_semantics Other minificationFilter)]
-        pub unsafe fn minificationFilter(&self) -> Id<CALayerContentsFilter, Shared>;
+        pub fn minificationFilter(&self) -> Id<CALayerContentsFilter, Shared>;
 
         #[method(setMinificationFilter:)]
-        pub unsafe fn setMinificationFilter(&self, minificationFilter: &CALayerContentsFilter);
+        pub fn setMinificationFilter(&self, minificationFilter: &CALayerContentsFilter);
 
         #[method_id(@__retain_semantics Other magnificationFilter)]
-        pub unsafe fn magnificationFilter(&self) -> Id<CALayerContentsFilter, Shared>;
+        pub fn magnificationFilter(&self) -> Id<CALayerContentsFilter, Shared>;
 
         #[method(setMagnificationFilter:)]
-        pub unsafe fn setMagnificationFilter(&self, magnificationFilter: &CALayerContentsFilter);
+        pub fn setMagnificationFilter(&self, magnificationFilter: &CALayerContentsFilter);
 
         #[method(minificationFilterBias)]
-        pub unsafe fn minificationFilterBias(&self) -> c_float;
+        pub fn minificationFilterBias(&self) -> c_float;
 
         #[method(setMinificationFilterBias:)]
-        pub unsafe fn setMinificationFilterBias(&self, minificationFilterBias: c_float);
+        pub fn setMinificationFilterBias(&self, minificationFilterBias: c_float);
 
         #[method(isOpaque)]
-        pub unsafe fn isOpaque(&self) -> bool;
+        pub fn isOpaque(&self) -> bool;
 
         #[method(setOpaque:)]
-        pub unsafe fn setOpaque(&self, opaque: bool);
+        pub fn setOpaque(&self, opaque: bool);
 
         #[method(display)]
-        pub unsafe fn display(&self);
+        pub fn display(&self);
 
         #[method(setNeedsDisplay)]
-        pub unsafe fn setNeedsDisplay(&self);
+        pub fn setNeedsDisplay(&self);
 
         #[method(setNeedsDisplayInRect:)]
-        pub unsafe fn setNeedsDisplayInRect(&self, r: CGRect);
+        pub fn setNeedsDisplayInRect(&self, r: CGRect);
 
         #[method(needsDisplay)]
-        pub unsafe fn needsDisplay(&self) -> bool;
+        pub fn needsDisplay(&self) -> bool;
 
         #[method(displayIfNeeded)]
-        pub unsafe fn displayIfNeeded(&self);
+        pub fn displayIfNeeded(&self);
 
         #[method(needsDisplayOnBoundsChange)]
-        pub unsafe fn needsDisplayOnBoundsChange(&self) -> bool;
+        pub fn needsDisplayOnBoundsChange(&self) -> bool;
 
         #[method(setNeedsDisplayOnBoundsChange:)]
-        pub unsafe fn setNeedsDisplayOnBoundsChange(&self, needsDisplayOnBoundsChange: bool);
+        pub fn setNeedsDisplayOnBoundsChange(&self, needsDisplayOnBoundsChange: bool);
 
         #[method(drawsAsynchronously)]
-        pub unsafe fn drawsAsynchronously(&self) -> bool;
+        pub fn drawsAsynchronously(&self) -> bool;
 
         #[method(setDrawsAsynchronously:)]
-        pub unsafe fn setDrawsAsynchronously(&self, drawsAsynchronously: bool);
+        pub fn setDrawsAsynchronously(&self, drawsAsynchronously: bool);
 
         #[method(edgeAntialiasingMask)]
-        pub unsafe fn edgeAntialiasingMask(&self) -> CAEdgeAntialiasingMask;
+        pub fn edgeAntialiasingMask(&self) -> CAEdgeAntialiasingMask;
 
         #[method(setEdgeAntialiasingMask:)]
-        pub unsafe fn setEdgeAntialiasingMask(&self, edgeAntialiasingMask: CAEdgeAntialiasingMask);
+        pub fn setEdgeAntialiasingMask(&self, edgeAntialiasingMask: CAEdgeAntialiasingMask);
 
         #[method(allowsEdgeAntialiasing)]
-        pub unsafe fn allowsEdgeAntialiasing(&self) -> bool;
+        pub fn allowsEdgeAntialiasing(&self) -> bool;
 
         #[method(setAllowsEdgeAntialiasing:)]
-        pub unsafe fn setAllowsEdgeAntialiasing(&self, allowsEdgeAntialiasing: bool);
+        pub fn setAllowsEdgeAntialiasing(&self, allowsEdgeAntialiasing: bool);
 
         #[method(cornerRadius)]
-        pub unsafe fn cornerRadius(&self) -> CGFloat;
+        pub fn cornerRadius(&self) -> CGFloat;
 
         #[method(setCornerRadius:)]
-        pub unsafe fn setCornerRadius(&self, cornerRadius: CGFloat);
+        pub fn setCornerRadius(&self, cornerRadius: CGFloat);
 
         #[method(maskedCorners)]
-        pub unsafe fn maskedCorners(&self) -> CACornerMask;
+        pub fn maskedCorners(&self) -> CACornerMask;
 
         #[method(setMaskedCorners:)]
-        pub unsafe fn setMaskedCorners(&self, maskedCorners: CACornerMask);
+        pub fn setMaskedCorners(&self, maskedCorners: CACornerMask);
 
         #[method_id(@__retain_semantics Other cornerCurve)]
-        pub unsafe fn cornerCurve(&self) -> Id<CALayerCornerCurve, Shared>;
+        pub fn cornerCurve(&self) -> Id<CALayerCornerCurve, Shared>;
 
         #[method(setCornerCurve:)]
-        pub unsafe fn setCornerCurve(&self, cornerCurve: &CALayerCornerCurve);
+        pub fn setCornerCurve(&self, cornerCurve: &CALayerCornerCurve);
 
         #[method(cornerCurveExpansionFactor:)]
-        pub unsafe fn cornerCurveExpansionFactor(curve: &CALayerCornerCurve) -> CGFloat;
+        pub fn cornerCurveExpansionFactor(curve: &CALayerCornerCurve) -> CGFloat;
 
         #[method(borderWidth)]
-        pub unsafe fn borderWidth(&self) -> CGFloat;
+        pub fn borderWidth(&self) -> CGFloat;
 
         #[method(setBorderWidth:)]
-        pub unsafe fn setBorderWidth(&self, borderWidth: CGFloat);
+        pub fn setBorderWidth(&self, borderWidth: CGFloat);
 
         #[method(opacity)]
-        pub unsafe fn opacity(&self) -> c_float;
+        pub fn opacity(&self) -> c_float;
 
         #[method(setOpacity:)]
-        pub unsafe fn setOpacity(&self, opacity: c_float);
+        pub fn setOpacity(&self, opacity: c_float);
 
         #[method(allowsGroupOpacity)]
-        pub unsafe fn allowsGroupOpacity(&self) -> bool;
+        pub fn allowsGroupOpacity(&self) -> bool;
 
         #[method(setAllowsGroupOpacity:)]
-        pub unsafe fn setAllowsGroupOpacity(&self, allowsGroupOpacity: bool);
+        pub fn setAllowsGroupOpacity(&self, allowsGroupOpacity: bool);
 
         #[method_id(@__retain_semantics Other compositingFilter)]
         pub unsafe fn compositingFilter(&self) -> Option<Id<Object, Shared>>;
@@ -388,106 +385,106 @@ extern_methods!(
         pub unsafe fn setBackgroundFilters(&self, backgroundFilters: Option<&NSArray>);
 
         #[method(shouldRasterize)]
-        pub unsafe fn shouldRasterize(&self) -> bool;
+        pub fn shouldRasterize(&self) -> bool;
 
         #[method(setShouldRasterize:)]
-        pub unsafe fn setShouldRasterize(&self, shouldRasterize: bool);
+        pub fn setShouldRasterize(&self, shouldRasterize: bool);
 
         #[method(rasterizationScale)]
-        pub unsafe fn rasterizationScale(&self) -> CGFloat;
+        pub fn rasterizationScale(&self) -> CGFloat;
 
         #[method(setRasterizationScale:)]
-        pub unsafe fn setRasterizationScale(&self, rasterizationScale: CGFloat);
+        pub fn setRasterizationScale(&self, rasterizationScale: CGFloat);
 
         #[method(shadowOpacity)]
-        pub unsafe fn shadowOpacity(&self) -> c_float;
+        pub fn shadowOpacity(&self) -> c_float;
 
         #[method(setShadowOpacity:)]
-        pub unsafe fn setShadowOpacity(&self, shadowOpacity: c_float);
+        pub fn setShadowOpacity(&self, shadowOpacity: c_float);
 
         #[method(shadowOffset)]
-        pub unsafe fn shadowOffset(&self) -> CGSize;
+        pub fn shadowOffset(&self) -> CGSize;
 
         #[method(setShadowOffset:)]
-        pub unsafe fn setShadowOffset(&self, shadowOffset: CGSize);
+        pub fn setShadowOffset(&self, shadowOffset: CGSize);
 
         #[method(shadowRadius)]
-        pub unsafe fn shadowRadius(&self) -> CGFloat;
+        pub fn shadowRadius(&self) -> CGFloat;
 
         #[method(setShadowRadius:)]
-        pub unsafe fn setShadowRadius(&self, shadowRadius: CGFloat);
+        pub fn setShadowRadius(&self, shadowRadius: CGFloat);
 
         #[method(autoresizingMask)]
-        pub unsafe fn autoresizingMask(&self) -> CAAutoresizingMask;
+        pub fn autoresizingMask(&self) -> CAAutoresizingMask;
 
         #[method(setAutoresizingMask:)]
-        pub unsafe fn setAutoresizingMask(&self, autoresizingMask: CAAutoresizingMask);
+        pub fn setAutoresizingMask(&self, autoresizingMask: CAAutoresizingMask);
 
         #[method_id(@__retain_semantics Other layoutManager)]
-        pub unsafe fn layoutManager(&self) -> Option<Id<CALayoutManager, Shared>>;
+        pub fn layoutManager(&self) -> Option<Id<CALayoutManager, Shared>>;
 
         #[method(setLayoutManager:)]
-        pub unsafe fn setLayoutManager(&self, layoutManager: Option<&CALayoutManager>);
+        pub fn setLayoutManager(&self, layoutManager: Option<&CALayoutManager>);
 
         #[method(preferredFrameSize)]
-        pub unsafe fn preferredFrameSize(&self) -> CGSize;
+        pub fn preferredFrameSize(&self) -> CGSize;
 
         #[method(setNeedsLayout)]
-        pub unsafe fn setNeedsLayout(&self);
+        pub fn setNeedsLayout(&self);
 
         #[method(needsLayout)]
-        pub unsafe fn needsLayout(&self) -> bool;
+        pub fn needsLayout(&self) -> bool;
 
         #[method(layoutIfNeeded)]
-        pub unsafe fn layoutIfNeeded(&self);
+        pub fn layoutIfNeeded(&self);
 
         #[method(layoutSublayers)]
-        pub unsafe fn layoutSublayers(&self);
+        pub fn layoutSublayers(&self);
 
         #[method(resizeSublayersWithOldSize:)]
-        pub unsafe fn resizeSublayersWithOldSize(&self, size: CGSize);
+        pub fn resizeSublayersWithOldSize(&self, size: CGSize);
 
         #[method(resizeWithOldSuperlayerSize:)]
-        pub unsafe fn resizeWithOldSuperlayerSize(&self, size: CGSize);
+        pub fn resizeWithOldSuperlayerSize(&self, size: CGSize);
 
         #[method_id(@__retain_semantics Other defaultActionForKey:)]
-        pub unsafe fn defaultActionForKey(event: &NSString) -> Option<Id<CAAction, Shared>>;
+        pub fn defaultActionForKey(event: &NSString) -> Option<Id<CAAction, Shared>>;
 
         #[method_id(@__retain_semantics Other actionForKey:)]
-        pub unsafe fn actionForKey(&self, event: &NSString) -> Option<Id<CAAction, Shared>>;
+        pub fn actionForKey(&self, event: &NSString) -> Option<Id<CAAction, Shared>>;
 
         #[method_id(@__retain_semantics Other actions)]
-        pub unsafe fn actions(&self) -> Option<Id<NSDictionary<NSString, CAAction>, Shared>>;
+        pub fn actions(&self) -> Option<Id<NSDictionary<NSString, CAAction>, Shared>>;
 
         #[method(setActions:)]
-        pub unsafe fn setActions(&self, actions: Option<&NSDictionary<NSString, CAAction>>);
+        pub fn setActions(&self, actions: Option<&NSDictionary<NSString, CAAction>>);
 
         #[method(addAnimation:forKey:)]
-        pub unsafe fn addAnimation_forKey(&self, anim: &CAAnimation, key: Option<&NSString>);
+        pub fn addAnimation_forKey(&self, anim: &CAAnimation, key: Option<&NSString>);
 
         #[method(removeAllAnimations)]
-        pub unsafe fn removeAllAnimations(&self);
+        pub fn removeAllAnimations(&self);
 
         #[method(removeAnimationForKey:)]
-        pub unsafe fn removeAnimationForKey(&self, key: &NSString);
+        pub fn removeAnimationForKey(&self, key: &NSString);
 
         #[method_id(@__retain_semantics Other animationKeys)]
-        pub unsafe fn animationKeys(&self) -> Option<Id<NSArray<NSString>, Shared>>;
+        pub fn animationKeys(&self) -> Option<Id<NSArray<NSString>, Shared>>;
 
         #[method_id(@__retain_semantics Other animationForKey:)]
         pub unsafe fn animationForKey(&self, key: &NSString) -> Option<Id<CAAnimation, Shared>>;
 
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Option<Id<NSString, Shared>>;
+        pub fn name(&self) -> Option<Id<NSString, Shared>>;
 
         #[method(setName:)]
-        pub unsafe fn setName(&self, name: Option<&NSString>);
+        pub fn setName(&self, name: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<CALayerDelegate, Shared>>;
+        pub fn delegate(&self) -> Option<Id<CALayerDelegate, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&CALayerDelegate>);
+        pub fn setDelegate(&self, delegate: Option<&CALayerDelegate>);
 
         #[method_id(@__retain_semantics Other style)]
         pub unsafe fn style(&self) -> Option<Id<NSDictionary, Shared>>;

@@ -28,27 +28,23 @@ extern_struct!(
 extern_static!(CATransform3DIdentity: CATransform3D);
 
 extern_fn!(
-    pub unsafe fn CATransform3DIsIdentity(t: CATransform3D) -> bool;
+    pub fn CATransform3DIsIdentity(t: CATransform3D) -> bool;
 );
 
 extern_fn!(
-    pub unsafe fn CATransform3DEqualToTransform(a: CATransform3D, b: CATransform3D) -> bool;
+    pub fn CATransform3DEqualToTransform(a: CATransform3D, b: CATransform3D) -> bool;
 );
 
 extern_fn!(
-    pub unsafe fn CATransform3DMakeTranslation(
-        tx: CGFloat,
-        ty: CGFloat,
-        tz: CGFloat,
-    ) -> CATransform3D;
+    pub fn CATransform3DMakeTranslation(tx: CGFloat, ty: CGFloat, tz: CGFloat) -> CATransform3D;
 );
 
 extern_fn!(
-    pub unsafe fn CATransform3DMakeScale(sx: CGFloat, sy: CGFloat, sz: CGFloat) -> CATransform3D;
+    pub fn CATransform3DMakeScale(sx: CGFloat, sy: CGFloat, sz: CGFloat) -> CATransform3D;
 );
 
 extern_fn!(
-    pub unsafe fn CATransform3DMakeRotation(
+    pub fn CATransform3DMakeRotation(
         angle: CGFloat,
         x: CGFloat,
         y: CGFloat,
@@ -57,7 +53,7 @@ extern_fn!(
 );
 
 extern_fn!(
-    pub unsafe fn CATransform3DTranslate(
+    pub fn CATransform3DTranslate(
         t: CATransform3D,
         tx: CGFloat,
         ty: CGFloat,
@@ -66,7 +62,7 @@ extern_fn!(
 );
 
 extern_fn!(
-    pub unsafe fn CATransform3DScale(
+    pub fn CATransform3DScale(
         t: CATransform3D,
         sx: CGFloat,
         sy: CGFloat,
@@ -75,7 +71,7 @@ extern_fn!(
 );
 
 extern_fn!(
-    pub unsafe fn CATransform3DRotate(
+    pub fn CATransform3DRotate(
         t: CATransform3D,
         angle: CGFloat,
         x: CGFloat,
@@ -85,15 +81,15 @@ extern_fn!(
 );
 
 extern_fn!(
-    pub unsafe fn CATransform3DConcat(a: CATransform3D, b: CATransform3D) -> CATransform3D;
+    pub fn CATransform3DConcat(a: CATransform3D, b: CATransform3D) -> CATransform3D;
 );
 
 extern_fn!(
-    pub unsafe fn CATransform3DInvert(t: CATransform3D) -> CATransform3D;
+    pub fn CATransform3DInvert(t: CATransform3D) -> CATransform3D;
 );
 
 extern_fn!(
-    pub unsafe fn CATransform3DIsAffine(t: CATransform3D) -> bool;
+    pub fn CATransform3DIsAffine(t: CATransform3D) -> bool;
 );
 
 extern_methods!(

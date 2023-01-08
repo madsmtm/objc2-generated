@@ -16,13 +16,13 @@ extern_class!(
 extern_methods!(
     unsafe impl CATransaction {
         #[method(begin)]
-        pub unsafe fn begin();
+        pub fn begin();
 
         #[method(commit)]
-        pub unsafe fn commit();
+        pub fn commit();
 
         #[method(flush)]
-        pub unsafe fn flush();
+        pub fn flush();
 
         #[method(lock)]
         pub unsafe fn lock();
@@ -31,22 +31,22 @@ extern_methods!(
         pub unsafe fn unlock();
 
         #[method(animationDuration)]
-        pub unsafe fn animationDuration() -> CFTimeInterval;
+        pub fn animationDuration() -> CFTimeInterval;
 
         #[method(setAnimationDuration:)]
-        pub unsafe fn setAnimationDuration(dur: CFTimeInterval);
+        pub fn setAnimationDuration(dur: CFTimeInterval);
 
         #[method_id(@__retain_semantics Other animationTimingFunction)]
-        pub unsafe fn animationTimingFunction() -> Option<Id<CAMediaTimingFunction, Shared>>;
+        pub fn animationTimingFunction() -> Option<Id<CAMediaTimingFunction, Shared>>;
 
         #[method(setAnimationTimingFunction:)]
-        pub unsafe fn setAnimationTimingFunction(function: Option<&CAMediaTimingFunction>);
+        pub fn setAnimationTimingFunction(function: Option<&CAMediaTimingFunction>);
 
         #[method(disableActions)]
-        pub unsafe fn disableActions() -> bool;
+        pub fn disableActions() -> bool;
 
         #[method(setDisableActions:)]
-        pub unsafe fn setDisableActions(flag: bool);
+        pub fn setDisableActions(flag: bool);
 
         #[method(completionBlock)]
         pub unsafe fn completionBlock() -> *mut Block<(), ()>;

@@ -22,31 +22,31 @@ extern_methods!(
         ) -> Id<CARenderer, Shared>;
 
         #[method_id(@__retain_semantics Other layer)]
-        pub unsafe fn layer(&self) -> Option<Id<CALayer, Shared>>;
+        pub fn layer(&self) -> Option<Id<CALayer, Shared>>;
 
         #[method(setLayer:)]
-        pub unsafe fn setLayer(&self, layer: Option<&CALayer>);
+        pub fn setLayer(&self, layer: Option<&CALayer>);
 
         #[method(bounds)]
-        pub unsafe fn bounds(&self) -> CGRect;
+        pub fn bounds(&self) -> CGRect;
 
         #[method(setBounds:)]
-        pub unsafe fn setBounds(&self, bounds: CGRect);
+        pub fn setBounds(&self, bounds: CGRect);
 
         #[method(updateBounds)]
-        pub unsafe fn updateBounds(&self) -> CGRect;
+        pub fn updateBounds(&self) -> CGRect;
 
         #[method(addUpdateRect:)]
-        pub unsafe fn addUpdateRect(&self, r: CGRect);
+        pub fn addUpdateRect(&self, r: CGRect);
 
         #[method(render)]
-        pub unsafe fn render(&self);
+        pub fn render(&self);
 
         #[method(nextFrameTime)]
-        pub unsafe fn nextFrameTime(&self) -> CFTimeInterval;
+        pub fn nextFrameTime(&self) -> CFTimeInterval;
 
         #[method(endFrame)]
-        pub unsafe fn endFrame(&self);
+        pub fn endFrame(&self);
     }
 );
 
