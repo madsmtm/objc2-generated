@@ -22,24 +22,30 @@ extern_class!(
 
     unsafe impl ClassType for CAEmitterLayer {
         #[inherits(NSObject)]
-        type Super = QuartzCore::CALayer;
+        type Super = CoreAnimation::CALayer;
     }
 );
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CAEmitterLayer")]
+    #[cfg(feature = "CoreAnimation_CAEmitterLayer")]
     unsafe impl CAEmitterLayer {
-        #[cfg(all(feature = "Foundation_NSArray", feature = "QuartzCore_CAEmitterCell"))]
+        #[cfg(all(
+            feature = "CoreAnimation_CAEmitterCell",
+            feature = "Foundation_NSArray"
+        ))]
         #[method_id(@__retain_semantics Other emitterCells)]
         pub unsafe fn emitterCells(
             &self,
-        ) -> Option<Id<Foundation::NSArray<QuartzCore::CAEmitterCell>, Shared>>;
+        ) -> Option<Id<Foundation::NSArray<CoreAnimation::CAEmitterCell>, Shared>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "QuartzCore_CAEmitterCell"))]
+        #[cfg(all(
+            feature = "CoreAnimation_CAEmitterCell",
+            feature = "Foundation_NSArray"
+        ))]
         #[method(setEmitterCells:)]
         pub unsafe fn setEmitterCells(
             &self,
-            emitterCells: Option<&Foundation::NSArray<QuartzCore::CAEmitterCell>>,
+            emitterCells: Option<&Foundation::NSArray<CoreAnimation::CAEmitterCell>>,
         );
 
         #[method(birthRate)]
@@ -78,29 +84,32 @@ extern_methods!(
         #[method(setEmitterDepth:)]
         pub unsafe fn setEmitterDepth(&self, emitterDepth: CGFloat);
 
-        #[cfg(feature = "QuartzCore_CAEmitterLayerEmitterShape")]
+        #[cfg(feature = "CoreAnimation_CAEmitterLayerEmitterShape")]
         #[method_id(@__retain_semantics Other emitterShape)]
-        pub unsafe fn emitterShape(&self) -> Id<QuartzCore::CAEmitterLayerEmitterShape, Shared>;
+        pub unsafe fn emitterShape(&self) -> Id<CoreAnimation::CAEmitterLayerEmitterShape, Shared>;
 
-        #[cfg(feature = "QuartzCore_CAEmitterLayerEmitterShape")]
+        #[cfg(feature = "CoreAnimation_CAEmitterLayerEmitterShape")]
         #[method(setEmitterShape:)]
-        pub unsafe fn setEmitterShape(&self, emitterShape: &QuartzCore::CAEmitterLayerEmitterShape);
+        pub unsafe fn setEmitterShape(
+            &self,
+            emitterShape: &CoreAnimation::CAEmitterLayerEmitterShape,
+        );
 
-        #[cfg(feature = "QuartzCore_CAEmitterLayerEmitterMode")]
+        #[cfg(feature = "CoreAnimation_CAEmitterLayerEmitterMode")]
         #[method_id(@__retain_semantics Other emitterMode)]
-        pub unsafe fn emitterMode(&self) -> Id<QuartzCore::CAEmitterLayerEmitterMode, Shared>;
+        pub unsafe fn emitterMode(&self) -> Id<CoreAnimation::CAEmitterLayerEmitterMode, Shared>;
 
-        #[cfg(feature = "QuartzCore_CAEmitterLayerEmitterMode")]
+        #[cfg(feature = "CoreAnimation_CAEmitterLayerEmitterMode")]
         #[method(setEmitterMode:)]
-        pub unsafe fn setEmitterMode(&self, emitterMode: &QuartzCore::CAEmitterLayerEmitterMode);
+        pub unsafe fn setEmitterMode(&self, emitterMode: &CoreAnimation::CAEmitterLayerEmitterMode);
 
-        #[cfg(feature = "QuartzCore_CAEmitterLayerRenderMode")]
+        #[cfg(feature = "CoreAnimation_CAEmitterLayerRenderMode")]
         #[method_id(@__retain_semantics Other renderMode)]
-        pub unsafe fn renderMode(&self) -> Id<QuartzCore::CAEmitterLayerRenderMode, Shared>;
+        pub unsafe fn renderMode(&self) -> Id<CoreAnimation::CAEmitterLayerRenderMode, Shared>;
 
-        #[cfg(feature = "QuartzCore_CAEmitterLayerRenderMode")]
+        #[cfg(feature = "CoreAnimation_CAEmitterLayerRenderMode")]
         #[method(setRenderMode:)]
-        pub unsafe fn setRenderMode(&self, renderMode: &QuartzCore::CAEmitterLayerRenderMode);
+        pub unsafe fn setRenderMode(&self, renderMode: &CoreAnimation::CAEmitterLayerRenderMode);
 
         #[method(preservesDepth)]
         pub unsafe fn preservesDepth(&self) -> bool;
@@ -134,40 +143,40 @@ extern_methods!(
     }
 );
 
-extern_static!(kCAEmitterLayerPoint: &'static QuartzCore::CAEmitterLayerEmitterShape);
+extern_static!(kCAEmitterLayerPoint: &'static CoreAnimation::CAEmitterLayerEmitterShape);
 
-extern_static!(kCAEmitterLayerLine: &'static QuartzCore::CAEmitterLayerEmitterShape);
+extern_static!(kCAEmitterLayerLine: &'static CoreAnimation::CAEmitterLayerEmitterShape);
 
-extern_static!(kCAEmitterLayerRectangle: &'static QuartzCore::CAEmitterLayerEmitterShape);
+extern_static!(kCAEmitterLayerRectangle: &'static CoreAnimation::CAEmitterLayerEmitterShape);
 
-extern_static!(kCAEmitterLayerCuboid: &'static QuartzCore::CAEmitterLayerEmitterShape);
+extern_static!(kCAEmitterLayerCuboid: &'static CoreAnimation::CAEmitterLayerEmitterShape);
 
-extern_static!(kCAEmitterLayerCircle: &'static QuartzCore::CAEmitterLayerEmitterShape);
+extern_static!(kCAEmitterLayerCircle: &'static CoreAnimation::CAEmitterLayerEmitterShape);
 
-extern_static!(kCAEmitterLayerSphere: &'static QuartzCore::CAEmitterLayerEmitterShape);
+extern_static!(kCAEmitterLayerSphere: &'static CoreAnimation::CAEmitterLayerEmitterShape);
 
-extern_static!(kCAEmitterLayerPoints: &'static QuartzCore::CAEmitterLayerEmitterMode);
+extern_static!(kCAEmitterLayerPoints: &'static CoreAnimation::CAEmitterLayerEmitterMode);
 
-extern_static!(kCAEmitterLayerOutline: &'static QuartzCore::CAEmitterLayerEmitterMode);
+extern_static!(kCAEmitterLayerOutline: &'static CoreAnimation::CAEmitterLayerEmitterMode);
 
-extern_static!(kCAEmitterLayerSurface: &'static QuartzCore::CAEmitterLayerEmitterMode);
+extern_static!(kCAEmitterLayerSurface: &'static CoreAnimation::CAEmitterLayerEmitterMode);
 
-extern_static!(kCAEmitterLayerVolume: &'static QuartzCore::CAEmitterLayerEmitterMode);
+extern_static!(kCAEmitterLayerVolume: &'static CoreAnimation::CAEmitterLayerEmitterMode);
 
-extern_static!(kCAEmitterLayerUnordered: &'static QuartzCore::CAEmitterLayerRenderMode);
+extern_static!(kCAEmitterLayerUnordered: &'static CoreAnimation::CAEmitterLayerRenderMode);
 
-extern_static!(kCAEmitterLayerOldestFirst: &'static QuartzCore::CAEmitterLayerRenderMode);
+extern_static!(kCAEmitterLayerOldestFirst: &'static CoreAnimation::CAEmitterLayerRenderMode);
 
-extern_static!(kCAEmitterLayerOldestLast: &'static QuartzCore::CAEmitterLayerRenderMode);
+extern_static!(kCAEmitterLayerOldestLast: &'static CoreAnimation::CAEmitterLayerRenderMode);
 
-extern_static!(kCAEmitterLayerBackToFront: &'static QuartzCore::CAEmitterLayerRenderMode);
+extern_static!(kCAEmitterLayerBackToFront: &'static CoreAnimation::CAEmitterLayerRenderMode);
 
-extern_static!(kCAEmitterLayerAdditive: &'static QuartzCore::CAEmitterLayerRenderMode);
+extern_static!(kCAEmitterLayerAdditive: &'static CoreAnimation::CAEmitterLayerRenderMode);
 
 extern_methods!(
     /// Methods declared on superclass `CALayer`
-    #[cfg(feature = "QuartzCore_CAEmitterLayer")]
-    unsafe impl QuartzCore::CAEmitterLayer {
+    #[cfg(feature = "CoreAnimation_CAEmitterLayer")]
+    unsafe impl CoreAnimation::CAEmitterLayer {
         #[method_id(@__retain_semantics Other layer)]
         pub unsafe fn layer() -> Id<Self, Shared>;
 

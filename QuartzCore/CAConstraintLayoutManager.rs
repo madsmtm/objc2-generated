@@ -20,24 +20,24 @@ ns_enum!(
 
 extern_methods!(
     /// CAConstraintLayoutManager
-    #[cfg(feature = "QuartzCore_CALayer")]
-    unsafe impl QuartzCore::CALayer {
-        #[cfg(all(feature = "Foundation_NSArray", feature = "QuartzCore_CAConstraint"))]
+    #[cfg(feature = "CoreAnimation_CALayer")]
+    unsafe impl CoreAnimation::CALayer {
+        #[cfg(all(feature = "CoreAnimation_CAConstraint", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other constraints)]
         pub unsafe fn constraints(
             &self,
-        ) -> Option<Id<Foundation::NSArray<QuartzCore::CAConstraint>, Shared>>;
+        ) -> Option<Id<Foundation::NSArray<CoreAnimation::CAConstraint>, Shared>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "QuartzCore_CAConstraint"))]
+        #[cfg(all(feature = "CoreAnimation_CAConstraint", feature = "Foundation_NSArray"))]
         #[method(setConstraints:)]
         pub unsafe fn setConstraints(
             &self,
-            constraints: Option<&Foundation::NSArray<QuartzCore::CAConstraint>>,
+            constraints: Option<&Foundation::NSArray<CoreAnimation::CAConstraint>>,
         );
 
-        #[cfg(feature = "QuartzCore_CAConstraint")]
+        #[cfg(feature = "CoreAnimation_CAConstraint")]
         #[method(addConstraint:)]
-        pub unsafe fn addConstraint(&self, c: &QuartzCore::CAConstraint);
+        pub unsafe fn addConstraint(&self, c: &CoreAnimation::CAConstraint);
     }
 );
 
@@ -51,7 +51,7 @@ extern_class!(
 );
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CAConstraintLayoutManager")]
+    #[cfg(feature = "CoreAnimation_CAConstraintLayoutManager")]
     unsafe impl CAConstraintLayoutManager {
         #[method_id(@__retain_semantics Other layoutManager)]
         pub unsafe fn layoutManager() -> Id<Self, Shared>;
@@ -68,7 +68,7 @@ extern_class!(
 );
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CAConstraint")]
+    #[cfg(feature = "CoreAnimation_CAConstraint")]
     unsafe impl CAConstraint {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other constraintWithAttribute:relativeTo:attribute:scale:offset:)]

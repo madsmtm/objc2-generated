@@ -10,19 +10,19 @@ extern_class!(
 
     unsafe impl ClassType for CATransformLayer {
         #[inherits(NSObject)]
-        type Super = QuartzCore::CALayer;
+        type Super = CoreAnimation::CALayer;
     }
 );
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CATransformLayer")]
+    #[cfg(feature = "CoreAnimation_CATransformLayer")]
     unsafe impl CATransformLayer {}
 );
 
 extern_methods!(
     /// Methods declared on superclass `CALayer`
-    #[cfg(feature = "QuartzCore_CATransformLayer")]
-    unsafe impl QuartzCore::CATransformLayer {
+    #[cfg(feature = "CoreAnimation_CATransformLayer")]
+    unsafe impl CoreAnimation::CATransformLayer {
         #[method_id(@__retain_semantics Other layer)]
         pub unsafe fn layer() -> Id<Self, Shared>;
 

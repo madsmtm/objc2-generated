@@ -14,22 +14,22 @@ extern_class!(
 );
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CARenderer")]
+    #[cfg(feature = "CoreAnimation_CARenderer")]
     unsafe impl CARenderer {
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other rendererWithCGLContext:options:)]
         pub unsafe fn rendererWithCGLContext_options(
             ctx: NonNull<c_void>,
             dict: Option<&Foundation::NSDictionary>,
-        ) -> Id<QuartzCore::CARenderer, Shared>;
+        ) -> Id<CoreAnimation::CARenderer, Shared>;
 
-        #[cfg(feature = "QuartzCore_CALayer")]
+        #[cfg(feature = "CoreAnimation_CALayer")]
         #[method_id(@__retain_semantics Other layer)]
-        pub fn layer(&self) -> Option<Id<QuartzCore::CALayer, Shared>>;
+        pub fn layer(&self) -> Option<Id<CoreAnimation::CALayer, Shared>>;
 
-        #[cfg(feature = "QuartzCore_CALayer")]
+        #[cfg(feature = "CoreAnimation_CALayer")]
         #[method(setLayer:)]
-        pub fn setLayer(&self, layer: Option<&QuartzCore::CALayer>);
+        pub fn setLayer(&self, layer: Option<&CoreAnimation::CALayer>);
 
         #[method(bounds)]
         pub fn bounds(&self) -> CGRect;

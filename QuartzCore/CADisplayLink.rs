@@ -14,13 +14,13 @@ extern_class!(
 );
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CADisplayLink")]
+    #[cfg(feature = "CoreAnimation_CADisplayLink")]
     unsafe impl CADisplayLink {
         #[method_id(@__retain_semantics Other displayLinkWithTarget:selector:)]
         pub unsafe fn displayLinkWithTarget_selector(
             target: &Object,
             sel: Sel,
-        ) -> Id<QuartzCore::CADisplayLink, Shared>;
+        ) -> Id<CoreAnimation::CADisplayLink, Shared>;
 
         #[cfg(all(feature = "Foundation_NSRunLoop", feature = "Foundation_NSRunLoopMode"))]
         #[method(addToRunLoop:forMode:)]

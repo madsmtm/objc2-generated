@@ -14,7 +14,7 @@ extern_class!(
 );
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CAEmitterCell")]
+    #[cfg(feature = "CoreAnimation_CAEmitterCell")]
     unsafe impl CAEmitterCell {
         #[method_id(@__retain_semantics Other emitterCell)]
         pub unsafe fn emitterCell() -> Id<Self, Shared>;
@@ -229,13 +229,13 @@ extern_methods!(
         #[method_id(@__retain_semantics Other emitterCells)]
         pub unsafe fn emitterCells(
             &self,
-        ) -> Option<Id<Foundation::NSArray<QuartzCore::CAEmitterCell>, Shared>>;
+        ) -> Option<Id<Foundation::NSArray<CoreAnimation::CAEmitterCell>, Shared>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setEmitterCells:)]
         pub unsafe fn setEmitterCells(
             &self,
-            emitterCells: Option<&Foundation::NSArray<QuartzCore::CAEmitterCell>>,
+            emitterCells: Option<&Foundation::NSArray<CoreAnimation::CAEmitterCell>>,
         );
 
         #[cfg(feature = "Foundation_NSDictionary")]

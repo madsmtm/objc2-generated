@@ -14,12 +14,12 @@ extern_class!(
 
     unsafe impl ClassType for CAScrollLayer {
         #[inherits(NSObject)]
-        type Super = QuartzCore::CALayer;
+        type Super = CoreAnimation::CALayer;
     }
 );
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CAScrollLayer")]
+    #[cfg(feature = "CoreAnimation_CAScrollLayer")]
     unsafe impl CAScrollLayer {
         #[method(scrollToPoint:)]
         pub unsafe fn scrollToPoint(&self, p: CGPoint);
@@ -27,20 +27,20 @@ extern_methods!(
         #[method(scrollToRect:)]
         pub unsafe fn scrollToRect(&self, r: CGRect);
 
-        #[cfg(feature = "QuartzCore_CAScrollLayerScrollMode")]
+        #[cfg(feature = "CoreAnimation_CAScrollLayerScrollMode")]
         #[method_id(@__retain_semantics Other scrollMode)]
-        pub unsafe fn scrollMode(&self) -> Id<QuartzCore::CAScrollLayerScrollMode, Shared>;
+        pub unsafe fn scrollMode(&self) -> Id<CoreAnimation::CAScrollLayerScrollMode, Shared>;
 
-        #[cfg(feature = "QuartzCore_CAScrollLayerScrollMode")]
+        #[cfg(feature = "CoreAnimation_CAScrollLayerScrollMode")]
         #[method(setScrollMode:)]
-        pub unsafe fn setScrollMode(&self, scrollMode: &QuartzCore::CAScrollLayerScrollMode);
+        pub unsafe fn setScrollMode(&self, scrollMode: &CoreAnimation::CAScrollLayerScrollMode);
     }
 );
 
 extern_methods!(
     /// CALayerScrolling
-    #[cfg(feature = "QuartzCore_CALayer")]
-    unsafe impl QuartzCore::CALayer {
+    #[cfg(feature = "CoreAnimation_CALayer")]
+    unsafe impl CoreAnimation::CALayer {
         #[method(scrollPoint:)]
         pub unsafe fn scrollPoint(&self, p: CGPoint);
 
@@ -52,18 +52,18 @@ extern_methods!(
     }
 );
 
-extern_static!(kCAScrollNone: &'static QuartzCore::CAScrollLayerScrollMode);
+extern_static!(kCAScrollNone: &'static CoreAnimation::CAScrollLayerScrollMode);
 
-extern_static!(kCAScrollVertically: &'static QuartzCore::CAScrollLayerScrollMode);
+extern_static!(kCAScrollVertically: &'static CoreAnimation::CAScrollLayerScrollMode);
 
-extern_static!(kCAScrollHorizontally: &'static QuartzCore::CAScrollLayerScrollMode);
+extern_static!(kCAScrollHorizontally: &'static CoreAnimation::CAScrollLayerScrollMode);
 
-extern_static!(kCAScrollBoth: &'static QuartzCore::CAScrollLayerScrollMode);
+extern_static!(kCAScrollBoth: &'static CoreAnimation::CAScrollLayerScrollMode);
 
 extern_methods!(
     /// Methods declared on superclass `CALayer`
-    #[cfg(feature = "QuartzCore_CAScrollLayer")]
-    unsafe impl QuartzCore::CAScrollLayer {
+    #[cfg(feature = "CoreAnimation_CAScrollLayer")]
+    unsafe impl CoreAnimation::CAScrollLayer {
         #[method_id(@__retain_semantics Other layer)]
         pub unsafe fn layer() -> Id<Self, Shared>;
 

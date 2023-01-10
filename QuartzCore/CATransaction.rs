@@ -14,7 +14,7 @@ extern_class!(
 );
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CATransaction")]
+    #[cfg(feature = "CoreAnimation_CATransaction")]
     unsafe impl CATransaction {
         #[method(begin)]
         pub fn begin();
@@ -37,13 +37,13 @@ extern_methods!(
         #[method(setAnimationDuration:)]
         pub fn setAnimationDuration(dur: CFTimeInterval);
 
-        #[cfg(feature = "QuartzCore_CAMediaTimingFunction")]
+        #[cfg(feature = "CoreAnimation_CAMediaTimingFunction")]
         #[method_id(@__retain_semantics Other animationTimingFunction)]
-        pub fn animationTimingFunction() -> Option<Id<QuartzCore::CAMediaTimingFunction, Shared>>;
+        pub fn animationTimingFunction() -> Option<Id<CoreAnimation::CAMediaTimingFunction, Shared>>;
 
-        #[cfg(feature = "QuartzCore_CAMediaTimingFunction")]
+        #[cfg(feature = "CoreAnimation_CAMediaTimingFunction")]
         #[method(setAnimationTimingFunction:)]
-        pub fn setAnimationTimingFunction(function: Option<&QuartzCore::CAMediaTimingFunction>);
+        pub fn setAnimationTimingFunction(function: Option<&CoreAnimation::CAMediaTimingFunction>);
 
         #[method(disableActions)]
         pub fn disableActions() -> bool;

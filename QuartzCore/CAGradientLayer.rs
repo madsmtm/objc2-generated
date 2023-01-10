@@ -14,12 +14,12 @@ extern_class!(
 
     unsafe impl ClassType for CAGradientLayer {
         #[inherits(NSObject)]
-        type Super = QuartzCore::CALayer;
+        type Super = CoreAnimation::CALayer;
     }
 );
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CAGradientLayer")]
+    #[cfg(feature = "CoreAnimation_CAGradientLayer")]
     unsafe impl CAGradientLayer {
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other colors)]
@@ -54,26 +54,26 @@ extern_methods!(
         #[method(setEndPoint:)]
         pub unsafe fn setEndPoint(&self, endPoint: CGPoint);
 
-        #[cfg(feature = "QuartzCore_CAGradientLayerType")]
+        #[cfg(feature = "CoreAnimation_CAGradientLayerType")]
         #[method_id(@__retain_semantics Other type)]
-        pub unsafe fn type_(&self) -> Id<QuartzCore::CAGradientLayerType, Shared>;
+        pub unsafe fn type_(&self) -> Id<CoreAnimation::CAGradientLayerType, Shared>;
 
-        #[cfg(feature = "QuartzCore_CAGradientLayerType")]
+        #[cfg(feature = "CoreAnimation_CAGradientLayerType")]
         #[method(setType:)]
-        pub unsafe fn setType(&self, type_: &QuartzCore::CAGradientLayerType);
+        pub unsafe fn setType(&self, type_: &CoreAnimation::CAGradientLayerType);
     }
 );
 
-extern_static!(kCAGradientLayerAxial: &'static QuartzCore::CAGradientLayerType);
+extern_static!(kCAGradientLayerAxial: &'static CoreAnimation::CAGradientLayerType);
 
-extern_static!(kCAGradientLayerRadial: &'static QuartzCore::CAGradientLayerType);
+extern_static!(kCAGradientLayerRadial: &'static CoreAnimation::CAGradientLayerType);
 
-extern_static!(kCAGradientLayerConic: &'static QuartzCore::CAGradientLayerType);
+extern_static!(kCAGradientLayerConic: &'static CoreAnimation::CAGradientLayerType);
 
 extern_methods!(
     /// Methods declared on superclass `CALayer`
-    #[cfg(feature = "QuartzCore_CAGradientLayer")]
-    unsafe impl QuartzCore::CAGradientLayer {
+    #[cfg(feature = "CoreAnimation_CAGradientLayer")]
+    unsafe impl CoreAnimation::CAGradientLayer {
         #[method_id(@__retain_semantics Other layer)]
         pub unsafe fn layer() -> Id<Self, Shared>;
 

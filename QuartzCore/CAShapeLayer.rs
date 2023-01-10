@@ -22,20 +22,20 @@ extern_class!(
 
     unsafe impl ClassType for CAShapeLayer {
         #[inherits(NSObject)]
-        type Super = QuartzCore::CALayer;
+        type Super = CoreAnimation::CALayer;
     }
 );
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CAShapeLayer")]
+    #[cfg(feature = "CoreAnimation_CAShapeLayer")]
     unsafe impl CAShapeLayer {
-        #[cfg(feature = "QuartzCore_CAShapeLayerFillRule")]
+        #[cfg(feature = "CoreAnimation_CAShapeLayerFillRule")]
         #[method_id(@__retain_semantics Other fillRule)]
-        pub unsafe fn fillRule(&self) -> Id<QuartzCore::CAShapeLayerFillRule, Shared>;
+        pub unsafe fn fillRule(&self) -> Id<CoreAnimation::CAShapeLayerFillRule, Shared>;
 
-        #[cfg(feature = "QuartzCore_CAShapeLayerFillRule")]
+        #[cfg(feature = "CoreAnimation_CAShapeLayerFillRule")]
         #[method(setFillRule:)]
-        pub unsafe fn setFillRule(&self, fillRule: &QuartzCore::CAShapeLayerFillRule);
+        pub unsafe fn setFillRule(&self, fillRule: &CoreAnimation::CAShapeLayerFillRule);
 
         #[method(strokeStart)]
         pub unsafe fn strokeStart(&self) -> CGFloat;
@@ -61,21 +61,21 @@ extern_methods!(
         #[method(setMiterLimit:)]
         pub unsafe fn setMiterLimit(&self, miterLimit: CGFloat);
 
-        #[cfg(feature = "QuartzCore_CAShapeLayerLineCap")]
+        #[cfg(feature = "CoreAnimation_CAShapeLayerLineCap")]
         #[method_id(@__retain_semantics Other lineCap)]
-        pub unsafe fn lineCap(&self) -> Id<QuartzCore::CAShapeLayerLineCap, Shared>;
+        pub unsafe fn lineCap(&self) -> Id<CoreAnimation::CAShapeLayerLineCap, Shared>;
 
-        #[cfg(feature = "QuartzCore_CAShapeLayerLineCap")]
+        #[cfg(feature = "CoreAnimation_CAShapeLayerLineCap")]
         #[method(setLineCap:)]
-        pub unsafe fn setLineCap(&self, lineCap: &QuartzCore::CAShapeLayerLineCap);
+        pub unsafe fn setLineCap(&self, lineCap: &CoreAnimation::CAShapeLayerLineCap);
 
-        #[cfg(feature = "QuartzCore_CAShapeLayerLineJoin")]
+        #[cfg(feature = "CoreAnimation_CAShapeLayerLineJoin")]
         #[method_id(@__retain_semantics Other lineJoin)]
-        pub unsafe fn lineJoin(&self) -> Id<QuartzCore::CAShapeLayerLineJoin, Shared>;
+        pub unsafe fn lineJoin(&self) -> Id<CoreAnimation::CAShapeLayerLineJoin, Shared>;
 
-        #[cfg(feature = "QuartzCore_CAShapeLayerLineJoin")]
+        #[cfg(feature = "CoreAnimation_CAShapeLayerLineJoin")]
         #[method(setLineJoin:)]
-        pub unsafe fn setLineJoin(&self, lineJoin: &QuartzCore::CAShapeLayerLineJoin);
+        pub unsafe fn setLineJoin(&self, lineJoin: &CoreAnimation::CAShapeLayerLineJoin);
 
         #[method(lineDashPhase)]
         pub unsafe fn lineDashPhase(&self) -> CGFloat;
@@ -98,26 +98,26 @@ extern_methods!(
     }
 );
 
-extern_static!(kCAFillRuleNonZero: &'static QuartzCore::CAShapeLayerFillRule);
+extern_static!(kCAFillRuleNonZero: &'static CoreAnimation::CAShapeLayerFillRule);
 
-extern_static!(kCAFillRuleEvenOdd: &'static QuartzCore::CAShapeLayerFillRule);
+extern_static!(kCAFillRuleEvenOdd: &'static CoreAnimation::CAShapeLayerFillRule);
 
-extern_static!(kCALineJoinMiter: &'static QuartzCore::CAShapeLayerLineJoin);
+extern_static!(kCALineJoinMiter: &'static CoreAnimation::CAShapeLayerLineJoin);
 
-extern_static!(kCALineJoinRound: &'static QuartzCore::CAShapeLayerLineJoin);
+extern_static!(kCALineJoinRound: &'static CoreAnimation::CAShapeLayerLineJoin);
 
-extern_static!(kCALineJoinBevel: &'static QuartzCore::CAShapeLayerLineJoin);
+extern_static!(kCALineJoinBevel: &'static CoreAnimation::CAShapeLayerLineJoin);
 
-extern_static!(kCALineCapButt: &'static QuartzCore::CAShapeLayerLineCap);
+extern_static!(kCALineCapButt: &'static CoreAnimation::CAShapeLayerLineCap);
 
-extern_static!(kCALineCapRound: &'static QuartzCore::CAShapeLayerLineCap);
+extern_static!(kCALineCapRound: &'static CoreAnimation::CAShapeLayerLineCap);
 
-extern_static!(kCALineCapSquare: &'static QuartzCore::CAShapeLayerLineCap);
+extern_static!(kCALineCapSquare: &'static CoreAnimation::CAShapeLayerLineCap);
 
 extern_methods!(
     /// Methods declared on superclass `CALayer`
-    #[cfg(feature = "QuartzCore_CAShapeLayer")]
-    unsafe impl QuartzCore::CAShapeLayer {
+    #[cfg(feature = "CoreAnimation_CAShapeLayer")]
+    unsafe impl CoreAnimation::CAShapeLayer {
         #[method_id(@__retain_semantics Other layer)]
         pub unsafe fn layer() -> Id<Self, Shared>;
 

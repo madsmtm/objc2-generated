@@ -30,7 +30,7 @@ extern_class!(
 );
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CAAnimation")]
+    #[cfg(feature = "CoreAnimation_CAAnimation")]
     unsafe impl CAAnimation {
         #[method_id(@__retain_semantics Other animation)]
         pub unsafe fn animation() -> Id<Self, Shared>;
@@ -43,26 +43,26 @@ extern_methods!(
         #[method(shouldArchiveValueForKey:)]
         pub unsafe fn shouldArchiveValueForKey(&self, key: &Foundation::NSString) -> bool;
 
-        #[cfg(feature = "QuartzCore_CAMediaTimingFunction")]
+        #[cfg(feature = "CoreAnimation_CAMediaTimingFunction")]
         #[method_id(@__retain_semantics Other timingFunction)]
         pub unsafe fn timingFunction(
             &self,
-        ) -> Option<Id<QuartzCore::CAMediaTimingFunction, Shared>>;
+        ) -> Option<Id<CoreAnimation::CAMediaTimingFunction, Shared>>;
 
-        #[cfg(feature = "QuartzCore_CAMediaTimingFunction")]
+        #[cfg(feature = "CoreAnimation_CAMediaTimingFunction")]
         #[method(setTimingFunction:)]
         pub unsafe fn setTimingFunction(
             &self,
-            timingFunction: Option<&QuartzCore::CAMediaTimingFunction>,
+            timingFunction: Option<&CoreAnimation::CAMediaTimingFunction>,
         );
 
-        #[cfg(feature = "QuartzCore_CAAnimationDelegate")]
+        #[cfg(feature = "CoreAnimation_CAAnimationDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<QuartzCore::CAAnimationDelegate, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<CoreAnimation::CAAnimationDelegate, Shared>>;
 
-        #[cfg(feature = "QuartzCore_CAAnimationDelegate")]
+        #[cfg(feature = "CoreAnimation_CAAnimationDelegate")]
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&QuartzCore::CAAnimationDelegate>);
+        pub unsafe fn setDelegate(&self, delegate: Option<&CoreAnimation::CAAnimationDelegate>);
 
         #[method(isRemovedOnCompletion)]
         pub unsafe fn isRemovedOnCompletion(&self) -> bool;
@@ -84,11 +84,15 @@ extern_protocol!(
     unsafe impl ProtocolType for CAAnimationDelegate {
         #[optional]
         #[method(animationDidStart:)]
-        pub unsafe fn animationDidStart(&self, anim: &QuartzCore::CAAnimation);
+        pub unsafe fn animationDidStart(&self, anim: &CoreAnimation::CAAnimation);
 
         #[optional]
         #[method(animationDidStop:finished:)]
-        pub unsafe fn animationDidStop_finished(&self, anim: &QuartzCore::CAAnimation, flag: bool);
+        pub unsafe fn animationDidStop_finished(
+            &self,
+            anim: &CoreAnimation::CAAnimation,
+            flag: bool,
+        );
     }
 );
 
@@ -103,7 +107,7 @@ extern_class!(
 );
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CAPropertyAnimation")]
+    #[cfg(feature = "CoreAnimation_CAPropertyAnimation")]
     unsafe impl CAPropertyAnimation {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other animationWithKeyPath:)]
@@ -130,13 +134,16 @@ extern_methods!(
         #[method(setCumulative:)]
         pub unsafe fn setCumulative(&self, cumulative: bool);
 
-        #[cfg(feature = "QuartzCore_CAValueFunction")]
+        #[cfg(feature = "CoreAnimation_CAValueFunction")]
         #[method_id(@__retain_semantics Other valueFunction)]
-        pub unsafe fn valueFunction(&self) -> Option<Id<QuartzCore::CAValueFunction, Shared>>;
+        pub unsafe fn valueFunction(&self) -> Option<Id<CoreAnimation::CAValueFunction, Shared>>;
 
-        #[cfg(feature = "QuartzCore_CAValueFunction")]
+        #[cfg(feature = "CoreAnimation_CAValueFunction")]
         #[method(setValueFunction:)]
-        pub unsafe fn setValueFunction(&self, valueFunction: Option<&QuartzCore::CAValueFunction>);
+        pub unsafe fn setValueFunction(
+            &self,
+            valueFunction: Option<&CoreAnimation::CAValueFunction>,
+        );
     }
 );
 
@@ -151,7 +158,7 @@ extern_class!(
 );
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CABasicAnimation")]
+    #[cfg(feature = "CoreAnimation_CABasicAnimation")]
     unsafe impl CABasicAnimation {
         #[method_id(@__retain_semantics Other fromValue)]
         pub unsafe fn fromValue(&self) -> Option<Id<Object, Shared>>;
@@ -184,7 +191,7 @@ extern_class!(
 );
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CAKeyframeAnimation")]
+    #[cfg(feature = "CoreAnimation_CAKeyframeAnimation")]
     unsafe impl CAKeyframeAnimation {
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other values)]
@@ -208,33 +215,35 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "QuartzCore_CAMediaTimingFunction"
+            feature = "CoreAnimation_CAMediaTimingFunction",
+            feature = "Foundation_NSArray"
         ))]
         #[method_id(@__retain_semantics Other timingFunctions)]
         pub unsafe fn timingFunctions(
             &self,
-        ) -> Option<Id<Foundation::NSArray<QuartzCore::CAMediaTimingFunction>, Shared>>;
+        ) -> Option<Id<Foundation::NSArray<CoreAnimation::CAMediaTimingFunction>, Shared>>;
 
         #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "QuartzCore_CAMediaTimingFunction"
+            feature = "CoreAnimation_CAMediaTimingFunction",
+            feature = "Foundation_NSArray"
         ))]
         #[method(setTimingFunctions:)]
         pub unsafe fn setTimingFunctions(
             &self,
-            timingFunctions: Option<&Foundation::NSArray<QuartzCore::CAMediaTimingFunction>>,
+            timingFunctions: Option<&Foundation::NSArray<CoreAnimation::CAMediaTimingFunction>>,
         );
 
-        #[cfg(feature = "QuartzCore_CAAnimationCalculationMode")]
+        #[cfg(feature = "CoreAnimation_CAAnimationCalculationMode")]
         #[method_id(@__retain_semantics Other calculationMode)]
-        pub unsafe fn calculationMode(&self) -> Id<QuartzCore::CAAnimationCalculationMode, Shared>;
+        pub unsafe fn calculationMode(
+            &self,
+        ) -> Id<CoreAnimation::CAAnimationCalculationMode, Shared>;
 
-        #[cfg(feature = "QuartzCore_CAAnimationCalculationMode")]
+        #[cfg(feature = "CoreAnimation_CAAnimationCalculationMode")]
         #[method(setCalculationMode:)]
         pub unsafe fn setCalculationMode(
             &self,
-            calculationMode: &QuartzCore::CAAnimationCalculationMode,
+            calculationMode: &CoreAnimation::CAAnimationCalculationMode,
         );
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
@@ -276,34 +285,34 @@ extern_methods!(
             biasValues: Option<&Foundation::NSArray<Foundation::NSNumber>>,
         );
 
-        #[cfg(feature = "QuartzCore_CAAnimationRotationMode")]
+        #[cfg(feature = "CoreAnimation_CAAnimationRotationMode")]
         #[method_id(@__retain_semantics Other rotationMode)]
         pub unsafe fn rotationMode(
             &self,
-        ) -> Option<Id<QuartzCore::CAAnimationRotationMode, Shared>>;
+        ) -> Option<Id<CoreAnimation::CAAnimationRotationMode, Shared>>;
 
-        #[cfg(feature = "QuartzCore_CAAnimationRotationMode")]
+        #[cfg(feature = "CoreAnimation_CAAnimationRotationMode")]
         #[method(setRotationMode:)]
         pub unsafe fn setRotationMode(
             &self,
-            rotationMode: Option<&QuartzCore::CAAnimationRotationMode>,
+            rotationMode: Option<&CoreAnimation::CAAnimationRotationMode>,
         );
     }
 );
 
-extern_static!(kCAAnimationLinear: &'static QuartzCore::CAAnimationCalculationMode);
+extern_static!(kCAAnimationLinear: &'static CoreAnimation::CAAnimationCalculationMode);
 
-extern_static!(kCAAnimationDiscrete: &'static QuartzCore::CAAnimationCalculationMode);
+extern_static!(kCAAnimationDiscrete: &'static CoreAnimation::CAAnimationCalculationMode);
 
-extern_static!(kCAAnimationPaced: &'static QuartzCore::CAAnimationCalculationMode);
+extern_static!(kCAAnimationPaced: &'static CoreAnimation::CAAnimationCalculationMode);
 
-extern_static!(kCAAnimationCubic: &'static QuartzCore::CAAnimationCalculationMode);
+extern_static!(kCAAnimationCubic: &'static CoreAnimation::CAAnimationCalculationMode);
 
-extern_static!(kCAAnimationCubicPaced: &'static QuartzCore::CAAnimationCalculationMode);
+extern_static!(kCAAnimationCubicPaced: &'static CoreAnimation::CAAnimationCalculationMode);
 
-extern_static!(kCAAnimationRotateAuto: &'static QuartzCore::CAAnimationRotationMode);
+extern_static!(kCAAnimationRotateAuto: &'static CoreAnimation::CAAnimationRotationMode);
 
-extern_static!(kCAAnimationRotateAutoReverse: &'static QuartzCore::CAAnimationRotationMode);
+extern_static!(kCAAnimationRotateAutoReverse: &'static CoreAnimation::CAAnimationRotationMode);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -316,7 +325,7 @@ extern_class!(
 );
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CASpringAnimation")]
+    #[cfg(feature = "CoreAnimation_CASpringAnimation")]
     unsafe impl CASpringAnimation {
         #[method(mass)]
         pub unsafe fn mass(&self) -> CGFloat;
@@ -358,23 +367,23 @@ extern_class!(
 );
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CATransition")]
+    #[cfg(feature = "CoreAnimation_CATransition")]
     unsafe impl CATransition {
-        #[cfg(feature = "QuartzCore_CATransitionType")]
+        #[cfg(feature = "CoreAnimation_CATransitionType")]
         #[method_id(@__retain_semantics Other type)]
-        pub unsafe fn type_(&self) -> Id<QuartzCore::CATransitionType, Shared>;
+        pub unsafe fn type_(&self) -> Id<CoreAnimation::CATransitionType, Shared>;
 
-        #[cfg(feature = "QuartzCore_CATransitionType")]
+        #[cfg(feature = "CoreAnimation_CATransitionType")]
         #[method(setType:)]
-        pub unsafe fn setType(&self, type_: &QuartzCore::CATransitionType);
+        pub unsafe fn setType(&self, type_: &CoreAnimation::CATransitionType);
 
-        #[cfg(feature = "QuartzCore_CATransitionSubtype")]
+        #[cfg(feature = "CoreAnimation_CATransitionSubtype")]
         #[method_id(@__retain_semantics Other subtype)]
-        pub unsafe fn subtype(&self) -> Option<Id<QuartzCore::CATransitionSubtype, Shared>>;
+        pub unsafe fn subtype(&self) -> Option<Id<CoreAnimation::CATransitionSubtype, Shared>>;
 
-        #[cfg(feature = "QuartzCore_CATransitionSubtype")]
+        #[cfg(feature = "CoreAnimation_CATransitionSubtype")]
         #[method(setSubtype:)]
-        pub unsafe fn setSubtype(&self, subtype: Option<&QuartzCore::CATransitionSubtype>);
+        pub unsafe fn setSubtype(&self, subtype: Option<&CoreAnimation::CATransitionSubtype>);
 
         #[method(startProgress)]
         pub unsafe fn startProgress(&self) -> c_float;
@@ -396,21 +405,21 @@ extern_methods!(
     }
 );
 
-extern_static!(kCATransitionFade: &'static QuartzCore::CATransitionType);
+extern_static!(kCATransitionFade: &'static CoreAnimation::CATransitionType);
 
-extern_static!(kCATransitionMoveIn: &'static QuartzCore::CATransitionType);
+extern_static!(kCATransitionMoveIn: &'static CoreAnimation::CATransitionType);
 
-extern_static!(kCATransitionPush: &'static QuartzCore::CATransitionType);
+extern_static!(kCATransitionPush: &'static CoreAnimation::CATransitionType);
 
-extern_static!(kCATransitionReveal: &'static QuartzCore::CATransitionType);
+extern_static!(kCATransitionReveal: &'static CoreAnimation::CATransitionType);
 
-extern_static!(kCATransitionFromRight: &'static QuartzCore::CATransitionSubtype);
+extern_static!(kCATransitionFromRight: &'static CoreAnimation::CATransitionSubtype);
 
-extern_static!(kCATransitionFromLeft: &'static QuartzCore::CATransitionSubtype);
+extern_static!(kCATransitionFromLeft: &'static CoreAnimation::CATransitionSubtype);
 
-extern_static!(kCATransitionFromTop: &'static QuartzCore::CATransitionSubtype);
+extern_static!(kCATransitionFromTop: &'static CoreAnimation::CATransitionSubtype);
 
-extern_static!(kCATransitionFromBottom: &'static QuartzCore::CATransitionSubtype);
+extern_static!(kCATransitionFromBottom: &'static CoreAnimation::CATransitionSubtype);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -423,26 +432,26 @@ extern_class!(
 );
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CAAnimationGroup")]
+    #[cfg(feature = "CoreAnimation_CAAnimationGroup")]
     unsafe impl CAAnimationGroup {
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other animations)]
         pub unsafe fn animations(
             &self,
-        ) -> Option<Id<Foundation::NSArray<QuartzCore::CAAnimation>, Shared>>;
+        ) -> Option<Id<Foundation::NSArray<CoreAnimation::CAAnimation>, Shared>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setAnimations:)]
         pub unsafe fn setAnimations(
             &self,
-            animations: Option<&Foundation::NSArray<QuartzCore::CAAnimation>>,
+            animations: Option<&Foundation::NSArray<CoreAnimation::CAAnimation>>,
         );
     }
 );
 
 extern_methods!(
     /// Methods declared on superclass `CAAnimation`
-    #[cfg(feature = "QuartzCore_CAPropertyAnimation")]
+    #[cfg(feature = "CoreAnimation_CAPropertyAnimation")]
     unsafe impl CAPropertyAnimation {
         #[method_id(@__retain_semantics Other animation)]
         pub unsafe fn animation() -> Id<Self, Shared>;
@@ -451,7 +460,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CAPropertyAnimation`
-    #[cfg(feature = "QuartzCore_CABasicAnimation")]
+    #[cfg(feature = "CoreAnimation_CABasicAnimation")]
     unsafe impl CABasicAnimation {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other animationWithKeyPath:)]
@@ -462,7 +471,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CAAnimation`
-    #[cfg(feature = "QuartzCore_CABasicAnimation")]
+    #[cfg(feature = "CoreAnimation_CABasicAnimation")]
     unsafe impl CABasicAnimation {
         #[method_id(@__retain_semantics Other animation)]
         pub unsafe fn animation() -> Id<Self, Shared>;
@@ -471,7 +480,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CAPropertyAnimation`
-    #[cfg(feature = "QuartzCore_CAKeyframeAnimation")]
+    #[cfg(feature = "CoreAnimation_CAKeyframeAnimation")]
     unsafe impl CAKeyframeAnimation {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other animationWithKeyPath:)]
@@ -482,7 +491,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CAAnimation`
-    #[cfg(feature = "QuartzCore_CAKeyframeAnimation")]
+    #[cfg(feature = "CoreAnimation_CAKeyframeAnimation")]
     unsafe impl CAKeyframeAnimation {
         #[method_id(@__retain_semantics Other animation)]
         pub unsafe fn animation() -> Id<Self, Shared>;
@@ -491,7 +500,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CAPropertyAnimation`
-    #[cfg(feature = "QuartzCore_CASpringAnimation")]
+    #[cfg(feature = "CoreAnimation_CASpringAnimation")]
     unsafe impl CASpringAnimation {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other animationWithKeyPath:)]
@@ -502,7 +511,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CAAnimation`
-    #[cfg(feature = "QuartzCore_CASpringAnimation")]
+    #[cfg(feature = "CoreAnimation_CASpringAnimation")]
     unsafe impl CASpringAnimation {
         #[method_id(@__retain_semantics Other animation)]
         pub unsafe fn animation() -> Id<Self, Shared>;
@@ -511,7 +520,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CAAnimation`
-    #[cfg(feature = "QuartzCore_CATransition")]
+    #[cfg(feature = "CoreAnimation_CATransition")]
     unsafe impl CATransition {
         #[method_id(@__retain_semantics Other animation)]
         pub unsafe fn animation() -> Id<Self, Shared>;
@@ -520,7 +529,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CAAnimation`
-    #[cfg(feature = "QuartzCore_CAAnimationGroup")]
+    #[cfg(feature = "CoreAnimation_CAAnimationGroup")]
     unsafe impl CAAnimationGroup {
         #[method_id(@__retain_semantics Other animation)]
         pub unsafe fn animation() -> Id<Self, Shared>;

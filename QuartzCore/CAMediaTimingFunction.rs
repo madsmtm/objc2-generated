@@ -18,22 +18,24 @@ extern_class!(
 );
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CAMediaTimingFunction")]
+    #[cfg(feature = "CoreAnimation_CAMediaTimingFunction")]
     unsafe impl CAMediaTimingFunction {
-        #[cfg(feature = "QuartzCore_CAMediaTimingFunctionName")]
+        #[cfg(feature = "CoreAnimation_CAMediaTimingFunctionName")]
         #[method_id(@__retain_semantics Other functionWithName:)]
         pub unsafe fn functionWithName(
-            name: &QuartzCore::CAMediaTimingFunctionName,
+            name: &CoreAnimation::CAMediaTimingFunctionName,
         ) -> Id<Self, Shared>;
     }
 );
 
-extern_static!(kCAMediaTimingFunctionLinear: &'static QuartzCore::CAMediaTimingFunctionName);
+extern_static!(kCAMediaTimingFunctionLinear: &'static CoreAnimation::CAMediaTimingFunctionName);
 
-extern_static!(kCAMediaTimingFunctionEaseIn: &'static QuartzCore::CAMediaTimingFunctionName);
+extern_static!(kCAMediaTimingFunctionEaseIn: &'static CoreAnimation::CAMediaTimingFunctionName);
 
-extern_static!(kCAMediaTimingFunctionEaseOut: &'static QuartzCore::CAMediaTimingFunctionName);
+extern_static!(kCAMediaTimingFunctionEaseOut: &'static CoreAnimation::CAMediaTimingFunctionName);
 
-extern_static!(kCAMediaTimingFunctionEaseInEaseOut: &'static QuartzCore::CAMediaTimingFunctionName);
+extern_static!(
+    kCAMediaTimingFunctionEaseInEaseOut: &'static CoreAnimation::CAMediaTimingFunctionName
+);
 
-extern_static!(kCAMediaTimingFunctionDefault: &'static QuartzCore::CAMediaTimingFunctionName);
+extern_static!(kCAMediaTimingFunctionDefault: &'static CoreAnimation::CAMediaTimingFunctionName);

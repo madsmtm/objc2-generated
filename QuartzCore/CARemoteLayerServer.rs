@@ -14,18 +14,19 @@ extern_class!(
 );
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CARemoteLayerServer")]
+    #[cfg(feature = "CoreAnimation_CARemoteLayerServer")]
     unsafe impl CARemoteLayerServer {
         #[method_id(@__retain_semantics Other sharedServer)]
-        pub unsafe fn sharedServer() -> Id<QuartzCore::CARemoteLayerServer, Shared>;
+        pub unsafe fn sharedServer() -> Id<CoreAnimation::CARemoteLayerServer, Shared>;
     }
 );
 
 extern_methods!(
     /// CARemoteLayerServer
-    #[cfg(feature = "QuartzCore_CALayer")]
-    unsafe impl QuartzCore::CALayer {
+    #[cfg(feature = "CoreAnimation_CALayer")]
+    unsafe impl CoreAnimation::CALayer {
         #[method_id(@__retain_semantics Other layerWithRemoteClientId:)]
-        pub unsafe fn layerWithRemoteClientId(client_id: u32) -> Id<QuartzCore::CALayer, Shared>;
+        pub unsafe fn layerWithRemoteClientId(client_id: u32)
+            -> Id<CoreAnimation::CALayer, Shared>;
     }
 );

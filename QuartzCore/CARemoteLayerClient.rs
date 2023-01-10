@@ -14,7 +14,7 @@ extern_class!(
 );
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CARemoteLayerClient")]
+    #[cfg(feature = "CoreAnimation_CARemoteLayerClient")]
     unsafe impl CARemoteLayerClient {
         #[method(invalidate)]
         pub unsafe fn invalidate(&self);
@@ -22,12 +22,12 @@ extern_methods!(
         #[method(clientId)]
         pub unsafe fn clientId(&self) -> u32;
 
-        #[cfg(feature = "QuartzCore_CALayer")]
+        #[cfg(feature = "CoreAnimation_CALayer")]
         #[method_id(@__retain_semantics Other layer)]
-        pub unsafe fn layer(&self) -> Option<Id<QuartzCore::CALayer, Shared>>;
+        pub unsafe fn layer(&self) -> Option<Id<CoreAnimation::CALayer, Shared>>;
 
-        #[cfg(feature = "QuartzCore_CALayer")]
+        #[cfg(feature = "CoreAnimation_CALayer")]
         #[method(setLayer:)]
-        pub unsafe fn setLayer(&self, layer: Option<&QuartzCore::CALayer>);
+        pub unsafe fn setLayer(&self, layer: Option<&CoreAnimation::CALayer>);
     }
 );

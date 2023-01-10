@@ -63,7 +63,7 @@ extern_class!(
 );
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CALayer")]
+    #[cfg(feature = "CoreAnimation_CALayer")]
     unsafe impl CALayer {
         #[method_id(@__retain_semantics Other layer)]
         pub fn layer() -> Id<Self, Shared>;
@@ -159,7 +159,7 @@ extern_methods!(
         pub fn contentsAreFlipped(&self) -> bool;
 
         #[method_id(@__retain_semantics Other superlayer)]
-        pub fn superlayer(&self) -> Option<Id<QuartzCore::CALayer, Shared>>;
+        pub fn superlayer(&self) -> Option<Id<CoreAnimation::CALayer, Shared>>;
 
         #[method(removeFromSuperlayer)]
         pub fn removeFromSuperlayer(&self);
@@ -168,40 +168,40 @@ extern_methods!(
         #[method_id(@__retain_semantics Other sublayers)]
         pub unsafe fn sublayers(
             &self,
-        ) -> Option<Id<Foundation::NSArray<QuartzCore::CALayer>, Shared>>;
+        ) -> Option<Id<Foundation::NSArray<CoreAnimation::CALayer>, Shared>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setSublayers:)]
         pub unsafe fn setSublayers(
             &self,
-            sublayers: Option<&Foundation::NSArray<QuartzCore::CALayer>>,
+            sublayers: Option<&Foundation::NSArray<CoreAnimation::CALayer>>,
         );
 
         #[method(addSublayer:)]
-        pub fn addSublayer(&self, layer: &QuartzCore::CALayer);
+        pub fn addSublayer(&self, layer: &CoreAnimation::CALayer);
 
         #[method(insertSublayer:atIndex:)]
-        pub fn insertSublayer_atIndex(&self, layer: &QuartzCore::CALayer, idx: c_uint);
+        pub fn insertSublayer_atIndex(&self, layer: &CoreAnimation::CALayer, idx: c_uint);
 
         #[method(insertSublayer:below:)]
         pub fn insertSublayer_below(
             &self,
-            layer: &QuartzCore::CALayer,
-            sibling: Option<&QuartzCore::CALayer>,
+            layer: &CoreAnimation::CALayer,
+            sibling: Option<&CoreAnimation::CALayer>,
         );
 
         #[method(insertSublayer:above:)]
         pub fn insertSublayer_above(
             &self,
-            layer: &QuartzCore::CALayer,
-            sibling: Option<&QuartzCore::CALayer>,
+            layer: &CoreAnimation::CALayer,
+            sibling: Option<&CoreAnimation::CALayer>,
         );
 
         #[method(replaceSublayer:with:)]
         pub unsafe fn replaceSublayer_with(
             &self,
-            oldLayer: &QuartzCore::CALayer,
-            newLayer: &QuartzCore::CALayer,
+            oldLayer: &CoreAnimation::CALayer,
+            newLayer: &CoreAnimation::CALayer,
         );
 
         #[method(sublayerTransform)]
@@ -211,10 +211,10 @@ extern_methods!(
         pub fn setSublayerTransform(&self, sublayerTransform: CATransform3D);
 
         #[method_id(@__retain_semantics Other mask)]
-        pub fn mask(&self) -> Option<Id<QuartzCore::CALayer, Shared>>;
+        pub fn mask(&self) -> Option<Id<CoreAnimation::CALayer, Shared>>;
 
         #[method(setMask:)]
-        pub unsafe fn setMask(&self, mask: Option<&QuartzCore::CALayer>);
+        pub unsafe fn setMask(&self, mask: Option<&CoreAnimation::CALayer>);
 
         #[method(masksToBounds)]
         pub fn masksToBounds(&self) -> bool;
@@ -226,34 +226,42 @@ extern_methods!(
         pub fn convertPoint_fromLayer(
             &self,
             p: CGPoint,
-            l: Option<&QuartzCore::CALayer>,
+            l: Option<&CoreAnimation::CALayer>,
         ) -> CGPoint;
 
         #[method(convertPoint:toLayer:)]
-        pub fn convertPoint_toLayer(&self, p: CGPoint, l: Option<&QuartzCore::CALayer>) -> CGPoint;
+        pub fn convertPoint_toLayer(
+            &self,
+            p: CGPoint,
+            l: Option<&CoreAnimation::CALayer>,
+        ) -> CGPoint;
 
         #[method(convertRect:fromLayer:)]
-        pub fn convertRect_fromLayer(&self, r: CGRect, l: Option<&QuartzCore::CALayer>) -> CGRect;
+        pub fn convertRect_fromLayer(
+            &self,
+            r: CGRect,
+            l: Option<&CoreAnimation::CALayer>,
+        ) -> CGRect;
 
         #[method(convertRect:toLayer:)]
-        pub fn convertRect_toLayer(&self, r: CGRect, l: Option<&QuartzCore::CALayer>) -> CGRect;
+        pub fn convertRect_toLayer(&self, r: CGRect, l: Option<&CoreAnimation::CALayer>) -> CGRect;
 
         #[method(convertTime:fromLayer:)]
         pub fn convertTime_fromLayer(
             &self,
             t: CFTimeInterval,
-            l: Option<&QuartzCore::CALayer>,
+            l: Option<&CoreAnimation::CALayer>,
         ) -> CFTimeInterval;
 
         #[method(convertTime:toLayer:)]
         pub fn convertTime_toLayer(
             &self,
             t: CFTimeInterval,
-            l: Option<&QuartzCore::CALayer>,
+            l: Option<&CoreAnimation::CALayer>,
         ) -> CFTimeInterval;
 
         #[method_id(@__retain_semantics Other hitTest:)]
-        pub fn hitTest(&self, p: CGPoint) -> Option<Id<QuartzCore::CALayer, Shared>>;
+        pub fn hitTest(&self, p: CGPoint) -> Option<Id<CoreAnimation::CALayer, Shared>>;
 
         #[method(containsPoint:)]
         pub fn containsPoint(&self, p: CGPoint) -> bool;
@@ -270,13 +278,13 @@ extern_methods!(
         #[method(setContentsRect:)]
         pub fn setContentsRect(&self, contentsRect: CGRect);
 
-        #[cfg(feature = "QuartzCore_CALayerContentsGravity")]
+        #[cfg(feature = "CoreAnimation_CALayerContentsGravity")]
         #[method_id(@__retain_semantics Other contentsGravity)]
-        pub fn contentsGravity(&self) -> Id<QuartzCore::CALayerContentsGravity, Shared>;
+        pub fn contentsGravity(&self) -> Id<CoreAnimation::CALayerContentsGravity, Shared>;
 
-        #[cfg(feature = "QuartzCore_CALayerContentsGravity")]
+        #[cfg(feature = "CoreAnimation_CALayerContentsGravity")]
         #[method(setContentsGravity:)]
-        pub fn setContentsGravity(&self, contentsGravity: &QuartzCore::CALayerContentsGravity);
+        pub fn setContentsGravity(&self, contentsGravity: &CoreAnimation::CALayerContentsGravity);
 
         #[method(contentsScale)]
         pub fn contentsScale(&self) -> CGFloat;
@@ -290,31 +298,34 @@ extern_methods!(
         #[method(setContentsCenter:)]
         pub fn setContentsCenter(&self, contentsCenter: CGRect);
 
-        #[cfg(feature = "QuartzCore_CALayerContentsFormat")]
+        #[cfg(feature = "CoreAnimation_CALayerContentsFormat")]
         #[method_id(@__retain_semantics Other contentsFormat)]
-        pub fn contentsFormat(&self) -> Id<QuartzCore::CALayerContentsFormat, Shared>;
+        pub fn contentsFormat(&self) -> Id<CoreAnimation::CALayerContentsFormat, Shared>;
 
-        #[cfg(feature = "QuartzCore_CALayerContentsFormat")]
+        #[cfg(feature = "CoreAnimation_CALayerContentsFormat")]
         #[method(setContentsFormat:)]
-        pub fn setContentsFormat(&self, contentsFormat: &QuartzCore::CALayerContentsFormat);
+        pub fn setContentsFormat(&self, contentsFormat: &CoreAnimation::CALayerContentsFormat);
 
-        #[cfg(feature = "QuartzCore_CALayerContentsFilter")]
+        #[cfg(feature = "CoreAnimation_CALayerContentsFilter")]
         #[method_id(@__retain_semantics Other minificationFilter)]
-        pub fn minificationFilter(&self) -> Id<QuartzCore::CALayerContentsFilter, Shared>;
+        pub fn minificationFilter(&self) -> Id<CoreAnimation::CALayerContentsFilter, Shared>;
 
-        #[cfg(feature = "QuartzCore_CALayerContentsFilter")]
+        #[cfg(feature = "CoreAnimation_CALayerContentsFilter")]
         #[method(setMinificationFilter:)]
-        pub fn setMinificationFilter(&self, minificationFilter: &QuartzCore::CALayerContentsFilter);
+        pub fn setMinificationFilter(
+            &self,
+            minificationFilter: &CoreAnimation::CALayerContentsFilter,
+        );
 
-        #[cfg(feature = "QuartzCore_CALayerContentsFilter")]
+        #[cfg(feature = "CoreAnimation_CALayerContentsFilter")]
         #[method_id(@__retain_semantics Other magnificationFilter)]
-        pub fn magnificationFilter(&self) -> Id<QuartzCore::CALayerContentsFilter, Shared>;
+        pub fn magnificationFilter(&self) -> Id<CoreAnimation::CALayerContentsFilter, Shared>;
 
-        #[cfg(feature = "QuartzCore_CALayerContentsFilter")]
+        #[cfg(feature = "CoreAnimation_CALayerContentsFilter")]
         #[method(setMagnificationFilter:)]
         pub fn setMagnificationFilter(
             &self,
-            magnificationFilter: &QuartzCore::CALayerContentsFilter,
+            magnificationFilter: &CoreAnimation::CALayerContentsFilter,
         );
 
         #[method(minificationFilterBias)]
@@ -380,17 +391,17 @@ extern_methods!(
         #[method(setMaskedCorners:)]
         pub fn setMaskedCorners(&self, maskedCorners: CACornerMask);
 
-        #[cfg(feature = "QuartzCore_CALayerCornerCurve")]
+        #[cfg(feature = "CoreAnimation_CALayerCornerCurve")]
         #[method_id(@__retain_semantics Other cornerCurve)]
-        pub fn cornerCurve(&self) -> Id<QuartzCore::CALayerCornerCurve, Shared>;
+        pub fn cornerCurve(&self) -> Id<CoreAnimation::CALayerCornerCurve, Shared>;
 
-        #[cfg(feature = "QuartzCore_CALayerCornerCurve")]
+        #[cfg(feature = "CoreAnimation_CALayerCornerCurve")]
         #[method(setCornerCurve:)]
-        pub fn setCornerCurve(&self, cornerCurve: &QuartzCore::CALayerCornerCurve);
+        pub fn setCornerCurve(&self, cornerCurve: &CoreAnimation::CALayerCornerCurve);
 
-        #[cfg(feature = "QuartzCore_CALayerCornerCurve")]
+        #[cfg(feature = "CoreAnimation_CALayerCornerCurve")]
         #[method(cornerCurveExpansionFactor:)]
-        pub fn cornerCurveExpansionFactor(curve: &QuartzCore::CALayerCornerCurve) -> CGFloat;
+        pub fn cornerCurveExpansionFactor(curve: &CoreAnimation::CALayerCornerCurve) -> CGFloat;
 
         #[method(borderWidth)]
         pub fn borderWidth(&self) -> CGFloat;
@@ -468,13 +479,13 @@ extern_methods!(
         #[method(setAutoresizingMask:)]
         pub fn setAutoresizingMask(&self, autoresizingMask: CAAutoresizingMask);
 
-        #[cfg(feature = "QuartzCore_CALayoutManager")]
+        #[cfg(feature = "CoreAnimation_CALayoutManager")]
         #[method_id(@__retain_semantics Other layoutManager)]
-        pub fn layoutManager(&self) -> Option<Id<QuartzCore::CALayoutManager, Shared>>;
+        pub fn layoutManager(&self) -> Option<Id<CoreAnimation::CALayoutManager, Shared>>;
 
-        #[cfg(feature = "QuartzCore_CALayoutManager")]
+        #[cfg(feature = "CoreAnimation_CALayoutManager")]
         #[method(setLayoutManager:)]
-        pub fn setLayoutManager(&self, layoutManager: Option<&QuartzCore::CALayoutManager>);
+        pub fn setLayoutManager(&self, layoutManager: Option<&CoreAnimation::CALayoutManager>);
 
         #[method(preferredFrameSize)]
         pub fn preferredFrameSize(&self) -> CGSize;
@@ -497,45 +508,49 @@ extern_methods!(
         #[method(resizeWithOldSuperlayerSize:)]
         pub fn resizeWithOldSuperlayerSize(&self, size: CGSize);
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAAction"))]
+        #[cfg(all(feature = "CoreAnimation_CAAction", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other defaultActionForKey:)]
         pub fn defaultActionForKey(
             event: &Foundation::NSString,
-        ) -> Option<Id<QuartzCore::CAAction, Shared>>;
+        ) -> Option<Id<CoreAnimation::CAAction, Shared>>;
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAAction"))]
+        #[cfg(all(feature = "CoreAnimation_CAAction", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other actionForKey:)]
         pub fn actionForKey(
             &self,
             event: &Foundation::NSString,
-        ) -> Option<Id<QuartzCore::CAAction, Shared>>;
+        ) -> Option<Id<CoreAnimation::CAAction, Shared>>;
 
         #[cfg(all(
+            feature = "CoreAnimation_CAAction",
             feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSString",
-            feature = "QuartzCore_CAAction"
+            feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other actions)]
         pub fn actions(
             &self,
-        ) -> Option<Id<Foundation::NSDictionary<Foundation::NSString, QuartzCore::CAAction>, Shared>>;
+        ) -> Option<
+            Id<Foundation::NSDictionary<Foundation::NSString, CoreAnimation::CAAction>, Shared>,
+        >;
 
         #[cfg(all(
+            feature = "CoreAnimation_CAAction",
             feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSString",
-            feature = "QuartzCore_CAAction"
+            feature = "Foundation_NSString"
         ))]
         #[method(setActions:)]
         pub fn setActions(
             &self,
-            actions: Option<&Foundation::NSDictionary<Foundation::NSString, QuartzCore::CAAction>>,
+            actions: Option<
+                &Foundation::NSDictionary<Foundation::NSString, CoreAnimation::CAAction>,
+            >,
         );
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAAnimation"))]
+        #[cfg(all(feature = "CoreAnimation_CAAnimation", feature = "Foundation_NSString"))]
         #[method(addAnimation:forKey:)]
         pub fn addAnimation_forKey(
             &self,
-            anim: &QuartzCore::CAAnimation,
+            anim: &CoreAnimation::CAAnimation,
             key: Option<&Foundation::NSString>,
         );
 
@@ -552,12 +567,12 @@ extern_methods!(
             &self,
         ) -> Option<Id<Foundation::NSArray<Foundation::NSString>, Shared>>;
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAAnimation"))]
+        #[cfg(all(feature = "CoreAnimation_CAAnimation", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other animationForKey:)]
         pub unsafe fn animationForKey(
             &self,
             key: &Foundation::NSString,
-        ) -> Option<Id<QuartzCore::CAAnimation, Shared>>;
+        ) -> Option<Id<CoreAnimation::CAAnimation, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
@@ -567,13 +582,13 @@ extern_methods!(
         #[method(setName:)]
         pub fn setName(&self, name: Option<&Foundation::NSString>);
 
-        #[cfg(feature = "QuartzCore_CALayerDelegate")]
+        #[cfg(feature = "CoreAnimation_CALayerDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
-        pub fn delegate(&self) -> Option<Id<QuartzCore::CALayerDelegate, Shared>>;
+        pub fn delegate(&self) -> Option<Id<CoreAnimation::CALayerDelegate, Shared>>;
 
-        #[cfg(feature = "QuartzCore_CALayerDelegate")]
+        #[cfg(feature = "CoreAnimation_CALayerDelegate")]
         #[method(setDelegate:)]
-        pub fn setDelegate(&self, delegate: Option<&QuartzCore::CALayerDelegate>);
+        pub fn setDelegate(&self, delegate: Option<&CoreAnimation::CALayerDelegate>);
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other style)]
@@ -591,15 +606,15 @@ extern_protocol!(
     unsafe impl ProtocolType for CALayoutManager {
         #[optional]
         #[method(preferredSizeOfLayer:)]
-        pub unsafe fn preferredSizeOfLayer(&self, layer: &QuartzCore::CALayer) -> CGSize;
+        pub unsafe fn preferredSizeOfLayer(&self, layer: &CoreAnimation::CALayer) -> CGSize;
 
         #[optional]
         #[method(invalidateLayoutOfLayer:)]
-        pub unsafe fn invalidateLayoutOfLayer(&self, layer: &QuartzCore::CALayer);
+        pub unsafe fn invalidateLayoutOfLayer(&self, layer: &CoreAnimation::CALayer);
 
         #[optional]
         #[method(layoutSublayersOfLayer:)]
-        pub unsafe fn layoutSublayersOfLayer(&self, layer: &QuartzCore::CALayer);
+        pub unsafe fn layoutSublayersOfLayer(&self, layer: &CoreAnimation::CALayer);
     }
 );
 
@@ -629,65 +644,65 @@ extern_protocol!(
     unsafe impl ProtocolType for CALayerDelegate {
         #[optional]
         #[method(displayLayer:)]
-        pub unsafe fn displayLayer(&self, layer: &QuartzCore::CALayer);
+        pub unsafe fn displayLayer(&self, layer: &CoreAnimation::CALayer);
 
         #[optional]
         #[method(layerWillDraw:)]
-        pub unsafe fn layerWillDraw(&self, layer: &QuartzCore::CALayer);
+        pub unsafe fn layerWillDraw(&self, layer: &CoreAnimation::CALayer);
 
         #[optional]
         #[method(layoutSublayersOfLayer:)]
-        pub unsafe fn layoutSublayersOfLayer(&self, layer: &QuartzCore::CALayer);
+        pub unsafe fn layoutSublayersOfLayer(&self, layer: &CoreAnimation::CALayer);
 
         #[optional]
         #[method_id(@__retain_semantics Other actionForLayer:forKey:)]
         pub unsafe fn actionForLayer_forKey(
             &self,
-            layer: &QuartzCore::CALayer,
+            layer: &CoreAnimation::CALayer,
             event: &Foundation::NSString,
-        ) -> Option<Id<QuartzCore::CAAction, Shared>>;
+        ) -> Option<Id<CoreAnimation::CAAction, Shared>>;
     }
 );
 
-extern_static!(kCAGravityCenter: &'static QuartzCore::CALayerContentsGravity);
+extern_static!(kCAGravityCenter: &'static CoreAnimation::CALayerContentsGravity);
 
-extern_static!(kCAGravityTop: &'static QuartzCore::CALayerContentsGravity);
+extern_static!(kCAGravityTop: &'static CoreAnimation::CALayerContentsGravity);
 
-extern_static!(kCAGravityBottom: &'static QuartzCore::CALayerContentsGravity);
+extern_static!(kCAGravityBottom: &'static CoreAnimation::CALayerContentsGravity);
 
-extern_static!(kCAGravityLeft: &'static QuartzCore::CALayerContentsGravity);
+extern_static!(kCAGravityLeft: &'static CoreAnimation::CALayerContentsGravity);
 
-extern_static!(kCAGravityRight: &'static QuartzCore::CALayerContentsGravity);
+extern_static!(kCAGravityRight: &'static CoreAnimation::CALayerContentsGravity);
 
-extern_static!(kCAGravityTopLeft: &'static QuartzCore::CALayerContentsGravity);
+extern_static!(kCAGravityTopLeft: &'static CoreAnimation::CALayerContentsGravity);
 
-extern_static!(kCAGravityTopRight: &'static QuartzCore::CALayerContentsGravity);
+extern_static!(kCAGravityTopRight: &'static CoreAnimation::CALayerContentsGravity);
 
-extern_static!(kCAGravityBottomLeft: &'static QuartzCore::CALayerContentsGravity);
+extern_static!(kCAGravityBottomLeft: &'static CoreAnimation::CALayerContentsGravity);
 
-extern_static!(kCAGravityBottomRight: &'static QuartzCore::CALayerContentsGravity);
+extern_static!(kCAGravityBottomRight: &'static CoreAnimation::CALayerContentsGravity);
 
-extern_static!(kCAGravityResize: &'static QuartzCore::CALayerContentsGravity);
+extern_static!(kCAGravityResize: &'static CoreAnimation::CALayerContentsGravity);
 
-extern_static!(kCAGravityResizeAspect: &'static QuartzCore::CALayerContentsGravity);
+extern_static!(kCAGravityResizeAspect: &'static CoreAnimation::CALayerContentsGravity);
 
-extern_static!(kCAGravityResizeAspectFill: &'static QuartzCore::CALayerContentsGravity);
+extern_static!(kCAGravityResizeAspectFill: &'static CoreAnimation::CALayerContentsGravity);
 
-extern_static!(kCAContentsFormatRGBA8Uint: &'static QuartzCore::CALayerContentsFormat);
+extern_static!(kCAContentsFormatRGBA8Uint: &'static CoreAnimation::CALayerContentsFormat);
 
-extern_static!(kCAContentsFormatRGBA16Float: &'static QuartzCore::CALayerContentsFormat);
+extern_static!(kCAContentsFormatRGBA16Float: &'static CoreAnimation::CALayerContentsFormat);
 
-extern_static!(kCAContentsFormatGray8Uint: &'static QuartzCore::CALayerContentsFormat);
+extern_static!(kCAContentsFormatGray8Uint: &'static CoreAnimation::CALayerContentsFormat);
 
-extern_static!(kCAFilterNearest: &'static QuartzCore::CALayerContentsFilter);
+extern_static!(kCAFilterNearest: &'static CoreAnimation::CALayerContentsFilter);
 
-extern_static!(kCAFilterLinear: &'static QuartzCore::CALayerContentsFilter);
+extern_static!(kCAFilterLinear: &'static CoreAnimation::CALayerContentsFilter);
 
-extern_static!(kCAFilterTrilinear: &'static QuartzCore::CALayerContentsFilter);
+extern_static!(kCAFilterTrilinear: &'static CoreAnimation::CALayerContentsFilter);
 
-extern_static!(kCACornerCurveCircular: &'static QuartzCore::CALayerCornerCurve);
+extern_static!(kCACornerCurveCircular: &'static CoreAnimation::CALayerCornerCurve);
 
-extern_static!(kCACornerCurveContinuous: &'static QuartzCore::CALayerCornerCurve);
+extern_static!(kCACornerCurveContinuous: &'static CoreAnimation::CALayerCornerCurve);
 
 extern_static!(kCAOnOrderIn: &'static Foundation::NSString);
 

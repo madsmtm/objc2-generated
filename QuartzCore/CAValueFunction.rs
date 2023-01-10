@@ -18,38 +18,38 @@ extern_class!(
 );
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CAValueFunction")]
+    #[cfg(feature = "CoreAnimation_CAValueFunction")]
     unsafe impl CAValueFunction {
-        #[cfg(feature = "QuartzCore_CAValueFunctionName")]
+        #[cfg(feature = "CoreAnimation_CAValueFunctionName")]
         #[method_id(@__retain_semantics Other functionWithName:)]
         pub unsafe fn functionWithName(
-            name: &QuartzCore::CAValueFunctionName,
+            name: &CoreAnimation::CAValueFunctionName,
         ) -> Option<Id<Self, Shared>>;
 
-        #[cfg(feature = "QuartzCore_CAValueFunctionName")]
+        #[cfg(feature = "CoreAnimation_CAValueFunctionName")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<QuartzCore::CAValueFunctionName, Shared>;
+        pub unsafe fn name(&self) -> Id<CoreAnimation::CAValueFunctionName, Shared>;
     }
 );
 
-extern_static!(kCAValueFunctionRotateX: &'static QuartzCore::CAValueFunctionName);
+extern_static!(kCAValueFunctionRotateX: &'static CoreAnimation::CAValueFunctionName);
 
-extern_static!(kCAValueFunctionRotateY: &'static QuartzCore::CAValueFunctionName);
+extern_static!(kCAValueFunctionRotateY: &'static CoreAnimation::CAValueFunctionName);
 
-extern_static!(kCAValueFunctionRotateZ: &'static QuartzCore::CAValueFunctionName);
+extern_static!(kCAValueFunctionRotateZ: &'static CoreAnimation::CAValueFunctionName);
 
-extern_static!(kCAValueFunctionScale: &'static QuartzCore::CAValueFunctionName);
+extern_static!(kCAValueFunctionScale: &'static CoreAnimation::CAValueFunctionName);
 
-extern_static!(kCAValueFunctionScaleX: &'static QuartzCore::CAValueFunctionName);
+extern_static!(kCAValueFunctionScaleX: &'static CoreAnimation::CAValueFunctionName);
 
-extern_static!(kCAValueFunctionScaleY: &'static QuartzCore::CAValueFunctionName);
+extern_static!(kCAValueFunctionScaleY: &'static CoreAnimation::CAValueFunctionName);
 
-extern_static!(kCAValueFunctionScaleZ: &'static QuartzCore::CAValueFunctionName);
+extern_static!(kCAValueFunctionScaleZ: &'static CoreAnimation::CAValueFunctionName);
 
-extern_static!(kCAValueFunctionTranslate: &'static QuartzCore::CAValueFunctionName);
+extern_static!(kCAValueFunctionTranslate: &'static CoreAnimation::CAValueFunctionName);
 
-extern_static!(kCAValueFunctionTranslateX: &'static QuartzCore::CAValueFunctionName);
+extern_static!(kCAValueFunctionTranslateX: &'static CoreAnimation::CAValueFunctionName);
 
-extern_static!(kCAValueFunctionTranslateY: &'static QuartzCore::CAValueFunctionName);
+extern_static!(kCAValueFunctionTranslateY: &'static CoreAnimation::CAValueFunctionName);
 
-extern_static!(kCAValueFunctionTranslateZ: &'static QuartzCore::CAValueFunctionName);
+extern_static!(kCAValueFunctionTranslateZ: &'static CoreAnimation::CAValueFunctionName);

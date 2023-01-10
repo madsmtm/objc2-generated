@@ -10,12 +10,12 @@ extern_class!(
 
     unsafe impl ClassType for CAReplicatorLayer {
         #[inherits(NSObject)]
-        type Super = QuartzCore::CALayer;
+        type Super = CoreAnimation::CALayer;
     }
 );
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CAReplicatorLayer")]
+    #[cfg(feature = "CoreAnimation_CAReplicatorLayer")]
     unsafe impl CAReplicatorLayer {
         #[method(instanceCount)]
         pub unsafe fn instanceCount(&self) -> NSInteger;
@@ -69,8 +69,8 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CALayer`
-    #[cfg(feature = "QuartzCore_CAReplicatorLayer")]
-    unsafe impl QuartzCore::CAReplicatorLayer {
+    #[cfg(feature = "CoreAnimation_CAReplicatorLayer")]
+    unsafe impl CoreAnimation::CAReplicatorLayer {
         #[method_id(@__retain_semantics Other layer)]
         pub unsafe fn layer() -> Id<Self, Shared>;
 

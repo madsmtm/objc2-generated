@@ -55,17 +55,17 @@ extern_protocol!(
         pub unsafe fn setAutoreverses(&self, autoreverses: bool);
 
         #[method_id(@__retain_semantics Other fillMode)]
-        pub unsafe fn fillMode(&self) -> Id<QuartzCore::CAMediaTimingFillMode, Shared>;
+        pub unsafe fn fillMode(&self) -> Id<CoreAnimation::CAMediaTimingFillMode, Shared>;
 
         #[method(setFillMode:)]
-        pub unsafe fn setFillMode(&self, fillMode: &QuartzCore::CAMediaTimingFillMode);
+        pub unsafe fn setFillMode(&self, fillMode: &CoreAnimation::CAMediaTimingFillMode);
     }
 );
 
-extern_static!(kCAFillModeForwards: &'static QuartzCore::CAMediaTimingFillMode);
+extern_static!(kCAFillModeForwards: &'static CoreAnimation::CAMediaTimingFillMode);
 
-extern_static!(kCAFillModeBackwards: &'static QuartzCore::CAMediaTimingFillMode);
+extern_static!(kCAFillModeBackwards: &'static CoreAnimation::CAMediaTimingFillMode);
 
-extern_static!(kCAFillModeBoth: &'static QuartzCore::CAMediaTimingFillMode);
+extern_static!(kCAFillModeBoth: &'static CoreAnimation::CAMediaTimingFillMode);
 
-extern_static!(kCAFillModeRemoved: &'static QuartzCore::CAMediaTimingFillMode);
+extern_static!(kCAFillModeRemoved: &'static CoreAnimation::CAMediaTimingFillMode);

@@ -18,12 +18,12 @@ extern_class!(
 
     unsafe impl ClassType for CATextLayer {
         #[inherits(NSObject)]
-        type Super = QuartzCore::CALayer;
+        type Super = CoreAnimation::CALayer;
     }
 );
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CATextLayer")]
+    #[cfg(feature = "CoreAnimation_CATextLayer")]
     unsafe impl CATextLayer {
         #[method_id(@__retain_semantics Other string)]
         pub unsafe fn string(&self) -> Option<Id<Object, Shared>>;
@@ -43,24 +43,28 @@ extern_methods!(
         #[method(setWrapped:)]
         pub unsafe fn setWrapped(&self, wrapped: bool);
 
-        #[cfg(feature = "QuartzCore_CATextLayerTruncationMode")]
+        #[cfg(feature = "CoreAnimation_CATextLayerTruncationMode")]
         #[method_id(@__retain_semantics Other truncationMode)]
-        pub unsafe fn truncationMode(&self) -> Id<QuartzCore::CATextLayerTruncationMode, Shared>;
+        pub unsafe fn truncationMode(&self)
+            -> Id<CoreAnimation::CATextLayerTruncationMode, Shared>;
 
-        #[cfg(feature = "QuartzCore_CATextLayerTruncationMode")]
+        #[cfg(feature = "CoreAnimation_CATextLayerTruncationMode")]
         #[method(setTruncationMode:)]
         pub unsafe fn setTruncationMode(
             &self,
-            truncationMode: &QuartzCore::CATextLayerTruncationMode,
+            truncationMode: &CoreAnimation::CATextLayerTruncationMode,
         );
 
-        #[cfg(feature = "QuartzCore_CATextLayerAlignmentMode")]
+        #[cfg(feature = "CoreAnimation_CATextLayerAlignmentMode")]
         #[method_id(@__retain_semantics Other alignmentMode)]
-        pub unsafe fn alignmentMode(&self) -> Id<QuartzCore::CATextLayerAlignmentMode, Shared>;
+        pub unsafe fn alignmentMode(&self) -> Id<CoreAnimation::CATextLayerAlignmentMode, Shared>;
 
-        #[cfg(feature = "QuartzCore_CATextLayerAlignmentMode")]
+        #[cfg(feature = "CoreAnimation_CATextLayerAlignmentMode")]
         #[method(setAlignmentMode:)]
-        pub unsafe fn setAlignmentMode(&self, alignmentMode: &QuartzCore::CATextLayerAlignmentMode);
+        pub unsafe fn setAlignmentMode(
+            &self,
+            alignmentMode: &CoreAnimation::CATextLayerAlignmentMode,
+        );
 
         #[method(allowsFontSubpixelQuantization)]
         pub unsafe fn allowsFontSubpixelQuantization(&self) -> bool;
@@ -73,28 +77,28 @@ extern_methods!(
     }
 );
 
-extern_static!(kCATruncationNone: &'static QuartzCore::CATextLayerTruncationMode);
+extern_static!(kCATruncationNone: &'static CoreAnimation::CATextLayerTruncationMode);
 
-extern_static!(kCATruncationStart: &'static QuartzCore::CATextLayerTruncationMode);
+extern_static!(kCATruncationStart: &'static CoreAnimation::CATextLayerTruncationMode);
 
-extern_static!(kCATruncationEnd: &'static QuartzCore::CATextLayerTruncationMode);
+extern_static!(kCATruncationEnd: &'static CoreAnimation::CATextLayerTruncationMode);
 
-extern_static!(kCATruncationMiddle: &'static QuartzCore::CATextLayerTruncationMode);
+extern_static!(kCATruncationMiddle: &'static CoreAnimation::CATextLayerTruncationMode);
 
-extern_static!(kCAAlignmentNatural: &'static QuartzCore::CATextLayerAlignmentMode);
+extern_static!(kCAAlignmentNatural: &'static CoreAnimation::CATextLayerAlignmentMode);
 
-extern_static!(kCAAlignmentLeft: &'static QuartzCore::CATextLayerAlignmentMode);
+extern_static!(kCAAlignmentLeft: &'static CoreAnimation::CATextLayerAlignmentMode);
 
-extern_static!(kCAAlignmentRight: &'static QuartzCore::CATextLayerAlignmentMode);
+extern_static!(kCAAlignmentRight: &'static CoreAnimation::CATextLayerAlignmentMode);
 
-extern_static!(kCAAlignmentCenter: &'static QuartzCore::CATextLayerAlignmentMode);
+extern_static!(kCAAlignmentCenter: &'static CoreAnimation::CATextLayerAlignmentMode);
 
-extern_static!(kCAAlignmentJustified: &'static QuartzCore::CATextLayerAlignmentMode);
+extern_static!(kCAAlignmentJustified: &'static CoreAnimation::CATextLayerAlignmentMode);
 
 extern_methods!(
     /// Methods declared on superclass `CALayer`
-    #[cfg(feature = "QuartzCore_CATextLayer")]
-    unsafe impl QuartzCore::CATextLayer {
+    #[cfg(feature = "CoreAnimation_CATextLayer")]
+    unsafe impl CoreAnimation::CATextLayer {
         #[method_id(@__retain_semantics Other layer)]
         pub unsafe fn layer() -> Id<Self, Shared>;
 

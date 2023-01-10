@@ -14,7 +14,7 @@ extern_class!(
 );
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CAEDRMetadata")]
+    #[cfg(feature = "CoreAnimation_CAEDRMetadata")]
     unsafe impl CAEDRMetadata {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
@@ -25,16 +25,16 @@ extern_methods!(
             displayData: Option<&Foundation::NSData>,
             contentData: Option<&Foundation::NSData>,
             scale: c_float,
-        ) -> Id<QuartzCore::CAEDRMetadata, Shared>;
+        ) -> Id<CoreAnimation::CAEDRMetadata, Shared>;
 
         #[method_id(@__retain_semantics Other HDR10MetadataWithMinLuminance:maxLuminance:opticalOutputScale:)]
         pub unsafe fn HDR10MetadataWithMinLuminance_maxLuminance_opticalOutputScale(
             minNits: c_float,
             maxNits: c_float,
             scale: c_float,
-        ) -> Id<QuartzCore::CAEDRMetadata, Shared>;
+        ) -> Id<CoreAnimation::CAEDRMetadata, Shared>;
 
         #[method_id(@__retain_semantics Other HLGMetadata)]
-        pub unsafe fn HLGMetadata() -> Id<QuartzCore::CAEDRMetadata, Shared>;
+        pub unsafe fn HLGMetadata() -> Id<CoreAnimation::CAEDRMetadata, Shared>;
     }
 );
