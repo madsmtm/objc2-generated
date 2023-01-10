@@ -14,6 +14,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialAssertion")]
     unsafe impl ASAuthorizationPlatformPublicKeyCredentialAssertion {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self, Shared>;

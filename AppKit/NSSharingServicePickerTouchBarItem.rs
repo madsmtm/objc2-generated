@@ -16,12 +16,15 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSSharingServicePickerTouchBarItem")]
     unsafe impl NSSharingServicePickerTouchBarItem {
+        #[cfg(feature = "AppKit_NSSharingServicePickerTouchBarItemDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Id<NSSharingServicePickerTouchBarItemDelegate, Shared>>;
 
+        #[cfg(feature = "AppKit_NSSharingServicePickerTouchBarItemDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -34,15 +37,19 @@ extern_methods!(
         #[method(setEnabled:)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other buttonTitle)]
         pub unsafe fn buttonTitle(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setButtonTitle:)]
         pub unsafe fn setButtonTitle(&self, buttonTitle: &NSString);
 
+        #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other buttonImage)]
         pub unsafe fn buttonImage(&self) -> Option<Id<NSImage, Shared>>;
 
+        #[cfg(feature = "AppKit_NSImage")]
         #[method(setButtonImage:)]
         pub unsafe fn setButtonImage(&self, buttonImage: Option<&NSImage>);
     }
@@ -62,7 +69,9 @@ extern_protocol!(
 
 extern_methods!(
     /// Methods declared on superclass `NSTouchBarItem`
+    #[cfg(feature = "AppKit_NSSharingServicePickerTouchBarItem")]
     unsafe impl NSSharingServicePickerTouchBarItem {
+        #[cfg(feature = "AppKit_NSTouchBarItemIdentifier")]
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
             this: Option<Allocated<Self>>,

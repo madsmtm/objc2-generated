@@ -60,7 +60,9 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSTextList")]
     unsafe impl NSTextList {
+        #[cfg(feature = "AppKit_NSTextListMarkerFormat")]
         #[method_id(@__retain_semantics Init initWithMarkerFormat:options:)]
         pub unsafe fn initWithMarkerFormat_options(
             this: Option<Allocated<Self>>,
@@ -68,12 +70,14 @@ extern_methods!(
             mask: NSUInteger,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "AppKit_NSTextListMarkerFormat")]
         #[method_id(@__retain_semantics Other markerFormat)]
         pub unsafe fn markerFormat(&self) -> Id<NSTextListMarkerFormat, Shared>;
 
         #[method(listOptions)]
         pub unsafe fn listOptions(&self) -> NSTextListOptions;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other markerForItemNumber:)]
         pub unsafe fn markerForItemNumber(&self, itemNum: NSInteger) -> Id<NSString, Shared>;
 

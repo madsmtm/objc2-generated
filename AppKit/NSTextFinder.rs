@@ -52,19 +52,23 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSTextFinder")]
     unsafe impl NSTextFinder {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "AppKit_NSTextFinderClient")]
         #[method_id(@__retain_semantics Other client)]
         pub unsafe fn client(&self) -> Option<Id<NSTextFinderClient, Shared>>;
 
+        #[cfg(feature = "AppKit_NSTextFinderClient")]
         #[method(setClient:)]
         pub unsafe fn setClient(&self, client: Option<&NSTextFinderClient>);
 
@@ -74,9 +78,11 @@ extern_methods!(
         #[method(validateAction:)]
         pub unsafe fn validateAction(&self, op: NSTextFinderAction) -> bool;
 
+        #[cfg(feature = "AppKit_NSTextFinderBarContainer")]
         #[method_id(@__retain_semantics Other findBarContainer)]
         pub unsafe fn findBarContainer(&self) -> Option<Id<NSTextFinderBarContainer, Shared>>;
 
+        #[cfg(feature = "AppKit_NSTextFinderBarContainer")]
         #[method(setFindBarContainer:)]
         pub unsafe fn setFindBarContainer(
             &self,
@@ -107,6 +113,7 @@ extern_methods!(
             incrementalSearchingShouldDimContentView: bool,
         );
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[method_id(@__retain_semantics Other incrementalMatchRanges)]
         pub unsafe fn incrementalMatchRanges(&self) -> Id<NSArray<NSValue>, Shared>;
 

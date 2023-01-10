@@ -15,16 +15,24 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSPasteboardItem")]
     unsafe impl NSPasteboardItem {
+        #[cfg(all(feature = "AppKit_NSPasteboardType", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other types)]
         pub unsafe fn types(&self) -> Id<NSArray<NSPasteboardType>, Shared>;
 
+        #[cfg(all(feature = "AppKit_NSPasteboardType", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other availableTypeFromArray:)]
         pub unsafe fn availableTypeFromArray(
             &self,
             types: &NSArray<NSPasteboardType>,
         ) -> Option<Id<NSPasteboardType, Shared>>;
 
+        #[cfg(all(
+            feature = "AppKit_NSPasteboardItemDataProvider",
+            feature = "AppKit_NSPasteboardType",
+            feature = "Foundation_NSArray"
+        ))]
         #[method(setDataProvider:forTypes:)]
         pub unsafe fn setDataProvider_forTypes(
             &self,
@@ -32,13 +40,16 @@ extern_methods!(
             types: &NSArray<NSPasteboardType>,
         ) -> bool;
 
+        #[cfg(all(feature = "AppKit_NSPasteboardType", feature = "Foundation_NSData"))]
         #[method(setData:forType:)]
         pub unsafe fn setData_forType(&self, data: &NSData, type_: &NSPasteboardType) -> bool;
 
+        #[cfg(all(feature = "AppKit_NSPasteboardType", feature = "Foundation_NSString"))]
         #[method(setString:forType:)]
         pub unsafe fn setString_forType(&self, string: &NSString, type_: &NSPasteboardType)
             -> bool;
 
+        #[cfg(feature = "AppKit_NSPasteboardType")]
         #[method(setPropertyList:forType:)]
         pub unsafe fn setPropertyList_forType(
             &self,
@@ -46,15 +57,18 @@ extern_methods!(
             type_: &NSPasteboardType,
         ) -> bool;
 
+        #[cfg(all(feature = "AppKit_NSPasteboardType", feature = "Foundation_NSData"))]
         #[method_id(@__retain_semantics Other dataForType:)]
         pub unsafe fn dataForType(&self, type_: &NSPasteboardType) -> Option<Id<NSData, Shared>>;
 
+        #[cfg(all(feature = "AppKit_NSPasteboardType", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other stringForType:)]
         pub unsafe fn stringForType(
             &self,
             type_: &NSPasteboardType,
         ) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "AppKit_NSPasteboardType")]
         #[method_id(@__retain_semantics Other propertyListForType:)]
         pub unsafe fn propertyListForType(
             &self,

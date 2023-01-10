@@ -91,6 +91,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSScrubberSelectionStyle")]
     unsafe impl NSScrubberSelectionStyle {
         #[method_id(@__retain_semantics Other outlineOverlayStyle)]
         pub unsafe fn outlineOverlayStyle() -> Id<NSScrubberSelectionStyle, Shared>;
@@ -101,12 +102,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "AppKit_NSScrubberSelectionView")]
         #[method_id(@__retain_semantics Other makeSelectionView)]
         pub unsafe fn makeSelectionView(&self) -> Option<Id<NSScrubberSelectionView, Shared>>;
     }
@@ -123,22 +126,29 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSScrubber")]
     unsafe impl NSScrubber {
+        #[cfg(feature = "AppKit_NSScrubberDataSource")]
         #[method_id(@__retain_semantics Other dataSource)]
         pub unsafe fn dataSource(&self) -> Option<Id<NSScrubberDataSource, Shared>>;
 
+        #[cfg(feature = "AppKit_NSScrubberDataSource")]
         #[method(setDataSource:)]
         pub unsafe fn setDataSource(&self, dataSource: Option<&NSScrubberDataSource>);
 
+        #[cfg(feature = "AppKit_NSScrubberDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSScrubberDelegate, Shared>>;
 
+        #[cfg(feature = "AppKit_NSScrubberDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&NSScrubberDelegate>);
 
+        #[cfg(feature = "AppKit_NSScrubberLayout")]
         #[method_id(@__retain_semantics Other scrubberLayout)]
         pub unsafe fn scrubberLayout(&self) -> Id<NSScrubberLayout, Shared>;
 
+        #[cfg(feature = "AppKit_NSScrubberLayout")]
         #[method(setScrubberLayout:)]
         pub unsafe fn setScrubberLayout(&self, scrubberLayout: &NSScrubberLayout);
 
@@ -178,20 +188,24 @@ extern_methods!(
         #[method(setFloatsSelectionViews:)]
         pub unsafe fn setFloatsSelectionViews(&self, floatsSelectionViews: bool);
 
+        #[cfg(feature = "AppKit_NSScrubberSelectionStyle")]
         #[method_id(@__retain_semantics Other selectionBackgroundStyle)]
         pub unsafe fn selectionBackgroundStyle(
             &self,
         ) -> Option<Id<NSScrubberSelectionStyle, Shared>>;
 
+        #[cfg(feature = "AppKit_NSScrubberSelectionStyle")]
         #[method(setSelectionBackgroundStyle:)]
         pub unsafe fn setSelectionBackgroundStyle(
             &self,
             selectionBackgroundStyle: Option<&NSScrubberSelectionStyle>,
         );
 
+        #[cfg(feature = "AppKit_NSScrubberSelectionStyle")]
         #[method_id(@__retain_semantics Other selectionOverlayStyle)]
         pub unsafe fn selectionOverlayStyle(&self) -> Option<Id<NSScrubberSelectionStyle, Shared>>;
 
+        #[cfg(feature = "AppKit_NSScrubberSelectionStyle")]
         #[method(setSelectionOverlayStyle:)]
         pub unsafe fn setSelectionOverlayStyle(
             &self,
@@ -213,9 +227,11 @@ extern_methods!(
             showsAdditionalContentIndicators: bool,
         );
 
+        #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other backgroundColor)]
         pub unsafe fn backgroundColor(&self) -> Option<Id<NSColor, Shared>>;
 
+        #[cfg(feature = "AppKit_NSColor")]
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, backgroundColor: Option<&NSColor>);
 
@@ -231,6 +247,7 @@ extern_methods!(
             frameRect: NSRect,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -243,12 +260,15 @@ extern_methods!(
         #[method(performSequentialBatchUpdates:)]
         pub unsafe fn performSequentialBatchUpdates(&self, updateBlock: &Block<(), ()>);
 
+        #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(insertItemsAtIndexes:)]
         pub unsafe fn insertItemsAtIndexes(&self, indexes: &NSIndexSet);
 
+        #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(removeItemsAtIndexes:)]
         pub unsafe fn removeItemsAtIndexes(&self, indexes: &NSIndexSet);
 
+        #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(reloadItemsAtIndexes:)]
         pub unsafe fn reloadItemsAtIndexes(&self, indexes: &NSIndexSet);
 
@@ -262,12 +282,14 @@ extern_methods!(
             alignment: NSScrubberAlignment,
         );
 
+        #[cfg(feature = "AppKit_NSScrubberItemView")]
         #[method_id(@__retain_semantics Other itemViewForItemAtIndex:)]
         pub unsafe fn itemViewForItemAtIndex(
             &self,
             index: NSInteger,
         ) -> Option<Id<NSScrubberItemView, Shared>>;
 
+        #[cfg(feature = "AppKit_NSUserInterfaceItemIdentifier")]
         #[method(registerClass:forItemIdentifier:)]
         pub unsafe fn registerClass_forItemIdentifier(
             &self,
@@ -275,6 +297,10 @@ extern_methods!(
             itemIdentifier: &NSUserInterfaceItemIdentifier,
         );
 
+        #[cfg(all(
+            feature = "AppKit_NSNib",
+            feature = "AppKit_NSUserInterfaceItemIdentifier"
+        ))]
         #[method(registerNib:forItemIdentifier:)]
         pub unsafe fn registerNib_forItemIdentifier(
             &self,
@@ -282,6 +308,10 @@ extern_methods!(
             itemIdentifier: &NSUserInterfaceItemIdentifier,
         );
 
+        #[cfg(all(
+            feature = "AppKit_NSScrubberItemView",
+            feature = "AppKit_NSUserInterfaceItemIdentifier"
+        ))]
         #[method_id(@__retain_semantics Other makeItemWithIdentifier:owner:)]
         pub unsafe fn makeItemWithIdentifier_owner(
             &self,

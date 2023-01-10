@@ -15,19 +15,24 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSPageLayout")]
     unsafe impl NSPageLayout {
         #[method_id(@__retain_semantics Other pageLayout)]
         pub unsafe fn pageLayout() -> Id<NSPageLayout, Shared>;
 
+        #[cfg(feature = "AppKit_NSViewController")]
         #[method(addAccessoryController:)]
         pub unsafe fn addAccessoryController(&self, accessoryController: &NSViewController);
 
+        #[cfg(feature = "AppKit_NSViewController")]
         #[method(removeAccessoryController:)]
         pub unsafe fn removeAccessoryController(&self, accessoryController: &NSViewController);
 
+        #[cfg(all(feature = "AppKit_NSViewController", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other accessoryControllers)]
         pub unsafe fn accessoryControllers(&self) -> Id<NSArray<NSViewController>, Shared>;
 
+        #[cfg(all(feature = "AppKit_NSPrintInfo", feature = "AppKit_NSWindow"))]
         #[method(beginSheetWithPrintInfo:modalForWindow:delegate:didEndSelector:contextInfo:)]
         pub unsafe fn beginSheetWithPrintInfo_modalForWindow_delegate_didEndSelector_contextInfo(
             &self,
@@ -38,12 +43,14 @@ extern_methods!(
             contextInfo: *mut c_void,
         );
 
+        #[cfg(feature = "AppKit_NSPrintInfo")]
         #[method(runModalWithPrintInfo:)]
         pub unsafe fn runModalWithPrintInfo(&self, printInfo: &NSPrintInfo) -> NSInteger;
 
         #[method(runModal)]
         pub unsafe fn runModal(&self) -> NSInteger;
 
+        #[cfg(feature = "AppKit_NSPrintInfo")]
         #[method_id(@__retain_semantics Other printInfo)]
         pub unsafe fn printInfo(&self) -> Option<Id<NSPrintInfo, Shared>>;
     }
@@ -51,10 +58,13 @@ extern_methods!(
 
 extern_methods!(
     /// NSDeprecated
+    #[cfg(feature = "AppKit_NSPageLayout")]
     unsafe impl NSPageLayout {
+        #[cfg(feature = "AppKit_NSView")]
         #[method(setAccessoryView:)]
         pub unsafe fn setAccessoryView(&self, accessoryView: Option<&NSView>);
 
+        #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other accessoryView)]
         pub unsafe fn accessoryView(&self) -> Option<Id<NSView, Shared>>;
 
@@ -68,6 +78,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSPageLayoutPanel
+    #[cfg(feature = "AppKit_NSApplication")]
     unsafe impl NSApplication {
         #[method(runPageLayout:)]
         pub unsafe fn runPageLayout(&self, sender: Option<&Object>);

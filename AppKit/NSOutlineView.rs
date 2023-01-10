@@ -23,22 +23,29 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSOutlineView")]
     unsafe impl NSOutlineView {
+        #[cfg(feature = "AppKit_NSOutlineViewDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSOutlineViewDelegate, Shared>>;
 
+        #[cfg(feature = "AppKit_NSOutlineViewDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&NSOutlineViewDelegate>);
 
+        #[cfg(feature = "AppKit_NSOutlineViewDataSource")]
         #[method_id(@__retain_semantics Other dataSource)]
         pub unsafe fn dataSource(&self) -> Option<Id<NSOutlineViewDataSource, Shared>>;
 
+        #[cfg(feature = "AppKit_NSOutlineViewDataSource")]
         #[method(setDataSource:)]
         pub unsafe fn setDataSource(&self, dataSource: Option<&NSOutlineViewDataSource>);
 
+        #[cfg(feature = "AppKit_NSTableColumn")]
         #[method_id(@__retain_semantics Other outlineTableColumn)]
         pub unsafe fn outlineTableColumn(&self) -> Option<Id<NSTableColumn, Shared>>;
 
+        #[cfg(feature = "AppKit_NSTableColumn")]
         #[method(setOutlineTableColumn:)]
         pub unsafe fn setOutlineTableColumn(&self, outlineTableColumn: Option<&NSTableColumn>);
 
@@ -131,6 +138,7 @@ extern_methods!(
         #[method(setAutosaveExpandedItems:)]
         pub unsafe fn setAutosaveExpandedItems(&self, autosaveExpandedItems: bool);
 
+        #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(insertItemsAtIndexes:inParent:withAnimation:)]
         pub unsafe fn insertItemsAtIndexes_inParent_withAnimation(
             &self,
@@ -139,6 +147,7 @@ extern_methods!(
             animationOptions: NSTableViewAnimationOptions,
         );
 
+        #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(removeItemsAtIndexes:inParent:withAnimation:)]
         pub unsafe fn removeItemsAtIndexes_inParent_withAnimation(
             &self,
@@ -156,6 +165,7 @@ extern_methods!(
             newParent: Option<&Object>,
         );
 
+        #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(insertRowsAtIndexes:withAnimation:)]
         pub unsafe fn insertRowsAtIndexes_withAnimation(
             &self,
@@ -163,6 +173,7 @@ extern_methods!(
             animationOptions: NSTableViewAnimationOptions,
         );
 
+        #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(removeRowsAtIndexes:withAnimation:)]
         pub unsafe fn removeRowsAtIndexes_withAnimation(
             &self,
@@ -650,6 +661,7 @@ extern_static!(NSOutlineViewItemDidCollapseNotification: &'static NSNotification
 
 extern_methods!(
     /// Methods declared on superclass `NSTableView`
+    #[cfg(feature = "AppKit_NSOutlineView")]
     unsafe impl NSOutlineView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(

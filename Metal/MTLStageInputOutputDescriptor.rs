@@ -95,6 +95,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Metal_MTLBufferLayoutDescriptor")]
     unsafe impl MTLBufferLayoutDescriptor {
         #[method(stride)]
         pub fn stride(&self) -> NSUInteger;
@@ -126,13 +127,16 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Metal_MTLBufferLayoutDescriptorArray")]
     unsafe impl MTLBufferLayoutDescriptorArray {
+        #[cfg(feature = "Metal_MTLBufferLayoutDescriptor")]
         #[method_id(@__retain_semantics Other objectAtIndexedSubscript:)]
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             index: NSUInteger,
         ) -> Id<MTLBufferLayoutDescriptor, Shared>;
 
+        #[cfg(feature = "Metal_MTLBufferLayoutDescriptor")]
         #[method(setObject:atIndexedSubscript:)]
         pub unsafe fn setObject_atIndexedSubscript(
             &self,
@@ -152,6 +156,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Metal_MTLAttributeDescriptor")]
     unsafe impl MTLAttributeDescriptor {
         #[method(format)]
         pub fn format(&self) -> MTLAttributeFormat;
@@ -183,13 +188,16 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Metal_MTLAttributeDescriptorArray")]
     unsafe impl MTLAttributeDescriptorArray {
+        #[cfg(feature = "Metal_MTLAttributeDescriptor")]
         #[method_id(@__retain_semantics Other objectAtIndexedSubscript:)]
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             index: NSUInteger,
         ) -> Id<MTLAttributeDescriptor, Shared>;
 
+        #[cfg(feature = "Metal_MTLAttributeDescriptor")]
         #[method(setObject:atIndexedSubscript:)]
         pub unsafe fn setObject_atIndexedSubscript(
             &self,
@@ -209,13 +217,16 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
     unsafe impl MTLStageInputOutputDescriptor {
         #[method_id(@__retain_semantics Other stageInputOutputDescriptor)]
         pub fn stageInputOutputDescriptor() -> Id<MTLStageInputOutputDescriptor, Shared>;
 
+        #[cfg(feature = "Metal_MTLBufferLayoutDescriptorArray")]
         #[method_id(@__retain_semantics Other layouts)]
         pub fn layouts(&self) -> Id<MTLBufferLayoutDescriptorArray, Shared>;
 
+        #[cfg(feature = "Metal_MTLAttributeDescriptorArray")]
         #[method_id(@__retain_semantics Other attributes)]
         pub fn attributes(&self) -> Id<MTLAttributeDescriptorArray, Shared>;
 

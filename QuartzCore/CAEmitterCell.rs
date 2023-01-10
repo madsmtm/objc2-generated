@@ -14,19 +14,24 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "QuartzCore_CAEmitterCell")]
     unsafe impl CAEmitterCell {
         #[method_id(@__retain_semantics Other emitterCell)]
         pub unsafe fn emitterCell() -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other defaultValueForKey:)]
         pub unsafe fn defaultValueForKey(key: &NSString) -> Option<Id<Object, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(shouldArchiveValueForKey:)]
         pub unsafe fn shouldArchiveValueForKey(&self, key: &NSString) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
@@ -198,15 +203,19 @@ extern_methods!(
         #[method(setContentsScale:)]
         pub unsafe fn setContentsScale(&self, contentsScale: CGFloat);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other minificationFilter)]
         pub unsafe fn minificationFilter(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setMinificationFilter:)]
         pub unsafe fn setMinificationFilter(&self, minificationFilter: &NSString);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other magnificationFilter)]
         pub unsafe fn magnificationFilter(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setMagnificationFilter:)]
         pub unsafe fn setMagnificationFilter(&self, magnificationFilter: &NSString);
 
@@ -216,15 +225,19 @@ extern_methods!(
         #[method(setMinificationFilterBias:)]
         pub unsafe fn setMinificationFilterBias(&self, minificationFilterBias: c_float);
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other emitterCells)]
         pub unsafe fn emitterCells(&self) -> Option<Id<NSArray<CAEmitterCell>, Shared>>;
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(setEmitterCells:)]
         pub unsafe fn setEmitterCells(&self, emitterCells: Option<&NSArray<CAEmitterCell>>);
 
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other style)]
         pub unsafe fn style(&self) -> Option<Id<NSDictionary, Shared>>;
 
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method(setStyle:)]
         pub unsafe fn setStyle(&self, style: Option<&NSDictionary>);
     }

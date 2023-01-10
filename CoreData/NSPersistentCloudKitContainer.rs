@@ -24,25 +24,30 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "CoreData_NSPersistentCloudKitContainer")]
     unsafe impl NSPersistentCloudKitContainer {
+        #[cfg(feature = "Foundation_NSError")]
         #[method(initializeCloudKitSchemaWithOptions:error:_)]
         pub unsafe fn initializeCloudKitSchemaWithOptions_error(
             &self,
             options: NSPersistentCloudKitContainerSchemaInitializationOptions,
         ) -> Result<(), Id<NSError, Shared>>;
 
+        #[cfg(feature = "CoreData_NSManagedObjectID")]
         #[method(canUpdateRecordForManagedObjectWithID:)]
         pub unsafe fn canUpdateRecordForManagedObjectWithID(
             &self,
             objectID: &NSManagedObjectID,
         ) -> bool;
 
+        #[cfg(feature = "CoreData_NSManagedObjectID")]
         #[method(canDeleteRecordForManagedObjectWithID:)]
         pub unsafe fn canDeleteRecordForManagedObjectWithID(
             &self,
             objectID: &NSManagedObjectID,
         ) -> bool;
 
+        #[cfg(feature = "CoreData_NSPersistentStore")]
         #[method(canModifyManagedObjectsInStore:)]
         pub unsafe fn canModifyManagedObjectsInStore(&self, store: &NSPersistentStore) -> bool;
     }
@@ -50,22 +55,33 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSPersistentContainer`
+    #[cfg(feature = "CoreData_NSPersistentCloudKitContainer")]
     unsafe impl NSPersistentCloudKitContainer {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other persistentContainerWithName:)]
         pub unsafe fn persistentContainerWithName(name: &NSString) -> Id<Self, Shared>;
 
+        #[cfg(all(
+            feature = "CoreData_NSManagedObjectModel",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other persistentContainerWithName:managedObjectModel:)]
         pub unsafe fn persistentContainerWithName_managedObjectModel(
             name: &NSString,
             model: &NSManagedObjectModel,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithName:)]
         pub unsafe fn initWithName(
             this: Option<Allocated<Self>>,
             name: &NSString,
         ) -> Id<Self, Shared>;
 
+        #[cfg(all(
+            feature = "CoreData_NSManagedObjectModel",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Init initWithName:managedObjectModel:)]
         pub unsafe fn initWithName_managedObjectModel(
             this: Option<Allocated<Self>>,

@@ -50,6 +50,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSTouch")]
     unsafe impl NSTouch {
         #[method_id(@__retain_semantics Other identity)]
         pub unsafe fn identity(&self) -> Id<TodoProtocols, Shared>;
@@ -73,13 +74,16 @@ extern_methods!(
 
 extern_methods!(
     /// NSTouchBar
+    #[cfg(feature = "AppKit_NSTouch")]
     unsafe impl NSTouch {
         #[method(type)]
         pub unsafe fn type_(&self) -> NSTouchType;
 
+        #[cfg(feature = "AppKit_NSView")]
         #[method(locationInView:)]
         pub unsafe fn locationInView(&self, view: Option<&NSView>) -> NSPoint;
 
+        #[cfg(feature = "AppKit_NSView")]
         #[method(previousLocationInView:)]
         pub unsafe fn previousLocationInView(&self, view: Option<&NSView>) -> NSPoint;
     }

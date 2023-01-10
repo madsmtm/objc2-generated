@@ -64,16 +64,20 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSPrintPanel")]
     unsafe impl NSPrintPanel {
         #[method_id(@__retain_semantics Other printPanel)]
         pub unsafe fn printPanel() -> Id<NSPrintPanel, Shared>;
 
+        #[cfg(feature = "AppKit_NSViewController")]
         #[method(addAccessoryController:)]
         pub unsafe fn addAccessoryController(&self, accessoryController: &NSViewController);
 
+        #[cfg(feature = "AppKit_NSViewController")]
         #[method(removeAccessoryController:)]
         pub unsafe fn removeAccessoryController(&self, accessoryController: &NSViewController);
 
+        #[cfg(all(feature = "AppKit_NSViewController", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other accessoryControllers)]
         pub unsafe fn accessoryControllers(&self) -> Id<NSArray<NSViewController>, Shared>;
 
@@ -83,24 +87,31 @@ extern_methods!(
         #[method(setOptions:)]
         pub unsafe fn setOptions(&self, options: NSPrintPanelOptions);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setDefaultButtonTitle:)]
         pub unsafe fn setDefaultButtonTitle(&self, defaultButtonTitle: Option<&NSString>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other defaultButtonTitle)]
         pub unsafe fn defaultButtonTitle(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "AppKit_NSHelpAnchorName")]
         #[method_id(@__retain_semantics Other helpAnchor)]
         pub unsafe fn helpAnchor(&self) -> Option<Id<NSHelpAnchorName, Shared>>;
 
+        #[cfg(feature = "AppKit_NSHelpAnchorName")]
         #[method(setHelpAnchor:)]
         pub unsafe fn setHelpAnchor(&self, helpAnchor: Option<&NSHelpAnchorName>);
 
+        #[cfg(feature = "AppKit_NSPrintPanelJobStyleHint")]
         #[method_id(@__retain_semantics Other jobStyleHint)]
         pub unsafe fn jobStyleHint(&self) -> Option<Id<NSPrintPanelJobStyleHint, Shared>>;
 
+        #[cfg(feature = "AppKit_NSPrintPanelJobStyleHint")]
         #[method(setJobStyleHint:)]
         pub unsafe fn setJobStyleHint(&self, jobStyleHint: Option<&NSPrintPanelJobStyleHint>);
 
+        #[cfg(all(feature = "AppKit_NSPrintInfo", feature = "AppKit_NSWindow"))]
         #[method(beginSheetWithPrintInfo:modalForWindow:delegate:didEndSelector:contextInfo:)]
         pub unsafe fn beginSheetWithPrintInfo_modalForWindow_delegate_didEndSelector_contextInfo(
             &self,
@@ -111,12 +122,14 @@ extern_methods!(
             contextInfo: *mut c_void,
         );
 
+        #[cfg(feature = "AppKit_NSPrintInfo")]
         #[method(runModalWithPrintInfo:)]
         pub unsafe fn runModalWithPrintInfo(&self, printInfo: &NSPrintInfo) -> NSInteger;
 
         #[method(runModal)]
         pub unsafe fn runModal(&self) -> NSInteger;
 
+        #[cfg(feature = "AppKit_NSPrintInfo")]
         #[method_id(@__retain_semantics Other printInfo)]
         pub unsafe fn printInfo(&self) -> Id<NSPrintInfo, Shared>;
     }
@@ -124,10 +137,13 @@ extern_methods!(
 
 extern_methods!(
     /// NSDeprecated
+    #[cfg(feature = "AppKit_NSPrintPanel")]
     unsafe impl NSPrintPanel {
+        #[cfg(feature = "AppKit_NSView")]
         #[method(setAccessoryView:)]
         pub unsafe fn setAccessoryView(&self, accessoryView: Option<&NSView>);
 
+        #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other accessoryView)]
         pub unsafe fn accessoryView(&self) -> Option<Id<NSView, Shared>>;
 

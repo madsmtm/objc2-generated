@@ -54,6 +54,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSFontManager")]
     unsafe impl NSFontManager {
         #[method(setFontPanelFactory:)]
         pub unsafe fn setFontPanelFactory(factoryId: Option<&Class>);
@@ -67,21 +68,27 @@ extern_methods!(
         #[method(isMultiple)]
         pub unsafe fn isMultiple(&self) -> bool;
 
+        #[cfg(feature = "AppKit_NSFont")]
         #[method_id(@__retain_semantics Other selectedFont)]
         pub unsafe fn selectedFont(&self) -> Option<Id<NSFont, Shared>>;
 
+        #[cfg(feature = "AppKit_NSFont")]
         #[method(setSelectedFont:isMultiple:)]
         pub unsafe fn setSelectedFont_isMultiple(&self, fontObj: &NSFont, flag: bool);
 
+        #[cfg(feature = "AppKit_NSMenu")]
         #[method(setFontMenu:)]
         pub unsafe fn setFontMenu(&self, newMenu: &NSMenu);
 
+        #[cfg(feature = "AppKit_NSMenu")]
         #[method_id(@__retain_semantics Other fontMenu:)]
         pub unsafe fn fontMenu(&self, create: bool) -> Option<Id<NSMenu, Shared>>;
 
+        #[cfg(feature = "AppKit_NSFontPanel")]
         #[method_id(@__retain_semantics Other fontPanel:)]
         pub unsafe fn fontPanel(&self, create: bool) -> Option<Id<NSFontPanel, Shared>>;
 
+        #[cfg(all(feature = "AppKit_NSFont", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other fontWithFamily:traits:weight:size:)]
         pub unsafe fn fontWithFamily_traits_weight_size(
             &self,
@@ -91,27 +98,34 @@ extern_methods!(
             size: CGFloat,
         ) -> Option<Id<NSFont, Shared>>;
 
+        #[cfg(feature = "AppKit_NSFont")]
         #[method(traitsOfFont:)]
         pub unsafe fn traitsOfFont(&self, fontObj: &NSFont) -> NSFontTraitMask;
 
+        #[cfg(feature = "AppKit_NSFont")]
         #[method(weightOfFont:)]
         pub unsafe fn weightOfFont(&self, fontObj: &NSFont) -> NSInteger;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other availableFonts)]
         pub unsafe fn availableFonts(&self) -> Id<NSArray<NSString>, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other availableFontFamilies)]
         pub unsafe fn availableFontFamilies(&self) -> Id<NSArray<NSString>, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other availableMembersOfFontFamily:)]
         pub unsafe fn availableMembersOfFontFamily(
             &self,
             fam: &NSString,
         ) -> Option<Id<NSArray<NSArray>, Shared>>;
 
+        #[cfg(feature = "AppKit_NSFont")]
         #[method_id(@__retain_semantics Other convertFont:)]
         pub unsafe fn convertFont(&self, fontObj: &NSFont) -> Id<NSFont, Shared>;
 
+        #[cfg(feature = "AppKit_NSFont")]
         #[method_id(@__retain_semantics Other convertFont:toSize:)]
         pub unsafe fn convertFont_toSize(
             &self,
@@ -119,6 +133,7 @@ extern_methods!(
             size: CGFloat,
         ) -> Id<NSFont, Shared>;
 
+        #[cfg(all(feature = "AppKit_NSFont", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other convertFont:toFace:)]
         pub unsafe fn convertFont_toFace(
             &self,
@@ -126,6 +141,7 @@ extern_methods!(
             typeface: &NSString,
         ) -> Option<Id<NSFont, Shared>>;
 
+        #[cfg(all(feature = "AppKit_NSFont", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other convertFont:toFamily:)]
         pub unsafe fn convertFont_toFamily(
             &self,
@@ -133,6 +149,7 @@ extern_methods!(
             family: &NSString,
         ) -> Id<NSFont, Shared>;
 
+        #[cfg(feature = "AppKit_NSFont")]
         #[method_id(@__retain_semantics Other convertFont:toHaveTrait:)]
         pub unsafe fn convertFont_toHaveTrait(
             &self,
@@ -140,6 +157,7 @@ extern_methods!(
             trait_: NSFontTraitMask,
         ) -> Id<NSFont, Shared>;
 
+        #[cfg(feature = "AppKit_NSFont")]
         #[method_id(@__retain_semantics Other convertFont:toNotHaveTrait:)]
         pub unsafe fn convertFont_toNotHaveTrait(
             &self,
@@ -147,6 +165,7 @@ extern_methods!(
             trait_: NSFontTraitMask,
         ) -> Id<NSFont, Shared>;
 
+        #[cfg(feature = "AppKit_NSFont")]
         #[method_id(@__retain_semantics Other convertWeight:ofFont:)]
         pub unsafe fn convertWeight_ofFont(
             &self,
@@ -175,6 +194,7 @@ extern_methods!(
         #[method(sendAction)]
         pub unsafe fn sendAction(&self) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedNameForFamily:face:)]
         pub unsafe fn localizedNameForFamily_face(
             &self,
@@ -182,6 +202,7 @@ extern_methods!(
             faceKey: Option<&NSString>,
         ) -> Id<NSString, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setSelectedAttributes:isMultiple:)]
         pub unsafe fn setSelectedAttributes_isMultiple(
             &self,
@@ -189,27 +210,32 @@ extern_methods!(
             flag: bool,
         );
 
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other convertAttributes:)]
         pub unsafe fn convertAttributes(
             &self,
             attributes: &NSDictionary<NSString, Object>,
         ) -> Id<NSDictionary<NSString, Object>, Shared>;
 
+        #[cfg(all(feature = "AppKit_NSFontDescriptor", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other availableFontNamesMatchingFontDescriptor:)]
         pub unsafe fn availableFontNamesMatchingFontDescriptor(
             &self,
             descriptor: &NSFontDescriptor,
         ) -> Option<Id<NSArray, Shared>>;
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other collectionNames)]
         pub unsafe fn collectionNames(&self) -> Id<NSArray, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other fontDescriptorsInCollection:)]
         pub unsafe fn fontDescriptorsInCollection(
             &self,
             collectionNames: &NSString,
         ) -> Option<Id<NSArray, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(addCollection:options:)]
         pub unsafe fn addCollection_options(
             &self,
@@ -217,9 +243,11 @@ extern_methods!(
             collectionOptions: NSFontCollectionOptions,
         ) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(removeCollection:)]
         pub unsafe fn removeCollection(&self, collectionName: &NSString) -> bool;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(addFontDescriptors:toCollection:)]
         pub unsafe fn addFontDescriptors_toCollection(
             &self,
@@ -227,6 +255,7 @@ extern_methods!(
             collectionName: &NSString,
         );
 
+        #[cfg(all(feature = "AppKit_NSFontDescriptor", feature = "Foundation_NSString"))]
         #[method(removeFontDescriptor:fromCollection:)]
         pub unsafe fn removeFontDescriptor_fromCollection(
             &self,
@@ -250,7 +279,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSFontManagerMenuActionMethods
+    #[cfg(feature = "AppKit_NSFontManager")]
     unsafe impl NSFontManager {
+        #[cfg(feature = "Foundation_NSString")]
         #[method(fontNamed:hasTraits:)]
         pub unsafe fn fontNamed_hasTraits(
             &self,
@@ -258,6 +289,7 @@ extern_methods!(
             someTraits: NSFontTraitMask,
         ) -> bool;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other availableFontNamesWithTraits:)]
         pub unsafe fn availableFontNamesWithTraits(
             &self,

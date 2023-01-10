@@ -14,10 +14,13 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Metal_MTLBlitPassSampleBufferAttachmentDescriptor")]
     unsafe impl MTLBlitPassSampleBufferAttachmentDescriptor {
+        #[cfg(feature = "Metal_MTLCounterSampleBuffer")]
         #[method_id(@__retain_semantics Other sampleBuffer)]
         pub unsafe fn sampleBuffer(&self) -> Option<Id<MTLCounterSampleBuffer, Shared>>;
 
+        #[cfg(feature = "Metal_MTLCounterSampleBuffer")]
         #[method(setSampleBuffer:)]
         pub unsafe fn setSampleBuffer(&self, sampleBuffer: Option<&MTLCounterSampleBuffer>);
 
@@ -45,13 +48,16 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Metal_MTLBlitPassSampleBufferAttachmentDescriptorArray")]
     unsafe impl MTLBlitPassSampleBufferAttachmentDescriptorArray {
+        #[cfg(feature = "Metal_MTLBlitPassSampleBufferAttachmentDescriptor")]
         #[method_id(@__retain_semantics Other objectAtIndexedSubscript:)]
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             attachmentIndex: NSUInteger,
         ) -> Id<MTLBlitPassSampleBufferAttachmentDescriptor, Shared>;
 
+        #[cfg(feature = "Metal_MTLBlitPassSampleBufferAttachmentDescriptor")]
         #[method(setObject:atIndexedSubscript:)]
         pub unsafe fn setObject_atIndexedSubscript(
             &self,
@@ -71,10 +77,12 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Metal_MTLBlitPassDescriptor")]
     unsafe impl MTLBlitPassDescriptor {
         #[method_id(@__retain_semantics Other blitPassDescriptor)]
         pub unsafe fn blitPassDescriptor() -> Id<MTLBlitPassDescriptor, Shared>;
 
+        #[cfg(feature = "Metal_MTLBlitPassSampleBufferAttachmentDescriptorArray")]
         #[method_id(@__retain_semantics Other sampleBufferAttachments)]
         pub unsafe fn sampleBufferAttachments(
             &self,

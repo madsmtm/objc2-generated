@@ -34,7 +34,13 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSToolbarItemGroup")]
     unsafe impl NSToolbarItemGroup {
+        #[cfg(all(
+            feature = "AppKit_NSToolbarItemIdentifier",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other groupWithItemIdentifier:titles:selectionMode:labels:target:action:)]
         pub unsafe fn groupWithItemIdentifier_titles_selectionMode_labels_target_action(
             itemIdentifier: &NSToolbarItemIdentifier,
@@ -45,6 +51,12 @@ extern_methods!(
             action: Option<Sel>,
         ) -> Id<Self, Shared>;
 
+        #[cfg(all(
+            feature = "AppKit_NSImage",
+            feature = "AppKit_NSToolbarItemIdentifier",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other groupWithItemIdentifier:images:selectionMode:labels:target:action:)]
         pub unsafe fn groupWithItemIdentifier_images_selectionMode_labels_target_action(
             itemIdentifier: &NSToolbarItemIdentifier,
@@ -55,9 +67,11 @@ extern_methods!(
             action: Option<Sel>,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other subitems)]
         pub unsafe fn subitems(&self) -> Id<NSArray<NSToolbarItem>, Shared>;
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(setSubitems:)]
         pub unsafe fn setSubitems(&self, subitems: &NSArray<NSToolbarItem>);
 
@@ -92,7 +106,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSToolbarItem`
+    #[cfg(feature = "AppKit_NSToolbarItemGroup")]
     unsafe impl NSToolbarItemGroup {
+        #[cfg(feature = "AppKit_NSToolbarItemIdentifier")]
         #[method_id(@__retain_semantics Init initWithItemIdentifier:)]
         pub unsafe fn initWithItemIdentifier(
             this: Option<Allocated<Self>>,

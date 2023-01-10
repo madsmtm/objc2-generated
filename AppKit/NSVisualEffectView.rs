@@ -58,6 +58,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSVisualEffectView")]
     unsafe impl NSVisualEffectView {
         #[method(material)]
         pub unsafe fn material(&self) -> NSVisualEffectMaterial;
@@ -80,9 +81,11 @@ extern_methods!(
         #[method(setState:)]
         pub unsafe fn setState(&self, state: NSVisualEffectState);
 
+        #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other maskImage)]
         pub unsafe fn maskImage(&self) -> Option<Id<NSImage, Shared>>;
 
+        #[cfg(feature = "AppKit_NSImage")]
         #[method(setMaskImage:)]
         pub unsafe fn setMaskImage(&self, maskImage: Option<&NSImage>);
 
@@ -95,6 +98,7 @@ extern_methods!(
         #[method(viewDidMoveToWindow)]
         pub unsafe fn viewDidMoveToWindow(&self);
 
+        #[cfg(feature = "AppKit_NSWindow")]
         #[method(viewWillMoveToWindow:)]
         pub unsafe fn viewWillMoveToWindow(&self, newWindow: Option<&NSWindow>);
     }
@@ -102,6 +106,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSView`
+    #[cfg(feature = "AppKit_NSVisualEffectView")]
     unsafe impl NSVisualEffectView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(

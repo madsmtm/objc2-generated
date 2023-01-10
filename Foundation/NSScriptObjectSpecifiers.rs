@@ -56,12 +56,15 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSScriptObjectSpecifier")]
     unsafe impl NSScriptObjectSpecifier {
+        #[cfg(feature = "Foundation_NSAppleEventDescriptor")]
         #[method_id(@__retain_semantics Other objectSpecifierWithDescriptor:)]
         pub unsafe fn objectSpecifierWithDescriptor(
             descriptor: &NSAppleEventDescriptor,
         ) -> Option<Id<NSScriptObjectSpecifier, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithContainerSpecifier:key:)]
         pub unsafe fn initWithContainerSpecifier_key(
             this: Option<Allocated<Self>>,
@@ -69,6 +72,10 @@ extern_methods!(
             property: &NSString,
         ) -> Id<Self, Shared>;
 
+        #[cfg(all(
+            feature = "Foundation_NSScriptClassDescription",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Init initWithContainerClassDescription:containerSpecifier:key:)]
         pub unsafe fn initWithContainerClassDescription_containerSpecifier_key(
             this: Option<Allocated<Self>>,
@@ -77,6 +84,7 @@ extern_methods!(
             property: &NSString,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -113,23 +121,28 @@ extern_methods!(
             containerIsRangeContainerObject: bool,
         );
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other key)]
         pub unsafe fn key(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setKey:)]
         pub unsafe fn setKey(&self, key: &NSString);
 
+        #[cfg(feature = "Foundation_NSScriptClassDescription")]
         #[method_id(@__retain_semantics Other containerClassDescription)]
         pub unsafe fn containerClassDescription(
             &self,
         ) -> Option<Id<NSScriptClassDescription, Shared>>;
 
+        #[cfg(feature = "Foundation_NSScriptClassDescription")]
         #[method(setContainerClassDescription:)]
         pub unsafe fn setContainerClassDescription(
             &self,
             containerClassDescription: Option<&NSScriptClassDescription>,
         );
 
+        #[cfg(feature = "Foundation_NSScriptClassDescription")]
         #[method_id(@__retain_semantics Other keyClassDescription)]
         pub unsafe fn keyClassDescription(&self) -> Option<Id<NSScriptClassDescription, Shared>>;
 
@@ -160,6 +173,7 @@ extern_methods!(
             &self,
         ) -> Option<Id<NSScriptObjectSpecifier, Shared>>;
 
+        #[cfg(feature = "Foundation_NSAppleEventDescriptor")]
         #[method_id(@__retain_semantics Other descriptor)]
         pub unsafe fn descriptor(&self) -> Option<Id<NSAppleEventDescriptor, Shared>>;
     }
@@ -176,7 +190,12 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSIndexSpecifier")]
     unsafe impl NSIndexSpecifier {
+        #[cfg(all(
+            feature = "Foundation_NSScriptClassDescription",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Init initWithContainerClassDescription:containerSpecifier:key:index:)]
         pub unsafe fn initWithContainerClassDescription_containerSpecifier_key_index(
             this: Option<Allocated<Self>>,
@@ -205,6 +224,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSMiddleSpecifier")]
     unsafe impl NSMiddleSpecifier {}
 );
 
@@ -219,13 +239,19 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSNameSpecifier")]
     unsafe impl NSNameSpecifier {
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             inCoder: &NSCoder,
         ) -> Option<Id<Self, Shared>>;
 
+        #[cfg(all(
+            feature = "Foundation_NSScriptClassDescription",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Init initWithContainerClassDescription:containerSpecifier:key:name:)]
         pub unsafe fn initWithContainerClassDescription_containerSpecifier_key_name(
             this: Option<Allocated<Self>>,
@@ -235,9 +261,11 @@ extern_methods!(
             name: &NSString,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]
         pub unsafe fn setName(&self, name: &NSString);
     }
@@ -253,7 +281,9 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSPositionalSpecifier")]
     unsafe impl NSPositionalSpecifier {
+        #[cfg(feature = "Foundation_NSScriptObjectSpecifier")]
         #[method_id(@__retain_semantics Init initWithPosition:objectSpecifier:)]
         pub unsafe fn initWithPosition_objectSpecifier(
             this: Option<Allocated<Self>>,
@@ -264,9 +294,11 @@ extern_methods!(
         #[method(position)]
         pub unsafe fn position(&self) -> NSInsertionPosition;
 
+        #[cfg(feature = "Foundation_NSScriptObjectSpecifier")]
         #[method_id(@__retain_semantics Other objectSpecifier)]
         pub unsafe fn objectSpecifier(&self) -> Id<NSScriptObjectSpecifier, Shared>;
 
+        #[cfg(feature = "Foundation_NSScriptClassDescription")]
         #[method(setInsertionClassDescription:)]
         pub unsafe fn setInsertionClassDescription(
             &self,
@@ -279,6 +311,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other insertionContainer)]
         pub unsafe fn insertionContainer(&self) -> Option<Id<Object, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other insertionKey)]
         pub unsafe fn insertionKey(&self) -> Option<Id<NSString, Shared>>;
 
@@ -301,6 +334,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSPropertySpecifier")]
     unsafe impl NSPropertySpecifier {}
 );
 
@@ -315,6 +349,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSRandomSpecifier")]
     unsafe impl NSRandomSpecifier {}
 );
 
@@ -329,13 +364,19 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSRangeSpecifier")]
     unsafe impl NSRangeSpecifier {
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             inCoder: &NSCoder,
         ) -> Option<Id<Self, Shared>>;
 
+        #[cfg(all(
+            feature = "Foundation_NSScriptClassDescription",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Init initWithContainerClassDescription:containerSpecifier:key:startSpecifier:endSpecifier:)]
         pub unsafe fn initWithContainerClassDescription_containerSpecifier_key_startSpecifier_endSpecifier(
             this: Option<Allocated<Self>>,
@@ -371,13 +412,19 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSRelativeSpecifier")]
     unsafe impl NSRelativeSpecifier {
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             inCoder: &NSCoder,
         ) -> Option<Id<Self, Shared>>;
 
+        #[cfg(all(
+            feature = "Foundation_NSScriptClassDescription",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Init initWithContainerClassDescription:containerSpecifier:key:relativePosition:baseSpecifier:)]
         pub unsafe fn initWithContainerClassDescription_containerSpecifier_key_relativePosition_baseSpecifier(
             this: Option<Allocated<Self>>,
@@ -413,13 +460,19 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSUniqueIDSpecifier")]
     unsafe impl NSUniqueIDSpecifier {
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             inCoder: &NSCoder,
         ) -> Option<Id<Self, Shared>>;
 
+        #[cfg(all(
+            feature = "Foundation_NSScriptClassDescription",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Init initWithContainerClassDescription:containerSpecifier:key:uniqueID:)]
         pub unsafe fn initWithContainerClassDescription_containerSpecifier_key_uniqueID(
             this: Option<Allocated<Self>>,
@@ -448,13 +501,20 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSWhoseSpecifier")]
     unsafe impl NSWhoseSpecifier {
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             inCoder: &NSCoder,
         ) -> Option<Id<Self, Shared>>;
 
+        #[cfg(all(
+            feature = "Foundation_NSScriptClassDescription",
+            feature = "Foundation_NSScriptWhoseTest",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Init initWithContainerClassDescription:containerSpecifier:key:test:)]
         pub unsafe fn initWithContainerClassDescription_containerSpecifier_key_test(
             this: Option<Allocated<Self>>,
@@ -464,9 +524,11 @@ extern_methods!(
             test: &NSScriptWhoseTest,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSScriptWhoseTest")]
         #[method_id(@__retain_semantics Other test)]
         pub unsafe fn test(&self) -> Id<NSScriptWhoseTest, Shared>;
 
+        #[cfg(feature = "Foundation_NSScriptWhoseTest")]
         #[method(setTest:)]
         pub unsafe fn setTest(&self, test: &NSScriptWhoseTest);
 
@@ -504,7 +566,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSScriptObjectSpecifier`
+    #[cfg(feature = "Foundation_NSIndexSpecifier")]
     unsafe impl NSIndexSpecifier {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithContainerSpecifier:key:)]
         pub unsafe fn initWithContainerSpecifier_key(
             this: Option<Allocated<Self>>,
@@ -512,6 +576,10 @@ extern_methods!(
             property: &NSString,
         ) -> Id<Self, Shared>;
 
+        #[cfg(all(
+            feature = "Foundation_NSScriptClassDescription",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Init initWithContainerClassDescription:containerSpecifier:key:)]
         pub unsafe fn initWithContainerClassDescription_containerSpecifier_key(
             this: Option<Allocated<Self>>,
@@ -524,7 +592,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSScriptObjectSpecifier`
+    #[cfg(feature = "Foundation_NSMiddleSpecifier")]
     unsafe impl NSMiddleSpecifier {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithContainerSpecifier:key:)]
         pub unsafe fn initWithContainerSpecifier_key(
             this: Option<Allocated<Self>>,
@@ -532,6 +602,10 @@ extern_methods!(
             property: &NSString,
         ) -> Id<Self, Shared>;
 
+        #[cfg(all(
+            feature = "Foundation_NSScriptClassDescription",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Init initWithContainerClassDescription:containerSpecifier:key:)]
         pub unsafe fn initWithContainerClassDescription_containerSpecifier_key(
             this: Option<Allocated<Self>>,
@@ -544,7 +618,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSScriptObjectSpecifier`
+    #[cfg(feature = "Foundation_NSNameSpecifier")]
     unsafe impl NSNameSpecifier {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithContainerSpecifier:key:)]
         pub unsafe fn initWithContainerSpecifier_key(
             this: Option<Allocated<Self>>,
@@ -552,6 +628,10 @@ extern_methods!(
             property: &NSString,
         ) -> Id<Self, Shared>;
 
+        #[cfg(all(
+            feature = "Foundation_NSScriptClassDescription",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Init initWithContainerClassDescription:containerSpecifier:key:)]
         pub unsafe fn initWithContainerClassDescription_containerSpecifier_key(
             this: Option<Allocated<Self>>,
@@ -564,7 +644,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSScriptObjectSpecifier`
+    #[cfg(feature = "Foundation_NSPropertySpecifier")]
     unsafe impl NSPropertySpecifier {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithContainerSpecifier:key:)]
         pub unsafe fn initWithContainerSpecifier_key(
             this: Option<Allocated<Self>>,
@@ -572,6 +654,10 @@ extern_methods!(
             property: &NSString,
         ) -> Id<Self, Shared>;
 
+        #[cfg(all(
+            feature = "Foundation_NSScriptClassDescription",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Init initWithContainerClassDescription:containerSpecifier:key:)]
         pub unsafe fn initWithContainerClassDescription_containerSpecifier_key(
             this: Option<Allocated<Self>>,
@@ -584,7 +670,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSScriptObjectSpecifier`
+    #[cfg(feature = "Foundation_NSRandomSpecifier")]
     unsafe impl NSRandomSpecifier {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithContainerSpecifier:key:)]
         pub unsafe fn initWithContainerSpecifier_key(
             this: Option<Allocated<Self>>,
@@ -592,6 +680,10 @@ extern_methods!(
             property: &NSString,
         ) -> Id<Self, Shared>;
 
+        #[cfg(all(
+            feature = "Foundation_NSScriptClassDescription",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Init initWithContainerClassDescription:containerSpecifier:key:)]
         pub unsafe fn initWithContainerClassDescription_containerSpecifier_key(
             this: Option<Allocated<Self>>,
@@ -604,7 +696,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSScriptObjectSpecifier`
+    #[cfg(feature = "Foundation_NSRangeSpecifier")]
     unsafe impl NSRangeSpecifier {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithContainerSpecifier:key:)]
         pub unsafe fn initWithContainerSpecifier_key(
             this: Option<Allocated<Self>>,
@@ -612,6 +706,10 @@ extern_methods!(
             property: &NSString,
         ) -> Id<Self, Shared>;
 
+        #[cfg(all(
+            feature = "Foundation_NSScriptClassDescription",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Init initWithContainerClassDescription:containerSpecifier:key:)]
         pub unsafe fn initWithContainerClassDescription_containerSpecifier_key(
             this: Option<Allocated<Self>>,
@@ -624,7 +722,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSScriptObjectSpecifier`
+    #[cfg(feature = "Foundation_NSRelativeSpecifier")]
     unsafe impl NSRelativeSpecifier {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithContainerSpecifier:key:)]
         pub unsafe fn initWithContainerSpecifier_key(
             this: Option<Allocated<Self>>,
@@ -632,6 +732,10 @@ extern_methods!(
             property: &NSString,
         ) -> Id<Self, Shared>;
 
+        #[cfg(all(
+            feature = "Foundation_NSScriptClassDescription",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Init initWithContainerClassDescription:containerSpecifier:key:)]
         pub unsafe fn initWithContainerClassDescription_containerSpecifier_key(
             this: Option<Allocated<Self>>,
@@ -644,7 +748,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSScriptObjectSpecifier`
+    #[cfg(feature = "Foundation_NSUniqueIDSpecifier")]
     unsafe impl NSUniqueIDSpecifier {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithContainerSpecifier:key:)]
         pub unsafe fn initWithContainerSpecifier_key(
             this: Option<Allocated<Self>>,
@@ -652,6 +758,10 @@ extern_methods!(
             property: &NSString,
         ) -> Id<Self, Shared>;
 
+        #[cfg(all(
+            feature = "Foundation_NSScriptClassDescription",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Init initWithContainerClassDescription:containerSpecifier:key:)]
         pub unsafe fn initWithContainerClassDescription_containerSpecifier_key(
             this: Option<Allocated<Self>>,
@@ -664,7 +774,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSScriptObjectSpecifier`
+    #[cfg(feature = "Foundation_NSWhoseSpecifier")]
     unsafe impl NSWhoseSpecifier {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithContainerSpecifier:key:)]
         pub unsafe fn initWithContainerSpecifier_key(
             this: Option<Allocated<Self>>,
@@ -672,6 +784,10 @@ extern_methods!(
             property: &NSString,
         ) -> Id<Self, Shared>;
 
+        #[cfg(all(
+            feature = "Foundation_NSScriptClassDescription",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Init initWithContainerClassDescription:containerSpecifier:key:)]
         pub unsafe fn initWithContainerClassDescription_containerSpecifier_key(
             this: Option<Allocated<Self>>,

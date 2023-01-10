@@ -195,6 +195,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Metal_MTLArgumentDescriptor")]
     unsafe impl MTLArgumentDescriptor {
         #[method_id(@__retain_semantics Other argumentDescriptor)]
         pub fn argumentDescriptor() -> Id<MTLArgumentDescriptor, Shared>;

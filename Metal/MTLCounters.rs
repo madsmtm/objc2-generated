@@ -109,16 +109,21 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Metal_MTLCounterSampleBufferDescriptor")]
     unsafe impl MTLCounterSampleBufferDescriptor {
+        #[cfg(feature = "Metal_MTLCounterSet")]
         #[method_id(@__retain_semantics Other counterSet)]
         pub unsafe fn counterSet(&self) -> Option<Id<MTLCounterSet, Shared>>;
 
+        #[cfg(feature = "Metal_MTLCounterSet")]
         #[method(setCounterSet:)]
         pub unsafe fn setCounterSet(&self, counterSet: Option<&MTLCounterSet>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
         pub unsafe fn label(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:)]
         pub unsafe fn setLabel(&self, label: &NSString);
 

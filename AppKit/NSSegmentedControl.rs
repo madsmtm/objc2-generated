@@ -50,6 +50,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSSegmentedControl")]
     unsafe impl NSSegmentedControl {
         #[method(segmentCount)]
         pub unsafe fn segmentCount(&self) -> NSInteger;
@@ -72,9 +73,11 @@ extern_methods!(
         #[method(widthForSegment:)]
         pub unsafe fn widthForSegment(&self, segment: NSInteger) -> CGFloat;
 
+        #[cfg(feature = "AppKit_NSImage")]
         #[method(setImage:forSegment:)]
         pub unsafe fn setImage_forSegment(&self, image: Option<&NSImage>, segment: NSInteger);
 
+        #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other imageForSegment:)]
         pub unsafe fn imageForSegment(&self, segment: NSInteger) -> Option<Id<NSImage, Shared>>;
 
@@ -88,15 +91,19 @@ extern_methods!(
         #[method(imageScalingForSegment:)]
         pub unsafe fn imageScalingForSegment(&self, segment: NSInteger) -> NSImageScaling;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:forSegment:)]
         pub unsafe fn setLabel_forSegment(&self, label: &NSString, segment: NSInteger);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other labelForSegment:)]
         pub unsafe fn labelForSegment(&self, segment: NSInteger) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "AppKit_NSMenu")]
         #[method(setMenu:forSegment:)]
         pub unsafe fn setMenu_forSegment(&self, menu: Option<&NSMenu>, segment: NSInteger);
 
+        #[cfg(feature = "AppKit_NSMenu")]
         #[method_id(@__retain_semantics Other menuForSegment:)]
         pub unsafe fn menuForSegment(&self, segment: NSInteger) -> Option<Id<NSMenu, Shared>>;
 
@@ -112,9 +119,11 @@ extern_methods!(
         #[method(isEnabledForSegment:)]
         pub unsafe fn isEnabledForSegment(&self, segment: NSInteger) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setToolTip:forSegment:)]
         pub unsafe fn setToolTip_forSegment(&self, toolTip: Option<&NSString>, segment: NSInteger);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other toolTipForSegment:)]
         pub unsafe fn toolTipForSegment(&self, segment: NSInteger) -> Option<Id<NSString, Shared>>;
 
@@ -155,9 +164,11 @@ extern_methods!(
         #[method(doubleValueForSelectedSegment)]
         pub unsafe fn doubleValueForSelectedSegment(&self) -> c_double;
 
+        #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other selectedSegmentBezelColor)]
         pub unsafe fn selectedSegmentBezelColor(&self) -> Option<Id<NSColor, Shared>>;
 
+        #[cfg(feature = "AppKit_NSColor")]
         #[method(setSelectedSegmentBezelColor:)]
         pub unsafe fn setSelectedSegmentBezelColor(
             &self,
@@ -183,18 +194,27 @@ extern_methods!(
         #[method(setSegmentDistribution:)]
         pub unsafe fn setSegmentDistribution(&self, segmentDistribution: NSSegmentDistribution);
 
+        #[cfg(all(
+            feature = "AppKit_NSUserInterfaceCompressionOptions",
+            feature = "Foundation_NSArray"
+        ))]
         #[method(compressWithPrioritizedCompressionOptions:)]
         pub unsafe fn compressWithPrioritizedCompressionOptions(
             &self,
             prioritizedOptions: &NSArray<NSUserInterfaceCompressionOptions>,
         );
 
+        #[cfg(all(
+            feature = "AppKit_NSUserInterfaceCompressionOptions",
+            feature = "Foundation_NSArray"
+        ))]
         #[method(minimumSizeWithPrioritizedCompressionOptions:)]
         pub unsafe fn minimumSizeWithPrioritizedCompressionOptions(
             &self,
             prioritizedOptions: &NSArray<NSUserInterfaceCompressionOptions>,
         ) -> NSSize;
 
+        #[cfg(feature = "AppKit_NSUserInterfaceCompressionOptions")]
         #[method_id(@__retain_semantics Other activeCompressionOptions)]
         pub unsafe fn activeCompressionOptions(
             &self,
@@ -204,7 +224,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSSegmentedControlConvenience
+    #[cfg(feature = "AppKit_NSSegmentedControl")]
     unsafe impl NSSegmentedControl {
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other segmentedControlWithLabels:trackingMode:target:action:)]
         pub unsafe fn segmentedControlWithLabels_trackingMode_target_action(
             labels: &NSArray<NSString>,
@@ -213,6 +235,7 @@ extern_methods!(
             action: Option<Sel>,
         ) -> Id<Self, Shared>;
 
+        #[cfg(all(feature = "AppKit_NSImage", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other segmentedControlWithImages:trackingMode:target:action:)]
         pub unsafe fn segmentedControlWithImages_trackingMode_target_action(
             images: &NSArray<NSImage>,
@@ -225,6 +248,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSControl`
+    #[cfg(feature = "AppKit_NSSegmentedControl")]
     unsafe impl NSSegmentedControl {
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(

@@ -16,22 +16,27 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSMenuItemCell")]
     unsafe impl NSMenuItemCell {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initTextCell:)]
         pub unsafe fn initTextCell(
             this: Option<Allocated<Self>>,
             string: &NSString,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "AppKit_NSMenuItem")]
         #[method_id(@__retain_semantics Other menuItem)]
         pub unsafe fn menuItem(&self) -> Option<Id<NSMenuItem, Shared>>;
 
+        #[cfg(feature = "AppKit_NSMenuItem")]
         #[method(setMenuItem:)]
         pub unsafe fn setMenuItem(&self, menuItem: Option<&NSMenuItem>);
 
@@ -71,6 +76,7 @@ extern_methods!(
         #[method(keyEquivalentRectForBounds:)]
         pub unsafe fn keyEquivalentRectForBounds(&self, cellFrame: NSRect) -> NSRect;
 
+        #[cfg(feature = "AppKit_NSView")]
         #[method(drawSeparatorItemWithFrame:inView:)]
         pub unsafe fn drawSeparatorItemWithFrame_inView(
             &self,
@@ -78,6 +84,7 @@ extern_methods!(
             controlView: &NSView,
         );
 
+        #[cfg(feature = "AppKit_NSView")]
         #[method(drawStateImageWithFrame:inView:)]
         pub unsafe fn drawStateImageWithFrame_inView(
             &self,
@@ -85,12 +92,15 @@ extern_methods!(
             controlView: &NSView,
         );
 
+        #[cfg(feature = "AppKit_NSView")]
         #[method(drawImageWithFrame:inView:)]
         pub unsafe fn drawImageWithFrame_inView(&self, cellFrame: NSRect, controlView: &NSView);
 
+        #[cfg(feature = "AppKit_NSView")]
         #[method(drawTitleWithFrame:inView:)]
         pub unsafe fn drawTitleWithFrame_inView(&self, cellFrame: NSRect, controlView: &NSView);
 
+        #[cfg(feature = "AppKit_NSView")]
         #[method(drawKeyEquivalentWithFrame:inView:)]
         pub unsafe fn drawKeyEquivalentWithFrame_inView(
             &self,
@@ -98,6 +108,7 @@ extern_methods!(
             controlView: &NSView,
         );
 
+        #[cfg(feature = "AppKit_NSView")]
         #[method(drawBorderAndBackgroundWithFrame:inView:)]
         pub unsafe fn drawBorderAndBackgroundWithFrame_inView(
             &self,
@@ -115,7 +126,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSButtonCell`
+    #[cfg(feature = "AppKit_NSMenuItemCell")]
     unsafe impl NSMenuItemCell {
+        #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Init initImageCell:)]
         pub unsafe fn initImageCell(
             this: Option<Allocated<Self>>,

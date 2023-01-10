@@ -21,16 +21,20 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSAlignmentFeedbackFilter")]
     unsafe impl NSAlignmentFeedbackFilter {
         #[method(inputEventMask)]
         pub unsafe fn inputEventMask() -> NSEventMask;
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(updateWithEvent:)]
         pub unsafe fn updateWithEvent(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSPanGestureRecognizer")]
         #[method(updateWithPanRecognizer:)]
         pub unsafe fn updateWithPanRecognizer(&self, panRecognizer: &NSPanGestureRecognizer);
 
+        #[cfg(all(feature = "AppKit_NSAlignmentFeedbackToken", feature = "AppKit_NSView"))]
         #[method_id(@__retain_semantics Other alignmentFeedbackTokenForMovementInView:previousPoint:alignedPoint:defaultPoint:)]
         pub unsafe fn alignmentFeedbackTokenForMovementInView_previousPoint_alignedPoint_defaultPoint(
             &self,
@@ -40,6 +44,7 @@ extern_methods!(
             defaultPoint: NSPoint,
         ) -> Option<Id<NSAlignmentFeedbackToken, Shared>>;
 
+        #[cfg(all(feature = "AppKit_NSAlignmentFeedbackToken", feature = "AppKit_NSView"))]
         #[method_id(@__retain_semantics Other alignmentFeedbackTokenForHorizontalMovementInView:previousX:alignedX:defaultX:)]
         pub unsafe fn alignmentFeedbackTokenForHorizontalMovementInView_previousX_alignedX_defaultX(
             &self,
@@ -49,6 +54,7 @@ extern_methods!(
             defaultX: CGFloat,
         ) -> Option<Id<NSAlignmentFeedbackToken, Shared>>;
 
+        #[cfg(all(feature = "AppKit_NSAlignmentFeedbackToken", feature = "AppKit_NSView"))]
         #[method_id(@__retain_semantics Other alignmentFeedbackTokenForVerticalMovementInView:previousY:alignedY:defaultY:)]
         pub unsafe fn alignmentFeedbackTokenForVerticalMovementInView_previousY_alignedY_defaultY(
             &self,
@@ -58,6 +64,10 @@ extern_methods!(
             defaultY: CGFloat,
         ) -> Option<Id<NSAlignmentFeedbackToken, Shared>>;
 
+        #[cfg(all(
+            feature = "AppKit_NSAlignmentFeedbackToken",
+            feature = "Foundation_NSArray"
+        ))]
         #[method(performFeedback:performanceTime:)]
         pub unsafe fn performFeedback_performanceTime(
             &self,

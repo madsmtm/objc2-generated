@@ -23,10 +23,13 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSCloneCommand")]
     unsafe impl NSCloneCommand {
+        #[cfg(feature = "Foundation_NSScriptObjectSpecifier")]
         #[method(setReceiversSpecifier:)]
         pub unsafe fn setReceiversSpecifier(&self, receiversRef: Option<&NSScriptObjectSpecifier>);
 
+        #[cfg(feature = "Foundation_NSScriptObjectSpecifier")]
         #[method_id(@__retain_semantics Other keySpecifier)]
         pub unsafe fn keySpecifier(&self) -> Id<NSScriptObjectSpecifier, Shared>;
     }
@@ -43,6 +46,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSCloseCommand")]
     unsafe impl NSCloseCommand {
         #[method(saveOptions)]
         pub unsafe fn saveOptions(&self) -> NSSaveOptions;
@@ -60,6 +64,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSCountCommand")]
     unsafe impl NSCountCommand {}
 );
 
@@ -74,10 +79,13 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSCreateCommand")]
     unsafe impl NSCreateCommand {
+        #[cfg(feature = "Foundation_NSScriptClassDescription")]
         #[method_id(@__retain_semantics Other createClassDescription)]
         pub unsafe fn createClassDescription(&self) -> Id<NSScriptClassDescription, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other resolvedKeyDictionary)]
         pub unsafe fn resolvedKeyDictionary(&self) -> Id<NSDictionary<NSString, Object>, Shared>;
     }
@@ -94,10 +102,13 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSDeleteCommand")]
     unsafe impl NSDeleteCommand {
+        #[cfg(feature = "Foundation_NSScriptObjectSpecifier")]
         #[method(setReceiversSpecifier:)]
         pub unsafe fn setReceiversSpecifier(&self, receiversRef: Option<&NSScriptObjectSpecifier>);
 
+        #[cfg(feature = "Foundation_NSScriptObjectSpecifier")]
         #[method_id(@__retain_semantics Other keySpecifier)]
         pub unsafe fn keySpecifier(&self) -> Id<NSScriptObjectSpecifier, Shared>;
     }
@@ -114,6 +125,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSExistsCommand")]
     unsafe impl NSExistsCommand {}
 );
 
@@ -128,6 +140,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSGetCommand")]
     unsafe impl NSGetCommand {}
 );
 
@@ -142,10 +155,13 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSMoveCommand")]
     unsafe impl NSMoveCommand {
+        #[cfg(feature = "Foundation_NSScriptObjectSpecifier")]
         #[method(setReceiversSpecifier:)]
         pub unsafe fn setReceiversSpecifier(&self, receiversRef: Option<&NSScriptObjectSpecifier>);
 
+        #[cfg(feature = "Foundation_NSScriptObjectSpecifier")]
         #[method_id(@__retain_semantics Other keySpecifier)]
         pub unsafe fn keySpecifier(&self) -> Id<NSScriptObjectSpecifier, Shared>;
     }
@@ -162,6 +178,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSQuitCommand")]
     unsafe impl NSQuitCommand {
         #[method(saveOptions)]
         pub unsafe fn saveOptions(&self) -> NSSaveOptions;
@@ -179,10 +196,13 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSSetCommand")]
     unsafe impl NSSetCommand {
+        #[cfg(feature = "Foundation_NSScriptObjectSpecifier")]
         #[method(setReceiversSpecifier:)]
         pub unsafe fn setReceiversSpecifier(&self, receiversRef: Option<&NSScriptObjectSpecifier>);
 
+        #[cfg(feature = "Foundation_NSScriptObjectSpecifier")]
         #[method_id(@__retain_semantics Other keySpecifier)]
         pub unsafe fn keySpecifier(&self) -> Id<NSScriptObjectSpecifier, Shared>;
     }
@@ -190,7 +210,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSScriptCommand`
+    #[cfg(feature = "Foundation_NSCloneCommand")]
     unsafe impl NSCloneCommand {
+        #[cfg(feature = "Foundation_NSScriptCommandDescription")]
         #[method_id(@__retain_semantics Init initWithCommandDescription:)]
         pub unsafe fn initWithCommandDescription(
             this: Option<Allocated<Self>>,
@@ -201,7 +223,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSScriptCommand`
+    #[cfg(feature = "Foundation_NSCloseCommand")]
     unsafe impl NSCloseCommand {
+        #[cfg(feature = "Foundation_NSScriptCommandDescription")]
         #[method_id(@__retain_semantics Init initWithCommandDescription:)]
         pub unsafe fn initWithCommandDescription(
             this: Option<Allocated<Self>>,
@@ -212,7 +236,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSScriptCommand`
+    #[cfg(feature = "Foundation_NSCountCommand")]
     unsafe impl NSCountCommand {
+        #[cfg(feature = "Foundation_NSScriptCommandDescription")]
         #[method_id(@__retain_semantics Init initWithCommandDescription:)]
         pub unsafe fn initWithCommandDescription(
             this: Option<Allocated<Self>>,
@@ -223,7 +249,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSScriptCommand`
+    #[cfg(feature = "Foundation_NSCreateCommand")]
     unsafe impl NSCreateCommand {
+        #[cfg(feature = "Foundation_NSScriptCommandDescription")]
         #[method_id(@__retain_semantics Init initWithCommandDescription:)]
         pub unsafe fn initWithCommandDescription(
             this: Option<Allocated<Self>>,
@@ -234,7 +262,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSScriptCommand`
+    #[cfg(feature = "Foundation_NSDeleteCommand")]
     unsafe impl NSDeleteCommand {
+        #[cfg(feature = "Foundation_NSScriptCommandDescription")]
         #[method_id(@__retain_semantics Init initWithCommandDescription:)]
         pub unsafe fn initWithCommandDescription(
             this: Option<Allocated<Self>>,
@@ -245,7 +275,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSScriptCommand`
+    #[cfg(feature = "Foundation_NSExistsCommand")]
     unsafe impl NSExistsCommand {
+        #[cfg(feature = "Foundation_NSScriptCommandDescription")]
         #[method_id(@__retain_semantics Init initWithCommandDescription:)]
         pub unsafe fn initWithCommandDescription(
             this: Option<Allocated<Self>>,
@@ -256,7 +288,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSScriptCommand`
+    #[cfg(feature = "Foundation_NSGetCommand")]
     unsafe impl NSGetCommand {
+        #[cfg(feature = "Foundation_NSScriptCommandDescription")]
         #[method_id(@__retain_semantics Init initWithCommandDescription:)]
         pub unsafe fn initWithCommandDescription(
             this: Option<Allocated<Self>>,
@@ -267,7 +301,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSScriptCommand`
+    #[cfg(feature = "Foundation_NSMoveCommand")]
     unsafe impl NSMoveCommand {
+        #[cfg(feature = "Foundation_NSScriptCommandDescription")]
         #[method_id(@__retain_semantics Init initWithCommandDescription:)]
         pub unsafe fn initWithCommandDescription(
             this: Option<Allocated<Self>>,
@@ -278,7 +314,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSScriptCommand`
+    #[cfg(feature = "Foundation_NSQuitCommand")]
     unsafe impl NSQuitCommand {
+        #[cfg(feature = "Foundation_NSScriptCommandDescription")]
         #[method_id(@__retain_semantics Init initWithCommandDescription:)]
         pub unsafe fn initWithCommandDescription(
             this: Option<Allocated<Self>>,
@@ -289,7 +327,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSScriptCommand`
+    #[cfg(feature = "Foundation_NSSetCommand")]
     unsafe impl NSSetCommand {
+        #[cfg(feature = "Foundation_NSScriptCommandDescription")]
         #[method_id(@__retain_semantics Init initWithCommandDescription:)]
         pub unsafe fn initWithCommandDescription(
             this: Option<Allocated<Self>>,

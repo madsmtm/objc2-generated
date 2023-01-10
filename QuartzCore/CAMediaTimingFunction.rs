@@ -18,7 +18,9 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "QuartzCore_CAMediaTimingFunction")]
     unsafe impl CAMediaTimingFunction {
+        #[cfg(feature = "QuartzCore_CAMediaTimingFunctionName")]
         #[method_id(@__retain_semantics Other functionWithName:)]
         pub unsafe fn functionWithName(name: &CAMediaTimingFunctionName) -> Id<Self, Shared>;
     }

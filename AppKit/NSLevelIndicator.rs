@@ -25,6 +25,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSLevelIndicator")]
     unsafe impl NSLevelIndicator {
         #[method(levelIndicatorStyle)]
         pub unsafe fn levelIndicatorStyle(&self) -> NSLevelIndicatorStyle;
@@ -86,21 +87,27 @@ extern_methods!(
         #[method(rectOfTickMarkAtIndex:)]
         pub unsafe fn rectOfTickMarkAtIndex(&self, index: NSInteger) -> NSRect;
 
+        #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other fillColor)]
         pub unsafe fn fillColor(&self) -> Id<NSColor, Shared>;
 
+        #[cfg(feature = "AppKit_NSColor")]
         #[method(setFillColor:)]
         pub unsafe fn setFillColor(&self, fillColor: Option<&NSColor>);
 
+        #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other warningFillColor)]
         pub unsafe fn warningFillColor(&self) -> Id<NSColor, Shared>;
 
+        #[cfg(feature = "AppKit_NSColor")]
         #[method(setWarningFillColor:)]
         pub unsafe fn setWarningFillColor(&self, warningFillColor: Option<&NSColor>);
 
+        #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other criticalFillColor)]
         pub unsafe fn criticalFillColor(&self) -> Id<NSColor, Shared>;
 
+        #[cfg(feature = "AppKit_NSColor")]
         #[method(setCriticalFillColor:)]
         pub unsafe fn setCriticalFillColor(&self, criticalFillColor: Option<&NSColor>);
 
@@ -119,15 +126,19 @@ extern_methods!(
             placeholderVisibility: NSLevelIndicatorPlaceholderVisibility,
         );
 
+        #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other ratingImage)]
         pub unsafe fn ratingImage(&self) -> Option<Id<NSImage, Shared>>;
 
+        #[cfg(feature = "AppKit_NSImage")]
         #[method(setRatingImage:)]
         pub unsafe fn setRatingImage(&self, ratingImage: Option<&NSImage>);
 
+        #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other ratingPlaceholderImage)]
         pub unsafe fn ratingPlaceholderImage(&self) -> Option<Id<NSImage, Shared>>;
 
+        #[cfg(feature = "AppKit_NSImage")]
         #[method(setRatingPlaceholderImage:)]
         pub unsafe fn setRatingPlaceholderImage(&self, ratingPlaceholderImage: Option<&NSImage>);
     }
@@ -135,6 +146,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSControl`
+    #[cfg(feature = "AppKit_NSLevelIndicator")]
     unsafe impl NSLevelIndicator {
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(

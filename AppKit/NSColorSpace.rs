@@ -29,13 +29,16 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSColorSpace")]
     unsafe impl NSColorSpace {
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Init initWithICCProfileData:)]
         pub unsafe fn initWithICCProfileData(
             this: Option<Allocated<Self>>,
             iccData: &NSData,
         ) -> Option<Id<Self, Shared>>;
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other ICCProfileData)]
         pub unsafe fn ICCProfileData(&self) -> Option<Id<NSData, Shared>>;
 
@@ -54,6 +57,7 @@ extern_methods!(
         #[method(colorSpaceModel)]
         pub unsafe fn colorSpaceModel(&self) -> NSColorSpaceModel;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedName)]
         pub unsafe fn localizedName(&self) -> Option<Id<NSString, Shared>>;
 
@@ -93,6 +97,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other deviceCMYKColorSpace)]
         pub unsafe fn deviceCMYKColorSpace() -> Id<NSColorSpace, Shared>;
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other availableColorSpacesWithModel:)]
         pub unsafe fn availableColorSpacesWithModel(
             model: NSColorSpaceModel,

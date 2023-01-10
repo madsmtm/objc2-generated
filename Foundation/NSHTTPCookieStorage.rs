@@ -22,33 +22,49 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSHTTPCookieStorage")]
     unsafe impl NSHTTPCookieStorage {
         #[method_id(@__retain_semantics Other sharedHTTPCookieStorage)]
         pub unsafe fn sharedHTTPCookieStorage() -> Id<NSHTTPCookieStorage, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other sharedCookieStorageForGroupContainerIdentifier:)]
         pub unsafe fn sharedCookieStorageForGroupContainerIdentifier(
             identifier: &NSString,
         ) -> Id<NSHTTPCookieStorage, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSHTTPCookie"))]
         #[method_id(@__retain_semantics Other cookies)]
         pub unsafe fn cookies(&self) -> Option<Id<NSArray<NSHTTPCookie>, Shared>>;
 
+        #[cfg(feature = "Foundation_NSHTTPCookie")]
         #[method(setCookie:)]
         pub unsafe fn setCookie(&self, cookie: &NSHTTPCookie);
 
+        #[cfg(feature = "Foundation_NSHTTPCookie")]
         #[method(deleteCookie:)]
         pub unsafe fn deleteCookie(&self, cookie: &NSHTTPCookie);
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(removeCookiesSinceDate:)]
         pub unsafe fn removeCookiesSinceDate(&self, date: &NSDate);
 
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSHTTPCookie",
+            feature = "Foundation_NSURL"
+        ))]
         #[method_id(@__retain_semantics Other cookiesForURL:)]
         pub unsafe fn cookiesForURL(
             &self,
             URL: &NSURL,
         ) -> Option<Id<NSArray<NSHTTPCookie>, Shared>>;
 
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSHTTPCookie",
+            feature = "Foundation_NSURL"
+        ))]
         #[method(setCookies:forURL:mainDocumentURL:)]
         pub unsafe fn setCookies_forURL_mainDocumentURL(
             &self,
@@ -63,6 +79,11 @@ extern_methods!(
         #[method(setCookieAcceptPolicy:)]
         pub unsafe fn setCookieAcceptPolicy(&self, cookieAcceptPolicy: NSHTTPCookieAcceptPolicy);
 
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSHTTPCookie",
+            feature = "Foundation_NSSortDescriptor"
+        ))]
         #[method_id(@__retain_semantics Other sortedCookiesUsingDescriptors:)]
         pub unsafe fn sortedCookiesUsingDescriptors(
             &self,
@@ -73,7 +94,13 @@ extern_methods!(
 
 extern_methods!(
     /// NSURLSessionTaskAdditions
+    #[cfg(feature = "Foundation_NSHTTPCookieStorage")]
     unsafe impl NSHTTPCookieStorage {
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSHTTPCookie",
+            feature = "Foundation_NSURLSessionTask"
+        ))]
         #[method(storeCookies:forTask:)]
         pub unsafe fn storeCookies_forTask(
             &self,
@@ -81,6 +108,11 @@ extern_methods!(
             task: &NSURLSessionTask,
         );
 
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSHTTPCookie",
+            feature = "Foundation_NSURLSessionTask"
+        ))]
         #[method(getCookiesForTask:completionHandler:)]
         pub unsafe fn getCookiesForTask_completionHandler(
             &self,

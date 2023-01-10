@@ -14,6 +14,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "QuartzCore_CARemoteLayerServer")]
     unsafe impl CARemoteLayerServer {
         #[method_id(@__retain_semantics Other sharedServer)]
         pub unsafe fn sharedServer() -> Id<CARemoteLayerServer, Shared>;
@@ -22,6 +23,7 @@ extern_methods!(
 
 extern_methods!(
     /// CARemoteLayerServer
+    #[cfg(feature = "QuartzCore_CALayer")]
     unsafe impl CALayer {
         #[method_id(@__retain_semantics Other layerWithRemoteClientId:)]
         pub unsafe fn layerWithRemoteClientId(client_id: u32) -> Id<CALayer, Shared>;

@@ -15,19 +15,23 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSController")]
     unsafe impl NSController {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
         ) -> Option<Id<Self, Shared>>;
 
+        #[cfg(feature = "AppKit_NSEditor")]
         #[method(objectDidBeginEditing:)]
         pub unsafe fn objectDidBeginEditing(&self, editor: &NSEditor);
 
+        #[cfg(feature = "AppKit_NSEditor")]
         #[method(objectDidEndEditing:)]
         pub unsafe fn objectDidEndEditing(&self, editor: &NSEditor);
 

@@ -44,16 +44,23 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSGraphicsContext")]
     unsafe impl NSGraphicsContext {
+        #[cfg(all(
+            feature = "AppKit_NSGraphicsContextAttributeKey",
+            feature = "Foundation_NSDictionary"
+        ))]
         #[method_id(@__retain_semantics Other graphicsContextWithAttributes:)]
         pub unsafe fn graphicsContextWithAttributes(
             attributes: &NSDictionary<NSGraphicsContextAttributeKey, Object>,
         ) -> Option<Id<NSGraphicsContext, Shared>>;
 
+        #[cfg(feature = "AppKit_NSWindow")]
         #[method_id(@__retain_semantics Other graphicsContextWithWindow:)]
         pub unsafe fn graphicsContextWithWindow(window: &NSWindow)
             -> Id<NSGraphicsContext, Shared>;
 
+        #[cfg(feature = "AppKit_NSBitmapImageRep")]
         #[method_id(@__retain_semantics Other graphicsContextWithBitmapImageRep:)]
         pub unsafe fn graphicsContextWithBitmapImageRep(
             bitmapRep: &NSBitmapImageRep,
@@ -68,6 +75,10 @@ extern_methods!(
         #[method(currentContextDrawingToScreen)]
         pub unsafe fn currentContextDrawingToScreen() -> bool;
 
+        #[cfg(all(
+            feature = "AppKit_NSGraphicsContextAttributeKey",
+            feature = "Foundation_NSDictionary"
+        ))]
         #[method_id(@__retain_semantics Other attributes)]
         pub unsafe fn attributes(
             &self,
@@ -86,6 +97,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSGraphicsContext_RenderingOptions
+    #[cfg(feature = "AppKit_NSGraphicsContext")]
     unsafe impl NSGraphicsContext {
         #[method(shouldAntialias)]
         pub unsafe fn shouldAntialias(&self) -> bool;
@@ -121,11 +133,13 @@ extern_methods!(
 
 extern_methods!(
     /// NSQuartzCoreAdditions
+    #[cfg(feature = "AppKit_NSGraphicsContext")]
     unsafe impl NSGraphicsContext {}
 );
 
 extern_methods!(
     /// NSGraphicsContextDeprecated
+    #[cfg(feature = "AppKit_NSGraphicsContext")]
     unsafe impl NSGraphicsContext {
         #[method(setGraphicsState:)]
         pub unsafe fn setGraphicsState(gState: NSInteger);

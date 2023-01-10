@@ -15,11 +15,13 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "QuartzCore_CATransformLayer")]
     unsafe impl CATransformLayer {}
 );
 
 extern_methods!(
     /// Methods declared on superclass `CALayer`
+    #[cfg(feature = "QuartzCore_CATransformLayer")]
     unsafe impl CATransformLayer {
         #[method_id(@__retain_semantics Other layer)]
         pub unsafe fn layer() -> Id<Self, Shared>;

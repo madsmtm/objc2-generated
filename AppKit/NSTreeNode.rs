@@ -15,6 +15,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSTreeNode")]
     unsafe impl NSTreeNode {
         #[method_id(@__retain_semantics Other treeNodeWithRepresentedObject:)]
         pub unsafe fn treeNodeWithRepresentedObject(
@@ -30,18 +31,22 @@ extern_methods!(
         #[method_id(@__retain_semantics Other representedObject)]
         pub unsafe fn representedObject(&self) -> Option<Id<Object, Shared>>;
 
+        #[cfg(feature = "Foundation_NSIndexPath")]
         #[method_id(@__retain_semantics Other indexPath)]
         pub unsafe fn indexPath(&self) -> Id<NSIndexPath, Shared>;
 
         #[method(isLeaf)]
         pub unsafe fn isLeaf(&self) -> bool;
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other childNodes)]
         pub unsafe fn childNodes(&self) -> Option<Id<NSArray<NSTreeNode>, Shared>>;
 
+        #[cfg(feature = "Foundation_NSMutableArray")]
         #[method_id(@__retain_semantics Other mutableChildNodes)]
         pub unsafe fn mutableChildNodes(&self) -> Id<NSMutableArray<NSTreeNode>, Owned>;
 
+        #[cfg(feature = "Foundation_NSIndexPath")]
         #[method_id(@__retain_semantics Other descendantNodeAtIndexPath:)]
         pub unsafe fn descendantNodeAtIndexPath(
             &self,
@@ -51,6 +56,10 @@ extern_methods!(
         #[method_id(@__retain_semantics Other parentNode)]
         pub unsafe fn parentNode(&self) -> Option<Id<NSTreeNode, Shared>>;
 
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSSortDescriptor"
+        ))]
         #[method(sortWithSortDescriptors:recursively:)]
         pub unsafe fn sortWithSortDescriptors_recursively(
             &self,

@@ -27,10 +27,13 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "QuartzCore_CAEmitterLayer")]
     unsafe impl CAEmitterLayer {
+        #[cfg(all(feature = "Foundation_NSArray", feature = "QuartzCore_CAEmitterCell"))]
         #[method_id(@__retain_semantics Other emitterCells)]
         pub unsafe fn emitterCells(&self) -> Option<Id<NSArray<CAEmitterCell>, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "QuartzCore_CAEmitterCell"))]
         #[method(setEmitterCells:)]
         pub unsafe fn setEmitterCells(&self, emitterCells: Option<&NSArray<CAEmitterCell>>);
 
@@ -70,21 +73,27 @@ extern_methods!(
         #[method(setEmitterDepth:)]
         pub unsafe fn setEmitterDepth(&self, emitterDepth: CGFloat);
 
+        #[cfg(feature = "QuartzCore_CAEmitterLayerEmitterShape")]
         #[method_id(@__retain_semantics Other emitterShape)]
         pub unsafe fn emitterShape(&self) -> Id<CAEmitterLayerEmitterShape, Shared>;
 
+        #[cfg(feature = "QuartzCore_CAEmitterLayerEmitterShape")]
         #[method(setEmitterShape:)]
         pub unsafe fn setEmitterShape(&self, emitterShape: &CAEmitterLayerEmitterShape);
 
+        #[cfg(feature = "QuartzCore_CAEmitterLayerEmitterMode")]
         #[method_id(@__retain_semantics Other emitterMode)]
         pub unsafe fn emitterMode(&self) -> Id<CAEmitterLayerEmitterMode, Shared>;
 
+        #[cfg(feature = "QuartzCore_CAEmitterLayerEmitterMode")]
         #[method(setEmitterMode:)]
         pub unsafe fn setEmitterMode(&self, emitterMode: &CAEmitterLayerEmitterMode);
 
+        #[cfg(feature = "QuartzCore_CAEmitterLayerRenderMode")]
         #[method_id(@__retain_semantics Other renderMode)]
         pub unsafe fn renderMode(&self) -> Id<CAEmitterLayerRenderMode, Shared>;
 
+        #[cfg(feature = "QuartzCore_CAEmitterLayerRenderMode")]
         #[method(setRenderMode:)]
         pub unsafe fn setRenderMode(&self, renderMode: &CAEmitterLayerRenderMode);
 
@@ -152,6 +161,7 @@ extern_static!(kCAEmitterLayerAdditive: &'static CAEmitterLayerRenderMode);
 
 extern_methods!(
     /// Methods declared on superclass `CALayer`
+    #[cfg(feature = "QuartzCore_CAEmitterLayer")]
     unsafe impl CAEmitterLayer {
         #[method_id(@__retain_semantics Other layer)]
         pub unsafe fn layer() -> Id<Self, Shared>;

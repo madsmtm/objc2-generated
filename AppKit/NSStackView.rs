@@ -51,13 +51,17 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSStackView")]
     unsafe impl NSStackView {
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other stackViewWithViews:)]
         pub unsafe fn stackViewWithViews(views: &NSArray<NSView>) -> Id<Self, Shared>;
 
+        #[cfg(feature = "AppKit_NSStackViewDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSStackViewDelegate, Shared>>;
 
+        #[cfg(feature = "AppKit_NSStackViewDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&NSStackViewDelegate>);
 
@@ -103,6 +107,7 @@ extern_methods!(
         #[method(setDetachesHiddenViews:)]
         pub unsafe fn setDetachesHiddenViews(&self, detachesHiddenViews: bool);
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other arrangedSubviews)]
         pub unsafe fn arrangedSubviews(&self) -> Id<NSArray<NSView>, Shared>;
 
@@ -115,6 +120,7 @@ extern_methods!(
         #[method(removeArrangedSubview:)]
         pub unsafe fn removeArrangedSubview(&self, view: &NSView);
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other detachedViews)]
         pub unsafe fn detachedViews(&self) -> Id<NSArray<NSView>, Shared>;
 
@@ -183,10 +189,13 @@ extern_protocol!(
 
 extern_methods!(
     /// NSStackViewGravityAreas
+    #[cfg(feature = "AppKit_NSStackView")]
     unsafe impl NSStackView {
+        #[cfg(feature = "AppKit_NSView")]
         #[method(addView:inGravity:)]
         pub unsafe fn addView_inGravity(&self, view: &NSView, gravity: NSStackViewGravity);
 
+        #[cfg(feature = "AppKit_NSView")]
         #[method(insertView:atIndex:inGravity:)]
         pub unsafe fn insertView_atIndex_inGravity(
             &self,
@@ -195,15 +204,18 @@ extern_methods!(
             gravity: NSStackViewGravity,
         );
 
+        #[cfg(feature = "AppKit_NSView")]
         #[method(removeView:)]
         pub unsafe fn removeView(&self, view: &NSView);
 
+        #[cfg(all(feature = "AppKit_NSView", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other viewsInGravity:)]
         pub unsafe fn viewsInGravity(
             &self,
             gravity: NSStackViewGravity,
         ) -> Id<NSArray<NSView>, Shared>;
 
+        #[cfg(all(feature = "AppKit_NSView", feature = "Foundation_NSArray"))]
         #[method(setViews:inGravity:)]
         pub unsafe fn setViews_inGravity(
             &self,
@@ -211,6 +223,7 @@ extern_methods!(
             gravity: NSStackViewGravity,
         );
 
+        #[cfg(all(feature = "AppKit_NSView", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other views)]
         pub unsafe fn views(&self) -> Id<NSArray<NSView>, Shared>;
     }
@@ -218,6 +231,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSStackViewDeprecated
+    #[cfg(feature = "AppKit_NSStackView")]
     unsafe impl NSStackView {
         #[method(hasEqualSpacing)]
         pub unsafe fn hasEqualSpacing(&self) -> bool;
@@ -229,6 +243,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSView`
+    #[cfg(feature = "AppKit_NSStackView")]
     unsafe impl NSStackView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(

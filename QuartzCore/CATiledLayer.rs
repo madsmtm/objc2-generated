@@ -15,6 +15,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "QuartzCore_CATiledLayer")]
     unsafe impl CATiledLayer {
         #[method(fadeDuration)]
         pub unsafe fn fadeDuration() -> CFTimeInterval;
@@ -41,6 +42,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CALayer`
+    #[cfg(feature = "QuartzCore_CATiledLayer")]
     unsafe impl CATiledLayer {
         #[method_id(@__retain_semantics Other layer)]
         pub unsafe fn layer() -> Id<Self, Shared>;

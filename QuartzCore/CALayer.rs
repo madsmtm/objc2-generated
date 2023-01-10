@@ -63,6 +63,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "QuartzCore_CALayer")]
     unsafe impl CALayer {
         #[method_id(@__retain_semantics Other layer)]
         pub fn layer() -> Id<Self, Shared>;
@@ -82,12 +83,15 @@ extern_methods!(
         #[method_id(@__retain_semantics Other modelLayer)]
         pub unsafe fn modelLayer(&self) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other defaultValueForKey:)]
         pub unsafe fn defaultValueForKey(key: &NSString) -> Option<Id<Object, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(needsDisplayForKey:)]
         pub unsafe fn needsDisplayForKey(key: &NSString) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(shouldArchiveValueForKey:)]
         pub unsafe fn shouldArchiveValueForKey(&self, key: &NSString) -> bool;
 
@@ -160,9 +164,11 @@ extern_methods!(
         #[method(removeFromSuperlayer)]
         pub fn removeFromSuperlayer(&self);
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other sublayers)]
         pub unsafe fn sublayers(&self) -> Option<Id<NSArray<CALayer>, Shared>>;
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(setSublayers:)]
         pub unsafe fn setSublayers(&self, sublayers: Option<&NSArray<CALayer>>);
 
@@ -240,9 +246,11 @@ extern_methods!(
         #[method(setContentsRect:)]
         pub fn setContentsRect(&self, contentsRect: CGRect);
 
+        #[cfg(feature = "QuartzCore_CALayerContentsGravity")]
         #[method_id(@__retain_semantics Other contentsGravity)]
         pub fn contentsGravity(&self) -> Id<CALayerContentsGravity, Shared>;
 
+        #[cfg(feature = "QuartzCore_CALayerContentsGravity")]
         #[method(setContentsGravity:)]
         pub fn setContentsGravity(&self, contentsGravity: &CALayerContentsGravity);
 
@@ -258,21 +266,27 @@ extern_methods!(
         #[method(setContentsCenter:)]
         pub fn setContentsCenter(&self, contentsCenter: CGRect);
 
+        #[cfg(feature = "QuartzCore_CALayerContentsFormat")]
         #[method_id(@__retain_semantics Other contentsFormat)]
         pub fn contentsFormat(&self) -> Id<CALayerContentsFormat, Shared>;
 
+        #[cfg(feature = "QuartzCore_CALayerContentsFormat")]
         #[method(setContentsFormat:)]
         pub fn setContentsFormat(&self, contentsFormat: &CALayerContentsFormat);
 
+        #[cfg(feature = "QuartzCore_CALayerContentsFilter")]
         #[method_id(@__retain_semantics Other minificationFilter)]
         pub fn minificationFilter(&self) -> Id<CALayerContentsFilter, Shared>;
 
+        #[cfg(feature = "QuartzCore_CALayerContentsFilter")]
         #[method(setMinificationFilter:)]
         pub fn setMinificationFilter(&self, minificationFilter: &CALayerContentsFilter);
 
+        #[cfg(feature = "QuartzCore_CALayerContentsFilter")]
         #[method_id(@__retain_semantics Other magnificationFilter)]
         pub fn magnificationFilter(&self) -> Id<CALayerContentsFilter, Shared>;
 
+        #[cfg(feature = "QuartzCore_CALayerContentsFilter")]
         #[method(setMagnificationFilter:)]
         pub fn setMagnificationFilter(&self, magnificationFilter: &CALayerContentsFilter);
 
@@ -339,12 +353,15 @@ extern_methods!(
         #[method(setMaskedCorners:)]
         pub fn setMaskedCorners(&self, maskedCorners: CACornerMask);
 
+        #[cfg(feature = "QuartzCore_CALayerCornerCurve")]
         #[method_id(@__retain_semantics Other cornerCurve)]
         pub fn cornerCurve(&self) -> Id<CALayerCornerCurve, Shared>;
 
+        #[cfg(feature = "QuartzCore_CALayerCornerCurve")]
         #[method(setCornerCurve:)]
         pub fn setCornerCurve(&self, cornerCurve: &CALayerCornerCurve);
 
+        #[cfg(feature = "QuartzCore_CALayerCornerCurve")]
         #[method(cornerCurveExpansionFactor:)]
         pub fn cornerCurveExpansionFactor(curve: &CALayerCornerCurve) -> CGFloat;
 
@@ -372,15 +389,19 @@ extern_methods!(
         #[method(setCompositingFilter:)]
         pub unsafe fn setCompositingFilter(&self, compositingFilter: Option<&Object>);
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other filters)]
         pub unsafe fn filters(&self) -> Option<Id<NSArray, Shared>>;
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(setFilters:)]
         pub unsafe fn setFilters(&self, filters: Option<&NSArray>);
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other backgroundFilters)]
         pub unsafe fn backgroundFilters(&self) -> Option<Id<NSArray, Shared>>;
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(setBackgroundFilters:)]
         pub unsafe fn setBackgroundFilters(&self, backgroundFilters: Option<&NSArray>);
 
@@ -420,9 +441,11 @@ extern_methods!(
         #[method(setAutoresizingMask:)]
         pub fn setAutoresizingMask(&self, autoresizingMask: CAAutoresizingMask);
 
+        #[cfg(feature = "QuartzCore_CALayoutManager")]
         #[method_id(@__retain_semantics Other layoutManager)]
         pub fn layoutManager(&self) -> Option<Id<CALayoutManager, Shared>>;
 
+        #[cfg(feature = "QuartzCore_CALayoutManager")]
         #[method(setLayoutManager:)]
         pub fn setLayoutManager(&self, layoutManager: Option<&CALayoutManager>);
 
@@ -447,48 +470,70 @@ extern_methods!(
         #[method(resizeWithOldSuperlayerSize:)]
         pub fn resizeWithOldSuperlayerSize(&self, size: CGSize);
 
+        #[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAAction"))]
         #[method_id(@__retain_semantics Other defaultActionForKey:)]
         pub fn defaultActionForKey(event: &NSString) -> Option<Id<CAAction, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAAction"))]
         #[method_id(@__retain_semantics Other actionForKey:)]
         pub fn actionForKey(&self, event: &NSString) -> Option<Id<CAAction, Shared>>;
 
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString",
+            feature = "QuartzCore_CAAction"
+        ))]
         #[method_id(@__retain_semantics Other actions)]
         pub fn actions(&self) -> Option<Id<NSDictionary<NSString, CAAction>, Shared>>;
 
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString",
+            feature = "QuartzCore_CAAction"
+        ))]
         #[method(setActions:)]
         pub fn setActions(&self, actions: Option<&NSDictionary<NSString, CAAction>>);
 
+        #[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAAnimation"))]
         #[method(addAnimation:forKey:)]
         pub fn addAnimation_forKey(&self, anim: &CAAnimation, key: Option<&NSString>);
 
         #[method(removeAllAnimations)]
         pub fn removeAllAnimations(&self);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(removeAnimationForKey:)]
         pub fn removeAnimationForKey(&self, key: &NSString);
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other animationKeys)]
         pub fn animationKeys(&self) -> Option<Id<NSArray<NSString>, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAAnimation"))]
         #[method_id(@__retain_semantics Other animationForKey:)]
         pub unsafe fn animationForKey(&self, key: &NSString) -> Option<Id<CAAnimation, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
         pub fn name(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]
         pub fn setName(&self, name: Option<&NSString>);
 
+        #[cfg(feature = "QuartzCore_CALayerDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub fn delegate(&self) -> Option<Id<CALayerDelegate, Shared>>;
 
+        #[cfg(feature = "QuartzCore_CALayerDelegate")]
         #[method(setDelegate:)]
         pub fn setDelegate(&self, delegate: Option<&CALayerDelegate>);
 
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other style)]
         pub unsafe fn style(&self) -> Option<Id<NSDictionary, Shared>>;
 
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method(setStyle:)]
         pub unsafe fn setStyle(&self, style: Option<&NSDictionary>);
     }
@@ -528,6 +573,7 @@ extern_protocol!(
 
 extern_methods!(
     /// CAActionAdditions
+    #[cfg(feature = "QuartzCore_NSNull")]
     unsafe impl NSNull {}
 );
 

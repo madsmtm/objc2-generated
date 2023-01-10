@@ -15,6 +15,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSPressureConfiguration")]
     unsafe impl NSPressureConfiguration {
         #[method(pressureBehavior)]
         pub unsafe fn pressureBehavior(&self) -> NSPressureBehavior;
@@ -32,10 +33,13 @@ extern_methods!(
 
 extern_methods!(
     /// NSPressureConfiguration
+    #[cfg(feature = "AppKit_NSView")]
     unsafe impl NSView {
+        #[cfg(feature = "AppKit_NSPressureConfiguration")]
         #[method_id(@__retain_semantics Other pressureConfiguration)]
         pub unsafe fn pressureConfiguration(&self) -> Option<Id<NSPressureConfiguration, Shared>>;
 
+        #[cfg(feature = "AppKit_NSPressureConfiguration")]
         #[method(setPressureConfiguration:)]
         pub unsafe fn setPressureConfiguration(
             &self,

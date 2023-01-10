@@ -15,7 +15,9 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSTextCheckingController")]
     unsafe impl NSTextCheckingController {
+        #[cfg(feature = "AppKit_NSTextCheckingClient")]
         #[method_id(@__retain_semantics Init initWithClient:)]
         pub unsafe fn initWithClient(
             this: Option<Allocated<Self>>,
@@ -25,6 +27,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
+        #[cfg(feature = "AppKit_NSTextCheckingClient")]
         #[method_id(@__retain_semantics Other client)]
         pub unsafe fn client(&self) -> Id<NSTextCheckingClient, Shared>;
 
@@ -43,6 +46,10 @@ extern_methods!(
         #[method(considerTextCheckingForRange:)]
         pub unsafe fn considerTextCheckingForRange(&self, range: NSRange);
 
+        #[cfg(all(
+            feature = "AppKit_NSTextCheckingOptionKey",
+            feature = "Foundation_NSDictionary"
+        ))]
         #[method(checkTextInRange:types:options:)]
         pub unsafe fn checkTextInRange_types_options(
             &self,
@@ -75,9 +82,14 @@ extern_methods!(
         #[method(updateCandidates)]
         pub unsafe fn updateCandidates(&self);
 
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSAttributedStringKey"
+        ))]
         #[method_id(@__retain_semantics Other validAnnotations)]
         pub unsafe fn validAnnotations(&self) -> Id<NSArray<NSAttributedStringKey>, Shared>;
 
+        #[cfg(feature = "AppKit_NSMenu")]
         #[method_id(@__retain_semantics Other menuAtIndex:clickedOnSelection:effectiveRange:)]
         pub unsafe fn menuAtIndex_clickedOnSelection_effectiveRange(
             &self,

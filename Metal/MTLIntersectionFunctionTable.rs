@@ -27,6 +27,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Metal_MTLIntersectionFunctionTableDescriptor")]
     unsafe impl MTLIntersectionFunctionTableDescriptor {
         #[method_id(@__retain_semantics Other intersectionFunctionTableDescriptor)]
         pub unsafe fn intersectionFunctionTableDescriptor(

@@ -21,10 +21,12 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSStoryboard")]
     unsafe impl NSStoryboard {
         #[method_id(@__retain_semantics Other mainStoryboard)]
         pub unsafe fn mainStoryboard() -> Option<Id<NSStoryboard, Shared>>;
 
+        #[cfg(all(feature = "AppKit_NSStoryboardName", feature = "Foundation_NSBundle"))]
         #[method_id(@__retain_semantics Other storyboardWithName:bundle:)]
         pub unsafe fn storyboardWithName_bundle(
             name: &NSStoryboardName,
@@ -40,12 +42,14 @@ extern_methods!(
             block: NSStoryboardControllerCreator,
         ) -> Option<Id<Object, Shared>>;
 
+        #[cfg(feature = "AppKit_NSStoryboardSceneIdentifier")]
         #[method_id(@__retain_semantics Other instantiateControllerWithIdentifier:)]
         pub unsafe fn instantiateControllerWithIdentifier(
             &self,
             identifier: &NSStoryboardSceneIdentifier,
         ) -> Id<Object, Shared>;
 
+        #[cfg(feature = "AppKit_NSStoryboardSceneIdentifier")]
         #[method_id(@__retain_semantics Other instantiateControllerWithIdentifier:creator:)]
         pub unsafe fn instantiateControllerWithIdentifier_creator(
             &self,

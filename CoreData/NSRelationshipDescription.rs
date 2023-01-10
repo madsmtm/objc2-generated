@@ -25,10 +25,13 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "CoreData_NSRelationshipDescription")]
     unsafe impl NSRelationshipDescription {
+        #[cfg(feature = "CoreData_NSEntityDescription")]
         #[method_id(@__retain_semantics Other destinationEntity)]
         pub unsafe fn destinationEntity(&self) -> Option<Id<NSEntityDescription, Shared>>;
 
+        #[cfg(feature = "CoreData_NSEntityDescription")]
         #[method(setDestinationEntity:)]
         pub unsafe fn setDestinationEntity(&self, destinationEntity: Option<&NSEntityDescription>);
 
@@ -62,6 +65,7 @@ extern_methods!(
         #[method(isToMany)]
         pub unsafe fn isToMany(&self) -> bool;
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other versionHash)]
         pub unsafe fn versionHash(&self) -> Id<NSData, Shared>;
 

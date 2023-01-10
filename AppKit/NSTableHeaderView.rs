@@ -16,10 +16,13 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSTableHeaderView")]
     unsafe impl NSTableHeaderView {
+        #[cfg(feature = "AppKit_NSTableView")]
         #[method_id(@__retain_semantics Other tableView)]
         pub unsafe fn tableView(&self) -> Option<Id<NSTableView, Shared>>;
 
+        #[cfg(feature = "AppKit_NSTableView")]
         #[method(setTableView:)]
         pub unsafe fn setTableView(&self, tableView: Option<&NSTableView>);
 
@@ -42,6 +45,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSView`
+    #[cfg(feature = "AppKit_NSTableHeaderView")]
     unsafe impl NSTableHeaderView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(

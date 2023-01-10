@@ -24,6 +24,7 @@ ns_enum!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDButton")]
     unsafe impl ASAuthorizationAppleIDButton {
         #[method_id(@__retain_semantics Other buttonWithType:style:)]
         pub unsafe fn buttonWithType_style(

@@ -27,10 +27,13 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "QuartzCore_CAShapeLayer")]
     unsafe impl CAShapeLayer {
+        #[cfg(feature = "QuartzCore_CAShapeLayerFillRule")]
         #[method_id(@__retain_semantics Other fillRule)]
         pub unsafe fn fillRule(&self) -> Id<CAShapeLayerFillRule, Shared>;
 
+        #[cfg(feature = "QuartzCore_CAShapeLayerFillRule")]
         #[method(setFillRule:)]
         pub unsafe fn setFillRule(&self, fillRule: &CAShapeLayerFillRule);
 
@@ -58,15 +61,19 @@ extern_methods!(
         #[method(setMiterLimit:)]
         pub unsafe fn setMiterLimit(&self, miterLimit: CGFloat);
 
+        #[cfg(feature = "QuartzCore_CAShapeLayerLineCap")]
         #[method_id(@__retain_semantics Other lineCap)]
         pub unsafe fn lineCap(&self) -> Id<CAShapeLayerLineCap, Shared>;
 
+        #[cfg(feature = "QuartzCore_CAShapeLayerLineCap")]
         #[method(setLineCap:)]
         pub unsafe fn setLineCap(&self, lineCap: &CAShapeLayerLineCap);
 
+        #[cfg(feature = "QuartzCore_CAShapeLayerLineJoin")]
         #[method_id(@__retain_semantics Other lineJoin)]
         pub unsafe fn lineJoin(&self) -> Id<CAShapeLayerLineJoin, Shared>;
 
+        #[cfg(feature = "QuartzCore_CAShapeLayerLineJoin")]
         #[method(setLineJoin:)]
         pub unsafe fn setLineJoin(&self, lineJoin: &CAShapeLayerLineJoin);
 
@@ -76,9 +83,11 @@ extern_methods!(
         #[method(setLineDashPhase:)]
         pub unsafe fn setLineDashPhase(&self, lineDashPhase: CGFloat);
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method_id(@__retain_semantics Other lineDashPattern)]
         pub unsafe fn lineDashPattern(&self) -> Option<Id<NSArray<NSNumber>, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method(setLineDashPattern:)]
         pub unsafe fn setLineDashPattern(&self, lineDashPattern: Option<&NSArray<NSNumber>>);
     }
@@ -102,6 +111,7 @@ extern_static!(kCALineCapSquare: &'static CAShapeLayerLineCap);
 
 extern_methods!(
     /// Methods declared on superclass `CALayer`
+    #[cfg(feature = "QuartzCore_CAShapeLayer")]
     unsafe impl CAShapeLayer {
         #[method_id(@__retain_semantics Other layer)]
         pub unsafe fn layer() -> Id<Self, Shared>;

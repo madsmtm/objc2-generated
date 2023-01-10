@@ -16,7 +16,9 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSCachedImageRep")]
     unsafe impl NSCachedImageRep {
+        #[cfg(feature = "AppKit_NSWindow")]
         #[method_id(@__retain_semantics Init initWithWindow:rect:)]
         pub unsafe fn initWithWindow_rect(
             this: Option<Allocated<Self>>,
@@ -33,6 +35,7 @@ extern_methods!(
             alpha: bool,
         ) -> Option<Id<Self, Shared>>;
 
+        #[cfg(feature = "AppKit_NSWindow")]
         #[method_id(@__retain_semantics Other window)]
         pub unsafe fn window(&self) -> Option<Id<NSWindow, Shared>>;
 

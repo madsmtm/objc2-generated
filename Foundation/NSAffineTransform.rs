@@ -24,6 +24,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSAffineTransform")]
     unsafe impl NSAffineTransform {
         #[method_id(@__retain_semantics Other transform)]
         pub unsafe fn transform() -> Id<NSAffineTransform, Shared>;

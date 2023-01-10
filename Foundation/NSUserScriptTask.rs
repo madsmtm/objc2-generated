@@ -15,13 +15,16 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSUserScriptTask")]
     unsafe impl NSUserScriptTask {
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Init initWithURL:error:_)]
         pub unsafe fn initWithURL_error(
             this: Option<Allocated<Self>>,
             url: &NSURL,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
+        #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other scriptURL)]
         pub unsafe fn scriptURL(&self) -> Id<NSURL, Shared>;
 
@@ -46,25 +49,33 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSUserUnixTask")]
     unsafe impl NSUserUnixTask {
+        #[cfg(feature = "Foundation_NSFileHandle")]
         #[method_id(@__retain_semantics Other standardInput)]
         pub unsafe fn standardInput(&self) -> Option<Id<NSFileHandle, Shared>>;
 
+        #[cfg(feature = "Foundation_NSFileHandle")]
         #[method(setStandardInput:)]
         pub unsafe fn setStandardInput(&self, standardInput: Option<&NSFileHandle>);
 
+        #[cfg(feature = "Foundation_NSFileHandle")]
         #[method_id(@__retain_semantics Other standardOutput)]
         pub unsafe fn standardOutput(&self) -> Option<Id<NSFileHandle, Shared>>;
 
+        #[cfg(feature = "Foundation_NSFileHandle")]
         #[method(setStandardOutput:)]
         pub unsafe fn setStandardOutput(&self, standardOutput: Option<&NSFileHandle>);
 
+        #[cfg(feature = "Foundation_NSFileHandle")]
         #[method_id(@__retain_semantics Other standardError)]
         pub unsafe fn standardError(&self) -> Option<Id<NSFileHandle, Shared>>;
 
+        #[cfg(feature = "Foundation_NSFileHandle")]
         #[method(setStandardError:)]
         pub unsafe fn setStandardError(&self, standardError: Option<&NSFileHandle>);
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(executeWithArguments:completionHandler:)]
         pub unsafe fn executeWithArguments_completionHandler(
             &self,
@@ -88,7 +99,9 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSUserAppleScriptTask")]
     unsafe impl NSUserAppleScriptTask {
+        #[cfg(feature = "Foundation_NSAppleEventDescriptor")]
         #[method(executeWithAppleEvent:completionHandler:)]
         pub unsafe fn executeWithAppleEvent_completionHandler(
             &self,
@@ -111,13 +124,17 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSUserAutomatorTask")]
     unsafe impl NSUserAutomatorTask {
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other variables)]
         pub unsafe fn variables(&self) -> Option<Id<NSDictionary<NSString, Object>, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setVariables:)]
         pub unsafe fn setVariables(&self, variables: Option<&NSDictionary<NSString, Object>>);
 
+        #[cfg(feature = "Foundation_NSSecureCoding")]
         #[method(executeWithInput:completionHandler:)]
         pub unsafe fn executeWithInput_completionHandler(
             &self,
@@ -129,7 +146,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSUserScriptTask`
+    #[cfg(feature = "Foundation_NSUserUnixTask")]
     unsafe impl NSUserUnixTask {
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Init initWithURL:error:_)]
         pub unsafe fn initWithURL_error(
             this: Option<Allocated<Self>>,
@@ -140,7 +159,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSUserScriptTask`
+    #[cfg(feature = "Foundation_NSUserAppleScriptTask")]
     unsafe impl NSUserAppleScriptTask {
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Init initWithURL:error:_)]
         pub unsafe fn initWithURL_error(
             this: Option<Allocated<Self>>,
@@ -151,7 +172,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSUserScriptTask`
+    #[cfg(feature = "Foundation_NSUserAutomatorTask")]
     unsafe impl NSUserAutomatorTask {
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Init initWithURL:error:_)]
         pub unsafe fn initWithURL_error(
             this: Option<Allocated<Self>>,

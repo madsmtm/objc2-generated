@@ -67,6 +67,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Metal_MTLCommandBufferDescriptor")]
     unsafe impl MTLCommandBufferDescriptor {
         #[method(retainedReferences)]
         pub unsafe fn retainedReferences(&self) -> bool;

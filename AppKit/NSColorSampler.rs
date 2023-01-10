@@ -15,7 +15,9 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSColorSampler")]
     unsafe impl NSColorSampler {
+        #[cfg(feature = "AppKit_NSColor")]
         #[method(showSamplerWithSelectionHandler:)]
         pub unsafe fn showSamplerWithSelectionHandler(
             &self,

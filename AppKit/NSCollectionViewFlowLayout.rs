@@ -32,6 +32,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSCollectionViewFlowLayoutInvalidationContext")]
     unsafe impl NSCollectionViewFlowLayoutInvalidationContext {
         #[method(invalidateFlowLayoutDelegateMetrics)]
         pub unsafe fn invalidateFlowLayoutDelegateMetrics(&self) -> bool;
@@ -124,6 +125,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSCollectionViewFlowLayout")]
     unsafe impl NSCollectionViewFlowLayout {
         #[method(minimumLineSpacing)]
         pub unsafe fn minimumLineSpacing(&self) -> CGFloat;

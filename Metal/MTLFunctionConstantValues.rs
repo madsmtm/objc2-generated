@@ -14,6 +14,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Metal_MTLFunctionConstantValues")]
     unsafe impl MTLFunctionConstantValues {
         #[method(setConstantValue:type:atIndex:)]
         pub unsafe fn setConstantValue_type_atIndex(
@@ -31,6 +32,7 @@ extern_methods!(
             range: NSRange,
         );
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setConstantValue:type:withName:)]
         pub unsafe fn setConstantValue_type_withName(
             &self,

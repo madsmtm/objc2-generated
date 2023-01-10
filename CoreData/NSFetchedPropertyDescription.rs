@@ -15,10 +15,13 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "CoreData_NSFetchedPropertyDescription")]
     unsafe impl NSFetchedPropertyDescription {
+        #[cfg(feature = "CoreData_NSFetchRequest")]
         #[method_id(@__retain_semantics Other fetchRequest)]
         pub unsafe fn fetchRequest(&self) -> Option<Id<NSFetchRequest, Shared>>;
 
+        #[cfg(feature = "CoreData_NSFetchRequest")]
         #[method(setFetchRequest:)]
         pub unsafe fn setFetchRequest(&self, fetchRequest: Option<&NSFetchRequest>);
     }

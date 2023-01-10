@@ -33,19 +33,23 @@ extern_protocol!(
 
 extern_methods!(
     /// NSUserInterfaceItemSearching
+    #[cfg(feature = "AppKit_NSApplication")]
     unsafe impl NSApplication {
+        #[cfg(feature = "AppKit_NSUserInterfaceItemSearching")]
         #[method(registerUserInterfaceItemSearchHandler:)]
         pub unsafe fn registerUserInterfaceItemSearchHandler(
             &self,
             handler: &NSUserInterfaceItemSearching,
         );
 
+        #[cfg(feature = "AppKit_NSUserInterfaceItemSearching")]
         #[method(unregisterUserInterfaceItemSearchHandler:)]
         pub unsafe fn unregisterUserInterfaceItemSearchHandler(
             &self,
             handler: &NSUserInterfaceItemSearching,
         );
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(searchString:inUserInterfaceItemString:searchRange:foundRange:)]
         pub unsafe fn searchString_inUserInterfaceItemString_searchRange_foundRange(
             &self,

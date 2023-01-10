@@ -42,6 +42,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSImageCell")]
     unsafe impl NSImageCell {
         #[method(imageAlignment)]
         pub unsafe fn imageAlignment(&self) -> NSImageAlignment;
@@ -65,13 +66,16 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSCell`
+    #[cfg(feature = "AppKit_NSImageCell")]
     unsafe impl NSImageCell {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initTextCell:)]
         pub unsafe fn initTextCell(
             this: Option<Allocated<Self>>,
             string: &NSString,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Init initImageCell:)]
         pub unsafe fn initImageCell(
             this: Option<Allocated<Self>>,

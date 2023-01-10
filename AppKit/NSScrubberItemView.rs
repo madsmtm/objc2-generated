@@ -16,6 +16,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSScrubberArrangedView")]
     unsafe impl NSScrubberArrangedView {
         #[method(isSelected)]
         pub unsafe fn isSelected(&self) -> bool;
@@ -29,6 +30,7 @@ extern_methods!(
         #[method(setHighlighted:)]
         pub unsafe fn setHighlighted(&self, highlighted: bool);
 
+        #[cfg(feature = "AppKit_NSScrubberLayoutAttributes")]
         #[method(applyLayoutAttributes:)]
         pub unsafe fn applyLayoutAttributes(&self, layoutAttributes: &NSScrubberLayoutAttributes);
     }
@@ -45,6 +47,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSScrubberSelectionView")]
     unsafe impl NSScrubberSelectionView {}
 );
 
@@ -59,6 +62,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSScrubberItemView")]
     unsafe impl NSScrubberItemView {}
 );
 
@@ -73,13 +77,17 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSScrubberTextItemView")]
     unsafe impl NSScrubberTextItemView {
+        #[cfg(feature = "AppKit_NSTextField")]
         #[method_id(@__retain_semantics Other textField)]
         pub unsafe fn textField(&self) -> Id<NSTextField, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
     }
@@ -96,13 +104,17 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSScrubberImageItemView")]
     unsafe impl NSScrubberImageItemView {
+        #[cfg(feature = "AppKit_NSImageView")]
         #[method_id(@__retain_semantics Other imageView)]
         pub unsafe fn imageView(&self) -> Id<NSImageView, Shared>;
 
+        #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other image)]
         pub unsafe fn image(&self) -> Id<NSImage, Shared>;
 
+        #[cfg(feature = "AppKit_NSImage")]
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: &NSImage);
 
@@ -116,6 +128,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSView`
+    #[cfg(feature = "AppKit_NSScrubberArrangedView")]
     unsafe impl NSScrubberArrangedView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
@@ -127,6 +140,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSView`
+    #[cfg(feature = "AppKit_NSScrubberSelectionView")]
     unsafe impl NSScrubberSelectionView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
@@ -138,6 +152,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSView`
+    #[cfg(feature = "AppKit_NSScrubberItemView")]
     unsafe impl NSScrubberItemView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
@@ -149,6 +164,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSView`
+    #[cfg(feature = "AppKit_NSScrubberTextItemView")]
     unsafe impl NSScrubberTextItemView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
@@ -160,6 +176,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSView`
+    #[cfg(feature = "AppKit_NSScrubberImageItemView")]
     unsafe impl NSScrubberImageItemView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(

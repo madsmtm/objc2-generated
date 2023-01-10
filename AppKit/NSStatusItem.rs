@@ -25,7 +25,9 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSStatusItem")]
     unsafe impl NSStatusItem {
+        #[cfg(feature = "AppKit_NSStatusBar")]
         #[method_id(@__retain_semantics Other statusBar)]
         pub unsafe fn statusBar(&self) -> Option<Id<NSStatusBar, Shared>>;
 
@@ -35,12 +37,15 @@ extern_methods!(
         #[method(setLength:)]
         pub unsafe fn setLength(&self, length: CGFloat);
 
+        #[cfg(feature = "AppKit_NSMenu")]
         #[method_id(@__retain_semantics Other menu)]
         pub unsafe fn menu(&self) -> Option<Id<NSMenu, Shared>>;
 
+        #[cfg(feature = "AppKit_NSMenu")]
         #[method(setMenu:)]
         pub unsafe fn setMenu(&self, menu: Option<&NSMenu>);
 
+        #[cfg(feature = "AppKit_NSStatusBarButton")]
         #[method_id(@__retain_semantics Other button)]
         pub unsafe fn button(&self) -> Option<Id<NSStatusBarButton, Shared>>;
 
@@ -56,9 +61,11 @@ extern_methods!(
         #[method(setVisible:)]
         pub unsafe fn setVisible(&self, visible: bool);
 
+        #[cfg(feature = "AppKit_NSStatusItemAutosaveName")]
         #[method_id(@__retain_semantics Other autosaveName)]
         pub unsafe fn autosaveName(&self) -> Id<NSStatusItemAutosaveName, Shared>;
 
+        #[cfg(feature = "AppKit_NSStatusItemAutosaveName")]
         #[method(setAutosaveName:)]
         pub unsafe fn setAutosaveName(&self, autosaveName: Option<&NSStatusItemAutosaveName>);
     }
@@ -66,6 +73,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSStatusItemDeprecated
+    #[cfg(feature = "AppKit_NSStatusItem")]
     unsafe impl NSStatusItem {
         #[method(action)]
         pub unsafe fn action(&self) -> Option<Sel>;
@@ -85,27 +93,35 @@ extern_methods!(
         #[method(setTarget:)]
         pub unsafe fn setTarget(&self, target: Option<&Object>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
+        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedTitle)]
         pub unsafe fn attributedTitle(&self) -> Option<Id<NSAttributedString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setAttributedTitle:)]
         pub unsafe fn setAttributedTitle(&self, attributedTitle: Option<&NSAttributedString>);
 
+        #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other image)]
         pub unsafe fn image(&self) -> Option<Id<NSImage, Shared>>;
 
+        #[cfg(feature = "AppKit_NSImage")]
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&NSImage>);
 
+        #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other alternateImage)]
         pub unsafe fn alternateImage(&self) -> Option<Id<NSImage, Shared>>;
 
+        #[cfg(feature = "AppKit_NSImage")]
         #[method(setAlternateImage:)]
         pub unsafe fn setAlternateImage(&self, alternateImage: Option<&NSImage>);
 
@@ -121,18 +137,22 @@ extern_methods!(
         #[method(setHighlightMode:)]
         pub unsafe fn setHighlightMode(&self, highlightMode: bool);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other toolTip)]
         pub unsafe fn toolTip(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setToolTip:)]
         pub unsafe fn setToolTip(&self, toolTip: Option<&NSString>);
 
         #[method(sendActionOn:)]
         pub unsafe fn sendActionOn(&self, mask: NSEventMask) -> NSInteger;
 
+        #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other view)]
         pub unsafe fn view(&self) -> Option<Id<NSView, Shared>>;
 
+        #[cfg(feature = "AppKit_NSView")]
         #[method(setView:)]
         pub unsafe fn setView(&self, view: Option<&NSView>);
 
@@ -143,6 +163,7 @@ extern_methods!(
             highlight: bool,
         );
 
+        #[cfg(feature = "AppKit_NSMenu")]
         #[method(popUpStatusItemMenu:)]
         pub unsafe fn popUpStatusItemMenu(&self, menu: &NSMenu);
     }

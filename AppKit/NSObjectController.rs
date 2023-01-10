@@ -16,6 +16,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSObjectController")]
     unsafe impl NSObjectController {
         #[method_id(@__retain_semantics Init initWithContent:)]
         pub unsafe fn initWithContent(
@@ -23,6 +24,7 @@ extern_methods!(
             content: Option<&Object>,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -38,6 +40,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other selection)]
         pub unsafe fn selection(&self) -> Id<Object, Shared>;
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other selectedObjects)]
         pub unsafe fn selectedObjects(&self) -> Id<NSArray, Shared>;
 
@@ -83,6 +86,7 @@ extern_methods!(
         #[method(canRemove)]
         pub unsafe fn canRemove(&self) -> bool;
 
+        #[cfg(feature = "AppKit_NSValidatedUserInterfaceItem")]
         #[method(validateUserInterfaceItem:)]
         pub unsafe fn validateUserInterfaceItem(&self, item: &NSValidatedUserInterfaceItem)
             -> bool;
@@ -91,28 +95,36 @@ extern_methods!(
 
 extern_methods!(
     /// NSManagedController
+    #[cfg(feature = "AppKit_NSObjectController")]
     unsafe impl NSObjectController {
+        #[cfg(feature = "CoreData_NSManagedObjectContext")]
         #[method_id(@__retain_semantics Other managedObjectContext)]
         pub unsafe fn managedObjectContext(&self) -> Option<Id<NSManagedObjectContext, Shared>>;
 
+        #[cfg(feature = "CoreData_NSManagedObjectContext")]
         #[method(setManagedObjectContext:)]
         pub unsafe fn setManagedObjectContext(
             &self,
             managedObjectContext: Option<&NSManagedObjectContext>,
         );
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other entityName)]
         pub unsafe fn entityName(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setEntityName:)]
         pub unsafe fn setEntityName(&self, entityName: Option<&NSString>);
 
+        #[cfg(feature = "Foundation_NSPredicate")]
         #[method_id(@__retain_semantics Other fetchPredicate)]
         pub unsafe fn fetchPredicate(&self) -> Option<Id<NSPredicate, Shared>>;
 
+        #[cfg(feature = "Foundation_NSPredicate")]
         #[method(setFetchPredicate:)]
         pub unsafe fn setFetchPredicate(&self, fetchPredicate: Option<&NSPredicate>);
 
+        #[cfg(all(feature = "CoreData_NSFetchRequest", feature = "Foundation_NSError"))]
         #[method(fetchWithRequest:merge:error:_)]
         pub unsafe fn fetchWithRequest_merge_error(
             &self,
@@ -129,6 +141,7 @@ extern_methods!(
         #[method(setUsesLazyFetching:)]
         pub unsafe fn setUsesLazyFetching(&self, usesLazyFetching: bool);
 
+        #[cfg(feature = "CoreData_NSFetchRequest")]
         #[method_id(@__retain_semantics Other defaultFetchRequest)]
         pub unsafe fn defaultFetchRequest(&self) -> Id<NSFetchRequest, Shared>;
     }

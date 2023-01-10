@@ -15,10 +15,17 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "CoreData_NSIncrementalStore")]
     unsafe impl NSIncrementalStore {
+        #[cfg(feature = "Foundation_NSError")]
         #[method(loadMetadata:_)]
         pub unsafe fn loadMetadata(&self) -> Result<(), Id<NSError, Shared>>;
 
+        #[cfg(all(
+            feature = "CoreData_NSManagedObjectContext",
+            feature = "CoreData_NSPersistentStoreRequest",
+            feature = "Foundation_NSError"
+        ))]
         #[method_id(@__retain_semantics Other executeRequest:withContext:error:_)]
         pub unsafe fn executeRequest_withContext_error(
             &self,
@@ -26,6 +33,12 @@ extern_methods!(
             context: Option<&NSManagedObjectContext>,
         ) -> Result<Id<Object, Shared>, Id<NSError, Shared>>;
 
+        #[cfg(all(
+            feature = "CoreData_NSIncrementalStoreNode",
+            feature = "CoreData_NSManagedObjectContext",
+            feature = "CoreData_NSManagedObjectID",
+            feature = "Foundation_NSError"
+        ))]
         #[method_id(@__retain_semantics New newValuesForObjectWithID:withContext:error:_)]
         pub unsafe fn newValuesForObjectWithID_withContext_error(
             &self,
@@ -33,6 +46,12 @@ extern_methods!(
             context: &NSManagedObjectContext,
         ) -> Result<Id<NSIncrementalStoreNode, Shared>, Id<NSError, Shared>>;
 
+        #[cfg(all(
+            feature = "CoreData_NSManagedObjectContext",
+            feature = "CoreData_NSManagedObjectID",
+            feature = "CoreData_NSRelationshipDescription",
+            feature = "Foundation_NSError"
+        ))]
         #[method_id(@__retain_semantics New newValueForRelationship:forObjectWithID:withContext:error:_)]
         pub unsafe fn newValueForRelationship_forObjectWithID_withContext_error(
             &self,
@@ -41,27 +60,40 @@ extern_methods!(
             context: Option<&NSManagedObjectContext>,
         ) -> Result<Id<Object, Shared>, Id<NSError, Shared>>;
 
+        #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other identifierForNewStoreAtURL:)]
         pub unsafe fn identifierForNewStoreAtURL(storeURL: &NSURL) -> Id<Object, Shared>;
 
+        #[cfg(all(
+            feature = "CoreData_NSManagedObject",
+            feature = "CoreData_NSManagedObjectID",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSError"
+        ))]
         #[method_id(@__retain_semantics Other obtainPermanentIDsForObjects:error:_)]
         pub unsafe fn obtainPermanentIDsForObjects_error(
             &self,
             array: &NSArray<NSManagedObject>,
         ) -> Result<Id<NSArray<NSManagedObjectID>, Shared>, Id<NSError, Shared>>;
 
+        #[cfg(all(feature = "CoreData_NSManagedObjectID", feature = "Foundation_NSArray"))]
         #[method(managedObjectContextDidRegisterObjectsWithIDs:)]
         pub unsafe fn managedObjectContextDidRegisterObjectsWithIDs(
             &self,
             objectIDs: &NSArray<NSManagedObjectID>,
         );
 
+        #[cfg(all(feature = "CoreData_NSManagedObjectID", feature = "Foundation_NSArray"))]
         #[method(managedObjectContextDidUnregisterObjectsWithIDs:)]
         pub unsafe fn managedObjectContextDidUnregisterObjectsWithIDs(
             &self,
             objectIDs: &NSArray<NSManagedObjectID>,
         );
 
+        #[cfg(all(
+            feature = "CoreData_NSEntityDescription",
+            feature = "CoreData_NSManagedObjectID"
+        ))]
         #[method_id(@__retain_semantics New newObjectIDForEntity:referenceObject:)]
         pub unsafe fn newObjectIDForEntity_referenceObject(
             &self,
@@ -69,6 +101,7 @@ extern_methods!(
             data: &Object,
         ) -> Id<NSManagedObjectID, Shared>;
 
+        #[cfg(feature = "CoreData_NSManagedObjectID")]
         #[method_id(@__retain_semantics Other referenceObjectForObjectID:)]
         pub unsafe fn referenceObjectForObjectID(
             &self,
@@ -79,7 +112,14 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSPersistentStore`
+    #[cfg(feature = "CoreData_NSIncrementalStore")]
     unsafe impl NSIncrementalStore {
+        #[cfg(all(
+            feature = "CoreData_NSPersistentStoreCoordinator",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSURL"
+        ))]
         #[method_id(@__retain_semantics Init initWithPersistentStoreCoordinator:configurationName:URL:options:)]
         pub unsafe fn initWithPersistentStoreCoordinator_configurationName_URL_options(
             this: Option<Allocated<Self>>,

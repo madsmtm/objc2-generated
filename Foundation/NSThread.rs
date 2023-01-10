@@ -13,6 +13,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSThread")]
     unsafe impl NSThread {
         #[method_id(@__retain_semantics Other currentThread)]
         pub fn currentThread() -> Id<NSThread, Shared>;
@@ -30,9 +31,11 @@ extern_methods!(
         #[method(isMultiThreaded)]
         pub fn isMultiThreaded() -> bool;
 
+        #[cfg(feature = "Foundation_NSMutableDictionary")]
         #[method_id(@__retain_semantics Other threadDictionary)]
         pub unsafe fn threadDictionary(&self) -> Id<NSMutableDictionary, Owned>;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(sleepUntilDate:)]
         pub unsafe fn sleepUntilDate(date: &NSDate);
 
@@ -48,15 +51,19 @@ extern_methods!(
         #[method(setQualityOfService:)]
         pub unsafe fn setQualityOfService(&self, qualityOfService: NSQualityOfService);
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method_id(@__retain_semantics Other callStackReturnAddresses)]
         pub unsafe fn callStackReturnAddresses() -> Id<NSArray<NSNumber>, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other callStackSymbols)]
         pub unsafe fn callStackSymbols() -> Id<NSArray<NSString>, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
         pub fn name(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 

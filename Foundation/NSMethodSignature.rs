@@ -13,6 +13,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSMethodSignature")]
     unsafe impl NSMethodSignature {
         #[method_id(@__retain_semantics Other signatureWithObjCTypes:)]
         pub unsafe fn signatureWithObjCTypes(

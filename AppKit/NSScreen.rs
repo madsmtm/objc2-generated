@@ -15,7 +15,9 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSScreen")]
     unsafe impl NSScreen {
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other screens)]
         pub unsafe fn screens() -> Id<NSArray<NSScreen>, Shared>;
 
@@ -37,11 +39,16 @@ extern_methods!(
         #[method(visibleFrame)]
         pub unsafe fn visibleFrame(&self) -> NSRect;
 
+        #[cfg(all(
+            feature = "AppKit_NSDeviceDescriptionKey",
+            feature = "Foundation_NSDictionary"
+        ))]
         #[method_id(@__retain_semantics Other deviceDescription)]
         pub unsafe fn deviceDescription(
             &self,
         ) -> Id<NSDictionary<NSDeviceDescriptionKey, Object>, Shared>;
 
+        #[cfg(feature = "AppKit_NSColorSpace")]
         #[method_id(@__retain_semantics Other colorSpace)]
         pub unsafe fn colorSpace(&self) -> Option<Id<NSColorSpace, Shared>>;
 
@@ -67,6 +74,7 @@ extern_methods!(
         #[method(backingScaleFactor)]
         pub unsafe fn backingScaleFactor(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedName)]
         pub unsafe fn localizedName(&self) -> Id<NSString, Shared>;
 
@@ -84,6 +92,7 @@ extern_methods!(
 extern_static!(NSScreenColorSpaceDidChangeNotification: &'static NSNotificationName);
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSScreen")]
     unsafe impl NSScreen {
         #[method(maximumExtendedDynamicRangeColorComponentValue)]
         pub unsafe fn maximumExtendedDynamicRangeColorComponentValue(&self) -> CGFloat;
@@ -97,6 +106,7 @@ extern_methods!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSScreen")]
     unsafe impl NSScreen {
         #[method(maximumFramesPerSecond)]
         pub unsafe fn maximumFramesPerSecond(&self) -> NSInteger;
@@ -117,6 +127,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSDeprecated
+    #[cfg(feature = "AppKit_NSScreen")]
     unsafe impl NSScreen {
         #[method(userSpaceScaleFactor)]
         pub unsafe fn userSpaceScaleFactor(&self) -> CGFloat;

@@ -16,6 +16,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSSwitch")]
     unsafe impl NSSwitch {
         #[method(state)]
         pub unsafe fn state(&self) -> NSControlStateValue;
@@ -27,6 +28,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSControl`
+    #[cfg(feature = "AppKit_NSSwitch")]
     unsafe impl NSSwitch {
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(

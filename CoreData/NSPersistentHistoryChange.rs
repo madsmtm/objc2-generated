@@ -23,33 +23,47 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "CoreData_NSPersistentHistoryChange")]
     unsafe impl NSPersistentHistoryChange {
+        #[cfg(all(
+            feature = "CoreData_NSEntityDescription",
+            feature = "CoreData_NSManagedObjectContext"
+        ))]
         #[method_id(@__retain_semantics Other entityDescriptionWithContext:)]
         pub unsafe fn entityDescriptionWithContext(
             context: &NSManagedObjectContext,
         ) -> Option<Id<NSEntityDescription, Shared>>;
 
+        #[cfg(feature = "CoreData_NSEntityDescription")]
         #[method_id(@__retain_semantics Other entityDescription)]
         pub unsafe fn entityDescription() -> Option<Id<NSEntityDescription, Shared>>;
 
+        #[cfg(feature = "CoreData_NSFetchRequest")]
         #[method_id(@__retain_semantics Other fetchRequest)]
         pub unsafe fn fetchRequest() -> Option<Id<NSFetchRequest, Shared>>;
 
         #[method(changeID)]
         pub unsafe fn changeID(&self) -> i64;
 
+        #[cfg(feature = "CoreData_NSManagedObjectID")]
         #[method_id(@__retain_semantics Other changedObjectID)]
         pub unsafe fn changedObjectID(&self) -> Id<NSManagedObjectID, Shared>;
 
         #[method(changeType)]
         pub unsafe fn changeType(&self) -> NSPersistentHistoryChangeType;
 
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other tombstone)]
         pub unsafe fn tombstone(&self) -> Option<Id<NSDictionary, Shared>>;
 
+        #[cfg(feature = "CoreData_NSPersistentHistoryTransaction")]
         #[method_id(@__retain_semantics Other transaction)]
         pub unsafe fn transaction(&self) -> Option<Id<NSPersistentHistoryTransaction, Shared>>;
 
+        #[cfg(all(
+            feature = "CoreData_NSPropertyDescription",
+            feature = "Foundation_NSSet"
+        ))]
         #[method_id(@__retain_semantics Other updatedProperties)]
         pub unsafe fn updatedProperties(&self) -> Option<Id<NSSet<NSPropertyDescription>, Shared>>;
     }

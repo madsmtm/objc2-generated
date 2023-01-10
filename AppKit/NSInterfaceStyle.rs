@@ -26,6 +26,7 @@ extern_fn!(
 
 extern_methods!(
     /// NSInterfaceStyle
+    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSResponder {
         #[method(interfaceStyle)]
         pub unsafe fn interfaceStyle(&self) -> NSInterfaceStyle;

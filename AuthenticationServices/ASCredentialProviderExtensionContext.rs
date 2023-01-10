@@ -15,7 +15,9 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AuthenticationServices_ASCredentialProviderExtensionContext")]
     unsafe impl ASCredentialProviderExtensionContext {
+        #[cfg(feature = "AuthenticationServices_ASPasswordCredential")]
         #[method(completeRequestWithSelectedCredential:completionHandler:)]
         pub unsafe fn completeRequestWithSelectedCredential_completionHandler(
             &self,
@@ -26,6 +28,7 @@ extern_methods!(
         #[method(completeExtensionConfigurationRequest)]
         pub unsafe fn completeExtensionConfigurationRequest(&self);
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(completeRequestReturningItems:completionHandler:)]
         pub unsafe fn completeRequestReturningItems_completionHandler(
             &self,
@@ -33,6 +36,7 @@ extern_methods!(
             completionHandler: Option<&Block<(Bool,), ()>>,
         );
 
+        #[cfg(feature = "Foundation_NSError")]
         #[method(cancelRequestWithError:)]
         pub unsafe fn cancelRequestWithError(&self, error: &NSError);
     }

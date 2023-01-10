@@ -15,6 +15,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "CoreData_NSPersistentCloudKitContainerEventRequest")]
     unsafe impl NSPersistentCloudKitContainerEventRequest {
         #[method(resultType)]
         pub unsafe fn resultType(&self) -> NSPersistentCloudKitContainerEventResultType;
@@ -25,19 +26,23 @@ extern_methods!(
             resultType: NSPersistentCloudKitContainerEventResultType,
         );
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other fetchEventsAfterDate:)]
         pub unsafe fn fetchEventsAfterDate(date: &NSDate) -> Id<Self, Shared>;
 
+        #[cfg(feature = "CoreData_NSPersistentCloudKitContainerEvent")]
         #[method_id(@__retain_semantics Other fetchEventsAfterEvent:)]
         pub unsafe fn fetchEventsAfterEvent(
             event: Option<&NSPersistentCloudKitContainerEvent>,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "CoreData_NSFetchRequest")]
         #[method_id(@__retain_semantics Other fetchEventsMatchingFetchRequest:)]
         pub unsafe fn fetchEventsMatchingFetchRequest(
             fetchRequest: &NSFetchRequest,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "CoreData_NSFetchRequest")]
         #[method_id(@__retain_semantics Other fetchRequestForEvents)]
         pub unsafe fn fetchRequestForEvents() -> Id<NSFetchRequest, Shared>;
     }

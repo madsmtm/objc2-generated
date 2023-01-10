@@ -15,6 +15,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSDraggingSession")]
     unsafe impl NSDraggingSession {
         #[method(draggingFormation)]
         pub unsafe fn draggingFormation(&self) -> NSDraggingFormation;
@@ -37,6 +38,7 @@ extern_methods!(
         #[method(setDraggingLeaderIndex:)]
         pub unsafe fn setDraggingLeaderIndex(&self, draggingLeaderIndex: NSInteger);
 
+        #[cfg(feature = "AppKit_NSPasteboard")]
         #[method_id(@__retain_semantics Other draggingPasteboard)]
         pub unsafe fn draggingPasteboard(&self) -> Id<NSPasteboard, Shared>;
 
@@ -46,6 +48,13 @@ extern_methods!(
         #[method(draggingLocation)]
         pub unsafe fn draggingLocation(&self) -> NSPoint;
 
+        #[cfg(all(
+            feature = "AppKit_NSDraggingItem",
+            feature = "AppKit_NSPasteboardReadingOptionKey",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSDictionary"
+        ))]
         #[method(enumerateDraggingItemsWithOptions:forView:classes:searchOptions:usingBlock:)]
         pub unsafe fn enumerateDraggingItemsWithOptions_forView_classes_searchOptions_usingBlock(
             &self,

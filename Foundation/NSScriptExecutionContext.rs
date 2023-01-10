@@ -13,6 +13,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSScriptExecutionContext")]
     unsafe impl NSScriptExecutionContext {
         #[method_id(@__retain_semantics Other sharedScriptExecutionContext)]
         pub unsafe fn sharedScriptExecutionContext() -> Id<NSScriptExecutionContext, Shared>;

@@ -30,31 +30,41 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSAlert")]
     unsafe impl NSAlert {
+        #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other alertWithError:)]
         pub unsafe fn alertWithError(error: &NSError) -> Id<NSAlert, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other messageText)]
         pub unsafe fn messageText(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setMessageText:)]
         pub unsafe fn setMessageText(&self, messageText: &NSString);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other informativeText)]
         pub unsafe fn informativeText(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setInformativeText:)]
         pub unsafe fn setInformativeText(&self, informativeText: &NSString);
 
+        #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other icon)]
         pub unsafe fn icon(&self) -> Option<Id<NSImage, Shared>>;
 
+        #[cfg(feature = "AppKit_NSImage")]
         #[method(setIcon:)]
         pub unsafe fn setIcon(&self, icon: Option<&NSImage>);
 
+        #[cfg(all(feature = "AppKit_NSButton", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other addButtonWithTitle:)]
         pub unsafe fn addButtonWithTitle(&self, title: &NSString) -> Id<NSButton, Shared>;
 
+        #[cfg(all(feature = "AppKit_NSButton", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other buttons)]
         pub unsafe fn buttons(&self) -> Id<NSArray<NSButton>, Shared>;
 
@@ -64,9 +74,11 @@ extern_methods!(
         #[method(setShowsHelp:)]
         pub unsafe fn setShowsHelp(&self, showsHelp: bool);
 
+        #[cfg(feature = "AppKit_NSHelpAnchorName")]
         #[method_id(@__retain_semantics Other helpAnchor)]
         pub unsafe fn helpAnchor(&self) -> Option<Id<NSHelpAnchorName, Shared>>;
 
+        #[cfg(feature = "AppKit_NSHelpAnchorName")]
         #[method(setHelpAnchor:)]
         pub unsafe fn setHelpAnchor(&self, helpAnchor: Option<&NSHelpAnchorName>);
 
@@ -76,9 +88,11 @@ extern_methods!(
         #[method(setAlertStyle:)]
         pub unsafe fn setAlertStyle(&self, alertStyle: NSAlertStyle);
 
+        #[cfg(feature = "AppKit_NSAlertDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSAlertDelegate, Shared>>;
 
+        #[cfg(feature = "AppKit_NSAlertDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&NSAlertDelegate>);
 
@@ -88,12 +102,15 @@ extern_methods!(
         #[method(setShowsSuppressionButton:)]
         pub unsafe fn setShowsSuppressionButton(&self, showsSuppressionButton: bool);
 
+        #[cfg(feature = "AppKit_NSButton")]
         #[method_id(@__retain_semantics Other suppressionButton)]
         pub unsafe fn suppressionButton(&self) -> Option<Id<NSButton, Shared>>;
 
+        #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other accessoryView)]
         pub unsafe fn accessoryView(&self) -> Option<Id<NSView, Shared>>;
 
+        #[cfg(feature = "AppKit_NSView")]
         #[method(setAccessoryView:)]
         pub unsafe fn setAccessoryView(&self, accessoryView: Option<&NSView>);
 
@@ -103,6 +120,7 @@ extern_methods!(
         #[method(runModal)]
         pub unsafe fn runModal(&self) -> NSModalResponse;
 
+        #[cfg(feature = "AppKit_NSWindow")]
         #[method(beginSheetModalForWindow:completionHandler:)]
         pub unsafe fn beginSheetModalForWindow_completionHandler(
             &self,
@@ -110,6 +128,7 @@ extern_methods!(
             handler: Option<&Block<(NSModalResponse,), ()>>,
         );
 
+        #[cfg(feature = "AppKit_NSWindow")]
         #[method_id(@__retain_semantics Other window)]
         pub unsafe fn window(&self) -> Id<NSWindow, Shared>;
     }
@@ -127,7 +146,9 @@ extern_protocol!(
 
 extern_methods!(
     /// NSAlertDeprecated
+    #[cfg(feature = "AppKit_NSAlert")]
     unsafe impl NSAlert {
+        #[cfg(feature = "AppKit_NSWindow")]
         #[method(beginSheetModalForWindow:modalDelegate:didEndSelector:contextInfo:)]
         pub unsafe fn beginSheetModalForWindow_modalDelegate_didEndSelector_contextInfo(
             &self,

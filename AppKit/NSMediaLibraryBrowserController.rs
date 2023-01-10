@@ -24,6 +24,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSMediaLibraryBrowserController")]
     unsafe impl NSMediaLibraryBrowserController {
         #[method(isVisible)]
         pub unsafe fn isVisible(&self) -> bool;

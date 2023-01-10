@@ -14,6 +14,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialParameters")]
     unsafe impl ASAuthorizationPublicKeyCredentialParameters {
         #[method_id(@__retain_semantics Init initWithAlgorithm:)]
         pub unsafe fn initWithAlgorithm(

@@ -59,62 +59,81 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSSharingService")]
     unsafe impl NSSharingService {
+        #[cfg(feature = "AppKit_NSSharingServiceDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSSharingServiceDelegate, Shared>>;
 
+        #[cfg(feature = "AppKit_NSSharingServiceDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&NSSharingServiceDelegate>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other image)]
         pub unsafe fn image(&self) -> Id<NSImage, Shared>;
 
+        #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other alternateImage)]
         pub unsafe fn alternateImage(&self) -> Option<Id<NSImage, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other menuItemTitle)]
         pub unsafe fn menuItemTitle(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setMenuItemTitle:)]
         pub unsafe fn setMenuItemTitle(&self, menuItemTitle: &NSString);
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other recipients)]
         pub unsafe fn recipients(&self) -> Option<Id<NSArray<NSString>, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setRecipients:)]
         pub unsafe fn setRecipients(&self, recipients: Option<&NSArray<NSString>>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other subject)]
         pub unsafe fn subject(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setSubject:)]
         pub unsafe fn setSubject(&self, subject: Option<&NSString>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other messageBody)]
         pub unsafe fn messageBody(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other permanentLink)]
         pub unsafe fn permanentLink(&self) -> Option<Id<NSURL, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other accountName)]
         pub unsafe fn accountName(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other attachmentFileURLs)]
         pub unsafe fn attachmentFileURLs(&self) -> Option<Id<NSArray<NSURL>, Shared>>;
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other sharingServicesForItems:)]
         pub unsafe fn sharingServicesForItems(
             items: &NSArray,
         ) -> Id<NSArray<NSSharingService>, Shared>;
 
+        #[cfg(feature = "AppKit_NSSharingServiceName")]
         #[method_id(@__retain_semantics Other sharingServiceNamed:)]
         pub unsafe fn sharingServiceNamed(
             serviceName: &NSSharingServiceName,
         ) -> Option<Id<NSSharingService, Shared>>;
 
+        #[cfg(all(feature = "AppKit_NSImage", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithTitle:image:alternateImage:handler:)]
         pub unsafe fn initWithTitle_image_alternateImage_handler(
             this: Option<Allocated<Self>>,
@@ -127,9 +146,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(canPerformWithItems:)]
         pub unsafe fn canPerformWithItems(&self, items: Option<&NSArray>) -> bool;
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(performWithItems:)]
         pub unsafe fn performWithItems(&self, items: &NSArray);
     }
@@ -246,6 +267,7 @@ extern_protocol!(
 
 extern_methods!(
     /// NSCloudKitSharing
+    #[cfg(feature = "AppKit_NSItemProvider")]
     unsafe impl NSItemProvider {}
 );
 
@@ -259,13 +281,17 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSSharingServicePicker")]
     unsafe impl NSSharingServicePicker {
+        #[cfg(feature = "AppKit_NSSharingServicePickerDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSSharingServicePickerDelegate, Shared>>;
 
+        #[cfg(feature = "AppKit_NSSharingServicePickerDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&NSSharingServicePickerDelegate>);
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Init initWithItems:)]
         pub unsafe fn initWithItems(
             this: Option<Allocated<Self>>,
@@ -275,6 +301,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
+        #[cfg(feature = "AppKit_NSView")]
         #[method(showRelativeToRect:ofView:preferredEdge:)]
         pub unsafe fn showRelativeToRect_ofView_preferredEdge(
             &self,

@@ -26,6 +26,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSDrawer")]
     unsafe impl NSDrawer {
         #[method_id(@__retain_semantics Init initWithContentSize:preferredEdge:)]
         pub unsafe fn initWithContentSize_preferredEdge(
@@ -34,15 +35,19 @@ extern_methods!(
             edge: NSRectEdge,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "AppKit_NSWindow")]
         #[method_id(@__retain_semantics Other parentWindow)]
         pub unsafe fn parentWindow(&self) -> Option<Id<NSWindow, Shared>>;
 
+        #[cfg(feature = "AppKit_NSWindow")]
         #[method(setParentWindow:)]
         pub unsafe fn setParentWindow(&self, parentWindow: Option<&NSWindow>);
 
+        #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other contentView)]
         pub unsafe fn contentView(&self) -> Option<Id<NSView, Shared>>;
 
+        #[cfg(feature = "AppKit_NSView")]
         #[method(setContentView:)]
         pub unsafe fn setContentView(&self, contentView: Option<&NSView>);
 
@@ -52,9 +57,11 @@ extern_methods!(
         #[method(setPreferredEdge:)]
         pub unsafe fn setPreferredEdge(&self, preferredEdge: NSRectEdge);
 
+        #[cfg(feature = "AppKit_NSDrawerDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSDrawerDelegate, Shared>>;
 
+        #[cfg(feature = "AppKit_NSDrawerDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&NSDrawerDelegate>);
 
@@ -104,7 +111,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSDrawers
+    #[cfg(feature = "AppKit_NSWindow")]
     unsafe impl NSWindow {
+        #[cfg(all(feature = "AppKit_NSDrawer", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other drawers)]
         pub unsafe fn drawers(&self) -> Option<Id<NSArray<NSDrawer>, Shared>>;
     }

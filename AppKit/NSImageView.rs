@@ -16,13 +16,17 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSImageView")]
     unsafe impl NSImageView {
+        #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other imageViewWithImage:)]
         pub unsafe fn imageViewWithImage(image: &NSImage) -> Id<Self, Shared>;
 
+        #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other image)]
         pub unsafe fn image(&self) -> Option<Id<NSImage, Shared>>;
 
+        #[cfg(feature = "AppKit_NSImage")]
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&NSImage>);
 
@@ -50,18 +54,22 @@ extern_methods!(
         #[method(setImageFrameStyle:)]
         pub unsafe fn setImageFrameStyle(&self, imageFrameStyle: NSImageFrameStyle);
 
+        #[cfg(feature = "AppKit_NSImageSymbolConfiguration")]
         #[method_id(@__retain_semantics Other symbolConfiguration)]
         pub unsafe fn symbolConfiguration(&self) -> Option<Id<NSImageSymbolConfiguration, Shared>>;
 
+        #[cfg(feature = "AppKit_NSImageSymbolConfiguration")]
         #[method(setSymbolConfiguration:)]
         pub unsafe fn setSymbolConfiguration(
             &self,
             symbolConfiguration: Option<&NSImageSymbolConfiguration>,
         );
 
+        #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other contentTintColor)]
         pub unsafe fn contentTintColor(&self) -> Option<Id<NSColor, Shared>>;
 
+        #[cfg(feature = "AppKit_NSColor")]
         #[method(setContentTintColor:)]
         pub unsafe fn setContentTintColor(&self, contentTintColor: Option<&NSColor>);
 
@@ -81,6 +89,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSControl`
+    #[cfg(feature = "AppKit_NSImageView")]
     unsafe impl NSImageView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(

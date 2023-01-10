@@ -17,7 +17,9 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSStoryboardSegue")]
     unsafe impl NSStoryboardSegue {
+        #[cfg(feature = "AppKit_NSStoryboardSegueIdentifier")]
         #[method_id(@__retain_semantics Other segueWithIdentifier:source:destination:performHandler:)]
         pub unsafe fn segueWithIdentifier_source_destination_performHandler(
             identifier: &NSStoryboardSegueIdentifier,
@@ -26,6 +28,7 @@ extern_methods!(
             performHandler: &Block<(), ()>,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "AppKit_NSStoryboardSegueIdentifier")]
         #[method_id(@__retain_semantics Init initWithIdentifier:source:destination:)]
         pub unsafe fn initWithIdentifier_source_destination(
             this: Option<Allocated<Self>>,
@@ -34,6 +37,7 @@ extern_methods!(
             destinationController: &Object,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "AppKit_NSStoryboardSegueIdentifier")]
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Option<Id<NSStoryboardSegueIdentifier, Shared>>;
 

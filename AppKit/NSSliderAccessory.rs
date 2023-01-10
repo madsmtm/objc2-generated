@@ -15,13 +15,17 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSSliderAccessory")]
     unsafe impl NSSliderAccessory {
+        #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other accessoryWithImage:)]
         pub unsafe fn accessoryWithImage(image: &NSImage) -> Id<NSSliderAccessory, Shared>;
 
+        #[cfg(feature = "AppKit_NSSliderAccessoryBehavior")]
         #[method_id(@__retain_semantics Other behavior)]
         pub unsafe fn behavior(&self) -> Id<NSSliderAccessoryBehavior, Shared>;
 
+        #[cfg(feature = "AppKit_NSSliderAccessoryBehavior")]
         #[method(setBehavior:)]
         pub unsafe fn setBehavior(&self, behavior: &NSSliderAccessoryBehavior);
 
@@ -34,6 +38,7 @@ extern_methods!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSSliderAccessory")]
     unsafe impl NSSliderAccessory {}
 );
 
@@ -47,6 +52,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSSliderAccessoryBehavior")]
     unsafe impl NSSliderAccessoryBehavior {
         #[method_id(@__retain_semantics Other automaticBehavior)]
         pub unsafe fn automaticBehavior() -> Id<NSSliderAccessoryBehavior, Shared>;
@@ -63,11 +69,13 @@ extern_methods!(
             action: Sel,
         ) -> Id<NSSliderAccessoryBehavior, Shared>;
 
+        #[cfg(feature = "AppKit_NSSliderAccessory")]
         #[method_id(@__retain_semantics Other behaviorWithHandler:)]
         pub unsafe fn behaviorWithHandler(
             handler: &Block<(NonNull<NSSliderAccessory>,), ()>,
         ) -> Id<NSSliderAccessoryBehavior, Shared>;
 
+        #[cfg(feature = "AppKit_NSSliderAccessory")]
         #[method(handleAction:)]
         pub unsafe fn handleAction(&self, sender: &NSSliderAccessory);
     }

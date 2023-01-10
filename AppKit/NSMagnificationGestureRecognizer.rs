@@ -16,6 +16,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSMagnificationGestureRecognizer")]
     unsafe impl NSMagnificationGestureRecognizer {
         #[method(magnification)]
         pub unsafe fn magnification(&self) -> CGFloat;
@@ -27,6 +28,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSGestureRecognizer`
+    #[cfg(feature = "AppKit_NSMagnificationGestureRecognizer")]
     unsafe impl NSMagnificationGestureRecognizer {
         #[method_id(@__retain_semantics Init initWithTarget:action:)]
         pub unsafe fn initWithTarget_action(

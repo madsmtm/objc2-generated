@@ -16,6 +16,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSColorWell")]
     unsafe impl NSColorWell {
         #[method(deactivate)]
         pub unsafe fn deactivate(&self);
@@ -38,9 +39,11 @@ extern_methods!(
         #[method(takeColorFrom:)]
         pub unsafe fn takeColorFrom(&self, sender: Option<&Object>);
 
+        #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other color)]
         pub unsafe fn color(&self) -> Id<NSColor, Shared>;
 
+        #[cfg(feature = "AppKit_NSColor")]
         #[method(setColor:)]
         pub unsafe fn setColor(&self, color: &NSColor);
     }
@@ -48,6 +51,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSControl`
+    #[cfg(feature = "AppKit_NSColorWell")]
     unsafe impl NSColorWell {
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(

@@ -40,7 +40,9 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSToolbar")]
     unsafe impl NSToolbar {
+        #[cfg(feature = "AppKit_NSToolbarIdentifier")]
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
             this: Option<Allocated<Self>>,
@@ -50,6 +52,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
+        #[cfg(feature = "AppKit_NSToolbarItemIdentifier")]
         #[method(insertItemWithItemIdentifier:atIndex:)]
         pub unsafe fn insertItemWithItemIdentifier_atIndex(
             &self,
@@ -60,9 +63,11 @@ extern_methods!(
         #[method(removeItemAtIndex:)]
         pub unsafe fn removeItemAtIndex(&self, index: NSInteger);
 
+        #[cfg(feature = "AppKit_NSToolbarDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSToolbarDelegate, Shared>>;
 
+        #[cfg(feature = "AppKit_NSToolbarDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&NSToolbarDelegate>);
 
@@ -84,9 +89,11 @@ extern_methods!(
         #[method(setDisplayMode:)]
         pub unsafe fn setDisplayMode(&self, displayMode: NSToolbarDisplayMode);
 
+        #[cfg(feature = "AppKit_NSToolbarItemIdentifier")]
         #[method_id(@__retain_semantics Other selectedItemIdentifier)]
         pub unsafe fn selectedItemIdentifier(&self) -> Option<Id<NSToolbarItemIdentifier, Shared>>;
 
+        #[cfg(feature = "AppKit_NSToolbarItemIdentifier")]
         #[method(setSelectedItemIdentifier:)]
         pub unsafe fn setSelectedItemIdentifier(
             &self,
@@ -111,18 +118,23 @@ extern_methods!(
         #[method(setAllowsUserCustomization:)]
         pub unsafe fn setAllowsUserCustomization(&self, allowsUserCustomization: bool);
 
+        #[cfg(feature = "AppKit_NSToolbarIdentifier")]
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Id<NSToolbarIdentifier, Shared>;
 
+        #[cfg(all(feature = "AppKit_NSToolbarItem", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other items)]
         pub unsafe fn items(&self) -> Id<NSArray<NSToolbarItem>, Shared>;
 
+        #[cfg(all(feature = "AppKit_NSToolbarItem", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other visibleItems)]
         pub unsafe fn visibleItems(&self) -> Option<Id<NSArray<NSToolbarItem>, Shared>>;
 
+        #[cfg(feature = "AppKit_NSToolbarItemIdentifier")]
         #[method_id(@__retain_semantics Other centeredItemIdentifier)]
         pub unsafe fn centeredItemIdentifier(&self) -> Option<Id<NSToolbarItemIdentifier, Shared>>;
 
+        #[cfg(feature = "AppKit_NSToolbarItemIdentifier")]
         #[method(setCenteredItemIdentifier:)]
         pub unsafe fn setCenteredItemIdentifier(
             &self,
@@ -135,12 +147,14 @@ extern_methods!(
         #[method(setAutosavesConfiguration:)]
         pub unsafe fn setAutosavesConfiguration(&self, autosavesConfiguration: bool);
 
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setConfigurationFromDictionary:)]
         pub unsafe fn setConfigurationFromDictionary(
             &self,
             configDict: &NSDictionary<NSString, Object>,
         );
 
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other configurationDictionary)]
         pub unsafe fn configurationDictionary(&self) -> Id<NSDictionary<NSString, Object>, Shared>;
 
@@ -205,10 +219,13 @@ extern_static!(NSToolbarDidRemoveItemNotification: &'static NSNotificationName);
 
 extern_methods!(
     /// NSDeprecated
+    #[cfg(feature = "AppKit_NSToolbar")]
     unsafe impl NSToolbar {
+        #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other fullScreenAccessoryView)]
         pub unsafe fn fullScreenAccessoryView(&self) -> Option<Id<NSView, Shared>>;
 
+        #[cfg(feature = "AppKit_NSView")]
         #[method(setFullScreenAccessoryView:)]
         pub unsafe fn setFullScreenAccessoryView(&self, fullScreenAccessoryView: Option<&NSView>);
 

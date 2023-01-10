@@ -31,7 +31,9 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSViewController")]
     unsafe impl NSViewController {
+        #[cfg(all(feature = "AppKit_NSNibName", feature = "Foundation_NSBundle"))]
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Option<Allocated<Self>>,
@@ -39,15 +41,18 @@ extern_methods!(
             nibBundleOrNil: Option<&NSBundle>,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
         ) -> Option<Id<Self, Shared>>;
 
+        #[cfg(feature = "AppKit_NSNibName")]
         #[method_id(@__retain_semantics Other nibName)]
         pub unsafe fn nibName(&self) -> Option<Id<NSNibName, Shared>>;
 
+        #[cfg(feature = "Foundation_NSBundle")]
         #[method_id(@__retain_semantics Other nibBundle)]
         pub unsafe fn nibBundle(&self) -> Option<Id<NSBundle, Shared>>;
 
@@ -57,15 +62,19 @@ extern_methods!(
         #[method(setRepresentedObject:)]
         pub unsafe fn setRepresentedObject(&self, representedObject: Option<&Object>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
+        #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other view)]
         pub unsafe fn view(&self) -> Id<NSView, Shared>;
 
+        #[cfg(feature = "AppKit_NSView")]
         #[method(setView:)]
         pub unsafe fn setView(&self, view: &NSView);
 
@@ -123,7 +132,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSViewControllerPresentation
+    #[cfg(feature = "AppKit_NSViewController")]
     unsafe impl NSViewController {
+        #[cfg(feature = "AppKit_NSViewControllerPresentationAnimator")]
         #[method(presentViewController:animator:)]
         pub unsafe fn presentViewController_animator(
             &self,
@@ -137,6 +148,7 @@ extern_methods!(
         #[method(dismissController:)]
         pub unsafe fn dismissController(&self, sender: Option<&Object>);
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other presentedViewControllers)]
         pub unsafe fn presentedViewControllers(
             &self,
@@ -149,6 +161,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSViewControllerPresentationAndTransitionStyles
+    #[cfg(feature = "AppKit_NSViewController")]
     unsafe impl NSViewController {
         #[method(presentViewControllerAsSheet:)]
         pub unsafe fn presentViewControllerAsSheet(&self, viewController: &NSViewController);
@@ -156,6 +169,7 @@ extern_methods!(
         #[method(presentViewControllerAsModalWindow:)]
         pub unsafe fn presentViewControllerAsModalWindow(&self, viewController: &NSViewController);
 
+        #[cfg(feature = "AppKit_NSView")]
         #[method(presentViewController:asPopoverRelativeToRect:ofView:preferredEdge:behavior:)]
         pub unsafe fn presentViewController_asPopoverRelativeToRect_ofView_preferredEdge_behavior(
             &self,
@@ -179,13 +193,16 @@ extern_methods!(
 
 extern_methods!(
     /// NSViewControllerContainer
+    #[cfg(feature = "AppKit_NSViewController")]
     unsafe impl NSViewController {
         #[method_id(@__retain_semantics Other parentViewController)]
         pub unsafe fn parentViewController(&self) -> Option<Id<NSViewController, Shared>>;
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other childViewControllers)]
         pub unsafe fn childViewControllers(&self) -> Id<NSArray<NSViewController>, Shared>;
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(setChildViewControllers:)]
         pub unsafe fn setChildViewControllers(
             &self,
@@ -241,7 +258,9 @@ extern_protocol!(
 
 extern_methods!(
     /// NSViewControllerStoryboardingMethods
+    #[cfg(feature = "AppKit_NSViewController")]
     unsafe impl NSViewController {
+        #[cfg(feature = "AppKit_NSStoryboard")]
         #[method_id(@__retain_semantics Other storyboard)]
         pub unsafe fn storyboard(&self) -> Option<Id<NSStoryboard, Shared>>;
     }
@@ -249,13 +268,17 @@ extern_methods!(
 
 extern_methods!(
     /// NSExtensionAdditions
+    #[cfg(feature = "AppKit_NSViewController")]
     unsafe impl NSViewController {
+        #[cfg(feature = "Foundation_NSExtensionContext")]
         #[method_id(@__retain_semantics Other extensionContext)]
         pub unsafe fn extensionContext(&self) -> Option<Id<NSExtensionContext, Shared>>;
 
+        #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other sourceItemView)]
         pub unsafe fn sourceItemView(&self) -> Option<Id<NSView, Shared>>;
 
+        #[cfg(feature = "AppKit_NSView")]
         #[method(setSourceItemView:)]
         pub unsafe fn setSourceItemView(&self, sourceItemView: Option<&NSView>);
 

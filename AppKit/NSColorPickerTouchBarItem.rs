@@ -16,31 +16,41 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSColorPickerTouchBarItem")]
     unsafe impl NSColorPickerTouchBarItem {
+        #[cfg(feature = "AppKit_NSTouchBarItemIdentifier")]
         #[method_id(@__retain_semantics Other colorPickerWithIdentifier:)]
         pub unsafe fn colorPickerWithIdentifier(
             identifier: &NSTouchBarItemIdentifier,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "AppKit_NSTouchBarItemIdentifier")]
         #[method_id(@__retain_semantics Other textColorPickerWithIdentifier:)]
         pub unsafe fn textColorPickerWithIdentifier(
             identifier: &NSTouchBarItemIdentifier,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "AppKit_NSTouchBarItemIdentifier")]
         #[method_id(@__retain_semantics Other strokeColorPickerWithIdentifier:)]
         pub unsafe fn strokeColorPickerWithIdentifier(
             identifier: &NSTouchBarItemIdentifier,
         ) -> Id<Self, Shared>;
 
+        #[cfg(all(
+            feature = "AppKit_NSImage",
+            feature = "AppKit_NSTouchBarItemIdentifier"
+        ))]
         #[method_id(@__retain_semantics Other colorPickerWithIdentifier:buttonImage:)]
         pub unsafe fn colorPickerWithIdentifier_buttonImage(
             identifier: &NSTouchBarItemIdentifier,
             image: &NSImage,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other color)]
         pub unsafe fn color(&self) -> Id<NSColor, Shared>;
 
+        #[cfg(feature = "AppKit_NSColor")]
         #[method(setColor:)]
         pub unsafe fn setColor(&self, color: &NSColor);
 
@@ -50,24 +60,30 @@ extern_methods!(
         #[method(setShowsAlpha:)]
         pub unsafe fn setShowsAlpha(&self, showsAlpha: bool);
 
+        #[cfg(all(feature = "AppKit_NSColorSpace", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other allowedColorSpaces)]
         pub unsafe fn allowedColorSpaces(&self) -> Option<Id<NSArray<NSColorSpace>, Shared>>;
 
+        #[cfg(all(feature = "AppKit_NSColorSpace", feature = "Foundation_NSArray"))]
         #[method(setAllowedColorSpaces:)]
         pub unsafe fn setAllowedColorSpaces(
             &self,
             allowedColorSpaces: Option<&NSArray<NSColorSpace>>,
         );
 
+        #[cfg(feature = "AppKit_NSColorList")]
         #[method_id(@__retain_semantics Other colorList)]
         pub unsafe fn colorList(&self) -> Option<Id<NSColorList, Shared>>;
 
+        #[cfg(feature = "AppKit_NSColorList")]
         #[method(setColorList:)]
         pub unsafe fn setColorList(&self, colorList: Option<&NSColorList>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other customizationLabel)]
         pub unsafe fn customizationLabel(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setCustomizationLabel:)]
         pub unsafe fn setCustomizationLabel(&self, customizationLabel: Option<&NSString>);
 
@@ -93,7 +109,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSTouchBarItem`
+    #[cfg(feature = "AppKit_NSColorPickerTouchBarItem")]
     unsafe impl NSColorPickerTouchBarItem {
+        #[cfg(feature = "AppKit_NSTouchBarItemIdentifier")]
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
             this: Option<Allocated<Self>>,

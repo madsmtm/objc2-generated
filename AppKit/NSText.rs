@@ -25,6 +25,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSText")]
     unsafe impl NSText {
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
@@ -32,42 +33,54 @@ extern_methods!(
             frameRect: NSRect,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
         ) -> Option<Id<Self, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other string)]
         pub unsafe fn string(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setString:)]
         pub unsafe fn setString(&self, string: &NSString);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(replaceCharactersInRange:withString:)]
         pub unsafe fn replaceCharactersInRange_withString(&self, range: NSRange, string: &NSString);
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method(replaceCharactersInRange:withRTF:)]
         pub unsafe fn replaceCharactersInRange_withRTF(&self, range: NSRange, rtfData: &NSData);
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method(replaceCharactersInRange:withRTFD:)]
         pub unsafe fn replaceCharactersInRange_withRTFD(&self, range: NSRange, rtfdData: &NSData);
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other RTFFromRange:)]
         pub unsafe fn RTFFromRange(&self, range: NSRange) -> Option<Id<NSData, Shared>>;
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other RTFDFromRange:)]
         pub unsafe fn RTFDFromRange(&self, range: NSRange) -> Option<Id<NSData, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(writeRTFDToFile:atomically:)]
         pub unsafe fn writeRTFDToFile_atomically(&self, path: &NSString, flag: bool) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(readRTFDFromFile:)]
         pub unsafe fn readRTFDFromFile(&self, path: &NSString) -> bool;
 
+        #[cfg(feature = "AppKit_NSTextDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSTextDelegate, Shared>>;
 
+        #[cfg(feature = "AppKit_NSTextDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&NSTextDelegate>);
 
@@ -113,9 +126,11 @@ extern_methods!(
         #[method(setDrawsBackground:)]
         pub unsafe fn setDrawsBackground(&self, drawsBackground: bool);
 
+        #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other backgroundColor)]
         pub unsafe fn backgroundColor(&self) -> Option<Id<NSColor, Shared>>;
 
+        #[cfg(feature = "AppKit_NSColor")]
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, backgroundColor: Option<&NSColor>);
 
@@ -131,15 +146,19 @@ extern_methods!(
         #[method(scrollRangeToVisible:)]
         pub unsafe fn scrollRangeToVisible(&self, range: NSRange);
 
+        #[cfg(feature = "AppKit_NSFont")]
         #[method_id(@__retain_semantics Other font)]
         pub unsafe fn font(&self) -> Option<Id<NSFont, Shared>>;
 
+        #[cfg(feature = "AppKit_NSFont")]
         #[method(setFont:)]
         pub unsafe fn setFont(&self, font: Option<&NSFont>);
 
+        #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other textColor)]
         pub unsafe fn textColor(&self) -> Option<Id<NSColor, Shared>>;
 
+        #[cfg(feature = "AppKit_NSColor")]
         #[method(setTextColor:)]
         pub unsafe fn setTextColor(&self, textColor: Option<&NSColor>);
 
@@ -155,9 +174,11 @@ extern_methods!(
         #[method(setBaseWritingDirection:)]
         pub unsafe fn setBaseWritingDirection(&self, baseWritingDirection: NSWritingDirection);
 
+        #[cfg(feature = "AppKit_NSColor")]
         #[method(setTextColor:range:)]
         pub unsafe fn setTextColor_range(&self, color: Option<&NSColor>, range: NSRange);
 
+        #[cfg(feature = "AppKit_NSFont")]
         #[method(setFont:range:)]
         pub unsafe fn setFont_range(&self, font: &NSFont, range: NSRange);
 

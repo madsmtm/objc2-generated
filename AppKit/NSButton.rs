@@ -16,7 +16,9 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSButton")]
     unsafe impl NSButton {
+        #[cfg(all(feature = "AppKit_NSImage", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other buttonWithTitle:image:target:action:)]
         pub unsafe fn buttonWithTitle_image_target_action(
             title: &NSString,
@@ -25,6 +27,7 @@ extern_methods!(
             action: Option<Sel>,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other buttonWithTitle:target:action:)]
         pub unsafe fn buttonWithTitle_target_action(
             title: &NSString,
@@ -32,6 +35,7 @@ extern_methods!(
             action: Option<Sel>,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other buttonWithImage:target:action:)]
         pub unsafe fn buttonWithImage_target_action(
             image: &NSImage,
@@ -39,6 +43,7 @@ extern_methods!(
             action: Option<Sel>,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other checkboxWithTitle:target:action:)]
         pub unsafe fn checkboxWithTitle_target_action(
             title: &NSString,
@@ -46,6 +51,7 @@ extern_methods!(
             action: Option<Sel>,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other radioButtonWithTitle:target:action:)]
         pub unsafe fn radioButtonWithTitle_target_action(
             title: &NSString,
@@ -56,27 +62,35 @@ extern_methods!(
         #[method(setButtonType:)]
         pub unsafe fn setButtonType(&self, type_: NSButtonType);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
+        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedTitle)]
         pub unsafe fn attributedTitle(&self) -> Id<NSAttributedString, Shared>;
 
+        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setAttributedTitle:)]
         pub unsafe fn setAttributedTitle(&self, attributedTitle: &NSAttributedString);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other alternateTitle)]
         pub unsafe fn alternateTitle(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setAlternateTitle:)]
         pub unsafe fn setAlternateTitle(&self, alternateTitle: &NSString);
 
+        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedAlternateTitle)]
         pub unsafe fn attributedAlternateTitle(&self) -> Id<NSAttributedString, Shared>;
 
+        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setAttributedAlternateTitle:)]
         pub unsafe fn setAttributedAlternateTitle(
             &self,
@@ -89,9 +103,11 @@ extern_methods!(
         #[method(setHasDestructiveAction:)]
         pub unsafe fn setHasDestructiveAction(&self, hasDestructiveAction: bool);
 
+        #[cfg(feature = "AppKit_NSSound")]
         #[method_id(@__retain_semantics Other sound)]
         pub unsafe fn sound(&self) -> Option<Id<NSSound, Shared>>;
 
+        #[cfg(feature = "AppKit_NSSound")]
         #[method(setSound:)]
         pub unsafe fn setSound(&self, sound: Option<&NSSound>);
 
@@ -144,15 +160,19 @@ extern_methods!(
             showsBorderOnlyWhileMouseInside: bool,
         );
 
+        #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other image)]
         pub unsafe fn image(&self) -> Option<Id<NSImage, Shared>>;
 
+        #[cfg(feature = "AppKit_NSImage")]
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&NSImage>);
 
+        #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other alternateImage)]
         pub unsafe fn alternateImage(&self) -> Option<Id<NSImage, Shared>>;
 
+        #[cfg(feature = "AppKit_NSImage")]
         #[method(setAlternateImage:)]
         pub unsafe fn setAlternateImage(&self, alternateImage: Option<&NSImage>);
 
@@ -174,24 +194,30 @@ extern_methods!(
         #[method(setImageHugsTitle:)]
         pub unsafe fn setImageHugsTitle(&self, imageHugsTitle: bool);
 
+        #[cfg(feature = "AppKit_NSImageSymbolConfiguration")]
         #[method_id(@__retain_semantics Other symbolConfiguration)]
         pub unsafe fn symbolConfiguration(&self) -> Option<Id<NSImageSymbolConfiguration, Shared>>;
 
+        #[cfg(feature = "AppKit_NSImageSymbolConfiguration")]
         #[method(setSymbolConfiguration:)]
         pub unsafe fn setSymbolConfiguration(
             &self,
             symbolConfiguration: Option<&NSImageSymbolConfiguration>,
         );
 
+        #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other bezelColor)]
         pub unsafe fn bezelColor(&self) -> Option<Id<NSColor, Shared>>;
 
+        #[cfg(feature = "AppKit_NSColor")]
         #[method(setBezelColor:)]
         pub unsafe fn setBezelColor(&self, bezelColor: Option<&NSColor>);
 
+        #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other contentTintColor)]
         pub unsafe fn contentTintColor(&self) -> Option<Id<NSColor, Shared>>;
 
+        #[cfg(feature = "AppKit_NSColor")]
         #[method(setContentTintColor:)]
         pub unsafe fn setContentTintColor(&self, contentTintColor: Option<&NSColor>);
 
@@ -213,9 +239,11 @@ extern_methods!(
         #[method(highlight:)]
         pub unsafe fn highlight(&self, flag: bool);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other keyEquivalent)]
         pub unsafe fn keyEquivalent(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setKeyEquivalent:)]
         pub unsafe fn setKeyEquivalent(&self, keyEquivalent: &NSString);
 
@@ -228,21 +256,31 @@ extern_methods!(
             keyEquivalentModifierMask: NSEventModifierFlags,
         );
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(performKeyEquivalent:)]
         pub unsafe fn performKeyEquivalent(&self, key: &NSEvent) -> bool;
 
+        #[cfg(all(
+            feature = "AppKit_NSUserInterfaceCompressionOptions",
+            feature = "Foundation_NSArray"
+        ))]
         #[method(compressWithPrioritizedCompressionOptions:)]
         pub unsafe fn compressWithPrioritizedCompressionOptions(
             &self,
             prioritizedOptions: &NSArray<NSUserInterfaceCompressionOptions>,
         );
 
+        #[cfg(all(
+            feature = "AppKit_NSUserInterfaceCompressionOptions",
+            feature = "Foundation_NSArray"
+        ))]
         #[method(minimumSizeWithPrioritizedCompressionOptions:)]
         pub unsafe fn minimumSizeWithPrioritizedCompressionOptions(
             &self,
             prioritizedOptions: &NSArray<NSUserInterfaceCompressionOptions>,
         ) -> NSSize;
 
+        #[cfg(feature = "AppKit_NSUserInterfaceCompressionOptions")]
         #[method_id(@__retain_semantics Other activeCompressionOptions)]
         pub unsafe fn activeCompressionOptions(
             &self,
@@ -252,7 +290,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSButtonDeprecated
+    #[cfg(feature = "AppKit_NSButton")]
     unsafe impl NSButton {
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setTitleWithMnemonic:)]
         pub unsafe fn setTitleWithMnemonic(&self, stringWithAmpersand: Option<&NSString>);
     }
@@ -260,6 +300,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSControl`
+    #[cfg(feature = "AppKit_NSButton")]
     unsafe impl NSButton {
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(

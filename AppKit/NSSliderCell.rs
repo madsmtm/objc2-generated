@@ -34,6 +34,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSSliderCell")]
     unsafe impl NSSliderCell {
         #[method(prefersTrackingUntilMouseUp)]
         pub unsafe fn prefersTrackingUntilMouseUp() -> bool;
@@ -84,11 +85,13 @@ extern_methods!(
 
 extern_methods!(
     /// NSSliderCellVerticalGetter
+    #[cfg(feature = "AppKit_NSSliderCell")]
     unsafe impl NSSliderCell {}
 );
 
 extern_methods!(
     /// NSTickMarkSupport
+    #[cfg(feature = "AppKit_NSSliderCell")]
     unsafe impl NSSliderCell {
         #[method(numberOfTickMarks)]
         pub unsafe fn numberOfTickMarks(&self) -> NSInteger;
@@ -127,37 +130,47 @@ extern_methods!(
 
 extern_methods!(
     /// NSDeprecated
+    #[cfg(feature = "AppKit_NSSliderCell")]
     unsafe impl NSSliderCell {
+        #[cfg(feature = "AppKit_NSCell")]
         #[method(setTitleCell:)]
         pub unsafe fn setTitleCell(&self, cell: Option<&NSCell>);
 
         #[method_id(@__retain_semantics Other titleCell)]
         pub unsafe fn titleCell(&self) -> Option<Id<Object, Shared>>;
 
+        #[cfg(feature = "AppKit_NSColor")]
         #[method(setTitleColor:)]
         pub unsafe fn setTitleColor(&self, newColor: Option<&NSColor>);
 
+        #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other titleColor)]
         pub unsafe fn titleColor(&self) -> Option<Id<NSColor, Shared>>;
 
+        #[cfg(feature = "AppKit_NSFont")]
         #[method(setTitleFont:)]
         pub unsafe fn setTitleFont(&self, fontObj: Option<&NSFont>);
 
+        #[cfg(feature = "AppKit_NSFont")]
         #[method_id(@__retain_semantics Other titleFont)]
         pub unsafe fn titleFont(&self) -> Option<Id<NSFont, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, string: Option<&NSString>);
 
         #[method(setKnobThickness:)]
         pub unsafe fn setKnobThickness(&self, thickness: CGFloat);
 
+        #[cfg(feature = "AppKit_NSImage")]
         #[method(setImage:)]
         pub unsafe fn setImage(&self, backgroundImage: Option<&NSImage>);
 
+        #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other image)]
         pub unsafe fn image(&self) -> Option<Id<NSImage, Shared>>;
     }
@@ -177,13 +190,16 @@ extern_static!(NSCircularSlider: NSSliderType = NSSliderTypeCircular);
 
 extern_methods!(
     /// Methods declared on superclass `NSCell`
+    #[cfg(feature = "AppKit_NSSliderCell")]
     unsafe impl NSSliderCell {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initTextCell:)]
         pub unsafe fn initTextCell(
             this: Option<Allocated<Self>>,
             string: &NSString,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Init initImageCell:)]
         pub unsafe fn initImageCell(
             this: Option<Allocated<Self>>,

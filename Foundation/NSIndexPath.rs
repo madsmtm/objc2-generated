@@ -13,6 +13,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSIndexPath")]
     unsafe impl NSIndexPath {
         #[method_id(@__retain_semantics Other indexPathWithIndex:)]
         pub unsafe fn indexPathWithIndex(index: NSUInteger) -> Id<Self, Shared>;
@@ -58,6 +59,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSDeprecated
+    #[cfg(feature = "Foundation_NSIndexPath")]
     unsafe impl NSIndexPath {
         #[method(getIndexes:)]
         pub unsafe fn getIndexes(&self, indexes: NonNull<NSUInteger>);

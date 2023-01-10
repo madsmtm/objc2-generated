@@ -5,12 +5,21 @@ use crate::AuthenticationServices::*;
 use crate::Foundation::*;
 
 extern_methods!(
+    #[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationViewController")]
     unsafe impl ASAccountAuthenticationModificationViewController {
+        #[cfg(
+            feature = "AuthenticationServices_ASAccountAuthenticationModificationExtensionContext"
+        )]
         #[method_id(@__retain_semantics Other extensionContext)]
         pub unsafe fn extensionContext(
             &self,
         ) -> Id<ASAccountAuthenticationModificationExtensionContext, Shared>;
 
+        #[cfg(all(
+            feature = "AuthenticationServices_ASCredentialServiceIdentifier",
+            feature = "AuthenticationServices_ASPasswordCredential",
+            feature = "Foundation_NSDictionary"
+        ))]
         #[method(convertAccountToSignInWithAppleWithoutUserInteractionForServiceIdentifier:existingCredential:userInfo:)]
         pub unsafe fn convertAccountToSignInWithAppleWithoutUserInteractionForServiceIdentifier_existingCredential_userInfo(
             &self,
@@ -19,6 +28,11 @@ extern_methods!(
             userInfo: Option<&NSDictionary>,
         );
 
+        #[cfg(all(
+            feature = "AuthenticationServices_ASCredentialServiceIdentifier",
+            feature = "AuthenticationServices_ASPasswordCredential",
+            feature = "Foundation_NSDictionary"
+        ))]
         #[method(prepareInterfaceToConvertAccountToSignInWithAppleForServiceIdentifier:existingCredential:userInfo:)]
         pub unsafe fn prepareInterfaceToConvertAccountToSignInWithAppleForServiceIdentifier_existingCredential_userInfo(
             &self,
@@ -27,6 +41,12 @@ extern_methods!(
             userInfo: Option<&NSDictionary>,
         );
 
+        #[cfg(all(
+            feature = "AuthenticationServices_ASCredentialServiceIdentifier",
+            feature = "AuthenticationServices_ASPasswordCredential",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString"
+        ))]
         #[method(changePasswordWithoutUserInteractionForServiceIdentifier:existingCredential:newPassword:userInfo:)]
         pub unsafe fn changePasswordWithoutUserInteractionForServiceIdentifier_existingCredential_newPassword_userInfo(
             &self,
@@ -36,6 +56,12 @@ extern_methods!(
             userInfo: Option<&NSDictionary>,
         );
 
+        #[cfg(all(
+            feature = "AuthenticationServices_ASCredentialServiceIdentifier",
+            feature = "AuthenticationServices_ASPasswordCredential",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString"
+        ))]
         #[method(prepareInterfaceToChangePasswordForServiceIdentifier:existingCredential:newPassword:userInfo:)]
         pub unsafe fn prepareInterfaceToChangePasswordForServiceIdentifier_existingCredential_newPassword_userInfo(
             &self,

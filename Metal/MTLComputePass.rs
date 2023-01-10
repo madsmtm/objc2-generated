@@ -14,10 +14,13 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Metal_MTLComputePassSampleBufferAttachmentDescriptor")]
     unsafe impl MTLComputePassSampleBufferAttachmentDescriptor {
+        #[cfg(feature = "Metal_MTLCounterSampleBuffer")]
         #[method_id(@__retain_semantics Other sampleBuffer)]
         pub unsafe fn sampleBuffer(&self) -> Option<Id<MTLCounterSampleBuffer, Shared>>;
 
+        #[cfg(feature = "Metal_MTLCounterSampleBuffer")]
         #[method(setSampleBuffer:)]
         pub unsafe fn setSampleBuffer(&self, sampleBuffer: Option<&MTLCounterSampleBuffer>);
 
@@ -45,13 +48,16 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Metal_MTLComputePassSampleBufferAttachmentDescriptorArray")]
     unsafe impl MTLComputePassSampleBufferAttachmentDescriptorArray {
+        #[cfg(feature = "Metal_MTLComputePassSampleBufferAttachmentDescriptor")]
         #[method_id(@__retain_semantics Other objectAtIndexedSubscript:)]
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             attachmentIndex: NSUInteger,
         ) -> Id<MTLComputePassSampleBufferAttachmentDescriptor, Shared>;
 
+        #[cfg(feature = "Metal_MTLComputePassSampleBufferAttachmentDescriptor")]
         #[method(setObject:atIndexedSubscript:)]
         pub unsafe fn setObject_atIndexedSubscript(
             &self,
@@ -71,6 +77,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Metal_MTLComputePassDescriptor")]
     unsafe impl MTLComputePassDescriptor {
         #[method_id(@__retain_semantics Other computePassDescriptor)]
         pub unsafe fn computePassDescriptor() -> Id<MTLComputePassDescriptor, Shared>;
@@ -81,6 +88,7 @@ extern_methods!(
         #[method(setDispatchType:)]
         pub unsafe fn setDispatchType(&self, dispatchType: MTLDispatchType);
 
+        #[cfg(feature = "Metal_MTLComputePassSampleBufferAttachmentDescriptorArray")]
         #[method_id(@__retain_semantics Other sampleBufferAttachments)]
         pub unsafe fn sampleBufferAttachments(
             &self,

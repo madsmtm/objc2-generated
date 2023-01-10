@@ -7,10 +7,13 @@ use crate::Foundation::*;
 
 extern_methods!(
     /// NSExtensions
+    #[cfg(feature = "AppKit_NSFileWrapper")]
     unsafe impl NSFileWrapper {
+        #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other icon)]
         pub unsafe fn icon(&self) -> Option<Id<NSImage, Shared>>;
 
+        #[cfg(feature = "AppKit_NSImage")]
         #[method(setIcon:)]
         pub unsafe fn setIcon(&self, icon: Option<&NSImage>);
     }

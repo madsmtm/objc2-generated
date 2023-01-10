@@ -16,16 +16,21 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSSearchToolbarItem")]
     unsafe impl NSSearchToolbarItem {
+        #[cfg(feature = "AppKit_NSSearchField")]
         #[method_id(@__retain_semantics Other searchField)]
         pub unsafe fn searchField(&self) -> Id<NSSearchField, Shared>;
 
+        #[cfg(feature = "AppKit_NSSearchField")]
         #[method(setSearchField:)]
         pub unsafe fn setSearchField(&self, searchField: &NSSearchField);
 
+        #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other view)]
         pub unsafe fn view(&self) -> Option<Id<NSView, Shared>>;
 
+        #[cfg(feature = "AppKit_NSView")]
         #[method(setView:)]
         pub unsafe fn setView(&self, view: Option<&NSView>);
 
@@ -54,7 +59,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSToolbarItem`
+    #[cfg(feature = "AppKit_NSSearchToolbarItem")]
     unsafe impl NSSearchToolbarItem {
+        #[cfg(feature = "AppKit_NSToolbarItemIdentifier")]
         #[method_id(@__retain_semantics Init initWithItemIdentifier:)]
         pub unsafe fn initWithItemIdentifier(
             this: Option<Allocated<Self>>,

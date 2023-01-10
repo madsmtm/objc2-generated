@@ -16,6 +16,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSForm")]
     unsafe impl NSForm {
         #[method(indexOfSelectedItem)]
         pub unsafe fn indexOfSelectedItem(&self) -> NSInteger;
@@ -38,9 +39,11 @@ extern_methods!(
         #[method(setTextAlignment:)]
         pub unsafe fn setTextAlignment(&self, mode: NSTextAlignment);
 
+        #[cfg(feature = "AppKit_NSFont")]
         #[method(setTitleFont:)]
         pub unsafe fn setTitleFont(&self, fontObj: &NSFont);
 
+        #[cfg(feature = "AppKit_NSFont")]
         #[method(setTextFont:)]
         pub unsafe fn setTextFont(&self, fontObj: &NSFont);
 
@@ -50,9 +53,11 @@ extern_methods!(
         #[method(drawCellAtIndex:)]
         pub unsafe fn drawCellAtIndex(&self, index: NSInteger);
 
+        #[cfg(all(feature = "AppKit_NSFormCell", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other addEntry:)]
         pub unsafe fn addEntry(&self, title: &NSString) -> Id<NSFormCell, Shared>;
 
+        #[cfg(all(feature = "AppKit_NSFormCell", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other insertEntry:atIndex:)]
         pub unsafe fn insertEntry_atIndex(
             &self,
@@ -88,6 +93,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSMatrix`
+    #[cfg(feature = "AppKit_NSForm")]
     unsafe impl NSForm {
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
@@ -95,6 +101,7 @@ extern_methods!(
             frameRect: NSRect,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "AppKit_NSCell")]
         #[method_id(@__retain_semantics Init initWithFrame:mode:prototype:numberOfRows:numberOfColumns:)]
         pub unsafe fn initWithFrame_mode_prototype_numberOfRows_numberOfColumns(
             this: Option<Allocated<Self>>,

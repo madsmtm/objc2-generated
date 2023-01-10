@@ -24,13 +24,16 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSPDFPanel")]
     unsafe impl NSPDFPanel {
         #[method_id(@__retain_semantics Other panel)]
         pub unsafe fn panel() -> Id<NSPDFPanel, Shared>;
 
+        #[cfg(feature = "AppKit_NSViewController")]
         #[method_id(@__retain_semantics Other accessoryController)]
         pub unsafe fn accessoryController(&self) -> Option<Id<NSViewController, Shared>>;
 
+        #[cfg(feature = "AppKit_NSViewController")]
         #[method(setAccessoryController:)]
         pub unsafe fn setAccessoryController(&self, accessoryController: Option<&NSViewController>);
 
@@ -40,12 +43,15 @@ extern_methods!(
         #[method(setOptions:)]
         pub unsafe fn setOptions(&self, options: NSPDFPanelOptions);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other defaultFileName)]
         pub unsafe fn defaultFileName(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setDefaultFileName:)]
         pub unsafe fn setDefaultFileName(&self, defaultFileName: &NSString);
 
+        #[cfg(all(feature = "AppKit_NSPDFInfo", feature = "AppKit_NSWindow"))]
         #[method(beginSheetWithPDFInfo:modalForWindow:completionHandler:)]
         pub unsafe fn beginSheetWithPDFInfo_modalForWindow_completionHandler(
             &self,

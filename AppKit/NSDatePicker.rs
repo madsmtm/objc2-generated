@@ -16,6 +16,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSDatePicker")]
     unsafe impl NSDatePicker {
         #[method(datePickerStyle)]
         pub unsafe fn datePickerStyle(&self) -> NSDatePickerStyle;
@@ -41,15 +42,19 @@ extern_methods!(
         #[method(setDrawsBackground:)]
         pub unsafe fn setDrawsBackground(&self, drawsBackground: bool);
 
+        #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other backgroundColor)]
         pub unsafe fn backgroundColor(&self) -> Id<NSColor, Shared>;
 
+        #[cfg(feature = "AppKit_NSColor")]
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, backgroundColor: &NSColor);
 
+        #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other textColor)]
         pub unsafe fn textColor(&self) -> Id<NSColor, Shared>;
 
+        #[cfg(feature = "AppKit_NSColor")]
         #[method(setTextColor:)]
         pub unsafe fn setTextColor(&self, textColor: &NSColor);
 
@@ -65,27 +70,35 @@ extern_methods!(
         #[method(setDatePickerElements:)]
         pub unsafe fn setDatePickerElements(&self, datePickerElements: NSDatePickerElementFlags);
 
+        #[cfg(feature = "Foundation_NSCalendar")]
         #[method_id(@__retain_semantics Other calendar)]
         pub unsafe fn calendar(&self) -> Option<Id<NSCalendar, Shared>>;
 
+        #[cfg(feature = "Foundation_NSCalendar")]
         #[method(setCalendar:)]
         pub unsafe fn setCalendar(&self, calendar: Option<&NSCalendar>);
 
+        #[cfg(feature = "Foundation_NSLocale")]
         #[method_id(@__retain_semantics Other locale)]
         pub unsafe fn locale(&self) -> Option<Id<NSLocale, Shared>>;
 
+        #[cfg(feature = "Foundation_NSLocale")]
         #[method(setLocale:)]
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
 
+        #[cfg(feature = "Foundation_NSTimeZone")]
         #[method_id(@__retain_semantics Other timeZone)]
         pub unsafe fn timeZone(&self) -> Option<Id<NSTimeZone, Shared>>;
 
+        #[cfg(feature = "Foundation_NSTimeZone")]
         #[method(setTimeZone:)]
         pub unsafe fn setTimeZone(&self, timeZone: Option<&NSTimeZone>);
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other dateValue)]
         pub unsafe fn dateValue(&self) -> Id<NSDate, Shared>;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(setDateValue:)]
         pub unsafe fn setDateValue(&self, dateValue: &NSDate);
 
@@ -95,15 +108,19 @@ extern_methods!(
         #[method(setTimeInterval:)]
         pub unsafe fn setTimeInterval(&self, timeInterval: NSTimeInterval);
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other minDate)]
         pub unsafe fn minDate(&self) -> Option<Id<NSDate, Shared>>;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(setMinDate:)]
         pub unsafe fn setMinDate(&self, minDate: Option<&NSDate>);
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other maxDate)]
         pub unsafe fn maxDate(&self) -> Option<Id<NSDate, Shared>>;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(setMaxDate:)]
         pub unsafe fn setMaxDate(&self, maxDate: Option<&NSDate>);
 
@@ -113,9 +130,11 @@ extern_methods!(
         #[method(setPresentsCalendarOverlay:)]
         pub unsafe fn setPresentsCalendarOverlay(&self, presentsCalendarOverlay: bool);
 
+        #[cfg(feature = "AppKit_NSDatePickerCellDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSDatePickerCellDelegate, Shared>>;
 
+        #[cfg(feature = "AppKit_NSDatePickerCellDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&NSDatePickerCellDelegate>);
     }
@@ -123,6 +142,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSControl`
+    #[cfg(feature = "AppKit_NSDatePicker")]
     unsafe impl NSDatePicker {
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(

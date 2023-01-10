@@ -7,6 +7,7 @@ use crate::Foundation::*;
 
 extern_methods!(
     /// NSScripting
+    #[cfg(feature = "AppKit_NSWindow")]
     unsafe impl NSWindow {
         #[method(hasCloseBox)]
         pub unsafe fn hasCloseBox(&self) -> bool;
@@ -44,18 +45,21 @@ extern_methods!(
         #[method(setIsZoomed:)]
         pub unsafe fn setIsZoomed(&self, flag: bool);
 
+        #[cfg(feature = "Foundation_NSCloseCommand")]
         #[method_id(@__retain_semantics Other handleCloseScriptCommand:)]
         pub unsafe fn handleCloseScriptCommand(
             &self,
             command: &NSCloseCommand,
         ) -> Option<Id<Object, Shared>>;
 
+        #[cfg(feature = "Foundation_NSScriptCommand")]
         #[method_id(@__retain_semantics Other handlePrintScriptCommand:)]
         pub unsafe fn handlePrintScriptCommand(
             &self,
             command: &NSScriptCommand,
         ) -> Option<Id<Object, Shared>>;
 
+        #[cfg(feature = "Foundation_NSScriptCommand")]
         #[method_id(@__retain_semantics Other handleSaveScriptCommand:)]
         pub unsafe fn handleSaveScriptCommand(
             &self,

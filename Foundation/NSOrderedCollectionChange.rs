@@ -29,6 +29,7 @@ __inner_extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSOrderedCollectionChange")]
     unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
         NSOrderedCollectionChange<ObjectType, ObjectTypeOwnership>
     {

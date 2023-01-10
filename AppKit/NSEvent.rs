@@ -347,6 +347,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSEvent")]
     unsafe impl NSEvent {
         #[method(type)]
         pub unsafe fn type_(&self) -> NSEventType;
@@ -354,12 +355,14 @@ extern_methods!(
         #[method(timestamp)]
         pub unsafe fn timestamp(&self) -> NSTimeInterval;
 
+        #[cfg(feature = "AppKit_NSWindow")]
         #[method_id(@__retain_semantics Other window)]
         pub unsafe fn window(&self) -> Option<Id<NSWindow, Shared>>;
 
         #[method(windowNumber)]
         pub unsafe fn windowNumber(&self) -> NSInteger;
 
+        #[cfg(feature = "AppKit_NSGraphicsContext")]
         #[method_id(@__retain_semantics Other context)]
         pub unsafe fn context(&self) -> Option<Id<NSGraphicsContext, Shared>>;
 
@@ -402,12 +405,15 @@ extern_methods!(
         #[method(isDirectionInvertedFromDevice)]
         pub unsafe fn isDirectionInvertedFromDevice(&self) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other characters)]
         pub unsafe fn characters(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other charactersIgnoringModifiers)]
         pub unsafe fn charactersIgnoringModifiers(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other charactersByApplyingModifiers:)]
         pub unsafe fn charactersByApplyingModifiers(
             &self,
@@ -426,6 +432,7 @@ extern_methods!(
         #[method(userData)]
         pub unsafe fn userData(&self) -> *mut c_void;
 
+        #[cfg(feature = "AppKit_NSTrackingArea")]
         #[method_id(@__retain_semantics Other trackingArea)]
         pub unsafe fn trackingArea(&self) -> Option<Id<NSTrackingArea, Shared>>;
 
@@ -510,6 +517,11 @@ extern_methods!(
         #[method(isEnteringProximity)]
         pub unsafe fn isEnteringProximity(&self) -> bool;
 
+        #[cfg(all(
+            feature = "AppKit_NSTouch",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSSet"
+        ))]
         #[method_id(@__retain_semantics Other touchesMatchingPhase:inView:)]
         pub unsafe fn touchesMatchingPhase_inView(
             &self,
@@ -517,12 +529,19 @@ extern_methods!(
             view: Option<&NSView>,
         ) -> Id<NSSet<NSTouch>, Shared>;
 
+        #[cfg(all(feature = "AppKit_NSTouch", feature = "Foundation_NSSet"))]
         #[method_id(@__retain_semantics Other allTouches)]
         pub unsafe fn allTouches(&self) -> Id<NSSet<NSTouch>, Shared>;
 
+        #[cfg(all(
+            feature = "AppKit_NSTouch",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSSet"
+        ))]
         #[method_id(@__retain_semantics Other touchesForView:)]
         pub unsafe fn touchesForView(&self, view: &NSView) -> Id<NSSet<NSTouch>, Shared>;
 
+        #[cfg(all(feature = "AppKit_NSTouch", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other coalescedTouchesForTouch:)]
         pub unsafe fn coalescedTouchesForTouch(
             &self,
@@ -565,6 +584,7 @@ extern_methods!(
         #[method(stopPeriodicEvents)]
         pub unsafe fn stopPeriodicEvents();
 
+        #[cfg(feature = "AppKit_NSGraphicsContext")]
         #[method_id(@__retain_semantics Other mouseEventWithType:location:modifierFlags:timestamp:windowNumber:context:eventNumber:clickCount:pressure:)]
         pub unsafe fn mouseEventWithType_location_modifierFlags_timestamp_windowNumber_context_eventNumber_clickCount_pressure(
             type_: NSEventType,
@@ -578,6 +598,7 @@ extern_methods!(
             pressure: c_float,
         ) -> Option<Id<NSEvent, Shared>>;
 
+        #[cfg(all(feature = "AppKit_NSGraphicsContext", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other keyEventWithType:location:modifierFlags:timestamp:windowNumber:context:characters:charactersIgnoringModifiers:isARepeat:keyCode:)]
         pub unsafe fn keyEventWithType_location_modifierFlags_timestamp_windowNumber_context_characters_charactersIgnoringModifiers_isARepeat_keyCode(
             type_: NSEventType,
@@ -592,6 +613,7 @@ extern_methods!(
             code: c_ushort,
         ) -> Option<Id<NSEvent, Shared>>;
 
+        #[cfg(feature = "AppKit_NSGraphicsContext")]
         #[method_id(@__retain_semantics Other enterExitEventWithType:location:modifierFlags:timestamp:windowNumber:context:eventNumber:trackingNumber:userData:)]
         pub unsafe fn enterExitEventWithType_location_modifierFlags_timestamp_windowNumber_context_eventNumber_trackingNumber_userData(
             type_: NSEventType,
@@ -605,6 +627,7 @@ extern_methods!(
             data: *mut c_void,
         ) -> Option<Id<NSEvent, Shared>>;
 
+        #[cfg(feature = "AppKit_NSGraphicsContext")]
         #[method_id(@__retain_semantics Other otherEventWithType:location:modifierFlags:timestamp:windowNumber:context:subtype:data1:data2:)]
         pub unsafe fn otherEventWithType_location_modifierFlags_timestamp_windowNumber_context_subtype_data1_data2(
             type_: NSEventType,

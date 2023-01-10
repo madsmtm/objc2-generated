@@ -14,6 +14,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "QuartzCore_CARemoteLayerClient")]
     unsafe impl CARemoteLayerClient {
         #[method(invalidate)]
         pub unsafe fn invalidate(&self);
@@ -21,9 +22,11 @@ extern_methods!(
         #[method(clientId)]
         pub unsafe fn clientId(&self) -> u32;
 
+        #[cfg(feature = "QuartzCore_CALayer")]
         #[method_id(@__retain_semantics Other layer)]
         pub unsafe fn layer(&self) -> Option<Id<CALayer, Shared>>;
 
+        #[cfg(feature = "QuartzCore_CALayer")]
         #[method(setLayer:)]
         pub unsafe fn setLayer(&self, layer: Option<&CALayer>);
     }

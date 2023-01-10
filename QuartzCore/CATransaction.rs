@@ -14,6 +14,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "QuartzCore_CATransaction")]
     unsafe impl CATransaction {
         #[method(begin)]
         pub fn begin();
@@ -36,9 +37,11 @@ extern_methods!(
         #[method(setAnimationDuration:)]
         pub fn setAnimationDuration(dur: CFTimeInterval);
 
+        #[cfg(feature = "QuartzCore_CAMediaTimingFunction")]
         #[method_id(@__retain_semantics Other animationTimingFunction)]
         pub fn animationTimingFunction() -> Option<Id<CAMediaTimingFunction, Shared>>;
 
+        #[cfg(feature = "QuartzCore_CAMediaTimingFunction")]
         #[method(setAnimationTimingFunction:)]
         pub fn setAnimationTimingFunction(function: Option<&CAMediaTimingFunction>);
 
@@ -54,9 +57,11 @@ extern_methods!(
         #[method(setCompletionBlock:)]
         pub unsafe fn setCompletionBlock(block: Option<&Block<(), ()>>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other valueForKey:)]
         pub unsafe fn valueForKey(key: &NSString) -> Option<Id<Object, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setValue:forKey:)]
         pub unsafe fn setValue_forKey(anObject: Option<&Object>, key: &NSString);
     }

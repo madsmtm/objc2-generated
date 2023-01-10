@@ -14,16 +14,20 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "QuartzCore_CARenderer")]
     unsafe impl CARenderer {
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other rendererWithCGLContext:options:)]
         pub unsafe fn rendererWithCGLContext_options(
             ctx: NonNull<c_void>,
             dict: Option<&NSDictionary>,
         ) -> Id<CARenderer, Shared>;
 
+        #[cfg(feature = "QuartzCore_CALayer")]
         #[method_id(@__retain_semantics Other layer)]
         pub fn layer(&self) -> Option<Id<CALayer, Shared>>;
 
+        #[cfg(feature = "QuartzCore_CALayer")]
         #[method(setLayer:)]
         pub fn setLayer(&self, layer: Option<&CALayer>);
 

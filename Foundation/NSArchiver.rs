@@ -14,13 +14,16 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSArchiver")]
     unsafe impl NSArchiver {
+        #[cfg(feature = "Foundation_NSMutableData")]
         #[method_id(@__retain_semantics Init initForWritingWithMutableData:)]
         pub unsafe fn initForWritingWithMutableData(
             this: Option<Allocated<Self>>,
             mdata: &NSMutableData,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSMutableData")]
         #[method_id(@__retain_semantics Other archiverData)]
         pub unsafe fn archiverData(&self) -> Id<NSMutableData, Owned>;
 
@@ -30,12 +33,15 @@ extern_methods!(
         #[method(encodeConditionalObject:)]
         pub unsafe fn encodeConditionalObject(&self, object: Option<&Object>);
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other archivedDataWithRootObject:)]
         pub unsafe fn archivedDataWithRootObject(rootObject: &Object) -> Id<NSData, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(archiveRootObject:toFile:)]
         pub unsafe fn archiveRootObject_toFile(rootObject: &Object, path: &NSString) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(encodeClassName:intoClassName:)]
         pub unsafe fn encodeClassName_intoClassName(
             &self,
@@ -43,6 +49,7 @@ extern_methods!(
             inArchiveName: &NSString,
         );
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other classNameEncodedForTrueClassName:)]
         pub unsafe fn classNameEncodedForTrueClassName(
             &self,
@@ -65,7 +72,9 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSUnarchiver")]
     unsafe impl NSUnarchiver {
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Init initForReadingWithData:)]
         pub unsafe fn initForReadingWithData(
             this: Option<Allocated<Self>>,
@@ -84,9 +93,11 @@ extern_methods!(
         #[method(systemVersion)]
         pub unsafe fn systemVersion(&self) -> c_uint;
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other unarchiveObjectWithData:)]
         pub unsafe fn unarchiveObjectWithData(data: &NSData) -> Option<Id<Object, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other unarchiveObjectWithFile:)]
         pub unsafe fn unarchiveObjectWithFile(path: &NSString) -> Option<Id<Object, Shared>>;
 

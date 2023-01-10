@@ -15,10 +15,13 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "CoreData_NSDerivedAttributeDescription")]
     unsafe impl NSDerivedAttributeDescription {
+        #[cfg(feature = "Foundation_NSExpression")]
         #[method_id(@__retain_semantics Other derivationExpression)]
         pub unsafe fn derivationExpression(&self) -> Option<Id<NSExpression, Shared>>;
 
+        #[cfg(feature = "Foundation_NSExpression")]
         #[method(setDerivationExpression:)]
         pub unsafe fn setDerivationExpression(&self, derivationExpression: Option<&NSExpression>);
     }

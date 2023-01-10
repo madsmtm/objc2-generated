@@ -27,6 +27,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSTokenFieldCell")]
     unsafe impl NSTokenFieldCell {
         #[method(tokenStyle)]
         pub unsafe fn tokenStyle(&self) -> NSTokenStyle;
@@ -43,21 +44,26 @@ extern_methods!(
         #[method(defaultCompletionDelay)]
         pub unsafe fn defaultCompletionDelay() -> NSTimeInterval;
 
+        #[cfg(feature = "Foundation_NSCharacterSet")]
         #[method_id(@__retain_semantics Other tokenizingCharacterSet)]
         pub unsafe fn tokenizingCharacterSet(&self) -> Id<NSCharacterSet, Shared>;
 
+        #[cfg(feature = "Foundation_NSCharacterSet")]
         #[method(setTokenizingCharacterSet:)]
         pub unsafe fn setTokenizingCharacterSet(
             &self,
             tokenizingCharacterSet: Option<&NSCharacterSet>,
         );
 
+        #[cfg(feature = "Foundation_NSCharacterSet")]
         #[method_id(@__retain_semantics Other defaultTokenizingCharacterSet)]
         pub unsafe fn defaultTokenizingCharacterSet() -> Id<NSCharacterSet, Shared>;
 
+        #[cfg(feature = "AppKit_NSTokenFieldCellDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSTokenFieldCellDelegate, Shared>>;
 
+        #[cfg(feature = "AppKit_NSTokenFieldCellDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&NSTokenFieldCellDelegate>);
     }
@@ -161,13 +167,16 @@ extern_static!(NSRoundedTokenStyle: NSTokenStyle = NSTokenStyleRounded);
 
 extern_methods!(
     /// Methods declared on superclass `NSTextFieldCell`
+    #[cfg(feature = "AppKit_NSTokenFieldCell")]
     unsafe impl NSTokenFieldCell {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initTextCell:)]
         pub unsafe fn initTextCell(
             this: Option<Allocated<Self>>,
             string: &NSString,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Init initImageCell:)]
         pub unsafe fn initImageCell(
             this: Option<Allocated<Self>>,

@@ -15,16 +15,19 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "CoreData_NSBatchDeleteRequest")]
     unsafe impl NSBatchDeleteRequest {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
+        #[cfg(feature = "CoreData_NSFetchRequest")]
         #[method_id(@__retain_semantics Init initWithFetchRequest:)]
         pub unsafe fn initWithFetchRequest(
             this: Option<Allocated<Self>>,
             fetch: &NSFetchRequest,
         ) -> Id<Self, Shared>;
 
+        #[cfg(all(feature = "CoreData_NSManagedObjectID", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Init initWithObjectIDs:)]
         pub unsafe fn initWithObjectIDs(
             this: Option<Allocated<Self>>,
@@ -37,6 +40,7 @@ extern_methods!(
         #[method(setResultType:)]
         pub unsafe fn setResultType(&self, resultType: NSBatchDeleteRequestResultType);
 
+        #[cfg(feature = "CoreData_NSFetchRequest")]
         #[method_id(@__retain_semantics Other fetchRequest)]
         pub unsafe fn fetchRequest(&self) -> Id<NSFetchRequest, Shared>;
     }

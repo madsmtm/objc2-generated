@@ -52,7 +52,9 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSComparisonPredicate")]
     unsafe impl NSComparisonPredicate {
+        #[cfg(feature = "Foundation_NSExpression")]
         #[method_id(@__retain_semantics Other predicateWithLeftExpression:rightExpression:modifier:type:options:)]
         pub unsafe fn predicateWithLeftExpression_rightExpression_modifier_type_options(
             lhs: &NSExpression,
@@ -62,6 +64,7 @@ extern_methods!(
             options: NSComparisonPredicateOptions,
         ) -> Id<NSComparisonPredicate, Shared>;
 
+        #[cfg(feature = "Foundation_NSExpression")]
         #[method_id(@__retain_semantics Other predicateWithLeftExpression:rightExpression:customSelector:)]
         pub unsafe fn predicateWithLeftExpression_rightExpression_customSelector(
             lhs: &NSExpression,
@@ -69,6 +72,7 @@ extern_methods!(
             selector: Sel,
         ) -> Id<NSComparisonPredicate, Shared>;
 
+        #[cfg(feature = "Foundation_NSExpression")]
         #[method_id(@__retain_semantics Init initWithLeftExpression:rightExpression:modifier:type:options:)]
         pub unsafe fn initWithLeftExpression_rightExpression_modifier_type_options(
             this: Option<Allocated<Self>>,
@@ -79,6 +83,7 @@ extern_methods!(
             options: NSComparisonPredicateOptions,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSExpression")]
         #[method_id(@__retain_semantics Init initWithLeftExpression:rightExpression:customSelector:)]
         pub unsafe fn initWithLeftExpression_rightExpression_customSelector(
             this: Option<Allocated<Self>>,
@@ -87,6 +92,7 @@ extern_methods!(
             selector: Sel,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -99,9 +105,11 @@ extern_methods!(
         #[method(comparisonPredicateModifier)]
         pub unsafe fn comparisonPredicateModifier(&self) -> NSComparisonPredicateModifier;
 
+        #[cfg(feature = "Foundation_NSExpression")]
         #[method_id(@__retain_semantics Other leftExpression)]
         pub unsafe fn leftExpression(&self) -> Id<NSExpression, Shared>;
 
+        #[cfg(feature = "Foundation_NSExpression")]
         #[method_id(@__retain_semantics Other rightExpression)]
         pub unsafe fn rightExpression(&self) -> Id<NSExpression, Shared>;
 

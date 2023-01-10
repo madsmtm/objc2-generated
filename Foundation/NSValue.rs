@@ -12,6 +12,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSValue")]
     unsafe impl NSValue {
         #[method(getValue:size:)]
         pub unsafe fn getValue_size(&self, value: NonNull<c_void>, size: NSUInteger);
@@ -26,6 +27,7 @@ extern_methods!(
             type_: NonNull<c_char>,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -36,6 +38,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSValueCreation
+    #[cfg(feature = "Foundation_NSValue")]
     unsafe impl NSValue {
         #[method_id(@__retain_semantics Other valueWithBytes:objCType:)]
         pub unsafe fn valueWithBytes_objCType(
@@ -53,6 +56,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSValueExtensionMethods
+    #[cfg(feature = "Foundation_NSValue")]
     unsafe impl NSValue {
         #[method_id(@__retain_semantics Other valueWithNonretainedObject:)]
         pub unsafe fn valueWithNonretainedObject(anObject: Option<&Object>) -> Id<NSValue, Shared>;
@@ -81,7 +85,9 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSNumber")]
     unsafe impl NSNumber {
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -207,6 +213,7 @@ extern_methods!(
         #[method(unsignedIntegerValue)]
         pub fn unsignedIntegerValue(&self) -> NSUInteger;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringValue)]
         pub fn stringValue(&self) -> Id<NSString, Shared>;
 
@@ -216,6 +223,7 @@ extern_methods!(
         #[method(isEqualToNumber:)]
         pub fn isEqualToNumber(&self, number: &NSNumber) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other descriptionWithLocale:)]
         pub unsafe fn descriptionWithLocale(&self, locale: Option<&Object>)
             -> Id<NSString, Shared>;
@@ -224,6 +232,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSNumberCreation
+    #[cfg(feature = "Foundation_NSNumber")]
     unsafe impl NSNumber {
         #[method_id(@__retain_semantics Other numberWithChar:)]
         pub fn numberWithChar(value: c_char) -> Id<NSNumber, Shared>;
@@ -274,6 +283,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSDeprecated
+    #[cfg(feature = "Foundation_NSValue")]
     unsafe impl NSValue {
         #[method(getValue:)]
         pub unsafe fn getValue(&self, value: NonNull<c_void>);
@@ -282,6 +292,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSValue`
+    #[cfg(feature = "Foundation_NSNumber")]
     unsafe impl NSNumber {
         #[method_id(@__retain_semantics Init initWithBytes:objCType:)]
         pub unsafe fn initWithBytes_objCType(

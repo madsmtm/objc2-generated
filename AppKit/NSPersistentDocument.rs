@@ -16,19 +16,29 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSPersistentDocument")]
     unsafe impl NSPersistentDocument {
+        #[cfg(feature = "CoreData_NSManagedObjectContext")]
         #[method_id(@__retain_semantics Other managedObjectContext)]
         pub unsafe fn managedObjectContext(&self) -> Option<Id<NSManagedObjectContext, Shared>>;
 
+        #[cfg(feature = "CoreData_NSManagedObjectContext")]
         #[method(setManagedObjectContext:)]
         pub unsafe fn setManagedObjectContext(
             &self,
             managedObjectContext: Option<&NSManagedObjectContext>,
         );
 
+        #[cfg(feature = "CoreData_NSManagedObjectModel")]
         #[method_id(@__retain_semantics Other managedObjectModel)]
         pub unsafe fn managedObjectModel(&self) -> Option<Id<NSManagedObjectModel, Shared>>;
 
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSURL"
+        ))]
         #[method(configurePersistentStoreCoordinatorForURL:ofType:modelConfiguration:storeOptions:error:_)]
         pub unsafe fn configurePersistentStoreCoordinatorForURL_ofType_modelConfiguration_storeOptions_error(
             &self,
@@ -38,12 +48,18 @@ extern_methods!(
             storeOptions: Option<&NSDictionary<NSString, Object>>,
         ) -> Result<(), Id<NSError, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other persistentStoreTypeForFileType:)]
         pub unsafe fn persistentStoreTypeForFileType(
             &self,
             fileType: &NSString,
         ) -> Id<NSString, Shared>;
 
+        #[cfg(all(
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSURL"
+        ))]
         #[method(writeToURL:ofType:forSaveOperation:originalContentsURL:error:_)]
         pub unsafe fn writeToURL_ofType_forSaveOperation_originalContentsURL_error(
             &self,
@@ -53,6 +69,11 @@ extern_methods!(
             absoluteOriginalContentsURL: Option<&NSURL>,
         ) -> Result<(), Id<NSError, Shared>>;
 
+        #[cfg(all(
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSURL"
+        ))]
         #[method(readFromURL:ofType:error:_)]
         pub unsafe fn readFromURL_ofType_error(
             &self,
@@ -60,6 +81,11 @@ extern_methods!(
             typeName: &NSString,
         ) -> Result<(), Id<NSError, Shared>>;
 
+        #[cfg(all(
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSURL"
+        ))]
         #[method(revertToContentsOfURL:ofType:error:_)]
         pub unsafe fn revertToContentsOfURL_ofType_error(
             &self,
@@ -71,7 +97,13 @@ extern_methods!(
 
 extern_methods!(
     /// NSDeprecated
+    #[cfg(feature = "AppKit_NSPersistentDocument")]
     unsafe impl NSPersistentDocument {
+        #[cfg(all(
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSURL"
+        ))]
         #[method(configurePersistentStoreCoordinatorForURL:ofType:error:_)]
         pub unsafe fn configurePersistentStoreCoordinatorForURL_ofType_error(
             &self,
@@ -83,13 +115,20 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSDocument`
+    #[cfg(feature = "AppKit_NSPersistentDocument")]
     unsafe impl NSPersistentDocument {
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithType:error:_)]
         pub unsafe fn initWithType_error(
             this: Option<Allocated<Self>>,
             typeName: &NSString,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
+        #[cfg(all(
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSURL"
+        ))]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:ofType:error:_)]
         pub unsafe fn initWithContentsOfURL_ofType_error(
             this: Option<Allocated<Self>>,
@@ -97,6 +136,11 @@ extern_methods!(
             typeName: &NSString,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
+        #[cfg(all(
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSURL"
+        ))]
         #[method_id(@__retain_semantics Init initForURL:withContentsOfURL:ofType:error:_)]
         pub unsafe fn initForURL_withContentsOfURL_ofType_error(
             this: Option<Allocated<Self>>,
@@ -111,7 +155,9 @@ extern_methods!(
     /// Methods declared on superclass `NSDocument`
     ///
     /// NSDeprecated
+    #[cfg(feature = "AppKit_NSPersistentDocument")]
     unsafe impl NSPersistentDocument {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithContentsOfFile:ofType:)]
         pub unsafe fn initWithContentsOfFile_ofType(
             this: Option<Allocated<Self>>,
@@ -119,6 +165,7 @@ extern_methods!(
             typeName: &NSString,
         ) -> Option<Id<Self, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:ofType:)]
         pub unsafe fn initWithContentsOfURL_ofType(
             this: Option<Allocated<Self>>,

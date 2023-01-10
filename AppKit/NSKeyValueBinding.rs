@@ -23,6 +23,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSBindingSelectionMarker")]
     unsafe impl NSBindingSelectionMarker {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
@@ -36,6 +37,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other notApplicableSelectionMarker)]
         pub unsafe fn notApplicableSelectionMarker() -> Id<NSBindingSelectionMarker, Shared>;
 
+        #[cfg(feature = "AppKit_NSBindingName")]
         #[method(setDefaultPlaceholder:forMarker:onClass:withBinding:)]
         pub unsafe fn setDefaultPlaceholder_forMarker_onClass_withBinding(
             placeholder: Option<&Object>,
@@ -44,6 +46,7 @@ extern_methods!(
             binding: &NSBindingName,
         );
 
+        #[cfg(feature = "AppKit_NSBindingName")]
         #[method_id(@__retain_semantics Other defaultPlaceholderForMarker:onClass:withBinding:)]
         pub unsafe fn defaultPlaceholderForMarker_onClass_withBinding(
             marker: Option<&NSBindingSelectionMarker>,
@@ -322,5 +325,6 @@ extern_static!(NSValueTransformerBindingOption: &'static NSBindingOption);
 
 extern_methods!(
     /// NSEditorAndEditorRegistrationConformance
+    #[cfg(feature = "AppKit_NSManagedObjectContext")]
     unsafe impl NSManagedObjectContext {}
 );

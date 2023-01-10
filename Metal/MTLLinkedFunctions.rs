@@ -14,31 +14,50 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Metal_MTLLinkedFunctions")]
     unsafe impl MTLLinkedFunctions {
         #[method_id(@__retain_semantics Other linkedFunctions)]
         pub fn linkedFunctions() -> Id<MTLLinkedFunctions, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLFunction"))]
         #[method_id(@__retain_semantics Other functions)]
         pub fn functions(&self) -> Option<Id<NSArray<MTLFunction>, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLFunction"))]
         #[method(setFunctions:)]
         pub fn setFunctions(&self, functions: Option<&NSArray<MTLFunction>>);
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLFunction"))]
         #[method_id(@__retain_semantics Other binaryFunctions)]
         pub fn binaryFunctions(&self) -> Option<Id<NSArray<MTLFunction>, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLFunction"))]
         #[method(setBinaryFunctions:)]
         pub fn setBinaryFunctions(&self, binaryFunctions: Option<&NSArray<MTLFunction>>);
 
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString",
+            feature = "Metal_MTLFunction"
+        ))]
         #[method_id(@__retain_semantics Other groups)]
         pub fn groups(&self) -> Option<Id<NSDictionary<NSString, NSArray<MTLFunction>>, Shared>>;
 
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString",
+            feature = "Metal_MTLFunction"
+        ))]
         #[method(setGroups:)]
         pub fn setGroups(&self, groups: Option<&NSDictionary<NSString, NSArray<MTLFunction>>>);
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLFunction"))]
         #[method_id(@__retain_semantics Other privateFunctions)]
         pub fn privateFunctions(&self) -> Option<Id<NSArray<MTLFunction>, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLFunction"))]
         #[method(setPrivateFunctions:)]
         pub fn setPrivateFunctions(&self, privateFunctions: Option<&NSArray<MTLFunction>>);
     }

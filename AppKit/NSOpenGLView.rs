@@ -7,6 +7,7 @@ use crate::Foundation::*;
 
 extern_methods!(
     /// NSOpenGLSurfaceResolution
+    #[cfg(feature = "AppKit_NSView")]
     unsafe impl NSView {
         #[method(wantsBestResolutionOpenGLSurface)]
         pub unsafe fn wantsBestResolutionOpenGLSurface(&self) -> bool;
@@ -21,6 +22,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSExtendedDynamicRange
+    #[cfg(feature = "AppKit_NSView")]
     unsafe impl NSView {
         #[method(wantsExtendedDynamicRangeOpenGLSurface)]
         pub unsafe fn wantsExtendedDynamicRangeOpenGLSurface(&self) -> bool;

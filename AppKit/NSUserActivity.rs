@@ -16,13 +16,17 @@ extern_protocol!(
 
 extern_methods!(
     /// NSUserActivity
+    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSResponder {
+        #[cfg(feature = "Foundation_NSUserActivity")]
         #[method_id(@__retain_semantics Other userActivity)]
         pub unsafe fn userActivity(&self) -> Option<Id<NSUserActivity, Shared>>;
 
+        #[cfg(feature = "Foundation_NSUserActivity")]
         #[method(setUserActivity:)]
         pub unsafe fn setUserActivity(&self, userActivity: Option<&NSUserActivity>);
 
+        #[cfg(feature = "Foundation_NSUserActivity")]
         #[method(updateUserActivityState:)]
         pub unsafe fn updateUserActivityState(&self, userActivity: &NSUserActivity);
     }
@@ -30,13 +34,17 @@ extern_methods!(
 
 extern_methods!(
     /// NSUserActivity
+    #[cfg(feature = "AppKit_NSDocument")]
     unsafe impl NSDocument {
+        #[cfg(feature = "Foundation_NSUserActivity")]
         #[method_id(@__retain_semantics Other userActivity)]
         pub unsafe fn userActivity(&self) -> Option<Id<NSUserActivity, Shared>>;
 
+        #[cfg(feature = "Foundation_NSUserActivity")]
         #[method(setUserActivity:)]
         pub unsafe fn setUserActivity(&self, userActivity: Option<&NSUserActivity>);
 
+        #[cfg(feature = "Foundation_NSUserActivity")]
         #[method(updateUserActivityState:)]
         pub unsafe fn updateUserActivityState(&self, activity: &NSUserActivity);
     }

@@ -23,7 +23,9 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSGradient")]
     unsafe impl NSGradient {
+        #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Init initWithStartingColor:endingColor:)]
         pub unsafe fn initWithStartingColor_endingColor(
             this: Option<Allocated<Self>>,
@@ -31,12 +33,18 @@ extern_methods!(
             endingColor: &NSColor,
         ) -> Option<Id<Self, Shared>>;
 
+        #[cfg(all(feature = "AppKit_NSColor", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Init initWithColors:)]
         pub unsafe fn initWithColors(
             this: Option<Allocated<Self>>,
             colorArray: &NSArray<NSColor>,
         ) -> Option<Id<Self, Shared>>;
 
+        #[cfg(all(
+            feature = "AppKit_NSColor",
+            feature = "AppKit_NSColorSpace",
+            feature = "Foundation_NSArray"
+        ))]
         #[method_id(@__retain_semantics Init initWithColors:atLocations:colorSpace:)]
         pub unsafe fn initWithColors_atLocations_colorSpace(
             this: Option<Allocated<Self>>,
@@ -45,6 +53,7 @@ extern_methods!(
             colorSpace: &NSColorSpace,
         ) -> Option<Id<Self, Shared>>;
 
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -62,6 +71,7 @@ extern_methods!(
         #[method(drawInRect:angle:)]
         pub unsafe fn drawInRect_angle(&self, rect: NSRect, angle: CGFloat);
 
+        #[cfg(feature = "AppKit_NSBezierPath")]
         #[method(drawInBezierPath:angle:)]
         pub unsafe fn drawInBezierPath_angle(&self, path: &NSBezierPath, angle: CGFloat);
 
@@ -82,6 +92,7 @@ extern_methods!(
             relativeCenterPosition: NSPoint,
         );
 
+        #[cfg(feature = "AppKit_NSBezierPath")]
         #[method(drawInBezierPath:relativeCenterPosition:)]
         pub unsafe fn drawInBezierPath_relativeCenterPosition(
             &self,
@@ -89,12 +100,14 @@ extern_methods!(
             relativeCenterPosition: NSPoint,
         );
 
+        #[cfg(feature = "AppKit_NSColorSpace")]
         #[method_id(@__retain_semantics Other colorSpace)]
         pub unsafe fn colorSpace(&self) -> Id<NSColorSpace, Shared>;
 
         #[method(numberOfColorStops)]
         pub unsafe fn numberOfColorStops(&self) -> NSInteger;
 
+        #[cfg(feature = "AppKit_NSColor")]
         #[method(getColor:location:atIndex:)]
         pub unsafe fn getColor_location_atIndex(
             &self,
@@ -103,6 +116,7 @@ extern_methods!(
             index: NSInteger,
         );
 
+        #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other interpolatedColorAtLocation:)]
         pub unsafe fn interpolatedColorAtLocation(&self, location: CGFloat) -> Id<NSColor, Shared>;
     }

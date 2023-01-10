@@ -51,6 +51,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSBezierPath")]
     unsafe impl NSBezierPath {
         #[method_id(@__retain_semantics Other bezierPath)]
         pub unsafe fn bezierPath() -> Id<NSBezierPath, Shared>;
@@ -223,6 +224,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other bezierPathByReversingPath)]
         pub unsafe fn bezierPathByReversingPath(&self) -> Id<NSBezierPath, Shared>;
 
+        #[cfg(feature = "Foundation_NSAffineTransform")]
         #[method(transformUsingAffineTransform:)]
         pub unsafe fn transformUsingAffineTransform(&self, transform: &NSAffineTransform);
 
@@ -312,6 +314,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSBezierPathDeprecated
+    #[cfg(feature = "AppKit_NSBezierPath")]
     unsafe impl NSBezierPath {
         #[method(cachesBezierPath)]
         pub unsafe fn cachesBezierPath(&self) -> bool;
@@ -319,9 +322,11 @@ extern_methods!(
         #[method(setCachesBezierPath:)]
         pub unsafe fn setCachesBezierPath(&self, flag: bool);
 
+        #[cfg(feature = "AppKit_NSFont")]
         #[method(appendBezierPathWithGlyph:inFont:)]
         pub unsafe fn appendBezierPathWithGlyph_inFont(&self, glyph: NSGlyph, font: &NSFont);
 
+        #[cfg(feature = "AppKit_NSFont")]
         #[method(appendBezierPathWithGlyphs:count:inFont:)]
         pub unsafe fn appendBezierPathWithGlyphs_count_inFont(
             &self,

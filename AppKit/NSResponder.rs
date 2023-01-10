@@ -15,10 +15,12 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSResponder {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -34,9 +36,11 @@ extern_methods!(
         #[method(tryToPerform:with:)]
         pub unsafe fn tryToPerform_with(&self, action: Sel, object: Option<&Object>) -> bool;
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(performKeyEquivalent:)]
         pub unsafe fn performKeyEquivalent(&self, event: &NSEvent) -> bool;
 
+        #[cfg(feature = "AppKit_NSPasteboardType")]
         #[method_id(@__retain_semantics Other validRequestorForSendType:returnType:)]
         pub unsafe fn validRequestorForSendType_returnType(
             &self,
@@ -44,99 +48,131 @@ extern_methods!(
             returnType: Option<&NSPasteboardType>,
         ) -> Option<Id<Object, Shared>>;
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(mouseDown:)]
         pub unsafe fn mouseDown(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(rightMouseDown:)]
         pub unsafe fn rightMouseDown(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(otherMouseDown:)]
         pub unsafe fn otherMouseDown(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(mouseUp:)]
         pub unsafe fn mouseUp(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(rightMouseUp:)]
         pub unsafe fn rightMouseUp(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(otherMouseUp:)]
         pub unsafe fn otherMouseUp(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(mouseMoved:)]
         pub unsafe fn mouseMoved(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(mouseDragged:)]
         pub unsafe fn mouseDragged(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(scrollWheel:)]
         pub unsafe fn scrollWheel(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(rightMouseDragged:)]
         pub unsafe fn rightMouseDragged(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(otherMouseDragged:)]
         pub unsafe fn otherMouseDragged(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(mouseEntered:)]
         pub unsafe fn mouseEntered(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(mouseExited:)]
         pub unsafe fn mouseExited(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(keyDown:)]
         pub unsafe fn keyDown(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(keyUp:)]
         pub unsafe fn keyUp(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(flagsChanged:)]
         pub unsafe fn flagsChanged(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(tabletPoint:)]
         pub unsafe fn tabletPoint(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(tabletProximity:)]
         pub unsafe fn tabletProximity(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(cursorUpdate:)]
         pub unsafe fn cursorUpdate(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(magnifyWithEvent:)]
         pub unsafe fn magnifyWithEvent(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(rotateWithEvent:)]
         pub unsafe fn rotateWithEvent(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(swipeWithEvent:)]
         pub unsafe fn swipeWithEvent(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(beginGestureWithEvent:)]
         pub unsafe fn beginGestureWithEvent(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(endGestureWithEvent:)]
         pub unsafe fn endGestureWithEvent(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(smartMagnifyWithEvent:)]
         pub unsafe fn smartMagnifyWithEvent(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(changeModeWithEvent:)]
         pub unsafe fn changeModeWithEvent(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(touchesBeganWithEvent:)]
         pub unsafe fn touchesBeganWithEvent(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(touchesMovedWithEvent:)]
         pub unsafe fn touchesMovedWithEvent(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(touchesEndedWithEvent:)]
         pub unsafe fn touchesEndedWithEvent(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(touchesCancelledWithEvent:)]
         pub unsafe fn touchesCancelledWithEvent(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(quickLookWithEvent:)]
         pub unsafe fn quickLookWithEvent(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(pressureChangeWithEvent:)]
         pub unsafe fn pressureChangeWithEvent(&self, event: &NSEvent);
 
@@ -152,24 +188,29 @@ extern_methods!(
         #[method(resignFirstResponder)]
         pub unsafe fn resignFirstResponder(&self) -> bool;
 
+        #[cfg(all(feature = "AppKit_NSEvent", feature = "Foundation_NSArray"))]
         #[method(interpretKeyEvents:)]
         pub unsafe fn interpretKeyEvents(&self, eventArray: &NSArray<NSEvent>);
 
         #[method(flushBufferedKeyEvents)]
         pub unsafe fn flushBufferedKeyEvents(&self);
 
+        #[cfg(feature = "AppKit_NSMenu")]
         #[method_id(@__retain_semantics Other menu)]
         pub unsafe fn menu(&self) -> Option<Id<NSMenu, Shared>>;
 
+        #[cfg(feature = "AppKit_NSMenu")]
         #[method(setMenu:)]
         pub unsafe fn setMenu(&self, menu: Option<&NSMenu>);
 
         #[method(showContextHelp:)]
         pub unsafe fn showContextHelp(&self, sender: Option<&Object>);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(helpRequested:)]
         pub unsafe fn helpRequested(&self, eventPtr: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(shouldBeTreatedAsInkEvent:)]
         pub unsafe fn shouldBeTreatedAsInkEvent(&self, event: &NSEvent) -> bool;
 
@@ -579,12 +620,15 @@ extern_protocol!(
 
 extern_methods!(
     /// NSStandardKeyBindingMethods
+    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSResponder {}
 );
 
 extern_methods!(
     /// NSUndoSupport
+    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSResponder {
+        #[cfg(feature = "Foundation_NSUndoManager")]
         #[method_id(@__retain_semantics Other undoManager)]
         pub unsafe fn undoManager(&self) -> Option<Id<NSUndoManager, Shared>>;
     }
@@ -592,7 +636,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSControlEditingSupport
+    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSResponder {
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(validateProposedFirstResponder:forEvent:)]
         pub unsafe fn validateProposedFirstResponder_forEvent(
             &self,
@@ -604,7 +650,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSErrorPresentation
+    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSResponder {
+        #[cfg(all(feature = "AppKit_NSWindow", feature = "Foundation_NSError"))]
         #[method(presentError:modalForWindow:delegate:didPresentSelector:contextInfo:)]
         pub unsafe fn presentError_modalForWindow_delegate_didPresentSelector_contextInfo(
             &self,
@@ -615,9 +663,11 @@ extern_methods!(
             contextInfo: *mut c_void,
         );
 
+        #[cfg(feature = "Foundation_NSError")]
         #[method(presentError:)]
         pub unsafe fn presentError(&self, error: &NSError) -> bool;
 
+        #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other willPresentError:)]
         pub unsafe fn willPresentError(&self, error: &NSError) -> Id<NSError, Shared>;
     }
@@ -625,6 +675,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSTextFinderSupport
+    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSResponder {
         #[method(performTextFinderAction:)]
         pub unsafe fn performTextFinderAction(&self, sender: Option<&Object>);
@@ -633,6 +684,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSWindowTabbing
+    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSResponder {
         #[method(newWindowForTab:)]
         pub unsafe fn newWindowForTab(&self, sender: Option<&Object>);
@@ -641,7 +693,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSDeprecated
+    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSResponder {
+        #[cfg(feature = "Foundation_NSString")]
         #[method(performMnemonic:)]
         pub unsafe fn performMnemonic(&self, string: &NSString) -> bool;
     }

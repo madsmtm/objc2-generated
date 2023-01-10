@@ -24,13 +24,17 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSSliderTouchBarItem")]
     unsafe impl NSSliderTouchBarItem {
+        #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other view)]
         pub unsafe fn view(&self) -> Id<NSView, Shared>;
 
+        #[cfg(feature = "AppKit_NSSlider")]
         #[method_id(@__retain_semantics Other slider)]
         pub unsafe fn slider(&self) -> Id<NSSlider, Shared>;
 
+        #[cfg(feature = "AppKit_NSSlider")]
         #[method(setSlider:)]
         pub unsafe fn setSlider(&self, slider: &NSSlider);
 
@@ -52,24 +56,30 @@ extern_methods!(
         #[method(setMaximumSliderWidth:)]
         pub unsafe fn setMaximumSliderWidth(&self, maximumSliderWidth: CGFloat);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
         pub unsafe fn label(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:)]
         pub unsafe fn setLabel(&self, label: Option<&NSString>);
 
+        #[cfg(feature = "AppKit_NSSliderAccessory")]
         #[method_id(@__retain_semantics Other minimumValueAccessory)]
         pub unsafe fn minimumValueAccessory(&self) -> Option<Id<NSSliderAccessory, Shared>>;
 
+        #[cfg(feature = "AppKit_NSSliderAccessory")]
         #[method(setMinimumValueAccessory:)]
         pub unsafe fn setMinimumValueAccessory(
             &self,
             minimumValueAccessory: Option<&NSSliderAccessory>,
         );
 
+        #[cfg(feature = "AppKit_NSSliderAccessory")]
         #[method_id(@__retain_semantics Other maximumValueAccessory)]
         pub unsafe fn maximumValueAccessory(&self) -> Option<Id<NSSliderAccessory, Shared>>;
 
+        #[cfg(feature = "AppKit_NSSliderAccessory")]
         #[method(setMaximumValueAccessory:)]
         pub unsafe fn setMaximumValueAccessory(
             &self,
@@ -94,9 +104,11 @@ extern_methods!(
         #[method(setAction:)]
         pub unsafe fn setAction(&self, action: Option<Sel>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other customizationLabel)]
         pub unsafe fn customizationLabel(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setCustomizationLabel:)]
         pub unsafe fn setCustomizationLabel(&self, customizationLabel: Option<&NSString>);
     }
@@ -104,7 +116,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSTouchBarItem`
+    #[cfg(feature = "AppKit_NSSliderTouchBarItem")]
     unsafe impl NSSliderTouchBarItem {
+        #[cfg(feature = "AppKit_NSTouchBarItemIdentifier")]
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
             this: Option<Allocated<Self>>,

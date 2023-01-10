@@ -32,6 +32,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSPersonNameComponentsFormatter")]
     unsafe impl NSPersonNameComponentsFormatter {
         #[method(style)]
         pub unsafe fn style(&self) -> NSPersonNameComponentsFormatterStyle;
@@ -45,12 +46,18 @@ extern_methods!(
         #[method(setPhonetic:)]
         pub unsafe fn setPhonetic(&self, phonetic: bool);
 
+        #[cfg(feature = "Foundation_NSLocale")]
         #[method_id(@__retain_semantics Other locale)]
         pub unsafe fn locale(&self) -> Id<NSLocale, Shared>;
 
+        #[cfg(feature = "Foundation_NSLocale")]
         #[method(setLocale:)]
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
 
+        #[cfg(all(
+            feature = "Foundation_NSPersonNameComponents",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other localizedStringFromPersonNameComponents:style:options:)]
         pub unsafe fn localizedStringFromPersonNameComponents_style_options(
             components: &NSPersonNameComponents,
@@ -58,24 +65,37 @@ extern_methods!(
             nameOptions: NSPersonNameComponentsFormatterOptions,
         ) -> Id<NSString, Shared>;
 
+        #[cfg(all(
+            feature = "Foundation_NSPersonNameComponents",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other stringFromPersonNameComponents:)]
         pub unsafe fn stringFromPersonNameComponents(
             &self,
             components: &NSPersonNameComponents,
         ) -> Id<NSString, Shared>;
 
+        #[cfg(all(
+            feature = "Foundation_NSAttributedString",
+            feature = "Foundation_NSPersonNameComponents"
+        ))]
         #[method_id(@__retain_semantics Other annotatedStringFromPersonNameComponents:)]
         pub unsafe fn annotatedStringFromPersonNameComponents(
             &self,
             components: &NSPersonNameComponents,
         ) -> Id<NSAttributedString, Shared>;
 
+        #[cfg(all(
+            feature = "Foundation_NSPersonNameComponents",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other personNameComponentsFromString:)]
         pub unsafe fn personNameComponentsFromString(
             &self,
             string: &NSString,
         ) -> Option<Id<NSPersonNameComponents, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(getObjectValue:forString:errorDescription:)]
         pub unsafe fn getObjectValue_forString_errorDescription(
             &self,

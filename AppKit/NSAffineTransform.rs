@@ -7,7 +7,9 @@ use crate::Foundation::*;
 
 extern_methods!(
     /// NSAppKitAdditions
+    #[cfg(feature = "AppKit_NSAffineTransform")]
     unsafe impl NSAffineTransform {
+        #[cfg(feature = "AppKit_NSBezierPath")]
         #[method_id(@__retain_semantics Other transformBezierPath:)]
         pub unsafe fn transformBezierPath(&self, path: &NSBezierPath) -> Id<NSBezierPath, Shared>;
 

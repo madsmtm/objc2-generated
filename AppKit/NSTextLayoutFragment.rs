@@ -36,7 +36,9 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSTextLayoutFragment")]
     unsafe impl NSTextLayoutFragment {
+        #[cfg(all(feature = "AppKit_NSTextElement", feature = "AppKit_NSTextRange"))]
         #[method_id(@__retain_semantics Init initWithTextElement:range:)]
         pub unsafe fn initWithTextElement_range(
             this: Option<Allocated<Self>>,
@@ -44,6 +46,7 @@ extern_methods!(
             rangeInElement: Option<&NSTextRange>,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -53,21 +56,27 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
+        #[cfg(feature = "AppKit_NSTextLayoutManager")]
         #[method_id(@__retain_semantics Other textLayoutManager)]
         pub unsafe fn textLayoutManager(&self) -> Option<Id<NSTextLayoutManager, Shared>>;
 
+        #[cfg(feature = "AppKit_NSTextElement")]
         #[method_id(@__retain_semantics Other textElement)]
         pub unsafe fn textElement(&self) -> Option<Id<NSTextElement, Shared>>;
 
+        #[cfg(feature = "AppKit_NSTextRange")]
         #[method_id(@__retain_semantics Other rangeInElement)]
         pub unsafe fn rangeInElement(&self) -> Id<NSTextRange, Shared>;
 
+        #[cfg(all(feature = "AppKit_NSTextLineFragment", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other textLineFragments)]
         pub unsafe fn textLineFragments(&self) -> Id<NSArray<NSTextLineFragment>, Shared>;
 
+        #[cfg(feature = "Foundation_NSOperationQueue")]
         #[method_id(@__retain_semantics Other layoutQueue)]
         pub unsafe fn layoutQueue(&self) -> Option<Id<NSOperationQueue, Shared>>;
 
+        #[cfg(feature = "Foundation_NSOperationQueue")]
         #[method(setLayoutQueue:)]
         pub unsafe fn setLayoutQueue(&self, layoutQueue: Option<&NSOperationQueue>);
 
@@ -95,11 +104,16 @@ extern_methods!(
         #[method(bottomMargin)]
         pub unsafe fn bottomMargin(&self) -> CGFloat;
 
+        #[cfg(all(
+            feature = "AppKit_NSTextAttachmentViewProvider",
+            feature = "Foundation_NSArray"
+        ))]
         #[method_id(@__retain_semantics Other textAttachmentViewProviders)]
         pub unsafe fn textAttachmentViewProviders(
             &self,
         ) -> Id<NSArray<NSTextAttachmentViewProvider>, Shared>;
 
+        #[cfg(feature = "AppKit_NSTextLocation")]
         #[method(frameForTextAttachmentAtLocation:)]
         pub unsafe fn frameForTextAttachmentAtLocation(&self, location: &NSTextLocation) -> CGRect;
     }

@@ -7,6 +7,7 @@ use crate::Foundation::*;
 
 extern_methods!(
     /// NSWorkspaceAccessibilityDisplay
+    #[cfg(feature = "AppKit_NSWorkspace")]
     unsafe impl NSWorkspace {
         #[method(accessibilityDisplayShouldIncreaseContrast)]
         pub unsafe fn accessibilityDisplayShouldIncreaseContrast(&self) -> bool;
@@ -27,6 +28,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSWorkspaceAccessibility
+    #[cfg(feature = "AppKit_NSWorkspace")]
     unsafe impl NSWorkspace {
         #[method(isVoiceOverEnabled)]
         pub unsafe fn isVoiceOverEnabled(&self) -> bool;

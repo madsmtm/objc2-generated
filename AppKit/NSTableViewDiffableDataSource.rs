@@ -52,6 +52,7 @@ __inner_extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSTableViewDiffableDataSource")]
     unsafe impl<
             SectionIdentifierType: Message,
             ItemIdentifierType: Message,
@@ -65,6 +66,7 @@ extern_methods!(
             ItemIdentifierTypeOwnership,
         >
     {
+        #[cfg(feature = "AppKit_NSTableView")]
         #[method_id(@__retain_semantics Init initWithTableView:cellProvider:)]
         pub unsafe fn initWithTableView_cellProvider(
             this: Option<Allocated<Self>>,
@@ -78,11 +80,13 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self, Shared>;
 
+        #[cfg(feature = "AppKit_NSDiffableDataSourceSnapshot")]
         #[method_id(@__retain_semantics Other snapshot)]
         pub unsafe fn snapshot(
             &self,
         ) -> Id<NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>, Shared>;
 
+        #[cfg(feature = "AppKit_NSDiffableDataSourceSnapshot")]
         #[method(applySnapshot:animatingDifferences:)]
         pub unsafe fn applySnapshot_animatingDifferences(
             &self,
@@ -90,6 +94,7 @@ extern_methods!(
             animatingDifferences: bool,
         );
 
+        #[cfg(feature = "AppKit_NSDiffableDataSourceSnapshot")]
         #[method(applySnapshot:animatingDifferences:completion:)]
         pub unsafe fn applySnapshot_animatingDifferences_completion(
             &self,

@@ -41,6 +41,7 @@ __inner_extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSEnumerator")]
     unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
         NSEnumerator<ObjectType, ObjectTypeOwnership>
     {
@@ -51,9 +52,11 @@ extern_methods!(
 
 extern_methods!(
     /// NSExtendedEnumerator
+    #[cfg(feature = "Foundation_NSEnumerator")]
     unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
         NSEnumerator<ObjectType, ObjectTypeOwnership>
     {
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other allObjects)]
         pub unsafe fn allObjects(&self) -> Id<NSArray<ObjectType>, Shared>;
     }

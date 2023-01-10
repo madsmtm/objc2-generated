@@ -15,7 +15,9 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSRulerMarker")]
     unsafe impl NSRulerMarker {
+        #[cfg(all(feature = "AppKit_NSImage", feature = "AppKit_NSRulerView"))]
         #[method_id(@__retain_semantics Init initWithRulerView:markerLocation:image:imageOrigin:)]
         pub unsafe fn initWithRulerView_markerLocation_image_imageOrigin(
             this: Option<Allocated<Self>>,
@@ -25,6 +27,7 @@ extern_methods!(
             imageOrigin: NSPoint,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -34,6 +37,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
+        #[cfg(feature = "AppKit_NSRulerView")]
         #[method_id(@__retain_semantics Other ruler)]
         pub unsafe fn ruler(&self) -> Option<Id<NSRulerView, Shared>>;
 
@@ -43,9 +47,11 @@ extern_methods!(
         #[method(setMarkerLocation:)]
         pub unsafe fn setMarkerLocation(&self, markerLocation: CGFloat);
 
+        #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other image)]
         pub unsafe fn image(&self) -> Id<NSImage, Shared>;
 
+        #[cfg(feature = "AppKit_NSImage")]
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: &NSImage);
 
@@ -85,6 +91,7 @@ extern_methods!(
         #[method(drawRect:)]
         pub unsafe fn drawRect(&self, rect: NSRect);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(trackMouse:adding:)]
         pub unsafe fn trackMouse_adding(&self, mouseDownEvent: &NSEvent, isAdding: bool) -> bool;
     }

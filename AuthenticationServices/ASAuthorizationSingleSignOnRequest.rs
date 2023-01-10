@@ -15,10 +15,13 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AuthenticationServices_ASAuthorizationSingleSignOnRequest")]
     unsafe impl ASAuthorizationSingleSignOnRequest {
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURLQueryItem"))]
         #[method_id(@__retain_semantics Other authorizationOptions)]
         pub unsafe fn authorizationOptions(&self) -> Id<NSArray<NSURLQueryItem>, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURLQueryItem"))]
         #[method(setAuthorizationOptions:)]
         pub unsafe fn setAuthorizationOptions(
             &self,

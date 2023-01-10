@@ -48,6 +48,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSFontPanel")]
     unsafe impl NSFontPanel {
         #[method_id(@__retain_semantics Other sharedFontPanel)]
         pub unsafe fn sharedFontPanel() -> Id<NSFontPanel, Shared>;
@@ -55,15 +56,19 @@ extern_methods!(
         #[method(sharedFontPanelExists)]
         pub unsafe fn sharedFontPanelExists() -> bool;
 
+        #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other accessoryView)]
         pub unsafe fn accessoryView(&self) -> Option<Id<NSView, Shared>>;
 
+        #[cfg(feature = "AppKit_NSView")]
         #[method(setAccessoryView:)]
         pub unsafe fn setAccessoryView(&self, accessoryView: Option<&NSView>);
 
+        #[cfg(feature = "AppKit_NSFont")]
         #[method(setPanelFont:isMultiple:)]
         pub unsafe fn setPanelFont_isMultiple(&self, fontObj: &NSFont, flag: bool);
 
+        #[cfg(feature = "AppKit_NSFont")]
         #[method_id(@__retain_semantics Other panelConvertFont:)]
         pub unsafe fn panelConvertFont(&self, fontObj: &NSFont) -> Id<NSFont, Shared>;
 
@@ -116,6 +121,7 @@ extern_enum!(
 
 extern_methods!(
     /// Methods declared on superclass `NSWindow`
+    #[cfg(feature = "AppKit_NSFontPanel")]
     unsafe impl NSFontPanel {
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer(
@@ -126,6 +132,7 @@ extern_methods!(
             flag: bool,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "AppKit_NSScreen")]
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:screen:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer_screen(
             this: Option<Allocated<Self>>,
@@ -136,6 +143,7 @@ extern_methods!(
             screen: Option<&NSScreen>,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "AppKit_NSViewController")]
         #[method_id(@__retain_semantics Other windowWithContentViewController:)]
         pub unsafe fn windowWithContentViewController(
             contentViewController: &NSViewController,

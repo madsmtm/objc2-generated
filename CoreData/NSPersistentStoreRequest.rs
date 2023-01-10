@@ -25,10 +25,13 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
     unsafe impl NSPersistentStoreRequest {
+        #[cfg(all(feature = "CoreData_NSPersistentStore", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other affectedStores)]
         pub unsafe fn affectedStores(&self) -> Option<Id<NSArray<NSPersistentStore>, Shared>>;
 
+        #[cfg(all(feature = "CoreData_NSPersistentStore", feature = "Foundation_NSArray"))]
         #[method(setAffectedStores:)]
         pub unsafe fn setAffectedStores(&self, affectedStores: Option<&NSArray<NSPersistentStore>>);
 

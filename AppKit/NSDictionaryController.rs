@@ -15,13 +15,16 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSDictionaryControllerKeyValuePair")]
     unsafe impl NSDictionaryControllerKeyValuePair {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other key)]
         pub unsafe fn key(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setKey:)]
         pub unsafe fn setKey(&self, key: Option<&NSString>);
 
@@ -31,9 +34,11 @@ extern_methods!(
         #[method(setValue:)]
         pub unsafe fn setValue(&self, value: Option<&Object>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedKey)]
         pub unsafe fn localizedKey(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setLocalizedKey:)]
         pub unsafe fn setLocalizedKey(&self, localizedKey: Option<&NSString>);
 
@@ -53,13 +58,17 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSDictionaryController")]
     unsafe impl NSDictionaryController {
+        #[cfg(feature = "AppKit_NSDictionaryControllerKeyValuePair")]
         #[method_id(@__retain_semantics New newObject)]
         pub unsafe fn newObject(&self) -> Id<NSDictionaryControllerKeyValuePair, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other initialKey)]
         pub unsafe fn initialKey(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setInitialKey:)]
         pub unsafe fn setInitialKey(&self, initialKey: &NSString);
 
@@ -69,31 +78,39 @@ extern_methods!(
         #[method(setInitialValue:)]
         pub unsafe fn setInitialValue(&self, initialValue: &Object);
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other includedKeys)]
         pub unsafe fn includedKeys(&self) -> Id<NSArray<NSString>, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setIncludedKeys:)]
         pub unsafe fn setIncludedKeys(&self, includedKeys: &NSArray<NSString>);
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other excludedKeys)]
         pub unsafe fn excludedKeys(&self) -> Id<NSArray<NSString>, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setExcludedKeys:)]
         pub unsafe fn setExcludedKeys(&self, excludedKeys: &NSArray<NSString>);
 
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other localizedKeyDictionary)]
         pub unsafe fn localizedKeyDictionary(&self)
             -> Id<NSDictionary<NSString, NSString>, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setLocalizedKeyDictionary:)]
         pub unsafe fn setLocalizedKeyDictionary(
             &self,
             localizedKeyDictionary: &NSDictionary<NSString, NSString>,
         );
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedKeyTable)]
         pub unsafe fn localizedKeyTable(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setLocalizedKeyTable:)]
         pub unsafe fn setLocalizedKeyTable(&self, localizedKeyTable: Option<&NSString>);
     }
@@ -101,6 +118,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObjectController`
+    #[cfg(feature = "AppKit_NSDictionaryController")]
     unsafe impl NSDictionaryController {
         #[method_id(@__retain_semantics Init initWithContent:)]
         pub unsafe fn initWithContent(

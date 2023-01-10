@@ -18,10 +18,13 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "QuartzCore_CAValueFunction")]
     unsafe impl CAValueFunction {
+        #[cfg(feature = "QuartzCore_CAValueFunctionName")]
         #[method_id(@__retain_semantics Other functionWithName:)]
         pub unsafe fn functionWithName(name: &CAValueFunctionName) -> Option<Id<Self, Shared>>;
 
+        #[cfg(feature = "QuartzCore_CAValueFunctionName")]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Id<CAValueFunctionName, Shared>;
     }

@@ -25,6 +25,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AuthenticationServices_ASCredentialIdentityStore")]
     unsafe impl ASCredentialIdentityStore {
         #[method_id(@__retain_semantics Other sharedStore)]
         pub unsafe fn sharedStore() -> Id<ASCredentialIdentityStore, Shared>;
@@ -32,12 +33,18 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
+        #[cfg(feature = "AuthenticationServices_ASCredentialIdentityStoreState")]
         #[method(getCredentialIdentityStoreStateWithCompletion:)]
         pub unsafe fn getCredentialIdentityStoreStateWithCompletion(
             &self,
             completion: &Block<(NonNull<ASCredentialIdentityStoreState>,), ()>,
         );
 
+        #[cfg(all(
+            feature = "AuthenticationServices_ASPasswordCredentialIdentity",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSError"
+        ))]
         #[method(saveCredentialIdentities:completion:)]
         pub unsafe fn saveCredentialIdentities_completion(
             &self,
@@ -45,6 +52,11 @@ extern_methods!(
             completion: Option<&Block<(Bool, *mut NSError), ()>>,
         );
 
+        #[cfg(all(
+            feature = "AuthenticationServices_ASPasswordCredentialIdentity",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSError"
+        ))]
         #[method(removeCredentialIdentities:completion:)]
         pub unsafe fn removeCredentialIdentities_completion(
             &self,
@@ -52,12 +64,18 @@ extern_methods!(
             completion: Option<&Block<(Bool, *mut NSError), ()>>,
         );
 
+        #[cfg(feature = "Foundation_NSError")]
         #[method(removeAllCredentialIdentitiesWithCompletion:)]
         pub unsafe fn removeAllCredentialIdentitiesWithCompletion(
             &self,
             completion: Option<&Block<(Bool, *mut NSError), ()>>,
         );
 
+        #[cfg(all(
+            feature = "AuthenticationServices_ASPasswordCredentialIdentity",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSError"
+        ))]
         #[method(replaceCredentialIdentitiesWithIdentities:completion:)]
         pub unsafe fn replaceCredentialIdentitiesWithIdentities_completion(
             &self,

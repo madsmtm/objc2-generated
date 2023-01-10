@@ -38,6 +38,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSBox")]
     unsafe impl NSBox {
         #[method(boxType)]
         pub unsafe fn boxType(&self) -> NSBoxType;
@@ -51,15 +52,19 @@ extern_methods!(
         #[method(setTitlePosition:)]
         pub unsafe fn setTitlePosition(&self, titlePosition: NSTitlePosition);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
+        #[cfg(feature = "AppKit_NSFont")]
         #[method_id(@__retain_semantics Other titleFont)]
         pub unsafe fn titleFont(&self) -> Id<NSFont, Shared>;
 
+        #[cfg(feature = "AppKit_NSFont")]
         #[method(setTitleFont:)]
         pub unsafe fn setTitleFont(&self, titleFont: &NSFont);
 
@@ -108,15 +113,19 @@ extern_methods!(
         #[method(setCornerRadius:)]
         pub unsafe fn setCornerRadius(&self, cornerRadius: CGFloat);
 
+        #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other borderColor)]
         pub unsafe fn borderColor(&self) -> Id<NSColor, Shared>;
 
+        #[cfg(feature = "AppKit_NSColor")]
         #[method(setBorderColor:)]
         pub unsafe fn setBorderColor(&self, borderColor: &NSColor);
 
+        #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other fillColor)]
         pub unsafe fn fillColor(&self) -> Id<NSColor, Shared>;
 
+        #[cfg(feature = "AppKit_NSColor")]
         #[method(setFillColor:)]
         pub unsafe fn setFillColor(&self, fillColor: &NSColor);
     }
@@ -124,6 +133,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSDeprecated
+    #[cfg(feature = "AppKit_NSBox")]
     unsafe impl NSBox {
         #[method(borderType)]
         pub unsafe fn borderType(&self) -> NSBorderType;
@@ -131,6 +141,7 @@ extern_methods!(
         #[method(setBorderType:)]
         pub unsafe fn setBorderType(&self, borderType: NSBorderType);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setTitleWithMnemonic:)]
         pub unsafe fn setTitleWithMnemonic(&self, stringWithAmpersand: Option<&NSString>);
     }
@@ -142,6 +153,7 @@ extern_static!(NSBoxOldStyle: NSBoxType = 3);
 
 extern_methods!(
     /// Methods declared on superclass `NSView`
+    #[cfg(feature = "AppKit_NSBox")]
     unsafe impl NSBox {
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(

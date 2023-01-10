@@ -16,6 +16,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSPanGestureRecognizer")]
     unsafe impl NSPanGestureRecognizer {
         #[method(buttonMask)]
         pub unsafe fn buttonMask(&self) -> NSUInteger;
@@ -23,12 +24,15 @@ extern_methods!(
         #[method(setButtonMask:)]
         pub unsafe fn setButtonMask(&self, buttonMask: NSUInteger);
 
+        #[cfg(feature = "AppKit_NSView")]
         #[method(translationInView:)]
         pub unsafe fn translationInView(&self, view: Option<&NSView>) -> NSPoint;
 
+        #[cfg(feature = "AppKit_NSView")]
         #[method(setTranslation:inView:)]
         pub unsafe fn setTranslation_inView(&self, translation: NSPoint, view: Option<&NSView>);
 
+        #[cfg(feature = "AppKit_NSView")]
         #[method(velocityInView:)]
         pub unsafe fn velocityInView(&self, view: Option<&NSView>) -> NSPoint;
 
@@ -42,6 +46,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSGestureRecognizer`
+    #[cfg(feature = "AppKit_NSPanGestureRecognizer")]
     unsafe impl NSPanGestureRecognizer {
         #[method_id(@__retain_semantics Init initWithTarget:action:)]
         pub unsafe fn initWithTarget_action(

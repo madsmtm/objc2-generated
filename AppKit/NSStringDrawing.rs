@@ -15,6 +15,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSStringDrawingContext")]
     unsafe impl NSStringDrawingContext {
         #[method(minimumScaleFactor)]
         pub unsafe fn minimumScaleFactor(&self) -> CGFloat;
@@ -32,13 +33,22 @@ extern_methods!(
 
 extern_methods!(
     /// NSStringDrawing
+    #[cfg(feature = "AppKit_NSString")]
     unsafe impl NSString {
+        #[cfg(all(
+            feature = "Foundation_NSAttributedStringKey",
+            feature = "Foundation_NSDictionary"
+        ))]
         #[method(sizeWithAttributes:)]
         pub unsafe fn sizeWithAttributes(
             &self,
             attrs: Option<&NSDictionary<NSAttributedStringKey, Object>>,
         ) -> NSSize;
 
+        #[cfg(all(
+            feature = "Foundation_NSAttributedStringKey",
+            feature = "Foundation_NSDictionary"
+        ))]
         #[method(drawAtPoint:withAttributes:)]
         pub unsafe fn drawAtPoint_withAttributes(
             &self,
@@ -46,6 +56,10 @@ extern_methods!(
             attrs: Option<&NSDictionary<NSAttributedStringKey, Object>>,
         );
 
+        #[cfg(all(
+            feature = "Foundation_NSAttributedStringKey",
+            feature = "Foundation_NSDictionary"
+        ))]
         #[method(drawInRect:withAttributes:)]
         pub unsafe fn drawInRect_withAttributes(
             &self,
@@ -57,6 +71,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSStringDrawing
+    #[cfg(feature = "AppKit_NSAttributedString")]
     unsafe impl NSAttributedString {
         #[method(size)]
         pub unsafe fn size(&self) -> NSSize;
@@ -83,7 +98,13 @@ ns_options!(
 
 extern_methods!(
     /// NSExtendedStringDrawing
+    #[cfg(feature = "AppKit_NSString")]
     unsafe impl NSString {
+        #[cfg(all(
+            feature = "AppKit_NSStringDrawingContext",
+            feature = "Foundation_NSAttributedStringKey",
+            feature = "Foundation_NSDictionary"
+        ))]
         #[method(drawWithRect:options:attributes:context:)]
         pub unsafe fn drawWithRect_options_attributes_context(
             &self,
@@ -93,6 +114,11 @@ extern_methods!(
             context: Option<&NSStringDrawingContext>,
         );
 
+        #[cfg(all(
+            feature = "AppKit_NSStringDrawingContext",
+            feature = "Foundation_NSAttributedStringKey",
+            feature = "Foundation_NSDictionary"
+        ))]
         #[method(boundingRectWithSize:options:attributes:context:)]
         pub unsafe fn boundingRectWithSize_options_attributes_context(
             &self,
@@ -106,7 +132,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSExtendedStringDrawing
+    #[cfg(feature = "AppKit_NSAttributedString")]
     unsafe impl NSAttributedString {
+        #[cfg(feature = "AppKit_NSStringDrawingContext")]
         #[method(drawWithRect:options:context:)]
         pub unsafe fn drawWithRect_options_context(
             &self,
@@ -115,6 +143,7 @@ extern_methods!(
             context: Option<&NSStringDrawingContext>,
         );
 
+        #[cfg(feature = "AppKit_NSStringDrawingContext")]
         #[method(boundingRectWithSize:options:context:)]
         pub unsafe fn boundingRectWithSize_options_context(
             &self,
@@ -127,7 +156,12 @@ extern_methods!(
 
 extern_methods!(
     /// NSStringDrawingDeprecated
+    #[cfg(feature = "AppKit_NSString")]
     unsafe impl NSString {
+        #[cfg(all(
+            feature = "Foundation_NSAttributedStringKey",
+            feature = "Foundation_NSDictionary"
+        ))]
         #[method(drawWithRect:options:attributes:)]
         pub unsafe fn drawWithRect_options_attributes(
             &self,
@@ -136,6 +170,10 @@ extern_methods!(
             attributes: Option<&NSDictionary<NSAttributedStringKey, Object>>,
         );
 
+        #[cfg(all(
+            feature = "Foundation_NSAttributedStringKey",
+            feature = "Foundation_NSDictionary"
+        ))]
         #[method(boundingRectWithSize:options:attributes:)]
         pub unsafe fn boundingRectWithSize_options_attributes(
             &self,
@@ -148,6 +186,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSStringDrawingDeprecated
+    #[cfg(feature = "AppKit_NSAttributedString")]
     unsafe impl NSAttributedString {
         #[method(drawWithRect:options:)]
         pub unsafe fn drawWithRect_options(&self, rect: NSRect, options: NSStringDrawingOptions);

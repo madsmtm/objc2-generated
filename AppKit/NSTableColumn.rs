@@ -24,28 +24,35 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSTableColumn")]
     unsafe impl NSTableColumn {
+        #[cfg(feature = "AppKit_NSUserInterfaceItemIdentifier")]
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
             this: Option<Allocated<Self>>,
             identifier: &NSUserInterfaceItemIdentifier,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "AppKit_NSUserInterfaceItemIdentifier")]
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Id<NSUserInterfaceItemIdentifier, Shared>;
 
+        #[cfg(feature = "AppKit_NSUserInterfaceItemIdentifier")]
         #[method(setIdentifier:)]
         pub unsafe fn setIdentifier(&self, identifier: &NSUserInterfaceItemIdentifier);
 
+        #[cfg(feature = "AppKit_NSTableView")]
         #[method_id(@__retain_semantics Other tableView)]
         pub unsafe fn tableView(&self) -> Option<Id<NSTableView, Shared>>;
 
+        #[cfg(feature = "AppKit_NSTableView")]
         #[method(setTableView:)]
         pub unsafe fn setTableView(&self, tableView: Option<&NSTableView>);
 
@@ -67,15 +74,19 @@ extern_methods!(
         #[method(setMaxWidth:)]
         pub unsafe fn setMaxWidth(&self, maxWidth: CGFloat);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
+        #[cfg(feature = "AppKit_NSTableHeaderCell")]
         #[method_id(@__retain_semantics Other headerCell)]
         pub unsafe fn headerCell(&self) -> Id<NSTableHeaderCell, Shared>;
 
+        #[cfg(feature = "AppKit_NSTableHeaderCell")]
         #[method(setHeaderCell:)]
         pub unsafe fn setHeaderCell(&self, headerCell: &NSTableHeaderCell);
 
@@ -88,9 +99,11 @@ extern_methods!(
         #[method(sizeToFit)]
         pub unsafe fn sizeToFit(&self);
 
+        #[cfg(feature = "Foundation_NSSortDescriptor")]
         #[method_id(@__retain_semantics Other sortDescriptorPrototype)]
         pub unsafe fn sortDescriptorPrototype(&self) -> Option<Id<NSSortDescriptor, Shared>>;
 
+        #[cfg(feature = "Foundation_NSSortDescriptor")]
         #[method(setSortDescriptorPrototype:)]
         pub unsafe fn setSortDescriptorPrototype(
             &self,
@@ -103,9 +116,11 @@ extern_methods!(
         #[method(setResizingMask:)]
         pub unsafe fn setResizingMask(&self, resizingMask: NSTableColumnResizingOptions);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other headerToolTip)]
         pub unsafe fn headerToolTip(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setHeaderToolTip:)]
         pub unsafe fn setHeaderToolTip(&self, headerToolTip: Option<&NSString>);
 
@@ -119,6 +134,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSDeprecated
+    #[cfg(feature = "AppKit_NSTableColumn")]
     unsafe impl NSTableColumn {
         #[method(setResizable:)]
         pub unsafe fn setResizable(&self, flag: bool);

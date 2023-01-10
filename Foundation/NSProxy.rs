@@ -4,13 +4,16 @@ use crate::common::*;
 use crate::Foundation::*;
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSProxy")]
     unsafe impl NSProxy {
         #[method(class)]
         pub unsafe fn class() -> &'static Class;
 
+        #[cfg(feature = "Foundation_NSInvocation")]
         #[method(forwardInvocation:)]
         pub unsafe fn forwardInvocation(&self, invocation: &NSInvocation);
 
+        #[cfg(feature = "Foundation_NSMethodSignature")]
         #[method_id(@__retain_semantics Other methodSignatureForSelector:)]
         pub unsafe fn methodSignatureForSelector(
             &self,
@@ -23,9 +26,11 @@ extern_methods!(
         #[method(finalize)]
         pub unsafe fn finalize(&self);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other description)]
         pub unsafe fn description(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other debugDescription)]
         pub unsafe fn debugDescription(&self) -> Id<NSString, Shared>;
 

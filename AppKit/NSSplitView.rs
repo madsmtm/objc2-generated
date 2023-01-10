@@ -27,6 +27,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSSplitView")]
     unsafe impl NSSplitView {
         #[method(isVertical)]
         pub unsafe fn isVertical(&self) -> bool;
@@ -40,21 +41,26 @@ extern_methods!(
         #[method(setDividerStyle:)]
         pub unsafe fn setDividerStyle(&self, dividerStyle: NSSplitViewDividerStyle);
 
+        #[cfg(feature = "AppKit_NSSplitViewAutosaveName")]
         #[method_id(@__retain_semantics Other autosaveName)]
         pub unsafe fn autosaveName(&self) -> Option<Id<NSSplitViewAutosaveName, Shared>>;
 
+        #[cfg(feature = "AppKit_NSSplitViewAutosaveName")]
         #[method(setAutosaveName:)]
         pub unsafe fn setAutosaveName(&self, autosaveName: Option<&NSSplitViewAutosaveName>);
 
+        #[cfg(feature = "AppKit_NSSplitViewDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSSplitViewDelegate, Shared>>;
 
+        #[cfg(feature = "AppKit_NSSplitViewDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&NSSplitViewDelegate>);
 
         #[method(drawDividerInRect:)]
         pub unsafe fn drawDividerInRect(&self, rect: NSRect);
 
+        #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other dividerColor)]
         pub unsafe fn dividerColor(&self) -> Id<NSColor, Shared>;
 
@@ -103,6 +109,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSSplitViewArrangedSubviews
+    #[cfg(feature = "AppKit_NSSplitView")]
     unsafe impl NSSplitView {
         #[method(arrangesAllSubviews)]
         pub unsafe fn arrangesAllSubviews(&self) -> bool;
@@ -110,15 +117,19 @@ extern_methods!(
         #[method(setArrangesAllSubviews:)]
         pub unsafe fn setArrangesAllSubviews(&self, arrangesAllSubviews: bool);
 
+        #[cfg(all(feature = "AppKit_NSView", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other arrangedSubviews)]
         pub unsafe fn arrangedSubviews(&self) -> Id<NSArray<NSView>, Shared>;
 
+        #[cfg(feature = "AppKit_NSView")]
         #[method(addArrangedSubview:)]
         pub unsafe fn addArrangedSubview(&self, view: &NSView);
 
+        #[cfg(feature = "AppKit_NSView")]
         #[method(insertArrangedSubview:atIndex:)]
         pub unsafe fn insertArrangedSubview_atIndex(&self, view: &NSView, index: NSInteger);
 
+        #[cfg(feature = "AppKit_NSView")]
         #[method(removeArrangedSubview:)]
         pub unsafe fn removeArrangedSubview(&self, view: &NSView);
     }
@@ -230,6 +241,7 @@ extern_static!(NSSplitViewDidResizeSubviewsNotification: &'static NSNotification
 
 extern_methods!(
     /// NSDeprecated
+    #[cfg(feature = "AppKit_NSSplitView")]
     unsafe impl NSSplitView {
         #[method(setIsPaneSplitter:)]
         pub unsafe fn setIsPaneSplitter(&self, flag: bool);
@@ -241,6 +253,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSView`
+    #[cfg(feature = "AppKit_NSSplitView")]
     unsafe impl NSSplitView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(

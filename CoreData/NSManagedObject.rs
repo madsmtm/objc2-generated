@@ -26,13 +26,19 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "CoreData_NSManagedObject")]
     unsafe impl NSManagedObject {
         #[method(contextShouldIgnoreUnmodeledPropertyChanges)]
         pub unsafe fn contextShouldIgnoreUnmodeledPropertyChanges() -> bool;
 
+        #[cfg(feature = "CoreData_NSFetchRequest")]
         #[method_id(@__retain_semantics Other fetchRequest)]
         pub unsafe fn fetchRequest() -> Id<NSFetchRequest, Shared>;
 
+        #[cfg(all(
+            feature = "CoreData_NSEntityDescription",
+            feature = "CoreData_NSManagedObjectContext"
+        ))]
         #[method_id(@__retain_semantics Init initWithEntity:insertIntoManagedObjectContext:)]
         pub unsafe fn initWithEntity_insertIntoManagedObjectContext(
             this: Option<Allocated<Self>>,
@@ -40,15 +46,18 @@ extern_methods!(
             context: Option<&NSManagedObjectContext>,
         ) -> Id<NSManagedObject, Shared>;
 
+        #[cfg(feature = "CoreData_NSManagedObjectContext")]
         #[method_id(@__retain_semantics Init initWithContext:)]
         pub unsafe fn initWithContext(
             this: Option<Allocated<Self>>,
             moc: &NSManagedObjectContext,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "CoreData_NSManagedObjectContext")]
         #[method_id(@__retain_semantics Other managedObjectContext)]
         pub unsafe fn managedObjectContext(&self) -> Option<Id<NSManagedObjectContext, Shared>>;
 
+        #[cfg(feature = "CoreData_NSManagedObjectID")]
         #[method_id(@__retain_semantics Other objectID)]
         pub unsafe fn objectID(&self) -> Id<NSManagedObjectID, Shared>;
 
@@ -70,9 +79,15 @@ extern_methods!(
         #[method(isFault)]
         pub unsafe fn isFault(&self) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(hasFaultForRelationshipNamed:)]
         pub unsafe fn hasFaultForRelationshipNamed(&self, key: &NSString) -> bool;
 
+        #[cfg(all(
+            feature = "CoreData_NSManagedObjectID",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other objectIDsForRelationshipNamed:)]
         pub unsafe fn objectIDsForRelationshipNamed(
             &self,
@@ -82,18 +97,23 @@ extern_methods!(
         #[method(faultingState)]
         pub unsafe fn faultingState(&self) -> NSUInteger;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(willAccessValueForKey:)]
         pub unsafe fn willAccessValueForKey(&self, key: Option<&NSString>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(didAccessValueForKey:)]
         pub unsafe fn didAccessValueForKey(&self, key: Option<&NSString>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(willChangeValueForKey:)]
         pub unsafe fn willChangeValueForKey(&self, key: &NSString);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(didChangeValueForKey:)]
         pub unsafe fn didChangeValueForKey(&self, key: &NSString);
 
+        #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
         #[method(willChangeValueForKey:withSetMutation:usingObjects:)]
         pub unsafe fn willChangeValueForKey_withSetMutation_usingObjects(
             &self,
@@ -102,6 +122,7 @@ extern_methods!(
             inObjects: &NSSet,
         );
 
+        #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
         #[method(didChangeValueForKey:withSetMutation:usingObjects:)]
         pub unsafe fn didChangeValueForKey_withSetMutation_usingObjects(
             &self,
@@ -134,32 +155,44 @@ extern_methods!(
         #[method(didTurnIntoFault)]
         pub unsafe fn didTurnIntoFault(&self);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other valueForKey:)]
         pub unsafe fn valueForKey(&self, key: &NSString) -> Option<Id<Object, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setValue:forKey:)]
         pub unsafe fn setValue_forKey(&self, value: Option<&Object>, key: &NSString);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other primitiveValueForKey:)]
         pub unsafe fn primitiveValueForKey(&self, key: &NSString) -> Option<Id<Object, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setPrimitiveValue:forKey:)]
         pub unsafe fn setPrimitiveValue_forKey(&self, value: Option<&Object>, key: &NSString);
 
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other committedValuesForKeys:)]
         pub unsafe fn committedValuesForKeys(
             &self,
             keys: Option<&NSArray<NSString>>,
         ) -> Id<NSDictionary<NSString, Object>, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other changedValues)]
         pub unsafe fn changedValues(&self) -> Id<NSDictionary<NSString, Object>, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other changedValuesForCurrentEvent)]
         pub unsafe fn changedValuesForCurrentEvent(
             &self,
         ) -> Id<NSDictionary<NSString, Object>, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method(validateValue:forKey:error:_)]
         pub unsafe fn validateValue_forKey_error(
             &self,
@@ -167,12 +200,15 @@ extern_methods!(
             key: &NSString,
         ) -> Result<(), Id<NSError, Shared>>;
 
+        #[cfg(feature = "Foundation_NSError")]
         #[method(validateForDelete:_)]
         pub unsafe fn validateForDelete(&self) -> Result<(), Id<NSError, Shared>>;
 
+        #[cfg(feature = "Foundation_NSError")]
         #[method(validateForInsert:_)]
         pub unsafe fn validateForInsert(&self) -> Result<(), Id<NSError, Shared>>;
 
+        #[cfg(feature = "Foundation_NSError")]
         #[method(validateForUpdate:_)]
         pub unsafe fn validateForUpdate(&self) -> Result<(), Id<NSError, Shared>>;
 

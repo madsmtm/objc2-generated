@@ -18,19 +18,26 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "CoreData_NSCoreDataCoreSpotlightDelegate")]
     unsafe impl NSCoreDataCoreSpotlightDelegate {
         #[method(isIndexingEnabled)]
         pub unsafe fn isIndexingEnabled(&self) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other domainIdentifier)]
         pub unsafe fn domainIdentifier(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other indexName)]
         pub unsafe fn indexName(&self) -> Option<Id<NSString, Shared>>;
 
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
+        #[cfg(all(
+            feature = "CoreData_NSPersistentStoreCoordinator",
+            feature = "CoreData_NSPersistentStoreDescription"
+        ))]
         #[method_id(@__retain_semantics Init initForStoreWithDescription:coordinator:)]
         pub unsafe fn initForStoreWithDescription_coordinator(
             this: Option<Allocated<Self>>,
@@ -38,6 +45,10 @@ extern_methods!(
             psc: &NSPersistentStoreCoordinator,
         ) -> Id<Self, Shared>;
 
+        #[cfg(all(
+            feature = "CoreData_NSManagedObjectModel",
+            feature = "CoreData_NSPersistentStoreDescription"
+        ))]
         #[method_id(@__retain_semantics Init initForStoreWithDescription:model:)]
         pub unsafe fn initForStoreWithDescription_model(
             this: Option<Allocated<Self>>,
@@ -51,6 +62,7 @@ extern_methods!(
         #[method(stopSpotlightIndexing)]
         pub unsafe fn stopSpotlightIndexing(&self);
 
+        #[cfg(feature = "Foundation_NSError")]
         #[method(deleteSpotlightIndexWithCompletionHandler:)]
         pub unsafe fn deleteSpotlightIndexWithCompletionHandler(
             &self,

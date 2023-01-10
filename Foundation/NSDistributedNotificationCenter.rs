@@ -48,7 +48,9 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSDistributedNotificationCenter")]
     unsafe impl NSDistributedNotificationCenter {
+        #[cfg(feature = "Foundation_NSDistributedNotificationCenterType")]
         #[method_id(@__retain_semantics Other notificationCenterForType:)]
         pub unsafe fn notificationCenterForType(
             notificationCenterType: &NSDistributedNotificationCenterType,
@@ -57,6 +59,10 @@ extern_methods!(
         #[method_id(@__retain_semantics Other defaultCenter)]
         pub unsafe fn defaultCenter() -> Id<NSDistributedNotificationCenter, Shared>;
 
+        #[cfg(all(
+            feature = "Foundation_NSNotificationName",
+            feature = "Foundation_NSString"
+        ))]
         #[method(addObserver:selector:name:object:suspensionBehavior:)]
         pub unsafe fn addObserver_selector_name_object_suspensionBehavior(
             &self,
@@ -67,6 +73,11 @@ extern_methods!(
             suspensionBehavior: NSNotificationSuspensionBehavior,
         );
 
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSNotificationName",
+            feature = "Foundation_NSString"
+        ))]
         #[method(postNotificationName:object:userInfo:deliverImmediately:)]
         pub unsafe fn postNotificationName_object_userInfo_deliverImmediately(
             &self,
@@ -76,6 +87,11 @@ extern_methods!(
             deliverImmediately: bool,
         );
 
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSNotificationName",
+            feature = "Foundation_NSString"
+        ))]
         #[method(postNotificationName:object:userInfo:options:)]
         pub unsafe fn postNotificationName_object_userInfo_options(
             &self,
@@ -91,6 +107,10 @@ extern_methods!(
         #[method(setSuspended:)]
         pub unsafe fn setSuspended(&self, suspended: bool);
 
+        #[cfg(all(
+            feature = "Foundation_NSNotificationName",
+            feature = "Foundation_NSString"
+        ))]
         #[method(addObserver:selector:name:object:)]
         pub unsafe fn addObserver_selector_name_object(
             &self,
@@ -100,6 +120,10 @@ extern_methods!(
             anObject: Option<&NSString>,
         );
 
+        #[cfg(all(
+            feature = "Foundation_NSNotificationName",
+            feature = "Foundation_NSString"
+        ))]
         #[method(postNotificationName:object:)]
         pub unsafe fn postNotificationName_object(
             &self,
@@ -107,6 +131,11 @@ extern_methods!(
             anObject: Option<&NSString>,
         );
 
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSNotificationName",
+            feature = "Foundation_NSString"
+        ))]
         #[method(postNotificationName:object:userInfo:)]
         pub unsafe fn postNotificationName_object_userInfo(
             &self,
@@ -115,6 +144,10 @@ extern_methods!(
             aUserInfo: Option<&NSDictionary>,
         );
 
+        #[cfg(all(
+            feature = "Foundation_NSNotificationName",
+            feature = "Foundation_NSString"
+        ))]
         #[method(removeObserver:name:object:)]
         pub unsafe fn removeObserver_name_object(
             &self,

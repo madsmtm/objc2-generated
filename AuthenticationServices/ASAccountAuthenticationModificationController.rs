@@ -52,18 +52,28 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationController")]
     unsafe impl ASAccountAuthenticationModificationController {
+        #[cfg(
+            feature = "AuthenticationServices_ASAccountAuthenticationModificationControllerDelegate"
+        )]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Id<ASAccountAuthenticationModificationControllerDelegate, Shared>>;
 
+        #[cfg(
+            feature = "AuthenticationServices_ASAccountAuthenticationModificationControllerDelegate"
+        )]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ASAccountAuthenticationModificationControllerDelegate>,
         );
 
+        #[cfg(
+            feature = "AuthenticationServices_ASAccountAuthenticationModificationControllerPresentationContextProviding"
+        )]
         #[method_id(@__retain_semantics Other presentationContextProvider)]
         pub unsafe fn presentationContextProvider(
             &self,
@@ -71,6 +81,9 @@ extern_methods!(
             Id<ASAccountAuthenticationModificationControllerPresentationContextProviding, Shared>,
         >;
 
+        #[cfg(
+            feature = "AuthenticationServices_ASAccountAuthenticationModificationControllerPresentationContextProviding"
+        )]
         #[method(setPresentationContextProvider:)]
         pub unsafe fn setPresentationContextProvider(
             &self,
@@ -79,6 +92,7 @@ extern_methods!(
             >,
         );
 
+        #[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationRequest")]
         #[method(performRequest:)]
         pub unsafe fn performRequest(&self, request: &ASAccountAuthenticationModificationRequest);
     }

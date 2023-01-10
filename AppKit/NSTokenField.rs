@@ -106,10 +106,13 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSTokenField")]
     unsafe impl NSTokenField {
+        #[cfg(feature = "AppKit_NSTokenFieldDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSTokenFieldDelegate, Shared>>;
 
+        #[cfg(feature = "AppKit_NSTokenFieldDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&NSTokenFieldDelegate>);
 
@@ -128,15 +131,18 @@ extern_methods!(
         #[method(defaultCompletionDelay)]
         pub unsafe fn defaultCompletionDelay() -> NSTimeInterval;
 
+        #[cfg(feature = "Foundation_NSCharacterSet")]
         #[method_id(@__retain_semantics Other tokenizingCharacterSet)]
         pub unsafe fn tokenizingCharacterSet(&self) -> Id<NSCharacterSet, Shared>;
 
+        #[cfg(feature = "Foundation_NSCharacterSet")]
         #[method(setTokenizingCharacterSet:)]
         pub unsafe fn setTokenizingCharacterSet(
             &self,
             tokenizingCharacterSet: Option<&NSCharacterSet>,
         );
 
+        #[cfg(feature = "Foundation_NSCharacterSet")]
         #[method_id(@__retain_semantics Other defaultTokenizingCharacterSet)]
         pub unsafe fn defaultTokenizingCharacterSet() -> Id<NSCharacterSet, Shared>;
     }
@@ -146,18 +152,23 @@ extern_methods!(
     /// Methods declared on superclass `NSTextField`
     ///
     /// NSTextFieldConvenience
+    #[cfg(feature = "AppKit_NSTokenField")]
     unsafe impl NSTokenField {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other labelWithString:)]
         pub unsafe fn labelWithString(stringValue: &NSString) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other wrappingLabelWithString:)]
         pub unsafe fn wrappingLabelWithString(stringValue: &NSString) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other labelWithAttributedString:)]
         pub unsafe fn labelWithAttributedString(
             attributedStringValue: &NSAttributedString,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other textFieldWithString:)]
         pub unsafe fn textFieldWithString(stringValue: &NSString) -> Id<Self, Shared>;
     }
@@ -165,6 +176,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSControl`
+    #[cfg(feature = "AppKit_NSTokenField")]
     unsafe impl NSTokenField {
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(

@@ -15,10 +15,13 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSPDFInfo")]
     unsafe impl NSPDFInfo {
+        #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other URL)]
         pub unsafe fn URL(&self) -> Option<Id<NSURL, Shared>>;
 
+        #[cfg(feature = "Foundation_NSURL")]
         #[method(setURL:)]
         pub unsafe fn setURL(&self, URL: Option<&NSURL>);
 
@@ -28,9 +31,11 @@ extern_methods!(
         #[method(setFileExtensionHidden:)]
         pub unsafe fn setFileExtensionHidden(&self, fileExtensionHidden: bool);
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other tagNames)]
         pub unsafe fn tagNames(&self) -> Id<NSArray<NSString>, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setTagNames:)]
         pub unsafe fn setTagNames(&self, tagNames: &NSArray<NSString>);
 
@@ -46,6 +51,10 @@ extern_methods!(
         #[method(setPaperSize:)]
         pub unsafe fn setPaperSize(&self, paperSize: NSSize);
 
+        #[cfg(all(
+            feature = "AppKit_NSPrintInfoAttributeKey",
+            feature = "Foundation_NSMutableDictionary"
+        ))]
         #[method_id(@__retain_semantics Other attributes)]
         pub unsafe fn attributes(
             &self,

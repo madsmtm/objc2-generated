@@ -25,16 +25,20 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSLock")]
     unsafe impl NSLock {
         #[method(tryLock)]
         pub unsafe fn tryLock(&self) -> bool;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(lockBeforeDate:)]
         pub unsafe fn lockBeforeDate(&self, limit: &NSDate) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
         pub fn name(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]
         pub fn setName(&self, name: Option<&NSString>);
     }
@@ -50,6 +54,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSConditionLock")]
     unsafe impl NSConditionLock {
         #[method_id(@__retain_semantics Init initWithCondition:)]
         pub unsafe fn initWithCondition(
@@ -72,9 +77,11 @@ extern_methods!(
         #[method(unlockWithCondition:)]
         pub unsafe fn unlockWithCondition(&self, condition: NSInteger);
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(lockBeforeDate:)]
         pub unsafe fn lockBeforeDate(&self, limit: &NSDate) -> bool;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(lockWhenCondition:beforeDate:)]
         pub unsafe fn lockWhenCondition_beforeDate(
             &self,
@@ -82,9 +89,11 @@ extern_methods!(
             limit: &NSDate,
         ) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
     }
@@ -100,16 +109,20 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSRecursiveLock")]
     unsafe impl NSRecursiveLock {
         #[method(tryLock)]
         pub unsafe fn tryLock(&self) -> bool;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(lockBeforeDate:)]
         pub unsafe fn lockBeforeDate(&self, limit: &NSDate) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
     }
@@ -125,10 +138,12 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSCondition")]
     unsafe impl NSCondition {
         #[method(wait)]
         pub unsafe fn wait(&self);
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(waitUntilDate:)]
         pub unsafe fn waitUntilDate(&self, limit: &NSDate) -> bool;
 
@@ -138,9 +153,11 @@ extern_methods!(
         #[method(broadcast)]
         pub unsafe fn broadcast(&self);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
     }

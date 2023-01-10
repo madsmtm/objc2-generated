@@ -51,7 +51,9 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSTabView")]
     unsafe impl NSTabView {
+        #[cfg(feature = "AppKit_NSTabViewItem")]
         #[method(selectTabViewItem:)]
         pub unsafe fn selectTabViewItem(&self, tabViewItem: Option<&NSTabViewItem>);
 
@@ -76,12 +78,15 @@ extern_methods!(
         #[method(selectPreviousTabViewItem:)]
         pub unsafe fn selectPreviousTabViewItem(&self, sender: Option<&Object>);
 
+        #[cfg(feature = "AppKit_NSTabViewItem")]
         #[method_id(@__retain_semantics Other selectedTabViewItem)]
         pub unsafe fn selectedTabViewItem(&self) -> Option<Id<NSTabViewItem, Shared>>;
 
+        #[cfg(feature = "AppKit_NSFont")]
         #[method_id(@__retain_semantics Other font)]
         pub unsafe fn font(&self) -> Id<NSFont, Shared>;
 
+        #[cfg(feature = "AppKit_NSFont")]
         #[method(setFont:)]
         pub unsafe fn setFont(&self, font: &NSFont);
 
@@ -103,9 +108,11 @@ extern_methods!(
         #[method(setTabViewBorderType:)]
         pub unsafe fn setTabViewBorderType(&self, tabViewBorderType: NSTabViewBorderType);
 
+        #[cfg(all(feature = "AppKit_NSTabViewItem", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other tabViewItems)]
         pub unsafe fn tabViewItems(&self) -> Id<NSArray<NSTabViewItem>, Shared>;
 
+        #[cfg(all(feature = "AppKit_NSTabViewItem", feature = "Foundation_NSArray"))]
         #[method(setTabViewItems:)]
         pub unsafe fn setTabViewItems(&self, tabViewItems: &NSArray<NSTabViewItem>);
 
@@ -130,9 +137,11 @@ extern_methods!(
         #[method(setControlSize:)]
         pub unsafe fn setControlSize(&self, controlSize: NSControlSize);
 
+        #[cfg(feature = "AppKit_NSTabViewItem")]
         #[method(addTabViewItem:)]
         pub unsafe fn addTabViewItem(&self, tabViewItem: &NSTabViewItem);
 
+        #[cfg(feature = "AppKit_NSTabViewItem")]
         #[method(insertTabViewItem:atIndex:)]
         pub unsafe fn insertTabViewItem_atIndex(
             &self,
@@ -140,15 +149,19 @@ extern_methods!(
             index: NSInteger,
         );
 
+        #[cfg(feature = "AppKit_NSTabViewItem")]
         #[method(removeTabViewItem:)]
         pub unsafe fn removeTabViewItem(&self, tabViewItem: &NSTabViewItem);
 
+        #[cfg(feature = "AppKit_NSTabViewDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSTabViewDelegate, Shared>>;
 
+        #[cfg(feature = "AppKit_NSTabViewDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&NSTabViewDelegate>);
 
+        #[cfg(feature = "AppKit_NSTabViewItem")]
         #[method_id(@__retain_semantics Other tabViewItemAtPoint:)]
         pub unsafe fn tabViewItemAtPoint(
             &self,
@@ -161,9 +174,11 @@ extern_methods!(
         #[method(numberOfTabViewItems)]
         pub unsafe fn numberOfTabViewItems(&self) -> NSInteger;
 
+        #[cfg(feature = "AppKit_NSTabViewItem")]
         #[method(indexOfTabViewItem:)]
         pub unsafe fn indexOfTabViewItem(&self, tabViewItem: &NSTabViewItem) -> NSInteger;
 
+        #[cfg(feature = "AppKit_NSTabViewItem")]
         #[method_id(@__retain_semantics Other tabViewItemAtIndex:)]
         pub unsafe fn tabViewItemAtIndex(&self, index: NSInteger) -> Id<NSTabViewItem, Shared>;
 
@@ -214,6 +229,7 @@ extern_protocol!(
 
 extern_methods!(
     /// Methods declared on superclass `NSView`
+    #[cfg(feature = "AppKit_NSTabView")]
     unsafe impl NSTabView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(

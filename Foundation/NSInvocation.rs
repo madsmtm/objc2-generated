@@ -13,12 +13,15 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSInvocation")]
     unsafe impl NSInvocation {
+        #[cfg(feature = "Foundation_NSMethodSignature")]
         #[method_id(@__retain_semantics Other invocationWithMethodSignature:)]
         pub unsafe fn invocationWithMethodSignature(
             sig: &NSMethodSignature,
         ) -> Id<NSInvocation, Shared>;
 
+        #[cfg(feature = "Foundation_NSMethodSignature")]
         #[method_id(@__retain_semantics Other methodSignature)]
         pub unsafe fn methodSignature(&self) -> Id<NSMethodSignature, Shared>;
 

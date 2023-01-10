@@ -14,6 +14,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSPortCoder")]
     unsafe impl NSPortCoder {
         #[method(isBycopy)]
         pub unsafe fn isBycopy(&self) -> bool;
@@ -21,15 +22,19 @@ extern_methods!(
         #[method(isByref)]
         pub unsafe fn isByref(&self) -> bool;
 
+        #[cfg(feature = "Foundation_NSPort")]
         #[method(encodePortObject:)]
         pub unsafe fn encodePortObject(&self, aport: &NSPort);
 
+        #[cfg(feature = "Foundation_NSPort")]
         #[method_id(@__retain_semantics Other decodePortObject)]
         pub unsafe fn decodePortObject(&self) -> Option<Id<NSPort, Shared>>;
 
+        #[cfg(feature = "Foundation_NSConnection")]
         #[method_id(@__retain_semantics Other connection)]
         pub unsafe fn connection(&self) -> Option<Id<NSConnection, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSPort"))]
         #[method_id(@__retain_semantics Other portCoderWithReceivePort:sendPort:components:)]
         pub unsafe fn portCoderWithReceivePort_sendPort_components(
             rcvPort: Option<&NSPort>,
@@ -37,6 +42,7 @@ extern_methods!(
             comps: Option<&NSArray>,
         ) -> Id<Object, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSPort"))]
         #[method_id(@__retain_semantics Init initWithReceivePort:sendPort:components:)]
         pub unsafe fn initWithReceivePort_sendPort_components(
             this: Option<Allocated<Self>>,

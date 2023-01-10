@@ -16,12 +16,15 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSSharingServicePickerToolbarItem")]
     unsafe impl NSSharingServicePickerToolbarItem {
+        #[cfg(feature = "AppKit_NSSharingServicePickerToolbarItemDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Id<NSSharingServicePickerToolbarItemDelegate, Shared>>;
 
+        #[cfg(feature = "AppKit_NSSharingServicePickerToolbarItemDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -44,7 +47,9 @@ extern_protocol!(
 
 extern_methods!(
     /// Methods declared on superclass `NSToolbarItem`
+    #[cfg(feature = "AppKit_NSSharingServicePickerToolbarItem")]
     unsafe impl NSSharingServicePickerToolbarItem {
+        #[cfg(feature = "AppKit_NSToolbarItemIdentifier")]
         #[method_id(@__retain_semantics Init initWithItemIdentifier:)]
         pub unsafe fn initWithItemIdentifier(
             this: Option<Allocated<Self>>,

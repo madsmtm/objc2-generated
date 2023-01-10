@@ -80,6 +80,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSComboBox")]
     unsafe impl NSComboBox {
         #[method(hasVerticalScroller)]
         pub unsafe fn hasVerticalScroller(&self) -> bool;
@@ -147,21 +148,26 @@ extern_methods!(
         #[method(setCompletes:)]
         pub unsafe fn setCompletes(&self, completes: bool);
 
+        #[cfg(feature = "AppKit_NSComboBoxDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSComboBoxDelegate, Shared>>;
 
+        #[cfg(feature = "AppKit_NSComboBoxDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&NSComboBoxDelegate>);
 
+        #[cfg(feature = "AppKit_NSComboBoxDataSource")]
         #[method_id(@__retain_semantics Other dataSource)]
         pub unsafe fn dataSource(&self) -> Option<Id<NSComboBoxDataSource, Shared>>;
 
+        #[cfg(feature = "AppKit_NSComboBoxDataSource")]
         #[method(setDataSource:)]
         pub unsafe fn setDataSource(&self, dataSource: Option<&NSComboBoxDataSource>);
 
         #[method(addItemWithObjectValue:)]
         pub unsafe fn addItemWithObjectValue(&self, object: &Object);
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(addItemsWithObjectValues:)]
         pub unsafe fn addItemsWithObjectValues(&self, objects: &NSArray);
 
@@ -189,6 +195,7 @@ extern_methods!(
         #[method(indexOfItemWithObjectValue:)]
         pub unsafe fn indexOfItemWithObjectValue(&self, object: &Object) -> NSInteger;
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other objectValues)]
         pub unsafe fn objectValues(&self) -> Id<NSArray, Shared>;
     }
@@ -198,18 +205,23 @@ extern_methods!(
     /// Methods declared on superclass `NSTextField`
     ///
     /// NSTextFieldConvenience
+    #[cfg(feature = "AppKit_NSComboBox")]
     unsafe impl NSComboBox {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other labelWithString:)]
         pub unsafe fn labelWithString(stringValue: &NSString) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other wrappingLabelWithString:)]
         pub unsafe fn wrappingLabelWithString(stringValue: &NSString) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other labelWithAttributedString:)]
         pub unsafe fn labelWithAttributedString(
             attributedStringValue: &NSAttributedString,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other textFieldWithString:)]
         pub unsafe fn textFieldWithString(stringValue: &NSString) -> Id<Self, Shared>;
     }
@@ -217,6 +229,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSControl`
+    #[cfg(feature = "AppKit_NSComboBox")]
     unsafe impl NSComboBox {
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(

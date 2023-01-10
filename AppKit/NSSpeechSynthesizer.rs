@@ -114,16 +114,20 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSSpeechSynthesizer")]
     unsafe impl NSSpeechSynthesizer {
+        #[cfg(feature = "AppKit_NSSpeechSynthesizerVoiceName")]
         #[method_id(@__retain_semantics Init initWithVoice:)]
         pub unsafe fn initWithVoice(
             this: Option<Allocated<Self>>,
             voice: Option<&NSSpeechSynthesizerVoiceName>,
         ) -> Option<Id<Self, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(startSpeakingString:)]
         pub unsafe fn startSpeakingString(&self, string: &NSString) -> bool;
 
+        #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
         #[method(startSpeakingString:toURL:)]
         pub unsafe fn startSpeakingString_toURL(&self, string: &NSString, url: &NSURL) -> bool;
 
@@ -142,15 +146,19 @@ extern_methods!(
         #[method(continueSpeaking)]
         pub unsafe fn continueSpeaking(&self);
 
+        #[cfg(feature = "AppKit_NSSpeechSynthesizerDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSSpeechSynthesizerDelegate, Shared>>;
 
+        #[cfg(feature = "AppKit_NSSpeechSynthesizerDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&NSSpeechSynthesizerDelegate>);
 
+        #[cfg(feature = "AppKit_NSSpeechSynthesizerVoiceName")]
         #[method_id(@__retain_semantics Other voice)]
         pub unsafe fn voice(&self) -> Option<Id<NSSpeechSynthesizerVoiceName, Shared>>;
 
+        #[cfg(feature = "AppKit_NSSpeechSynthesizerVoiceName")]
         #[method(setVoice:)]
         pub unsafe fn setVoice(&self, voice: Option<&NSSpeechSynthesizerVoiceName>) -> bool;
 
@@ -172,21 +180,28 @@ extern_methods!(
         #[method(setUsesFeedbackWindow:)]
         pub unsafe fn setUsesFeedbackWindow(&self, usesFeedbackWindow: bool);
 
+        #[cfg(all(
+            feature = "AppKit_NSSpeechDictionaryKey",
+            feature = "Foundation_NSDictionary"
+        ))]
         #[method(addSpeechDictionary:)]
         pub unsafe fn addSpeechDictionary(
             &self,
             speechDictionary: &NSDictionary<NSSpeechDictionaryKey, Object>,
         );
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other phonemesFromText:)]
         pub unsafe fn phonemesFromText(&self, text: &NSString) -> Id<NSString, Shared>;
 
+        #[cfg(all(feature = "AppKit_NSSpeechPropertyKey", feature = "Foundation_NSError"))]
         #[method_id(@__retain_semantics Other objectForProperty:error:_)]
         pub unsafe fn objectForProperty_error(
             &self,
             property: &NSSpeechPropertyKey,
         ) -> Result<Id<Object, Shared>, Id<NSError, Shared>>;
 
+        #[cfg(all(feature = "AppKit_NSSpeechPropertyKey", feature = "Foundation_NSError"))]
         #[method(setObject:forProperty:error:_)]
         pub unsafe fn setObject_forProperty_error(
             &self,
@@ -197,12 +212,22 @@ extern_methods!(
         #[method(isAnyApplicationSpeaking)]
         pub unsafe fn isAnyApplicationSpeaking() -> bool;
 
+        #[cfg(feature = "AppKit_NSSpeechSynthesizerVoiceName")]
         #[method_id(@__retain_semantics Other defaultVoice)]
         pub unsafe fn defaultVoice() -> Id<NSSpeechSynthesizerVoiceName, Shared>;
 
+        #[cfg(all(
+            feature = "AppKit_NSSpeechSynthesizerVoiceName",
+            feature = "Foundation_NSArray"
+        ))]
         #[method_id(@__retain_semantics Other availableVoices)]
         pub unsafe fn availableVoices() -> Id<NSArray<NSSpeechSynthesizerVoiceName>, Shared>;
 
+        #[cfg(all(
+            feature = "AppKit_NSSpeechSynthesizerVoiceName",
+            feature = "AppKit_NSVoiceAttributeKey",
+            feature = "Foundation_NSDictionary"
+        ))]
         #[method_id(@__retain_semantics Other attributesForVoice:)]
         pub unsafe fn attributesForVoice(
             voice: &NSSpeechSynthesizerVoiceName,

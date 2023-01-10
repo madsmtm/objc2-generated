@@ -16,6 +16,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSStepper")]
     unsafe impl NSStepper {
         #[method(minValue)]
         pub unsafe fn minValue(&self) -> c_double;
@@ -51,6 +52,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSControl`
+    #[cfg(feature = "AppKit_NSStepper")]
     unsafe impl NSStepper {
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(

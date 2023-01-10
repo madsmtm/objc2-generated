@@ -115,7 +115,9 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSInputServer")]
     unsafe impl NSInputServer {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithDelegate:name:)]
         pub unsafe fn initWithDelegate_name(
             this: Option<Allocated<Self>>,

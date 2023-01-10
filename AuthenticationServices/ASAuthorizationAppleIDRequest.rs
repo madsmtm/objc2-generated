@@ -15,10 +15,13 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDRequest")]
     unsafe impl ASAuthorizationAppleIDRequest {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other user)]
         pub unsafe fn user(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setUser:)]
         pub unsafe fn setUser(&self, user: Option<&NSString>);
     }

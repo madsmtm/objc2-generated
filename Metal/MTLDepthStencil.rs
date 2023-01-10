@@ -42,6 +42,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Metal_MTLStencilDescriptor")]
     unsafe impl MTLStencilDescriptor {
         #[method(stencilCompareFunction)]
         pub fn stencilCompareFunction(&self) -> MTLCompareFunction;
@@ -91,6 +92,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Metal_MTLDepthStencilDescriptor")]
     unsafe impl MTLDepthStencilDescriptor {
         #[method(depthCompareFunction)]
         pub fn depthCompareFunction(&self) -> MTLCompareFunction;
@@ -104,21 +106,27 @@ extern_methods!(
         #[method(setDepthWriteEnabled:)]
         pub fn setDepthWriteEnabled(&self, depthWriteEnabled: bool);
 
+        #[cfg(feature = "Metal_MTLStencilDescriptor")]
         #[method_id(@__retain_semantics Other frontFaceStencil)]
         pub fn frontFaceStencil(&self) -> Id<MTLStencilDescriptor, Shared>;
 
+        #[cfg(feature = "Metal_MTLStencilDescriptor")]
         #[method(setFrontFaceStencil:)]
         pub fn setFrontFaceStencil(&self, frontFaceStencil: Option<&MTLStencilDescriptor>);
 
+        #[cfg(feature = "Metal_MTLStencilDescriptor")]
         #[method_id(@__retain_semantics Other backFaceStencil)]
         pub fn backFaceStencil(&self) -> Id<MTLStencilDescriptor, Shared>;
 
+        #[cfg(feature = "Metal_MTLStencilDescriptor")]
         #[method(setBackFaceStencil:)]
         pub fn setBackFaceStencil(&self, backFaceStencil: Option<&MTLStencilDescriptor>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
         pub fn label(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:)]
         pub fn setLabel(&self, label: Option<&NSString>);
     }

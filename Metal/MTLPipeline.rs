@@ -23,6 +23,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Metal_MTLPipelineBufferDescriptor")]
     unsafe impl MTLPipelineBufferDescriptor {
         #[method(mutability)]
         pub fn mutability(&self) -> MTLMutability;
@@ -42,13 +43,16 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Metal_MTLPipelineBufferDescriptorArray")]
     unsafe impl MTLPipelineBufferDescriptorArray {
+        #[cfg(feature = "Metal_MTLPipelineBufferDescriptor")]
         #[method_id(@__retain_semantics Other objectAtIndexedSubscript:)]
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             bufferIndex: NSUInteger,
         ) -> Id<MTLPipelineBufferDescriptor, Shared>;
 
+        #[cfg(feature = "Metal_MTLPipelineBufferDescriptor")]
         #[method(setObject:atIndexedSubscript:)]
         pub unsafe fn setObject_atIndexedSubscript(
             &self,

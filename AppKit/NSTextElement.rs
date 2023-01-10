@@ -15,25 +15,31 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSTextElement")]
     unsafe impl NSTextElement {
+        #[cfg(feature = "AppKit_NSTextContentManager")]
         #[method_id(@__retain_semantics Init initWithTextContentManager:)]
         pub unsafe fn initWithTextContentManager(
             this: Option<Allocated<Self>>,
             textContentManager: Option<&NSTextContentManager>,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "AppKit_NSTextContentManager")]
         #[method_id(@__retain_semantics Other textContentManager)]
         pub unsafe fn textContentManager(&self) -> Option<Id<NSTextContentManager, Shared>>;
 
+        #[cfg(feature = "AppKit_NSTextContentManager")]
         #[method(setTextContentManager:)]
         pub unsafe fn setTextContentManager(
             &self,
             textContentManager: Option<&NSTextContentManager>,
         );
 
+        #[cfg(feature = "AppKit_NSTextRange")]
         #[method_id(@__retain_semantics Other elementRange)]
         pub unsafe fn elementRange(&self) -> Option<Id<NSTextRange, Shared>>;
 
+        #[cfg(feature = "AppKit_NSTextRange")]
         #[method(setElementRange:)]
         pub unsafe fn setElementRange(&self, elementRange: Option<&NSTextRange>);
     }
@@ -50,19 +56,24 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSTextParagraph")]
     unsafe impl NSTextParagraph {
+        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Init initWithAttributedString:)]
         pub unsafe fn initWithAttributedString(
             this: Option<Allocated<Self>>,
             attributedString: Option<&NSAttributedString>,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedString)]
         pub unsafe fn attributedString(&self) -> Id<NSAttributedString, Shared>;
 
+        #[cfg(feature = "AppKit_NSTextRange")]
         #[method_id(@__retain_semantics Other paragraphContentRange)]
         pub unsafe fn paragraphContentRange(&self) -> Option<Id<NSTextRange, Shared>>;
 
+        #[cfg(feature = "AppKit_NSTextRange")]
         #[method_id(@__retain_semantics Other paragraphSeparatorRange)]
         pub unsafe fn paragraphSeparatorRange(&self) -> Option<Id<NSTextRange, Shared>>;
     }
@@ -70,7 +81,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSTextElement`
+    #[cfg(feature = "AppKit_NSTextParagraph")]
     unsafe impl NSTextParagraph {
+        #[cfg(feature = "AppKit_NSTextContentManager")]
         #[method_id(@__retain_semantics Init initWithTextContentManager:)]
         pub unsafe fn initWithTextContentManager(
             this: Option<Allocated<Self>>,

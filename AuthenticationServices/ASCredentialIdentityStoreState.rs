@@ -14,6 +14,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AuthenticationServices_ASCredentialIdentityStoreState")]
     unsafe impl ASCredentialIdentityStoreState {
         #[method(isEnabled)]
         pub unsafe fn isEnabled(&self) -> bool;

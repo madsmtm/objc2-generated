@@ -16,10 +16,13 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSMenuToolbarItem")]
     unsafe impl NSMenuToolbarItem {
+        #[cfg(feature = "AppKit_NSMenu")]
         #[method_id(@__retain_semantics Other menu)]
         pub unsafe fn menu(&self) -> Id<NSMenu, Shared>;
 
+        #[cfg(feature = "AppKit_NSMenu")]
         #[method(setMenu:)]
         pub unsafe fn setMenu(&self, menu: &NSMenu);
 
@@ -33,7 +36,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSToolbarItem`
+    #[cfg(feature = "AppKit_NSMenuToolbarItem")]
     unsafe impl NSMenuToolbarItem {
+        #[cfg(feature = "AppKit_NSToolbarItemIdentifier")]
         #[method_id(@__retain_semantics Init initWithItemIdentifier:)]
         pub unsafe fn initWithItemIdentifier(
             this: Option<Allocated<Self>>,

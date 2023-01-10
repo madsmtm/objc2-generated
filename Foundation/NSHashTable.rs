@@ -35,6 +35,7 @@ __inner_extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSHashTable")]
     unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
         NSHashTable<ObjectType, ObjectTypeOwnership>
     {
@@ -45,6 +46,7 @@ extern_methods!(
             initialCapacity: NSUInteger,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSPointerFunctions")]
         #[method_id(@__retain_semantics Init initWithPointerFunctions:capacity:)]
         pub unsafe fn initWithPointerFunctions_capacity(
             this: Option<Allocated<Self>>,
@@ -63,6 +65,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other weakObjectsHashTable)]
         pub unsafe fn weakObjectsHashTable() -> Id<NSHashTable<ObjectType>, Shared>;
 
+        #[cfg(feature = "Foundation_NSPointerFunctions")]
         #[method_id(@__retain_semantics Other pointerFunctions)]
         pub unsafe fn pointerFunctions(&self) -> Id<NSPointerFunctions, Shared>;
 
@@ -75,6 +78,7 @@ extern_methods!(
             object: Option<&ObjectType>,
         ) -> Option<Id<ObjectType, ObjectTypeOwnership>>;
 
+        #[cfg(feature = "Foundation_NSEnumerator")]
         #[method_id(@__retain_semantics Other objectEnumerator)]
         pub unsafe fn objectEnumerator(&self) -> Id<NSEnumerator<ObjectType>, Shared>;
 
@@ -87,6 +91,7 @@ extern_methods!(
         #[method(removeAllObjects)]
         pub unsafe fn removeAllObjects(&self);
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other allObjects)]
         pub unsafe fn allObjects(&self) -> Id<NSArray<ObjectType>, Shared>;
 
@@ -114,6 +119,7 @@ extern_methods!(
         #[method(minusHashTable:)]
         pub unsafe fn minusHashTable(&self, other: &NSHashTable<ObjectType>);
 
+        #[cfg(feature = "Foundation_NSSet")]
         #[method_id(@__retain_semantics Other setRepresentation)]
         pub unsafe fn setRepresentation(&self) -> Id<NSSet<ObjectType>, Shared>;
     }

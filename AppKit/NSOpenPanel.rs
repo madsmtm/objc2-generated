@@ -16,10 +16,12 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSOpenPanel")]
     unsafe impl NSOpenPanel {
         #[method_id(@__retain_semantics Other openPanel)]
         pub unsafe fn openPanel() -> Id<NSOpenPanel, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other URLs)]
         pub unsafe fn URLs(&self) -> Id<NSArray<NSURL>, Shared>;
 
@@ -69,10 +71,17 @@ extern_methods!(
 
 extern_methods!(
     /// NSDeprecated
+    #[cfg(feature = "AppKit_NSOpenPanel")]
     unsafe impl NSOpenPanel {
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other filenames)]
         pub unsafe fn filenames(&self) -> Id<NSArray, Shared>;
 
+        #[cfg(all(
+            feature = "AppKit_NSWindow",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString"
+        ))]
         #[method(beginSheetForDirectory:file:types:modalForWindow:modalDelegate:didEndSelector:contextInfo:)]
         pub unsafe fn beginSheetForDirectory_file_types_modalForWindow_modalDelegate_didEndSelector_contextInfo(
             &self,
@@ -85,6 +94,7 @@ extern_methods!(
             contextInfo: *mut c_void,
         );
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(beginForDirectory:file:types:modelessDelegate:didEndSelector:contextInfo:)]
         pub unsafe fn beginForDirectory_file_types_modelessDelegate_didEndSelector_contextInfo(
             &self,
@@ -96,6 +106,7 @@ extern_methods!(
             contextInfo: *mut c_void,
         );
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(runModalForDirectory:file:types:)]
         pub unsafe fn runModalForDirectory_file_types(
             &self,
@@ -104,6 +115,7 @@ extern_methods!(
             fileTypes: Option<&NSArray>,
         ) -> NSInteger;
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(runModalForTypes:)]
         pub unsafe fn runModalForTypes(&self, fileTypes: Option<&NSArray>) -> NSInteger;
     }
@@ -111,6 +123,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSWindow`
+    #[cfg(feature = "AppKit_NSOpenPanel")]
     unsafe impl NSOpenPanel {
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer(
@@ -121,6 +134,7 @@ extern_methods!(
             flag: bool,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "AppKit_NSScreen")]
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:screen:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer_screen(
             this: Option<Allocated<Self>>,
@@ -131,6 +145,7 @@ extern_methods!(
             screen: Option<&NSScreen>,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "AppKit_NSViewController")]
         #[method_id(@__retain_semantics Other windowWithContentViewController:)]
         pub unsafe fn windowWithContentViewController(
             contentViewController: &NSViewController,

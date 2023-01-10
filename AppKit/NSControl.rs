@@ -16,6 +16,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSControl")]
     unsafe impl NSControl {
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
@@ -23,6 +24,7 @@ extern_methods!(
             frameRect: NSRect,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -83,9 +85,11 @@ extern_methods!(
         #[method(setControlSize:)]
         pub unsafe fn setControlSize(&self, controlSize: NSControlSize);
 
+        #[cfg(feature = "Foundation_NSFormatter")]
         #[method_id(@__retain_semantics Other formatter)]
         pub unsafe fn formatter(&self) -> Option<Id<NSFormatter, Shared>>;
 
+        #[cfg(feature = "Foundation_NSFormatter")]
         #[method(setFormatter:)]
         pub unsafe fn setFormatter(&self, formatter: Option<&NSFormatter>);
 
@@ -95,15 +99,19 @@ extern_methods!(
         #[method(setObjectValue:)]
         pub unsafe fn setObjectValue(&self, objectValue: Option<&Object>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringValue)]
         pub unsafe fn stringValue(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setStringValue:)]
         pub unsafe fn setStringValue(&self, stringValue: &NSString);
 
+        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedStringValue)]
         pub unsafe fn attributedStringValue(&self) -> Id<NSAttributedString, Shared>;
 
+        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setAttributedStringValue:)]
         pub unsafe fn setAttributedStringValue(&self, attributedStringValue: &NSAttributedString);
 
@@ -161,15 +169,18 @@ extern_methods!(
         #[method(takeIntegerValueFrom:)]
         pub unsafe fn takeIntegerValueFrom(&self, sender: Option<&Object>);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(mouseDown:)]
         pub unsafe fn mouseDown(&self, event: &NSEvent);
 
         #[method(performClick:)]
         pub unsafe fn performClick(&self, sender: Option<&Object>);
 
+        #[cfg(feature = "AppKit_NSFont")]
         #[method_id(@__retain_semantics Other font)]
         pub unsafe fn font(&self) -> Option<Id<NSFont, Shared>>;
 
+        #[cfg(feature = "AppKit_NSFont")]
         #[method(setFont:)]
         pub unsafe fn setFont(&self, font: Option<&NSFont>);
 
@@ -213,7 +224,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSControlEditableTextMethods
+    #[cfg(feature = "AppKit_NSControl")]
     unsafe impl NSControl {
+        #[cfg(feature = "AppKit_NSText")]
         #[method_id(@__retain_semantics Other currentEditor)]
         pub unsafe fn currentEditor(&self) -> Option<Id<NSText, Shared>>;
 
@@ -223,6 +236,7 @@ extern_methods!(
         #[method(validateEditing)]
         pub unsafe fn validateEditing(&self);
 
+        #[cfg(all(feature = "AppKit_NSEvent", feature = "AppKit_NSText"))]
         #[method(editWithFrame:editor:delegate:event:)]
         pub unsafe fn editWithFrame_editor_delegate_event(
             &self,
@@ -232,6 +246,7 @@ extern_methods!(
             event: &NSEvent,
         );
 
+        #[cfg(feature = "AppKit_NSText")]
         #[method(selectWithFrame:editor:delegate:start:length:)]
         pub unsafe fn selectWithFrame_editor_delegate_start_length(
             &self,
@@ -242,6 +257,7 @@ extern_methods!(
             selLength: NSInteger,
         );
 
+        #[cfg(feature = "AppKit_NSText")]
         #[method(endEditing:)]
         pub unsafe fn endEditing(&self, textObj: &NSText);
     }
@@ -335,6 +351,7 @@ extern_static!(NSControlTextDidChangeNotification: &'static NSNotificationName);
 
 extern_methods!(
     /// NSDeprecated
+    #[cfg(feature = "AppKit_NSControl")]
     unsafe impl NSControl {
         #[method(setFloatingPointFormat:left:right:)]
         pub unsafe fn setFloatingPointFormat_left_right(
@@ -350,12 +367,15 @@ extern_methods!(
         #[method(setCellClass:)]
         pub unsafe fn setCellClass(cellClass: Option<&Class>);
 
+        #[cfg(feature = "AppKit_NSCell")]
         #[method_id(@__retain_semantics Other cell)]
         pub unsafe fn cell(&self) -> Option<Id<NSCell, Shared>>;
 
+        #[cfg(feature = "AppKit_NSCell")]
         #[method(setCell:)]
         pub unsafe fn setCell(&self, cell: Option<&NSCell>);
 
+        #[cfg(feature = "AppKit_NSCell")]
         #[method_id(@__retain_semantics Other selectedCell)]
         pub unsafe fn selectedCell(&self) -> Option<Id<NSCell, Shared>>;
 
@@ -368,18 +388,23 @@ extern_methods!(
         #[method(calcSize)]
         pub unsafe fn calcSize(&self);
 
+        #[cfg(feature = "AppKit_NSCell")]
         #[method(updateCell:)]
         pub unsafe fn updateCell(&self, cell: &NSCell);
 
+        #[cfg(feature = "AppKit_NSCell")]
         #[method(updateCellInside:)]
         pub unsafe fn updateCellInside(&self, cell: &NSCell);
 
+        #[cfg(feature = "AppKit_NSCell")]
         #[method(drawCellInside:)]
         pub unsafe fn drawCellInside(&self, cell: &NSCell);
 
+        #[cfg(feature = "AppKit_NSCell")]
         #[method(drawCell:)]
         pub unsafe fn drawCell(&self, cell: &NSCell);
 
+        #[cfg(feature = "AppKit_NSCell")]
         #[method(selectCell:)]
         pub unsafe fn selectCell(&self, cell: &NSCell);
     }

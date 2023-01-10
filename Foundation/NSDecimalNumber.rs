@@ -43,6 +43,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSDecimalNumber")]
     unsafe impl NSDecimalNumber {
         #[method_id(@__retain_semantics Init initWithMantissa:exponent:isNegative:)]
         pub unsafe fn initWithMantissa_exponent_isNegative(
@@ -58,12 +59,14 @@ extern_methods!(
             dcm: NSDecimal,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithString:)]
         pub unsafe fn initWithString(
             this: Option<Allocated<Self>>,
             numberValue: Option<&NSString>,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithString:locale:)]
         pub unsafe fn initWithString_locale(
             this: Option<Allocated<Self>>,
@@ -71,6 +74,7 @@ extern_methods!(
             locale: Option<&Object>,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other descriptionWithLocale:)]
         pub unsafe fn descriptionWithLocale(&self, locale: Option<&Object>)
             -> Id<NSString, Shared>;
@@ -88,11 +92,13 @@ extern_methods!(
         #[method_id(@__retain_semantics Other decimalNumberWithDecimal:)]
         pub unsafe fn decimalNumberWithDecimal(dcm: NSDecimal) -> Id<NSDecimalNumber, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other decimalNumberWithString:)]
         pub unsafe fn decimalNumberWithString(
             numberValue: Option<&NSString>,
         ) -> Id<NSDecimalNumber, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other decimalNumberWithString:locale:)]
         pub unsafe fn decimalNumberWithString_locale(
             numberValue: Option<&NSString>,
@@ -120,6 +126,7 @@ extern_methods!(
             decimalNumber: &NSDecimalNumber,
         ) -> Id<NSDecimalNumber, Shared>;
 
+        #[cfg(feature = "Foundation_NSDecimalNumberBehaviors")]
         #[method_id(@__retain_semantics Other decimalNumberByAdding:withBehavior:)]
         pub unsafe fn decimalNumberByAdding_withBehavior(
             &self,
@@ -133,6 +140,7 @@ extern_methods!(
             decimalNumber: &NSDecimalNumber,
         ) -> Id<NSDecimalNumber, Shared>;
 
+        #[cfg(feature = "Foundation_NSDecimalNumberBehaviors")]
         #[method_id(@__retain_semantics Other decimalNumberBySubtracting:withBehavior:)]
         pub unsafe fn decimalNumberBySubtracting_withBehavior(
             &self,
@@ -146,6 +154,7 @@ extern_methods!(
             decimalNumber: &NSDecimalNumber,
         ) -> Id<NSDecimalNumber, Shared>;
 
+        #[cfg(feature = "Foundation_NSDecimalNumberBehaviors")]
         #[method_id(@__retain_semantics Other decimalNumberByMultiplyingBy:withBehavior:)]
         pub unsafe fn decimalNumberByMultiplyingBy_withBehavior(
             &self,
@@ -159,6 +168,7 @@ extern_methods!(
             decimalNumber: &NSDecimalNumber,
         ) -> Id<NSDecimalNumber, Shared>;
 
+        #[cfg(feature = "Foundation_NSDecimalNumberBehaviors")]
         #[method_id(@__retain_semantics Other decimalNumberByDividingBy:withBehavior:)]
         pub unsafe fn decimalNumberByDividingBy_withBehavior(
             &self,
@@ -172,6 +182,7 @@ extern_methods!(
             power: NSUInteger,
         ) -> Id<NSDecimalNumber, Shared>;
 
+        #[cfg(feature = "Foundation_NSDecimalNumberBehaviors")]
         #[method_id(@__retain_semantics Other decimalNumberByRaisingToPower:withBehavior:)]
         pub unsafe fn decimalNumberByRaisingToPower_withBehavior(
             &self,
@@ -185,6 +196,7 @@ extern_methods!(
             power: c_short,
         ) -> Id<NSDecimalNumber, Shared>;
 
+        #[cfg(feature = "Foundation_NSDecimalNumberBehaviors")]
         #[method_id(@__retain_semantics Other decimalNumberByMultiplyingByPowerOf10:withBehavior:)]
         pub unsafe fn decimalNumberByMultiplyingByPowerOf10_withBehavior(
             &self,
@@ -192,6 +204,7 @@ extern_methods!(
             behavior: Option<&NSDecimalNumberBehaviors>,
         ) -> Id<NSDecimalNumber, Shared>;
 
+        #[cfg(feature = "Foundation_NSDecimalNumberBehaviors")]
         #[method_id(@__retain_semantics Other decimalNumberByRoundingAccordingToBehavior:)]
         pub unsafe fn decimalNumberByRoundingAccordingToBehavior(
             &self,
@@ -201,9 +214,11 @@ extern_methods!(
         #[method(compare:)]
         pub unsafe fn compare(&self, decimalNumber: &NSNumber) -> NSComparisonResult;
 
+        #[cfg(feature = "Foundation_NSDecimalNumberBehaviors")]
         #[method_id(@__retain_semantics Other defaultBehavior)]
         pub unsafe fn defaultBehavior() -> Id<NSDecimalNumberBehaviors, Shared>;
 
+        #[cfg(feature = "Foundation_NSDecimalNumberBehaviors")]
         #[method(setDefaultBehavior:)]
         pub unsafe fn setDefaultBehavior(defaultBehavior: &NSDecimalNumberBehaviors);
 
@@ -225,6 +240,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSDecimalNumberHandler")]
     unsafe impl NSDecimalNumberHandler {
         #[method_id(@__retain_semantics Other defaultDecimalNumberHandler)]
         pub unsafe fn defaultDecimalNumberHandler() -> Id<NSDecimalNumberHandler, Shared>;
@@ -254,6 +270,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSDecimalNumberExtensions
+    #[cfg(feature = "Foundation_NSNumber")]
     unsafe impl NSNumber {
         #[method(decimalValue)]
         pub unsafe fn decimalValue(&self) -> NSDecimal;
@@ -262,6 +279,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSDecimalNumberScanning
+    #[cfg(feature = "Foundation_NSScanner")]
     unsafe impl NSScanner {
         #[method(scanDecimal:)]
         pub unsafe fn scanDecimal(&self, dcm: *mut NSDecimal) -> bool;
@@ -270,6 +288,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSValue`
+    #[cfg(feature = "Foundation_NSDecimalNumber")]
     unsafe impl NSDecimalNumber {
         #[method_id(@__retain_semantics Init initWithBytes:objCType:)]
         pub unsafe fn initWithBytes_objCType(

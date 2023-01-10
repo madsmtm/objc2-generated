@@ -16,6 +16,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSComboBoxCell")]
     unsafe impl NSComboBoxCell {
         #[method(hasVerticalScroller)]
         pub unsafe fn hasVerticalScroller(&self) -> bool;
@@ -83,18 +84,22 @@ extern_methods!(
         #[method(setCompletes:)]
         pub unsafe fn setCompletes(&self, completes: bool);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other completedString:)]
         pub unsafe fn completedString(&self, string: &NSString) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "AppKit_NSComboBoxCellDataSource")]
         #[method_id(@__retain_semantics Other dataSource)]
         pub unsafe fn dataSource(&self) -> Option<Id<NSComboBoxCellDataSource, Shared>>;
 
+        #[cfg(feature = "AppKit_NSComboBoxCellDataSource")]
         #[method(setDataSource:)]
         pub unsafe fn setDataSource(&self, dataSource: Option<&NSComboBoxCellDataSource>);
 
         #[method(addItemWithObjectValue:)]
         pub unsafe fn addItemWithObjectValue(&self, object: &Object);
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(addItemsWithObjectValues:)]
         pub unsafe fn addItemsWithObjectValues(&self, objects: &NSArray);
 
@@ -122,6 +127,7 @@ extern_methods!(
         #[method(indexOfItemWithObjectValue:)]
         pub unsafe fn indexOfItemWithObjectValue(&self, object: &Object) -> NSInteger;
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other objectValues)]
         pub unsafe fn objectValues(&self) -> Id<NSArray, Shared>;
     }
@@ -166,13 +172,16 @@ extern_protocol!(
 
 extern_methods!(
     /// Methods declared on superclass `NSTextFieldCell`
+    #[cfg(feature = "AppKit_NSComboBoxCell")]
     unsafe impl NSComboBoxCell {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initTextCell:)]
         pub unsafe fn initTextCell(
             this: Option<Allocated<Self>>,
             string: &NSString,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Init initImageCell:)]
         pub unsafe fn initImageCell(
             this: Option<Allocated<Self>>,

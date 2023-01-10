@@ -20,13 +20,17 @@ ns_enum!(
 
 extern_methods!(
     /// CAConstraintLayoutManager
+    #[cfg(feature = "QuartzCore_CALayer")]
     unsafe impl CALayer {
+        #[cfg(all(feature = "Foundation_NSArray", feature = "QuartzCore_CAConstraint"))]
         #[method_id(@__retain_semantics Other constraints)]
         pub unsafe fn constraints(&self) -> Option<Id<NSArray<CAConstraint>, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "QuartzCore_CAConstraint"))]
         #[method(setConstraints:)]
         pub unsafe fn setConstraints(&self, constraints: Option<&NSArray<CAConstraint>>);
 
+        #[cfg(feature = "QuartzCore_CAConstraint")]
         #[method(addConstraint:)]
         pub unsafe fn addConstraint(&self, c: &CAConstraint);
     }
@@ -42,6 +46,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "QuartzCore_CAConstraintLayoutManager")]
     unsafe impl CAConstraintLayoutManager {
         #[method_id(@__retain_semantics Other layoutManager)]
         pub unsafe fn layoutManager() -> Id<Self, Shared>;
@@ -58,7 +63,9 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "QuartzCore_CAConstraint")]
     unsafe impl CAConstraint {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other constraintWithAttribute:relativeTo:attribute:scale:offset:)]
         pub unsafe fn constraintWithAttribute_relativeTo_attribute_scale_offset(
             attr: CAConstraintAttribute,
@@ -68,6 +75,7 @@ extern_methods!(
             c: CGFloat,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other constraintWithAttribute:relativeTo:attribute:offset:)]
         pub unsafe fn constraintWithAttribute_relativeTo_attribute_offset(
             attr: CAConstraintAttribute,
@@ -76,6 +84,7 @@ extern_methods!(
             c: CGFloat,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other constraintWithAttribute:relativeTo:attribute:)]
         pub unsafe fn constraintWithAttribute_relativeTo_attribute(
             attr: CAConstraintAttribute,
@@ -83,6 +92,7 @@ extern_methods!(
             srcAttr: CAConstraintAttribute,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithAttribute:relativeTo:attribute:scale:offset:)]
         pub unsafe fn initWithAttribute_relativeTo_attribute_scale_offset(
             this: Option<Allocated<Self>>,
@@ -96,6 +106,7 @@ extern_methods!(
         #[method(attribute)]
         pub unsafe fn attribute(&self) -> CAConstraintAttribute;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other sourceName)]
         pub unsafe fn sourceName(&self) -> Id<NSString, Shared>;
 

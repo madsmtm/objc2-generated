@@ -21,31 +21,40 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSTask")]
     unsafe impl NSTask {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other executableURL)]
         pub unsafe fn executableURL(&self) -> Option<Id<NSURL, Shared>>;
 
+        #[cfg(feature = "Foundation_NSURL")]
         #[method(setExecutableURL:)]
         pub unsafe fn setExecutableURL(&self, executableURL: Option<&NSURL>);
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other arguments)]
         pub unsafe fn arguments(&self) -> Option<Id<NSArray<NSString>, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setArguments:)]
         pub unsafe fn setArguments(&self, arguments: Option<&NSArray<NSString>>);
 
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other environment)]
         pub unsafe fn environment(&self) -> Option<Id<NSDictionary<NSString, NSString>, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setEnvironment:)]
         pub unsafe fn setEnvironment(&self, environment: Option<&NSDictionary<NSString, NSString>>);
 
+        #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other currentDirectoryURL)]
         pub unsafe fn currentDirectoryURL(&self) -> Option<Id<NSURL, Shared>>;
 
+        #[cfg(feature = "Foundation_NSURL")]
         #[method(setCurrentDirectoryURL:)]
         pub unsafe fn setCurrentDirectoryURL(&self, currentDirectoryURL: Option<&NSURL>);
 
@@ -67,6 +76,7 @@ extern_methods!(
         #[method(setStandardError:)]
         pub unsafe fn setStandardError(&self, standardError: Option<&Object>);
 
+        #[cfg(feature = "Foundation_NSError")]
         #[method(launchAndReturnError:_)]
         pub unsafe fn launchAndReturnError(&self) -> Result<(), Id<NSError, Shared>>;
 
@@ -113,7 +123,14 @@ extern_methods!(
 
 extern_methods!(
     /// NSTaskConveniences
+    #[cfg(feature = "Foundation_NSTask")]
     unsafe impl NSTask {
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSURL"
+        ))]
         #[method_id(@__retain_semantics Other launchedTaskWithExecutableURL:arguments:error:terminationHandler:)]
         pub unsafe fn launchedTaskWithExecutableURL_arguments_error_terminationHandler(
             url: &NSURL,
@@ -129,22 +146,28 @@ extern_methods!(
 
 extern_methods!(
     /// NSDeprecated
+    #[cfg(feature = "Foundation_NSTask")]
     unsafe impl NSTask {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other launchPath)]
         pub unsafe fn launchPath(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setLaunchPath:)]
         pub unsafe fn setLaunchPath(&self, launchPath: Option<&NSString>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other currentDirectoryPath)]
         pub unsafe fn currentDirectoryPath(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setCurrentDirectoryPath:)]
         pub unsafe fn setCurrentDirectoryPath(&self, currentDirectoryPath: &NSString);
 
         #[method(launch)]
         pub unsafe fn launch(&self);
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other launchedTaskWithLaunchPath:arguments:)]
         pub unsafe fn launchedTaskWithLaunchPath_arguments(
             path: &NSString,

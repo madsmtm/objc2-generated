@@ -14,7 +14,9 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Metal_MTLComputePipelineReflection")]
     unsafe impl MTLComputePipelineReflection {
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLArgument"))]
         #[method_id(@__retain_semantics Other arguments)]
         pub fn arguments(&self) -> Id<NSArray<MTLArgument>, Shared>;
     }
@@ -30,16 +32,21 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Metal_MTLComputePipelineDescriptor")]
     unsafe impl MTLComputePipelineDescriptor {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
         pub fn label(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:)]
         pub fn setLabel(&self, label: Option<&NSString>);
 
+        #[cfg(feature = "Metal_MTLFunction")]
         #[method_id(@__retain_semantics Other computeFunction)]
         pub fn computeFunction(&self) -> Option<Id<MTLFunction, Shared>>;
 
+        #[cfg(feature = "Metal_MTLFunction")]
         #[method(setComputeFunction:)]
         pub fn setComputeFunction(&self, computeFunction: Option<&MTLFunction>);
 
@@ -58,15 +65,18 @@ extern_methods!(
         #[method(setMaxTotalThreadsPerThreadgroup:)]
         pub fn setMaxTotalThreadsPerThreadgroup(&self, maxTotalThreadsPerThreadgroup: NSUInteger);
 
+        #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
         #[method_id(@__retain_semantics Other stageInputDescriptor)]
         pub fn stageInputDescriptor(&self) -> Option<Id<MTLStageInputOutputDescriptor, Shared>>;
 
+        #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
         #[method(setStageInputDescriptor:)]
         pub fn setStageInputDescriptor(
             &self,
             stageInputDescriptor: Option<&MTLStageInputOutputDescriptor>,
         );
 
+        #[cfg(feature = "Metal_MTLPipelineBufferDescriptorArray")]
         #[method_id(@__retain_semantics Other buffers)]
         pub fn buffers(&self) -> Id<MTLPipelineBufferDescriptorArray, Shared>;
 
@@ -76,30 +86,38 @@ extern_methods!(
         #[method(setSupportIndirectCommandBuffers:)]
         pub fn setSupportIndirectCommandBuffers(&self, supportIndirectCommandBuffers: bool);
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLDynamicLibrary"))]
         #[method_id(@__retain_semantics Other insertLibraries)]
         pub fn insertLibraries(&self) -> Option<Id<NSArray<MTLDynamicLibrary>, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLDynamicLibrary"))]
         #[method(setInsertLibraries:)]
         pub fn setInsertLibraries(&self, insertLibraries: Option<&NSArray<MTLDynamicLibrary>>);
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLDynamicLibrary"))]
         #[method_id(@__retain_semantics Other preloadedLibraries)]
         pub fn preloadedLibraries(&self) -> Id<NSArray<MTLDynamicLibrary>, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLDynamicLibrary"))]
         #[method(setPreloadedLibraries:)]
         pub fn setPreloadedLibraries(&self, preloadedLibraries: &NSArray<MTLDynamicLibrary>);
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLBinaryArchive"))]
         #[method_id(@__retain_semantics Other binaryArchives)]
         pub fn binaryArchives(&self) -> Option<Id<NSArray<MTLBinaryArchive>, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLBinaryArchive"))]
         #[method(setBinaryArchives:)]
         pub fn setBinaryArchives(&self, binaryArchives: Option<&NSArray<MTLBinaryArchive>>);
 
         #[method(reset)]
         pub fn reset(&self);
 
+        #[cfg(feature = "Metal_MTLLinkedFunctions")]
         #[method_id(@__retain_semantics Other linkedFunctions)]
         pub fn linkedFunctions(&self) -> Option<Id<MTLLinkedFunctions, Shared>>;
 
+        #[cfg(feature = "Metal_MTLLinkedFunctions")]
         #[method(setLinkedFunctions:)]
         pub fn setLinkedFunctions(&self, linkedFunctions: Option<&MTLLinkedFunctions>);
 

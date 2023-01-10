@@ -20,6 +20,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSKeyedArchiver")]
     unsafe impl NSKeyedArchiver {
         #[method_id(@__retain_semantics Init initRequiringSecureCoding:)]
         pub unsafe fn initRequiringSecureCoding(
@@ -27,6 +28,7 @@ extern_methods!(
             requiresSecureCoding: bool,
         ) -> Id<Self, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
         #[method_id(@__retain_semantics Other archivedDataWithRootObject:requiringSecureCoding:error:_)]
         pub unsafe fn archivedDataWithRootObject_requiringSecureCoding_error(
             object: &Object,
@@ -36,21 +38,26 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSMutableData")]
         #[method_id(@__retain_semantics Init initForWritingWithMutableData:)]
         pub unsafe fn initForWritingWithMutableData(
             this: Option<Allocated<Self>>,
             data: &NSMutableData,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other archivedDataWithRootObject:)]
         pub unsafe fn archivedDataWithRootObject(rootObject: &Object) -> Id<NSData, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(archiveRootObject:toFile:)]
         pub unsafe fn archiveRootObject_toFile(rootObject: &Object, path: &NSString) -> bool;
 
+        #[cfg(feature = "Foundation_NSKeyedArchiverDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSKeyedArchiverDelegate, Shared>>;
 
+        #[cfg(feature = "Foundation_NSKeyedArchiverDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&NSKeyedArchiverDelegate>);
 
@@ -60,15 +67,18 @@ extern_methods!(
         #[method(setOutputFormat:)]
         pub unsafe fn setOutputFormat(&self, outputFormat: NSPropertyListFormat);
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other encodedData)]
         pub unsafe fn encodedData(&self) -> Id<NSData, Shared>;
 
         #[method(finishEncoding)]
         pub unsafe fn finishEncoding(&self);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(encodeObject:forKey:)]
         pub unsafe fn encodeObject_forKey(&self, object: Option<&Object>, key: &NSString);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(encodeConditionalObject:forKey:)]
         pub unsafe fn encodeConditionalObject_forKey(
             &self,
@@ -76,24 +86,31 @@ extern_methods!(
             key: &NSString,
         );
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(encodeBool:forKey:)]
         pub unsafe fn encodeBool_forKey(&self, value: bool, key: &NSString);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(encodeInt:forKey:)]
         pub unsafe fn encodeInt_forKey(&self, value: c_int, key: &NSString);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(encodeInt32:forKey:)]
         pub unsafe fn encodeInt32_forKey(&self, value: i32, key: &NSString);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(encodeInt64:forKey:)]
         pub unsafe fn encodeInt64_forKey(&self, value: i64, key: &NSString);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(encodeFloat:forKey:)]
         pub unsafe fn encodeFloat_forKey(&self, value: c_float, key: &NSString);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(encodeDouble:forKey:)]
         pub unsafe fn encodeDouble_forKey(&self, value: c_double, key: &NSString);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(encodeBytes:length:forKey:)]
         pub unsafe fn encodeBytes_length_forKey(
             &self,
@@ -121,25 +138,38 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSKeyedUnarchiver")]
     unsafe impl NSKeyedUnarchiver {
+        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
         #[method_id(@__retain_semantics Init initForReadingFromData:error:_)]
         pub unsafe fn initForReadingFromData_error(
             this: Option<Allocated<Self>>,
             data: &NSData,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
         #[method_id(@__retain_semantics Other unarchivedObjectOfClass:fromData:error:_)]
         pub unsafe fn unarchivedObjectOfClass_fromData_error(
             cls: &Class,
             data: &NSData,
         ) -> Result<Id<Object, Shared>, Id<NSError, Shared>>;
 
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSData",
+            feature = "Foundation_NSError"
+        ))]
         #[method_id(@__retain_semantics Other unarchivedArrayOfObjectsOfClass:fromData:error:_)]
         pub unsafe fn unarchivedArrayOfObjectsOfClass_fromData_error(
             cls: &Class,
             data: &NSData,
         ) -> Result<Id<NSArray, Shared>, Id<NSError, Shared>>;
 
+        #[cfg(all(
+            feature = "Foundation_NSData",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSError"
+        ))]
         #[method_id(@__retain_semantics Other unarchivedDictionaryWithKeysOfClass:objectsOfClass:fromData:error:_)]
         pub unsafe fn unarchivedDictionaryWithKeysOfClass_objectsOfClass_fromData_error(
             keyCls: &Class,
@@ -147,18 +177,35 @@ extern_methods!(
             data: &NSData,
         ) -> Result<Id<NSDictionary, Shared>, Id<NSError, Shared>>;
 
+        #[cfg(all(
+            feature = "Foundation_NSData",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSSet"
+        ))]
         #[method_id(@__retain_semantics Other unarchivedObjectOfClasses:fromData:error:_)]
         pub unsafe fn unarchivedObjectOfClasses_fromData_error(
             classes: &NSSet<TodoClass>,
             data: &NSData,
         ) -> Result<Id<Object, Shared>, Id<NSError, Shared>>;
 
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSData",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSSet"
+        ))]
         #[method_id(@__retain_semantics Other unarchivedArrayOfObjectsOfClasses:fromData:error:_)]
         pub unsafe fn unarchivedArrayOfObjectsOfClasses_fromData_error(
             classes: &NSSet<TodoClass>,
             data: &NSData,
         ) -> Result<Id<NSArray, Shared>, Id<NSError, Shared>>;
 
+        #[cfg(all(
+            feature = "Foundation_NSData",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSSet"
+        ))]
         #[method_id(@__retain_semantics Other unarchivedDictionaryWithKeysOfClasses:objectsOfClasses:fromData:error:_)]
         pub unsafe fn unarchivedDictionaryWithKeysOfClasses_objectsOfClasses_fromData_error(
             keyClasses: &NSSet<TodoClass>,
@@ -169,56 +216,71 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Init initForReadingWithData:)]
         pub unsafe fn initForReadingWithData(
             this: Option<Allocated<Self>>,
             data: &NSData,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other unarchiveObjectWithData:)]
         pub unsafe fn unarchiveObjectWithData(data: &NSData) -> Option<Id<Object, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
         #[method_id(@__retain_semantics Other unarchiveTopLevelObjectWithData:error:_)]
         pub unsafe fn unarchiveTopLevelObjectWithData_error(
             data: &NSData,
         ) -> Result<Id<Object, Shared>, Id<NSError, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other unarchiveObjectWithFile:)]
         pub unsafe fn unarchiveObjectWithFile(path: &NSString) -> Option<Id<Object, Shared>>;
 
+        #[cfg(feature = "Foundation_NSKeyedUnarchiverDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSKeyedUnarchiverDelegate, Shared>>;
 
+        #[cfg(feature = "Foundation_NSKeyedUnarchiverDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&NSKeyedUnarchiverDelegate>);
 
         #[method(finishDecoding)]
         pub unsafe fn finishDecoding(&self);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(containsValueForKey:)]
         pub unsafe fn containsValueForKey(&self, key: &NSString) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other decodeObjectForKey:)]
         pub unsafe fn decodeObjectForKey(&self, key: &NSString) -> Option<Id<Object, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(decodeBoolForKey:)]
         pub unsafe fn decodeBoolForKey(&self, key: &NSString) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(decodeIntForKey:)]
         pub unsafe fn decodeIntForKey(&self, key: &NSString) -> c_int;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(decodeInt32ForKey:)]
         pub unsafe fn decodeInt32ForKey(&self, key: &NSString) -> i32;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(decodeInt64ForKey:)]
         pub unsafe fn decodeInt64ForKey(&self, key: &NSString) -> i64;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(decodeFloatForKey:)]
         pub unsafe fn decodeFloatForKey(&self, key: &NSString) -> c_float;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(decodeDoubleForKey:)]
         pub unsafe fn decodeDoubleForKey(&self, key: &NSString) -> c_double;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(decodeBytesForKey:returnedLength:)]
         pub unsafe fn decodeBytesForKey_returnedLength(
             &self,

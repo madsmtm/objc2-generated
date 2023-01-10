@@ -22,7 +22,9 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AuthenticationServices_ASCredentialServiceIdentifier")]
     unsafe impl ASCredentialServiceIdentifier {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithIdentifier:type:)]
         pub unsafe fn initWithIdentifier_type(
             this: Option<Allocated<Self>>,
@@ -30,6 +32,7 @@ extern_methods!(
             type_: ASCredentialServiceIdentifierType,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Id<NSString, Shared>;
 

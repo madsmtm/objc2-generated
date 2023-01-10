@@ -15,7 +15,9 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSColorPicker")]
     unsafe impl NSColorPicker {
+        #[cfg(feature = "AppKit_NSColorPanel")]
         #[method_id(@__retain_semantics Init initWithPickerMask:colorPanel:)]
         pub unsafe fn initWithPickerMask_colorPanel(
             this: Option<Allocated<Self>>,
@@ -23,12 +25,15 @@ extern_methods!(
             owningColorPanel: &NSColorPanel,
         ) -> Option<Id<Self, Shared>>;
 
+        #[cfg(feature = "AppKit_NSColorPanel")]
         #[method_id(@__retain_semantics Other colorPanel)]
         pub unsafe fn colorPanel(&self) -> Id<NSColorPanel, Shared>;
 
+        #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other provideNewButtonImage)]
         pub unsafe fn provideNewButtonImage(&self) -> Id<NSImage, Shared>;
 
+        #[cfg(all(feature = "AppKit_NSButtonCell", feature = "AppKit_NSImage"))]
         #[method(insertNewButtonImage:in:)]
         pub unsafe fn insertNewButtonImage_in(
             &self,
@@ -39,15 +44,18 @@ extern_methods!(
         #[method(viewSizeChanged:)]
         pub unsafe fn viewSizeChanged(&self, sender: Option<&Object>);
 
+        #[cfg(feature = "AppKit_NSColorList")]
         #[method(attachColorList:)]
         pub unsafe fn attachColorList(&self, colorList: &NSColorList);
 
+        #[cfg(feature = "AppKit_NSColorList")]
         #[method(detachColorList:)]
         pub unsafe fn detachColorList(&self, colorList: &NSColorList);
 
         #[method(setMode:)]
         pub unsafe fn setMode(&self, mode: NSColorPanelMode);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other buttonToolTip)]
         pub unsafe fn buttonToolTip(&self) -> Id<NSString, Shared>;
 

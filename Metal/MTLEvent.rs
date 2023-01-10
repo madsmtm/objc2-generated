@@ -29,6 +29,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Metal_MTLSharedEventListener")]
     unsafe impl MTLSharedEventListener {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
@@ -70,7 +71,9 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Metal_MTLSharedEventHandle")]
     unsafe impl MTLSharedEventHandle {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
         pub fn label(&self) -> Option<Id<NSString, Shared>>;
     }

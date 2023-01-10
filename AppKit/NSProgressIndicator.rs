@@ -24,6 +24,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSProgressIndicator")]
     unsafe impl NSProgressIndicator {
         #[method(isIndeterminate)]
         pub unsafe fn isIndeterminate(&self) -> bool;
@@ -117,6 +118,7 @@ extern_static!(
 
 extern_methods!(
     /// NSProgressIndicatorDeprecated
+    #[cfg(feature = "AppKit_NSProgressIndicator")]
     unsafe impl NSProgressIndicator {
         #[method(animationDelay)]
         pub unsafe fn animationDelay(&self) -> NSTimeInterval;
@@ -131,6 +133,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSView`
+    #[cfg(feature = "AppKit_NSProgressIndicator")]
     unsafe impl NSProgressIndicator {
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(

@@ -62,10 +62,13 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Metal_MTLSharedTextureHandle")]
     unsafe impl MTLSharedTextureHandle {
+        #[cfg(feature = "Metal_MTLDevice")]
         #[method_id(@__retain_semantics Other device)]
         pub fn device(&self) -> Id<MTLDevice, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
         pub fn label(&self) -> Option<Id<NSString, Shared>>;
     }
@@ -92,6 +95,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Metal_MTLTextureDescriptor")]
     unsafe impl MTLTextureDescriptor {
         #[method_id(@__retain_semantics Other texture2DDescriptorWithPixelFormat:width:height:mipmapped:)]
         pub unsafe fn texture2DDescriptorWithPixelFormat_width_height_mipmapped(

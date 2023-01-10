@@ -14,13 +14,19 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionAuthorizationResult")]
     unsafe impl ASAuthorizationProviderExtensionAuthorizationResult {
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithHTTPAuthorizationHeaders:)]
         pub unsafe fn initWithHTTPAuthorizationHeaders(
             this: Option<Allocated<Self>>,
             httpAuthorizationHeaders: &NSDictionary<NSString, NSString>,
         ) -> Id<Self, Shared>;
 
+        #[cfg(all(
+            feature = "Foundation_NSData",
+            feature = "Foundation_NSHTTPURLResponse"
+        ))]
         #[method_id(@__retain_semantics Init initWithHTTPResponse:httpBody:)]
         pub unsafe fn initWithHTTPResponse_httpBody(
             this: Option<Allocated<Self>>,
@@ -28,32 +34,40 @@ extern_methods!(
             httpBody: Option<&NSData>,
         ) -> Id<Self, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other httpAuthorizationHeaders)]
         pub unsafe fn httpAuthorizationHeaders(
             &self,
         ) -> Option<Id<NSDictionary<NSString, NSString>, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setHttpAuthorizationHeaders:)]
         pub unsafe fn setHttpAuthorizationHeaders(
             &self,
             httpAuthorizationHeaders: Option<&NSDictionary<NSString, NSString>>,
         );
 
+        #[cfg(feature = "Foundation_NSHTTPURLResponse")]
         #[method_id(@__retain_semantics Other httpResponse)]
         pub unsafe fn httpResponse(&self) -> Option<Id<NSHTTPURLResponse, Shared>>;
 
+        #[cfg(feature = "Foundation_NSHTTPURLResponse")]
         #[method(setHttpResponse:)]
         pub unsafe fn setHttpResponse(&self, httpResponse: Option<&NSHTTPURLResponse>);
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other httpBody)]
         pub unsafe fn httpBody(&self) -> Option<Id<NSData, Shared>>;
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method(setHttpBody:)]
         pub unsafe fn setHttpBody(&self, httpBody: Option<&NSData>);
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other privateKeys)]
         pub unsafe fn privateKeys(&self) -> Id<NSArray, Shared>;
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(setPrivateKeys:)]
         pub unsafe fn setPrivateKeys(&self, privateKeys: &NSArray);
     }

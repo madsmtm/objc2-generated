@@ -22,7 +22,9 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "CoreData_NSFetchIndexElementDescription")]
     unsafe impl NSFetchIndexElementDescription {
+        #[cfg(feature = "CoreData_NSPropertyDescription")]
         #[method_id(@__retain_semantics Init initWithProperty:collationType:)]
         pub unsafe fn initWithProperty_collationType(
             this: Option<Allocated<Self>>,
@@ -30,9 +32,11 @@ extern_methods!(
             collationType: NSFetchIndexElementType,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "CoreData_NSPropertyDescription")]
         #[method_id(@__retain_semantics Other property)]
         pub unsafe fn property(&self) -> Option<Id<NSPropertyDescription, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other propertyName)]
         pub unsafe fn propertyName(&self) -> Option<Id<NSString, Shared>>;
 
@@ -48,6 +52,7 @@ extern_methods!(
         #[method(setAscending:)]
         pub unsafe fn setAscending(&self, ascending: bool);
 
+        #[cfg(feature = "CoreData_NSFetchIndexDescription")]
         #[method_id(@__retain_semantics Other indexDescription)]
         pub unsafe fn indexDescription(&self) -> Option<Id<NSFetchIndexDescription, Shared>>;
     }

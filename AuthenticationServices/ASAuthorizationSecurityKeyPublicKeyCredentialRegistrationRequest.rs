@@ -15,34 +15,59 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(
+        feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest"
+    )]
     unsafe impl ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest {
+        #[cfg(all(
+            feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialParameters",
+            feature = "Foundation_NSArray"
+        ))]
         #[method_id(@__retain_semantics Other credentialParameters)]
         pub unsafe fn credentialParameters(
             &self,
         ) -> Id<NSArray<ASAuthorizationPublicKeyCredentialParameters>, Shared>;
 
+        #[cfg(all(
+            feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialParameters",
+            feature = "Foundation_NSArray"
+        ))]
         #[method(setCredentialParameters:)]
         pub unsafe fn setCredentialParameters(
             &self,
             credentialParameters: &NSArray<ASAuthorizationPublicKeyCredentialParameters>,
         );
 
+        #[cfg(all(
+            feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor",
+            feature = "Foundation_NSArray"
+        ))]
         #[method_id(@__retain_semantics Other excludedCredentials)]
         pub unsafe fn excludedCredentials(
             &self,
         ) -> Id<NSArray<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor>, Shared>;
 
+        #[cfg(all(
+            feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor",
+            feature = "Foundation_NSArray"
+        ))]
         #[method(setExcludedCredentials:)]
         pub unsafe fn setExcludedCredentials(
             &self,
             excludedCredentials: &NSArray<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor>,
         );
 
+        #[cfg(
+            feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialResidentKeyPreference"
+        )]
         #[method_id(@__retain_semantics Other residentKeyPreference)]
         pub unsafe fn residentKeyPreference(
             &self,
         ) -> Id<ASAuthorizationPublicKeyCredentialResidentKeyPreference, Shared>;
 
+        #[cfg(
+            feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialResidentKeyPreference"
+        )]
         #[method(setResidentKeyPreference:)]
         pub unsafe fn setResidentKeyPreference(
             &self,

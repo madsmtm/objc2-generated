@@ -26,10 +26,13 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Metal_MTLBinaryArchiveDescriptor")]
     unsafe impl MTLBinaryArchiveDescriptor {
+        #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other url)]
         pub fn url(&self) -> Option<Id<NSURL, Shared>>;
 
+        #[cfg(feature = "Foundation_NSURL")]
         #[method(setUrl:)]
         pub fn setUrl(&self, url: Option<&NSURL>);
     }

@@ -14,10 +14,13 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSListFormatter")]
     unsafe impl NSListFormatter {
+        #[cfg(feature = "Foundation_NSLocale")]
         #[method_id(@__retain_semantics Other locale)]
         pub unsafe fn locale(&self) -> Id<NSLocale, Shared>;
 
+        #[cfg(feature = "Foundation_NSLocale")]
         #[method(setLocale:)]
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
 
@@ -27,14 +30,17 @@ extern_methods!(
         #[method(setItemFormatter:)]
         pub unsafe fn setItemFormatter(&self, itemFormatter: Option<&NSFormatter>);
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other localizedStringByJoiningStrings:)]
         pub unsafe fn localizedStringByJoiningStrings(
             strings: &NSArray<NSString>,
         ) -> Id<NSString, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other stringFromItems:)]
         pub unsafe fn stringFromItems(&self, items: &NSArray) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringForObjectValue:)]
         pub unsafe fn stringForObjectValue(
             &self,

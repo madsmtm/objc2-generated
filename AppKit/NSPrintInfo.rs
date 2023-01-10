@@ -110,6 +110,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSPrintInfo")]
     unsafe impl NSPrintInfo {
         #[method_id(@__retain_semantics Other sharedPrintInfo)]
         pub unsafe fn sharedPrintInfo() -> Id<NSPrintInfo, Shared>;
@@ -117,12 +118,17 @@ extern_methods!(
         #[method(setSharedPrintInfo:)]
         pub unsafe fn setSharedPrintInfo(sharedPrintInfo: &NSPrintInfo);
 
+        #[cfg(all(
+            feature = "AppKit_NSPrintInfoAttributeKey",
+            feature = "Foundation_NSDictionary"
+        ))]
         #[method_id(@__retain_semantics Init initWithDictionary:)]
         pub unsafe fn initWithDictionary(
             this: Option<Allocated<Self>>,
             attributes: &NSDictionary<NSPrintInfoAttributeKey, Object>,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -132,14 +138,20 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
+        #[cfg(all(
+            feature = "AppKit_NSPrintInfoAttributeKey",
+            feature = "Foundation_NSMutableDictionary"
+        ))]
         #[method_id(@__retain_semantics Other dictionary)]
         pub unsafe fn dictionary(
             &self,
         ) -> Id<NSMutableDictionary<NSPrintInfoAttributeKey, Object>, Owned>;
 
+        #[cfg(feature = "AppKit_NSPrinterPaperName")]
         #[method_id(@__retain_semantics Other paperName)]
         pub unsafe fn paperName(&self) -> Option<Id<NSPrinterPaperName, Shared>>;
 
+        #[cfg(feature = "AppKit_NSPrinterPaperName")]
         #[method(setPaperName:)]
         pub unsafe fn setPaperName(&self, paperName: Option<&NSPrinterPaperName>);
 
@@ -212,15 +224,19 @@ extern_methods!(
         #[method(setVerticalPagination:)]
         pub unsafe fn setVerticalPagination(&self, verticalPagination: NSPrintingPaginationMode);
 
+        #[cfg(feature = "AppKit_NSPrintJobDispositionValue")]
         #[method_id(@__retain_semantics Other jobDisposition)]
         pub unsafe fn jobDisposition(&self) -> Id<NSPrintJobDispositionValue, Shared>;
 
+        #[cfg(feature = "AppKit_NSPrintJobDispositionValue")]
         #[method(setJobDisposition:)]
         pub unsafe fn setJobDisposition(&self, jobDisposition: &NSPrintJobDispositionValue);
 
+        #[cfg(feature = "AppKit_NSPrinter")]
         #[method_id(@__retain_semantics Other printer)]
         pub unsafe fn printer(&self) -> Id<NSPrinter, Shared>;
 
+        #[cfg(feature = "AppKit_NSPrinter")]
         #[method(setPrinter:)]
         pub unsafe fn setPrinter(&self, printer: &NSPrinter);
 
@@ -230,12 +246,18 @@ extern_methods!(
         #[method(imageablePageBounds)]
         pub unsafe fn imageablePageBounds(&self) -> NSRect;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedPaperName)]
         pub unsafe fn localizedPaperName(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "AppKit_NSPrinter")]
         #[method_id(@__retain_semantics Other defaultPrinter)]
         pub unsafe fn defaultPrinter() -> Option<Id<NSPrinter, Shared>>;
 
+        #[cfg(all(
+            feature = "AppKit_NSPrintInfoSettingKey",
+            feature = "Foundation_NSMutableDictionary"
+        ))]
         #[method_id(@__retain_semantics Other printSettings)]
         pub unsafe fn printSettings(
             &self,
@@ -262,6 +284,7 @@ extern_methods!(
         #[method(setSelectionOnly:)]
         pub unsafe fn setSelectionOnly(&self, selectionOnly: bool);
 
+        #[cfg(feature = "AppKit_NSPDFInfo")]
         #[method(takeSettingsFromPDFInfo:)]
         pub unsafe fn takeSettingsFromPDFInfo(&self, inPDFInfo: &NSPDFInfo);
     }
@@ -269,10 +292,13 @@ extern_methods!(
 
 extern_methods!(
     /// NSDeprecated
+    #[cfg(feature = "AppKit_NSPrintInfo")]
     unsafe impl NSPrintInfo {
+        #[cfg(feature = "AppKit_NSPrinter")]
         #[method(setDefaultPrinter:)]
         pub unsafe fn setDefaultPrinter(printer: Option<&NSPrinter>);
 
+        #[cfg(feature = "AppKit_NSPrinterPaperName")]
         #[method(sizeForPaperName:)]
         pub unsafe fn sizeForPaperName(name: Option<&NSPrinterPaperName>) -> NSSize;
     }

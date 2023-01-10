@@ -51,19 +51,23 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSButtonCell")]
     unsafe impl NSButtonCell {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initTextCell:)]
         pub unsafe fn initTextCell(
             this: Option<Allocated<Self>>,
             string: &NSString,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Init initImageCell:)]
         pub unsafe fn initImageCell(
             this: Option<Allocated<Self>>,
             image: Option<&NSImage>,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -91,36 +95,46 @@ extern_methods!(
         #[method(setShowsStateBy:)]
         pub unsafe fn setShowsStateBy(&self, showsStateBy: NSCellStyleMask);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
+        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedTitle)]
         pub unsafe fn attributedTitle(&self) -> Id<NSAttributedString, Shared>;
 
+        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setAttributedTitle:)]
         pub unsafe fn setAttributedTitle(&self, attributedTitle: &NSAttributedString);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other alternateTitle)]
         pub unsafe fn alternateTitle(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setAlternateTitle:)]
         pub unsafe fn setAlternateTitle(&self, alternateTitle: &NSString);
 
+        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedAlternateTitle)]
         pub unsafe fn attributedAlternateTitle(&self) -> Id<NSAttributedString, Shared>;
 
+        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setAttributedAlternateTitle:)]
         pub unsafe fn setAttributedAlternateTitle(
             &self,
             attributedAlternateTitle: &NSAttributedString,
         );
 
+        #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other alternateImage)]
         pub unsafe fn alternateImage(&self) -> Option<Id<NSImage, Shared>>;
 
+        #[cfg(feature = "AppKit_NSImage")]
         #[method(setAlternateImage:)]
         pub unsafe fn setAlternateImage(&self, alternateImage: Option<&NSImage>);
 
@@ -136,9 +150,11 @@ extern_methods!(
         #[method(setImageScaling:)]
         pub unsafe fn setImageScaling(&self, imageScaling: NSImageScaling);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other keyEquivalent)]
         pub unsafe fn keyEquivalent(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setKeyEquivalent:)]
         pub unsafe fn setKeyEquivalent(&self, keyEquivalent: &NSString);
 
@@ -175,15 +191,19 @@ extern_methods!(
             showsBorderOnlyWhileMouseInside: bool,
         );
 
+        #[cfg(feature = "AppKit_NSSound")]
         #[method_id(@__retain_semantics Other sound)]
         pub unsafe fn sound(&self) -> Option<Id<NSSound, Shared>>;
 
+        #[cfg(feature = "AppKit_NSSound")]
         #[method(setSound:)]
         pub unsafe fn setSound(&self, sound: Option<&NSSound>);
 
+        #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other backgroundColor)]
         pub unsafe fn backgroundColor(&self) -> Option<Id<NSColor, Shared>>;
 
+        #[cfg(feature = "AppKit_NSColor")]
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, backgroundColor: Option<&NSColor>);
 
@@ -200,15 +220,19 @@ extern_methods!(
         #[method(performClick:)]
         pub unsafe fn performClick(&self, sender: Option<&Object>);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(mouseEntered:)]
         pub unsafe fn mouseEntered(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(mouseExited:)]
         pub unsafe fn mouseExited(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSView")]
         #[method(drawBezelWithFrame:inView:)]
         pub unsafe fn drawBezelWithFrame_inView(&self, frame: NSRect, controlView: &NSView);
 
+        #[cfg(all(feature = "AppKit_NSImage", feature = "AppKit_NSView"))]
         #[method(drawImage:withFrame:inView:)]
         pub unsafe fn drawImage_withFrame_inView(
             &self,
@@ -217,6 +241,7 @@ extern_methods!(
             controlView: &NSView,
         );
 
+        #[cfg(all(feature = "AppKit_NSView", feature = "Foundation_NSAttributedString"))]
         #[method(drawTitle:withFrame:inView:)]
         pub unsafe fn drawTitle_withFrame_inView(
             &self,
@@ -296,6 +321,7 @@ extern_static!(NSThickerSquareBezelStyle: NSBezelStyle = 4);
 
 extern_methods!(
     /// NSDeprecated
+    #[cfg(feature = "AppKit_NSButtonCell")]
     unsafe impl NSButtonCell {
         #[method(gradientType)]
         pub unsafe fn gradientType(&self) -> NSGradientType;
@@ -303,9 +329,11 @@ extern_methods!(
         #[method(setGradientType:)]
         pub unsafe fn setGradientType(&self, gradientType: NSGradientType);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setTitleWithMnemonic:)]
         pub unsafe fn setTitleWithMnemonic(&self, stringWithAmpersand: Option<&NSString>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setAlternateTitleWithMnemonic:)]
         pub unsafe fn setAlternateTitleWithMnemonic(&self, stringWithAmpersand: Option<&NSString>);
 
@@ -315,15 +343,19 @@ extern_methods!(
         #[method(alternateMnemonicLocation)]
         pub unsafe fn alternateMnemonicLocation(&self) -> NSUInteger;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other alternateMnemonic)]
         pub unsafe fn alternateMnemonic(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "AppKit_NSFont")]
         #[method_id(@__retain_semantics Other keyEquivalentFont)]
         pub unsafe fn keyEquivalentFont(&self) -> Option<Id<NSFont, Shared>>;
 
+        #[cfg(feature = "AppKit_NSFont")]
         #[method(setKeyEquivalentFont:)]
         pub unsafe fn setKeyEquivalentFont(&self, keyEquivalentFont: Option<&NSFont>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setKeyEquivalentFont:size:)]
         pub unsafe fn setKeyEquivalentFont_size(&self, fontName: &NSString, fontSize: CGFloat);
     }

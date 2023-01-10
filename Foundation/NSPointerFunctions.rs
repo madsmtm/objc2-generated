@@ -32,6 +32,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSPointerFunctions")]
     unsafe impl NSPointerFunctions {
         #[method_id(@__retain_semantics Init initWithOptions:)]
         pub unsafe fn initWithOptions(
@@ -99,11 +100,13 @@ extern_methods!(
             sizeFunction: Option<unsafe extern "C" fn(NonNull<c_void>) -> NSUInteger>,
         );
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(descriptionFunction)]
         pub unsafe fn descriptionFunction(
             &self,
         ) -> Option<unsafe extern "C" fn(NonNull<c_void>) -> *mut NSString>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setDescriptionFunction:)]
         pub unsafe fn setDescriptionFunction(
             &self,

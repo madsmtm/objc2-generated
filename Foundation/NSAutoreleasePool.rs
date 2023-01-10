@@ -13,6 +13,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSAutoreleasePool")]
     unsafe impl NSAutoreleasePool {
         #[method(drain)]
         pub unsafe fn drain(&self);

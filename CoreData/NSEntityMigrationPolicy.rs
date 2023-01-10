@@ -26,7 +26,13 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "CoreData_NSEntityMigrationPolicy")]
     unsafe impl NSEntityMigrationPolicy {
+        #[cfg(all(
+            feature = "CoreData_NSEntityMapping",
+            feature = "CoreData_NSMigrationManager",
+            feature = "Foundation_NSError"
+        ))]
         #[method(beginEntityMapping:manager:error:_)]
         pub unsafe fn beginEntityMapping_manager_error(
             &self,
@@ -34,6 +40,12 @@ extern_methods!(
             manager: &NSMigrationManager,
         ) -> Result<(), Id<NSError, Shared>>;
 
+        #[cfg(all(
+            feature = "CoreData_NSEntityMapping",
+            feature = "CoreData_NSManagedObject",
+            feature = "CoreData_NSMigrationManager",
+            feature = "Foundation_NSError"
+        ))]
         #[method(createDestinationInstancesForSourceInstance:entityMapping:manager:error:_)]
         pub unsafe fn createDestinationInstancesForSourceInstance_entityMapping_manager_error(
             &self,
@@ -42,6 +54,11 @@ extern_methods!(
             manager: &NSMigrationManager,
         ) -> Result<(), Id<NSError, Shared>>;
 
+        #[cfg(all(
+            feature = "CoreData_NSEntityMapping",
+            feature = "CoreData_NSMigrationManager",
+            feature = "Foundation_NSError"
+        ))]
         #[method(endInstanceCreationForEntityMapping:manager:error:_)]
         pub unsafe fn endInstanceCreationForEntityMapping_manager_error(
             &self,
@@ -49,6 +66,12 @@ extern_methods!(
             manager: &NSMigrationManager,
         ) -> Result<(), Id<NSError, Shared>>;
 
+        #[cfg(all(
+            feature = "CoreData_NSEntityMapping",
+            feature = "CoreData_NSManagedObject",
+            feature = "CoreData_NSMigrationManager",
+            feature = "Foundation_NSError"
+        ))]
         #[method(createRelationshipsForDestinationInstance:entityMapping:manager:error:_)]
         pub unsafe fn createRelationshipsForDestinationInstance_entityMapping_manager_error(
             &self,
@@ -57,6 +80,11 @@ extern_methods!(
             manager: &NSMigrationManager,
         ) -> Result<(), Id<NSError, Shared>>;
 
+        #[cfg(all(
+            feature = "CoreData_NSEntityMapping",
+            feature = "CoreData_NSMigrationManager",
+            feature = "Foundation_NSError"
+        ))]
         #[method(endRelationshipCreationForEntityMapping:manager:error:_)]
         pub unsafe fn endRelationshipCreationForEntityMapping_manager_error(
             &self,
@@ -64,6 +92,11 @@ extern_methods!(
             manager: &NSMigrationManager,
         ) -> Result<(), Id<NSError, Shared>>;
 
+        #[cfg(all(
+            feature = "CoreData_NSEntityMapping",
+            feature = "CoreData_NSMigrationManager",
+            feature = "Foundation_NSError"
+        ))]
         #[method(performCustomValidationForEntityMapping:manager:error:_)]
         pub unsafe fn performCustomValidationForEntityMapping_manager_error(
             &self,
@@ -71,6 +104,11 @@ extern_methods!(
             manager: &NSMigrationManager,
         ) -> Result<(), Id<NSError, Shared>>;
 
+        #[cfg(all(
+            feature = "CoreData_NSEntityMapping",
+            feature = "CoreData_NSMigrationManager",
+            feature = "Foundation_NSError"
+        ))]
         #[method(endEntityMapping:manager:error:_)]
         pub unsafe fn endEntityMapping_manager_error(
             &self,

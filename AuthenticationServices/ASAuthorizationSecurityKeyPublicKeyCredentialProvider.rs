@@ -14,13 +14,20 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialProvider")]
     unsafe impl ASAuthorizationSecurityKeyPublicKeyCredentialProvider {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithRelyingPartyIdentifier:)]
         pub unsafe fn initWithRelyingPartyIdentifier(
             this: Option<Allocated<Self>>,
             relyingPartyIdentifier: &NSString,
         ) -> Id<Self, Shared>;
 
+        #[cfg(all(
+            feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest",
+            feature = "Foundation_NSData",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other createCredentialRegistrationRequestWithChallenge:displayName:name:userID:)]
         pub unsafe fn createCredentialRegistrationRequestWithChallenge_displayName_name_userID(
             &self,
@@ -30,12 +37,17 @@ extern_methods!(
             userID: &NSData,
         ) -> Id<ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest, Shared>;
 
+        #[cfg(all(
+            feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest",
+            feature = "Foundation_NSData"
+        ))]
         #[method_id(@__retain_semantics Other createCredentialAssertionRequestWithChallenge:)]
         pub unsafe fn createCredentialAssertionRequestWithChallenge(
             &self,
             challenge: &NSData,
         ) -> Id<ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other relyingPartyIdentifier)]
         pub unsafe fn relyingPartyIdentifier(&self) -> Id<NSString, Shared>;
 

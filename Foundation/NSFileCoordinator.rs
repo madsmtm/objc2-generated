@@ -34,19 +34,23 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSFileAccessIntent")]
     unsafe impl NSFileAccessIntent {
+        #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other readingIntentWithURL:options:)]
         pub unsafe fn readingIntentWithURL_options(
             url: &NSURL,
             options: NSFileCoordinatorReadingOptions,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other writingIntentWithURL:options:)]
         pub unsafe fn writingIntentWithURL_options(
             url: &NSURL,
             options: NSFileCoordinatorWritingOptions,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other URL)]
         pub unsafe fn URL(&self) -> Id<NSURL, Shared>;
     }
@@ -62,28 +66,41 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSFileCoordinator")]
     unsafe impl NSFileCoordinator {
+        #[cfg(feature = "Foundation_NSFilePresenter")]
         #[method(addFilePresenter:)]
         pub unsafe fn addFilePresenter(filePresenter: &NSFilePresenter);
 
+        #[cfg(feature = "Foundation_NSFilePresenter")]
         #[method(removeFilePresenter:)]
         pub unsafe fn removeFilePresenter(filePresenter: &NSFilePresenter);
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSFilePresenter"))]
         #[method_id(@__retain_semantics Other filePresenters)]
         pub unsafe fn filePresenters() -> Id<NSArray<NSFilePresenter>, Shared>;
 
+        #[cfg(feature = "Foundation_NSFilePresenter")]
         #[method_id(@__retain_semantics Init initWithFilePresenter:)]
         pub unsafe fn initWithFilePresenter(
             this: Option<Allocated<Self>>,
             filePresenterOrNil: Option<&NSFilePresenter>,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other purposeIdentifier)]
         pub unsafe fn purposeIdentifier(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setPurposeIdentifier:)]
         pub unsafe fn setPurposeIdentifier(&self, purposeIdentifier: &NSString);
 
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSFileAccessIntent",
+            feature = "Foundation_NSOperationQueue"
+        ))]
         #[method(coordinateAccessWithIntents:queue:byAccessor:)]
         pub unsafe fn coordinateAccessWithIntents_queue_byAccessor(
             &self,
@@ -92,6 +109,7 @@ extern_methods!(
             accessor: &Block<(*mut NSError,), ()>,
         );
 
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method(coordinateReadingItemAtURL:options:error:byAccessor:)]
         pub unsafe fn coordinateReadingItemAtURL_options_error_byAccessor(
             &self,
@@ -101,6 +119,7 @@ extern_methods!(
             reader: &Block<(NonNull<NSURL>,), ()>,
         );
 
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method(coordinateWritingItemAtURL:options:error:byAccessor:)]
         pub unsafe fn coordinateWritingItemAtURL_options_error_byAccessor(
             &self,
@@ -110,6 +129,7 @@ extern_methods!(
             writer: &Block<(NonNull<NSURL>,), ()>,
         );
 
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method(coordinateReadingItemAtURL:options:writingItemAtURL:options:error:byAccessor:)]
         pub unsafe fn coordinateReadingItemAtURL_options_writingItemAtURL_options_error_byAccessor(
             &self,
@@ -121,6 +141,7 @@ extern_methods!(
             readerWriter: &Block<(NonNull<NSURL>, NonNull<NSURL>), ()>,
         );
 
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method(coordinateWritingItemAtURL:options:writingItemAtURL:options:error:byAccessor:)]
         pub unsafe fn coordinateWritingItemAtURL_options_writingItemAtURL_options_error_byAccessor(
             &self,
@@ -132,6 +153,11 @@ extern_methods!(
             writer: &Block<(NonNull<NSURL>, NonNull<NSURL>), ()>,
         );
 
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSURL"
+        ))]
         #[method(prepareForReadingItemsAtURLs:options:writingItemsAtURLs:options:error:byAccessor:)]
         pub unsafe fn prepareForReadingItemsAtURLs_options_writingItemsAtURLs_options_error_byAccessor(
             &self,
@@ -143,12 +169,19 @@ extern_methods!(
             batchAccessor: &Block<(NonNull<Block<(), ()>>,), ()>,
         );
 
+        #[cfg(feature = "Foundation_NSURL")]
         #[method(itemAtURL:willMoveToURL:)]
         pub unsafe fn itemAtURL_willMoveToURL(&self, oldURL: &NSURL, newURL: &NSURL);
 
+        #[cfg(feature = "Foundation_NSURL")]
         #[method(itemAtURL:didMoveToURL:)]
         pub unsafe fn itemAtURL_didMoveToURL(&self, oldURL: &NSURL, newURL: &NSURL);
 
+        #[cfg(all(
+            feature = "Foundation_NSSet",
+            feature = "Foundation_NSURL",
+            feature = "Foundation_NSURLResourceKey"
+        ))]
         #[method(itemAtURL:didChangeUbiquityAttributes:)]
         pub unsafe fn itemAtURL_didChangeUbiquityAttributes(
             &self,

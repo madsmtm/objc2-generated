@@ -14,5 +14,6 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationRequest")]
     unsafe impl ASAccountAuthenticationModificationRequest {}
 );

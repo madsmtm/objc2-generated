@@ -23,6 +23,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "QuartzCore_CATextLayer")]
     unsafe impl CATextLayer {
         #[method_id(@__retain_semantics Other string)]
         pub unsafe fn string(&self) -> Option<Id<Object, Shared>>;
@@ -42,15 +43,19 @@ extern_methods!(
         #[method(setWrapped:)]
         pub unsafe fn setWrapped(&self, wrapped: bool);
 
+        #[cfg(feature = "QuartzCore_CATextLayerTruncationMode")]
         #[method_id(@__retain_semantics Other truncationMode)]
         pub unsafe fn truncationMode(&self) -> Id<CATextLayerTruncationMode, Shared>;
 
+        #[cfg(feature = "QuartzCore_CATextLayerTruncationMode")]
         #[method(setTruncationMode:)]
         pub unsafe fn setTruncationMode(&self, truncationMode: &CATextLayerTruncationMode);
 
+        #[cfg(feature = "QuartzCore_CATextLayerAlignmentMode")]
         #[method_id(@__retain_semantics Other alignmentMode)]
         pub unsafe fn alignmentMode(&self) -> Id<CATextLayerAlignmentMode, Shared>;
 
+        #[cfg(feature = "QuartzCore_CATextLayerAlignmentMode")]
         #[method(setAlignmentMode:)]
         pub unsafe fn setAlignmentMode(&self, alignmentMode: &CATextLayerAlignmentMode);
 
@@ -85,6 +90,7 @@ extern_static!(kCAAlignmentJustified: &'static CATextLayerAlignmentMode);
 
 extern_methods!(
     /// Methods declared on superclass `CALayer`
+    #[cfg(feature = "QuartzCore_CATextLayer")]
     unsafe impl CATextLayer {
         #[method_id(@__retain_semantics Other layer)]
         pub unsafe fn layer() -> Id<Self, Shared>;

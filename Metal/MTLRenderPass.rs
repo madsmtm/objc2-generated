@@ -63,10 +63,13 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Metal_MTLRenderPassAttachmentDescriptor")]
     unsafe impl MTLRenderPassAttachmentDescriptor {
+        #[cfg(feature = "Metal_MTLTexture")]
         #[method_id(@__retain_semantics Other texture)]
         pub fn texture(&self) -> Option<Id<MTLTexture, Shared>>;
 
+        #[cfg(feature = "Metal_MTLTexture")]
         #[method(setTexture:)]
         pub fn setTexture(&self, texture: Option<&MTLTexture>);
 
@@ -88,9 +91,11 @@ extern_methods!(
         #[method(setDepthPlane:)]
         pub fn setDepthPlane(&self, depthPlane: NSUInteger);
 
+        #[cfg(feature = "Metal_MTLTexture")]
         #[method_id(@__retain_semantics Other resolveTexture)]
         pub fn resolveTexture(&self) -> Option<Id<MTLTexture, Shared>>;
 
+        #[cfg(feature = "Metal_MTLTexture")]
         #[method(setResolveTexture:)]
         pub fn setResolveTexture(&self, resolveTexture: Option<&MTLTexture>);
 
@@ -143,6 +148,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Metal_MTLRenderPassColorAttachmentDescriptor")]
     unsafe impl MTLRenderPassColorAttachmentDescriptor {
         #[method(clearColor)]
         pub fn clearColor(&self) -> MTLClearColor;
@@ -172,6 +178,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Metal_MTLRenderPassDepthAttachmentDescriptor")]
     unsafe impl MTLRenderPassDepthAttachmentDescriptor {
         #[method(clearDepth)]
         pub fn clearDepth(&self) -> c_double;
@@ -206,6 +213,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Metal_MTLRenderPassStencilAttachmentDescriptor")]
     unsafe impl MTLRenderPassStencilAttachmentDescriptor {
         #[method(clearStencil)]
         pub fn clearStencil(&self) -> u32;
@@ -234,13 +242,16 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Metal_MTLRenderPassColorAttachmentDescriptorArray")]
     unsafe impl MTLRenderPassColorAttachmentDescriptorArray {
+        #[cfg(feature = "Metal_MTLRenderPassColorAttachmentDescriptor")]
         #[method_id(@__retain_semantics Other objectAtIndexedSubscript:)]
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             attachmentIndex: NSUInteger,
         ) -> Id<MTLRenderPassColorAttachmentDescriptor, Shared>;
 
+        #[cfg(feature = "Metal_MTLRenderPassColorAttachmentDescriptor")]
         #[method(setObject:atIndexedSubscript:)]
         pub unsafe fn setObject_atIndexedSubscript(
             &self,
@@ -260,10 +271,13 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Metal_MTLRenderPassSampleBufferAttachmentDescriptor")]
     unsafe impl MTLRenderPassSampleBufferAttachmentDescriptor {
+        #[cfg(feature = "Metal_MTLCounterSampleBuffer")]
         #[method_id(@__retain_semantics Other sampleBuffer)]
         pub fn sampleBuffer(&self) -> Option<Id<MTLCounterSampleBuffer, Shared>>;
 
+        #[cfg(feature = "Metal_MTLCounterSampleBuffer")]
         #[method(setSampleBuffer:)]
         pub fn setSampleBuffer(&self, sampleBuffer: Option<&MTLCounterSampleBuffer>);
 
@@ -303,13 +317,16 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Metal_MTLRenderPassSampleBufferAttachmentDescriptorArray")]
     unsafe impl MTLRenderPassSampleBufferAttachmentDescriptorArray {
+        #[cfg(feature = "Metal_MTLRenderPassSampleBufferAttachmentDescriptor")]
         #[method_id(@__retain_semantics Other objectAtIndexedSubscript:)]
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             attachmentIndex: NSUInteger,
         ) -> Id<MTLRenderPassSampleBufferAttachmentDescriptor, Shared>;
 
+        #[cfg(feature = "Metal_MTLRenderPassSampleBufferAttachmentDescriptor")]
         #[method(setObject:atIndexedSubscript:)]
         pub unsafe fn setObject_atIndexedSubscript(
             &self,
@@ -329,34 +346,42 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Metal_MTLRenderPassDescriptor")]
     unsafe impl MTLRenderPassDescriptor {
         #[method_id(@__retain_semantics Other renderPassDescriptor)]
         pub fn renderPassDescriptor() -> Id<MTLRenderPassDescriptor, Shared>;
 
+        #[cfg(feature = "Metal_MTLRenderPassColorAttachmentDescriptorArray")]
         #[method_id(@__retain_semantics Other colorAttachments)]
         pub fn colorAttachments(&self) -> Id<MTLRenderPassColorAttachmentDescriptorArray, Shared>;
 
+        #[cfg(feature = "Metal_MTLRenderPassDepthAttachmentDescriptor")]
         #[method_id(@__retain_semantics Other depthAttachment)]
         pub fn depthAttachment(&self) -> Id<MTLRenderPassDepthAttachmentDescriptor, Shared>;
 
+        #[cfg(feature = "Metal_MTLRenderPassDepthAttachmentDescriptor")]
         #[method(setDepthAttachment:)]
         pub fn setDepthAttachment(
             &self,
             depthAttachment: Option<&MTLRenderPassDepthAttachmentDescriptor>,
         );
 
+        #[cfg(feature = "Metal_MTLRenderPassStencilAttachmentDescriptor")]
         #[method_id(@__retain_semantics Other stencilAttachment)]
         pub fn stencilAttachment(&self) -> Id<MTLRenderPassStencilAttachmentDescriptor, Shared>;
 
+        #[cfg(feature = "Metal_MTLRenderPassStencilAttachmentDescriptor")]
         #[method(setStencilAttachment:)]
         pub fn setStencilAttachment(
             &self,
             stencilAttachment: Option<&MTLRenderPassStencilAttachmentDescriptor>,
         );
 
+        #[cfg(feature = "Metal_MTLBuffer")]
         #[method_id(@__retain_semantics Other visibilityResultBuffer)]
         pub fn visibilityResultBuffer(&self) -> Option<Id<MTLBuffer, Shared>>;
 
+        #[cfg(feature = "Metal_MTLBuffer")]
         #[method(setVisibilityResultBuffer:)]
         pub fn setVisibilityResultBuffer(&self, visibilityResultBuffer: Option<&MTLBuffer>);
 
@@ -422,15 +447,18 @@ extern_methods!(
             count: NSUInteger,
         ) -> NSUInteger;
 
+        #[cfg(feature = "Metal_MTLRasterizationRateMap")]
         #[method_id(@__retain_semantics Other rasterizationRateMap)]
         pub fn rasterizationRateMap(&self) -> Option<Id<MTLRasterizationRateMap, Shared>>;
 
+        #[cfg(feature = "Metal_MTLRasterizationRateMap")]
         #[method(setRasterizationRateMap:)]
         pub fn setRasterizationRateMap(
             &self,
             rasterizationRateMap: Option<&MTLRasterizationRateMap>,
         );
 
+        #[cfg(feature = "Metal_MTLRenderPassSampleBufferAttachmentDescriptorArray")]
         #[method_id(@__retain_semantics Other sampleBufferAttachments)]
         pub fn sampleBufferAttachments(
             &self,

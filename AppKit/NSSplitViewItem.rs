@@ -36,17 +36,21 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSSplitViewItem")]
     unsafe impl NSSplitViewItem {
+        #[cfg(feature = "AppKit_NSViewController")]
         #[method_id(@__retain_semantics Other splitViewItemWithViewController:)]
         pub unsafe fn splitViewItemWithViewController(
             viewController: &NSViewController,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "AppKit_NSViewController")]
         #[method_id(@__retain_semantics Other sidebarWithViewController:)]
         pub unsafe fn sidebarWithViewController(
             viewController: &NSViewController,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "AppKit_NSViewController")]
         #[method_id(@__retain_semantics Other contentListWithViewController:)]
         pub unsafe fn contentListWithViewController(
             viewController: &NSViewController,
@@ -55,9 +59,11 @@ extern_methods!(
         #[method(behavior)]
         pub unsafe fn behavior(&self) -> NSSplitViewItemBehavior;
 
+        #[cfg(feature = "AppKit_NSViewController")]
         #[method_id(@__retain_semantics Other viewController)]
         pub unsafe fn viewController(&self) -> Id<NSViewController, Shared>;
 
+        #[cfg(feature = "AppKit_NSViewController")]
         #[method(setViewController:)]
         pub unsafe fn setViewController(&self, viewController: &NSViewController);
 

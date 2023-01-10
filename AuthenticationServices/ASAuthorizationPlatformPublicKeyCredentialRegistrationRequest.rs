@@ -15,6 +15,9 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(
+        feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest"
+    )]
     unsafe impl ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self, Shared>;

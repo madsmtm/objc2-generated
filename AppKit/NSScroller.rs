@@ -55,6 +55,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSScroller")]
     unsafe impl NSScroller {
         #[method(isCompatibleWithOverlayScrollers)]
         pub unsafe fn isCompatibleWithOverlayScrollers() -> bool;
@@ -104,6 +105,7 @@ extern_methods!(
         #[method(testPart:)]
         pub unsafe fn testPart(&self, point: NSPoint) -> NSScrollerPart;
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(trackKnob:)]
         pub unsafe fn trackKnob(&self, event: &NSEvent);
 
@@ -140,6 +142,7 @@ ns_enum!(
 
 extern_methods!(
     /// NSDeprecated
+    #[cfg(feature = "AppKit_NSScroller")]
     unsafe impl NSScroller {
         #[method(scrollerWidthForControlSize:)]
         pub unsafe fn scrollerWidthForControlSize(controlSize: NSControlSize) -> CGFloat;
@@ -165,6 +168,7 @@ extern_methods!(
         #[method(highlight:)]
         pub unsafe fn highlight(&self, flag: bool);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(trackScrollButtons:)]
         pub unsafe fn trackScrollButtons(&self, event: &NSEvent);
 
@@ -178,6 +182,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSControl`
+    #[cfg(feature = "AppKit_NSScroller")]
     unsafe impl NSScroller {
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(

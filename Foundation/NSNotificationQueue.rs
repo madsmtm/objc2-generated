@@ -31,16 +31,19 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSNotificationQueue")]
     unsafe impl NSNotificationQueue {
         #[method_id(@__retain_semantics Other defaultQueue)]
         pub unsafe fn defaultQueue() -> Id<NSNotificationQueue, Shared>;
 
+        #[cfg(feature = "Foundation_NSNotificationCenter")]
         #[method_id(@__retain_semantics Init initWithNotificationCenter:)]
         pub unsafe fn initWithNotificationCenter(
             this: Option<Allocated<Self>>,
             notificationCenter: &NSNotificationCenter,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSNotification")]
         #[method(enqueueNotification:postingStyle:)]
         pub unsafe fn enqueueNotification_postingStyle(
             &self,
@@ -48,6 +51,11 @@ extern_methods!(
             postingStyle: NSPostingStyle,
         );
 
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSNotification",
+            feature = "Foundation_NSRunLoopMode"
+        ))]
         #[method(enqueueNotification:postingStyle:coalesceMask:forModes:)]
         pub unsafe fn enqueueNotification_postingStyle_coalesceMask_forModes(
             &self,
@@ -57,6 +65,7 @@ extern_methods!(
             modes: Option<&NSArray<NSRunLoopMode>>,
         );
 
+        #[cfg(feature = "Foundation_NSNotification")]
         #[method(dequeueNotificationsMatching:coalesceMask:)]
         pub unsafe fn dequeueNotificationsMatching_coalesceMask(
             &self,

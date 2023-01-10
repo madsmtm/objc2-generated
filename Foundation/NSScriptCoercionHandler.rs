@@ -13,6 +13,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSScriptCoercionHandler")]
     unsafe impl NSScriptCoercionHandler {
         #[method_id(@__retain_semantics Other sharedCoercionHandler)]
         pub unsafe fn sharedCoercionHandler() -> Id<NSScriptCoercionHandler, Shared>;

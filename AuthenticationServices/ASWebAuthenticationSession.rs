@@ -27,7 +27,9 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AuthenticationServices_ASWebAuthenticationSession")]
     unsafe impl ASWebAuthenticationSession {
+        #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Init initWithURL:callbackURLScheme:completionHandler:)]
         pub unsafe fn initWithURL_callbackURLScheme_completionHandler(
             this: Option<Allocated<Self>>,
@@ -36,11 +38,13 @@ extern_methods!(
             completionHandler: ASWebAuthenticationSessionCompletionHandler,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "AuthenticationServices_ASWebAuthenticationPresentationContextProviding")]
         #[method_id(@__retain_semantics Other presentationContextProvider)]
         pub unsafe fn presentationContextProvider(
             &self,
         ) -> Option<Id<ASWebAuthenticationPresentationContextProviding, Shared>>;
 
+        #[cfg(feature = "AuthenticationServices_ASWebAuthenticationPresentationContextProviding")]
         #[method(setPresentationContextProvider:)]
         pub unsafe fn setPresentationContextProvider(
             &self,

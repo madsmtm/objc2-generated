@@ -18,6 +18,7 @@ __inner_extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSMeasurement")]
     unsafe impl<UnitType: Message, UnitTypeOwnership: Ownership>
         NSMeasurement<UnitType, UnitTypeOwnership>
     {
@@ -37,9 +38,11 @@ extern_methods!(
             unit: &UnitType,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSUnit")]
         #[method(canBeConvertedToUnit:)]
         pub unsafe fn canBeConvertedToUnit(&self, unit: &NSUnit) -> bool;
 
+        #[cfg(feature = "Foundation_NSUnit")]
         #[method_id(@__retain_semantics Other measurementByConvertingToUnit:)]
         pub unsafe fn measurementByConvertingToUnit(
             &self,

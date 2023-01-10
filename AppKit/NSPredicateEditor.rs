@@ -16,10 +16,19 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSPredicateEditor")]
     unsafe impl NSPredicateEditor {
+        #[cfg(all(
+            feature = "AppKit_NSPredicateEditorRowTemplate",
+            feature = "Foundation_NSArray"
+        ))]
         #[method_id(@__retain_semantics Other rowTemplates)]
         pub unsafe fn rowTemplates(&self) -> Id<NSArray<NSPredicateEditorRowTemplate>, Shared>;
 
+        #[cfg(all(
+            feature = "AppKit_NSPredicateEditorRowTemplate",
+            feature = "Foundation_NSArray"
+        ))]
         #[method(setRowTemplates:)]
         pub unsafe fn setRowTemplates(&self, rowTemplates: &NSArray<NSPredicateEditorRowTemplate>);
     }
@@ -27,6 +36,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSControl`
+    #[cfg(feature = "AppKit_NSPredicateEditor")]
     unsafe impl NSPredicateEditor {
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(

@@ -15,31 +15,39 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "CoreData_NSBatchUpdateRequest")]
     unsafe impl NSBatchUpdateRequest {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other batchUpdateRequestWithEntityName:)]
         pub unsafe fn batchUpdateRequestWithEntityName(entityName: &NSString) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithEntityName:)]
         pub unsafe fn initWithEntityName(
             this: Option<Allocated<Self>>,
             entityName: &NSString,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "CoreData_NSEntityDescription")]
         #[method_id(@__retain_semantics Init initWithEntity:)]
         pub unsafe fn initWithEntity(
             this: Option<Allocated<Self>>,
             entity: &NSEntityDescription,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other entityName)]
         pub unsafe fn entityName(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "CoreData_NSEntityDescription")]
         #[method_id(@__retain_semantics Other entity)]
         pub unsafe fn entity(&self) -> Id<NSEntityDescription, Shared>;
 
+        #[cfg(feature = "Foundation_NSPredicate")]
         #[method_id(@__retain_semantics Other predicate)]
         pub unsafe fn predicate(&self) -> Option<Id<NSPredicate, Shared>>;
 
+        #[cfg(feature = "Foundation_NSPredicate")]
         #[method(setPredicate:)]
         pub unsafe fn setPredicate(&self, predicate: Option<&NSPredicate>);
 
@@ -55,9 +63,11 @@ extern_methods!(
         #[method(setResultType:)]
         pub unsafe fn setResultType(&self, resultType: NSBatchUpdateRequestResultType);
 
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other propertiesToUpdate)]
         pub unsafe fn propertiesToUpdate(&self) -> Option<Id<NSDictionary, Shared>>;
 
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method(setPropertiesToUpdate:)]
         pub unsafe fn setPropertiesToUpdate(&self, propertiesToUpdate: Option<&NSDictionary>);
     }

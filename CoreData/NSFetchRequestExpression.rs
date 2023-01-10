@@ -17,6 +17,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "CoreData_NSFetchRequestExpression")]
     unsafe impl NSFetchRequestExpression {
         #[method_id(@__retain_semantics Other expressionForFetch:context:countOnly:)]
         pub unsafe fn expressionForFetch_context_countOnly(
@@ -38,6 +39,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSExpression`
+    #[cfg(feature = "CoreData_NSFetchRequestExpression")]
     unsafe impl NSFetchRequestExpression {
         #[method_id(@__retain_semantics Init initWithExpressionType:)]
         pub unsafe fn initWithExpressionType(

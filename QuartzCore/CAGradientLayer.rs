@@ -19,16 +19,21 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "QuartzCore_CAGradientLayer")]
     unsafe impl CAGradientLayer {
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other colors)]
         pub unsafe fn colors(&self) -> Option<Id<NSArray, Shared>>;
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(setColors:)]
         pub unsafe fn setColors(&self, colors: Option<&NSArray>);
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method_id(@__retain_semantics Other locations)]
         pub unsafe fn locations(&self) -> Option<Id<NSArray<NSNumber>, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method(setLocations:)]
         pub unsafe fn setLocations(&self, locations: Option<&NSArray<NSNumber>>);
 
@@ -44,9 +49,11 @@ extern_methods!(
         #[method(setEndPoint:)]
         pub unsafe fn setEndPoint(&self, endPoint: CGPoint);
 
+        #[cfg(feature = "QuartzCore_CAGradientLayerType")]
         #[method_id(@__retain_semantics Other type)]
         pub unsafe fn type_(&self) -> Id<CAGradientLayerType, Shared>;
 
+        #[cfg(feature = "QuartzCore_CAGradientLayerType")]
         #[method(setType:)]
         pub unsafe fn setType(&self, type_: &CAGradientLayerType);
     }
@@ -60,6 +67,7 @@ extern_static!(kCAGradientLayerConic: &'static CAGradientLayerType);
 
 extern_methods!(
     /// Methods declared on superclass `CALayer`
+    #[cfg(feature = "QuartzCore_CAGradientLayer")]
     unsafe impl CAGradientLayer {
         #[method_id(@__retain_semantics Other layer)]
         pub unsafe fn layer() -> Id<Self, Shared>;

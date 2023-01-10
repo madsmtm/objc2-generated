@@ -42,6 +42,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Metal_MTLIndirectCommandBufferDescriptor")]
     unsafe impl MTLIndirectCommandBufferDescriptor {
         #[method(commandTypes)]
         pub fn commandTypes(&self) -> MTLIndirectCommandType;

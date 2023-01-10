@@ -25,6 +25,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSScrollView")]
     unsafe impl NSScrollView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
@@ -32,6 +33,7 @@ extern_methods!(
             frameRect: NSRect,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -86,15 +88,19 @@ extern_methods!(
         #[method(setDocumentView:)]
         pub unsafe fn setDocumentView(&self, documentView: Option<&NSView>);
 
+        #[cfg(feature = "AppKit_NSClipView")]
         #[method_id(@__retain_semantics Other contentView)]
         pub unsafe fn contentView(&self) -> Id<NSClipView, Shared>;
 
+        #[cfg(feature = "AppKit_NSClipView")]
         #[method(setContentView:)]
         pub unsafe fn setContentView(&self, contentView: &NSClipView);
 
+        #[cfg(feature = "AppKit_NSCursor")]
         #[method_id(@__retain_semantics Other documentCursor)]
         pub unsafe fn documentCursor(&self) -> Option<Id<NSCursor, Shared>>;
 
+        #[cfg(feature = "AppKit_NSCursor")]
         #[method(setDocumentCursor:)]
         pub unsafe fn setDocumentCursor(&self, documentCursor: Option<&NSCursor>);
 
@@ -104,9 +110,11 @@ extern_methods!(
         #[method(setBorderType:)]
         pub unsafe fn setBorderType(&self, borderType: NSBorderType);
 
+        #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other backgroundColor)]
         pub unsafe fn backgroundColor(&self) -> Id<NSColor, Shared>;
 
+        #[cfg(feature = "AppKit_NSColor")]
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, backgroundColor: &NSColor);
 
@@ -128,15 +136,19 @@ extern_methods!(
         #[method(setHasHorizontalScroller:)]
         pub unsafe fn setHasHorizontalScroller(&self, hasHorizontalScroller: bool);
 
+        #[cfg(feature = "AppKit_NSScroller")]
         #[method_id(@__retain_semantics Other verticalScroller)]
         pub unsafe fn verticalScroller(&self) -> Option<Id<NSScroller, Shared>>;
 
+        #[cfg(feature = "AppKit_NSScroller")]
         #[method(setVerticalScroller:)]
         pub unsafe fn setVerticalScroller(&self, verticalScroller: Option<&NSScroller>);
 
+        #[cfg(feature = "AppKit_NSScroller")]
         #[method_id(@__retain_semantics Other horizontalScroller)]
         pub unsafe fn horizontalScroller(&self) -> Option<Id<NSScroller, Shared>>;
 
+        #[cfg(feature = "AppKit_NSScroller")]
         #[method(setHorizontalScroller:)]
         pub unsafe fn setHorizontalScroller(&self, horizontalScroller: Option<&NSScroller>);
 
@@ -191,9 +203,11 @@ extern_methods!(
         #[method(tile)]
         pub unsafe fn tile(&self);
 
+        #[cfg(feature = "AppKit_NSClipView")]
         #[method(reflectScrolledClipView:)]
         pub unsafe fn reflectScrolledClipView(&self, cView: &NSClipView);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(scrollWheel:)]
         pub unsafe fn scrollWheel(&self, event: &NSEvent);
 
@@ -308,6 +322,7 @@ extern_static!(NSScrollViewDidEndLiveScrollNotification: &'static NSNotification
 
 extern_methods!(
     /// NSRulerSupport
+    #[cfg(feature = "AppKit_NSScrollView")]
     unsafe impl NSScrollView {
         #[method(rulerViewClass)]
         pub unsafe fn rulerViewClass() -> Option<&'static Class>;
@@ -333,15 +348,19 @@ extern_methods!(
         #[method(setHasVerticalRuler:)]
         pub unsafe fn setHasVerticalRuler(&self, hasVerticalRuler: bool);
 
+        #[cfg(feature = "AppKit_NSRulerView")]
         #[method_id(@__retain_semantics Other horizontalRulerView)]
         pub unsafe fn horizontalRulerView(&self) -> Option<Id<NSRulerView, Shared>>;
 
+        #[cfg(feature = "AppKit_NSRulerView")]
         #[method(setHorizontalRulerView:)]
         pub unsafe fn setHorizontalRulerView(&self, horizontalRulerView: Option<&NSRulerView>);
 
+        #[cfg(feature = "AppKit_NSRulerView")]
         #[method_id(@__retain_semantics Other verticalRulerView)]
         pub unsafe fn verticalRulerView(&self) -> Option<Id<NSRulerView, Shared>>;
 
+        #[cfg(feature = "AppKit_NSRulerView")]
         #[method(setVerticalRulerView:)]
         pub unsafe fn setVerticalRulerView(&self, verticalRulerView: Option<&NSRulerView>);
     }
@@ -358,6 +377,7 @@ ns_enum!(
 
 extern_methods!(
     /// NSFindBarSupport
+    #[cfg(feature = "AppKit_NSScrollView")]
     unsafe impl NSScrollView {
         #[method(findBarPosition)]
         pub unsafe fn findBarPosition(&self) -> NSScrollViewFindBarPosition;

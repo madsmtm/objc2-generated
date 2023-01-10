@@ -14,6 +14,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "CoreData_NSQueryGenerationToken")]
     unsafe impl NSQueryGenerationToken {
         #[method_id(@__retain_semantics Other currentQueryGenerationToken)]
         pub unsafe fn currentQueryGenerationToken() -> Id<NSQueryGenerationToken, Shared>;

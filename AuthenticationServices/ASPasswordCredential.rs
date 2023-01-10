@@ -14,7 +14,9 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AuthenticationServices_ASPasswordCredential")]
     unsafe impl ASPasswordCredential {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithUser:password:)]
         pub unsafe fn initWithUser_password(
             this: Option<Allocated<Self>>,
@@ -22,15 +24,18 @@ extern_methods!(
             password: &NSString,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other credentialWithUser:password:)]
         pub unsafe fn credentialWithUser_password(
             user: &NSString,
             password: &NSString,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other user)]
         pub unsafe fn user(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other password)]
         pub unsafe fn password(&self) -> Id<NSString, Shared>;
     }

@@ -28,6 +28,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSGestureRecognizer")]
     unsafe impl NSGestureRecognizer {
         #[method_id(@__retain_semantics Init initWithTarget:action:)]
         pub unsafe fn initWithTarget_action(
@@ -36,6 +37,7 @@ extern_methods!(
             action: Option<Sel>,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -54,9 +56,11 @@ extern_methods!(
         #[method(setAction:)]
         pub unsafe fn setAction(&self, action: Option<Sel>);
 
+        #[cfg(feature = "AppKit_NSGestureRecognizerDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSGestureRecognizerDelegate, Shared>>;
 
+        #[cfg(feature = "AppKit_NSGestureRecognizerDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&NSGestureRecognizerDelegate>);
 
@@ -66,12 +70,15 @@ extern_methods!(
         #[method(setEnabled:)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
+        #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other view)]
         pub unsafe fn view(&self) -> Option<Id<NSView, Shared>>;
 
+        #[cfg(feature = "AppKit_NSPressureConfiguration")]
         #[method_id(@__retain_semantics Other pressureConfiguration)]
         pub unsafe fn pressureConfiguration(&self) -> Id<NSPressureConfiguration, Shared>;
 
+        #[cfg(feature = "AppKit_NSPressureConfiguration")]
         #[method(setPressureConfiguration:)]
         pub unsafe fn setPressureConfiguration(
             &self,
@@ -120,6 +127,7 @@ extern_methods!(
         #[method(setDelaysRotationEvents:)]
         pub unsafe fn setDelaysRotationEvents(&self, delaysRotationEvents: bool);
 
+        #[cfg(feature = "AppKit_NSView")]
         #[method(locationInView:)]
         pub unsafe fn locationInView(&self, view: Option<&NSView>) -> NSPoint;
     }
@@ -127,6 +135,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSTouchBar
+    #[cfg(feature = "AppKit_NSGestureRecognizer")]
     unsafe impl NSGestureRecognizer {
         #[method(allowedTouchTypes)]
         pub unsafe fn allowedTouchTypes(&self) -> NSTouchTypeMask;
@@ -191,6 +200,7 @@ extern_protocol!(
 
 extern_methods!(
     /// NSSubclassUse
+    #[cfg(feature = "AppKit_NSGestureRecognizer")]
     unsafe impl NSGestureRecognizer {
         #[method(setState:)]
         pub unsafe fn setState(&self, state: NSGestureRecognizerState);
@@ -222,63 +232,83 @@ extern_methods!(
             otherGestureRecognizer: &NSGestureRecognizer,
         ) -> bool;
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(mouseDown:)]
         pub unsafe fn mouseDown(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(rightMouseDown:)]
         pub unsafe fn rightMouseDown(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(otherMouseDown:)]
         pub unsafe fn otherMouseDown(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(mouseUp:)]
         pub unsafe fn mouseUp(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(rightMouseUp:)]
         pub unsafe fn rightMouseUp(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(otherMouseUp:)]
         pub unsafe fn otherMouseUp(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(mouseDragged:)]
         pub unsafe fn mouseDragged(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(rightMouseDragged:)]
         pub unsafe fn rightMouseDragged(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(otherMouseDragged:)]
         pub unsafe fn otherMouseDragged(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(keyDown:)]
         pub unsafe fn keyDown(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(keyUp:)]
         pub unsafe fn keyUp(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(flagsChanged:)]
         pub unsafe fn flagsChanged(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(tabletPoint:)]
         pub unsafe fn tabletPoint(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(magnifyWithEvent:)]
         pub unsafe fn magnifyWithEvent(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(rotateWithEvent:)]
         pub unsafe fn rotateWithEvent(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(pressureChangeWithEvent:)]
         pub unsafe fn pressureChangeWithEvent(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(touchesBeganWithEvent:)]
         pub unsafe fn touchesBeganWithEvent(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(touchesMovedWithEvent:)]
         pub unsafe fn touchesMovedWithEvent(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(touchesEndedWithEvent:)]
         pub unsafe fn touchesEndedWithEvent(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(touchesCancelledWithEvent:)]
         pub unsafe fn touchesCancelledWithEvent(&self, event: &NSEvent);
     }

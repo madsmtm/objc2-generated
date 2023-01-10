@@ -33,6 +33,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Metal_MTLCaptureDescriptor")]
     unsafe impl MTLCaptureDescriptor {
         #[method_id(@__retain_semantics Other captureObject)]
         pub unsafe fn captureObject(&self) -> Option<Id<Object, Shared>>;
@@ -46,9 +47,11 @@ extern_methods!(
         #[method(setDestination:)]
         pub fn setDestination(&self, destination: MTLCaptureDestination);
 
+        #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other outputURL)]
         pub fn outputURL(&self) -> Option<Id<NSURL, Shared>>;
 
+        #[cfg(feature = "Foundation_NSURL")]
         #[method(setOutputURL:)]
         pub fn setOutputURL(&self, outputURL: Option<&NSURL>);
     }
@@ -64,6 +67,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Metal_MTLCaptureManager")]
     unsafe impl MTLCaptureManager {
         #[method_id(@__retain_semantics Other sharedCaptureManager)]
         pub unsafe fn sharedCaptureManager() -> Id<MTLCaptureManager, Shared>;
@@ -71,9 +75,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
+        #[cfg(all(feature = "Metal_MTLCaptureScope", feature = "Metal_MTLDevice"))]
         #[method_id(@__retain_semantics New newCaptureScopeWithDevice:)]
         pub fn newCaptureScopeWithDevice(&self, device: &MTLDevice) -> Id<MTLCaptureScope, Shared>;
 
+        #[cfg(all(feature = "Metal_MTLCaptureScope", feature = "Metal_MTLCommandQueue"))]
         #[method_id(@__retain_semantics New newCaptureScopeWithCommandQueue:)]
         pub fn newCaptureScopeWithCommandQueue(
             &self,
@@ -83,27 +89,33 @@ extern_methods!(
         #[method(supportsDestination:)]
         pub fn supportsDestination(&self, destination: MTLCaptureDestination) -> bool;
 
+        #[cfg(all(feature = "Foundation_NSError", feature = "Metal_MTLCaptureDescriptor"))]
         #[method(startCaptureWithDescriptor:error:_)]
         pub fn startCaptureWithDescriptor_error(
             &self,
             descriptor: &MTLCaptureDescriptor,
         ) -> Result<(), Id<NSError, Shared>>;
 
+        #[cfg(feature = "Metal_MTLDevice")]
         #[method(startCaptureWithDevice:)]
         pub fn startCaptureWithDevice(&self, device: &MTLDevice);
 
+        #[cfg(feature = "Metal_MTLCommandQueue")]
         #[method(startCaptureWithCommandQueue:)]
         pub fn startCaptureWithCommandQueue(&self, commandQueue: &MTLCommandQueue);
 
+        #[cfg(feature = "Metal_MTLCaptureScope")]
         #[method(startCaptureWithScope:)]
         pub fn startCaptureWithScope(&self, captureScope: &MTLCaptureScope);
 
         #[method(stopCapture)]
         pub fn stopCapture(&self);
 
+        #[cfg(feature = "Metal_MTLCaptureScope")]
         #[method_id(@__retain_semantics Other defaultCaptureScope)]
         pub fn defaultCaptureScope(&self) -> Option<Id<MTLCaptureScope, Shared>>;
 
+        #[cfg(feature = "Metal_MTLCaptureScope")]
         #[method(setDefaultCaptureScope:)]
         pub fn setDefaultCaptureScope(&self, defaultCaptureScope: Option<&MTLCaptureScope>);
 

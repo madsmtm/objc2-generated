@@ -16,6 +16,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSTableCellView")]
     unsafe impl NSTableCellView {
         #[method_id(@__retain_semantics Other objectValue)]
         pub unsafe fn objectValue(&self) -> Option<Id<Object, Shared>>;
@@ -23,15 +24,19 @@ extern_methods!(
         #[method(setObjectValue:)]
         pub unsafe fn setObjectValue(&self, objectValue: Option<&Object>);
 
+        #[cfg(feature = "AppKit_NSTextField")]
         #[method_id(@__retain_semantics Other textField)]
         pub unsafe fn textField(&self) -> Option<Id<NSTextField, Shared>>;
 
+        #[cfg(feature = "AppKit_NSTextField")]
         #[method(setTextField:)]
         pub unsafe fn setTextField(&self, textField: Option<&NSTextField>);
 
+        #[cfg(feature = "AppKit_NSImageView")]
         #[method_id(@__retain_semantics Other imageView)]
         pub unsafe fn imageView(&self) -> Option<Id<NSImageView, Shared>>;
 
+        #[cfg(feature = "AppKit_NSImageView")]
         #[method(setImageView:)]
         pub unsafe fn setImageView(&self, imageView: Option<&NSImageView>);
 
@@ -47,6 +52,10 @@ extern_methods!(
         #[method(setRowSizeStyle:)]
         pub unsafe fn setRowSizeStyle(&self, rowSizeStyle: NSTableViewRowSizeStyle);
 
+        #[cfg(all(
+            feature = "AppKit_NSDraggingImageComponent",
+            feature = "Foundation_NSArray"
+        ))]
         #[method_id(@__retain_semantics Other draggingImageComponents)]
         pub unsafe fn draggingImageComponents(
             &self,
@@ -56,6 +65,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSView`
+    #[cfg(feature = "AppKit_NSTableCellView")]
     unsafe impl NSTableCellView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(

@@ -23,6 +23,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Metal_MTLHeapDescriptor")]
     unsafe impl MTLHeapDescriptor {
         #[method(size)]
         pub fn size(&self) -> NSUInteger;

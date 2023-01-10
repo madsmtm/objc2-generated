@@ -46,6 +46,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSColorPanel")]
     unsafe impl NSColorPanel {
         #[method_id(@__retain_semantics Other sharedColorPanel)]
         pub unsafe fn sharedColorPanel() -> Id<NSColorPanel, Shared>;
@@ -53,6 +54,11 @@ extern_methods!(
         #[method(sharedColorPanelExists)]
         pub unsafe fn sharedColorPanelExists() -> bool;
 
+        #[cfg(all(
+            feature = "AppKit_NSColor",
+            feature = "AppKit_NSEvent",
+            feature = "AppKit_NSView"
+        ))]
         #[method(dragColor:withEvent:fromView:)]
         pub unsafe fn dragColor_withEvent_fromView(
             color: &NSColor,
@@ -66,9 +72,11 @@ extern_methods!(
         #[method(setPickerMode:)]
         pub unsafe fn setPickerMode(mode: NSColorPanelMode);
 
+        #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other accessoryView)]
         pub unsafe fn accessoryView(&self) -> Option<Id<NSView, Shared>>;
 
+        #[cfg(feature = "AppKit_NSView")]
         #[method(setAccessoryView:)]
         pub unsafe fn setAccessoryView(&self, accessoryView: Option<&NSView>);
 
@@ -90,9 +98,11 @@ extern_methods!(
         #[method(setMode:)]
         pub unsafe fn setMode(&self, mode: NSColorPanelMode);
 
+        #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other color)]
         pub unsafe fn color(&self) -> Id<NSColor, Shared>;
 
+        #[cfg(feature = "AppKit_NSColor")]
         #[method(setColor:)]
         pub unsafe fn setColor(&self, color: &NSColor);
 
@@ -105,9 +115,11 @@ extern_methods!(
         #[method(setTarget:)]
         pub unsafe fn setTarget(&self, target: Option<&Object>);
 
+        #[cfg(feature = "AppKit_NSColorList")]
         #[method(attachColorList:)]
         pub unsafe fn attachColorList(&self, colorList: &NSColorList);
 
+        #[cfg(feature = "AppKit_NSColorList")]
         #[method(detachColorList:)]
         pub unsafe fn detachColorList(&self, colorList: &NSColorList);
     }
@@ -115,6 +127,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSColorPanel
+    #[cfg(feature = "AppKit_NSApplication")]
     unsafe impl NSApplication {
         #[method(orderFrontColorPanel:)]
         pub unsafe fn orderFrontColorPanel(&self, sender: Option<&Object>);
@@ -152,6 +165,7 @@ extern_static!(NSCrayonModeColorPanel: NSColorPanelMode = NSColorPanelModeCrayon
 
 extern_methods!(
     /// Methods declared on superclass `NSWindow`
+    #[cfg(feature = "AppKit_NSColorPanel")]
     unsafe impl NSColorPanel {
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer(
@@ -162,6 +176,7 @@ extern_methods!(
             flag: bool,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "AppKit_NSScreen")]
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:screen:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer_screen(
             this: Option<Allocated<Self>>,
@@ -172,6 +187,7 @@ extern_methods!(
             screen: Option<&NSScreen>,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "AppKit_NSViewController")]
         #[method_id(@__retain_semantics Other windowWithContentViewController:)]
         pub unsafe fn windowWithContentViewController(
             contentViewController: &NSViewController,

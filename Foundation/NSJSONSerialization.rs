@@ -35,22 +35,26 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSJSONSerialization")]
     unsafe impl NSJSONSerialization {
         #[method(isValidJSONObject:)]
         pub unsafe fn isValidJSONObject(obj: &Object) -> bool;
 
+        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
         #[method_id(@__retain_semantics Other dataWithJSONObject:options:error:_)]
         pub unsafe fn dataWithJSONObject_options_error(
             obj: &Object,
             opt: NSJSONWritingOptions,
         ) -> Result<Id<NSData, Shared>, Id<NSError, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
         #[method_id(@__retain_semantics Other JSONObjectWithData:options:error:_)]
         pub unsafe fn JSONObjectWithData_options_error(
             data: &NSData,
             opt: NSJSONReadingOptions,
         ) -> Result<Id<Object, Shared>, Id<NSError, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSInputStream"))]
         #[method_id(@__retain_semantics Other JSONObjectWithStream:options:error:_)]
         pub unsafe fn JSONObjectWithStream_options_error(
             stream: &NSInputStream,

@@ -13,6 +13,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSIndexSet")]
     unsafe impl NSIndexSet {
         #[method_id(@__retain_semantics Other indexSet)]
         pub unsafe fn indexSet() -> Id<Self, Shared>;
@@ -182,6 +183,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSMutableIndexSet")]
     unsafe impl NSMutableIndexSet {
         #[method(addIndexes:)]
         pub unsafe fn addIndexes(&self, indexSet: &NSIndexSet);
@@ -211,6 +213,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSIndexSet`
+    #[cfg(feature = "Foundation_NSMutableIndexSet")]
     unsafe impl NSMutableIndexSet {
         #[method_id(@__retain_semantics Other indexSet)]
         pub unsafe fn indexSet() -> Id<Self, Owned>;

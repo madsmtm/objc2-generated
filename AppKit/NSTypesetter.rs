@@ -15,6 +15,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSTypesetter")]
     unsafe impl NSTypesetter {
         #[method(usesFontLeading)]
         pub unsafe fn usesFontLeading(&self) -> bool;
@@ -40,9 +41,11 @@ extern_methods!(
         #[method(setLineFragmentPadding:)]
         pub unsafe fn setLineFragmentPadding(&self, lineFragmentPadding: CGFloat);
 
+        #[cfg(feature = "AppKit_NSFont")]
         #[method_id(@__retain_semantics Other substituteFontForFont:)]
         pub unsafe fn substituteFontForFont(&self, originalFont: &NSFont) -> Id<NSFont, Shared>;
 
+        #[cfg(feature = "AppKit_NSTextTab")]
         #[method_id(@__retain_semantics Other textTabForGlyphLocation:writingDirection:maxLocation:)]
         pub unsafe fn textTabForGlyphLocation_writingDirection_maxLocation(
             &self,
@@ -57,9 +60,11 @@ extern_methods!(
         #[method(setBidiProcessingEnabled:)]
         pub unsafe fn setBidiProcessingEnabled(&self, bidiProcessingEnabled: bool);
 
+        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedString)]
         pub unsafe fn attributedString(&self) -> Option<Id<NSAttributedString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setAttributedString:)]
         pub unsafe fn setAttributedString(&self, attributedString: Option<&NSAttributedString>);
 
@@ -130,26 +135,35 @@ extern_methods!(
             lineOrigin: NSPoint,
         );
 
+        #[cfg(all(
+            feature = "Foundation_NSAttributedStringKey",
+            feature = "Foundation_NSDictionary"
+        ))]
         #[method_id(@__retain_semantics Other attributesForExtraLineFragment)]
         pub unsafe fn attributesForExtraLineFragment(
             &self,
         ) -> Id<NSDictionary<NSAttributedStringKey, Object>, Shared>;
 
+        #[cfg(feature = "AppKit_NSLayoutManager")]
         #[method_id(@__retain_semantics Other layoutManager)]
         pub unsafe fn layoutManager(&self) -> Option<Id<NSLayoutManager, Shared>>;
 
+        #[cfg(all(feature = "AppKit_NSTextContainer", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other textContainers)]
         pub unsafe fn textContainers(&self) -> Option<Id<NSArray<NSTextContainer>, Shared>>;
 
+        #[cfg(feature = "AppKit_NSTextContainer")]
         #[method_id(@__retain_semantics Other currentTextContainer)]
         pub unsafe fn currentTextContainer(&self) -> Option<Id<NSTextContainer, Shared>>;
 
+        #[cfg(feature = "AppKit_NSParagraphStyle")]
         #[method_id(@__retain_semantics Other currentParagraphStyle)]
         pub unsafe fn currentParagraphStyle(&self) -> Option<Id<NSParagraphStyle, Shared>>;
 
         #[method(setHardInvalidation:forGlyphRange:)]
         pub unsafe fn setHardInvalidation_forGlyphRange(&self, flag: bool, glyphRange: NSRange);
 
+        #[cfg(feature = "AppKit_NSLayoutManager")]
         #[method(layoutGlyphsInLayoutManager:startingAtGlyphIndex:maxNumberOfLineFragments:nextGlyphIndex:)]
         pub unsafe fn layoutGlyphsInLayoutManager_startingAtGlyphIndex_maxNumberOfLineFragments_nextGlyphIndex(
             &self,
@@ -159,6 +173,7 @@ extern_methods!(
             nextGlyph: NonNull<NSUInteger>,
         );
 
+        #[cfg(feature = "AppKit_NSLayoutManager")]
         #[method(layoutCharactersInRange:forLayoutManager:maximumNumberOfLineFragments:)]
         pub unsafe fn layoutCharactersInRange_forLayoutManager_maximumNumberOfLineFragments(
             &self,
@@ -167,6 +182,7 @@ extern_methods!(
             maxNumLines: NSUInteger,
         ) -> NSRange;
 
+        #[cfg(feature = "AppKit_NSLayoutManager")]
         #[method(printingAdjustmentInLayoutManager:forNominallySpacedGlyphRange:packedGlyphs:count:)]
         pub unsafe fn printingAdjustmentInLayoutManager_forNominallySpacedGlyphRange_packedGlyphs_count(
             layoutMgr: &NSLayoutManager,
@@ -175,6 +191,7 @@ extern_methods!(
             packedGlyphsCount: NSUInteger,
         ) -> NSSize;
 
+        #[cfg(feature = "AppKit_NSLayoutManager")]
         #[method(baselineOffsetInLayoutManager:glyphIndex:)]
         pub unsafe fn baselineOffsetInLayoutManager_glyphIndex(
             &self,
@@ -197,6 +214,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSLayoutPhaseInterface
+    #[cfg(feature = "AppKit_NSTypesetter")]
     unsafe impl NSTypesetter {
         #[method(willSetLineFragmentRect:forGlyphRange:usedRect:baselineOffset:)]
         pub unsafe fn willSetLineFragmentRect_forGlyphRange_usedRect_baselineOffset(
@@ -225,6 +243,7 @@ extern_methods!(
         #[method(hyphenCharacterForGlyphAtIndex:)]
         pub unsafe fn hyphenCharacterForGlyphAtIndex(&self, glyphIndex: NSUInteger) -> UTF32Char;
 
+        #[cfg(feature = "AppKit_NSTextContainer")]
         #[method(boundingBoxForControlGlyphAtIndex:forTextContainer:proposedLineFragment:glyphPosition:characterIndex:)]
         pub unsafe fn boundingBoxForControlGlyphAtIndex_forTextContainer_proposedLineFragment_glyphPosition_characterIndex(
             &self,
@@ -239,6 +258,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSGlyphStorageInterface
+    #[cfg(feature = "AppKit_NSTypesetter")]
     unsafe impl NSTypesetter {
         #[method(characterRangeForGlyphRange:actualGlyphRange:)]
         pub unsafe fn characterRangeForGlyphRange_actualGlyphRange(
@@ -320,6 +340,7 @@ ns_options!(
 
 extern_methods!(
     /// NSTypesetter_Deprecated
+    #[cfg(feature = "AppKit_NSTypesetter")]
     unsafe impl NSTypesetter {
         #[method(actionForControlCharacterAtIndex:)]
         pub unsafe fn actionForControlCharacterAtIndex(

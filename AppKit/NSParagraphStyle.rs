@@ -43,12 +43,18 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSTextTab")]
     unsafe impl NSTextTab {
+        #[cfg(all(feature = "Foundation_NSCharacterSet", feature = "Foundation_NSLocale"))]
         #[method_id(@__retain_semantics Other columnTerminatorsForLocale:)]
         pub unsafe fn columnTerminatorsForLocale(
             aLocale: Option<&NSLocale>,
         ) -> Id<NSCharacterSet, Shared>;
 
+        #[cfg(all(
+            feature = "AppKit_NSTextTabOptionKey",
+            feature = "Foundation_NSDictionary"
+        ))]
         #[method_id(@__retain_semantics Init initWithTextAlignment:location:options:)]
         pub unsafe fn initWithTextAlignment_location_options(
             this: Option<Allocated<Self>>,
@@ -63,6 +69,10 @@ extern_methods!(
         #[method(location)]
         pub unsafe fn location(&self) -> CGFloat;
 
+        #[cfg(all(
+            feature = "AppKit_NSTextTabOptionKey",
+            feature = "Foundation_NSDictionary"
+        ))]
         #[method_id(@__retain_semantics Other options)]
         pub unsafe fn options(&self) -> Id<NSDictionary<NSTextTabOptionKey, Object>, Shared>;
     }
@@ -78,10 +88,12 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSParagraphStyle")]
     unsafe impl NSParagraphStyle {
         #[method_id(@__retain_semantics Other defaultParagraphStyle)]
         pub unsafe fn defaultParagraphStyle() -> Id<NSParagraphStyle, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(defaultWritingDirectionForLanguage:)]
         pub unsafe fn defaultWritingDirectionForLanguage(
             languageName: Option<&NSString>,
@@ -129,6 +141,7 @@ extern_methods!(
         #[method(usesDefaultHyphenation)]
         pub unsafe fn usesDefaultHyphenation(&self) -> bool;
 
+        #[cfg(all(feature = "AppKit_NSTextTab", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other tabStops)]
         pub unsafe fn tabStops(&self) -> Id<NSArray<NSTextTab>, Shared>;
 
@@ -141,9 +154,11 @@ extern_methods!(
         #[method(tighteningFactorForTruncation)]
         pub unsafe fn tighteningFactorForTruncation(&self) -> c_float;
 
+        #[cfg(all(feature = "AppKit_NSTextBlock", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other textBlocks)]
         pub unsafe fn textBlocks(&self) -> Id<NSArray<NSTextBlock>, Shared>;
 
+        #[cfg(all(feature = "AppKit_NSTextList", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other textLists)]
         pub unsafe fn textLists(&self) -> Id<NSArray<NSTextList>, Shared>;
 
@@ -166,6 +181,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSMutableParagraphStyle")]
     unsafe impl NSMutableParagraphStyle {
         #[method(lineSpacing)]
         pub unsafe fn lineSpacing(&self) -> CGFloat;
@@ -251,9 +267,11 @@ extern_methods!(
         #[method(setUsesDefaultHyphenation:)]
         pub unsafe fn setUsesDefaultHyphenation(&self, usesDefaultHyphenation: bool);
 
+        #[cfg(all(feature = "AppKit_NSTextTab", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other tabStops)]
         pub unsafe fn tabStops(&self) -> Id<NSArray<NSTextTab>, Shared>;
 
+        #[cfg(all(feature = "AppKit_NSTextTab", feature = "Foundation_NSArray"))]
         #[method(setTabStops:)]
         pub unsafe fn setTabStops(&self, tabStops: Option<&NSArray<NSTextTab>>);
 
@@ -272,9 +290,11 @@ extern_methods!(
             allowsDefaultTighteningForTruncation: bool,
         );
 
+        #[cfg(feature = "AppKit_NSTextTab")]
         #[method(addTabStop:)]
         pub unsafe fn addTabStop(&self, anObject: &NSTextTab);
 
+        #[cfg(feature = "AppKit_NSTextTab")]
         #[method(removeTabStop:)]
         pub unsafe fn removeTabStop(&self, anObject: &NSTextTab);
 
@@ -290,15 +310,19 @@ extern_methods!(
             tighteningFactorForTruncation: c_float,
         );
 
+        #[cfg(all(feature = "AppKit_NSTextBlock", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other textBlocks)]
         pub unsafe fn textBlocks(&self) -> Id<NSArray<NSTextBlock>, Shared>;
 
+        #[cfg(all(feature = "AppKit_NSTextBlock", feature = "Foundation_NSArray"))]
         #[method(setTextBlocks:)]
         pub unsafe fn setTextBlocks(&self, textBlocks: &NSArray<NSTextBlock>);
 
+        #[cfg(all(feature = "AppKit_NSTextList", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other textLists)]
         pub unsafe fn textLists(&self) -> Id<NSArray<NSTextList>, Shared>;
 
+        #[cfg(all(feature = "AppKit_NSTextList", feature = "Foundation_NSArray"))]
         #[method(setTextLists:)]
         pub unsafe fn setTextLists(&self, textLists: &NSArray<NSTextList>);
 
@@ -328,6 +352,7 @@ ns_enum!(
 
 extern_methods!(
     /// NSTextTabDeprecated
+    #[cfg(feature = "AppKit_NSTextTab")]
     unsafe impl NSTextTab {
         #[method_id(@__retain_semantics Init initWithType:location:)]
         pub unsafe fn initWithType_location(

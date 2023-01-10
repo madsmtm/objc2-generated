@@ -27,40 +27,52 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSToolbarItem")]
     unsafe impl NSToolbarItem {
+        #[cfg(feature = "AppKit_NSToolbarItemIdentifier")]
         #[method_id(@__retain_semantics Init initWithItemIdentifier:)]
         pub unsafe fn initWithItemIdentifier(
             this: Option<Allocated<Self>>,
             itemIdentifier: &NSToolbarItemIdentifier,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "AppKit_NSToolbarItemIdentifier")]
         #[method_id(@__retain_semantics Other itemIdentifier)]
         pub unsafe fn itemIdentifier(&self) -> Id<NSToolbarItemIdentifier, Shared>;
 
+        #[cfg(feature = "AppKit_NSToolbar")]
         #[method_id(@__retain_semantics Other toolbar)]
         pub unsafe fn toolbar(&self) -> Option<Id<NSToolbar, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
         pub unsafe fn label(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:)]
         pub unsafe fn setLabel(&self, label: &NSString);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other paletteLabel)]
         pub unsafe fn paletteLabel(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setPaletteLabel:)]
         pub unsafe fn setPaletteLabel(&self, paletteLabel: &NSString);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other toolTip)]
         pub unsafe fn toolTip(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setToolTip:)]
         pub unsafe fn setToolTip(&self, toolTip: Option<&NSString>);
 
+        #[cfg(feature = "AppKit_NSMenuItem")]
         #[method_id(@__retain_semantics Other menuFormRepresentation)]
         pub unsafe fn menuFormRepresentation(&self) -> Option<Id<NSMenuItem, Shared>>;
 
+        #[cfg(feature = "AppKit_NSMenuItem")]
         #[method(setMenuFormRepresentation:)]
         pub unsafe fn setMenuFormRepresentation(&self, menuFormRepresentation: Option<&NSMenuItem>);
 
@@ -88,15 +100,19 @@ extern_methods!(
         #[method(setEnabled:)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
+        #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other image)]
         pub unsafe fn image(&self) -> Option<Id<NSImage, Shared>>;
 
+        #[cfg(feature = "AppKit_NSImage")]
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&NSImage>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
@@ -112,9 +128,11 @@ extern_methods!(
         #[method(setNavigational:)]
         pub unsafe fn setNavigational(&self, navigational: bool);
 
+        #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other view)]
         pub unsafe fn view(&self) -> Option<Id<NSView, Shared>>;
 
+        #[cfg(feature = "AppKit_NSView")]
         #[method(setView:)]
         pub unsafe fn setView(&self, view: Option<&NSView>);
 
@@ -154,6 +172,7 @@ extern_methods!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSToolbarItem")]
     unsafe impl NSToolbarItem {}
 );
 

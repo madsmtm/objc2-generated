@@ -53,6 +53,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "CoreData_NSPersistentStoreResult")]
     unsafe impl NSPersistentStoreResult {}
 );
 
@@ -67,13 +68,17 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "CoreData_NSPersistentStoreAsynchronousResult")]
     unsafe impl NSPersistentStoreAsynchronousResult {
+        #[cfg(feature = "CoreData_NSManagedObjectContext")]
         #[method_id(@__retain_semantics Other managedObjectContext)]
         pub unsafe fn managedObjectContext(&self) -> Id<NSManagedObjectContext, Shared>;
 
+        #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other operationError)]
         pub unsafe fn operationError(&self) -> Option<Id<NSError, Shared>>;
 
+        #[cfg(feature = "Foundation_NSProgress")]
         #[method_id(@__retain_semantics Other progress)]
         pub unsafe fn progress(&self) -> Option<Id<NSProgress, Shared>>;
 
@@ -101,12 +106,15 @@ __inner_extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "CoreData_NSAsynchronousFetchResult")]
     unsafe impl<ResultType: Message, ResultTypeOwnership: Ownership>
         NSAsynchronousFetchResult<ResultType, ResultTypeOwnership>
     {
+        #[cfg(feature = "CoreData_NSAsynchronousFetchRequest")]
         #[method_id(@__retain_semantics Other fetchRequest)]
         pub unsafe fn fetchRequest(&self) -> Id<NSAsynchronousFetchRequest<ResultType>, Shared>;
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other finalResult)]
         pub unsafe fn finalResult(&self) -> Option<Id<NSArray<ResultType>, Shared>>;
     }
@@ -123,6 +131,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "CoreData_NSBatchInsertResult")]
     unsafe impl NSBatchInsertResult {
         #[method_id(@__retain_semantics Other result)]
         pub unsafe fn result(&self) -> Option<Id<Object, Shared>>;
@@ -143,6 +152,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "CoreData_NSBatchUpdateResult")]
     unsafe impl NSBatchUpdateResult {
         #[method_id(@__retain_semantics Other result)]
         pub unsafe fn result(&self) -> Option<Id<Object, Shared>>;
@@ -163,6 +173,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "CoreData_NSBatchDeleteResult")]
     unsafe impl NSBatchDeleteResult {
         #[method_id(@__retain_semantics Other result)]
         pub unsafe fn result(&self) -> Option<Id<Object, Shared>>;
@@ -183,6 +194,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "CoreData_NSPersistentHistoryResult")]
     unsafe impl NSPersistentHistoryResult {
         #[method_id(@__retain_semantics Other result)]
         pub unsafe fn result(&self) -> Option<Id<Object, Shared>>;
@@ -211,6 +223,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "CoreData_NSPersistentCloudKitContainerEventResult")]
     unsafe impl NSPersistentCloudKitContainerEventResult {
         #[method_id(@__retain_semantics Other result)]
         pub unsafe fn result(&self) -> Option<Id<Object, Shared>>;

@@ -35,7 +35,9 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSTextView")]
     unsafe impl NSTextView {
+        #[cfg(feature = "AppKit_NSTextContainer")]
         #[method_id(@__retain_semantics Init initWithFrame:textContainer:)]
         pub unsafe fn initWithFrame_textContainer(
             this: Option<Allocated<Self>>,
@@ -43,6 +45,7 @@ extern_methods!(
             container: Option<&NSTextContainer>,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -55,12 +58,15 @@ extern_methods!(
             frameRect: NSRect,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "AppKit_NSTextContainer")]
         #[method_id(@__retain_semantics Other textContainer)]
         pub unsafe fn textContainer(&self) -> Option<Id<NSTextContainer, Shared>>;
 
+        #[cfg(feature = "AppKit_NSTextContainer")]
         #[method(setTextContainer:)]
         pub unsafe fn setTextContainer(&self, textContainer: Option<&NSTextContainer>);
 
+        #[cfg(feature = "AppKit_NSTextContainer")]
         #[method(replaceTextContainer:)]
         pub unsafe fn replaceTextContainer(&self, newContainer: &NSTextContainer);
 
@@ -76,15 +82,19 @@ extern_methods!(
         #[method(invalidateTextContainerOrigin)]
         pub unsafe fn invalidateTextContainerOrigin(&self);
 
+        #[cfg(feature = "AppKit_NSLayoutManager")]
         #[method_id(@__retain_semantics Other layoutManager)]
         pub unsafe fn layoutManager(&self) -> Option<Id<NSLayoutManager, Shared>>;
 
+        #[cfg(feature = "AppKit_NSTextStorage")]
         #[method_id(@__retain_semantics Other textStorage)]
         pub unsafe fn textStorage(&self) -> Option<Id<NSTextStorage, Shared>>;
 
+        #[cfg(feature = "AppKit_NSTextLayoutManager")]
         #[method_id(@__retain_semantics Other textLayoutManager)]
         pub unsafe fn textLayoutManager(&self) -> Option<Id<NSTextLayoutManager, Shared>>;
 
+        #[cfg(feature = "AppKit_NSTextContentStorage")]
         #[method_id(@__retain_semantics Other textContentStorage)]
         pub unsafe fn textContentStorage(&self) -> Option<Id<NSTextContentStorage, Shared>>;
 
@@ -164,15 +174,19 @@ extern_methods!(
         #[method(orderFrontTablePanel:)]
         pub unsafe fn orderFrontTablePanel(&self, sender: Option<&Object>);
 
+        #[cfg(all(feature = "AppKit_NSRulerMarker", feature = "AppKit_NSRulerView"))]
         #[method(rulerView:didMoveMarker:)]
         pub unsafe fn rulerView_didMoveMarker(&self, ruler: &NSRulerView, marker: &NSRulerMarker);
 
+        #[cfg(all(feature = "AppKit_NSRulerMarker", feature = "AppKit_NSRulerView"))]
         #[method(rulerView:didRemoveMarker:)]
         pub unsafe fn rulerView_didRemoveMarker(&self, ruler: &NSRulerView, marker: &NSRulerMarker);
 
+        #[cfg(all(feature = "AppKit_NSRulerMarker", feature = "AppKit_NSRulerView"))]
         #[method(rulerView:didAddMarker:)]
         pub unsafe fn rulerView_didAddMarker(&self, ruler: &NSRulerView, marker: &NSRulerMarker);
 
+        #[cfg(all(feature = "AppKit_NSRulerMarker", feature = "AppKit_NSRulerView"))]
         #[method(rulerView:shouldMoveMarker:)]
         pub unsafe fn rulerView_shouldMoveMarker(
             &self,
@@ -180,6 +194,7 @@ extern_methods!(
             marker: &NSRulerMarker,
         ) -> bool;
 
+        #[cfg(all(feature = "AppKit_NSRulerMarker", feature = "AppKit_NSRulerView"))]
         #[method(rulerView:shouldAddMarker:)]
         pub unsafe fn rulerView_shouldAddMarker(
             &self,
@@ -187,6 +202,7 @@ extern_methods!(
             marker: &NSRulerMarker,
         ) -> bool;
 
+        #[cfg(all(feature = "AppKit_NSRulerMarker", feature = "AppKit_NSRulerView"))]
         #[method(rulerView:willMoveMarker:toLocation:)]
         pub unsafe fn rulerView_willMoveMarker_toLocation(
             &self,
@@ -195,6 +211,7 @@ extern_methods!(
             location: CGFloat,
         ) -> CGFloat;
 
+        #[cfg(all(feature = "AppKit_NSRulerMarker", feature = "AppKit_NSRulerView"))]
         #[method(rulerView:shouldRemoveMarker:)]
         pub unsafe fn rulerView_shouldRemoveMarker(
             &self,
@@ -202,6 +219,7 @@ extern_methods!(
             marker: &NSRulerMarker,
         ) -> bool;
 
+        #[cfg(all(feature = "AppKit_NSRulerMarker", feature = "AppKit_NSRulerView"))]
         #[method(rulerView:willAddMarker:atLocation:)]
         pub unsafe fn rulerView_willAddMarker_atLocation(
             &self,
@@ -210,6 +228,7 @@ extern_methods!(
             location: CGFloat,
         ) -> CGFloat;
 
+        #[cfg(all(feature = "AppKit_NSEvent", feature = "AppKit_NSRulerView"))]
         #[method(rulerView:handleMouseDown:)]
         pub unsafe fn rulerView_handleMouseDown(&self, ruler: &NSRulerView, event: &NSEvent);
 
@@ -219,6 +238,7 @@ extern_methods!(
         #[method(shouldDrawInsertionPoint)]
         pub unsafe fn shouldDrawInsertionPoint(&self) -> bool;
 
+        #[cfg(feature = "AppKit_NSColor")]
         #[method(drawInsertionPointInRect:color:turnedOn:)]
         pub unsafe fn drawInsertionPointInRect_color_turnedOn(
             &self,
@@ -267,6 +287,7 @@ extern_methods!(
         #[method(stronglyReferencesTextStorage)]
         pub unsafe fn stronglyReferencesTextStorage() -> bool;
 
+        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(performValidatedReplacementInRange:withAttributedString:)]
         pub unsafe fn performValidatedReplacementInRange_withAttributedString(
             &self,
@@ -287,6 +308,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSCompletion
+    #[cfg(feature = "AppKit_NSTextView")]
     unsafe impl NSTextView {
         #[method(complete:)]
         pub unsafe fn complete(&self, sender: Option<&Object>);
@@ -294,6 +316,7 @@ extern_methods!(
         #[method(rangeForUserCompletion)]
         pub unsafe fn rangeForUserCompletion(&self) -> NSRange;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other completionsForPartialWordRange:indexOfSelectedItem:)]
         pub unsafe fn completionsForPartialWordRange_indexOfSelectedItem(
             &self,
@@ -301,6 +324,7 @@ extern_methods!(
             index: NonNull<NSInteger>,
         ) -> Option<Id<NSArray<NSString>, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(insertCompletion:forPartialWordRange:movement:isFinal:)]
         pub unsafe fn insertCompletion_forPartialWordRange_movement_isFinal(
             &self,
@@ -314,10 +338,13 @@ extern_methods!(
 
 extern_methods!(
     /// NSPasteboard
+    #[cfg(feature = "AppKit_NSTextView")]
     unsafe impl NSTextView {
+        #[cfg(all(feature = "AppKit_NSPasteboardType", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other writablePasteboardTypes)]
         pub unsafe fn writablePasteboardTypes(&self) -> Id<NSArray<NSPasteboardType>, Shared>;
 
+        #[cfg(all(feature = "AppKit_NSPasteboard", feature = "AppKit_NSPasteboardType"))]
         #[method(writeSelectionToPasteboard:type:)]
         pub unsafe fn writeSelectionToPasteboard_type(
             &self,
@@ -325,6 +352,11 @@ extern_methods!(
             type_: &NSPasteboardType,
         ) -> bool;
 
+        #[cfg(all(
+            feature = "AppKit_NSPasteboard",
+            feature = "AppKit_NSPasteboardType",
+            feature = "Foundation_NSArray"
+        ))]
         #[method(writeSelectionToPasteboard:types:)]
         pub unsafe fn writeSelectionToPasteboard_types(
             &self,
@@ -332,9 +364,11 @@ extern_methods!(
             types: &NSArray<NSPasteboardType>,
         ) -> bool;
 
+        #[cfg(all(feature = "AppKit_NSPasteboardType", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other readablePasteboardTypes)]
         pub unsafe fn readablePasteboardTypes(&self) -> Id<NSArray<NSPasteboardType>, Shared>;
 
+        #[cfg(all(feature = "AppKit_NSPasteboardType", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other preferredPasteboardTypeFromArray:restrictedToTypesFromArray:)]
         pub unsafe fn preferredPasteboardTypeFromArray_restrictedToTypesFromArray(
             &self,
@@ -342,6 +376,7 @@ extern_methods!(
             allowedTypes: Option<&NSArray<NSPasteboardType>>,
         ) -> Option<Id<NSPasteboardType, Shared>>;
 
+        #[cfg(all(feature = "AppKit_NSPasteboard", feature = "AppKit_NSPasteboardType"))]
         #[method(readSelectionFromPasteboard:type:)]
         pub unsafe fn readSelectionFromPasteboard_type(
             &self,
@@ -349,12 +384,14 @@ extern_methods!(
             type_: &NSPasteboardType,
         ) -> bool;
 
+        #[cfg(feature = "AppKit_NSPasteboard")]
         #[method(readSelectionFromPasteboard:)]
         pub unsafe fn readSelectionFromPasteboard(&self, pboard: &NSPasteboard) -> bool;
 
         #[method(registerForServices)]
         pub unsafe fn registerForServices();
 
+        #[cfg(feature = "AppKit_NSPasteboardType")]
         #[method_id(@__retain_semantics Other validRequestorForSendType:returnType:)]
         pub unsafe fn validRequestorForSendType_returnType(
             &self,
@@ -372,7 +409,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSDragging
+    #[cfg(feature = "AppKit_NSTextView")]
     unsafe impl NSTextView {
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(dragSelectionWithEvent:offset:slideBack:)]
         pub unsafe fn dragSelectionWithEvent_offset_slideBack(
             &self,
@@ -381,6 +420,7 @@ extern_methods!(
             slideBack: bool,
         ) -> bool;
 
+        #[cfg(all(feature = "AppKit_NSEvent", feature = "AppKit_NSImage"))]
         #[method_id(@__retain_semantics Other dragImageForSelectionWithEvent:origin:)]
         pub unsafe fn dragImageForSelectionWithEvent_origin(
             &self,
@@ -388,9 +428,11 @@ extern_methods!(
             origin: NSPointPointer,
         ) -> Option<Id<NSImage, Shared>>;
 
+        #[cfg(all(feature = "AppKit_NSPasteboardType", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other acceptableDragTypes)]
         pub unsafe fn acceptableDragTypes(&self) -> Id<NSArray<NSPasteboardType>, Shared>;
 
+        #[cfg(all(feature = "AppKit_NSDraggingInfo", feature = "AppKit_NSPasteboardType"))]
         #[method(dragOperationForDraggingInfo:type:)]
         pub unsafe fn dragOperationForDraggingInfo_type(
             &self,
@@ -405,13 +447,17 @@ extern_methods!(
 
 extern_methods!(
     /// NSSharing
+    #[cfg(feature = "AppKit_NSTextView")]
     unsafe impl NSTextView {
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[method_id(@__retain_semantics Other selectedRanges)]
         pub unsafe fn selectedRanges(&self) -> Id<NSArray<NSValue>, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[method(setSelectedRanges:)]
         pub unsafe fn setSelectedRanges(&self, selectedRanges: &NSArray<NSValue>);
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[method(setSelectedRanges:affinity:stillSelecting:)]
         pub unsafe fn setSelectedRanges_affinity_stillSelecting(
             &self,
@@ -437,42 +483,68 @@ extern_methods!(
         #[method(setSelectionGranularity:)]
         pub unsafe fn setSelectionGranularity(&self, selectionGranularity: NSSelectionGranularity);
 
+        #[cfg(all(
+            feature = "Foundation_NSAttributedStringKey",
+            feature = "Foundation_NSDictionary"
+        ))]
         #[method_id(@__retain_semantics Other selectedTextAttributes)]
         pub unsafe fn selectedTextAttributes(
             &self,
         ) -> Id<NSDictionary<NSAttributedStringKey, Object>, Shared>;
 
+        #[cfg(all(
+            feature = "Foundation_NSAttributedStringKey",
+            feature = "Foundation_NSDictionary"
+        ))]
         #[method(setSelectedTextAttributes:)]
         pub unsafe fn setSelectedTextAttributes(
             &self,
             selectedTextAttributes: &NSDictionary<NSAttributedStringKey, Object>,
         );
 
+        #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other insertionPointColor)]
         pub unsafe fn insertionPointColor(&self) -> Id<NSColor, Shared>;
 
+        #[cfg(feature = "AppKit_NSColor")]
         #[method(setInsertionPointColor:)]
         pub unsafe fn setInsertionPointColor(&self, insertionPointColor: &NSColor);
 
         #[method(updateInsertionPointStateAndRestartTimer:)]
         pub unsafe fn updateInsertionPointStateAndRestartTimer(&self, restartFlag: bool);
 
+        #[cfg(all(
+            feature = "Foundation_NSAttributedStringKey",
+            feature = "Foundation_NSDictionary"
+        ))]
         #[method_id(@__retain_semantics Other markedTextAttributes)]
         pub unsafe fn markedTextAttributes(
             &self,
         ) -> Option<Id<NSDictionary<NSAttributedStringKey, Object>, Shared>>;
 
+        #[cfg(all(
+            feature = "Foundation_NSAttributedStringKey",
+            feature = "Foundation_NSDictionary"
+        ))]
         #[method(setMarkedTextAttributes:)]
         pub unsafe fn setMarkedTextAttributes(
             &self,
             markedTextAttributes: Option<&NSDictionary<NSAttributedStringKey, Object>>,
         );
 
+        #[cfg(all(
+            feature = "Foundation_NSAttributedStringKey",
+            feature = "Foundation_NSDictionary"
+        ))]
         #[method_id(@__retain_semantics Other linkTextAttributes)]
         pub unsafe fn linkTextAttributes(
             &self,
         ) -> Option<Id<NSDictionary<NSAttributedStringKey, Object>, Shared>>;
 
+        #[cfg(all(
+            feature = "Foundation_NSAttributedStringKey",
+            feature = "Foundation_NSDictionary"
+        ))]
         #[method(setLinkTextAttributes:)]
         pub unsafe fn setLinkTextAttributes(
             &self,
@@ -530,17 +602,30 @@ extern_methods!(
         #[method(setSpellingState:range:)]
         pub unsafe fn setSpellingState_range(&self, value: NSInteger, charRange: NSRange);
 
+        #[cfg(all(
+            feature = "Foundation_NSAttributedStringKey",
+            feature = "Foundation_NSDictionary"
+        ))]
         #[method_id(@__retain_semantics Other typingAttributes)]
         pub unsafe fn typingAttributes(
             &self,
         ) -> Id<NSDictionary<NSAttributedStringKey, Object>, Shared>;
 
+        #[cfg(all(
+            feature = "Foundation_NSAttributedStringKey",
+            feature = "Foundation_NSDictionary"
+        ))]
         #[method(setTypingAttributes:)]
         pub unsafe fn setTypingAttributes(
             &self,
             typingAttributes: &NSDictionary<NSAttributedStringKey, Object>,
         );
 
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSValue"
+        ))]
         #[method(shouldChangeTextInRanges:replacementStrings:)]
         pub unsafe fn shouldChangeTextInRanges_replacementStrings(
             &self,
@@ -548,19 +633,23 @@ extern_methods!(
             replacementStrings: Option<&NSArray<NSString>>,
         ) -> bool;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[method_id(@__retain_semantics Other rangesForUserTextChange)]
         pub unsafe fn rangesForUserTextChange(&self) -> Option<Id<NSArray<NSValue>, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[method_id(@__retain_semantics Other rangesForUserCharacterAttributeChange)]
         pub unsafe fn rangesForUserCharacterAttributeChange(
             &self,
         ) -> Option<Id<NSArray<NSValue>, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[method_id(@__retain_semantics Other rangesForUserParagraphAttributeChange)]
         pub unsafe fn rangesForUserParagraphAttributeChange(
             &self,
         ) -> Option<Id<NSArray<NSValue>, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(shouldChangeTextInRange:replacementString:)]
         pub unsafe fn shouldChangeTextInRange_replacementString(
             &self,
@@ -589,9 +678,11 @@ extern_methods!(
             allowsDocumentBackgroundColorChange: bool,
         );
 
+        #[cfg(feature = "AppKit_NSParagraphStyle")]
         #[method_id(@__retain_semantics Other defaultParagraphStyle)]
         pub unsafe fn defaultParagraphStyle(&self) -> Option<Id<NSParagraphStyle, Shared>>;
 
+        #[cfg(feature = "AppKit_NSParagraphStyle")]
         #[method(setDefaultParagraphStyle:)]
         pub unsafe fn setDefaultParagraphStyle(
             &self,
@@ -628,9 +719,11 @@ extern_methods!(
             usesRolloverButtonForSelection: bool,
         );
 
+        #[cfg(feature = "AppKit_NSTextViewDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSTextViewDelegate, Shared>>;
 
+        #[cfg(feature = "AppKit_NSTextViewDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&NSTextViewDelegate>);
 
@@ -664,9 +757,11 @@ extern_methods!(
         #[method(setDrawsBackground:)]
         pub unsafe fn setDrawsBackground(&self, drawsBackground: bool);
 
+        #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other backgroundColor)]
         pub unsafe fn backgroundColor(&self) -> Id<NSColor, Shared>;
 
+        #[cfg(feature = "AppKit_NSColor")]
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, backgroundColor: &NSColor);
 
@@ -691,9 +786,11 @@ extern_methods!(
         #[method(setSelectedRange:)]
         pub unsafe fn setSelectedRange(&self, charRange: NSRange);
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other allowedInputSourceLocales)]
         pub unsafe fn allowedInputSourceLocales(&self) -> Option<Id<NSArray<NSString>, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setAllowedInputSourceLocales:)]
         pub unsafe fn setAllowedInputSourceLocales(
             &self,
@@ -704,6 +801,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSTextChecking
+    #[cfg(feature = "AppKit_NSTextView")]
     unsafe impl NSTextView {
         #[method(smartInsertDeleteEnabled)]
         pub unsafe fn smartInsertDeleteEnabled(&self) -> bool;
@@ -720,6 +818,7 @@ extern_methods!(
         #[method(toggleSmartInsertDelete:)]
         pub unsafe fn toggleSmartInsertDelete(&self, sender: Option<&Object>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(smartInsertForString:replacingRange:beforeString:afterString:)]
         pub unsafe fn smartInsertForString_replacingRange_beforeString_afterString(
             &self,
@@ -729,6 +828,7 @@ extern_methods!(
             afterString: *mut *mut NSString,
         );
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other smartInsertBeforeStringForString:replacingRange:)]
         pub unsafe fn smartInsertBeforeStringForString_replacingRange(
             &self,
@@ -736,6 +836,7 @@ extern_methods!(
             charRangeToReplace: NSRange,
         ) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other smartInsertAfterStringForString:replacingRange:)]
         pub unsafe fn smartInsertAfterStringForString_replacingRange(
             &self,
@@ -818,6 +919,10 @@ extern_methods!(
             enabledTextCheckingTypes: NSTextCheckingTypes,
         );
 
+        #[cfg(all(
+            feature = "AppKit_NSTextCheckingOptionKey",
+            feature = "Foundation_NSDictionary"
+        ))]
         #[method(checkTextInRange:types:options:)]
         pub unsafe fn checkTextInRange_types_options(
             &self,
@@ -826,6 +931,13 @@ extern_methods!(
             options: &NSDictionary<NSTextCheckingOptionKey, Object>,
         );
 
+        #[cfg(all(
+            feature = "AppKit_NSTextCheckingOptionKey",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSOrthography",
+            feature = "Foundation_NSTextCheckingResult"
+        ))]
         #[method(handleTextCheckingResults:forRange:types:options:orthography:wordCount:)]
         pub unsafe fn handleTextCheckingResults_forRange_types_options_orthography_wordCount(
             &self,
@@ -868,6 +980,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSQuickLookPreview
+    #[cfg(feature = "AppKit_NSTextView")]
     unsafe impl NSTextView {
         #[method(toggleQuickLookPreviewPanel:)]
         pub unsafe fn toggleQuickLookPreviewPanel(&self, sender: Option<&Object>);
@@ -879,6 +992,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSTextView_SharingService
+    #[cfg(feature = "AppKit_NSTextView")]
     unsafe impl NSTextView {
         #[method(orderFrontSharingServicePicker:)]
         pub unsafe fn orderFrontSharingServicePicker(&self, sender: Option<&Object>);
@@ -887,6 +1001,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSTextView_TouchBar
+    #[cfg(feature = "AppKit_NSTextView")]
     unsafe impl NSTextView {
         #[method(isAutomaticTextCompletionEnabled)]
         pub unsafe fn isAutomaticTextCompletionEnabled(&self) -> bool;
@@ -918,6 +1033,7 @@ extern_methods!(
         #[method(updateCandidates)]
         pub unsafe fn updateCandidates(&self);
 
+        #[cfg(feature = "AppKit_NSCandidateListTouchBarItem")]
         #[method_id(@__retain_semantics Other candidateListTouchBarItem)]
         pub unsafe fn candidateListTouchBarItem(
             &self,
@@ -927,16 +1043,20 @@ extern_methods!(
 
 extern_methods!(
     /// NSTextView_Factory
+    #[cfg(feature = "AppKit_NSTextView")]
     unsafe impl NSTextView {
+        #[cfg(feature = "AppKit_NSScrollView")]
         #[method_id(@__retain_semantics Other scrollableTextView)]
         pub unsafe fn scrollableTextView() -> Id<NSScrollView, Shared>;
 
         #[method_id(@__retain_semantics Other fieldEditor)]
         pub unsafe fn fieldEditor() -> Id<Self, Shared>;
 
+        #[cfg(feature = "AppKit_NSScrollView")]
         #[method_id(@__retain_semantics Other scrollableDocumentContentTextView)]
         pub unsafe fn scrollableDocumentContentTextView() -> Id<NSScrollView, Shared>;
 
+        #[cfg(feature = "AppKit_NSScrollView")]
         #[method_id(@__retain_semantics Other scrollablePlainDocumentContentTextView)]
         pub unsafe fn scrollablePlainDocumentContentTextView() -> Id<NSScrollView, Shared>;
     }
@@ -944,6 +1064,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSDeprecated
+    #[cfg(feature = "AppKit_NSTextView")]
     unsafe impl NSTextView {
         #[method(toggleBaseWritingDirection:)]
         pub unsafe fn toggleBaseWritingDirection(&self, sender: Option<&Object>);

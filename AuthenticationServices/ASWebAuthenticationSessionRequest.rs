@@ -36,24 +36,30 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AuthenticationServices_ASWebAuthenticationSessionRequest")]
     unsafe impl ASWebAuthenticationSessionRequest {
+        #[cfg(feature = "Foundation_NSUUID")]
         #[method_id(@__retain_semantics Other UUID)]
         pub unsafe fn UUID(&self) -> Id<NSUUID, Shared>;
 
+        #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other URL)]
         pub unsafe fn URL(&self) -> Id<NSURL, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other callbackURLScheme)]
         pub unsafe fn callbackURLScheme(&self) -> Option<Id<NSString, Shared>>;
 
         #[method(shouldUseEphemeralSession)]
         pub unsafe fn shouldUseEphemeralSession(&self) -> bool;
 
+        #[cfg(feature = "AuthenticationServices_ASWebAuthenticationSessionRequestDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Id<ASWebAuthenticationSessionRequestDelegate, Shared>>;
 
+        #[cfg(feature = "AuthenticationServices_ASWebAuthenticationSessionRequestDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -66,9 +72,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSError")]
         #[method(cancelWithError:)]
         pub unsafe fn cancelWithError(&self, error: &NSError);
 
+        #[cfg(feature = "Foundation_NSURL")]
         #[method(completeWithCallbackURL:)]
         pub unsafe fn completeWithCallbackURL(&self, url: &NSURL);
     }

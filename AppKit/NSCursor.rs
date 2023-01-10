@@ -15,6 +15,7 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "AppKit_NSCursor")]
     unsafe impl NSCursor {
         #[method_id(@__retain_semantics Other currentCursor)]
         pub unsafe fn currentCursor() -> Id<NSCursor, Shared>;
@@ -76,6 +77,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other IBeamCursorForVerticalLayout)]
         pub unsafe fn IBeamCursorForVerticalLayout() -> Id<NSCursor, Shared>;
 
+        #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Init initWithImage:hotSpot:)]
         pub unsafe fn initWithImage_hotSpot(
             this: Option<Allocated<Self>>,
@@ -83,6 +85,7 @@ extern_methods!(
             point: NSPoint,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -98,6 +101,7 @@ extern_methods!(
         #[method(setHiddenUntilMouseMoves:)]
         pub unsafe fn setHiddenUntilMouseMoves(flag: bool);
 
+        #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other image)]
         pub unsafe fn image(&self) -> Id<NSImage, Shared>;
 
@@ -116,7 +120,9 @@ extern_static!(NSAppKitVersionNumberWithCursorSizeSupport: NSAppKitVersion = 682
 
 extern_methods!(
     /// NSDeprecated
+    #[cfg(feature = "AppKit_NSCursor")]
     unsafe impl NSCursor {
+        #[cfg(all(feature = "AppKit_NSColor", feature = "AppKit_NSImage"))]
         #[method_id(@__retain_semantics Init initWithImage:foregroundColorHint:backgroundColorHint:hotSpot:)]
         pub unsafe fn initWithImage_foregroundColorHint_backgroundColorHint_hotSpot(
             this: Option<Allocated<Self>>,
@@ -138,9 +144,11 @@ extern_methods!(
         #[method(isSetOnMouseEntered)]
         pub unsafe fn isSetOnMouseEntered(&self) -> bool;
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(mouseEntered:)]
         pub unsafe fn mouseEntered(&self, event: &NSEvent);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(mouseExited:)]
         pub unsafe fn mouseExited(&self, event: &NSEvent);
     }

@@ -34,10 +34,13 @@ extern_class!(
 );
 
 extern_methods!(
+    #[cfg(feature = "Foundation_NSISO8601DateFormatter")]
     unsafe impl NSISO8601DateFormatter {
+        #[cfg(feature = "Foundation_NSTimeZone")]
         #[method_id(@__retain_semantics Other timeZone)]
         pub unsafe fn timeZone(&self) -> Id<NSTimeZone, Shared>;
 
+        #[cfg(feature = "Foundation_NSTimeZone")]
         #[method(setTimeZone:)]
         pub unsafe fn setTimeZone(&self, timeZone: Option<&NSTimeZone>);
 
@@ -50,12 +53,19 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other stringFromDate:)]
         pub unsafe fn stringFromDate(&self, date: &NSDate) -> Id<NSString, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other dateFromString:)]
         pub unsafe fn dateFromString(&self, string: &NSString) -> Option<Id<NSDate, Shared>>;
 
+        #[cfg(all(
+            feature = "Foundation_NSDate",
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSTimeZone"
+        ))]
         #[method_id(@__retain_semantics Other stringFromDate:timeZone:formatOptions:)]
         pub unsafe fn stringFromDate_timeZone_formatOptions(
             date: &NSDate,
