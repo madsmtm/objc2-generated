@@ -129,9 +129,7 @@ pub use self::__MTLAccelerationStructure::{
     MTLMotionKeyframeData, MTLPrimitiveAccelerationStructureDescriptor,
 };
 pub use self::__MTLAccelerationStructureCommandEncoder::MTLAccelerationStructureCommandEncoder;
-pub use self::__MTLAccelerationStructureTypes::{
-    MTLAxisAlignedBoundingBox, MTLPackedFloat3, MTLPackedFloat4x3,
-};
+pub use self::__MTLAccelerationStructureTypes::{MTLAxisAlignedBoundingBox, MTLPackedFloat4x3};
 pub use self::__MTLArgument::{
     MTLArgument, MTLArgumentAccess, MTLArgumentAccessReadOnly, MTLArgumentAccessReadWrite,
     MTLArgumentAccessWriteOnly, MTLArgumentType, MTLArgumentTypeBuffer, MTLArgumentTypeImageblock,

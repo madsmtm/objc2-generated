@@ -5,16 +5,6 @@ use crate::Foundation::*;
 use crate::Metal::*;
 
 extern_struct!(
-    pub struct MTLPackedFloat3 {}
-);
-
-inline_fn!(
-    pub unsafe fn MTLPackedFloat3Make(x: c_float, y: c_float, z: c_float) -> MTLPackedFloat3 {
-        todo!()
-    }
-);
-
-extern_struct!(
     pub struct MTLPackedFloat4x3 {
         pub columns: [MTLPackedFloat3; 4],
     }
