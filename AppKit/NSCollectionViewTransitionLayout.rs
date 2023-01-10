@@ -39,7 +39,6 @@ extern_methods!(
             newLayout: &AppKit::NSCollectionViewLayout,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "AppKit_NSCollectionViewTransitionLayoutAnimatedKey")]
         #[method(updateValue:forAnimatedKey:)]
         pub unsafe fn updateValue_forAnimatedKey(
             &self,
@@ -47,7 +46,6 @@ extern_methods!(
             key: &AppKit::NSCollectionViewTransitionLayoutAnimatedKey,
         );
 
-        #[cfg(feature = "AppKit_NSCollectionViewTransitionLayoutAnimatedKey")]
         #[method(valueForAnimatedKey:)]
         pub unsafe fn valueForAnimatedKey(
             &self,

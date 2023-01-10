@@ -56,7 +56,7 @@ extern_methods!(
         #[method(drawInRect:)]
         pub unsafe fn drawInRect(&self, rect: NSRect) -> bool;
 
-        #[cfg(all(feature = "AppKit_NSImageHintKey", feature = "Foundation_NSDictionary"))]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method(drawInRect:fromRect:operation:fraction:respectFlipped:hints:)]
         pub unsafe fn drawInRect_fromRect_operation_fraction_respectFlipped_hints(
             &self,
@@ -86,11 +86,9 @@ extern_methods!(
         #[method(setOpaque:)]
         pub unsafe fn setOpaque(&self, opaque: bool);
 
-        #[cfg(feature = "AppKit_NSColorSpaceName")]
         #[method_id(@__retain_semantics Other colorSpaceName)]
         pub unsafe fn colorSpaceName(&self) -> Id<AppKit::NSColorSpaceName, Shared>;
 
-        #[cfg(feature = "AppKit_NSColorSpaceName")]
         #[method(setColorSpaceName:)]
         pub unsafe fn setColorSpaceName(&self, colorSpaceName: &AppKit::NSColorSpaceName);
 
@@ -134,7 +132,6 @@ extern_methods!(
             type_: &Foundation::NSString,
         ) -> Option<&'static Class>;
 
-        #[cfg(feature = "AppKit_NSPasteboardType")]
         #[method(imageRepClassForPasteboardType:)]
         pub unsafe fn imageRepClassForPasteboardType(
             type_: &AppKit::NSPasteboardType,
@@ -157,7 +154,7 @@ extern_methods!(
         pub unsafe fn imageUnfilteredFileTypes(
         ) -> Id<Foundation::NSArray<Foundation::NSString>, Shared>;
 
-        #[cfg(all(feature = "AppKit_NSPasteboardType", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other imageUnfilteredPasteboardTypes)]
         pub unsafe fn imageUnfilteredPasteboardTypes(
         ) -> Id<Foundation::NSArray<AppKit::NSPasteboardType>, Shared>;
@@ -166,7 +163,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other imageFileTypes)]
         pub unsafe fn imageFileTypes() -> Id<Foundation::NSArray<Foundation::NSString>, Shared>;
 
-        #[cfg(all(feature = "AppKit_NSPasteboardType", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other imagePasteboardTypes)]
         pub unsafe fn imagePasteboardTypes(
         ) -> Id<Foundation::NSArray<AppKit::NSPasteboardType>, Shared>;

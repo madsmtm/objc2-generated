@@ -15,11 +15,9 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Foundation_NSSpellServer")]
     unsafe impl NSSpellServer {
-        #[cfg(feature = "Foundation_NSSpellServerDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<Foundation::NSSpellServerDelegate, Shared>>;
 
-        #[cfg(feature = "Foundation_NSSpellServerDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&Foundation::NSSpellServerDelegate>);
 

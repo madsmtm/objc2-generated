@@ -617,10 +617,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other filePathURL)]
         pub unsafe fn filePathURL(&self) -> Option<Id<Foundation::NSURL, Shared>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSURLResourceKey"
-        ))]
+        #[cfg(feature = "Foundation_NSError")]
         #[method(getResourceValue:forKey:error:_)]
         pub unsafe fn getResourceValue_forKey_error(
             &self,
@@ -631,8 +628,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSURLResourceKey"
+            feature = "Foundation_NSError"
         ))]
         #[method_id(@__retain_semantics Other resourceValuesForKeys:error:_)]
         pub unsafe fn resourceValuesForKeys_error(
@@ -643,10 +639,7 @@ extern_methods!(
             Id<NSError, Shared>,
         >;
 
-        #[cfg(all(
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSURLResourceKey"
-        ))]
+        #[cfg(feature = "Foundation_NSError")]
         #[method(setResourceValue:forKey:error:_)]
         pub unsafe fn setResourceValue_forKey_error(
             &self,
@@ -654,25 +647,19 @@ extern_methods!(
             key: &Foundation::NSURLResourceKey,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSURLResourceKey"
-        ))]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSError"))]
         #[method(setResourceValues:error:_)]
         pub unsafe fn setResourceValues_error(
             &self,
             keyedValues: &Foundation::NSDictionary<Foundation::NSURLResourceKey, Object>,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[cfg(feature = "Foundation_NSURLResourceKey")]
         #[method(removeCachedResourceValueForKey:)]
         pub unsafe fn removeCachedResourceValueForKey(&self, key: &Foundation::NSURLResourceKey);
 
         #[method(removeAllCachedResourceValues)]
         pub unsafe fn removeAllCachedResourceValues(&self);
 
-        #[cfg(feature = "Foundation_NSURLResourceKey")]
         #[method(setTemporaryResourceValue:forKey:)]
         pub unsafe fn setTemporaryResourceValue_forKey(
             &self,
@@ -683,8 +670,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSData",
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSURLResourceKey"
+            feature = "Foundation_NSError"
         ))]
         #[method_id(@__retain_semantics Other bookmarkDataWithOptions:includingResourceValuesForKeys:relativeToURL:error:_)]
         pub unsafe fn bookmarkDataWithOptions_includingResourceValuesForKeys_relativeToURL_error(
@@ -716,8 +702,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSData",
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSURLResourceKey"
+            feature = "Foundation_NSDictionary"
         ))]
         #[method_id(@__retain_semantics Other resourceValuesForKeys:fromBookmarkData:)]
         pub unsafe fn resourceValuesForKeys_fromBookmarkData(
@@ -758,10 +743,7 @@ extern_methods!(
     /// NSPromisedItems
     #[cfg(feature = "Foundation_NSURL")]
     unsafe impl NSURL {
-        #[cfg(all(
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSURLResourceKey"
-        ))]
+        #[cfg(feature = "Foundation_NSError")]
         #[method(getPromisedItemResourceValue:forKey:error:_)]
         pub unsafe fn getPromisedItemResourceValue_forKey_error(
             &self,
@@ -772,8 +754,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSURLResourceKey"
+            feature = "Foundation_NSError"
         ))]
         #[method_id(@__retain_semantics Other promisedItemResourceValuesForKeys:error:_)]
         pub unsafe fn promisedItemResourceValuesForKeys_error(

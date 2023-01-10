@@ -57,13 +57,13 @@ extern_methods!(
         #[method(setOptions:)]
         pub fn setOptions(&self, options: MTLFunctionOptions);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLBinaryArchive"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other binaryArchives)]
         pub unsafe fn binaryArchives(
             &self,
         ) -> Option<Id<Foundation::NSArray<Metal::MTLBinaryArchive>, Shared>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLBinaryArchive"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(setBinaryArchives:)]
         pub unsafe fn setBinaryArchives(
             &self,

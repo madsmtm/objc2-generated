@@ -45,7 +45,6 @@ extern_methods!(
 
         #[cfg(all(
             feature = "Foundation_NSAttributedString",
-            feature = "Foundation_NSAttributedStringKey",
             feature = "Foundation_NSDictionary"
         ))]
         #[method_id(@__retain_semantics Other attributedStringForObjectValue:withDefaultAttributes:)]

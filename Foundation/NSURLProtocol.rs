@@ -77,7 +77,6 @@ extern_methods!(
     unsafe impl NSURLProtocol {
         #[cfg(all(
             feature = "Foundation_NSCachedURLResponse",
-            feature = "Foundation_NSURLProtocolClient",
             feature = "Foundation_NSURLRequest"
         ))]
         #[method_id(@__retain_semantics Init initWithRequest:cachedResponse:client:)]
@@ -88,7 +87,6 @@ extern_methods!(
             client: Option<&Foundation::NSURLProtocolClient>,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSURLProtocolClient")]
         #[method_id(@__retain_semantics Other client)]
         pub unsafe fn client(&self) -> Option<Id<Foundation::NSURLProtocolClient, Shared>>;
 
@@ -169,7 +167,6 @@ extern_methods!(
 
         #[cfg(all(
             feature = "Foundation_NSCachedURLResponse",
-            feature = "Foundation_NSURLProtocolClient",
             feature = "Foundation_NSURLSessionTask"
         ))]
         #[method_id(@__retain_semantics Init initWithTask:cachedResponse:client:)]

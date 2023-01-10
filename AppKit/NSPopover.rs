@@ -35,11 +35,9 @@ extern_methods!(
             coder: &Foundation::NSCoder,
         ) -> Option<Id<Self, Shared>>;
 
-        #[cfg(feature = "AppKit_NSPopoverDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<AppKit::NSPopoverDelegate, Shared>>;
 
-        #[cfg(feature = "AppKit_NSPopoverDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AppKit::NSPopoverDelegate>);
 

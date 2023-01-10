@@ -20,7 +20,6 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "CoreAnimation_CAMediaTimingFunction")]
     unsafe impl CAMediaTimingFunction {
-        #[cfg(feature = "CoreAnimation_CAMediaTimingFunctionName")]
         #[method_id(@__retain_semantics Other functionWithName:)]
         pub unsafe fn functionWithName(
             name: &CoreAnimation::CAMediaTimingFunctionName,

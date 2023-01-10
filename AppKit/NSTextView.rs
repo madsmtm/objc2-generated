@@ -357,13 +357,13 @@ extern_methods!(
     /// NSPasteboard
     #[cfg(feature = "AppKit_NSTextView")]
     unsafe impl NSTextView {
-        #[cfg(all(feature = "AppKit_NSPasteboardType", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other writablePasteboardTypes)]
         pub unsafe fn writablePasteboardTypes(
             &self,
         ) -> Id<Foundation::NSArray<AppKit::NSPasteboardType>, Shared>;
 
-        #[cfg(all(feature = "AppKit_NSPasteboard", feature = "AppKit_NSPasteboardType"))]
+        #[cfg(feature = "AppKit_NSPasteboard")]
         #[method(writeSelectionToPasteboard:type:)]
         pub unsafe fn writeSelectionToPasteboard_type(
             &self,
@@ -371,11 +371,7 @@ extern_methods!(
             type_: &AppKit::NSPasteboardType,
         ) -> bool;
 
-        #[cfg(all(
-            feature = "AppKit_NSPasteboard",
-            feature = "AppKit_NSPasteboardType",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(all(feature = "AppKit_NSPasteboard", feature = "Foundation_NSArray"))]
         #[method(writeSelectionToPasteboard:types:)]
         pub unsafe fn writeSelectionToPasteboard_types(
             &self,
@@ -383,13 +379,13 @@ extern_methods!(
             types: &Foundation::NSArray<AppKit::NSPasteboardType>,
         ) -> bool;
 
-        #[cfg(all(feature = "AppKit_NSPasteboardType", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other readablePasteboardTypes)]
         pub unsafe fn readablePasteboardTypes(
             &self,
         ) -> Id<Foundation::NSArray<AppKit::NSPasteboardType>, Shared>;
 
-        #[cfg(all(feature = "AppKit_NSPasteboardType", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other preferredPasteboardTypeFromArray:restrictedToTypesFromArray:)]
         pub unsafe fn preferredPasteboardTypeFromArray_restrictedToTypesFromArray(
             &self,
@@ -397,7 +393,7 @@ extern_methods!(
             allowedTypes: Option<&Foundation::NSArray<AppKit::NSPasteboardType>>,
         ) -> Option<Id<AppKit::NSPasteboardType, Shared>>;
 
-        #[cfg(all(feature = "AppKit_NSPasteboard", feature = "AppKit_NSPasteboardType"))]
+        #[cfg(feature = "AppKit_NSPasteboard")]
         #[method(readSelectionFromPasteboard:type:)]
         pub unsafe fn readSelectionFromPasteboard_type(
             &self,
@@ -412,7 +408,6 @@ extern_methods!(
         #[method(registerForServices)]
         pub unsafe fn registerForServices();
 
-        #[cfg(feature = "AppKit_NSPasteboardType")]
         #[method_id(@__retain_semantics Other validRequestorForSendType:returnType:)]
         pub unsafe fn validRequestorForSendType_returnType(
             &self,
@@ -449,13 +444,12 @@ extern_methods!(
             origin: NSPointPointer,
         ) -> Option<Id<AppKit::NSImage, Shared>>;
 
-        #[cfg(all(feature = "AppKit_NSPasteboardType", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other acceptableDragTypes)]
         pub unsafe fn acceptableDragTypes(
             &self,
         ) -> Id<Foundation::NSArray<AppKit::NSPasteboardType>, Shared>;
 
-        #[cfg(all(feature = "AppKit_NSDraggingInfo", feature = "AppKit_NSPasteboardType"))]
         #[method(dragOperationForDraggingInfo:type:)]
         pub unsafe fn dragOperationForDraggingInfo_type(
             &self,
@@ -510,19 +504,13 @@ extern_methods!(
         #[method(setSelectionGranularity:)]
         pub unsafe fn setSelectionGranularity(&self, selectionGranularity: NSSelectionGranularity);
 
-        #[cfg(all(
-            feature = "Foundation_NSAttributedStringKey",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other selectedTextAttributes)]
         pub unsafe fn selectedTextAttributes(
             &self,
         ) -> Id<Foundation::NSDictionary<Foundation::NSAttributedStringKey, Object>, Shared>;
 
-        #[cfg(all(
-            feature = "Foundation_NSAttributedStringKey",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method(setSelectedTextAttributes:)]
         pub unsafe fn setSelectedTextAttributes(
             &self,
@@ -543,19 +531,13 @@ extern_methods!(
         #[method(updateInsertionPointStateAndRestartTimer:)]
         pub unsafe fn updateInsertionPointStateAndRestartTimer(&self, restartFlag: bool);
 
-        #[cfg(all(
-            feature = "Foundation_NSAttributedStringKey",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other markedTextAttributes)]
         pub unsafe fn markedTextAttributes(
             &self,
         ) -> Option<Id<Foundation::NSDictionary<Foundation::NSAttributedStringKey, Object>, Shared>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSAttributedStringKey",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method(setMarkedTextAttributes:)]
         pub unsafe fn setMarkedTextAttributes(
             &self,
@@ -564,19 +546,13 @@ extern_methods!(
             >,
         );
 
-        #[cfg(all(
-            feature = "Foundation_NSAttributedStringKey",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other linkTextAttributes)]
         pub unsafe fn linkTextAttributes(
             &self,
         ) -> Option<Id<Foundation::NSDictionary<Foundation::NSAttributedStringKey, Object>, Shared>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSAttributedStringKey",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method(setLinkTextAttributes:)]
         pub unsafe fn setLinkTextAttributes(
             &self,
@@ -636,19 +612,13 @@ extern_methods!(
         #[method(setSpellingState:range:)]
         pub unsafe fn setSpellingState_range(&self, value: NSInteger, charRange: NSRange);
 
-        #[cfg(all(
-            feature = "Foundation_NSAttributedStringKey",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other typingAttributes)]
         pub unsafe fn typingAttributes(
             &self,
         ) -> Id<Foundation::NSDictionary<Foundation::NSAttributedStringKey, Object>, Shared>;
 
-        #[cfg(all(
-            feature = "Foundation_NSAttributedStringKey",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method(setTypingAttributes:)]
         pub unsafe fn setTypingAttributes(
             &self,
@@ -755,11 +725,9 @@ extern_methods!(
             usesRolloverButtonForSelection: bool,
         );
 
-        #[cfg(feature = "AppKit_NSTextViewDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<AppKit::NSTextViewDelegate, Shared>>;
 
-        #[cfg(feature = "AppKit_NSTextViewDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AppKit::NSTextViewDelegate>);
 
@@ -957,10 +925,7 @@ extern_methods!(
             enabledTextCheckingTypes: NSTextCheckingTypes,
         );
 
-        #[cfg(all(
-            feature = "AppKit_NSTextCheckingOptionKey",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method(checkTextInRange:types:options:)]
         pub unsafe fn checkTextInRange_types_options(
             &self,
@@ -970,7 +935,6 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "AppKit_NSTextCheckingOptionKey",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSOrthography",

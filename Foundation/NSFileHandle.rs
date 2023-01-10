@@ -167,7 +167,7 @@ extern_methods!(
     /// NSFileHandleAsynchronousAccess
     #[cfg(feature = "Foundation_NSFileHandle")]
     unsafe impl NSFileHandle {
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSRunLoopMode"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(readInBackgroundAndNotifyForModes:)]
         pub unsafe fn readInBackgroundAndNotifyForModes(
             &self,
@@ -177,7 +177,7 @@ extern_methods!(
         #[method(readInBackgroundAndNotify)]
         pub unsafe fn readInBackgroundAndNotify(&self);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSRunLoopMode"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(readToEndOfFileInBackgroundAndNotifyForModes:)]
         pub unsafe fn readToEndOfFileInBackgroundAndNotifyForModes(
             &self,
@@ -187,7 +187,7 @@ extern_methods!(
         #[method(readToEndOfFileInBackgroundAndNotify)]
         pub unsafe fn readToEndOfFileInBackgroundAndNotify(&self);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSRunLoopMode"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(acceptConnectionInBackgroundAndNotifyForModes:)]
         pub unsafe fn acceptConnectionInBackgroundAndNotifyForModes(
             &self,
@@ -197,7 +197,7 @@ extern_methods!(
         #[method(acceptConnectionInBackgroundAndNotify)]
         pub unsafe fn acceptConnectionInBackgroundAndNotify(&self);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSRunLoopMode"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(waitForDataInBackgroundAndNotifyForModes:)]
         pub unsafe fn waitForDataInBackgroundAndNotifyForModes(
             &self,

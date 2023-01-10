@@ -176,14 +176,12 @@ extern_methods!(
         #[method(setSuggestedName:)]
         pub unsafe fn setSuggestedName(&self, suggestedName: Option<&Foundation::NSString>);
 
-        #[cfg(feature = "Foundation_NSItemProviderWriting")]
         #[method_id(@__retain_semantics Init initWithObject:)]
         pub unsafe fn initWithObject(
             this: Option<Allocated<Self>>,
             object: &Foundation::NSItemProviderWriting,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSItemProviderWriting")]
         #[method(registerObject:visibility:)]
         pub unsafe fn registerObject_visibility(
             &self,
@@ -191,7 +189,7 @@ extern_methods!(
             visibility: NSItemProviderRepresentationVisibility,
         );
 
-        #[cfg(all(feature = "Foundation_NSSecureCoding", feature = "Foundation_NSString"))]
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithItem:typeIdentifier:)]
         pub unsafe fn initWithItem_typeIdentifier(
             this: Option<Allocated<Self>>,

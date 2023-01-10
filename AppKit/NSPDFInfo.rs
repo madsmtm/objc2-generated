@@ -51,10 +51,7 @@ extern_methods!(
         #[method(setPaperSize:)]
         pub unsafe fn setPaperSize(&self, paperSize: NSSize);
 
-        #[cfg(all(
-            feature = "AppKit_NSPrintInfoAttributeKey",
-            feature = "Foundation_NSMutableDictionary"
-        ))]
+        #[cfg(feature = "Foundation_NSMutableDictionary")]
         #[method_id(@__retain_semantics Other attributes)]
         pub unsafe fn attributes(
             &self,

@@ -45,11 +45,7 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Foundation_NSException")]
     unsafe impl NSException {
-        #[cfg(all(
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSExceptionName",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other exceptionWithName:reason:userInfo:)]
         pub unsafe fn exceptionWithName_reason_userInfo(
             name: &Foundation::NSExceptionName,
@@ -57,11 +53,7 @@ extern_methods!(
             userInfo: Option<&Foundation::NSDictionary>,
         ) -> Id<Foundation::NSException, Shared>;
 
-        #[cfg(all(
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSExceptionName",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithName:reason:userInfo:)]
         pub unsafe fn initWithName_reason_userInfo(
             this: Option<Allocated<Self>>,
@@ -70,7 +62,6 @@ extern_methods!(
             aUserInfo: Option<&Foundation::NSDictionary>,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSExceptionName")]
         #[method_id(@__retain_semantics Other name)]
         pub fn name(&self) -> Id<Foundation::NSExceptionName, Shared>;
 

@@ -56,11 +56,9 @@ extern_methods!(
         #[method(setAction:)]
         pub unsafe fn setAction(&self, action: Option<Sel>);
 
-        #[cfg(feature = "AppKit_NSGestureRecognizerDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<AppKit::NSGestureRecognizerDelegate, Shared>>;
 
-        #[cfg(feature = "AppKit_NSGestureRecognizerDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AppKit::NSGestureRecognizerDelegate>);
 

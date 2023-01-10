@@ -58,11 +58,9 @@ extern_methods!(
             path: &Foundation::NSString,
         ) -> bool;
 
-        #[cfg(feature = "Foundation_NSKeyedArchiverDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<Foundation::NSKeyedArchiverDelegate, Shared>>;
 
-        #[cfg(feature = "Foundation_NSKeyedArchiverDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&Foundation::NSKeyedArchiverDelegate>);
 
@@ -250,11 +248,9 @@ extern_methods!(
             path: &Foundation::NSString,
         ) -> Option<Id<Object, Shared>>;
 
-        #[cfg(feature = "Foundation_NSKeyedUnarchiverDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<Foundation::NSKeyedUnarchiverDelegate, Shared>>;
 
-        #[cfg(feature = "Foundation_NSKeyedUnarchiverDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&Foundation::NSKeyedUnarchiverDelegate>);
 

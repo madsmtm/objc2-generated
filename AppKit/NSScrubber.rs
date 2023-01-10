@@ -130,19 +130,15 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSScrubber")]
     unsafe impl NSScrubber {
-        #[cfg(feature = "AppKit_NSScrubberDataSource")]
         #[method_id(@__retain_semantics Other dataSource)]
         pub unsafe fn dataSource(&self) -> Option<Id<AppKit::NSScrubberDataSource, Shared>>;
 
-        #[cfg(feature = "AppKit_NSScrubberDataSource")]
         #[method(setDataSource:)]
         pub unsafe fn setDataSource(&self, dataSource: Option<&AppKit::NSScrubberDataSource>);
 
-        #[cfg(feature = "AppKit_NSScrubberDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<AppKit::NSScrubberDelegate, Shared>>;
 
-        #[cfg(feature = "AppKit_NSScrubberDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AppKit::NSScrubberDelegate>);
 
@@ -293,7 +289,6 @@ extern_methods!(
             index: NSInteger,
         ) -> Option<Id<AppKit::NSScrubberItemView, Shared>>;
 
-        #[cfg(feature = "AppKit_NSUserInterfaceItemIdentifier")]
         #[method(registerClass:forItemIdentifier:)]
         pub unsafe fn registerClass_forItemIdentifier(
             &self,
@@ -301,10 +296,7 @@ extern_methods!(
             itemIdentifier: &AppKit::NSUserInterfaceItemIdentifier,
         );
 
-        #[cfg(all(
-            feature = "AppKit_NSNib",
-            feature = "AppKit_NSUserInterfaceItemIdentifier"
-        ))]
+        #[cfg(feature = "AppKit_NSNib")]
         #[method(registerNib:forItemIdentifier:)]
         pub unsafe fn registerNib_forItemIdentifier(
             &self,
@@ -312,10 +304,7 @@ extern_methods!(
             itemIdentifier: &AppKit::NSUserInterfaceItemIdentifier,
         );
 
-        #[cfg(all(
-            feature = "AppKit_NSScrubberItemView",
-            feature = "AppKit_NSUserInterfaceItemIdentifier"
-        ))]
+        #[cfg(feature = "AppKit_NSScrubberItemView")]
         #[method_id(@__retain_semantics Other makeItemWithIdentifier:owner:)]
         pub unsafe fn makeItemWithIdentifier_owner(
             &self,

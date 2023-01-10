@@ -41,22 +41,18 @@ extern_methods!(
         #[method(setDividerStyle:)]
         pub unsafe fn setDividerStyle(&self, dividerStyle: NSSplitViewDividerStyle);
 
-        #[cfg(feature = "AppKit_NSSplitViewAutosaveName")]
         #[method_id(@__retain_semantics Other autosaveName)]
         pub unsafe fn autosaveName(&self) -> Option<Id<AppKit::NSSplitViewAutosaveName, Shared>>;
 
-        #[cfg(feature = "AppKit_NSSplitViewAutosaveName")]
         #[method(setAutosaveName:)]
         pub unsafe fn setAutosaveName(
             &self,
             autosaveName: Option<&AppKit::NSSplitViewAutosaveName>,
         );
 
-        #[cfg(feature = "AppKit_NSSplitViewDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<AppKit::NSSplitViewDelegate, Shared>>;
 
-        #[cfg(feature = "AppKit_NSSplitViewDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AppKit::NSSplitViewDelegate>);
 

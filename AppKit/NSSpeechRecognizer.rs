@@ -26,11 +26,9 @@ extern_methods!(
         #[method(stopListening)]
         pub unsafe fn stopListening(&self);
 
-        #[cfg(feature = "AppKit_NSSpeechRecognizerDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<AppKit::NSSpeechRecognizerDelegate, Shared>>;
 
-        #[cfg(feature = "AppKit_NSSpeechRecognizerDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AppKit::NSSpeechRecognizerDelegate>);
 

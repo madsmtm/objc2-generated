@@ -111,11 +111,9 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Metal_MTLCounterSampleBufferDescriptor")]
     unsafe impl MTLCounterSampleBufferDescriptor {
-        #[cfg(feature = "Metal_MTLCounterSet")]
         #[method_id(@__retain_semantics Other counterSet)]
         pub unsafe fn counterSet(&self) -> Option<Id<Metal::MTLCounterSet, Shared>>;
 
-        #[cfg(feature = "Metal_MTLCounterSet")]
         #[method(setCounterSet:)]
         pub unsafe fn setCounterSet(&self, counterSet: Option<&Metal::MTLCounterSet>);
 

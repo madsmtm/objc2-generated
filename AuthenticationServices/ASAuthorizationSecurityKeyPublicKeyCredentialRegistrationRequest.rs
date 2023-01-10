@@ -71,9 +71,6 @@ extern_methods!(
             >,
         );
 
-        #[cfg(
-            feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialResidentKeyPreference"
-        )]
         #[method_id(@__retain_semantics Other residentKeyPreference)]
         pub unsafe fn residentKeyPreference(
             &self,
@@ -82,9 +79,6 @@ extern_methods!(
             Shared,
         >;
 
-        #[cfg(
-            feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialResidentKeyPreference"
-        )]
         #[method(setResidentKeyPreference:)]
         pub unsafe fn setResidentKeyPreference(
             &self,

@@ -86,7 +86,6 @@ extern_methods!(
         #[method(canRemove)]
         pub unsafe fn canRemove(&self) -> bool;
 
-        #[cfg(feature = "AppKit_NSValidatedUserInterfaceItem")]
         #[method(validateUserInterfaceItem:)]
         pub unsafe fn validateUserInterfaceItem(
             &self,

@@ -43,23 +43,19 @@ extern_methods!(
         #[method(setWrapped:)]
         pub unsafe fn setWrapped(&self, wrapped: bool);
 
-        #[cfg(feature = "CoreAnimation_CATextLayerTruncationMode")]
         #[method_id(@__retain_semantics Other truncationMode)]
         pub unsafe fn truncationMode(&self)
             -> Id<CoreAnimation::CATextLayerTruncationMode, Shared>;
 
-        #[cfg(feature = "CoreAnimation_CATextLayerTruncationMode")]
         #[method(setTruncationMode:)]
         pub unsafe fn setTruncationMode(
             &self,
             truncationMode: &CoreAnimation::CATextLayerTruncationMode,
         );
 
-        #[cfg(feature = "CoreAnimation_CATextLayerAlignmentMode")]
         #[method_id(@__retain_semantics Other alignmentMode)]
         pub unsafe fn alignmentMode(&self) -> Id<CoreAnimation::CATextLayerAlignmentMode, Shared>;
 
-        #[cfg(feature = "CoreAnimation_CATextLayerAlignmentMode")]
         #[method(setAlignmentMode:)]
         pub unsafe fn setAlignmentMode(
             &self,

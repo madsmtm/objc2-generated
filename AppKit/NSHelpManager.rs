@@ -57,7 +57,6 @@ extern_methods!(
             pt: NSPoint,
         ) -> bool;
 
-        #[cfg(all(feature = "AppKit_NSHelpAnchorName", feature = "AppKit_NSHelpBookName"))]
         #[method(openHelpAnchor:inBook:)]
         pub unsafe fn openHelpAnchor_inBook(
             &self,
@@ -65,7 +64,7 @@ extern_methods!(
             book: Option<&AppKit::NSHelpBookName>,
         );
 
-        #[cfg(all(feature = "AppKit_NSHelpBookName", feature = "Foundation_NSString"))]
+        #[cfg(feature = "Foundation_NSString")]
         #[method(findString:inBook:)]
         pub unsafe fn findString_inBook(
             &self,
@@ -87,10 +86,7 @@ extern_methods!(
     /// NSBundleHelpExtension
     #[cfg(feature = "Foundation_NSBundle")]
     unsafe impl Foundation::NSBundle {
-        #[cfg(all(
-            feature = "AppKit_NSHelpManagerContextHelpKey",
-            feature = "Foundation_NSAttributedString"
-        ))]
+        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other contextHelpForKey:)]
         pub unsafe fn contextHelpForKey(
             &self,

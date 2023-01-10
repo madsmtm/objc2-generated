@@ -53,10 +53,7 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSAccessibilityCustomRotor")]
     unsafe impl NSAccessibilityCustomRotor {
-        #[cfg(all(
-            feature = "AppKit_NSAccessibilityCustomRotorItemSearchDelegate",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithLabel:itemSearchDelegate:)]
         pub unsafe fn initWithLabel_itemSearchDelegate(
             this: Option<Allocated<Self>>,
@@ -64,7 +61,6 @@ extern_methods!(
             itemSearchDelegate: &AppKit::NSAccessibilityCustomRotorItemSearchDelegate,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "AppKit_NSAccessibilityCustomRotorItemSearchDelegate")]
         #[method_id(@__retain_semantics Init initWithRotorType:itemSearchDelegate:)]
         pub unsafe fn initWithRotorType_itemSearchDelegate(
             this: Option<Allocated<Self>>,
@@ -86,26 +82,22 @@ extern_methods!(
         #[method(setLabel:)]
         pub unsafe fn setLabel(&self, label: &Foundation::NSString);
 
-        #[cfg(feature = "AppKit_NSAccessibilityCustomRotorItemSearchDelegate")]
         #[method_id(@__retain_semantics Other itemSearchDelegate)]
         pub unsafe fn itemSearchDelegate(
             &self,
         ) -> Option<Id<AppKit::NSAccessibilityCustomRotorItemSearchDelegate, Shared>>;
 
-        #[cfg(feature = "AppKit_NSAccessibilityCustomRotorItemSearchDelegate")]
         #[method(setItemSearchDelegate:)]
         pub unsafe fn setItemSearchDelegate(
             &self,
             itemSearchDelegate: Option<&AppKit::NSAccessibilityCustomRotorItemSearchDelegate>,
         );
 
-        #[cfg(feature = "AppKit_NSAccessibilityElementLoading")]
         #[method_id(@__retain_semantics Other itemLoadingDelegate)]
         pub unsafe fn itemLoadingDelegate(
             &self,
         ) -> Option<Id<AppKit::NSAccessibilityElementLoading, Shared>>;
 
-        #[cfg(feature = "AppKit_NSAccessibilityElementLoading")]
         #[method(setItemLoadingDelegate:)]
         pub unsafe fn setItemLoadingDelegate(
             &self,
@@ -176,17 +168,13 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
-        #[cfg(feature = "AppKit_NSAccessibilityElement")]
         #[method_id(@__retain_semantics Init initWithTargetElement:)]
         pub unsafe fn initWithTargetElement(
             this: Option<Allocated<Self>>,
             targetElement: &AppKit::NSAccessibilityElement,
         ) -> Id<Self, Shared>;
 
-        #[cfg(all(
-            feature = "AppKit_NSAccessibilityLoadingToken",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithItemLoadingToken:customLabel:)]
         pub unsafe fn initWithItemLoadingToken_customLabel(
             this: Option<Allocated<Self>>,
@@ -194,11 +182,9 @@ extern_methods!(
             customLabel: &Foundation::NSString,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "AppKit_NSAccessibilityElement")]
         #[method_id(@__retain_semantics Other targetElement)]
         pub unsafe fn targetElement(&self) -> Option<Id<AppKit::NSAccessibilityElement, Shared>>;
 
-        #[cfg(feature = "AppKit_NSAccessibilityLoadingToken")]
         #[method_id(@__retain_semantics Other itemLoadingToken)]
         pub unsafe fn itemLoadingToken(
             &self,

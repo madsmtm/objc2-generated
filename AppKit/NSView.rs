@@ -918,7 +918,6 @@ extern_methods!(
         #[cfg(all(
             feature = "AppKit_NSDraggingItem",
             feature = "AppKit_NSDraggingSession",
-            feature = "AppKit_NSDraggingSource",
             feature = "AppKit_NSEvent",
             feature = "Foundation_NSArray"
         ))]
@@ -930,13 +929,13 @@ extern_methods!(
             source: &AppKit::NSDraggingSource,
         ) -> Id<AppKit::NSDraggingSession, Shared>;
 
-        #[cfg(all(feature = "AppKit_NSPasteboardType", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other registeredDraggedTypes)]
         pub unsafe fn registeredDraggedTypes(
             &self,
         ) -> Id<Foundation::NSArray<AppKit::NSPasteboardType>, Shared>;
 
-        #[cfg(all(feature = "AppKit_NSPasteboardType", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(registerForDraggedTypes:)]
         pub unsafe fn registerForDraggedTypes(
             &self,
@@ -966,11 +965,7 @@ extern_methods!(
     /// NSFullScreenMode
     #[cfg(feature = "AppKit_NSView")]
     unsafe impl NSView {
-        #[cfg(all(
-            feature = "AppKit_NSScreen",
-            feature = "AppKit_NSViewFullScreenModeOptionKey",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(all(feature = "AppKit_NSScreen", feature = "Foundation_NSDictionary"))]
         #[method(enterFullScreenMode:withOptions:)]
         pub unsafe fn enterFullScreenMode_withOptions(
             &self,
@@ -980,10 +975,7 @@ extern_methods!(
             >,
         ) -> bool;
 
-        #[cfg(all(
-            feature = "AppKit_NSViewFullScreenModeOptionKey",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method(exitFullScreenModeWithOptions:)]
         pub unsafe fn exitFullScreenModeWithOptions(
             &self,
@@ -1027,7 +1019,6 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "AppKit_NSDefinitionOptionKey",
             feature = "Foundation_NSAttributedString",
             feature = "Foundation_NSDictionary"
         ))]

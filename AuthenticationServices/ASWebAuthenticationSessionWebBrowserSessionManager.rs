@@ -20,17 +20,11 @@ extern_methods!(
         pub unsafe fn sharedManager(
         ) -> Id<AuthenticationServices::ASWebAuthenticationSessionWebBrowserSessionManager, Shared>;
 
-        #[cfg(
-            feature = "AuthenticationServices_ASWebAuthenticationSessionWebBrowserSessionHandling"
-        )]
         #[method_id(@__retain_semantics Other sessionHandler)]
         pub unsafe fn sessionHandler(
             &self,
         ) -> Id<AuthenticationServices::ASWebAuthenticationSessionWebBrowserSessionHandling, Shared>;
 
-        #[cfg(
-            feature = "AuthenticationServices_ASWebAuthenticationSessionWebBrowserSessionHandling"
-        )]
         #[method(setSessionHandler:)]
         pub unsafe fn setSessionHandler(
             &self,

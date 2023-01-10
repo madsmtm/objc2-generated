@@ -38,7 +38,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other printerNames)]
         pub unsafe fn printerNames() -> Id<Foundation::NSArray<Foundation::NSString>, Shared>;
 
-        #[cfg(all(feature = "AppKit_NSPrinterTypeName", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other printerTypes)]
         pub unsafe fn printerTypes() -> Id<Foundation::NSArray<AppKit::NSPrinterTypeName>, Shared>;
 
@@ -48,7 +48,6 @@ extern_methods!(
             name: &Foundation::NSString,
         ) -> Option<Id<AppKit::NSPrinter, Shared>>;
 
-        #[cfg(feature = "AppKit_NSPrinterTypeName")]
         #[method_id(@__retain_semantics Other printerWithType:)]
         pub unsafe fn printerWithType(
             type_: &AppKit::NSPrinterTypeName,
@@ -58,21 +57,16 @@ extern_methods!(
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Id<Foundation::NSString, Shared>;
 
-        #[cfg(feature = "AppKit_NSPrinterTypeName")]
         #[method_id(@__retain_semantics Other type)]
         pub unsafe fn type_(&self) -> Id<AppKit::NSPrinterTypeName, Shared>;
 
         #[method(languageLevel)]
         pub unsafe fn languageLevel(&self) -> NSInteger;
 
-        #[cfg(feature = "AppKit_NSPrinterPaperName")]
         #[method(pageSizeForPaper:)]
         pub unsafe fn pageSizeForPaper(&self, paperName: &AppKit::NSPrinterPaperName) -> NSSize;
 
-        #[cfg(all(
-            feature = "AppKit_NSDeviceDescriptionKey",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other deviceDescription)]
         pub unsafe fn deviceDescription(
             &self,

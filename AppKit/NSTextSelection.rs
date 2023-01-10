@@ -61,7 +61,6 @@ extern_methods!(
             granularity: NSTextSelectionGranularity,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "AppKit_NSTextLocation")]
         #[method_id(@__retain_semantics Init initWithLocation:affinity:)]
         pub unsafe fn initWithLocation_affinity(
             this: Option<Allocated<Self>>,
@@ -97,32 +96,24 @@ extern_methods!(
         #[method(setLogical:)]
         pub unsafe fn setLogical(&self, logical: bool);
 
-        #[cfg(feature = "AppKit_NSTextLocation")]
         #[method_id(@__retain_semantics Other secondarySelectionLocation)]
         pub unsafe fn secondarySelectionLocation(
             &self,
         ) -> Option<Id<AppKit::NSTextLocation, Shared>>;
 
-        #[cfg(feature = "AppKit_NSTextLocation")]
         #[method(setSecondarySelectionLocation:)]
         pub unsafe fn setSecondarySelectionLocation(
             &self,
             secondarySelectionLocation: Option<&AppKit::NSTextLocation>,
         );
 
-        #[cfg(all(
-            feature = "Foundation_NSAttributedStringKey",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other typingAttributes)]
         pub unsafe fn typingAttributes(
             &self,
         ) -> Id<Foundation::NSDictionary<Foundation::NSAttributedStringKey, Object>, Shared>;
 
-        #[cfg(all(
-            feature = "Foundation_NSAttributedStringKey",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method(setTypingAttributes:)]
         pub unsafe fn setTypingAttributes(
             &self,

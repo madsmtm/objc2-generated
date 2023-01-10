@@ -103,11 +103,9 @@ extern_methods!(
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, backgroundColor: Option<&AppKit::NSColor>);
 
-        #[cfg(feature = "AppKit_NSPathControlDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<AppKit::NSPathControlDelegate, Shared>>;
 
-        #[cfg(feature = "AppKit_NSPathControlDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AppKit::NSPathControlDelegate>);
 

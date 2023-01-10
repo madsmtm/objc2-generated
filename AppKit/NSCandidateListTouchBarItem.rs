@@ -36,13 +36,11 @@ extern_methods!(
         #[method(setClient:)]
         pub unsafe fn setClient(&self, client: Option<&AppKit::NSView>);
 
-        #[cfg(feature = "AppKit_NSCandidateListTouchBarItemDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Id<AppKit::NSCandidateListTouchBarItemDelegate, Shared>>;
 
-        #[cfg(feature = "AppKit_NSCandidateListTouchBarItemDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -179,7 +177,6 @@ extern_methods!(
     unsafe impl<CandidateType: Message, CandidateTypeOwnership: Ownership>
         AppKit::NSCandidateListTouchBarItem<CandidateType, CandidateTypeOwnership>
     {
-        #[cfg(feature = "AppKit_NSTouchBarItemIdentifier")]
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
             this: Option<Allocated<Self>>,

@@ -125,19 +125,15 @@ extern_methods!(
             coder: &Foundation::NSCoder,
         ) -> Option<Id<Self, Shared>>;
 
-        #[cfg(feature = "AppKit_NSTableViewDataSource")]
         #[method_id(@__retain_semantics Other dataSource)]
         pub unsafe fn dataSource(&self) -> Option<Id<AppKit::NSTableViewDataSource, Shared>>;
 
-        #[cfg(feature = "AppKit_NSTableViewDataSource")]
         #[method(setDataSource:)]
         pub unsafe fn setDataSource(&self, dataSource: Option<&AppKit::NSTableViewDataSource>);
 
-        #[cfg(feature = "AppKit_NSTableViewDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<AppKit::NSTableViewDelegate, Shared>>;
 
-        #[cfg(feature = "AppKit_NSTableViewDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AppKit::NSTableViewDelegate>);
 
@@ -254,17 +250,13 @@ extern_methods!(
         #[method(moveColumn:toColumn:)]
         pub unsafe fn moveColumn_toColumn(&self, oldIndex: NSInteger, newIndex: NSInteger);
 
-        #[cfg(feature = "AppKit_NSUserInterfaceItemIdentifier")]
         #[method(columnWithIdentifier:)]
         pub unsafe fn columnWithIdentifier(
             &self,
             identifier: &AppKit::NSUserInterfaceItemIdentifier,
         ) -> NSInteger;
 
-        #[cfg(all(
-            feature = "AppKit_NSTableColumn",
-            feature = "AppKit_NSUserInterfaceItemIdentifier"
-        ))]
+        #[cfg(feature = "AppKit_NSTableColumn")]
         #[method_id(@__retain_semantics Other tableColumnWithIdentifier:)]
         pub unsafe fn tableColumnWithIdentifier(
             &self,
@@ -539,11 +531,9 @@ extern_methods!(
         #[method(frameOfCellAtColumn:row:)]
         pub unsafe fn frameOfCellAtColumn_row(&self, column: NSInteger, row: NSInteger) -> NSRect;
 
-        #[cfg(feature = "AppKit_NSTableViewAutosaveName")]
         #[method_id(@__retain_semantics Other autosaveName)]
         pub unsafe fn autosaveName(&self) -> Option<Id<AppKit::NSTableViewAutosaveName, Shared>>;
 
-        #[cfg(feature = "AppKit_NSTableViewAutosaveName")]
         #[method(setAutosaveName:)]
         pub unsafe fn setAutosaveName(
             &self,
@@ -600,7 +590,6 @@ extern_methods!(
         #[method(columnForView:)]
         pub unsafe fn columnForView(&self, view: &AppKit::NSView) -> NSInteger;
 
-        #[cfg(feature = "AppKit_NSUserInterfaceItemIdentifier")]
         #[method_id(@__retain_semantics Other makeViewWithIdentifier:owner:)]
         pub unsafe fn makeViewWithIdentifier_owner(
             &self,
@@ -672,10 +661,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other hiddenRowIndexes)]
         pub unsafe fn hiddenRowIndexes(&self) -> Id<Foundation::NSIndexSet, Shared>;
 
-        #[cfg(all(
-            feature = "AppKit_NSNib",
-            feature = "AppKit_NSUserInterfaceItemIdentifier"
-        ))]
+        #[cfg(feature = "AppKit_NSNib")]
         #[method(registerNib:forIdentifier:)]
         pub unsafe fn registerNib_forIdentifier(
             &self,
@@ -683,11 +669,7 @@ extern_methods!(
             identifier: &AppKit::NSUserInterfaceItemIdentifier,
         );
 
-        #[cfg(all(
-            feature = "AppKit_NSNib",
-            feature = "AppKit_NSUserInterfaceItemIdentifier",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(all(feature = "AppKit_NSNib", feature = "Foundation_NSDictionary"))]
         #[method_id(@__retain_semantics Other registeredNibsByIdentifier)]
         pub unsafe fn registeredNibsByIdentifier(
             &self,

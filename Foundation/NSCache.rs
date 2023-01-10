@@ -44,11 +44,9 @@ extern_methods!(
         #[method(setName:)]
         pub unsafe fn setName(&self, name: &Foundation::NSString);
 
-        #[cfg(feature = "Foundation_NSCacheDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<Foundation::NSCacheDelegate, Shared>>;
 
-        #[cfg(feature = "Foundation_NSCacheDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&Foundation::NSCacheDelegate>);
 

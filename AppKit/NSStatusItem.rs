@@ -61,11 +61,9 @@ extern_methods!(
         #[method(setVisible:)]
         pub unsafe fn setVisible(&self, visible: bool);
 
-        #[cfg(feature = "AppKit_NSStatusItemAutosaveName")]
         #[method_id(@__retain_semantics Other autosaveName)]
         pub unsafe fn autosaveName(&self) -> Id<AppKit::NSStatusItemAutosaveName, Shared>;
 
-        #[cfg(feature = "AppKit_NSStatusItemAutosaveName")]
         #[method(setAutosaveName:)]
         pub unsafe fn setAutosaveName(
             &self,

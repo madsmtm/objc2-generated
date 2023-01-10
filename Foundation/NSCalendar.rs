@@ -109,7 +109,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other autoupdatingCurrentCalendar)]
         pub unsafe fn autoupdatingCurrentCalendar() -> Id<Foundation::NSCalendar, Shared>;
 
-        #[cfg(feature = "Foundation_NSCalendarIdentifier")]
         #[method_id(@__retain_semantics Other calendarWithIdentifier:)]
         pub unsafe fn calendarWithIdentifier(
             calendarIdentifierConstant: &Foundation::NSCalendarIdentifier,
@@ -118,14 +117,12 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSCalendarIdentifier")]
         #[method_id(@__retain_semantics Init initWithCalendarIdentifier:)]
         pub unsafe fn initWithCalendarIdentifier(
             this: Option<Allocated<Self>>,
             ident: &Foundation::NSCalendarIdentifier,
         ) -> Option<Id<Self, Shared>>;
 
-        #[cfg(feature = "Foundation_NSCalendarIdentifier")]
         #[method_id(@__retain_semantics Other calendarIdentifier)]
         pub unsafe fn calendarIdentifier(&self) -> Id<Foundation::NSCalendarIdentifier, Shared>;
 

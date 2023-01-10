@@ -56,11 +56,9 @@ extern_methods!(
             timingFunction: Option<&CoreAnimation::CAMediaTimingFunction>,
         );
 
-        #[cfg(feature = "CoreAnimation_CAAnimationDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<CoreAnimation::CAAnimationDelegate, Shared>>;
 
-        #[cfg(feature = "CoreAnimation_CAAnimationDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&CoreAnimation::CAAnimationDelegate>);
 
@@ -233,13 +231,11 @@ extern_methods!(
             timingFunctions: Option<&Foundation::NSArray<CoreAnimation::CAMediaTimingFunction>>,
         );
 
-        #[cfg(feature = "CoreAnimation_CAAnimationCalculationMode")]
         #[method_id(@__retain_semantics Other calculationMode)]
         pub unsafe fn calculationMode(
             &self,
         ) -> Id<CoreAnimation::CAAnimationCalculationMode, Shared>;
 
-        #[cfg(feature = "CoreAnimation_CAAnimationCalculationMode")]
         #[method(setCalculationMode:)]
         pub unsafe fn setCalculationMode(
             &self,
@@ -285,13 +281,11 @@ extern_methods!(
             biasValues: Option<&Foundation::NSArray<Foundation::NSNumber>>,
         );
 
-        #[cfg(feature = "CoreAnimation_CAAnimationRotationMode")]
         #[method_id(@__retain_semantics Other rotationMode)]
         pub unsafe fn rotationMode(
             &self,
         ) -> Option<Id<CoreAnimation::CAAnimationRotationMode, Shared>>;
 
-        #[cfg(feature = "CoreAnimation_CAAnimationRotationMode")]
         #[method(setRotationMode:)]
         pub unsafe fn setRotationMode(
             &self,
@@ -369,19 +363,15 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "CoreAnimation_CATransition")]
     unsafe impl CATransition {
-        #[cfg(feature = "CoreAnimation_CATransitionType")]
         #[method_id(@__retain_semantics Other type)]
         pub unsafe fn type_(&self) -> Id<CoreAnimation::CATransitionType, Shared>;
 
-        #[cfg(feature = "CoreAnimation_CATransitionType")]
         #[method(setType:)]
         pub unsafe fn setType(&self, type_: &CoreAnimation::CATransitionType);
 
-        #[cfg(feature = "CoreAnimation_CATransitionSubtype")]
         #[method_id(@__retain_semantics Other subtype)]
         pub unsafe fn subtype(&self) -> Option<Id<CoreAnimation::CATransitionSubtype, Shared>>;
 
-        #[cfg(feature = "CoreAnimation_CATransitionSubtype")]
         #[method(setSubtype:)]
         pub unsafe fn setSubtype(&self, subtype: Option<&CoreAnimation::CATransitionSubtype>);
 

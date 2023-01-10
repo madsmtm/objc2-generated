@@ -16,7 +16,6 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
     unsafe impl ASAuthorizationRequest {
-        #[cfg(feature = "AuthenticationServices_ASAuthorizationProvider")]
         #[method_id(@__retain_semantics Other provider)]
         pub unsafe fn provider(
             &self,

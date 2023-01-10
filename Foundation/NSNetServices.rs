@@ -61,7 +61,7 @@ extern_methods!(
             name: &Foundation::NSString,
         ) -> Id<Self, Shared>;
 
-        #[cfg(all(feature = "Foundation_NSRunLoop", feature = "Foundation_NSRunLoopMode"))]
+        #[cfg(feature = "Foundation_NSRunLoop")]
         #[method(scheduleInRunLoop:forMode:)]
         pub unsafe fn scheduleInRunLoop_forMode(
             &self,
@@ -69,7 +69,7 @@ extern_methods!(
             mode: &Foundation::NSRunLoopMode,
         );
 
-        #[cfg(all(feature = "Foundation_NSRunLoop", feature = "Foundation_NSRunLoopMode"))]
+        #[cfg(feature = "Foundation_NSRunLoop")]
         #[method(removeFromRunLoop:forMode:)]
         pub unsafe fn removeFromRunLoop_forMode(
             &self,
@@ -77,11 +77,9 @@ extern_methods!(
             mode: &Foundation::NSRunLoopMode,
         );
 
-        #[cfg(feature = "Foundation_NSNetServiceDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<Foundation::NSNetServiceDelegate, Shared>>;
 
-        #[cfg(feature = "Foundation_NSNetServiceDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&Foundation::NSNetServiceDelegate>);
 
@@ -182,13 +180,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSNetServiceBrowserDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Id<Foundation::NSNetServiceBrowserDelegate, Shared>>;
 
-        #[cfg(feature = "Foundation_NSNetServiceBrowserDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -201,7 +197,7 @@ extern_methods!(
         #[method(setIncludesPeerToPeer:)]
         pub unsafe fn setIncludesPeerToPeer(&self, includesPeerToPeer: bool);
 
-        #[cfg(all(feature = "Foundation_NSRunLoop", feature = "Foundation_NSRunLoopMode"))]
+        #[cfg(feature = "Foundation_NSRunLoop")]
         #[method(scheduleInRunLoop:forMode:)]
         pub unsafe fn scheduleInRunLoop_forMode(
             &self,
@@ -209,7 +205,7 @@ extern_methods!(
             mode: &Foundation::NSRunLoopMode,
         );
 
-        #[cfg(all(feature = "Foundation_NSRunLoop", feature = "Foundation_NSRunLoopMode"))]
+        #[cfg(feature = "Foundation_NSRunLoop")]
         #[method(removeFromRunLoop:forMode:)]
         pub unsafe fn removeFromRunLoop_forMode(
             &self,

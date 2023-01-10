@@ -29,14 +29,12 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSToolbarItem")]
     unsafe impl NSToolbarItem {
-        #[cfg(feature = "AppKit_NSToolbarItemIdentifier")]
         #[method_id(@__retain_semantics Init initWithItemIdentifier:)]
         pub unsafe fn initWithItemIdentifier(
             this: Option<Allocated<Self>>,
             itemIdentifier: &AppKit::NSToolbarItemIdentifier,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "AppKit_NSToolbarItemIdentifier")]
         #[method_id(@__retain_semantics Other itemIdentifier)]
         pub unsafe fn itemIdentifier(&self) -> Id<AppKit::NSToolbarItemIdentifier, Shared>;
 

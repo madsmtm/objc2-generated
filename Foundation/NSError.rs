@@ -53,11 +53,7 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Foundation_NSError")]
     unsafe impl NSError {
-        #[cfg(all(
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSErrorDomain",
-            feature = "Foundation_NSErrorUserInfoKey"
-        ))]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Init initWithDomain:code:userInfo:)]
         pub unsafe fn initWithDomain_code_userInfo(
             this: Option<Allocated<Self>>,
@@ -66,11 +62,7 @@ extern_methods!(
             dict: Option<&Foundation::NSDictionary<Foundation::NSErrorUserInfoKey, Object>>,
         ) -> Id<Self, Shared>;
 
-        #[cfg(all(
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSErrorDomain",
-            feature = "Foundation_NSErrorUserInfoKey"
-        ))]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other errorWithDomain:code:userInfo:)]
         pub unsafe fn errorWithDomain_code_userInfo(
             domain: &Foundation::NSErrorDomain,
@@ -78,17 +70,13 @@ extern_methods!(
             dict: Option<&Foundation::NSDictionary<Foundation::NSErrorUserInfoKey, Object>>,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSErrorDomain")]
         #[method_id(@__retain_semantics Other domain)]
         pub fn domain(&self) -> Id<Foundation::NSErrorDomain, Shared>;
 
         #[method(code)]
         pub fn code(&self) -> NSInteger;
 
-        #[cfg(all(
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSErrorUserInfoKey"
-        ))]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other userInfo)]
         pub fn userInfo(
             &self,
@@ -127,10 +115,6 @@ extern_methods!(
             &self,
         ) -> Id<Foundation::NSArray<Foundation::NSError>, Shared>;
 
-        #[cfg(all(
-            feature = "Foundation_NSErrorDomain",
-            feature = "Foundation_NSErrorUserInfoKey"
-        ))]
         #[method(setUserInfoValueProviderForDomain:provider:)]
         pub unsafe fn setUserInfoValueProviderForDomain_provider(
             errorDomain: &Foundation::NSErrorDomain,
@@ -145,10 +129,6 @@ extern_methods!(
             >,
         );
 
-        #[cfg(all(
-            feature = "Foundation_NSErrorDomain",
-            feature = "Foundation_NSErrorUserInfoKey"
-        ))]
         #[method(userInfoValueProviderForDomain:)]
         pub unsafe fn userInfoValueProviderForDomain(
             errorDomain: &Foundation::NSErrorDomain,

@@ -54,11 +54,9 @@ extern_methods!(
         #[method(setEndPoint:)]
         pub unsafe fn setEndPoint(&self, endPoint: CGPoint);
 
-        #[cfg(feature = "CoreAnimation_CAGradientLayerType")]
         #[method_id(@__retain_semantics Other type)]
         pub unsafe fn type_(&self) -> Id<CoreAnimation::CAGradientLayerType, Shared>;
 
-        #[cfg(feature = "CoreAnimation_CAGradientLayerType")]
         #[method(setType:)]
         pub unsafe fn setType(&self, type_: &CoreAnimation::CAGradientLayerType);
     }

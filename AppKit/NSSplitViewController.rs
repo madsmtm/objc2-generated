@@ -73,7 +73,6 @@ extern_methods!(
             minimumThicknessForInlineSidebars: CGFloat,
         );
 
-        #[cfg(feature = "AppKit_NSValidatedUserInterfaceItem")]
         #[method(validateUserInterfaceItem:)]
         pub unsafe fn validateUserInterfaceItem(
             &self,
@@ -141,7 +140,7 @@ extern_methods!(
     /// Methods declared on superclass `NSViewController`
     #[cfg(feature = "AppKit_NSSplitViewController")]
     unsafe impl AppKit::NSSplitViewController {
-        #[cfg(all(feature = "AppKit_NSNibName", feature = "Foundation_NSBundle"))]
+        #[cfg(feature = "Foundation_NSBundle")]
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Option<Allocated<Self>>,

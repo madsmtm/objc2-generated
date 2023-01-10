@@ -68,20 +68,17 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Foundation_NSFileCoordinator")]
     unsafe impl NSFileCoordinator {
-        #[cfg(feature = "Foundation_NSFilePresenter")]
         #[method(addFilePresenter:)]
         pub unsafe fn addFilePresenter(filePresenter: &Foundation::NSFilePresenter);
 
-        #[cfg(feature = "Foundation_NSFilePresenter")]
         #[method(removeFilePresenter:)]
         pub unsafe fn removeFilePresenter(filePresenter: &Foundation::NSFilePresenter);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSFilePresenter"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other filePresenters)]
         pub unsafe fn filePresenters(
         ) -> Id<Foundation::NSArray<Foundation::NSFilePresenter>, Shared>;
 
-        #[cfg(feature = "Foundation_NSFilePresenter")]
         #[method_id(@__retain_semantics Init initWithFilePresenter:)]
         pub unsafe fn initWithFilePresenter(
             this: Option<Allocated<Self>>,
@@ -186,11 +183,7 @@ extern_methods!(
             newURL: &Foundation::NSURL,
         );
 
-        #[cfg(all(
-            feature = "Foundation_NSSet",
-            feature = "Foundation_NSURL",
-            feature = "Foundation_NSURLResourceKey"
-        ))]
+        #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSURL"))]
         #[method(itemAtURL:didChangeUbiquityAttributes:)]
         pub unsafe fn itemAtURL_didChangeUbiquityAttributes(
             &self,

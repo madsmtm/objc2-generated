@@ -22,7 +22,7 @@ extern_methods!(
             sel: Sel,
         ) -> Id<CoreAnimation::CADisplayLink, Shared>;
 
-        #[cfg(all(feature = "Foundation_NSRunLoop", feature = "Foundation_NSRunLoopMode"))]
+        #[cfg(feature = "Foundation_NSRunLoop")]
         #[method(addToRunLoop:forMode:)]
         pub unsafe fn addToRunLoop_forMode(
             &self,
@@ -30,7 +30,7 @@ extern_methods!(
             mode: &Foundation::NSRunLoopMode,
         );
 
-        #[cfg(all(feature = "Foundation_NSRunLoop", feature = "Foundation_NSRunLoopMode"))]
+        #[cfg(feature = "Foundation_NSRunLoop")]
         #[method(removeFromRunLoop:forMode:)]
         pub unsafe fn removeFromRunLoop_forMode(
             &self,

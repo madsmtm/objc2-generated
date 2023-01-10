@@ -27,11 +27,9 @@ extern_methods!(
         #[method(scrollToRect:)]
         pub unsafe fn scrollToRect(&self, r: CGRect);
 
-        #[cfg(feature = "CoreAnimation_CAScrollLayerScrollMode")]
         #[method_id(@__retain_semantics Other scrollMode)]
         pub unsafe fn scrollMode(&self) -> Id<CoreAnimation::CAScrollLayerScrollMode, Shared>;
 
-        #[cfg(feature = "CoreAnimation_CAScrollLayerScrollMode")]
         #[method(setScrollMode:)]
         pub unsafe fn setScrollMode(&self, scrollMode: &CoreAnimation::CAScrollLayerScrollMode);
     }

@@ -42,7 +42,6 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSToolbar")]
     unsafe impl NSToolbar {
-        #[cfg(feature = "AppKit_NSToolbarIdentifier")]
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
             this: Option<Allocated<Self>>,
@@ -52,7 +51,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
-        #[cfg(feature = "AppKit_NSToolbarItemIdentifier")]
         #[method(insertItemWithItemIdentifier:atIndex:)]
         pub unsafe fn insertItemWithItemIdentifier_atIndex(
             &self,
@@ -63,11 +61,9 @@ extern_methods!(
         #[method(removeItemAtIndex:)]
         pub unsafe fn removeItemAtIndex(&self, index: NSInteger);
 
-        #[cfg(feature = "AppKit_NSToolbarDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<AppKit::NSToolbarDelegate, Shared>>;
 
-        #[cfg(feature = "AppKit_NSToolbarDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AppKit::NSToolbarDelegate>);
 
@@ -89,13 +85,11 @@ extern_methods!(
         #[method(setDisplayMode:)]
         pub unsafe fn setDisplayMode(&self, displayMode: NSToolbarDisplayMode);
 
-        #[cfg(feature = "AppKit_NSToolbarItemIdentifier")]
         #[method_id(@__retain_semantics Other selectedItemIdentifier)]
         pub unsafe fn selectedItemIdentifier(
             &self,
         ) -> Option<Id<AppKit::NSToolbarItemIdentifier, Shared>>;
 
-        #[cfg(feature = "AppKit_NSToolbarItemIdentifier")]
         #[method(setSelectedItemIdentifier:)]
         pub unsafe fn setSelectedItemIdentifier(
             &self,
@@ -120,7 +114,6 @@ extern_methods!(
         #[method(setAllowsUserCustomization:)]
         pub unsafe fn setAllowsUserCustomization(&self, allowsUserCustomization: bool);
 
-        #[cfg(feature = "AppKit_NSToolbarIdentifier")]
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Id<AppKit::NSToolbarIdentifier, Shared>;
 
@@ -134,13 +127,11 @@ extern_methods!(
             &self,
         ) -> Option<Id<Foundation::NSArray<AppKit::NSToolbarItem>, Shared>>;
 
-        #[cfg(feature = "AppKit_NSToolbarItemIdentifier")]
         #[method_id(@__retain_semantics Other centeredItemIdentifier)]
         pub unsafe fn centeredItemIdentifier(
             &self,
         ) -> Option<Id<AppKit::NSToolbarItemIdentifier, Shared>>;
 
-        #[cfg(feature = "AppKit_NSToolbarItemIdentifier")]
         #[method(setCenteredItemIdentifier:)]
         pub unsafe fn setCenteredItemIdentifier(
             &self,

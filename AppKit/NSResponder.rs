@@ -40,7 +40,6 @@ extern_methods!(
         #[method(performKeyEquivalent:)]
         pub unsafe fn performKeyEquivalent(&self, event: &AppKit::NSEvent) -> bool;
 
-        #[cfg(feature = "AppKit_NSPasteboardType")]
         #[method_id(@__retain_semantics Other validRequestorForSendType:returnType:)]
         pub unsafe fn validRequestorForSendType_returnType(
             &self,

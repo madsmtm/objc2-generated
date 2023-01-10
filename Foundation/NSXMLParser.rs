@@ -46,11 +46,9 @@ extern_methods!(
             stream: &Foundation::NSInputStream,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSXMLParserDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<Foundation::NSXMLParserDelegate, Shared>>;
 
-        #[cfg(feature = "Foundation_NSXMLParserDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&Foundation::NSXMLParserDelegate>);
 

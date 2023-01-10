@@ -32,14 +32,12 @@ extern_methods!(
             coder: &Foundation::NSCoder,
         ) -> Option<Id<Self, Shared>>;
 
-        #[cfg(feature = "AppKit_NSNibName")]
         #[method_id(@__retain_semantics Init initWithWindowNibName:)]
         pub unsafe fn initWithWindowNibName(
             this: Option<Allocated<Self>>,
             windowNibName: &AppKit::NSNibName,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "AppKit_NSNibName")]
         #[method_id(@__retain_semantics Init initWithWindowNibName:owner:)]
         pub unsafe fn initWithWindowNibName_owner(
             this: Option<Allocated<Self>>,
@@ -55,7 +53,6 @@ extern_methods!(
             owner: &Object,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "AppKit_NSNibName")]
         #[method_id(@__retain_semantics Other windowNibName)]
         pub unsafe fn windowNibName(&self) -> Option<Id<AppKit::NSNibName, Shared>>;
 
@@ -66,13 +63,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other owner)]
         pub unsafe fn owner(&self) -> Option<Id<Object, Shared>>;
 
-        #[cfg(feature = "AppKit_NSWindowFrameAutosaveName")]
         #[method_id(@__retain_semantics Other windowFrameAutosaveName)]
         pub unsafe fn windowFrameAutosaveName(
             &self,
         ) -> Id<AppKit::NSWindowFrameAutosaveName, Shared>;
 
-        #[cfg(feature = "AppKit_NSWindowFrameAutosaveName")]
         #[method(setWindowFrameAutosaveName:)]
         pub unsafe fn setWindowFrameAutosaveName(
             &self,

@@ -25,13 +25,11 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSDraggingImageComponent")]
     unsafe impl NSDraggingImageComponent {
-        #[cfg(feature = "AppKit_NSDraggingImageComponentKey")]
         #[method_id(@__retain_semantics Other draggingImageComponentWithKey:)]
         pub unsafe fn draggingImageComponentWithKey(
             key: &AppKit::NSDraggingImageComponentKey,
         ) -> Id<AppKit::NSDraggingImageComponent, Shared>;
 
-        #[cfg(feature = "AppKit_NSDraggingImageComponentKey")]
         #[method_id(@__retain_semantics Init initWithKey:)]
         pub unsafe fn initWithKey(
             this: Option<Allocated<Self>>,
@@ -41,11 +39,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
-        #[cfg(feature = "AppKit_NSDraggingImageComponentKey")]
         #[method_id(@__retain_semantics Other key)]
         pub unsafe fn key(&self) -> Id<AppKit::NSDraggingImageComponentKey, Shared>;
 
-        #[cfg(feature = "AppKit_NSDraggingImageComponentKey")]
         #[method(setKey:)]
         pub unsafe fn setKey(&self, key: &AppKit::NSDraggingImageComponentKey);
 
@@ -75,7 +71,6 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSDraggingItem")]
     unsafe impl NSDraggingItem {
-        #[cfg(feature = "AppKit_NSPasteboardWriting")]
         #[method_id(@__retain_semantics Init initWithPasteboardWriter:)]
         pub unsafe fn initWithPasteboardWriter(
             this: Option<Allocated<Self>>,

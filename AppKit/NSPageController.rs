@@ -29,11 +29,9 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSPageController")]
     unsafe impl NSPageController {
-        #[cfg(feature = "AppKit_NSPageControllerDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<AppKit::NSPageControllerDelegate, Shared>>;
 
-        #[cfg(feature = "AppKit_NSPageControllerDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AppKit::NSPageControllerDelegate>);
 
@@ -143,7 +141,7 @@ extern_methods!(
     /// Methods declared on superclass `NSViewController`
     #[cfg(feature = "AppKit_NSPageController")]
     unsafe impl AppKit::NSPageController {
-        #[cfg(all(feature = "AppKit_NSNibName", feature = "Foundation_NSBundle"))]
+        #[cfg(feature = "Foundation_NSBundle")]
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Option<Allocated<Self>>,

@@ -148,19 +148,15 @@ extern_methods!(
         #[method(setCompletes:)]
         pub unsafe fn setCompletes(&self, completes: bool);
 
-        #[cfg(feature = "AppKit_NSComboBoxDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<AppKit::NSComboBoxDelegate, Shared>>;
 
-        #[cfg(feature = "AppKit_NSComboBoxDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AppKit::NSComboBoxDelegate>);
 
-        #[cfg(feature = "AppKit_NSComboBoxDataSource")]
         #[method_id(@__retain_semantics Other dataSource)]
         pub unsafe fn dataSource(&self) -> Option<Id<AppKit::NSComboBoxDataSource, Shared>>;
 
-        #[cfg(feature = "AppKit_NSComboBoxDataSource")]
         #[method(setDataSource:)]
         pub unsafe fn setDataSource(&self, dataSource: Option<&AppKit::NSComboBoxDataSource>);
 

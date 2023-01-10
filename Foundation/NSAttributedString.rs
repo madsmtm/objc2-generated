@@ -23,10 +23,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other string)]
         pub fn string(&self) -> Id<Foundation::NSString, Shared>;
 
-        #[cfg(all(
-            feature = "Foundation_NSAttributedStringKey",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other attributesAtIndex:effectiveRange:)]
         pub unsafe fn attributesAtIndex_effectiveRange(
             &self,
@@ -51,7 +48,6 @@ extern_methods!(
         #[method(length)]
         pub fn length(&self) -> NSUInteger;
 
-        #[cfg(feature = "Foundation_NSAttributedStringKey")]
         #[method_id(@__retain_semantics Other attribute:atIndex:effectiveRange:)]
         pub unsafe fn attribute_atIndex_effectiveRange(
             &self,
@@ -66,10 +62,7 @@ extern_methods!(
             range: NSRange,
         ) -> Id<Foundation::NSAttributedString, Shared>;
 
-        #[cfg(all(
-            feature = "Foundation_NSAttributedStringKey",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other attributesAtIndex:longestEffectiveRange:inRange:)]
         pub unsafe fn attributesAtIndex_longestEffectiveRange_inRange(
             &self,
@@ -78,7 +71,6 @@ extern_methods!(
             rangeLimit: NSRange,
         ) -> Id<Foundation::NSDictionary<Foundation::NSAttributedStringKey, Object>, Shared>;
 
-        #[cfg(feature = "Foundation_NSAttributedStringKey")]
         #[method_id(@__retain_semantics Other attribute:atIndex:longestEffectiveRange:inRange:)]
         pub unsafe fn attribute_atIndex_longestEffectiveRange_inRange(
             &self,
@@ -101,11 +93,7 @@ extern_methods!(
             str: &Foundation::NSString,
         ) -> Id<Self, Shared>;
 
-        #[cfg(all(
-            feature = "Foundation_NSAttributedStringKey",
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithString:attributes:)]
         pub unsafe fn initWithString_attributes(
             this: Option<Allocated<Self>>,
@@ -119,10 +107,7 @@ extern_methods!(
             attrStr: &Foundation::NSAttributedString,
         ) -> Id<Self, Shared>;
 
-        #[cfg(all(
-            feature = "Foundation_NSAttributedStringKey",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method(enumerateAttributesInRange:options:usingBlock:)]
         pub unsafe fn enumerateAttributesInRange_options_usingBlock(
             &self,
@@ -138,7 +123,6 @@ extern_methods!(
             >,
         );
 
-        #[cfg(feature = "Foundation_NSAttributedStringKey")]
         #[method(enumerateAttribute:inRange:options:usingBlock:)]
         pub unsafe fn enumerateAttribute_inRange_options_usingBlock(
             &self,
@@ -171,10 +155,7 @@ extern_methods!(
             str: &Foundation::NSString,
         );
 
-        #[cfg(all(
-            feature = "Foundation_NSAttributedStringKey",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method(setAttributes:range:)]
         pub unsafe fn setAttributes_range(
             &self,
@@ -192,7 +173,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other mutableString)]
         pub unsafe fn mutableString(&self) -> Id<Foundation::NSMutableString, Owned>;
 
-        #[cfg(feature = "Foundation_NSAttributedStringKey")]
         #[method(addAttribute:value:range:)]
         pub unsafe fn addAttribute_value_range(
             &self,
@@ -201,10 +181,7 @@ extern_methods!(
             range: NSRange,
         );
 
-        #[cfg(all(
-            feature = "Foundation_NSAttributedStringKey",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method(addAttributes:range:)]
         pub unsafe fn addAttributes_range(
             &self,
@@ -212,7 +189,6 @@ extern_methods!(
             range: NSRange,
         );
 
-        #[cfg(feature = "Foundation_NSAttributedStringKey")]
         #[method(removeAttribute:range:)]
         pub unsafe fn removeAttribute_range(
             &self,
@@ -612,11 +588,7 @@ extern_methods!(
             str: &Foundation::NSString,
         ) -> Id<Self, Owned>;
 
-        #[cfg(all(
-            feature = "Foundation_NSAttributedStringKey",
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithString:attributes:)]
         pub unsafe fn initWithString_attributes(
             this: Option<Allocated<Self>>,

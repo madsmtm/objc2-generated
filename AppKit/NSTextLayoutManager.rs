@@ -48,11 +48,9 @@ extern_methods!(
             coder: &Foundation::NSCoder,
         ) -> Option<Id<Self, Shared>>;
 
-        #[cfg(feature = "AppKit_NSTextLayoutManagerDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<AppKit::NSTextLayoutManagerDelegate, Shared>>;
 
-        #[cfg(feature = "AppKit_NSTextLayoutManagerDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AppKit::NSTextLayoutManagerDelegate>);
 
@@ -132,20 +130,14 @@ extern_methods!(
             position: CGPoint,
         ) -> Option<Id<AppKit::NSTextLayoutFragment, Shared>>;
 
-        #[cfg(all(
-            feature = "AppKit_NSTextLayoutFragment",
-            feature = "AppKit_NSTextLocation"
-        ))]
+        #[cfg(feature = "AppKit_NSTextLayoutFragment")]
         #[method_id(@__retain_semantics Other textLayoutFragmentForLocation:)]
         pub unsafe fn textLayoutFragmentForLocation(
             &self,
             location: &AppKit::NSTextLocation,
         ) -> Option<Id<AppKit::NSTextLayoutFragment, Shared>>;
 
-        #[cfg(all(
-            feature = "AppKit_NSTextLayoutFragment",
-            feature = "AppKit_NSTextLocation"
-        ))]
+        #[cfg(feature = "AppKit_NSTextLayoutFragment")]
         #[method_id(@__retain_semantics Other enumerateTextLayoutFragmentsFromLocation:options:usingBlock:)]
         pub unsafe fn enumerateTextLayoutFragmentsFromLocation_options_usingBlock(
             &self,
@@ -180,12 +172,7 @@ extern_methods!(
             textSelectionNavigation: &AppKit::NSTextSelectionNavigation,
         );
 
-        #[cfg(all(
-            feature = "AppKit_NSTextLocation",
-            feature = "AppKit_NSTextRange",
-            feature = "Foundation_NSAttributedStringKey",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(all(feature = "AppKit_NSTextRange", feature = "Foundation_NSDictionary"))]
         #[method(enumerateRenderingAttributesFromLocation:reverse:usingBlock:)]
         pub unsafe fn enumerateRenderingAttributesFromLocation_reverse_usingBlock(
             &self,
@@ -201,11 +188,7 @@ extern_methods!(
             >,
         );
 
-        #[cfg(all(
-            feature = "AppKit_NSTextRange",
-            feature = "Foundation_NSAttributedStringKey",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(all(feature = "AppKit_NSTextRange", feature = "Foundation_NSDictionary"))]
         #[method(setRenderingAttributes:forTextRange:)]
         pub unsafe fn setRenderingAttributes_forTextRange(
             &self,
@@ -216,10 +199,7 @@ extern_methods!(
             textRange: &AppKit::NSTextRange,
         );
 
-        #[cfg(all(
-            feature = "AppKit_NSTextRange",
-            feature = "Foundation_NSAttributedStringKey"
-        ))]
+        #[cfg(feature = "AppKit_NSTextRange")]
         #[method(addRenderingAttribute:value:forTextRange:)]
         pub unsafe fn addRenderingAttribute_value_forTextRange(
             &self,
@@ -228,10 +208,7 @@ extern_methods!(
             textRange: &AppKit::NSTextRange,
         );
 
-        #[cfg(all(
-            feature = "AppKit_NSTextRange",
-            feature = "Foundation_NSAttributedStringKey"
-        ))]
+        #[cfg(feature = "AppKit_NSTextRange")]
         #[method(removeRenderingAttribute:forTextRange:)]
         pub unsafe fn removeRenderingAttribute_forTextRange(
             &self,
@@ -273,19 +250,12 @@ extern_methods!(
             >,
         );
 
-        #[cfg(all(
-            feature = "Foundation_NSAttributedStringKey",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other linkRenderingAttributes)]
         pub unsafe fn linkRenderingAttributes(
         ) -> Id<Foundation::NSDictionary<Foundation::NSAttributedStringKey, Object>, Shared>;
 
-        #[cfg(all(
-            feature = "AppKit_NSTextLocation",
-            feature = "Foundation_NSAttributedStringKey",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other renderingAttributesForLink:atLocation:)]
         pub unsafe fn renderingAttributesForLink_atLocation(
             &self,

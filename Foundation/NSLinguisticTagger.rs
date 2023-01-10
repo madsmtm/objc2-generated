@@ -122,10 +122,7 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Foundation_NSLinguisticTagger")]
     unsafe impl NSLinguisticTagger {
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSLinguisticTagScheme"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Init initWithTagSchemes:options:)]
         pub unsafe fn initWithTagSchemes_options(
             this: Option<Allocated<Self>>,
@@ -133,10 +130,7 @@ extern_methods!(
             opts: NSUInteger,
         ) -> Id<Self, Shared>;
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSLinguisticTagScheme"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other tagSchemes)]
         pub unsafe fn tagSchemes(
             &self,
@@ -150,22 +144,14 @@ extern_methods!(
         #[method(setString:)]
         pub unsafe fn setString(&self, string: Option<&Foundation::NSString>);
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSLinguisticTagScheme",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other availableTagSchemesForUnit:language:)]
         pub unsafe fn availableTagSchemesForUnit_language(
             unit: NSLinguisticTaggerUnit,
             language: &Foundation::NSString,
         ) -> Id<Foundation::NSArray<Foundation::NSLinguisticTagScheme>, Shared>;
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSLinguisticTagScheme",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other availableTagSchemesForLanguage:)]
         pub unsafe fn availableTagSchemesForLanguage(
             language: &Foundation::NSString,
@@ -204,10 +190,6 @@ extern_methods!(
         #[method(sentenceRangeForRange:)]
         pub unsafe fn sentenceRangeForRange(&self, range: NSRange) -> NSRange;
 
-        #[cfg(all(
-            feature = "Foundation_NSLinguisticTag",
-            feature = "Foundation_NSLinguisticTagScheme"
-        ))]
         #[method(enumerateTagsInRange:unit:scheme:options:usingBlock:)]
         pub unsafe fn enumerateTagsInRange_unit_scheme_options_usingBlock(
             &self,
@@ -218,10 +200,6 @@ extern_methods!(
             block: &Block<(*mut Foundation::NSLinguisticTag, NSRange, NonNull<Bool>), ()>,
         );
 
-        #[cfg(all(
-            feature = "Foundation_NSLinguisticTag",
-            feature = "Foundation_NSLinguisticTagScheme"
-        ))]
         #[method_id(@__retain_semantics Other tagAtIndex:unit:scheme:tokenRange:)]
         pub unsafe fn tagAtIndex_unit_scheme_tokenRange(
             &self,
@@ -231,12 +209,7 @@ extern_methods!(
             tokenRange: NSRangePointer,
         ) -> Option<Id<Foundation::NSLinguisticTag, Shared>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSLinguisticTag",
-            feature = "Foundation_NSLinguisticTagScheme",
-            feature = "Foundation_NSValue"
-        ))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[method_id(@__retain_semantics Other tagsInRange:unit:scheme:options:tokenRanges:)]
         pub unsafe fn tagsInRange_unit_scheme_options_tokenRanges(
             &self,
@@ -247,10 +220,6 @@ extern_methods!(
             tokenRanges: *mut *mut Foundation::NSArray<Foundation::NSValue>,
         ) -> Id<Foundation::NSArray<Foundation::NSLinguisticTag>, Shared>;
 
-        #[cfg(all(
-            feature = "Foundation_NSLinguisticTag",
-            feature = "Foundation_NSLinguisticTagScheme"
-        ))]
         #[method(enumerateTagsInRange:scheme:options:usingBlock:)]
         pub unsafe fn enumerateTagsInRange_scheme_options_usingBlock(
             &self,
@@ -268,10 +237,6 @@ extern_methods!(
             >,
         );
 
-        #[cfg(all(
-            feature = "Foundation_NSLinguisticTag",
-            feature = "Foundation_NSLinguisticTagScheme"
-        ))]
         #[method_id(@__retain_semantics Other tagAtIndex:scheme:tokenRange:sentenceRange:)]
         pub unsafe fn tagAtIndex_scheme_tokenRange_sentenceRange(
             &self,
@@ -305,12 +270,7 @@ extern_methods!(
             string: &Foundation::NSString,
         ) -> Option<Id<Foundation::NSString, Shared>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSLinguisticTag",
-            feature = "Foundation_NSLinguisticTagScheme",
-            feature = "Foundation_NSOrthography",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "Foundation_NSOrthography", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other tagForString:atIndex:unit:scheme:orthography:tokenRange:)]
         pub unsafe fn tagForString_atIndex_unit_scheme_orthography_tokenRange(
             string: &Foundation::NSString,
@@ -323,8 +283,6 @@ extern_methods!(
 
         #[cfg(all(
             feature = "Foundation_NSArray",
-            feature = "Foundation_NSLinguisticTag",
-            feature = "Foundation_NSLinguisticTagScheme",
             feature = "Foundation_NSOrthography",
             feature = "Foundation_NSString",
             feature = "Foundation_NSValue"
@@ -340,12 +298,7 @@ extern_methods!(
             tokenRanges: *mut *mut Foundation::NSArray<Foundation::NSValue>,
         ) -> Id<Foundation::NSArray<Foundation::NSLinguisticTag>, Shared>;
 
-        #[cfg(all(
-            feature = "Foundation_NSLinguisticTag",
-            feature = "Foundation_NSLinguisticTagScheme",
-            feature = "Foundation_NSOrthography",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "Foundation_NSOrthography", feature = "Foundation_NSString"))]
         #[method(enumerateTagsForString:range:unit:scheme:options:orthography:usingBlock:)]
         pub unsafe fn enumerateTagsForString_range_unit_scheme_options_orthography_usingBlock(
             string: &Foundation::NSString,
@@ -380,8 +333,6 @@ extern_methods!(
     unsafe impl Foundation::NSString {
         #[cfg(all(
             feature = "Foundation_NSArray",
-            feature = "Foundation_NSLinguisticTag",
-            feature = "Foundation_NSLinguisticTagScheme",
             feature = "Foundation_NSOrthography",
             feature = "Foundation_NSValue"
         ))]
@@ -395,11 +346,7 @@ extern_methods!(
             tokenRanges: *mut *mut Foundation::NSArray<Foundation::NSValue>,
         ) -> Id<Foundation::NSArray<Foundation::NSLinguisticTag>, Shared>;
 
-        #[cfg(all(
-            feature = "Foundation_NSLinguisticTag",
-            feature = "Foundation_NSLinguisticTagScheme",
-            feature = "Foundation_NSOrthography"
-        ))]
+        #[cfg(feature = "Foundation_NSOrthography")]
         #[method(enumerateLinguisticTagsInRange:scheme:options:orthography:usingBlock:)]
         pub unsafe fn enumerateLinguisticTagsInRange_scheme_options_orthography_usingBlock(
             &self,

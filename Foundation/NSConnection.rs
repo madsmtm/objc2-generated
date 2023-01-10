@@ -108,11 +108,9 @@ extern_methods!(
         #[method(setRootObject:)]
         pub unsafe fn setRootObject(&self, rootObject: Option<&Object>);
 
-        #[cfg(feature = "Foundation_NSConnectionDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<Foundation::NSConnectionDelegate, Shared>>;
 
-        #[cfg(feature = "Foundation_NSConnectionDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&Foundation::NSConnectionDelegate>);
 

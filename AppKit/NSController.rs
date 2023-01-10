@@ -27,11 +27,9 @@ extern_methods!(
             coder: &Foundation::NSCoder,
         ) -> Option<Id<Self, Shared>>;
 
-        #[cfg(feature = "AppKit_NSEditor")]
         #[method(objectDidBeginEditing:)]
         pub unsafe fn objectDidBeginEditing(&self, editor: &AppKit::NSEditor);
 
-        #[cfg(feature = "AppKit_NSEditor")]
         #[method(objectDidEndEditing:)]
         pub unsafe fn objectDidEndEditing(&self, editor: &AppKit::NSEditor);
 

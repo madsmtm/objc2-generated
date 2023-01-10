@@ -51,22 +51,18 @@ extern_methods!(
         #[method(close)]
         pub unsafe fn close(&self);
 
-        #[cfg(feature = "Foundation_NSStreamDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<Foundation::NSStreamDelegate, Shared>>;
 
-        #[cfg(feature = "Foundation_NSStreamDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&Foundation::NSStreamDelegate>);
 
-        #[cfg(feature = "Foundation_NSStreamPropertyKey")]
         #[method_id(@__retain_semantics Other propertyForKey:)]
         pub unsafe fn propertyForKey(
             &self,
             key: &Foundation::NSStreamPropertyKey,
         ) -> Option<Id<Object, Shared>>;
 
-        #[cfg(feature = "Foundation_NSStreamPropertyKey")]
         #[method(setProperty:forKey:)]
         pub unsafe fn setProperty_forKey(
             &self,
@@ -74,7 +70,7 @@ extern_methods!(
             key: &Foundation::NSStreamPropertyKey,
         ) -> bool;
 
-        #[cfg(all(feature = "Foundation_NSRunLoop", feature = "Foundation_NSRunLoopMode"))]
+        #[cfg(feature = "Foundation_NSRunLoop")]
         #[method(scheduleInRunLoop:forMode:)]
         pub unsafe fn scheduleInRunLoop_forMode(
             &self,
@@ -82,7 +78,7 @@ extern_methods!(
             mode: &Foundation::NSRunLoopMode,
         );
 
-        #[cfg(all(feature = "Foundation_NSRunLoop", feature = "Foundation_NSRunLoopMode"))]
+        #[cfg(feature = "Foundation_NSRunLoop")]
         #[method(removeFromRunLoop:forMode:)]
         pub unsafe fn removeFromRunLoop_forMode(
             &self,

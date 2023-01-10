@@ -24,13 +24,11 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AuthenticationServices_ASAuthorization")]
     unsafe impl ASAuthorization {
-        #[cfg(feature = "AuthenticationServices_ASAuthorizationProvider")]
         #[method_id(@__retain_semantics Other provider)]
         pub unsafe fn provider(
             &self,
         ) -> Id<AuthenticationServices::ASAuthorizationProvider, Shared>;
 
-        #[cfg(feature = "AuthenticationServices_ASAuthorizationCredential")]
         #[method_id(@__retain_semantics Other credential)]
         pub unsafe fn credential(
             &self,

@@ -200,11 +200,9 @@ extern_methods!(
         #[method(performActionForItemAtIndex:)]
         pub unsafe fn performActionForItemAtIndex(&self, index: NSInteger);
 
-        #[cfg(feature = "AppKit_NSMenuDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<AppKit::NSMenuDelegate, Shared>>;
 
-        #[cfg(feature = "AppKit_NSMenuDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AppKit::NSMenuDelegate>);
 

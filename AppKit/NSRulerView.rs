@@ -39,7 +39,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSRulerView")]
     unsafe impl NSRulerView {
         #[cfg(all(
-            feature = "AppKit_NSRulerViewUnitName",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSNumber",
             feature = "Foundation_NSString"
@@ -109,11 +108,9 @@ extern_methods!(
             reservedThicknessForAccessoryView: CGFloat,
         );
 
-        #[cfg(feature = "AppKit_NSRulerViewUnitName")]
         #[method_id(@__retain_semantics Other measurementUnits)]
         pub unsafe fn measurementUnits(&self) -> Id<AppKit::NSRulerViewUnitName, Shared>;
 
-        #[cfg(feature = "AppKit_NSRulerViewUnitName")]
         #[method(setMeasurementUnits:)]
         pub unsafe fn setMeasurementUnits(&self, measurementUnits: &AppKit::NSRulerViewUnitName);
 

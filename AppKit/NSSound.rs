@@ -23,7 +23,6 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSSound")]
     unsafe impl NSSound {
-        #[cfg(feature = "AppKit_NSSoundName")]
         #[method_id(@__retain_semantics Other soundNamed:)]
         pub unsafe fn soundNamed(name: &AppKit::NSSoundName)
             -> Option<Id<AppKit::NSSound, Shared>>;
@@ -51,11 +50,9 @@ extern_methods!(
             data: &Foundation::NSData,
         ) -> Option<Id<Self, Shared>>;
 
-        #[cfg(feature = "AppKit_NSSoundName")]
         #[method(setName:)]
         pub unsafe fn setName(&self, string: Option<&AppKit::NSSoundName>) -> bool;
 
-        #[cfg(feature = "AppKit_NSSoundName")]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Option<Id<AppKit::NSSoundName, Shared>>;
 
@@ -93,11 +90,9 @@ extern_methods!(
         #[method(isPlaying)]
         pub unsafe fn isPlaying(&self) -> bool;
 
-        #[cfg(feature = "AppKit_NSSoundDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<AppKit::NSSoundDelegate, Shared>>;
 
-        #[cfg(feature = "AppKit_NSSoundDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AppKit::NSSoundDelegate>);
 
@@ -122,13 +117,11 @@ extern_methods!(
         #[method(setLoops:)]
         pub unsafe fn setLoops(&self, loops: bool);
 
-        #[cfg(feature = "AppKit_NSSoundPlaybackDeviceIdentifier")]
         #[method_id(@__retain_semantics Other playbackDeviceIdentifier)]
         pub unsafe fn playbackDeviceIdentifier(
             &self,
         ) -> Option<Id<AppKit::NSSoundPlaybackDeviceIdentifier, Shared>>;
 
-        #[cfg(feature = "AppKit_NSSoundPlaybackDeviceIdentifier")]
         #[method(setPlaybackDeviceIdentifier:)]
         pub unsafe fn setPlaybackDeviceIdentifier(
             &self,
@@ -173,7 +166,7 @@ extern_methods!(
     /// NSBundleSoundExtensions
     #[cfg(feature = "Foundation_NSBundle")]
     unsafe impl Foundation::NSBundle {
-        #[cfg(all(feature = "AppKit_NSSoundName", feature = "Foundation_NSString"))]
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other pathForSoundResource:)]
         pub unsafe fn pathForSoundResource(
             &self,

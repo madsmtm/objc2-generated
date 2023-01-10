@@ -98,7 +98,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other url)]
         pub unsafe fn url(&self) -> Id<Foundation::NSURL, Shared>;
 
-        #[cfg(feature = "AuthenticationServices_ASAuthorizationProviderAuthorizationOperation")]
         #[method_id(@__retain_semantics Other requestedOperation)]
         pub unsafe fn requestedOperation(
             &self,

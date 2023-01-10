@@ -26,7 +26,6 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSTextRange")]
     unsafe impl NSTextRange {
-        #[cfg(feature = "AppKit_NSTextLocation")]
         #[method_id(@__retain_semantics Init initWithLocation:endLocation:)]
         pub unsafe fn initWithLocation_endLocation(
             this: Option<Allocated<Self>>,
@@ -34,7 +33,6 @@ extern_methods!(
             endLocation: Option<&AppKit::NSTextLocation>,
         ) -> Option<Id<Self, Shared>>;
 
-        #[cfg(feature = "AppKit_NSTextLocation")]
         #[method_id(@__retain_semantics Init initWithLocation:)]
         pub unsafe fn initWithLocation(
             this: Option<Allocated<Self>>,
@@ -50,18 +48,15 @@ extern_methods!(
         #[method(isEmpty)]
         pub unsafe fn isEmpty(&self) -> bool;
 
-        #[cfg(feature = "AppKit_NSTextLocation")]
         #[method_id(@__retain_semantics Other location)]
         pub unsafe fn location(&self) -> Id<AppKit::NSTextLocation, Shared>;
 
-        #[cfg(feature = "AppKit_NSTextLocation")]
         #[method_id(@__retain_semantics Other endLocation)]
         pub unsafe fn endLocation(&self) -> Id<AppKit::NSTextLocation, Shared>;
 
         #[method(isEqualToTextRange:)]
         pub unsafe fn isEqualToTextRange(&self, textRange: &AppKit::NSTextRange) -> bool;
 
-        #[cfg(feature = "AppKit_NSTextLocation")]
         #[method(containsLocation:)]
         pub unsafe fn containsLocation(&self, location: &AppKit::NSTextLocation) -> bool;
 

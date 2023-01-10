@@ -42,11 +42,9 @@ extern_methods!(
         #[method(setLabel:)]
         pub fn setLabel(&self, label: Option<&Foundation::NSString>);
 
-        #[cfg(feature = "Metal_MTLFunction")]
         #[method_id(@__retain_semantics Other computeFunction)]
         pub fn computeFunction(&self) -> Option<Id<Metal::MTLFunction, Shared>>;
 
-        #[cfg(feature = "Metal_MTLFunction")]
         #[method(setComputeFunction:)]
         pub fn setComputeFunction(&self, computeFunction: Option<&Metal::MTLFunction>);
 
@@ -88,39 +86,39 @@ extern_methods!(
         #[method(setSupportIndirectCommandBuffers:)]
         pub fn setSupportIndirectCommandBuffers(&self, supportIndirectCommandBuffers: bool);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLDynamicLibrary"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other insertLibraries)]
         pub fn insertLibraries(
             &self,
         ) -> Option<Id<Foundation::NSArray<Metal::MTLDynamicLibrary>, Shared>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLDynamicLibrary"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(setInsertLibraries:)]
         pub fn setInsertLibraries(
             &self,
             insertLibraries: Option<&Foundation::NSArray<Metal::MTLDynamicLibrary>>,
         );
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLDynamicLibrary"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other preloadedLibraries)]
         pub fn preloadedLibraries(
             &self,
         ) -> Id<Foundation::NSArray<Metal::MTLDynamicLibrary>, Shared>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLDynamicLibrary"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(setPreloadedLibraries:)]
         pub fn setPreloadedLibraries(
             &self,
             preloadedLibraries: &Foundation::NSArray<Metal::MTLDynamicLibrary>,
         );
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLBinaryArchive"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other binaryArchives)]
         pub fn binaryArchives(
             &self,
         ) -> Option<Id<Foundation::NSArray<Metal::MTLBinaryArchive>, Shared>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLBinaryArchive"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(setBinaryArchives:)]
         pub fn setBinaryArchives(
             &self,

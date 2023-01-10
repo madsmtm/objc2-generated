@@ -101,11 +101,9 @@ extern_methods!(
         #[method(currentValue)]
         pub unsafe fn currentValue(&self) -> c_float;
 
-        #[cfg(feature = "AppKit_NSAnimationDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<AppKit::NSAnimationDelegate, Shared>>;
 
-        #[cfg(feature = "AppKit_NSAnimationDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AppKit::NSAnimationDelegate>);
 
@@ -147,7 +145,7 @@ extern_methods!(
         #[method(clearStopAnimation)]
         pub unsafe fn clearStopAnimation(&self);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSRunLoopMode"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other runLoopModesForAnimating)]
         pub unsafe fn runLoopModesForAnimating(
             &self,
@@ -222,11 +220,7 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSViewAnimation")]
     unsafe impl NSViewAnimation {
-        #[cfg(all(
-            feature = "AppKit_NSViewAnimationKey",
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSDictionary"))]
         #[method_id(@__retain_semantics Init initWithViewAnimations:)]
         pub unsafe fn initWithViewAnimations(
             this: Option<Allocated<Self>>,
@@ -235,11 +229,7 @@ extern_methods!(
             >,
         ) -> Id<Self, Shared>;
 
-        #[cfg(all(
-            feature = "AppKit_NSViewAnimationKey",
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSDictionary"))]
         #[method_id(@__retain_semantics Other viewAnimations)]
         pub unsafe fn viewAnimations(
             &self,
@@ -248,11 +238,7 @@ extern_methods!(
             Shared,
         >;
 
-        #[cfg(all(
-            feature = "AppKit_NSViewAnimationKey",
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSDictionary"))]
         #[method(setViewAnimations:)]
         pub unsafe fn setViewAnimations(
             &self,

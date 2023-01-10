@@ -89,11 +89,9 @@ extern_methods!(
             coder: &Foundation::NSCoder,
         ) -> Option<Id<Self, Shared>>;
 
-        #[cfg(feature = "AppKit_NSTextContentManagerDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<AppKit::NSTextContentManagerDelegate, Shared>>;
 
-        #[cfg(feature = "AppKit_NSTextContentManagerDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AppKit::NSTextContentManagerDelegate>);
 
@@ -229,11 +227,9 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSTextContentStorage")]
     unsafe impl NSTextContentStorage {
-        #[cfg(feature = "AppKit_NSTextContentStorageDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<AppKit::NSTextContentStorageDelegate, Shared>>;
 
-        #[cfg(feature = "AppKit_NSTextContentStorageDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AppKit::NSTextContentStorageDelegate>);
 
@@ -269,7 +265,6 @@ extern_methods!(
             attributedString: &Foundation::NSAttributedString,
         ) -> Option<Id<AppKit::NSTextElement, Shared>>;
 
-        #[cfg(feature = "AppKit_NSTextLocation")]
         #[method_id(@__retain_semantics Other locationFromLocation:withOffset:)]
         pub unsafe fn locationFromLocation_withOffset(
             &self,
@@ -277,7 +272,6 @@ extern_methods!(
             offset: NSInteger,
         ) -> Option<Id<AppKit::NSTextLocation, Shared>>;
 
-        #[cfg(feature = "AppKit_NSTextLocation")]
         #[method(offsetFromLocation:toLocation:)]
         pub unsafe fn offsetFromLocation_toLocation(
             &self,

@@ -48,7 +48,6 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSHapticFeedbackManager")]
     unsafe impl NSHapticFeedbackManager {
-        #[cfg(feature = "AppKit_NSHapticFeedbackPerformer")]
         #[method_id(@__retain_semantics Other defaultPerformer)]
         pub unsafe fn defaultPerformer() -> Id<AppKit::NSHapticFeedbackPerformer, Shared>;
     }

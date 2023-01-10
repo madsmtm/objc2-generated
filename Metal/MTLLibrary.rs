@@ -241,13 +241,13 @@ extern_methods!(
         #[method(setInstallName:)]
         pub unsafe fn setInstallName(&self, installName: Option<&Foundation::NSString>);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLDynamicLibrary"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other libraries)]
         pub fn libraries(
             &self,
         ) -> Option<Id<Foundation::NSArray<Metal::MTLDynamicLibrary>, Shared>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLDynamicLibrary"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(setLibraries:)]
         pub fn setLibraries(
             &self,

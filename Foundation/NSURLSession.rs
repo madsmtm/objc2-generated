@@ -28,8 +28,7 @@ extern_methods!(
 
         #[cfg(all(
             feature = "Foundation_NSOperationQueue",
-            feature = "Foundation_NSURLSessionConfiguration",
-            feature = "Foundation_NSURLSessionDelegate"
+            feature = "Foundation_NSURLSessionConfiguration"
         ))]
         #[method_id(@__retain_semantics Other sessionWithConfiguration:delegate:delegateQueue:)]
         pub unsafe fn sessionWithConfiguration_delegate_delegateQueue(
@@ -42,7 +41,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegateQueue)]
         pub unsafe fn delegateQueue(&self) -> Id<Foundation::NSOperationQueue, Shared>;
 
-        #[cfg(feature = "Foundation_NSURLSessionDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<Foundation::NSURLSessionDelegate, Shared>>;
 
@@ -443,11 +441,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Other response)]
         pub unsafe fn response(&self) -> Option<Id<Foundation::NSURLResponse, Shared>>;
 
-        #[cfg(feature = "Foundation_NSURLSessionTaskDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<Foundation::NSURLSessionTaskDelegate, Shared>>;
 
-        #[cfg(feature = "Foundation_NSURLSessionTaskDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&Foundation::NSURLSessionTaskDelegate>);
 

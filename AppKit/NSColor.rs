@@ -111,26 +111,24 @@ extern_methods!(
             alpha: CGFloat,
         ) -> Id<AppKit::NSColor, Shared>;
 
-        #[cfg(all(feature = "AppKit_NSColorListName", feature = "AppKit_NSColorName"))]
         #[method_id(@__retain_semantics Other colorWithCatalogName:colorName:)]
         pub unsafe fn colorWithCatalogName_colorName(
             listName: &AppKit::NSColorListName,
             colorName: &AppKit::NSColorName,
         ) -> Option<Id<AppKit::NSColor, Shared>>;
 
-        #[cfg(all(feature = "AppKit_NSColorName", feature = "Foundation_NSBundle"))]
+        #[cfg(feature = "Foundation_NSBundle")]
         #[method_id(@__retain_semantics Other colorNamed:bundle:)]
         pub unsafe fn colorNamed_bundle(
             name: &AppKit::NSColorName,
             bundle: Option<&Foundation::NSBundle>,
         ) -> Option<Id<AppKit::NSColor, Shared>>;
 
-        #[cfg(feature = "AppKit_NSColorName")]
         #[method_id(@__retain_semantics Other colorNamed:)]
         pub unsafe fn colorNamed(name: &AppKit::NSColorName)
             -> Option<Id<AppKit::NSColor, Shared>>;
 
-        #[cfg(all(feature = "AppKit_NSAppearance", feature = "AppKit_NSColorName"))]
+        #[cfg(feature = "AppKit_NSAppearance")]
         #[method_id(@__retain_semantics Other colorWithName:dynamicProvider:)]
         pub unsafe fn colorWithName_dynamicProvider(
             colorName: Option<&AppKit::NSColorName>,
@@ -445,11 +443,9 @@ extern_methods!(
         pub unsafe fn colorWithAlphaComponent(&self, alpha: CGFloat)
             -> Id<AppKit::NSColor, Shared>;
 
-        #[cfg(feature = "AppKit_NSColorListName")]
         #[method_id(@__retain_semantics Other catalogNameComponent)]
         pub unsafe fn catalogNameComponent(&self) -> Id<AppKit::NSColorListName, Shared>;
 
-        #[cfg(feature = "AppKit_NSColorName")]
         #[method_id(@__retain_semantics Other colorNameComponent)]
         pub unsafe fn colorNameComponent(&self) -> Id<AppKit::NSColorName, Shared>;
 
@@ -608,15 +604,10 @@ extern_methods!(
         pub unsafe fn controlAlternatingRowBackgroundColors(
         ) -> Id<Foundation::NSArray<AppKit::NSColor>, Shared>;
 
-        #[cfg(feature = "AppKit_NSColorSpaceName")]
         #[method_id(@__retain_semantics Other colorSpaceName)]
         pub unsafe fn colorSpaceName(&self) -> Id<AppKit::NSColorSpaceName, Shared>;
 
-        #[cfg(all(
-            feature = "AppKit_NSColorSpaceName",
-            feature = "AppKit_NSDeviceDescriptionKey",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other colorUsingColorSpaceName:device:)]
         pub unsafe fn colorUsingColorSpaceName_device(
             &self,
@@ -626,7 +617,6 @@ extern_methods!(
             >,
         ) -> Option<Id<AppKit::NSColor, Shared>>;
 
-        #[cfg(feature = "AppKit_NSColorSpaceName")]
         #[method_id(@__retain_semantics Other colorUsingColorSpaceName:)]
         pub unsafe fn colorUsingColorSpaceName(
             &self,

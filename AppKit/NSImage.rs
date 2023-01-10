@@ -46,7 +46,6 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSImage")]
     unsafe impl NSImage {
-        #[cfg(feature = "AppKit_NSImageName")]
         #[method_id(@__retain_semantics Other imageNamed:)]
         pub unsafe fn imageNamed(name: &AppKit::NSImageName)
             -> Option<Id<AppKit::NSImage, Shared>>;
@@ -131,11 +130,9 @@ extern_methods!(
         #[method(setSize:)]
         pub unsafe fn setSize(&self, size: NSSize);
 
-        #[cfg(feature = "AppKit_NSImageName")]
         #[method(setName:)]
         pub unsafe fn setName(&self, string: Option<&AppKit::NSImageName>) -> bool;
 
-        #[cfg(feature = "AppKit_NSImageName")]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Option<Id<AppKit::NSImageName, Shared>>;
 
@@ -189,7 +186,7 @@ extern_methods!(
             delta: CGFloat,
         );
 
-        #[cfg(all(feature = "AppKit_NSImageHintKey", feature = "Foundation_NSDictionary"))]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method(drawInRect:fromRect:operation:fraction:respectFlipped:hints:)]
         pub unsafe fn drawInRect_fromRect_operation_fraction_respectFlipped_hints(
             &self,
@@ -259,11 +256,9 @@ extern_methods!(
         #[method(unlockFocus)]
         pub unsafe fn unlockFocus(&self);
 
-        #[cfg(feature = "AppKit_NSImageDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<AppKit::NSImageDelegate, Shared>>;
 
-        #[cfg(feature = "AppKit_NSImageDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AppKit::NSImageDelegate>);
 
@@ -313,7 +308,6 @@ extern_methods!(
 
         #[cfg(all(
             feature = "AppKit_NSGraphicsContext",
-            feature = "AppKit_NSImageHintKey",
             feature = "AppKit_NSImageRep",
             feature = "Foundation_NSDictionary"
         ))]
@@ -327,7 +321,6 @@ extern_methods!(
 
         #[cfg(all(
             feature = "AppKit_NSGraphicsContext",
-            feature = "AppKit_NSImageHintKey",
             feature = "Foundation_NSDictionary"
         ))]
         #[method(hitTestRect:withImageDestinationRect:context:hints:flipped:)]
@@ -434,21 +427,21 @@ extern_methods!(
     /// NSBundleImageExtension
     #[cfg(feature = "Foundation_NSBundle")]
     unsafe impl Foundation::NSBundle {
-        #[cfg(all(feature = "AppKit_NSImage", feature = "AppKit_NSImageName"))]
+        #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other imageForResource:)]
         pub unsafe fn imageForResource(
             &self,
             name: &AppKit::NSImageName,
         ) -> Option<Id<AppKit::NSImage, Shared>>;
 
-        #[cfg(all(feature = "AppKit_NSImageName", feature = "Foundation_NSString"))]
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other pathForImageResource:)]
         pub unsafe fn pathForImageResource(
             &self,
             name: &AppKit::NSImageName,
         ) -> Option<Id<Foundation::NSString, Shared>>;
 
-        #[cfg(all(feature = "AppKit_NSImageName", feature = "Foundation_NSURL"))]
+        #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other URLForImageResource:)]
         pub unsafe fn URLForImageResource(
             &self,
@@ -472,7 +465,7 @@ extern_methods!(
         pub unsafe fn imageUnfilteredFileTypes(
         ) -> Id<Foundation::NSArray<Foundation::NSString>, Shared>;
 
-        #[cfg(all(feature = "AppKit_NSPasteboardType", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other imageUnfilteredPasteboardTypes)]
         pub unsafe fn imageUnfilteredPasteboardTypes(
         ) -> Id<Foundation::NSArray<AppKit::NSPasteboardType>, Shared>;
@@ -481,7 +474,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other imageFileTypes)]
         pub unsafe fn imageFileTypes() -> Id<Foundation::NSArray<Foundation::NSString>, Shared>;
 
-        #[cfg(all(feature = "AppKit_NSPasteboardType", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other imagePasteboardTypes)]
         pub unsafe fn imagePasteboardTypes(
         ) -> Id<Foundation::NSArray<AppKit::NSPasteboardType>, Shared>;
@@ -876,14 +869,12 @@ extern_methods!(
             weight: NSFontWeight,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "AppKit_NSFontTextStyle")]
         #[method_id(@__retain_semantics Other configurationWithTextStyle:scale:)]
         pub unsafe fn configurationWithTextStyle_scale(
             style: &AppKit::NSFontTextStyle,
             scale: NSImageSymbolScale,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "AppKit_NSFontTextStyle")]
         #[method_id(@__retain_semantics Other configurationWithTextStyle:)]
         pub unsafe fn configurationWithTextStyle(
             style: &AppKit::NSFontTextStyle,

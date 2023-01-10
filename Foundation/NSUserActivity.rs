@@ -111,11 +111,9 @@ extern_methods!(
         #[method(setSupportsContinuationStreams:)]
         pub unsafe fn setSupportsContinuationStreams(&self, supportsContinuationStreams: bool);
 
-        #[cfg(feature = "Foundation_NSUserActivityDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<Foundation::NSUserActivityDelegate, Shared>>;
 
-        #[cfg(feature = "Foundation_NSUserActivityDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&Foundation::NSUserActivityDelegate>);
 
@@ -181,23 +179,18 @@ extern_methods!(
         #[method(setEligibleForPrediction:)]
         pub unsafe fn setEligibleForPrediction(&self, eligibleForPrediction: bool);
 
-        #[cfg(feature = "Foundation_NSUserActivityPersistentIdentifier")]
         #[method_id(@__retain_semantics Other persistentIdentifier)]
         pub unsafe fn persistentIdentifier(
             &self,
         ) -> Option<Id<Foundation::NSUserActivityPersistentIdentifier, Shared>>;
 
-        #[cfg(feature = "Foundation_NSUserActivityPersistentIdentifier")]
         #[method(setPersistentIdentifier:)]
         pub unsafe fn setPersistentIdentifier(
             &self,
             persistentIdentifier: Option<&Foundation::NSUserActivityPersistentIdentifier>,
         );
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSUserActivityPersistentIdentifier"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(deleteSavedUserActivitiesWithPersistentIdentifiers:completionHandler:)]
         pub unsafe fn deleteSavedUserActivitiesWithPersistentIdentifiers_completionHandler(
             persistentIdentifiers: &Foundation::NSArray<

@@ -18,10 +18,7 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSButtonTouchBarItem")]
     unsafe impl NSButtonTouchBarItem {
-        #[cfg(all(
-            feature = "AppKit_NSTouchBarItemIdentifier",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other buttonTouchBarItemWithIdentifier:title:target:action:)]
         pub unsafe fn buttonTouchBarItemWithIdentifier_title_target_action(
             identifier: &AppKit::NSTouchBarItemIdentifier,
@@ -30,10 +27,7 @@ extern_methods!(
             action: Option<Sel>,
         ) -> Id<Self, Shared>;
 
-        #[cfg(all(
-            feature = "AppKit_NSImage",
-            feature = "AppKit_NSTouchBarItemIdentifier"
-        ))]
+        #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other buttonTouchBarItemWithIdentifier:image:target:action:)]
         pub unsafe fn buttonTouchBarItemWithIdentifier_image_target_action(
             identifier: &AppKit::NSTouchBarItemIdentifier,
@@ -42,11 +36,7 @@ extern_methods!(
             action: Option<Sel>,
         ) -> Id<Self, Shared>;
 
-        #[cfg(all(
-            feature = "AppKit_NSImage",
-            feature = "AppKit_NSTouchBarItemIdentifier",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "AppKit_NSImage", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other buttonTouchBarItemWithIdentifier:title:image:target:action:)]
         pub unsafe fn buttonTouchBarItemWithIdentifier_title_image_target_action(
             identifier: &AppKit::NSTouchBarItemIdentifier,
@@ -115,7 +105,6 @@ extern_methods!(
     /// Methods declared on superclass `NSTouchBarItem`
     #[cfg(feature = "AppKit_NSButtonTouchBarItem")]
     unsafe impl AppKit::NSButtonTouchBarItem {
-        #[cfg(feature = "AppKit_NSTouchBarItemIdentifier")]
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
             this: Option<Allocated<Self>>,

@@ -57,11 +57,9 @@ extern_methods!(
             allowedTypes: Option<&Foundation::NSArray<Foundation::NSString>>,
         );
 
-        #[cfg(feature = "AppKit_NSPathCellDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<AppKit::NSPathCellDelegate, Shared>>;
 
-        #[cfg(feature = "AppKit_NSPathCellDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AppKit::NSPathCellDelegate>);
 

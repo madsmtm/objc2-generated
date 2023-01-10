@@ -55,20 +55,14 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Foundation_NSHTTPCookie")]
     unsafe impl NSHTTPCookie {
-        #[cfg(all(
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSHTTPCookiePropertyKey"
-        ))]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Init initWithProperties:)]
         pub unsafe fn initWithProperties(
             this: Option<Allocated<Self>>,
             properties: &Foundation::NSDictionary<Foundation::NSHTTPCookiePropertyKey, Object>,
         ) -> Option<Id<Self, Shared>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSHTTPCookiePropertyKey"
-        ))]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other cookieWithProperties:)]
         pub unsafe fn cookieWithProperties(
             properties: &Foundation::NSDictionary<Foundation::NSHTTPCookiePropertyKey, Object>,
@@ -96,10 +90,7 @@ extern_methods!(
             URL: &Foundation::NSURL,
         ) -> Id<Foundation::NSArray<Foundation::NSHTTPCookie>, Shared>;
 
-        #[cfg(all(
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSHTTPCookiePropertyKey"
-        ))]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other properties)]
         pub unsafe fn properties(
             &self,
@@ -151,7 +142,6 @@ extern_methods!(
             &self,
         ) -> Option<Id<Foundation::NSArray<Foundation::NSNumber>, Shared>>;
 
-        #[cfg(feature = "Foundation_NSHTTPCookieStringPolicy")]
         #[method_id(@__retain_semantics Other sameSitePolicy)]
         pub unsafe fn sameSitePolicy(
             &self,

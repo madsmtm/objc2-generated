@@ -25,11 +25,9 @@ extern_methods!(
         #[method(setFileType:)]
         pub unsafe fn setFileType(&self, fileType: &Foundation::NSString);
 
-        #[cfg(feature = "AppKit_NSFilePromiseProviderDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<AppKit::NSFilePromiseProviderDelegate, Shared>>;
 
-        #[cfg(feature = "AppKit_NSFilePromiseProviderDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AppKit::NSFilePromiseProviderDelegate>);
 
@@ -39,10 +37,7 @@ extern_methods!(
         #[method(setUserInfo:)]
         pub unsafe fn setUserInfo(&self, userInfo: Option<&Object>);
 
-        #[cfg(all(
-            feature = "AppKit_NSFilePromiseProviderDelegate",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithFileType:delegate:)]
         pub unsafe fn initWithFileType_delegate(
             this: Option<Allocated<Self>>,

@@ -89,7 +89,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other generalPasteboard)]
         pub unsafe fn generalPasteboard() -> Id<AppKit::NSPasteboard, Shared>;
 
-        #[cfg(feature = "AppKit_NSPasteboardName")]
         #[method_id(@__retain_semantics Other pasteboardWithName:)]
         pub unsafe fn pasteboardWithName(
             name: &AppKit::NSPasteboardName,
@@ -98,7 +97,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other pasteboardWithUniqueName)]
         pub unsafe fn pasteboardWithUniqueName() -> Id<AppKit::NSPasteboard, Shared>;
 
-        #[cfg(feature = "AppKit_NSPasteboardName")]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Id<AppKit::NSPasteboardName, Shared>;
 
@@ -114,18 +112,14 @@ extern_methods!(
         #[method(clearContents)]
         pub unsafe fn clearContents(&self) -> NSInteger;
 
-        #[cfg(all(feature = "AppKit_NSPasteboardWriting", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(writeObjects:)]
         pub unsafe fn writeObjects(
             &self,
             objects: &Foundation::NSArray<AppKit::NSPasteboardWriting>,
         ) -> bool;
 
-        #[cfg(all(
-            feature = "AppKit_NSPasteboardReadingOptionKey",
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSDictionary"))]
         #[method_id(@__retain_semantics Other readObjectsForClasses:options:)]
         pub unsafe fn readObjectsForClasses_options(
             &self,
@@ -155,11 +149,7 @@ extern_methods!(
             types: &Foundation::NSArray<Foundation::NSString>,
         ) -> bool;
 
-        #[cfg(all(
-            feature = "AppKit_NSPasteboardReadingOptionKey",
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSDictionary"))]
         #[method(canReadObjectForClasses:options:)]
         pub unsafe fn canReadObjectForClasses_options(
             &self,
@@ -169,7 +159,7 @@ extern_methods!(
             >,
         ) -> bool;
 
-        #[cfg(all(feature = "AppKit_NSPasteboardType", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(declareTypes:owner:)]
         pub unsafe fn declareTypes_owner(
             &self,
@@ -177,7 +167,7 @@ extern_methods!(
             newOwner: Option<&Object>,
         ) -> NSInteger;
 
-        #[cfg(all(feature = "AppKit_NSPasteboardType", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(addTypes:owner:)]
         pub unsafe fn addTypes_owner(
             &self,
@@ -185,20 +175,20 @@ extern_methods!(
             newOwner: Option<&Object>,
         ) -> NSInteger;
 
-        #[cfg(all(feature = "AppKit_NSPasteboardType", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other types)]
         pub unsafe fn types(
             &self,
         ) -> Option<Id<Foundation::NSArray<AppKit::NSPasteboardType>, Shared>>;
 
-        #[cfg(all(feature = "AppKit_NSPasteboardType", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other availableTypeFromArray:)]
         pub unsafe fn availableTypeFromArray(
             &self,
             types: &Foundation::NSArray<AppKit::NSPasteboardType>,
         ) -> Option<Id<AppKit::NSPasteboardType, Shared>>;
 
-        #[cfg(all(feature = "AppKit_NSPasteboardType", feature = "Foundation_NSData"))]
+        #[cfg(feature = "Foundation_NSData")]
         #[method(setData:forType:)]
         pub unsafe fn setData_forType(
             &self,
@@ -206,7 +196,6 @@ extern_methods!(
             dataType: &AppKit::NSPasteboardType,
         ) -> bool;
 
-        #[cfg(feature = "AppKit_NSPasteboardType")]
         #[method(setPropertyList:forType:)]
         pub unsafe fn setPropertyList_forType(
             &self,
@@ -214,7 +203,7 @@ extern_methods!(
             dataType: &AppKit::NSPasteboardType,
         ) -> bool;
 
-        #[cfg(all(feature = "AppKit_NSPasteboardType", feature = "Foundation_NSString"))]
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setString:forType:)]
         pub unsafe fn setString_forType(
             &self,
@@ -222,21 +211,20 @@ extern_methods!(
             dataType: &AppKit::NSPasteboardType,
         ) -> bool;
 
-        #[cfg(all(feature = "AppKit_NSPasteboardType", feature = "Foundation_NSData"))]
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other dataForType:)]
         pub unsafe fn dataForType(
             &self,
             dataType: &AppKit::NSPasteboardType,
         ) -> Option<Id<Foundation::NSData, Shared>>;
 
-        #[cfg(feature = "AppKit_NSPasteboardType")]
         #[method_id(@__retain_semantics Other propertyListForType:)]
         pub unsafe fn propertyListForType(
             &self,
             dataType: &AppKit::NSPasteboardType,
         ) -> Option<Id<Object, Shared>>;
 
-        #[cfg(all(feature = "AppKit_NSPasteboardType", feature = "Foundation_NSString"))]
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringForType:)]
         pub unsafe fn stringForType(
             &self,
@@ -249,7 +237,7 @@ extern_methods!(
     /// FilterServices
     #[cfg(feature = "AppKit_NSPasteboard")]
     unsafe impl NSPasteboard {
-        #[cfg(all(feature = "AppKit_NSPasteboardType", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other typesFilterableTo:)]
         pub unsafe fn typesFilterableTo(
             type_: &AppKit::NSPasteboardType,
@@ -261,7 +249,7 @@ extern_methods!(
             filename: &Foundation::NSString,
         ) -> Id<AppKit::NSPasteboard, Shared>;
 
-        #[cfg(all(feature = "AppKit_NSPasteboardType", feature = "Foundation_NSData"))]
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other pasteboardByFilteringData:ofType:)]
         pub unsafe fn pasteboardByFilteringData_ofType(
             data: &Foundation::NSData,
@@ -379,7 +367,7 @@ extern_methods!(
         #[method(writeFileContents:)]
         pub unsafe fn writeFileContents(&self, filename: &Foundation::NSString) -> bool;
 
-        #[cfg(all(feature = "AppKit_NSPasteboardType", feature = "Foundation_NSString"))]
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other readFileContentsType:toFile:)]
         pub unsafe fn readFileContentsType_toFile(
             &self,

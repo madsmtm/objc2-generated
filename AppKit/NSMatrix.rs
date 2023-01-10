@@ -354,11 +354,9 @@ extern_methods!(
         #[method(sendDoubleAction)]
         pub unsafe fn sendDoubleAction(&self);
 
-        #[cfg(feature = "AppKit_NSMatrixDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<AppKit::NSMatrixDelegate, Shared>>;
 
-        #[cfg(feature = "AppKit_NSMatrixDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AppKit::NSMatrixDelegate>);
 

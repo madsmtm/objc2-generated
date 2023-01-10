@@ -116,19 +116,15 @@ extern_methods!(
         #[method_id(@__retain_semantics Other defaultButtonTitle)]
         pub unsafe fn defaultButtonTitle(&self) -> Option<Id<Foundation::NSString, Shared>>;
 
-        #[cfg(feature = "AppKit_NSHelpAnchorName")]
         #[method_id(@__retain_semantics Other helpAnchor)]
         pub unsafe fn helpAnchor(&self) -> Option<Id<AppKit::NSHelpAnchorName, Shared>>;
 
-        #[cfg(feature = "AppKit_NSHelpAnchorName")]
         #[method(setHelpAnchor:)]
         pub unsafe fn setHelpAnchor(&self, helpAnchor: Option<&AppKit::NSHelpAnchorName>);
 
-        #[cfg(feature = "AppKit_NSPrintPanelJobStyleHint")]
         #[method_id(@__retain_semantics Other jobStyleHint)]
         pub unsafe fn jobStyleHint(&self) -> Option<Id<AppKit::NSPrintPanelJobStyleHint, Shared>>;
 
-        #[cfg(feature = "AppKit_NSPrintPanelJobStyleHint")]
         #[method(setJobStyleHint:)]
         pub unsafe fn setJobStyleHint(
             &self,

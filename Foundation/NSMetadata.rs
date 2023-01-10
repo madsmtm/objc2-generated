@@ -15,11 +15,9 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Foundation_NSMetadataQuery")]
     unsafe impl NSMetadataQuery {
-        #[cfg(feature = "Foundation_NSMetadataQueryDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<Foundation::NSMetadataQueryDelegate, Shared>>;
 
-        #[cfg(feature = "Foundation_NSMetadataQueryDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&Foundation::NSMetadataQueryDelegate>);
 

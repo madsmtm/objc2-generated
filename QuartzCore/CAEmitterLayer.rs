@@ -84,30 +84,24 @@ extern_methods!(
         #[method(setEmitterDepth:)]
         pub unsafe fn setEmitterDepth(&self, emitterDepth: CGFloat);
 
-        #[cfg(feature = "CoreAnimation_CAEmitterLayerEmitterShape")]
         #[method_id(@__retain_semantics Other emitterShape)]
         pub unsafe fn emitterShape(&self) -> Id<CoreAnimation::CAEmitterLayerEmitterShape, Shared>;
 
-        #[cfg(feature = "CoreAnimation_CAEmitterLayerEmitterShape")]
         #[method(setEmitterShape:)]
         pub unsafe fn setEmitterShape(
             &self,
             emitterShape: &CoreAnimation::CAEmitterLayerEmitterShape,
         );
 
-        #[cfg(feature = "CoreAnimation_CAEmitterLayerEmitterMode")]
         #[method_id(@__retain_semantics Other emitterMode)]
         pub unsafe fn emitterMode(&self) -> Id<CoreAnimation::CAEmitterLayerEmitterMode, Shared>;
 
-        #[cfg(feature = "CoreAnimation_CAEmitterLayerEmitterMode")]
         #[method(setEmitterMode:)]
         pub unsafe fn setEmitterMode(&self, emitterMode: &CoreAnimation::CAEmitterLayerEmitterMode);
 
-        #[cfg(feature = "CoreAnimation_CAEmitterLayerRenderMode")]
         #[method_id(@__retain_semantics Other renderMode)]
         pub unsafe fn renderMode(&self) -> Id<CoreAnimation::CAEmitterLayerRenderMode, Shared>;
 
-        #[cfg(feature = "CoreAnimation_CAEmitterLayerRenderMode")]
         #[method(setRenderMode:)]
         pub unsafe fn setRenderMode(&self, renderMode: &CoreAnimation::CAEmitterLayerRenderMode);
 

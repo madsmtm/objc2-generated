@@ -130,7 +130,6 @@ extern_methods!(
             decimalNumber: &Foundation::NSDecimalNumber,
         ) -> Id<Foundation::NSDecimalNumber, Shared>;
 
-        #[cfg(feature = "Foundation_NSDecimalNumberBehaviors")]
         #[method_id(@__retain_semantics Other decimalNumberByAdding:withBehavior:)]
         pub unsafe fn decimalNumberByAdding_withBehavior(
             &self,
@@ -144,7 +143,6 @@ extern_methods!(
             decimalNumber: &Foundation::NSDecimalNumber,
         ) -> Id<Foundation::NSDecimalNumber, Shared>;
 
-        #[cfg(feature = "Foundation_NSDecimalNumberBehaviors")]
         #[method_id(@__retain_semantics Other decimalNumberBySubtracting:withBehavior:)]
         pub unsafe fn decimalNumberBySubtracting_withBehavior(
             &self,
@@ -158,7 +156,6 @@ extern_methods!(
             decimalNumber: &Foundation::NSDecimalNumber,
         ) -> Id<Foundation::NSDecimalNumber, Shared>;
 
-        #[cfg(feature = "Foundation_NSDecimalNumberBehaviors")]
         #[method_id(@__retain_semantics Other decimalNumberByMultiplyingBy:withBehavior:)]
         pub unsafe fn decimalNumberByMultiplyingBy_withBehavior(
             &self,
@@ -172,7 +169,6 @@ extern_methods!(
             decimalNumber: &Foundation::NSDecimalNumber,
         ) -> Id<Foundation::NSDecimalNumber, Shared>;
 
-        #[cfg(feature = "Foundation_NSDecimalNumberBehaviors")]
         #[method_id(@__retain_semantics Other decimalNumberByDividingBy:withBehavior:)]
         pub unsafe fn decimalNumberByDividingBy_withBehavior(
             &self,
@@ -186,7 +182,6 @@ extern_methods!(
             power: NSUInteger,
         ) -> Id<Foundation::NSDecimalNumber, Shared>;
 
-        #[cfg(feature = "Foundation_NSDecimalNumberBehaviors")]
         #[method_id(@__retain_semantics Other decimalNumberByRaisingToPower:withBehavior:)]
         pub unsafe fn decimalNumberByRaisingToPower_withBehavior(
             &self,
@@ -200,7 +195,6 @@ extern_methods!(
             power: c_short,
         ) -> Id<Foundation::NSDecimalNumber, Shared>;
 
-        #[cfg(feature = "Foundation_NSDecimalNumberBehaviors")]
         #[method_id(@__retain_semantics Other decimalNumberByMultiplyingByPowerOf10:withBehavior:)]
         pub unsafe fn decimalNumberByMultiplyingByPowerOf10_withBehavior(
             &self,
@@ -208,7 +202,6 @@ extern_methods!(
             behavior: Option<&Foundation::NSDecimalNumberBehaviors>,
         ) -> Id<Foundation::NSDecimalNumber, Shared>;
 
-        #[cfg(feature = "Foundation_NSDecimalNumberBehaviors")]
         #[method_id(@__retain_semantics Other decimalNumberByRoundingAccordingToBehavior:)]
         pub unsafe fn decimalNumberByRoundingAccordingToBehavior(
             &self,
@@ -218,11 +211,9 @@ extern_methods!(
         #[method(compare:)]
         pub unsafe fn compare(&self, decimalNumber: &Foundation::NSNumber) -> NSComparisonResult;
 
-        #[cfg(feature = "Foundation_NSDecimalNumberBehaviors")]
         #[method_id(@__retain_semantics Other defaultBehavior)]
         pub unsafe fn defaultBehavior() -> Id<Foundation::NSDecimalNumberBehaviors, Shared>;
 
-        #[cfg(feature = "Foundation_NSDecimalNumberBehaviors")]
         #[method(setDefaultBehavior:)]
         pub unsafe fn setDefaultBehavior(defaultBehavior: &Foundation::NSDecimalNumberBehaviors);
 

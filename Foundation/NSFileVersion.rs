@@ -109,7 +109,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other modificationDate)]
         pub unsafe fn modificationDate(&self) -> Option<Id<Foundation::NSDate, Shared>>;
 
-        #[cfg(feature = "Foundation_NSCoding")]
         #[method_id(@__retain_semantics Other persistentIdentifier)]
         pub unsafe fn persistentIdentifier(&self) -> Id<Foundation::NSCoding, Shared>;
 

@@ -50,7 +50,6 @@ extern_methods!(
 
         #[cfg(all(
             feature = "AppKit_NSDraggingItem",
-            feature = "AppKit_NSPasteboardReadingOptionKey",
             feature = "AppKit_NSView",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSDictionary"

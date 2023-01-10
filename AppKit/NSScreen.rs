@@ -39,10 +39,7 @@ extern_methods!(
         #[method(visibleFrame)]
         pub unsafe fn visibleFrame(&self) -> NSRect;
 
-        #[cfg(all(
-            feature = "AppKit_NSDeviceDescriptionKey",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other deviceDescription)]
         pub unsafe fn deviceDescription(
             &self,

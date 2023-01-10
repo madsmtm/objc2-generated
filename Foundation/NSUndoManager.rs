@@ -49,13 +49,13 @@ extern_methods!(
         #[method(setLevelsOfUndo:)]
         pub unsafe fn setLevelsOfUndo(&self, levelsOfUndo: NSUInteger);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSRunLoopMode"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other runLoopModes)]
         pub unsafe fn runLoopModes(
             &self,
         ) -> Id<Foundation::NSArray<Foundation::NSRunLoopMode>, Shared>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSRunLoopMode"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(setRunLoopModes:)]
         pub unsafe fn setRunLoopModes(
             &self,

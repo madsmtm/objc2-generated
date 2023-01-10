@@ -18,17 +18,13 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSStepperTouchBarItem")]
     unsafe impl NSStepperTouchBarItem {
-        #[cfg(all(
-            feature = "AppKit_NSTouchBarItemIdentifier",
-            feature = "Foundation_NSFormatter"
-        ))]
+        #[cfg(feature = "Foundation_NSFormatter")]
         #[method_id(@__retain_semantics Other stepperTouchBarItemWithIdentifier:formatter:)]
         pub unsafe fn stepperTouchBarItemWithIdentifier_formatter(
             identifier: &AppKit::NSTouchBarItemIdentifier,
             formatter: &Foundation::NSFormatter,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "AppKit_NSTouchBarItemIdentifier")]
         #[method_id(@__retain_semantics Other stepperTouchBarItemWithIdentifier:drawingHandler:)]
         pub unsafe fn stepperTouchBarItemWithIdentifier_drawingHandler(
             identifier: &AppKit::NSTouchBarItemIdentifier,
@@ -88,7 +84,6 @@ extern_methods!(
     /// Methods declared on superclass `NSTouchBarItem`
     #[cfg(feature = "AppKit_NSStepperTouchBarItem")]
     unsafe impl AppKit::NSStepperTouchBarItem {
-        #[cfg(feature = "AppKit_NSTouchBarItemIdentifier")]
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
             this: Option<Allocated<Self>>,

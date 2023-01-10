@@ -19,7 +19,7 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSNib")]
     unsafe impl NSNib {
-        #[cfg(all(feature = "AppKit_NSNibName", feature = "Foundation_NSBundle"))]
+        #[cfg(feature = "Foundation_NSBundle")]
         #[method_id(@__retain_semantics Init initWithNibNamed:bundle:)]
         pub unsafe fn initWithNibNamed_bundle(
             this: Option<Allocated<Self>>,

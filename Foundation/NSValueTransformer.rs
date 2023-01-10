@@ -35,23 +35,18 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Foundation_NSValueTransformer")]
     unsafe impl NSValueTransformer {
-        #[cfg(feature = "Foundation_NSValueTransformerName")]
         #[method(setValueTransformer:forName:)]
         pub unsafe fn setValueTransformer_forName(
             transformer: Option<&Foundation::NSValueTransformer>,
             name: &Foundation::NSValueTransformerName,
         );
 
-        #[cfg(feature = "Foundation_NSValueTransformerName")]
         #[method_id(@__retain_semantics Other valueTransformerForName:)]
         pub unsafe fn valueTransformerForName(
             name: &Foundation::NSValueTransformerName,
         ) -> Option<Id<Foundation::NSValueTransformer, Shared>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSValueTransformerName"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other valueTransformerNames)]
         pub unsafe fn valueTransformerNames(
         ) -> Id<Foundation::NSArray<Foundation::NSValueTransformerName>, Shared>;

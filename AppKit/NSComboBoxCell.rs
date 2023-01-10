@@ -91,11 +91,9 @@ extern_methods!(
             string: &Foundation::NSString,
         ) -> Option<Id<Foundation::NSString, Shared>>;
 
-        #[cfg(feature = "AppKit_NSComboBoxCellDataSource")]
         #[method_id(@__retain_semantics Other dataSource)]
         pub unsafe fn dataSource(&self) -> Option<Id<AppKit::NSComboBoxCellDataSource, Shared>>;
 
-        #[cfg(feature = "AppKit_NSComboBoxCellDataSource")]
         #[method(setDataSource:)]
         pub unsafe fn setDataSource(&self, dataSource: Option<&AppKit::NSComboBoxCellDataSource>);
 

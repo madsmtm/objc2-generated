@@ -108,11 +108,9 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSTokenField")]
     unsafe impl NSTokenField {
-        #[cfg(feature = "AppKit_NSTokenFieldDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<AppKit::NSTokenFieldDelegate, Shared>>;
 
-        #[cfg(feature = "AppKit_NSTokenFieldDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AppKit::NSTokenFieldDelegate>);
 

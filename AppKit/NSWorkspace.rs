@@ -420,7 +420,6 @@ extern_methods!(
     unsafe impl NSWorkspace {
         #[cfg(all(
             feature = "AppKit_NSScreen",
-            feature = "AppKit_NSWorkspaceDesktopImageOptionKey",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
             feature = "Foundation_NSURL"
@@ -440,11 +439,7 @@ extern_methods!(
             screen: &AppKit::NSScreen,
         ) -> Option<Id<Foundation::NSURL, Shared>>;
 
-        #[cfg(all(
-            feature = "AppKit_NSScreen",
-            feature = "AppKit_NSWorkspaceDesktopImageOptionKey",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(all(feature = "AppKit_NSScreen", feature = "Foundation_NSDictionary"))]
         #[method_id(@__retain_semantics Other desktopImageOptionsForScreen:)]
         pub unsafe fn desktopImageOptionsForScreen(
             &self,
@@ -654,7 +649,6 @@ extern_methods!(
 
         #[cfg(all(
             feature = "AppKit_NSRunningApplication",
-            feature = "AppKit_NSWorkspaceLaunchConfigurationKey",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
             feature = "Foundation_NSURL"
@@ -672,7 +666,6 @@ extern_methods!(
 
         #[cfg(all(
             feature = "AppKit_NSRunningApplication",
-            feature = "AppKit_NSWorkspaceLaunchConfigurationKey",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
             feature = "Foundation_NSURL"
@@ -690,7 +683,6 @@ extern_methods!(
 
         #[cfg(all(
             feature = "AppKit_NSRunningApplication",
-            feature = "AppKit_NSWorkspaceLaunchConfigurationKey",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
@@ -824,11 +816,7 @@ extern_methods!(
             view: Option<&AppKit::NSView>,
         ) -> bool;
 
-        #[cfg(all(
-            feature = "AppKit_NSWorkspaceFileOperationName",
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(performFileOperation:source:destination:files:tag:)]
         pub unsafe fn performFileOperation_source_destination_files_tag(
             &self,

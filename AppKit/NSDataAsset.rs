@@ -22,14 +22,13 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
-        #[cfg(feature = "AppKit_NSDataAssetName")]
         #[method_id(@__retain_semantics Init initWithName:)]
         pub unsafe fn initWithName(
             this: Option<Allocated<Self>>,
             name: &AppKit::NSDataAssetName,
         ) -> Option<Id<Self, Shared>>;
 
-        #[cfg(all(feature = "AppKit_NSDataAssetName", feature = "Foundation_NSBundle"))]
+        #[cfg(feature = "Foundation_NSBundle")]
         #[method_id(@__retain_semantics Init initWithName:bundle:)]
         pub unsafe fn initWithName_bundle(
             this: Option<Allocated<Self>>,
@@ -37,7 +36,6 @@ extern_methods!(
             bundle: &Foundation::NSBundle,
         ) -> Option<Id<Self, Shared>>;
 
-        #[cfg(feature = "AppKit_NSDataAssetName")]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Id<AppKit::NSDataAssetName, Shared>;
 

@@ -133,11 +133,9 @@ extern_methods!(
         #[method(setFileWrapper:)]
         pub unsafe fn setFileWrapper(&self, fileWrapper: Option<&Foundation::NSFileWrapper>);
 
-        #[cfg(feature = "AppKit_NSTextAttachmentCell")]
         #[method_id(@__retain_semantics Other attachmentCell)]
         pub unsafe fn attachmentCell(&self) -> Option<Id<AppKit::NSTextAttachmentCell, Shared>>;
 
-        #[cfg(feature = "AppKit_NSTextAttachmentCell")]
         #[method(setAttachmentCell:)]
         pub unsafe fn setAttachmentCell(
             &self,
@@ -201,7 +199,6 @@ extern_methods!(
         #[cfg(all(
             feature = "AppKit_NSTextAttachment",
             feature = "AppKit_NSTextLayoutManager",
-            feature = "AppKit_NSTextLocation",
             feature = "AppKit_NSView"
         ))]
         #[method_id(@__retain_semantics Init initWithTextAttachment:parentView:textLayoutManager:location:)]
@@ -227,7 +224,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other textLayoutManager)]
         pub unsafe fn textLayoutManager(&self) -> Option<Id<AppKit::NSTextLayoutManager, Shared>>;
 
-        #[cfg(feature = "AppKit_NSTextLocation")]
         #[method_id(@__retain_semantics Other location)]
         pub unsafe fn location(&self) -> Id<AppKit::NSTextLocation, Shared>;
 
@@ -253,8 +249,6 @@ extern_methods!(
 
         #[cfg(all(
             feature = "AppKit_NSTextContainer",
-            feature = "AppKit_NSTextLocation",
-            feature = "Foundation_NSAttributedStringKey",
             feature = "Foundation_NSDictionary"
         ))]
         #[method(attachmentBoundsForAttributes:location:textContainer:proposedLineFragment:position:)]

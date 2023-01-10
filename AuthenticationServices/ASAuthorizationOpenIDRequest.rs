@@ -39,19 +39,13 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AuthenticationServices_ASAuthorizationOpenIDRequest")]
     unsafe impl ASAuthorizationOpenIDRequest {
-        #[cfg(all(
-            feature = "AuthenticationServices_ASAuthorizationScope",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other requestedScopes)]
         pub unsafe fn requestedScopes(
             &self,
         ) -> Option<Id<Foundation::NSArray<AuthenticationServices::ASAuthorizationScope>, Shared>>;
 
-        #[cfg(all(
-            feature = "AuthenticationServices_ASAuthorizationScope",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(setRequestedScopes:)]
         pub unsafe fn setRequestedScopes(
             &self,
@@ -76,13 +70,11 @@ extern_methods!(
         #[method(setNonce:)]
         pub unsafe fn setNonce(&self, nonce: Option<&Foundation::NSString>);
 
-        #[cfg(feature = "AuthenticationServices_ASAuthorizationOpenIDOperation")]
         #[method_id(@__retain_semantics Other requestedOperation)]
         pub unsafe fn requestedOperation(
             &self,
         ) -> Id<AuthenticationServices::ASAuthorizationOpenIDOperation, Shared>;
 
-        #[cfg(feature = "AuthenticationServices_ASAuthorizationOpenIDOperation")]
         #[method(setRequestedOperation:)]
         pub unsafe fn setRequestedOperation(
             &self,

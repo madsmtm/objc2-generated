@@ -59,11 +59,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Other defaultTokenizingCharacterSet)]
         pub unsafe fn defaultTokenizingCharacterSet() -> Id<Foundation::NSCharacterSet, Shared>;
 
-        #[cfg(feature = "AppKit_NSTokenFieldCellDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<AppKit::NSTokenFieldCellDelegate, Shared>>;
 
-        #[cfg(feature = "AppKit_NSTokenFieldCellDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AppKit::NSTokenFieldCellDelegate>);
     }

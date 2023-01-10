@@ -22,7 +22,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSApplication")]
     unsafe impl AppKit::NSApplication {
         #[cfg(all(
-            feature = "AppKit_NSUserInterfaceItemIdentifier",
             feature = "AppKit_NSWindow",
             feature = "Foundation_NSCoder",
             feature = "Foundation_NSError"
@@ -121,7 +120,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSDocument")]
     unsafe impl AppKit::NSDocument {
         #[cfg(all(
-            feature = "AppKit_NSUserInterfaceItemIdentifier",
             feature = "AppKit_NSWindow",
             feature = "Foundation_NSCoder",
             feature = "Foundation_NSError"

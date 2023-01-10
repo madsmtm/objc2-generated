@@ -278,11 +278,9 @@ extern_methods!(
         #[method(setContentsRect:)]
         pub fn setContentsRect(&self, contentsRect: CGRect);
 
-        #[cfg(feature = "CoreAnimation_CALayerContentsGravity")]
         #[method_id(@__retain_semantics Other contentsGravity)]
         pub fn contentsGravity(&self) -> Id<CoreAnimation::CALayerContentsGravity, Shared>;
 
-        #[cfg(feature = "CoreAnimation_CALayerContentsGravity")]
         #[method(setContentsGravity:)]
         pub fn setContentsGravity(&self, contentsGravity: &CoreAnimation::CALayerContentsGravity);
 
@@ -298,30 +296,24 @@ extern_methods!(
         #[method(setContentsCenter:)]
         pub fn setContentsCenter(&self, contentsCenter: CGRect);
 
-        #[cfg(feature = "CoreAnimation_CALayerContentsFormat")]
         #[method_id(@__retain_semantics Other contentsFormat)]
         pub fn contentsFormat(&self) -> Id<CoreAnimation::CALayerContentsFormat, Shared>;
 
-        #[cfg(feature = "CoreAnimation_CALayerContentsFormat")]
         #[method(setContentsFormat:)]
         pub fn setContentsFormat(&self, contentsFormat: &CoreAnimation::CALayerContentsFormat);
 
-        #[cfg(feature = "CoreAnimation_CALayerContentsFilter")]
         #[method_id(@__retain_semantics Other minificationFilter)]
         pub fn minificationFilter(&self) -> Id<CoreAnimation::CALayerContentsFilter, Shared>;
 
-        #[cfg(feature = "CoreAnimation_CALayerContentsFilter")]
         #[method(setMinificationFilter:)]
         pub fn setMinificationFilter(
             &self,
             minificationFilter: &CoreAnimation::CALayerContentsFilter,
         );
 
-        #[cfg(feature = "CoreAnimation_CALayerContentsFilter")]
         #[method_id(@__retain_semantics Other magnificationFilter)]
         pub fn magnificationFilter(&self) -> Id<CoreAnimation::CALayerContentsFilter, Shared>;
 
-        #[cfg(feature = "CoreAnimation_CALayerContentsFilter")]
         #[method(setMagnificationFilter:)]
         pub fn setMagnificationFilter(
             &self,
@@ -391,15 +383,12 @@ extern_methods!(
         #[method(setMaskedCorners:)]
         pub fn setMaskedCorners(&self, maskedCorners: CACornerMask);
 
-        #[cfg(feature = "CoreAnimation_CALayerCornerCurve")]
         #[method_id(@__retain_semantics Other cornerCurve)]
         pub fn cornerCurve(&self) -> Id<CoreAnimation::CALayerCornerCurve, Shared>;
 
-        #[cfg(feature = "CoreAnimation_CALayerCornerCurve")]
         #[method(setCornerCurve:)]
         pub fn setCornerCurve(&self, cornerCurve: &CoreAnimation::CALayerCornerCurve);
 
-        #[cfg(feature = "CoreAnimation_CALayerCornerCurve")]
         #[method(cornerCurveExpansionFactor:)]
         pub fn cornerCurveExpansionFactor(curve: &CoreAnimation::CALayerCornerCurve) -> CGFloat;
 
@@ -479,11 +468,9 @@ extern_methods!(
         #[method(setAutoresizingMask:)]
         pub fn setAutoresizingMask(&self, autoresizingMask: CAAutoresizingMask);
 
-        #[cfg(feature = "CoreAnimation_CALayoutManager")]
         #[method_id(@__retain_semantics Other layoutManager)]
         pub fn layoutManager(&self) -> Option<Id<CoreAnimation::CALayoutManager, Shared>>;
 
-        #[cfg(feature = "CoreAnimation_CALayoutManager")]
         #[method(setLayoutManager:)]
         pub fn setLayoutManager(&self, layoutManager: Option<&CoreAnimation::CALayoutManager>);
 
@@ -508,24 +495,20 @@ extern_methods!(
         #[method(resizeWithOldSuperlayerSize:)]
         pub fn resizeWithOldSuperlayerSize(&self, size: CGSize);
 
-        #[cfg(all(feature = "CoreAnimation_CAAction", feature = "Foundation_NSString"))]
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other defaultActionForKey:)]
         pub fn defaultActionForKey(
             event: &Foundation::NSString,
         ) -> Option<Id<CoreAnimation::CAAction, Shared>>;
 
-        #[cfg(all(feature = "CoreAnimation_CAAction", feature = "Foundation_NSString"))]
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other actionForKey:)]
         pub fn actionForKey(
             &self,
             event: &Foundation::NSString,
         ) -> Option<Id<CoreAnimation::CAAction, Shared>>;
 
-        #[cfg(all(
-            feature = "CoreAnimation_CAAction",
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other actions)]
         pub fn actions(
             &self,
@@ -533,11 +516,7 @@ extern_methods!(
             Id<Foundation::NSDictionary<Foundation::NSString, CoreAnimation::CAAction>, Shared>,
         >;
 
-        #[cfg(all(
-            feature = "CoreAnimation_CAAction",
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setActions:)]
         pub fn setActions(
             &self,
@@ -582,11 +561,9 @@ extern_methods!(
         #[method(setName:)]
         pub fn setName(&self, name: Option<&Foundation::NSString>);
 
-        #[cfg(feature = "CoreAnimation_CALayerDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub fn delegate(&self) -> Option<Id<CoreAnimation::CALayerDelegate, Shared>>;
 
-        #[cfg(feature = "CoreAnimation_CALayerDelegate")]
         #[method(setDelegate:)]
         pub fn setDelegate(&self, delegate: Option<&CoreAnimation::CALayerDelegate>);
 

@@ -59,11 +59,9 @@ extern_methods!(
             views: &Foundation::NSArray<AppKit::NSView>,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "AppKit_NSStackViewDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<AppKit::NSStackViewDelegate, Shared>>;
 
-        #[cfg(feature = "AppKit_NSStackViewDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AppKit::NSStackViewDelegate>);
 

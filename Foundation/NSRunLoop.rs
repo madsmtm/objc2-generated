@@ -25,11 +25,10 @@ extern_methods!(
         #[method_id(@__retain_semantics Other mainRunLoop)]
         pub unsafe fn mainRunLoop() -> Id<Foundation::NSRunLoop, Shared>;
 
-        #[cfg(feature = "Foundation_NSRunLoopMode")]
         #[method_id(@__retain_semantics Other currentMode)]
         pub unsafe fn currentMode(&self) -> Option<Id<Foundation::NSRunLoopMode, Shared>>;
 
-        #[cfg(all(feature = "Foundation_NSRunLoopMode", feature = "Foundation_NSTimer"))]
+        #[cfg(feature = "Foundation_NSTimer")]
         #[method(addTimer:forMode:)]
         pub unsafe fn addTimer_forMode(
             &self,
@@ -37,7 +36,7 @@ extern_methods!(
             mode: &Foundation::NSRunLoopMode,
         );
 
-        #[cfg(all(feature = "Foundation_NSPort", feature = "Foundation_NSRunLoopMode"))]
+        #[cfg(feature = "Foundation_NSPort")]
         #[method(addPort:forMode:)]
         pub unsafe fn addPort_forMode(
             &self,
@@ -45,7 +44,7 @@ extern_methods!(
             mode: &Foundation::NSRunLoopMode,
         );
 
-        #[cfg(all(feature = "Foundation_NSPort", feature = "Foundation_NSRunLoopMode"))]
+        #[cfg(feature = "Foundation_NSPort")]
         #[method(removePort:forMode:)]
         pub unsafe fn removePort_forMode(
             &self,
@@ -53,14 +52,14 @@ extern_methods!(
             mode: &Foundation::NSRunLoopMode,
         );
 
-        #[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSRunLoopMode"))]
+        #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other limitDateForMode:)]
         pub unsafe fn limitDateForMode(
             &self,
             mode: &Foundation::NSRunLoopMode,
         ) -> Option<Id<Foundation::NSDate, Shared>>;
 
-        #[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSRunLoopMode"))]
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(acceptInputForMode:beforeDate:)]
         pub unsafe fn acceptInputForMode_beforeDate(
             &self,
@@ -81,7 +80,7 @@ extern_methods!(
         #[method(runUntilDate:)]
         pub unsafe fn runUntilDate(&self, limitDate: &Foundation::NSDate);
 
-        #[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSRunLoopMode"))]
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(runMode:beforeDate:)]
         pub unsafe fn runMode_beforeDate(
             &self,
@@ -92,7 +91,7 @@ extern_methods!(
         #[method(configureAsServer)]
         pub unsafe fn configureAsServer(&self);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSRunLoopMode"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(performInModes:block:)]
         pub unsafe fn performInModes_block(
             &self,
@@ -109,7 +108,7 @@ extern_methods!(
     /// NSOrderedPerform
     #[cfg(feature = "Foundation_NSRunLoop")]
     unsafe impl NSRunLoop {
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSRunLoopMode"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(performSelector:target:argument:order:modes:)]
         pub unsafe fn performSelector_target_argument_order_modes(
             &self,

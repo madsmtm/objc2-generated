@@ -60,13 +60,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other cacheName)]
         pub unsafe fn cacheName(&self) -> Option<Id<Foundation::NSString, Shared>>;
 
-        #[cfg(feature = "CoreData_NSFetchedResultsControllerDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Id<CoreData::NSFetchedResultsControllerDelegate, Shared>>;
 
-        #[cfg(feature = "CoreData_NSFetchedResultsControllerDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -108,10 +106,7 @@ extern_methods!(
             &self,
         ) -> Id<Foundation::NSArray<Foundation::NSString>, Shared>;
 
-        #[cfg(all(
-            feature = "CoreData_NSFetchedResultsSectionInfo",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other sections)]
         pub unsafe fn sections(
             &self,

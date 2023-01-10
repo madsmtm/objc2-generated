@@ -29,11 +29,9 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "CoreAnimation_CAShapeLayer")]
     unsafe impl CAShapeLayer {
-        #[cfg(feature = "CoreAnimation_CAShapeLayerFillRule")]
         #[method_id(@__retain_semantics Other fillRule)]
         pub unsafe fn fillRule(&self) -> Id<CoreAnimation::CAShapeLayerFillRule, Shared>;
 
-        #[cfg(feature = "CoreAnimation_CAShapeLayerFillRule")]
         #[method(setFillRule:)]
         pub unsafe fn setFillRule(&self, fillRule: &CoreAnimation::CAShapeLayerFillRule);
 
@@ -61,19 +59,15 @@ extern_methods!(
         #[method(setMiterLimit:)]
         pub unsafe fn setMiterLimit(&self, miterLimit: CGFloat);
 
-        #[cfg(feature = "CoreAnimation_CAShapeLayerLineCap")]
         #[method_id(@__retain_semantics Other lineCap)]
         pub unsafe fn lineCap(&self) -> Id<CoreAnimation::CAShapeLayerLineCap, Shared>;
 
-        #[cfg(feature = "CoreAnimation_CAShapeLayerLineCap")]
         #[method(setLineCap:)]
         pub unsafe fn setLineCap(&self, lineCap: &CoreAnimation::CAShapeLayerLineCap);
 
-        #[cfg(feature = "CoreAnimation_CAShapeLayerLineJoin")]
         #[method_id(@__retain_semantics Other lineJoin)]
         pub unsafe fn lineJoin(&self) -> Id<CoreAnimation::CAShapeLayerLineJoin, Shared>;
 
-        #[cfg(feature = "CoreAnimation_CAShapeLayerLineJoin")]
         #[method(setLineJoin:)]
         pub unsafe fn setLineJoin(&self, lineJoin: &CoreAnimation::CAShapeLayerLineJoin);
 

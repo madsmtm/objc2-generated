@@ -47,11 +47,9 @@ extern_methods!(
         #[method(setAccessoryView:)]
         pub unsafe fn setAccessoryView(&self, accessoryView: Option<&AppKit::NSView>);
 
-        #[cfg(feature = "AppKit_NSOpenSavePanelDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<AppKit::NSOpenSavePanelDelegate, Shared>>;
 
-        #[cfg(feature = "AppKit_NSOpenSavePanelDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AppKit::NSOpenSavePanelDelegate>);
 

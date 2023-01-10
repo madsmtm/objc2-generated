@@ -353,11 +353,9 @@ extern_methods!(
         #[method(setContentView:)]
         pub unsafe fn setContentView(&self, contentView: Option<&AppKit::NSView>);
 
-        #[cfg(feature = "AppKit_NSWindowDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<AppKit::NSWindowDelegate, Shared>>;
 
-        #[cfg(feature = "AppKit_NSWindowDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AppKit::NSWindowDelegate>);
 
@@ -505,7 +503,6 @@ extern_methods!(
         #[method(tryToPerform:with:)]
         pub unsafe fn tryToPerform_with(&self, action: Sel, object: Option<&Object>) -> bool;
 
-        #[cfg(feature = "AppKit_NSPasteboardType")]
         #[method_id(@__retain_semantics Other validRequestorForSendType:returnType:)]
         pub unsafe fn validRequestorForSendType_returnType(
             &self,
@@ -828,24 +825,20 @@ extern_methods!(
         #[method(toggleFullScreen:)]
         pub unsafe fn toggleFullScreen(&self, sender: Option<&Object>);
 
-        #[cfg(feature = "AppKit_NSWindowPersistableFrameDescriptor")]
         #[method_id(@__retain_semantics Other stringWithSavedFrame)]
         pub unsafe fn stringWithSavedFrame(
             &self,
         ) -> Id<AppKit::NSWindowPersistableFrameDescriptor, Shared>;
 
-        #[cfg(feature = "AppKit_NSWindowPersistableFrameDescriptor")]
         #[method(setFrameFromString:)]
         pub unsafe fn setFrameFromString(
             &self,
             string: &AppKit::NSWindowPersistableFrameDescriptor,
         );
 
-        #[cfg(feature = "AppKit_NSWindowFrameAutosaveName")]
         #[method(saveFrameUsingName:)]
         pub unsafe fn saveFrameUsingName(&self, name: &AppKit::NSWindowFrameAutosaveName);
 
-        #[cfg(feature = "AppKit_NSWindowFrameAutosaveName")]
         #[method(setFrameUsingName:force:)]
         pub unsafe fn setFrameUsingName_force(
             &self,
@@ -853,20 +846,16 @@ extern_methods!(
             force: bool,
         ) -> bool;
 
-        #[cfg(feature = "AppKit_NSWindowFrameAutosaveName")]
         #[method(setFrameUsingName:)]
         pub unsafe fn setFrameUsingName(&self, name: &AppKit::NSWindowFrameAutosaveName) -> bool;
 
-        #[cfg(feature = "AppKit_NSWindowFrameAutosaveName")]
         #[method(setFrameAutosaveName:)]
         pub unsafe fn setFrameAutosaveName(&self, name: &AppKit::NSWindowFrameAutosaveName)
             -> bool;
 
-        #[cfg(feature = "AppKit_NSWindowFrameAutosaveName")]
         #[method_id(@__retain_semantics Other frameAutosaveName)]
         pub unsafe fn frameAutosaveName(&self) -> Id<AppKit::NSWindowFrameAutosaveName, Shared>;
 
-        #[cfg(feature = "AppKit_NSWindowFrameAutosaveName")]
         #[method(removeFrameUsingName:)]
         pub unsafe fn removeFrameUsingName(name: &AppKit::NSWindowFrameAutosaveName);
 
@@ -906,10 +895,7 @@ extern_methods!(
         #[method(setMaxFullScreenContentSize:)]
         pub unsafe fn setMaxFullScreenContentSize(&self, maxFullScreenContentSize: NSSize);
 
-        #[cfg(all(
-            feature = "AppKit_NSDeviceDescriptionKey",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other deviceDescription)]
         pub unsafe fn deviceDescription(
             &self,
@@ -1147,11 +1133,9 @@ extern_methods!(
         #[method(setTabbingMode:)]
         pub unsafe fn setTabbingMode(&self, tabbingMode: NSWindowTabbingMode);
 
-        #[cfg(feature = "AppKit_NSWindowTabbingIdentifier")]
         #[method_id(@__retain_semantics Other tabbingIdentifier)]
         pub unsafe fn tabbingIdentifier(&self) -> Id<AppKit::NSWindowTabbingIdentifier, Shared>;
 
-        #[cfg(feature = "AppKit_NSWindowTabbingIdentifier")]
         #[method(setTabbingIdentifier:)]
         pub unsafe fn setTabbingIdentifier(
             &self,
@@ -1206,7 +1190,7 @@ extern_methods!(
     /// NSEvent
     #[cfg(feature = "AppKit_NSWindow")]
     unsafe impl NSWindow {
-        #[cfg(all(feature = "AppKit_NSEvent", feature = "Foundation_NSRunLoopMode"))]
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(trackEventsMatchingMask:timeout:mode:handler:)]
         pub unsafe fn trackEventsMatchingMask_timeout_mode_handler(
             &self,
@@ -1223,11 +1207,7 @@ extern_methods!(
             mask: NSEventMask,
         ) -> Option<Id<AppKit::NSEvent, Shared>>;
 
-        #[cfg(all(
-            feature = "AppKit_NSEvent",
-            feature = "Foundation_NSDate",
-            feature = "Foundation_NSRunLoopMode"
-        ))]
+        #[cfg(all(feature = "AppKit_NSEvent", feature = "Foundation_NSDate"))]
         #[method_id(@__retain_semantics Other nextEventMatchingMask:untilDate:inMode:dequeue:)]
         pub unsafe fn nextEventMatchingMask_untilDate_inMode_dequeue(
             &self,
@@ -1320,7 +1300,7 @@ extern_methods!(
             slideFlag: bool,
         );
 
-        #[cfg(all(feature = "AppKit_NSPasteboardType", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(registerForDraggedTypes:)]
         pub unsafe fn registerForDraggedTypes(
             &self,

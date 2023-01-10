@@ -96,26 +96,19 @@ extern_methods!(
         #[method(requiresFontAssetRequest)]
         pub unsafe fn requiresFontAssetRequest(&self) -> bool;
 
-        #[cfg(feature = "AppKit_NSFontDescriptorAttributeName")]
         #[method_id(@__retain_semantics Other objectForKey:)]
         pub unsafe fn objectForKey(
             &self,
             attribute: &AppKit::NSFontDescriptorAttributeName,
         ) -> Option<Id<Object, Shared>>;
 
-        #[cfg(all(
-            feature = "AppKit_NSFontDescriptorAttributeName",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other fontAttributes)]
         pub unsafe fn fontAttributes(
             &self,
         ) -> Id<Foundation::NSDictionary<AppKit::NSFontDescriptorAttributeName, Object>, Shared>;
 
-        #[cfg(all(
-            feature = "AppKit_NSFontDescriptorAttributeName",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other fontDescriptorWithFontAttributes:)]
         pub unsafe fn fontDescriptorWithFontAttributes(
             attributes: Option<
@@ -140,10 +133,7 @@ extern_methods!(
             matrix: &Foundation::NSAffineTransform,
         ) -> Id<AppKit::NSFontDescriptor, Shared>;
 
-        #[cfg(all(
-            feature = "AppKit_NSFontDescriptorAttributeName",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Init initWithFontAttributes:)]
         pub unsafe fn initWithFontAttributes(
             this: Option<Allocated<Self>>,
@@ -152,31 +142,21 @@ extern_methods!(
             >,
         ) -> Id<Self, Shared>;
 
-        #[cfg(all(
-            feature = "AppKit_NSFontDescriptorAttributeName",
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSSet"
-        ))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSSet"))]
         #[method_id(@__retain_semantics Other matchingFontDescriptorsWithMandatoryKeys:)]
         pub unsafe fn matchingFontDescriptorsWithMandatoryKeys(
             &self,
             mandatoryKeys: Option<&Foundation::NSSet<AppKit::NSFontDescriptorAttributeName>>,
         ) -> Id<Foundation::NSArray<AppKit::NSFontDescriptor>, Shared>;
 
-        #[cfg(all(
-            feature = "AppKit_NSFontDescriptorAttributeName",
-            feature = "Foundation_NSSet"
-        ))]
+        #[cfg(feature = "Foundation_NSSet")]
         #[method_id(@__retain_semantics Other matchingFontDescriptorWithMandatoryKeys:)]
         pub unsafe fn matchingFontDescriptorWithMandatoryKeys(
             &self,
             mandatoryKeys: Option<&Foundation::NSSet<AppKit::NSFontDescriptorAttributeName>>,
         ) -> Option<Id<AppKit::NSFontDescriptor, Shared>>;
 
-        #[cfg(all(
-            feature = "AppKit_NSFontDescriptorAttributeName",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other fontDescriptorByAddingAttributes:)]
         pub unsafe fn fontDescriptorByAddingAttributes(
             &self,
@@ -216,7 +196,6 @@ extern_methods!(
             newFamily: &Foundation::NSString,
         ) -> Id<AppKit::NSFontDescriptor, Shared>;
 
-        #[cfg(feature = "AppKit_NSFontDescriptorSystemDesign")]
         #[method_id(@__retain_semantics Other fontDescriptorWithDesign:)]
         pub unsafe fn fontDescriptorWithDesign(
             &self,
@@ -366,11 +345,7 @@ extern_methods!(
     /// NSFontDescriptor_TextStyles
     #[cfg(feature = "AppKit_NSFontDescriptor")]
     unsafe impl NSFontDescriptor {
-        #[cfg(all(
-            feature = "AppKit_NSFontTextStyle",
-            feature = "AppKit_NSFontTextStyleOptionKey",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other preferredFontDescriptorForTextStyle:options:)]
         pub unsafe fn preferredFontDescriptorForTextStyle_options(
             style: &AppKit::NSFontTextStyle,

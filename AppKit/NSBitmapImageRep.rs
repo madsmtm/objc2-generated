@@ -109,7 +109,6 @@ extern_methods!(
             rect: NSRect,
         ) -> Option<Id<Self, Shared>>;
 
-        #[cfg(feature = "AppKit_NSColorSpaceName")]
         #[method_id(@__retain_semantics Init initWithBitmapDataPlanes:pixelsWide:pixelsHigh:bitsPerSample:samplesPerPixel:hasAlpha:isPlanar:colorSpaceName:bytesPerRow:bitsPerPixel:)]
         pub unsafe fn initWithBitmapDataPlanes_pixelsWide_pixelsHigh_bitsPerSample_samplesPerPixel_hasAlpha_isPlanar_colorSpaceName_bytesPerRow_bitsPerPixel(
             this: Option<Allocated<Self>>,
@@ -125,7 +124,6 @@ extern_methods!(
             pBits: NSInteger,
         ) -> Option<Id<Self, Shared>>;
 
-        #[cfg(feature = "AppKit_NSColorSpaceName")]
         #[method_id(@__retain_semantics Init initWithBitmapDataPlanes:pixelsWide:pixelsHigh:bitsPerSample:samplesPerPixel:hasAlpha:isPlanar:colorSpaceName:bitmapFormat:bytesPerRow:bitsPerPixel:)]
         pub unsafe fn initWithBitmapDataPlanes_pixelsWide_pixelsHigh_bitsPerSample_samplesPerPixel_hasAlpha_isPlanar_colorSpaceName_bitmapFormat_bytesPerRow_bitsPerPixel(
             this: Option<Allocated<Self>>,
@@ -302,7 +300,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSBitmapImageRep")]
     unsafe impl NSBitmapImageRep {
         #[cfg(all(
-            feature = "AppKit_NSBitmapImageRepPropertyKey",
             feature = "AppKit_NSImageRep",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSData",
@@ -315,11 +312,7 @@ extern_methods!(
             properties: &Foundation::NSDictionary<AppKit::NSBitmapImageRepPropertyKey, Object>,
         ) -> Option<Id<Foundation::NSData, Shared>>;
 
-        #[cfg(all(
-            feature = "AppKit_NSBitmapImageRepPropertyKey",
-            feature = "Foundation_NSData",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSDictionary"))]
         #[method_id(@__retain_semantics Other representationUsingType:properties:)]
         pub unsafe fn representationUsingType_properties(
             &self,
@@ -327,7 +320,6 @@ extern_methods!(
             properties: &Foundation::NSDictionary<AppKit::NSBitmapImageRepPropertyKey, Object>,
         ) -> Option<Id<Foundation::NSData, Shared>>;
 
-        #[cfg(feature = "AppKit_NSBitmapImageRepPropertyKey")]
         #[method(setProperty:withValue:)]
         pub unsafe fn setProperty_withValue(
             &self,
@@ -335,7 +327,6 @@ extern_methods!(
             value: Option<&Object>,
         );
 
-        #[cfg(feature = "AppKit_NSBitmapImageRepPropertyKey")]
         #[method_id(@__retain_semantics Other valueForProperty:)]
         pub unsafe fn valueForProperty(
             &self,

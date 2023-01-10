@@ -37,7 +37,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other notApplicableSelectionMarker)]
         pub unsafe fn notApplicableSelectionMarker() -> Id<AppKit::NSBindingSelectionMarker, Shared>;
 
-        #[cfg(feature = "AppKit_NSBindingName")]
         #[method(setDefaultPlaceholder:forMarker:onClass:withBinding:)]
         pub unsafe fn setDefaultPlaceholder_forMarker_onClass_withBinding(
             placeholder: Option<&Object>,
@@ -46,7 +45,6 @@ extern_methods!(
             binding: &AppKit::NSBindingName,
         );
 
-        #[cfg(feature = "AppKit_NSBindingName")]
         #[method_id(@__retain_semantics Other defaultPlaceholderForMarker:onClass:withBinding:)]
         pub unsafe fn defaultPlaceholderForMarker_onClass_withBinding(
             marker: Option<&AppKit::NSBindingSelectionMarker>,

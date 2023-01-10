@@ -315,7 +315,6 @@ extern_methods!(
             typeName: &Foundation::NSString,
         ) -> Option<Id<Foundation::NSString, Shared>>;
 
-        #[cfg(feature = "AppKit_NSValidatedUserInterfaceItem")]
         #[method(validateUserInterfaceItem:)]
         pub unsafe fn validateUserInterfaceItem(
             &self,

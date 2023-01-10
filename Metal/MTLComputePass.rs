@@ -16,11 +16,9 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Metal_MTLComputePassSampleBufferAttachmentDescriptor")]
     unsafe impl MTLComputePassSampleBufferAttachmentDescriptor {
-        #[cfg(feature = "Metal_MTLCounterSampleBuffer")]
         #[method_id(@__retain_semantics Other sampleBuffer)]
         pub unsafe fn sampleBuffer(&self) -> Option<Id<Metal::MTLCounterSampleBuffer, Shared>>;
 
-        #[cfg(feature = "Metal_MTLCounterSampleBuffer")]
         #[method(setSampleBuffer:)]
         pub unsafe fn setSampleBuffer(&self, sampleBuffer: Option<&Metal::MTLCounterSampleBuffer>);
 

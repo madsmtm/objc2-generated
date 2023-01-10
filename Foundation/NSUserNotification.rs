@@ -241,13 +241,11 @@ extern_methods!(
         pub unsafe fn defaultUserNotificationCenter(
         ) -> Id<Foundation::NSUserNotificationCenter, Shared>;
 
-        #[cfg(feature = "Foundation_NSUserNotificationCenterDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Id<Foundation::NSUserNotificationCenterDelegate, Shared>>;
 
-        #[cfg(feature = "Foundation_NSUserNotificationCenterDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,

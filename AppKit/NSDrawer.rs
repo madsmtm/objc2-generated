@@ -57,11 +57,9 @@ extern_methods!(
         #[method(setPreferredEdge:)]
         pub unsafe fn setPreferredEdge(&self, preferredEdge: NSRectEdge);
 
-        #[cfg(feature = "AppKit_NSDrawerDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<AppKit::NSDrawerDelegate, Shared>>;
 
-        #[cfg(feature = "AppKit_NSDrawerDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AppKit::NSDrawerDelegate>);
 

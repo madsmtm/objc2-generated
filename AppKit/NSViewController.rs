@@ -33,7 +33,7 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSViewController")]
     unsafe impl NSViewController {
-        #[cfg(all(feature = "AppKit_NSNibName", feature = "Foundation_NSBundle"))]
+        #[cfg(feature = "Foundation_NSBundle")]
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Option<Allocated<Self>>,
@@ -48,7 +48,6 @@ extern_methods!(
             coder: &Foundation::NSCoder,
         ) -> Option<Id<Self, Shared>>;
 
-        #[cfg(feature = "AppKit_NSNibName")]
         #[method_id(@__retain_semantics Other nibName)]
         pub unsafe fn nibName(&self) -> Option<Id<AppKit::NSNibName, Shared>>;
 
@@ -134,7 +133,6 @@ extern_methods!(
     /// NSViewControllerPresentation
     #[cfg(feature = "AppKit_NSViewController")]
     unsafe impl NSViewController {
-        #[cfg(feature = "AppKit_NSViewControllerPresentationAnimator")]
         #[method(presentViewController:animator:)]
         pub unsafe fn presentViewController_animator(
             &self,

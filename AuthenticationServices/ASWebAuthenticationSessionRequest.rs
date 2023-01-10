@@ -53,13 +53,11 @@ extern_methods!(
         #[method(shouldUseEphemeralSession)]
         pub unsafe fn shouldUseEphemeralSession(&self) -> bool;
 
-        #[cfg(feature = "AuthenticationServices_ASWebAuthenticationSessionRequestDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Id<AuthenticationServices::ASWebAuthenticationSessionRequestDelegate, Shared>>;
 
-        #[cfg(feature = "AuthenticationServices_ASWebAuthenticationSessionRequestDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,

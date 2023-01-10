@@ -101,11 +101,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Other failureReason)]
         pub unsafe fn failureReason(&self) -> Option<Id<Foundation::NSString, Shared>>;
 
-        #[cfg(feature = "Foundation_NSURLHandleClient")]
         #[method(addClient:)]
         pub unsafe fn addClient(&self, client: Option<&Foundation::NSURLHandleClient>);
 
-        #[cfg(feature = "Foundation_NSURLHandleClient")]
         #[method(removeClient:)]
         pub unsafe fn removeClient(&self, client: Option<&Foundation::NSURLHandleClient>);
 

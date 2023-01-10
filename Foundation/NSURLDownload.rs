@@ -21,10 +21,7 @@ extern_methods!(
             MIMEType: &Foundation::NSString,
         ) -> bool;
 
-        #[cfg(all(
-            feature = "Foundation_NSURLDownloadDelegate",
-            feature = "Foundation_NSURLRequest"
-        ))]
+        #[cfg(feature = "Foundation_NSURLRequest")]
         #[method_id(@__retain_semantics Init initWithRequest:delegate:)]
         pub unsafe fn initWithRequest_delegate(
             this: Option<Allocated<Self>>,
@@ -32,11 +29,7 @@ extern_methods!(
             delegate: Option<&Foundation::NSURLDownloadDelegate>,
         ) -> Id<Self, Shared>;
 
-        #[cfg(all(
-            feature = "Foundation_NSData",
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSURLDownloadDelegate"
-        ))]
+        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithResumeData:delegate:path:)]
         pub unsafe fn initWithResumeData_delegate_path(
             this: Option<Allocated<Self>>,

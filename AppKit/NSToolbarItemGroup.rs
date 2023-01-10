@@ -36,11 +36,7 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSToolbarItemGroup")]
     unsafe impl NSToolbarItemGroup {
-        #[cfg(all(
-            feature = "AppKit_NSToolbarItemIdentifier",
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other groupWithItemIdentifier:titles:selectionMode:labels:target:action:)]
         pub unsafe fn groupWithItemIdentifier_titles_selectionMode_labels_target_action(
             itemIdentifier: &AppKit::NSToolbarItemIdentifier,
@@ -53,7 +49,6 @@ extern_methods!(
 
         #[cfg(all(
             feature = "AppKit_NSImage",
-            feature = "AppKit_NSToolbarItemIdentifier",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSString"
         ))]
@@ -108,7 +103,6 @@ extern_methods!(
     /// Methods declared on superclass `NSToolbarItem`
     #[cfg(feature = "AppKit_NSToolbarItemGroup")]
     unsafe impl AppKit::NSToolbarItemGroup {
-        #[cfg(feature = "AppKit_NSToolbarItemIdentifier")]
         #[method_id(@__retain_semantics Init initWithItemIdentifier:)]
         pub unsafe fn initWithItemIdentifier(
             this: Option<Allocated<Self>>,

@@ -51,10 +51,7 @@ extern_methods!(
             aLocale: Option<&Foundation::NSLocale>,
         ) -> Id<Foundation::NSCharacterSet, Shared>;
 
-        #[cfg(all(
-            feature = "AppKit_NSTextTabOptionKey",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Init initWithTextAlignment:location:options:)]
         pub unsafe fn initWithTextAlignment_location_options(
             this: Option<Allocated<Self>>,
@@ -69,10 +66,7 @@ extern_methods!(
         #[method(location)]
         pub unsafe fn location(&self) -> CGFloat;
 
-        #[cfg(all(
-            feature = "AppKit_NSTextTabOptionKey",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other options)]
         pub unsafe fn options(
             &self,

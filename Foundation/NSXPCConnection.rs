@@ -175,11 +175,9 @@ extern_methods!(
             name: &Foundation::NSString,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSXPCListenerDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<Foundation::NSXPCListenerDelegate, Shared>>;
 
-        #[cfg(feature = "Foundation_NSXPCListenerDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&Foundation::NSXPCListenerDelegate>);
 

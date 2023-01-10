@@ -25,20 +25,18 @@ extern_methods!(
         #[method_id(@__retain_semantics Other availableColorLists)]
         pub unsafe fn availableColorLists() -> Id<Foundation::NSArray<AppKit::NSColorList>, Shared>;
 
-        #[cfg(feature = "AppKit_NSColorListName")]
         #[method_id(@__retain_semantics Other colorListNamed:)]
         pub unsafe fn colorListNamed(
             name: &AppKit::NSColorListName,
         ) -> Option<Id<AppKit::NSColorList, Shared>>;
 
-        #[cfg(feature = "AppKit_NSColorListName")]
         #[method_id(@__retain_semantics Init initWithName:)]
         pub unsafe fn initWithName(
             this: Option<Allocated<Self>>,
             name: &AppKit::NSColorListName,
         ) -> Id<Self, Shared>;
 
-        #[cfg(all(feature = "AppKit_NSColorListName", feature = "Foundation_NSString"))]
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithName:fromFile:)]
         pub unsafe fn initWithName_fromFile(
             this: Option<Allocated<Self>>,
@@ -46,15 +44,14 @@ extern_methods!(
             path: Option<&Foundation::NSString>,
         ) -> Option<Id<Self, Shared>>;
 
-        #[cfg(feature = "AppKit_NSColorListName")]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Option<Id<AppKit::NSColorListName, Shared>>;
 
-        #[cfg(all(feature = "AppKit_NSColor", feature = "AppKit_NSColorName"))]
+        #[cfg(feature = "AppKit_NSColor")]
         #[method(setColor:forKey:)]
         pub unsafe fn setColor_forKey(&self, color: &AppKit::NSColor, key: &AppKit::NSColorName);
 
-        #[cfg(all(feature = "AppKit_NSColor", feature = "AppKit_NSColorName"))]
+        #[cfg(feature = "AppKit_NSColor")]
         #[method(insertColor:key:atIndex:)]
         pub unsafe fn insertColor_key_atIndex(
             &self,
@@ -63,18 +60,17 @@ extern_methods!(
             loc: NSUInteger,
         );
 
-        #[cfg(feature = "AppKit_NSColorName")]
         #[method(removeColorWithKey:)]
         pub unsafe fn removeColorWithKey(&self, key: &AppKit::NSColorName);
 
-        #[cfg(all(feature = "AppKit_NSColor", feature = "AppKit_NSColorName"))]
+        #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other colorWithKey:)]
         pub unsafe fn colorWithKey(
             &self,
             key: &AppKit::NSColorName,
         ) -> Option<Id<AppKit::NSColor, Shared>>;
 
-        #[cfg(all(feature = "AppKit_NSColorName", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other allKeys)]
         pub unsafe fn allKeys(&self) -> Id<Foundation::NSArray<AppKit::NSColorName>, Shared>;
 

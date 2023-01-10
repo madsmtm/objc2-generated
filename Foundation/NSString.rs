@@ -545,7 +545,6 @@ extern_methods!(
             replacement: &Foundation::NSString,
         ) -> Id<Foundation::NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSStringTransform")]
         #[method_id(@__retain_semantics Other stringByApplyingTransform:reverse:)]
         pub unsafe fn stringByApplyingTransform_reverse(
             &self,
@@ -781,11 +780,7 @@ extern_methods!(
     /// NSStringEncodingDetection
     #[cfg(feature = "Foundation_NSString")]
     unsafe impl NSString {
-        #[cfg(all(
-            feature = "Foundation_NSData",
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSStringEncodingDetectionOptionsKey"
-        ))]
+        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSDictionary"))]
         #[method(stringEncodingForData:encodingOptions:convertedString:usedLossyConversion:)]
         pub unsafe fn stringEncodingForData_encodingOptions_convertedString_usedLossyConversion(
             data: &Foundation::NSData,
@@ -855,7 +850,6 @@ extern_methods!(
             searchRange: NSRange,
         ) -> NSUInteger;
 
-        #[cfg(feature = "Foundation_NSStringTransform")]
         #[method(applyTransform:reverse:range:updatedRange:)]
         pub unsafe fn applyTransform_reverse_range_updatedRange(
             &self,

@@ -310,11 +310,7 @@ extern_methods!(
     /// NSFont_TextStyles
     #[cfg(feature = "AppKit_NSFont")]
     unsafe impl NSFont {
-        #[cfg(all(
-            feature = "AppKit_NSFontTextStyle",
-            feature = "AppKit_NSFontTextStyleOptionKey",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other preferredFontForTextStyle:options:)]
         pub unsafe fn preferredFontForTextStyle_options(
             style: &AppKit::NSFontTextStyle,

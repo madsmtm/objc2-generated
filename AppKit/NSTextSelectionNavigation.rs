@@ -67,7 +67,6 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSTextSelectionNavigation")]
     unsafe impl NSTextSelectionNavigation {
-        #[cfg(feature = "AppKit_NSTextSelectionDataSource")]
         #[method_id(@__retain_semantics Init initWithDataSource:)]
         pub unsafe fn initWithDataSource(
             this: Option<Allocated<Self>>,
@@ -80,7 +79,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
-        #[cfg(feature = "AppKit_NSTextSelectionDataSource")]
         #[method_id(@__retain_semantics Other textSelectionDataSource)]
         pub unsafe fn textSelectionDataSource(
             &self,
@@ -115,11 +113,7 @@ extern_methods!(
             confined: bool,
         ) -> Option<Id<AppKit::NSTextSelection, Shared>>;
 
-        #[cfg(all(
-            feature = "AppKit_NSTextLocation",
-            feature = "AppKit_NSTextSelection",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(all(feature = "AppKit_NSTextSelection", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other textSelectionsInteractingAtPoint:inContainerAtLocation:anchors:modifiers:selecting:bounds:)]
         pub unsafe fn textSelectionsInteractingAtPoint_inContainerAtLocation_anchors_modifiers_selecting_bounds(
             &self,
@@ -139,7 +133,7 @@ extern_methods!(
             textSelection: &AppKit::NSTextSelection,
         ) -> Id<AppKit::NSTextSelection, Shared>;
 
-        #[cfg(all(feature = "AppKit_NSTextLocation", feature = "AppKit_NSTextSelection"))]
+        #[cfg(feature = "AppKit_NSTextSelection")]
         #[method_id(@__retain_semantics Other textSelectionForSelectionGranularity:enclosingPoint:inContainerAtLocation:)]
         pub unsafe fn textSelectionForSelectionGranularity_enclosingPoint_inContainerAtLocation(
             &self,
@@ -148,7 +142,7 @@ extern_methods!(
             location: &AppKit::NSTextLocation,
         ) -> Option<Id<AppKit::NSTextSelection, Shared>>;
 
-        #[cfg(all(feature = "AppKit_NSTextLocation", feature = "AppKit_NSTextSelection"))]
+        #[cfg(feature = "AppKit_NSTextSelection")]
         #[method_id(@__retain_semantics Other resolvedInsertionLocationForTextSelection:writingDirection:)]
         pub unsafe fn resolvedInsertionLocationForTextSelection_writingDirection(
             &self,

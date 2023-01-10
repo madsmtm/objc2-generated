@@ -28,15 +28,13 @@ extern_methods!(
         #[method(isValid)]
         pub unsafe fn isValid(&self) -> bool;
 
-        #[cfg(feature = "Foundation_NSPortDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, anObject: Option<&Foundation::NSPortDelegate>);
 
-        #[cfg(feature = "Foundation_NSPortDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<Foundation::NSPortDelegate, Shared>>;
 
-        #[cfg(all(feature = "Foundation_NSRunLoop", feature = "Foundation_NSRunLoopMode"))]
+        #[cfg(feature = "Foundation_NSRunLoop")]
         #[method(scheduleInRunLoop:forMode:)]
         pub unsafe fn scheduleInRunLoop_forMode(
             &self,
@@ -44,7 +42,7 @@ extern_methods!(
             mode: &Foundation::NSRunLoopMode,
         );
 
-        #[cfg(all(feature = "Foundation_NSRunLoop", feature = "Foundation_NSRunLoopMode"))]
+        #[cfg(feature = "Foundation_NSRunLoop")]
         #[method(removeFromRunLoop:forMode:)]
         pub unsafe fn removeFromRunLoop_forMode(
             &self,
@@ -76,11 +74,7 @@ extern_methods!(
             headerSpaceReserved: NSUInteger,
         ) -> bool;
 
-        #[cfg(all(
-            feature = "Foundation_NSConnection",
-            feature = "Foundation_NSRunLoop",
-            feature = "Foundation_NSRunLoopMode"
-        ))]
+        #[cfg(all(feature = "Foundation_NSConnection", feature = "Foundation_NSRunLoop"))]
         #[method(addConnection:toRunLoop:forMode:)]
         pub unsafe fn addConnection_toRunLoop_forMode(
             &self,
@@ -89,11 +83,7 @@ extern_methods!(
             mode: &Foundation::NSRunLoopMode,
         );
 
-        #[cfg(all(
-            feature = "Foundation_NSConnection",
-            feature = "Foundation_NSRunLoop",
-            feature = "Foundation_NSRunLoopMode"
-        ))]
+        #[cfg(all(feature = "Foundation_NSConnection", feature = "Foundation_NSRunLoop"))]
         #[method(removeConnection:fromRunLoop:forMode:)]
         pub unsafe fn removeConnection_fromRunLoop_forMode(
             &self,
@@ -145,11 +135,9 @@ extern_methods!(
             machPort: u32,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSMachPortDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, anObject: Option<&Foundation::NSMachPortDelegate>);
 
-        #[cfg(feature = "Foundation_NSMachPortDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<Foundation::NSMachPortDelegate, Shared>>;
 
@@ -169,7 +157,7 @@ extern_methods!(
         #[method(machPort)]
         pub unsafe fn machPort(&self) -> u32;
 
-        #[cfg(all(feature = "Foundation_NSRunLoop", feature = "Foundation_NSRunLoopMode"))]
+        #[cfg(feature = "Foundation_NSRunLoop")]
         #[method(scheduleInRunLoop:forMode:)]
         pub unsafe fn scheduleInRunLoop_forMode(
             &self,
@@ -177,7 +165,7 @@ extern_methods!(
             mode: &Foundation::NSRunLoopMode,
         );
 
-        #[cfg(all(feature = "Foundation_NSRunLoop", feature = "Foundation_NSRunLoopMode"))]
+        #[cfg(feature = "Foundation_NSRunLoop")]
         #[method(removeFromRunLoop:forMode:)]
         pub unsafe fn removeFromRunLoop_forMode(
             &self,

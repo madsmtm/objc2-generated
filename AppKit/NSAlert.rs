@@ -77,11 +77,9 @@ extern_methods!(
         #[method(setShowsHelp:)]
         pub unsafe fn setShowsHelp(&self, showsHelp: bool);
 
-        #[cfg(feature = "AppKit_NSHelpAnchorName")]
         #[method_id(@__retain_semantics Other helpAnchor)]
         pub unsafe fn helpAnchor(&self) -> Option<Id<AppKit::NSHelpAnchorName, Shared>>;
 
-        #[cfg(feature = "AppKit_NSHelpAnchorName")]
         #[method(setHelpAnchor:)]
         pub unsafe fn setHelpAnchor(&self, helpAnchor: Option<&AppKit::NSHelpAnchorName>);
 
@@ -91,11 +89,9 @@ extern_methods!(
         #[method(setAlertStyle:)]
         pub unsafe fn setAlertStyle(&self, alertStyle: NSAlertStyle);
 
-        #[cfg(feature = "AppKit_NSAlertDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<AppKit::NSAlertDelegate, Shared>>;
 
-        #[cfg(feature = "AppKit_NSAlertDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AppKit::NSAlertDelegate>);
 

@@ -541,10 +541,7 @@ extern_methods!(
         #[method(printDocument:)]
         pub unsafe fn printDocument(&self, sender: Option<&Object>);
 
-        #[cfg(all(
-            feature = "AppKit_NSPrintInfoAttributeKey",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method(printDocumentWithSettings:showPrintPanel:delegate:didPrintSelector:contextInfo:)]
         pub unsafe fn printDocumentWithSettings_showPrintPanel_delegate_didPrintSelector_contextInfo(
             &self,
@@ -556,7 +553,6 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "AppKit_NSPrintInfoAttributeKey",
             feature = "AppKit_NSPrintOperation",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError"
@@ -667,7 +663,6 @@ extern_methods!(
         #[method(makeWindowControllers)]
         pub unsafe fn makeWindowControllers(&self);
 
-        #[cfg(feature = "AppKit_NSNibName")]
         #[method_id(@__retain_semantics Other windowNibName)]
         pub unsafe fn windowNibName(&self) -> Option<Id<AppKit::NSNibName, Shared>>;
 
@@ -755,7 +750,6 @@ extern_methods!(
             saveOperation: NSSaveOperationType,
         ) -> Option<Id<Foundation::NSString, Shared>>;
 
-        #[cfg(feature = "AppKit_NSValidatedUserInterfaceItem")]
         #[method(validateUserInterfaceItem:)]
         pub unsafe fn validateUserInterfaceItem(
             &self,

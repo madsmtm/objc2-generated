@@ -157,11 +157,9 @@ extern_methods!(
         #[method(removeTabViewItem:)]
         pub unsafe fn removeTabViewItem(&self, tabViewItem: &AppKit::NSTabViewItem);
 
-        #[cfg(feature = "AppKit_NSTabViewDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<AppKit::NSTabViewDelegate, Shared>>;
 
-        #[cfg(feature = "AppKit_NSTabViewDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AppKit::NSTabViewDelegate>);
 

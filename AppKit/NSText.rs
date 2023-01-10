@@ -96,11 +96,9 @@ extern_methods!(
         #[method(readRTFDFromFile:)]
         pub unsafe fn readRTFDFromFile(&self, path: &Foundation::NSString) -> bool;
 
-        #[cfg(feature = "AppKit_NSTextDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<AppKit::NSTextDelegate, Shared>>;
 
-        #[cfg(feature = "AppKit_NSTextDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AppKit::NSTextDelegate>);
 

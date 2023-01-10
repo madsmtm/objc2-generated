@@ -91,20 +91,14 @@ extern_methods!(
             indexPath: &Foundation::NSIndexPath,
         ) -> Id<Self, Shared>;
 
-        #[cfg(all(
-            feature = "AppKit_NSCollectionViewSupplementaryElementKind",
-            feature = "Foundation_NSIndexPath"
-        ))]
+        #[cfg(feature = "Foundation_NSIndexPath")]
         #[method_id(@__retain_semantics Other layoutAttributesForSupplementaryViewOfKind:withIndexPath:)]
         pub unsafe fn layoutAttributesForSupplementaryViewOfKind_withIndexPath(
             elementKind: &AppKit::NSCollectionViewSupplementaryElementKind,
             indexPath: &Foundation::NSIndexPath,
         ) -> Id<Self, Shared>;
 
-        #[cfg(all(
-            feature = "AppKit_NSCollectionViewDecorationElementKind",
-            feature = "Foundation_NSIndexPath"
-        ))]
+        #[cfg(feature = "Foundation_NSIndexPath")]
         #[method_id(@__retain_semantics Other layoutAttributesForDecorationViewOfKind:withIndexPath:)]
         pub unsafe fn layoutAttributesForDecorationViewOfKind_withIndexPath(
             decorationViewKind: &AppKit::NSCollectionViewDecorationElementKind,
@@ -174,11 +168,7 @@ extern_methods!(
             indexPaths: &Foundation::NSSet<Foundation::NSIndexPath>,
         );
 
-        #[cfg(all(
-            feature = "AppKit_NSCollectionViewSupplementaryElementKind",
-            feature = "Foundation_NSIndexPath",
-            feature = "Foundation_NSSet"
-        ))]
+        #[cfg(all(feature = "Foundation_NSIndexPath", feature = "Foundation_NSSet"))]
         #[method(invalidateSupplementaryElementsOfKind:atIndexPaths:)]
         pub unsafe fn invalidateSupplementaryElementsOfKind_atIndexPaths(
             &self,
@@ -186,11 +176,7 @@ extern_methods!(
             indexPaths: &Foundation::NSSet<Foundation::NSIndexPath>,
         );
 
-        #[cfg(all(
-            feature = "AppKit_NSCollectionViewDecorationElementKind",
-            feature = "Foundation_NSIndexPath",
-            feature = "Foundation_NSSet"
-        ))]
+        #[cfg(all(feature = "Foundation_NSIndexPath", feature = "Foundation_NSSet"))]
         #[method(invalidateDecorationElementsOfKind:atIndexPaths:)]
         pub unsafe fn invalidateDecorationElementsOfKind_atIndexPaths(
             &self,
@@ -205,7 +191,6 @@ extern_methods!(
         ) -> Option<Id<Foundation::NSSet<Foundation::NSIndexPath>, Shared>>;
 
         #[cfg(all(
-            feature = "AppKit_NSCollectionViewSupplementaryElementKind",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSIndexPath",
             feature = "Foundation_NSSet"
@@ -224,7 +209,6 @@ extern_methods!(
         >;
 
         #[cfg(all(
-            feature = "AppKit_NSCollectionViewDecorationElementKind",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSIndexPath",
             feature = "Foundation_NSSet"
@@ -282,7 +266,6 @@ extern_methods!(
             context: &AppKit::NSCollectionViewLayoutInvalidationContext,
         );
 
-        #[cfg(feature = "AppKit_NSCollectionViewDecorationElementKind")]
         #[method(registerClass:forDecorationViewOfKind:)]
         pub unsafe fn registerClass_forDecorationViewOfKind(
             &self,
@@ -290,10 +273,7 @@ extern_methods!(
             elementKind: &AppKit::NSCollectionViewDecorationElementKind,
         );
 
-        #[cfg(all(
-            feature = "AppKit_NSCollectionViewDecorationElementKind",
-            feature = "AppKit_NSNib"
-        ))]
+        #[cfg(feature = "AppKit_NSNib")]
         #[method(registerNib:forDecorationViewOfKind:)]
         pub unsafe fn registerNib_forDecorationViewOfKind(
             &self,
@@ -338,7 +318,6 @@ extern_methods!(
 
         #[cfg(all(
             feature = "AppKit_NSCollectionViewLayoutAttributes",
-            feature = "AppKit_NSCollectionViewSupplementaryElementKind",
             feature = "Foundation_NSIndexPath"
         ))]
         #[method_id(@__retain_semantics Other layoutAttributesForSupplementaryViewOfKind:atIndexPath:)]
@@ -349,7 +328,6 @@ extern_methods!(
         ) -> Option<Id<AppKit::NSCollectionViewLayoutAttributes, Shared>>;
 
         #[cfg(all(
-            feature = "AppKit_NSCollectionViewDecorationElementKind",
             feature = "AppKit_NSCollectionViewLayoutAttributes",
             feature = "Foundation_NSIndexPath"
         ))]
@@ -484,7 +462,6 @@ extern_methods!(
 
         #[cfg(all(
             feature = "AppKit_NSCollectionViewLayoutAttributes",
-            feature = "AppKit_NSCollectionViewSupplementaryElementKind",
             feature = "Foundation_NSIndexPath"
         ))]
         #[method_id(@__retain_semantics Other initialLayoutAttributesForAppearingSupplementaryElementOfKind:atIndexPath:)]
@@ -496,7 +473,6 @@ extern_methods!(
 
         #[cfg(all(
             feature = "AppKit_NSCollectionViewLayoutAttributes",
-            feature = "AppKit_NSCollectionViewSupplementaryElementKind",
             feature = "Foundation_NSIndexPath"
         ))]
         #[method_id(@__retain_semantics Other finalLayoutAttributesForDisappearingSupplementaryElementOfKind:atIndexPath:)]
@@ -507,7 +483,6 @@ extern_methods!(
         ) -> Option<Id<AppKit::NSCollectionViewLayoutAttributes, Shared>>;
 
         #[cfg(all(
-            feature = "AppKit_NSCollectionViewDecorationElementKind",
             feature = "AppKit_NSCollectionViewLayoutAttributes",
             feature = "Foundation_NSIndexPath"
         ))]
@@ -519,7 +494,6 @@ extern_methods!(
         ) -> Option<Id<AppKit::NSCollectionViewLayoutAttributes, Shared>>;
 
         #[cfg(all(
-            feature = "AppKit_NSCollectionViewDecorationElementKind",
             feature = "AppKit_NSCollectionViewLayoutAttributes",
             feature = "Foundation_NSIndexPath"
         ))]
@@ -530,44 +504,28 @@ extern_methods!(
             decorationIndexPath: &Foundation::NSIndexPath,
         ) -> Option<Id<AppKit::NSCollectionViewLayoutAttributes, Shared>>;
 
-        #[cfg(all(
-            feature = "AppKit_NSCollectionViewSupplementaryElementKind",
-            feature = "Foundation_NSIndexPath",
-            feature = "Foundation_NSSet"
-        ))]
+        #[cfg(all(feature = "Foundation_NSIndexPath", feature = "Foundation_NSSet"))]
         #[method_id(@__retain_semantics Other indexPathsToDeleteForSupplementaryViewOfKind:)]
         pub unsafe fn indexPathsToDeleteForSupplementaryViewOfKind(
             &self,
             elementKind: &AppKit::NSCollectionViewSupplementaryElementKind,
         ) -> Id<Foundation::NSSet<Foundation::NSIndexPath>, Shared>;
 
-        #[cfg(all(
-            feature = "AppKit_NSCollectionViewDecorationElementKind",
-            feature = "Foundation_NSIndexPath",
-            feature = "Foundation_NSSet"
-        ))]
+        #[cfg(all(feature = "Foundation_NSIndexPath", feature = "Foundation_NSSet"))]
         #[method_id(@__retain_semantics Other indexPathsToDeleteForDecorationViewOfKind:)]
         pub unsafe fn indexPathsToDeleteForDecorationViewOfKind(
             &self,
             elementKind: &AppKit::NSCollectionViewDecorationElementKind,
         ) -> Id<Foundation::NSSet<Foundation::NSIndexPath>, Shared>;
 
-        #[cfg(all(
-            feature = "AppKit_NSCollectionViewSupplementaryElementKind",
-            feature = "Foundation_NSIndexPath",
-            feature = "Foundation_NSSet"
-        ))]
+        #[cfg(all(feature = "Foundation_NSIndexPath", feature = "Foundation_NSSet"))]
         #[method_id(@__retain_semantics Other indexPathsToInsertForSupplementaryViewOfKind:)]
         pub unsafe fn indexPathsToInsertForSupplementaryViewOfKind(
             &self,
             elementKind: &AppKit::NSCollectionViewSupplementaryElementKind,
         ) -> Id<Foundation::NSSet<Foundation::NSIndexPath>, Shared>;
 
-        #[cfg(all(
-            feature = "AppKit_NSCollectionViewDecorationElementKind",
-            feature = "Foundation_NSIndexPath",
-            feature = "Foundation_NSSet"
-        ))]
+        #[cfg(all(feature = "Foundation_NSIndexPath", feature = "Foundation_NSSet"))]
         #[method_id(@__retain_semantics Other indexPathsToInsertForDecorationViewOfKind:)]
         pub unsafe fn indexPathsToInsertForDecorationViewOfKind(
             &self,

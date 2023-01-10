@@ -39,7 +39,6 @@ extern_methods!(
             completionHandler: ASWebAuthenticationSessionCompletionHandler,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "AuthenticationServices_ASWebAuthenticationPresentationContextProviding")]
         #[method_id(@__retain_semantics Other presentationContextProvider)]
         pub unsafe fn presentationContextProvider(
             &self,
@@ -47,7 +46,6 @@ extern_methods!(
             Id<AuthenticationServices::ASWebAuthenticationPresentationContextProviding, Shared>,
         >;
 
-        #[cfg(feature = "AuthenticationServices_ASWebAuthenticationPresentationContextProviding")]
         #[method(setPresentationContextProvider:)]
         pub unsafe fn setPresentationContextProvider(
             &self,

@@ -118,7 +118,6 @@ extern_methods!(
         ) -> NSRange;
 
         #[cfg(all(
-            feature = "AppKit_NSTextCheckingOptionKey",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSOrthography",
@@ -138,7 +137,6 @@ extern_methods!(
         ) -> Id<Foundation::NSArray<Foundation::NSTextCheckingResult>, Shared>;
 
         #[cfg(all(
-            feature = "AppKit_NSTextCheckingOptionKey",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSOrthography",
@@ -167,7 +165,6 @@ extern_methods!(
         ) -> NSInteger;
 
         #[cfg(all(
-            feature = "AppKit_NSTextCheckingOptionKey",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSString",
@@ -194,7 +191,6 @@ extern_methods!(
 
         #[cfg(all(
             feature = "AppKit_NSMenu",
-            feature = "AppKit_NSTextCheckingOptionKey",
             feature = "AppKit_NSView",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSString",

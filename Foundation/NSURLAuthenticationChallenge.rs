@@ -56,7 +56,6 @@ extern_methods!(
     unsafe impl NSURLAuthenticationChallenge {
         #[cfg(all(
             feature = "Foundation_NSError",
-            feature = "Foundation_NSURLAuthenticationChallengeSender",
             feature = "Foundation_NSURLCredential",
             feature = "Foundation_NSURLProtectionSpace",
             feature = "Foundation_NSURLResponse"
@@ -72,7 +71,6 @@ extern_methods!(
             sender: &Foundation::NSURLAuthenticationChallengeSender,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSURLAuthenticationChallengeSender")]
         #[method_id(@__retain_semantics Init initWithAuthenticationChallenge:sender:)]
         pub unsafe fn initWithAuthenticationChallenge_sender(
             this: Option<Allocated<Self>>,
@@ -99,7 +97,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other error)]
         pub unsafe fn error(&self) -> Option<Id<Foundation::NSError, Shared>>;
 
-        #[cfg(feature = "Foundation_NSURLAuthenticationChallengeSender")]
         #[method_id(@__retain_semantics Other sender)]
         pub unsafe fn sender(
             &self,

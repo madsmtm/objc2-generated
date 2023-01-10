@@ -25,19 +25,15 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSOutlineView")]
     unsafe impl NSOutlineView {
-        #[cfg(feature = "AppKit_NSOutlineViewDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<AppKit::NSOutlineViewDelegate, Shared>>;
 
-        #[cfg(feature = "AppKit_NSOutlineViewDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AppKit::NSOutlineViewDelegate>);
 
-        #[cfg(feature = "AppKit_NSOutlineViewDataSource")]
         #[method_id(@__retain_semantics Other dataSource)]
         pub unsafe fn dataSource(&self) -> Option<Id<AppKit::NSOutlineViewDataSource, Shared>>;
 
-        #[cfg(feature = "AppKit_NSOutlineViewDataSource")]
         #[method(setDataSource:)]
         pub unsafe fn setDataSource(&self, dataSource: Option<&AppKit::NSOutlineViewDataSource>);
 

@@ -52,10 +52,7 @@ extern_methods!(
             portionOfParentTotalUnitCount: i64,
         ) -> Id<Foundation::NSProgress, Shared>;
 
-        #[cfg(all(
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSProgressUserInfoKey"
-        ))]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Init initWithParent:userInfo:)]
         pub unsafe fn initWithParent_userInfo(
             this: Option<Allocated<Self>>,
@@ -155,7 +152,6 @@ extern_methods!(
         #[method(setResumingHandler:)]
         pub unsafe fn setResumingHandler(&self, resumingHandler: Option<&Block<(), ()>>);
 
-        #[cfg(feature = "Foundation_NSProgressUserInfoKey")]
         #[method(setUserInfoObject:forKey:)]
         pub unsafe fn setUserInfoObject_forKey(
             &self,
@@ -181,20 +177,15 @@ extern_methods!(
         #[method(resume)]
         pub unsafe fn resume(&self);
 
-        #[cfg(all(
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSProgressUserInfoKey"
-        ))]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other userInfo)]
         pub unsafe fn userInfo(
             &self,
         ) -> Id<Foundation::NSDictionary<Foundation::NSProgressUserInfoKey, Object>, Shared>;
 
-        #[cfg(feature = "Foundation_NSProgressKind")]
         #[method_id(@__retain_semantics Other kind)]
         pub unsafe fn kind(&self) -> Option<Id<Foundation::NSProgressKind, Shared>>;
 
-        #[cfg(feature = "Foundation_NSProgressKind")]
         #[method(setKind:)]
         pub unsafe fn setKind(&self, kind: Option<&Foundation::NSProgressKind>);
 
@@ -217,13 +208,11 @@ extern_methods!(
         #[method(setThroughput:)]
         pub unsafe fn setThroughput(&self, throughput: Option<&Foundation::NSNumber>);
 
-        #[cfg(feature = "Foundation_NSProgressFileOperationKind")]
         #[method_id(@__retain_semantics Other fileOperationKind)]
         pub unsafe fn fileOperationKind(
             &self,
         ) -> Option<Id<Foundation::NSProgressFileOperationKind, Shared>>;
 
-        #[cfg(feature = "Foundation_NSProgressFileOperationKind")]
         #[method(setFileOperationKind:)]
         pub unsafe fn setFileOperationKind(
             &self,

@@ -56,13 +56,11 @@ extern_methods!(
             recentSearches: &Foundation::NSArray<Foundation::NSString>,
         );
 
-        #[cfg(feature = "AppKit_NSSearchFieldRecentsAutosaveName")]
         #[method_id(@__retain_semantics Other recentsAutosaveName)]
         pub unsafe fn recentsAutosaveName(
             &self,
         ) -> Option<Id<AppKit::NSSearchFieldRecentsAutosaveName, Shared>>;
 
-        #[cfg(feature = "AppKit_NSSearchFieldRecentsAutosaveName")]
         #[method(setRecentsAutosaveName:)]
         pub unsafe fn setRecentsAutosaveName(
             &self,
@@ -95,11 +93,9 @@ extern_methods!(
         #[method(setSendsSearchStringImmediately:)]
         pub unsafe fn setSendsSearchStringImmediately(&self, sendsSearchStringImmediately: bool);
 
-        #[cfg(feature = "AppKit_NSSearchFieldDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<AppKit::NSSearchFieldDelegate, Shared>>;
 
-        #[cfg(feature = "AppKit_NSSearchFieldDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AppKit::NSSearchFieldDelegate>);
     }

@@ -65,11 +65,9 @@ extern_methods!(
         #[method(setCellPrototype:)]
         pub unsafe fn setCellPrototype(&self, cellPrototype: Option<&Object>);
 
-        #[cfg(feature = "AppKit_NSBrowserDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<AppKit::NSBrowserDelegate, Shared>>;
 
-        #[cfg(feature = "AppKit_NSBrowserDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AppKit::NSBrowserDelegate>);
 
@@ -411,20 +409,17 @@ extern_methods!(
         #[method(defaultColumnWidth)]
         pub unsafe fn defaultColumnWidth(&self) -> CGFloat;
 
-        #[cfg(feature = "AppKit_NSBrowserColumnsAutosaveName")]
         #[method_id(@__retain_semantics Other columnsAutosaveName)]
         pub unsafe fn columnsAutosaveName(
             &self,
         ) -> Id<AppKit::NSBrowserColumnsAutosaveName, Shared>;
 
-        #[cfg(feature = "AppKit_NSBrowserColumnsAutosaveName")]
         #[method(setColumnsAutosaveName:)]
         pub unsafe fn setColumnsAutosaveName(
             &self,
             columnsAutosaveName: &AppKit::NSBrowserColumnsAutosaveName,
         );
 
-        #[cfg(feature = "AppKit_NSBrowserColumnsAutosaveName")]
         #[method(removeSavedColumnsWithAutosaveName:)]
         pub unsafe fn removeSavedColumnsWithAutosaveName(
             name: &AppKit::NSBrowserColumnsAutosaveName,

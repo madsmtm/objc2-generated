@@ -17,7 +17,6 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSWindowTabGroup")]
     unsafe impl NSWindowTabGroup {
-        #[cfg(feature = "AppKit_NSWindowTabbingIdentifier")]
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Id<AppKit::NSWindowTabbingIdentifier, Shared>;
 

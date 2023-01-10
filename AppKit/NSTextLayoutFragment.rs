@@ -115,7 +115,6 @@ extern_methods!(
             &self,
         ) -> Id<Foundation::NSArray<AppKit::NSTextAttachmentViewProvider>, Shared>;
 
-        #[cfg(feature = "AppKit_NSTextLocation")]
         #[method(frameForTextAttachmentAtLocation:)]
         pub unsafe fn frameForTextAttachmentAtLocation(
             &self,

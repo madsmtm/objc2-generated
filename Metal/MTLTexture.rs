@@ -64,7 +64,6 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Metal_MTLSharedTextureHandle")]
     unsafe impl MTLSharedTextureHandle {
-        #[cfg(feature = "Metal_MTLDevice")]
         #[method_id(@__retain_semantics Other device)]
         pub fn device(&self) -> Id<Metal::MTLDevice, Shared>;
 

@@ -223,11 +223,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Other sharedApplication)]
         pub unsafe fn sharedApplication() -> Id<AppKit::NSApplication, Shared>;
 
-        #[cfg(feature = "AppKit_NSApplicationDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<AppKit::NSApplicationDelegate, Shared>>;
 
-        #[cfg(feature = "AppKit_NSApplicationDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AppKit::NSApplicationDelegate>);
 
@@ -462,11 +460,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other currentEvent)]
         pub unsafe fn currentEvent(&self) -> Option<Id<AppKit::NSEvent, Shared>>;
 
-        #[cfg(all(
-            feature = "AppKit_NSEvent",
-            feature = "Foundation_NSDate",
-            feature = "Foundation_NSRunLoopMode"
-        ))]
+        #[cfg(all(feature = "AppKit_NSEvent", feature = "Foundation_NSDate"))]
         #[method_id(@__retain_semantics Other nextEventMatchingMask:untilDate:inMode:dequeue:)]
         pub unsafe fn nextEventMatchingMask_untilDate_inMode_dequeue(
             &self,
@@ -512,7 +506,6 @@ extern_methods!(
         #[method(tryToPerform:with:)]
         pub unsafe fn tryToPerform_with(&self, action: Sel, object: Option<&Object>) -> bool;
 
-        #[cfg(feature = "AppKit_NSPasteboardType")]
         #[method_id(@__retain_semantics Other validRequestorForSendType:returnType:)]
         pub unsafe fn validRequestorForSendType_returnType(
             &self,
@@ -905,7 +898,7 @@ extern_methods!(
         #[method(setServicesMenu:)]
         pub unsafe fn setServicesMenu(&self, servicesMenu: Option<&AppKit::NSMenu>);
 
-        #[cfg(all(feature = "AppKit_NSPasteboardType", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(registerServicesMenuSendTypes:returnTypes:)]
         pub unsafe fn registerServicesMenuSendTypes_returnTypes(
             &self,
@@ -966,10 +959,7 @@ extern_methods!(
         #[method(orderFrontStandardAboutPanel:)]
         pub unsafe fn orderFrontStandardAboutPanel(&self, sender: Option<&Object>);
 
-        #[cfg(all(
-            feature = "AppKit_NSAboutPanelOptionKey",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method(orderFrontStandardAboutPanelWithOptions:)]
         pub unsafe fn orderFrontStandardAboutPanelWithOptions(
             &self,

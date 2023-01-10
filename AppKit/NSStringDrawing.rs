@@ -35,20 +35,14 @@ extern_methods!(
     /// NSStringDrawing
     #[cfg(feature = "Foundation_NSString")]
     unsafe impl Foundation::NSString {
-        #[cfg(all(
-            feature = "Foundation_NSAttributedStringKey",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method(sizeWithAttributes:)]
         pub unsafe fn sizeWithAttributes(
             &self,
             attrs: Option<&Foundation::NSDictionary<Foundation::NSAttributedStringKey, Object>>,
         ) -> NSSize;
 
-        #[cfg(all(
-            feature = "Foundation_NSAttributedStringKey",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method(drawAtPoint:withAttributes:)]
         pub unsafe fn drawAtPoint_withAttributes(
             &self,
@@ -56,10 +50,7 @@ extern_methods!(
             attrs: Option<&Foundation::NSDictionary<Foundation::NSAttributedStringKey, Object>>,
         );
 
-        #[cfg(all(
-            feature = "Foundation_NSAttributedStringKey",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method(drawInRect:withAttributes:)]
         pub unsafe fn drawInRect_withAttributes(
             &self,
@@ -102,7 +93,6 @@ extern_methods!(
     unsafe impl Foundation::NSString {
         #[cfg(all(
             feature = "AppKit_NSStringDrawingContext",
-            feature = "Foundation_NSAttributedStringKey",
             feature = "Foundation_NSDictionary"
         ))]
         #[method(drawWithRect:options:attributes:context:)]
@@ -118,7 +108,6 @@ extern_methods!(
 
         #[cfg(all(
             feature = "AppKit_NSStringDrawingContext",
-            feature = "Foundation_NSAttributedStringKey",
             feature = "Foundation_NSDictionary"
         ))]
         #[method(boundingRectWithSize:options:attributes:context:)]
@@ -162,10 +151,7 @@ extern_methods!(
     /// NSStringDrawingDeprecated
     #[cfg(feature = "Foundation_NSString")]
     unsafe impl Foundation::NSString {
-        #[cfg(all(
-            feature = "Foundation_NSAttributedStringKey",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method(drawWithRect:options:attributes:)]
         pub unsafe fn drawWithRect_options_attributes(
             &self,
@@ -176,10 +162,7 @@ extern_methods!(
             >,
         );
 
-        #[cfg(all(
-            feature = "Foundation_NSAttributedStringKey",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method(boundingRectWithSize:options:attributes:)]
         pub unsafe fn boundingRectWithSize_options_attributes(
             &self,

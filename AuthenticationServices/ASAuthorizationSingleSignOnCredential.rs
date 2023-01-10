@@ -28,10 +28,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other identityToken)]
         pub unsafe fn identityToken(&self) -> Option<Id<Foundation::NSData, Shared>>;
 
-        #[cfg(all(
-            feature = "AuthenticationServices_ASAuthorizationScope",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other authorizedScopes)]
         pub unsafe fn authorizedScopes(
             &self,

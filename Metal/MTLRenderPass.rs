@@ -65,11 +65,9 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Metal_MTLRenderPassAttachmentDescriptor")]
     unsafe impl MTLRenderPassAttachmentDescriptor {
-        #[cfg(feature = "Metal_MTLTexture")]
         #[method_id(@__retain_semantics Other texture)]
         pub fn texture(&self) -> Option<Id<Metal::MTLTexture, Shared>>;
 
-        #[cfg(feature = "Metal_MTLTexture")]
         #[method(setTexture:)]
         pub fn setTexture(&self, texture: Option<&Metal::MTLTexture>);
 
@@ -91,11 +89,9 @@ extern_methods!(
         #[method(setDepthPlane:)]
         pub fn setDepthPlane(&self, depthPlane: NSUInteger);
 
-        #[cfg(feature = "Metal_MTLTexture")]
         #[method_id(@__retain_semantics Other resolveTexture)]
         pub fn resolveTexture(&self) -> Option<Id<Metal::MTLTexture, Shared>>;
 
-        #[cfg(feature = "Metal_MTLTexture")]
         #[method(setResolveTexture:)]
         pub fn setResolveTexture(&self, resolveTexture: Option<&Metal::MTLTexture>);
 
@@ -273,11 +269,9 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Metal_MTLRenderPassSampleBufferAttachmentDescriptor")]
     unsafe impl MTLRenderPassSampleBufferAttachmentDescriptor {
-        #[cfg(feature = "Metal_MTLCounterSampleBuffer")]
         #[method_id(@__retain_semantics Other sampleBuffer)]
         pub fn sampleBuffer(&self) -> Option<Id<Metal::MTLCounterSampleBuffer, Shared>>;
 
-        #[cfg(feature = "Metal_MTLCounterSampleBuffer")]
         #[method(setSampleBuffer:)]
         pub fn setSampleBuffer(&self, sampleBuffer: Option<&Metal::MTLCounterSampleBuffer>);
 
@@ -381,11 +375,9 @@ extern_methods!(
             stencilAttachment: Option<&Metal::MTLRenderPassStencilAttachmentDescriptor>,
         );
 
-        #[cfg(feature = "Metal_MTLBuffer")]
         #[method_id(@__retain_semantics Other visibilityResultBuffer)]
         pub fn visibilityResultBuffer(&self) -> Option<Id<Metal::MTLBuffer, Shared>>;
 
-        #[cfg(feature = "Metal_MTLBuffer")]
         #[method(setVisibilityResultBuffer:)]
         pub fn setVisibilityResultBuffer(&self, visibilityResultBuffer: Option<&Metal::MTLBuffer>);
 
@@ -451,11 +443,9 @@ extern_methods!(
             count: NSUInteger,
         ) -> NSUInteger;
 
-        #[cfg(feature = "Metal_MTLRasterizationRateMap")]
         #[method_id(@__retain_semantics Other rasterizationRateMap)]
         pub fn rasterizationRateMap(&self) -> Option<Id<Metal::MTLRasterizationRateMap, Shared>>;
 
-        #[cfg(feature = "Metal_MTLRasterizationRateMap")]
         #[method(setRasterizationRateMap:)]
         pub fn setRasterizationRateMap(
             &self,

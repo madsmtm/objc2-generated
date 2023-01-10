@@ -65,11 +65,9 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSSharingService")]
     unsafe impl NSSharingService {
-        #[cfg(feature = "AppKit_NSSharingServiceDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<AppKit::NSSharingServiceDelegate, Shared>>;
 
-        #[cfg(feature = "AppKit_NSSharingServiceDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AppKit::NSSharingServiceDelegate>);
 
@@ -138,7 +136,6 @@ extern_methods!(
             items: &Foundation::NSArray,
         ) -> Id<Foundation::NSArray<AppKit::NSSharingService>, Shared>;
 
-        #[cfg(feature = "AppKit_NSSharingServiceName")]
         #[method_id(@__retain_semantics Other sharingServiceNamed:)]
         pub unsafe fn sharingServiceNamed(
             serviceName: &AppKit::NSSharingServiceName,
@@ -294,12 +291,10 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSSharingServicePicker")]
     unsafe impl NSSharingServicePicker {
-        #[cfg(feature = "AppKit_NSSharingServicePickerDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self)
             -> Option<Id<AppKit::NSSharingServicePickerDelegate, Shared>>;
 
-        #[cfg(feature = "AppKit_NSSharingServicePickerDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AppKit::NSSharingServicePickerDelegate>);
 

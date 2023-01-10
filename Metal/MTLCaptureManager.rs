@@ -75,14 +75,12 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
-        #[cfg(all(feature = "Metal_MTLCaptureScope", feature = "Metal_MTLDevice"))]
         #[method_id(@__retain_semantics New newCaptureScopeWithDevice:)]
         pub fn newCaptureScopeWithDevice(
             &self,
             device: &Metal::MTLDevice,
         ) -> Id<Metal::MTLCaptureScope, Shared>;
 
-        #[cfg(all(feature = "Metal_MTLCaptureScope", feature = "Metal_MTLCommandQueue"))]
         #[method_id(@__retain_semantics New newCaptureScopeWithCommandQueue:)]
         pub fn newCaptureScopeWithCommandQueue(
             &self,
@@ -99,26 +97,21 @@ extern_methods!(
             descriptor: &Metal::MTLCaptureDescriptor,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[cfg(feature = "Metal_MTLDevice")]
         #[method(startCaptureWithDevice:)]
         pub fn startCaptureWithDevice(&self, device: &Metal::MTLDevice);
 
-        #[cfg(feature = "Metal_MTLCommandQueue")]
         #[method(startCaptureWithCommandQueue:)]
         pub fn startCaptureWithCommandQueue(&self, commandQueue: &Metal::MTLCommandQueue);
 
-        #[cfg(feature = "Metal_MTLCaptureScope")]
         #[method(startCaptureWithScope:)]
         pub fn startCaptureWithScope(&self, captureScope: &Metal::MTLCaptureScope);
 
         #[method(stopCapture)]
         pub fn stopCapture(&self);
 
-        #[cfg(feature = "Metal_MTLCaptureScope")]
         #[method_id(@__retain_semantics Other defaultCaptureScope)]
         pub fn defaultCaptureScope(&self) -> Option<Id<Metal::MTLCaptureScope, Shared>>;
 
-        #[cfg(feature = "Metal_MTLCaptureScope")]
         #[method(setDefaultCaptureScope:)]
         pub fn setDefaultCaptureScope(&self, defaultCaptureScope: Option<&Metal::MTLCaptureScope>);
 

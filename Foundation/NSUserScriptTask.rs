@@ -145,7 +145,6 @@ extern_methods!(
             variables: Option<&Foundation::NSDictionary<Foundation::NSString, Object>>,
         );
 
-        #[cfg(feature = "Foundation_NSSecureCoding")]
         #[method(executeWithInput:completionHandler:)]
         pub unsafe fn executeWithInput_completionHandler(
             &self,

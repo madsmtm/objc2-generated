@@ -66,11 +66,9 @@ extern_methods!(
             coder: &Foundation::NSCoder,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "AppKit_NSTextFinderClient")]
         #[method_id(@__retain_semantics Other client)]
         pub unsafe fn client(&self) -> Option<Id<AppKit::NSTextFinderClient, Shared>>;
 
-        #[cfg(feature = "AppKit_NSTextFinderClient")]
         #[method(setClient:)]
         pub unsafe fn setClient(&self, client: Option<&AppKit::NSTextFinderClient>);
 
@@ -80,13 +78,11 @@ extern_methods!(
         #[method(validateAction:)]
         pub unsafe fn validateAction(&self, op: NSTextFinderAction) -> bool;
 
-        #[cfg(feature = "AppKit_NSTextFinderBarContainer")]
         #[method_id(@__retain_semantics Other findBarContainer)]
         pub unsafe fn findBarContainer(
             &self,
         ) -> Option<Id<AppKit::NSTextFinderBarContainer, Shared>>;
 
-        #[cfg(feature = "AppKit_NSTextFinderBarContainer")]
         #[method(setFindBarContainer:)]
         pub unsafe fn setFindBarContainer(
             &self,

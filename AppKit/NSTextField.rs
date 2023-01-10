@@ -88,11 +88,9 @@ extern_methods!(
         #[method(selectText:)]
         pub unsafe fn selectText(&self, sender: Option<&Object>);
 
-        #[cfg(feature = "AppKit_NSTextFieldDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<AppKit::NSTextFieldDelegate, Shared>>;
 
-        #[cfg(feature = "AppKit_NSTextFieldDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AppKit::NSTextFieldDelegate>);
 

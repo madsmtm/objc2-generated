@@ -55,7 +55,6 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSGlyphGenerator")]
     unsafe impl NSGlyphGenerator {
-        #[cfg(feature = "AppKit_NSGlyphStorage")]
         #[method(generateGlyphsForGlyphStorage:desiredNumberOfCharacters:glyphIndex:characterIndex:)]
         pub unsafe fn generateGlyphsForGlyphStorage_desiredNumberOfCharacters_glyphIndex_characterIndex(
             &self,
