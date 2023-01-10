@@ -122,11 +122,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Id<NSToolbarIdentifier, Shared>;
 
-        #[cfg(all(feature = "AppKit_NSToolbarItem", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "AppKit_NSToolbarItem")]
         #[method_id(@__retain_semantics Other items)]
         pub unsafe fn items(&self) -> Id<NSArray<NSToolbarItem>, Shared>;
 
-        #[cfg(all(feature = "AppKit_NSToolbarItem", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "AppKit_NSToolbarItem")]
         #[method_id(@__retain_semantics Other visibleItems)]
         pub unsafe fn visibleItems(&self) -> Option<Id<NSArray<NSToolbarItem>, Shared>>;
 
@@ -147,14 +147,12 @@ extern_methods!(
         #[method(setAutosavesConfiguration:)]
         pub unsafe fn setAutosavesConfiguration(&self, autosavesConfiguration: bool);
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setConfigurationFromDictionary:)]
         pub unsafe fn setConfigurationFromDictionary(
             &self,
             configDict: &NSDictionary<NSString, Object>,
         );
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other configurationDictionary)]
         pub unsafe fn configurationDictionary(&self) -> Id<NSDictionary<NSString, Object>, Shared>;
 

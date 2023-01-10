@@ -45,7 +45,6 @@ extern_methods!(
             container: Option<&NSTextContainer>,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -287,7 +286,6 @@ extern_methods!(
         #[method(stronglyReferencesTextStorage)]
         pub unsafe fn stronglyReferencesTextStorage() -> bool;
 
-        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(performValidatedReplacementInRange:withAttributedString:)]
         pub unsafe fn performValidatedReplacementInRange_withAttributedString(
             &self,
@@ -316,7 +314,6 @@ extern_methods!(
         #[method(rangeForUserCompletion)]
         pub unsafe fn rangeForUserCompletion(&self) -> NSRange;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other completionsForPartialWordRange:indexOfSelectedItem:)]
         pub unsafe fn completionsForPartialWordRange_indexOfSelectedItem(
             &self,
@@ -324,7 +321,6 @@ extern_methods!(
             index: NonNull<NSInteger>,
         ) -> Option<Id<NSArray<NSString>, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(insertCompletion:forPartialWordRange:movement:isFinal:)]
         pub unsafe fn insertCompletion_forPartialWordRange_movement_isFinal(
             &self,
@@ -340,7 +336,7 @@ extern_methods!(
     /// NSPasteboard
     #[cfg(feature = "AppKit_NSTextView")]
     unsafe impl NSTextView {
-        #[cfg(all(feature = "AppKit_NSPasteboardType", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "AppKit_NSPasteboardType")]
         #[method_id(@__retain_semantics Other writablePasteboardTypes)]
         pub unsafe fn writablePasteboardTypes(&self) -> Id<NSArray<NSPasteboardType>, Shared>;
 
@@ -352,11 +348,7 @@ extern_methods!(
             type_: &NSPasteboardType,
         ) -> bool;
 
-        #[cfg(all(
-            feature = "AppKit_NSPasteboard",
-            feature = "AppKit_NSPasteboardType",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(all(feature = "AppKit_NSPasteboard", feature = "AppKit_NSPasteboardType"))]
         #[method(writeSelectionToPasteboard:types:)]
         pub unsafe fn writeSelectionToPasteboard_types(
             &self,
@@ -364,11 +356,11 @@ extern_methods!(
             types: &NSArray<NSPasteboardType>,
         ) -> bool;
 
-        #[cfg(all(feature = "AppKit_NSPasteboardType", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "AppKit_NSPasteboardType")]
         #[method_id(@__retain_semantics Other readablePasteboardTypes)]
         pub unsafe fn readablePasteboardTypes(&self) -> Id<NSArray<NSPasteboardType>, Shared>;
 
-        #[cfg(all(feature = "AppKit_NSPasteboardType", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "AppKit_NSPasteboardType")]
         #[method_id(@__retain_semantics Other preferredPasteboardTypeFromArray:restrictedToTypesFromArray:)]
         pub unsafe fn preferredPasteboardTypeFromArray_restrictedToTypesFromArray(
             &self,
@@ -428,7 +420,7 @@ extern_methods!(
             origin: NSPointPointer,
         ) -> Option<Id<NSImage, Shared>>;
 
-        #[cfg(all(feature = "AppKit_NSPasteboardType", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "AppKit_NSPasteboardType")]
         #[method_id(@__retain_semantics Other acceptableDragTypes)]
         pub unsafe fn acceptableDragTypes(&self) -> Id<NSArray<NSPasteboardType>, Shared>;
 
@@ -449,15 +441,12 @@ extern_methods!(
     /// NSSharing
     #[cfg(feature = "AppKit_NSTextView")]
     unsafe impl NSTextView {
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[method_id(@__retain_semantics Other selectedRanges)]
         pub unsafe fn selectedRanges(&self) -> Id<NSArray<NSValue>, Shared>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[method(setSelectedRanges:)]
         pub unsafe fn setSelectedRanges(&self, selectedRanges: &NSArray<NSValue>);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[method(setSelectedRanges:affinity:stillSelecting:)]
         pub unsafe fn setSelectedRanges_affinity_stillSelecting(
             &self,
@@ -483,19 +472,11 @@ extern_methods!(
         #[method(setSelectionGranularity:)]
         pub unsafe fn setSelectionGranularity(&self, selectionGranularity: NSSelectionGranularity);
 
-        #[cfg(all(
-            feature = "Foundation_NSAttributedStringKey",
-            feature = "Foundation_NSDictionary"
-        ))]
         #[method_id(@__retain_semantics Other selectedTextAttributes)]
         pub unsafe fn selectedTextAttributes(
             &self,
         ) -> Id<NSDictionary<NSAttributedStringKey, Object>, Shared>;
 
-        #[cfg(all(
-            feature = "Foundation_NSAttributedStringKey",
-            feature = "Foundation_NSDictionary"
-        ))]
         #[method(setSelectedTextAttributes:)]
         pub unsafe fn setSelectedTextAttributes(
             &self,
@@ -513,38 +494,22 @@ extern_methods!(
         #[method(updateInsertionPointStateAndRestartTimer:)]
         pub unsafe fn updateInsertionPointStateAndRestartTimer(&self, restartFlag: bool);
 
-        #[cfg(all(
-            feature = "Foundation_NSAttributedStringKey",
-            feature = "Foundation_NSDictionary"
-        ))]
         #[method_id(@__retain_semantics Other markedTextAttributes)]
         pub unsafe fn markedTextAttributes(
             &self,
         ) -> Option<Id<NSDictionary<NSAttributedStringKey, Object>, Shared>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSAttributedStringKey",
-            feature = "Foundation_NSDictionary"
-        ))]
         #[method(setMarkedTextAttributes:)]
         pub unsafe fn setMarkedTextAttributes(
             &self,
             markedTextAttributes: Option<&NSDictionary<NSAttributedStringKey, Object>>,
         );
 
-        #[cfg(all(
-            feature = "Foundation_NSAttributedStringKey",
-            feature = "Foundation_NSDictionary"
-        ))]
         #[method_id(@__retain_semantics Other linkTextAttributes)]
         pub unsafe fn linkTextAttributes(
             &self,
         ) -> Option<Id<NSDictionary<NSAttributedStringKey, Object>, Shared>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSAttributedStringKey",
-            feature = "Foundation_NSDictionary"
-        ))]
         #[method(setLinkTextAttributes:)]
         pub unsafe fn setLinkTextAttributes(
             &self,
@@ -602,30 +567,17 @@ extern_methods!(
         #[method(setSpellingState:range:)]
         pub unsafe fn setSpellingState_range(&self, value: NSInteger, charRange: NSRange);
 
-        #[cfg(all(
-            feature = "Foundation_NSAttributedStringKey",
-            feature = "Foundation_NSDictionary"
-        ))]
         #[method_id(@__retain_semantics Other typingAttributes)]
         pub unsafe fn typingAttributes(
             &self,
         ) -> Id<NSDictionary<NSAttributedStringKey, Object>, Shared>;
 
-        #[cfg(all(
-            feature = "Foundation_NSAttributedStringKey",
-            feature = "Foundation_NSDictionary"
-        ))]
         #[method(setTypingAttributes:)]
         pub unsafe fn setTypingAttributes(
             &self,
             typingAttributes: &NSDictionary<NSAttributedStringKey, Object>,
         );
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSValue"
-        ))]
         #[method(shouldChangeTextInRanges:replacementStrings:)]
         pub unsafe fn shouldChangeTextInRanges_replacementStrings(
             &self,
@@ -633,23 +585,19 @@ extern_methods!(
             replacementStrings: Option<&NSArray<NSString>>,
         ) -> bool;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[method_id(@__retain_semantics Other rangesForUserTextChange)]
         pub unsafe fn rangesForUserTextChange(&self) -> Option<Id<NSArray<NSValue>, Shared>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[method_id(@__retain_semantics Other rangesForUserCharacterAttributeChange)]
         pub unsafe fn rangesForUserCharacterAttributeChange(
             &self,
         ) -> Option<Id<NSArray<NSValue>, Shared>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[method_id(@__retain_semantics Other rangesForUserParagraphAttributeChange)]
         pub unsafe fn rangesForUserParagraphAttributeChange(
             &self,
         ) -> Option<Id<NSArray<NSValue>, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(shouldChangeTextInRange:replacementString:)]
         pub unsafe fn shouldChangeTextInRange_replacementString(
             &self,
@@ -786,11 +734,9 @@ extern_methods!(
         #[method(setSelectedRange:)]
         pub unsafe fn setSelectedRange(&self, charRange: NSRange);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other allowedInputSourceLocales)]
         pub unsafe fn allowedInputSourceLocales(&self) -> Option<Id<NSArray<NSString>, Shared>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setAllowedInputSourceLocales:)]
         pub unsafe fn setAllowedInputSourceLocales(
             &self,
@@ -818,7 +764,6 @@ extern_methods!(
         #[method(toggleSmartInsertDelete:)]
         pub unsafe fn toggleSmartInsertDelete(&self, sender: Option<&Object>);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(smartInsertForString:replacingRange:beforeString:afterString:)]
         pub unsafe fn smartInsertForString_replacingRange_beforeString_afterString(
             &self,
@@ -828,7 +773,6 @@ extern_methods!(
             afterString: *mut *mut NSString,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other smartInsertBeforeStringForString:replacingRange:)]
         pub unsafe fn smartInsertBeforeStringForString_replacingRange(
             &self,
@@ -836,7 +780,6 @@ extern_methods!(
             charRangeToReplace: NSRange,
         ) -> Option<Id<NSString, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other smartInsertAfterStringForString:replacingRange:)]
         pub unsafe fn smartInsertAfterStringForString_replacingRange(
             &self,
@@ -919,10 +862,7 @@ extern_methods!(
             enabledTextCheckingTypes: NSTextCheckingTypes,
         );
 
-        #[cfg(all(
-            feature = "AppKit_NSTextCheckingOptionKey",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(feature = "AppKit_NSTextCheckingOptionKey")]
         #[method(checkTextInRange:types:options:)]
         pub unsafe fn checkTextInRange_types_options(
             &self,
@@ -931,13 +871,7 @@ extern_methods!(
             options: &NSDictionary<NSTextCheckingOptionKey, Object>,
         );
 
-        #[cfg(all(
-            feature = "AppKit_NSTextCheckingOptionKey",
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSOrthography",
-            feature = "Foundation_NSTextCheckingResult"
-        ))]
+        #[cfg(feature = "AppKit_NSTextCheckingOptionKey")]
         #[method(handleTextCheckingResults:forRange:types:options:orthography:wordCount:)]
         pub unsafe fn handleTextCheckingResults_forRange_types_options_orthography_wordCount(
             &self,

@@ -46,10 +46,7 @@ extern_methods!(
         #[method(considerTextCheckingForRange:)]
         pub unsafe fn considerTextCheckingForRange(&self, range: NSRange);
 
-        #[cfg(all(
-            feature = "AppKit_NSTextCheckingOptionKey",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(feature = "AppKit_NSTextCheckingOptionKey")]
         #[method(checkTextInRange:types:options:)]
         pub unsafe fn checkTextInRange_types_options(
             &self,
@@ -82,10 +79,6 @@ extern_methods!(
         #[method(updateCandidates)]
         pub unsafe fn updateCandidates(&self);
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSAttributedStringKey"
-        ))]
         #[method_id(@__retain_semantics Other validAnnotations)]
         pub unsafe fn validAnnotations(&self) -> Id<NSArray<NSAttributedStringKey>, Shared>;
 

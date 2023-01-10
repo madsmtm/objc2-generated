@@ -56,11 +56,9 @@ extern_methods!(
         #[method(setMaximumSliderWidth:)]
         pub unsafe fn setMaximumSliderWidth(&self, maximumSliderWidth: CGFloat);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
         pub unsafe fn label(&self) -> Option<Id<NSString, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:)]
         pub unsafe fn setLabel(&self, label: Option<&NSString>);
 
@@ -104,11 +102,9 @@ extern_methods!(
         #[method(setAction:)]
         pub unsafe fn setAction(&self, action: Option<Sel>);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other customizationLabel)]
         pub unsafe fn customizationLabel(&self) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setCustomizationLabel:)]
         pub unsafe fn setCustomizationLabel(&self, customizationLabel: Option<&NSString>);
     }

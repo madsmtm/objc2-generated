@@ -57,31 +57,23 @@ extern_methods!(
     /// Methods declared on superclass `NSPersistentContainer`
     #[cfg(feature = "CoreData_NSPersistentCloudKitContainer")]
     unsafe impl NSPersistentCloudKitContainer {
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other persistentContainerWithName:)]
         pub unsafe fn persistentContainerWithName(name: &NSString) -> Id<Self, Shared>;
 
-        #[cfg(all(
-            feature = "CoreData_NSManagedObjectModel",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(feature = "CoreData_NSManagedObjectModel")]
         #[method_id(@__retain_semantics Other persistentContainerWithName:managedObjectModel:)]
         pub unsafe fn persistentContainerWithName_managedObjectModel(
             name: &NSString,
             model: &NSManagedObjectModel,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithName:)]
         pub unsafe fn initWithName(
             this: Option<Allocated<Self>>,
             name: &NSString,
         ) -> Id<Self, Shared>;
 
-        #[cfg(all(
-            feature = "CoreData_NSManagedObjectModel",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(feature = "CoreData_NSManagedObjectModel")]
         #[method_id(@__retain_semantics Init initWithName:managedObjectModel:)]
         pub unsafe fn initWithName_managedObjectModel(
             this: Option<Allocated<Self>>,

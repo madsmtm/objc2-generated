@@ -19,7 +19,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other calendarDate)]
         pub unsafe fn calendarDate() -> Id<Object, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other dateWithString:calendarFormat:locale:)]
         pub unsafe fn dateWithString_calendarFormat_locale(
             description: &NSString,
@@ -27,14 +26,12 @@ extern_methods!(
             locale: Option<&Object>,
         ) -> Option<Id<Object, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other dateWithString:calendarFormat:)]
         pub unsafe fn dateWithString_calendarFormat(
             description: &NSString,
             format: &NSString,
         ) -> Option<Id<Object, Shared>>;
 
-        #[cfg(feature = "Foundation_NSTimeZone")]
         #[method_id(@__retain_semantics Other dateWithYear:month:day:hour:minute:second:timeZone:)]
         pub unsafe fn dateWithYear_month_day_hour_minute_second_timeZone(
             year: NSInteger,
@@ -84,11 +81,9 @@ extern_methods!(
         #[method(yearOfCommonEra)]
         pub unsafe fn yearOfCommonEra(&self) -> NSInteger;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other calendarFormat)]
         pub unsafe fn calendarFormat(&self) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other descriptionWithCalendarFormat:locale:)]
         pub unsafe fn descriptionWithCalendarFormat_locale(
             &self,
@@ -96,23 +91,19 @@ extern_methods!(
             locale: Option<&Object>,
         ) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other descriptionWithCalendarFormat:)]
         pub unsafe fn descriptionWithCalendarFormat(
             &self,
             format: &NSString,
         ) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other descriptionWithLocale:)]
         pub unsafe fn descriptionWithLocale(&self, locale: Option<&Object>)
             -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSTimeZone")]
         #[method_id(@__retain_semantics Other timeZone)]
         pub unsafe fn timeZone(&self) -> Id<NSTimeZone, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithString:calendarFormat:locale:)]
         pub unsafe fn initWithString_calendarFormat_locale(
             this: Option<Allocated<Self>>,
@@ -121,7 +112,6 @@ extern_methods!(
             locale: Option<&Object>,
         ) -> Option<Id<Self, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithString:calendarFormat:)]
         pub unsafe fn initWithString_calendarFormat(
             this: Option<Allocated<Self>>,
@@ -129,14 +119,12 @@ extern_methods!(
             format: &NSString,
         ) -> Option<Id<Self, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithString:)]
         pub unsafe fn initWithString(
             this: Option<Allocated<Self>>,
             description: &NSString,
         ) -> Option<Id<Self, Shared>>;
 
-        #[cfg(feature = "Foundation_NSTimeZone")]
         #[method_id(@__retain_semantics Init initWithYear:month:day:hour:minute:second:timeZone:)]
         pub unsafe fn initWithYear_month_day_hour_minute_second_timeZone(
             this: Option<Allocated<Self>>,
@@ -149,11 +137,9 @@ extern_methods!(
             aTimeZone: Option<&NSTimeZone>,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setCalendarFormat:)]
         pub unsafe fn setCalendarFormat(&self, format: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSTimeZone")]
         #[method(setTimeZone:)]
         pub unsafe fn setTimeZone(&self, aTimeZone: Option<&NSTimeZone>);
 
@@ -181,28 +167,20 @@ extern_methods!(
     /// NSCalendarDateExtras
     #[cfg(feature = "Foundation_NSDate")]
     unsafe impl NSDate {
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other dateWithNaturalLanguageString:locale:)]
         pub unsafe fn dateWithNaturalLanguageString_locale(
             string: &NSString,
             locale: Option<&Object>,
         ) -> Option<Id<Object, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other dateWithNaturalLanguageString:)]
         pub unsafe fn dateWithNaturalLanguageString(
             string: &NSString,
         ) -> Option<Id<Object, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other dateWithString:)]
         pub unsafe fn dateWithString(aString: &NSString) -> Id<Object, Shared>;
 
-        #[cfg(all(
-            feature = "Foundation_NSCalendarDate",
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSTimeZone"
-        ))]
         #[method_id(@__retain_semantics Other dateWithCalendarFormat:timeZone:)]
         pub unsafe fn dateWithCalendarFormat_timeZone(
             &self,
@@ -210,7 +188,6 @@ extern_methods!(
             aTimeZone: Option<&NSTimeZone>,
         ) -> Id<NSCalendarDate, Shared>;
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSTimeZone"))]
         #[method_id(@__retain_semantics Other descriptionWithCalendarFormat:timeZone:locale:)]
         pub unsafe fn descriptionWithCalendarFormat_timeZone_locale(
             &self,
@@ -219,7 +196,6 @@ extern_methods!(
             locale: Option<&Object>,
         ) -> Option<Id<NSString, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithString:)]
         pub unsafe fn initWithString(
             this: Option<Allocated<Self>>,

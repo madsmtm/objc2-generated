@@ -19,19 +19,17 @@ extern_methods!(
         feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialAssertionRequest"
     )]
     unsafe impl ASAuthorizationPlatformPublicKeyCredentialAssertionRequest {
-        #[cfg(all(
-            feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialDescriptor",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(
+            feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialDescriptor"
+        )]
         #[method_id(@__retain_semantics Other allowedCredentials)]
         pub unsafe fn allowedCredentials(
             &self,
         ) -> Id<NSArray<ASAuthorizationPlatformPublicKeyCredentialDescriptor>, Shared>;
 
-        #[cfg(all(
-            feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialDescriptor",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(
+            feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialDescriptor"
+        )]
         #[method(setAllowedCredentials:)]
         pub unsafe fn setAllowedCredentials(
             &self,

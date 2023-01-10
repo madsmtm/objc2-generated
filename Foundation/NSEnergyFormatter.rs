@@ -26,11 +26,9 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Foundation_NSEnergyFormatter")]
     unsafe impl NSEnergyFormatter {
-        #[cfg(feature = "Foundation_NSNumberFormatter")]
         #[method_id(@__retain_semantics Other numberFormatter)]
         pub unsafe fn numberFormatter(&self) -> Id<NSNumberFormatter, Shared>;
 
-        #[cfg(feature = "Foundation_NSNumberFormatter")]
         #[method(setNumberFormatter:)]
         pub unsafe fn setNumberFormatter(&self, numberFormatter: Option<&NSNumberFormatter>);
 
@@ -46,7 +44,6 @@ extern_methods!(
         #[method(setForFoodEnergyUse:)]
         pub unsafe fn setForFoodEnergyUse(&self, forFoodEnergyUse: bool);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringFromValue:unit:)]
         pub unsafe fn stringFromValue_unit(
             &self,
@@ -54,11 +51,9 @@ extern_methods!(
             unit: NSEnergyFormatterUnit,
         ) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringFromJoules:)]
         pub unsafe fn stringFromJoules(&self, numberInJoules: c_double) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other unitStringFromValue:unit:)]
         pub unsafe fn unitStringFromValue_unit(
             &self,
@@ -66,7 +61,6 @@ extern_methods!(
             unit: NSEnergyFormatterUnit,
         ) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other unitStringFromJoules:usedUnit:)]
         pub unsafe fn unitStringFromJoules_usedUnit(
             &self,
@@ -74,7 +68,6 @@ extern_methods!(
             unitp: *mut NSEnergyFormatterUnit,
         ) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(getObjectValue:forString:errorDescription:)]
         pub unsafe fn getObjectValue_forString_errorDescription(
             &self,

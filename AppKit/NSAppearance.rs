@@ -41,7 +41,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other appearanceNamed:)]
         pub unsafe fn appearanceNamed(name: &NSAppearanceName) -> Option<Id<NSAppearance, Shared>>;
 
-        #[cfg(all(feature = "AppKit_NSAppearanceName", feature = "Foundation_NSBundle"))]
+        #[cfg(feature = "AppKit_NSAppearanceName")]
         #[method_id(@__retain_semantics Init initWithAppearanceNamed:bundle:)]
         pub unsafe fn initWithAppearanceNamed_bundle(
             this: Option<Allocated<Self>>,
@@ -49,7 +49,6 @@ extern_methods!(
             bundle: Option<&NSBundle>,
         ) -> Option<Id<Self, Shared>>;
 
-        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -59,7 +58,7 @@ extern_methods!(
         #[method(allowsVibrancy)]
         pub unsafe fn allowsVibrancy(&self) -> bool;
 
-        #[cfg(all(feature = "AppKit_NSAppearanceName", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "AppKit_NSAppearanceName")]
         #[method_id(@__retain_semantics Other bestMatchFromAppearancesWithNames:)]
         pub unsafe fn bestMatchFromAppearancesWithNames(
             &self,

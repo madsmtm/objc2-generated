@@ -43,11 +43,9 @@ extern_methods!(
         #[method(cancelButtonBounds)]
         pub unsafe fn cancelButtonBounds(&self) -> NSRect;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other recentSearches)]
         pub unsafe fn recentSearches(&self) -> Id<NSArray<NSString>, Shared>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setRecentSearches:)]
         pub unsafe fn setRecentSearches(&self, recentSearches: &NSArray<NSString>);
 
@@ -127,21 +125,17 @@ extern_methods!(
     /// NSTextFieldConvenience
     #[cfg(feature = "AppKit_NSSearchField")]
     unsafe impl NSSearchField {
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other labelWithString:)]
         pub unsafe fn labelWithString(stringValue: &NSString) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other wrappingLabelWithString:)]
         pub unsafe fn wrappingLabelWithString(stringValue: &NSString) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other labelWithAttributedString:)]
         pub unsafe fn labelWithAttributedString(
             attributedStringValue: &NSAttributedString,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other textFieldWithString:)]
         pub unsafe fn textFieldWithString(stringValue: &NSString) -> Id<Self, Shared>;
     }

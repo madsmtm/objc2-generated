@@ -24,7 +24,6 @@ extern_methods!(
             frameRect: NSRect,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -85,11 +84,9 @@ extern_methods!(
         #[method(setControlSize:)]
         pub unsafe fn setControlSize(&self, controlSize: NSControlSize);
 
-        #[cfg(feature = "Foundation_NSFormatter")]
         #[method_id(@__retain_semantics Other formatter)]
         pub unsafe fn formatter(&self) -> Option<Id<NSFormatter, Shared>>;
 
-        #[cfg(feature = "Foundation_NSFormatter")]
         #[method(setFormatter:)]
         pub unsafe fn setFormatter(&self, formatter: Option<&NSFormatter>);
 
@@ -99,19 +96,15 @@ extern_methods!(
         #[method(setObjectValue:)]
         pub unsafe fn setObjectValue(&self, objectValue: Option<&Object>);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringValue)]
         pub unsafe fn stringValue(&self) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setStringValue:)]
         pub unsafe fn setStringValue(&self, stringValue: &NSString);
 
-        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedStringValue)]
         pub unsafe fn attributedStringValue(&self) -> Id<NSAttributedString, Shared>;
 
-        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setAttributedStringValue:)]
         pub unsafe fn setAttributedStringValue(&self, attributedStringValue: &NSAttributedString);
 

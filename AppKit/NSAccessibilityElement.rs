@@ -17,10 +17,7 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSAccessibilityElement")]
     unsafe impl NSAccessibilityElement {
-        #[cfg(all(
-            feature = "AppKit_NSAccessibilityRole",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(feature = "AppKit_NSAccessibilityRole")]
         #[method_id(@__retain_semantics Other accessibilityElementWithRole:frame:label:parent:)]
         pub unsafe fn accessibilityElementWithRole_frame_label_parent(
             role: &NSAccessibilityRole,

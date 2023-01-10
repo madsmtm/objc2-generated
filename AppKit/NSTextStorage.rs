@@ -26,7 +26,7 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSTextStorage")]
     unsafe impl NSTextStorage {
-        #[cfg(all(feature = "AppKit_NSLayoutManager", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "AppKit_NSLayoutManager")]
         #[method_id(@__retain_semantics Other layoutManagers)]
         pub unsafe fn layoutManagers(&self) -> Id<NSArray<NSLayoutManager>, Shared>;
 
@@ -155,18 +155,12 @@ extern_methods!(
     /// NSExtendedAttributedString
     #[cfg(feature = "AppKit_NSTextStorage")]
     unsafe impl NSTextStorage {
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithString:)]
         pub unsafe fn initWithString(
             this: Option<Allocated<Self>>,
             str: &NSString,
         ) -> Id<Self, Shared>;
 
-        #[cfg(all(
-            feature = "Foundation_NSAttributedStringKey",
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSString"
-        ))]
         #[method_id(@__retain_semantics Init initWithString:attributes:)]
         pub unsafe fn initWithString_attributes(
             this: Option<Allocated<Self>>,
@@ -188,11 +182,7 @@ extern_methods!(
     /// NSAttributedStringCreateFromMarkdown
     #[cfg(feature = "AppKit_NSTextStorage")]
     unsafe impl NSTextStorage {
-        #[cfg(all(
-            feature = "Foundation_NSAttributedStringMarkdownParsingOptions",
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSURL"
-        ))]
+        #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Init initWithContentsOfMarkdownFileAtURL:options:baseURL:error:_)]
         pub unsafe fn initWithContentsOfMarkdownFileAtURL_options_baseURL_error(
             this: Option<Allocated<Self>>,
@@ -201,12 +191,7 @@ extern_methods!(
             baseURL: Option<&NSURL>,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSAttributedStringMarkdownParsingOptions",
-            feature = "Foundation_NSData",
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSURL"
-        ))]
+        #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Init initWithMarkdown:options:baseURL:error:_)]
         pub unsafe fn initWithMarkdown_options_baseURL_error(
             this: Option<Allocated<Self>>,
@@ -215,12 +200,7 @@ extern_methods!(
             baseURL: Option<&NSURL>,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSAttributedStringMarkdownParsingOptions",
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSURL"
-        ))]
+        #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Init initWithMarkdownString:options:baseURL:error:_)]
         pub unsafe fn initWithMarkdownString_options_baseURL_error(
             this: Option<Allocated<Self>>,

@@ -29,74 +29,57 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Option<Id<NSString, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other subtitle)]
         pub unsafe fn subtitle(&self) -> Option<Id<NSString, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setSubtitle:)]
         pub unsafe fn setSubtitle(&self, subtitle: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other informativeText)]
         pub unsafe fn informativeText(&self) -> Option<Id<NSString, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setInformativeText:)]
         pub unsafe fn setInformativeText(&self, informativeText: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other actionButtonTitle)]
         pub unsafe fn actionButtonTitle(&self) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setActionButtonTitle:)]
         pub unsafe fn setActionButtonTitle(&self, actionButtonTitle: &NSString);
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other userInfo)]
         pub unsafe fn userInfo(&self) -> Option<Id<NSDictionary<NSString, Object>, Shared>>;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setUserInfo:)]
         pub unsafe fn setUserInfo(&self, userInfo: Option<&NSDictionary<NSString, Object>>);
 
-        #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other deliveryDate)]
         pub unsafe fn deliveryDate(&self) -> Option<Id<NSDate, Shared>>;
 
-        #[cfg(feature = "Foundation_NSDate")]
         #[method(setDeliveryDate:)]
         pub unsafe fn setDeliveryDate(&self, deliveryDate: Option<&NSDate>);
 
-        #[cfg(feature = "Foundation_NSTimeZone")]
         #[method_id(@__retain_semantics Other deliveryTimeZone)]
         pub unsafe fn deliveryTimeZone(&self) -> Option<Id<NSTimeZone, Shared>>;
 
-        #[cfg(feature = "Foundation_NSTimeZone")]
         #[method(setDeliveryTimeZone:)]
         pub unsafe fn setDeliveryTimeZone(&self, deliveryTimeZone: Option<&NSTimeZone>);
 
-        #[cfg(feature = "Foundation_NSDateComponents")]
         #[method_id(@__retain_semantics Other deliveryRepeatInterval)]
         pub unsafe fn deliveryRepeatInterval(&self) -> Option<Id<NSDateComponents, Shared>>;
 
-        #[cfg(feature = "Foundation_NSDateComponents")]
         #[method(setDeliveryRepeatInterval:)]
         pub unsafe fn setDeliveryRepeatInterval(
             &self,
             deliveryRepeatInterval: Option<&NSDateComponents>,
         );
 
-        #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other actualDeliveryDate)]
         pub unsafe fn actualDeliveryDate(&self) -> Option<Id<NSDate, Shared>>;
 
@@ -106,11 +89,9 @@ extern_methods!(
         #[method(isRemote)]
         pub unsafe fn isRemote(&self) -> bool;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other soundName)]
         pub unsafe fn soundName(&self) -> Option<Id<NSString, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setSoundName:)]
         pub unsafe fn setSoundName(&self, soundName: Option<&NSString>);
 
@@ -123,19 +104,15 @@ extern_methods!(
         #[method(activationType)]
         pub unsafe fn activationType(&self) -> NSUserNotificationActivationType;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other otherButtonTitle)]
         pub unsafe fn otherButtonTitle(&self) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setOtherButtonTitle:)]
         pub unsafe fn setOtherButtonTitle(&self, otherButtonTitle: &NSString);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Option<Id<NSString, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setIdentifier:)]
         pub unsafe fn setIdentifier(&self, identifier: Option<&NSString>);
 
@@ -145,38 +122,26 @@ extern_methods!(
         #[method(setHasReplyButton:)]
         pub unsafe fn setHasReplyButton(&self, hasReplyButton: bool);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other responsePlaceholder)]
         pub unsafe fn responsePlaceholder(&self) -> Option<Id<NSString, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setResponsePlaceholder:)]
         pub unsafe fn setResponsePlaceholder(&self, responsePlaceholder: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other response)]
         pub unsafe fn response(&self) -> Option<Id<NSAttributedString, Shared>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSUserNotificationAction"
-        ))]
         #[method_id(@__retain_semantics Other additionalActions)]
         pub unsafe fn additionalActions(
             &self,
         ) -> Option<Id<NSArray<NSUserNotificationAction>, Shared>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSUserNotificationAction"
-        ))]
         #[method(setAdditionalActions:)]
         pub unsafe fn setAdditionalActions(
             &self,
             additionalActions: Option<&NSArray<NSUserNotificationAction>>,
         );
 
-        #[cfg(feature = "Foundation_NSUserNotificationAction")]
         #[method_id(@__retain_semantics Other additionalActivationAction)]
         pub unsafe fn additionalActivationAction(
             &self,
@@ -196,18 +161,15 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Foundation_NSUserNotificationAction")]
     unsafe impl NSUserNotificationAction {
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other actionWithIdentifier:title:)]
         pub unsafe fn actionWithIdentifier_title(
             identifier: Option<&NSString>,
             title: Option<&NSString>,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Option<Id<NSString, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Option<Id<NSString, Shared>>;
     }
@@ -230,51 +192,33 @@ extern_methods!(
         #[method_id(@__retain_semantics Other defaultUserNotificationCenter)]
         pub unsafe fn defaultUserNotificationCenter() -> Id<NSUserNotificationCenter, Shared>;
 
-        #[cfg(feature = "Foundation_NSUserNotificationCenterDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSUserNotificationCenterDelegate, Shared>>;
 
-        #[cfg(feature = "Foundation_NSUserNotificationCenterDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&NSUserNotificationCenterDelegate>);
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSUserNotification"
-        ))]
         #[method_id(@__retain_semantics Other scheduledNotifications)]
         pub unsafe fn scheduledNotifications(&self) -> Id<NSArray<NSUserNotification>, Shared>;
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSUserNotification"
-        ))]
         #[method(setScheduledNotifications:)]
         pub unsafe fn setScheduledNotifications(
             &self,
             scheduledNotifications: &NSArray<NSUserNotification>,
         );
 
-        #[cfg(feature = "Foundation_NSUserNotification")]
         #[method(scheduleNotification:)]
         pub unsafe fn scheduleNotification(&self, notification: &NSUserNotification);
 
-        #[cfg(feature = "Foundation_NSUserNotification")]
         #[method(removeScheduledNotification:)]
         pub unsafe fn removeScheduledNotification(&self, notification: &NSUserNotification);
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSUserNotification"
-        ))]
         #[method_id(@__retain_semantics Other deliveredNotifications)]
         pub unsafe fn deliveredNotifications(&self) -> Id<NSArray<NSUserNotification>, Shared>;
 
-        #[cfg(feature = "Foundation_NSUserNotification")]
         #[method(deliverNotification:)]
         pub unsafe fn deliverNotification(&self, notification: &NSUserNotification);
 
-        #[cfg(feature = "Foundation_NSUserNotification")]
         #[method(removeDeliveredNotification:)]
         pub unsafe fn removeDeliveredNotification(&self, notification: &NSUserNotification);
 

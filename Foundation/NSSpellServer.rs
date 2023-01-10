@@ -15,15 +15,12 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Foundation_NSSpellServer")]
     unsafe impl NSSpellServer {
-        #[cfg(feature = "Foundation_NSSpellServerDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSSpellServerDelegate, Shared>>;
 
-        #[cfg(feature = "Foundation_NSSpellServerDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&NSSpellServerDelegate>);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(registerLanguage:byVendor:)]
         pub unsafe fn registerLanguage_byVendor(
             &self,
@@ -31,7 +28,6 @@ extern_methods!(
             vendor: Option<&NSString>,
         ) -> bool;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(isWordInUserDictionaries:caseSensitive:)]
         pub unsafe fn isWordInUserDictionaries_caseSensitive(
             &self,

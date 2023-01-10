@@ -23,11 +23,9 @@ extern_methods!(
         #[method(isIndexingEnabled)]
         pub unsafe fn isIndexingEnabled(&self) -> bool;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other domainIdentifier)]
         pub unsafe fn domainIdentifier(&self) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other indexName)]
         pub unsafe fn indexName(&self) -> Option<Id<NSString, Shared>>;
 
@@ -62,7 +60,6 @@ extern_methods!(
         #[method(stopSpotlightIndexing)]
         pub unsafe fn stopSpotlightIndexing(&self);
 
-        #[cfg(feature = "Foundation_NSError")]
         #[method(deleteSpotlightIndexWithCompletionHandler:)]
         pub unsafe fn deleteSpotlightIndexWithCompletionHandler(
             &self,

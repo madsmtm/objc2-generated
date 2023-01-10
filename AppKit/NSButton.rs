@@ -18,7 +18,7 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSButton")]
     unsafe impl NSButton {
-        #[cfg(all(feature = "AppKit_NSImage", feature = "Foundation_NSString"))]
+        #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other buttonWithTitle:image:target:action:)]
         pub unsafe fn buttonWithTitle_image_target_action(
             title: &NSString,
@@ -27,7 +27,6 @@ extern_methods!(
             action: Option<Sel>,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other buttonWithTitle:target:action:)]
         pub unsafe fn buttonWithTitle_target_action(
             title: &NSString,
@@ -43,7 +42,6 @@ extern_methods!(
             action: Option<Sel>,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other checkboxWithTitle:target:action:)]
         pub unsafe fn checkboxWithTitle_target_action(
             title: &NSString,
@@ -51,7 +49,6 @@ extern_methods!(
             action: Option<Sel>,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other radioButtonWithTitle:target:action:)]
         pub unsafe fn radioButtonWithTitle_target_action(
             title: &NSString,
@@ -62,35 +59,27 @@ extern_methods!(
         #[method(setButtonType:)]
         pub unsafe fn setButtonType(&self, type_: NSButtonType);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
-        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedTitle)]
         pub unsafe fn attributedTitle(&self) -> Id<NSAttributedString, Shared>;
 
-        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setAttributedTitle:)]
         pub unsafe fn setAttributedTitle(&self, attributedTitle: &NSAttributedString);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other alternateTitle)]
         pub unsafe fn alternateTitle(&self) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setAlternateTitle:)]
         pub unsafe fn setAlternateTitle(&self, alternateTitle: &NSString);
 
-        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedAlternateTitle)]
         pub unsafe fn attributedAlternateTitle(&self) -> Id<NSAttributedString, Shared>;
 
-        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setAttributedAlternateTitle:)]
         pub unsafe fn setAttributedAlternateTitle(
             &self,
@@ -239,11 +228,9 @@ extern_methods!(
         #[method(highlight:)]
         pub unsafe fn highlight(&self, flag: bool);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other keyEquivalent)]
         pub unsafe fn keyEquivalent(&self) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setKeyEquivalent:)]
         pub unsafe fn setKeyEquivalent(&self, keyEquivalent: &NSString);
 
@@ -260,20 +247,14 @@ extern_methods!(
         #[method(performKeyEquivalent:)]
         pub unsafe fn performKeyEquivalent(&self, key: &NSEvent) -> bool;
 
-        #[cfg(all(
-            feature = "AppKit_NSUserInterfaceCompressionOptions",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "AppKit_NSUserInterfaceCompressionOptions")]
         #[method(compressWithPrioritizedCompressionOptions:)]
         pub unsafe fn compressWithPrioritizedCompressionOptions(
             &self,
             prioritizedOptions: &NSArray<NSUserInterfaceCompressionOptions>,
         );
 
-        #[cfg(all(
-            feature = "AppKit_NSUserInterfaceCompressionOptions",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "AppKit_NSUserInterfaceCompressionOptions")]
         #[method(minimumSizeWithPrioritizedCompressionOptions:)]
         pub unsafe fn minimumSizeWithPrioritizedCompressionOptions(
             &self,
@@ -292,7 +273,6 @@ extern_methods!(
     /// NSButtonDeprecated
     #[cfg(feature = "AppKit_NSButton")]
     unsafe impl NSButton {
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setTitleWithMnemonic:)]
         pub unsafe fn setTitleWithMnemonic(&self, stringWithAmpersand: Option<&NSString>);
     }

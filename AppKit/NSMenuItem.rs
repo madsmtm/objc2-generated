@@ -26,7 +26,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other separatorItem)]
         pub unsafe fn separatorItem() -> Id<NSMenuItem, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithTitle:action:keyEquivalent:)]
         pub unsafe fn initWithTitle_action_keyEquivalent(
             this: Option<Allocated<Self>>,
@@ -35,7 +34,6 @@ extern_methods!(
             charCode: &NSString,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -64,30 +62,24 @@ extern_methods!(
         #[method_id(@__retain_semantics Other parentItem)]
         pub unsafe fn parentItem(&self) -> Option<Id<NSMenuItem, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
-        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedTitle)]
         pub unsafe fn attributedTitle(&self) -> Option<Id<NSAttributedString, Shared>>;
 
-        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setAttributedTitle:)]
         pub unsafe fn setAttributedTitle(&self, attributedTitle: Option<&NSAttributedString>);
 
         #[method(isSeparatorItem)]
         pub unsafe fn isSeparatorItem(&self) -> bool;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other keyEquivalent)]
         pub unsafe fn keyEquivalent(&self) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setKeyEquivalent:)]
         pub unsafe fn setKeyEquivalent(&self, keyEquivalent: &NSString);
 
@@ -100,7 +92,6 @@ extern_methods!(
             keyEquivalentModifierMask: NSEventModifierFlags,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other userKeyEquivalent)]
         pub unsafe fn userKeyEquivalent(&self) -> Id<NSString, Shared>;
 
@@ -228,11 +219,9 @@ extern_methods!(
         #[method(isHiddenOrHasHiddenAncestor)]
         pub unsafe fn isHiddenOrHasHiddenAncestor(&self) -> bool;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other toolTip)]
         pub unsafe fn toolTip(&self) -> Option<Id<NSString, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setToolTip:)]
         pub unsafe fn setToolTip(&self, toolTip: Option<&NSString>);
     }
@@ -260,11 +249,9 @@ extern_methods!(
         #[method(mnemonicLocation)]
         pub unsafe fn mnemonicLocation(&self) -> NSUInteger;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other mnemonic)]
         pub unsafe fn mnemonic(&self) -> Option<Id<NSString, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setTitleWithMnemonic:)]
         pub unsafe fn setTitleWithMnemonic(&self, stringWithAmpersand: &NSString);
     }

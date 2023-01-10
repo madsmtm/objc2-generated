@@ -83,11 +83,9 @@ extern_methods!(
         #[method(setBidiProcessingEnabled:)]
         pub unsafe fn setBidiProcessingEnabled(&self, bidiProcessingEnabled: bool);
 
-        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedString)]
         pub unsafe fn attributedString(&self) -> Option<Id<NSAttributedString, Shared>>;
 
-        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setAttributedString:)]
         pub unsafe fn setAttributedString(&self, attributedString: Option<&NSAttributedString>);
 

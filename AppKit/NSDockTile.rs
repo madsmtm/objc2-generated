@@ -39,11 +39,9 @@ extern_methods!(
         #[method(setShowsApplicationBadge:)]
         pub unsafe fn setShowsApplicationBadge(&self, showsApplicationBadge: bool);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other badgeLabel)]
         pub unsafe fn badgeLabel(&self) -> Option<Id<NSString, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setBadgeLabel:)]
         pub unsafe fn setBadgeLabel(&self, badgeLabel: Option<&NSString>);
 

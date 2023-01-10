@@ -15,7 +15,6 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Foundation_NSURLResponse")]
     unsafe impl NSURLResponse {
-        #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Init initWithURL:MIMEType:expectedContentLength:textEncodingName:)]
         pub unsafe fn initWithURL_MIMEType_expectedContentLength_textEncodingName(
             this: Option<Allocated<Self>>,
@@ -25,22 +24,18 @@ extern_methods!(
             name: Option<&NSString>,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other URL)]
         pub unsafe fn URL(&self) -> Option<Id<NSURL, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other MIMEType)]
         pub unsafe fn MIMEType(&self) -> Option<Id<NSString, Shared>>;
 
         #[method(expectedContentLength)]
         pub unsafe fn expectedContentLength(&self) -> c_longlong;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other textEncodingName)]
         pub unsafe fn textEncodingName(&self) -> Option<Id<NSString, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other suggestedFilename)]
         pub unsafe fn suggestedFilename(&self) -> Option<Id<NSString, Shared>>;
     }
@@ -59,11 +54,6 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Foundation_NSHTTPURLResponse")]
     unsafe impl NSHTTPURLResponse {
-        #[cfg(all(
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSURL"
-        ))]
         #[method_id(@__retain_semantics Init initWithURL:statusCode:HTTPVersion:headerFields:)]
         pub unsafe fn initWithURL_statusCode_HTTPVersion_headerFields(
             this: Option<Allocated<Self>>,
@@ -76,18 +66,15 @@ extern_methods!(
         #[method(statusCode)]
         pub unsafe fn statusCode(&self) -> NSInteger;
 
-        #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other allHeaderFields)]
         pub unsafe fn allHeaderFields(&self) -> Id<NSDictionary, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other valueForHTTPHeaderField:)]
         pub unsafe fn valueForHTTPHeaderField(
             &self,
             field: &NSString,
         ) -> Option<Id<NSString, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedStringForStatusCode:)]
         pub unsafe fn localizedStringForStatusCode(statusCode: NSInteger) -> Id<NSString, Shared>;
     }
@@ -97,7 +84,6 @@ extern_methods!(
     /// Methods declared on superclass `NSURLResponse`
     #[cfg(feature = "Foundation_NSHTTPURLResponse")]
     unsafe impl NSHTTPURLResponse {
-        #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Init initWithURL:MIMEType:expectedContentLength:textEncodingName:)]
         pub unsafe fn initWithURL_MIMEType_expectedContentLength_textEncodingName(
             this: Option<Allocated<Self>>,

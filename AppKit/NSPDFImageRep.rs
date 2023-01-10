@@ -18,18 +18,15 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSPDFImageRep")]
     unsafe impl NSPDFImageRep {
-        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other imageRepWithData:)]
         pub unsafe fn imageRepWithData(pdfData: &NSData) -> Option<Id<Self, Shared>>;
 
-        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Init initWithData:)]
         pub unsafe fn initWithData(
             this: Option<Allocated<Self>>,
             pdfData: &NSData,
         ) -> Option<Id<Self, Shared>>;
 
-        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other PDFRepresentation)]
         pub unsafe fn PDFRepresentation(&self) -> Id<NSData, Shared>;
 

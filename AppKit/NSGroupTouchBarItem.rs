@@ -18,10 +18,7 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSGroupTouchBarItem")]
     unsafe impl NSGroupTouchBarItem {
-        #[cfg(all(
-            feature = "AppKit_NSTouchBarItemIdentifier",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "AppKit_NSTouchBarItemIdentifier")]
         #[method_id(@__retain_semantics Other groupItemWithIdentifier:items:)]
         pub unsafe fn groupItemWithIdentifier_items(
             identifier: &NSTouchBarItemIdentifier,
@@ -30,8 +27,7 @@ extern_methods!(
 
         #[cfg(all(
             feature = "AppKit_NSTouchBarItemIdentifier",
-            feature = "AppKit_NSUserInterfaceCompressionOptions",
-            feature = "Foundation_NSArray"
+            feature = "AppKit_NSUserInterfaceCompressionOptions"
         ))]
         #[method_id(@__retain_semantics Other groupItemWithIdentifier:items:allowedCompressionOptions:)]
         pub unsafe fn groupItemWithIdentifier_items_allowedCompressionOptions(
@@ -54,11 +50,9 @@ extern_methods!(
         #[method(setGroupTouchBar:)]
         pub unsafe fn setGroupTouchBar(&self, groupTouchBar: &NSTouchBar);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other customizationLabel)]
         pub unsafe fn customizationLabel(&self) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setCustomizationLabel:)]
         pub unsafe fn setCustomizationLabel(&self, customizationLabel: Option<&NSString>);
 
@@ -89,19 +83,13 @@ extern_methods!(
             &self,
         ) -> Id<NSUserInterfaceCompressionOptions, Shared>;
 
-        #[cfg(all(
-            feature = "AppKit_NSUserInterfaceCompressionOptions",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "AppKit_NSUserInterfaceCompressionOptions")]
         #[method_id(@__retain_semantics Other prioritizedCompressionOptions)]
         pub unsafe fn prioritizedCompressionOptions(
             &self,
         ) -> Id<NSArray<NSUserInterfaceCompressionOptions>, Shared>;
 
-        #[cfg(all(
-            feature = "AppKit_NSUserInterfaceCompressionOptions",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "AppKit_NSUserInterfaceCompressionOptions")]
         #[method(setPrioritizedCompressionOptions:)]
         pub unsafe fn setPrioritizedCompressionOptions(
             &self,

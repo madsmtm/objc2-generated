@@ -25,7 +25,6 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Metal_MTLVertexAttribute")]
     unsafe impl MTLVertexAttribute {
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
         pub fn name(&self) -> Id<NSString, Shared>;
 
@@ -58,7 +57,6 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Metal_MTLAttribute")]
     unsafe impl MTLAttribute {
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
         pub fn name(&self) -> Id<NSString, Shared>;
 
@@ -102,7 +100,6 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Metal_MTLFunctionConstant")]
     unsafe impl MTLFunctionConstant {
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
         pub fn name(&self) -> Id<NSString, Shared>;
 
@@ -198,11 +195,9 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Metal_MTLCompileOptions")]
     unsafe impl MTLCompileOptions {
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other preprocessorMacros)]
         pub fn preprocessorMacros(&self) -> Option<Id<NSDictionary<NSString, NSObject>, Shared>>;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setPreprocessorMacros:)]
         pub unsafe fn setPreprocessorMacros(
             &self,
@@ -227,19 +222,17 @@ extern_methods!(
         #[method(setLibraryType:)]
         pub fn setLibraryType(&self, libraryType: MTLLibraryType);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other installName)]
         pub fn installName(&self) -> Option<Id<NSString, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setInstallName:)]
         pub unsafe fn setInstallName(&self, installName: Option<&NSString>);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLDynamicLibrary"))]
+        #[cfg(feature = "Metal_MTLDynamicLibrary")]
         #[method_id(@__retain_semantics Other libraries)]
         pub fn libraries(&self) -> Option<Id<NSArray<MTLDynamicLibrary>, Shared>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLDynamicLibrary"))]
+        #[cfg(feature = "Metal_MTLDynamicLibrary")]
         #[method(setLibraries:)]
         pub fn setLibraries(&self, libraries: Option<&NSArray<MTLDynamicLibrary>>);
 

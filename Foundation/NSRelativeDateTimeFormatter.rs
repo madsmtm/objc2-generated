@@ -52,40 +52,30 @@ extern_methods!(
         #[method(setFormattingContext:)]
         pub unsafe fn setFormattingContext(&self, formattingContext: NSFormattingContext);
 
-        #[cfg(feature = "Foundation_NSCalendar")]
         #[method_id(@__retain_semantics Other calendar)]
         pub unsafe fn calendar(&self) -> Id<NSCalendar, Shared>;
 
-        #[cfg(feature = "Foundation_NSCalendar")]
         #[method(setCalendar:)]
         pub unsafe fn setCalendar(&self, calendar: Option<&NSCalendar>);
 
-        #[cfg(feature = "Foundation_NSLocale")]
         #[method_id(@__retain_semantics Other locale)]
         pub unsafe fn locale(&self) -> Id<NSLocale, Shared>;
 
-        #[cfg(feature = "Foundation_NSLocale")]
         #[method(setLocale:)]
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
 
-        #[cfg(all(
-            feature = "Foundation_NSDateComponents",
-            feature = "Foundation_NSString"
-        ))]
         #[method_id(@__retain_semantics Other localizedStringFromDateComponents:)]
         pub unsafe fn localizedStringFromDateComponents(
             &self,
             dateComponents: &NSDateComponents,
         ) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedStringFromTimeInterval:)]
         pub unsafe fn localizedStringFromTimeInterval(
             &self,
             timeInterval: NSTimeInterval,
         ) -> Id<NSString, Shared>;
 
-        #[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other localizedStringForDate:relativeToDate:)]
         pub unsafe fn localizedStringForDate_relativeToDate(
             &self,
@@ -93,7 +83,6 @@ extern_methods!(
             referenceDate: &NSDate,
         ) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringForObjectValue:)]
         pub unsafe fn stringForObjectValue(
             &self,

@@ -113,7 +113,7 @@ extern_methods!(
     /// NSDrawers
     #[cfg(feature = "AppKit_NSWindow")]
     unsafe impl NSWindow {
-        #[cfg(all(feature = "AppKit_NSDrawer", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "AppKit_NSDrawer")]
         #[method_id(@__retain_semantics Other drawers)]
         pub unsafe fn drawers(&self) -> Option<Id<NSArray<NSDrawer>, Shared>>;
     }

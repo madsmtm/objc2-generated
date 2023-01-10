@@ -108,11 +108,11 @@ extern_methods!(
         #[method(setTabViewBorderType:)]
         pub unsafe fn setTabViewBorderType(&self, tabViewBorderType: NSTabViewBorderType);
 
-        #[cfg(all(feature = "AppKit_NSTabViewItem", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "AppKit_NSTabViewItem")]
         #[method_id(@__retain_semantics Other tabViewItems)]
         pub unsafe fn tabViewItems(&self) -> Id<NSArray<NSTabViewItem>, Shared>;
 
-        #[cfg(all(feature = "AppKit_NSTabViewItem", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "AppKit_NSTabViewItem")]
         #[method(setTabViewItems:)]
         pub unsafe fn setTabViewItems(&self, tabViewItems: &NSArray<NSTabViewItem>);
 

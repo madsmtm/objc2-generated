@@ -30,11 +30,9 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Foundation_NSLengthFormatter")]
     unsafe impl NSLengthFormatter {
-        #[cfg(feature = "Foundation_NSNumberFormatter")]
         #[method_id(@__retain_semantics Other numberFormatter)]
         pub unsafe fn numberFormatter(&self) -> Id<NSNumberFormatter, Shared>;
 
-        #[cfg(feature = "Foundation_NSNumberFormatter")]
         #[method(setNumberFormatter:)]
         pub unsafe fn setNumberFormatter(&self, numberFormatter: Option<&NSNumberFormatter>);
 
@@ -50,7 +48,6 @@ extern_methods!(
         #[method(setForPersonHeightUse:)]
         pub unsafe fn setForPersonHeightUse(&self, forPersonHeightUse: bool);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringFromValue:unit:)]
         pub unsafe fn stringFromValue_unit(
             &self,
@@ -58,11 +55,9 @@ extern_methods!(
             unit: NSLengthFormatterUnit,
         ) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringFromMeters:)]
         pub unsafe fn stringFromMeters(&self, numberInMeters: c_double) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other unitStringFromValue:unit:)]
         pub unsafe fn unitStringFromValue_unit(
             &self,
@@ -70,7 +65,6 @@ extern_methods!(
             unit: NSLengthFormatterUnit,
         ) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other unitStringFromMeters:usedUnit:)]
         pub unsafe fn unitStringFromMeters_usedUnit(
             &self,
@@ -78,7 +72,6 @@ extern_methods!(
             unitp: *mut NSLengthFormatterUnit,
         ) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(getObjectValue:forString:errorDescription:)]
         pub unsafe fn getObjectValue_forString_errorDescription(
             &self,

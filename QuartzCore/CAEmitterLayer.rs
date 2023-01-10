@@ -29,11 +29,11 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "QuartzCore_CAEmitterLayer")]
     unsafe impl CAEmitterLayer {
-        #[cfg(all(feature = "Foundation_NSArray", feature = "QuartzCore_CAEmitterCell"))]
+        #[cfg(feature = "QuartzCore_CAEmitterCell")]
         #[method_id(@__retain_semantics Other emitterCells)]
         pub unsafe fn emitterCells(&self) -> Option<Id<NSArray<CAEmitterCell>, Shared>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "QuartzCore_CAEmitterCell"))]
+        #[cfg(feature = "QuartzCore_CAEmitterCell")]
         #[method(setEmitterCells:)]
         pub unsafe fn setEmitterCells(&self, emitterCells: Option<&NSArray<CAEmitterCell>>);
 

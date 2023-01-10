@@ -7,11 +7,9 @@ extern_methods!(
     /// NSStringPathExtensions
     #[cfg(feature = "Foundation_NSString")]
     unsafe impl NSString {
-        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other pathWithComponents:)]
         pub unsafe fn pathWithComponents(components: &NSArray<NSString>) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other pathComponents)]
         pub unsafe fn pathComponents(&self) -> Id<NSArray<NSString>, Shared>;
 
@@ -51,14 +49,12 @@ extern_methods!(
         #[method_id(@__retain_semantics Other stringByResolvingSymlinksInPath)]
         pub unsafe fn stringByResolvingSymlinksInPath(&self) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other stringsByAppendingPaths:)]
         pub unsafe fn stringsByAppendingPaths(
             &self,
             paths: &NSArray<NSString>,
         ) -> Id<NSArray<NSString>, Shared>;
 
-        #[cfg(feature = "Foundation_NSArray")]
         #[method(completePathIntoString:caseSensitive:matchesIntoArray:filterTypes:)]
         pub unsafe fn completePathIntoString_caseSensitive_matchesIntoArray_filterTypes(
             &self,
@@ -86,7 +82,6 @@ extern_methods!(
     unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
         NSArray<ObjectType, ObjectTypeOwnership>
     {
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other pathsMatchingExtensions:)]
         pub unsafe fn pathsMatchingExtensions(
             &self,

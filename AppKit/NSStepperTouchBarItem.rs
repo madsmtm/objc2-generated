@@ -18,10 +18,7 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSStepperTouchBarItem")]
     unsafe impl NSStepperTouchBarItem {
-        #[cfg(all(
-            feature = "AppKit_NSTouchBarItemIdentifier",
-            feature = "Foundation_NSFormatter"
-        ))]
+        #[cfg(feature = "AppKit_NSTouchBarItemIdentifier")]
         #[method_id(@__retain_semantics Other stepperTouchBarItemWithIdentifier:formatter:)]
         pub unsafe fn stepperTouchBarItemWithIdentifier_formatter(
             identifier: &NSTouchBarItemIdentifier,
@@ -71,11 +68,9 @@ extern_methods!(
         #[method(setAction:)]
         pub unsafe fn setAction(&self, action: Option<Sel>);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other customizationLabel)]
         pub unsafe fn customizationLabel(&self) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setCustomizationLabel:)]
         pub unsafe fn setCustomizationLabel(&self, customizationLabel: Option<&NSString>);
     }

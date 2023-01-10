@@ -32,7 +32,6 @@ extern_methods!(
         #[method(setContextHelpModeActive:)]
         pub unsafe fn setContextHelpModeActive(contextHelpModeActive: bool);
 
-        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setContextHelp:forObject:)]
         pub unsafe fn setContextHelp_forObject(
             &self,
@@ -43,7 +42,6 @@ extern_methods!(
         #[method(removeContextHelpForObject:)]
         pub unsafe fn removeContextHelpForObject(&self, object: &Object);
 
-        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other contextHelpForObject:)]
         pub unsafe fn contextHelpForObject(
             &self,
@@ -65,11 +63,10 @@ extern_methods!(
             book: Option<&NSHelpBookName>,
         );
 
-        #[cfg(all(feature = "AppKit_NSHelpBookName", feature = "Foundation_NSString"))]
+        #[cfg(feature = "AppKit_NSHelpBookName")]
         #[method(findString:inBook:)]
         pub unsafe fn findString_inBook(&self, query: &NSString, book: Option<&NSHelpBookName>);
 
-        #[cfg(feature = "Foundation_NSBundle")]
         #[method(registerBooksInBundle:)]
         pub unsafe fn registerBooksInBundle(&self, bundle: &NSBundle) -> bool;
     }
@@ -83,10 +80,7 @@ extern_methods!(
     /// NSBundleHelpExtension
     #[cfg(feature = "AppKit_NSBundle")]
     unsafe impl NSBundle {
-        #[cfg(all(
-            feature = "AppKit_NSHelpManagerContextHelpKey",
-            feature = "Foundation_NSAttributedString"
-        ))]
+        #[cfg(feature = "AppKit_NSHelpManagerContextHelpKey")]
         #[method_id(@__retain_semantics Other contextHelpForKey:)]
         pub unsafe fn contextHelpForKey(
             &self,

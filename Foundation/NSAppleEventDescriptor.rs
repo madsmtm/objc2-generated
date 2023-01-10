@@ -57,16 +57,13 @@ extern_methods!(
             typeCode: OSType,
         ) -> Id<NSAppleEventDescriptor, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other descriptorWithString:)]
         pub unsafe fn descriptorWithString(string: &NSString)
             -> Id<NSAppleEventDescriptor, Shared>;
 
-        #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other descriptorWithDate:)]
         pub unsafe fn descriptorWithDate(date: &NSDate) -> Id<NSAppleEventDescriptor, Shared>;
 
-        #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other descriptorWithFileURL:)]
         pub unsafe fn descriptorWithFileURL(fileURL: &NSURL) -> Id<NSAppleEventDescriptor, Shared>;
 
@@ -79,13 +76,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other currentProcessDescriptor)]
         pub unsafe fn currentProcessDescriptor() -> Id<NSAppleEventDescriptor, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other descriptorWithBundleIdentifier:)]
         pub unsafe fn descriptorWithBundleIdentifier(
             bundleIdentifier: &NSString,
         ) -> Id<NSAppleEventDescriptor, Shared>;
 
-        #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other descriptorWithApplicationURL:)]
         pub unsafe fn descriptorWithApplicationURL(
             applicationURL: &NSURL,
@@ -97,7 +92,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initRecordDescriptor)]
         pub unsafe fn initRecordDescriptor(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other data)]
         pub unsafe fn data(&self) -> Id<NSData, Shared>;
 
@@ -116,15 +110,12 @@ extern_methods!(
         #[method(typeCodeValue)]
         pub unsafe fn typeCodeValue(&self) -> OSType;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringValue)]
         pub unsafe fn stringValue(&self) -> Option<Id<NSString, Shared>>;
 
-        #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other dateValue)]
         pub unsafe fn dateValue(&self) -> Option<Id<NSDate, Shared>>;
 
-        #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other fileURLValue)]
         pub unsafe fn fileURLValue(&self) -> Option<Id<NSURL, Shared>>;
 

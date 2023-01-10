@@ -83,11 +83,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Other textField)]
         pub unsafe fn textField(&self) -> Id<NSTextField, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
     }

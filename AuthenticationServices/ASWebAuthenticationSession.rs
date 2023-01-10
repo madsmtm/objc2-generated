@@ -29,7 +29,6 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AuthenticationServices_ASWebAuthenticationSession")]
     unsafe impl ASWebAuthenticationSession {
-        #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Init initWithURL:callbackURLScheme:completionHandler:)]
         pub unsafe fn initWithURL_callbackURLScheme_completionHandler(
             this: Option<Allocated<Self>>,

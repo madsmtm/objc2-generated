@@ -21,7 +21,6 @@ extern_methods!(
         pub unsafe fn initWithSize(this: Option<Allocated<Self>>, size: NSSize)
             -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -50,11 +49,11 @@ extern_methods!(
         #[method(setSize:)]
         pub unsafe fn setSize(&self, size: NSSize);
 
-        #[cfg(all(feature = "AppKit_NSBezierPath", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "AppKit_NSBezierPath")]
         #[method_id(@__retain_semantics Other exclusionPaths)]
         pub unsafe fn exclusionPaths(&self) -> Id<NSArray<NSBezierPath>, Shared>;
 
-        #[cfg(all(feature = "AppKit_NSBezierPath", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "AppKit_NSBezierPath")]
         #[method(setExclusionPaths:)]
         pub unsafe fn setExclusionPaths(&self, exclusionPaths: &NSArray<NSBezierPath>);
 

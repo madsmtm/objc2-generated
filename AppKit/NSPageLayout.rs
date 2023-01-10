@@ -28,7 +28,7 @@ extern_methods!(
         #[method(removeAccessoryController:)]
         pub unsafe fn removeAccessoryController(&self, accessoryController: &NSViewController);
 
-        #[cfg(all(feature = "AppKit_NSViewController", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "AppKit_NSViewController")]
         #[method_id(@__retain_semantics Other accessoryControllers)]
         pub unsafe fn accessoryControllers(&self) -> Id<NSArray<NSViewController>, Shared>;
 

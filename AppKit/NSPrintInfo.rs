@@ -118,17 +118,13 @@ extern_methods!(
         #[method(setSharedPrintInfo:)]
         pub unsafe fn setSharedPrintInfo(sharedPrintInfo: &NSPrintInfo);
 
-        #[cfg(all(
-            feature = "AppKit_NSPrintInfoAttributeKey",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(feature = "AppKit_NSPrintInfoAttributeKey")]
         #[method_id(@__retain_semantics Init initWithDictionary:)]
         pub unsafe fn initWithDictionary(
             this: Option<Allocated<Self>>,
             attributes: &NSDictionary<NSPrintInfoAttributeKey, Object>,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -138,10 +134,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
-        #[cfg(all(
-            feature = "AppKit_NSPrintInfoAttributeKey",
-            feature = "Foundation_NSMutableDictionary"
-        ))]
+        #[cfg(feature = "AppKit_NSPrintInfoAttributeKey")]
         #[method_id(@__retain_semantics Other dictionary)]
         pub unsafe fn dictionary(
             &self,
@@ -246,7 +239,6 @@ extern_methods!(
         #[method(imageablePageBounds)]
         pub unsafe fn imageablePageBounds(&self) -> NSRect;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedPaperName)]
         pub unsafe fn localizedPaperName(&self) -> Option<Id<NSString, Shared>>;
 
@@ -254,10 +246,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other defaultPrinter)]
         pub unsafe fn defaultPrinter() -> Option<Id<NSPrinter, Shared>>;
 
-        #[cfg(all(
-            feature = "AppKit_NSPrintInfoSettingKey",
-            feature = "Foundation_NSMutableDictionary"
-        ))]
+        #[cfg(feature = "AppKit_NSPrintInfoSettingKey")]
         #[method_id(@__retain_semantics Other printSettings)]
         pub unsafe fn printSettings(
             &self,

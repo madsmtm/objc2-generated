@@ -96,7 +96,6 @@ extern_methods!(
     /// CATransform3DAdditions
     #[cfg(feature = "QuartzCore_NSValue")]
     unsafe impl NSValue {
-        #[cfg(feature = "Foundation_NSValue")]
         #[method_id(@__retain_semantics Other valueWithCATransform3D:)]
         pub unsafe fn valueWithCATransform3D(t: CATransform3D) -> Id<NSValue, Shared>;
 

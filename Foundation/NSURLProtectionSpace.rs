@@ -45,7 +45,6 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Foundation_NSURLProtectionSpace")]
     unsafe impl NSURLProtectionSpace {
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithHost:port:protocol:realm:authenticationMethod:)]
         pub unsafe fn initWithHost_port_protocol_realm_authenticationMethod(
             this: Option<Allocated<Self>>,
@@ -56,7 +55,6 @@ extern_methods!(
             authenticationMethod: Option<&NSString>,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithProxyHost:port:type:realm:authenticationMethod:)]
         pub unsafe fn initWithProxyHost_port_type_realm_authenticationMethod(
             this: Option<Allocated<Self>>,
@@ -67,7 +65,6 @@ extern_methods!(
             authenticationMethod: Option<&NSString>,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other realm)]
         pub unsafe fn realm(&self) -> Option<Id<NSString, Shared>>;
 
@@ -77,22 +74,18 @@ extern_methods!(
         #[method(isProxy)]
         pub unsafe fn isProxy(&self) -> bool;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other host)]
         pub unsafe fn host(&self) -> Id<NSString, Shared>;
 
         #[method(port)]
         pub unsafe fn port(&self) -> NSInteger;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other proxyType)]
         pub unsafe fn proxyType(&self) -> Option<Id<NSString, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other protocol)]
         pub unsafe fn protocol(&self) -> Option<Id<NSString, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other authenticationMethod)]
         pub unsafe fn authenticationMethod(&self) -> Id<NSString, Shared>;
     }
@@ -102,7 +95,6 @@ extern_methods!(
     /// NSClientCertificateSpace
     #[cfg(feature = "Foundation_NSURLProtectionSpace")]
     unsafe impl NSURLProtectionSpace {
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSData"))]
         #[method_id(@__retain_semantics Other distinguishedNames)]
         pub unsafe fn distinguishedNames(&self) -> Option<Id<NSArray<NSData>, Shared>>;
     }

@@ -17,7 +17,6 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSTextLineFragment")]
     unsafe impl NSTextLineFragment {
-        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Init initWithAttributedString:range:)]
         pub unsafe fn initWithAttributedString_range(
             this: Option<Allocated<Self>>,
@@ -25,18 +24,12 @@ extern_methods!(
             range: NSRange,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             aDecoder: &NSCoder,
         ) -> Option<Id<Self, Shared>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSAttributedStringKey",
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSString"
-        ))]
         #[method_id(@__retain_semantics Init initWithString:attributes:range:)]
         pub unsafe fn initWithString_attributes_range(
             this: Option<Allocated<Self>>,
@@ -48,7 +41,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedString)]
         pub unsafe fn attributedString(&self) -> Id<NSAttributedString, Shared>;
 

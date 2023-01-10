@@ -26,14 +26,12 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSSearchFieldCell")]
     unsafe impl NSSearchFieldCell {
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initTextCell:)]
         pub unsafe fn initTextCell(
             this: Option<Allocated<Self>>,
             string: &NSString,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -98,11 +96,9 @@ extern_methods!(
         #[method(setMaximumRecents:)]
         pub unsafe fn setMaximumRecents(&self, maximumRecents: NSInteger);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other recentSearches)]
         pub unsafe fn recentSearches(&self) -> Id<NSArray<NSString>, Shared>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setRecentSearches:)]
         pub unsafe fn setRecentSearches(&self, recentSearches: Option<&NSArray<NSString>>);
 

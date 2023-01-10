@@ -33,37 +33,28 @@ extern_methods!(
         #[method_id(@__retain_semantics Other fetchRequest)]
         pub unsafe fn fetchRequest() -> Option<Id<NSFetchRequest, Shared>>;
 
-        #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other timestamp)]
         pub unsafe fn timestamp(&self) -> Id<NSDate, Shared>;
 
-        #[cfg(all(
-            feature = "CoreData_NSPersistentHistoryChange",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "CoreData_NSPersistentHistoryChange")]
         #[method_id(@__retain_semantics Other changes)]
         pub unsafe fn changes(&self) -> Option<Id<NSArray<NSPersistentHistoryChange>, Shared>>;
 
         #[method(transactionNumber)]
         pub unsafe fn transactionNumber(&self) -> i64;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other storeID)]
         pub unsafe fn storeID(&self) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other bundleID)]
         pub unsafe fn bundleID(&self) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other processID)]
         pub unsafe fn processID(&self) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other contextName)]
         pub unsafe fn contextName(&self) -> Option<Id<NSString, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other author)]
         pub unsafe fn author(&self) -> Option<Id<NSString, Shared>>;
 
@@ -71,7 +62,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other token)]
         pub unsafe fn token(&self) -> Id<NSPersistentHistoryToken, Shared>;
 
-        #[cfg(feature = "Foundation_NSNotification")]
         #[method_id(@__retain_semantics Other objectIDNotification)]
         pub unsafe fn objectIDNotification(&self) -> Id<NSNotification, Shared>;
     }

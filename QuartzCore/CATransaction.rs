@@ -57,11 +57,9 @@ extern_methods!(
         #[method(setCompletionBlock:)]
         pub unsafe fn setCompletionBlock(block: Option<&Block<(), ()>>);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other valueForKey:)]
         pub unsafe fn valueForKey(key: &NSString) -> Option<Id<Object, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setValue:forKey:)]
         pub unsafe fn setValue_forKey(anObject: Option<&Object>, key: &NSString);
     }

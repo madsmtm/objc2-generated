@@ -16,7 +16,6 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AuthenticationServices_ASAuthorizationSingleSignOnProvider")]
     unsafe impl ASAuthorizationSingleSignOnProvider {
-        #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other authorizationProviderWithIdentityProviderURL:)]
         pub unsafe fn authorizationProviderWithIdentityProviderURL(url: &NSURL)
             -> Id<Self, Shared>;
@@ -31,7 +30,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other url)]
         pub unsafe fn url(&self) -> Id<NSURL, Shared>;
 

@@ -60,14 +60,12 @@ extern_methods!(
             context: Option<&NSManagedObjectContext>,
         ) -> Result<Id<Object, Shared>, Id<NSError, Shared>>;
 
-        #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other identifierForNewStoreAtURL:)]
         pub unsafe fn identifierForNewStoreAtURL(storeURL: &NSURL) -> Id<Object, Shared>;
 
         #[cfg(all(
             feature = "CoreData_NSManagedObject",
             feature = "CoreData_NSManagedObjectID",
-            feature = "Foundation_NSArray",
             feature = "Foundation_NSError"
         ))]
         #[method_id(@__retain_semantics Other obtainPermanentIDsForObjects:error:_)]
@@ -76,14 +74,14 @@ extern_methods!(
             array: &NSArray<NSManagedObject>,
         ) -> Result<Id<NSArray<NSManagedObjectID>, Shared>, Id<NSError, Shared>>;
 
-        #[cfg(all(feature = "CoreData_NSManagedObjectID", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "CoreData_NSManagedObjectID")]
         #[method(managedObjectContextDidRegisterObjectsWithIDs:)]
         pub unsafe fn managedObjectContextDidRegisterObjectsWithIDs(
             &self,
             objectIDs: &NSArray<NSManagedObjectID>,
         );
 
-        #[cfg(all(feature = "CoreData_NSManagedObjectID", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "CoreData_NSManagedObjectID")]
         #[method(managedObjectContextDidUnregisterObjectsWithIDs:)]
         pub unsafe fn managedObjectContextDidUnregisterObjectsWithIDs(
             &self,
@@ -114,12 +112,7 @@ extern_methods!(
     /// Methods declared on superclass `NSPersistentStore`
     #[cfg(feature = "CoreData_NSIncrementalStore")]
     unsafe impl NSIncrementalStore {
-        #[cfg(all(
-            feature = "CoreData_NSPersistentStoreCoordinator",
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSURL"
-        ))]
+        #[cfg(feature = "CoreData_NSPersistentStoreCoordinator")]
         #[method_id(@__retain_semantics Init initWithPersistentStoreCoordinator:configurationName:URL:options:)]
         pub unsafe fn initWithPersistentStoreCoordinator_configurationName_URL_options(
             this: Option<Allocated<Self>>,

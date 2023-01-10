@@ -25,7 +25,6 @@ extern_methods!(
             window: Option<&NSWindow>,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -47,7 +46,6 @@ extern_methods!(
             owner: &Object,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithWindowNibPath:owner:)]
         pub unsafe fn initWithWindowNibPath_owner(
             this: Option<Allocated<Self>>,
@@ -59,7 +57,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other windowNibName)]
         pub unsafe fn windowNibName(&self) -> Option<Id<NSNibName, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other windowNibPath)]
         pub unsafe fn windowNibPath(&self) -> Option<Id<NSString, Shared>>;
 
@@ -101,7 +98,6 @@ extern_methods!(
         #[method(synchronizeWindowTitleWithDocumentName)]
         pub unsafe fn synchronizeWindowTitleWithDocumentName(&self);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other windowTitleForDocumentDisplayName:)]
         pub unsafe fn windowTitleForDocumentDisplayName(
             &self,

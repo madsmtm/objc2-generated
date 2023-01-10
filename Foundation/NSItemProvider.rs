@@ -65,12 +65,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
-        #[cfg(all(
-            feature = "Foundation_NSData",
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSProgress",
-            feature = "Foundation_NSString"
-        ))]
         #[method(registerDataRepresentationForTypeIdentifier:visibility:loadHandler:)]
         pub unsafe fn registerDataRepresentationForTypeIdentifier_visibility_loadHandler(
             &self,
@@ -82,12 +76,6 @@ extern_methods!(
             >,
         );
 
-        #[cfg(all(
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSProgress",
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSURL"
-        ))]
         #[method(registerFileRepresentationForTypeIdentifier:fileOptions:visibility:loadHandler:)]
         pub unsafe fn registerFileRepresentationForTypeIdentifier_fileOptions_visibility_loadHandler(
             &self,
@@ -100,22 +88,18 @@ extern_methods!(
             >,
         );
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other registeredTypeIdentifiers)]
         pub unsafe fn registeredTypeIdentifiers(&self) -> Id<NSArray<NSString>, Shared>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other registeredTypeIdentifiersWithFileOptions:)]
         pub unsafe fn registeredTypeIdentifiersWithFileOptions(
             &self,
             fileOptions: NSItemProviderFileOptions,
         ) -> Id<NSArray<NSString>, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(hasItemConformingToTypeIdentifier:)]
         pub unsafe fn hasItemConformingToTypeIdentifier(&self, typeIdentifier: &NSString) -> bool;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(hasRepresentationConformingToTypeIdentifier:fileOptions:)]
         pub unsafe fn hasRepresentationConformingToTypeIdentifier_fileOptions(
             &self,
@@ -123,12 +107,6 @@ extern_methods!(
             fileOptions: NSItemProviderFileOptions,
         ) -> bool;
 
-        #[cfg(all(
-            feature = "Foundation_NSData",
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSProgress",
-            feature = "Foundation_NSString"
-        ))]
         #[method_id(@__retain_semantics Other loadDataRepresentationForTypeIdentifier:completionHandler:)]
         pub unsafe fn loadDataRepresentationForTypeIdentifier_completionHandler(
             &self,
@@ -136,12 +114,6 @@ extern_methods!(
             completionHandler: &Block<(*mut NSData, *mut NSError), ()>,
         ) -> Id<NSProgress, Shared>;
 
-        #[cfg(all(
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSProgress",
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSURL"
-        ))]
         #[method_id(@__retain_semantics Other loadFileRepresentationForTypeIdentifier:completionHandler:)]
         pub unsafe fn loadFileRepresentationForTypeIdentifier_completionHandler(
             &self,
@@ -149,12 +121,6 @@ extern_methods!(
             completionHandler: &Block<(*mut NSURL, *mut NSError), ()>,
         ) -> Id<NSProgress, Shared>;
 
-        #[cfg(all(
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSProgress",
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSURL"
-        ))]
         #[method_id(@__retain_semantics Other loadInPlaceFileRepresentationForTypeIdentifier:completionHandler:)]
         pub unsafe fn loadInPlaceFileRepresentationForTypeIdentifier_completionHandler(
             &self,
@@ -162,22 +128,18 @@ extern_methods!(
             completionHandler: &Block<(*mut NSURL, Bool, *mut NSError), ()>,
         ) -> Id<NSProgress, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other suggestedName)]
         pub unsafe fn suggestedName(&self) -> Option<Id<NSString, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setSuggestedName:)]
         pub unsafe fn setSuggestedName(&self, suggestedName: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSItemProviderWriting")]
         #[method_id(@__retain_semantics Init initWithObject:)]
         pub unsafe fn initWithObject(
             this: Option<Allocated<Self>>,
             object: &NSItemProviderWriting,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSItemProviderWriting")]
         #[method(registerObject:visibility:)]
         pub unsafe fn registerObject_visibility(
             &self,
@@ -185,7 +147,6 @@ extern_methods!(
             visibility: NSItemProviderRepresentationVisibility,
         );
 
-        #[cfg(all(feature = "Foundation_NSSecureCoding", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithItem:typeIdentifier:)]
         pub unsafe fn initWithItem_typeIdentifier(
             this: Option<Allocated<Self>>,
@@ -193,14 +154,12 @@ extern_methods!(
             typeIdentifier: Option<&NSString>,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
         pub unsafe fn initWithContentsOfURL(
             this: Option<Allocated<Self>>,
             fileURL: Option<&NSURL>,
         ) -> Option<Id<Self, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(registerItemForTypeIdentifier:loadHandler:)]
         pub unsafe fn registerItemForTypeIdentifier_loadHandler(
             &self,
@@ -208,7 +167,6 @@ extern_methods!(
             loadHandler: NSItemProviderLoadHandler,
         );
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(loadItemForTypeIdentifier:options:completionHandler:)]
         pub unsafe fn loadItemForTypeIdentifier_options_completionHandler(
             &self,
@@ -231,7 +189,6 @@ extern_methods!(
         #[method(setPreviewImageHandler:)]
         pub unsafe fn setPreviewImageHandler(&self, previewImageHandler: NSItemProviderLoadHandler);
 
-        #[cfg(feature = "Foundation_NSDictionary")]
         #[method(loadPreviewImageWithOptions:completionHandler:)]
         pub unsafe fn loadPreviewImageWithOptions_completionHandler(
             &self,

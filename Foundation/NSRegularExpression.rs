@@ -28,14 +28,14 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Foundation_NSRegularExpression")]
     unsafe impl NSRegularExpression {
-        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+        #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other regularExpressionWithPattern:options:error:_)]
         pub unsafe fn regularExpressionWithPattern_options_error(
             pattern: &NSString,
             options: NSRegularExpressionOptions,
         ) -> Result<Id<NSRegularExpression, Shared>, Id<NSError, Shared>>;
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+        #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Init initWithPattern:options:error:_)]
         pub unsafe fn initWithPattern_options_error(
             this: Option<Allocated<Self>>,
@@ -43,7 +43,6 @@ extern_methods!(
             options: NSRegularExpressionOptions,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other pattern)]
         pub unsafe fn pattern(&self) -> Id<NSString, Shared>;
 
@@ -53,7 +52,6 @@ extern_methods!(
         #[method(numberOfCaptureGroups)]
         pub unsafe fn numberOfCaptureGroups(&self) -> NSUInteger;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other escapedPatternForString:)]
         pub unsafe fn escapedPatternForString(string: &NSString) -> Id<NSString, Shared>;
     }
@@ -85,10 +83,6 @@ extern_methods!(
     /// NSMatching
     #[cfg(feature = "Foundation_NSRegularExpression")]
     unsafe impl NSRegularExpression {
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSTextCheckingResult"
-        ))]
         #[method(enumerateMatchesInString:options:range:usingBlock:)]
         pub unsafe fn enumerateMatchesInString_options_range_usingBlock(
             &self,
@@ -98,11 +92,6 @@ extern_methods!(
             block: &Block<(*mut NSTextCheckingResult, NSMatchingFlags, NonNull<Bool>), ()>,
         );
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSTextCheckingResult"
-        ))]
         #[method_id(@__retain_semantics Other matchesInString:options:range:)]
         pub unsafe fn matchesInString_options_range(
             &self,
@@ -111,7 +100,6 @@ extern_methods!(
             range: NSRange,
         ) -> Id<NSArray<NSTextCheckingResult>, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(numberOfMatchesInString:options:range:)]
         pub unsafe fn numberOfMatchesInString_options_range(
             &self,
@@ -120,10 +108,6 @@ extern_methods!(
             range: NSRange,
         ) -> NSUInteger;
 
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSTextCheckingResult"
-        ))]
         #[method_id(@__retain_semantics Other firstMatchInString:options:range:)]
         pub unsafe fn firstMatchInString_options_range(
             &self,
@@ -132,7 +116,6 @@ extern_methods!(
             range: NSRange,
         ) -> Option<Id<NSTextCheckingResult, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(rangeOfFirstMatchInString:options:range:)]
         pub unsafe fn rangeOfFirstMatchInString_options_range(
             &self,
@@ -147,7 +130,6 @@ extern_methods!(
     /// NSReplacement
     #[cfg(feature = "Foundation_NSRegularExpression")]
     unsafe impl NSRegularExpression {
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringByReplacingMatchesInString:options:range:withTemplate:)]
         pub unsafe fn stringByReplacingMatchesInString_options_range_withTemplate(
             &self,
@@ -157,10 +139,6 @@ extern_methods!(
             templ: &NSString,
         ) -> Id<NSString, Shared>;
 
-        #[cfg(all(
-            feature = "Foundation_NSMutableString",
-            feature = "Foundation_NSString"
-        ))]
         #[method(replaceMatchesInString:options:range:withTemplate:)]
         pub unsafe fn replaceMatchesInString_options_range_withTemplate(
             &self,
@@ -170,10 +148,6 @@ extern_methods!(
             templ: &NSString,
         ) -> NSUInteger;
 
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSTextCheckingResult"
-        ))]
         #[method_id(@__retain_semantics Other replacementStringForResult:inString:offset:template:)]
         pub unsafe fn replacementStringForResult_inString_offset_template(
             &self,
@@ -183,7 +157,6 @@ extern_methods!(
             templ: &NSString,
         ) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other escapedTemplateForString:)]
         pub unsafe fn escapedTemplateForString(string: &NSString) -> Id<NSString, Shared>;
     }
@@ -224,7 +197,7 @@ extern_methods!(
     /// Methods declared on superclass `NSRegularExpression`
     #[cfg(feature = "Foundation_NSDataDetector")]
     unsafe impl NSDataDetector {
-        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+        #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Init initWithPattern:options:error:_)]
         pub unsafe fn initWithPattern_options_error(
             this: Option<Allocated<Self>>,

@@ -36,7 +36,7 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSTextSelection")]
     unsafe impl NSTextSelection {
-        #[cfg(all(feature = "AppKit_NSTextRange", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "AppKit_NSTextRange")]
         #[method_id(@__retain_semantics Init initWithRanges:affinity:granularity:)]
         pub unsafe fn initWithRanges_affinity_granularity(
             this: Option<Allocated<Self>>,
@@ -45,7 +45,6 @@ extern_methods!(
             granularity: NSTextSelectionGranularity,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -72,7 +71,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
-        #[cfg(all(feature = "AppKit_NSTextRange", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "AppKit_NSTextRange")]
         #[method_id(@__retain_semantics Other textRanges)]
         pub unsafe fn textRanges(&self) -> Id<NSArray<NSTextRange>, Shared>;
 
@@ -108,26 +107,18 @@ extern_methods!(
             secondarySelectionLocation: Option<&NSTextLocation>,
         );
 
-        #[cfg(all(
-            feature = "Foundation_NSAttributedStringKey",
-            feature = "Foundation_NSDictionary"
-        ))]
         #[method_id(@__retain_semantics Other typingAttributes)]
         pub unsafe fn typingAttributes(
             &self,
         ) -> Id<NSDictionary<NSAttributedStringKey, Object>, Shared>;
 
-        #[cfg(all(
-            feature = "Foundation_NSAttributedStringKey",
-            feature = "Foundation_NSDictionary"
-        ))]
         #[method(setTypingAttributes:)]
         pub unsafe fn setTypingAttributes(
             &self,
             typingAttributes: &NSDictionary<NSAttributedStringKey, Object>,
         );
 
-        #[cfg(all(feature = "AppKit_NSTextRange", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "AppKit_NSTextRange")]
         #[method_id(@__retain_semantics Other textSelectionWithTextRanges:)]
         pub unsafe fn textSelectionWithTextRanges(
             &self,

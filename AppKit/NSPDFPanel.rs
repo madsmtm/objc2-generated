@@ -43,11 +43,9 @@ extern_methods!(
         #[method(setOptions:)]
         pub unsafe fn setOptions(&self, options: NSPDFPanelOptions);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other defaultFileName)]
         pub unsafe fn defaultFileName(&self) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setDefaultFileName:)]
         pub unsafe fn setDefaultFileName(&self, defaultFileName: &NSString);
 

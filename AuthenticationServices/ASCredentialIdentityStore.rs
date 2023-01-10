@@ -40,11 +40,7 @@ extern_methods!(
             completion: &Block<(NonNull<ASCredentialIdentityStoreState>,), ()>,
         );
 
-        #[cfg(all(
-            feature = "AuthenticationServices_ASPasswordCredentialIdentity",
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSError"
-        ))]
+        #[cfg(feature = "AuthenticationServices_ASPasswordCredentialIdentity")]
         #[method(saveCredentialIdentities:completion:)]
         pub unsafe fn saveCredentialIdentities_completion(
             &self,
@@ -52,11 +48,7 @@ extern_methods!(
             completion: Option<&Block<(Bool, *mut NSError), ()>>,
         );
 
-        #[cfg(all(
-            feature = "AuthenticationServices_ASPasswordCredentialIdentity",
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSError"
-        ))]
+        #[cfg(feature = "AuthenticationServices_ASPasswordCredentialIdentity")]
         #[method(removeCredentialIdentities:completion:)]
         pub unsafe fn removeCredentialIdentities_completion(
             &self,
@@ -64,18 +56,13 @@ extern_methods!(
             completion: Option<&Block<(Bool, *mut NSError), ()>>,
         );
 
-        #[cfg(feature = "Foundation_NSError")]
         #[method(removeAllCredentialIdentitiesWithCompletion:)]
         pub unsafe fn removeAllCredentialIdentitiesWithCompletion(
             &self,
             completion: Option<&Block<(Bool, *mut NSError), ()>>,
         );
 
-        #[cfg(all(
-            feature = "AuthenticationServices_ASPasswordCredentialIdentity",
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSError"
-        ))]
+        #[cfg(feature = "AuthenticationServices_ASPasswordCredentialIdentity")]
         #[method(replaceCredentialIdentitiesWithIdentities:completion:)]
         pub unsafe fn replaceCredentialIdentitiesWithIdentities_completion(
             &self,

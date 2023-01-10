@@ -19,10 +19,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
-        #[cfg(all(
-            feature = "AuthenticationServices_ASCredentialServiceIdentifier",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(feature = "AuthenticationServices_ASCredentialServiceIdentifier")]
         #[method_id(@__retain_semantics Init initWithServiceIdentifier:user:recordIdentifier:)]
         pub unsafe fn initWithServiceIdentifier_user_recordIdentifier(
             this: Option<Allocated<Self>>,
@@ -31,10 +28,7 @@ extern_methods!(
             recordIdentifier: Option<&NSString>,
         ) -> Id<Self, Shared>;
 
-        #[cfg(all(
-            feature = "AuthenticationServices_ASCredentialServiceIdentifier",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(feature = "AuthenticationServices_ASCredentialServiceIdentifier")]
         #[method_id(@__retain_semantics Other identityWithServiceIdentifier:user:recordIdentifier:)]
         pub unsafe fn identityWithServiceIdentifier_user_recordIdentifier(
             serviceIdentifier: &ASCredentialServiceIdentifier,
@@ -46,11 +40,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Other serviceIdentifier)]
         pub unsafe fn serviceIdentifier(&self) -> Id<ASCredentialServiceIdentifier, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other user)]
         pub unsafe fn user(&self) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other recordIdentifier)]
         pub unsafe fn recordIdentifier(&self) -> Option<Id<NSString, Shared>>;
 

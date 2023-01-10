@@ -58,14 +58,12 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSTextParagraph")]
     unsafe impl NSTextParagraph {
-        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Init initWithAttributedString:)]
         pub unsafe fn initWithAttributedString(
             this: Option<Allocated<Self>>,
             attributedString: Option<&NSAttributedString>,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedString)]
         pub unsafe fn attributedString(&self) -> Id<NSAttributedString, Shared>;
 

@@ -27,19 +27,15 @@ extern_methods!(
         #[method_id(@__retain_semantics Other functionDescriptor)]
         pub fn functionDescriptor() -> Id<MTLFunctionDescriptor, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
         pub fn name(&self) -> Option<Id<NSString, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]
         pub fn setName(&self, name: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other specializedName)]
         pub fn specializedName(&self) -> Option<Id<NSString, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setSpecializedName:)]
         pub fn setSpecializedName(&self, specializedName: Option<&NSString>);
 
@@ -57,11 +53,11 @@ extern_methods!(
         #[method(setOptions:)]
         pub fn setOptions(&self, options: MTLFunctionOptions);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLBinaryArchive"))]
+        #[cfg(feature = "Metal_MTLBinaryArchive")]
         #[method_id(@__retain_semantics Other binaryArchives)]
         pub unsafe fn binaryArchives(&self) -> Option<Id<NSArray<MTLBinaryArchive>, Shared>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLBinaryArchive"))]
+        #[cfg(feature = "Metal_MTLBinaryArchive")]
         #[method(setBinaryArchives:)]
         pub unsafe fn setBinaryArchives(&self, binaryArchives: Option<&NSArray<MTLBinaryArchive>>);
     }

@@ -17,11 +17,9 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSFilePromiseProvider")]
     unsafe impl NSFilePromiseProvider {
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fileType)]
         pub unsafe fn fileType(&self) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setFileType:)]
         pub unsafe fn setFileType(&self, fileType: &NSString);
 
@@ -39,10 +37,7 @@ extern_methods!(
         #[method(setUserInfo:)]
         pub unsafe fn setUserInfo(&self, userInfo: Option<&Object>);
 
-        #[cfg(all(
-            feature = "AppKit_NSFilePromiseProviderDelegate",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(feature = "AppKit_NSFilePromiseProviderDelegate")]
         #[method_id(@__retain_semantics Init initWithFileType:delegate:)]
         pub unsafe fn initWithFileType_delegate(
             this: Option<Allocated<Self>>,

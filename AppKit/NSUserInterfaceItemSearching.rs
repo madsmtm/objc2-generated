@@ -49,7 +49,6 @@ extern_methods!(
             handler: &NSUserInterfaceItemSearching,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(searchString:inUserInterfaceItemString:searchRange:foundRange:)]
         pub unsafe fn searchString_inUserInterfaceItemString_searchRange_foundRange(
             &self,

@@ -65,7 +65,6 @@ extern_methods!(
         #[method(isToMany)]
         pub unsafe fn isToMany(&self) -> bool;
 
-        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other versionHash)]
         pub unsafe fn versionHash(&self) -> Id<NSData, Shared>;
 

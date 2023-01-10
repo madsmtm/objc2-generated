@@ -65,7 +65,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -88,10 +87,7 @@ extern_methods!(
             index: NSInteger,
         ) -> Option<Id<NSScrubberLayoutAttributes, Shared>>;
 
-        #[cfg(all(
-            feature = "AppKit_NSScrubberLayoutAttributes",
-            feature = "Foundation_NSSet"
-        ))]
+        #[cfg(feature = "AppKit_NSScrubberLayoutAttributes")]
         #[method_id(@__retain_semantics Other layoutAttributesForItemsInRect:)]
         pub unsafe fn layoutAttributesForItemsInRect(
             &self,
@@ -156,7 +152,6 @@ extern_methods!(
         #[method(setItemSize:)]
         pub unsafe fn setItemSize(&self, itemSize: NSSize);
 
-        #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(invalidateLayoutForItemsAtIndexes:)]
         pub unsafe fn invalidateLayoutForItemsAtIndexes(&self, invalidItemIndexes: &NSIndexSet);
     }
@@ -187,7 +182,6 @@ extern_methods!(
             numberOfVisibleItems: NSInteger,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,

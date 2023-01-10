@@ -36,11 +36,7 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSPickerTouchBarItem")]
     unsafe impl NSPickerTouchBarItem {
-        #[cfg(all(
-            feature = "AppKit_NSTouchBarItemIdentifier",
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(feature = "AppKit_NSTouchBarItemIdentifier")]
         #[method_id(@__retain_semantics Other pickerTouchBarItemWithIdentifier:labels:selectionMode:target:action:)]
         pub unsafe fn pickerTouchBarItemWithIdentifier_labels_selectionMode_target_action(
             identifier: &NSTouchBarItemIdentifier,
@@ -52,8 +48,7 @@ extern_methods!(
 
         #[cfg(all(
             feature = "AppKit_NSImage",
-            feature = "AppKit_NSTouchBarItemIdentifier",
-            feature = "Foundation_NSArray"
+            feature = "AppKit_NSTouchBarItemIdentifier"
         ))]
         #[method_id(@__retain_semantics Other pickerTouchBarItemWithIdentifier:images:selectionMode:target:action:)]
         pub unsafe fn pickerTouchBarItemWithIdentifier_images_selectionMode_target_action(
@@ -73,11 +68,9 @@ extern_methods!(
             controlRepresentation: NSPickerTouchBarItemControlRepresentation,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other collapsedRepresentationLabel)]
         pub unsafe fn collapsedRepresentationLabel(&self) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setCollapsedRepresentationLabel:)]
         pub unsafe fn setCollapsedRepresentationLabel(
             &self,
@@ -129,11 +122,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Other imageAtIndex:)]
         pub unsafe fn imageAtIndex(&self, index: NSInteger) -> Option<Id<NSImage, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:atIndex:)]
         pub unsafe fn setLabel_atIndex(&self, label: &NSString, index: NSInteger);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other labelAtIndex:)]
         pub unsafe fn labelAtIndex(&self, index: NSInteger) -> Option<Id<NSString, Shared>>;
 
@@ -161,11 +152,9 @@ extern_methods!(
         #[method(isEnabledAtIndex:)]
         pub unsafe fn isEnabledAtIndex(&self, index: NSInteger) -> bool;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other customizationLabel)]
         pub unsafe fn customizationLabel(&self) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setCustomizationLabel:)]
         pub unsafe fn setCustomizationLabel(&self, customizationLabel: Option<&NSString>);
     }

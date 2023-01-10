@@ -60,11 +60,11 @@ extern_methods!(
             canPropagateSelectedChildViewControllerTitle: bool,
         );
 
-        #[cfg(all(feature = "AppKit_NSTabViewItem", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "AppKit_NSTabViewItem")]
         #[method_id(@__retain_semantics Other tabViewItems)]
         pub unsafe fn tabViewItems(&self) -> Id<NSArray<NSTabViewItem>, Shared>;
 
-        #[cfg(all(feature = "AppKit_NSTabViewItem", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "AppKit_NSTabViewItem")]
         #[method(setTabViewItems:)]
         pub unsafe fn setTabViewItems(&self, tabViewItems: &NSArray<NSTabViewItem>);
 
@@ -139,8 +139,7 @@ extern_methods!(
 
         #[cfg(all(
             feature = "AppKit_NSToolbar",
-            feature = "AppKit_NSToolbarItemIdentifier",
-            feature = "Foundation_NSArray"
+            feature = "AppKit_NSToolbarItemIdentifier"
         ))]
         #[method_id(@__retain_semantics Other toolbarDefaultItemIdentifiers:)]
         pub unsafe fn toolbarDefaultItemIdentifiers(
@@ -150,8 +149,7 @@ extern_methods!(
 
         #[cfg(all(
             feature = "AppKit_NSToolbar",
-            feature = "AppKit_NSToolbarItemIdentifier",
-            feature = "Foundation_NSArray"
+            feature = "AppKit_NSToolbarItemIdentifier"
         ))]
         #[method_id(@__retain_semantics Other toolbarAllowedItemIdentifiers:)]
         pub unsafe fn toolbarAllowedItemIdentifiers(
@@ -161,8 +159,7 @@ extern_methods!(
 
         #[cfg(all(
             feature = "AppKit_NSToolbar",
-            feature = "AppKit_NSToolbarItemIdentifier",
-            feature = "Foundation_NSArray"
+            feature = "AppKit_NSToolbarItemIdentifier"
         ))]
         #[method_id(@__retain_semantics Other toolbarSelectableItemIdentifiers:)]
         pub unsafe fn toolbarSelectableItemIdentifiers(
@@ -176,7 +173,7 @@ extern_methods!(
     /// Methods declared on superclass `NSViewController`
     #[cfg(feature = "AppKit_NSTabViewController")]
     unsafe impl NSTabViewController {
-        #[cfg(all(feature = "AppKit_NSNibName", feature = "Foundation_NSBundle"))]
+        #[cfg(feature = "AppKit_NSNibName")]
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Option<Allocated<Self>>,

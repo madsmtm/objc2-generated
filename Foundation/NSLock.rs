@@ -30,15 +30,12 @@ extern_methods!(
         #[method(tryLock)]
         pub unsafe fn tryLock(&self) -> bool;
 
-        #[cfg(feature = "Foundation_NSDate")]
         #[method(lockBeforeDate:)]
         pub unsafe fn lockBeforeDate(&self, limit: &NSDate) -> bool;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
         pub fn name(&self) -> Option<Id<NSString, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]
         pub fn setName(&self, name: Option<&NSString>);
     }
@@ -77,11 +74,9 @@ extern_methods!(
         #[method(unlockWithCondition:)]
         pub unsafe fn unlockWithCondition(&self, condition: NSInteger);
 
-        #[cfg(feature = "Foundation_NSDate")]
         #[method(lockBeforeDate:)]
         pub unsafe fn lockBeforeDate(&self, limit: &NSDate) -> bool;
 
-        #[cfg(feature = "Foundation_NSDate")]
         #[method(lockWhenCondition:beforeDate:)]
         pub unsafe fn lockWhenCondition_beforeDate(
             &self,
@@ -89,11 +84,9 @@ extern_methods!(
             limit: &NSDate,
         ) -> bool;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Option<Id<NSString, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
     }
@@ -114,15 +107,12 @@ extern_methods!(
         #[method(tryLock)]
         pub unsafe fn tryLock(&self) -> bool;
 
-        #[cfg(feature = "Foundation_NSDate")]
         #[method(lockBeforeDate:)]
         pub unsafe fn lockBeforeDate(&self, limit: &NSDate) -> bool;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Option<Id<NSString, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
     }
@@ -143,7 +133,6 @@ extern_methods!(
         #[method(wait)]
         pub unsafe fn wait(&self);
 
-        #[cfg(feature = "Foundation_NSDate")]
         #[method(waitUntilDate:)]
         pub unsafe fn waitUntilDate(&self, limit: &NSDate) -> bool;
 
@@ -153,11 +142,9 @@ extern_methods!(
         #[method(broadcast)]
         pub unsafe fn broadcast(&self);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Option<Id<NSString, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
     }

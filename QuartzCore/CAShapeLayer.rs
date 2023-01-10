@@ -83,11 +83,9 @@ extern_methods!(
         #[method(setLineDashPhase:)]
         pub unsafe fn setLineDashPhase(&self, lineDashPhase: CGFloat);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method_id(@__retain_semantics Other lineDashPattern)]
         pub unsafe fn lineDashPattern(&self) -> Option<Id<NSArray<NSNumber>, Shared>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method(setLineDashPattern:)]
         pub unsafe fn setLineDashPattern(&self, lineDashPattern: Option<&NSArray<NSNumber>>);
     }

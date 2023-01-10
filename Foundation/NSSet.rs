@@ -31,7 +31,6 @@ extern_methods!(
             object: &ObjectType,
         ) -> Option<Id<ObjectType, ObjectTypeOwnership>>;
 
-        #[cfg(feature = "Foundation_NSEnumerator")]
         #[method_id(@__retain_semantics Other objectEnumerator)]
         pub unsafe fn objectEnumerator(&self) -> Id<NSEnumerator<ObjectType>, Shared>;
 
@@ -45,7 +44,6 @@ extern_methods!(
             cnt: NSUInteger,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -60,7 +58,6 @@ extern_methods!(
     unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
         NSSet<ObjectType, ObjectTypeOwnership>
     {
-        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other allObjects)]
         pub unsafe fn allObjects(&self) -> Id<NSArray<ObjectType>, Shared>;
 
@@ -70,11 +67,9 @@ extern_methods!(
         #[method(containsObject:)]
         pub unsafe fn containsObject(&self, anObject: &ObjectType) -> bool;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other description)]
         pub unsafe fn description(&self) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other descriptionWithLocale:)]
         pub unsafe fn descriptionWithLocale(&self, locale: Option<&Object>)
             -> Id<NSString, Shared>;
@@ -110,7 +105,6 @@ extern_methods!(
             other: &NSSet<ObjectType>,
         ) -> Id<NSSet<ObjectType>, Shared>;
 
-        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other setByAddingObjectsFromArray:)]
         pub unsafe fn setByAddingObjectsFromArray(
             &self,
@@ -166,7 +160,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other setWithSet:)]
         pub unsafe fn setWithSet(set: &NSSet<ObjectType>) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other setWithArray:)]
         pub unsafe fn setWithArray(array: &NSArray<ObjectType>) -> Id<Self, Shared>;
 
@@ -183,7 +176,6 @@ extern_methods!(
             flag: bool,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Init initWithArray:)]
         pub unsafe fn initWithArray(
             this: Option<Allocated<Self>>,
@@ -218,7 +210,6 @@ extern_methods!(
         #[method(removeObject:)]
         pub unsafe fn removeObject(&self, object: &ObjectType);
 
-        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -242,26 +233,21 @@ extern_methods!(
     unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
         NSMutableSet<ObjectType, ObjectTypeOwnership>
     {
-        #[cfg(feature = "Foundation_NSArray")]
         #[method(addObjectsFromArray:)]
         pub unsafe fn addObjectsFromArray(&self, array: &NSArray<ObjectType>);
 
-        #[cfg(feature = "Foundation_NSSet")]
         #[method(intersectSet:)]
         pub unsafe fn intersectSet(&self, otherSet: &NSSet<ObjectType>);
 
-        #[cfg(feature = "Foundation_NSSet")]
         #[method(minusSet:)]
         pub unsafe fn minusSet(&self, otherSet: &NSSet<ObjectType>);
 
         #[method(removeAllObjects)]
         pub fn removeAllObjects(&mut self);
 
-        #[cfg(feature = "Foundation_NSSet")]
         #[method(unionSet:)]
         pub unsafe fn unionSet(&self, otherSet: &NSSet<ObjectType>);
 
-        #[cfg(feature = "Foundation_NSSet")]
         #[method(setSet:)]
         pub unsafe fn setSet(&self, otherSet: &NSSet<ObjectType>);
     }
@@ -304,7 +290,6 @@ extern_methods!(
             numItems: NSUInteger,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Init initWithArray:)]
         pub unsafe fn initWithArray(
             this: Option<Allocated<Self>>,
@@ -320,7 +305,6 @@ extern_methods!(
         #[method(countForObject:)]
         pub unsafe fn countForObject(&self, object: &ObjectType) -> NSUInteger;
 
-        #[cfg(feature = "Foundation_NSEnumerator")]
         #[method_id(@__retain_semantics Other objectEnumerator)]
         pub unsafe fn objectEnumerator(&self) -> Id<NSEnumerator<ObjectType>, Shared>;
 
@@ -370,7 +354,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other setWithSet:)]
         pub unsafe fn setWithSet(set: &NSSet<ObjectType>) -> Id<Self, Owned>;
 
-        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other setWithArray:)]
         pub unsafe fn setWithArray(array: &NSArray<ObjectType>) -> Id<Self, Owned>;
 
@@ -387,7 +370,6 @@ extern_methods!(
             flag: bool,
         ) -> Id<Self, Owned>;
 
-        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Init initWithArray:)]
         pub unsafe fn initWithArray(
             this: Option<Allocated<Self>>,
@@ -447,7 +429,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other setWithSet:)]
         pub unsafe fn setWithSet(set: &NSSet<ObjectType>) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other setWithArray:)]
         pub unsafe fn setWithArray(array: &NSArray<ObjectType>) -> Id<Self, Shared>;
 

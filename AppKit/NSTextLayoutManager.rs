@@ -41,7 +41,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -102,11 +101,9 @@ extern_methods!(
             &self,
         ) -> Id<NSTextViewportLayoutController, Shared>;
 
-        #[cfg(feature = "Foundation_NSOperationQueue")]
         #[method_id(@__retain_semantics Other layoutQueue)]
         pub unsafe fn layoutQueue(&self) -> Option<Id<NSOperationQueue, Shared>>;
 
-        #[cfg(feature = "Foundation_NSOperationQueue")]
         #[method(setLayoutQueue:)]
         pub unsafe fn setLayoutQueue(&self, layoutQueue: Option<&NSOperationQueue>);
 
@@ -150,11 +147,11 @@ extern_methods!(
             block: &Block<(NonNull<NSTextLayoutFragment>,), Bool>,
         ) -> Option<Id<NSTextLocation, Shared>>;
 
-        #[cfg(all(feature = "AppKit_NSTextSelection", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "AppKit_NSTextSelection")]
         #[method_id(@__retain_semantics Other textSelections)]
         pub unsafe fn textSelections(&self) -> Id<NSArray<NSTextSelection>, Shared>;
 
-        #[cfg(all(feature = "AppKit_NSTextSelection", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "AppKit_NSTextSelection")]
         #[method(setTextSelections:)]
         pub unsafe fn setTextSelections(&self, textSelections: &NSArray<NSTextSelection>);
 
@@ -169,12 +166,7 @@ extern_methods!(
             textSelectionNavigation: &NSTextSelectionNavigation,
         );
 
-        #[cfg(all(
-            feature = "AppKit_NSTextLocation",
-            feature = "AppKit_NSTextRange",
-            feature = "Foundation_NSAttributedStringKey",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(all(feature = "AppKit_NSTextLocation", feature = "AppKit_NSTextRange"))]
         #[method(enumerateRenderingAttributesFromLocation:reverse:usingBlock:)]
         pub unsafe fn enumerateRenderingAttributesFromLocation_reverse_usingBlock(
             &self,
@@ -190,11 +182,7 @@ extern_methods!(
             >,
         );
 
-        #[cfg(all(
-            feature = "AppKit_NSTextRange",
-            feature = "Foundation_NSAttributedStringKey",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(feature = "AppKit_NSTextRange")]
         #[method(setRenderingAttributes:forTextRange:)]
         pub unsafe fn setRenderingAttributes_forTextRange(
             &self,
@@ -202,10 +190,7 @@ extern_methods!(
             textRange: &NSTextRange,
         );
 
-        #[cfg(all(
-            feature = "AppKit_NSTextRange",
-            feature = "Foundation_NSAttributedStringKey"
-        ))]
+        #[cfg(feature = "AppKit_NSTextRange")]
         #[method(addRenderingAttribute:value:forTextRange:)]
         pub unsafe fn addRenderingAttribute_value_forTextRange(
             &self,
@@ -214,10 +199,7 @@ extern_methods!(
             textRange: &NSTextRange,
         );
 
-        #[cfg(all(
-            feature = "AppKit_NSTextRange",
-            feature = "Foundation_NSAttributedStringKey"
-        ))]
+        #[cfg(feature = "AppKit_NSTextRange")]
         #[method(removeRenderingAttribute:forTextRange:)]
         pub unsafe fn removeRenderingAttribute_forTextRange(
             &self,
@@ -244,19 +226,11 @@ extern_methods!(
             >,
         );
 
-        #[cfg(all(
-            feature = "Foundation_NSAttributedStringKey",
-            feature = "Foundation_NSDictionary"
-        ))]
         #[method_id(@__retain_semantics Other linkRenderingAttributes)]
         pub unsafe fn linkRenderingAttributes(
         ) -> Id<NSDictionary<NSAttributedStringKey, Object>, Shared>;
 
-        #[cfg(all(
-            feature = "AppKit_NSTextLocation",
-            feature = "Foundation_NSAttributedStringKey",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(feature = "AppKit_NSTextLocation")]
         #[method_id(@__retain_semantics Other renderingAttributesForLink:atLocation:)]
         pub unsafe fn renderingAttributesForLink_atLocation(
             &self,
@@ -274,11 +248,7 @@ extern_methods!(
             block: &Block<(*mut NSTextRange, CGRect, CGFloat, NonNull<NSTextContainer>), Bool>,
         );
 
-        #[cfg(all(
-            feature = "AppKit_NSTextElement",
-            feature = "AppKit_NSTextRange",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(all(feature = "AppKit_NSTextElement", feature = "AppKit_NSTextRange"))]
         #[method(replaceContentsInRange:withTextElements:)]
         pub unsafe fn replaceContentsInRange_withTextElements(
             &self,
@@ -286,10 +256,7 @@ extern_methods!(
             textElements: &NSArray<NSTextElement>,
         );
 
-        #[cfg(all(
-            feature = "AppKit_NSTextRange",
-            feature = "Foundation_NSAttributedString"
-        ))]
+        #[cfg(feature = "AppKit_NSTextRange")]
         #[method(replaceContentsInRange:withAttributedString:)]
         pub unsafe fn replaceContentsInRange_withAttributedString(
             &self,

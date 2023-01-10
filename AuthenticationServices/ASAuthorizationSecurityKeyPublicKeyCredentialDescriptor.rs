@@ -42,11 +42,9 @@ extern_methods!(
         feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor"
     )]
     unsafe impl ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor {
-        #[cfg(all(
-            feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport",
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSData"
-        ))]
+        #[cfg(
+            feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport"
+        )]
         #[method_id(@__retain_semantics Init initWithCredentialID:transports:)]
         pub unsafe fn initWithCredentialID_transports(
             this: Option<Allocated<Self>>,
@@ -56,19 +54,17 @@ extern_methods!(
             >,
         ) -> Id<Self, Shared>;
 
-        #[cfg(all(
-            feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(
+            feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport"
+        )]
         #[method_id(@__retain_semantics Other transports)]
         pub unsafe fn transports(
             &self,
         ) -> Id<NSArray<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport>, Shared>;
 
-        #[cfg(all(
-            feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(
+            feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport"
+        )]
         #[method(setTransports:)]
         pub unsafe fn setTransports(
             &self,

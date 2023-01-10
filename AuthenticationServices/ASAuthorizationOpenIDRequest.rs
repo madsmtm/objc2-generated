@@ -29,36 +29,26 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AuthenticationServices_ASAuthorizationOpenIDRequest")]
     unsafe impl ASAuthorizationOpenIDRequest {
-        #[cfg(all(
-            feature = "AuthenticationServices_ASAuthorizationScope",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "AuthenticationServices_ASAuthorizationScope")]
         #[method_id(@__retain_semantics Other requestedScopes)]
         pub unsafe fn requestedScopes(&self) -> Option<Id<NSArray<ASAuthorizationScope>, Shared>>;
 
-        #[cfg(all(
-            feature = "AuthenticationServices_ASAuthorizationScope",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "AuthenticationServices_ASAuthorizationScope")]
         #[method(setRequestedScopes:)]
         pub unsafe fn setRequestedScopes(
             &self,
             requestedScopes: Option<&NSArray<ASAuthorizationScope>>,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other state)]
         pub unsafe fn state(&self) -> Option<Id<NSString, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setState:)]
         pub unsafe fn setState(&self, state: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other nonce)]
         pub unsafe fn nonce(&self) -> Option<Id<NSString, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setNonce:)]
         pub unsafe fn setNonce(&self, nonce: Option<&NSString>);
 

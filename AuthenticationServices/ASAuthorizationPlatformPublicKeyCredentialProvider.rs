@@ -16,18 +16,15 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialProvider")]
     unsafe impl ASAuthorizationPlatformPublicKeyCredentialProvider {
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithRelyingPartyIdentifier:)]
         pub unsafe fn initWithRelyingPartyIdentifier(
             this: Option<Allocated<Self>>,
             relyingPartyIdentifier: &NSString,
         ) -> Id<Self, Shared>;
 
-        #[cfg(all(
-            feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest",
-            feature = "Foundation_NSData",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(
+            feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest"
+        )]
         #[method_id(@__retain_semantics Other createCredentialRegistrationRequestWithChallenge:name:userID:)]
         pub unsafe fn createCredentialRegistrationRequestWithChallenge_name_userID(
             &self,
@@ -36,17 +33,15 @@ extern_methods!(
             userID: &NSData,
         ) -> Id<ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest, Shared>;
 
-        #[cfg(all(
-            feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialAssertionRequest",
-            feature = "Foundation_NSData"
-        ))]
+        #[cfg(
+            feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialAssertionRequest"
+        )]
         #[method_id(@__retain_semantics Other createCredentialAssertionRequestWithChallenge:)]
         pub unsafe fn createCredentialAssertionRequestWithChallenge(
             &self,
             challenge: &NSData,
         ) -> Id<ASAuthorizationPlatformPublicKeyCredentialAssertionRequest, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other relyingPartyIdentifier)]
         pub unsafe fn relyingPartyIdentifier(&self) -> Id<NSString, Shared>;
 

@@ -74,11 +74,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Other managedObjectContext)]
         pub unsafe fn managedObjectContext(&self) -> Id<NSManagedObjectContext, Shared>;
 
-        #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other operationError)]
         pub unsafe fn operationError(&self) -> Option<Id<NSError, Shared>>;
 
-        #[cfg(feature = "Foundation_NSProgress")]
         #[method_id(@__retain_semantics Other progress)]
         pub unsafe fn progress(&self) -> Option<Id<NSProgress, Shared>>;
 
@@ -114,7 +112,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other fetchRequest)]
         pub unsafe fn fetchRequest(&self) -> Id<NSAsynchronousFetchRequest<ResultType>, Shared>;
 
-        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other finalResult)]
         pub unsafe fn finalResult(&self) -> Option<Id<NSArray<ResultType>, Shared>>;
     }

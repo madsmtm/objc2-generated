@@ -30,130 +30,103 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithSuiteName:)]
         pub unsafe fn initWithSuiteName(
             this: Option<Allocated<Self>>,
             suitename: Option<&NSString>,
         ) -> Option<Id<Self, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithUser:)]
         pub unsafe fn initWithUser(
             this: Option<Allocated<Self>>,
             username: &NSString,
         ) -> Option<Id<Self, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other objectForKey:)]
         pub unsafe fn objectForKey(&self, defaultName: &NSString) -> Option<Id<Object, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setObject:forKey:)]
         pub unsafe fn setObject_forKey(&self, value: Option<&Object>, defaultName: &NSString);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(removeObjectForKey:)]
         pub unsafe fn removeObjectForKey(&self, defaultName: &NSString);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringForKey:)]
         pub unsafe fn stringForKey(&self, defaultName: &NSString) -> Option<Id<NSString, Shared>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other arrayForKey:)]
         pub unsafe fn arrayForKey(&self, defaultName: &NSString) -> Option<Id<NSArray, Shared>>;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other dictionaryForKey:)]
         pub unsafe fn dictionaryForKey(
             &self,
             defaultName: &NSString,
         ) -> Option<Id<NSDictionary<NSString, Object>, Shared>>;
 
-        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other dataForKey:)]
         pub unsafe fn dataForKey(&self, defaultName: &NSString) -> Option<Id<NSData, Shared>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other stringArrayForKey:)]
         pub unsafe fn stringArrayForKey(
             &self,
             defaultName: &NSString,
         ) -> Option<Id<NSArray<NSString>, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(integerForKey:)]
         pub unsafe fn integerForKey(&self, defaultName: &NSString) -> NSInteger;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(floatForKey:)]
         pub unsafe fn floatForKey(&self, defaultName: &NSString) -> c_float;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(doubleForKey:)]
         pub unsafe fn doubleForKey(&self, defaultName: &NSString) -> c_double;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(boolForKey:)]
         pub unsafe fn boolForKey(&self, defaultName: &NSString) -> bool;
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other URLForKey:)]
         pub unsafe fn URLForKey(&self, defaultName: &NSString) -> Option<Id<NSURL, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setInteger:forKey:)]
         pub unsafe fn setInteger_forKey(&self, value: NSInteger, defaultName: &NSString);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setFloat:forKey:)]
         pub unsafe fn setFloat_forKey(&self, value: c_float, defaultName: &NSString);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setDouble:forKey:)]
         pub unsafe fn setDouble_forKey(&self, value: c_double, defaultName: &NSString);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setBool:forKey:)]
         pub unsafe fn setBool_forKey(&self, value: bool, defaultName: &NSString);
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
         #[method(setURL:forKey:)]
         pub unsafe fn setURL_forKey(&self, url: Option<&NSURL>, defaultName: &NSString);
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(registerDefaults:)]
         pub unsafe fn registerDefaults(
             &self,
             registrationDictionary: &NSDictionary<NSString, Object>,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(addSuiteNamed:)]
         pub unsafe fn addSuiteNamed(&self, suiteName: &NSString);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(removeSuiteNamed:)]
         pub unsafe fn removeSuiteNamed(&self, suiteName: &NSString);
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other dictionaryRepresentation)]
         pub unsafe fn dictionaryRepresentation(&self)
             -> Id<NSDictionary<NSString, Object>, Shared>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other volatileDomainNames)]
         pub unsafe fn volatileDomainNames(&self) -> Id<NSArray<NSString>, Shared>;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other volatileDomainForName:)]
         pub unsafe fn volatileDomainForName(
             &self,
             domainName: &NSString,
         ) -> Id<NSDictionary<NSString, Object>, Shared>;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setVolatileDomain:forName:)]
         pub unsafe fn setVolatileDomain_forName(
             &self,
@@ -161,22 +134,18 @@ extern_methods!(
             domainName: &NSString,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(removeVolatileDomainForName:)]
         pub unsafe fn removeVolatileDomainForName(&self, domainName: &NSString);
 
-        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other persistentDomainNames)]
         pub unsafe fn persistentDomainNames(&self) -> Id<NSArray, Shared>;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other persistentDomainForName:)]
         pub unsafe fn persistentDomainForName(
             &self,
             domainName: &NSString,
         ) -> Option<Id<NSDictionary<NSString, Object>, Shared>>;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setPersistentDomain:forName:)]
         pub unsafe fn setPersistentDomain_forName(
             &self,
@@ -184,18 +153,15 @@ extern_methods!(
             domainName: &NSString,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(removePersistentDomainForName:)]
         pub unsafe fn removePersistentDomainForName(&self, domainName: &NSString);
 
         #[method(synchronize)]
         pub unsafe fn synchronize(&self) -> bool;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(objectIsForcedForKey:)]
         pub unsafe fn objectIsForcedForKey(&self, key: &NSString) -> bool;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(objectIsForcedForKey:inDomain:)]
         pub unsafe fn objectIsForcedForKey_inDomain(
             &self,

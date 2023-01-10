@@ -102,7 +102,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -247,7 +246,6 @@ extern_methods!(
             frameRect: NSRect,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -260,15 +258,12 @@ extern_methods!(
         #[method(performSequentialBatchUpdates:)]
         pub unsafe fn performSequentialBatchUpdates(&self, updateBlock: &Block<(), ()>);
 
-        #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(insertItemsAtIndexes:)]
         pub unsafe fn insertItemsAtIndexes(&self, indexes: &NSIndexSet);
 
-        #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(removeItemsAtIndexes:)]
         pub unsafe fn removeItemsAtIndexes(&self, indexes: &NSIndexSet);
 
-        #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(reloadItemsAtIndexes:)]
         pub unsafe fn reloadItemsAtIndexes(&self, indexes: &NSIndexSet);
 

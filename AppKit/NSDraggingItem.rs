@@ -94,19 +94,13 @@ extern_methods!(
         #[method(setDraggingFrame:)]
         pub unsafe fn setDraggingFrame(&self, draggingFrame: NSRect);
 
-        #[cfg(all(
-            feature = "AppKit_NSDraggingImageComponent",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "AppKit_NSDraggingImageComponent")]
         #[method(imageComponentsProvider)]
         pub unsafe fn imageComponentsProvider(
             &self,
         ) -> *mut Block<(), NonNull<NSArray<NSDraggingImageComponent>>>;
 
-        #[cfg(all(
-            feature = "AppKit_NSDraggingImageComponent",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "AppKit_NSDraggingImageComponent")]
         #[method(setImageComponentsProvider:)]
         pub unsafe fn setImageComponentsProvider(
             &self,
@@ -116,10 +110,7 @@ extern_methods!(
         #[method(setDraggingFrame:contents:)]
         pub unsafe fn setDraggingFrame_contents(&self, frame: NSRect, contents: Option<&Object>);
 
-        #[cfg(all(
-            feature = "AppKit_NSDraggingImageComponent",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "AppKit_NSDraggingImageComponent")]
         #[method_id(@__retain_semantics Other imageComponents)]
         pub unsafe fn imageComponents(
             &self,

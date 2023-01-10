@@ -42,7 +42,6 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Foundation_NSNetService")]
     unsafe impl NSNetService {
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithDomain:type:name:port:)]
         pub unsafe fn initWithDomain_type_name_port(
             this: Option<Allocated<Self>>,
@@ -52,7 +51,6 @@ extern_methods!(
             port: c_int,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithDomain:type:name:)]
         pub unsafe fn initWithDomain_type_name(
             this: Option<Allocated<Self>>,
@@ -61,19 +59,15 @@ extern_methods!(
             name: &NSString,
         ) -> Id<Self, Shared>;
 
-        #[cfg(all(feature = "Foundation_NSRunLoop", feature = "Foundation_NSRunLoopMode"))]
         #[method(scheduleInRunLoop:forMode:)]
         pub unsafe fn scheduleInRunLoop_forMode(&self, aRunLoop: &NSRunLoop, mode: &NSRunLoopMode);
 
-        #[cfg(all(feature = "Foundation_NSRunLoop", feature = "Foundation_NSRunLoopMode"))]
         #[method(removeFromRunLoop:forMode:)]
         pub unsafe fn removeFromRunLoop_forMode(&self, aRunLoop: &NSRunLoop, mode: &NSRunLoopMode);
 
-        #[cfg(feature = "Foundation_NSNetServiceDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSNetServiceDelegate, Shared>>;
 
-        #[cfg(feature = "Foundation_NSNetServiceDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&NSNetServiceDelegate>);
 
@@ -83,23 +77,18 @@ extern_methods!(
         #[method(setIncludesPeerToPeer:)]
         pub unsafe fn setIncludesPeerToPeer(&self, includesPeerToPeer: bool);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other type)]
         pub unsafe fn type_(&self) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other domain)]
         pub unsafe fn domain(&self) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other hostName)]
         pub unsafe fn hostName(&self) -> Option<Id<NSString, Shared>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSData"))]
         #[method_id(@__retain_semantics Other addresses)]
         pub unsafe fn addresses(&self) -> Option<Id<NSArray<NSData>, Shared>>;
 
@@ -118,21 +107,11 @@ extern_methods!(
         #[method(stop)]
         pub unsafe fn stop(&self);
 
-        #[cfg(all(
-            feature = "Foundation_NSData",
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSString"
-        ))]
         #[method_id(@__retain_semantics Other dictionaryFromTXTRecordData:)]
         pub unsafe fn dictionaryFromTXTRecordData(
             txtData: &NSData,
         ) -> Id<NSDictionary<NSString, NSData>, Shared>;
 
-        #[cfg(all(
-            feature = "Foundation_NSData",
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSString"
-        ))]
         #[method_id(@__retain_semantics Other dataFromTXTRecordDictionary:)]
         pub unsafe fn dataFromTXTRecordDictionary(
             txtDictionary: &NSDictionary<NSString, NSData>,
@@ -141,11 +120,9 @@ extern_methods!(
         #[method(resolveWithTimeout:)]
         pub unsafe fn resolveWithTimeout(&self, timeout: NSTimeInterval);
 
-        #[cfg(feature = "Foundation_NSData")]
         #[method(setTXTRecordData:)]
         pub unsafe fn setTXTRecordData(&self, recordData: Option<&NSData>) -> bool;
 
-        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other TXTRecordData)]
         pub unsafe fn TXTRecordData(&self) -> Option<Id<NSData, Shared>>;
 
@@ -172,11 +149,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSNetServiceBrowserDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSNetServiceBrowserDelegate, Shared>>;
 
-        #[cfg(feature = "Foundation_NSNetServiceBrowserDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&NSNetServiceBrowserDelegate>);
 
@@ -186,11 +161,9 @@ extern_methods!(
         #[method(setIncludesPeerToPeer:)]
         pub unsafe fn setIncludesPeerToPeer(&self, includesPeerToPeer: bool);
 
-        #[cfg(all(feature = "Foundation_NSRunLoop", feature = "Foundation_NSRunLoopMode"))]
         #[method(scheduleInRunLoop:forMode:)]
         pub unsafe fn scheduleInRunLoop_forMode(&self, aRunLoop: &NSRunLoop, mode: &NSRunLoopMode);
 
-        #[cfg(all(feature = "Foundation_NSRunLoop", feature = "Foundation_NSRunLoopMode"))]
         #[method(removeFromRunLoop:forMode:)]
         pub unsafe fn removeFromRunLoop_forMode(&self, aRunLoop: &NSRunLoop, mode: &NSRunLoopMode);
 
@@ -200,7 +173,6 @@ extern_methods!(
         #[method(searchForRegistrationDomains)]
         pub unsafe fn searchForRegistrationDomains(&self);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(searchForServicesOfType:inDomain:)]
         pub unsafe fn searchForServicesOfType_inDomain(
             &self,

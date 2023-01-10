@@ -56,11 +56,9 @@ extern_methods!(
         #[method(numberOfSections)]
         pub unsafe fn numberOfSections(&self) -> NSInteger;
 
-        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other sectionIdentifiers)]
         pub unsafe fn sectionIdentifiers(&self) -> Id<NSArray<SectionIdentifierType>, Shared>;
 
-        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other itemIdentifiers)]
         pub unsafe fn itemIdentifiers(&self) -> Id<NSArray<ItemIdentifierType>, Shared>;
 
@@ -70,7 +68,6 @@ extern_methods!(
             sectionIdentifier: &SectionIdentifierType,
         ) -> NSInteger;
 
-        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other itemIdentifiersInSectionWithIdentifier:)]
         pub unsafe fn itemIdentifiersInSectionWithIdentifier(
             &self,
@@ -95,11 +92,9 @@ extern_methods!(
             sectionIdentifier: &SectionIdentifierType,
         ) -> NSInteger;
 
-        #[cfg(feature = "Foundation_NSArray")]
         #[method(appendItemsWithIdentifiers:)]
         pub unsafe fn appendItemsWithIdentifiers(&self, identifiers: &NSArray<ItemIdentifierType>);
 
-        #[cfg(feature = "Foundation_NSArray")]
         #[method(appendItemsWithIdentifiers:intoSectionWithIdentifier:)]
         pub unsafe fn appendItemsWithIdentifiers_intoSectionWithIdentifier(
             &self,
@@ -107,7 +102,6 @@ extern_methods!(
             sectionIdentifier: &SectionIdentifierType,
         );
 
-        #[cfg(feature = "Foundation_NSArray")]
         #[method(insertItemsWithIdentifiers:beforeItemWithIdentifier:)]
         pub unsafe fn insertItemsWithIdentifiers_beforeItemWithIdentifier(
             &self,
@@ -115,7 +109,6 @@ extern_methods!(
             itemIdentifier: &ItemIdentifierType,
         );
 
-        #[cfg(feature = "Foundation_NSArray")]
         #[method(insertItemsWithIdentifiers:afterItemWithIdentifier:)]
         pub unsafe fn insertItemsWithIdentifiers_afterItemWithIdentifier(
             &self,
@@ -123,7 +116,6 @@ extern_methods!(
             itemIdentifier: &ItemIdentifierType,
         );
 
-        #[cfg(feature = "Foundation_NSArray")]
         #[method(deleteItemsWithIdentifiers:)]
         pub unsafe fn deleteItemsWithIdentifiers(&self, identifiers: &NSArray<ItemIdentifierType>);
 
@@ -144,15 +136,12 @@ extern_methods!(
             toIdentifier: &ItemIdentifierType,
         );
 
-        #[cfg(feature = "Foundation_NSArray")]
         #[method(reloadItemsWithIdentifiers:)]
         pub unsafe fn reloadItemsWithIdentifiers(&self, identifiers: &NSArray<ItemIdentifierType>);
 
-        #[cfg(feature = "Foundation_NSArray")]
         #[method(appendSectionsWithIdentifiers:)]
         pub unsafe fn appendSectionsWithIdentifiers(&self, sectionIdentifiers: &NSArray);
 
-        #[cfg(feature = "Foundation_NSArray")]
         #[method(insertSectionsWithIdentifiers:beforeSectionWithIdentifier:)]
         pub unsafe fn insertSectionsWithIdentifiers_beforeSectionWithIdentifier(
             &self,
@@ -160,7 +149,6 @@ extern_methods!(
             toSectionIdentifier: &SectionIdentifierType,
         );
 
-        #[cfg(feature = "Foundation_NSArray")]
         #[method(insertSectionsWithIdentifiers:afterSectionWithIdentifier:)]
         pub unsafe fn insertSectionsWithIdentifiers_afterSectionWithIdentifier(
             &self,
@@ -168,7 +156,6 @@ extern_methods!(
             toSectionIdentifier: &SectionIdentifierType,
         );
 
-        #[cfg(feature = "Foundation_NSArray")]
         #[method(deleteSectionsWithIdentifiers:)]
         pub unsafe fn deleteSectionsWithIdentifiers(
             &self,
@@ -189,7 +176,6 @@ extern_methods!(
             toSectionIdentifier: &SectionIdentifierType,
         );
 
-        #[cfg(feature = "Foundation_NSArray")]
         #[method(reloadSectionsWithIdentifiers:)]
         pub unsafe fn reloadSectionsWithIdentifiers(
             &self,
@@ -272,14 +258,12 @@ extern_methods!(
             animatingDifferences: bool,
         );
 
-        #[cfg(feature = "Foundation_NSIndexPath")]
         #[method_id(@__retain_semantics Other itemIdentifierForIndexPath:)]
         pub unsafe fn itemIdentifierForIndexPath(
             &self,
             indexPath: &NSIndexPath,
         ) -> Option<Id<ItemIdentifierType, ItemIdentifierTypeOwnership>>;
 
-        #[cfg(feature = "Foundation_NSIndexPath")]
         #[method_id(@__retain_semantics Other indexPathForItemIdentifier:)]
         pub unsafe fn indexPathForItemIdentifier(
             &self,

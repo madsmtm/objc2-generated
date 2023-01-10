@@ -15,14 +15,9 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Foundation_NSURLDownload")]
     unsafe impl NSURLDownload {
-        #[cfg(feature = "Foundation_NSString")]
         #[method(canResumeDownloadDecodedWithEncodingMIMEType:)]
         pub unsafe fn canResumeDownloadDecodedWithEncodingMIMEType(MIMEType: &NSString) -> bool;
 
-        #[cfg(all(
-            feature = "Foundation_NSURLDownloadDelegate",
-            feature = "Foundation_NSURLRequest"
-        ))]
         #[method_id(@__retain_semantics Init initWithRequest:delegate:)]
         pub unsafe fn initWithRequest_delegate(
             this: Option<Allocated<Self>>,
@@ -30,11 +25,6 @@ extern_methods!(
             delegate: Option<&NSURLDownloadDelegate>,
         ) -> Id<Self, Shared>;
 
-        #[cfg(all(
-            feature = "Foundation_NSData",
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSURLDownloadDelegate"
-        ))]
         #[method_id(@__retain_semantics Init initWithResumeData:delegate:path:)]
         pub unsafe fn initWithResumeData_delegate_path(
             this: Option<Allocated<Self>>,
@@ -46,15 +36,12 @@ extern_methods!(
         #[method(cancel)]
         pub unsafe fn cancel(&self);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setDestination:allowOverwrite:)]
         pub unsafe fn setDestination_allowOverwrite(&self, path: &NSString, allowOverwrite: bool);
 
-        #[cfg(feature = "Foundation_NSURLRequest")]
         #[method_id(@__retain_semantics Other request)]
         pub unsafe fn request(&self) -> Id<NSURLRequest, Shared>;
 
-        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other resumeData)]
         pub unsafe fn resumeData(&self) -> Option<Id<NSData, Shared>>;
 

@@ -27,7 +27,6 @@ extern_methods!(
             type_: NonNull<c_char>,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -87,7 +86,6 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Foundation_NSNumber")]
     unsafe impl NSNumber {
-        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -213,7 +211,6 @@ extern_methods!(
         #[method(unsignedIntegerValue)]
         pub fn unsignedIntegerValue(&self) -> NSUInteger;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringValue)]
         pub fn stringValue(&self) -> Id<NSString, Shared>;
 
@@ -223,7 +220,6 @@ extern_methods!(
         #[method(isEqualToNumber:)]
         pub fn isEqualToNumber(&self, number: &NSNumber) -> bool;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other descriptionWithLocale:)]
         pub unsafe fn descriptionWithLocale(&self, locale: Option<&Object>)
             -> Id<NSString, Shared>;

@@ -21,11 +21,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other sharedUserDefaultsController)]
         pub unsafe fn sharedUserDefaultsController() -> Id<NSUserDefaultsController, Shared>;
 
-        #[cfg(all(
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSUserDefaults"
-        ))]
         #[method_id(@__retain_semantics Init initWithDefaults:initialValues:)]
         pub unsafe fn initWithDefaults_initialValues(
             this: Option<Allocated<Self>>,
@@ -33,22 +28,18 @@ extern_methods!(
             initialValues: Option<&NSDictionary<NSString, Object>>,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
         ) -> Option<Id<Self, Shared>>;
 
-        #[cfg(feature = "Foundation_NSUserDefaults")]
         #[method_id(@__retain_semantics Other defaults)]
         pub unsafe fn defaults(&self) -> Id<NSUserDefaults, Shared>;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other initialValues)]
         pub unsafe fn initialValues(&self) -> Option<Id<NSDictionary<NSString, Object>, Shared>>;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setInitialValues:)]
         pub unsafe fn setInitialValues(
             &self,

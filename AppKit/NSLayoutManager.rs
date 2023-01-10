@@ -71,7 +71,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -90,7 +89,7 @@ extern_methods!(
         #[method(replaceTextStorage:)]
         pub unsafe fn replaceTextStorage(&self, newTextStorage: &NSTextStorage);
 
-        #[cfg(all(feature = "AppKit_NSTextContainer", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "AppKit_NSTextContainer")]
         #[method_id(@__retain_semantics Other textContainers)]
         pub unsafe fn textContainers(&self) -> Id<NSArray<NSTextContainer>, Shared>;
 
@@ -649,10 +648,6 @@ extern_methods!(
             effectiveGlyphRange: NSRangePointer,
         ) -> NSRect;
 
-        #[cfg(all(
-            feature = "Foundation_NSAttributedStringKey",
-            feature = "Foundation_NSDictionary"
-        ))]
         #[method_id(@__retain_semantics Other temporaryAttributesAtCharacterIndex:effectiveRange:)]
         pub unsafe fn temporaryAttributesAtCharacterIndex_effectiveRange(
             &self,
@@ -660,10 +655,6 @@ extern_methods!(
             effectiveCharRange: NSRangePointer,
         ) -> Id<NSDictionary<NSAttributedStringKey, Object>, Shared>;
 
-        #[cfg(all(
-            feature = "Foundation_NSAttributedStringKey",
-            feature = "Foundation_NSDictionary"
-        ))]
         #[method(setTemporaryAttributes:forCharacterRange:)]
         pub unsafe fn setTemporaryAttributes_forCharacterRange(
             &self,
@@ -671,10 +662,6 @@ extern_methods!(
             charRange: NSRange,
         );
 
-        #[cfg(all(
-            feature = "Foundation_NSAttributedStringKey",
-            feature = "Foundation_NSDictionary"
-        ))]
         #[method(addTemporaryAttributes:forCharacterRange:)]
         pub unsafe fn addTemporaryAttributes_forCharacterRange(
             &self,
@@ -682,7 +669,6 @@ extern_methods!(
             charRange: NSRange,
         );
 
-        #[cfg(feature = "Foundation_NSAttributedStringKey")]
         #[method(removeTemporaryAttribute:forCharacterRange:)]
         pub unsafe fn removeTemporaryAttribute_forCharacterRange(
             &self,
@@ -690,7 +676,6 @@ extern_methods!(
             charRange: NSRange,
         );
 
-        #[cfg(feature = "Foundation_NSAttributedStringKey")]
         #[method_id(@__retain_semantics Other temporaryAttribute:atCharacterIndex:effectiveRange:)]
         pub unsafe fn temporaryAttribute_atCharacterIndex_effectiveRange(
             &self,
@@ -699,7 +684,6 @@ extern_methods!(
             range: NSRangePointer,
         ) -> Option<Id<Object, Shared>>;
 
-        #[cfg(feature = "Foundation_NSAttributedStringKey")]
         #[method_id(@__retain_semantics Other temporaryAttribute:atCharacterIndex:longestEffectiveRange:inRange:)]
         pub unsafe fn temporaryAttribute_atCharacterIndex_longestEffectiveRange_inRange(
             &self,
@@ -709,10 +693,6 @@ extern_methods!(
             rangeLimit: NSRange,
         ) -> Option<Id<Object, Shared>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSAttributedStringKey",
-            feature = "Foundation_NSDictionary"
-        ))]
         #[method_id(@__retain_semantics Other temporaryAttributesAtCharacterIndex:longestEffectiveRange:inRange:)]
         pub unsafe fn temporaryAttributesAtCharacterIndex_longestEffectiveRange_inRange(
             &self,
@@ -721,7 +701,6 @@ extern_methods!(
             rangeLimit: NSRange,
         ) -> Id<NSDictionary<NSAttributedStringKey, Object>, Shared>;
 
-        #[cfg(feature = "Foundation_NSAttributedStringKey")]
         #[method(addTemporaryAttribute:value:forCharacterRange:)]
         pub unsafe fn addTemporaryAttribute_value_forCharacterRange(
             &self,
@@ -748,8 +727,7 @@ extern_methods!(
             feature = "AppKit_NSParagraphStyle",
             feature = "AppKit_NSRulerMarker",
             feature = "AppKit_NSRulerView",
-            feature = "AppKit_NSTextView",
-            feature = "Foundation_NSArray"
+            feature = "AppKit_NSTextView"
         ))]
         #[method_id(@__retain_semantics Other rulerMarkersForTextView:paragraphStyle:ruler:)]
         pub unsafe fn rulerMarkersForTextView_paragraphStyle_ruler(

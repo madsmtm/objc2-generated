@@ -16,14 +16,12 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "CoreData_NSPersistentCloudKitContainerOptions")]
     unsafe impl NSPersistentCloudKitContainerOptions {
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other containerIdentifier)]
         pub unsafe fn containerIdentifier(&self) -> Id<NSString, Shared>;
 
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithContainerIdentifier:)]
         pub unsafe fn initWithContainerIdentifier(
             this: Option<Allocated<Self>>,

@@ -19,38 +19,30 @@ extern_methods!(
         feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest"
     )]
     unsafe impl ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest {
-        #[cfg(all(
-            feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialParameters",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialParameters")]
         #[method_id(@__retain_semantics Other credentialParameters)]
         pub unsafe fn credentialParameters(
             &self,
         ) -> Id<NSArray<ASAuthorizationPublicKeyCredentialParameters>, Shared>;
 
-        #[cfg(all(
-            feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialParameters",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialParameters")]
         #[method(setCredentialParameters:)]
         pub unsafe fn setCredentialParameters(
             &self,
             credentialParameters: &NSArray<ASAuthorizationPublicKeyCredentialParameters>,
         );
 
-        #[cfg(all(
-            feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(
+            feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor"
+        )]
         #[method_id(@__retain_semantics Other excludedCredentials)]
         pub unsafe fn excludedCredentials(
             &self,
         ) -> Id<NSArray<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor>, Shared>;
 
-        #[cfg(all(
-            feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(
+            feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor"
+        )]
         #[method(setExcludedCredentials:)]
         pub unsafe fn setExcludedCredentials(
             &self,

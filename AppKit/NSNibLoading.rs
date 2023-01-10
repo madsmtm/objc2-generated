@@ -9,7 +9,7 @@ extern_methods!(
     /// NSNibLoading
     #[cfg(feature = "AppKit_NSBundle")]
     unsafe impl NSBundle {
-        #[cfg(all(feature = "AppKit_NSNibName", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "AppKit_NSNibName")]
         #[method(loadNibNamed:owner:topLevelObjects:)]
         pub unsafe fn loadNibNamed_owner_topLevelObjects(
             &self,
@@ -24,7 +24,6 @@ extern_methods!(
     /// NSNibLoadingDeprecated
     #[cfg(feature = "AppKit_NSBundle")]
     unsafe impl NSBundle {
-        #[cfg(feature = "Foundation_NSString")]
         #[method(loadNibNamed:owner:)]
         pub unsafe fn loadNibNamed_owner(
             nibName: Option<&NSString>,

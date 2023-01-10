@@ -17,24 +17,15 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSFilePromiseReceiver")]
     unsafe impl NSFilePromiseReceiver {
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other readableDraggedTypes)]
         pub unsafe fn readableDraggedTypes() -> Id<NSArray<NSString>, Shared>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other fileTypes)]
         pub unsafe fn fileTypes(&self) -> Id<NSArray<NSString>, Shared>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other fileNames)]
         pub unsafe fn fileNames(&self) -> Id<NSArray<NSString>, Shared>;
 
-        #[cfg(all(
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSOperationQueue",
-            feature = "Foundation_NSURL"
-        ))]
         #[method(receivePromisedFilesAtDestination:options:operationQueue:reader:)]
         pub unsafe fn receivePromisedFilesAtDestination_options_operationQueue_reader(
             &self,

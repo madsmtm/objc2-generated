@@ -77,7 +77,6 @@ extern_methods!(
         #[method(listOptions)]
         pub unsafe fn listOptions(&self) -> NSTextListOptions;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other markerForItemNumber:)]
         pub unsafe fn markerForItemNumber(&self, itemNum: NSInteger) -> Id<NSString, Shared>;
 

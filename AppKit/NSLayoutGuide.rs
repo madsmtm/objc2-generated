@@ -79,7 +79,7 @@ extern_methods!(
         #[method(hasAmbiguousLayout)]
         pub unsafe fn hasAmbiguousLayout(&self) -> bool;
 
-        #[cfg(all(feature = "AppKit_NSLayoutConstraint", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "AppKit_NSLayoutConstraint")]
         #[method_id(@__retain_semantics Other constraintsAffectingLayoutForOrientation:)]
         pub unsafe fn constraintsAffectingLayoutForOrientation(
             &self,
@@ -100,7 +100,7 @@ extern_methods!(
         #[method(removeLayoutGuide:)]
         pub unsafe fn removeLayoutGuide(&self, guide: &NSLayoutGuide);
 
-        #[cfg(all(feature = "AppKit_NSLayoutGuide", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "AppKit_NSLayoutGuide")]
         #[method_id(@__retain_semantics Other layoutGuides)]
         pub unsafe fn layoutGuides(&self) -> Id<NSArray<NSLayoutGuide>, Shared>;
     }

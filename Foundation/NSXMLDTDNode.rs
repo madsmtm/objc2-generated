@@ -42,7 +42,6 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Foundation_NSXMLDTDNode")]
     unsafe impl NSXMLDTDNode {
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithXMLString:)]
         pub unsafe fn initWithXMLString(
             this: Option<Allocated<Self>>,
@@ -68,27 +67,21 @@ extern_methods!(
         #[method(isExternal)]
         pub unsafe fn isExternal(&self) -> bool;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other publicID)]
         pub unsafe fn publicID(&self) -> Option<Id<NSString, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setPublicID:)]
         pub unsafe fn setPublicID(&self, publicID: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other systemID)]
         pub unsafe fn systemID(&self) -> Option<Id<NSString, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setSystemID:)]
         pub unsafe fn setSystemID(&self, systemID: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other notationName)]
         pub unsafe fn notationName(&self) -> Option<Id<NSString, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setNotationName:)]
         pub unsafe fn setNotationName(&self, notationName: Option<&NSString>);
     }

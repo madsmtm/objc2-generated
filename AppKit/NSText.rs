@@ -33,46 +33,36 @@ extern_methods!(
             frameRect: NSRect,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
         ) -> Option<Id<Self, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other string)]
         pub unsafe fn string(&self) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setString:)]
         pub unsafe fn setString(&self, string: &NSString);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(replaceCharactersInRange:withString:)]
         pub unsafe fn replaceCharactersInRange_withString(&self, range: NSRange, string: &NSString);
 
-        #[cfg(feature = "Foundation_NSData")]
         #[method(replaceCharactersInRange:withRTF:)]
         pub unsafe fn replaceCharactersInRange_withRTF(&self, range: NSRange, rtfData: &NSData);
 
-        #[cfg(feature = "Foundation_NSData")]
         #[method(replaceCharactersInRange:withRTFD:)]
         pub unsafe fn replaceCharactersInRange_withRTFD(&self, range: NSRange, rtfdData: &NSData);
 
-        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other RTFFromRange:)]
         pub unsafe fn RTFFromRange(&self, range: NSRange) -> Option<Id<NSData, Shared>>;
 
-        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other RTFDFromRange:)]
         pub unsafe fn RTFDFromRange(&self, range: NSRange) -> Option<Id<NSData, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(writeRTFDToFile:atomically:)]
         pub unsafe fn writeRTFDToFile_atomically(&self, path: &NSString, flag: bool) -> bool;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(readRTFDFromFile:)]
         pub unsafe fn readRTFDFromFile(&self, path: &NSString) -> bool;
 

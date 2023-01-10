@@ -33,7 +33,7 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSViewController")]
     unsafe impl NSViewController {
-        #[cfg(all(feature = "AppKit_NSNibName", feature = "Foundation_NSBundle"))]
+        #[cfg(feature = "AppKit_NSNibName")]
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Option<Allocated<Self>>,
@@ -41,7 +41,6 @@ extern_methods!(
             nibBundleOrNil: Option<&NSBundle>,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -52,7 +51,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other nibName)]
         pub unsafe fn nibName(&self) -> Option<Id<NSNibName, Shared>>;
 
-        #[cfg(feature = "Foundation_NSBundle")]
         #[method_id(@__retain_semantics Other nibBundle)]
         pub unsafe fn nibBundle(&self) -> Option<Id<NSBundle, Shared>>;
 
@@ -62,11 +60,9 @@ extern_methods!(
         #[method(setRepresentedObject:)]
         pub unsafe fn setRepresentedObject(&self, representedObject: Option<&Object>);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Option<Id<NSString, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
@@ -148,7 +144,6 @@ extern_methods!(
         #[method(dismissController:)]
         pub unsafe fn dismissController(&self, sender: Option<&Object>);
 
-        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other presentedViewControllers)]
         pub unsafe fn presentedViewControllers(
             &self,
@@ -198,11 +193,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Other parentViewController)]
         pub unsafe fn parentViewController(&self) -> Option<Id<NSViewController, Shared>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other childViewControllers)]
         pub unsafe fn childViewControllers(&self) -> Id<NSArray<NSViewController>, Shared>;
 
-        #[cfg(feature = "Foundation_NSArray")]
         #[method(setChildViewControllers:)]
         pub unsafe fn setChildViewControllers(
             &self,
@@ -270,7 +263,6 @@ extern_methods!(
     /// NSExtensionAdditions
     #[cfg(feature = "AppKit_NSViewController")]
     unsafe impl NSViewController {
-        #[cfg(feature = "Foundation_NSExtensionContext")]
         #[method_id(@__retain_semantics Other extensionContext)]
         pub unsafe fn extensionContext(&self) -> Option<Id<NSExtensionContext, Shared>>;
 

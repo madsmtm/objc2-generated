@@ -27,7 +27,6 @@ extern_methods!(
         #[method(isTemporaryID)]
         pub unsafe fn isTemporaryID(&self) -> bool;
 
-        #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other URIRepresentation)]
         pub unsafe fn URIRepresentation(&self) -> Id<NSURL, Shared>;
     }

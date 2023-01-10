@@ -54,13 +54,6 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Foundation_NSURLAuthenticationChallenge")]
     unsafe impl NSURLAuthenticationChallenge {
-        #[cfg(all(
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSURLAuthenticationChallengeSender",
-            feature = "Foundation_NSURLCredential",
-            feature = "Foundation_NSURLProtectionSpace",
-            feature = "Foundation_NSURLResponse"
-        ))]
         #[method_id(@__retain_semantics Init initWithProtectionSpace:proposedCredential:previousFailureCount:failureResponse:error:sender:)]
         pub unsafe fn initWithProtectionSpace_proposedCredential_previousFailureCount_failureResponse_error_sender(
             this: Option<Allocated<Self>>,
@@ -72,7 +65,6 @@ extern_methods!(
             sender: &NSURLAuthenticationChallengeSender,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSURLAuthenticationChallengeSender")]
         #[method_id(@__retain_semantics Init initWithAuthenticationChallenge:sender:)]
         pub unsafe fn initWithAuthenticationChallenge_sender(
             this: Option<Allocated<Self>>,
@@ -80,26 +72,21 @@ extern_methods!(
             sender: &NSURLAuthenticationChallengeSender,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSURLProtectionSpace")]
         #[method_id(@__retain_semantics Other protectionSpace)]
         pub unsafe fn protectionSpace(&self) -> Id<NSURLProtectionSpace, Shared>;
 
-        #[cfg(feature = "Foundation_NSURLCredential")]
         #[method_id(@__retain_semantics Other proposedCredential)]
         pub unsafe fn proposedCredential(&self) -> Option<Id<NSURLCredential, Shared>>;
 
         #[method(previousFailureCount)]
         pub unsafe fn previousFailureCount(&self) -> NSInteger;
 
-        #[cfg(feature = "Foundation_NSURLResponse")]
         #[method_id(@__retain_semantics Other failureResponse)]
         pub unsafe fn failureResponse(&self) -> Option<Id<NSURLResponse, Shared>>;
 
-        #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other error)]
         pub unsafe fn error(&self) -> Option<Id<NSError, Shared>>;
 
-        #[cfg(feature = "Foundation_NSURLAuthenticationChallengeSender")]
         #[method_id(@__retain_semantics Other sender)]
         pub unsafe fn sender(&self) -> Option<Id<NSURLAuthenticationChallengeSender, Shared>>;
     }

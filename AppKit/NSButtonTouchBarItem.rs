@@ -18,10 +18,7 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSButtonTouchBarItem")]
     unsafe impl NSButtonTouchBarItem {
-        #[cfg(all(
-            feature = "AppKit_NSTouchBarItemIdentifier",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(feature = "AppKit_NSTouchBarItemIdentifier")]
         #[method_id(@__retain_semantics Other buttonTouchBarItemWithIdentifier:title:target:action:)]
         pub unsafe fn buttonTouchBarItemWithIdentifier_title_target_action(
             identifier: &NSTouchBarItemIdentifier,
@@ -44,8 +41,7 @@ extern_methods!(
 
         #[cfg(all(
             feature = "AppKit_NSImage",
-            feature = "AppKit_NSTouchBarItemIdentifier",
-            feature = "Foundation_NSString"
+            feature = "AppKit_NSTouchBarItemIdentifier"
         ))]
         #[method_id(@__retain_semantics Other buttonTouchBarItemWithIdentifier:title:image:target:action:)]
         pub unsafe fn buttonTouchBarItemWithIdentifier_title_image_target_action(
@@ -56,11 +52,9 @@ extern_methods!(
             action: Option<Sel>,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
@@ -98,11 +92,9 @@ extern_methods!(
         #[method(setEnabled:)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other customizationLabel)]
         pub unsafe fn customizationLabel(&self) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setCustomizationLabel:)]
         pub unsafe fn setCustomizationLabel(&self, customizationLabel: Option<&NSString>);
     }

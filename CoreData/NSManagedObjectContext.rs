@@ -96,26 +96,21 @@ extern_methods!(
         #[method(setParentContext:)]
         pub unsafe fn setParentContext(&self, parentContext: Option<&NSManagedObjectContext>);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Option<Id<NSString, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSUndoManager")]
         #[method_id(@__retain_semantics Other undoManager)]
         pub unsafe fn undoManager(&self) -> Option<Id<NSUndoManager, Shared>>;
 
-        #[cfg(feature = "Foundation_NSUndoManager")]
         #[method(setUndoManager:)]
         pub unsafe fn setUndoManager(&self, undoManager: Option<&NSUndoManager>);
 
         #[method(hasChanges)]
         pub unsafe fn hasChanges(&self) -> bool;
 
-        #[cfg(feature = "Foundation_NSMutableDictionary")]
         #[method_id(@__retain_semantics Other userInfo)]
         pub unsafe fn userInfo(&self) -> Id<NSMutableDictionary, Owned>;
 
@@ -153,11 +148,7 @@ extern_methods!(
             objectID: &NSManagedObjectID,
         ) -> Result<Id<NSManagedObject, Shared>, Id<NSError, Shared>>;
 
-        #[cfg(all(
-            feature = "CoreData_NSFetchRequest",
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSError"
-        ))]
+        #[cfg(all(feature = "CoreData_NSFetchRequest", feature = "Foundation_NSError"))]
         #[method_id(@__retain_semantics Other executeFetchRequest:error:_)]
         pub unsafe fn executeFetchRequest_error(
             &self,
@@ -191,7 +182,6 @@ extern_methods!(
         #[method(detectConflictsForObject:)]
         pub unsafe fn detectConflictsForObject(&self, object: &NSManagedObject);
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(observeValueForKeyPath:ofObject:change:context:)]
         pub unsafe fn observeValueForKeyPath_ofObject_change_context(
             &self,
@@ -212,19 +202,19 @@ extern_methods!(
             store: &NSPersistentStore,
         );
 
-        #[cfg(all(feature = "CoreData_NSManagedObject", feature = "Foundation_NSSet"))]
+        #[cfg(feature = "CoreData_NSManagedObject")]
         #[method_id(@__retain_semantics Other insertedObjects)]
         pub unsafe fn insertedObjects(&self) -> Id<NSSet<NSManagedObject>, Shared>;
 
-        #[cfg(all(feature = "CoreData_NSManagedObject", feature = "Foundation_NSSet"))]
+        #[cfg(feature = "CoreData_NSManagedObject")]
         #[method_id(@__retain_semantics Other updatedObjects)]
         pub unsafe fn updatedObjects(&self) -> Id<NSSet<NSManagedObject>, Shared>;
 
-        #[cfg(all(feature = "CoreData_NSManagedObject", feature = "Foundation_NSSet"))]
+        #[cfg(feature = "CoreData_NSManagedObject")]
         #[method_id(@__retain_semantics Other deletedObjects)]
         pub unsafe fn deletedObjects(&self) -> Id<NSSet<NSManagedObject>, Shared>;
 
-        #[cfg(all(feature = "CoreData_NSManagedObject", feature = "Foundation_NSSet"))]
+        #[cfg(feature = "CoreData_NSManagedObject")]
         #[method_id(@__retain_semantics Other registeredObjects)]
         pub unsafe fn registeredObjects(&self) -> Id<NSSet<NSManagedObject>, Shared>;
 
@@ -302,25 +292,19 @@ extern_methods!(
         #[method(setMergePolicy:)]
         pub unsafe fn setMergePolicy(&self, mergePolicy: &Object);
 
-        #[cfg(all(
-            feature = "CoreData_NSManagedObject",
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSError"
-        ))]
+        #[cfg(all(feature = "CoreData_NSManagedObject", feature = "Foundation_NSError"))]
         #[method(obtainPermanentIDsForObjects:error:_)]
         pub unsafe fn obtainPermanentIDsForObjects_error(
             &self,
             objects: &NSArray<NSManagedObject>,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[cfg(feature = "Foundation_NSNotification")]
         #[method(mergeChangesFromContextDidSaveNotification:)]
         pub unsafe fn mergeChangesFromContextDidSaveNotification(
             &self,
             notification: &NSNotification,
         );
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSDictionary"))]
         #[method(mergeChangesFromRemoteContextSave:intoContexts:)]
         pub unsafe fn mergeChangesFromRemoteContextSave_intoContexts(
             changeNotificationData: &NSDictionary,
@@ -350,11 +334,9 @@ extern_methods!(
             automaticallyMergesChangesFromParent: bool,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other transactionAuthor)]
         pub unsafe fn transactionAuthor(&self) -> Option<Id<NSString, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setTransactionAuthor:)]
         pub unsafe fn setTransactionAuthor(&self, transactionAuthor: Option<&NSString>);
     }

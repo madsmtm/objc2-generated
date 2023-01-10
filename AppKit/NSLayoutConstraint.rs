@@ -94,11 +94,6 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSLayoutConstraint")]
     unsafe impl NSLayoutConstraint {
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSString"
-        ))]
         #[method_id(@__retain_semantics Other constraintsWithVisualFormat:options:metrics:views:)]
         pub unsafe fn constraintsWithVisualFormat_options_metrics_views(
             format: &NSString,
@@ -168,11 +163,9 @@ extern_methods!(
         #[method(setActive:)]
         pub unsafe fn setActive(&self, active: bool);
 
-        #[cfg(feature = "Foundation_NSArray")]
         #[method(activateConstraints:)]
         pub unsafe fn activateConstraints(constraints: &NSArray<NSLayoutConstraint>);
 
-        #[cfg(feature = "Foundation_NSArray")]
         #[method(deactivateConstraints:)]
         pub unsafe fn deactivateConstraints(constraints: &NSArray<NSLayoutConstraint>);
     }
@@ -182,11 +175,9 @@ extern_methods!(
     /// NSIdentifier
     #[cfg(feature = "AppKit_NSLayoutConstraint")]
     unsafe impl NSLayoutConstraint {
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Option<Id<NSString, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setIdentifier:)]
         pub unsafe fn setIdentifier(&self, identifier: Option<&NSString>);
     }
@@ -249,7 +240,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other lastBaselineAnchor)]
         pub unsafe fn lastBaselineAnchor(&self) -> Id<NSLayoutYAxisAnchor, Shared>;
 
-        #[cfg(all(feature = "AppKit_NSLayoutConstraint", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "AppKit_NSLayoutConstraint")]
         #[method_id(@__retain_semantics Other constraints)]
         pub unsafe fn constraints(&self) -> Id<NSArray<NSLayoutConstraint>, Shared>;
 
@@ -257,7 +248,7 @@ extern_methods!(
         #[method(addConstraint:)]
         pub unsafe fn addConstraint(&self, constraint: &NSLayoutConstraint);
 
-        #[cfg(all(feature = "AppKit_NSLayoutConstraint", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "AppKit_NSLayoutConstraint")]
         #[method(addConstraints:)]
         pub unsafe fn addConstraints(&self, constraints: &NSArray<NSLayoutConstraint>);
 
@@ -265,7 +256,7 @@ extern_methods!(
         #[method(removeConstraint:)]
         pub unsafe fn removeConstraint(&self, constraint: &NSLayoutConstraint);
 
-        #[cfg(all(feature = "AppKit_NSLayoutConstraint", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "AppKit_NSLayoutConstraint")]
         #[method(removeConstraints:)]
         pub unsafe fn removeConstraints(&self, constraints: &NSArray<NSLayoutConstraint>);
     }
@@ -439,7 +430,7 @@ extern_methods!(
     /// NSConstraintBasedLayoutDebugging
     #[cfg(feature = "AppKit_NSView")]
     unsafe impl NSView {
-        #[cfg(all(feature = "AppKit_NSLayoutConstraint", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "AppKit_NSLayoutConstraint")]
         #[method_id(@__retain_semantics Other constraintsAffectingLayoutForOrientation:)]
         pub unsafe fn constraintsAffectingLayoutForOrientation(
             &self,
@@ -458,7 +449,7 @@ extern_methods!(
     /// NSConstraintBasedLayoutDebugging
     #[cfg(feature = "AppKit_NSWindow")]
     unsafe impl NSWindow {
-        #[cfg(all(feature = "AppKit_NSLayoutConstraint", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "AppKit_NSLayoutConstraint")]
         #[method(visualizeConstraints:)]
         pub unsafe fn visualizeConstraints(
             &self,

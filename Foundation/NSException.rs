@@ -45,11 +45,6 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Foundation_NSException")]
     unsafe impl NSException {
-        #[cfg(all(
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSExceptionName",
-            feature = "Foundation_NSString"
-        ))]
         #[method_id(@__retain_semantics Other exceptionWithName:reason:userInfo:)]
         pub unsafe fn exceptionWithName_reason_userInfo(
             name: &NSExceptionName,
@@ -57,11 +52,6 @@ extern_methods!(
             userInfo: Option<&NSDictionary>,
         ) -> Id<NSException, Shared>;
 
-        #[cfg(all(
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSExceptionName",
-            feature = "Foundation_NSString"
-        ))]
         #[method_id(@__retain_semantics Init initWithName:reason:userInfo:)]
         pub unsafe fn initWithName_reason_userInfo(
             this: Option<Allocated<Self>>,
@@ -70,23 +60,18 @@ extern_methods!(
             aUserInfo: Option<&NSDictionary>,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSExceptionName")]
         #[method_id(@__retain_semantics Other name)]
         pub fn name(&self) -> Id<NSExceptionName, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other reason)]
         pub fn reason(&self) -> Option<Id<NSString, Shared>>;
 
-        #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other userInfo)]
         pub fn userInfo(&self) -> Option<Id<NSDictionary, Shared>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method_id(@__retain_semantics Other callStackReturnAddresses)]
         pub unsafe fn callStackReturnAddresses(&self) -> Id<NSArray<NSNumber>, Shared>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other callStackSymbols)]
         pub unsafe fn callStackSymbols(&self) -> Id<NSArray<NSString>, Shared>;
     }

@@ -83,15 +83,12 @@ extern_methods!(
         #[method_id(@__retain_semantics Other modelLayer)]
         pub unsafe fn modelLayer(&self) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other defaultValueForKey:)]
         pub unsafe fn defaultValueForKey(key: &NSString) -> Option<Id<Object, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(needsDisplayForKey:)]
         pub unsafe fn needsDisplayForKey(key: &NSString) -> bool;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(shouldArchiveValueForKey:)]
         pub unsafe fn shouldArchiveValueForKey(&self, key: &NSString) -> bool;
 
@@ -164,11 +161,9 @@ extern_methods!(
         #[method(removeFromSuperlayer)]
         pub fn removeFromSuperlayer(&self);
 
-        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other sublayers)]
         pub unsafe fn sublayers(&self) -> Option<Id<NSArray<CALayer>, Shared>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
         #[method(setSublayers:)]
         pub unsafe fn setSublayers(&self, sublayers: Option<&NSArray<CALayer>>);
 
@@ -389,19 +384,15 @@ extern_methods!(
         #[method(setCompositingFilter:)]
         pub unsafe fn setCompositingFilter(&self, compositingFilter: Option<&Object>);
 
-        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other filters)]
         pub unsafe fn filters(&self) -> Option<Id<NSArray, Shared>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
         #[method(setFilters:)]
         pub unsafe fn setFilters(&self, filters: Option<&NSArray>);
 
-        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other backgroundFilters)]
         pub unsafe fn backgroundFilters(&self) -> Option<Id<NSArray, Shared>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
         #[method(setBackgroundFilters:)]
         pub unsafe fn setBackgroundFilters(&self, backgroundFilters: Option<&NSArray>);
 
@@ -470,54 +461,42 @@ extern_methods!(
         #[method(resizeWithOldSuperlayerSize:)]
         pub fn resizeWithOldSuperlayerSize(&self, size: CGSize);
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAAction"))]
+        #[cfg(feature = "QuartzCore_CAAction")]
         #[method_id(@__retain_semantics Other defaultActionForKey:)]
         pub fn defaultActionForKey(event: &NSString) -> Option<Id<CAAction, Shared>>;
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAAction"))]
+        #[cfg(feature = "QuartzCore_CAAction")]
         #[method_id(@__retain_semantics Other actionForKey:)]
         pub fn actionForKey(&self, event: &NSString) -> Option<Id<CAAction, Shared>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSString",
-            feature = "QuartzCore_CAAction"
-        ))]
+        #[cfg(feature = "QuartzCore_CAAction")]
         #[method_id(@__retain_semantics Other actions)]
         pub fn actions(&self) -> Option<Id<NSDictionary<NSString, CAAction>, Shared>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSString",
-            feature = "QuartzCore_CAAction"
-        ))]
+        #[cfg(feature = "QuartzCore_CAAction")]
         #[method(setActions:)]
         pub fn setActions(&self, actions: Option<&NSDictionary<NSString, CAAction>>);
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAAnimation"))]
+        #[cfg(feature = "QuartzCore_CAAnimation")]
         #[method(addAnimation:forKey:)]
         pub fn addAnimation_forKey(&self, anim: &CAAnimation, key: Option<&NSString>);
 
         #[method(removeAllAnimations)]
         pub fn removeAllAnimations(&self);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(removeAnimationForKey:)]
         pub fn removeAnimationForKey(&self, key: &NSString);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other animationKeys)]
         pub fn animationKeys(&self) -> Option<Id<NSArray<NSString>, Shared>>;
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAAnimation"))]
+        #[cfg(feature = "QuartzCore_CAAnimation")]
         #[method_id(@__retain_semantics Other animationForKey:)]
         pub unsafe fn animationForKey(&self, key: &NSString) -> Option<Id<CAAnimation, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
         pub fn name(&self) -> Option<Id<NSString, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]
         pub fn setName(&self, name: Option<&NSString>);
 
@@ -529,11 +508,9 @@ extern_methods!(
         #[method(setDelegate:)]
         pub fn setDelegate(&self, delegate: Option<&CALayerDelegate>);
 
-        #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other style)]
         pub unsafe fn style(&self) -> Option<Id<NSDictionary, Shared>>;
 
-        #[cfg(feature = "Foundation_NSDictionary")]
         #[method(setStyle:)]
         pub unsafe fn setStyle(&self, style: Option<&NSDictionary>);
     }

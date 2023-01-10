@@ -46,10 +46,7 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSGraphicsContext")]
     unsafe impl NSGraphicsContext {
-        #[cfg(all(
-            feature = "AppKit_NSGraphicsContextAttributeKey",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(feature = "AppKit_NSGraphicsContextAttributeKey")]
         #[method_id(@__retain_semantics Other graphicsContextWithAttributes:)]
         pub unsafe fn graphicsContextWithAttributes(
             attributes: &NSDictionary<NSGraphicsContextAttributeKey, Object>,
@@ -75,10 +72,7 @@ extern_methods!(
         #[method(currentContextDrawingToScreen)]
         pub unsafe fn currentContextDrawingToScreen() -> bool;
 
-        #[cfg(all(
-            feature = "AppKit_NSGraphicsContextAttributeKey",
-            feature = "Foundation_NSDictionary"
-        ))]
+        #[cfg(feature = "AppKit_NSGraphicsContextAttributeKey")]
         #[method_id(@__retain_semantics Other attributes)]
         pub unsafe fn attributes(
             &self,

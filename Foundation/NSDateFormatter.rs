@@ -42,7 +42,7 @@ extern_methods!(
         #[method(setFormattingContext:)]
         pub unsafe fn setFormattingContext(&self, formattingContext: NSFormattingContext);
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+        #[cfg(feature = "Foundation_NSError")]
         #[method(getObjectValue:forString:range:error:_)]
         pub unsafe fn getObjectValue_forString_range_error(
             &self,
@@ -51,15 +51,12 @@ extern_methods!(
             rangep: *mut NSRange,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other stringFromDate:)]
         pub unsafe fn stringFromDate(&self, date: &NSDate) -> Id<NSString, Shared>;
 
-        #[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other dateFromString:)]
         pub unsafe fn dateFromString(&self, string: &NSString) -> Option<Id<NSDate, Shared>>;
 
-        #[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other localizedStringFromDate:dateStyle:timeStyle:)]
         pub unsafe fn localizedStringFromDate_dateStyle_timeStyle(
             date: &NSDate,
@@ -67,7 +64,6 @@ extern_methods!(
             tstyle: NSDateFormatterStyle,
         ) -> Id<NSString, Shared>;
 
-        #[cfg(all(feature = "Foundation_NSLocale", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other dateFormatFromTemplate:options:locale:)]
         pub unsafe fn dateFormatFromTemplate_options_locale(
             tmplate: &NSString,
@@ -83,15 +79,12 @@ extern_methods!(
             defaultFormatterBehavior: NSDateFormatterBehavior,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setLocalizedDateFormatFromTemplate:)]
         pub unsafe fn setLocalizedDateFormatFromTemplate(&self, dateFormatTemplate: &NSString);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other dateFormat)]
         pub unsafe fn dateFormat(&self) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setDateFormat:)]
         pub unsafe fn setDateFormat(&self, dateFormat: Option<&NSString>);
 
@@ -107,11 +100,9 @@ extern_methods!(
         #[method(setTimeStyle:)]
         pub unsafe fn setTimeStyle(&self, timeStyle: NSDateFormatterStyle);
 
-        #[cfg(feature = "Foundation_NSLocale")]
         #[method_id(@__retain_semantics Other locale)]
         pub unsafe fn locale(&self) -> Id<NSLocale, Shared>;
 
-        #[cfg(feature = "Foundation_NSLocale")]
         #[method(setLocale:)]
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
 
@@ -127,19 +118,15 @@ extern_methods!(
         #[method(setFormatterBehavior:)]
         pub unsafe fn setFormatterBehavior(&self, formatterBehavior: NSDateFormatterBehavior);
 
-        #[cfg(feature = "Foundation_NSTimeZone")]
         #[method_id(@__retain_semantics Other timeZone)]
         pub unsafe fn timeZone(&self) -> Id<NSTimeZone, Shared>;
 
-        #[cfg(feature = "Foundation_NSTimeZone")]
         #[method(setTimeZone:)]
         pub unsafe fn setTimeZone(&self, timeZone: Option<&NSTimeZone>);
 
-        #[cfg(feature = "Foundation_NSCalendar")]
         #[method_id(@__retain_semantics Other calendar)]
         pub unsafe fn calendar(&self) -> Id<NSCalendar, Shared>;
 
-        #[cfg(feature = "Foundation_NSCalendar")]
         #[method(setCalendar:)]
         pub unsafe fn setCalendar(&self, calendar: Option<&NSCalendar>);
 
@@ -149,223 +136,177 @@ extern_methods!(
         #[method(setLenient:)]
         pub unsafe fn setLenient(&self, lenient: bool);
 
-        #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other twoDigitStartDate)]
         pub unsafe fn twoDigitStartDate(&self) -> Option<Id<NSDate, Shared>>;
 
-        #[cfg(feature = "Foundation_NSDate")]
         #[method(setTwoDigitStartDate:)]
         pub unsafe fn setTwoDigitStartDate(&self, twoDigitStartDate: Option<&NSDate>);
 
-        #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other defaultDate)]
         pub unsafe fn defaultDate(&self) -> Option<Id<NSDate, Shared>>;
 
-        #[cfg(feature = "Foundation_NSDate")]
         #[method(setDefaultDate:)]
         pub unsafe fn setDefaultDate(&self, defaultDate: Option<&NSDate>);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other eraSymbols)]
         pub unsafe fn eraSymbols(&self) -> Id<NSArray<NSString>, Shared>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setEraSymbols:)]
         pub unsafe fn setEraSymbols(&self, eraSymbols: Option<&NSArray<NSString>>);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other monthSymbols)]
         pub unsafe fn monthSymbols(&self) -> Id<NSArray<NSString>, Shared>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setMonthSymbols:)]
         pub unsafe fn setMonthSymbols(&self, monthSymbols: Option<&NSArray<NSString>>);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other shortMonthSymbols)]
         pub unsafe fn shortMonthSymbols(&self) -> Id<NSArray<NSString>, Shared>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setShortMonthSymbols:)]
         pub unsafe fn setShortMonthSymbols(&self, shortMonthSymbols: Option<&NSArray<NSString>>);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other weekdaySymbols)]
         pub unsafe fn weekdaySymbols(&self) -> Id<NSArray<NSString>, Shared>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setWeekdaySymbols:)]
         pub unsafe fn setWeekdaySymbols(&self, weekdaySymbols: Option<&NSArray<NSString>>);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other shortWeekdaySymbols)]
         pub unsafe fn shortWeekdaySymbols(&self) -> Id<NSArray<NSString>, Shared>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setShortWeekdaySymbols:)]
         pub unsafe fn setShortWeekdaySymbols(
             &self,
             shortWeekdaySymbols: Option<&NSArray<NSString>>,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other AMSymbol)]
         pub unsafe fn AMSymbol(&self) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setAMSymbol:)]
         pub unsafe fn setAMSymbol(&self, AMSymbol: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other PMSymbol)]
         pub unsafe fn PMSymbol(&self) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setPMSymbol:)]
         pub unsafe fn setPMSymbol(&self, PMSymbol: Option<&NSString>);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other longEraSymbols)]
         pub unsafe fn longEraSymbols(&self) -> Id<NSArray<NSString>, Shared>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setLongEraSymbols:)]
         pub unsafe fn setLongEraSymbols(&self, longEraSymbols: Option<&NSArray<NSString>>);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other veryShortMonthSymbols)]
         pub unsafe fn veryShortMonthSymbols(&self) -> Id<NSArray<NSString>, Shared>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setVeryShortMonthSymbols:)]
         pub unsafe fn setVeryShortMonthSymbols(
             &self,
             veryShortMonthSymbols: Option<&NSArray<NSString>>,
         );
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other standaloneMonthSymbols)]
         pub unsafe fn standaloneMonthSymbols(&self) -> Id<NSArray<NSString>, Shared>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setStandaloneMonthSymbols:)]
         pub unsafe fn setStandaloneMonthSymbols(
             &self,
             standaloneMonthSymbols: Option<&NSArray<NSString>>,
         );
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other shortStandaloneMonthSymbols)]
         pub unsafe fn shortStandaloneMonthSymbols(&self) -> Id<NSArray<NSString>, Shared>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setShortStandaloneMonthSymbols:)]
         pub unsafe fn setShortStandaloneMonthSymbols(
             &self,
             shortStandaloneMonthSymbols: Option<&NSArray<NSString>>,
         );
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other veryShortStandaloneMonthSymbols)]
         pub unsafe fn veryShortStandaloneMonthSymbols(&self) -> Id<NSArray<NSString>, Shared>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setVeryShortStandaloneMonthSymbols:)]
         pub unsafe fn setVeryShortStandaloneMonthSymbols(
             &self,
             veryShortStandaloneMonthSymbols: Option<&NSArray<NSString>>,
         );
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other veryShortWeekdaySymbols)]
         pub unsafe fn veryShortWeekdaySymbols(&self) -> Id<NSArray<NSString>, Shared>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setVeryShortWeekdaySymbols:)]
         pub unsafe fn setVeryShortWeekdaySymbols(
             &self,
             veryShortWeekdaySymbols: Option<&NSArray<NSString>>,
         );
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other standaloneWeekdaySymbols)]
         pub unsafe fn standaloneWeekdaySymbols(&self) -> Id<NSArray<NSString>, Shared>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setStandaloneWeekdaySymbols:)]
         pub unsafe fn setStandaloneWeekdaySymbols(
             &self,
             standaloneWeekdaySymbols: Option<&NSArray<NSString>>,
         );
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other shortStandaloneWeekdaySymbols)]
         pub unsafe fn shortStandaloneWeekdaySymbols(&self) -> Id<NSArray<NSString>, Shared>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setShortStandaloneWeekdaySymbols:)]
         pub unsafe fn setShortStandaloneWeekdaySymbols(
             &self,
             shortStandaloneWeekdaySymbols: Option<&NSArray<NSString>>,
         );
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other veryShortStandaloneWeekdaySymbols)]
         pub unsafe fn veryShortStandaloneWeekdaySymbols(&self) -> Id<NSArray<NSString>, Shared>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setVeryShortStandaloneWeekdaySymbols:)]
         pub unsafe fn setVeryShortStandaloneWeekdaySymbols(
             &self,
             veryShortStandaloneWeekdaySymbols: Option<&NSArray<NSString>>,
         );
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other quarterSymbols)]
         pub unsafe fn quarterSymbols(&self) -> Id<NSArray<NSString>, Shared>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setQuarterSymbols:)]
         pub unsafe fn setQuarterSymbols(&self, quarterSymbols: Option<&NSArray<NSString>>);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other shortQuarterSymbols)]
         pub unsafe fn shortQuarterSymbols(&self) -> Id<NSArray<NSString>, Shared>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setShortQuarterSymbols:)]
         pub unsafe fn setShortQuarterSymbols(
             &self,
             shortQuarterSymbols: Option<&NSArray<NSString>>,
         );
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other standaloneQuarterSymbols)]
         pub unsafe fn standaloneQuarterSymbols(&self) -> Id<NSArray<NSString>, Shared>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setStandaloneQuarterSymbols:)]
         pub unsafe fn setStandaloneQuarterSymbols(
             &self,
             standaloneQuarterSymbols: Option<&NSArray<NSString>>,
         );
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other shortStandaloneQuarterSymbols)]
         pub unsafe fn shortStandaloneQuarterSymbols(&self) -> Id<NSArray<NSString>, Shared>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setShortStandaloneQuarterSymbols:)]
         pub unsafe fn setShortStandaloneQuarterSymbols(
             &self,
             shortStandaloneQuarterSymbols: Option<&NSArray<NSString>>,
         );
 
-        #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other gregorianStartDate)]
         pub unsafe fn gregorianStartDate(&self) -> Option<Id<NSDate, Shared>>;
 
-        #[cfg(feature = "Foundation_NSDate")]
         #[method(setGregorianStartDate:)]
         pub unsafe fn setGregorianStartDate(&self, gregorianStartDate: Option<&NSDate>);
 
@@ -381,7 +322,6 @@ extern_methods!(
     /// NSDateFormatterCompatibility
     #[cfg(feature = "Foundation_NSDateFormatter")]
     unsafe impl NSDateFormatter {
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithDateFormat:allowNaturalLanguage:)]
         pub unsafe fn initWithDateFormat_allowNaturalLanguage(
             this: Option<Allocated<Self>>,

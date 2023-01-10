@@ -26,7 +26,6 @@ extern_methods!(
             resultType: NSPersistentCloudKitContainerEventResultType,
         );
 
-        #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other fetchEventsAfterDate:)]
         pub unsafe fn fetchEventsAfterDate(date: &NSDate) -> Id<Self, Shared>;
 

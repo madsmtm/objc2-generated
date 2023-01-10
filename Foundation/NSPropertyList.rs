@@ -43,7 +43,7 @@ extern_methods!(
             format: NSPropertyListFormat,
         ) -> bool;
 
-        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
+        #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other dataWithPropertyList:format:options:error:_)]
         pub unsafe fn dataWithPropertyList_format_options_error(
             plist: &Object,
@@ -51,7 +51,7 @@ extern_methods!(
             opt: NSPropertyListWriteOptions,
         ) -> Result<Id<NSData, Shared>, Id<NSError, Shared>>;
 
-        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
+        #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other propertyListWithData:options:format:error:_)]
         pub unsafe fn propertyListWithData_options_format_error(
             data: &NSData,
@@ -59,7 +59,7 @@ extern_methods!(
             format: *mut NSPropertyListFormat,
         ) -> Result<Id<Object, Shared>, Id<NSError, Shared>>;
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSInputStream"))]
+        #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other propertyListWithStream:options:format:error:_)]
         pub unsafe fn propertyListWithStream_options_format_error(
             stream: &NSInputStream,

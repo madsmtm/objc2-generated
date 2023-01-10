@@ -52,11 +52,9 @@ extern_methods!(
         #[method(setColor:)]
         pub unsafe fn setColor(&self, color: &NSColor);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
         pub unsafe fn label(&self) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:)]
         pub unsafe fn setLabel(&self, label: &NSString);
 
@@ -99,11 +97,9 @@ extern_methods!(
         #[method(setInitialFirstResponder:)]
         pub unsafe fn setInitialFirstResponder(&self, initialFirstResponder: Option<&NSView>);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other toolTip)]
         pub unsafe fn toolTip(&self) -> Option<Id<NSString, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setToolTip:)]
         pub unsafe fn setToolTip(&self, toolTip: Option<&NSString>);
 

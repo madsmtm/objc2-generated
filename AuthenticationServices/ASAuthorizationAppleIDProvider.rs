@@ -34,7 +34,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other createRequest)]
         pub unsafe fn createRequest(&self) -> Id<ASAuthorizationAppleIDRequest, Shared>;
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method(getCredentialStateForUserID:completion:)]
         pub unsafe fn getCredentialStateForUserID_completion(
             &self,

@@ -118,7 +118,6 @@ extern_methods!(
             frameRect: NSRect,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -228,11 +227,10 @@ extern_methods!(
         #[method(setRowHeight:)]
         pub unsafe fn setRowHeight(&self, rowHeight: CGFloat);
 
-        #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(noteHeightOfRowsWithIndexesChanged:)]
         pub unsafe fn noteHeightOfRowsWithIndexesChanged(&self, indexSet: &NSIndexSet);
 
-        #[cfg(all(feature = "AppKit_NSTableColumn", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "AppKit_NSTableColumn")]
         #[method_id(@__retain_semantics Other tableColumns)]
         pub unsafe fn tableColumns(&self) -> Id<NSArray<NSTableColumn>, Shared>;
 
@@ -291,7 +289,6 @@ extern_methods!(
         #[method(noteNumberOfRowsChanged)]
         pub unsafe fn noteNumberOfRowsChanged(&self);
 
-        #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(reloadDataForRowIndexes:columnIndexes:)]
         pub unsafe fn reloadDataForRowIndexes_columnIndexes(
             &self,
@@ -317,17 +314,9 @@ extern_methods!(
         #[method(setDoubleAction:)]
         pub unsafe fn setDoubleAction(&self, doubleAction: Option<Sel>);
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSSortDescriptor"
-        ))]
         #[method_id(@__retain_semantics Other sortDescriptors)]
         pub unsafe fn sortDescriptors(&self) -> Id<NSArray<NSSortDescriptor>, Shared>;
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSSortDescriptor"
-        ))]
         #[method(setSortDescriptors:)]
         pub unsafe fn setSortDescriptors(&self, sortDescriptors: &NSArray<NSSortDescriptor>);
 
@@ -363,7 +352,6 @@ extern_methods!(
         #[method(setVerticalMotionCanBeginDrag:)]
         pub unsafe fn setVerticalMotionCanBeginDrag(&self, verticalMotionCanBeginDrag: bool);
 
-        #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(canDragRowsWithIndexes:atPoint:)]
         pub unsafe fn canDragRowsWithIndexes_atPoint(
             &self,
@@ -374,9 +362,7 @@ extern_methods!(
         #[cfg(all(
             feature = "AppKit_NSEvent",
             feature = "AppKit_NSImage",
-            feature = "AppKit_NSTableColumn",
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSIndexSet"
+            feature = "AppKit_NSTableColumn"
         ))]
         #[method_id(@__retain_semantics Other dragImageForRowsWithIndexes:tableColumns:event:offset:)]
         pub unsafe fn dragImageForRowsWithIndexes_tableColumns_event_offset(
@@ -425,7 +411,6 @@ extern_methods!(
         #[method(deselectAll:)]
         pub unsafe fn deselectAll(&self, sender: Option<&Object>);
 
-        #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(selectColumnIndexes:byExtendingSelection:)]
         pub unsafe fn selectColumnIndexes_byExtendingSelection(
             &self,
@@ -433,7 +418,6 @@ extern_methods!(
             extend: bool,
         );
 
-        #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(selectRowIndexes:byExtendingSelection:)]
         pub unsafe fn selectRowIndexes_byExtendingSelection(
             &self,
@@ -441,11 +425,9 @@ extern_methods!(
             extend: bool,
         );
 
-        #[cfg(feature = "Foundation_NSIndexSet")]
         #[method_id(@__retain_semantics Other selectedColumnIndexes)]
         pub unsafe fn selectedColumnIndexes(&self) -> Id<NSIndexSet, Shared>;
 
-        #[cfg(feature = "Foundation_NSIndexSet")]
         #[method_id(@__retain_semantics Other selectedRowIndexes)]
         pub unsafe fn selectedRowIndexes(&self) -> Id<NSIndexSet, Shared>;
 
@@ -514,7 +496,6 @@ extern_methods!(
         #[method(rectOfRow:)]
         pub unsafe fn rectOfRow(&self, row: NSInteger) -> NSRect;
 
-        #[cfg(feature = "Foundation_NSIndexSet")]
         #[method_id(@__retain_semantics Other columnIndexesInRect:)]
         pub unsafe fn columnIndexesInRect(&self, rect: NSRect) -> Id<NSIndexSet, Shared>;
 
@@ -621,7 +602,6 @@ extern_methods!(
         #[method(endUpdates)]
         pub unsafe fn endUpdates(&self);
 
-        #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(insertRowsAtIndexes:withAnimation:)]
         pub unsafe fn insertRowsAtIndexes_withAnimation(
             &self,
@@ -629,7 +609,6 @@ extern_methods!(
             animationOptions: NSTableViewAnimationOptions,
         );
 
-        #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(removeRowsAtIndexes:withAnimation:)]
         pub unsafe fn removeRowsAtIndexes_withAnimation(
             &self,
@@ -640,7 +619,6 @@ extern_methods!(
         #[method(moveRowAtIndex:toIndex:)]
         pub unsafe fn moveRowAtIndex_toIndex(&self, oldIndex: NSInteger, newIndex: NSInteger);
 
-        #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(hideRowsAtIndexes:withAnimation:)]
         pub unsafe fn hideRowsAtIndexes_withAnimation(
             &self,
@@ -648,7 +626,6 @@ extern_methods!(
             rowAnimation: NSTableViewAnimationOptions,
         );
 
-        #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(unhideRowsAtIndexes:withAnimation:)]
         pub unsafe fn unhideRowsAtIndexes_withAnimation(
             &self,
@@ -656,7 +633,6 @@ extern_methods!(
             rowAnimation: NSTableViewAnimationOptions,
         );
 
-        #[cfg(feature = "Foundation_NSIndexSet")]
         #[method_id(@__retain_semantics Other hiddenRowIndexes)]
         pub unsafe fn hiddenRowIndexes(&self) -> Id<NSIndexSet, Shared>;
 
@@ -673,8 +649,7 @@ extern_methods!(
 
         #[cfg(all(
             feature = "AppKit_NSNib",
-            feature = "AppKit_NSUserInterfaceItemIdentifier",
-            feature = "Foundation_NSDictionary"
+            feature = "AppKit_NSUserInterfaceItemIdentifier"
         ))]
         #[method_id(@__retain_semantics Other registeredNibsByIdentifier)]
         pub unsafe fn registeredNibsByIdentifier(
@@ -1083,19 +1058,13 @@ extern_methods!(
         #[method(selectRow:byExtendingSelection:)]
         pub unsafe fn selectRow_byExtendingSelection(&self, row: NSInteger, extend: bool);
 
-        #[cfg(feature = "Foundation_NSEnumerator")]
         #[method_id(@__retain_semantics Other selectedColumnEnumerator)]
         pub unsafe fn selectedColumnEnumerator(&self) -> Id<NSEnumerator, Shared>;
 
-        #[cfg(feature = "Foundation_NSEnumerator")]
         #[method_id(@__retain_semantics Other selectedRowEnumerator)]
         pub unsafe fn selectedRowEnumerator(&self) -> Id<NSEnumerator, Shared>;
 
-        #[cfg(all(
-            feature = "AppKit_NSEvent",
-            feature = "AppKit_NSImage",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(all(feature = "AppKit_NSEvent", feature = "AppKit_NSImage"))]
         #[method_id(@__retain_semantics Other dragImageForRows:event:dragImageOffset:)]
         pub unsafe fn dragImageForRows_event_dragImageOffset(
             &self,
@@ -1129,15 +1098,12 @@ extern_methods!(
         #[method(textShouldEndEditing:)]
         pub unsafe fn textShouldEndEditing(&self, textObject: &NSText) -> bool;
 
-        #[cfg(feature = "Foundation_NSNotification")]
         #[method(textDidBeginEditing:)]
         pub unsafe fn textDidBeginEditing(&self, notification: &NSNotification);
 
-        #[cfg(feature = "Foundation_NSNotification")]
         #[method(textDidEndEditing:)]
         pub unsafe fn textDidEndEditing(&self, notification: &NSNotification);
 
-        #[cfg(feature = "Foundation_NSNotification")]
         #[method(textDidChange:)]
         pub unsafe fn textDidChange(&self, notification: &NSNotification);
 

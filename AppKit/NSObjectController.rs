@@ -24,7 +24,6 @@ extern_methods!(
             content: Option<&Object>,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -40,7 +39,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other selection)]
         pub unsafe fn selection(&self) -> Id<Object, Shared>;
 
-        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other selectedObjects)]
         pub unsafe fn selectedObjects(&self) -> Id<NSArray, Shared>;
 
@@ -108,19 +106,15 @@ extern_methods!(
             managedObjectContext: Option<&NSManagedObjectContext>,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other entityName)]
         pub unsafe fn entityName(&self) -> Option<Id<NSString, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setEntityName:)]
         pub unsafe fn setEntityName(&self, entityName: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSPredicate")]
         #[method_id(@__retain_semantics Other fetchPredicate)]
         pub unsafe fn fetchPredicate(&self) -> Option<Id<NSPredicate, Shared>>;
 
-        #[cfg(feature = "Foundation_NSPredicate")]
         #[method(setFetchPredicate:)]
         pub unsafe fn setFetchPredicate(&self, fetchPredicate: Option<&NSPredicate>);
 

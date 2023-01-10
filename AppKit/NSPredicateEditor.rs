@@ -18,17 +18,11 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSPredicateEditor")]
     unsafe impl NSPredicateEditor {
-        #[cfg(all(
-            feature = "AppKit_NSPredicateEditorRowTemplate",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "AppKit_NSPredicateEditorRowTemplate")]
         #[method_id(@__retain_semantics Other rowTemplates)]
         pub unsafe fn rowTemplates(&self) -> Id<NSArray<NSPredicateEditorRowTemplate>, Shared>;
 
-        #[cfg(all(
-            feature = "AppKit_NSPredicateEditorRowTemplate",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "AppKit_NSPredicateEditorRowTemplate")]
         #[method(setRowTemplates:)]
         pub unsafe fn setRowTemplates(&self, rowTemplates: &NSArray<NSPredicateEditorRowTemplate>);
     }

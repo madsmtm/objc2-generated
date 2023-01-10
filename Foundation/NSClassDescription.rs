@@ -29,19 +29,15 @@ extern_methods!(
             aClass: &Class,
         ) -> Option<Id<NSClassDescription, Shared>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other attributeKeys)]
         pub unsafe fn attributeKeys(&self) -> Id<NSArray<NSString>, Shared>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other toOneRelationshipKeys)]
         pub unsafe fn toOneRelationshipKeys(&self) -> Id<NSArray<NSString>, Shared>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other toManyRelationshipKeys)]
         pub unsafe fn toManyRelationshipKeys(&self) -> Id<NSArray<NSString>, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other inverseForRelationshipKey:)]
         pub unsafe fn inverseForRelationshipKey(
             &self,

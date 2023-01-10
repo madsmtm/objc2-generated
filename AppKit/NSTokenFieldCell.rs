@@ -44,18 +44,15 @@ extern_methods!(
         #[method(defaultCompletionDelay)]
         pub unsafe fn defaultCompletionDelay() -> NSTimeInterval;
 
-        #[cfg(feature = "Foundation_NSCharacterSet")]
         #[method_id(@__retain_semantics Other tokenizingCharacterSet)]
         pub unsafe fn tokenizingCharacterSet(&self) -> Id<NSCharacterSet, Shared>;
 
-        #[cfg(feature = "Foundation_NSCharacterSet")]
         #[method(setTokenizingCharacterSet:)]
         pub unsafe fn setTokenizingCharacterSet(
             &self,
             tokenizingCharacterSet: Option<&NSCharacterSet>,
         );
 
-        #[cfg(feature = "Foundation_NSCharacterSet")]
         #[method_id(@__retain_semantics Other defaultTokenizingCharacterSet)]
         pub unsafe fn defaultTokenizingCharacterSet() -> Id<NSCharacterSet, Shared>;
 
@@ -169,7 +166,6 @@ extern_methods!(
     /// Methods declared on superclass `NSTextFieldCell`
     #[cfg(feature = "AppKit_NSTokenFieldCell")]
     unsafe impl NSTokenFieldCell {
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initTextCell:)]
         pub unsafe fn initTextCell(
             this: Option<Allocated<Self>>,

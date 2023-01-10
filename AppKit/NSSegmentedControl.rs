@@ -91,11 +91,9 @@ extern_methods!(
         #[method(imageScalingForSegment:)]
         pub unsafe fn imageScalingForSegment(&self, segment: NSInteger) -> NSImageScaling;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:forSegment:)]
         pub unsafe fn setLabel_forSegment(&self, label: &NSString, segment: NSInteger);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other labelForSegment:)]
         pub unsafe fn labelForSegment(&self, segment: NSInteger) -> Option<Id<NSString, Shared>>;
 
@@ -119,11 +117,9 @@ extern_methods!(
         #[method(isEnabledForSegment:)]
         pub unsafe fn isEnabledForSegment(&self, segment: NSInteger) -> bool;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setToolTip:forSegment:)]
         pub unsafe fn setToolTip_forSegment(&self, toolTip: Option<&NSString>, segment: NSInteger);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other toolTipForSegment:)]
         pub unsafe fn toolTipForSegment(&self, segment: NSInteger) -> Option<Id<NSString, Shared>>;
 
@@ -194,20 +190,14 @@ extern_methods!(
         #[method(setSegmentDistribution:)]
         pub unsafe fn setSegmentDistribution(&self, segmentDistribution: NSSegmentDistribution);
 
-        #[cfg(all(
-            feature = "AppKit_NSUserInterfaceCompressionOptions",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "AppKit_NSUserInterfaceCompressionOptions")]
         #[method(compressWithPrioritizedCompressionOptions:)]
         pub unsafe fn compressWithPrioritizedCompressionOptions(
             &self,
             prioritizedOptions: &NSArray<NSUserInterfaceCompressionOptions>,
         );
 
-        #[cfg(all(
-            feature = "AppKit_NSUserInterfaceCompressionOptions",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "AppKit_NSUserInterfaceCompressionOptions")]
         #[method(minimumSizeWithPrioritizedCompressionOptions:)]
         pub unsafe fn minimumSizeWithPrioritizedCompressionOptions(
             &self,
@@ -226,7 +216,6 @@ extern_methods!(
     /// NSSegmentedControlConvenience
     #[cfg(feature = "AppKit_NSSegmentedControl")]
     unsafe impl NSSegmentedControl {
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other segmentedControlWithLabels:trackingMode:target:action:)]
         pub unsafe fn segmentedControlWithLabels_trackingMode_target_action(
             labels: &NSArray<NSString>,
@@ -235,7 +224,7 @@ extern_methods!(
             action: Option<Sel>,
         ) -> Id<Self, Shared>;
 
-        #[cfg(all(feature = "AppKit_NSImage", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other segmentedControlWithImages:trackingMode:target:action:)]
         pub unsafe fn segmentedControlWithImages_trackingMode_target_action(
             images: &NSArray<NSImage>,

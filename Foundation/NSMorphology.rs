@@ -83,21 +83,13 @@ extern_methods!(
     /// NSCustomPronouns
     #[cfg(feature = "Foundation_NSMorphology")]
     unsafe impl NSMorphology {
-        #[cfg(all(
-            feature = "Foundation_NSMorphologyCustomPronoun",
-            feature = "Foundation_NSString"
-        ))]
         #[method_id(@__retain_semantics Other customPronounForLanguage:)]
         pub unsafe fn customPronounForLanguage(
             &self,
             language: &NSString,
         ) -> Option<Id<NSMorphologyCustomPronoun, Shared>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSMorphologyCustomPronoun",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(feature = "Foundation_NSError")]
         #[method(setCustomPronoun:forLanguage:error:_)]
         pub unsafe fn setCustomPronoun_forLanguage_error(
             &self,
@@ -119,52 +111,40 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Foundation_NSMorphologyCustomPronoun")]
     unsafe impl NSMorphologyCustomPronoun {
-        #[cfg(feature = "Foundation_NSString")]
         #[method(isSupportedForLanguage:)]
         pub unsafe fn isSupportedForLanguage(language: &NSString) -> bool;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other requiredKeysForLanguage:)]
         pub unsafe fn requiredKeysForLanguage(language: &NSString)
             -> Id<NSArray<NSString>, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other subjectForm)]
         pub unsafe fn subjectForm(&self) -> Option<Id<NSString, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setSubjectForm:)]
         pub unsafe fn setSubjectForm(&self, subjectForm: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other objectForm)]
         pub unsafe fn objectForm(&self) -> Option<Id<NSString, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setObjectForm:)]
         pub unsafe fn setObjectForm(&self, objectForm: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other possessiveForm)]
         pub unsafe fn possessiveForm(&self) -> Option<Id<NSString, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setPossessiveForm:)]
         pub unsafe fn setPossessiveForm(&self, possessiveForm: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other possessiveAdjectiveForm)]
         pub unsafe fn possessiveAdjectiveForm(&self) -> Option<Id<NSString, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setPossessiveAdjectiveForm:)]
         pub unsafe fn setPossessiveAdjectiveForm(&self, possessiveAdjectiveForm: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other reflexiveForm)]
         pub unsafe fn reflexiveForm(&self) -> Option<Id<NSString, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setReflexiveForm:)]
         pub unsafe fn setReflexiveForm(&self, reflexiveForm: Option<&NSString>);
     }

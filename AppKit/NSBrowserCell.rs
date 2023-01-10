@@ -18,7 +18,6 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSBrowserCell")]
     unsafe impl NSBrowserCell {
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initTextCell:)]
         pub unsafe fn initTextCell(
             this: Option<Allocated<Self>>,
@@ -32,7 +31,6 @@ extern_methods!(
             image: Option<&NSImage>,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,

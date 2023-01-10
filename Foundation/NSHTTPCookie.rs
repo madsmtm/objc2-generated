@@ -55,51 +55,28 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Foundation_NSHTTPCookie")]
     unsafe impl NSHTTPCookie {
-        #[cfg(all(
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSHTTPCookiePropertyKey"
-        ))]
         #[method_id(@__retain_semantics Init initWithProperties:)]
         pub unsafe fn initWithProperties(
             this: Option<Allocated<Self>>,
             properties: &NSDictionary<NSHTTPCookiePropertyKey, Object>,
         ) -> Option<Id<Self, Shared>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSHTTPCookiePropertyKey"
-        ))]
         #[method_id(@__retain_semantics Other cookieWithProperties:)]
         pub unsafe fn cookieWithProperties(
             properties: &NSDictionary<NSHTTPCookiePropertyKey, Object>,
         ) -> Option<Id<NSHTTPCookie, Shared>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSString"
-        ))]
         #[method_id(@__retain_semantics Other requestHeaderFieldsWithCookies:)]
         pub unsafe fn requestHeaderFieldsWithCookies(
             cookies: &NSArray<NSHTTPCookie>,
         ) -> Id<NSDictionary<NSString, NSString>, Shared>;
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSURL"
-        ))]
         #[method_id(@__retain_semantics Other cookiesWithResponseHeaderFields:forURL:)]
         pub unsafe fn cookiesWithResponseHeaderFields_forURL(
             headerFields: &NSDictionary<NSString, NSString>,
             URL: &NSURL,
         ) -> Id<NSArray<NSHTTPCookie>, Shared>;
 
-        #[cfg(all(
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSHTTPCookiePropertyKey"
-        ))]
         #[method_id(@__retain_semantics Other properties)]
         pub unsafe fn properties(
             &self,
@@ -108,26 +85,21 @@ extern_methods!(
         #[method(version)]
         pub unsafe fn version(&self) -> NSUInteger;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other value)]
         pub unsafe fn value(&self) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other expiresDate)]
         pub unsafe fn expiresDate(&self) -> Option<Id<NSDate, Shared>>;
 
         #[method(isSessionOnly)]
         pub unsafe fn isSessionOnly(&self) -> bool;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other domain)]
         pub unsafe fn domain(&self) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other path)]
         pub unsafe fn path(&self) -> Id<NSString, Shared>;
 
@@ -137,19 +109,15 @@ extern_methods!(
         #[method(isHTTPOnly)]
         pub unsafe fn isHTTPOnly(&self) -> bool;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other comment)]
         pub unsafe fn comment(&self) -> Option<Id<NSString, Shared>>;
 
-        #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other commentURL)]
         pub unsafe fn commentURL(&self) -> Option<Id<NSURL, Shared>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method_id(@__retain_semantics Other portList)]
         pub unsafe fn portList(&self) -> Option<Id<NSArray<NSNumber>, Shared>>;
 
-        #[cfg(feature = "Foundation_NSHTTPCookieStringPolicy")]
         #[method_id(@__retain_semantics Other sameSitePolicy)]
         pub unsafe fn sameSitePolicy(&self) -> Option<Id<NSHTTPCookieStringPolicy, Shared>>;
     }

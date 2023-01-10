@@ -52,7 +52,6 @@ extern_methods!(
         #[method(changeType)]
         pub unsafe fn changeType(&self) -> NSPersistentHistoryChangeType;
 
-        #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other tombstone)]
         pub unsafe fn tombstone(&self) -> Option<Id<NSDictionary, Shared>>;
 
@@ -60,10 +59,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other transaction)]
         pub unsafe fn transaction(&self) -> Option<Id<NSPersistentHistoryTransaction, Shared>>;
 
-        #[cfg(all(
-            feature = "CoreData_NSPropertyDescription",
-            feature = "Foundation_NSSet"
-        ))]
+        #[cfg(feature = "CoreData_NSPropertyDescription")]
         #[method_id(@__retain_semantics Other updatedProperties)]
         pub unsafe fn updatedProperties(&self) -> Option<Id<NSSet<NSPropertyDescription>, Shared>>;
     }

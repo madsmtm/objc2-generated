@@ -27,7 +27,7 @@ extern_methods!(
             fetch: &NSFetchRequest,
         ) -> Id<Self, Shared>;
 
-        #[cfg(all(feature = "CoreData_NSManagedObjectID", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "CoreData_NSManagedObjectID")]
         #[method_id(@__retain_semantics Init initWithObjectIDs:)]
         pub unsafe fn initWithObjectIDs(
             this: Option<Allocated<Self>>,

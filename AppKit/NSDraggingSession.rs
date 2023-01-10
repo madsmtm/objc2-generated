@@ -51,9 +51,7 @@ extern_methods!(
         #[cfg(all(
             feature = "AppKit_NSDraggingItem",
             feature = "AppKit_NSPasteboardReadingOptionKey",
-            feature = "AppKit_NSView",
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSDictionary"
+            feature = "AppKit_NSView"
         ))]
         #[method(enumerateDraggingItemsWithOptions:forView:classes:searchOptions:usingBlock:)]
         pub unsafe fn enumerateDraggingItemsWithOptions_forView_classes_searchOptions_usingBlock(

@@ -16,11 +16,7 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "CoreData_NSIncrementalStoreNode")]
     unsafe impl NSIncrementalStoreNode {
-        #[cfg(all(
-            feature = "CoreData_NSManagedObjectID",
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(feature = "CoreData_NSManagedObjectID")]
         #[method_id(@__retain_semantics Init initWithObjectID:withValues:version:)]
         pub unsafe fn initWithObjectID_withValues_version(
             this: Option<Allocated<Self>>,
@@ -29,7 +25,6 @@ extern_methods!(
             version: u64,
         ) -> Id<Self, Shared>;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(updateWithValues:version:)]
         pub unsafe fn updateWithValues_version(
             &self,

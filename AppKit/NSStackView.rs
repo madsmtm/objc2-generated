@@ -53,7 +53,6 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSStackView")]
     unsafe impl NSStackView {
-        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other stackViewWithViews:)]
         pub unsafe fn stackViewWithViews(views: &NSArray<NSView>) -> Id<Self, Shared>;
 
@@ -107,7 +106,6 @@ extern_methods!(
         #[method(setDetachesHiddenViews:)]
         pub unsafe fn setDetachesHiddenViews(&self, detachesHiddenViews: bool);
 
-        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other arrangedSubviews)]
         pub unsafe fn arrangedSubviews(&self) -> Id<NSArray<NSView>, Shared>;
 
@@ -120,7 +118,6 @@ extern_methods!(
         #[method(removeArrangedSubview:)]
         pub unsafe fn removeArrangedSubview(&self, view: &NSView);
 
-        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other detachedViews)]
         pub unsafe fn detachedViews(&self) -> Id<NSArray<NSView>, Shared>;
 
@@ -208,14 +205,14 @@ extern_methods!(
         #[method(removeView:)]
         pub unsafe fn removeView(&self, view: &NSView);
 
-        #[cfg(all(feature = "AppKit_NSView", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other viewsInGravity:)]
         pub unsafe fn viewsInGravity(
             &self,
             gravity: NSStackViewGravity,
         ) -> Id<NSArray<NSView>, Shared>;
 
-        #[cfg(all(feature = "AppKit_NSView", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "AppKit_NSView")]
         #[method(setViews:inGravity:)]
         pub unsafe fn setViews_inGravity(
             &self,
@@ -223,7 +220,7 @@ extern_methods!(
             gravity: NSStackViewGravity,
         );
 
-        #[cfg(all(feature = "AppKit_NSView", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other views)]
         pub unsafe fn views(&self) -> Id<NSArray<NSView>, Shared>;
     }

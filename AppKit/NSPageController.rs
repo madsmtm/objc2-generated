@@ -46,11 +46,9 @@ extern_methods!(
         #[method(setTransitionStyle:)]
         pub unsafe fn setTransitionStyle(&self, transitionStyle: NSPageControllerTransitionStyle);
 
-        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other arrangedObjects)]
         pub unsafe fn arrangedObjects(&self) -> Id<NSArray, Shared>;
 
-        #[cfg(feature = "Foundation_NSArray")]
         #[method(setArrangedObjects:)]
         pub unsafe fn setArrangedObjects(&self, arrangedObjects: &NSArray);
 
@@ -139,7 +137,7 @@ extern_methods!(
     /// Methods declared on superclass `NSViewController`
     #[cfg(feature = "AppKit_NSPageController")]
     unsafe impl NSPageController {
-        #[cfg(all(feature = "AppKit_NSNibName", feature = "Foundation_NSBundle"))]
+        #[cfg(feature = "AppKit_NSNibName")]
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Option<Allocated<Self>>,

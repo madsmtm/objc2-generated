@@ -58,10 +58,7 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AuthenticationServices_ASAuthorizationController")]
     unsafe impl ASAuthorizationController {
-        #[cfg(all(
-            feature = "AuthenticationServices_ASAuthorizationRequest",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
         #[method_id(@__retain_semantics Other authorizationRequests)]
         pub unsafe fn authorizationRequests(&self) -> Id<NSArray<ASAuthorizationRequest>, Shared>;
 
@@ -92,29 +89,20 @@ extern_methods!(
             >,
         );
 
-        #[cfg(all(
-            feature = "AuthenticationServices_ASAuthorizationCustomMethod",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "AuthenticationServices_ASAuthorizationCustomMethod")]
         #[method_id(@__retain_semantics Other customAuthorizationMethods)]
         pub unsafe fn customAuthorizationMethods(
             &self,
         ) -> Id<NSArray<ASAuthorizationCustomMethod>, Shared>;
 
-        #[cfg(all(
-            feature = "AuthenticationServices_ASAuthorizationCustomMethod",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "AuthenticationServices_ASAuthorizationCustomMethod")]
         #[method(setCustomAuthorizationMethods:)]
         pub unsafe fn setCustomAuthorizationMethods(
             &self,
             customAuthorizationMethods: &NSArray<ASAuthorizationCustomMethod>,
         );
 
-        #[cfg(all(
-            feature = "AuthenticationServices_ASAuthorizationRequest",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
         #[method_id(@__retain_semantics Init initWithAuthorizationRequests:)]
         pub unsafe fn initWithAuthorizationRequests(
             this: Option<Allocated<Self>>,

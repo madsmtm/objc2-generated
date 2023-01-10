@@ -69,11 +69,9 @@ extern_methods!(
         #[method(imageScalingForSegment:)]
         pub unsafe fn imageScalingForSegment(&self, segment: NSInteger) -> NSImageScaling;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:forSegment:)]
         pub unsafe fn setLabel_forSegment(&self, label: &NSString, segment: NSInteger);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other labelForSegment:)]
         pub unsafe fn labelForSegment(&self, segment: NSInteger) -> Option<Id<NSString, Shared>>;
 
@@ -97,11 +95,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Other menuForSegment:)]
         pub unsafe fn menuForSegment(&self, segment: NSInteger) -> Option<Id<NSMenu, Shared>>;
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setToolTip:forSegment:)]
         pub unsafe fn setToolTip_forSegment(&self, toolTip: Option<&NSString>, segment: NSInteger);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other toolTipForSegment:)]
         pub unsafe fn toolTipForSegment(&self, segment: NSInteger) -> Option<Id<NSString, Shared>>;
 
@@ -144,7 +140,6 @@ extern_methods!(
     /// Methods declared on superclass `NSCell`
     #[cfg(feature = "AppKit_NSSegmentedCell")]
     unsafe impl NSSegmentedCell {
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initTextCell:)]
         pub unsafe fn initTextCell(
             this: Option<Allocated<Self>>,
