@@ -41,7 +41,7 @@ extern_protocol!(
         #[method(setFunctions:withRange:)]
         pub unsafe fn setFunctions_withRange(
             &self,
-            functions: NonNull<*mut MTLFunctionHandle>,
+            functions: NonNull<*const MTLFunctionHandle>,
             range: NSRange,
         );
     }

@@ -164,7 +164,7 @@ extern_protocol!(
         #[method(setVertexBuffers:offsets:withRange:)]
         pub unsafe fn setVertexBuffers_offsets_withRange(
             &self,
-            buffers: NonNull<*mut MTLBuffer>,
+            buffers: NonNull<*const MTLBuffer>,
             offsets: NonNull<NSUInteger>,
             range: NSRange,
         );
@@ -179,7 +179,7 @@ extern_protocol!(
         #[method(setVertexTextures:withRange:)]
         pub unsafe fn setVertexTextures_withRange(
             &self,
-            textures: NonNull<*mut MTLTexture>,
+            textures: NonNull<*const MTLTexture>,
             range: NSRange,
         );
 
@@ -193,7 +193,7 @@ extern_protocol!(
         #[method(setVertexSamplerStates:withRange:)]
         pub unsafe fn setVertexSamplerStates_withRange(
             &self,
-            samplers: NonNull<*mut MTLSamplerState>,
+            samplers: NonNull<*const MTLSamplerState>,
             range: NSRange,
         );
 
@@ -209,7 +209,7 @@ extern_protocol!(
         #[method(setVertexSamplerStates:lodMinClamps:lodMaxClamps:withRange:)]
         pub unsafe fn setVertexSamplerStates_lodMinClamps_lodMaxClamps_withRange(
             &self,
-            samplers: NonNull<*mut MTLSamplerState>,
+            samplers: NonNull<*const MTLSamplerState>,
             lodMinClamps: NonNull<c_float>,
             lodMaxClamps: NonNull<c_float>,
             range: NSRange,
@@ -225,7 +225,7 @@ extern_protocol!(
         #[method(setVertexVisibleFunctionTables:withBufferRange:)]
         pub unsafe fn setVertexVisibleFunctionTables_withBufferRange(
             &self,
-            functionTables: NonNull<*mut MTLVisibleFunctionTable>,
+            functionTables: NonNull<*const MTLVisibleFunctionTable>,
             range: NSRange,
         );
 
@@ -239,7 +239,7 @@ extern_protocol!(
         #[method(setVertexIntersectionFunctionTables:withBufferRange:)]
         pub unsafe fn setVertexIntersectionFunctionTables_withBufferRange(
             &self,
-            intersectionFunctionTable: NonNull<*mut MTLIntersectionFunctionTable>,
+            intersectionFunctionTable: NonNull<*const MTLIntersectionFunctionTable>,
             range: NSRange,
         );
 
@@ -315,7 +315,7 @@ extern_protocol!(
         #[method(setFragmentBuffers:offsets:withRange:)]
         pub unsafe fn setFragmentBuffers_offsets_withRange(
             &self,
-            buffers: NonNull<*mut MTLBuffer>,
+            buffers: NonNull<*const MTLBuffer>,
             offsets: NonNull<NSUInteger>,
             range: NSRange,
         );
@@ -330,7 +330,7 @@ extern_protocol!(
         #[method(setFragmentTextures:withRange:)]
         pub unsafe fn setFragmentTextures_withRange(
             &self,
-            textures: NonNull<*mut MTLTexture>,
+            textures: NonNull<*const MTLTexture>,
             range: NSRange,
         );
 
@@ -344,7 +344,7 @@ extern_protocol!(
         #[method(setFragmentSamplerStates:withRange:)]
         pub unsafe fn setFragmentSamplerStates_withRange(
             &self,
-            samplers: NonNull<*mut MTLSamplerState>,
+            samplers: NonNull<*const MTLSamplerState>,
             range: NSRange,
         );
 
@@ -360,7 +360,7 @@ extern_protocol!(
         #[method(setFragmentSamplerStates:lodMinClamps:lodMaxClamps:withRange:)]
         pub unsafe fn setFragmentSamplerStates_lodMinClamps_lodMaxClamps_withRange(
             &self,
-            samplers: NonNull<*mut MTLSamplerState>,
+            samplers: NonNull<*const MTLSamplerState>,
             lodMinClamps: NonNull<c_float>,
             lodMaxClamps: NonNull<c_float>,
             range: NSRange,
@@ -376,7 +376,7 @@ extern_protocol!(
         #[method(setFragmentVisibleFunctionTables:withBufferRange:)]
         pub unsafe fn setFragmentVisibleFunctionTables_withBufferRange(
             &self,
-            functionTables: NonNull<*mut MTLVisibleFunctionTable>,
+            functionTables: NonNull<*const MTLVisibleFunctionTable>,
             range: NSRange,
         );
 
@@ -390,7 +390,7 @@ extern_protocol!(
         #[method(setFragmentIntersectionFunctionTables:withBufferRange:)]
         pub unsafe fn setFragmentIntersectionFunctionTables_withBufferRange(
             &self,
-            intersectionFunctionTable: NonNull<*mut MTLIntersectionFunctionTable>,
+            intersectionFunctionTable: NonNull<*const MTLIntersectionFunctionTable>,
             range: NSRange,
         );
 
@@ -635,7 +635,7 @@ extern_protocol!(
         #[method(setTileBuffers:offsets:withRange:)]
         pub unsafe fn setTileBuffers_offsets_withRange(
             &self,
-            buffers: NonNull<*mut MTLBuffer>,
+            buffers: NonNull<*const MTLBuffer>,
             offsets: NonNull<NSUInteger>,
             range: NSRange,
         );
@@ -650,7 +650,7 @@ extern_protocol!(
         #[method(setTileTextures:withRange:)]
         pub unsafe fn setTileTextures_withRange(
             &self,
-            textures: NonNull<*mut MTLTexture>,
+            textures: NonNull<*const MTLTexture>,
             range: NSRange,
         );
 
@@ -664,7 +664,7 @@ extern_protocol!(
         #[method(setTileSamplerStates:withRange:)]
         pub unsafe fn setTileSamplerStates_withRange(
             &self,
-            samplers: NonNull<*mut MTLSamplerState>,
+            samplers: NonNull<*const MTLSamplerState>,
             range: NSRange,
         );
 
@@ -680,7 +680,7 @@ extern_protocol!(
         #[method(setTileSamplerStates:lodMinClamps:lodMaxClamps:withRange:)]
         pub unsafe fn setTileSamplerStates_lodMinClamps_lodMaxClamps_withRange(
             &self,
-            samplers: NonNull<*mut MTLSamplerState>,
+            samplers: NonNull<*const MTLSamplerState>,
             lodMinClamps: NonNull<c_float>,
             lodMaxClamps: NonNull<c_float>,
             range: NSRange,
@@ -696,7 +696,7 @@ extern_protocol!(
         #[method(setTileVisibleFunctionTables:withBufferRange:)]
         pub unsafe fn setTileVisibleFunctionTables_withBufferRange(
             &self,
-            functionTables: NonNull<*mut MTLVisibleFunctionTable>,
+            functionTables: NonNull<*const MTLVisibleFunctionTable>,
             range: NSRange,
         );
 
@@ -710,7 +710,7 @@ extern_protocol!(
         #[method(setTileIntersectionFunctionTables:withBufferRange:)]
         pub unsafe fn setTileIntersectionFunctionTables_withBufferRange(
             &self,
-            intersectionFunctionTable: NonNull<*mut MTLIntersectionFunctionTable>,
+            intersectionFunctionTable: NonNull<*const MTLIntersectionFunctionTable>,
             range: NSRange,
         );
 

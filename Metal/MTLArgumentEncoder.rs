@@ -49,7 +49,7 @@ extern_protocol!(
         #[method(setBuffers:offsets:withRange:)]
         pub unsafe fn setBuffers_offsets_withRange(
             &self,
-            buffers: NonNull<*mut MTLBuffer>,
+            buffers: NonNull<*const MTLBuffer>,
             offsets: NonNull<NSUInteger>,
             range: NSRange,
         );
@@ -60,7 +60,7 @@ extern_protocol!(
         #[method(setTextures:withRange:)]
         pub unsafe fn setTextures_withRange(
             &self,
-            textures: NonNull<*mut MTLTexture>,
+            textures: NonNull<*const MTLTexture>,
             range: NSRange,
         );
 
@@ -74,7 +74,7 @@ extern_protocol!(
         #[method(setSamplerStates:withRange:)]
         pub unsafe fn setSamplerStates_withRange(
             &self,
-            samplers: NonNull<*mut MTLSamplerState>,
+            samplers: NonNull<*const MTLSamplerState>,
             range: NSRange,
         );
 
@@ -91,7 +91,7 @@ extern_protocol!(
         #[method(setRenderPipelineStates:withRange:)]
         pub unsafe fn setRenderPipelineStates_withRange(
             &self,
-            pipelines: NonNull<*mut MTLRenderPipelineState>,
+            pipelines: NonNull<*const MTLRenderPipelineState>,
             range: NSRange,
         );
 
@@ -105,7 +105,7 @@ extern_protocol!(
         #[method(setComputePipelineStates:withRange:)]
         pub unsafe fn setComputePipelineStates_withRange(
             &self,
-            pipelines: NonNull<*mut MTLComputePipelineState>,
+            pipelines: NonNull<*const MTLComputePipelineState>,
             range: NSRange,
         );
 
@@ -119,7 +119,7 @@ extern_protocol!(
         #[method(setIndirectCommandBuffers:withRange:)]
         pub unsafe fn setIndirectCommandBuffers_withRange(
             &self,
-            buffers: NonNull<*mut MTLIndirectCommandBuffer>,
+            buffers: NonNull<*const MTLIndirectCommandBuffer>,
             range: NSRange,
         );
 
@@ -146,7 +146,7 @@ extern_protocol!(
         #[method(setVisibleFunctionTables:withRange:)]
         pub unsafe fn setVisibleFunctionTables_withRange(
             &self,
-            visibleFunctionTables: NonNull<*mut MTLVisibleFunctionTable>,
+            visibleFunctionTables: NonNull<*const MTLVisibleFunctionTable>,
             range: NSRange,
         );
 
@@ -160,7 +160,7 @@ extern_protocol!(
         #[method(setIntersectionFunctionTables:withRange:)]
         pub unsafe fn setIntersectionFunctionTables_withRange(
             &self,
-            intersectionFunctionTables: NonNull<*mut MTLIntersectionFunctionTable>,
+            intersectionFunctionTables: NonNull<*const MTLIntersectionFunctionTable>,
             range: NSRange,
         );
     }

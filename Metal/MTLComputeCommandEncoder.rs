@@ -49,7 +49,7 @@ extern_protocol!(
         #[method(setBuffers:offsets:withRange:)]
         pub unsafe fn setBuffers_offsets_withRange(
             &self,
-            buffers: NonNull<*mut MTLBuffer>,
+            buffers: NonNull<*const MTLBuffer>,
             offsets: NonNull<NSUInteger>,
             range: NSRange,
         );
@@ -64,7 +64,7 @@ extern_protocol!(
         #[method(setVisibleFunctionTables:withBufferRange:)]
         pub unsafe fn setVisibleFunctionTables_withBufferRange(
             &self,
-            visibleFunctionTables: NonNull<*mut MTLVisibleFunctionTable>,
+            visibleFunctionTables: NonNull<*const MTLVisibleFunctionTable>,
             range: NSRange,
         );
 
@@ -78,7 +78,7 @@ extern_protocol!(
         #[method(setIntersectionFunctionTables:withBufferRange:)]
         pub unsafe fn setIntersectionFunctionTables_withBufferRange(
             &self,
-            intersectionFunctionTables: NonNull<*mut MTLIntersectionFunctionTable>,
+            intersectionFunctionTables: NonNull<*const MTLIntersectionFunctionTable>,
             range: NSRange,
         );
 
@@ -95,7 +95,7 @@ extern_protocol!(
         #[method(setTextures:withRange:)]
         pub unsafe fn setTextures_withRange(
             &self,
-            textures: NonNull<*mut MTLTexture>,
+            textures: NonNull<*const MTLTexture>,
             range: NSRange,
         );
 
@@ -109,7 +109,7 @@ extern_protocol!(
         #[method(setSamplerStates:withRange:)]
         pub unsafe fn setSamplerStates_withRange(
             &self,
-            samplers: NonNull<*mut MTLSamplerState>,
+            samplers: NonNull<*const MTLSamplerState>,
             range: NSRange,
         );
 
@@ -125,7 +125,7 @@ extern_protocol!(
         #[method(setSamplerStates:lodMinClamps:lodMaxClamps:withRange:)]
         pub unsafe fn setSamplerStates_lodMinClamps_lodMaxClamps_withRange(
             &self,
-            samplers: NonNull<*mut MTLSamplerState>,
+            samplers: NonNull<*const MTLSamplerState>,
             lodMinClamps: NonNull<c_float>,
             lodMaxClamps: NonNull<c_float>,
             range: NSRange,

@@ -55,7 +55,7 @@ extern_protocol!(
         #[method(setBuffers:offsets:withRange:)]
         pub unsafe fn setBuffers_offsets_withRange(
             &self,
-            buffers: NonNull<*mut MTLBuffer>,
+            buffers: NonNull<*const MTLBuffer>,
             offsets: NonNull<NSUInteger>,
             range: NSRange,
         );
@@ -66,7 +66,7 @@ extern_protocol!(
         #[method(setFunctions:withRange:)]
         pub unsafe fn setFunctions_withRange(
             &self,
-            functions: NonNull<*mut MTLFunctionHandle>,
+            functions: NonNull<*const MTLFunctionHandle>,
             range: NSRange,
         );
 
@@ -94,7 +94,7 @@ extern_protocol!(
         #[method(setVisibleFunctionTables:withBufferRange:)]
         pub unsafe fn setVisibleFunctionTables_withBufferRange(
             &self,
-            functionTables: NonNull<*mut MTLVisibleFunctionTable>,
+            functionTables: NonNull<*const MTLVisibleFunctionTable>,
             bufferRange: NSRange,
         );
     }
