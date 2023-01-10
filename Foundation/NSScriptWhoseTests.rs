@@ -107,7 +107,7 @@ extern_methods!(
         pub unsafe fn initWithObjectSpecifier_comparisonOperator_testObject(
             this: Option<Allocated<Self>>,
             obj1: Option<&Foundation::NSScriptObjectSpecifier>,
-            compOp: NSTestComparisonOperation,
+            compOp: Foundation::NSTestComparisonOperation,
             obj2: Option<&Object>,
         ) -> Id<Self, Shared>;
     }

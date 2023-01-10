@@ -32,10 +32,10 @@ extern_methods!(
         pub unsafe fn statusBar(&self) -> Option<Id<AppKit::NSStatusBar, Shared>>;
 
         #[method(length)]
-        pub unsafe fn length(&self) -> CGFloat;
+        pub unsafe fn length(&self) -> CoreGraphics::CGFloat;
 
         #[method(setLength:)]
-        pub unsafe fn setLength(&self, length: CGFloat);
+        pub unsafe fn setLength(&self, length: CoreGraphics::CGFloat);
 
         #[cfg(feature = "AppKit_NSMenu")]
         #[method_id(@__retain_semantics Other menu)]
@@ -50,10 +50,10 @@ extern_methods!(
         pub unsafe fn button(&self) -> Option<Id<AppKit::NSStatusBarButton, Shared>>;
 
         #[method(behavior)]
-        pub unsafe fn behavior(&self) -> NSStatusItemBehavior;
+        pub unsafe fn behavior(&self) -> AppKit::NSStatusItemBehavior;
 
         #[method(setBehavior:)]
-        pub unsafe fn setBehavior(&self, behavior: NSStatusItemBehavior);
+        pub unsafe fn setBehavior(&self, behavior: AppKit::NSStatusItemBehavior);
 
         #[method(isVisible)]
         pub unsafe fn isVisible(&self) -> bool;
@@ -150,7 +150,7 @@ extern_methods!(
         pub unsafe fn setToolTip(&self, toolTip: Option<&Foundation::NSString>);
 
         #[method(sendActionOn:)]
-        pub unsafe fn sendActionOn(&self, mask: NSEventMask) -> NSInteger;
+        pub unsafe fn sendActionOn(&self, mask: AppKit::NSEventMask) -> NSInteger;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other view)]
@@ -163,7 +163,7 @@ extern_methods!(
         #[method(drawStatusBarBackgroundInRect:withHighlight:)]
         pub unsafe fn drawStatusBarBackgroundInRect_withHighlight(
             &self,
-            rect: NSRect,
+            rect: Foundation::NSRect,
             highlight: bool,
         );
 

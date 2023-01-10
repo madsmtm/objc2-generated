@@ -54,22 +54,22 @@ extern_methods!(
         pub unsafe fn setTableView(&self, tableView: Option<&AppKit::NSTableView>);
 
         #[method(width)]
-        pub unsafe fn width(&self) -> CGFloat;
+        pub unsafe fn width(&self) -> CoreGraphics::CGFloat;
 
         #[method(setWidth:)]
-        pub unsafe fn setWidth(&self, width: CGFloat);
+        pub unsafe fn setWidth(&self, width: CoreGraphics::CGFloat);
 
         #[method(minWidth)]
-        pub unsafe fn minWidth(&self) -> CGFloat;
+        pub unsafe fn minWidth(&self) -> CoreGraphics::CGFloat;
 
         #[method(setMinWidth:)]
-        pub unsafe fn setMinWidth(&self, minWidth: CGFloat);
+        pub unsafe fn setMinWidth(&self, minWidth: CoreGraphics::CGFloat);
 
         #[method(maxWidth)]
-        pub unsafe fn maxWidth(&self) -> CGFloat;
+        pub unsafe fn maxWidth(&self) -> CoreGraphics::CGFloat;
 
         #[method(setMaxWidth:)]
-        pub unsafe fn setMaxWidth(&self, maxWidth: CGFloat);
+        pub unsafe fn setMaxWidth(&self, maxWidth: CoreGraphics::CGFloat);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
@@ -110,10 +110,10 @@ extern_methods!(
         );
 
         #[method(resizingMask)]
-        pub unsafe fn resizingMask(&self) -> NSTableColumnResizingOptions;
+        pub unsafe fn resizingMask(&self) -> AppKit::NSTableColumnResizingOptions;
 
         #[method(setResizingMask:)]
-        pub unsafe fn setResizingMask(&self, resizingMask: NSTableColumnResizingOptions);
+        pub unsafe fn setResizingMask(&self, resizingMask: AppKit::NSTableColumnResizingOptions);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other headerToolTip)]

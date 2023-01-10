@@ -22,9 +22,9 @@ extern_methods!(
         pub unsafe fn initWithRulerView_markerLocation_image_imageOrigin(
             this: Option<Allocated<Self>>,
             ruler: &AppKit::NSRulerView,
-            location: CGFloat,
+            location: CoreGraphics::CGFloat,
             image: &AppKit::NSImage,
-            imageOrigin: NSPoint,
+            imageOrigin: Foundation::NSPoint,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSCoder")]
@@ -42,10 +42,10 @@ extern_methods!(
         pub unsafe fn ruler(&self) -> Option<Id<AppKit::NSRulerView, Shared>>;
 
         #[method(markerLocation)]
-        pub unsafe fn markerLocation(&self) -> CGFloat;
+        pub unsafe fn markerLocation(&self) -> CoreGraphics::CGFloat;
 
         #[method(setMarkerLocation:)]
-        pub unsafe fn setMarkerLocation(&self, markerLocation: CGFloat);
+        pub unsafe fn setMarkerLocation(&self, markerLocation: CoreGraphics::CGFloat);
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other image)]
@@ -56,10 +56,10 @@ extern_methods!(
         pub unsafe fn setImage(&self, image: &AppKit::NSImage);
 
         #[method(imageOrigin)]
-        pub unsafe fn imageOrigin(&self) -> NSPoint;
+        pub unsafe fn imageOrigin(&self) -> Foundation::NSPoint;
 
         #[method(setImageOrigin:)]
-        pub unsafe fn setImageOrigin(&self, imageOrigin: NSPoint);
+        pub unsafe fn setImageOrigin(&self, imageOrigin: Foundation::NSPoint);
 
         #[method(isMovable)]
         pub unsafe fn isMovable(&self) -> bool;
@@ -83,13 +83,13 @@ extern_methods!(
         pub unsafe fn setRepresentedObject(&self, representedObject: Option<&Object>);
 
         #[method(imageRectInRuler)]
-        pub unsafe fn imageRectInRuler(&self) -> NSRect;
+        pub unsafe fn imageRectInRuler(&self) -> Foundation::NSRect;
 
         #[method(thicknessRequiredInRuler)]
-        pub unsafe fn thicknessRequiredInRuler(&self) -> CGFloat;
+        pub unsafe fn thicknessRequiredInRuler(&self) -> CoreGraphics::CGFloat;
 
         #[method(drawRect:)]
-        pub unsafe fn drawRect(&self, rect: NSRect);
+        pub unsafe fn drawRect(&self, rect: Foundation::NSRect);
 
         #[cfg(feature = "AppKit_NSEvent")]
         #[method(trackMouse:adding:)]

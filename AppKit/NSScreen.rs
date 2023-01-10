@@ -31,13 +31,13 @@ extern_methods!(
         pub unsafe fn screensHaveSeparateSpaces() -> bool;
 
         #[method(depth)]
-        pub unsafe fn depth(&self) -> NSWindowDepth;
+        pub unsafe fn depth(&self) -> AppKit::NSWindowDepth;
 
         #[method(frame)]
-        pub unsafe fn frame(&self) -> NSRect;
+        pub unsafe fn frame(&self) -> Foundation::NSRect;
 
         #[method(visibleFrame)]
-        pub unsafe fn visibleFrame(&self) -> NSRect;
+        pub unsafe fn visibleFrame(&self) -> Foundation::NSRect;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other deviceDescription)]
@@ -50,39 +50,41 @@ extern_methods!(
         pub unsafe fn colorSpace(&self) -> Option<Id<AppKit::NSColorSpace, Shared>>;
 
         #[method(supportedWindowDepths)]
-        pub unsafe fn supportedWindowDepths(&self) -> NonNull<NSWindowDepth>;
+        pub unsafe fn supportedWindowDepths(&self) -> NonNull<AppKit::NSWindowDepth>;
 
         #[method(canRepresentDisplayGamut:)]
-        pub unsafe fn canRepresentDisplayGamut(&self, displayGamut: NSDisplayGamut) -> bool;
+        pub unsafe fn canRepresentDisplayGamut(&self, displayGamut: AppKit::NSDisplayGamut)
+            -> bool;
 
         #[method(convertRectToBacking:)]
-        pub unsafe fn convertRectToBacking(&self, rect: NSRect) -> NSRect;
+        pub unsafe fn convertRectToBacking(&self, rect: Foundation::NSRect) -> Foundation::NSRect;
 
         #[method(convertRectFromBacking:)]
-        pub unsafe fn convertRectFromBacking(&self, rect: NSRect) -> NSRect;
+        pub unsafe fn convertRectFromBacking(&self, rect: Foundation::NSRect)
+            -> Foundation::NSRect;
 
         #[method(backingAlignedRect:options:)]
         pub unsafe fn backingAlignedRect_options(
             &self,
-            rect: NSRect,
-            options: NSAlignmentOptions,
-        ) -> NSRect;
+            rect: Foundation::NSRect,
+            options: Foundation::NSAlignmentOptions,
+        ) -> Foundation::NSRect;
 
         #[method(backingScaleFactor)]
-        pub unsafe fn backingScaleFactor(&self) -> CGFloat;
+        pub unsafe fn backingScaleFactor(&self) -> CoreGraphics::CGFloat;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedName)]
         pub unsafe fn localizedName(&self) -> Id<Foundation::NSString, Shared>;
 
         #[method(safeAreaInsets)]
-        pub unsafe fn safeAreaInsets(&self) -> NSEdgeInsets;
+        pub unsafe fn safeAreaInsets(&self) -> Foundation::NSEdgeInsets;
 
         #[method(auxiliaryTopLeftArea)]
-        pub unsafe fn auxiliaryTopLeftArea(&self) -> NSRect;
+        pub unsafe fn auxiliaryTopLeftArea(&self) -> Foundation::NSRect;
 
         #[method(auxiliaryTopRightArea)]
-        pub unsafe fn auxiliaryTopRightArea(&self) -> NSRect;
+        pub unsafe fn auxiliaryTopRightArea(&self) -> Foundation::NSRect;
     }
 );
 
@@ -92,13 +94,19 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSScreen")]
     unsafe impl NSScreen {
         #[method(maximumExtendedDynamicRangeColorComponentValue)]
-        pub unsafe fn maximumExtendedDynamicRangeColorComponentValue(&self) -> CGFloat;
+        pub unsafe fn maximumExtendedDynamicRangeColorComponentValue(
+            &self,
+        ) -> CoreGraphics::CGFloat;
 
         #[method(maximumPotentialExtendedDynamicRangeColorComponentValue)]
-        pub unsafe fn maximumPotentialExtendedDynamicRangeColorComponentValue(&self) -> CGFloat;
+        pub unsafe fn maximumPotentialExtendedDynamicRangeColorComponentValue(
+            &self,
+        ) -> CoreGraphics::CGFloat;
 
         #[method(maximumReferenceExtendedDynamicRangeColorComponentValue)]
-        pub unsafe fn maximumReferenceExtendedDynamicRangeColorComponentValue(&self) -> CGFloat;
+        pub unsafe fn maximumReferenceExtendedDynamicRangeColorComponentValue(
+            &self,
+        ) -> CoreGraphics::CGFloat;
     }
 );
 
@@ -109,16 +117,16 @@ extern_methods!(
         pub unsafe fn maximumFramesPerSecond(&self) -> NSInteger;
 
         #[method(minimumRefreshInterval)]
-        pub unsafe fn minimumRefreshInterval(&self) -> NSTimeInterval;
+        pub unsafe fn minimumRefreshInterval(&self) -> Foundation::NSTimeInterval;
 
         #[method(maximumRefreshInterval)]
-        pub unsafe fn maximumRefreshInterval(&self) -> NSTimeInterval;
+        pub unsafe fn maximumRefreshInterval(&self) -> Foundation::NSTimeInterval;
 
         #[method(displayUpdateGranularity)]
-        pub unsafe fn displayUpdateGranularity(&self) -> NSTimeInterval;
+        pub unsafe fn displayUpdateGranularity(&self) -> Foundation::NSTimeInterval;
 
         #[method(lastDisplayUpdateTimestamp)]
-        pub unsafe fn lastDisplayUpdateTimestamp(&self) -> NSTimeInterval;
+        pub unsafe fn lastDisplayUpdateTimestamp(&self) -> Foundation::NSTimeInterval;
     }
 );
 
@@ -127,6 +135,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSScreen")]
     unsafe impl NSScreen {
         #[method(userSpaceScaleFactor)]
-        pub unsafe fn userSpaceScaleFactor(&self) -> CGFloat;
+        pub unsafe fn userSpaceScaleFactor(&self) -> CoreGraphics::CGFloat;
     }
 );

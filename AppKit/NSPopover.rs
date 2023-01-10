@@ -42,10 +42,10 @@ extern_methods!(
         pub unsafe fn setDelegate(&self, delegate: Option<&AppKit::NSPopoverDelegate>);
 
         #[method(behavior)]
-        pub unsafe fn behavior(&self) -> NSPopoverBehavior;
+        pub unsafe fn behavior(&self) -> AppKit::NSPopoverBehavior;
 
         #[method(setBehavior:)]
-        pub unsafe fn setBehavior(&self, behavior: NSPopoverBehavior);
+        pub unsafe fn setBehavior(&self, behavior: AppKit::NSPopoverBehavior);
 
         #[method(animates)]
         pub unsafe fn animates(&self) -> bool;
@@ -65,10 +65,10 @@ extern_methods!(
         );
 
         #[method(contentSize)]
-        pub unsafe fn contentSize(&self) -> NSSize;
+        pub unsafe fn contentSize(&self) -> Foundation::NSSize;
 
         #[method(setContentSize:)]
-        pub unsafe fn setContentSize(&self, contentSize: NSSize);
+        pub unsafe fn setContentSize(&self, contentSize: Foundation::NSSize);
 
         #[method(isShown)]
         pub unsafe fn isShown(&self) -> bool;
@@ -77,18 +77,18 @@ extern_methods!(
         pub unsafe fn isDetached(&self) -> bool;
 
         #[method(positioningRect)]
-        pub unsafe fn positioningRect(&self) -> NSRect;
+        pub unsafe fn positioningRect(&self) -> Foundation::NSRect;
 
         #[method(setPositioningRect:)]
-        pub unsafe fn setPositioningRect(&self, positioningRect: NSRect);
+        pub unsafe fn setPositioningRect(&self, positioningRect: Foundation::NSRect);
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(showRelativeToRect:ofView:preferredEdge:)]
         pub unsafe fn showRelativeToRect_ofView_preferredEdge(
             &self,
-            positioningRect: NSRect,
+            positioningRect: Foundation::NSRect,
             positioningView: &AppKit::NSView,
-            preferredEdge: NSRectEdge,
+            preferredEdge: Foundation::NSRectEdge,
         );
 
         #[method(performClose:)]

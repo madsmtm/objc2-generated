@@ -35,10 +35,10 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSPersonNameComponentsFormatter")]
     unsafe impl NSPersonNameComponentsFormatter {
         #[method(style)]
-        pub unsafe fn style(&self) -> NSPersonNameComponentsFormatterStyle;
+        pub unsafe fn style(&self) -> Foundation::NSPersonNameComponentsFormatterStyle;
 
         #[method(setStyle:)]
-        pub unsafe fn setStyle(&self, style: NSPersonNameComponentsFormatterStyle);
+        pub unsafe fn setStyle(&self, style: Foundation::NSPersonNameComponentsFormatterStyle);
 
         #[method(isPhonetic)]
         pub unsafe fn isPhonetic(&self) -> bool;
@@ -61,8 +61,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Other localizedStringFromPersonNameComponents:style:options:)]
         pub unsafe fn localizedStringFromPersonNameComponents_style_options(
             components: &Foundation::NSPersonNameComponents,
-            nameFormatStyle: NSPersonNameComponentsFormatterStyle,
-            nameOptions: NSPersonNameComponentsFormatterOptions,
+            nameFormatStyle: Foundation::NSPersonNameComponentsFormatterStyle,
+            nameOptions: Foundation::NSPersonNameComponentsFormatterOptions,
         ) -> Id<Foundation::NSString, Shared>;
 
         #[cfg(all(

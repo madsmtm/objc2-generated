@@ -28,10 +28,13 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSLevelIndicator")]
     unsafe impl NSLevelIndicator {
         #[method(levelIndicatorStyle)]
-        pub unsafe fn levelIndicatorStyle(&self) -> NSLevelIndicatorStyle;
+        pub unsafe fn levelIndicatorStyle(&self) -> AppKit::NSLevelIndicatorStyle;
 
         #[method(setLevelIndicatorStyle:)]
-        pub unsafe fn setLevelIndicatorStyle(&self, levelIndicatorStyle: NSLevelIndicatorStyle);
+        pub unsafe fn setLevelIndicatorStyle(
+            &self,
+            levelIndicatorStyle: AppKit::NSLevelIndicatorStyle,
+        );
 
         #[method(isEditable)]
         pub unsafe fn isEditable(&self) -> bool;
@@ -64,10 +67,10 @@ extern_methods!(
         pub unsafe fn setCriticalValue(&self, criticalValue: c_double);
 
         #[method(tickMarkPosition)]
-        pub unsafe fn tickMarkPosition(&self) -> NSTickMarkPosition;
+        pub unsafe fn tickMarkPosition(&self) -> AppKit::NSTickMarkPosition;
 
         #[method(setTickMarkPosition:)]
-        pub unsafe fn setTickMarkPosition(&self, tickMarkPosition: NSTickMarkPosition);
+        pub unsafe fn setTickMarkPosition(&self, tickMarkPosition: AppKit::NSTickMarkPosition);
 
         #[method(numberOfTickMarks)]
         pub unsafe fn numberOfTickMarks(&self) -> NSInteger;
@@ -85,7 +88,7 @@ extern_methods!(
         pub unsafe fn tickMarkValueAtIndex(&self, index: NSInteger) -> c_double;
 
         #[method(rectOfTickMarkAtIndex:)]
-        pub unsafe fn rectOfTickMarkAtIndex(&self, index: NSInteger) -> NSRect;
+        pub unsafe fn rectOfTickMarkAtIndex(&self, index: NSInteger) -> Foundation::NSRect;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other fillColor)]
@@ -118,12 +121,13 @@ extern_methods!(
         pub unsafe fn setDrawsTieredCapacityLevels(&self, drawsTieredCapacityLevels: bool);
 
         #[method(placeholderVisibility)]
-        pub unsafe fn placeholderVisibility(&self) -> NSLevelIndicatorPlaceholderVisibility;
+        pub unsafe fn placeholderVisibility(&self)
+            -> AppKit::NSLevelIndicatorPlaceholderVisibility;
 
         #[method(setPlaceholderVisibility:)]
         pub unsafe fn setPlaceholderVisibility(
             &self,
-            placeholderVisibility: NSLevelIndicatorPlaceholderVisibility,
+            placeholderVisibility: AppKit::NSLevelIndicatorPlaceholderVisibility,
         );
 
         #[cfg(feature = "AppKit_NSImage")]
@@ -154,7 +158,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frameRect: Foundation::NSRect,
         ) -> Id<Self, Shared>;
     }
 );

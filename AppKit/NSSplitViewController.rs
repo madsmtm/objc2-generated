@@ -5,7 +5,7 @@ use crate::AppKit;
 use crate::CoreData;
 use crate::Foundation;
 
-extern_static!(NSSplitViewControllerAutomaticDimension: CGFloat);
+extern_static!(NSSplitViewControllerAutomaticDimension: CoreGraphics::CGFloat);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -65,12 +65,12 @@ extern_methods!(
         ) -> Option<Id<AppKit::NSSplitViewItem, Shared>>;
 
         #[method(minimumThicknessForInlineSidebars)]
-        pub unsafe fn minimumThicknessForInlineSidebars(&self) -> CGFloat;
+        pub unsafe fn minimumThicknessForInlineSidebars(&self) -> CoreGraphics::CGFloat;
 
         #[method(setMinimumThicknessForInlineSidebars:)]
         pub unsafe fn setMinimumThicknessForInlineSidebars(
             &self,
-            minimumThicknessForInlineSidebars: CGFloat,
+            minimumThicknessForInlineSidebars: CoreGraphics::CGFloat,
         );
 
         #[method(validateUserInterfaceItem:)]
@@ -112,10 +112,10 @@ extern_methods!(
         pub unsafe fn splitView_effectiveRect_forDrawnRect_ofDividerAtIndex(
             &self,
             splitView: &AppKit::NSSplitView,
-            proposedEffectiveRect: NSRect,
-            drawnRect: NSRect,
+            proposedEffectiveRect: Foundation::NSRect,
+            drawnRect: Foundation::NSRect,
             dividerIndex: NSInteger,
-        ) -> NSRect;
+        ) -> Foundation::NSRect;
 
         #[cfg(feature = "AppKit_NSSplitView")]
         #[method(splitView:additionalEffectiveRectOfDividerAtIndex:)]
@@ -123,7 +123,7 @@ extern_methods!(
             &self,
             splitView: &AppKit::NSSplitView,
             dividerIndex: NSInteger,
-        ) -> NSRect;
+        ) -> Foundation::NSRect;
     }
 );
 

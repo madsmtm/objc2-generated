@@ -41,7 +41,7 @@ extern_methods!(
         pub unsafe fn pickerTouchBarItemWithIdentifier_labels_selectionMode_target_action(
             identifier: &AppKit::NSTouchBarItemIdentifier,
             labels: &Foundation::NSArray<Foundation::NSString>,
-            selectionMode: NSPickerTouchBarItemSelectionMode,
+            selectionMode: AppKit::NSPickerTouchBarItemSelectionMode,
             target: Option<&Object>,
             action: Option<Sel>,
         ) -> Id<Self, Shared>;
@@ -51,18 +51,20 @@ extern_methods!(
         pub unsafe fn pickerTouchBarItemWithIdentifier_images_selectionMode_target_action(
             identifier: &AppKit::NSTouchBarItemIdentifier,
             images: &Foundation::NSArray<AppKit::NSImage>,
-            selectionMode: NSPickerTouchBarItemSelectionMode,
+            selectionMode: AppKit::NSPickerTouchBarItemSelectionMode,
             target: Option<&Object>,
             action: Option<Sel>,
         ) -> Id<Self, Shared>;
 
         #[method(controlRepresentation)]
-        pub unsafe fn controlRepresentation(&self) -> NSPickerTouchBarItemControlRepresentation;
+        pub unsafe fn controlRepresentation(
+            &self,
+        ) -> AppKit::NSPickerTouchBarItemControlRepresentation;
 
         #[method(setControlRepresentation:)]
         pub unsafe fn setControlRepresentation(
             &self,
-            controlRepresentation: NSPickerTouchBarItemControlRepresentation,
+            controlRepresentation: AppKit::NSPickerTouchBarItemControlRepresentation,
         );
 
         #[cfg(feature = "Foundation_NSString")]
@@ -102,10 +104,13 @@ extern_methods!(
         pub unsafe fn setSelectionColor(&self, selectionColor: Option<&AppKit::NSColor>);
 
         #[method(selectionMode)]
-        pub unsafe fn selectionMode(&self) -> NSPickerTouchBarItemSelectionMode;
+        pub unsafe fn selectionMode(&self) -> AppKit::NSPickerTouchBarItemSelectionMode;
 
         #[method(setSelectionMode:)]
-        pub unsafe fn setSelectionMode(&self, selectionMode: NSPickerTouchBarItemSelectionMode);
+        pub unsafe fn setSelectionMode(
+            &self,
+            selectionMode: AppKit::NSPickerTouchBarItemSelectionMode,
+        );
 
         #[method(numberOfOptions)]
         pub unsafe fn numberOfOptions(&self) -> NSInteger;

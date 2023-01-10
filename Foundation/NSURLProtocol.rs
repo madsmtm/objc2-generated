@@ -27,7 +27,7 @@ extern_protocol!(
             &self,
             protocol: &Foundation::NSURLProtocol,
             response: &Foundation::NSURLResponse,
-            policy: NSURLCacheStoragePolicy,
+            policy: Foundation::NSURLCacheStoragePolicy,
         );
 
         #[method(URLProtocol:didLoadData:)]

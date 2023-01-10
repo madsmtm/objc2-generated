@@ -18,8 +18,10 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTextContainer")]
     unsafe impl NSTextContainer {
         #[method_id(@__retain_semantics Init initWithSize:)]
-        pub unsafe fn initWithSize(this: Option<Allocated<Self>>, size: NSSize)
-            -> Id<Self, Shared>;
+        pub unsafe fn initWithSize(
+            this: Option<Allocated<Self>>,
+            size: Foundation::NSSize,
+        ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
@@ -45,10 +47,10 @@ extern_methods!(
         pub unsafe fn textLayoutManager(&self) -> Option<Id<AppKit::NSTextLayoutManager, Shared>>;
 
         #[method(size)]
-        pub unsafe fn size(&self) -> NSSize;
+        pub unsafe fn size(&self) -> Foundation::NSSize;
 
         #[method(setSize:)]
-        pub unsafe fn setSize(&self, size: NSSize);
+        pub unsafe fn setSize(&self, size: Foundation::NSSize);
 
         #[cfg(all(feature = "AppKit_NSBezierPath", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other exclusionPaths)]
@@ -64,16 +66,16 @@ extern_methods!(
         );
 
         #[method(lineBreakMode)]
-        pub unsafe fn lineBreakMode(&self) -> NSLineBreakMode;
+        pub unsafe fn lineBreakMode(&self) -> AppKit::NSLineBreakMode;
 
         #[method(setLineBreakMode:)]
-        pub unsafe fn setLineBreakMode(&self, lineBreakMode: NSLineBreakMode);
+        pub unsafe fn setLineBreakMode(&self, lineBreakMode: AppKit::NSLineBreakMode);
 
         #[method(lineFragmentPadding)]
-        pub unsafe fn lineFragmentPadding(&self) -> CGFloat;
+        pub unsafe fn lineFragmentPadding(&self) -> CoreGraphics::CGFloat;
 
         #[method(setLineFragmentPadding:)]
-        pub unsafe fn setLineFragmentPadding(&self, lineFragmentPadding: CGFloat);
+        pub unsafe fn setLineFragmentPadding(&self, lineFragmentPadding: CoreGraphics::CGFloat);
 
         #[method(maximumNumberOfLines)]
         pub unsafe fn maximumNumberOfLines(&self) -> NSUInteger;
@@ -84,11 +86,11 @@ extern_methods!(
         #[method(lineFragmentRectForProposedRect:atIndex:writingDirection:remainingRect:)]
         pub unsafe fn lineFragmentRectForProposedRect_atIndex_writingDirection_remainingRect(
             &self,
-            proposedRect: NSRect,
+            proposedRect: Foundation::NSRect,
             characterIndex: NSUInteger,
-            baseWritingDirection: NSWritingDirection,
-            remainingRect: *mut NSRect,
-        ) -> NSRect;
+            baseWritingDirection: AppKit::NSWritingDirection,
+            remainingRect: *mut Foundation::NSRect,
+        ) -> Foundation::NSRect;
 
         #[method(isSimpleRectangularTextContainer)]
         pub unsafe fn isSimpleRectangularTextContainer(&self) -> bool;
@@ -143,25 +145,25 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithContainerSize:)]
         pub unsafe fn initWithContainerSize(
             this: Option<Allocated<Self>>,
-            aContainerSize: NSSize,
+            aContainerSize: Foundation::NSSize,
         ) -> Id<Self, Shared>;
 
         #[method(containerSize)]
-        pub unsafe fn containerSize(&self) -> NSSize;
+        pub unsafe fn containerSize(&self) -> Foundation::NSSize;
 
         #[method(setContainerSize:)]
-        pub unsafe fn setContainerSize(&self, containerSize: NSSize);
+        pub unsafe fn setContainerSize(&self, containerSize: Foundation::NSSize);
 
         #[method(lineFragmentRectForProposedRect:sweepDirection:movementDirection:remainingRect:)]
         pub unsafe fn lineFragmentRectForProposedRect_sweepDirection_movementDirection_remainingRect(
             &self,
-            proposedRect: NSRect,
-            sweepDirection: NSLineSweepDirection,
-            movementDirection: NSLineMovementDirection,
-            remainingRect: NSRectPointer,
-        ) -> NSRect;
+            proposedRect: Foundation::NSRect,
+            sweepDirection: AppKit::NSLineSweepDirection,
+            movementDirection: AppKit::NSLineMovementDirection,
+            remainingRect: Foundation::NSRectPointer,
+        ) -> Foundation::NSRect;
 
         #[method(containsPoint:)]
-        pub unsafe fn containsPoint(&self, point: NSPoint) -> bool;
+        pub unsafe fn containsPoint(&self, point: Foundation::NSPoint) -> bool;
     }
 );

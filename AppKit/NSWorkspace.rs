@@ -136,7 +136,7 @@ extern_methods!(
             &self,
             image: Option<&AppKit::NSImage>,
             fullPath: &Foundation::NSString,
-            options: NSWorkspaceIconCreationOptions,
+            options: AppKit::NSWorkspaceIconCreationOptions,
         ) -> bool;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
@@ -484,7 +484,7 @@ extern_methods!(
         #[method(requestAuthorizationOfType:completionHandler:)]
         pub unsafe fn requestAuthorizationOfType_completionHandler(
             &self,
-            type_: NSWorkspaceAuthorizationType,
+            type_: AppKit::NSWorkspaceAuthorizationType,
             completionHandler: &Block<
                 (
                     *mut AppKit::NSWorkspaceAuthorization,
@@ -657,7 +657,7 @@ extern_methods!(
         pub unsafe fn launchApplicationAtURL_options_configuration_error(
             &self,
             url: &Foundation::NSURL,
-            options: NSWorkspaceLaunchOptions,
+            options: AppKit::NSWorkspaceLaunchOptions,
             configuration: &Foundation::NSDictionary<
                 AppKit::NSWorkspaceLaunchConfigurationKey,
                 Object,
@@ -674,7 +674,7 @@ extern_methods!(
         pub unsafe fn openURL_options_configuration_error(
             &self,
             url: &Foundation::NSURL,
-            options: NSWorkspaceLaunchOptions,
+            options: AppKit::NSWorkspaceLaunchOptions,
             configuration: &Foundation::NSDictionary<
                 AppKit::NSWorkspaceLaunchConfigurationKey,
                 Object,
@@ -693,7 +693,7 @@ extern_methods!(
             &self,
             urls: &Foundation::NSArray<Foundation::NSURL>,
             applicationURL: &Foundation::NSURL,
-            options: NSWorkspaceLaunchOptions,
+            options: AppKit::NSWorkspaceLaunchOptions,
             configuration: &Foundation::NSDictionary<
                 AppKit::NSWorkspaceLaunchConfigurationKey,
                 Object,
@@ -732,7 +732,7 @@ extern_methods!(
         pub unsafe fn launchAppWithBundleIdentifier_options_additionalEventParamDescriptor_launchIdentifier(
             &self,
             bundleIdentifier: &Foundation::NSString,
-            options: NSWorkspaceLaunchOptions,
+            options: AppKit::NSWorkspaceLaunchOptions,
             descriptor: Option<&Foundation::NSAppleEventDescriptor>,
             identifier: *mut *mut Foundation::NSNumber,
         ) -> bool;
@@ -749,7 +749,7 @@ extern_methods!(
             &self,
             urls: &Foundation::NSArray<Foundation::NSURL>,
             bundleIdentifier: Option<&Foundation::NSString>,
-            options: NSWorkspaceLaunchOptions,
+            options: AppKit::NSWorkspaceLaunchOptions,
             descriptor: Option<&Foundation::NSAppleEventDescriptor>,
             identifiers: *mut *mut Foundation::NSArray<Foundation::NSNumber>,
         ) -> bool;
@@ -769,8 +769,8 @@ extern_methods!(
         pub unsafe fn slideImage_from_to(
             &self,
             image: &AppKit::NSImage,
-            fromPoint: NSPoint,
-            toPoint: NSPoint,
+            fromPoint: Foundation::NSPoint,
+            toPoint: Foundation::NSPoint,
         );
 
         #[method(checkForRemovableMedia)]
@@ -812,7 +812,7 @@ extern_methods!(
             &self,
             fullPath: &Foundation::NSString,
             image: Option<&AppKit::NSImage>,
-            point: NSPoint,
+            point: Foundation::NSPoint,
             view: Option<&AppKit::NSView>,
         ) -> bool;
 

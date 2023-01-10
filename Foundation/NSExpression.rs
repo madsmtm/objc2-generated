@@ -139,7 +139,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithExpressionType:)]
         pub unsafe fn initWithExpressionType(
             this: Option<Allocated<Self>>,
-            type_: NSExpressionType,
+            type_: Foundation::NSExpressionType,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSCoder")]
@@ -150,7 +150,7 @@ extern_methods!(
         ) -> Option<Id<Self, Shared>>;
 
         #[method(expressionType)]
-        pub unsafe fn expressionType(&self) -> NSExpressionType;
+        pub unsafe fn expressionType(&self) -> Foundation::NSExpressionType;
 
         #[method_id(@__retain_semantics Other constantValue)]
         pub unsafe fn constantValue(&self) -> Option<Id<Object, Shared>>;

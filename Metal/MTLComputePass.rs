@@ -81,10 +81,10 @@ extern_methods!(
         pub unsafe fn computePassDescriptor() -> Id<Metal::MTLComputePassDescriptor, Shared>;
 
         #[method(dispatchType)]
-        pub unsafe fn dispatchType(&self) -> MTLDispatchType;
+        pub unsafe fn dispatchType(&self) -> Metal::MTLDispatchType;
 
         #[method(setDispatchType:)]
-        pub unsafe fn setDispatchType(&self, dispatchType: MTLDispatchType);
+        pub unsafe fn setDispatchType(&self, dispatchType: Metal::MTLDispatchType);
 
         #[cfg(feature = "Metal_MTLComputePassSampleBufferAttachmentDescriptorArray")]
         #[method_id(@__retain_semantics Other sampleBufferAttachments)]

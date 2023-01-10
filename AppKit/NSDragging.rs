@@ -65,13 +65,13 @@ extern_protocol!(
         pub unsafe fn draggingDestinationWindow(&self) -> Option<Id<AppKit::NSWindow, Shared>>;
 
         #[method(draggingSourceOperationMask)]
-        pub unsafe fn draggingSourceOperationMask(&self) -> NSDragOperation;
+        pub unsafe fn draggingSourceOperationMask(&self) -> AppKit::NSDragOperation;
 
         #[method(draggingLocation)]
-        pub unsafe fn draggingLocation(&self) -> NSPoint;
+        pub unsafe fn draggingLocation(&self) -> Foundation::NSPoint;
 
         #[method(draggedImageLocation)]
-        pub unsafe fn draggedImageLocation(&self) -> NSPoint;
+        pub unsafe fn draggedImageLocation(&self) -> Foundation::NSPoint;
 
         #[method_id(@__retain_semantics Other draggedImage)]
         pub unsafe fn draggedImage(&self) -> Option<Id<AppKit::NSImage, Shared>>;
@@ -86,7 +86,7 @@ extern_protocol!(
         pub unsafe fn draggingSequenceNumber(&self) -> NSInteger;
 
         #[method(slideDraggedImageTo:)]
-        pub unsafe fn slideDraggedImageTo(&self, screenPoint: NSPoint);
+        pub unsafe fn slideDraggedImageTo(&self, screenPoint: Foundation::NSPoint);
 
         #[method_id(@__retain_semantics Other namesOfPromisedFilesDroppedAtDestination:)]
         pub unsafe fn namesOfPromisedFilesDroppedAtDestination(
@@ -95,10 +95,10 @@ extern_protocol!(
         ) -> Option<Id<Foundation::NSArray<Foundation::NSString>, Shared>>;
 
         #[method(draggingFormation)]
-        pub unsafe fn draggingFormation(&self) -> NSDraggingFormation;
+        pub unsafe fn draggingFormation(&self) -> AppKit::NSDraggingFormation;
 
         #[method(setDraggingFormation:)]
-        pub unsafe fn setDraggingFormation(&self, draggingFormation: NSDraggingFormation);
+        pub unsafe fn setDraggingFormation(&self, draggingFormation: AppKit::NSDraggingFormation);
 
         #[method(animatesToDestination)]
         pub unsafe fn animatesToDestination(&self) -> bool;
@@ -115,7 +115,7 @@ extern_protocol!(
         #[method(enumerateDraggingItemsWithOptions:forView:classes:searchOptions:usingBlock:)]
         pub unsafe fn enumerateDraggingItemsWithOptions_forView_classes_searchOptions_usingBlock(
             &self,
-            enumOpts: NSDraggingItemEnumerationOptions,
+            enumOpts: AppKit::NSDraggingItemEnumerationOptions,
             view: Option<&AppKit::NSView>,
             classArray: &Foundation::NSArray<TodoClass>,
             searchOptions: &Foundation::NSDictionary<AppKit::NSPasteboardReadingOptionKey, Object>,
@@ -123,7 +123,7 @@ extern_protocol!(
         );
 
         #[method(springLoadingHighlight)]
-        pub unsafe fn springLoadingHighlight(&self) -> NSSpringLoadingHighlight;
+        pub unsafe fn springLoadingHighlight(&self) -> AppKit::NSSpringLoadingHighlight;
 
         #[method(resetSpringLoading)]
         pub unsafe fn resetSpringLoading(&self);
@@ -136,11 +136,17 @@ extern_protocol!(
     unsafe impl ProtocolType for NSDraggingDestination {
         #[optional]
         #[method(draggingEntered:)]
-        pub unsafe fn draggingEntered(&self, sender: &AppKit::NSDraggingInfo) -> NSDragOperation;
+        pub unsafe fn draggingEntered(
+            &self,
+            sender: &AppKit::NSDraggingInfo,
+        ) -> AppKit::NSDragOperation;
 
         #[optional]
         #[method(draggingUpdated:)]
-        pub unsafe fn draggingUpdated(&self, sender: &AppKit::NSDraggingInfo) -> NSDragOperation;
+        pub unsafe fn draggingUpdated(
+            &self,
+            sender: &AppKit::NSDraggingInfo,
+        ) -> AppKit::NSDragOperation;
 
         #[optional]
         #[method(draggingExited:)]
@@ -180,15 +186,15 @@ extern_protocol!(
         pub unsafe fn draggingSession_sourceOperationMaskForDraggingContext(
             &self,
             session: &AppKit::NSDraggingSession,
-            context: NSDraggingContext,
-        ) -> NSDragOperation;
+            context: AppKit::NSDraggingContext,
+        ) -> AppKit::NSDragOperation;
 
         #[optional]
         #[method(draggingSession:willBeginAtPoint:)]
         pub unsafe fn draggingSession_willBeginAtPoint(
             &self,
             session: &AppKit::NSDraggingSession,
-            screenPoint: NSPoint,
+            screenPoint: Foundation::NSPoint,
         );
 
         #[optional]
@@ -196,7 +202,7 @@ extern_protocol!(
         pub unsafe fn draggingSession_movedToPoint(
             &self,
             session: &AppKit::NSDraggingSession,
-            screenPoint: NSPoint,
+            screenPoint: Foundation::NSPoint,
         );
 
         #[optional]
@@ -204,8 +210,8 @@ extern_protocol!(
         pub unsafe fn draggingSession_endedAtPoint_operation(
             &self,
             session: &AppKit::NSDraggingSession,
-            screenPoint: NSPoint,
-            operation: NSDragOperation,
+            screenPoint: Foundation::NSPoint,
+            operation: AppKit::NSDragOperation,
         );
 
         #[optional]
@@ -246,14 +252,14 @@ extern_protocol!(
         pub unsafe fn springLoadingEntered(
             &self,
             draggingInfo: &AppKit::NSDraggingInfo,
-        ) -> NSSpringLoadingOptions;
+        ) -> AppKit::NSSpringLoadingOptions;
 
         #[optional]
         #[method(springLoadingUpdated:)]
         pub unsafe fn springLoadingUpdated(
             &self,
             draggingInfo: &AppKit::NSDraggingInfo,
-        ) -> NSSpringLoadingOptions;
+        ) -> AppKit::NSSpringLoadingOptions;
 
         #[optional]
         #[method(springLoadingExited:)]

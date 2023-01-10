@@ -48,7 +48,7 @@ extern_methods!(
         pub unsafe fn enqueueNotification_postingStyle(
             &self,
             notification: &Foundation::NSNotification,
-            postingStyle: NSPostingStyle,
+            postingStyle: Foundation::NSPostingStyle,
         );
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNotification"))]
@@ -56,8 +56,8 @@ extern_methods!(
         pub unsafe fn enqueueNotification_postingStyle_coalesceMask_forModes(
             &self,
             notification: &Foundation::NSNotification,
-            postingStyle: NSPostingStyle,
-            coalesceMask: NSNotificationCoalescing,
+            postingStyle: Foundation::NSPostingStyle,
+            coalesceMask: Foundation::NSNotificationCoalescing,
             modes: Option<&Foundation::NSArray<Foundation::NSRunLoopMode>>,
         );
 

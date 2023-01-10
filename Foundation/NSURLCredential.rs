@@ -26,7 +26,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSURLCredential")]
     unsafe impl NSURLCredential {
         #[method(persistence)]
-        pub unsafe fn persistence(&self) -> NSURLCredentialPersistence;
+        pub unsafe fn persistence(&self) -> Foundation::NSURLCredentialPersistence;
     }
 );
 
@@ -40,7 +40,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             user: &Foundation::NSString,
             password: &Foundation::NSString,
-            persistence: NSURLCredentialPersistence,
+            persistence: Foundation::NSURLCredentialPersistence,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -48,7 +48,7 @@ extern_methods!(
         pub unsafe fn credentialWithUser_password_persistence(
             user: &Foundation::NSString,
             password: &Foundation::NSString,
-            persistence: NSURLCredentialPersistence,
+            persistence: Foundation::NSURLCredentialPersistence,
         ) -> Id<Foundation::NSURLCredential, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]

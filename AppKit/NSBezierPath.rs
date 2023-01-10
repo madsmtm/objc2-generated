@@ -57,81 +57,91 @@ extern_methods!(
         pub unsafe fn bezierPath() -> Id<AppKit::NSBezierPath, Shared>;
 
         #[method_id(@__retain_semantics Other bezierPathWithRect:)]
-        pub unsafe fn bezierPathWithRect(rect: NSRect) -> Id<AppKit::NSBezierPath, Shared>;
+        pub unsafe fn bezierPathWithRect(
+            rect: Foundation::NSRect,
+        ) -> Id<AppKit::NSBezierPath, Shared>;
 
         #[method_id(@__retain_semantics Other bezierPathWithOvalInRect:)]
-        pub unsafe fn bezierPathWithOvalInRect(rect: NSRect) -> Id<AppKit::NSBezierPath, Shared>;
+        pub unsafe fn bezierPathWithOvalInRect(
+            rect: Foundation::NSRect,
+        ) -> Id<AppKit::NSBezierPath, Shared>;
 
         #[method_id(@__retain_semantics Other bezierPathWithRoundedRect:xRadius:yRadius:)]
         pub unsafe fn bezierPathWithRoundedRect_xRadius_yRadius(
-            rect: NSRect,
-            xRadius: CGFloat,
-            yRadius: CGFloat,
+            rect: Foundation::NSRect,
+            xRadius: CoreGraphics::CGFloat,
+            yRadius: CoreGraphics::CGFloat,
         ) -> Id<AppKit::NSBezierPath, Shared>;
 
         #[method(fillRect:)]
-        pub unsafe fn fillRect(rect: NSRect);
+        pub unsafe fn fillRect(rect: Foundation::NSRect);
 
         #[method(strokeRect:)]
-        pub unsafe fn strokeRect(rect: NSRect);
+        pub unsafe fn strokeRect(rect: Foundation::NSRect);
 
         #[method(clipRect:)]
-        pub unsafe fn clipRect(rect: NSRect);
+        pub unsafe fn clipRect(rect: Foundation::NSRect);
 
         #[method(strokeLineFromPoint:toPoint:)]
-        pub unsafe fn strokeLineFromPoint_toPoint(point1: NSPoint, point2: NSPoint);
+        pub unsafe fn strokeLineFromPoint_toPoint(
+            point1: Foundation::NSPoint,
+            point2: Foundation::NSPoint,
+        );
 
         #[method(drawPackedGlyphs:atPoint:)]
-        pub unsafe fn drawPackedGlyphs_atPoint(packedGlyphs: NonNull<c_char>, point: NSPoint);
+        pub unsafe fn drawPackedGlyphs_atPoint(
+            packedGlyphs: NonNull<c_char>,
+            point: Foundation::NSPoint,
+        );
 
         #[method(defaultMiterLimit)]
-        pub unsafe fn defaultMiterLimit() -> CGFloat;
+        pub unsafe fn defaultMiterLimit() -> CoreGraphics::CGFloat;
 
         #[method(setDefaultMiterLimit:)]
-        pub unsafe fn setDefaultMiterLimit(defaultMiterLimit: CGFloat);
+        pub unsafe fn setDefaultMiterLimit(defaultMiterLimit: CoreGraphics::CGFloat);
 
         #[method(defaultFlatness)]
-        pub unsafe fn defaultFlatness() -> CGFloat;
+        pub unsafe fn defaultFlatness() -> CoreGraphics::CGFloat;
 
         #[method(setDefaultFlatness:)]
-        pub unsafe fn setDefaultFlatness(defaultFlatness: CGFloat);
+        pub unsafe fn setDefaultFlatness(defaultFlatness: CoreGraphics::CGFloat);
 
         #[method(defaultWindingRule)]
-        pub unsafe fn defaultWindingRule() -> NSWindingRule;
+        pub unsafe fn defaultWindingRule() -> AppKit::NSWindingRule;
 
         #[method(setDefaultWindingRule:)]
-        pub unsafe fn setDefaultWindingRule(defaultWindingRule: NSWindingRule);
+        pub unsafe fn setDefaultWindingRule(defaultWindingRule: AppKit::NSWindingRule);
 
         #[method(defaultLineCapStyle)]
-        pub unsafe fn defaultLineCapStyle() -> NSLineCapStyle;
+        pub unsafe fn defaultLineCapStyle() -> AppKit::NSLineCapStyle;
 
         #[method(setDefaultLineCapStyle:)]
-        pub unsafe fn setDefaultLineCapStyle(defaultLineCapStyle: NSLineCapStyle);
+        pub unsafe fn setDefaultLineCapStyle(defaultLineCapStyle: AppKit::NSLineCapStyle);
 
         #[method(defaultLineJoinStyle)]
-        pub unsafe fn defaultLineJoinStyle() -> NSLineJoinStyle;
+        pub unsafe fn defaultLineJoinStyle() -> AppKit::NSLineJoinStyle;
 
         #[method(setDefaultLineJoinStyle:)]
-        pub unsafe fn setDefaultLineJoinStyle(defaultLineJoinStyle: NSLineJoinStyle);
+        pub unsafe fn setDefaultLineJoinStyle(defaultLineJoinStyle: AppKit::NSLineJoinStyle);
 
         #[method(defaultLineWidth)]
-        pub unsafe fn defaultLineWidth() -> CGFloat;
+        pub unsafe fn defaultLineWidth() -> CoreGraphics::CGFloat;
 
         #[method(setDefaultLineWidth:)]
-        pub unsafe fn setDefaultLineWidth(defaultLineWidth: CGFloat);
+        pub unsafe fn setDefaultLineWidth(defaultLineWidth: CoreGraphics::CGFloat);
 
         #[method(moveToPoint:)]
-        pub unsafe fn moveToPoint(&self, point: NSPoint);
+        pub unsafe fn moveToPoint(&self, point: Foundation::NSPoint);
 
         #[method(lineToPoint:)]
-        pub unsafe fn lineToPoint(&self, point: NSPoint);
+        pub unsafe fn lineToPoint(&self, point: Foundation::NSPoint);
 
         #[method(curveToPoint:controlPoint1:controlPoint2:)]
         pub unsafe fn curveToPoint_controlPoint1_controlPoint2(
             &self,
-            endPoint: NSPoint,
-            controlPoint1: NSPoint,
-            controlPoint2: NSPoint,
+            endPoint: Foundation::NSPoint,
+            controlPoint1: Foundation::NSPoint,
+            controlPoint2: Foundation::NSPoint,
         );
 
         #[method(closePath)]
@@ -141,69 +151,69 @@ extern_methods!(
         pub unsafe fn removeAllPoints(&self);
 
         #[method(relativeMoveToPoint:)]
-        pub unsafe fn relativeMoveToPoint(&self, point: NSPoint);
+        pub unsafe fn relativeMoveToPoint(&self, point: Foundation::NSPoint);
 
         #[method(relativeLineToPoint:)]
-        pub unsafe fn relativeLineToPoint(&self, point: NSPoint);
+        pub unsafe fn relativeLineToPoint(&self, point: Foundation::NSPoint);
 
         #[method(relativeCurveToPoint:controlPoint1:controlPoint2:)]
         pub unsafe fn relativeCurveToPoint_controlPoint1_controlPoint2(
             &self,
-            endPoint: NSPoint,
-            controlPoint1: NSPoint,
-            controlPoint2: NSPoint,
+            endPoint: Foundation::NSPoint,
+            controlPoint1: Foundation::NSPoint,
+            controlPoint2: Foundation::NSPoint,
         );
 
         #[method(lineWidth)]
-        pub unsafe fn lineWidth(&self) -> CGFloat;
+        pub unsafe fn lineWidth(&self) -> CoreGraphics::CGFloat;
 
         #[method(setLineWidth:)]
-        pub unsafe fn setLineWidth(&self, lineWidth: CGFloat);
+        pub unsafe fn setLineWidth(&self, lineWidth: CoreGraphics::CGFloat);
 
         #[method(lineCapStyle)]
-        pub unsafe fn lineCapStyle(&self) -> NSLineCapStyle;
+        pub unsafe fn lineCapStyle(&self) -> AppKit::NSLineCapStyle;
 
         #[method(setLineCapStyle:)]
-        pub unsafe fn setLineCapStyle(&self, lineCapStyle: NSLineCapStyle);
+        pub unsafe fn setLineCapStyle(&self, lineCapStyle: AppKit::NSLineCapStyle);
 
         #[method(lineJoinStyle)]
-        pub unsafe fn lineJoinStyle(&self) -> NSLineJoinStyle;
+        pub unsafe fn lineJoinStyle(&self) -> AppKit::NSLineJoinStyle;
 
         #[method(setLineJoinStyle:)]
-        pub unsafe fn setLineJoinStyle(&self, lineJoinStyle: NSLineJoinStyle);
+        pub unsafe fn setLineJoinStyle(&self, lineJoinStyle: AppKit::NSLineJoinStyle);
 
         #[method(windingRule)]
-        pub unsafe fn windingRule(&self) -> NSWindingRule;
+        pub unsafe fn windingRule(&self) -> AppKit::NSWindingRule;
 
         #[method(setWindingRule:)]
-        pub unsafe fn setWindingRule(&self, windingRule: NSWindingRule);
+        pub unsafe fn setWindingRule(&self, windingRule: AppKit::NSWindingRule);
 
         #[method(miterLimit)]
-        pub unsafe fn miterLimit(&self) -> CGFloat;
+        pub unsafe fn miterLimit(&self) -> CoreGraphics::CGFloat;
 
         #[method(setMiterLimit:)]
-        pub unsafe fn setMiterLimit(&self, miterLimit: CGFloat);
+        pub unsafe fn setMiterLimit(&self, miterLimit: CoreGraphics::CGFloat);
 
         #[method(flatness)]
-        pub unsafe fn flatness(&self) -> CGFloat;
+        pub unsafe fn flatness(&self) -> CoreGraphics::CGFloat;
 
         #[method(setFlatness:)]
-        pub unsafe fn setFlatness(&self, flatness: CGFloat);
+        pub unsafe fn setFlatness(&self, flatness: CoreGraphics::CGFloat);
 
         #[method(getLineDash:count:phase:)]
         pub unsafe fn getLineDash_count_phase(
             &self,
-            pattern: *mut CGFloat,
+            pattern: *mut CoreGraphics::CGFloat,
             count: *mut NSInteger,
-            phase: *mut CGFloat,
+            phase: *mut CoreGraphics::CGFloat,
         );
 
         #[method(setLineDash:count:phase:)]
         pub unsafe fn setLineDash_count_phase(
             &self,
-            pattern: *mut CGFloat,
+            pattern: *mut CoreGraphics::CGFloat,
             count: NSInteger,
-            phase: CGFloat,
+            phase: CoreGraphics::CGFloat,
         );
 
         #[method(stroke)]
@@ -235,13 +245,13 @@ extern_methods!(
         pub unsafe fn isEmpty(&self) -> bool;
 
         #[method(currentPoint)]
-        pub unsafe fn currentPoint(&self) -> NSPoint;
+        pub unsafe fn currentPoint(&self) -> Foundation::NSPoint;
 
         #[method(controlPointBounds)]
-        pub unsafe fn controlPointBounds(&self) -> NSRect;
+        pub unsafe fn controlPointBounds(&self) -> Foundation::NSRect;
 
         #[method(bounds)]
-        pub unsafe fn bounds(&self) -> NSRect;
+        pub unsafe fn bounds(&self) -> Foundation::NSRect;
 
         #[method(elementCount)]
         pub unsafe fn elementCount(&self) -> NSInteger;
@@ -250,68 +260,72 @@ extern_methods!(
         pub unsafe fn elementAtIndex_associatedPoints(
             &self,
             index: NSInteger,
-            points: NSPointArray,
-        ) -> NSBezierPathElement;
+            points: Foundation::NSPointArray,
+        ) -> AppKit::NSBezierPathElement;
 
         #[method(elementAtIndex:)]
-        pub unsafe fn elementAtIndex(&self, index: NSInteger) -> NSBezierPathElement;
+        pub unsafe fn elementAtIndex(&self, index: NSInteger) -> AppKit::NSBezierPathElement;
 
         #[method(setAssociatedPoints:atIndex:)]
-        pub unsafe fn setAssociatedPoints_atIndex(&self, points: NSPointArray, index: NSInteger);
+        pub unsafe fn setAssociatedPoints_atIndex(
+            &self,
+            points: Foundation::NSPointArray,
+            index: NSInteger,
+        );
 
         #[method(appendBezierPath:)]
         pub unsafe fn appendBezierPath(&self, path: &AppKit::NSBezierPath);
 
         #[method(appendBezierPathWithRect:)]
-        pub unsafe fn appendBezierPathWithRect(&self, rect: NSRect);
+        pub unsafe fn appendBezierPathWithRect(&self, rect: Foundation::NSRect);
 
         #[method(appendBezierPathWithPoints:count:)]
         pub unsafe fn appendBezierPathWithPoints_count(
             &self,
-            points: NSPointArray,
+            points: Foundation::NSPointArray,
             count: NSInteger,
         );
 
         #[method(appendBezierPathWithOvalInRect:)]
-        pub unsafe fn appendBezierPathWithOvalInRect(&self, rect: NSRect);
+        pub unsafe fn appendBezierPathWithOvalInRect(&self, rect: Foundation::NSRect);
 
         #[method(appendBezierPathWithArcWithCenter:radius:startAngle:endAngle:clockwise:)]
         pub unsafe fn appendBezierPathWithArcWithCenter_radius_startAngle_endAngle_clockwise(
             &self,
-            center: NSPoint,
-            radius: CGFloat,
-            startAngle: CGFloat,
-            endAngle: CGFloat,
+            center: Foundation::NSPoint,
+            radius: CoreGraphics::CGFloat,
+            startAngle: CoreGraphics::CGFloat,
+            endAngle: CoreGraphics::CGFloat,
             clockwise: bool,
         );
 
         #[method(appendBezierPathWithArcWithCenter:radius:startAngle:endAngle:)]
         pub unsafe fn appendBezierPathWithArcWithCenter_radius_startAngle_endAngle(
             &self,
-            center: NSPoint,
-            radius: CGFloat,
-            startAngle: CGFloat,
-            endAngle: CGFloat,
+            center: Foundation::NSPoint,
+            radius: CoreGraphics::CGFloat,
+            startAngle: CoreGraphics::CGFloat,
+            endAngle: CoreGraphics::CGFloat,
         );
 
         #[method(appendBezierPathWithArcFromPoint:toPoint:radius:)]
         pub unsafe fn appendBezierPathWithArcFromPoint_toPoint_radius(
             &self,
-            point1: NSPoint,
-            point2: NSPoint,
-            radius: CGFloat,
+            point1: Foundation::NSPoint,
+            point2: Foundation::NSPoint,
+            radius: CoreGraphics::CGFloat,
         );
 
         #[method(appendBezierPathWithRoundedRect:xRadius:yRadius:)]
         pub unsafe fn appendBezierPathWithRoundedRect_xRadius_yRadius(
             &self,
-            rect: NSRect,
-            xRadius: CGFloat,
-            yRadius: CGFloat,
+            rect: Foundation::NSRect,
+            xRadius: CoreGraphics::CGFloat,
+            yRadius: CoreGraphics::CGFloat,
         );
 
         #[method(containsPoint:)]
-        pub unsafe fn containsPoint(&self, point: NSPoint) -> bool;
+        pub unsafe fn containsPoint(&self, point: Foundation::NSPoint) -> bool;
     }
 );
 
@@ -329,7 +343,7 @@ extern_methods!(
         #[method(appendBezierPathWithGlyph:inFont:)]
         pub unsafe fn appendBezierPathWithGlyph_inFont(
             &self,
-            glyph: NSGlyph,
+            glyph: AppKit::NSGlyph,
             font: &AppKit::NSFont,
         );
 
@@ -337,7 +351,7 @@ extern_methods!(
         #[method(appendBezierPathWithGlyphs:count:inFont:)]
         pub unsafe fn appendBezierPathWithGlyphs_count_inFont(
             &self,
-            glyphs: NonNull<NSGlyph>,
+            glyphs: NonNull<AppKit::NSGlyph>,
             count: NSInteger,
             font: &AppKit::NSFont,
         );
@@ -347,26 +361,30 @@ extern_methods!(
     }
 );
 
-extern_static!(NSButtLineCapStyle: NSLineCapStyle = NSLineCapStyleButt);
+extern_static!(NSButtLineCapStyle: AppKit::NSLineCapStyle = NSLineCapStyleButt);
 
-extern_static!(NSRoundLineCapStyle: NSLineCapStyle = NSLineCapStyleRound);
+extern_static!(NSRoundLineCapStyle: AppKit::NSLineCapStyle = NSLineCapStyleRound);
 
-extern_static!(NSSquareLineCapStyle: NSLineCapStyle = NSLineCapStyleSquare);
+extern_static!(NSSquareLineCapStyle: AppKit::NSLineCapStyle = NSLineCapStyleSquare);
 
-extern_static!(NSMiterLineJoinStyle: NSLineJoinStyle = NSLineJoinStyleMiter);
+extern_static!(NSMiterLineJoinStyle: AppKit::NSLineJoinStyle = NSLineJoinStyleMiter);
 
-extern_static!(NSRoundLineJoinStyle: NSLineJoinStyle = NSLineJoinStyleRound);
+extern_static!(NSRoundLineJoinStyle: AppKit::NSLineJoinStyle = NSLineJoinStyleRound);
 
-extern_static!(NSBevelLineJoinStyle: NSLineJoinStyle = NSLineJoinStyleBevel);
+extern_static!(NSBevelLineJoinStyle: AppKit::NSLineJoinStyle = NSLineJoinStyleBevel);
 
-extern_static!(NSNonZeroWindingRule: NSWindingRule = NSWindingRuleNonZero);
+extern_static!(NSNonZeroWindingRule: AppKit::NSWindingRule = NSWindingRuleNonZero);
 
-extern_static!(NSEvenOddWindingRule: NSWindingRule = NSWindingRuleEvenOdd);
+extern_static!(NSEvenOddWindingRule: AppKit::NSWindingRule = NSWindingRuleEvenOdd);
 
-extern_static!(NSMoveToBezierPathElement: NSBezierPathElement = NSBezierPathElementMoveTo);
+extern_static!(NSMoveToBezierPathElement: AppKit::NSBezierPathElement = NSBezierPathElementMoveTo);
 
-extern_static!(NSLineToBezierPathElement: NSBezierPathElement = NSBezierPathElementLineTo);
+extern_static!(NSLineToBezierPathElement: AppKit::NSBezierPathElement = NSBezierPathElementLineTo);
 
-extern_static!(NSCurveToBezierPathElement: NSBezierPathElement = NSBezierPathElementCurveTo);
+extern_static!(
+    NSCurveToBezierPathElement: AppKit::NSBezierPathElement = NSBezierPathElementCurveTo
+);
 
-extern_static!(NSClosePathBezierPathElement: NSBezierPathElement = NSBezierPathElementClosePath);
+extern_static!(
+    NSClosePathBezierPathElement: AppKit::NSBezierPathElement = NSBezierPathElementClosePath
+);

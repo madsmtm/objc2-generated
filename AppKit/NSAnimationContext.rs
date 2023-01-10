@@ -38,10 +38,10 @@ extern_methods!(
         pub unsafe fn currentContext() -> Id<AppKit::NSAnimationContext, Shared>;
 
         #[method(duration)]
-        pub unsafe fn duration(&self) -> NSTimeInterval;
+        pub unsafe fn duration(&self) -> Foundation::NSTimeInterval;
 
         #[method(setDuration:)]
-        pub unsafe fn setDuration(&self, duration: NSTimeInterval);
+        pub unsafe fn setDuration(&self, duration: Foundation::NSTimeInterval);
 
         #[method(completionHandler)]
         pub unsafe fn completionHandler(&self) -> *mut Block<(), ()>;

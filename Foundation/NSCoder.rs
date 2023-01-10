@@ -112,10 +112,10 @@ extern_methods!(
         pub unsafe fn decodePropertyList(&self) -> Option<Id<Object, Shared>>;
 
         #[method(setObjectZone:)]
-        pub unsafe fn setObjectZone(&self, zone: *mut NSZone);
+        pub unsafe fn setObjectZone(&self, zone: *mut Foundation::NSZone);
 
         #[method(objectZone)]
-        pub unsafe fn objectZone(&self) -> *mut NSZone;
+        pub unsafe fn objectZone(&self) -> *mut Foundation::NSZone;
 
         #[method(systemVersion)]
         pub unsafe fn systemVersion(&self) -> c_uint;
@@ -327,7 +327,7 @@ extern_methods!(
         pub unsafe fn failWithError(&self, error: &Foundation::NSError);
 
         #[method(decodingFailurePolicy)]
-        pub unsafe fn decodingFailurePolicy(&self) -> NSDecodingFailurePolicy;
+        pub unsafe fn decodingFailurePolicy(&self) -> Foundation::NSDecodingFailurePolicy;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other error)]

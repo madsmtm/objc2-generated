@@ -19,12 +19,12 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTableRowView")]
     unsafe impl NSTableRowView {
         #[method(selectionHighlightStyle)]
-        pub unsafe fn selectionHighlightStyle(&self) -> NSTableViewSelectionHighlightStyle;
+        pub unsafe fn selectionHighlightStyle(&self) -> AppKit::NSTableViewSelectionHighlightStyle;
 
         #[method(setSelectionHighlightStyle:)]
         pub unsafe fn setSelectionHighlightStyle(
             &self,
-            selectionHighlightStyle: NSTableViewSelectionHighlightStyle,
+            selectionHighlightStyle: AppKit::NSTableViewSelectionHighlightStyle,
         );
 
         #[method(isEmphasized)]
@@ -72,22 +72,25 @@ extern_methods!(
         #[method(draggingDestinationFeedbackStyle)]
         pub unsafe fn draggingDestinationFeedbackStyle(
             &self,
-        ) -> NSTableViewDraggingDestinationFeedbackStyle;
+        ) -> AppKit::NSTableViewDraggingDestinationFeedbackStyle;
 
         #[method(setDraggingDestinationFeedbackStyle:)]
         pub unsafe fn setDraggingDestinationFeedbackStyle(
             &self,
-            draggingDestinationFeedbackStyle: NSTableViewDraggingDestinationFeedbackStyle,
+            draggingDestinationFeedbackStyle: AppKit::NSTableViewDraggingDestinationFeedbackStyle,
         );
 
         #[method(indentationForDropOperation)]
-        pub unsafe fn indentationForDropOperation(&self) -> CGFloat;
+        pub unsafe fn indentationForDropOperation(&self) -> CoreGraphics::CGFloat;
 
         #[method(setIndentationForDropOperation:)]
-        pub unsafe fn setIndentationForDropOperation(&self, indentationForDropOperation: CGFloat);
+        pub unsafe fn setIndentationForDropOperation(
+            &self,
+            indentationForDropOperation: CoreGraphics::CGFloat,
+        );
 
         #[method(interiorBackgroundStyle)]
-        pub unsafe fn interiorBackgroundStyle(&self) -> NSBackgroundStyle;
+        pub unsafe fn interiorBackgroundStyle(&self) -> AppKit::NSBackgroundStyle;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other backgroundColor)]
@@ -98,16 +101,16 @@ extern_methods!(
         pub unsafe fn setBackgroundColor(&self, backgroundColor: &AppKit::NSColor);
 
         #[method(drawBackgroundInRect:)]
-        pub unsafe fn drawBackgroundInRect(&self, dirtyRect: NSRect);
+        pub unsafe fn drawBackgroundInRect(&self, dirtyRect: Foundation::NSRect);
 
         #[method(drawSelectionInRect:)]
-        pub unsafe fn drawSelectionInRect(&self, dirtyRect: NSRect);
+        pub unsafe fn drawSelectionInRect(&self, dirtyRect: Foundation::NSRect);
 
         #[method(drawSeparatorInRect:)]
-        pub unsafe fn drawSeparatorInRect(&self, dirtyRect: NSRect);
+        pub unsafe fn drawSeparatorInRect(&self, dirtyRect: Foundation::NSRect);
 
         #[method(drawDraggingDestinationFeedbackInRect:)]
-        pub unsafe fn drawDraggingDestinationFeedbackInRect(&self, dirtyRect: NSRect);
+        pub unsafe fn drawDraggingDestinationFeedbackInRect(&self, dirtyRect: Foundation::NSRect);
 
         #[method_id(@__retain_semantics Other viewAtColumn:)]
         pub unsafe fn viewAtColumn(&self, column: NSInteger) -> Option<Id<Object, Shared>>;
@@ -124,7 +127,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frameRect: Foundation::NSRect,
         ) -> Id<Self, Shared>;
     }
 );

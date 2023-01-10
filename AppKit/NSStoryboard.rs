@@ -39,7 +39,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other instantiateInitialControllerWithCreator:)]
         pub unsafe fn instantiateInitialControllerWithCreator(
             &self,
-            block: NSStoryboardControllerCreator,
+            block: AppKit::NSStoryboardControllerCreator,
         ) -> Option<Id<Object, Shared>>;
 
         #[method_id(@__retain_semantics Other instantiateControllerWithIdentifier:)]
@@ -52,7 +52,7 @@ extern_methods!(
         pub unsafe fn instantiateControllerWithIdentifier_creator(
             &self,
             identifier: &AppKit::NSStoryboardSceneIdentifier,
-            block: NSStoryboardControllerCreator,
+            block: AppKit::NSStoryboardControllerCreator,
         ) -> Id<Object, Shared>;
     }
 );

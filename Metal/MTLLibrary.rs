@@ -33,7 +33,7 @@ extern_methods!(
         pub fn attributeIndex(&self) -> NSUInteger;
 
         #[method(attributeType)]
-        pub fn attributeType(&self) -> MTLDataType;
+        pub fn attributeType(&self) -> Metal::MTLDataType;
 
         #[method(isActive)]
         pub fn isActive(&self) -> bool;
@@ -66,7 +66,7 @@ extern_methods!(
         pub fn attributeIndex(&self) -> NSUInteger;
 
         #[method(attributeType)]
-        pub fn attributeType(&self) -> MTLDataType;
+        pub fn attributeType(&self) -> Metal::MTLDataType;
 
         #[method(isActive)]
         pub fn isActive(&self) -> bool;
@@ -107,7 +107,7 @@ extern_methods!(
         pub fn name(&self) -> Id<Foundation::NSString, Shared>;
 
         #[method(type)]
-        pub unsafe fn type_(&self) -> MTLDataType;
+        pub unsafe fn type_(&self) -> Metal::MTLDataType;
 
         #[method(index)]
         pub fn index(&self) -> NSUInteger;
@@ -131,10 +131,10 @@ extern_protocol!(
         pub fn device(&self) -> Id<Metal::MTLDevice, Shared>;
 
         #[method(functionType)]
-        pub fn functionType(&self) -> MTLFunctionType;
+        pub fn functionType(&self) -> Metal::MTLFunctionType;
 
         #[method(patchType)]
-        pub fn patchType(&self) -> MTLPatchType;
+        pub fn patchType(&self) -> Metal::MTLPatchType;
 
         #[method(patchControlPointCount)]
         pub fn patchControlPointCount(&self) -> NSInteger;
@@ -164,7 +164,7 @@ extern_protocol!(
         ) -> Id<Metal::MTLArgumentEncoder, Shared>;
 
         #[method(options)]
-        pub fn options(&self) -> MTLFunctionOptions;
+        pub fn options(&self) -> Metal::MTLFunctionOptions;
     }
 );
 
@@ -222,16 +222,16 @@ extern_methods!(
         pub fn setFastMathEnabled(&self, fastMathEnabled: bool);
 
         #[method(languageVersion)]
-        pub fn languageVersion(&self) -> MTLLanguageVersion;
+        pub fn languageVersion(&self) -> Metal::MTLLanguageVersion;
 
         #[method(setLanguageVersion:)]
-        pub fn setLanguageVersion(&self, languageVersion: MTLLanguageVersion);
+        pub fn setLanguageVersion(&self, languageVersion: Metal::MTLLanguageVersion);
 
         #[method(libraryType)]
-        pub fn libraryType(&self) -> MTLLibraryType;
+        pub fn libraryType(&self) -> Metal::MTLLibraryType;
 
         #[method(setLibraryType:)]
-        pub fn setLibraryType(&self, libraryType: MTLLibraryType);
+        pub fn setLibraryType(&self, libraryType: Metal::MTLLibraryType);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other installName)]
@@ -340,7 +340,7 @@ extern_protocol!(
         pub fn functionNames(&self) -> Id<Foundation::NSArray<Foundation::NSString>, Shared>;
 
         #[method(type)]
-        pub unsafe fn type_(&self) -> MTLLibraryType;
+        pub unsafe fn type_(&self) -> Metal::MTLLibraryType;
 
         #[method_id(@__retain_semantics Other installName)]
         pub fn installName(&self) -> Option<Id<Foundation::NSString, Shared>>;

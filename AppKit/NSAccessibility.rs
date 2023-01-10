@@ -44,14 +44,17 @@ extern_static!(
 );
 
 extern_fn!(
-    pub unsafe fn NSAccessibilityFrameInView(parentView: &AppKit::NSView, frame: NSRect) -> NSRect;
+    pub unsafe fn NSAccessibilityFrameInView(
+        parentView: &AppKit::NSView,
+        frame: Foundation::NSRect,
+    ) -> Foundation::NSRect;
 );
 
 extern_fn!(
     pub unsafe fn NSAccessibilityPointInView(
         parentView: &AppKit::NSView,
-        point: NSPoint,
-    ) -> NSPoint;
+        point: Foundation::NSPoint,
+    ) -> Foundation::NSPoint;
 );
 
 extern_fn!(

@@ -43,6 +43,6 @@ extern_methods!(
         pub unsafe fn enableCollectorForPointer(&self, ptr: NonNull<c_void>);
 
         #[method(zone)]
-        pub unsafe fn zone(&self) -> NonNull<NSZone>;
+        pub unsafe fn zone(&self) -> NonNull<Foundation::NSZone>;
     }
 );

@@ -41,6 +41,6 @@ extern_methods!(
         );
 
         #[method(requestType)]
-        pub unsafe fn requestType(&self) -> NSPersistentStoreRequestType;
+        pub unsafe fn requestType(&self) -> CoreData::NSPersistentStoreRequestType;
     }
 );

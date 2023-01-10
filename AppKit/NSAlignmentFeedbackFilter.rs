@@ -24,7 +24,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSAlignmentFeedbackFilter")]
     unsafe impl NSAlignmentFeedbackFilter {
         #[method(inputEventMask)]
-        pub unsafe fn inputEventMask() -> NSEventMask;
+        pub unsafe fn inputEventMask() -> AppKit::NSEventMask;
 
         #[cfg(feature = "AppKit_NSEvent")]
         #[method(updateWithEvent:)]
@@ -42,9 +42,9 @@ extern_methods!(
         pub unsafe fn alignmentFeedbackTokenForMovementInView_previousPoint_alignedPoint_defaultPoint(
             &self,
             view: Option<&AppKit::NSView>,
-            previousPoint: NSPoint,
-            alignedPoint: NSPoint,
-            defaultPoint: NSPoint,
+            previousPoint: Foundation::NSPoint,
+            alignedPoint: Foundation::NSPoint,
+            defaultPoint: Foundation::NSPoint,
         ) -> Option<Id<AppKit::NSAlignmentFeedbackToken, Shared>>;
 
         #[cfg(feature = "AppKit_NSView")]
@@ -52,9 +52,9 @@ extern_methods!(
         pub unsafe fn alignmentFeedbackTokenForHorizontalMovementInView_previousX_alignedX_defaultX(
             &self,
             view: Option<&AppKit::NSView>,
-            previousX: CGFloat,
-            alignedX: CGFloat,
-            defaultX: CGFloat,
+            previousX: CoreGraphics::CGFloat,
+            alignedX: CoreGraphics::CGFloat,
+            defaultX: CoreGraphics::CGFloat,
         ) -> Option<Id<AppKit::NSAlignmentFeedbackToken, Shared>>;
 
         #[cfg(feature = "AppKit_NSView")]
@@ -62,9 +62,9 @@ extern_methods!(
         pub unsafe fn alignmentFeedbackTokenForVerticalMovementInView_previousY_alignedY_defaultY(
             &self,
             view: Option<&AppKit::NSView>,
-            previousY: CGFloat,
-            alignedY: CGFloat,
-            defaultY: CGFloat,
+            previousY: CoreGraphics::CGFloat,
+            alignedY: CoreGraphics::CGFloat,
+            defaultY: CoreGraphics::CGFloat,
         ) -> Option<Id<AppKit::NSAlignmentFeedbackToken, Shared>>;
 
         #[cfg(feature = "Foundation_NSArray")]
@@ -72,7 +72,7 @@ extern_methods!(
         pub unsafe fn performFeedback_performanceTime(
             &self,
             alignmentFeedbackTokens: &Foundation::NSArray<AppKit::NSAlignmentFeedbackToken>,
-            performanceTime: NSHapticFeedbackPerformanceTime,
+            performanceTime: AppKit::NSHapticFeedbackPerformanceTime,
         );
     }
 );

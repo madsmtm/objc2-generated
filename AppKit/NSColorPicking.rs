@@ -39,13 +39,13 @@ extern_protocol!(
         pub unsafe fn detachColorList(&self, colorList: &AppKit::NSColorList);
 
         #[method(setMode:)]
-        pub unsafe fn setMode(&self, mode: NSColorPanelMode);
+        pub unsafe fn setMode(&self, mode: AppKit::NSColorPanelMode);
 
         #[method_id(@__retain_semantics Other buttonToolTip)]
         pub unsafe fn buttonToolTip(&self) -> Id<Foundation::NSString, Shared>;
 
         #[method(minContentSize)]
-        pub unsafe fn minContentSize(&self) -> NSSize;
+        pub unsafe fn minContentSize(&self) -> Foundation::NSSize;
     }
 );
 
@@ -54,10 +54,10 @@ extern_protocol!(
 
     unsafe impl ProtocolType for NSColorPickingCustom {
         #[method(supportsMode:)]
-        pub unsafe fn supportsMode(&self, mode: NSColorPanelMode) -> bool;
+        pub unsafe fn supportsMode(&self, mode: AppKit::NSColorPanelMode) -> bool;
 
         #[method(currentMode)]
-        pub unsafe fn currentMode(&self) -> NSColorPanelMode;
+        pub unsafe fn currentMode(&self) -> AppKit::NSColorPanelMode;
 
         #[method_id(@__retain_semantics Other provideNewView:)]
         pub unsafe fn provideNewView(&self, initialRequest: bool) -> Id<AppKit::NSView, Shared>;

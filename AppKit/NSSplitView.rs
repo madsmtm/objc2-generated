@@ -36,10 +36,10 @@ extern_methods!(
         pub unsafe fn setVertical(&self, vertical: bool);
 
         #[method(dividerStyle)]
-        pub unsafe fn dividerStyle(&self) -> NSSplitViewDividerStyle;
+        pub unsafe fn dividerStyle(&self) -> AppKit::NSSplitViewDividerStyle;
 
         #[method(setDividerStyle:)]
-        pub unsafe fn setDividerStyle(&self, dividerStyle: NSSplitViewDividerStyle);
+        pub unsafe fn setDividerStyle(&self, dividerStyle: AppKit::NSSplitViewDividerStyle);
 
         #[method_id(@__retain_semantics Other autosaveName)]
         pub unsafe fn autosaveName(&self) -> Option<Id<AppKit::NSSplitViewAutosaveName, Shared>>;
@@ -57,14 +57,14 @@ extern_methods!(
         pub unsafe fn setDelegate(&self, delegate: Option<&AppKit::NSSplitViewDelegate>);
 
         #[method(drawDividerInRect:)]
-        pub unsafe fn drawDividerInRect(&self, rect: NSRect);
+        pub unsafe fn drawDividerInRect(&self, rect: Foundation::NSRect);
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other dividerColor)]
         pub unsafe fn dividerColor(&self) -> Id<AppKit::NSColor, Shared>;
 
         #[method(dividerThickness)]
-        pub unsafe fn dividerThickness(&self) -> CGFloat;
+        pub unsafe fn dividerThickness(&self) -> CoreGraphics::CGFloat;
 
         #[method(adjustSubviews)]
         pub unsafe fn adjustSubviews(&self);
@@ -76,18 +76,18 @@ extern_methods!(
         pub unsafe fn minPossiblePositionOfDividerAtIndex(
             &self,
             dividerIndex: NSInteger,
-        ) -> CGFloat;
+        ) -> CoreGraphics::CGFloat;
 
         #[method(maxPossiblePositionOfDividerAtIndex:)]
         pub unsafe fn maxPossiblePositionOfDividerAtIndex(
             &self,
             dividerIndex: NSInteger,
-        ) -> CGFloat;
+        ) -> CoreGraphics::CGFloat;
 
         #[method(setPosition:ofDividerAtIndex:)]
         pub unsafe fn setPosition_ofDividerAtIndex(
             &self,
-            position: CGFloat,
+            position: CoreGraphics::CGFloat,
             dividerIndex: NSInteger,
         );
 
@@ -95,12 +95,12 @@ extern_methods!(
         pub unsafe fn holdingPriorityForSubviewAtIndex(
             &self,
             subviewIndex: NSInteger,
-        ) -> NSLayoutPriority;
+        ) -> AppKit::NSLayoutPriority;
 
         #[method(setHoldingPriority:forSubviewAtIndex:)]
         pub unsafe fn setHoldingPriority_forSubviewAtIndex(
             &self,
-            priority: NSLayoutPriority,
+            priority: AppKit::NSLayoutPriority,
             subviewIndex: NSInteger,
         );
     }
@@ -160,34 +160,34 @@ extern_protocol!(
         pub unsafe fn splitView_constrainMinCoordinate_ofSubviewAt(
             &self,
             splitView: &AppKit::NSSplitView,
-            proposedMinimumPosition: CGFloat,
+            proposedMinimumPosition: CoreGraphics::CGFloat,
             dividerIndex: NSInteger,
-        ) -> CGFloat;
+        ) -> CoreGraphics::CGFloat;
 
         #[optional]
         #[method(splitView:constrainMaxCoordinate:ofSubviewAt:)]
         pub unsafe fn splitView_constrainMaxCoordinate_ofSubviewAt(
             &self,
             splitView: &AppKit::NSSplitView,
-            proposedMaximumPosition: CGFloat,
+            proposedMaximumPosition: CoreGraphics::CGFloat,
             dividerIndex: NSInteger,
-        ) -> CGFloat;
+        ) -> CoreGraphics::CGFloat;
 
         #[optional]
         #[method(splitView:constrainSplitPosition:ofSubviewAt:)]
         pub unsafe fn splitView_constrainSplitPosition_ofSubviewAt(
             &self,
             splitView: &AppKit::NSSplitView,
-            proposedPosition: CGFloat,
+            proposedPosition: CoreGraphics::CGFloat,
             dividerIndex: NSInteger,
-        ) -> CGFloat;
+        ) -> CoreGraphics::CGFloat;
 
         #[optional]
         #[method(splitView:resizeSubviewsWithOldSize:)]
         pub unsafe fn splitView_resizeSubviewsWithOldSize(
             &self,
             splitView: &AppKit::NSSplitView,
-            oldSize: NSSize,
+            oldSize: Foundation::NSSize,
         );
 
         #[optional]
@@ -211,10 +211,10 @@ extern_protocol!(
         pub unsafe fn splitView_effectiveRect_forDrawnRect_ofDividerAtIndex(
             &self,
             splitView: &AppKit::NSSplitView,
-            proposedEffectiveRect: NSRect,
-            drawnRect: NSRect,
+            proposedEffectiveRect: Foundation::NSRect,
+            drawnRect: Foundation::NSRect,
             dividerIndex: NSInteger,
-        ) -> NSRect;
+        ) -> Foundation::NSRect;
 
         #[optional]
         #[method(splitView:additionalEffectiveRectOfDividerAtIndex:)]
@@ -222,7 +222,7 @@ extern_protocol!(
             &self,
             splitView: &AppKit::NSSplitView,
             dividerIndex: NSInteger,
-        ) -> NSRect;
+        ) -> Foundation::NSRect;
 
         #[optional]
         #[method(splitViewWillResizeSubviews:)]
@@ -257,7 +257,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frameRect: Foundation::NSRect,
         ) -> Id<Self, Shared>;
     }
 );

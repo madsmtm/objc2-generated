@@ -83,28 +83,28 @@ extern_methods!(
         pub unsafe fn setLayoutQueue(&self, layoutQueue: Option<&Foundation::NSOperationQueue>);
 
         #[method(state)]
-        pub unsafe fn state(&self) -> NSTextLayoutFragmentState;
+        pub unsafe fn state(&self) -> AppKit::NSTextLayoutFragmentState;
 
         #[method(invalidateLayout)]
         pub unsafe fn invalidateLayout(&self);
 
         #[method(layoutFragmentFrame)]
-        pub unsafe fn layoutFragmentFrame(&self) -> CGRect;
+        pub unsafe fn layoutFragmentFrame(&self) -> CoreGraphics::CGRect;
 
         #[method(renderingSurfaceBounds)]
-        pub unsafe fn renderingSurfaceBounds(&self) -> CGRect;
+        pub unsafe fn renderingSurfaceBounds(&self) -> CoreGraphics::CGRect;
 
         #[method(leadingPadding)]
-        pub unsafe fn leadingPadding(&self) -> CGFloat;
+        pub unsafe fn leadingPadding(&self) -> CoreGraphics::CGFloat;
 
         #[method(trailingPadding)]
-        pub unsafe fn trailingPadding(&self) -> CGFloat;
+        pub unsafe fn trailingPadding(&self) -> CoreGraphics::CGFloat;
 
         #[method(topMargin)]
-        pub unsafe fn topMargin(&self) -> CGFloat;
+        pub unsafe fn topMargin(&self) -> CoreGraphics::CGFloat;
 
         #[method(bottomMargin)]
-        pub unsafe fn bottomMargin(&self) -> CGFloat;
+        pub unsafe fn bottomMargin(&self) -> CoreGraphics::CGFloat;
 
         #[cfg(all(
             feature = "AppKit_NSTextAttachmentViewProvider",
@@ -119,6 +119,6 @@ extern_methods!(
         pub unsafe fn frameForTextAttachmentAtLocation(
             &self,
             location: &AppKit::NSTextLocation,
-        ) -> CGRect;
+        ) -> CoreGraphics::CGRect;
     }
 );

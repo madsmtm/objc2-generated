@@ -52,18 +52,18 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithKind:options:)]
         pub unsafe fn initWithKind_options(
             this: Option<Allocated<Self>>,
-            kind: NSXMLNodeKind,
-            options: NSXMLNodeOptions,
+            kind: Foundation::NSXMLNodeKind,
+            options: Foundation::NSXMLNodeOptions,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
         #[method(DTDKind)]
-        pub unsafe fn DTDKind(&self) -> NSXMLDTDNodeKind;
+        pub unsafe fn DTDKind(&self) -> Foundation::NSXMLDTDNodeKind;
 
         #[method(setDTDKind:)]
-        pub unsafe fn setDTDKind(&self, DTDKind: NSXMLDTDNodeKind);
+        pub unsafe fn setDTDKind(&self, DTDKind: Foundation::NSXMLDTDNodeKind);
 
         #[method(isExternal)]
         pub unsafe fn isExternal(&self) -> bool;
@@ -101,7 +101,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithKind:)]
         pub unsafe fn initWithKind(
             this: Option<Allocated<Self>>,
-            kind: NSXMLNodeKind,
+            kind: Foundation::NSXMLNodeKind,
         ) -> Id<Self, Shared>;
     }
 );

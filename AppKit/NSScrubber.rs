@@ -46,7 +46,7 @@ extern_protocol!(
         pub unsafe fn scrubber_didChangeVisibleRange(
             &self,
             scrubber: &AppKit::NSScrubber,
-            visibleRange: NSRange,
+            visibleRange: Foundation::NSRange,
         );
 
         #[optional]
@@ -163,16 +163,16 @@ extern_methods!(
         pub unsafe fn setSelectedIndex(&self, selectedIndex: NSInteger);
 
         #[method(mode)]
-        pub unsafe fn mode(&self) -> NSScrubberMode;
+        pub unsafe fn mode(&self) -> AppKit::NSScrubberMode;
 
         #[method(setMode:)]
-        pub unsafe fn setMode(&self, mode: NSScrubberMode);
+        pub unsafe fn setMode(&self, mode: AppKit::NSScrubberMode);
 
         #[method(itemAlignment)]
-        pub unsafe fn itemAlignment(&self) -> NSScrubberAlignment;
+        pub unsafe fn itemAlignment(&self) -> AppKit::NSScrubberAlignment;
 
         #[method(setItemAlignment:)]
-        pub unsafe fn setItemAlignment(&self, itemAlignment: NSScrubberAlignment);
+        pub unsafe fn setItemAlignment(&self, itemAlignment: AppKit::NSScrubberAlignment);
 
         #[method(isContinuous)]
         pub unsafe fn isContinuous(&self) -> bool;
@@ -244,7 +244,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frameRect: Foundation::NSRect,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSCoder")]
@@ -279,7 +279,7 @@ extern_methods!(
         pub unsafe fn scrollItemAtIndex_toAlignment(
             &self,
             index: NSInteger,
-            alignment: NSScrubberAlignment,
+            alignment: AppKit::NSScrubberAlignment,
         );
 
         #[cfg(feature = "AppKit_NSScrubberItemView")]

@@ -40,10 +40,13 @@ extern_methods!(
             -> Option<Id<AppKit::NSViewController, Shared>>;
 
         #[method(transitionStyle)]
-        pub unsafe fn transitionStyle(&self) -> NSPageControllerTransitionStyle;
+        pub unsafe fn transitionStyle(&self) -> AppKit::NSPageControllerTransitionStyle;
 
         #[method(setTransitionStyle:)]
-        pub unsafe fn setTransitionStyle(&self, transitionStyle: NSPageControllerTransitionStyle);
+        pub unsafe fn setTransitionStyle(
+            &self,
+            transitionStyle: AppKit::NSPageControllerTransitionStyle,
+        );
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other arrangedObjects)]
@@ -102,7 +105,7 @@ extern_protocol!(
             &self,
             pageController: &AppKit::NSPageController,
             object: Option<&Object>,
-        ) -> NSRect;
+        ) -> Foundation::NSRect;
 
         #[optional]
         #[method(pageController:prepareViewController:withObject:)]

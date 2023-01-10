@@ -92,10 +92,10 @@ extern_methods!(
         pub unsafe fn setStride(&self, stride: NSUInteger);
 
         #[method(stepFunction)]
-        pub fn stepFunction(&self) -> MTLVertexStepFunction;
+        pub fn stepFunction(&self) -> Metal::MTLVertexStepFunction;
 
         #[method(setStepFunction:)]
-        pub unsafe fn setStepFunction(&self, stepFunction: MTLVertexStepFunction);
+        pub unsafe fn setStepFunction(&self, stepFunction: Metal::MTLVertexStepFunction);
 
         #[method(stepRate)]
         pub fn stepRate(&self) -> NSUInteger;
@@ -147,10 +147,10 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLVertexAttributeDescriptor")]
     unsafe impl MTLVertexAttributeDescriptor {
         #[method(format)]
-        pub fn format(&self) -> MTLVertexFormat;
+        pub fn format(&self) -> Metal::MTLVertexFormat;
 
         #[method(setFormat:)]
-        pub fn setFormat(&self, format: MTLVertexFormat);
+        pub fn setFormat(&self, format: Metal::MTLVertexFormat);
 
         #[method(offset)]
         pub fn offset(&self) -> NSUInteger;

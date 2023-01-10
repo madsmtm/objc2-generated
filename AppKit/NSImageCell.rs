@@ -45,22 +45,22 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSImageCell")]
     unsafe impl NSImageCell {
         #[method(imageAlignment)]
-        pub unsafe fn imageAlignment(&self) -> NSImageAlignment;
+        pub unsafe fn imageAlignment(&self) -> AppKit::NSImageAlignment;
 
         #[method(setImageAlignment:)]
-        pub unsafe fn setImageAlignment(&self, imageAlignment: NSImageAlignment);
+        pub unsafe fn setImageAlignment(&self, imageAlignment: AppKit::NSImageAlignment);
 
         #[method(imageScaling)]
-        pub unsafe fn imageScaling(&self) -> NSImageScaling;
+        pub unsafe fn imageScaling(&self) -> AppKit::NSImageScaling;
 
         #[method(setImageScaling:)]
-        pub unsafe fn setImageScaling(&self, imageScaling: NSImageScaling);
+        pub unsafe fn setImageScaling(&self, imageScaling: AppKit::NSImageScaling);
 
         #[method(imageFrameStyle)]
-        pub unsafe fn imageFrameStyle(&self) -> NSImageFrameStyle;
+        pub unsafe fn imageFrameStyle(&self) -> AppKit::NSImageFrameStyle;
 
         #[method(setImageFrameStyle:)]
-        pub unsafe fn setImageFrameStyle(&self, imageFrameStyle: NSImageFrameStyle);
+        pub unsafe fn setImageFrameStyle(&self, imageFrameStyle: AppKit::NSImageFrameStyle);
     }
 );
 

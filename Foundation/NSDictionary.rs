@@ -169,7 +169,7 @@ extern_methods!(
         #[method(enumerateKeysAndObjectsWithOptions:usingBlock:)]
         pub unsafe fn enumerateKeysAndObjectsWithOptions_usingBlock(
             &self,
-            opts: NSEnumerationOptions,
+            opts: Foundation::NSEnumerationOptions,
             block: &Block<(NonNull<KeyType>, NonNull<ObjectType>, NonNull<Bool>), ()>,
         );
 
@@ -177,15 +177,15 @@ extern_methods!(
         #[method_id(@__retain_semantics Other keysSortedByValueUsingComparator:)]
         pub unsafe fn keysSortedByValueUsingComparator(
             &self,
-            cmptr: NSComparator,
+            cmptr: Foundation::NSComparator,
         ) -> Id<Foundation::NSArray<KeyType>, Shared>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other keysSortedByValueWithOptions:usingComparator:)]
         pub unsafe fn keysSortedByValueWithOptions_usingComparator(
             &self,
-            opts: NSSortOptions,
-            cmptr: NSComparator,
+            opts: Foundation::NSSortOptions,
+            cmptr: Foundation::NSComparator,
         ) -> Id<Foundation::NSArray<KeyType>, Shared>;
 
         #[cfg(feature = "Foundation_NSSet")]
@@ -199,7 +199,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other keysOfEntriesWithOptions:passingTest:)]
         pub unsafe fn keysOfEntriesWithOptions_passingTest(
             &self,
-            opts: NSEnumerationOptions,
+            opts: Foundation::NSEnumerationOptions,
             predicate: &Block<(NonNull<KeyType>, NonNull<ObjectType>, NonNull<Bool>), Bool>,
         ) -> Id<Foundation::NSSet<KeyType>, Shared>;
     }
@@ -478,7 +478,7 @@ extern_methods!(
         #[method(countByEnumeratingWithState:objects:count:)]
         pub unsafe fn countByEnumeratingWithState_objects_count(
             &self,
-            state: NonNull<NSFastEnumerationState>,
+            state: NonNull<Foundation::NSFastEnumerationState>,
             buffer: NonNull<*mut K>,
             len: NSUInteger,
         ) -> NSUInteger;

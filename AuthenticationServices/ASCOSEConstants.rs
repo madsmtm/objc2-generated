@@ -8,10 +8,14 @@ typed_extensible_enum!(
     pub type ASCOSEAlgorithmIdentifier = NSInteger;
 );
 
-extern_static!(ASCOSEAlgorithmIdentifierES256: ASCOSEAlgorithmIdentifier = -7);
+extern_static!(
+    ASCOSEAlgorithmIdentifierES256: AuthenticationServices::ASCOSEAlgorithmIdentifier = -7
+);
 
 typed_extensible_enum!(
     pub type ASCOSEEllipticCurveIdentifier = NSInteger;
 );
 
-extern_static!(ASCOSEEllipticCurveIdentifierP256: ASCOSEEllipticCurveIdentifier = 1);
+extern_static!(
+    ASCOSEEllipticCurveIdentifierP256: AuthenticationServices::ASCOSEEllipticCurveIdentifier = 1
+);

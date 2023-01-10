@@ -61,28 +61,28 @@ extern_methods!(
         pub unsafe fn setLifetime(&self, lifetime: c_float);
 
         #[method(emitterPosition)]
-        pub unsafe fn emitterPosition(&self) -> CGPoint;
+        pub unsafe fn emitterPosition(&self) -> CoreGraphics::CGPoint;
 
         #[method(setEmitterPosition:)]
-        pub unsafe fn setEmitterPosition(&self, emitterPosition: CGPoint);
+        pub unsafe fn setEmitterPosition(&self, emitterPosition: CoreGraphics::CGPoint);
 
         #[method(emitterZPosition)]
-        pub unsafe fn emitterZPosition(&self) -> CGFloat;
+        pub unsafe fn emitterZPosition(&self) -> CoreGraphics::CGFloat;
 
         #[method(setEmitterZPosition:)]
-        pub unsafe fn setEmitterZPosition(&self, emitterZPosition: CGFloat);
+        pub unsafe fn setEmitterZPosition(&self, emitterZPosition: CoreGraphics::CGFloat);
 
         #[method(emitterSize)]
-        pub unsafe fn emitterSize(&self) -> CGSize;
+        pub unsafe fn emitterSize(&self) -> CoreGraphics::CGSize;
 
         #[method(setEmitterSize:)]
-        pub unsafe fn setEmitterSize(&self, emitterSize: CGSize);
+        pub unsafe fn setEmitterSize(&self, emitterSize: CoreGraphics::CGSize);
 
         #[method(emitterDepth)]
-        pub unsafe fn emitterDepth(&self) -> CGFloat;
+        pub unsafe fn emitterDepth(&self) -> CoreGraphics::CGFloat;
 
         #[method(setEmitterDepth:)]
-        pub unsafe fn setEmitterDepth(&self, emitterDepth: CGFloat);
+        pub unsafe fn setEmitterDepth(&self, emitterDepth: CoreGraphics::CGFloat);
 
         #[method_id(@__retain_semantics Other emitterShape)]
         pub unsafe fn emitterShape(&self) -> Id<CoreAnimation::CAEmitterLayerEmitterShape, Shared>;

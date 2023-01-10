@@ -42,10 +42,10 @@ extern_methods!(
         );
 
         #[method(unitStyle)]
-        pub unsafe fn unitStyle(&self) -> NSFormattingUnitStyle;
+        pub unsafe fn unitStyle(&self) -> Foundation::NSFormattingUnitStyle;
 
         #[method(setUnitStyle:)]
-        pub unsafe fn setUnitStyle(&self, unitStyle: NSFormattingUnitStyle);
+        pub unsafe fn setUnitStyle(&self, unitStyle: Foundation::NSFormattingUnitStyle);
 
         #[method(isForPersonHeightUse)]
         pub unsafe fn isForPersonHeightUse(&self) -> bool;
@@ -58,7 +58,7 @@ extern_methods!(
         pub unsafe fn stringFromValue_unit(
             &self,
             value: c_double,
-            unit: NSLengthFormatterUnit,
+            unit: Foundation::NSLengthFormatterUnit,
         ) -> Id<Foundation::NSString, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -73,7 +73,7 @@ extern_methods!(
         pub unsafe fn unitStringFromValue_unit(
             &self,
             value: c_double,
-            unit: NSLengthFormatterUnit,
+            unit: Foundation::NSLengthFormatterUnit,
         ) -> Id<Foundation::NSString, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -81,7 +81,7 @@ extern_methods!(
         pub unsafe fn unitStringFromMeters_usedUnit(
             &self,
             numberInMeters: c_double,
-            unitp: *mut NSLengthFormatterUnit,
+            unitp: *mut Foundation::NSLengthFormatterUnit,
         ) -> Id<Foundation::NSString, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]

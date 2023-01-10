@@ -63,10 +63,10 @@ extern_methods!(
         pub unsafe fn setAutoenablesItems(&self, autoenablesItems: bool);
 
         #[method(preferredEdge)]
-        pub unsafe fn preferredEdge(&self) -> NSRectEdge;
+        pub unsafe fn preferredEdge(&self) -> Foundation::NSRectEdge;
 
         #[method(setPreferredEdge:)]
-        pub unsafe fn setPreferredEdge(&self, preferredEdge: NSRectEdge);
+        pub unsafe fn setPreferredEdge(&self, preferredEdge: Foundation::NSRectEdge);
 
         #[method(usesItemFromMenu)]
         pub unsafe fn usesItemFromMenu(&self) -> bool;
@@ -200,7 +200,7 @@ extern_methods!(
         #[method(attachPopUpWithFrame:inView:)]
         pub unsafe fn attachPopUpWithFrame_inView(
             &self,
-            cellFrame: NSRect,
+            cellFrame: Foundation::NSRect,
             controlView: &AppKit::NSView,
         );
 
@@ -211,15 +211,15 @@ extern_methods!(
         #[method(performClickWithFrame:inView:)]
         pub unsafe fn performClickWithFrame_inView(
             &self,
-            frame: NSRect,
+            frame: Foundation::NSRect,
             controlView: &AppKit::NSView,
         );
 
         #[method(arrowPosition)]
-        pub unsafe fn arrowPosition(&self) -> NSPopUpArrowPosition;
+        pub unsafe fn arrowPosition(&self) -> AppKit::NSPopUpArrowPosition;
 
         #[method(setArrowPosition:)]
-        pub unsafe fn setArrowPosition(&self, arrowPosition: NSPopUpArrowPosition);
+        pub unsafe fn setArrowPosition(&self, arrowPosition: AppKit::NSPopUpArrowPosition);
     }
 );
 

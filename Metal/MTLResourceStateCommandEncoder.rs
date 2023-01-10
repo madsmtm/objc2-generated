@@ -34,8 +34,8 @@ extern_protocol!(
         pub unsafe fn updateTextureMappings_mode_regions_mipLevels_slices_numRegions(
             &self,
             texture: &Metal::MTLTexture,
-            mode: MTLSparseTextureMappingMode,
-            regions: NonNull<MTLRegion>,
+            mode: Metal::MTLSparseTextureMappingMode,
+            regions: NonNull<Metal::MTLRegion>,
             mipLevels: NonNull<NSUInteger>,
             slices: NonNull<NSUInteger>,
             numRegions: NSUInteger,
@@ -46,8 +46,8 @@ extern_protocol!(
         pub unsafe fn updateTextureMapping_mode_region_mipLevel_slice(
             &self,
             texture: &Metal::MTLTexture,
-            mode: MTLSparseTextureMappingMode,
-            region: MTLRegion,
+            mode: Metal::MTLSparseTextureMappingMode,
+            region: Metal::MTLRegion,
             mipLevel: NSUInteger,
             slice: NSUInteger,
         );
@@ -57,7 +57,7 @@ extern_protocol!(
         pub unsafe fn updateTextureMapping_mode_indirectBuffer_indirectBufferOffset(
             &self,
             texture: &Metal::MTLTexture,
-            mode: MTLSparseTextureMappingMode,
+            mode: Metal::MTLSparseTextureMappingMode,
             indirectBuffer: &Metal::MTLBuffer,
             indirectBufferOffset: NSUInteger,
         );

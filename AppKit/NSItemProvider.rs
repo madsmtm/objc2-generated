@@ -10,13 +10,13 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSItemProvider")]
     unsafe impl NSItemProvider {
         #[method(sourceFrame)]
-        pub unsafe fn sourceFrame(&self) -> NSRect;
+        pub unsafe fn sourceFrame(&self) -> Foundation::NSRect;
 
         #[method(containerFrame)]
-        pub unsafe fn containerFrame(&self) -> NSRect;
+        pub unsafe fn containerFrame(&self) -> Foundation::NSRect;
 
         #[method(preferredPresentationSize)]
-        pub unsafe fn preferredPresentationSize(&self) -> NSSize;
+        pub unsafe fn preferredPresentationSize(&self) -> Foundation::NSSize;
     }
 );
 

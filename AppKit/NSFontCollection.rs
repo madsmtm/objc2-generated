@@ -68,21 +68,21 @@ extern_methods!(
         pub unsafe fn showFontCollection_withName_visibility_error(
             collection: &AppKit::NSFontCollection,
             name: &AppKit::NSFontCollectionName,
-            visibility: NSFontCollectionVisibility,
+            visibility: AppKit::NSFontCollectionVisibility,
         ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(hideFontCollectionWithName:visibility:error:_)]
         pub unsafe fn hideFontCollectionWithName_visibility_error(
             name: &AppKit::NSFontCollectionName,
-            visibility: NSFontCollectionVisibility,
+            visibility: AppKit::NSFontCollectionVisibility,
         ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(renameFontCollectionWithName:visibility:toName:error:_)]
         pub unsafe fn renameFontCollectionWithName_visibility_toName_error(
             oldName: &AppKit::NSFontCollectionName,
-            visibility: NSFontCollectionVisibility,
+            visibility: AppKit::NSFontCollectionVisibility,
             newName: &AppKit::NSFontCollectionName,
         ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
@@ -99,7 +99,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other fontCollectionWithName:visibility:)]
         pub unsafe fn fontCollectionWithName_visibility(
             name: &AppKit::NSFontCollectionName,
-            visibility: NSFontCollectionVisibility,
+            visibility: AppKit::NSFontCollectionVisibility,
         ) -> Option<Id<AppKit::NSFontCollection, Shared>>;
 
         #[cfg(all(feature = "AppKit_NSFontDescriptor", feature = "Foundation_NSArray"))]
@@ -206,7 +206,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other fontCollectionWithName:visibility:)]
         pub unsafe fn fontCollectionWithName_visibility(
             name: &AppKit::NSFontCollectionName,
-            visibility: NSFontCollectionVisibility,
+            visibility: AppKit::NSFontCollectionVisibility,
         ) -> Option<Id<AppKit::NSMutableFontCollection, Shared>>;
 
         #[cfg(all(feature = "AppKit_NSFontDescriptor", feature = "Foundation_NSArray"))]

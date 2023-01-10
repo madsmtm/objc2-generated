@@ -60,7 +60,7 @@ extern_methods!(
             observer: &NSObject,
             indexes: &Foundation::NSIndexSet,
             keyPath: &Foundation::NSString,
-            options: NSKeyValueObservingOptions,
+            options: Foundation::NSKeyValueObservingOptions,
             context: *mut c_void,
         );
 
@@ -89,7 +89,7 @@ extern_methods!(
             &self,
             observer: &NSObject,
             keyPath: &Foundation::NSString,
-            options: NSKeyValueObservingOptions,
+            options: Foundation::NSKeyValueObservingOptions,
             context: *mut c_void,
         );
 
@@ -124,7 +124,7 @@ extern_methods!(
             &self,
             observer: &NSObject,
             keyPath: &Foundation::NSString,
-            options: NSKeyValueObservingOptions,
+            options: Foundation::NSKeyValueObservingOptions,
             context: *mut c_void,
         );
 
@@ -159,7 +159,7 @@ extern_methods!(
             &self,
             observer: &NSObject,
             keyPath: &Foundation::NSString,
-            options: NSKeyValueObservingOptions,
+            options: Foundation::NSKeyValueObservingOptions,
             context: *mut c_void,
         );
 

@@ -32,7 +32,7 @@ extern_methods!(
         pub unsafe fn initWithFontDescriptors_options(
             this: Option<Allocated<Self>>,
             fontDescriptors: &Foundation::NSArray<AppKit::NSFontDescriptor>,
-            options: NSFontAssetRequestOptions,
+            options: AppKit::NSFontAssetRequestOptions,
         ) -> Id<Self, Shared>;
 
         #[cfg(all(feature = "AppKit_NSFontDescriptor", feature = "Foundation_NSArray"))]

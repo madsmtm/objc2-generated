@@ -96,7 +96,7 @@ extern_methods!(
         pub unsafe fn setTextContainer(&self, textContainer: Option<&AppKit::NSTextContainer>);
 
         #[method(usageBoundsForTextContainer)]
-        pub unsafe fn usageBoundsForTextContainer(&self) -> CGRect;
+        pub unsafe fn usageBoundsForTextContainer(&self) -> CoreGraphics::CGRect;
 
         #[cfg(feature = "AppKit_NSTextViewportLayoutController")]
         #[method_id(@__retain_semantics Other textViewportLayoutController)]
@@ -117,7 +117,7 @@ extern_methods!(
         pub unsafe fn ensureLayoutForRange(&self, range: &AppKit::NSTextRange);
 
         #[method(ensureLayoutForBounds:)]
-        pub unsafe fn ensureLayoutForBounds(&self, bounds: CGRect);
+        pub unsafe fn ensureLayoutForBounds(&self, bounds: CoreGraphics::CGRect);
 
         #[cfg(feature = "AppKit_NSTextRange")]
         #[method(invalidateLayoutForRange:)]
@@ -127,7 +127,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other textLayoutFragmentForPosition:)]
         pub unsafe fn textLayoutFragmentForPosition(
             &self,
-            position: CGPoint,
+            position: CoreGraphics::CGPoint,
         ) -> Option<Id<AppKit::NSTextLayoutFragment, Shared>>;
 
         #[cfg(feature = "AppKit_NSTextLayoutFragment")]
@@ -142,7 +142,7 @@ extern_methods!(
         pub unsafe fn enumerateTextLayoutFragmentsFromLocation_options_usingBlock(
             &self,
             location: Option<&AppKit::NSTextLocation>,
-            options: NSTextLayoutFragmentEnumerationOptions,
+            options: AppKit::NSTextLayoutFragmentEnumerationOptions,
             block: &Block<(NonNull<AppKit::NSTextLayoutFragment>,), Bool>,
         ) -> Option<Id<AppKit::NSTextLocation, Shared>>;
 
@@ -268,13 +268,13 @@ extern_methods!(
         pub unsafe fn enumerateTextSegmentsInRange_type_options_usingBlock(
             &self,
             textRange: &AppKit::NSTextRange,
-            type_: NSTextLayoutManagerSegmentType,
-            options: NSTextLayoutManagerSegmentOptions,
+            type_: AppKit::NSTextLayoutManagerSegmentType,
+            options: AppKit::NSTextLayoutManagerSegmentOptions,
             block: &Block<
                 (
                     *mut AppKit::NSTextRange,
-                    CGRect,
-                    CGFloat,
+                    CoreGraphics::CGRect,
+                    CoreGraphics::CGFloat,
                     NonNull<AppKit::NSTextContainer>,
                 ),
                 Bool,

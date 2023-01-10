@@ -241,7 +241,7 @@ extern_methods!(
             &self,
             url: &Foundation::NSURL,
             typeName: &Foundation::NSString,
-            saveOperation: NSSaveOperationType,
+            saveOperation: AppKit::NSSaveOperationType,
         ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(
@@ -254,7 +254,7 @@ extern_methods!(
             &self,
             url: &Foundation::NSURL,
             typeName: &Foundation::NSString,
-            saveOperation: NSSaveOperationType,
+            saveOperation: AppKit::NSSaveOperationType,
             absoluteOriginalContentsURL: Option<&Foundation::NSURL>,
         ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
@@ -269,7 +269,7 @@ extern_methods!(
             &self,
             url: &Foundation::NSURL,
             typeName: &Foundation::NSString,
-            saveOperation: NSSaveOperationType,
+            saveOperation: AppKit::NSSaveOperationType,
             absoluteOriginalContentsURL: Option<&Foundation::NSURL>,
         ) -> Result<
             Id<Foundation::NSDictionary<Foundation::NSString, Object>, Shared>,
@@ -303,7 +303,7 @@ extern_methods!(
         #[method(runModalSavePanelForSaveOperation:delegate:didSaveSelector:contextInfo:)]
         pub unsafe fn runModalSavePanelForSaveOperation_delegate_didSaveSelector_contextInfo(
             &self,
-            saveOperation: NSSaveOperationType,
+            saveOperation: AppKit::NSSaveOperationType,
             delegate: Option<&Object>,
             didSaveSelector: Option<Sel>,
             contextInfo: *mut c_void,
@@ -331,7 +331,7 @@ extern_methods!(
             &self,
             url: &Foundation::NSURL,
             typeName: &Foundation::NSString,
-            saveOperation: NSSaveOperationType,
+            saveOperation: AppKit::NSSaveOperationType,
             delegate: Option<&Object>,
             didSaveSelector: Option<Sel>,
             contextInfo: *mut c_void,
@@ -347,7 +347,7 @@ extern_methods!(
             &self,
             url: &Foundation::NSURL,
             typeName: &Foundation::NSString,
-            saveOperation: NSSaveOperationType,
+            saveOperation: AppKit::NSSaveOperationType,
             completionHandler: &Block<(*mut Foundation::NSError,), ()>,
         );
 
@@ -357,7 +357,7 @@ extern_methods!(
             &self,
             url: &Foundation::NSURL,
             typeName: &Foundation::NSString,
-            saveOperation: NSSaveOperationType,
+            saveOperation: AppKit::NSSaveOperationType,
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSError")]
@@ -606,19 +606,19 @@ extern_methods!(
         pub unsafe fn isInViewingMode(&self) -> bool;
 
         #[method(updateChangeCount:)]
-        pub unsafe fn updateChangeCount(&self, change: NSDocumentChangeType);
+        pub unsafe fn updateChangeCount(&self, change: AppKit::NSDocumentChangeType);
 
         #[method_id(@__retain_semantics Other changeCountTokenForSaveOperation:)]
         pub unsafe fn changeCountTokenForSaveOperation(
             &self,
-            saveOperation: NSSaveOperationType,
+            saveOperation: AppKit::NSSaveOperationType,
         ) -> Id<Object, Shared>;
 
         #[method(updateChangeCountWithToken:forSaveOperation:)]
         pub unsafe fn updateChangeCountWithToken_forSaveOperation(
             &self,
             changeCountToken: &Object,
-            saveOperation: NSSaveOperationType,
+            saveOperation: AppKit::NSSaveOperationType,
         );
 
         #[cfg(feature = "Foundation_NSUndoManager")]
@@ -740,7 +740,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other writableTypesForSaveOperation:)]
         pub unsafe fn writableTypesForSaveOperation(
             &self,
-            saveOperation: NSSaveOperationType,
+            saveOperation: AppKit::NSSaveOperationType,
         ) -> Id<Foundation::NSArray<Foundation::NSString>, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -748,7 +748,7 @@ extern_methods!(
         pub unsafe fn fileNameExtensionForType_saveOperation(
             &self,
             typeName: &Foundation::NSString,
-            saveOperation: NSSaveOperationType,
+            saveOperation: AppKit::NSSaveOperationType,
         ) -> Option<Id<Foundation::NSString, Shared>>;
 
         #[method(validateUserInterfaceItem:)]
@@ -776,7 +776,7 @@ extern_methods!(
             &self,
             url: &Foundation::NSURL,
             typeName: &Foundation::NSString,
-            saveOperation: NSSaveOperationType,
+            saveOperation: AppKit::NSSaveOperationType,
         ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSString"))]
@@ -792,7 +792,7 @@ extern_methods!(
             &self,
             fullDocumentPath: &Foundation::NSString,
             documentTypeName: &Foundation::NSString,
-            saveOperationType: NSSaveOperationType,
+            saveOperationType: AppKit::NSSaveOperationType,
         ) -> Option<Id<Foundation::NSDictionary, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -885,7 +885,7 @@ extern_methods!(
         pub unsafe fn saveToFile_saveOperation_delegate_didSaveSelector_contextInfo(
             &self,
             fileName: &Foundation::NSString,
-            saveOperation: NSSaveOperationType,
+            saveOperation: AppKit::NSSaveOperationType,
             delegate: Option<&Object>,
             didSaveSelector: Option<Sel>,
             contextInfo: *mut c_void,
@@ -910,7 +910,7 @@ extern_methods!(
             fullDocumentPath: &Foundation::NSString,
             documentTypeName: &Foundation::NSString,
             fullOriginalDocumentPath: Option<&Foundation::NSString>,
-            saveOperationType: NSSaveOperationType,
+            saveOperationType: AppKit::NSSaveOperationType,
         ) -> bool;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
@@ -927,7 +927,7 @@ extern_methods!(
             &self,
             fullDocumentPath: &Foundation::NSString,
             documentTypeName: &Foundation::NSString,
-            saveOperationType: NSSaveOperationType,
+            saveOperationType: AppKit::NSSaveOperationType,
         ) -> bool;
     }
 );

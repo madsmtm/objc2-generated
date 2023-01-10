@@ -41,16 +41,16 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSBox")]
     unsafe impl NSBox {
         #[method(boxType)]
-        pub unsafe fn boxType(&self) -> NSBoxType;
+        pub unsafe fn boxType(&self) -> AppKit::NSBoxType;
 
         #[method(setBoxType:)]
-        pub unsafe fn setBoxType(&self, boxType: NSBoxType);
+        pub unsafe fn setBoxType(&self, boxType: AppKit::NSBoxType);
 
         #[method(titlePosition)]
-        pub unsafe fn titlePosition(&self) -> NSTitlePosition;
+        pub unsafe fn titlePosition(&self) -> AppKit::NSTitlePosition;
 
         #[method(setTitlePosition:)]
-        pub unsafe fn setTitlePosition(&self, titlePosition: NSTitlePosition);
+        pub unsafe fn setTitlePosition(&self, titlePosition: AppKit::NSTitlePosition);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
@@ -69,25 +69,25 @@ extern_methods!(
         pub unsafe fn setTitleFont(&self, titleFont: &AppKit::NSFont);
 
         #[method(borderRect)]
-        pub unsafe fn borderRect(&self) -> NSRect;
+        pub unsafe fn borderRect(&self) -> Foundation::NSRect;
 
         #[method(titleRect)]
-        pub unsafe fn titleRect(&self) -> NSRect;
+        pub unsafe fn titleRect(&self) -> Foundation::NSRect;
 
         #[method_id(@__retain_semantics Other titleCell)]
         pub unsafe fn titleCell(&self) -> Id<Object, Shared>;
 
         #[method(contentViewMargins)]
-        pub unsafe fn contentViewMargins(&self) -> NSSize;
+        pub unsafe fn contentViewMargins(&self) -> Foundation::NSSize;
 
         #[method(setContentViewMargins:)]
-        pub unsafe fn setContentViewMargins(&self, contentViewMargins: NSSize);
+        pub unsafe fn setContentViewMargins(&self, contentViewMargins: Foundation::NSSize);
 
         #[method(sizeToFit)]
         pub unsafe fn sizeToFit(&self);
 
         #[method(setFrameFromContentFrame:)]
-        pub unsafe fn setFrameFromContentFrame(&self, contentFrame: NSRect);
+        pub unsafe fn setFrameFromContentFrame(&self, contentFrame: Foundation::NSRect);
 
         #[method_id(@__retain_semantics Other contentView)]
         pub unsafe fn contentView(&self) -> Option<Id<AppKit::NSView, Shared>>;
@@ -102,16 +102,16 @@ extern_methods!(
         pub unsafe fn setTransparent(&self, transparent: bool);
 
         #[method(borderWidth)]
-        pub unsafe fn borderWidth(&self) -> CGFloat;
+        pub unsafe fn borderWidth(&self) -> CoreGraphics::CGFloat;
 
         #[method(setBorderWidth:)]
-        pub unsafe fn setBorderWidth(&self, borderWidth: CGFloat);
+        pub unsafe fn setBorderWidth(&self, borderWidth: CoreGraphics::CGFloat);
 
         #[method(cornerRadius)]
-        pub unsafe fn cornerRadius(&self) -> CGFloat;
+        pub unsafe fn cornerRadius(&self) -> CoreGraphics::CGFloat;
 
         #[method(setCornerRadius:)]
-        pub unsafe fn setCornerRadius(&self, cornerRadius: CGFloat);
+        pub unsafe fn setCornerRadius(&self, cornerRadius: CoreGraphics::CGFloat);
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other borderColor)]
@@ -136,10 +136,10 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSBox")]
     unsafe impl NSBox {
         #[method(borderType)]
-        pub unsafe fn borderType(&self) -> NSBorderType;
+        pub unsafe fn borderType(&self) -> AppKit::NSBorderType;
 
         #[method(setBorderType:)]
-        pub unsafe fn setBorderType(&self, borderType: NSBorderType);
+        pub unsafe fn setBorderType(&self, borderType: AppKit::NSBorderType);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setTitleWithMnemonic:)]
@@ -150,9 +150,9 @@ extern_methods!(
     }
 );
 
-extern_static!(NSBoxSecondary: NSBoxType = 1);
+extern_static!(NSBoxSecondary: AppKit::NSBoxType = 1);
 
-extern_static!(NSBoxOldStyle: NSBoxType = 3);
+extern_static!(NSBoxOldStyle: AppKit::NSBoxType = 3);
 
 extern_methods!(
     /// Methods declared on superclass `NSView`
@@ -161,7 +161,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frameRect: Foundation::NSRect,
         ) -> Id<Self, Shared>;
     }
 );

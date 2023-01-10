@@ -147,7 +147,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other availableTagSchemesForUnit:language:)]
         pub unsafe fn availableTagSchemesForUnit_language(
-            unit: NSLinguisticTaggerUnit,
+            unit: Foundation::NSLinguisticTaggerUnit,
             language: &Foundation::NSString,
         ) -> Id<Foundation::NSArray<Foundation::NSLinguisticTagScheme>, Shared>;
 
@@ -162,7 +162,7 @@ extern_methods!(
         pub unsafe fn setOrthography_range(
             &self,
             orthography: Option<&Foundation::NSOrthography>,
-            range: NSRange,
+            range: Foundation::NSRange,
         );
 
         #[cfg(feature = "Foundation_NSOrthography")]
@@ -170,13 +170,13 @@ extern_methods!(
         pub unsafe fn orthographyAtIndex_effectiveRange(
             &self,
             charIndex: NSUInteger,
-            effectiveRange: NSRangePointer,
+            effectiveRange: Foundation::NSRangePointer,
         ) -> Option<Id<Foundation::NSOrthography, Shared>>;
 
         #[method(stringEditedInRange:changeInLength:)]
         pub unsafe fn stringEditedInRange_changeInLength(
             &self,
-            newRange: NSRange,
+            newRange: Foundation::NSRange,
             delta: NSInteger,
         );
 
@@ -184,53 +184,63 @@ extern_methods!(
         pub unsafe fn tokenRangeAtIndex_unit(
             &self,
             charIndex: NSUInteger,
-            unit: NSLinguisticTaggerUnit,
-        ) -> NSRange;
+            unit: Foundation::NSLinguisticTaggerUnit,
+        ) -> Foundation::NSRange;
 
         #[method(sentenceRangeForRange:)]
-        pub unsafe fn sentenceRangeForRange(&self, range: NSRange) -> NSRange;
+        pub unsafe fn sentenceRangeForRange(
+            &self,
+            range: Foundation::NSRange,
+        ) -> Foundation::NSRange;
 
         #[method(enumerateTagsInRange:unit:scheme:options:usingBlock:)]
         pub unsafe fn enumerateTagsInRange_unit_scheme_options_usingBlock(
             &self,
-            range: NSRange,
-            unit: NSLinguisticTaggerUnit,
+            range: Foundation::NSRange,
+            unit: Foundation::NSLinguisticTaggerUnit,
             scheme: &Foundation::NSLinguisticTagScheme,
-            options: NSLinguisticTaggerOptions,
-            block: &Block<(*mut Foundation::NSLinguisticTag, NSRange, NonNull<Bool>), ()>,
+            options: Foundation::NSLinguisticTaggerOptions,
+            block: &Block<
+                (
+                    *mut Foundation::NSLinguisticTag,
+                    Foundation::NSRange,
+                    NonNull<Bool>,
+                ),
+                (),
+            >,
         );
 
         #[method_id(@__retain_semantics Other tagAtIndex:unit:scheme:tokenRange:)]
         pub unsafe fn tagAtIndex_unit_scheme_tokenRange(
             &self,
             charIndex: NSUInteger,
-            unit: NSLinguisticTaggerUnit,
+            unit: Foundation::NSLinguisticTaggerUnit,
             scheme: &Foundation::NSLinguisticTagScheme,
-            tokenRange: NSRangePointer,
+            tokenRange: Foundation::NSRangePointer,
         ) -> Option<Id<Foundation::NSLinguisticTag, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[method_id(@__retain_semantics Other tagsInRange:unit:scheme:options:tokenRanges:)]
         pub unsafe fn tagsInRange_unit_scheme_options_tokenRanges(
             &self,
-            range: NSRange,
-            unit: NSLinguisticTaggerUnit,
+            range: Foundation::NSRange,
+            unit: Foundation::NSLinguisticTaggerUnit,
             scheme: &Foundation::NSLinguisticTagScheme,
-            options: NSLinguisticTaggerOptions,
+            options: Foundation::NSLinguisticTaggerOptions,
             tokenRanges: *mut *mut Foundation::NSArray<Foundation::NSValue>,
         ) -> Id<Foundation::NSArray<Foundation::NSLinguisticTag>, Shared>;
 
         #[method(enumerateTagsInRange:scheme:options:usingBlock:)]
         pub unsafe fn enumerateTagsInRange_scheme_options_usingBlock(
             &self,
-            range: NSRange,
+            range: Foundation::NSRange,
             tagScheme: &Foundation::NSLinguisticTagScheme,
-            opts: NSLinguisticTaggerOptions,
+            opts: Foundation::NSLinguisticTaggerOptions,
             block: &Block<
                 (
                     *mut Foundation::NSLinguisticTag,
-                    NSRange,
-                    NSRange,
+                    Foundation::NSRange,
+                    Foundation::NSRange,
                     NonNull<Bool>,
                 ),
                 (),
@@ -242,8 +252,8 @@ extern_methods!(
             &self,
             charIndex: NSUInteger,
             scheme: &Foundation::NSLinguisticTagScheme,
-            tokenRange: NSRangePointer,
-            sentenceRange: NSRangePointer,
+            tokenRange: Foundation::NSRangePointer,
+            sentenceRange: Foundation::NSRangePointer,
         ) -> Option<Id<Foundation::NSLinguisticTag, Shared>>;
 
         #[cfg(all(
@@ -254,9 +264,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Other tagsInRange:scheme:options:tokenRanges:)]
         pub unsafe fn tagsInRange_scheme_options_tokenRanges(
             &self,
-            range: NSRange,
+            range: Foundation::NSRange,
             tagScheme: &Foundation::NSString,
-            opts: NSLinguisticTaggerOptions,
+            opts: Foundation::NSLinguisticTaggerOptions,
             tokenRanges: *mut *mut Foundation::NSArray<Foundation::NSValue>,
         ) -> Id<Foundation::NSArray<Foundation::NSString>, Shared>;
 
@@ -275,10 +285,10 @@ extern_methods!(
         pub unsafe fn tagForString_atIndex_unit_scheme_orthography_tokenRange(
             string: &Foundation::NSString,
             charIndex: NSUInteger,
-            unit: NSLinguisticTaggerUnit,
+            unit: Foundation::NSLinguisticTaggerUnit,
             scheme: &Foundation::NSLinguisticTagScheme,
             orthography: Option<&Foundation::NSOrthography>,
-            tokenRange: NSRangePointer,
+            tokenRange: Foundation::NSRangePointer,
         ) -> Option<Id<Foundation::NSLinguisticTag, Shared>>;
 
         #[cfg(all(
@@ -290,10 +300,10 @@ extern_methods!(
         #[method_id(@__retain_semantics Other tagsForString:range:unit:scheme:options:orthography:tokenRanges:)]
         pub unsafe fn tagsForString_range_unit_scheme_options_orthography_tokenRanges(
             string: &Foundation::NSString,
-            range: NSRange,
-            unit: NSLinguisticTaggerUnit,
+            range: Foundation::NSRange,
+            unit: Foundation::NSLinguisticTaggerUnit,
             scheme: &Foundation::NSLinguisticTagScheme,
-            options: NSLinguisticTaggerOptions,
+            options: Foundation::NSLinguisticTaggerOptions,
             orthography: Option<&Foundation::NSOrthography>,
             tokenRanges: *mut *mut Foundation::NSArray<Foundation::NSValue>,
         ) -> Id<Foundation::NSArray<Foundation::NSLinguisticTag>, Shared>;
@@ -302,12 +312,19 @@ extern_methods!(
         #[method(enumerateTagsForString:range:unit:scheme:options:orthography:usingBlock:)]
         pub unsafe fn enumerateTagsForString_range_unit_scheme_options_orthography_usingBlock(
             string: &Foundation::NSString,
-            range: NSRange,
-            unit: NSLinguisticTaggerUnit,
+            range: Foundation::NSRange,
+            unit: Foundation::NSLinguisticTaggerUnit,
             scheme: &Foundation::NSLinguisticTagScheme,
-            options: NSLinguisticTaggerOptions,
+            options: Foundation::NSLinguisticTaggerOptions,
             orthography: Option<&Foundation::NSOrthography>,
-            block: &Block<(*mut Foundation::NSLinguisticTag, NSRange, NonNull<Bool>), ()>,
+            block: &Block<
+                (
+                    *mut Foundation::NSLinguisticTag,
+                    Foundation::NSRange,
+                    NonNull<Bool>,
+                ),
+                (),
+            >,
         );
 
         #[cfg(all(
@@ -320,8 +337,8 @@ extern_methods!(
             &self,
             charIndex: NSUInteger,
             tagScheme: &Foundation::NSString,
-            tokenRange: NSRangePointer,
-            sentenceRange: NSRangePointer,
+            tokenRange: Foundation::NSRangePointer,
+            sentenceRange: Foundation::NSRangePointer,
             scores: *mut *mut Foundation::NSArray<Foundation::NSValue>,
         ) -> Option<Id<Foundation::NSArray<Foundation::NSString>, Shared>>;
     }
@@ -339,9 +356,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Other linguisticTagsInRange:scheme:options:orthography:tokenRanges:)]
         pub unsafe fn linguisticTagsInRange_scheme_options_orthography_tokenRanges(
             &self,
-            range: NSRange,
+            range: Foundation::NSRange,
             scheme: &Foundation::NSLinguisticTagScheme,
-            options: NSLinguisticTaggerOptions,
+            options: Foundation::NSLinguisticTaggerOptions,
             orthography: Option<&Foundation::NSOrthography>,
             tokenRanges: *mut *mut Foundation::NSArray<Foundation::NSValue>,
         ) -> Id<Foundation::NSArray<Foundation::NSLinguisticTag>, Shared>;
@@ -350,15 +367,15 @@ extern_methods!(
         #[method(enumerateLinguisticTagsInRange:scheme:options:orthography:usingBlock:)]
         pub unsafe fn enumerateLinguisticTagsInRange_scheme_options_orthography_usingBlock(
             &self,
-            range: NSRange,
+            range: Foundation::NSRange,
             scheme: &Foundation::NSLinguisticTagScheme,
-            options: NSLinguisticTaggerOptions,
+            options: Foundation::NSLinguisticTaggerOptions,
             orthography: Option<&Foundation::NSOrthography>,
             block: &Block<
                 (
                     *mut Foundation::NSLinguisticTag,
-                    NSRange,
-                    NSRange,
+                    Foundation::NSRange,
+                    Foundation::NSRange,
                     NonNull<Bool>,
                 ),
                 (),

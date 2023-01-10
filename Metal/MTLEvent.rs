@@ -47,7 +47,7 @@ extern_protocol!(
             &self,
             listener: &Metal::MTLSharedEventListener,
             value: u64,
-            block: MTLSharedEventNotificationBlock,
+            block: Metal::MTLSharedEventNotificationBlock,
         );
 
         #[method_id(@__retain_semantics New newSharedEventHandle)]

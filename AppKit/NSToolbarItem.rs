@@ -9,13 +9,15 @@ typed_extensible_enum!(
     pub type NSToolbarItemVisibilityPriority = NSInteger;
 );
 
-extern_static!(NSToolbarItemVisibilityPriorityStandard: NSToolbarItemVisibilityPriority = 0);
+extern_static!(
+    NSToolbarItemVisibilityPriorityStandard: AppKit::NSToolbarItemVisibilityPriority = 0
+);
 
-extern_static!(NSToolbarItemVisibilityPriorityLow: NSToolbarItemVisibilityPriority = -1000);
+extern_static!(NSToolbarItemVisibilityPriorityLow: AppKit::NSToolbarItemVisibilityPriority = -1000);
 
-extern_static!(NSToolbarItemVisibilityPriorityHigh: NSToolbarItemVisibilityPriority = 1000);
+extern_static!(NSToolbarItemVisibilityPriorityHigh: AppKit::NSToolbarItemVisibilityPriority = 1000);
 
-extern_static!(NSToolbarItemVisibilityPriorityUser: NSToolbarItemVisibilityPriority = 2000);
+extern_static!(NSToolbarItemVisibilityPriorityUser: AppKit::NSToolbarItemVisibilityPriority = 2000);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -138,24 +140,24 @@ extern_methods!(
         pub unsafe fn setView(&self, view: Option<&AppKit::NSView>);
 
         #[method(minSize)]
-        pub unsafe fn minSize(&self) -> NSSize;
+        pub unsafe fn minSize(&self) -> Foundation::NSSize;
 
         #[method(setMinSize:)]
-        pub unsafe fn setMinSize(&self, minSize: NSSize);
+        pub unsafe fn setMinSize(&self, minSize: Foundation::NSSize);
 
         #[method(maxSize)]
-        pub unsafe fn maxSize(&self) -> NSSize;
+        pub unsafe fn maxSize(&self) -> Foundation::NSSize;
 
         #[method(setMaxSize:)]
-        pub unsafe fn setMaxSize(&self, maxSize: NSSize);
+        pub unsafe fn setMaxSize(&self, maxSize: Foundation::NSSize);
 
         #[method(visibilityPriority)]
-        pub unsafe fn visibilityPriority(&self) -> NSToolbarItemVisibilityPriority;
+        pub unsafe fn visibilityPriority(&self) -> AppKit::NSToolbarItemVisibilityPriority;
 
         #[method(setVisibilityPriority:)]
         pub unsafe fn setVisibilityPriority(
             &self,
-            visibilityPriority: NSToolbarItemVisibilityPriority,
+            visibilityPriority: AppKit::NSToolbarItemVisibilityPriority,
         );
 
         #[method(validate)]

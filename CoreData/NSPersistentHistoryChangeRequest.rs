@@ -56,10 +56,10 @@ extern_methods!(
         ) -> Id<Self, Shared>;
 
         #[method(resultType)]
-        pub unsafe fn resultType(&self) -> NSPersistentHistoryResultType;
+        pub unsafe fn resultType(&self) -> CoreData::NSPersistentHistoryResultType;
 
         #[method(setResultType:)]
-        pub unsafe fn setResultType(&self, resultType: NSPersistentHistoryResultType);
+        pub unsafe fn setResultType(&self, resultType: CoreData::NSPersistentHistoryResultType);
 
         #[cfg(feature = "CoreData_NSPersistentHistoryToken")]
         #[method_id(@__retain_semantics Other token)]

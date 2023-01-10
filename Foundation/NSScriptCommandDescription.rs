@@ -93,7 +93,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other createCommandInstanceWithZone:)]
         pub unsafe fn createCommandInstanceWithZone(
             &self,
-            zone: *mut NSZone,
+            zone: *mut Foundation::NSZone,
         ) -> Id<Foundation::NSScriptCommand, Shared>;
     }
 );

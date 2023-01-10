@@ -216,11 +216,14 @@ extern_methods!(
         #[method(wantsScrollEventsForSwipeTrackingOnAxis:)]
         pub unsafe fn wantsScrollEventsForSwipeTrackingOnAxis(
             &self,
-            axis: NSEventGestureAxis,
+            axis: AppKit::NSEventGestureAxis,
         ) -> bool;
 
         #[method(wantsForwardedScrollEventsForAxis:)]
-        pub unsafe fn wantsForwardedScrollEventsForAxis(&self, axis: NSEventGestureAxis) -> bool;
+        pub unsafe fn wantsForwardedScrollEventsForAxis(
+            &self,
+            axis: AppKit::NSEventGestureAxis,
+        ) -> bool;
 
         #[method_id(@__retain_semantics Other supplementalTargetForAction:sender:)]
         pub unsafe fn supplementalTargetForAction_sender(

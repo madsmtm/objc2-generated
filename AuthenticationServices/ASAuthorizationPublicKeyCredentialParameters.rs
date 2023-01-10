@@ -19,11 +19,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithAlgorithm:)]
         pub unsafe fn initWithAlgorithm(
             this: Option<Allocated<Self>>,
-            algorithm: ASCOSEAlgorithmIdentifier,
+            algorithm: AuthenticationServices::ASCOSEAlgorithmIdentifier,
         ) -> Id<Self, Shared>;
 
         #[method(algorithm)]
-        pub unsafe fn algorithm(&self) -> ASCOSEAlgorithmIdentifier;
+        pub unsafe fn algorithm(&self) -> AuthenticationServices::ASCOSEAlgorithmIdentifier;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self, Shared>;

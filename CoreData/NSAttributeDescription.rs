@@ -39,10 +39,10 @@ extern_methods!(
     #[cfg(feature = "CoreData_NSAttributeDescription")]
     unsafe impl NSAttributeDescription {
         #[method(attributeType)]
-        pub unsafe fn attributeType(&self) -> NSAttributeType;
+        pub unsafe fn attributeType(&self) -> CoreData::NSAttributeType;
 
         #[method(setAttributeType:)]
-        pub unsafe fn setAttributeType(&self, attributeType: NSAttributeType);
+        pub unsafe fn setAttributeType(&self, attributeType: CoreData::NSAttributeType);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other attributeValueClassName)]

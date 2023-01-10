@@ -66,10 +66,10 @@ extern_methods!(
         ) -> Id<Foundation::NSArray<Foundation::NSOperation>, Shared>;
 
         #[method(queuePriority)]
-        pub unsafe fn queuePriority(&self) -> NSOperationQueuePriority;
+        pub unsafe fn queuePriority(&self) -> Foundation::NSOperationQueuePriority;
 
         #[method(setQueuePriority:)]
-        pub unsafe fn setQueuePriority(&self, queuePriority: NSOperationQueuePriority);
+        pub unsafe fn setQueuePriority(&self, queuePriority: Foundation::NSOperationQueuePriority);
 
         #[method(completionBlock)]
         pub unsafe fn completionBlock(&self) -> *mut Block<(), ()>;
@@ -87,10 +87,10 @@ extern_methods!(
         pub unsafe fn setThreadPriority(&self, threadPriority: c_double);
 
         #[method(qualityOfService)]
-        pub unsafe fn qualityOfService(&self) -> NSQualityOfService;
+        pub unsafe fn qualityOfService(&self) -> Foundation::NSQualityOfService;
 
         #[method(setQualityOfService:)]
-        pub unsafe fn setQualityOfService(&self, qualityOfService: NSQualityOfService);
+        pub unsafe fn setQualityOfService(&self, qualityOfService: Foundation::NSQualityOfService);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
@@ -221,10 +221,10 @@ extern_methods!(
         pub unsafe fn setName(&self, name: Option<&Foundation::NSString>);
 
         #[method(qualityOfService)]
-        pub unsafe fn qualityOfService(&self) -> NSQualityOfService;
+        pub unsafe fn qualityOfService(&self) -> Foundation::NSQualityOfService;
 
         #[method(setQualityOfService:)]
-        pub unsafe fn setQualityOfService(&self, qualityOfService: NSQualityOfService);
+        pub unsafe fn setQualityOfService(&self, qualityOfService: Foundation::NSQualityOfService);
 
         #[method(cancelAllOperations)]
         pub unsafe fn cancelAllOperations(&self);

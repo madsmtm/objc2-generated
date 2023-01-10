@@ -28,21 +28,21 @@ extern_methods!(
     unsafe impl ASAuthorizationAppleIDButton {
         #[method_id(@__retain_semantics Other buttonWithType:style:)]
         pub unsafe fn buttonWithType_style(
-            type_: ASAuthorizationAppleIDButtonType,
-            style: ASAuthorizationAppleIDButtonStyle,
+            type_: AuthenticationServices::ASAuthorizationAppleIDButtonType,
+            style: AuthenticationServices::ASAuthorizationAppleIDButtonStyle,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Init initWithAuthorizationButtonType:authorizationButtonStyle:)]
         pub unsafe fn initWithAuthorizationButtonType_authorizationButtonStyle(
             this: Option<Allocated<Self>>,
-            type_: ASAuthorizationAppleIDButtonType,
-            style: ASAuthorizationAppleIDButtonStyle,
+            type_: AuthenticationServices::ASAuthorizationAppleIDButtonType,
+            style: AuthenticationServices::ASAuthorizationAppleIDButtonStyle,
         ) -> Id<Self, Shared>;
 
         #[method(cornerRadius)]
-        pub unsafe fn cornerRadius(&self) -> CGFloat;
+        pub unsafe fn cornerRadius(&self) -> CoreGraphics::CGFloat;
 
         #[method(setCornerRadius:)]
-        pub unsafe fn setCornerRadius(&self, cornerRadius: CGFloat);
+        pub unsafe fn setCornerRadius(&self, cornerRadius: CoreGraphics::CGFloat);
     }
 );

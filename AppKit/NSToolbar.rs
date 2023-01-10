@@ -80,10 +80,10 @@ extern_methods!(
         pub unsafe fn customizationPaletteIsRunning(&self) -> bool;
 
         #[method(displayMode)]
-        pub unsafe fn displayMode(&self) -> NSToolbarDisplayMode;
+        pub unsafe fn displayMode(&self) -> AppKit::NSToolbarDisplayMode;
 
         #[method(setDisplayMode:)]
-        pub unsafe fn setDisplayMode(&self, displayMode: NSToolbarDisplayMode);
+        pub unsafe fn setDisplayMode(&self, displayMode: AppKit::NSToolbarDisplayMode);
 
         #[method_id(@__retain_semantics Other selectedItemIdentifier)]
         pub unsafe fn selectedItemIdentifier(
@@ -97,10 +97,10 @@ extern_methods!(
         );
 
         #[method(sizeMode)]
-        pub unsafe fn sizeMode(&self) -> NSToolbarSizeMode;
+        pub unsafe fn sizeMode(&self) -> AppKit::NSToolbarSizeMode;
 
         #[method(setSizeMode:)]
-        pub unsafe fn setSizeMode(&self, sizeMode: NSToolbarSizeMode);
+        pub unsafe fn setSizeMode(&self, sizeMode: AppKit::NSToolbarSizeMode);
 
         #[method(showsBaselineSeparator)]
         pub unsafe fn showsBaselineSeparator(&self) -> bool;
@@ -232,21 +232,21 @@ extern_methods!(
         );
 
         #[method(fullScreenAccessoryViewMinHeight)]
-        pub unsafe fn fullScreenAccessoryViewMinHeight(&self) -> CGFloat;
+        pub unsafe fn fullScreenAccessoryViewMinHeight(&self) -> CoreGraphics::CGFloat;
 
         #[method(setFullScreenAccessoryViewMinHeight:)]
         pub unsafe fn setFullScreenAccessoryViewMinHeight(
             &self,
-            fullScreenAccessoryViewMinHeight: CGFloat,
+            fullScreenAccessoryViewMinHeight: CoreGraphics::CGFloat,
         );
 
         #[method(fullScreenAccessoryViewMaxHeight)]
-        pub unsafe fn fullScreenAccessoryViewMaxHeight(&self) -> CGFloat;
+        pub unsafe fn fullScreenAccessoryViewMaxHeight(&self) -> CoreGraphics::CGFloat;
 
         #[method(setFullScreenAccessoryViewMaxHeight:)]
         pub unsafe fn setFullScreenAccessoryViewMaxHeight(
             &self,
-            fullScreenAccessoryViewMaxHeight: CGFloat,
+            fullScreenAccessoryViewMaxHeight: CoreGraphics::CGFloat,
         );
     }
 );

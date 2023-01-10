@@ -96,46 +96,46 @@ extern_methods!(
         pub unsafe fn shouldArchiveValueForKey(&self, key: &Foundation::NSString) -> bool;
 
         #[method(bounds)]
-        pub fn bounds(&self) -> CGRect;
+        pub fn bounds(&self) -> CoreGraphics::CGRect;
 
         #[method(setBounds:)]
-        pub fn setBounds(&self, bounds: CGRect);
+        pub fn setBounds(&self, bounds: CoreGraphics::CGRect);
 
         #[method(position)]
-        pub fn position(&self) -> CGPoint;
+        pub fn position(&self) -> CoreGraphics::CGPoint;
 
         #[method(setPosition:)]
-        pub fn setPosition(&self, position: CGPoint);
+        pub fn setPosition(&self, position: CoreGraphics::CGPoint);
 
         #[method(zPosition)]
-        pub fn zPosition(&self) -> CGFloat;
+        pub fn zPosition(&self) -> CoreGraphics::CGFloat;
 
         #[method(setZPosition:)]
-        pub fn setZPosition(&self, zPosition: CGFloat);
+        pub fn setZPosition(&self, zPosition: CoreGraphics::CGFloat);
 
         #[method(anchorPoint)]
-        pub fn anchorPoint(&self) -> CGPoint;
+        pub fn anchorPoint(&self) -> CoreGraphics::CGPoint;
 
         #[method(setAnchorPoint:)]
-        pub fn setAnchorPoint(&self, anchorPoint: CGPoint);
+        pub fn setAnchorPoint(&self, anchorPoint: CoreGraphics::CGPoint);
 
         #[method(anchorPointZ)]
-        pub fn anchorPointZ(&self) -> CGFloat;
+        pub fn anchorPointZ(&self) -> CoreGraphics::CGFloat;
 
         #[method(setAnchorPointZ:)]
-        pub fn setAnchorPointZ(&self, anchorPointZ: CGFloat);
+        pub fn setAnchorPointZ(&self, anchorPointZ: CoreGraphics::CGFloat);
 
         #[method(transform)]
-        pub fn transform(&self) -> CATransform3D;
+        pub fn transform(&self) -> CoreAnimation::CATransform3D;
 
         #[method(setTransform:)]
-        pub fn setTransform(&self, transform: CATransform3D);
+        pub fn setTransform(&self, transform: CoreAnimation::CATransform3D);
 
         #[method(frame)]
-        pub fn frame(&self) -> CGRect;
+        pub fn frame(&self) -> CoreGraphics::CGRect;
 
         #[method(setFrame:)]
-        pub fn setFrame(&self, frame: CGRect);
+        pub fn setFrame(&self, frame: CoreGraphics::CGRect);
 
         #[method(isHidden)]
         pub fn isHidden(&self) -> bool;
@@ -205,10 +205,10 @@ extern_methods!(
         );
 
         #[method(sublayerTransform)]
-        pub fn sublayerTransform(&self) -> CATransform3D;
+        pub fn sublayerTransform(&self) -> CoreAnimation::CATransform3D;
 
         #[method(setSublayerTransform:)]
-        pub fn setSublayerTransform(&self, sublayerTransform: CATransform3D);
+        pub fn setSublayerTransform(&self, sublayerTransform: CoreAnimation::CATransform3D);
 
         #[method_id(@__retain_semantics Other mask)]
         pub fn mask(&self) -> Option<Id<CoreAnimation::CALayer, Shared>>;
@@ -225,46 +225,53 @@ extern_methods!(
         #[method(convertPoint:fromLayer:)]
         pub fn convertPoint_fromLayer(
             &self,
-            p: CGPoint,
+            p: CoreGraphics::CGPoint,
             l: Option<&CoreAnimation::CALayer>,
-        ) -> CGPoint;
+        ) -> CoreGraphics::CGPoint;
 
         #[method(convertPoint:toLayer:)]
         pub fn convertPoint_toLayer(
             &self,
-            p: CGPoint,
+            p: CoreGraphics::CGPoint,
             l: Option<&CoreAnimation::CALayer>,
-        ) -> CGPoint;
+        ) -> CoreGraphics::CGPoint;
 
         #[method(convertRect:fromLayer:)]
         pub fn convertRect_fromLayer(
             &self,
-            r: CGRect,
+            r: CoreGraphics::CGRect,
             l: Option<&CoreAnimation::CALayer>,
-        ) -> CGRect;
+        ) -> CoreGraphics::CGRect;
 
         #[method(convertRect:toLayer:)]
-        pub fn convertRect_toLayer(&self, r: CGRect, l: Option<&CoreAnimation::CALayer>) -> CGRect;
+        pub fn convertRect_toLayer(
+            &self,
+            r: CoreGraphics::CGRect,
+            l: Option<&CoreAnimation::CALayer>,
+        ) -> CoreGraphics::CGRect;
 
         #[method(convertTime:fromLayer:)]
         pub fn convertTime_fromLayer(
             &self,
-            t: CFTimeInterval,
+            t: CoreFoundation::CFTimeInterval,
             l: Option<&CoreAnimation::CALayer>,
-        ) -> CFTimeInterval;
+        ) -> CoreFoundation::CFTimeInterval;
 
         #[method(convertTime:toLayer:)]
         pub fn convertTime_toLayer(
             &self,
-            t: CFTimeInterval,
+            t: CoreFoundation::CFTimeInterval,
             l: Option<&CoreAnimation::CALayer>,
-        ) -> CFTimeInterval;
+        ) -> CoreFoundation::CFTimeInterval;
 
         #[method_id(@__retain_semantics Other hitTest:)]
-        pub fn hitTest(&self, p: CGPoint) -> Option<Id<CoreAnimation::CALayer, Shared>>;
+        pub fn hitTest(
+            &self,
+            p: CoreGraphics::CGPoint,
+        ) -> Option<Id<CoreAnimation::CALayer, Shared>>;
 
         #[method(containsPoint:)]
-        pub fn containsPoint(&self, p: CGPoint) -> bool;
+        pub fn containsPoint(&self, p: CoreGraphics::CGPoint) -> bool;
 
         #[method_id(@__retain_semantics Other contents)]
         pub unsafe fn contents(&self) -> Option<Id<Object, Shared>>;
@@ -273,10 +280,10 @@ extern_methods!(
         pub unsafe fn setContents(&self, contents: Option<&Object>);
 
         #[method(contentsRect)]
-        pub fn contentsRect(&self) -> CGRect;
+        pub fn contentsRect(&self) -> CoreGraphics::CGRect;
 
         #[method(setContentsRect:)]
-        pub fn setContentsRect(&self, contentsRect: CGRect);
+        pub fn setContentsRect(&self, contentsRect: CoreGraphics::CGRect);
 
         #[method_id(@__retain_semantics Other contentsGravity)]
         pub fn contentsGravity(&self) -> Id<CoreAnimation::CALayerContentsGravity, Shared>;
@@ -285,16 +292,16 @@ extern_methods!(
         pub fn setContentsGravity(&self, contentsGravity: &CoreAnimation::CALayerContentsGravity);
 
         #[method(contentsScale)]
-        pub fn contentsScale(&self) -> CGFloat;
+        pub fn contentsScale(&self) -> CoreGraphics::CGFloat;
 
         #[method(setContentsScale:)]
-        pub fn setContentsScale(&self, contentsScale: CGFloat);
+        pub fn setContentsScale(&self, contentsScale: CoreGraphics::CGFloat);
 
         #[method(contentsCenter)]
-        pub fn contentsCenter(&self) -> CGRect;
+        pub fn contentsCenter(&self) -> CoreGraphics::CGRect;
 
         #[method(setContentsCenter:)]
-        pub fn setContentsCenter(&self, contentsCenter: CGRect);
+        pub fn setContentsCenter(&self, contentsCenter: CoreGraphics::CGRect);
 
         #[method_id(@__retain_semantics Other contentsFormat)]
         pub fn contentsFormat(&self) -> Id<CoreAnimation::CALayerContentsFormat, Shared>;
@@ -339,7 +346,7 @@ extern_methods!(
         pub fn setNeedsDisplay(&self);
 
         #[method(setNeedsDisplayInRect:)]
-        pub fn setNeedsDisplayInRect(&self, r: CGRect);
+        pub fn setNeedsDisplayInRect(&self, r: CoreGraphics::CGRect);
 
         #[method(needsDisplay)]
         pub fn needsDisplay(&self) -> bool;
@@ -360,10 +367,13 @@ extern_methods!(
         pub fn setDrawsAsynchronously(&self, drawsAsynchronously: bool);
 
         #[method(edgeAntialiasingMask)]
-        pub fn edgeAntialiasingMask(&self) -> CAEdgeAntialiasingMask;
+        pub fn edgeAntialiasingMask(&self) -> CoreAnimation::CAEdgeAntialiasingMask;
 
         #[method(setEdgeAntialiasingMask:)]
-        pub fn setEdgeAntialiasingMask(&self, edgeAntialiasingMask: CAEdgeAntialiasingMask);
+        pub fn setEdgeAntialiasingMask(
+            &self,
+            edgeAntialiasingMask: CoreAnimation::CAEdgeAntialiasingMask,
+        );
 
         #[method(allowsEdgeAntialiasing)]
         pub fn allowsEdgeAntialiasing(&self) -> bool;
@@ -372,16 +382,16 @@ extern_methods!(
         pub fn setAllowsEdgeAntialiasing(&self, allowsEdgeAntialiasing: bool);
 
         #[method(cornerRadius)]
-        pub fn cornerRadius(&self) -> CGFloat;
+        pub fn cornerRadius(&self) -> CoreGraphics::CGFloat;
 
         #[method(setCornerRadius:)]
-        pub fn setCornerRadius(&self, cornerRadius: CGFloat);
+        pub fn setCornerRadius(&self, cornerRadius: CoreGraphics::CGFloat);
 
         #[method(maskedCorners)]
-        pub fn maskedCorners(&self) -> CACornerMask;
+        pub fn maskedCorners(&self) -> CoreAnimation::CACornerMask;
 
         #[method(setMaskedCorners:)]
-        pub fn setMaskedCorners(&self, maskedCorners: CACornerMask);
+        pub fn setMaskedCorners(&self, maskedCorners: CoreAnimation::CACornerMask);
 
         #[method_id(@__retain_semantics Other cornerCurve)]
         pub fn cornerCurve(&self) -> Id<CoreAnimation::CALayerCornerCurve, Shared>;
@@ -390,13 +400,15 @@ extern_methods!(
         pub fn setCornerCurve(&self, cornerCurve: &CoreAnimation::CALayerCornerCurve);
 
         #[method(cornerCurveExpansionFactor:)]
-        pub fn cornerCurveExpansionFactor(curve: &CoreAnimation::CALayerCornerCurve) -> CGFloat;
+        pub fn cornerCurveExpansionFactor(
+            curve: &CoreAnimation::CALayerCornerCurve,
+        ) -> CoreGraphics::CGFloat;
 
         #[method(borderWidth)]
-        pub fn borderWidth(&self) -> CGFloat;
+        pub fn borderWidth(&self) -> CoreGraphics::CGFloat;
 
         #[method(setBorderWidth:)]
-        pub fn setBorderWidth(&self, borderWidth: CGFloat);
+        pub fn setBorderWidth(&self, borderWidth: CoreGraphics::CGFloat);
 
         #[method(opacity)]
         pub fn opacity(&self) -> c_float;
@@ -439,10 +451,10 @@ extern_methods!(
         pub fn setShouldRasterize(&self, shouldRasterize: bool);
 
         #[method(rasterizationScale)]
-        pub fn rasterizationScale(&self) -> CGFloat;
+        pub fn rasterizationScale(&self) -> CoreGraphics::CGFloat;
 
         #[method(setRasterizationScale:)]
-        pub fn setRasterizationScale(&self, rasterizationScale: CGFloat);
+        pub fn setRasterizationScale(&self, rasterizationScale: CoreGraphics::CGFloat);
 
         #[method(shadowOpacity)]
         pub fn shadowOpacity(&self) -> c_float;
@@ -451,22 +463,22 @@ extern_methods!(
         pub fn setShadowOpacity(&self, shadowOpacity: c_float);
 
         #[method(shadowOffset)]
-        pub fn shadowOffset(&self) -> CGSize;
+        pub fn shadowOffset(&self) -> CoreGraphics::CGSize;
 
         #[method(setShadowOffset:)]
-        pub fn setShadowOffset(&self, shadowOffset: CGSize);
+        pub fn setShadowOffset(&self, shadowOffset: CoreGraphics::CGSize);
 
         #[method(shadowRadius)]
-        pub fn shadowRadius(&self) -> CGFloat;
+        pub fn shadowRadius(&self) -> CoreGraphics::CGFloat;
 
         #[method(setShadowRadius:)]
-        pub fn setShadowRadius(&self, shadowRadius: CGFloat);
+        pub fn setShadowRadius(&self, shadowRadius: CoreGraphics::CGFloat);
 
         #[method(autoresizingMask)]
-        pub fn autoresizingMask(&self) -> CAAutoresizingMask;
+        pub fn autoresizingMask(&self) -> CoreAnimation::CAAutoresizingMask;
 
         #[method(setAutoresizingMask:)]
-        pub fn setAutoresizingMask(&self, autoresizingMask: CAAutoresizingMask);
+        pub fn setAutoresizingMask(&self, autoresizingMask: CoreAnimation::CAAutoresizingMask);
 
         #[method_id(@__retain_semantics Other layoutManager)]
         pub fn layoutManager(&self) -> Option<Id<CoreAnimation::CALayoutManager, Shared>>;
@@ -475,7 +487,7 @@ extern_methods!(
         pub fn setLayoutManager(&self, layoutManager: Option<&CoreAnimation::CALayoutManager>);
 
         #[method(preferredFrameSize)]
-        pub fn preferredFrameSize(&self) -> CGSize;
+        pub fn preferredFrameSize(&self) -> CoreGraphics::CGSize;
 
         #[method(setNeedsLayout)]
         pub fn setNeedsLayout(&self);
@@ -490,10 +502,10 @@ extern_methods!(
         pub fn layoutSublayers(&self);
 
         #[method(resizeSublayersWithOldSize:)]
-        pub fn resizeSublayersWithOldSize(&self, size: CGSize);
+        pub fn resizeSublayersWithOldSize(&self, size: CoreGraphics::CGSize);
 
         #[method(resizeWithOldSuperlayerSize:)]
-        pub fn resizeWithOldSuperlayerSize(&self, size: CGSize);
+        pub fn resizeWithOldSuperlayerSize(&self, size: CoreGraphics::CGSize);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other defaultActionForKey:)]
@@ -583,7 +595,10 @@ extern_protocol!(
     unsafe impl ProtocolType for CALayoutManager {
         #[optional]
         #[method(preferredSizeOfLayer:)]
-        pub unsafe fn preferredSizeOfLayer(&self, layer: &CoreAnimation::CALayer) -> CGSize;
+        pub unsafe fn preferredSizeOfLayer(
+            &self,
+            layer: &CoreAnimation::CALayer,
+        ) -> CoreGraphics::CGSize;
 
         #[optional]
         #[method(invalidateLayoutOfLayer:)]

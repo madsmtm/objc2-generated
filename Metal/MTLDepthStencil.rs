@@ -45,28 +45,34 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLStencilDescriptor")]
     unsafe impl MTLStencilDescriptor {
         #[method(stencilCompareFunction)]
-        pub fn stencilCompareFunction(&self) -> MTLCompareFunction;
+        pub fn stencilCompareFunction(&self) -> Metal::MTLCompareFunction;
 
         #[method(setStencilCompareFunction:)]
-        pub fn setStencilCompareFunction(&self, stencilCompareFunction: MTLCompareFunction);
+        pub fn setStencilCompareFunction(&self, stencilCompareFunction: Metal::MTLCompareFunction);
 
         #[method(stencilFailureOperation)]
-        pub fn stencilFailureOperation(&self) -> MTLStencilOperation;
+        pub fn stencilFailureOperation(&self) -> Metal::MTLStencilOperation;
 
         #[method(setStencilFailureOperation:)]
-        pub fn setStencilFailureOperation(&self, stencilFailureOperation: MTLStencilOperation);
+        pub fn setStencilFailureOperation(
+            &self,
+            stencilFailureOperation: Metal::MTLStencilOperation,
+        );
 
         #[method(depthFailureOperation)]
-        pub fn depthFailureOperation(&self) -> MTLStencilOperation;
+        pub fn depthFailureOperation(&self) -> Metal::MTLStencilOperation;
 
         #[method(setDepthFailureOperation:)]
-        pub fn setDepthFailureOperation(&self, depthFailureOperation: MTLStencilOperation);
+        pub fn setDepthFailureOperation(&self, depthFailureOperation: Metal::MTLStencilOperation);
 
         #[method(depthStencilPassOperation)]
-        pub fn depthStencilPassOperation(&self) -> MTLStencilOperation;
+        pub fn depthStencilPassOperation(&self) -> Metal::MTLStencilOperation;
 
         #[method(setDepthStencilPassOperation:)]
-        pub fn setDepthStencilPassOperation(&self, depthStencilPassOperation: MTLStencilOperation);
+        pub fn setDepthStencilPassOperation(
+            &self,
+            depthStencilPassOperation: Metal::MTLStencilOperation,
+        );
 
         #[method(readMask)]
         pub fn readMask(&self) -> u32;
@@ -95,10 +101,10 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLDepthStencilDescriptor")]
     unsafe impl MTLDepthStencilDescriptor {
         #[method(depthCompareFunction)]
-        pub fn depthCompareFunction(&self) -> MTLCompareFunction;
+        pub fn depthCompareFunction(&self) -> Metal::MTLCompareFunction;
 
         #[method(setDepthCompareFunction:)]
-        pub fn setDepthCompareFunction(&self, depthCompareFunction: MTLCompareFunction);
+        pub fn setDepthCompareFunction(&self, depthCompareFunction: Metal::MTLCompareFunction);
 
         #[method(isDepthWriteEnabled)]
         pub fn isDepthWriteEnabled(&self) -> bool;

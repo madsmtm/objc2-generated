@@ -40,16 +40,16 @@ extern_methods!(
         pub unsafe fn makePreviousSegmentKey(&self);
 
         #[method(trackingMode)]
-        pub unsafe fn trackingMode(&self) -> NSSegmentSwitchTracking;
+        pub unsafe fn trackingMode(&self) -> AppKit::NSSegmentSwitchTracking;
 
         #[method(setTrackingMode:)]
-        pub unsafe fn setTrackingMode(&self, trackingMode: NSSegmentSwitchTracking);
+        pub unsafe fn setTrackingMode(&self, trackingMode: AppKit::NSSegmentSwitchTracking);
 
         #[method(setWidth:forSegment:)]
-        pub unsafe fn setWidth_forSegment(&self, width: CGFloat, segment: NSInteger);
+        pub unsafe fn setWidth_forSegment(&self, width: CoreGraphics::CGFloat, segment: NSInteger);
 
         #[method(widthForSegment:)]
-        pub unsafe fn widthForSegment(&self, segment: NSInteger) -> CGFloat;
+        pub unsafe fn widthForSegment(&self, segment: NSInteger) -> CoreGraphics::CGFloat;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method(setImage:forSegment:)]
@@ -69,12 +69,12 @@ extern_methods!(
         #[method(setImageScaling:forSegment:)]
         pub unsafe fn setImageScaling_forSegment(
             &self,
-            scaling: NSImageScaling,
+            scaling: AppKit::NSImageScaling,
             segment: NSInteger,
         );
 
         #[method(imageScalingForSegment:)]
-        pub unsafe fn imageScalingForSegment(&self, segment: NSInteger) -> NSImageScaling;
+        pub unsafe fn imageScalingForSegment(&self, segment: NSInteger) -> AppKit::NSImageScaling;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:forSegment:)]
@@ -132,17 +132,17 @@ extern_methods!(
         pub unsafe fn tagForSegment(&self, segment: NSInteger) -> NSInteger;
 
         #[method(segmentStyle)]
-        pub unsafe fn segmentStyle(&self) -> NSSegmentStyle;
+        pub unsafe fn segmentStyle(&self) -> AppKit::NSSegmentStyle;
 
         #[method(setSegmentStyle:)]
-        pub unsafe fn setSegmentStyle(&self, segmentStyle: NSSegmentStyle);
+        pub unsafe fn setSegmentStyle(&self, segmentStyle: AppKit::NSSegmentStyle);
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(drawSegment:inFrame:withView:)]
         pub unsafe fn drawSegment_inFrame_withView(
             &self,
             segment: NSInteger,
-            frame: NSRect,
+            frame: Foundation::NSRect,
             controlView: &AppKit::NSView,
         );
     }
@@ -156,7 +156,7 @@ extern_methods!(
         pub unsafe fn interiorBackgroundStyleForSegment(
             &self,
             segment: NSInteger,
-        ) -> NSBackgroundStyle;
+        ) -> AppKit::NSBackgroundStyle;
     }
 );
 

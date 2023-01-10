@@ -165,12 +165,12 @@ extern_methods!(
         pub unsafe fn mergeByPropertyStoreTrumpMergePolicy() -> Id<CoreData::NSMergePolicy, Shared>;
 
         #[method(mergeType)]
-        pub unsafe fn mergeType(&self) -> NSMergePolicyType;
+        pub unsafe fn mergeType(&self) -> CoreData::NSMergePolicyType;
 
         #[method_id(@__retain_semantics Init initWithMergeType:)]
         pub unsafe fn initWithMergeType(
             this: Option<Allocated<Self>>,
-            ty: NSMergePolicyType,
+            ty: CoreData::NSMergePolicyType,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Init init)]

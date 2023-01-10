@@ -37,22 +37,22 @@ extern_methods!(
         pub unsafe fn setEditable(&self, editable: bool);
 
         #[method(imageAlignment)]
-        pub unsafe fn imageAlignment(&self) -> NSImageAlignment;
+        pub unsafe fn imageAlignment(&self) -> AppKit::NSImageAlignment;
 
         #[method(setImageAlignment:)]
-        pub unsafe fn setImageAlignment(&self, imageAlignment: NSImageAlignment);
+        pub unsafe fn setImageAlignment(&self, imageAlignment: AppKit::NSImageAlignment);
 
         #[method(imageScaling)]
-        pub unsafe fn imageScaling(&self) -> NSImageScaling;
+        pub unsafe fn imageScaling(&self) -> AppKit::NSImageScaling;
 
         #[method(setImageScaling:)]
-        pub unsafe fn setImageScaling(&self, imageScaling: NSImageScaling);
+        pub unsafe fn setImageScaling(&self, imageScaling: AppKit::NSImageScaling);
 
         #[method(imageFrameStyle)]
-        pub unsafe fn imageFrameStyle(&self) -> NSImageFrameStyle;
+        pub unsafe fn imageFrameStyle(&self) -> AppKit::NSImageFrameStyle;
 
         #[method(setImageFrameStyle:)]
-        pub unsafe fn setImageFrameStyle(&self, imageFrameStyle: NSImageFrameStyle);
+        pub unsafe fn setImageFrameStyle(&self, imageFrameStyle: AppKit::NSImageFrameStyle);
 
         #[cfg(feature = "AppKit_NSImageSymbolConfiguration")]
         #[method_id(@__retain_semantics Other symbolConfiguration)]
@@ -96,7 +96,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frameRect: Foundation::NSRect,
         ) -> Id<Self, Shared>;
     }
 );

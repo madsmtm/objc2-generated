@@ -37,12 +37,12 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithOptions:)]
         pub unsafe fn initWithOptions(
             this: Option<Allocated<Self>>,
-            options: NSPointerFunctionsOptions,
+            options: Foundation::NSPointerFunctionsOptions,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Other pointerFunctionsWithOptions:)]
         pub unsafe fn pointerFunctionsWithOptions(
-            options: NSPointerFunctionsOptions,
+            options: Foundation::NSPointerFunctionsOptions,
         ) -> Id<Foundation::NSPointerFunctions, Shared>;
 
         #[method(hashFunction)]

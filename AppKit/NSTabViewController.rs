@@ -29,10 +29,10 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTabViewController")]
     unsafe impl NSTabViewController {
         #[method(tabStyle)]
-        pub unsafe fn tabStyle(&self) -> NSTabViewControllerTabStyle;
+        pub unsafe fn tabStyle(&self) -> AppKit::NSTabViewControllerTabStyle;
 
         #[method(setTabStyle:)]
-        pub unsafe fn setTabStyle(&self, tabStyle: NSTabViewControllerTabStyle);
+        pub unsafe fn setTabStyle(&self, tabStyle: AppKit::NSTabViewControllerTabStyle);
 
         #[cfg(feature = "AppKit_NSTabView")]
         #[method_id(@__retain_semantics Other tabView)]
@@ -43,12 +43,12 @@ extern_methods!(
         pub unsafe fn setTabView(&self, tabView: &AppKit::NSTabView);
 
         #[method(transitionOptions)]
-        pub unsafe fn transitionOptions(&self) -> NSViewControllerTransitionOptions;
+        pub unsafe fn transitionOptions(&self) -> AppKit::NSViewControllerTransitionOptions;
 
         #[method(setTransitionOptions:)]
         pub unsafe fn setTransitionOptions(
             &self,
-            transitionOptions: NSViewControllerTransitionOptions,
+            transitionOptions: AppKit::NSViewControllerTransitionOptions,
         );
 
         #[method(canPropagateSelectedChildViewControllerTitle)]

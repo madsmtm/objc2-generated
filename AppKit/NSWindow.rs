@@ -5,9 +5,11 @@ use crate::AppKit;
 use crate::CoreData;
 use crate::Foundation;
 
-extern_static!(NSAppKitVersionNumberWithCustomSheetPosition: NSAppKitVersion = 686.0);
+extern_static!(NSAppKitVersionNumberWithCustomSheetPosition: AppKit::NSAppKitVersion = 686.0);
 
-extern_static!(NSAppKitVersionNumberWithDeferredWindowDisplaySupport: NSAppKitVersion = 1019.0);
+extern_static!(
+    NSAppKitVersionNumberWithDeferredWindowDisplaySupport: AppKit::NSAppKitVersion = 1019.0
+);
 
 ns_options!(
     #[underlying(NSUInteger)]
@@ -28,9 +30,9 @@ ns_options!(
     }
 );
 
-extern_static!(NSModalResponseOK: NSModalResponse = 1);
+extern_static!(NSModalResponseOK: AppKit::NSModalResponse = 1);
 
-extern_static!(NSModalResponseCancel: NSModalResponse = 0);
+extern_static!(NSModalResponseCancel: AppKit::NSModalResponse = 0);
 
 extern_enum!(
     #[underlying(c_uint)]
@@ -187,38 +189,44 @@ extern_methods!(
     unsafe impl NSWindow {
         #[method(frameRectForContentRect:styleMask:)]
         pub unsafe fn frameRectForContentRect_styleMask(
-            cRect: NSRect,
-            style: NSWindowStyleMask,
-        ) -> NSRect;
+            cRect: Foundation::NSRect,
+            style: AppKit::NSWindowStyleMask,
+        ) -> Foundation::NSRect;
 
         #[method(contentRectForFrameRect:styleMask:)]
         pub unsafe fn contentRectForFrameRect_styleMask(
-            fRect: NSRect,
-            style: NSWindowStyleMask,
-        ) -> NSRect;
+            fRect: Foundation::NSRect,
+            style: AppKit::NSWindowStyleMask,
+        ) -> Foundation::NSRect;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(minFrameWidthWithTitle:styleMask:)]
         pub unsafe fn minFrameWidthWithTitle_styleMask(
             title: &Foundation::NSString,
-            style: NSWindowStyleMask,
-        ) -> CGFloat;
+            style: AppKit::NSWindowStyleMask,
+        ) -> CoreGraphics::CGFloat;
 
         #[method(defaultDepthLimit)]
-        pub unsafe fn defaultDepthLimit() -> NSWindowDepth;
+        pub unsafe fn defaultDepthLimit() -> AppKit::NSWindowDepth;
 
         #[method(frameRectForContentRect:)]
-        pub unsafe fn frameRectForContentRect(&self, contentRect: NSRect) -> NSRect;
+        pub unsafe fn frameRectForContentRect(
+            &self,
+            contentRect: Foundation::NSRect,
+        ) -> Foundation::NSRect;
 
         #[method(contentRectForFrameRect:)]
-        pub unsafe fn contentRectForFrameRect(&self, frameRect: NSRect) -> NSRect;
+        pub unsafe fn contentRectForFrameRect(
+            &self,
+            frameRect: Foundation::NSRect,
+        ) -> Foundation::NSRect;
 
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer(
             this: Option<Allocated<Self>>,
-            contentRect: NSRect,
-            style: NSWindowStyleMask,
-            backingStoreType: NSBackingStoreType,
+            contentRect: Foundation::NSRect,
+            style: AppKit::NSWindowStyleMask,
+            backingStoreType: AppKit::NSBackingStoreType,
             flag: bool,
         ) -> Id<Self, Shared>;
 
@@ -226,9 +234,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:screen:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer_screen(
             this: Option<Allocated<Self>>,
-            contentRect: NSRect,
-            style: NSWindowStyleMask,
-            backingStoreType: NSBackingStoreType,
+            contentRect: Foundation::NSRect,
+            style: AppKit::NSWindowStyleMask,
+            backingStoreType: AppKit::NSBackingStoreType,
             flag: bool,
             screen: Option<&AppKit::NSScreen>,
         ) -> Id<Self, Shared>;
@@ -257,10 +265,10 @@ extern_methods!(
         pub unsafe fn setSubtitle(&self, subtitle: &Foundation::NSString);
 
         #[method(titleVisibility)]
-        pub unsafe fn titleVisibility(&self) -> NSWindowTitleVisibility;
+        pub unsafe fn titleVisibility(&self) -> AppKit::NSWindowTitleVisibility;
 
         #[method(setTitleVisibility:)]
-        pub unsafe fn setTitleVisibility(&self, titleVisibility: NSWindowTitleVisibility);
+        pub unsafe fn setTitleVisibility(&self, titleVisibility: AppKit::NSWindowTitleVisibility);
 
         #[method(titlebarAppearsTransparent)]
         pub unsafe fn titlebarAppearsTransparent(&self) -> bool;
@@ -269,13 +277,13 @@ extern_methods!(
         pub unsafe fn setTitlebarAppearsTransparent(&self, titlebarAppearsTransparent: bool);
 
         #[method(toolbarStyle)]
-        pub unsafe fn toolbarStyle(&self) -> NSWindowToolbarStyle;
+        pub unsafe fn toolbarStyle(&self) -> AppKit::NSWindowToolbarStyle;
 
         #[method(setToolbarStyle:)]
-        pub unsafe fn setToolbarStyle(&self, toolbarStyle: NSWindowToolbarStyle);
+        pub unsafe fn setToolbarStyle(&self, toolbarStyle: AppKit::NSWindowToolbarStyle);
 
         #[method(contentLayoutRect)]
-        pub unsafe fn contentLayoutRect(&self) -> NSRect;
+        pub unsafe fn contentLayoutRect(&self) -> Foundation::NSRect;
 
         #[method_id(@__retain_semantics Other contentLayoutGuide)]
         pub unsafe fn contentLayoutGuide(&self) -> Option<Id<Object, Shared>>;
@@ -363,10 +371,10 @@ extern_methods!(
         pub unsafe fn windowNumber(&self) -> NSInteger;
 
         #[method(styleMask)]
-        pub unsafe fn styleMask(&self) -> NSWindowStyleMask;
+        pub unsafe fn styleMask(&self) -> AppKit::NSWindowStyleMask;
 
         #[method(setStyleMask:)]
-        pub unsafe fn setStyleMask(&self, styleMask: NSWindowStyleMask);
+        pub unsafe fn setStyleMask(&self, styleMask: AppKit::NSWindowStyleMask);
 
         #[cfg(feature = "AppKit_NSText")]
         #[method_id(@__retain_semantics Other fieldEditor:forObject:)]
@@ -383,35 +391,41 @@ extern_methods!(
         #[method(constrainFrameRect:toScreen:)]
         pub unsafe fn constrainFrameRect_toScreen(
             &self,
-            frameRect: NSRect,
+            frameRect: Foundation::NSRect,
             screen: Option<&AppKit::NSScreen>,
-        ) -> NSRect;
+        ) -> Foundation::NSRect;
 
         #[method(setFrame:display:)]
-        pub unsafe fn setFrame_display(&self, frameRect: NSRect, flag: bool);
+        pub unsafe fn setFrame_display(&self, frameRect: Foundation::NSRect, flag: bool);
 
         #[method(setContentSize:)]
-        pub unsafe fn setContentSize(&self, size: NSSize);
+        pub unsafe fn setContentSize(&self, size: Foundation::NSSize);
 
         #[method(setFrameOrigin:)]
-        pub unsafe fn setFrameOrigin(&self, point: NSPoint);
+        pub unsafe fn setFrameOrigin(&self, point: Foundation::NSPoint);
 
         #[method(setFrameTopLeftPoint:)]
-        pub unsafe fn setFrameTopLeftPoint(&self, point: NSPoint);
+        pub unsafe fn setFrameTopLeftPoint(&self, point: Foundation::NSPoint);
 
         #[method(cascadeTopLeftFromPoint:)]
-        pub unsafe fn cascadeTopLeftFromPoint(&self, topLeftPoint: NSPoint) -> NSPoint;
+        pub unsafe fn cascadeTopLeftFromPoint(
+            &self,
+            topLeftPoint: Foundation::NSPoint,
+        ) -> Foundation::NSPoint;
 
         #[method(frame)]
-        pub unsafe fn frame(&self) -> NSRect;
+        pub unsafe fn frame(&self) -> Foundation::NSRect;
 
         #[method(animationResizeTime:)]
-        pub unsafe fn animationResizeTime(&self, newFrame: NSRect) -> NSTimeInterval;
+        pub unsafe fn animationResizeTime(
+            &self,
+            newFrame: Foundation::NSRect,
+        ) -> Foundation::NSTimeInterval;
 
         #[method(setFrame:display:animate:)]
         pub unsafe fn setFrame_display_animate(
             &self,
-            frameRect: NSRect,
+            frameRect: Foundation::NSRect,
             displayFlag: bool,
             animateFlag: bool,
         );
@@ -420,28 +434,31 @@ extern_methods!(
         pub unsafe fn inLiveResize(&self) -> bool;
 
         #[method(resizeIncrements)]
-        pub unsafe fn resizeIncrements(&self) -> NSSize;
+        pub unsafe fn resizeIncrements(&self) -> Foundation::NSSize;
 
         #[method(setResizeIncrements:)]
-        pub unsafe fn setResizeIncrements(&self, resizeIncrements: NSSize);
+        pub unsafe fn setResizeIncrements(&self, resizeIncrements: Foundation::NSSize);
 
         #[method(aspectRatio)]
-        pub unsafe fn aspectRatio(&self) -> NSSize;
+        pub unsafe fn aspectRatio(&self) -> Foundation::NSSize;
 
         #[method(setAspectRatio:)]
-        pub unsafe fn setAspectRatio(&self, aspectRatio: NSSize);
+        pub unsafe fn setAspectRatio(&self, aspectRatio: Foundation::NSSize);
 
         #[method(contentResizeIncrements)]
-        pub unsafe fn contentResizeIncrements(&self) -> NSSize;
+        pub unsafe fn contentResizeIncrements(&self) -> Foundation::NSSize;
 
         #[method(setContentResizeIncrements:)]
-        pub unsafe fn setContentResizeIncrements(&self, contentResizeIncrements: NSSize);
+        pub unsafe fn setContentResizeIncrements(
+            &self,
+            contentResizeIncrements: Foundation::NSSize,
+        );
 
         #[method(contentAspectRatio)]
-        pub unsafe fn contentAspectRatio(&self) -> NSSize;
+        pub unsafe fn contentAspectRatio(&self) -> Foundation::NSSize;
 
         #[method(setContentAspectRatio:)]
-        pub unsafe fn setContentAspectRatio(&self, contentAspectRatio: NSSize);
+        pub unsafe fn setContentAspectRatio(&self, contentAspectRatio: Foundation::NSSize);
 
         #[method(viewsNeedDisplay)]
         pub unsafe fn viewsNeedDisplay(&self) -> bool;
@@ -474,7 +491,7 @@ extern_methods!(
         pub unsafe fn firstResponder(&self) -> Option<Id<AppKit::NSResponder, Shared>>;
 
         #[method(resizeFlags)]
-        pub unsafe fn resizeFlags(&self) -> NSEventModifierFlags;
+        pub unsafe fn resizeFlags(&self) -> AppKit::NSEventModifierFlags;
 
         #[method(close)]
         pub unsafe fn close(&self);
@@ -521,24 +538,27 @@ extern_methods!(
         #[method(setContentBorderThickness:forEdge:)]
         pub unsafe fn setContentBorderThickness_forEdge(
             &self,
-            thickness: CGFloat,
-            edge: NSRectEdge,
+            thickness: CoreGraphics::CGFloat,
+            edge: Foundation::NSRectEdge,
         );
 
         #[method(contentBorderThicknessForEdge:)]
-        pub unsafe fn contentBorderThicknessForEdge(&self, edge: NSRectEdge) -> CGFloat;
+        pub unsafe fn contentBorderThicknessForEdge(
+            &self,
+            edge: Foundation::NSRectEdge,
+        ) -> CoreGraphics::CGFloat;
 
         #[method(setAutorecalculatesContentBorderThickness:forEdge:)]
         pub unsafe fn setAutorecalculatesContentBorderThickness_forEdge(
             &self,
             flag: bool,
-            edge: NSRectEdge,
+            edge: Foundation::NSRectEdge,
         );
 
         #[method(autorecalculatesContentBorderThicknessForEdge:)]
         pub unsafe fn autorecalculatesContentBorderThicknessForEdge(
             &self,
-            edge: NSRectEdge,
+            edge: Foundation::NSRectEdge,
         ) -> bool;
 
         #[method(isMovable)]
@@ -583,7 +603,7 @@ extern_methods!(
         #[method(orderWindow:relativeTo:)]
         pub unsafe fn orderWindow_relativeTo(
             &self,
-            place: NSWindowOrderingMode,
+            place: AppKit::NSWindowOrderingMode,
             otherWin: NSInteger,
         );
 
@@ -662,38 +682,51 @@ extern_methods!(
         );
 
         #[method(convertRectToScreen:)]
-        pub unsafe fn convertRectToScreen(&self, rect: NSRect) -> NSRect;
+        pub unsafe fn convertRectToScreen(&self, rect: Foundation::NSRect) -> Foundation::NSRect;
 
         #[method(convertRectFromScreen:)]
-        pub unsafe fn convertRectFromScreen(&self, rect: NSRect) -> NSRect;
+        pub unsafe fn convertRectFromScreen(&self, rect: Foundation::NSRect) -> Foundation::NSRect;
 
         #[method(convertPointToScreen:)]
-        pub unsafe fn convertPointToScreen(&self, point: NSPoint) -> NSPoint;
+        pub unsafe fn convertPointToScreen(
+            &self,
+            point: Foundation::NSPoint,
+        ) -> Foundation::NSPoint;
 
         #[method(convertPointFromScreen:)]
-        pub unsafe fn convertPointFromScreen(&self, point: NSPoint) -> NSPoint;
+        pub unsafe fn convertPointFromScreen(
+            &self,
+            point: Foundation::NSPoint,
+        ) -> Foundation::NSPoint;
 
         #[method(convertRectToBacking:)]
-        pub unsafe fn convertRectToBacking(&self, rect: NSRect) -> NSRect;
+        pub unsafe fn convertRectToBacking(&self, rect: Foundation::NSRect) -> Foundation::NSRect;
 
         #[method(convertRectFromBacking:)]
-        pub unsafe fn convertRectFromBacking(&self, rect: NSRect) -> NSRect;
+        pub unsafe fn convertRectFromBacking(&self, rect: Foundation::NSRect)
+            -> Foundation::NSRect;
 
         #[method(convertPointToBacking:)]
-        pub unsafe fn convertPointToBacking(&self, point: NSPoint) -> NSPoint;
+        pub unsafe fn convertPointToBacking(
+            &self,
+            point: Foundation::NSPoint,
+        ) -> Foundation::NSPoint;
 
         #[method(convertPointFromBacking:)]
-        pub unsafe fn convertPointFromBacking(&self, point: NSPoint) -> NSPoint;
+        pub unsafe fn convertPointFromBacking(
+            &self,
+            point: Foundation::NSPoint,
+        ) -> Foundation::NSPoint;
 
         #[method(backingAlignedRect:options:)]
         pub unsafe fn backingAlignedRect_options(
             &self,
-            rect: NSRect,
-            options: NSAlignmentOptions,
-        ) -> NSRect;
+            rect: Foundation::NSRect,
+            options: Foundation::NSAlignmentOptions,
+        ) -> Foundation::NSRect;
 
         #[method(backingScaleFactor)]
-        pub unsafe fn backingScaleFactor(&self) -> CGFloat;
+        pub unsafe fn backingScaleFactor(&self) -> CoreGraphics::CGFloat;
 
         #[method(performClose:)]
         pub unsafe fn performClose(&self, sender: Option<&Object>);
@@ -706,11 +739,17 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other dataWithEPSInsideRect:)]
-        pub unsafe fn dataWithEPSInsideRect(&self, rect: NSRect) -> Id<Foundation::NSData, Shared>;
+        pub unsafe fn dataWithEPSInsideRect(
+            &self,
+            rect: Foundation::NSRect,
+        ) -> Id<Foundation::NSData, Shared>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other dataWithPDFInsideRect:)]
-        pub unsafe fn dataWithPDFInsideRect(&self, rect: NSRect) -> Id<Foundation::NSData, Shared>;
+        pub unsafe fn dataWithPDFInsideRect(
+            &self,
+            rect: Foundation::NSRect,
+        ) -> Id<Foundation::NSData, Shared>;
 
         #[method(print:)]
         pub unsafe fn print(&self, sender: Option<&Object>);
@@ -725,22 +764,22 @@ extern_methods!(
         );
 
         #[method(backingType)]
-        pub unsafe fn backingType(&self) -> NSBackingStoreType;
+        pub unsafe fn backingType(&self) -> AppKit::NSBackingStoreType;
 
         #[method(setBackingType:)]
-        pub unsafe fn setBackingType(&self, backingType: NSBackingStoreType);
+        pub unsafe fn setBackingType(&self, backingType: AppKit::NSBackingStoreType);
 
         #[method(level)]
-        pub unsafe fn level(&self) -> NSWindowLevel;
+        pub unsafe fn level(&self) -> AppKit::NSWindowLevel;
 
         #[method(setLevel:)]
-        pub unsafe fn setLevel(&self, level: NSWindowLevel);
+        pub unsafe fn setLevel(&self, level: AppKit::NSWindowLevel);
 
         #[method(depthLimit)]
-        pub unsafe fn depthLimit(&self) -> NSWindowDepth;
+        pub unsafe fn depthLimit(&self) -> AppKit::NSWindowDepth;
 
         #[method(setDepthLimit:)]
-        pub unsafe fn setDepthLimit(&self, depthLimit: NSWindowDepth);
+        pub unsafe fn setDepthLimit(&self, depthLimit: AppKit::NSWindowDepth);
 
         #[method(setDynamicDepthLimit:)]
         pub unsafe fn setDynamicDepthLimit(&self, flag: bool);
@@ -766,10 +805,10 @@ extern_methods!(
         pub unsafe fn invalidateShadow(&self);
 
         #[method(alphaValue)]
-        pub unsafe fn alphaValue(&self) -> CGFloat;
+        pub unsafe fn alphaValue(&self) -> CoreGraphics::CGFloat;
 
         #[method(setAlphaValue:)]
-        pub unsafe fn setAlphaValue(&self, alphaValue: CGFloat);
+        pub unsafe fn setAlphaValue(&self, alphaValue: CoreGraphics::CGFloat);
 
         #[method(isOpaque)]
         pub unsafe fn isOpaque(&self) -> bool;
@@ -778,10 +817,10 @@ extern_methods!(
         pub unsafe fn setOpaque(&self, opaque: bool);
 
         #[method(sharingType)]
-        pub unsafe fn sharingType(&self) -> NSWindowSharingType;
+        pub unsafe fn sharingType(&self) -> AppKit::NSWindowSharingType;
 
         #[method(setSharingType:)]
-        pub unsafe fn setSharingType(&self, sharingType: NSWindowSharingType);
+        pub unsafe fn setSharingType(&self, sharingType: AppKit::NSWindowSharingType);
 
         #[method(allowsConcurrentViewDrawing)]
         pub unsafe fn allowsConcurrentViewDrawing(&self) -> bool;
@@ -808,16 +847,22 @@ extern_methods!(
         pub unsafe fn setCanBecomeVisibleWithoutLogin(&self, canBecomeVisibleWithoutLogin: bool);
 
         #[method(collectionBehavior)]
-        pub unsafe fn collectionBehavior(&self) -> NSWindowCollectionBehavior;
+        pub unsafe fn collectionBehavior(&self) -> AppKit::NSWindowCollectionBehavior;
 
         #[method(setCollectionBehavior:)]
-        pub unsafe fn setCollectionBehavior(&self, collectionBehavior: NSWindowCollectionBehavior);
+        pub unsafe fn setCollectionBehavior(
+            &self,
+            collectionBehavior: AppKit::NSWindowCollectionBehavior,
+        );
 
         #[method(animationBehavior)]
-        pub unsafe fn animationBehavior(&self) -> NSWindowAnimationBehavior;
+        pub unsafe fn animationBehavior(&self) -> AppKit::NSWindowAnimationBehavior;
 
         #[method(setAnimationBehavior:)]
-        pub unsafe fn setAnimationBehavior(&self, animationBehavior: NSWindowAnimationBehavior);
+        pub unsafe fn setAnimationBehavior(
+            &self,
+            animationBehavior: AppKit::NSWindowAnimationBehavior,
+        );
 
         #[method(isOnActiveSpace)]
         pub unsafe fn isOnActiveSpace(&self) -> bool;
@@ -860,40 +905,46 @@ extern_methods!(
         pub unsafe fn removeFrameUsingName(name: &AppKit::NSWindowFrameAutosaveName);
 
         #[method(minSize)]
-        pub unsafe fn minSize(&self) -> NSSize;
+        pub unsafe fn minSize(&self) -> Foundation::NSSize;
 
         #[method(setMinSize:)]
-        pub unsafe fn setMinSize(&self, minSize: NSSize);
+        pub unsafe fn setMinSize(&self, minSize: Foundation::NSSize);
 
         #[method(maxSize)]
-        pub unsafe fn maxSize(&self) -> NSSize;
+        pub unsafe fn maxSize(&self) -> Foundation::NSSize;
 
         #[method(setMaxSize:)]
-        pub unsafe fn setMaxSize(&self, maxSize: NSSize);
+        pub unsafe fn setMaxSize(&self, maxSize: Foundation::NSSize);
 
         #[method(contentMinSize)]
-        pub unsafe fn contentMinSize(&self) -> NSSize;
+        pub unsafe fn contentMinSize(&self) -> Foundation::NSSize;
 
         #[method(setContentMinSize:)]
-        pub unsafe fn setContentMinSize(&self, contentMinSize: NSSize);
+        pub unsafe fn setContentMinSize(&self, contentMinSize: Foundation::NSSize);
 
         #[method(contentMaxSize)]
-        pub unsafe fn contentMaxSize(&self) -> NSSize;
+        pub unsafe fn contentMaxSize(&self) -> Foundation::NSSize;
 
         #[method(setContentMaxSize:)]
-        pub unsafe fn setContentMaxSize(&self, contentMaxSize: NSSize);
+        pub unsafe fn setContentMaxSize(&self, contentMaxSize: Foundation::NSSize);
 
         #[method(minFullScreenContentSize)]
-        pub unsafe fn minFullScreenContentSize(&self) -> NSSize;
+        pub unsafe fn minFullScreenContentSize(&self) -> Foundation::NSSize;
 
         #[method(setMinFullScreenContentSize:)]
-        pub unsafe fn setMinFullScreenContentSize(&self, minFullScreenContentSize: NSSize);
+        pub unsafe fn setMinFullScreenContentSize(
+            &self,
+            minFullScreenContentSize: Foundation::NSSize,
+        );
 
         #[method(maxFullScreenContentSize)]
-        pub unsafe fn maxFullScreenContentSize(&self) -> NSSize;
+        pub unsafe fn maxFullScreenContentSize(&self) -> Foundation::NSSize;
 
         #[method(setMaxFullScreenContentSize:)]
-        pub unsafe fn setMaxFullScreenContentSize(&self, maxFullScreenContentSize: NSSize);
+        pub unsafe fn setMaxFullScreenContentSize(
+            &self,
+            maxFullScreenContentSize: Foundation::NSSize,
+        );
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other deviceDescription)]
@@ -916,14 +967,14 @@ extern_methods!(
         pub unsafe fn beginSheet_completionHandler(
             &self,
             sheetWindow: &AppKit::NSWindow,
-            handler: Option<&Block<(NSModalResponse,), ()>>,
+            handler: Option<&Block<(AppKit::NSModalResponse,), ()>>,
         );
 
         #[method(beginCriticalSheet:completionHandler:)]
         pub unsafe fn beginCriticalSheet_completionHandler(
             &self,
             sheetWindow: &AppKit::NSWindow,
-            handler: Option<&Block<(NSModalResponse,), ()>>,
+            handler: Option<&Block<(AppKit::NSModalResponse,), ()>>,
         );
 
         #[method(endSheet:)]
@@ -933,7 +984,7 @@ extern_methods!(
         pub unsafe fn endSheet_returnCode(
             &self,
             sheetWindow: &AppKit::NSWindow,
-            returnCode: NSModalResponse,
+            returnCode: AppKit::NSModalResponse,
         );
 
         #[cfg(feature = "Foundation_NSArray")]
@@ -952,22 +1003,22 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSButton")]
         #[method_id(@__retain_semantics Other standardWindowButton:forStyleMask:)]
         pub unsafe fn standardWindowButton_forStyleMask(
-            b: NSWindowButton,
-            styleMask: NSWindowStyleMask,
+            b: AppKit::NSWindowButton,
+            styleMask: AppKit::NSWindowStyleMask,
         ) -> Option<Id<AppKit::NSButton, Shared>>;
 
         #[cfg(feature = "AppKit_NSButton")]
         #[method_id(@__retain_semantics Other standardWindowButton:)]
         pub unsafe fn standardWindowButton(
             &self,
-            b: NSWindowButton,
+            b: AppKit::NSWindowButton,
         ) -> Option<Id<AppKit::NSButton, Shared>>;
 
         #[method(addChildWindow:ordered:)]
         pub unsafe fn addChildWindow_ordered(
             &self,
             childWin: &AppKit::NSWindow,
-            place: NSWindowOrderingMode,
+            place: AppKit::NSWindowOrderingMode,
         );
 
         #[method(removeChildWindow:)]
@@ -1000,30 +1051,31 @@ extern_methods!(
         pub unsafe fn setColorSpace(&self, colorSpace: Option<&AppKit::NSColorSpace>);
 
         #[method(canRepresentDisplayGamut:)]
-        pub unsafe fn canRepresentDisplayGamut(&self, displayGamut: NSDisplayGamut) -> bool;
+        pub unsafe fn canRepresentDisplayGamut(&self, displayGamut: AppKit::NSDisplayGamut)
+            -> bool;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method_id(@__retain_semantics Other windowNumbersWithOptions:)]
         pub unsafe fn windowNumbersWithOptions(
-            options: NSWindowNumberListOptions,
+            options: AppKit::NSWindowNumberListOptions,
         ) -> Option<Id<Foundation::NSArray<Foundation::NSNumber>, Shared>>;
 
         #[method(windowNumberAtPoint:belowWindowWithWindowNumber:)]
         pub unsafe fn windowNumberAtPoint_belowWindowWithWindowNumber(
-            point: NSPoint,
+            point: Foundation::NSPoint,
             windowNumber: NSInteger,
         ) -> NSInteger;
 
         #[method(occlusionState)]
-        pub unsafe fn occlusionState(&self) -> NSWindowOcclusionState;
+        pub unsafe fn occlusionState(&self) -> AppKit::NSWindowOcclusionState;
 
         #[method(titlebarSeparatorStyle)]
-        pub unsafe fn titlebarSeparatorStyle(&self) -> NSTitlebarSeparatorStyle;
+        pub unsafe fn titlebarSeparatorStyle(&self) -> AppKit::NSTitlebarSeparatorStyle;
 
         #[method(setTitlebarSeparatorStyle:)]
         pub unsafe fn setTitlebarSeparatorStyle(
             &self,
-            titlebarSeparatorStyle: NSTitlebarSeparatorStyle,
+            titlebarSeparatorStyle: AppKit::NSTitlebarSeparatorStyle,
         );
 
         #[cfg(feature = "AppKit_NSViewController")]
@@ -1073,7 +1125,7 @@ extern_methods!(
         pub unsafe fn selectKeyViewPrecedingView(&self, view: &AppKit::NSView);
 
         #[method(keyViewSelectionDirection)]
-        pub unsafe fn keyViewSelectionDirection(&self) -> NSSelectionDirection;
+        pub unsafe fn keyViewSelectionDirection(&self) -> AppKit::NSSelectionDirection;
 
         #[cfg(feature = "AppKit_NSButtonCell")]
         #[method_id(@__retain_semantics Other defaultButtonCell)]
@@ -1125,13 +1177,13 @@ extern_methods!(
         pub unsafe fn setAllowsAutomaticWindowTabbing(allowsAutomaticWindowTabbing: bool);
 
         #[method(userTabbingPreference)]
-        pub unsafe fn userTabbingPreference() -> NSWindowUserTabbingPreference;
+        pub unsafe fn userTabbingPreference() -> AppKit::NSWindowUserTabbingPreference;
 
         #[method(tabbingMode)]
-        pub unsafe fn tabbingMode(&self) -> NSWindowTabbingMode;
+        pub unsafe fn tabbingMode(&self) -> AppKit::NSWindowTabbingMode;
 
         #[method(setTabbingMode:)]
-        pub unsafe fn setTabbingMode(&self, tabbingMode: NSWindowTabbingMode);
+        pub unsafe fn setTabbingMode(&self, tabbingMode: AppKit::NSWindowTabbingMode);
 
         #[method_id(@__retain_semantics Other tabbingIdentifier)]
         pub unsafe fn tabbingIdentifier(&self) -> Id<AppKit::NSWindowTabbingIdentifier, Shared>;
@@ -1170,7 +1222,7 @@ extern_methods!(
         pub unsafe fn addTabbedWindow_ordered(
             &self,
             window: &AppKit::NSWindow,
-            ordered: NSWindowOrderingMode,
+            ordered: AppKit::NSWindowOrderingMode,
         );
 
         #[cfg(feature = "AppKit_NSWindowTab")]
@@ -1182,7 +1234,9 @@ extern_methods!(
         pub unsafe fn tabGroup(&self) -> Option<Id<AppKit::NSWindowTabGroup, Shared>>;
 
         #[method(windowTitlebarLayoutDirection)]
-        pub unsafe fn windowTitlebarLayoutDirection(&self) -> NSUserInterfaceLayoutDirection;
+        pub unsafe fn windowTitlebarLayoutDirection(
+            &self,
+        ) -> AppKit::NSUserInterfaceLayoutDirection;
     }
 );
 
@@ -1194,8 +1248,8 @@ extern_methods!(
         #[method(trackEventsMatchingMask:timeout:mode:handler:)]
         pub unsafe fn trackEventsMatchingMask_timeout_mode_handler(
             &self,
-            mask: NSEventMask,
-            timeout: NSTimeInterval,
+            mask: AppKit::NSEventMask,
+            timeout: Foundation::NSTimeInterval,
             mode: &Foundation::NSRunLoopMode,
             trackingHandler: &Block<(*mut AppKit::NSEvent, NonNull<Bool>), ()>,
         );
@@ -1204,14 +1258,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other nextEventMatchingMask:)]
         pub unsafe fn nextEventMatchingMask(
             &self,
-            mask: NSEventMask,
+            mask: AppKit::NSEventMask,
         ) -> Option<Id<AppKit::NSEvent, Shared>>;
 
         #[cfg(all(feature = "AppKit_NSEvent", feature = "Foundation_NSDate"))]
         #[method_id(@__retain_semantics Other nextEventMatchingMask:untilDate:inMode:dequeue:)]
         pub unsafe fn nextEventMatchingMask_untilDate_inMode_dequeue(
             &self,
-            mask: NSEventMask,
+            mask: AppKit::NSEventMask,
             expiration: Option<&Foundation::NSDate>,
             mode: &Foundation::NSRunLoopMode,
             deqFlag: bool,
@@ -1221,7 +1275,7 @@ extern_methods!(
         #[method(discardEventsMatchingMask:beforeEvent:)]
         pub unsafe fn discardEventsMatchingMask_beforeEvent(
             &self,
-            mask: NSEventMask,
+            mask: AppKit::NSEventMask,
             lastEvent: Option<&AppKit::NSEvent>,
         );
 
@@ -1250,7 +1304,7 @@ extern_methods!(
         pub unsafe fn setIgnoresMouseEvents(&self, ignoresMouseEvents: bool);
 
         #[method(mouseLocationOutsideOfEventStream)]
-        pub unsafe fn mouseLocationOutsideOfEventStream(&self) -> NSPoint;
+        pub unsafe fn mouseLocationOutsideOfEventStream(&self) -> Foundation::NSPoint;
     }
 );
 
@@ -1292,8 +1346,8 @@ extern_methods!(
         pub unsafe fn dragImage_at_offset_event_pasteboard_source_slideBack(
             &self,
             image: &AppKit::NSImage,
-            baseLocation: NSPoint,
-            initialOffset: NSSize,
+            baseLocation: Foundation::NSPoint,
+            initialOffset: Foundation::NSSize,
             event: &AppKit::NSEvent,
             pboard: &AppKit::NSPasteboard,
             sourceObj: &Object,
@@ -1348,23 +1402,23 @@ extern_protocol!(
         pub unsafe fn windowWillResize_toSize(
             &self,
             sender: &AppKit::NSWindow,
-            frameSize: NSSize,
-        ) -> NSSize;
+            frameSize: Foundation::NSSize,
+        ) -> Foundation::NSSize;
 
         #[optional]
         #[method(windowWillUseStandardFrame:defaultFrame:)]
         pub unsafe fn windowWillUseStandardFrame_defaultFrame(
             &self,
             window: &AppKit::NSWindow,
-            newFrame: NSRect,
-        ) -> NSRect;
+            newFrame: Foundation::NSRect,
+        ) -> Foundation::NSRect;
 
         #[optional]
         #[method(windowShouldZoom:toFrame:)]
         pub unsafe fn windowShouldZoom_toFrame(
             &self,
             window: &AppKit::NSWindow,
-            newFrame: NSRect,
+            newFrame: Foundation::NSRect,
         ) -> bool;
 
         #[optional]
@@ -1380,8 +1434,8 @@ extern_protocol!(
             &self,
             window: &AppKit::NSWindow,
             sheet: &AppKit::NSWindow,
-            rect: NSRect,
-        ) -> NSRect;
+            rect: Foundation::NSRect,
+        ) -> Foundation::NSRect;
 
         #[optional]
         #[method(window:shouldPopUpDocumentPathMenu:)]
@@ -1397,7 +1451,7 @@ extern_protocol!(
             &self,
             window: &AppKit::NSWindow,
             event: &AppKit::NSEvent,
-            dragImageLocation: NSPoint,
+            dragImageLocation: Foundation::NSPoint,
             pasteboard: &AppKit::NSPasteboard,
         ) -> bool;
 
@@ -1406,16 +1460,16 @@ extern_protocol!(
         pub unsafe fn window_willUseFullScreenContentSize(
             &self,
             window: &AppKit::NSWindow,
-            proposedSize: NSSize,
-        ) -> NSSize;
+            proposedSize: Foundation::NSSize,
+        ) -> Foundation::NSSize;
 
         #[optional]
         #[method(window:willUseFullScreenPresentationOptions:)]
         pub unsafe fn window_willUseFullScreenPresentationOptions(
             &self,
             window: &AppKit::NSWindow,
-            proposedOptions: NSApplicationPresentationOptions,
-        ) -> NSApplicationPresentationOptions;
+            proposedOptions: AppKit::NSApplicationPresentationOptions,
+        ) -> AppKit::NSApplicationPresentationOptions;
 
         #[optional]
         #[method_id(@__retain_semantics Other customWindowsToEnterFullScreenForWindow:)]
@@ -1429,7 +1483,7 @@ extern_protocol!(
         pub unsafe fn window_startCustomAnimationToEnterFullScreenWithDuration(
             &self,
             window: &AppKit::NSWindow,
-            duration: NSTimeInterval,
+            duration: Foundation::NSTimeInterval,
         );
 
         #[optional]
@@ -1448,7 +1502,7 @@ extern_protocol!(
         pub unsafe fn window_startCustomAnimationToExitFullScreenWithDuration(
             &self,
             window: &AppKit::NSWindow,
-            duration: NSTimeInterval,
+            duration: Foundation::NSTimeInterval,
         );
 
         #[optional]
@@ -1465,7 +1519,7 @@ extern_protocol!(
             &self,
             window: &AppKit::NSWindow,
             screen: &AppKit::NSScreen,
-            duration: NSTimeInterval,
+            duration: Foundation::NSTimeInterval,
         );
 
         #[optional]
@@ -1477,9 +1531,9 @@ extern_protocol!(
         pub unsafe fn window_willResizeForVersionBrowserWithMaxPreferredSize_maxAllowedSize(
             &self,
             window: &AppKit::NSWindow,
-            maxPreferredFrameSize: NSSize,
-            maxAllowedFrameSize: NSSize,
-        ) -> NSSize;
+            maxPreferredFrameSize: Foundation::NSSize,
+            maxAllowedFrameSize: Foundation::NSSize,
+        ) -> Foundation::NSSize;
 
         #[optional]
         #[method(window:willEncodeRestorableState:)]
@@ -1715,7 +1769,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSWindow")]
     unsafe impl NSWindow {
         #[method(cacheImageInRect:)]
-        pub unsafe fn cacheImageInRect(&self, rect: NSRect);
+        pub unsafe fn cacheImageInRect(&self, rect: Foundation::NSRect);
 
         #[method(restoreCachedImage)]
         pub unsafe fn restoreCachedImage(&self);
@@ -1731,13 +1785,15 @@ extern_methods!(
         pub unsafe fn gState(&self) -> NSInteger;
 
         #[method(convertBaseToScreen:)]
-        pub unsafe fn convertBaseToScreen(&self, point: NSPoint) -> NSPoint;
+        pub unsafe fn convertBaseToScreen(&self, point: Foundation::NSPoint)
+            -> Foundation::NSPoint;
 
         #[method(convertScreenToBase:)]
-        pub unsafe fn convertScreenToBase(&self, point: NSPoint) -> NSPoint;
+        pub unsafe fn convertScreenToBase(&self, point: Foundation::NSPoint)
+            -> Foundation::NSPoint;
 
         #[method(userSpaceScaleFactor)]
-        pub unsafe fn userSpaceScaleFactor(&self) -> CGFloat;
+        pub unsafe fn userSpaceScaleFactor(&self) -> CoreGraphics::CGFloat;
 
         #[method(useOptimizedDrawing:)]
         pub unsafe fn useOptimizedDrawing(&self, flag: bool);
@@ -1777,16 +1833,16 @@ extern_methods!(
         pub unsafe fn setOneShot(&self, oneShot: bool);
 
         #[method(preferredBackingLocation)]
-        pub unsafe fn preferredBackingLocation(&self) -> NSWindowBackingLocation;
+        pub unsafe fn preferredBackingLocation(&self) -> AppKit::NSWindowBackingLocation;
 
         #[method(setPreferredBackingLocation:)]
         pub unsafe fn setPreferredBackingLocation(
             &self,
-            preferredBackingLocation: NSWindowBackingLocation,
+            preferredBackingLocation: AppKit::NSWindowBackingLocation,
         );
 
         #[method(backingLocation)]
-        pub unsafe fn backingLocation(&self) -> NSWindowBackingLocation;
+        pub unsafe fn backingLocation(&self) -> AppKit::NSWindowBackingLocation;
 
         #[method(showsResizeIndicator)]
         pub unsafe fn showsResizeIndicator(&self) -> bool;
@@ -1796,38 +1852,44 @@ extern_methods!(
     }
 );
 
-extern_static!(NSBorderlessWindowMask: NSWindowStyleMask = NSWindowStyleMaskBorderless);
+extern_static!(NSBorderlessWindowMask: AppKit::NSWindowStyleMask = NSWindowStyleMaskBorderless);
 
-extern_static!(NSTitledWindowMask: NSWindowStyleMask = NSWindowStyleMaskTitled);
+extern_static!(NSTitledWindowMask: AppKit::NSWindowStyleMask = NSWindowStyleMaskTitled);
 
-extern_static!(NSClosableWindowMask: NSWindowStyleMask = NSWindowStyleMaskClosable);
-
-extern_static!(NSMiniaturizableWindowMask: NSWindowStyleMask = NSWindowStyleMaskMiniaturizable);
-
-extern_static!(NSResizableWindowMask: NSWindowStyleMask = NSWindowStyleMaskResizable);
+extern_static!(NSClosableWindowMask: AppKit::NSWindowStyleMask = NSWindowStyleMaskClosable);
 
 extern_static!(
-    NSTexturedBackgroundWindowMask: NSWindowStyleMask = NSWindowStyleMaskTexturedBackground
+    NSMiniaturizableWindowMask: AppKit::NSWindowStyleMask = NSWindowStyleMaskMiniaturizable
+);
+
+extern_static!(NSResizableWindowMask: AppKit::NSWindowStyleMask = NSWindowStyleMaskResizable);
+
+extern_static!(
+    NSTexturedBackgroundWindowMask: AppKit::NSWindowStyleMask = NSWindowStyleMaskTexturedBackground
 );
 
 extern_static!(
-    NSUnifiedTitleAndToolbarWindowMask: NSWindowStyleMask = NSWindowStyleMaskUnifiedTitleAndToolbar
+    NSUnifiedTitleAndToolbarWindowMask: AppKit::NSWindowStyleMask =
+        NSWindowStyleMaskUnifiedTitleAndToolbar
 );
 
-extern_static!(NSFullScreenWindowMask: NSWindowStyleMask = NSWindowStyleMaskFullScreen);
+extern_static!(NSFullScreenWindowMask: AppKit::NSWindowStyleMask = NSWindowStyleMaskFullScreen);
 
 extern_static!(
-    NSFullSizeContentViewWindowMask: NSWindowStyleMask = NSWindowStyleMaskFullSizeContentView
+    NSFullSizeContentViewWindowMask: AppKit::NSWindowStyleMask =
+        NSWindowStyleMaskFullSizeContentView
 );
 
-extern_static!(NSUtilityWindowMask: NSWindowStyleMask = NSWindowStyleMaskUtilityWindow);
+extern_static!(NSUtilityWindowMask: AppKit::NSWindowStyleMask = NSWindowStyleMaskUtilityWindow);
 
-extern_static!(NSDocModalWindowMask: NSWindowStyleMask = NSWindowStyleMaskDocModalWindow);
+extern_static!(NSDocModalWindowMask: AppKit::NSWindowStyleMask = NSWindowStyleMaskDocModalWindow);
 
-extern_static!(NSNonactivatingPanelMask: NSWindowStyleMask = NSWindowStyleMaskNonactivatingPanel);
+extern_static!(
+    NSNonactivatingPanelMask: AppKit::NSWindowStyleMask = NSWindowStyleMaskNonactivatingPanel
+);
 
-extern_static!(NSHUDWindowMask: NSWindowStyleMask = NSWindowStyleMaskHUDWindow);
+extern_static!(NSHUDWindowMask: AppKit::NSWindowStyleMask = NSWindowStyleMaskHUDWindow);
 
-extern_static!(NSUnscaledWindowMask: NSWindowStyleMask = 1 << 11);
+extern_static!(NSUnscaledWindowMask: AppKit::NSWindowStyleMask = 1 << 11);
 
-extern_static!(NSWindowFullScreenButton: NSWindowButton = 7);
+extern_static!(NSWindowFullScreenButton: AppKit::NSWindowButton = 7);

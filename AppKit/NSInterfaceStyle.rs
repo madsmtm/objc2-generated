@@ -21,7 +21,7 @@ extern_fn!(
     pub unsafe fn NSInterfaceStyleForKey(
         key: Option<&Foundation::NSString>,
         responder: Option<&AppKit::NSResponder>,
-    ) -> NSInterfaceStyle;
+    ) -> AppKit::NSInterfaceStyle;
 );
 
 extern_methods!(
@@ -29,10 +29,10 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl AppKit::NSResponder {
         #[method(interfaceStyle)]
-        pub unsafe fn interfaceStyle(&self) -> NSInterfaceStyle;
+        pub unsafe fn interfaceStyle(&self) -> AppKit::NSInterfaceStyle;
 
         #[method(setInterfaceStyle:)]
-        pub unsafe fn setInterfaceStyle(&self, interfaceStyle: NSInterfaceStyle);
+        pub unsafe fn setInterfaceStyle(&self, interfaceStyle: AppKit::NSInterfaceStyle);
     }
 );
 

@@ -21,7 +21,7 @@ ns_enum!(
     }
 );
 
-pub type NSPropertyListReadOptions = NSPropertyListMutabilityOptions;
+pub type NSPropertyListReadOptions = Foundation::NSPropertyListMutabilityOptions;
 
 pub type NSPropertyListWriteOptions = NSUInteger;
 
@@ -40,31 +40,31 @@ extern_methods!(
         #[method(propertyList:isValidForFormat:)]
         pub unsafe fn propertyList_isValidForFormat(
             plist: &Object,
-            format: NSPropertyListFormat,
+            format: Foundation::NSPropertyListFormat,
         ) -> bool;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
         #[method_id(@__retain_semantics Other dataWithPropertyList:format:options:error:_)]
         pub unsafe fn dataWithPropertyList_format_options_error(
             plist: &Object,
-            format: NSPropertyListFormat,
-            opt: NSPropertyListWriteOptions,
+            format: Foundation::NSPropertyListFormat,
+            opt: Foundation::NSPropertyListWriteOptions,
         ) -> Result<Id<Foundation::NSData, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
         #[method_id(@__retain_semantics Other propertyListWithData:options:format:error:_)]
         pub unsafe fn propertyListWithData_options_format_error(
             data: &Foundation::NSData,
-            opt: NSPropertyListReadOptions,
-            format: *mut NSPropertyListFormat,
+            opt: Foundation::NSPropertyListReadOptions,
+            format: *mut Foundation::NSPropertyListFormat,
         ) -> Result<Id<Object, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSInputStream"))]
         #[method_id(@__retain_semantics Other propertyListWithStream:options:format:error:_)]
         pub unsafe fn propertyListWithStream_options_format_error(
             stream: &Foundation::NSInputStream,
-            opt: NSPropertyListReadOptions,
-            format: *mut NSPropertyListFormat,
+            opt: Foundation::NSPropertyListReadOptions,
+            format: *mut Foundation::NSPropertyListFormat,
         ) -> Result<Id<Object, Shared>, Id<Foundation::NSError, Shared>>;
     }
 );

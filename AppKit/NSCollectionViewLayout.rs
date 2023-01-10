@@ -35,22 +35,22 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSCollectionViewLayoutAttributes")]
     unsafe impl NSCollectionViewLayoutAttributes {
         #[method(frame)]
-        pub unsafe fn frame(&self) -> NSRect;
+        pub unsafe fn frame(&self) -> Foundation::NSRect;
 
         #[method(setFrame:)]
-        pub unsafe fn setFrame(&self, frame: NSRect);
+        pub unsafe fn setFrame(&self, frame: Foundation::NSRect);
 
         #[method(size)]
-        pub unsafe fn size(&self) -> NSSize;
+        pub unsafe fn size(&self) -> Foundation::NSSize;
 
         #[method(setSize:)]
-        pub unsafe fn setSize(&self, size: NSSize);
+        pub unsafe fn setSize(&self, size: Foundation::NSSize);
 
         #[method(alpha)]
-        pub unsafe fn alpha(&self) -> CGFloat;
+        pub unsafe fn alpha(&self) -> CoreGraphics::CGFloat;
 
         #[method(setAlpha:)]
-        pub unsafe fn setAlpha(&self, alpha: CGFloat);
+        pub unsafe fn setAlpha(&self, alpha: CoreGraphics::CGFloat);
 
         #[method(zIndex)]
         pub unsafe fn zIndex(&self) -> NSInteger;
@@ -73,7 +73,7 @@ extern_methods!(
         pub unsafe fn setIndexPath(&self, indexPath: Option<&Foundation::NSIndexPath>);
 
         #[method(representedElementCategory)]
-        pub unsafe fn representedElementCategory(&self) -> NSCollectionElementCategory;
+        pub unsafe fn representedElementCategory(&self) -> AppKit::NSCollectionElementCategory;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other representedElementKind)]
@@ -139,7 +139,7 @@ extern_methods!(
         pub unsafe fn indexPathAfterUpdate(&self) -> Option<Id<Foundation::NSIndexPath, Shared>>;
 
         #[method(updateAction)]
-        pub unsafe fn updateAction(&self) -> NSCollectionUpdateAction;
+        pub unsafe fn updateAction(&self) -> AppKit::NSCollectionUpdateAction;
     }
 );
 
@@ -227,16 +227,19 @@ extern_methods!(
         >;
 
         #[method(contentOffsetAdjustment)]
-        pub unsafe fn contentOffsetAdjustment(&self) -> NSPoint;
+        pub unsafe fn contentOffsetAdjustment(&self) -> Foundation::NSPoint;
 
         #[method(setContentOffsetAdjustment:)]
-        pub unsafe fn setContentOffsetAdjustment(&self, contentOffsetAdjustment: NSPoint);
+        pub unsafe fn setContentOffsetAdjustment(
+            &self,
+            contentOffsetAdjustment: Foundation::NSPoint,
+        );
 
         #[method(contentSizeAdjustment)]
-        pub unsafe fn contentSizeAdjustment(&self) -> NSSize;
+        pub unsafe fn contentSizeAdjustment(&self) -> Foundation::NSSize;
 
         #[method(setContentSizeAdjustment:)]
-        pub unsafe fn setContentSizeAdjustment(&self, contentSizeAdjustment: NSSize);
+        pub unsafe fn setContentSizeAdjustment(&self, contentSizeAdjustment: Foundation::NSSize);
     }
 );
 
@@ -303,7 +306,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other layoutAttributesForElementsInRect:)]
         pub unsafe fn layoutAttributesForElementsInRect(
             &self,
-            rect: NSRect,
+            rect: Foundation::NSRect,
         ) -> Id<Foundation::NSArray<AppKit::NSCollectionViewLayoutAttributes>, Shared>;
 
         #[cfg(all(
@@ -342,7 +345,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other layoutAttributesForDropTargetAtPoint:)]
         pub unsafe fn layoutAttributesForDropTargetAtPoint(
             &self,
-            pointInCollectionView: NSPoint,
+            pointInCollectionView: Foundation::NSPoint,
         ) -> Option<Id<AppKit::NSCollectionViewLayoutAttributes, Shared>>;
 
         #[cfg(all(
@@ -356,13 +359,16 @@ extern_methods!(
         ) -> Option<Id<AppKit::NSCollectionViewLayoutAttributes, Shared>>;
 
         #[method(shouldInvalidateLayoutForBoundsChange:)]
-        pub unsafe fn shouldInvalidateLayoutForBoundsChange(&self, newBounds: NSRect) -> bool;
+        pub unsafe fn shouldInvalidateLayoutForBoundsChange(
+            &self,
+            newBounds: Foundation::NSRect,
+        ) -> bool;
 
         #[cfg(feature = "AppKit_NSCollectionViewLayoutInvalidationContext")]
         #[method_id(@__retain_semantics Other invalidationContextForBoundsChange:)]
         pub unsafe fn invalidationContextForBoundsChange(
             &self,
-            newBounds: NSRect,
+            newBounds: Foundation::NSRect,
         ) -> Id<AppKit::NSCollectionViewLayoutInvalidationContext, Shared>;
 
         #[cfg(feature = "AppKit_NSCollectionViewLayoutAttributes")]
@@ -387,18 +393,18 @@ extern_methods!(
         #[method(targetContentOffsetForProposedContentOffset:withScrollingVelocity:)]
         pub unsafe fn targetContentOffsetForProposedContentOffset_withScrollingVelocity(
             &self,
-            proposedContentOffset: NSPoint,
-            velocity: NSPoint,
-        ) -> NSPoint;
+            proposedContentOffset: Foundation::NSPoint,
+            velocity: Foundation::NSPoint,
+        ) -> Foundation::NSPoint;
 
         #[method(targetContentOffsetForProposedContentOffset:)]
         pub unsafe fn targetContentOffsetForProposedContentOffset(
             &self,
-            proposedContentOffset: NSPoint,
-        ) -> NSPoint;
+            proposedContentOffset: Foundation::NSPoint,
+        ) -> Foundation::NSPoint;
 
         #[method(collectionViewContentSize)]
-        pub unsafe fn collectionViewContentSize(&self) -> NSSize;
+        pub unsafe fn collectionViewContentSize(&self) -> Foundation::NSSize;
     }
 );
 
@@ -420,7 +426,7 @@ extern_methods!(
         pub unsafe fn finalizeCollectionViewUpdates(&self);
 
         #[method(prepareForAnimatedBoundsChange:)]
-        pub unsafe fn prepareForAnimatedBoundsChange(&self, oldBounds: NSRect);
+        pub unsafe fn prepareForAnimatedBoundsChange(&self, oldBounds: Foundation::NSRect);
 
         #[method(finalizeAnimatedBoundsChange)]
         pub unsafe fn finalizeAnimatedBoundsChange(&self);

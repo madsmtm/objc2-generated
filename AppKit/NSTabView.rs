@@ -5,7 +5,7 @@ use crate::AppKit;
 use crate::CoreData;
 use crate::Foundation;
 
-extern_static!(NSAppKitVersionNumberWithDirectionalTabs: NSAppKitVersion = 631.0);
+extern_static!(NSAppKitVersionNumberWithDirectionalTabs: AppKit::NSAppKitVersion = 631.0);
 
 ns_enum!(
     #[underlying(NSUInteger)]
@@ -91,22 +91,22 @@ extern_methods!(
         pub unsafe fn setFont(&self, font: &AppKit::NSFont);
 
         #[method(tabViewType)]
-        pub unsafe fn tabViewType(&self) -> NSTabViewType;
+        pub unsafe fn tabViewType(&self) -> AppKit::NSTabViewType;
 
         #[method(setTabViewType:)]
-        pub unsafe fn setTabViewType(&self, tabViewType: NSTabViewType);
+        pub unsafe fn setTabViewType(&self, tabViewType: AppKit::NSTabViewType);
 
         #[method(tabPosition)]
-        pub unsafe fn tabPosition(&self) -> NSTabPosition;
+        pub unsafe fn tabPosition(&self) -> AppKit::NSTabPosition;
 
         #[method(setTabPosition:)]
-        pub unsafe fn setTabPosition(&self, tabPosition: NSTabPosition);
+        pub unsafe fn setTabPosition(&self, tabPosition: AppKit::NSTabPosition);
 
         #[method(tabViewBorderType)]
-        pub unsafe fn tabViewBorderType(&self) -> NSTabViewBorderType;
+        pub unsafe fn tabViewBorderType(&self) -> AppKit::NSTabViewBorderType;
 
         #[method(setTabViewBorderType:)]
-        pub unsafe fn setTabViewBorderType(&self, tabViewBorderType: NSTabViewBorderType);
+        pub unsafe fn setTabViewBorderType(&self, tabViewBorderType: AppKit::NSTabViewBorderType);
 
         #[cfg(all(feature = "AppKit_NSTabViewItem", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other tabViewItems)]
@@ -127,7 +127,7 @@ extern_methods!(
         pub unsafe fn setAllowsTruncatedLabels(&self, allowsTruncatedLabels: bool);
 
         #[method(minimumSize)]
-        pub unsafe fn minimumSize(&self) -> NSSize;
+        pub unsafe fn minimumSize(&self) -> Foundation::NSSize;
 
         #[method(drawsBackground)]
         pub unsafe fn drawsBackground(&self) -> bool;
@@ -136,10 +136,10 @@ extern_methods!(
         pub unsafe fn setDrawsBackground(&self, drawsBackground: bool);
 
         #[method(controlSize)]
-        pub unsafe fn controlSize(&self) -> NSControlSize;
+        pub unsafe fn controlSize(&self) -> AppKit::NSControlSize;
 
         #[method(setControlSize:)]
-        pub unsafe fn setControlSize(&self, controlSize: NSControlSize);
+        pub unsafe fn setControlSize(&self, controlSize: AppKit::NSControlSize);
 
         #[cfg(feature = "AppKit_NSTabViewItem")]
         #[method(addTabViewItem:)]
@@ -167,11 +167,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other tabViewItemAtPoint:)]
         pub unsafe fn tabViewItemAtPoint(
             &self,
-            point: NSPoint,
+            point: Foundation::NSPoint,
         ) -> Option<Id<AppKit::NSTabViewItem, Shared>>;
 
         #[method(contentRect)]
-        pub unsafe fn contentRect(&self) -> NSRect;
+        pub unsafe fn contentRect(&self) -> Foundation::NSRect;
 
         #[method(numberOfTabViewItems)]
         pub unsafe fn numberOfTabViewItems(&self) -> NSInteger;
@@ -191,10 +191,10 @@ extern_methods!(
         pub unsafe fn indexOfTabViewItemWithIdentifier(&self, identifier: &Object) -> NSInteger;
 
         #[method(controlTint)]
-        pub unsafe fn controlTint(&self) -> NSControlTint;
+        pub unsafe fn controlTint(&self) -> AppKit::NSControlTint;
 
         #[method(setControlTint:)]
-        pub unsafe fn setControlTint(&self, controlTint: NSControlTint);
+        pub unsafe fn setControlTint(&self, controlTint: AppKit::NSControlTint);
     }
 );
 
@@ -239,7 +239,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frameRect: Foundation::NSRect,
         ) -> Id<Self, Shared>;
     }
 );

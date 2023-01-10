@@ -18,16 +18,16 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSStringDrawingContext")]
     unsafe impl NSStringDrawingContext {
         #[method(minimumScaleFactor)]
-        pub unsafe fn minimumScaleFactor(&self) -> CGFloat;
+        pub unsafe fn minimumScaleFactor(&self) -> CoreGraphics::CGFloat;
 
         #[method(setMinimumScaleFactor:)]
-        pub unsafe fn setMinimumScaleFactor(&self, minimumScaleFactor: CGFloat);
+        pub unsafe fn setMinimumScaleFactor(&self, minimumScaleFactor: CoreGraphics::CGFloat);
 
         #[method(actualScaleFactor)]
-        pub unsafe fn actualScaleFactor(&self) -> CGFloat;
+        pub unsafe fn actualScaleFactor(&self) -> CoreGraphics::CGFloat;
 
         #[method(totalBounds)]
-        pub unsafe fn totalBounds(&self) -> NSRect;
+        pub unsafe fn totalBounds(&self) -> Foundation::NSRect;
     }
 );
 
@@ -40,13 +40,13 @@ extern_methods!(
         pub unsafe fn sizeWithAttributes(
             &self,
             attrs: Option<&Foundation::NSDictionary<Foundation::NSAttributedStringKey, Object>>,
-        ) -> NSSize;
+        ) -> Foundation::NSSize;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(drawAtPoint:withAttributes:)]
         pub unsafe fn drawAtPoint_withAttributes(
             &self,
-            point: NSPoint,
+            point: Foundation::NSPoint,
             attrs: Option<&Foundation::NSDictionary<Foundation::NSAttributedStringKey, Object>>,
         );
 
@@ -54,7 +54,7 @@ extern_methods!(
         #[method(drawInRect:withAttributes:)]
         pub unsafe fn drawInRect_withAttributes(
             &self,
-            rect: NSRect,
+            rect: Foundation::NSRect,
             attrs: Option<&Foundation::NSDictionary<Foundation::NSAttributedStringKey, Object>>,
         );
     }
@@ -65,13 +65,13 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSAttributedString")]
     unsafe impl Foundation::NSAttributedString {
         #[method(size)]
-        pub unsafe fn size(&self) -> NSSize;
+        pub unsafe fn size(&self) -> Foundation::NSSize;
 
         #[method(drawAtPoint:)]
-        pub unsafe fn drawAtPoint(&self, point: NSPoint);
+        pub unsafe fn drawAtPoint(&self, point: Foundation::NSPoint);
 
         #[method(drawInRect:)]
-        pub unsafe fn drawInRect(&self, rect: NSRect);
+        pub unsafe fn drawInRect(&self, rect: Foundation::NSRect);
     }
 );
 
@@ -98,8 +98,8 @@ extern_methods!(
         #[method(drawWithRect:options:attributes:context:)]
         pub unsafe fn drawWithRect_options_attributes_context(
             &self,
-            rect: NSRect,
-            options: NSStringDrawingOptions,
+            rect: Foundation::NSRect,
+            options: AppKit::NSStringDrawingOptions,
             attributes: Option<
                 &Foundation::NSDictionary<Foundation::NSAttributedStringKey, Object>,
             >,
@@ -113,13 +113,13 @@ extern_methods!(
         #[method(boundingRectWithSize:options:attributes:context:)]
         pub unsafe fn boundingRectWithSize_options_attributes_context(
             &self,
-            size: NSSize,
-            options: NSStringDrawingOptions,
+            size: Foundation::NSSize,
+            options: AppKit::NSStringDrawingOptions,
             attributes: Option<
                 &Foundation::NSDictionary<Foundation::NSAttributedStringKey, Object>,
             >,
             context: Option<&AppKit::NSStringDrawingContext>,
-        ) -> NSRect;
+        ) -> Foundation::NSRect;
     }
 );
 
@@ -131,8 +131,8 @@ extern_methods!(
         #[method(drawWithRect:options:context:)]
         pub unsafe fn drawWithRect_options_context(
             &self,
-            rect: NSRect,
-            options: NSStringDrawingOptions,
+            rect: Foundation::NSRect,
+            options: AppKit::NSStringDrawingOptions,
             context: Option<&AppKit::NSStringDrawingContext>,
         );
 
@@ -140,10 +140,10 @@ extern_methods!(
         #[method(boundingRectWithSize:options:context:)]
         pub unsafe fn boundingRectWithSize_options_context(
             &self,
-            size: NSSize,
-            options: NSStringDrawingOptions,
+            size: Foundation::NSSize,
+            options: AppKit::NSStringDrawingOptions,
             context: Option<&AppKit::NSStringDrawingContext>,
-        ) -> NSRect;
+        ) -> Foundation::NSRect;
     }
 );
 
@@ -155,8 +155,8 @@ extern_methods!(
         #[method(drawWithRect:options:attributes:)]
         pub unsafe fn drawWithRect_options_attributes(
             &self,
-            rect: NSRect,
-            options: NSStringDrawingOptions,
+            rect: Foundation::NSRect,
+            options: AppKit::NSStringDrawingOptions,
             attributes: Option<
                 &Foundation::NSDictionary<Foundation::NSAttributedStringKey, Object>,
             >,
@@ -166,12 +166,12 @@ extern_methods!(
         #[method(boundingRectWithSize:options:attributes:)]
         pub unsafe fn boundingRectWithSize_options_attributes(
             &self,
-            size: NSSize,
-            options: NSStringDrawingOptions,
+            size: Foundation::NSSize,
+            options: AppKit::NSStringDrawingOptions,
             attributes: Option<
                 &Foundation::NSDictionary<Foundation::NSAttributedStringKey, Object>,
             >,
-        ) -> NSRect;
+        ) -> Foundation::NSRect;
     }
 );
 
@@ -180,13 +180,17 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSAttributedString")]
     unsafe impl Foundation::NSAttributedString {
         #[method(drawWithRect:options:)]
-        pub unsafe fn drawWithRect_options(&self, rect: NSRect, options: NSStringDrawingOptions);
+        pub unsafe fn drawWithRect_options(
+            &self,
+            rect: Foundation::NSRect,
+            options: AppKit::NSStringDrawingOptions,
+        );
 
         #[method(boundingRectWithSize:options:)]
         pub unsafe fn boundingRectWithSize_options(
             &self,
-            size: NSSize,
-            options: NSStringDrawingOptions,
-        ) -> NSRect;
+            size: Foundation::NSSize,
+            options: AppKit::NSStringDrawingOptions,
+        ) -> Foundation::NSRect;
     }
 );

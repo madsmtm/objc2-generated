@@ -4,7 +4,7 @@ use crate::common::*;
 use crate::CoreData;
 use crate::Foundation;
 
-extern_static!(NSFetchRequestExpressionType: NSExpressionType = 50);
+extern_static!(NSFetchRequestExpressionType: Foundation::NSExpressionType = 50);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -44,7 +44,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithExpressionType:)]
         pub unsafe fn initWithExpressionType(
             this: Option<Allocated<Self>>,
-            type_: NSExpressionType,
+            type_: Foundation::NSExpressionType,
         ) -> Id<Self, Shared>;
     }
 );

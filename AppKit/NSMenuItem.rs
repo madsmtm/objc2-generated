@@ -95,12 +95,12 @@ extern_methods!(
         pub unsafe fn setKeyEquivalent(&self, keyEquivalent: &Foundation::NSString);
 
         #[method(keyEquivalentModifierMask)]
-        pub unsafe fn keyEquivalentModifierMask(&self) -> NSEventModifierFlags;
+        pub unsafe fn keyEquivalentModifierMask(&self) -> AppKit::NSEventModifierFlags;
 
         #[method(setKeyEquivalentModifierMask:)]
         pub unsafe fn setKeyEquivalentModifierMask(
             &self,
-            keyEquivalentModifierMask: NSEventModifierFlags,
+            keyEquivalentModifierMask: AppKit::NSEventModifierFlags,
         );
 
         #[cfg(feature = "Foundation_NSString")]
@@ -140,10 +140,10 @@ extern_methods!(
         pub unsafe fn setImage(&self, image: Option<&AppKit::NSImage>);
 
         #[method(state)]
-        pub unsafe fn state(&self) -> NSControlStateValue;
+        pub unsafe fn state(&self) -> AppKit::NSControlStateValue;
 
         #[method(setState:)]
-        pub unsafe fn setState(&self, state: NSControlStateValue);
+        pub unsafe fn setState(&self, state: AppKit::NSControlStateValue);
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other onStateImage)]

@@ -69,12 +69,12 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other accessibilityAttributedStringForRange:)]
         pub unsafe fn accessibilityAttributedStringForRange(
             &self,
-            range: NSRange,
+            range: Foundation::NSRange,
         ) -> Option<Id<Foundation::NSAttributedString, Shared>>;
 
         #[optional]
         #[method(accessibilityVisibleCharacterRange)]
-        pub unsafe fn accessibilityVisibleCharacterRange(&self) -> NSRange;
+        pub unsafe fn accessibilityVisibleCharacterRange(&self) -> Foundation::NSRange;
     }
 );
 
@@ -85,17 +85,23 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other accessibilityStringForRange:)]
         pub unsafe fn accessibilityStringForRange(
             &self,
-            range: NSRange,
+            range: Foundation::NSRange,
         ) -> Option<Id<Foundation::NSString, Shared>>;
 
         #[method(accessibilityLineForIndex:)]
         pub unsafe fn accessibilityLineForIndex(&self, index: NSInteger) -> NSInteger;
 
         #[method(accessibilityRangeForLine:)]
-        pub unsafe fn accessibilityRangeForLine(&self, lineNumber: NSInteger) -> NSRange;
+        pub unsafe fn accessibilityRangeForLine(
+            &self,
+            lineNumber: NSInteger,
+        ) -> Foundation::NSRange;
 
         #[method(accessibilityFrameForRange:)]
-        pub unsafe fn accessibilityFrameForRange(&self, range: NSRange) -> NSRect;
+        pub unsafe fn accessibilityFrameForRange(
+            &self,
+            range: Foundation::NSRange,
+        ) -> Foundation::NSRect;
     }
 );
 
@@ -292,7 +298,7 @@ extern_protocol!(
     unsafe impl ProtocolType for NSAccessibilityLayoutItem {
         #[optional]
         #[method(setAccessibilityFrame:)]
-        pub unsafe fn setAccessibilityFrame(&self, frame: NSRect);
+        pub unsafe fn setAccessibilityFrame(&self, frame: Foundation::NSRect);
     }
 );
 
@@ -311,7 +317,7 @@ extern_protocol!(
         pub unsafe fn accessibilityRangeInTargetElementWithToken(
             &self,
             token: &AppKit::NSAccessibilityLoadingToken,
-        ) -> NSRange;
+        ) -> Foundation::NSRange;
     }
 );
 
@@ -326,10 +332,10 @@ extern_protocol!(
         pub unsafe fn setAccessibilityElement(&self, accessibilityElement: bool);
 
         #[method(accessibilityFrame)]
-        pub unsafe fn accessibilityFrame(&self) -> NSRect;
+        pub unsafe fn accessibilityFrame(&self) -> Foundation::NSRect;
 
         #[method(setAccessibilityFrame:)]
-        pub unsafe fn setAccessibilityFrame(&self, accessibilityFrame: NSRect);
+        pub unsafe fn setAccessibilityFrame(&self, accessibilityFrame: Foundation::NSRect);
 
         #[method(isAccessibilityFocused)]
         pub unsafe fn isAccessibilityFocused(&self) -> bool;
@@ -338,10 +344,13 @@ extern_protocol!(
         pub unsafe fn setAccessibilityFocused(&self, accessibilityFocused: bool);
 
         #[method(accessibilityActivationPoint)]
-        pub unsafe fn accessibilityActivationPoint(&self) -> NSPoint;
+        pub unsafe fn accessibilityActivationPoint(&self) -> Foundation::NSPoint;
 
         #[method(setAccessibilityActivationPoint:)]
-        pub unsafe fn setAccessibilityActivationPoint(&self, accessibilityActivationPoint: NSPoint);
+        pub unsafe fn setAccessibilityActivationPoint(
+            &self,
+            accessibilityActivationPoint: Foundation::NSPoint,
+        );
 
         #[method_id(@__retain_semantics Other accessibilityTopLevelUIElement)]
         pub unsafe fn accessibilityTopLevelUIElement(&self) -> Option<Id<Object, Shared>>;
@@ -425,12 +434,12 @@ extern_protocol!(
         );
 
         #[method(accessibilityOrientation)]
-        pub unsafe fn accessibilityOrientation(&self) -> NSAccessibilityOrientation;
+        pub unsafe fn accessibilityOrientation(&self) -> AppKit::NSAccessibilityOrientation;
 
         #[method(setAccessibilityOrientation:)]
         pub unsafe fn setAccessibilityOrientation(
             &self,
-            accessibilityOrientation: NSAccessibilityOrientation,
+            accessibilityOrientation: AppKit::NSAccessibilityOrientation,
         );
 
         #[method_id(@__retain_semantics Other accessibilityOverflowButton)]
@@ -785,21 +794,21 @@ extern_protocol!(
         pub unsafe fn setAccessibilityOrderedByRow(&self, accessibilityOrderedByRow: bool);
 
         #[method(accessibilityHorizontalUnits)]
-        pub unsafe fn accessibilityHorizontalUnits(&self) -> NSAccessibilityUnits;
+        pub unsafe fn accessibilityHorizontalUnits(&self) -> AppKit::NSAccessibilityUnits;
 
         #[method(setAccessibilityHorizontalUnits:)]
         pub unsafe fn setAccessibilityHorizontalUnits(
             &self,
-            accessibilityHorizontalUnits: NSAccessibilityUnits,
+            accessibilityHorizontalUnits: AppKit::NSAccessibilityUnits,
         );
 
         #[method(accessibilityVerticalUnits)]
-        pub unsafe fn accessibilityVerticalUnits(&self) -> NSAccessibilityUnits;
+        pub unsafe fn accessibilityVerticalUnits(&self) -> AppKit::NSAccessibilityUnits;
 
         #[method(setAccessibilityVerticalUnits:)]
         pub unsafe fn setAccessibilityVerticalUnits(
             &self,
-            accessibilityVerticalUnits: NSAccessibilityUnits,
+            accessibilityVerticalUnits: AppKit::NSAccessibilityUnits,
         );
 
         #[method_id(@__retain_semantics Other accessibilityHorizontalUnitDescription)]
@@ -825,16 +834,28 @@ extern_protocol!(
         );
 
         #[method(accessibilityLayoutPointForScreenPoint:)]
-        pub unsafe fn accessibilityLayoutPointForScreenPoint(&self, point: NSPoint) -> NSPoint;
+        pub unsafe fn accessibilityLayoutPointForScreenPoint(
+            &self,
+            point: Foundation::NSPoint,
+        ) -> Foundation::NSPoint;
 
         #[method(accessibilityLayoutSizeForScreenSize:)]
-        pub unsafe fn accessibilityLayoutSizeForScreenSize(&self, size: NSSize) -> NSSize;
+        pub unsafe fn accessibilityLayoutSizeForScreenSize(
+            &self,
+            size: Foundation::NSSize,
+        ) -> Foundation::NSSize;
 
         #[method(accessibilityScreenPointForLayoutPoint:)]
-        pub unsafe fn accessibilityScreenPointForLayoutPoint(&self, point: NSPoint) -> NSPoint;
+        pub unsafe fn accessibilityScreenPointForLayoutPoint(
+            &self,
+            point: Foundation::NSPoint,
+        ) -> Foundation::NSPoint;
 
         #[method(accessibilityScreenSizeForLayoutSize:)]
-        pub unsafe fn accessibilityScreenSizeForLayoutSize(&self, size: NSSize) -> NSSize;
+        pub unsafe fn accessibilityScreenSizeForLayoutSize(
+            &self,
+            size: Foundation::NSSize,
+        ) -> Foundation::NSSize;
 
         #[method_id(@__retain_semantics Other accessibilityHandles)]
         pub unsafe fn accessibilityHandles(&self) -> Option<Id<Foundation::NSArray, Shared>>;
@@ -926,10 +947,13 @@ extern_protocol!(
         );
 
         #[method(accessibilityUnits)]
-        pub unsafe fn accessibilityUnits(&self) -> NSAccessibilityUnits;
+        pub unsafe fn accessibilityUnits(&self) -> AppKit::NSAccessibilityUnits;
 
         #[method(setAccessibilityUnits:)]
-        pub unsafe fn setAccessibilityUnits(&self, accessibilityUnits: NSAccessibilityUnits);
+        pub unsafe fn setAccessibilityUnits(
+            &self,
+            accessibilityUnits: AppKit::NSAccessibilityUnits,
+        );
 
         #[method_id(@__retain_semantics Other accessibilityUnitDescription)]
         pub unsafe fn accessibilityUnitDescription(
@@ -943,12 +967,13 @@ extern_protocol!(
         );
 
         #[method(accessibilityRulerMarkerType)]
-        pub unsafe fn accessibilityRulerMarkerType(&self) -> NSAccessibilityRulerMarkerType;
+        pub unsafe fn accessibilityRulerMarkerType(&self)
+            -> AppKit::NSAccessibilityRulerMarkerType;
 
         #[method(setAccessibilityRulerMarkerType:)]
         pub unsafe fn setAccessibilityRulerMarkerType(
             &self,
-            accessibilityRulerMarkerType: NSAccessibilityRulerMarkerType,
+            accessibilityRulerMarkerType: AppKit::NSAccessibilityRulerMarkerType,
         );
 
         #[method_id(@__retain_semantics Other accessibilityMarkerTypeDescription)]
@@ -1120,12 +1145,12 @@ extern_protocol!(
         );
 
         #[method(accessibilitySortDirection)]
-        pub unsafe fn accessibilitySortDirection(&self) -> NSAccessibilitySortDirection;
+        pub unsafe fn accessibilitySortDirection(&self) -> AppKit::NSAccessibilitySortDirection;
 
         #[method(setAccessibilitySortDirection:)]
         pub unsafe fn setAccessibilitySortDirection(
             &self,
-            accessibilitySortDirection: NSAccessibilitySortDirection,
+            accessibilitySortDirection: AppKit::NSAccessibilitySortDirection,
         );
 
         #[method_id(@__retain_semantics Other accessibilityRowHeaderUIElements)]
@@ -1176,18 +1201,21 @@ extern_protocol!(
         ) -> Option<Id<Object, Shared>>;
 
         #[method(accessibilityRowIndexRange)]
-        pub unsafe fn accessibilityRowIndexRange(&self) -> NSRange;
+        pub unsafe fn accessibilityRowIndexRange(&self) -> Foundation::NSRange;
 
         #[method(setAccessibilityRowIndexRange:)]
-        pub unsafe fn setAccessibilityRowIndexRange(&self, accessibilityRowIndexRange: NSRange);
+        pub unsafe fn setAccessibilityRowIndexRange(
+            &self,
+            accessibilityRowIndexRange: Foundation::NSRange,
+        );
 
         #[method(accessibilityColumnIndexRange)]
-        pub unsafe fn accessibilityColumnIndexRange(&self) -> NSRange;
+        pub unsafe fn accessibilityColumnIndexRange(&self) -> Foundation::NSRange;
 
         #[method(setAccessibilityColumnIndexRange:)]
         pub unsafe fn setAccessibilityColumnIndexRange(
             &self,
-            accessibilityColumnIndexRange: NSRange,
+            accessibilityColumnIndexRange: Foundation::NSRange,
         );
 
         #[method(accessibilityInsertionPointLineNumber)]
@@ -1200,12 +1228,12 @@ extern_protocol!(
         );
 
         #[method(accessibilitySharedCharacterRange)]
-        pub unsafe fn accessibilitySharedCharacterRange(&self) -> NSRange;
+        pub unsafe fn accessibilitySharedCharacterRange(&self) -> Foundation::NSRange;
 
         #[method(setAccessibilitySharedCharacterRange:)]
         pub unsafe fn setAccessibilitySharedCharacterRange(
             &self,
-            accessibilitySharedCharacterRange: NSRange,
+            accessibilitySharedCharacterRange: Foundation::NSRange,
         );
 
         #[method_id(@__retain_semantics Other accessibilitySharedTextUIElements)]
@@ -1220,12 +1248,12 @@ extern_protocol!(
         );
 
         #[method(accessibilityVisibleCharacterRange)]
-        pub unsafe fn accessibilityVisibleCharacterRange(&self) -> NSRange;
+        pub unsafe fn accessibilityVisibleCharacterRange(&self) -> Foundation::NSRange;
 
         #[method(setAccessibilityVisibleCharacterRange:)]
         pub unsafe fn setAccessibilityVisibleCharacterRange(
             &self,
-            accessibilityVisibleCharacterRange: NSRange,
+            accessibilityVisibleCharacterRange: Foundation::NSRange,
         );
 
         #[method(accessibilityNumberOfCharacters)]
@@ -1247,12 +1275,12 @@ extern_protocol!(
         );
 
         #[method(accessibilitySelectedTextRange)]
-        pub unsafe fn accessibilitySelectedTextRange(&self) -> NSRange;
+        pub unsafe fn accessibilitySelectedTextRange(&self) -> Foundation::NSRange;
 
         #[method(setAccessibilitySelectedTextRange:)]
         pub unsafe fn setAccessibilitySelectedTextRange(
             &self,
-            accessibilitySelectedTextRange: NSRange,
+            accessibilitySelectedTextRange: Foundation::NSRange,
         );
 
         #[method_id(@__retain_semantics Other accessibilitySelectedTextRanges)]
@@ -1269,35 +1297,44 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other accessibilityAttributedStringForRange:)]
         pub unsafe fn accessibilityAttributedStringForRange(
             &self,
-            range: NSRange,
+            range: Foundation::NSRange,
         ) -> Option<Id<Foundation::NSAttributedString, Shared>>;
 
         #[method(accessibilityRangeForLine:)]
-        pub unsafe fn accessibilityRangeForLine(&self, line: NSInteger) -> NSRange;
+        pub unsafe fn accessibilityRangeForLine(&self, line: NSInteger) -> Foundation::NSRange;
 
         #[method_id(@__retain_semantics Other accessibilityStringForRange:)]
         pub unsafe fn accessibilityStringForRange(
             &self,
-            range: NSRange,
+            range: Foundation::NSRange,
         ) -> Option<Id<Foundation::NSString, Shared>>;
 
         #[method(accessibilityRangeForPosition:)]
-        pub unsafe fn accessibilityRangeForPosition(&self, point: NSPoint) -> NSRange;
+        pub unsafe fn accessibilityRangeForPosition(
+            &self,
+            point: Foundation::NSPoint,
+        ) -> Foundation::NSRange;
 
         #[method(accessibilityRangeForIndex:)]
-        pub unsafe fn accessibilityRangeForIndex(&self, index: NSInteger) -> NSRange;
+        pub unsafe fn accessibilityRangeForIndex(&self, index: NSInteger) -> Foundation::NSRange;
 
         #[method(accessibilityFrameForRange:)]
-        pub unsafe fn accessibilityFrameForRange(&self, range: NSRange) -> NSRect;
+        pub unsafe fn accessibilityFrameForRange(
+            &self,
+            range: Foundation::NSRange,
+        ) -> Foundation::NSRect;
 
         #[method_id(@__retain_semantics Other accessibilityRTFForRange:)]
         pub unsafe fn accessibilityRTFForRange(
             &self,
-            range: NSRange,
+            range: Foundation::NSRange,
         ) -> Option<Id<Foundation::NSData, Shared>>;
 
         #[method(accessibilityStyleRangeForIndex:)]
-        pub unsafe fn accessibilityStyleRangeForIndex(&self, index: NSInteger) -> NSRange;
+        pub unsafe fn accessibilityStyleRangeForIndex(
+            &self,
+            index: NSInteger,
+        ) -> Foundation::NSRange;
 
         #[method(accessibilityLineForIndex:)]
         pub unsafe fn accessibilityLineForIndex(&self, index: NSInteger) -> NSInteger;

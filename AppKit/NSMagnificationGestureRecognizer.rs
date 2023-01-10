@@ -19,10 +19,10 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSMagnificationGestureRecognizer")]
     unsafe impl NSMagnificationGestureRecognizer {
         #[method(magnification)]
-        pub unsafe fn magnification(&self) -> CGFloat;
+        pub unsafe fn magnification(&self) -> CoreGraphics::CGFloat;
 
         #[method(setMagnification:)]
-        pub unsafe fn setMagnification(&self, magnification: CGFloat);
+        pub unsafe fn setMagnification(&self, magnification: CoreGraphics::CGFloat);
     }
 );
 

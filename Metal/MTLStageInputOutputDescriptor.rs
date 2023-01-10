@@ -104,10 +104,10 @@ extern_methods!(
         pub fn setStride(&self, stride: NSUInteger);
 
         #[method(stepFunction)]
-        pub fn stepFunction(&self) -> MTLStepFunction;
+        pub fn stepFunction(&self) -> Metal::MTLStepFunction;
 
         #[method(setStepFunction:)]
-        pub fn setStepFunction(&self, stepFunction: MTLStepFunction);
+        pub fn setStepFunction(&self, stepFunction: Metal::MTLStepFunction);
 
         #[method(stepRate)]
         pub fn stepRate(&self) -> NSUInteger;
@@ -159,10 +159,10 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLAttributeDescriptor")]
     unsafe impl MTLAttributeDescriptor {
         #[method(format)]
-        pub fn format(&self) -> MTLAttributeFormat;
+        pub fn format(&self) -> Metal::MTLAttributeFormat;
 
         #[method(setFormat:)]
-        pub fn setFormat(&self, format: MTLAttributeFormat);
+        pub fn setFormat(&self, format: Metal::MTLAttributeFormat);
 
         #[method(offset)]
         pub fn offset(&self) -> NSUInteger;
@@ -231,10 +231,10 @@ extern_methods!(
         pub fn attributes(&self) -> Id<Metal::MTLAttributeDescriptorArray, Shared>;
 
         #[method(indexType)]
-        pub fn indexType(&self) -> MTLIndexType;
+        pub fn indexType(&self) -> Metal::MTLIndexType;
 
         #[method(setIndexType:)]
-        pub unsafe fn setIndexType(&self, indexType: MTLIndexType);
+        pub unsafe fn setIndexType(&self, indexType: Metal::MTLIndexType);
 
         #[method(indexBufferIndex)]
         pub fn indexBufferIndex(&self) -> NSUInteger;

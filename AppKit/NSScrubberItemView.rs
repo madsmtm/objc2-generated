@@ -122,10 +122,10 @@ extern_methods!(
         pub unsafe fn setImage(&self, image: &AppKit::NSImage);
 
         #[method(imageAlignment)]
-        pub unsafe fn imageAlignment(&self) -> NSImageAlignment;
+        pub unsafe fn imageAlignment(&self) -> AppKit::NSImageAlignment;
 
         #[method(setImageAlignment:)]
-        pub unsafe fn setImageAlignment(&self, imageAlignment: NSImageAlignment);
+        pub unsafe fn setImageAlignment(&self, imageAlignment: AppKit::NSImageAlignment);
     }
 );
 
@@ -136,7 +136,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frameRect: Foundation::NSRect,
         ) -> Id<Self, Shared>;
     }
 );
@@ -148,7 +148,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frameRect: Foundation::NSRect,
         ) -> Id<Self, Shared>;
     }
 );
@@ -160,7 +160,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frameRect: Foundation::NSRect,
         ) -> Id<Self, Shared>;
     }
 );
@@ -172,7 +172,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frameRect: Foundation::NSRect,
         ) -> Id<Self, Shared>;
     }
 );
@@ -184,7 +184,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frameRect: Foundation::NSRect,
         ) -> Id<Self, Shared>;
     }
 );

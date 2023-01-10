@@ -36,14 +36,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other changeWithObject:type:index:)]
         pub unsafe fn changeWithObject_type_index(
             anObject: Option<&ObjectType>,
-            type_: NSCollectionChangeType,
+            type_: Foundation::NSCollectionChangeType,
             index: NSUInteger,
         ) -> Id<Foundation::NSOrderedCollectionChange<ObjectType>, Shared>;
 
         #[method_id(@__retain_semantics Other changeWithObject:type:index:associatedIndex:)]
         pub unsafe fn changeWithObject_type_index_associatedIndex(
             anObject: Option<&ObjectType>,
-            type_: NSCollectionChangeType,
+            type_: Foundation::NSCollectionChangeType,
             index: NSUInteger,
             associatedIndex: NSUInteger,
         ) -> Id<Foundation::NSOrderedCollectionChange<ObjectType>, Shared>;
@@ -52,7 +52,7 @@ extern_methods!(
         pub unsafe fn object(&self) -> Option<Id<ObjectType, ObjectTypeOwnership>>;
 
         #[method(changeType)]
-        pub unsafe fn changeType(&self) -> NSCollectionChangeType;
+        pub unsafe fn changeType(&self) -> Foundation::NSCollectionChangeType;
 
         #[method(index)]
         pub unsafe fn index(&self) -> NSUInteger;
@@ -67,7 +67,7 @@ extern_methods!(
         pub unsafe fn initWithObject_type_index(
             this: Option<Allocated<Self>>,
             anObject: Option<&ObjectType>,
-            type_: NSCollectionChangeType,
+            type_: Foundation::NSCollectionChangeType,
             index: NSUInteger,
         ) -> Id<Self, Shared>;
 
@@ -75,7 +75,7 @@ extern_methods!(
         pub unsafe fn initWithObject_type_index_associatedIndex(
             this: Option<Allocated<Self>>,
             anObject: Option<&ObjectType>,
-            type_: NSCollectionChangeType,
+            type_: Foundation::NSCollectionChangeType,
             index: NSUInteger,
             associatedIndex: NSUInteger,
         ) -> Id<Self, Shared>;

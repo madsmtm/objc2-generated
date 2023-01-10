@@ -43,7 +43,7 @@ extern_methods!(
         pub unsafe fn daylightSavingTimeOffsetForDate(
             &self,
             aDate: &Foundation::NSDate,
-        ) -> NSTimeInterval;
+        ) -> Foundation::NSTimeInterval;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other nextDaylightSavingTimeTransitionAfterDate:)]
@@ -118,7 +118,7 @@ extern_methods!(
         pub unsafe fn isDaylightSavingTime(&self) -> bool;
 
         #[method(daylightSavingTimeOffset)]
-        pub unsafe fn daylightSavingTimeOffset(&self) -> NSTimeInterval;
+        pub unsafe fn daylightSavingTimeOffset(&self) -> Foundation::NSTimeInterval;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other nextDaylightSavingTimeTransition)]
@@ -137,7 +137,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other localizedName:locale:)]
         pub unsafe fn localizedName_locale(
             &self,
-            style: NSTimeZoneNameStyle,
+            style: Foundation::NSTimeZoneNameStyle,
             locale: Option<&Foundation::NSLocale>,
         ) -> Option<Id<Foundation::NSString, Shared>>;
     }

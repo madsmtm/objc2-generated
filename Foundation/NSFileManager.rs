@@ -89,7 +89,7 @@ extern_methods!(
         pub unsafe fn mountedVolumeURLsIncludingResourceValuesForKeys_options(
             &self,
             propertyKeys: Option<&Foundation::NSArray<Foundation::NSURLResourceKey>>,
-            options: NSVolumeEnumerationOptions,
+            options: Foundation::NSVolumeEnumerationOptions,
         ) -> Option<Id<Foundation::NSArray<Foundation::NSURL>, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
@@ -97,7 +97,7 @@ extern_methods!(
         pub unsafe fn unmountVolumeAtURL_options_completionHandler(
             &self,
             url: &Foundation::NSURL,
-            mask: NSFileManagerUnmountOptions,
+            mask: Foundation::NSFileManagerUnmountOptions,
             completionHandler: &Block<(*mut Foundation::NSError,), ()>,
         );
 
@@ -111,7 +111,7 @@ extern_methods!(
             &self,
             url: &Foundation::NSURL,
             keys: Option<&Foundation::NSArray<Foundation::NSURLResourceKey>>,
-            mask: NSDirectoryEnumerationOptions,
+            mask: Foundation::NSDirectoryEnumerationOptions,
         ) -> Result<
             Id<Foundation::NSArray<Foundation::NSURL>, Shared>,
             Id<Foundation::NSError, Shared>,
@@ -121,16 +121,16 @@ extern_methods!(
         #[method_id(@__retain_semantics Other URLsForDirectory:inDomains:)]
         pub unsafe fn URLsForDirectory_inDomains(
             &self,
-            directory: NSSearchPathDirectory,
-            domainMask: NSSearchPathDomainMask,
+            directory: Foundation::NSSearchPathDirectory,
+            domainMask: Foundation::NSSearchPathDomainMask,
         ) -> Id<Foundation::NSArray<Foundation::NSURL>, Shared>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other URLForDirectory:inDomain:appropriateForURL:create:error:_)]
         pub unsafe fn URLForDirectory_inDomain_appropriateForURL_create_error(
             &self,
-            directory: NSSearchPathDirectory,
-            domain: NSSearchPathDomainMask,
+            directory: Foundation::NSSearchPathDirectory,
+            domain: Foundation::NSSearchPathDomainMask,
             url: Option<&Foundation::NSURL>,
             shouldCreate: bool,
         ) -> Result<Id<Foundation::NSURL, Shared>, Id<Foundation::NSError, Shared>>;
@@ -139,7 +139,7 @@ extern_methods!(
         #[method(getRelationship:ofDirectoryAtURL:toItemAtURL:error:_)]
         pub unsafe fn getRelationship_ofDirectoryAtURL_toItemAtURL_error(
             &self,
-            outRelationship: NonNull<NSURLRelationship>,
+            outRelationship: NonNull<Foundation::NSURLRelationship>,
             directoryURL: &Foundation::NSURL,
             otherURL: &Foundation::NSURL,
         ) -> Result<(), Id<Foundation::NSError, Shared>>;
@@ -148,9 +148,9 @@ extern_methods!(
         #[method(getRelationship:ofDirectory:inDomain:toItemAtURL:error:_)]
         pub unsafe fn getRelationship_ofDirectory_inDomain_toItemAtURL_error(
             &self,
-            outRelationship: NonNull<NSURLRelationship>,
-            directory: NSSearchPathDirectory,
-            domainMask: NSSearchPathDomainMask,
+            outRelationship: NonNull<Foundation::NSURLRelationship>,
+            directory: Foundation::NSSearchPathDirectory,
+            domainMask: Foundation::NSSearchPathDomainMask,
             url: &Foundation::NSURL,
         ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
@@ -514,7 +514,7 @@ extern_methods!(
             &self,
             url: &Foundation::NSURL,
             keys: Option<&Foundation::NSArray<Foundation::NSURLResourceKey>>,
-            mask: NSDirectoryEnumerationOptions,
+            mask: Foundation::NSDirectoryEnumerationOptions,
             handler: Option<
                 &Block<(NonNull<Foundation::NSURL>, NonNull<Foundation::NSError>), Bool>,
             >,
@@ -573,7 +573,7 @@ extern_methods!(
             originalItemURL: &Foundation::NSURL,
             newItemURL: &Foundation::NSURL,
             backupItemName: Option<&Foundation::NSString>,
-            options: NSFileManagerItemReplacementOptions,
+            options: Foundation::NSFileManagerItemReplacementOptions,
             resultingURL: *mut *mut Foundation::NSURL,
         ) -> Result<(), Id<Foundation::NSError, Shared>>;
 

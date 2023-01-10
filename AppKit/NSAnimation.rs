@@ -45,8 +45,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithDuration:animationCurve:)]
         pub unsafe fn initWithDuration_animationCurve(
             this: Option<Allocated<Self>>,
-            duration: NSTimeInterval,
-            animationCurve: NSAnimationCurve,
+            duration: Foundation::NSTimeInterval,
+            animationCurve: AppKit::NSAnimationCurve,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSCoder")]
@@ -66,24 +66,24 @@ extern_methods!(
         pub unsafe fn isAnimating(&self) -> bool;
 
         #[method(currentProgress)]
-        pub unsafe fn currentProgress(&self) -> NSAnimationProgress;
+        pub unsafe fn currentProgress(&self) -> AppKit::NSAnimationProgress;
 
         #[method(setCurrentProgress:)]
-        pub unsafe fn setCurrentProgress(&self, currentProgress: NSAnimationProgress);
+        pub unsafe fn setCurrentProgress(&self, currentProgress: AppKit::NSAnimationProgress);
 
         #[method(duration)]
-        pub unsafe fn duration(&self) -> NSTimeInterval;
+        pub unsafe fn duration(&self) -> Foundation::NSTimeInterval;
 
         #[method(setDuration:)]
-        pub unsafe fn setDuration(&self, duration: NSTimeInterval);
+        pub unsafe fn setDuration(&self, duration: Foundation::NSTimeInterval);
 
         #[method(animationBlockingMode)]
-        pub unsafe fn animationBlockingMode(&self) -> NSAnimationBlockingMode;
+        pub unsafe fn animationBlockingMode(&self) -> AppKit::NSAnimationBlockingMode;
 
         #[method(setAnimationBlockingMode:)]
         pub unsafe fn setAnimationBlockingMode(
             &self,
-            animationBlockingMode: NSAnimationBlockingMode,
+            animationBlockingMode: AppKit::NSAnimationBlockingMode,
         );
 
         #[method(frameRate)]
@@ -93,10 +93,10 @@ extern_methods!(
         pub unsafe fn setFrameRate(&self, frameRate: c_float);
 
         #[method(animationCurve)]
-        pub unsafe fn animationCurve(&self) -> NSAnimationCurve;
+        pub unsafe fn animationCurve(&self) -> AppKit::NSAnimationCurve;
 
         #[method(setAnimationCurve:)]
-        pub unsafe fn setAnimationCurve(&self, animationCurve: NSAnimationCurve);
+        pub unsafe fn setAnimationCurve(&self, animationCurve: AppKit::NSAnimationCurve);
 
         #[method(currentValue)]
         pub unsafe fn currentValue(&self) -> c_float;
@@ -120,23 +120,23 @@ extern_methods!(
         );
 
         #[method(addProgressMark:)]
-        pub unsafe fn addProgressMark(&self, progressMark: NSAnimationProgress);
+        pub unsafe fn addProgressMark(&self, progressMark: AppKit::NSAnimationProgress);
 
         #[method(removeProgressMark:)]
-        pub unsafe fn removeProgressMark(&self, progressMark: NSAnimationProgress);
+        pub unsafe fn removeProgressMark(&self, progressMark: AppKit::NSAnimationProgress);
 
         #[method(startWhenAnimation:reachesProgress:)]
         pub unsafe fn startWhenAnimation_reachesProgress(
             &self,
             animation: &AppKit::NSAnimation,
-            startProgress: NSAnimationProgress,
+            startProgress: AppKit::NSAnimationProgress,
         );
 
         #[method(stopWhenAnimation:reachesProgress:)]
         pub unsafe fn stopWhenAnimation_reachesProgress(
             &self,
             animation: &AppKit::NSAnimation,
-            stopProgress: NSAnimationProgress,
+            stopProgress: AppKit::NSAnimationProgress,
         );
 
         #[method(clearStartAnimation)]
@@ -174,7 +174,7 @@ extern_protocol!(
         pub unsafe fn animation_valueForProgress(
             &self,
             animation: &AppKit::NSAnimation,
-            progress: NSAnimationProgress,
+            progress: AppKit::NSAnimationProgress,
         ) -> c_float;
 
         #[optional]
@@ -182,7 +182,7 @@ extern_protocol!(
         pub unsafe fn animation_didReachProgressMark(
             &self,
             animation: &AppKit::NSAnimation,
-            progress: NSAnimationProgress,
+            progress: AppKit::NSAnimationProgress,
         );
     }
 );
@@ -288,8 +288,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithDuration:animationCurve:)]
         pub unsafe fn initWithDuration_animationCurve(
             this: Option<Allocated<Self>>,
-            duration: NSTimeInterval,
-            animationCurve: NSAnimationCurve,
+            duration: Foundation::NSTimeInterval,
+            animationCurve: AppKit::NSAnimationCurve,
         ) -> Id<Self, Shared>;
     }
 );

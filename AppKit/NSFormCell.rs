@@ -40,7 +40,7 @@ extern_methods!(
         ) -> Id<Self, Shared>;
 
         #[method(setTitleWidth:)]
-        pub unsafe fn setTitleWidth(&self, titleWidth: CGFloat);
+        pub unsafe fn setTitleWidth(&self, titleWidth: CoreGraphics::CGFloat);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
@@ -83,25 +83,28 @@ extern_methods!(
         );
 
         #[method(titleAlignment)]
-        pub unsafe fn titleAlignment(&self) -> NSTextAlignment;
+        pub unsafe fn titleAlignment(&self) -> AppKit::NSTextAlignment;
 
         #[method(setTitleAlignment:)]
-        pub unsafe fn setTitleAlignment(&self, titleAlignment: NSTextAlignment);
+        pub unsafe fn setTitleAlignment(&self, titleAlignment: AppKit::NSTextAlignment);
 
         #[method(titleBaseWritingDirection)]
-        pub unsafe fn titleBaseWritingDirection(&self) -> NSWritingDirection;
+        pub unsafe fn titleBaseWritingDirection(&self) -> AppKit::NSWritingDirection;
 
         #[method(setTitleBaseWritingDirection:)]
         pub unsafe fn setTitleBaseWritingDirection(
             &self,
-            titleBaseWritingDirection: NSWritingDirection,
+            titleBaseWritingDirection: AppKit::NSWritingDirection,
         );
 
         #[method(preferredTextFieldWidth)]
-        pub unsafe fn preferredTextFieldWidth(&self) -> CGFloat;
+        pub unsafe fn preferredTextFieldWidth(&self) -> CoreGraphics::CGFloat;
 
         #[method(setPreferredTextFieldWidth:)]
-        pub unsafe fn setPreferredTextFieldWidth(&self, preferredTextFieldWidth: CGFloat);
+        pub unsafe fn setPreferredTextFieldWidth(
+            &self,
+            preferredTextFieldWidth: CoreGraphics::CGFloat,
+        );
     }
 );
 

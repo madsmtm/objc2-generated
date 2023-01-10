@@ -42,10 +42,10 @@ extern_methods!(
         pub unsafe fn setCaptureObject(&self, captureObject: Option<&Object>);
 
         #[method(destination)]
-        pub fn destination(&self) -> MTLCaptureDestination;
+        pub fn destination(&self) -> Metal::MTLCaptureDestination;
 
         #[method(setDestination:)]
-        pub fn setDestination(&self, destination: MTLCaptureDestination);
+        pub fn setDestination(&self, destination: Metal::MTLCaptureDestination);
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other outputURL)]
@@ -88,7 +88,7 @@ extern_methods!(
         ) -> Id<Metal::MTLCaptureScope, Shared>;
 
         #[method(supportsDestination:)]
-        pub fn supportsDestination(&self, destination: MTLCaptureDestination) -> bool;
+        pub fn supportsDestination(&self, destination: Metal::MTLCaptureDestination) -> bool;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Metal_MTLCaptureDescriptor"))]
         #[method(startCaptureWithDescriptor:error:_)]

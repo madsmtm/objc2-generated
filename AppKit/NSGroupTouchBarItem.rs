@@ -61,12 +61,14 @@ extern_methods!(
         );
 
         #[method(groupUserInterfaceLayoutDirection)]
-        pub unsafe fn groupUserInterfaceLayoutDirection(&self) -> NSUserInterfaceLayoutDirection;
+        pub unsafe fn groupUserInterfaceLayoutDirection(
+            &self,
+        ) -> AppKit::NSUserInterfaceLayoutDirection;
 
         #[method(setGroupUserInterfaceLayoutDirection:)]
         pub unsafe fn setGroupUserInterfaceLayoutDirection(
             &self,
-            groupUserInterfaceLayoutDirection: NSUserInterfaceLayoutDirection,
+            groupUserInterfaceLayoutDirection: AppKit::NSUserInterfaceLayoutDirection,
         );
 
         #[method(prefersEqualWidths)]
@@ -76,10 +78,10 @@ extern_methods!(
         pub unsafe fn setPrefersEqualWidths(&self, prefersEqualWidths: bool);
 
         #[method(preferredItemWidth)]
-        pub unsafe fn preferredItemWidth(&self) -> CGFloat;
+        pub unsafe fn preferredItemWidth(&self) -> CoreGraphics::CGFloat;
 
         #[method(setPreferredItemWidth:)]
-        pub unsafe fn setPreferredItemWidth(&self, preferredItemWidth: CGFloat);
+        pub unsafe fn setPreferredItemWidth(&self, preferredItemWidth: CoreGraphics::CGFloat);
 
         #[cfg(feature = "AppKit_NSUserInterfaceCompressionOptions")]
         #[method_id(@__retain_semantics Other effectiveCompressionOptions)]

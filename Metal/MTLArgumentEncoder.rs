@@ -51,7 +51,7 @@ extern_protocol!(
             &self,
             buffers: NonNull<*const Metal::MTLBuffer>,
             offsets: NonNull<NSUInteger>,
-            range: NSRange,
+            range: Foundation::NSRange,
         );
 
         #[method(setTexture:atIndex:)]
@@ -65,7 +65,7 @@ extern_protocol!(
         pub unsafe fn setTextures_withRange(
             &self,
             textures: NonNull<*const Metal::MTLTexture>,
-            range: NSRange,
+            range: Foundation::NSRange,
         );
 
         #[method(setSamplerState:atIndex:)]
@@ -79,7 +79,7 @@ extern_protocol!(
         pub unsafe fn setSamplerStates_withRange(
             &self,
             samplers: NonNull<*const Metal::MTLSamplerState>,
-            range: NSRange,
+            range: Foundation::NSRange,
         );
 
         #[method(constantDataAtIndex:)]
@@ -96,7 +96,7 @@ extern_protocol!(
         pub unsafe fn setRenderPipelineStates_withRange(
             &self,
             pipelines: NonNull<*const Metal::MTLRenderPipelineState>,
-            range: NSRange,
+            range: Foundation::NSRange,
         );
 
         #[method(setComputePipelineState:atIndex:)]
@@ -110,7 +110,7 @@ extern_protocol!(
         pub unsafe fn setComputePipelineStates_withRange(
             &self,
             pipelines: NonNull<*const Metal::MTLComputePipelineState>,
-            range: NSRange,
+            range: Foundation::NSRange,
         );
 
         #[method(setIndirectCommandBuffer:atIndex:)]
@@ -124,7 +124,7 @@ extern_protocol!(
         pub unsafe fn setIndirectCommandBuffers_withRange(
             &self,
             buffers: NonNull<*const Metal::MTLIndirectCommandBuffer>,
-            range: NSRange,
+            range: Foundation::NSRange,
         );
 
         #[method(setAccelerationStructure:atIndex:)]
@@ -151,7 +151,7 @@ extern_protocol!(
         pub unsafe fn setVisibleFunctionTables_withRange(
             &self,
             visibleFunctionTables: NonNull<*const Metal::MTLVisibleFunctionTable>,
-            range: NSRange,
+            range: Foundation::NSRange,
         );
 
         #[method(setIntersectionFunctionTable:atIndex:)]
@@ -165,7 +165,7 @@ extern_protocol!(
         pub unsafe fn setIntersectionFunctionTables_withRange(
             &self,
             intersectionFunctionTables: NonNull<*const Metal::MTLIntersectionFunctionTable>,
-            range: NSRange,
+            range: Foundation::NSRange,
         );
     }
 );

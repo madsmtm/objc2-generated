@@ -26,19 +26,22 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(translationInView:)]
-        pub unsafe fn translationInView(&self, view: Option<&AppKit::NSView>) -> NSPoint;
+        pub unsafe fn translationInView(
+            &self,
+            view: Option<&AppKit::NSView>,
+        ) -> Foundation::NSPoint;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(setTranslation:inView:)]
         pub unsafe fn setTranslation_inView(
             &self,
-            translation: NSPoint,
+            translation: Foundation::NSPoint,
             view: Option<&AppKit::NSView>,
         );
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(velocityInView:)]
-        pub unsafe fn velocityInView(&self, view: Option<&AppKit::NSView>) -> NSPoint;
+        pub unsafe fn velocityInView(&self, view: Option<&AppKit::NSView>) -> Foundation::NSPoint;
 
         #[method(numberOfTouchesRequired)]
         pub unsafe fn numberOfTouchesRequired(&self) -> NSInteger;

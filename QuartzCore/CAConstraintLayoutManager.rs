@@ -73,55 +73,55 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other constraintWithAttribute:relativeTo:attribute:scale:offset:)]
         pub unsafe fn constraintWithAttribute_relativeTo_attribute_scale_offset(
-            attr: CAConstraintAttribute,
+            attr: CoreAnimation::CAConstraintAttribute,
             srcId: &Foundation::NSString,
-            srcAttr: CAConstraintAttribute,
-            m: CGFloat,
-            c: CGFloat,
+            srcAttr: CoreAnimation::CAConstraintAttribute,
+            m: CoreGraphics::CGFloat,
+            c: CoreGraphics::CGFloat,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other constraintWithAttribute:relativeTo:attribute:offset:)]
         pub unsafe fn constraintWithAttribute_relativeTo_attribute_offset(
-            attr: CAConstraintAttribute,
+            attr: CoreAnimation::CAConstraintAttribute,
             srcId: &Foundation::NSString,
-            srcAttr: CAConstraintAttribute,
-            c: CGFloat,
+            srcAttr: CoreAnimation::CAConstraintAttribute,
+            c: CoreGraphics::CGFloat,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other constraintWithAttribute:relativeTo:attribute:)]
         pub unsafe fn constraintWithAttribute_relativeTo_attribute(
-            attr: CAConstraintAttribute,
+            attr: CoreAnimation::CAConstraintAttribute,
             srcId: &Foundation::NSString,
-            srcAttr: CAConstraintAttribute,
+            srcAttr: CoreAnimation::CAConstraintAttribute,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithAttribute:relativeTo:attribute:scale:offset:)]
         pub unsafe fn initWithAttribute_relativeTo_attribute_scale_offset(
             this: Option<Allocated<Self>>,
-            attr: CAConstraintAttribute,
+            attr: CoreAnimation::CAConstraintAttribute,
             srcId: &Foundation::NSString,
-            srcAttr: CAConstraintAttribute,
-            m: CGFloat,
-            c: CGFloat,
+            srcAttr: CoreAnimation::CAConstraintAttribute,
+            m: CoreGraphics::CGFloat,
+            c: CoreGraphics::CGFloat,
         ) -> Id<Self, Shared>;
 
         #[method(attribute)]
-        pub unsafe fn attribute(&self) -> CAConstraintAttribute;
+        pub unsafe fn attribute(&self) -> CoreAnimation::CAConstraintAttribute;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other sourceName)]
         pub unsafe fn sourceName(&self) -> Id<Foundation::NSString, Shared>;
 
         #[method(sourceAttribute)]
-        pub unsafe fn sourceAttribute(&self) -> CAConstraintAttribute;
+        pub unsafe fn sourceAttribute(&self) -> CoreAnimation::CAConstraintAttribute;
 
         #[method(scale)]
-        pub unsafe fn scale(&self) -> CGFloat;
+        pub unsafe fn scale(&self) -> CoreGraphics::CGFloat;
 
         #[method(offset)]
-        pub unsafe fn offset(&self) -> CGFloat;
+        pub unsafe fn offset(&self) -> CoreGraphics::CGFloat;
     }
 );

@@ -55,8 +55,8 @@ extern_methods!(
             &self,
             searchString: &Foundation::NSString,
             stringToSearch: &Foundation::NSString,
-            searchRange: NSRange,
-            foundRange: *mut NSRange,
+            searchRange: Foundation::NSRange,
+            foundRange: *mut Foundation::NSRange,
         ) -> bool;
     }
 );

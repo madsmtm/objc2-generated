@@ -32,10 +32,10 @@ extern_methods!(
         pub unsafe fn setString(&self, string: Option<&Object>);
 
         #[method(fontSize)]
-        pub unsafe fn fontSize(&self) -> CGFloat;
+        pub unsafe fn fontSize(&self) -> CoreGraphics::CGFloat;
 
         #[method(setFontSize:)]
-        pub unsafe fn setFontSize(&self, fontSize: CGFloat);
+        pub unsafe fn setFontSize(&self, fontSize: CoreGraphics::CGFloat);
 
         #[method(isWrapped)]
         pub unsafe fn isWrapped(&self) -> bool;

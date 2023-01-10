@@ -19,22 +19,25 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSCollectionViewGridLayout")]
     unsafe impl NSCollectionViewGridLayout {
         #[method(margins)]
-        pub unsafe fn margins(&self) -> NSEdgeInsets;
+        pub unsafe fn margins(&self) -> Foundation::NSEdgeInsets;
 
         #[method(setMargins:)]
-        pub unsafe fn setMargins(&self, margins: NSEdgeInsets);
+        pub unsafe fn setMargins(&self, margins: Foundation::NSEdgeInsets);
 
         #[method(minimumInteritemSpacing)]
-        pub unsafe fn minimumInteritemSpacing(&self) -> CGFloat;
+        pub unsafe fn minimumInteritemSpacing(&self) -> CoreGraphics::CGFloat;
 
         #[method(setMinimumInteritemSpacing:)]
-        pub unsafe fn setMinimumInteritemSpacing(&self, minimumInteritemSpacing: CGFloat);
+        pub unsafe fn setMinimumInteritemSpacing(
+            &self,
+            minimumInteritemSpacing: CoreGraphics::CGFloat,
+        );
 
         #[method(minimumLineSpacing)]
-        pub unsafe fn minimumLineSpacing(&self) -> CGFloat;
+        pub unsafe fn minimumLineSpacing(&self) -> CoreGraphics::CGFloat;
 
         #[method(setMinimumLineSpacing:)]
-        pub unsafe fn setMinimumLineSpacing(&self, minimumLineSpacing: CGFloat);
+        pub unsafe fn setMinimumLineSpacing(&self, minimumLineSpacing: CoreGraphics::CGFloat);
 
         #[method(maximumNumberOfRows)]
         pub unsafe fn maximumNumberOfRows(&self) -> NSUInteger;
@@ -49,16 +52,16 @@ extern_methods!(
         pub unsafe fn setMaximumNumberOfColumns(&self, maximumNumberOfColumns: NSUInteger);
 
         #[method(minimumItemSize)]
-        pub unsafe fn minimumItemSize(&self) -> NSSize;
+        pub unsafe fn minimumItemSize(&self) -> Foundation::NSSize;
 
         #[method(setMinimumItemSize:)]
-        pub unsafe fn setMinimumItemSize(&self, minimumItemSize: NSSize);
+        pub unsafe fn setMinimumItemSize(&self, minimumItemSize: Foundation::NSSize);
 
         #[method(maximumItemSize)]
-        pub unsafe fn maximumItemSize(&self) -> NSSize;
+        pub unsafe fn maximumItemSize(&self) -> Foundation::NSSize;
 
         #[method(setMaximumItemSize:)]
-        pub unsafe fn setMaximumItemSize(&self, maximumItemSize: NSSize);
+        pub unsafe fn setMaximumItemSize(&self, maximumItemSize: Foundation::NSSize);
 
         #[cfg(all(feature = "AppKit_NSColor", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other backgroundColors)]

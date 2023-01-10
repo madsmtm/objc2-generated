@@ -21,7 +21,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frameRect: Foundation::NSRect,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSCoder")]
@@ -80,10 +80,10 @@ extern_methods!(
         pub unsafe fn setHighlighted(&self, highlighted: bool);
 
         #[method(controlSize)]
-        pub unsafe fn controlSize(&self) -> NSControlSize;
+        pub unsafe fn controlSize(&self) -> AppKit::NSControlSize;
 
         #[method(setControlSize:)]
-        pub unsafe fn setControlSize(&self, controlSize: NSControlSize);
+        pub unsafe fn setControlSize(&self, controlSize: AppKit::NSControlSize);
 
         #[cfg(feature = "Foundation_NSFormatter")]
         #[method_id(@__retain_semantics Other formatter)]
@@ -143,13 +143,13 @@ extern_methods!(
         pub unsafe fn setDoubleValue(&self, doubleValue: c_double);
 
         #[method(sizeThatFits:)]
-        pub unsafe fn sizeThatFits(&self, size: NSSize) -> NSSize;
+        pub unsafe fn sizeThatFits(&self, size: Foundation::NSSize) -> Foundation::NSSize;
 
         #[method(sizeToFit)]
         pub unsafe fn sizeToFit(&self);
 
         #[method(sendActionOn:)]
-        pub unsafe fn sendActionOn(&self, mask: NSEventMask) -> NSInteger;
+        pub unsafe fn sendActionOn(&self, mask: AppKit::NSEventMask) -> NSInteger;
 
         #[method(sendAction:to:)]
         pub unsafe fn sendAction_to(&self, action: Option<Sel>, target: Option<&Object>) -> bool;
@@ -194,22 +194,25 @@ extern_methods!(
         pub unsafe fn setUsesSingleLineMode(&self, usesSingleLineMode: bool);
 
         #[method(lineBreakMode)]
-        pub unsafe fn lineBreakMode(&self) -> NSLineBreakMode;
+        pub unsafe fn lineBreakMode(&self) -> AppKit::NSLineBreakMode;
 
         #[method(setLineBreakMode:)]
-        pub unsafe fn setLineBreakMode(&self, lineBreakMode: NSLineBreakMode);
+        pub unsafe fn setLineBreakMode(&self, lineBreakMode: AppKit::NSLineBreakMode);
 
         #[method(alignment)]
-        pub unsafe fn alignment(&self) -> NSTextAlignment;
+        pub unsafe fn alignment(&self) -> AppKit::NSTextAlignment;
 
         #[method(setAlignment:)]
-        pub unsafe fn setAlignment(&self, alignment: NSTextAlignment);
+        pub unsafe fn setAlignment(&self, alignment: AppKit::NSTextAlignment);
 
         #[method(baseWritingDirection)]
-        pub unsafe fn baseWritingDirection(&self) -> NSWritingDirection;
+        pub unsafe fn baseWritingDirection(&self) -> AppKit::NSWritingDirection;
 
         #[method(setBaseWritingDirection:)]
-        pub unsafe fn setBaseWritingDirection(&self, baseWritingDirection: NSWritingDirection);
+        pub unsafe fn setBaseWritingDirection(
+            &self,
+            baseWritingDirection: AppKit::NSWritingDirection,
+        );
 
         #[method(allowsExpansionToolTips)]
         pub unsafe fn allowsExpansionToolTips(&self) -> bool;
@@ -218,12 +221,15 @@ extern_methods!(
         pub unsafe fn setAllowsExpansionToolTips(&self, allowsExpansionToolTips: bool);
 
         #[method(expansionFrameWithFrame:)]
-        pub unsafe fn expansionFrameWithFrame(&self, contentFrame: NSRect) -> NSRect;
+        pub unsafe fn expansionFrameWithFrame(
+            &self,
+            contentFrame: Foundation::NSRect,
+        ) -> Foundation::NSRect;
 
         #[method(drawWithExpansionFrame:inView:)]
         pub unsafe fn drawWithExpansionFrame_inView(
             &self,
-            contentFrame: NSRect,
+            contentFrame: Foundation::NSRect,
             view: &AppKit::NSView,
         );
     }
@@ -247,7 +253,7 @@ extern_methods!(
         #[method(editWithFrame:editor:delegate:event:)]
         pub unsafe fn editWithFrame_editor_delegate_event(
             &self,
-            rect: NSRect,
+            rect: Foundation::NSRect,
             textObj: &AppKit::NSText,
             delegate: Option<&Object>,
             event: &AppKit::NSEvent,
@@ -257,7 +263,7 @@ extern_methods!(
         #[method(selectWithFrame:editor:delegate:start:length:)]
         pub unsafe fn selectWithFrame_editor_delegate_start_length(
             &self,
-            rect: NSRect,
+            rect: Foundation::NSRect,
             textObj: &AppKit::NSText,
             delegate: Option<&Object>,
             selStart: NSInteger,
@@ -344,7 +350,7 @@ extern_protocol!(
             control: &AppKit::NSControl,
             textView: &AppKit::NSTextView,
             words: &Foundation::NSArray<Foundation::NSString>,
-            charRange: NSRange,
+            charRange: Foundation::NSRange,
             index: NonNull<NSInteger>,
         ) -> Id<Foundation::NSArray<Foundation::NSString>, Shared>;
     }

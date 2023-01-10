@@ -65,10 +65,13 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSNumberFormatter")]
     unsafe impl NSNumberFormatter {
         #[method(formattingContext)]
-        pub unsafe fn formattingContext(&self) -> NSFormattingContext;
+        pub unsafe fn formattingContext(&self) -> Foundation::NSFormattingContext;
 
         #[method(setFormattingContext:)]
-        pub unsafe fn setFormattingContext(&self, formattingContext: NSFormattingContext);
+        pub unsafe fn setFormattingContext(
+            &self,
+            formattingContext: Foundation::NSFormattingContext,
+        );
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method(getObjectValue:forString:range:error:_)]
@@ -76,7 +79,7 @@ extern_methods!(
             &self,
             obj: *mut *mut Object,
             string: &Foundation::NSString,
-            rangep: *mut NSRange,
+            rangep: *mut Foundation::NSRange,
         ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSNumber", feature = "Foundation_NSString"))]
@@ -97,20 +100,20 @@ extern_methods!(
         #[method_id(@__retain_semantics Other localizedStringFromNumber:numberStyle:)]
         pub unsafe fn localizedStringFromNumber_numberStyle(
             num: &Foundation::NSNumber,
-            nstyle: NSNumberFormatterStyle,
+            nstyle: Foundation::NSNumberFormatterStyle,
         ) -> Id<Foundation::NSString, Shared>;
 
         #[method(defaultFormatterBehavior)]
-        pub unsafe fn defaultFormatterBehavior() -> NSNumberFormatterBehavior;
+        pub unsafe fn defaultFormatterBehavior() -> Foundation::NSNumberFormatterBehavior;
 
         #[method(setDefaultFormatterBehavior:)]
-        pub unsafe fn setDefaultFormatterBehavior(behavior: NSNumberFormatterBehavior);
+        pub unsafe fn setDefaultFormatterBehavior(behavior: Foundation::NSNumberFormatterBehavior);
 
         #[method(numberStyle)]
-        pub unsafe fn numberStyle(&self) -> NSNumberFormatterStyle;
+        pub unsafe fn numberStyle(&self) -> Foundation::NSNumberFormatterStyle;
 
         #[method(setNumberStyle:)]
-        pub unsafe fn setNumberStyle(&self, numberStyle: NSNumberFormatterStyle);
+        pub unsafe fn setNumberStyle(&self, numberStyle: Foundation::NSNumberFormatterStyle);
 
         #[cfg(feature = "Foundation_NSLocale")]
         #[method_id(@__retain_semantics Other locale)]
@@ -127,10 +130,13 @@ extern_methods!(
         pub unsafe fn setGeneratesDecimalNumbers(&self, generatesDecimalNumbers: bool);
 
         #[method(formatterBehavior)]
-        pub unsafe fn formatterBehavior(&self) -> NSNumberFormatterBehavior;
+        pub unsafe fn formatterBehavior(&self) -> Foundation::NSNumberFormatterBehavior;
 
         #[method(setFormatterBehavior:)]
-        pub unsafe fn setFormatterBehavior(&self, formatterBehavior: NSNumberFormatterBehavior);
+        pub unsafe fn setFormatterBehavior(
+            &self,
+            formatterBehavior: Foundation::NSNumberFormatterBehavior,
+        );
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other negativeFormat)]
@@ -474,16 +480,22 @@ extern_methods!(
         pub unsafe fn setPaddingCharacter(&self, paddingCharacter: Option<&Foundation::NSString>);
 
         #[method(paddingPosition)]
-        pub unsafe fn paddingPosition(&self) -> NSNumberFormatterPadPosition;
+        pub unsafe fn paddingPosition(&self) -> Foundation::NSNumberFormatterPadPosition;
 
         #[method(setPaddingPosition:)]
-        pub unsafe fn setPaddingPosition(&self, paddingPosition: NSNumberFormatterPadPosition);
+        pub unsafe fn setPaddingPosition(
+            &self,
+            paddingPosition: Foundation::NSNumberFormatterPadPosition,
+        );
 
         #[method(roundingMode)]
-        pub unsafe fn roundingMode(&self) -> NSNumberFormatterRoundingMode;
+        pub unsafe fn roundingMode(&self) -> Foundation::NSNumberFormatterRoundingMode;
 
         #[method(setRoundingMode:)]
-        pub unsafe fn setRoundingMode(&self, roundingMode: NSNumberFormatterRoundingMode);
+        pub unsafe fn setRoundingMode(
+            &self,
+            roundingMode: Foundation::NSNumberFormatterRoundingMode,
+        );
 
         #[cfg(feature = "Foundation_NSNumber")]
         #[method_id(@__retain_semantics Other roundingIncrement)]

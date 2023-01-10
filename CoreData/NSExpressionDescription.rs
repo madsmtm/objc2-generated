@@ -26,9 +26,12 @@ extern_methods!(
         pub unsafe fn setExpression(&self, expression: Option<&Foundation::NSExpression>);
 
         #[method(expressionResultType)]
-        pub unsafe fn expressionResultType(&self) -> NSAttributeType;
+        pub unsafe fn expressionResultType(&self) -> CoreData::NSAttributeType;
 
         #[method(setExpressionResultType:)]
-        pub unsafe fn setExpressionResultType(&self, expressionResultType: NSAttributeType);
+        pub unsafe fn setExpressionResultType(
+            &self,
+            expressionResultType: CoreData::NSAttributeType,
+        );
     }
 );

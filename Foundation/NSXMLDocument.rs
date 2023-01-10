@@ -34,7 +34,7 @@ extern_methods!(
         pub unsafe fn initWithXMLString_options_error(
             this: Option<Allocated<Self>>,
             string: &Foundation::NSString,
-            mask: NSXMLNodeOptions,
+            mask: Foundation::NSXMLNodeOptions,
         ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
@@ -42,7 +42,7 @@ extern_methods!(
         pub unsafe fn initWithContentsOfURL_options_error(
             this: Option<Allocated<Self>>,
             url: &Foundation::NSURL,
-            mask: NSXMLNodeOptions,
+            mask: Foundation::NSXMLNodeOptions,
         ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
@@ -50,7 +50,7 @@ extern_methods!(
         pub unsafe fn initWithData_options_error(
             this: Option<Allocated<Self>>,
             data: &Foundation::NSData,
-            mask: NSXMLNodeOptions,
+            mask: Foundation::NSXMLNodeOptions,
         ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSXMLElement")]
@@ -86,10 +86,13 @@ extern_methods!(
         pub unsafe fn setStandalone(&self, standalone: bool);
 
         #[method(documentContentKind)]
-        pub unsafe fn documentContentKind(&self) -> NSXMLDocumentContentKind;
+        pub unsafe fn documentContentKind(&self) -> Foundation::NSXMLDocumentContentKind;
 
         #[method(setDocumentContentKind:)]
-        pub unsafe fn setDocumentContentKind(&self, documentContentKind: NSXMLDocumentContentKind);
+        pub unsafe fn setDocumentContentKind(
+            &self,
+            documentContentKind: Foundation::NSXMLDocumentContentKind,
+        );
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other MIMEType)]
@@ -154,7 +157,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other XMLDataWithOptions:)]
         pub unsafe fn XMLDataWithOptions(
             &self,
-            options: NSXMLNodeOptions,
+            options: Foundation::NSXMLNodeOptions,
         ) -> Id<Foundation::NSData, Shared>;
 
         #[cfg(all(
@@ -212,14 +215,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithKind:)]
         pub unsafe fn initWithKind(
             this: Option<Allocated<Self>>,
-            kind: NSXMLNodeKind,
+            kind: Foundation::NSXMLNodeKind,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Init initWithKind:options:)]
         pub unsafe fn initWithKind_options(
             this: Option<Allocated<Self>>,
-            kind: NSXMLNodeKind,
-            options: NSXMLNodeOptions,
+            kind: Foundation::NSXMLNodeKind,
+            options: Foundation::NSXMLNodeOptions,
         ) -> Id<Self, Shared>;
     }
 );

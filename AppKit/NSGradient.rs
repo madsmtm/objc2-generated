@@ -49,7 +49,7 @@ extern_methods!(
         pub unsafe fn initWithColors_atLocations_colorSpace(
             this: Option<Allocated<Self>>,
             colorArray: &Foundation::NSArray<AppKit::NSColor>,
-            locations: *mut CGFloat,
+            locations: *mut CoreGraphics::CGFloat,
             colorSpace: &AppKit::NSColorSpace,
         ) -> Option<Id<Self, Shared>>;
 
@@ -63,33 +63,41 @@ extern_methods!(
         #[method(drawFromPoint:toPoint:options:)]
         pub unsafe fn drawFromPoint_toPoint_options(
             &self,
-            startingPoint: NSPoint,
-            endingPoint: NSPoint,
-            options: NSGradientDrawingOptions,
+            startingPoint: Foundation::NSPoint,
+            endingPoint: Foundation::NSPoint,
+            options: AppKit::NSGradientDrawingOptions,
         );
 
         #[method(drawInRect:angle:)]
-        pub unsafe fn drawInRect_angle(&self, rect: NSRect, angle: CGFloat);
+        pub unsafe fn drawInRect_angle(
+            &self,
+            rect: Foundation::NSRect,
+            angle: CoreGraphics::CGFloat,
+        );
 
         #[cfg(feature = "AppKit_NSBezierPath")]
         #[method(drawInBezierPath:angle:)]
-        pub unsafe fn drawInBezierPath_angle(&self, path: &AppKit::NSBezierPath, angle: CGFloat);
+        pub unsafe fn drawInBezierPath_angle(
+            &self,
+            path: &AppKit::NSBezierPath,
+            angle: CoreGraphics::CGFloat,
+        );
 
         #[method(drawFromCenter:radius:toCenter:radius:options:)]
         pub unsafe fn drawFromCenter_radius_toCenter_radius_options(
             &self,
-            startCenter: NSPoint,
-            startRadius: CGFloat,
-            endCenter: NSPoint,
-            endRadius: CGFloat,
-            options: NSGradientDrawingOptions,
+            startCenter: Foundation::NSPoint,
+            startRadius: CoreGraphics::CGFloat,
+            endCenter: Foundation::NSPoint,
+            endRadius: CoreGraphics::CGFloat,
+            options: AppKit::NSGradientDrawingOptions,
         );
 
         #[method(drawInRect:relativeCenterPosition:)]
         pub unsafe fn drawInRect_relativeCenterPosition(
             &self,
-            rect: NSRect,
-            relativeCenterPosition: NSPoint,
+            rect: Foundation::NSRect,
+            relativeCenterPosition: Foundation::NSPoint,
         );
 
         #[cfg(feature = "AppKit_NSBezierPath")]
@@ -97,7 +105,7 @@ extern_methods!(
         pub unsafe fn drawInBezierPath_relativeCenterPosition(
             &self,
             path: &AppKit::NSBezierPath,
-            relativeCenterPosition: NSPoint,
+            relativeCenterPosition: Foundation::NSPoint,
         );
 
         #[cfg(feature = "AppKit_NSColorSpace")]
@@ -112,7 +120,7 @@ extern_methods!(
         pub unsafe fn getColor_location_atIndex(
             &self,
             color: *mut NonNull<AppKit::NSColor>,
-            location: *mut CGFloat,
+            location: *mut CoreGraphics::CGFloat,
             index: NSInteger,
         );
 
@@ -120,7 +128,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other interpolatedColorAtLocation:)]
         pub unsafe fn interpolatedColorAtLocation(
             &self,
-            location: CGFloat,
+            location: CoreGraphics::CGFloat,
         ) -> Id<AppKit::NSColor, Shared>;
     }
 );

@@ -14,16 +14,16 @@ extern_protocol!(
         pub fn present(&self);
 
         #[method(presentAtTime:)]
-        pub unsafe fn presentAtTime(&self, presentationTime: CFTimeInterval);
+        pub unsafe fn presentAtTime(&self, presentationTime: CoreFoundation::CFTimeInterval);
 
         #[method(presentAfterMinimumDuration:)]
-        pub unsafe fn presentAfterMinimumDuration(&self, duration: CFTimeInterval);
+        pub unsafe fn presentAfterMinimumDuration(&self, duration: CoreFoundation::CFTimeInterval);
 
         #[method(addPresentedHandler:)]
-        pub unsafe fn addPresentedHandler(&self, block: MTLDrawablePresentedHandler);
+        pub unsafe fn addPresentedHandler(&self, block: Metal::MTLDrawablePresentedHandler);
 
         #[method(presentedTime)]
-        pub unsafe fn presentedTime(&self) -> CFTimeInterval;
+        pub unsafe fn presentedTime(&self) -> CoreFoundation::CFTimeInterval;
 
         #[method(drawableID)]
         pub fn drawableID(&self) -> NSUInteger;

@@ -19,7 +19,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other imageForBounds:textContainer:characterIndex:)]
         pub unsafe fn imageForBounds_textContainer_characterIndex(
             &self,
-            imageBounds: CGRect,
+            imageBounds: CoreGraphics::CGRect,
             textContainer: Option<&AppKit::NSTextContainer>,
             charIndex: NSUInteger,
         ) -> Option<Id<AppKit::NSImage, Shared>>;
@@ -28,10 +28,10 @@ extern_protocol!(
         pub unsafe fn attachmentBoundsForTextContainer_proposedLineFragment_glyphPosition_characterIndex(
             &self,
             textContainer: Option<&AppKit::NSTextContainer>,
-            lineFrag: CGRect,
-            position: CGPoint,
+            lineFrag: CoreGraphics::CGRect,
+            position: CoreGraphics::CGPoint,
             charIndex: NSUInteger,
-        ) -> CGRect;
+        ) -> CoreGraphics::CGRect;
     }
 );
 
@@ -42,7 +42,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other imageForBounds:attributes:location:textContainer:)]
         pub unsafe fn imageForBounds_attributes_location_textContainer(
             &self,
-            bounds: CGRect,
+            bounds: CoreGraphics::CGRect,
             attributes: &Foundation::NSDictionary<Foundation::NSAttributedStringKey, Object>,
             location: &AppKit::NSTextLocation,
             textContainer: Option<&AppKit::NSTextContainer>,
@@ -54,9 +54,9 @@ extern_protocol!(
             attributes: &Foundation::NSDictionary<Foundation::NSAttributedStringKey, Object>,
             location: &AppKit::NSTextLocation,
             textContainer: Option<&AppKit::NSTextContainer>,
-            proposedLineFragment: CGRect,
-            position: CGPoint,
-        ) -> CGRect;
+            proposedLineFragment: CoreGraphics::CGRect,
+            position: CoreGraphics::CGPoint,
+        ) -> CoreGraphics::CGRect;
 
         #[method_id(@__retain_semantics Other viewProviderForParentView:location:textContainer:)]
         pub unsafe fn viewProviderForParentView_location_textContainer(
@@ -120,10 +120,10 @@ extern_methods!(
         pub unsafe fn setImage(&self, image: Option<&AppKit::NSImage>);
 
         #[method(bounds)]
-        pub unsafe fn bounds(&self) -> CGRect;
+        pub unsafe fn bounds(&self) -> CoreGraphics::CGRect;
 
         #[method(setBounds:)]
-        pub unsafe fn setBounds(&self, bounds: CGRect);
+        pub unsafe fn setBounds(&self, bounds: CoreGraphics::CGRect);
 
         #[cfg(feature = "Foundation_NSFileWrapper")]
         #[method_id(@__retain_semantics Other fileWrapper)]
@@ -143,10 +143,10 @@ extern_methods!(
         );
 
         #[method(lineLayoutPadding)]
-        pub unsafe fn lineLayoutPadding(&self) -> CGFloat;
+        pub unsafe fn lineLayoutPadding(&self) -> CoreGraphics::CGFloat;
 
         #[method(setLineLayoutPadding:)]
-        pub unsafe fn setLineLayoutPadding(&self, lineLayoutPadding: CGFloat);
+        pub unsafe fn setLineLayoutPadding(&self, lineLayoutPadding: CoreGraphics::CGFloat);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(textAttachmentViewProviderClassForFileType:)]
@@ -257,9 +257,9 @@ extern_methods!(
             attributes: &Foundation::NSDictionary<Foundation::NSAttributedStringKey, Object>,
             location: &AppKit::NSTextLocation,
             textContainer: Option<&AppKit::NSTextContainer>,
-            proposedLineFragment: CGRect,
-            position: CGPoint,
-        ) -> CGRect;
+            proposedLineFragment: CoreGraphics::CGRect,
+            position: CoreGraphics::CGPoint,
+        ) -> CoreGraphics::CGRect;
     }
 );
 

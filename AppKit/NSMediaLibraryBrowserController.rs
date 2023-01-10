@@ -33,16 +33,16 @@ extern_methods!(
         pub unsafe fn setVisible(&self, visible: bool);
 
         #[method(frame)]
-        pub unsafe fn frame(&self) -> NSRect;
+        pub unsafe fn frame(&self) -> Foundation::NSRect;
 
         #[method(setFrame:)]
-        pub unsafe fn setFrame(&self, frame: NSRect);
+        pub unsafe fn setFrame(&self, frame: Foundation::NSRect);
 
         #[method(mediaLibraries)]
-        pub unsafe fn mediaLibraries(&self) -> NSMediaLibrary;
+        pub unsafe fn mediaLibraries(&self) -> AppKit::NSMediaLibrary;
 
         #[method(setMediaLibraries:)]
-        pub unsafe fn setMediaLibraries(&self, mediaLibraries: NSMediaLibrary);
+        pub unsafe fn setMediaLibraries(&self, mediaLibraries: AppKit::NSMediaLibrary);
 
         #[method_id(@__retain_semantics Other sharedMediaLibraryBrowserController)]
         pub unsafe fn sharedMediaLibraryBrowserController(

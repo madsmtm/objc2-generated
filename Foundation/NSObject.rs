@@ -46,7 +46,7 @@ extern_fn!(
     pub unsafe fn NSAllocateObject(
         aClass: &Class,
         extraBytes: NSUInteger,
-        zone: *mut NSZone,
+        zone: *mut Foundation::NSZone,
     ) -> NonNull<Object>;
 );
 
@@ -58,12 +58,15 @@ extern_fn!(
     pub unsafe fn NSCopyObject(
         object: &Object,
         extraBytes: NSUInteger,
-        zone: *mut NSZone,
+        zone: *mut Foundation::NSZone,
     ) -> NonNull<Object>;
 );
 
 extern_fn!(
-    pub unsafe fn NSShouldRetainWithZone(anObject: &Object, requestedZone: *mut NSZone) -> Bool;
+    pub unsafe fn NSShouldRetainWithZone(
+        anObject: &Object,
+        requestedZone: *mut Foundation::NSZone,
+    ) -> Bool;
 );
 
 extern_fn!(
@@ -79,13 +82,13 @@ extern_fn!(
 );
 
 inline_fn!(
-    pub unsafe fn CFBridgingRetain(X: Option<&Object>) -> CFTypeRef {
+    pub unsafe fn CFBridgingRetain(X: Option<&Object>) -> CoreFoundation::CFTypeRef {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn CFBridgingRelease(X: CFTypeRef) -> *mut Object {
+    pub unsafe fn CFBridgingRelease(X: CoreFoundation::CFTypeRef) -> *mut Object {
         todo!()
     }
 );

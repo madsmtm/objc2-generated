@@ -81,7 +81,7 @@ extern_methods!(
             wrapFlag: bool,
             tag: NSInteger,
             wordCount: *mut NSInteger,
-        ) -> NSRange;
+        ) -> Foundation::NSRange;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(checkSpellingOfString:startingAt:)]
@@ -89,7 +89,7 @@ extern_methods!(
             &self,
             stringToCheck: &Foundation::NSString,
             startingOffset: NSInteger,
-        ) -> NSRange;
+        ) -> Foundation::NSRange;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(countWordsInString:language:)]
@@ -115,7 +115,7 @@ extern_methods!(
             details: *mut *mut Foundation::NSArray<
                 Foundation::NSDictionary<Foundation::NSString, Object>,
             >,
-        ) -> NSRange;
+        ) -> Foundation::NSRange;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -128,8 +128,8 @@ extern_methods!(
         pub unsafe fn checkString_range_types_options_inSpellDocumentWithTag_orthography_wordCount(
             &self,
             stringToCheck: &Foundation::NSString,
-            range: NSRange,
-            checkingTypes: NSTextCheckingTypes,
+            range: Foundation::NSRange,
+            checkingTypes: Foundation::NSTextCheckingTypes,
             options: Option<&Foundation::NSDictionary<AppKit::NSTextCheckingOptionKey, Object>>,
             tag: NSInteger,
             orthography: *mut *mut Foundation::NSOrthography,
@@ -147,8 +147,8 @@ extern_methods!(
         pub unsafe fn requestCheckingOfString_range_types_options_inSpellDocumentWithTag_completionHandler(
             &self,
             stringToCheck: &Foundation::NSString,
-            range: NSRange,
-            checkingTypes: NSTextCheckingTypes,
+            range: Foundation::NSRange,
+            checkingTypes: Foundation::NSTextCheckingTypes,
             options: Option<&Foundation::NSDictionary<AppKit::NSTextCheckingOptionKey, Object>>,
             tag: NSInteger,
             completionHandler: Option<
@@ -173,9 +173,9 @@ extern_methods!(
         #[method(requestCandidatesForSelectedRange:inString:types:options:inSpellDocumentWithTag:completionHandler:)]
         pub unsafe fn requestCandidatesForSelectedRange_inString_types_options_inSpellDocumentWithTag_completionHandler(
             &self,
-            selectedRange: NSRange,
+            selectedRange: Foundation::NSRange,
             stringToCheck: &Foundation::NSString,
-            checkingTypes: NSTextCheckingTypes,
+            checkingTypes: Foundation::NSTextCheckingTypes,
             options: Option<&Foundation::NSDictionary<AppKit::NSTextCheckingOptionKey, Object>>,
             tag: NSInteger,
             completionHandler: Option<
@@ -202,7 +202,7 @@ extern_methods!(
             result: &Foundation::NSTextCheckingResult,
             checkedString: &Foundation::NSString,
             options: Option<&Foundation::NSDictionary<AppKit::NSTextCheckingOptionKey, Object>>,
-            location: NSPoint,
+            location: Foundation::NSPoint,
             view: &AppKit::NSView,
         ) -> Option<Id<AppKit::NSMenu, Shared>>;
 
@@ -290,7 +290,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other guessesForWordRange:inString:language:inSpellDocumentWithTag:)]
         pub unsafe fn guessesForWordRange_inString_language_inSpellDocumentWithTag(
             &self,
-            range: NSRange,
+            range: Foundation::NSRange,
             string: &Foundation::NSString,
             language: Option<&Foundation::NSString>,
             tag: NSInteger,
@@ -300,7 +300,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other correctionForWordRange:inString:language:inSpellDocumentWithTag:)]
         pub unsafe fn correctionForWordRange_inString_language_inSpellDocumentWithTag(
             &self,
-            range: NSRange,
+            range: Foundation::NSRange,
             string: &Foundation::NSString,
             language: &Foundation::NSString,
             tag: NSInteger,
@@ -310,7 +310,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other completionsForPartialWordRange:inString:language:inSpellDocumentWithTag:)]
         pub unsafe fn completionsForPartialWordRange_inString_language_inSpellDocumentWithTag(
             &self,
-            range: NSRange,
+            range: Foundation::NSRange,
             string: &Foundation::NSString,
             language: Option<&Foundation::NSString>,
             tag: NSInteger,
@@ -320,7 +320,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other languageForWordRange:inString:orthography:)]
         pub unsafe fn languageForWordRange_inString_orthography(
             &self,
-            range: NSRange,
+            range: Foundation::NSRange,
             string: &Foundation::NSString,
             orthography: Option<&Foundation::NSOrthography>,
         ) -> Option<Id<Foundation::NSString, Shared>>;
@@ -332,7 +332,7 @@ extern_methods!(
         #[method(recordResponse:toCorrection:forWord:language:inSpellDocumentWithTag:)]
         pub unsafe fn recordResponse_toCorrection_forWord_language_inSpellDocumentWithTag(
             &self,
-            response: NSCorrectionResponse,
+            response: AppKit::NSCorrectionResponse,
             correction: &Foundation::NSString,
             word: &Foundation::NSString,
             language: Option<&Foundation::NSString>,
@@ -347,10 +347,10 @@ extern_methods!(
         #[method(showCorrectionIndicatorOfType:primaryString:alternativeStrings:forStringInRect:view:completionHandler:)]
         pub unsafe fn showCorrectionIndicatorOfType_primaryString_alternativeStrings_forStringInRect_view_completionHandler(
             &self,
-            type_: NSCorrectionIndicatorType,
+            type_: AppKit::NSCorrectionIndicatorType,
             primaryString: &Foundation::NSString,
             alternativeStrings: &Foundation::NSArray<Foundation::NSString>,
-            rectOfTypedString: NSRect,
+            rectOfTypedString: Foundation::NSRect,
             view: &AppKit::NSView,
             completionBlock: Option<&Block<(*mut Foundation::NSString,), ()>>,
         );

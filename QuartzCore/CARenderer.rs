@@ -32,22 +32,22 @@ extern_methods!(
         pub fn setLayer(&self, layer: Option<&CoreAnimation::CALayer>);
 
         #[method(bounds)]
-        pub fn bounds(&self) -> CGRect;
+        pub fn bounds(&self) -> CoreGraphics::CGRect;
 
         #[method(setBounds:)]
-        pub fn setBounds(&self, bounds: CGRect);
+        pub fn setBounds(&self, bounds: CoreGraphics::CGRect);
 
         #[method(updateBounds)]
-        pub fn updateBounds(&self) -> CGRect;
+        pub fn updateBounds(&self) -> CoreGraphics::CGRect;
 
         #[method(addUpdateRect:)]
-        pub fn addUpdateRect(&self, r: CGRect);
+        pub fn addUpdateRect(&self, r: CoreGraphics::CGRect);
 
         #[method(render)]
         pub fn render(&self);
 
         #[method(nextFrameTime)]
-        pub fn nextFrameTime(&self) -> CFTimeInterval;
+        pub fn nextFrameTime(&self) -> CoreFoundation::CFTimeInterval;
 
         #[method(endFrame)]
         pub fn endFrame(&self);

@@ -29,7 +29,7 @@ ns_enum!(
     }
 );
 
-extern_static!(NSGridViewSizeForContent: CGFloat);
+extern_static!(NSGridViewSizeForContent: CoreGraphics::CGFloat);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -47,7 +47,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frameRect: Foundation::NSRect,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSCoder")]
@@ -149,40 +149,40 @@ extern_methods!(
         pub unsafe fn removeColumnAtIndex(&self, index: NSInteger);
 
         #[method(xPlacement)]
-        pub unsafe fn xPlacement(&self) -> NSGridCellPlacement;
+        pub unsafe fn xPlacement(&self) -> AppKit::NSGridCellPlacement;
 
         #[method(setXPlacement:)]
-        pub unsafe fn setXPlacement(&self, xPlacement: NSGridCellPlacement);
+        pub unsafe fn setXPlacement(&self, xPlacement: AppKit::NSGridCellPlacement);
 
         #[method(yPlacement)]
-        pub unsafe fn yPlacement(&self) -> NSGridCellPlacement;
+        pub unsafe fn yPlacement(&self) -> AppKit::NSGridCellPlacement;
 
         #[method(setYPlacement:)]
-        pub unsafe fn setYPlacement(&self, yPlacement: NSGridCellPlacement);
+        pub unsafe fn setYPlacement(&self, yPlacement: AppKit::NSGridCellPlacement);
 
         #[method(rowAlignment)]
-        pub unsafe fn rowAlignment(&self) -> NSGridRowAlignment;
+        pub unsafe fn rowAlignment(&self) -> AppKit::NSGridRowAlignment;
 
         #[method(setRowAlignment:)]
-        pub unsafe fn setRowAlignment(&self, rowAlignment: NSGridRowAlignment);
+        pub unsafe fn setRowAlignment(&self, rowAlignment: AppKit::NSGridRowAlignment);
 
         #[method(rowSpacing)]
-        pub unsafe fn rowSpacing(&self) -> CGFloat;
+        pub unsafe fn rowSpacing(&self) -> CoreGraphics::CGFloat;
 
         #[method(setRowSpacing:)]
-        pub unsafe fn setRowSpacing(&self, rowSpacing: CGFloat);
+        pub unsafe fn setRowSpacing(&self, rowSpacing: CoreGraphics::CGFloat);
 
         #[method(columnSpacing)]
-        pub unsafe fn columnSpacing(&self) -> CGFloat;
+        pub unsafe fn columnSpacing(&self) -> CoreGraphics::CGFloat;
 
         #[method(setColumnSpacing:)]
-        pub unsafe fn setColumnSpacing(&self, columnSpacing: CGFloat);
+        pub unsafe fn setColumnSpacing(&self, columnSpacing: CoreGraphics::CGFloat);
 
         #[method(mergeCellsInHorizontalRange:verticalRange:)]
         pub unsafe fn mergeCellsInHorizontalRange_verticalRange(
             &self,
-            hRange: NSRange,
-            vRange: NSRange,
+            hRange: Foundation::NSRange,
+            vRange: Foundation::NSRange,
         );
     }
 );
@@ -211,34 +211,34 @@ extern_methods!(
         pub unsafe fn cellAtIndex(&self, index: NSInteger) -> Id<AppKit::NSGridCell, Shared>;
 
         #[method(yPlacement)]
-        pub unsafe fn yPlacement(&self) -> NSGridCellPlacement;
+        pub unsafe fn yPlacement(&self) -> AppKit::NSGridCellPlacement;
 
         #[method(setYPlacement:)]
-        pub unsafe fn setYPlacement(&self, yPlacement: NSGridCellPlacement);
+        pub unsafe fn setYPlacement(&self, yPlacement: AppKit::NSGridCellPlacement);
 
         #[method(rowAlignment)]
-        pub unsafe fn rowAlignment(&self) -> NSGridRowAlignment;
+        pub unsafe fn rowAlignment(&self) -> AppKit::NSGridRowAlignment;
 
         #[method(setRowAlignment:)]
-        pub unsafe fn setRowAlignment(&self, rowAlignment: NSGridRowAlignment);
+        pub unsafe fn setRowAlignment(&self, rowAlignment: AppKit::NSGridRowAlignment);
 
         #[method(height)]
-        pub unsafe fn height(&self) -> CGFloat;
+        pub unsafe fn height(&self) -> CoreGraphics::CGFloat;
 
         #[method(setHeight:)]
-        pub unsafe fn setHeight(&self, height: CGFloat);
+        pub unsafe fn setHeight(&self, height: CoreGraphics::CGFloat);
 
         #[method(topPadding)]
-        pub unsafe fn topPadding(&self) -> CGFloat;
+        pub unsafe fn topPadding(&self) -> CoreGraphics::CGFloat;
 
         #[method(setTopPadding:)]
-        pub unsafe fn setTopPadding(&self, topPadding: CGFloat);
+        pub unsafe fn setTopPadding(&self, topPadding: CoreGraphics::CGFloat);
 
         #[method(bottomPadding)]
-        pub unsafe fn bottomPadding(&self) -> CGFloat;
+        pub unsafe fn bottomPadding(&self) -> CoreGraphics::CGFloat;
 
         #[method(setBottomPadding:)]
-        pub unsafe fn setBottomPadding(&self, bottomPadding: CGFloat);
+        pub unsafe fn setBottomPadding(&self, bottomPadding: CoreGraphics::CGFloat);
 
         #[method(isHidden)]
         pub unsafe fn isHidden(&self) -> bool;
@@ -247,7 +247,7 @@ extern_methods!(
         pub unsafe fn setHidden(&self, hidden: bool);
 
         #[method(mergeCellsInRange:)]
-        pub unsafe fn mergeCellsInRange(&self, range: NSRange);
+        pub unsafe fn mergeCellsInRange(&self, range: Foundation::NSRange);
     }
 );
 
@@ -275,28 +275,28 @@ extern_methods!(
         pub unsafe fn cellAtIndex(&self, index: NSInteger) -> Id<AppKit::NSGridCell, Shared>;
 
         #[method(xPlacement)]
-        pub unsafe fn xPlacement(&self) -> NSGridCellPlacement;
+        pub unsafe fn xPlacement(&self) -> AppKit::NSGridCellPlacement;
 
         #[method(setXPlacement:)]
-        pub unsafe fn setXPlacement(&self, xPlacement: NSGridCellPlacement);
+        pub unsafe fn setXPlacement(&self, xPlacement: AppKit::NSGridCellPlacement);
 
         #[method(width)]
-        pub unsafe fn width(&self) -> CGFloat;
+        pub unsafe fn width(&self) -> CoreGraphics::CGFloat;
 
         #[method(setWidth:)]
-        pub unsafe fn setWidth(&self, width: CGFloat);
+        pub unsafe fn setWidth(&self, width: CoreGraphics::CGFloat);
 
         #[method(leadingPadding)]
-        pub unsafe fn leadingPadding(&self) -> CGFloat;
+        pub unsafe fn leadingPadding(&self) -> CoreGraphics::CGFloat;
 
         #[method(setLeadingPadding:)]
-        pub unsafe fn setLeadingPadding(&self, leadingPadding: CGFloat);
+        pub unsafe fn setLeadingPadding(&self, leadingPadding: CoreGraphics::CGFloat);
 
         #[method(trailingPadding)]
-        pub unsafe fn trailingPadding(&self) -> CGFloat;
+        pub unsafe fn trailingPadding(&self) -> CoreGraphics::CGFloat;
 
         #[method(setTrailingPadding:)]
-        pub unsafe fn setTrailingPadding(&self, trailingPadding: CGFloat);
+        pub unsafe fn setTrailingPadding(&self, trailingPadding: CoreGraphics::CGFloat);
 
         #[method(isHidden)]
         pub unsafe fn isHidden(&self) -> bool;
@@ -305,7 +305,7 @@ extern_methods!(
         pub unsafe fn setHidden(&self, hidden: bool);
 
         #[method(mergeCellsInRange:)]
-        pub unsafe fn mergeCellsInRange(&self, range: NSRange);
+        pub unsafe fn mergeCellsInRange(&self, range: Foundation::NSRange);
     }
 );
 
@@ -342,22 +342,22 @@ extern_methods!(
         pub unsafe fn column(&self) -> Option<Id<AppKit::NSGridColumn, Shared>>;
 
         #[method(xPlacement)]
-        pub unsafe fn xPlacement(&self) -> NSGridCellPlacement;
+        pub unsafe fn xPlacement(&self) -> AppKit::NSGridCellPlacement;
 
         #[method(setXPlacement:)]
-        pub unsafe fn setXPlacement(&self, xPlacement: NSGridCellPlacement);
+        pub unsafe fn setXPlacement(&self, xPlacement: AppKit::NSGridCellPlacement);
 
         #[method(yPlacement)]
-        pub unsafe fn yPlacement(&self) -> NSGridCellPlacement;
+        pub unsafe fn yPlacement(&self) -> AppKit::NSGridCellPlacement;
 
         #[method(setYPlacement:)]
-        pub unsafe fn setYPlacement(&self, yPlacement: NSGridCellPlacement);
+        pub unsafe fn setYPlacement(&self, yPlacement: AppKit::NSGridCellPlacement);
 
         #[method(rowAlignment)]
-        pub unsafe fn rowAlignment(&self) -> NSGridRowAlignment;
+        pub unsafe fn rowAlignment(&self) -> AppKit::NSGridRowAlignment;
 
         #[method(setRowAlignment:)]
-        pub unsafe fn setRowAlignment(&self, rowAlignment: NSGridRowAlignment);
+        pub unsafe fn setRowAlignment(&self, rowAlignment: AppKit::NSGridRowAlignment);
 
         #[cfg(all(feature = "AppKit_NSLayoutConstraint", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other customPlacementConstraints)]

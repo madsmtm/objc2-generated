@@ -30,19 +30,19 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTokenFieldCell")]
     unsafe impl NSTokenFieldCell {
         #[method(tokenStyle)]
-        pub unsafe fn tokenStyle(&self) -> NSTokenStyle;
+        pub unsafe fn tokenStyle(&self) -> AppKit::NSTokenStyle;
 
         #[method(setTokenStyle:)]
-        pub unsafe fn setTokenStyle(&self, tokenStyle: NSTokenStyle);
+        pub unsafe fn setTokenStyle(&self, tokenStyle: AppKit::NSTokenStyle);
 
         #[method(completionDelay)]
-        pub unsafe fn completionDelay(&self) -> NSTimeInterval;
+        pub unsafe fn completionDelay(&self) -> Foundation::NSTimeInterval;
 
         #[method(setCompletionDelay:)]
-        pub unsafe fn setCompletionDelay(&self, completionDelay: NSTimeInterval);
+        pub unsafe fn setCompletionDelay(&self, completionDelay: Foundation::NSTimeInterval);
 
         #[method(defaultCompletionDelay)]
-        pub unsafe fn defaultCompletionDelay() -> NSTimeInterval;
+        pub unsafe fn defaultCompletionDelay() -> Foundation::NSTimeInterval;
 
         #[cfg(feature = "Foundation_NSCharacterSet")]
         #[method_id(@__retain_semantics Other tokenizingCharacterSet)]
@@ -153,15 +153,15 @@ extern_protocol!(
             &self,
             tokenFieldCell: &AppKit::NSTokenFieldCell,
             representedObject: &Object,
-        ) -> NSTokenStyle;
+        ) -> AppKit::NSTokenStyle;
     }
 );
 
-extern_static!(NSDefaultTokenStyle: NSTokenStyle = NSTokenStyleDefault);
+extern_static!(NSDefaultTokenStyle: AppKit::NSTokenStyle = NSTokenStyleDefault);
 
-extern_static!(NSPlainTextTokenStyle: NSTokenStyle = NSTokenStyleNone);
+extern_static!(NSPlainTextTokenStyle: AppKit::NSTokenStyle = NSTokenStyleNone);
 
-extern_static!(NSRoundedTokenStyle: NSTokenStyle = NSTokenStyleRounded);
+extern_static!(NSRoundedTokenStyle: AppKit::NSTokenStyle = NSTokenStyleRounded);
 
 extern_methods!(
     /// Methods declared on superclass `NSTextFieldCell`

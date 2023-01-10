@@ -22,7 +22,7 @@ extern_methods!(
         pub unsafe fn initWithAttributedString_range(
             this: Option<Allocated<Self>>,
             attributedString: &Foundation::NSAttributedString,
-            range: NSRange,
+            range: Foundation::NSRange,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSCoder")]
@@ -38,7 +38,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             string: &Foundation::NSString,
             attributes: &Foundation::NSDictionary<Foundation::NSAttributedStringKey, Object>,
-            range: NSRange,
+            range: Foundation::NSRange,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Init init)]
@@ -49,21 +49,25 @@ extern_methods!(
         pub unsafe fn attributedString(&self) -> Id<Foundation::NSAttributedString, Shared>;
 
         #[method(characterRange)]
-        pub unsafe fn characterRange(&self) -> NSRange;
+        pub unsafe fn characterRange(&self) -> Foundation::NSRange;
 
         #[method(typographicBounds)]
-        pub unsafe fn typographicBounds(&self) -> CGRect;
+        pub unsafe fn typographicBounds(&self) -> CoreGraphics::CGRect;
 
         #[method(glyphOrigin)]
-        pub unsafe fn glyphOrigin(&self) -> CGPoint;
+        pub unsafe fn glyphOrigin(&self) -> CoreGraphics::CGPoint;
 
         #[method(locationForCharacterAtIndex:)]
-        pub unsafe fn locationForCharacterAtIndex(&self, index: NSInteger) -> CGPoint;
+        pub unsafe fn locationForCharacterAtIndex(&self, index: NSInteger)
+            -> CoreGraphics::CGPoint;
 
         #[method(characterIndexForPoint:)]
-        pub unsafe fn characterIndexForPoint(&self, point: CGPoint) -> NSInteger;
+        pub unsafe fn characterIndexForPoint(&self, point: CoreGraphics::CGPoint) -> NSInteger;
 
         #[method(fractionOfDistanceThroughGlyphForPoint:)]
-        pub unsafe fn fractionOfDistanceThroughGlyphForPoint(&self, point: CGPoint) -> CGFloat;
+        pub unsafe fn fractionOfDistanceThroughGlyphForPoint(
+            &self,
+            point: CoreGraphics::CGPoint,
+        ) -> CoreGraphics::CGFloat;
     }
 );

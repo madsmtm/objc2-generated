@@ -106,7 +106,7 @@ extern_methods!(
         #[method(prepareForNewContentsWithOptions:)]
         pub unsafe fn prepareForNewContentsWithOptions(
             &self,
-            options: NSPasteboardContentsOptions,
+            options: AppKit::NSPasteboardContentsOptions,
         ) -> NSInteger;
 
         #[method(clearContents)]
@@ -303,7 +303,7 @@ extern_protocol!(
             &self,
             type_: &AppKit::NSPasteboardType,
             pasteboard: &AppKit::NSPasteboard,
-        ) -> NSPasteboardWritingOptions;
+        ) -> AppKit::NSPasteboardWritingOptions;
 
         #[method_id(@__retain_semantics Other pasteboardPropertyListForType:)]
         pub unsafe fn pasteboardPropertyListForType(

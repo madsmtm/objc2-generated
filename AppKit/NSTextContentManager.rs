@@ -24,7 +24,7 @@ extern_protocol!(
         pub unsafe fn enumerateTextElementsFromLocation_options_usingBlock(
             &self,
             textLocation: Option<&AppKit::NSTextLocation>,
-            options: NSTextContentManagerEnumerationOptions,
+            options: AppKit::NSTextContentManagerEnumerationOptions,
             block: &Block<(NonNull<AppKit::NSTextElement>,), Bool>,
         ) -> Option<Id<AppKit::NSTextLocation, Shared>>;
 
@@ -195,7 +195,7 @@ extern_protocol!(
             &self,
             textContentManager: &AppKit::NSTextContentManager,
             textElement: &AppKit::NSTextElement,
-            options: NSTextContentManagerEnumerationOptions,
+            options: AppKit::NSTextContentManagerEnumerationOptions,
         ) -> bool;
     }
 );
@@ -209,7 +209,7 @@ extern_protocol!(
         pub unsafe fn textContentStorage_textParagraphWithRange(
             &self,
             textContentStorage: &AppKit::NSTextContentStorage,
-            range: NSRange,
+            range: Foundation::NSRange,
         ) -> Option<Id<AppKit::NSTextParagraph, Shared>>;
     }
 );

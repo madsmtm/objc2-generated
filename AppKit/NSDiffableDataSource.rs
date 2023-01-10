@@ -310,12 +310,12 @@ extern_methods!(
         #[method(supplementaryViewProvider)]
         pub unsafe fn supplementaryViewProvider(
             &self,
-        ) -> NSCollectionViewDiffableDataSourceSupplementaryViewProvider;
+        ) -> AppKit::NSCollectionViewDiffableDataSourceSupplementaryViewProvider;
 
         #[method(setSupplementaryViewProvider:)]
         pub unsafe fn setSupplementaryViewProvider(
             &self,
-            supplementaryViewProvider: NSCollectionViewDiffableDataSourceSupplementaryViewProvider,
+            supplementaryViewProvider: AppKit::NSCollectionViewDiffableDataSourceSupplementaryViewProvider,
         );
     }
 );

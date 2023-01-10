@@ -31,14 +31,17 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithLevelIndicatorStyle:)]
         pub unsafe fn initWithLevelIndicatorStyle(
             this: Option<Allocated<Self>>,
-            levelIndicatorStyle: NSLevelIndicatorStyle,
+            levelIndicatorStyle: AppKit::NSLevelIndicatorStyle,
         ) -> Id<Self, Shared>;
 
         #[method(levelIndicatorStyle)]
-        pub unsafe fn levelIndicatorStyle(&self) -> NSLevelIndicatorStyle;
+        pub unsafe fn levelIndicatorStyle(&self) -> AppKit::NSLevelIndicatorStyle;
 
         #[method(setLevelIndicatorStyle:)]
-        pub unsafe fn setLevelIndicatorStyle(&self, levelIndicatorStyle: NSLevelIndicatorStyle);
+        pub unsafe fn setLevelIndicatorStyle(
+            &self,
+            levelIndicatorStyle: AppKit::NSLevelIndicatorStyle,
+        );
 
         #[method(minValue)]
         pub unsafe fn minValue(&self) -> c_double;
@@ -65,10 +68,10 @@ extern_methods!(
         pub unsafe fn setCriticalValue(&self, criticalValue: c_double);
 
         #[method(tickMarkPosition)]
-        pub unsafe fn tickMarkPosition(&self) -> NSTickMarkPosition;
+        pub unsafe fn tickMarkPosition(&self) -> AppKit::NSTickMarkPosition;
 
         #[method(setTickMarkPosition:)]
-        pub unsafe fn setTickMarkPosition(&self, tickMarkPosition: NSTickMarkPosition);
+        pub unsafe fn setTickMarkPosition(&self, tickMarkPosition: AppKit::NSTickMarkPosition);
 
         #[method(numberOfTickMarks)]
         pub unsafe fn numberOfTickMarks(&self) -> NSInteger;
@@ -83,7 +86,7 @@ extern_methods!(
         pub unsafe fn setNumberOfMajorTickMarks(&self, numberOfMajorTickMarks: NSInteger);
 
         #[method(rectOfTickMarkAtIndex:)]
-        pub unsafe fn rectOfTickMarkAtIndex(&self, index: NSInteger) -> NSRect;
+        pub unsafe fn rectOfTickMarkAtIndex(&self, index: NSInteger) -> Foundation::NSRect;
 
         #[method(tickMarkValueAtIndex:)]
         pub unsafe fn tickMarkValueAtIndex(&self, index: NSInteger) -> c_double;
@@ -91,20 +94,22 @@ extern_methods!(
 );
 
 extern_static!(
-    NSRelevancyLevelIndicatorStyle: NSLevelIndicatorStyle = NSLevelIndicatorStyleRelevancy
+    NSRelevancyLevelIndicatorStyle: AppKit::NSLevelIndicatorStyle = NSLevelIndicatorStyleRelevancy
 );
 
 extern_static!(
-    NSContinuousCapacityLevelIndicatorStyle: NSLevelIndicatorStyle =
+    NSContinuousCapacityLevelIndicatorStyle: AppKit::NSLevelIndicatorStyle =
         NSLevelIndicatorStyleContinuousCapacity
 );
 
 extern_static!(
-    NSDiscreteCapacityLevelIndicatorStyle: NSLevelIndicatorStyle =
+    NSDiscreteCapacityLevelIndicatorStyle: AppKit::NSLevelIndicatorStyle =
         NSLevelIndicatorStyleDiscreteCapacity
 );
 
-extern_static!(NSRatingLevelIndicatorStyle: NSLevelIndicatorStyle = NSLevelIndicatorStyleRating);
+extern_static!(
+    NSRatingLevelIndicatorStyle: AppKit::NSLevelIndicatorStyle = NSLevelIndicatorStyleRating
+);
 
 extern_methods!(
     /// Methods declared on superclass `NSCell`

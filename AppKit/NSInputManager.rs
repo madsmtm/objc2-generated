@@ -19,7 +19,7 @@ extern_protocol!(
         pub unsafe fn setMarkedText_selectedRange(
             &self,
             string: Option<&Object>,
-            selRange: NSRange,
+            selRange: Foundation::NSRange,
         );
 
         #[method(unmarkText)]
@@ -34,20 +34,23 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other attributedSubstringFromRange:)]
         pub unsafe fn attributedSubstringFromRange(
             &self,
-            range: NSRange,
+            range: Foundation::NSRange,
         ) -> Option<Id<Foundation::NSAttributedString, Shared>>;
 
         #[method(markedRange)]
-        pub unsafe fn markedRange(&self) -> NSRange;
+        pub unsafe fn markedRange(&self) -> Foundation::NSRange;
 
         #[method(selectedRange)]
-        pub unsafe fn selectedRange(&self) -> NSRange;
+        pub unsafe fn selectedRange(&self) -> Foundation::NSRange;
 
         #[method(firstRectForCharacterRange:)]
-        pub unsafe fn firstRectForCharacterRange(&self, range: NSRange) -> NSRect;
+        pub unsafe fn firstRectForCharacterRange(
+            &self,
+            range: Foundation::NSRange,
+        ) -> Foundation::NSRect;
 
         #[method(characterIndexForPoint:)]
-        pub unsafe fn characterIndexForPoint(&self, point: NSPoint) -> NSUInteger;
+        pub unsafe fn characterIndexForPoint(&self, point: Foundation::NSPoint) -> NSUInteger;
 
         #[method_id(@__retain_semantics Other validAttributesForMarkedText)]
         pub unsafe fn validAttributesForMarkedText(
@@ -95,7 +98,7 @@ extern_methods!(
         #[method(markedTextSelectionChanged:client:)]
         pub unsafe fn markedTextSelectionChanged_client(
             &self,
-            newSel: NSRange,
+            newSel: Foundation::NSRange,
             cli: Option<&Object>,
         );
 

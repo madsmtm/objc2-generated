@@ -115,7 +115,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frameRect: Foundation::NSRect,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSCoder")]
@@ -164,25 +164,25 @@ extern_methods!(
         pub unsafe fn setAllowsColumnResizing(&self, allowsColumnResizing: bool);
 
         #[method(columnAutoresizingStyle)]
-        pub unsafe fn columnAutoresizingStyle(&self) -> NSTableViewColumnAutoresizingStyle;
+        pub unsafe fn columnAutoresizingStyle(&self) -> AppKit::NSTableViewColumnAutoresizingStyle;
 
         #[method(setColumnAutoresizingStyle:)]
         pub unsafe fn setColumnAutoresizingStyle(
             &self,
-            columnAutoresizingStyle: NSTableViewColumnAutoresizingStyle,
+            columnAutoresizingStyle: AppKit::NSTableViewColumnAutoresizingStyle,
         );
 
         #[method(gridStyleMask)]
-        pub unsafe fn gridStyleMask(&self) -> NSTableViewGridLineStyle;
+        pub unsafe fn gridStyleMask(&self) -> AppKit::NSTableViewGridLineStyle;
 
         #[method(setGridStyleMask:)]
-        pub unsafe fn setGridStyleMask(&self, gridStyleMask: NSTableViewGridLineStyle);
+        pub unsafe fn setGridStyleMask(&self, gridStyleMask: AppKit::NSTableViewGridLineStyle);
 
         #[method(intercellSpacing)]
-        pub unsafe fn intercellSpacing(&self) -> NSSize;
+        pub unsafe fn intercellSpacing(&self) -> Foundation::NSSize;
 
         #[method(setIntercellSpacing:)]
-        pub unsafe fn setIntercellSpacing(&self, intercellSpacing: NSSize);
+        pub unsafe fn setIntercellSpacing(&self, intercellSpacing: Foundation::NSSize);
 
         #[method(usesAlternatingRowBackgroundColors)]
         pub unsafe fn usesAlternatingRowBackgroundColors(&self) -> bool;
@@ -210,19 +210,19 @@ extern_methods!(
         pub unsafe fn setGridColor(&self, gridColor: &AppKit::NSColor);
 
         #[method(rowSizeStyle)]
-        pub unsafe fn rowSizeStyle(&self) -> NSTableViewRowSizeStyle;
+        pub unsafe fn rowSizeStyle(&self) -> AppKit::NSTableViewRowSizeStyle;
 
         #[method(setRowSizeStyle:)]
-        pub unsafe fn setRowSizeStyle(&self, rowSizeStyle: NSTableViewRowSizeStyle);
+        pub unsafe fn setRowSizeStyle(&self, rowSizeStyle: AppKit::NSTableViewRowSizeStyle);
 
         #[method(effectiveRowSizeStyle)]
-        pub unsafe fn effectiveRowSizeStyle(&self) -> NSTableViewRowSizeStyle;
+        pub unsafe fn effectiveRowSizeStyle(&self) -> AppKit::NSTableViewRowSizeStyle;
 
         #[method(rowHeight)]
-        pub unsafe fn rowHeight(&self) -> CGFloat;
+        pub unsafe fn rowHeight(&self) -> CoreGraphics::CGFloat;
 
         #[method(setRowHeight:)]
-        pub unsafe fn setRowHeight(&self, rowHeight: CGFloat);
+        pub unsafe fn setRowHeight(&self, rowHeight: CoreGraphics::CGFloat);
 
         #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(noteHeightOfRowsWithIndexesChanged:)]
@@ -366,7 +366,7 @@ extern_methods!(
         pub unsafe fn canDragRowsWithIndexes_atPoint(
             &self,
             rowIndexes: &Foundation::NSIndexSet,
-            mouseDownPoint: NSPoint,
+            mouseDownPoint: Foundation::NSPoint,
         ) -> bool;
 
         #[cfg(all(
@@ -382,13 +382,13 @@ extern_methods!(
             dragRows: &Foundation::NSIndexSet,
             tableColumns: &Foundation::NSArray<AppKit::NSTableColumn>,
             dragEvent: &AppKit::NSEvent,
-            dragImageOffset: NSPointPointer,
+            dragImageOffset: Foundation::NSPointPointer,
         ) -> Id<AppKit::NSImage, Shared>;
 
         #[method(setDraggingSourceOperationMask:forLocal:)]
         pub unsafe fn setDraggingSourceOperationMask_forLocal(
             &self,
-            mask: NSDragOperation,
+            mask: AppKit::NSDragOperation,
             isLocal: bool,
         );
 
@@ -396,7 +396,7 @@ extern_methods!(
         pub unsafe fn setDropRow_dropOperation(
             &self,
             row: NSInteger,
-            dropOperation: NSTableViewDropOperation,
+            dropOperation: AppKit::NSTableViewDropOperation,
         );
 
         #[method(allowsMultipleSelection)]
@@ -478,58 +478,62 @@ extern_methods!(
         pub unsafe fn setAllowsTypeSelect(&self, allowsTypeSelect: bool);
 
         #[method(style)]
-        pub unsafe fn style(&self) -> NSTableViewStyle;
+        pub unsafe fn style(&self) -> AppKit::NSTableViewStyle;
 
         #[method(setStyle:)]
-        pub unsafe fn setStyle(&self, style: NSTableViewStyle);
+        pub unsafe fn setStyle(&self, style: AppKit::NSTableViewStyle);
 
         #[method(effectiveStyle)]
-        pub unsafe fn effectiveStyle(&self) -> NSTableViewStyle;
+        pub unsafe fn effectiveStyle(&self) -> AppKit::NSTableViewStyle;
 
         #[method(selectionHighlightStyle)]
-        pub unsafe fn selectionHighlightStyle(&self) -> NSTableViewSelectionHighlightStyle;
+        pub unsafe fn selectionHighlightStyle(&self) -> AppKit::NSTableViewSelectionHighlightStyle;
 
         #[method(setSelectionHighlightStyle:)]
         pub unsafe fn setSelectionHighlightStyle(
             &self,
-            selectionHighlightStyle: NSTableViewSelectionHighlightStyle,
+            selectionHighlightStyle: AppKit::NSTableViewSelectionHighlightStyle,
         );
 
         #[method(draggingDestinationFeedbackStyle)]
         pub unsafe fn draggingDestinationFeedbackStyle(
             &self,
-        ) -> NSTableViewDraggingDestinationFeedbackStyle;
+        ) -> AppKit::NSTableViewDraggingDestinationFeedbackStyle;
 
         #[method(setDraggingDestinationFeedbackStyle:)]
         pub unsafe fn setDraggingDestinationFeedbackStyle(
             &self,
-            draggingDestinationFeedbackStyle: NSTableViewDraggingDestinationFeedbackStyle,
+            draggingDestinationFeedbackStyle: AppKit::NSTableViewDraggingDestinationFeedbackStyle,
         );
 
         #[method(rectOfColumn:)]
-        pub unsafe fn rectOfColumn(&self, column: NSInteger) -> NSRect;
+        pub unsafe fn rectOfColumn(&self, column: NSInteger) -> Foundation::NSRect;
 
         #[method(rectOfRow:)]
-        pub unsafe fn rectOfRow(&self, row: NSInteger) -> NSRect;
+        pub unsafe fn rectOfRow(&self, row: NSInteger) -> Foundation::NSRect;
 
         #[cfg(feature = "Foundation_NSIndexSet")]
         #[method_id(@__retain_semantics Other columnIndexesInRect:)]
         pub unsafe fn columnIndexesInRect(
             &self,
-            rect: NSRect,
+            rect: Foundation::NSRect,
         ) -> Id<Foundation::NSIndexSet, Shared>;
 
         #[method(rowsInRect:)]
-        pub unsafe fn rowsInRect(&self, rect: NSRect) -> NSRange;
+        pub unsafe fn rowsInRect(&self, rect: Foundation::NSRect) -> Foundation::NSRange;
 
         #[method(columnAtPoint:)]
-        pub unsafe fn columnAtPoint(&self, point: NSPoint) -> NSInteger;
+        pub unsafe fn columnAtPoint(&self, point: Foundation::NSPoint) -> NSInteger;
 
         #[method(rowAtPoint:)]
-        pub unsafe fn rowAtPoint(&self, point: NSPoint) -> NSInteger;
+        pub unsafe fn rowAtPoint(&self, point: Foundation::NSPoint) -> NSInteger;
 
         #[method(frameOfCellAtColumn:row:)]
-        pub unsafe fn frameOfCellAtColumn_row(&self, column: NSInteger, row: NSInteger) -> NSRect;
+        pub unsafe fn frameOfCellAtColumn_row(
+            &self,
+            column: NSInteger,
+            row: NSInteger,
+        ) -> Foundation::NSRect;
 
         #[method_id(@__retain_semantics Other autosaveName)]
         pub unsafe fn autosaveName(&self) -> Option<Id<AppKit::NSTableViewAutosaveName, Shared>>;
@@ -557,16 +561,16 @@ extern_methods!(
         );
 
         #[method(drawRow:clipRect:)]
-        pub unsafe fn drawRow_clipRect(&self, row: NSInteger, clipRect: NSRect);
+        pub unsafe fn drawRow_clipRect(&self, row: NSInteger, clipRect: Foundation::NSRect);
 
         #[method(highlightSelectionInClipRect:)]
-        pub unsafe fn highlightSelectionInClipRect(&self, clipRect: NSRect);
+        pub unsafe fn highlightSelectionInClipRect(&self, clipRect: Foundation::NSRect);
 
         #[method(drawGridInClipRect:)]
-        pub unsafe fn drawGridInClipRect(&self, clipRect: NSRect);
+        pub unsafe fn drawGridInClipRect(&self, clipRect: Foundation::NSRect);
 
         #[method(drawBackgroundInClipRect:)]
-        pub unsafe fn drawBackgroundInClipRect(&self, clipRect: NSRect);
+        pub unsafe fn drawBackgroundInClipRect(&self, clipRect: Foundation::NSRect);
 
         #[method_id(@__retain_semantics Other viewAtColumn:row:makeIfNecessary:)]
         pub unsafe fn viewAtColumn_row_makeIfNecessary(
@@ -627,7 +631,7 @@ extern_methods!(
         pub unsafe fn insertRowsAtIndexes_withAnimation(
             &self,
             indexes: &Foundation::NSIndexSet,
-            animationOptions: NSTableViewAnimationOptions,
+            animationOptions: AppKit::NSTableViewAnimationOptions,
         );
 
         #[cfg(feature = "Foundation_NSIndexSet")]
@@ -635,7 +639,7 @@ extern_methods!(
         pub unsafe fn removeRowsAtIndexes_withAnimation(
             &self,
             indexes: &Foundation::NSIndexSet,
-            animationOptions: NSTableViewAnimationOptions,
+            animationOptions: AppKit::NSTableViewAnimationOptions,
         );
 
         #[method(moveRowAtIndex:toIndex:)]
@@ -646,7 +650,7 @@ extern_methods!(
         pub unsafe fn hideRowsAtIndexes_withAnimation(
             &self,
             indexes: &Foundation::NSIndexSet,
-            rowAnimation: NSTableViewAnimationOptions,
+            rowAnimation: AppKit::NSTableViewAnimationOptions,
         );
 
         #[cfg(feature = "Foundation_NSIndexSet")]
@@ -654,7 +658,7 @@ extern_methods!(
         pub unsafe fn unhideRowsAtIndexes_withAnimation(
             &self,
             indexes: &Foundation::NSIndexSet,
-            rowAnimation: NSTableViewAnimationOptions,
+            rowAnimation: AppKit::NSTableViewAnimationOptions,
         );
 
         #[cfg(feature = "Foundation_NSIndexSet")]
@@ -699,12 +703,13 @@ extern_methods!(
         pub unsafe fn setUsesStaticContents(&self, usesStaticContents: bool);
 
         #[method(userInterfaceLayoutDirection)]
-        pub unsafe fn userInterfaceLayoutDirection(&self) -> NSUserInterfaceLayoutDirection;
+        pub unsafe fn userInterfaceLayoutDirection(&self)
+            -> AppKit::NSUserInterfaceLayoutDirection;
 
         #[method(setUserInterfaceLayoutDirection:)]
         pub unsafe fn setUserInterfaceLayoutDirection(
             &self,
-            userInterfaceLayoutDirection: NSUserInterfaceLayoutDirection,
+            userInterfaceLayoutDirection: AppKit::NSUserInterfaceLayoutDirection,
         );
 
         #[method(usesAutomaticRowHeights)]
@@ -779,10 +784,10 @@ extern_protocol!(
             &self,
             tableView: &AppKit::NSTableView,
             cell: &AppKit::NSCell,
-            rect: NSRectPointer,
+            rect: Foundation::NSRectPointer,
             tableColumn: Option<&AppKit::NSTableColumn>,
             row: NSInteger,
-            mouseLocation: NSPoint,
+            mouseLocation: Foundation::NSPoint,
         ) -> Id<Foundation::NSString, Shared>;
 
         #[optional]
@@ -874,7 +879,7 @@ extern_protocol!(
             &self,
             tableView: &AppKit::NSTableView,
             row: NSInteger,
-        ) -> CGFloat;
+        ) -> CoreGraphics::CGFloat;
 
         #[optional]
         #[method_id(@__retain_semantics Other tableView:typeSelectStringForTableColumn:row:)]
@@ -918,7 +923,7 @@ extern_protocol!(
             &self,
             tableView: &AppKit::NSTableView,
             column: NSInteger,
-        ) -> CGFloat;
+        ) -> CoreGraphics::CGFloat;
 
         #[optional]
         #[method(tableView:shouldReorderColumn:toColumn:)]
@@ -935,7 +940,7 @@ extern_protocol!(
             &self,
             tableView: &AppKit::NSTableView,
             row: NSInteger,
-            edge: NSTableRowActionEdge,
+            edge: AppKit::NSTableRowActionEdge,
         ) -> Id<Foundation::NSArray<AppKit::NSTableViewRowAction>, Shared>;
 
         #[optional]
@@ -1018,7 +1023,7 @@ extern_protocol!(
             &self,
             tableView: &AppKit::NSTableView,
             session: &AppKit::NSDraggingSession,
-            screenPoint: NSPoint,
+            screenPoint: Foundation::NSPoint,
             rowIndexes: &Foundation::NSIndexSet,
         );
 
@@ -1028,8 +1033,8 @@ extern_protocol!(
             &self,
             tableView: &AppKit::NSTableView,
             session: &AppKit::NSDraggingSession,
-            screenPoint: NSPoint,
-            operation: NSDragOperation,
+            screenPoint: Foundation::NSPoint,
+            operation: AppKit::NSDragOperation,
         );
 
         #[optional]
@@ -1056,8 +1061,8 @@ extern_protocol!(
             tableView: &AppKit::NSTableView,
             info: &AppKit::NSDraggingInfo,
             row: NSInteger,
-            dropOperation: NSTableViewDropOperation,
-        ) -> NSDragOperation;
+            dropOperation: AppKit::NSTableViewDropOperation,
+        ) -> AppKit::NSDragOperation;
 
         #[optional]
         #[method(tableView:acceptDrop:row:dropOperation:)]
@@ -1066,7 +1071,7 @@ extern_protocol!(
             tableView: &AppKit::NSTableView,
             info: &AppKit::NSDraggingInfo,
             row: NSInteger,
-            dropOperation: NSTableViewDropOperation,
+            dropOperation: AppKit::NSTableViewDropOperation,
         ) -> bool;
 
         #[optional]
@@ -1114,7 +1119,7 @@ extern_methods!(
             &self,
             dragRows: &Foundation::NSArray,
             dragEvent: &AppKit::NSEvent,
-            dragImageOffset: NSPointPointer,
+            dragImageOffset: Foundation::NSPointPointer,
         ) -> Option<Id<AppKit::NSImage, Shared>>;
 
         #[method(setAutoresizesAllColumnsToFit:)]
@@ -1124,7 +1129,7 @@ extern_methods!(
         pub unsafe fn autoresizesAllColumnsToFit(&self) -> bool;
 
         #[method(columnsInRect:)]
-        pub unsafe fn columnsInRect(&self, rect: NSRect) -> NSRange;
+        pub unsafe fn columnsInRect(&self, rect: Foundation::NSRect) -> Foundation::NSRange;
 
         #[cfg(feature = "AppKit_NSCell")]
         #[method_id(@__retain_semantics Other preparedCellAtColumn:row:)]

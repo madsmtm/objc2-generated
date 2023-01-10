@@ -32,34 +32,34 @@ extern_methods!(
         pub fn setSize(&self, size: NSUInteger);
 
         #[method(storageMode)]
-        pub fn storageMode(&self) -> MTLStorageMode;
+        pub fn storageMode(&self) -> Metal::MTLStorageMode;
 
         #[method(setStorageMode:)]
-        pub fn setStorageMode(&self, storageMode: MTLStorageMode);
+        pub fn setStorageMode(&self, storageMode: Metal::MTLStorageMode);
 
         #[method(cpuCacheMode)]
-        pub fn cpuCacheMode(&self) -> MTLCPUCacheMode;
+        pub fn cpuCacheMode(&self) -> Metal::MTLCPUCacheMode;
 
         #[method(setCpuCacheMode:)]
-        pub fn setCpuCacheMode(&self, cpuCacheMode: MTLCPUCacheMode);
+        pub fn setCpuCacheMode(&self, cpuCacheMode: Metal::MTLCPUCacheMode);
 
         #[method(hazardTrackingMode)]
-        pub fn hazardTrackingMode(&self) -> MTLHazardTrackingMode;
+        pub fn hazardTrackingMode(&self) -> Metal::MTLHazardTrackingMode;
 
         #[method(setHazardTrackingMode:)]
-        pub fn setHazardTrackingMode(&self, hazardTrackingMode: MTLHazardTrackingMode);
+        pub fn setHazardTrackingMode(&self, hazardTrackingMode: Metal::MTLHazardTrackingMode);
 
         #[method(resourceOptions)]
-        pub fn resourceOptions(&self) -> MTLResourceOptions;
+        pub fn resourceOptions(&self) -> Metal::MTLResourceOptions;
 
         #[method(setResourceOptions:)]
-        pub fn setResourceOptions(&self, resourceOptions: MTLResourceOptions);
+        pub fn setResourceOptions(&self, resourceOptions: Metal::MTLResourceOptions);
 
         #[method(type)]
-        pub unsafe fn type_(&self) -> MTLHeapType;
+        pub unsafe fn type_(&self) -> Metal::MTLHeapType;
 
         #[method(setType:)]
-        pub fn setType(&self, type_: MTLHeapType);
+        pub fn setType(&self, type_: Metal::MTLHeapType);
     }
 );
 
@@ -77,16 +77,16 @@ extern_protocol!(
         pub fn device(&self) -> Id<Metal::MTLDevice, Shared>;
 
         #[method(storageMode)]
-        pub fn storageMode(&self) -> MTLStorageMode;
+        pub fn storageMode(&self) -> Metal::MTLStorageMode;
 
         #[method(cpuCacheMode)]
-        pub fn cpuCacheMode(&self) -> MTLCPUCacheMode;
+        pub fn cpuCacheMode(&self) -> Metal::MTLCPUCacheMode;
 
         #[method(hazardTrackingMode)]
-        pub fn hazardTrackingMode(&self) -> MTLHazardTrackingMode;
+        pub fn hazardTrackingMode(&self) -> Metal::MTLHazardTrackingMode;
 
         #[method(resourceOptions)]
-        pub fn resourceOptions(&self) -> MTLResourceOptions;
+        pub fn resourceOptions(&self) -> Metal::MTLResourceOptions;
 
         #[method(size)]
         pub fn size(&self) -> NSUInteger;
@@ -104,7 +104,7 @@ extern_protocol!(
         pub fn newBufferWithLength_options(
             &self,
             length: NSUInteger,
-            options: MTLResourceOptions,
+            options: Metal::MTLResourceOptions,
         ) -> Option<Id<Metal::MTLBuffer, Shared>>;
 
         #[method_id(@__retain_semantics New newTextureWithDescriptor:)]
@@ -114,16 +114,19 @@ extern_protocol!(
         ) -> Option<Id<Metal::MTLTexture, Shared>>;
 
         #[method(setPurgeableState:)]
-        pub fn setPurgeableState(&self, state: MTLPurgeableState) -> MTLPurgeableState;
+        pub fn setPurgeableState(
+            &self,
+            state: Metal::MTLPurgeableState,
+        ) -> Metal::MTLPurgeableState;
 
         #[method(type)]
-        pub unsafe fn type_(&self) -> MTLHeapType;
+        pub unsafe fn type_(&self) -> Metal::MTLHeapType;
 
         #[method_id(@__retain_semantics New newBufferWithLength:options:offset:)]
         pub unsafe fn newBufferWithLength_options_offset(
             &self,
             length: NSUInteger,
-            options: MTLResourceOptions,
+            options: Metal::MTLResourceOptions,
             offset: NSUInteger,
         ) -> Option<Id<Metal::MTLBuffer, Shared>>;
 

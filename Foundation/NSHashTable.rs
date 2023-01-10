@@ -3,20 +3,25 @@
 use crate::common::*;
 use crate::Foundation;
 
-extern_static!(NSHashTableStrongMemory: NSPointerFunctionsOptions = NSPointerFunctionsStrongMemory);
-
 extern_static!(
-    NSHashTableZeroingWeakMemory: NSPointerFunctionsOptions = NSPointerFunctionsZeroingWeakMemory
+    NSHashTableStrongMemory: Foundation::NSPointerFunctionsOptions = NSPointerFunctionsStrongMemory
 );
 
-extern_static!(NSHashTableCopyIn: NSPointerFunctionsOptions = NSPointerFunctionsCopyIn);
+extern_static!(
+    NSHashTableZeroingWeakMemory: Foundation::NSPointerFunctionsOptions =
+        NSPointerFunctionsZeroingWeakMemory
+);
+
+extern_static!(NSHashTableCopyIn: Foundation::NSPointerFunctionsOptions = NSPointerFunctionsCopyIn);
 
 extern_static!(
-    NSHashTableObjectPointerPersonality: NSPointerFunctionsOptions =
+    NSHashTableObjectPointerPersonality: Foundation::NSPointerFunctionsOptions =
         NSPointerFunctionsObjectPointerPersonality
 );
 
-extern_static!(NSHashTableWeakMemory: NSPointerFunctionsOptions = NSPointerFunctionsWeakMemory);
+extern_static!(
+    NSHashTableWeakMemory: Foundation::NSPointerFunctionsOptions = NSPointerFunctionsWeakMemory
+);
 
 pub type NSHashTableOptions = NSUInteger;
 
@@ -42,7 +47,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithOptions:capacity:)]
         pub unsafe fn initWithOptions_capacity(
             this: Option<Allocated<Self>>,
-            options: NSPointerFunctionsOptions,
+            options: Foundation::NSPointerFunctionsOptions,
             initialCapacity: NSUInteger,
         ) -> Id<Self, Shared>;
 
@@ -56,7 +61,7 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other hashTableWithOptions:)]
         pub unsafe fn hashTableWithOptions(
-            options: NSPointerFunctionsOptions,
+            options: Foundation::NSPointerFunctionsOptions,
         ) -> Id<Foundation::NSHashTable<ObjectType>, Shared>;
 
         #[method_id(@__retain_semantics Other hashTableWithWeakObjects)]
@@ -160,7 +165,7 @@ extern_fn!(
 extern_fn!(
     pub unsafe fn NSCopyHashTableWithZone(
         table: &Foundation::NSHashTable,
-        zone: *mut NSZone,
+        zone: *mut Foundation::NSZone,
     ) -> NonNull<Foundation::NSHashTable>;
 );
 
@@ -191,15 +196,19 @@ extern_fn!(
 );
 
 extern_fn!(
-    pub unsafe fn NSEnumerateHashTable(table: &Foundation::NSHashTable) -> NSHashEnumerator;
+    pub unsafe fn NSEnumerateHashTable(
+        table: &Foundation::NSHashTable,
+    ) -> Foundation::NSHashEnumerator;
 );
 
 extern_fn!(
-    pub unsafe fn NSNextHashEnumeratorItem(enumerator: NonNull<NSHashEnumerator>) -> *mut c_void;
+    pub unsafe fn NSNextHashEnumeratorItem(
+        enumerator: NonNull<Foundation::NSHashEnumerator>,
+    ) -> *mut c_void;
 );
 
 extern_fn!(
-    pub unsafe fn NSEndHashTableEnumeration(enumerator: NonNull<NSHashEnumerator>);
+    pub unsafe fn NSEndHashTableEnumeration(enumerator: NonNull<Foundation::NSHashEnumerator>);
 );
 
 extern_fn!(
@@ -244,31 +253,31 @@ extern_struct!(
 
 extern_fn!(
     pub unsafe fn NSCreateHashTableWithZone(
-        callBacks: NSHashTableCallBacks,
+        callBacks: Foundation::NSHashTableCallBacks,
         capacity: NSUInteger,
-        zone: *mut NSZone,
+        zone: *mut Foundation::NSZone,
     ) -> NonNull<Foundation::NSHashTable>;
 );
 
 extern_fn!(
     pub unsafe fn NSCreateHashTable(
-        callBacks: NSHashTableCallBacks,
+        callBacks: Foundation::NSHashTableCallBacks,
         capacity: NSUInteger,
     ) -> NonNull<Foundation::NSHashTable>;
 );
 
-extern_static!(NSIntegerHashCallBacks: NSHashTableCallBacks);
+extern_static!(NSIntegerHashCallBacks: Foundation::NSHashTableCallBacks);
 
-extern_static!(NSNonOwnedPointerHashCallBacks: NSHashTableCallBacks);
+extern_static!(NSNonOwnedPointerHashCallBacks: Foundation::NSHashTableCallBacks);
 
-extern_static!(NSNonRetainedObjectHashCallBacks: NSHashTableCallBacks);
+extern_static!(NSNonRetainedObjectHashCallBacks: Foundation::NSHashTableCallBacks);
 
-extern_static!(NSObjectHashCallBacks: NSHashTableCallBacks);
+extern_static!(NSObjectHashCallBacks: Foundation::NSHashTableCallBacks);
 
-extern_static!(NSOwnedObjectIdentityHashCallBacks: NSHashTableCallBacks);
+extern_static!(NSOwnedObjectIdentityHashCallBacks: Foundation::NSHashTableCallBacks);
 
-extern_static!(NSOwnedPointerHashCallBacks: NSHashTableCallBacks);
+extern_static!(NSOwnedPointerHashCallBacks: Foundation::NSHashTableCallBacks);
 
-extern_static!(NSPointerToStructHashCallBacks: NSHashTableCallBacks);
+extern_static!(NSPointerToStructHashCallBacks: Foundation::NSHashTableCallBacks);
 
-extern_static!(NSIntHashCallBacks: NSHashTableCallBacks);
+extern_static!(NSIntHashCallBacks: Foundation::NSHashTableCallBacks);

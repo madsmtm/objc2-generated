@@ -5,12 +5,12 @@ use crate::Foundation;
 
 extern_struct!(
     pub struct NSAffineTransformStruct {
-        pub m11: CGFloat,
-        pub m12: CGFloat,
-        pub m21: CGFloat,
-        pub m22: CGFloat,
-        pub tX: CGFloat,
-        pub tY: CGFloat,
+        pub m11: CoreGraphics::CGFloat,
+        pub m12: CoreGraphics::CGFloat,
+        pub m21: CoreGraphics::CGFloat,
+        pub m22: CoreGraphics::CGFloat,
+        pub tX: CoreGraphics::CGFloat,
+        pub tY: CoreGraphics::CGFloat,
     }
 );
 
@@ -39,19 +39,27 @@ extern_methods!(
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
         #[method(translateXBy:yBy:)]
-        pub unsafe fn translateXBy_yBy(&self, deltaX: CGFloat, deltaY: CGFloat);
+        pub unsafe fn translateXBy_yBy(
+            &self,
+            deltaX: CoreGraphics::CGFloat,
+            deltaY: CoreGraphics::CGFloat,
+        );
 
         #[method(rotateByDegrees:)]
-        pub unsafe fn rotateByDegrees(&self, angle: CGFloat);
+        pub unsafe fn rotateByDegrees(&self, angle: CoreGraphics::CGFloat);
 
         #[method(rotateByRadians:)]
-        pub unsafe fn rotateByRadians(&self, angle: CGFloat);
+        pub unsafe fn rotateByRadians(&self, angle: CoreGraphics::CGFloat);
 
         #[method(scaleBy:)]
-        pub unsafe fn scaleBy(&self, scale: CGFloat);
+        pub unsafe fn scaleBy(&self, scale: CoreGraphics::CGFloat);
 
         #[method(scaleXBy:yBy:)]
-        pub unsafe fn scaleXBy_yBy(&self, scaleX: CGFloat, scaleY: CGFloat);
+        pub unsafe fn scaleXBy_yBy(
+            &self,
+            scaleX: CoreGraphics::CGFloat,
+            scaleY: CoreGraphics::CGFloat,
+        );
 
         #[method(invert)]
         pub unsafe fn invert(&self);
@@ -63,15 +71,18 @@ extern_methods!(
         pub unsafe fn prependTransform(&self, transform: &Foundation::NSAffineTransform);
 
         #[method(transformPoint:)]
-        pub unsafe fn transformPoint(&self, aPoint: NSPoint) -> NSPoint;
+        pub unsafe fn transformPoint(&self, aPoint: Foundation::NSPoint) -> Foundation::NSPoint;
 
         #[method(transformSize:)]
-        pub unsafe fn transformSize(&self, aSize: NSSize) -> NSSize;
+        pub unsafe fn transformSize(&self, aSize: Foundation::NSSize) -> Foundation::NSSize;
 
         #[method(transformStruct)]
-        pub unsafe fn transformStruct(&self) -> NSAffineTransformStruct;
+        pub unsafe fn transformStruct(&self) -> Foundation::NSAffineTransformStruct;
 
         #[method(setTransformStruct:)]
-        pub unsafe fn setTransformStruct(&self, transformStruct: NSAffineTransformStruct);
+        pub unsafe fn setTransformStruct(
+            &self,
+            transformStruct: Foundation::NSAffineTransformStruct,
+        );
     }
 );

@@ -73,10 +73,10 @@ extern_methods!(
         pub unsafe fn setClient(&self, client: Option<&AppKit::NSTextFinderClient>);
 
         #[method(performAction:)]
-        pub unsafe fn performAction(&self, op: NSTextFinderAction);
+        pub unsafe fn performAction(&self, op: AppKit::NSTextFinderAction);
 
         #[method(validateAction:)]
-        pub unsafe fn validateAction(&self, op: NSTextFinderAction) -> bool;
+        pub unsafe fn validateAction(&self, op: AppKit::NSTextFinderAction) -> bool;
 
         #[method_id(@__retain_semantics Other findBarContainer)]
         pub unsafe fn findBarContainer(
@@ -120,7 +120,7 @@ extern_methods!(
         ) -> Id<Foundation::NSArray<Foundation::NSValue>, Shared>;
 
         #[method(drawIncrementalMatchHighlightInRect:)]
-        pub unsafe fn drawIncrementalMatchHighlightInRect(rect: NSRect);
+        pub unsafe fn drawIncrementalMatchHighlightInRect(rect: Foundation::NSRect);
 
         #[method(noteClientStringWillChange)]
         pub unsafe fn noteClientStringWillChange(&self);
@@ -152,7 +152,7 @@ extern_protocol!(
         pub unsafe fn stringAtIndex_effectiveRange_endsWithSearchBoundary(
             &self,
             characterIndex: NSUInteger,
-            outRange: NSRangePointer,
+            outRange: Foundation::NSRangePointer,
             outFlag: NonNull<Bool>,
         ) -> Id<Foundation::NSString, Shared>;
 
@@ -162,7 +162,7 @@ extern_protocol!(
 
         #[optional]
         #[method(firstSelectedRange)]
-        pub unsafe fn firstSelectedRange(&self) -> NSRange;
+        pub unsafe fn firstSelectedRange(&self) -> Foundation::NSRange;
 
         #[optional]
         #[method_id(@__retain_semantics Other selectedRanges)]
@@ -178,7 +178,7 @@ extern_protocol!(
 
         #[optional]
         #[method(scrollRangeToVisible:)]
-        pub unsafe fn scrollRangeToVisible(&self, range: NSRange);
+        pub unsafe fn scrollRangeToVisible(&self, range: Foundation::NSRange);
 
         #[optional]
         #[method(shouldReplaceCharactersInRanges:withStrings:)]
@@ -192,7 +192,7 @@ extern_protocol!(
         #[method(replaceCharactersInRange:withString:)]
         pub unsafe fn replaceCharactersInRange_withString(
             &self,
-            range: NSRange,
+            range: Foundation::NSRange,
             string: &Foundation::NSString,
         );
 
@@ -205,14 +205,14 @@ extern_protocol!(
         pub unsafe fn contentViewAtIndex_effectiveCharacterRange(
             &self,
             index: NSUInteger,
-            outRange: NSRangePointer,
+            outRange: Foundation::NSRangePointer,
         ) -> Id<AppKit::NSView, Shared>;
 
         #[optional]
         #[method_id(@__retain_semantics Other rectsForCharacterRange:)]
         pub unsafe fn rectsForCharacterRange(
             &self,
-            range: NSRange,
+            range: Foundation::NSRange,
         ) -> Option<Id<Foundation::NSArray<Foundation::NSValue>, Shared>>;
 
         #[optional]
@@ -225,7 +225,7 @@ extern_protocol!(
         #[method(drawCharactersInRange:forContentView:)]
         pub unsafe fn drawCharactersInRange_forContentView(
             &self,
-            range: NSRange,
+            range: Foundation::NSRange,
             view: &AppKit::NSView,
         );
     }

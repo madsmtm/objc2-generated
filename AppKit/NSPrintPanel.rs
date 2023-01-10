@@ -100,10 +100,10 @@ extern_methods!(
         ) -> Id<Foundation::NSArray<AppKit::NSViewController>, Shared>;
 
         #[method(options)]
-        pub unsafe fn options(&self) -> NSPrintPanelOptions;
+        pub unsafe fn options(&self) -> AppKit::NSPrintPanelOptions;
 
         #[method(setOptions:)]
-        pub unsafe fn setOptions(&self, options: NSPrintPanelOptions);
+        pub unsafe fn setOptions(&self, options: AppKit::NSPrintPanelOptions);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setDefaultButtonTitle:)]

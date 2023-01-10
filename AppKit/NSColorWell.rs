@@ -28,7 +28,7 @@ extern_methods!(
         pub unsafe fn isActive(&self) -> bool;
 
         #[method(drawWellInside:)]
-        pub unsafe fn drawWellInside(&self, insideRect: NSRect);
+        pub unsafe fn drawWellInside(&self, insideRect: Foundation::NSRect);
 
         #[method(isBordered)]
         pub unsafe fn isBordered(&self) -> bool;
@@ -56,7 +56,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frameRect: Foundation::NSRect,
         ) -> Id<Self, Shared>;
     }
 );

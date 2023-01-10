@@ -120,7 +120,7 @@ extern_methods!(
         pub unsafe fn willChangeValueForKey_withSetMutation_usingObjects(
             &self,
             inKey: &Foundation::NSString,
-            inMutationKind: NSKeyValueSetMutationKind,
+            inMutationKind: Foundation::NSKeyValueSetMutationKind,
             inObjects: &Foundation::NSSet,
         );
 
@@ -129,7 +129,7 @@ extern_methods!(
         pub unsafe fn didChangeValueForKey_withSetMutation_usingObjects(
             &self,
             inKey: &Foundation::NSString,
-            inMutationKind: NSKeyValueSetMutationKind,
+            inMutationKind: Foundation::NSKeyValueSetMutationKind,
             inObjects: &Foundation::NSSet,
         );
 
@@ -140,7 +140,7 @@ extern_methods!(
         pub unsafe fn awakeFromInsert(&self);
 
         #[method(awakeFromSnapshotEvents:)]
-        pub unsafe fn awakeFromSnapshotEvents(&self, flags: NSSnapshotEventType);
+        pub unsafe fn awakeFromSnapshotEvents(&self, flags: CoreData::NSSnapshotEventType);
 
         #[method(prepareForDeletion)]
         pub unsafe fn prepareForDeletion(&self);

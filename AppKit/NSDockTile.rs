@@ -5,7 +5,7 @@ use crate::AppKit;
 use crate::CoreData;
 use crate::Foundation;
 
-extern_static!(NSAppKitVersionNumberWithDockTilePlugInSupport: NSAppKitVersion = 1001.0);
+extern_static!(NSAppKitVersionNumberWithDockTilePlugInSupport: AppKit::NSAppKitVersion = 1001.0);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -20,7 +20,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSDockTile")]
     unsafe impl NSDockTile {
         #[method(size)]
-        pub unsafe fn size(&self) -> NSSize;
+        pub unsafe fn size(&self) -> Foundation::NSSize;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other contentView)]

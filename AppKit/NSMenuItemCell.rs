@@ -56,31 +56,40 @@ extern_methods!(
         pub unsafe fn setNeedsDisplay(&self, needsDisplay: bool);
 
         #[method(stateImageWidth)]
-        pub unsafe fn stateImageWidth(&self) -> CGFloat;
+        pub unsafe fn stateImageWidth(&self) -> CoreGraphics::CGFloat;
 
         #[method(imageWidth)]
-        pub unsafe fn imageWidth(&self) -> CGFloat;
+        pub unsafe fn imageWidth(&self) -> CoreGraphics::CGFloat;
 
         #[method(titleWidth)]
-        pub unsafe fn titleWidth(&self) -> CGFloat;
+        pub unsafe fn titleWidth(&self) -> CoreGraphics::CGFloat;
 
         #[method(keyEquivalentWidth)]
-        pub unsafe fn keyEquivalentWidth(&self) -> CGFloat;
+        pub unsafe fn keyEquivalentWidth(&self) -> CoreGraphics::CGFloat;
 
         #[method(stateImageRectForBounds:)]
-        pub unsafe fn stateImageRectForBounds(&self, cellFrame: NSRect) -> NSRect;
+        pub unsafe fn stateImageRectForBounds(
+            &self,
+            cellFrame: Foundation::NSRect,
+        ) -> Foundation::NSRect;
 
         #[method(titleRectForBounds:)]
-        pub unsafe fn titleRectForBounds(&self, cellFrame: NSRect) -> NSRect;
+        pub unsafe fn titleRectForBounds(
+            &self,
+            cellFrame: Foundation::NSRect,
+        ) -> Foundation::NSRect;
 
         #[method(keyEquivalentRectForBounds:)]
-        pub unsafe fn keyEquivalentRectForBounds(&self, cellFrame: NSRect) -> NSRect;
+        pub unsafe fn keyEquivalentRectForBounds(
+            &self,
+            cellFrame: Foundation::NSRect,
+        ) -> Foundation::NSRect;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(drawSeparatorItemWithFrame:inView:)]
         pub unsafe fn drawSeparatorItemWithFrame_inView(
             &self,
-            cellFrame: NSRect,
+            cellFrame: Foundation::NSRect,
             controlView: &AppKit::NSView,
         );
 
@@ -88,7 +97,7 @@ extern_methods!(
         #[method(drawStateImageWithFrame:inView:)]
         pub unsafe fn drawStateImageWithFrame_inView(
             &self,
-            cellFrame: NSRect,
+            cellFrame: Foundation::NSRect,
             controlView: &AppKit::NSView,
         );
 
@@ -96,7 +105,7 @@ extern_methods!(
         #[method(drawImageWithFrame:inView:)]
         pub unsafe fn drawImageWithFrame_inView(
             &self,
-            cellFrame: NSRect,
+            cellFrame: Foundation::NSRect,
             controlView: &AppKit::NSView,
         );
 
@@ -104,7 +113,7 @@ extern_methods!(
         #[method(drawTitleWithFrame:inView:)]
         pub unsafe fn drawTitleWithFrame_inView(
             &self,
-            cellFrame: NSRect,
+            cellFrame: Foundation::NSRect,
             controlView: &AppKit::NSView,
         );
 
@@ -112,7 +121,7 @@ extern_methods!(
         #[method(drawKeyEquivalentWithFrame:inView:)]
         pub unsafe fn drawKeyEquivalentWithFrame_inView(
             &self,
-            cellFrame: NSRect,
+            cellFrame: Foundation::NSRect,
             controlView: &AppKit::NSView,
         );
 
@@ -120,7 +129,7 @@ extern_methods!(
         #[method(drawBorderAndBackgroundWithFrame:inView:)]
         pub unsafe fn drawBorderAndBackgroundWithFrame_inView(
             &self,
-            cellFrame: NSRect,
+            cellFrame: Foundation::NSRect,
             controlView: &AppKit::NSView,
         );
 

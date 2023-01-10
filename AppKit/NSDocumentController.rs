@@ -187,10 +187,10 @@ extern_methods!(
         ) -> Result<Id<AppKit::NSDocument, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[method(autosavingDelay)]
-        pub unsafe fn autosavingDelay(&self) -> NSTimeInterval;
+        pub unsafe fn autosavingDelay(&self) -> Foundation::NSTimeInterval;
 
         #[method(setAutosavingDelay:)]
-        pub unsafe fn setAutosavingDelay(&self, autosavingDelay: NSTimeInterval);
+        pub unsafe fn setAutosavingDelay(&self, autosavingDelay: Foundation::NSTimeInterval);
 
         #[method(saveAllDocuments:)]
         pub unsafe fn saveAllDocuments(&self, sender: Option<&Object>);

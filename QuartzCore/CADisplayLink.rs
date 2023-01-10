@@ -42,13 +42,13 @@ extern_methods!(
         pub unsafe fn invalidate(&self);
 
         #[method(timestamp)]
-        pub unsafe fn timestamp(&self) -> CFTimeInterval;
+        pub unsafe fn timestamp(&self) -> CoreFoundation::CFTimeInterval;
 
         #[method(duration)]
-        pub unsafe fn duration(&self) -> CFTimeInterval;
+        pub unsafe fn duration(&self) -> CoreFoundation::CFTimeInterval;
 
         #[method(targetTimestamp)]
-        pub unsafe fn targetTimestamp(&self) -> CFTimeInterval;
+        pub unsafe fn targetTimestamp(&self) -> CoreFoundation::CFTimeInterval;
 
         #[method(isPaused)]
         pub unsafe fn isPaused(&self) -> bool;
@@ -69,9 +69,12 @@ extern_methods!(
         pub unsafe fn setPreferredFramesPerSecond(&self, preferredFramesPerSecond: NSInteger);
 
         #[method(preferredFrameRateRange)]
-        pub unsafe fn preferredFrameRateRange(&self) -> CAFrameRateRange;
+        pub unsafe fn preferredFrameRateRange(&self) -> CoreAnimation::CAFrameRateRange;
 
         #[method(setPreferredFrameRateRange:)]
-        pub unsafe fn setPreferredFrameRateRange(&self, preferredFrameRateRange: CAFrameRateRange);
+        pub unsafe fn setPreferredFrameRateRange(
+            &self,
+            preferredFrameRateRange: CoreAnimation::CAFrameRateRange,
+        );
     }
 );

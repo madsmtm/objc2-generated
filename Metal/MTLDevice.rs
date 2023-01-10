@@ -212,10 +212,10 @@ extern_methods!(
         pub fn argumentDescriptor() -> Id<Metal::MTLArgumentDescriptor, Shared>;
 
         #[method(dataType)]
-        pub unsafe fn dataType(&self) -> MTLDataType;
+        pub unsafe fn dataType(&self) -> Metal::MTLDataType;
 
         #[method(setDataType:)]
-        pub fn setDataType(&self, dataType: MTLDataType);
+        pub fn setDataType(&self, dataType: Metal::MTLDataType);
 
         #[method(index)]
         pub unsafe fn index(&self) -> NSUInteger;
@@ -230,16 +230,16 @@ extern_methods!(
         pub unsafe fn setArrayLength(&self, arrayLength: NSUInteger);
 
         #[method(access)]
-        pub unsafe fn access(&self) -> MTLArgumentAccess;
+        pub unsafe fn access(&self) -> Metal::MTLArgumentAccess;
 
         #[method(setAccess:)]
-        pub fn setAccess(&self, access: MTLArgumentAccess);
+        pub fn setAccess(&self, access: Metal::MTLArgumentAccess);
 
         #[method(textureType)]
-        pub unsafe fn textureType(&self) -> MTLTextureType;
+        pub unsafe fn textureType(&self) -> Metal::MTLTextureType;
 
         #[method(setTextureType:)]
-        pub fn setTextureType(&self, textureType: MTLTextureType);
+        pub fn setTextureType(&self, textureType: Metal::MTLTextureType);
 
         #[method(constantBlockAlignment)]
         pub unsafe fn constantBlockAlignment(&self) -> NSUInteger;
@@ -262,7 +262,7 @@ extern_protocol!(
         pub fn registryID(&self) -> u64;
 
         #[method(maxThreadsPerThreadgroup)]
-        pub fn maxThreadsPerThreadgroup(&self) -> MTLSize;
+        pub fn maxThreadsPerThreadgroup(&self) -> Metal::MTLSize;
 
         #[method(isLowPower)]
         pub fn isLowPower(&self) -> bool;
@@ -280,7 +280,7 @@ extern_protocol!(
         pub fn recommendedMaxWorkingSetSize(&self) -> u64;
 
         #[method(location)]
-        pub fn location(&self) -> MTLDeviceLocation;
+        pub fn location(&self) -> Metal::MTLDeviceLocation;
 
         #[method(locationNumber)]
         pub fn locationNumber(&self) -> NSUInteger;
@@ -292,10 +292,10 @@ extern_protocol!(
         pub fn isDepth24Stencil8PixelFormatSupported(&self) -> bool;
 
         #[method(readWriteTextureSupport)]
-        pub fn readWriteTextureSupport(&self) -> MTLReadWriteTextureTier;
+        pub fn readWriteTextureSupport(&self) -> Metal::MTLReadWriteTextureTier;
 
         #[method(argumentBuffersSupport)]
-        pub fn argumentBuffersSupport(&self) -> MTLArgumentBuffersTier;
+        pub fn argumentBuffersSupport(&self) -> Metal::MTLArgumentBuffersTier;
 
         #[method(areRasterOrderGroupsSupported)]
         pub unsafe fn areRasterOrderGroupsSupported(&self) -> bool;
@@ -337,14 +337,14 @@ extern_protocol!(
         pub fn heapTextureSizeAndAlignWithDescriptor(
             &self,
             desc: &Metal::MTLTextureDescriptor,
-        ) -> MTLSizeAndAlign;
+        ) -> Metal::MTLSizeAndAlign;
 
         #[method(heapBufferSizeAndAlignWithLength:options:)]
         pub fn heapBufferSizeAndAlignWithLength_options(
             &self,
             length: NSUInteger,
-            options: MTLResourceOptions,
-        ) -> MTLSizeAndAlign;
+            options: Metal::MTLResourceOptions,
+        ) -> Metal::MTLSizeAndAlign;
 
         #[method_id(@__retain_semantics New newHeapWithDescriptor:)]
         pub fn newHeapWithDescriptor(
@@ -356,7 +356,7 @@ extern_protocol!(
         pub fn newBufferWithLength_options(
             &self,
             length: NSUInteger,
-            options: MTLResourceOptions,
+            options: Metal::MTLResourceOptions,
         ) -> Option<Id<Metal::MTLBuffer, Shared>>;
 
         #[method_id(@__retain_semantics New newBufferWithBytes:length:options:)]
@@ -364,7 +364,7 @@ extern_protocol!(
             &self,
             pointer: NonNull<c_void>,
             length: NSUInteger,
-            options: MTLResourceOptions,
+            options: Metal::MTLResourceOptions,
         ) -> Option<Id<Metal::MTLBuffer, Shared>>;
 
         #[method_id(@__retain_semantics New newBufferWithBytesNoCopy:length:options:deallocator:)]
@@ -372,7 +372,7 @@ extern_protocol!(
             &self,
             pointer: NonNull<c_void>,
             length: NSUInteger,
-            options: MTLResourceOptions,
+            options: Metal::MTLResourceOptions,
             deallocator: Option<&Block<(NonNull<c_void>, NSUInteger), ()>>,
         ) -> Option<Id<Metal::MTLBuffer, Shared>>;
 
@@ -439,7 +439,7 @@ extern_protocol!(
             &self,
             source: &Foundation::NSString,
             options: Option<&Metal::MTLCompileOptions>,
-            completionHandler: MTLNewLibraryCompletionHandler,
+            completionHandler: Metal::MTLNewLibraryCompletionHandler,
         );
 
         #[method_id(@__retain_semantics New newLibraryWithStitchedDescriptor:error:_)]
@@ -452,7 +452,7 @@ extern_protocol!(
         pub unsafe fn newLibraryWithStitchedDescriptor_completionHandler(
             &self,
             descriptor: &Metal::MTLStitchedLibraryDescriptor,
-            completionHandler: MTLNewLibraryCompletionHandler,
+            completionHandler: Metal::MTLNewLibraryCompletionHandler,
         );
 
         #[method_id(@__retain_semantics New newRenderPipelineStateWithDescriptor:error:_)]
@@ -465,15 +465,15 @@ extern_protocol!(
         pub unsafe fn newRenderPipelineStateWithDescriptor_completionHandler(
             &self,
             descriptor: &Metal::MTLRenderPipelineDescriptor,
-            completionHandler: MTLNewRenderPipelineStateCompletionHandler,
+            completionHandler: Metal::MTLNewRenderPipelineStateCompletionHandler,
         );
 
         #[method(newRenderPipelineStateWithDescriptor:options:completionHandler:)]
         pub unsafe fn newRenderPipelineStateWithDescriptor_options_completionHandler(
             &self,
             descriptor: &Metal::MTLRenderPipelineDescriptor,
-            options: MTLPipelineOption,
-            completionHandler: MTLNewRenderPipelineStateWithReflectionCompletionHandler,
+            options: Metal::MTLPipelineOption,
+            completionHandler: Metal::MTLNewRenderPipelineStateWithReflectionCompletionHandler,
         );
 
         #[method_id(@__retain_semantics New newComputePipelineStateWithFunction:error:_)]
@@ -486,33 +486,33 @@ extern_protocol!(
         pub unsafe fn newComputePipelineStateWithFunction_completionHandler(
             &self,
             computeFunction: &Metal::MTLFunction,
-            completionHandler: MTLNewComputePipelineStateCompletionHandler,
+            completionHandler: Metal::MTLNewComputePipelineStateCompletionHandler,
         );
 
         #[method(newComputePipelineStateWithFunction:options:completionHandler:)]
         pub unsafe fn newComputePipelineStateWithFunction_options_completionHandler(
             &self,
             computeFunction: &Metal::MTLFunction,
-            options: MTLPipelineOption,
-            completionHandler: MTLNewComputePipelineStateWithReflectionCompletionHandler,
+            options: Metal::MTLPipelineOption,
+            completionHandler: Metal::MTLNewComputePipelineStateWithReflectionCompletionHandler,
         );
 
         #[method(newComputePipelineStateWithDescriptor:options:completionHandler:)]
         pub unsafe fn newComputePipelineStateWithDescriptor_options_completionHandler(
             &self,
             descriptor: &Metal::MTLComputePipelineDescriptor,
-            options: MTLPipelineOption,
-            completionHandler: MTLNewComputePipelineStateWithReflectionCompletionHandler,
+            options: Metal::MTLPipelineOption,
+            completionHandler: Metal::MTLNewComputePipelineStateWithReflectionCompletionHandler,
         );
 
         #[method_id(@__retain_semantics New newFence)]
         pub fn newFence(&self) -> Option<Id<Metal::MTLFence, Shared>>;
 
         #[method(supportsFeatureSet:)]
-        pub fn supportsFeatureSet(&self, featureSet: MTLFeatureSet) -> bool;
+        pub fn supportsFeatureSet(&self, featureSet: Metal::MTLFeatureSet) -> bool;
 
         #[method(supportsFamily:)]
-        pub fn supportsFamily(&self, gpuFamily: MTLGPUFamily) -> bool;
+        pub fn supportsFamily(&self, gpuFamily: Metal::MTLGPUFamily) -> bool;
 
         #[method(supportsTextureSampleCount:)]
         pub fn supportsTextureSampleCount(&self, sampleCount: NSUInteger) -> bool;
@@ -520,21 +520,21 @@ extern_protocol!(
         #[method(minimumLinearTextureAlignmentForPixelFormat:)]
         pub fn minimumLinearTextureAlignmentForPixelFormat(
             &self,
-            format: MTLPixelFormat,
+            format: Metal::MTLPixelFormat,
         ) -> NSUInteger;
 
         #[method(minimumTextureBufferAlignmentForPixelFormat:)]
         pub fn minimumTextureBufferAlignmentForPixelFormat(
             &self,
-            format: MTLPixelFormat,
+            format: Metal::MTLPixelFormat,
         ) -> NSUInteger;
 
         #[method(newRenderPipelineStateWithTileDescriptor:options:completionHandler:)]
         pub unsafe fn newRenderPipelineStateWithTileDescriptor_options_completionHandler(
             &self,
             descriptor: &Metal::MTLTileRenderPipelineDescriptor,
-            options: MTLPipelineOption,
-            completionHandler: MTLNewRenderPipelineStateWithReflectionCompletionHandler,
+            options: Metal::MTLPipelineOption,
+            completionHandler: Metal::MTLNewRenderPipelineStateWithReflectionCompletionHandler,
         );
 
         #[method(maxThreadgroupMemoryLength)]
@@ -549,7 +549,7 @@ extern_protocol!(
         #[method(getDefaultSamplePositions:count:)]
         pub unsafe fn getDefaultSamplePositions_count(
             &self,
-            positions: NonNull<MTLSamplePosition>,
+            positions: NonNull<Metal::MTLSamplePosition>,
             count: NSUInteger,
         );
 
@@ -576,7 +576,7 @@ extern_protocol!(
             &self,
             descriptor: &Metal::MTLIndirectCommandBufferDescriptor,
             maxCount: NSUInteger,
-            options: MTLResourceOptions,
+            options: Metal::MTLResourceOptions,
         ) -> Option<Id<Metal::MTLIndirectCommandBuffer, Shared>>;
 
         #[method_id(@__retain_semantics New newEvent)]
@@ -603,10 +603,10 @@ extern_protocol!(
         #[method(sparseTileSizeWithTextureType:pixelFormat:sampleCount:)]
         pub unsafe fn sparseTileSizeWithTextureType_pixelFormat_sampleCount(
             &self,
-            textureType: MTLTextureType,
-            pixelFormat: MTLPixelFormat,
+            textureType: Metal::MTLTextureType,
+            pixelFormat: Metal::MTLPixelFormat,
             sampleCount: NSUInteger,
-        ) -> MTLSize;
+        ) -> Metal::MTLSize;
 
         #[method(sparseTileSizeInBytes)]
         pub unsafe fn sparseTileSizeInBytes(&self) -> NSUInteger;
@@ -615,10 +615,10 @@ extern_protocol!(
         #[method(convertSparsePixelRegions:toTileRegions:withTileSize:alignmentMode:numRegions:)]
         pub unsafe fn convertSparsePixelRegions_toTileRegions_withTileSize_alignmentMode_numRegions(
             &self,
-            pixelRegions: NonNull<MTLRegion>,
-            tileRegions: NonNull<MTLRegion>,
-            tileSize: MTLSize,
-            mode: MTLSparseTextureRegionAlignmentMode,
+            pixelRegions: NonNull<Metal::MTLRegion>,
+            tileRegions: NonNull<Metal::MTLRegion>,
+            tileSize: Metal::MTLSize,
+            mode: Metal::MTLSparseTextureRegionAlignmentMode,
             numRegions: NSUInteger,
         );
 
@@ -626,9 +626,9 @@ extern_protocol!(
         #[method(convertSparseTileRegions:toPixelRegions:withTileSize:numRegions:)]
         pub unsafe fn convertSparseTileRegions_toPixelRegions_withTileSize_numRegions(
             &self,
-            tileRegions: NonNull<MTLRegion>,
-            pixelRegions: NonNull<MTLRegion>,
-            tileSize: MTLSize,
+            tileRegions: NonNull<Metal::MTLRegion>,
+            pixelRegions: NonNull<Metal::MTLRegion>,
+            tileSize: Metal::MTLSize,
             numRegions: NSUInteger,
         );
 
@@ -649,12 +649,15 @@ extern_protocol!(
         #[method(sampleTimestamps:gpuTimestamp:)]
         pub unsafe fn sampleTimestamps_gpuTimestamp(
             &self,
-            cpuTimestamp: NonNull<MTLTimestamp>,
-            gpuTimestamp: NonNull<MTLTimestamp>,
+            cpuTimestamp: NonNull<Metal::MTLTimestamp>,
+            gpuTimestamp: NonNull<Metal::MTLTimestamp>,
         );
 
         #[method(supportsCounterSampling:)]
-        pub fn supportsCounterSampling(&self, samplingPoint: MTLCounterSamplingPoint) -> bool;
+        pub fn supportsCounterSampling(
+            &self,
+            samplingPoint: Metal::MTLCounterSamplingPoint,
+        ) -> bool;
 
         #[method(supportsVertexAmplificationCount:)]
         pub fn supportsVertexAmplificationCount(&self, count: NSUInteger) -> bool;
@@ -690,7 +693,7 @@ extern_protocol!(
         pub fn accelerationStructureSizesWithDescriptor(
             &self,
             descriptor: &Metal::MTLAccelerationStructureDescriptor,
-        ) -> MTLAccelerationStructureSizes;
+        ) -> Metal::MTLAccelerationStructureSizes;
 
         #[method_id(@__retain_semantics New newAccelerationStructureWithSize:)]
         pub fn newAccelerationStructureWithSize(

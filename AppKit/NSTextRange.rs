@@ -10,7 +10,10 @@ extern_protocol!(
 
     unsafe impl ProtocolType for NSTextLocation {
         #[method(compare:)]
-        pub unsafe fn compare(&self, location: &AppKit::NSTextLocation) -> NSComparisonResult;
+        pub unsafe fn compare(
+            &self,
+            location: &AppKit::NSTextLocation,
+        ) -> Foundation::NSComparisonResult;
     }
 );
 

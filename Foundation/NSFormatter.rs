@@ -84,9 +84,9 @@ extern_methods!(
         pub unsafe fn isPartialStringValid_proposedSelectedRange_originalString_originalSelectedRange_errorDescription(
             &self,
             partialStringPtr: NonNull<NonNull<Foundation::NSString>>,
-            proposedSelRangePtr: NSRangePointer,
+            proposedSelRangePtr: Foundation::NSRangePointer,
             origString: &Foundation::NSString,
-            origSelRange: NSRange,
+            origSelRange: Foundation::NSRange,
             error: *mut *mut Foundation::NSString,
         ) -> bool;
     }

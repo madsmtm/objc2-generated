@@ -95,7 +95,7 @@ extern_methods!(
         ) -> Option<&'static Class>;
 
         #[method(status)]
-        pub unsafe fn status(&self) -> NSURLHandleStatus;
+        pub unsafe fn status(&self) -> Foundation::NSURLHandleStatus;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other failureReason)]

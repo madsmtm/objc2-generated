@@ -18,7 +18,7 @@ typed_extensible_enum!(
 pub type NSProgressUnpublishingHandler = *mut Block<(), ()>;
 
 pub type NSProgressPublishingHandler =
-    *mut Block<(NonNull<Foundation::NSProgress>,), NSProgressUnpublishingHandler>;
+    *mut Block<(NonNull<Foundation::NSProgress>,), Foundation::NSProgressUnpublishingHandler>;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -256,7 +256,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other addSubscriberForFileURL:withPublishingHandler:)]
         pub unsafe fn addSubscriberForFileURL_withPublishingHandler(
             url: &Foundation::NSURL,
-            publishingHandler: NSProgressPublishingHandler,
+            publishingHandler: Foundation::NSProgressPublishingHandler,
         ) -> Id<Object, Shared>;
 
         #[method(removeSubscriber:)]

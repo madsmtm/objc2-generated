@@ -38,10 +38,10 @@ extern_methods!(
         );
 
         #[method(unitStyle)]
-        pub unsafe fn unitStyle(&self) -> NSFormattingUnitStyle;
+        pub unsafe fn unitStyle(&self) -> Foundation::NSFormattingUnitStyle;
 
         #[method(setUnitStyle:)]
-        pub unsafe fn setUnitStyle(&self, unitStyle: NSFormattingUnitStyle);
+        pub unsafe fn setUnitStyle(&self, unitStyle: Foundation::NSFormattingUnitStyle);
 
         #[method(isForFoodEnergyUse)]
         pub unsafe fn isForFoodEnergyUse(&self) -> bool;
@@ -54,7 +54,7 @@ extern_methods!(
         pub unsafe fn stringFromValue_unit(
             &self,
             value: c_double,
-            unit: NSEnergyFormatterUnit,
+            unit: Foundation::NSEnergyFormatterUnit,
         ) -> Id<Foundation::NSString, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -69,7 +69,7 @@ extern_methods!(
         pub unsafe fn unitStringFromValue_unit(
             &self,
             value: c_double,
-            unit: NSEnergyFormatterUnit,
+            unit: Foundation::NSEnergyFormatterUnit,
         ) -> Id<Foundation::NSString, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -77,7 +77,7 @@ extern_methods!(
         pub unsafe fn unitStringFromJoules_usedUnit(
             &self,
             numberInJoules: c_double,
-            unitp: *mut NSEnergyFormatterUnit,
+            unitp: *mut Foundation::NSEnergyFormatterUnit,
         ) -> Id<Foundation::NSString, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]

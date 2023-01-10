@@ -34,20 +34,20 @@ ns_enum!(
 
 extern_struct!(
     pub struct MTLTextureSwizzleChannels {
-        pub red: MTLTextureSwizzle,
-        pub green: MTLTextureSwizzle,
-        pub blue: MTLTextureSwizzle,
-        pub alpha: MTLTextureSwizzle,
+        pub red: Metal::MTLTextureSwizzle,
+        pub green: Metal::MTLTextureSwizzle,
+        pub blue: Metal::MTLTextureSwizzle,
+        pub alpha: Metal::MTLTextureSwizzle,
     }
 );
 
 inline_fn!(
     pub unsafe fn MTLTextureSwizzleChannelsMake(
-        r: MTLTextureSwizzle,
-        g: MTLTextureSwizzle,
-        b: MTLTextureSwizzle,
-        a: MTLTextureSwizzle,
-    ) -> MTLTextureSwizzleChannels {
+        r: Metal::MTLTextureSwizzle,
+        g: Metal::MTLTextureSwizzle,
+        b: Metal::MTLTextureSwizzle,
+        a: Metal::MTLTextureSwizzle,
+    ) -> Metal::MTLTextureSwizzleChannels {
         todo!()
     }
 );
@@ -98,7 +98,7 @@ extern_methods!(
     unsafe impl MTLTextureDescriptor {
         #[method_id(@__retain_semantics Other texture2DDescriptorWithPixelFormat:width:height:mipmapped:)]
         pub unsafe fn texture2DDescriptorWithPixelFormat_width_height_mipmapped(
-            pixelFormat: MTLPixelFormat,
+            pixelFormat: Metal::MTLPixelFormat,
             width: NSUInteger,
             height: NSUInteger,
             mipmapped: bool,
@@ -106,30 +106,30 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other textureCubeDescriptorWithPixelFormat:size:mipmapped:)]
         pub unsafe fn textureCubeDescriptorWithPixelFormat_size_mipmapped(
-            pixelFormat: MTLPixelFormat,
+            pixelFormat: Metal::MTLPixelFormat,
             size: NSUInteger,
             mipmapped: bool,
         ) -> Id<Metal::MTLTextureDescriptor, Shared>;
 
         #[method_id(@__retain_semantics Other textureBufferDescriptorWithPixelFormat:width:resourceOptions:usage:)]
         pub unsafe fn textureBufferDescriptorWithPixelFormat_width_resourceOptions_usage(
-            pixelFormat: MTLPixelFormat,
+            pixelFormat: Metal::MTLPixelFormat,
             width: NSUInteger,
-            resourceOptions: MTLResourceOptions,
-            usage: MTLTextureUsage,
+            resourceOptions: Metal::MTLResourceOptions,
+            usage: Metal::MTLTextureUsage,
         ) -> Id<Metal::MTLTextureDescriptor, Shared>;
 
         #[method(textureType)]
-        pub fn textureType(&self) -> MTLTextureType;
+        pub fn textureType(&self) -> Metal::MTLTextureType;
 
         #[method(setTextureType:)]
-        pub fn setTextureType(&self, textureType: MTLTextureType);
+        pub fn setTextureType(&self, textureType: Metal::MTLTextureType);
 
         #[method(pixelFormat)]
-        pub fn pixelFormat(&self) -> MTLPixelFormat;
+        pub fn pixelFormat(&self) -> Metal::MTLPixelFormat;
 
         #[method(setPixelFormat:)]
-        pub fn setPixelFormat(&self, pixelFormat: MTLPixelFormat);
+        pub fn setPixelFormat(&self, pixelFormat: Metal::MTLPixelFormat);
 
         #[method(width)]
         pub fn width(&self) -> NSUInteger;
@@ -168,34 +168,34 @@ extern_methods!(
         pub unsafe fn setArrayLength(&self, arrayLength: NSUInteger);
 
         #[method(resourceOptions)]
-        pub fn resourceOptions(&self) -> MTLResourceOptions;
+        pub fn resourceOptions(&self) -> Metal::MTLResourceOptions;
 
         #[method(setResourceOptions:)]
-        pub fn setResourceOptions(&self, resourceOptions: MTLResourceOptions);
+        pub fn setResourceOptions(&self, resourceOptions: Metal::MTLResourceOptions);
 
         #[method(cpuCacheMode)]
-        pub fn cpuCacheMode(&self) -> MTLCPUCacheMode;
+        pub fn cpuCacheMode(&self) -> Metal::MTLCPUCacheMode;
 
         #[method(setCpuCacheMode:)]
-        pub fn setCpuCacheMode(&self, cpuCacheMode: MTLCPUCacheMode);
+        pub fn setCpuCacheMode(&self, cpuCacheMode: Metal::MTLCPUCacheMode);
 
         #[method(storageMode)]
-        pub fn storageMode(&self) -> MTLStorageMode;
+        pub fn storageMode(&self) -> Metal::MTLStorageMode;
 
         #[method(setStorageMode:)]
-        pub fn setStorageMode(&self, storageMode: MTLStorageMode);
+        pub fn setStorageMode(&self, storageMode: Metal::MTLStorageMode);
 
         #[method(hazardTrackingMode)]
-        pub fn hazardTrackingMode(&self) -> MTLHazardTrackingMode;
+        pub fn hazardTrackingMode(&self) -> Metal::MTLHazardTrackingMode;
 
         #[method(setHazardTrackingMode:)]
-        pub fn setHazardTrackingMode(&self, hazardTrackingMode: MTLHazardTrackingMode);
+        pub fn setHazardTrackingMode(&self, hazardTrackingMode: Metal::MTLHazardTrackingMode);
 
         #[method(usage)]
-        pub fn usage(&self) -> MTLTextureUsage;
+        pub fn usage(&self) -> Metal::MTLTextureUsage;
 
         #[method(setUsage:)]
-        pub fn setUsage(&self, usage: MTLTextureUsage);
+        pub fn setUsage(&self, usage: Metal::MTLTextureUsage);
 
         #[method(allowGPUOptimizedContents)]
         pub fn allowGPUOptimizedContents(&self) -> bool;
@@ -204,10 +204,10 @@ extern_methods!(
         pub fn setAllowGPUOptimizedContents(&self, allowGPUOptimizedContents: bool);
 
         #[method(swizzle)]
-        pub fn swizzle(&self) -> MTLTextureSwizzleChannels;
+        pub fn swizzle(&self) -> Metal::MTLTextureSwizzleChannels;
 
         #[method(setSwizzle:)]
-        pub fn setSwizzle(&self, swizzle: MTLTextureSwizzleChannels);
+        pub fn setSwizzle(&self, swizzle: Metal::MTLTextureSwizzleChannels);
     }
 );
 
@@ -240,10 +240,10 @@ extern_protocol!(
         pub fn iosurfacePlane(&self) -> NSUInteger;
 
         #[method(textureType)]
-        pub fn textureType(&self) -> MTLTextureType;
+        pub fn textureType(&self) -> Metal::MTLTextureType;
 
         #[method(pixelFormat)]
-        pub fn pixelFormat(&self) -> MTLPixelFormat;
+        pub fn pixelFormat(&self) -> Metal::MTLPixelFormat;
 
         #[method(width)]
         pub fn width(&self) -> NSUInteger;
@@ -264,7 +264,7 @@ extern_protocol!(
         pub fn arrayLength(&self) -> NSUInteger;
 
         #[method(usage)]
-        pub fn usage(&self) -> MTLTextureUsage;
+        pub fn usage(&self) -> Metal::MTLTextureUsage;
 
         #[method(isShareable)]
         pub fn isShareable(&self) -> bool;
@@ -293,7 +293,7 @@ extern_protocol!(
             pixelBytes: NonNull<c_void>,
             bytesPerRow: NSUInteger,
             bytesPerImage: NSUInteger,
-            region: MTLRegion,
+            region: Metal::MTLRegion,
             level: NSUInteger,
             slice: NSUInteger,
         );
@@ -301,7 +301,7 @@ extern_protocol!(
         #[method(replaceRegion:mipmapLevel:slice:withBytes:bytesPerRow:bytesPerImage:)]
         pub unsafe fn replaceRegion_mipmapLevel_slice_withBytes_bytesPerRow_bytesPerImage(
             &self,
-            region: MTLRegion,
+            region: Metal::MTLRegion,
             level: NSUInteger,
             slice: NSUInteger,
             pixelBytes: NonNull<c_void>,
@@ -314,14 +314,14 @@ extern_protocol!(
             &self,
             pixelBytes: NonNull<c_void>,
             bytesPerRow: NSUInteger,
-            region: MTLRegion,
+            region: Metal::MTLRegion,
             level: NSUInteger,
         );
 
         #[method(replaceRegion:mipmapLevel:withBytes:bytesPerRow:)]
         pub unsafe fn replaceRegion_mipmapLevel_withBytes_bytesPerRow(
             &self,
-            region: MTLRegion,
+            region: Metal::MTLRegion,
             level: NSUInteger,
             pixelBytes: NonNull<c_void>,
             bytesPerRow: NSUInteger,
@@ -330,16 +330,16 @@ extern_protocol!(
         #[method_id(@__retain_semantics New newTextureViewWithPixelFormat:)]
         pub fn newTextureViewWithPixelFormat(
             &self,
-            pixelFormat: MTLPixelFormat,
+            pixelFormat: Metal::MTLPixelFormat,
         ) -> Option<Id<Metal::MTLTexture, Shared>>;
 
         #[method_id(@__retain_semantics New newTextureViewWithPixelFormat:textureType:levels:slices:)]
         pub unsafe fn newTextureViewWithPixelFormat_textureType_levels_slices(
             &self,
-            pixelFormat: MTLPixelFormat,
-            textureType: MTLTextureType,
-            levelRange: NSRange,
-            sliceRange: NSRange,
+            pixelFormat: Metal::MTLPixelFormat,
+            textureType: Metal::MTLTextureType,
+            levelRange: Foundation::NSRange,
+            sliceRange: Foundation::NSRange,
         ) -> Option<Id<Metal::MTLTexture, Shared>>;
 
         #[method_id(@__retain_semantics New newSharedTextureHandle)]
@@ -355,16 +355,16 @@ extern_protocol!(
         ) -> Option<Id<Metal::MTLTexture, Shared>>;
 
         #[method(swizzle)]
-        pub fn swizzle(&self) -> MTLTextureSwizzleChannels;
+        pub fn swizzle(&self) -> Metal::MTLTextureSwizzleChannels;
 
         #[method_id(@__retain_semantics New newTextureViewWithPixelFormat:textureType:levels:slices:swizzle:)]
         pub unsafe fn newTextureViewWithPixelFormat_textureType_levels_slices_swizzle(
             &self,
-            pixelFormat: MTLPixelFormat,
-            textureType: MTLTextureType,
-            levelRange: NSRange,
-            sliceRange: NSRange,
-            swizzle: MTLTextureSwizzleChannels,
+            pixelFormat: Metal::MTLPixelFormat,
+            textureType: Metal::MTLTextureType,
+            levelRange: Foundation::NSRange,
+            sliceRange: Foundation::NSRange,
+            swizzle: Metal::MTLTextureSwizzleChannels,
         ) -> Option<Id<Metal::MTLTexture, Shared>>;
     }
 );

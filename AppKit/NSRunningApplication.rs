@@ -50,7 +50,7 @@ extern_methods!(
         pub unsafe fn ownsMenuBar(&self) -> bool;
 
         #[method(activationPolicy)]
-        pub unsafe fn activationPolicy(&self) -> NSApplicationActivationPolicy;
+        pub unsafe fn activationPolicy(&self) -> AppKit::NSApplicationActivationPolicy;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedName)]
@@ -86,7 +86,10 @@ extern_methods!(
         pub unsafe fn unhide(&self) -> bool;
 
         #[method(activateWithOptions:)]
-        pub unsafe fn activateWithOptions(&self, options: NSApplicationActivationOptions) -> bool;
+        pub unsafe fn activateWithOptions(
+            &self,
+            options: AppKit::NSApplicationActivationOptions,
+        ) -> bool;
 
         #[method(terminate)]
         pub unsafe fn terminate(&self) -> bool;

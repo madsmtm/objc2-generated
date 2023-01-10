@@ -65,7 +65,7 @@ extern_methods!(
         pub unsafe fn popUpMenuPositioningItem_atLocation_inView(
             &self,
             item: Option<&AppKit::NSMenuItem>,
-            location: NSPoint,
+            location: Foundation::NSPoint,
             view: Option<&AppKit::NSView>,
         ) -> bool;
 
@@ -207,7 +207,7 @@ extern_methods!(
         pub unsafe fn setDelegate(&self, delegate: Option<&AppKit::NSMenuDelegate>);
 
         #[method(menuBarHeight)]
-        pub unsafe fn menuBarHeight(&self) -> CGFloat;
+        pub unsafe fn menuBarHeight(&self) -> CoreGraphics::CGFloat;
 
         #[method(cancelTracking)]
         pub unsafe fn cancelTracking(&self);
@@ -220,13 +220,13 @@ extern_methods!(
         pub unsafe fn highlightedItem(&self) -> Option<Id<AppKit::NSMenuItem, Shared>>;
 
         #[method(minimumWidth)]
-        pub unsafe fn minimumWidth(&self) -> CGFloat;
+        pub unsafe fn minimumWidth(&self) -> CoreGraphics::CGFloat;
 
         #[method(setMinimumWidth:)]
-        pub unsafe fn setMinimumWidth(&self, minimumWidth: CGFloat);
+        pub unsafe fn setMinimumWidth(&self, minimumWidth: CoreGraphics::CGFloat);
 
         #[method(size)]
-        pub unsafe fn size(&self) -> NSSize;
+        pub unsafe fn size(&self) -> Foundation::NSSize;
 
         #[cfg(feature = "AppKit_NSFont")]
         #[method_id(@__retain_semantics Other font)]
@@ -249,12 +249,13 @@ extern_methods!(
         pub unsafe fn setShowsStateColumn(&self, showsStateColumn: bool);
 
         #[method(userInterfaceLayoutDirection)]
-        pub unsafe fn userInterfaceLayoutDirection(&self) -> NSUserInterfaceLayoutDirection;
+        pub unsafe fn userInterfaceLayoutDirection(&self)
+            -> AppKit::NSUserInterfaceLayoutDirection;
 
         #[method(setUserInterfaceLayoutDirection:)]
         pub unsafe fn setUserInterfaceLayoutDirection(
             &self,
-            userInterfaceLayoutDirection: NSUserInterfaceLayoutDirection,
+            userInterfaceLayoutDirection: AppKit::NSUserInterfaceLayoutDirection,
         );
     }
 );
@@ -321,7 +322,7 @@ extern_protocol!(
             &self,
             menu: &AppKit::NSMenu,
             screen: Option<&AppKit::NSScreen>,
-        ) -> NSRect;
+        ) -> Foundation::NSRect;
     }
 );
 
@@ -342,7 +343,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSMenu")]
     unsafe impl NSMenu {
         #[method(propertiesToUpdate)]
-        pub unsafe fn propertiesToUpdate(&self) -> NSMenuProperties;
+        pub unsafe fn propertiesToUpdate(&self) -> AppKit::NSMenuProperties;
     }
 );
 
@@ -383,10 +384,10 @@ extern_methods!(
         pub unsafe fn tearOffMenuRepresentation(&self) -> Option<Id<Object, Shared>>;
 
         #[method(menuZone)]
-        pub unsafe fn menuZone() -> *mut NSZone;
+        pub unsafe fn menuZone() -> *mut Foundation::NSZone;
 
         #[method(setMenuZone:)]
-        pub unsafe fn setMenuZone(zone: *mut NSZone);
+        pub unsafe fn setMenuZone(zone: *mut Foundation::NSZone);
 
         #[method_id(@__retain_semantics Other attachedMenu)]
         pub unsafe fn attachedMenu(&self) -> Option<Id<AppKit::NSMenu, Shared>>;
@@ -398,7 +399,10 @@ extern_methods!(
         pub unsafe fn sizeToFit(&self);
 
         #[method(locationForSubmenu:)]
-        pub unsafe fn locationForSubmenu(&self, submenu: Option<&AppKit::NSMenu>) -> NSPoint;
+        pub unsafe fn locationForSubmenu(
+            &self,
+            submenu: Option<&AppKit::NSMenu>,
+        ) -> Foundation::NSPoint;
 
         #[method(menuChangedMessagesEnabled)]
         pub unsafe fn menuChangedMessagesEnabled(&self) -> bool;

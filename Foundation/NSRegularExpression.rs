@@ -32,7 +32,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other regularExpressionWithPattern:options:error:_)]
         pub unsafe fn regularExpressionWithPattern_options_error(
             pattern: &Foundation::NSString,
-            options: NSRegularExpressionOptions,
+            options: Foundation::NSRegularExpressionOptions,
         ) -> Result<Id<Foundation::NSRegularExpression, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
@@ -40,7 +40,7 @@ extern_methods!(
         pub unsafe fn initWithPattern_options_error(
             this: Option<Allocated<Self>>,
             pattern: &Foundation::NSString,
-            options: NSRegularExpressionOptions,
+            options: Foundation::NSRegularExpressionOptions,
         ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -48,7 +48,7 @@ extern_methods!(
         pub unsafe fn pattern(&self) -> Id<Foundation::NSString, Shared>;
 
         #[method(options)]
-        pub unsafe fn options(&self) -> NSRegularExpressionOptions;
+        pub unsafe fn options(&self) -> Foundation::NSRegularExpressionOptions;
 
         #[method(numberOfCaptureGroups)]
         pub unsafe fn numberOfCaptureGroups(&self) -> NSUInteger;
@@ -95,12 +95,12 @@ extern_methods!(
         pub unsafe fn enumerateMatchesInString_options_range_usingBlock(
             &self,
             string: &Foundation::NSString,
-            options: NSMatchingOptions,
-            range: NSRange,
+            options: Foundation::NSMatchingOptions,
+            range: Foundation::NSRange,
             block: &Block<
                 (
                     *mut Foundation::NSTextCheckingResult,
-                    NSMatchingFlags,
+                    Foundation::NSMatchingFlags,
                     NonNull<Bool>,
                 ),
                 (),
@@ -116,8 +116,8 @@ extern_methods!(
         pub unsafe fn matchesInString_options_range(
             &self,
             string: &Foundation::NSString,
-            options: NSMatchingOptions,
-            range: NSRange,
+            options: Foundation::NSMatchingOptions,
+            range: Foundation::NSRange,
         ) -> Id<Foundation::NSArray<Foundation::NSTextCheckingResult>, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -125,8 +125,8 @@ extern_methods!(
         pub unsafe fn numberOfMatchesInString_options_range(
             &self,
             string: &Foundation::NSString,
-            options: NSMatchingOptions,
-            range: NSRange,
+            options: Foundation::NSMatchingOptions,
+            range: Foundation::NSRange,
         ) -> NSUInteger;
 
         #[cfg(all(
@@ -137,8 +137,8 @@ extern_methods!(
         pub unsafe fn firstMatchInString_options_range(
             &self,
             string: &Foundation::NSString,
-            options: NSMatchingOptions,
-            range: NSRange,
+            options: Foundation::NSMatchingOptions,
+            range: Foundation::NSRange,
         ) -> Option<Id<Foundation::NSTextCheckingResult, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -146,9 +146,9 @@ extern_methods!(
         pub unsafe fn rangeOfFirstMatchInString_options_range(
             &self,
             string: &Foundation::NSString,
-            options: NSMatchingOptions,
-            range: NSRange,
-        ) -> NSRange;
+            options: Foundation::NSMatchingOptions,
+            range: Foundation::NSRange,
+        ) -> Foundation::NSRange;
     }
 );
 
@@ -161,8 +161,8 @@ extern_methods!(
         pub unsafe fn stringByReplacingMatchesInString_options_range_withTemplate(
             &self,
             string: &Foundation::NSString,
-            options: NSMatchingOptions,
-            range: NSRange,
+            options: Foundation::NSMatchingOptions,
+            range: Foundation::NSRange,
             templ: &Foundation::NSString,
         ) -> Id<Foundation::NSString, Shared>;
 
@@ -174,8 +174,8 @@ extern_methods!(
         pub unsafe fn replaceMatchesInString_options_range_withTemplate(
             &self,
             string: &Foundation::NSMutableString,
-            options: NSMatchingOptions,
-            range: NSRange,
+            options: Foundation::NSMatchingOptions,
+            range: Foundation::NSRange,
             templ: &Foundation::NSString,
         ) -> NSUInteger;
 
@@ -216,18 +216,18 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other dataDetectorWithTypes:error:_)]
         pub unsafe fn dataDetectorWithTypes_error(
-            checkingTypes: NSTextCheckingTypes,
+            checkingTypes: Foundation::NSTextCheckingTypes,
         ) -> Result<Id<Foundation::NSDataDetector, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Init initWithTypes:error:_)]
         pub unsafe fn initWithTypes_error(
             this: Option<Allocated<Self>>,
-            checkingTypes: NSTextCheckingTypes,
+            checkingTypes: Foundation::NSTextCheckingTypes,
         ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[method(checkingTypes)]
-        pub unsafe fn checkingTypes(&self) -> NSTextCheckingTypes;
+        pub unsafe fn checkingTypes(&self) -> Foundation::NSTextCheckingTypes;
     }
 );
 
@@ -240,7 +240,7 @@ extern_methods!(
         pub unsafe fn initWithPattern_options_error(
             this: Option<Allocated<Self>>,
             pattern: &Foundation::NSString,
-            options: NSRegularExpressionOptions,
+            options: Foundation::NSRegularExpressionOptions,
         ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
     }
 );

@@ -117,7 +117,7 @@ extern_methods!(
         pub unsafe fn terminationStatus(&self) -> c_int;
 
         #[method(terminationReason)]
-        pub unsafe fn terminationReason(&self) -> NSTaskTerminationReason;
+        pub unsafe fn terminationReason(&self) -> Foundation::NSTaskTerminationReason;
 
         #[method(terminationHandler)]
         pub unsafe fn terminationHandler(&self) -> *mut Block<(NonNull<Foundation::NSTask>,), ()>;
@@ -129,10 +129,10 @@ extern_methods!(
         );
 
         #[method(qualityOfService)]
-        pub unsafe fn qualityOfService(&self) -> NSQualityOfService;
+        pub unsafe fn qualityOfService(&self) -> Foundation::NSQualityOfService;
 
         #[method(setQualityOfService:)]
-        pub unsafe fn setQualityOfService(&self, qualityOfService: NSQualityOfService);
+        pub unsafe fn setQualityOfService(&self, qualityOfService: Foundation::NSQualityOfService);
     }
 );
 

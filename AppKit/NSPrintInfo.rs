@@ -148,46 +148,46 @@ extern_methods!(
         pub unsafe fn setPaperName(&self, paperName: Option<&AppKit::NSPrinterPaperName>);
 
         #[method(paperSize)]
-        pub unsafe fn paperSize(&self) -> NSSize;
+        pub unsafe fn paperSize(&self) -> Foundation::NSSize;
 
         #[method(setPaperSize:)]
-        pub unsafe fn setPaperSize(&self, paperSize: NSSize);
+        pub unsafe fn setPaperSize(&self, paperSize: Foundation::NSSize);
 
         #[method(orientation)]
-        pub unsafe fn orientation(&self) -> NSPaperOrientation;
+        pub unsafe fn orientation(&self) -> AppKit::NSPaperOrientation;
 
         #[method(setOrientation:)]
-        pub unsafe fn setOrientation(&self, orientation: NSPaperOrientation);
+        pub unsafe fn setOrientation(&self, orientation: AppKit::NSPaperOrientation);
 
         #[method(scalingFactor)]
-        pub unsafe fn scalingFactor(&self) -> CGFloat;
+        pub unsafe fn scalingFactor(&self) -> CoreGraphics::CGFloat;
 
         #[method(setScalingFactor:)]
-        pub unsafe fn setScalingFactor(&self, scalingFactor: CGFloat);
+        pub unsafe fn setScalingFactor(&self, scalingFactor: CoreGraphics::CGFloat);
 
         #[method(leftMargin)]
-        pub unsafe fn leftMargin(&self) -> CGFloat;
+        pub unsafe fn leftMargin(&self) -> CoreGraphics::CGFloat;
 
         #[method(setLeftMargin:)]
-        pub unsafe fn setLeftMargin(&self, leftMargin: CGFloat);
+        pub unsafe fn setLeftMargin(&self, leftMargin: CoreGraphics::CGFloat);
 
         #[method(rightMargin)]
-        pub unsafe fn rightMargin(&self) -> CGFloat;
+        pub unsafe fn rightMargin(&self) -> CoreGraphics::CGFloat;
 
         #[method(setRightMargin:)]
-        pub unsafe fn setRightMargin(&self, rightMargin: CGFloat);
+        pub unsafe fn setRightMargin(&self, rightMargin: CoreGraphics::CGFloat);
 
         #[method(topMargin)]
-        pub unsafe fn topMargin(&self) -> CGFloat;
+        pub unsafe fn topMargin(&self) -> CoreGraphics::CGFloat;
 
         #[method(setTopMargin:)]
-        pub unsafe fn setTopMargin(&self, topMargin: CGFloat);
+        pub unsafe fn setTopMargin(&self, topMargin: CoreGraphics::CGFloat);
 
         #[method(bottomMargin)]
-        pub unsafe fn bottomMargin(&self) -> CGFloat;
+        pub unsafe fn bottomMargin(&self) -> CoreGraphics::CGFloat;
 
         #[method(setBottomMargin:)]
-        pub unsafe fn setBottomMargin(&self, bottomMargin: CGFloat);
+        pub unsafe fn setBottomMargin(&self, bottomMargin: CoreGraphics::CGFloat);
 
         #[method(isHorizontallyCentered)]
         pub unsafe fn isHorizontallyCentered(&self) -> bool;
@@ -202,19 +202,22 @@ extern_methods!(
         pub unsafe fn setVerticallyCentered(&self, verticallyCentered: bool);
 
         #[method(horizontalPagination)]
-        pub unsafe fn horizontalPagination(&self) -> NSPrintingPaginationMode;
+        pub unsafe fn horizontalPagination(&self) -> AppKit::NSPrintingPaginationMode;
 
         #[method(setHorizontalPagination:)]
         pub unsafe fn setHorizontalPagination(
             &self,
-            horizontalPagination: NSPrintingPaginationMode,
+            horizontalPagination: AppKit::NSPrintingPaginationMode,
         );
 
         #[method(verticalPagination)]
-        pub unsafe fn verticalPagination(&self) -> NSPrintingPaginationMode;
+        pub unsafe fn verticalPagination(&self) -> AppKit::NSPrintingPaginationMode;
 
         #[method(setVerticalPagination:)]
-        pub unsafe fn setVerticalPagination(&self, verticalPagination: NSPrintingPaginationMode);
+        pub unsafe fn setVerticalPagination(
+            &self,
+            verticalPagination: AppKit::NSPrintingPaginationMode,
+        );
 
         #[method_id(@__retain_semantics Other jobDisposition)]
         pub unsafe fn jobDisposition(&self) -> Id<AppKit::NSPrintJobDispositionValue, Shared>;
@@ -234,7 +237,7 @@ extern_methods!(
         pub unsafe fn setUpPrintOperationDefaultValues(&self);
 
         #[method(imageablePageBounds)]
-        pub unsafe fn imageablePageBounds(&self) -> NSRect;
+        pub unsafe fn imageablePageBounds(&self) -> Foundation::NSRect;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedPaperName)]
@@ -286,7 +289,9 @@ extern_methods!(
         pub unsafe fn setDefaultPrinter(printer: Option<&AppKit::NSPrinter>);
 
         #[method(sizeForPaperName:)]
-        pub unsafe fn sizeForPaperName(name: Option<&AppKit::NSPrinterPaperName>) -> NSSize;
+        pub unsafe fn sizeForPaperName(
+            name: Option<&AppKit::NSPrinterPaperName>,
+        ) -> Foundation::NSSize;
     }
 );
 
@@ -310,8 +315,10 @@ ns_enum!(
     }
 );
 
-extern_static!(NSAutoPagination: NSPrintingPaginationMode = NSPrintingPaginationModeAutomatic);
+extern_static!(
+    NSAutoPagination: AppKit::NSPrintingPaginationMode = NSPrintingPaginationModeAutomatic
+);
 
-extern_static!(NSFitPagination: NSPrintingPaginationMode = NSPrintingPaginationModeFit);
+extern_static!(NSFitPagination: AppKit::NSPrintingPaginationMode = NSPrintingPaginationModeFit);
 
-extern_static!(NSClipPagination: NSPrintingPaginationMode = NSPrintingPaginationModeClip);
+extern_static!(NSClipPagination: AppKit::NSPrintingPaginationMode = NSPrintingPaginationModeClip);

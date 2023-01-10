@@ -19,16 +19,16 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTitlebarAccessoryViewController")]
     unsafe impl NSTitlebarAccessoryViewController {
         #[method(layoutAttribute)]
-        pub unsafe fn layoutAttribute(&self) -> NSLayoutAttribute;
+        pub unsafe fn layoutAttribute(&self) -> AppKit::NSLayoutAttribute;
 
         #[method(setLayoutAttribute:)]
-        pub unsafe fn setLayoutAttribute(&self, layoutAttribute: NSLayoutAttribute);
+        pub unsafe fn setLayoutAttribute(&self, layoutAttribute: AppKit::NSLayoutAttribute);
 
         #[method(fullScreenMinHeight)]
-        pub unsafe fn fullScreenMinHeight(&self) -> CGFloat;
+        pub unsafe fn fullScreenMinHeight(&self) -> CoreGraphics::CGFloat;
 
         #[method(setFullScreenMinHeight:)]
-        pub unsafe fn setFullScreenMinHeight(&self, fullScreenMinHeight: CGFloat);
+        pub unsafe fn setFullScreenMinHeight(&self, fullScreenMinHeight: CoreGraphics::CGFloat);
 
         #[method(isHidden)]
         pub unsafe fn isHidden(&self) -> bool;

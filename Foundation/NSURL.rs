@@ -675,7 +675,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other bookmarkDataWithOptions:includingResourceValuesForKeys:relativeToURL:error:_)]
         pub unsafe fn bookmarkDataWithOptions_includingResourceValuesForKeys_relativeToURL_error(
             &self,
-            options: NSURLBookmarkCreationOptions,
+            options: Foundation::NSURLBookmarkCreationOptions,
             keys: Option<&Foundation::NSArray<Foundation::NSURLResourceKey>>,
             relativeURL: Option<&Foundation::NSURL>,
         ) -> Result<Id<Foundation::NSData, Shared>, Id<Foundation::NSError, Shared>>;
@@ -685,7 +685,7 @@ extern_methods!(
         pub unsafe fn initByResolvingBookmarkData_options_relativeToURL_bookmarkDataIsStale_error(
             this: Option<Allocated<Self>>,
             bookmarkData: &Foundation::NSData,
-            options: NSURLBookmarkResolutionOptions,
+            options: Foundation::NSURLBookmarkResolutionOptions,
             relativeURL: Option<&Foundation::NSURL>,
             isStale: *mut Bool,
         ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
@@ -694,7 +694,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other URLByResolvingBookmarkData:options:relativeToURL:bookmarkDataIsStale:error:_)]
         pub unsafe fn URLByResolvingBookmarkData_options_relativeToURL_bookmarkDataIsStale_error(
             bookmarkData: &Foundation::NSData,
-            options: NSURLBookmarkResolutionOptions,
+            options: Foundation::NSURLBookmarkResolutionOptions,
             relativeURL: Option<&Foundation::NSURL>,
             isStale: *mut Bool,
         ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
@@ -715,7 +715,7 @@ extern_methods!(
         pub unsafe fn writeBookmarkData_toURL_options_error(
             bookmarkData: &Foundation::NSData,
             bookmarkFileURL: &Foundation::NSURL,
-            options: NSURLBookmarkFileCreationOptions,
+            options: Foundation::NSURLBookmarkFileCreationOptions,
         ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
@@ -728,7 +728,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other URLByResolvingAliasFileAtURL:options:error:_)]
         pub unsafe fn URLByResolvingAliasFileAtURL_options_error(
             url: &Foundation::NSURL,
-            options: NSURLBookmarkResolutionOptions,
+            options: Foundation::NSURLBookmarkResolutionOptions,
         ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[method(startAccessingSecurityScopedResource)]
@@ -1005,28 +1005,28 @@ extern_methods!(
         );
 
         #[method(rangeOfScheme)]
-        pub unsafe fn rangeOfScheme(&self) -> NSRange;
+        pub unsafe fn rangeOfScheme(&self) -> Foundation::NSRange;
 
         #[method(rangeOfUser)]
-        pub unsafe fn rangeOfUser(&self) -> NSRange;
+        pub unsafe fn rangeOfUser(&self) -> Foundation::NSRange;
 
         #[method(rangeOfPassword)]
-        pub unsafe fn rangeOfPassword(&self) -> NSRange;
+        pub unsafe fn rangeOfPassword(&self) -> Foundation::NSRange;
 
         #[method(rangeOfHost)]
-        pub unsafe fn rangeOfHost(&self) -> NSRange;
+        pub unsafe fn rangeOfHost(&self) -> Foundation::NSRange;
 
         #[method(rangeOfPort)]
-        pub unsafe fn rangeOfPort(&self) -> NSRange;
+        pub unsafe fn rangeOfPort(&self) -> Foundation::NSRange;
 
         #[method(rangeOfPath)]
-        pub unsafe fn rangeOfPath(&self) -> NSRange;
+        pub unsafe fn rangeOfPath(&self) -> Foundation::NSRange;
 
         #[method(rangeOfQuery)]
-        pub unsafe fn rangeOfQuery(&self) -> NSRange;
+        pub unsafe fn rangeOfQuery(&self) -> Foundation::NSRange;
 
         #[method(rangeOfFragment)]
-        pub unsafe fn rangeOfFragment(&self) -> NSRange;
+        pub unsafe fn rangeOfFragment(&self) -> Foundation::NSRange;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURLQueryItem"))]
         #[method_id(@__retain_semantics Other queryItems)]
@@ -1099,13 +1099,13 @@ extern_methods!(
         #[method_id(@__retain_semantics Other stringByAddingPercentEscapesUsingEncoding:)]
         pub unsafe fn stringByAddingPercentEscapesUsingEncoding(
             &self,
-            enc: NSStringEncoding,
+            enc: Foundation::NSStringEncoding,
         ) -> Option<Id<Foundation::NSString, Shared>>;
 
         #[method_id(@__retain_semantics Other stringByReplacingPercentEscapesUsingEncoding:)]
         pub unsafe fn stringByReplacingPercentEscapesUsingEncoding(
             &self,
-            enc: NSStringEncoding,
+            enc: Foundation::NSStringEncoding,
         ) -> Option<Id<Foundation::NSString, Shared>>;
     }
 );

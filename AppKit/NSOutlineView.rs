@@ -105,10 +105,10 @@ extern_methods!(
         pub unsafe fn isItemExpanded(&self, item: Option<&Object>) -> bool;
 
         #[method(indentationPerLevel)]
-        pub unsafe fn indentationPerLevel(&self) -> CGFloat;
+        pub unsafe fn indentationPerLevel(&self) -> CoreGraphics::CGFloat;
 
         #[method(setIndentationPerLevel:)]
-        pub unsafe fn setIndentationPerLevel(&self, indentationPerLevel: CGFloat);
+        pub unsafe fn setIndentationPerLevel(&self, indentationPerLevel: CoreGraphics::CGFloat);
 
         #[method(indentationMarkerFollowsCell)]
         pub unsafe fn indentationMarkerFollowsCell(&self) -> bool;
@@ -123,7 +123,7 @@ extern_methods!(
         pub unsafe fn setAutoresizesOutlineColumn(&self, autoresizesOutlineColumn: bool);
 
         #[method(frameOfOutlineCellAtRow:)]
-        pub unsafe fn frameOfOutlineCellAtRow(&self, row: NSInteger) -> NSRect;
+        pub unsafe fn frameOfOutlineCellAtRow(&self, row: NSInteger) -> Foundation::NSRect;
 
         #[method(setDropItem:dropChildIndex:)]
         pub unsafe fn setDropItem_dropChildIndex(&self, item: Option<&Object>, index: NSInteger);
@@ -143,7 +143,7 @@ extern_methods!(
             &self,
             indexes: &Foundation::NSIndexSet,
             parent: Option<&Object>,
-            animationOptions: NSTableViewAnimationOptions,
+            animationOptions: AppKit::NSTableViewAnimationOptions,
         );
 
         #[cfg(feature = "Foundation_NSIndexSet")]
@@ -152,7 +152,7 @@ extern_methods!(
             &self,
             indexes: &Foundation::NSIndexSet,
             parent: Option<&Object>,
-            animationOptions: NSTableViewAnimationOptions,
+            animationOptions: AppKit::NSTableViewAnimationOptions,
         );
 
         #[method(moveItemAtIndex:inParent:toIndex:inParent:)]
@@ -169,7 +169,7 @@ extern_methods!(
         pub unsafe fn insertRowsAtIndexes_withAnimation(
             &self,
             indexes: &Foundation::NSIndexSet,
-            animationOptions: NSTableViewAnimationOptions,
+            animationOptions: AppKit::NSTableViewAnimationOptions,
         );
 
         #[cfg(feature = "Foundation_NSIndexSet")]
@@ -177,19 +177,20 @@ extern_methods!(
         pub unsafe fn removeRowsAtIndexes_withAnimation(
             &self,
             indexes: &Foundation::NSIndexSet,
-            animationOptions: NSTableViewAnimationOptions,
+            animationOptions: AppKit::NSTableViewAnimationOptions,
         );
 
         #[method(moveRowAtIndex:toIndex:)]
         pub unsafe fn moveRowAtIndex_toIndex(&self, oldIndex: NSInteger, newIndex: NSInteger);
 
         #[method(userInterfaceLayoutDirection)]
-        pub unsafe fn userInterfaceLayoutDirection(&self) -> NSUserInterfaceLayoutDirection;
+        pub unsafe fn userInterfaceLayoutDirection(&self)
+            -> AppKit::NSUserInterfaceLayoutDirection;
 
         #[method(setUserInterfaceLayoutDirection:)]
         pub unsafe fn setUserInterfaceLayoutDirection(
             &self,
-            userInterfaceLayoutDirection: NSUserInterfaceLayoutDirection,
+            userInterfaceLayoutDirection: AppKit::NSUserInterfaceLayoutDirection,
         );
 
         #[method(stronglyReferencesItems)]
@@ -286,7 +287,7 @@ extern_protocol!(
             &self,
             outlineView: &AppKit::NSOutlineView,
             session: &AppKit::NSDraggingSession,
-            screenPoint: NSPoint,
+            screenPoint: Foundation::NSPoint,
             draggedItems: &Foundation::NSArray,
         );
 
@@ -296,8 +297,8 @@ extern_protocol!(
             &self,
             outlineView: &AppKit::NSOutlineView,
             session: &AppKit::NSDraggingSession,
-            screenPoint: NSPoint,
-            operation: NSDragOperation,
+            screenPoint: Foundation::NSPoint,
+            operation: AppKit::NSDragOperation,
         );
 
         #[optional]
@@ -325,7 +326,7 @@ extern_protocol!(
             info: &AppKit::NSDraggingInfo,
             item: Option<&Object>,
             index: NSInteger,
-        ) -> NSDragOperation;
+        ) -> AppKit::NSDragOperation;
 
         #[optional]
         #[method(outlineView:acceptDrop:item:childIndex:)]
@@ -467,10 +468,10 @@ extern_protocol!(
             &self,
             outlineView: &AppKit::NSOutlineView,
             cell: &AppKit::NSCell,
-            rect: NSRectPointer,
+            rect: Foundation::NSRectPointer,
             tableColumn: Option<&AppKit::NSTableColumn>,
             item: &Object,
-            mouseLocation: NSPoint,
+            mouseLocation: Foundation::NSPoint,
         ) -> Id<Foundation::NSString, Shared>;
 
         #[optional]
@@ -479,7 +480,7 @@ extern_protocol!(
             &self,
             outlineView: &AppKit::NSOutlineView,
             item: &Object,
-        ) -> CGFloat;
+        ) -> CoreGraphics::CGFloat;
 
         #[optional]
         #[method_id(@__retain_semantics Other outlineView:tintConfigurationForItem:)]
@@ -585,7 +586,7 @@ extern_protocol!(
             &self,
             outlineView: &AppKit::NSOutlineView,
             column: NSInteger,
-        ) -> CGFloat;
+        ) -> CoreGraphics::CGFloat;
 
         #[optional]
         #[method(outlineView:shouldReorderColumn:toColumn:)]
@@ -675,7 +676,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frameRect: Foundation::NSRect,
         ) -> Id<Self, Shared>;
     }
 );

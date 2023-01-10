@@ -69,10 +69,10 @@ extern_methods!(
         ) -> Id<Self, Shared>;
 
         #[method(datePickerStyle)]
-        pub unsafe fn datePickerStyle(&self) -> NSDatePickerStyle;
+        pub unsafe fn datePickerStyle(&self) -> AppKit::NSDatePickerStyle;
 
         #[method(setDatePickerStyle:)]
-        pub unsafe fn setDatePickerStyle(&self, datePickerStyle: NSDatePickerStyle);
+        pub unsafe fn setDatePickerStyle(&self, datePickerStyle: AppKit::NSDatePickerStyle);
 
         #[method(drawsBackground)]
         pub unsafe fn drawsBackground(&self) -> bool;
@@ -97,16 +97,19 @@ extern_methods!(
         pub unsafe fn setTextColor(&self, textColor: &AppKit::NSColor);
 
         #[method(datePickerMode)]
-        pub unsafe fn datePickerMode(&self) -> NSDatePickerMode;
+        pub unsafe fn datePickerMode(&self) -> AppKit::NSDatePickerMode;
 
         #[method(setDatePickerMode:)]
-        pub unsafe fn setDatePickerMode(&self, datePickerMode: NSDatePickerMode);
+        pub unsafe fn setDatePickerMode(&self, datePickerMode: AppKit::NSDatePickerMode);
 
         #[method(datePickerElements)]
-        pub unsafe fn datePickerElements(&self) -> NSDatePickerElementFlags;
+        pub unsafe fn datePickerElements(&self) -> AppKit::NSDatePickerElementFlags;
 
         #[method(setDatePickerElements:)]
-        pub unsafe fn setDatePickerElements(&self, datePickerElements: NSDatePickerElementFlags);
+        pub unsafe fn setDatePickerElements(
+            &self,
+            datePickerElements: AppKit::NSDatePickerElementFlags,
+        );
 
         #[cfg(feature = "Foundation_NSCalendar")]
         #[method_id(@__retain_semantics Other calendar)]
@@ -141,10 +144,10 @@ extern_methods!(
         pub unsafe fn setDateValue(&self, dateValue: &Foundation::NSDate);
 
         #[method(timeInterval)]
-        pub unsafe fn timeInterval(&self) -> NSTimeInterval;
+        pub unsafe fn timeInterval(&self) -> Foundation::NSTimeInterval;
 
         #[method(setTimeInterval:)]
-        pub unsafe fn setTimeInterval(&self, timeInterval: NSTimeInterval);
+        pub unsafe fn setTimeInterval(&self, timeInterval: Foundation::NSTimeInterval);
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other minDate)]
@@ -180,45 +183,52 @@ extern_protocol!(
             &self,
             datePickerCell: &AppKit::NSDatePickerCell,
             proposedDateValue: NonNull<NonNull<Foundation::NSDate>>,
-            proposedTimeInterval: *mut NSTimeInterval,
+            proposedTimeInterval: *mut Foundation::NSTimeInterval,
         );
     }
 );
 
 extern_static!(
-    NSTextFieldAndStepperDatePickerStyle: NSDatePickerStyle = NSDatePickerStyleTextFieldAndStepper
+    NSTextFieldAndStepperDatePickerStyle: AppKit::NSDatePickerStyle =
+        NSDatePickerStyleTextFieldAndStepper
 );
 
 extern_static!(
-    NSClockAndCalendarDatePickerStyle: NSDatePickerStyle = NSDatePickerStyleClockAndCalendar
+    NSClockAndCalendarDatePickerStyle: AppKit::NSDatePickerStyle =
+        NSDatePickerStyleClockAndCalendar
 );
 
-extern_static!(NSTextFieldDatePickerStyle: NSDatePickerStyle = NSDatePickerStyleTextField);
+extern_static!(NSTextFieldDatePickerStyle: AppKit::NSDatePickerStyle = NSDatePickerStyleTextField);
 
-extern_static!(NSSingleDateMode: NSDatePickerMode = NSDatePickerModeSingle);
+extern_static!(NSSingleDateMode: AppKit::NSDatePickerMode = NSDatePickerModeSingle);
 
-extern_static!(NSRangeDateMode: NSDatePickerMode = NSDatePickerModeRange);
+extern_static!(NSRangeDateMode: AppKit::NSDatePickerMode = NSDatePickerModeRange);
 
 extern_static!(
-    NSHourMinuteDatePickerElementFlag: NSDatePickerElementFlags = NSDatePickerElementFlagHourMinute
+    NSHourMinuteDatePickerElementFlag: AppKit::NSDatePickerElementFlags =
+        NSDatePickerElementFlagHourMinute
 );
 
 extern_static!(
-    NSHourMinuteSecondDatePickerElementFlag: NSDatePickerElementFlags =
+    NSHourMinuteSecondDatePickerElementFlag: AppKit::NSDatePickerElementFlags =
         NSDatePickerElementFlagHourMinuteSecond
 );
 
 extern_static!(
-    NSTimeZoneDatePickerElementFlag: NSDatePickerElementFlags = NSDatePickerElementFlagTimeZone
+    NSTimeZoneDatePickerElementFlag: AppKit::NSDatePickerElementFlags =
+        NSDatePickerElementFlagTimeZone
 );
 
 extern_static!(
-    NSYearMonthDatePickerElementFlag: NSDatePickerElementFlags = NSDatePickerElementFlagYearMonth
+    NSYearMonthDatePickerElementFlag: AppKit::NSDatePickerElementFlags =
+        NSDatePickerElementFlagYearMonth
 );
 
 extern_static!(
-    NSYearMonthDayDatePickerElementFlag: NSDatePickerElementFlags =
+    NSYearMonthDayDatePickerElementFlag: AppKit::NSDatePickerElementFlags =
         NSDatePickerElementFlagYearMonthDay
 );
 
-extern_static!(NSEraDatePickerElementFlag: NSDatePickerElementFlags = NSDatePickerElementFlagEra);
+extern_static!(
+    NSEraDatePickerElementFlag: AppKit::NSDatePickerElementFlags = NSDatePickerElementFlagEra
+);

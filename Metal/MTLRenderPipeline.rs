@@ -111,10 +111,10 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLRenderPipelineColorAttachmentDescriptor")]
     unsafe impl MTLRenderPipelineColorAttachmentDescriptor {
         #[method(pixelFormat)]
-        pub fn pixelFormat(&self) -> MTLPixelFormat;
+        pub fn pixelFormat(&self) -> Metal::MTLPixelFormat;
 
         #[method(setPixelFormat:)]
-        pub fn setPixelFormat(&self, pixelFormat: MTLPixelFormat);
+        pub fn setPixelFormat(&self, pixelFormat: Metal::MTLPixelFormat);
 
         #[method(isBlendingEnabled)]
         pub fn isBlendingEnabled(&self) -> bool;
@@ -123,46 +123,52 @@ extern_methods!(
         pub fn setBlendingEnabled(&self, blendingEnabled: bool);
 
         #[method(sourceRGBBlendFactor)]
-        pub fn sourceRGBBlendFactor(&self) -> MTLBlendFactor;
+        pub fn sourceRGBBlendFactor(&self) -> Metal::MTLBlendFactor;
 
         #[method(setSourceRGBBlendFactor:)]
-        pub fn setSourceRGBBlendFactor(&self, sourceRGBBlendFactor: MTLBlendFactor);
+        pub fn setSourceRGBBlendFactor(&self, sourceRGBBlendFactor: Metal::MTLBlendFactor);
 
         #[method(destinationRGBBlendFactor)]
-        pub fn destinationRGBBlendFactor(&self) -> MTLBlendFactor;
+        pub fn destinationRGBBlendFactor(&self) -> Metal::MTLBlendFactor;
 
         #[method(setDestinationRGBBlendFactor:)]
-        pub fn setDestinationRGBBlendFactor(&self, destinationRGBBlendFactor: MTLBlendFactor);
+        pub fn setDestinationRGBBlendFactor(
+            &self,
+            destinationRGBBlendFactor: Metal::MTLBlendFactor,
+        );
 
         #[method(rgbBlendOperation)]
-        pub fn rgbBlendOperation(&self) -> MTLBlendOperation;
+        pub fn rgbBlendOperation(&self) -> Metal::MTLBlendOperation;
 
         #[method(setRgbBlendOperation:)]
-        pub fn setRgbBlendOperation(&self, rgbBlendOperation: MTLBlendOperation);
+        pub fn setRgbBlendOperation(&self, rgbBlendOperation: Metal::MTLBlendOperation);
 
         #[method(sourceAlphaBlendFactor)]
-        pub fn sourceAlphaBlendFactor(&self) -> MTLBlendFactor;
+        pub fn sourceAlphaBlendFactor(&self) -> Metal::MTLBlendFactor;
 
         #[method(setSourceAlphaBlendFactor:)]
-        pub fn setSourceAlphaBlendFactor(&self, sourceAlphaBlendFactor: MTLBlendFactor);
+        pub fn setSourceAlphaBlendFactor(&self, sourceAlphaBlendFactor: Metal::MTLBlendFactor);
 
         #[method(destinationAlphaBlendFactor)]
-        pub fn destinationAlphaBlendFactor(&self) -> MTLBlendFactor;
+        pub fn destinationAlphaBlendFactor(&self) -> Metal::MTLBlendFactor;
 
         #[method(setDestinationAlphaBlendFactor:)]
-        pub fn setDestinationAlphaBlendFactor(&self, destinationAlphaBlendFactor: MTLBlendFactor);
+        pub fn setDestinationAlphaBlendFactor(
+            &self,
+            destinationAlphaBlendFactor: Metal::MTLBlendFactor,
+        );
 
         #[method(alphaBlendOperation)]
-        pub fn alphaBlendOperation(&self) -> MTLBlendOperation;
+        pub fn alphaBlendOperation(&self) -> Metal::MTLBlendOperation;
 
         #[method(setAlphaBlendOperation:)]
-        pub fn setAlphaBlendOperation(&self, alphaBlendOperation: MTLBlendOperation);
+        pub fn setAlphaBlendOperation(&self, alphaBlendOperation: Metal::MTLBlendOperation);
 
         #[method(writeMask)]
-        pub fn writeMask(&self) -> MTLColorWriteMask;
+        pub fn writeMask(&self) -> Metal::MTLColorWriteMask;
 
         #[method(setWriteMask:)]
-        pub fn setWriteMask(&self, writeMask: MTLColorWriteMask);
+        pub fn setWriteMask(&self, writeMask: Metal::MTLColorWriteMask);
     }
 );
 
@@ -282,33 +288,39 @@ extern_methods!(
         ) -> Id<Metal::MTLRenderPipelineColorAttachmentDescriptorArray, Shared>;
 
         #[method(depthAttachmentPixelFormat)]
-        pub fn depthAttachmentPixelFormat(&self) -> MTLPixelFormat;
+        pub fn depthAttachmentPixelFormat(&self) -> Metal::MTLPixelFormat;
 
         #[method(setDepthAttachmentPixelFormat:)]
-        pub fn setDepthAttachmentPixelFormat(&self, depthAttachmentPixelFormat: MTLPixelFormat);
+        pub fn setDepthAttachmentPixelFormat(
+            &self,
+            depthAttachmentPixelFormat: Metal::MTLPixelFormat,
+        );
 
         #[method(stencilAttachmentPixelFormat)]
-        pub fn stencilAttachmentPixelFormat(&self) -> MTLPixelFormat;
+        pub fn stencilAttachmentPixelFormat(&self) -> Metal::MTLPixelFormat;
 
         #[method(setStencilAttachmentPixelFormat:)]
-        pub fn setStencilAttachmentPixelFormat(&self, stencilAttachmentPixelFormat: MTLPixelFormat);
+        pub fn setStencilAttachmentPixelFormat(
+            &self,
+            stencilAttachmentPixelFormat: Metal::MTLPixelFormat,
+        );
 
         #[method(inputPrimitiveTopology)]
-        pub fn inputPrimitiveTopology(&self) -> MTLPrimitiveTopologyClass;
+        pub fn inputPrimitiveTopology(&self) -> Metal::MTLPrimitiveTopologyClass;
 
         #[method(setInputPrimitiveTopology:)]
         pub unsafe fn setInputPrimitiveTopology(
             &self,
-            inputPrimitiveTopology: MTLPrimitiveTopologyClass,
+            inputPrimitiveTopology: Metal::MTLPrimitiveTopologyClass,
         );
 
         #[method(tessellationPartitionMode)]
-        pub fn tessellationPartitionMode(&self) -> MTLTessellationPartitionMode;
+        pub fn tessellationPartitionMode(&self) -> Metal::MTLTessellationPartitionMode;
 
         #[method(setTessellationPartitionMode:)]
         pub unsafe fn setTessellationPartitionMode(
             &self,
-            tessellationPartitionMode: MTLTessellationPartitionMode,
+            tessellationPartitionMode: Metal::MTLTessellationPartitionMode,
         );
 
         #[method(maxTessellationFactor)]
@@ -324,37 +336,42 @@ extern_methods!(
         pub fn setTessellationFactorScaleEnabled(&self, tessellationFactorScaleEnabled: bool);
 
         #[method(tessellationFactorFormat)]
-        pub fn tessellationFactorFormat(&self) -> MTLTessellationFactorFormat;
+        pub fn tessellationFactorFormat(&self) -> Metal::MTLTessellationFactorFormat;
 
         #[method(setTessellationFactorFormat:)]
         pub fn setTessellationFactorFormat(
             &self,
-            tessellationFactorFormat: MTLTessellationFactorFormat,
+            tessellationFactorFormat: Metal::MTLTessellationFactorFormat,
         );
 
         #[method(tessellationControlPointIndexType)]
-        pub fn tessellationControlPointIndexType(&self) -> MTLTessellationControlPointIndexType;
+        pub fn tessellationControlPointIndexType(
+            &self,
+        ) -> Metal::MTLTessellationControlPointIndexType;
 
         #[method(setTessellationControlPointIndexType:)]
         pub unsafe fn setTessellationControlPointIndexType(
             &self,
-            tessellationControlPointIndexType: MTLTessellationControlPointIndexType,
+            tessellationControlPointIndexType: Metal::MTLTessellationControlPointIndexType,
         );
 
         #[method(tessellationFactorStepFunction)]
-        pub fn tessellationFactorStepFunction(&self) -> MTLTessellationFactorStepFunction;
+        pub fn tessellationFactorStepFunction(&self) -> Metal::MTLTessellationFactorStepFunction;
 
         #[method(setTessellationFactorStepFunction:)]
         pub fn setTessellationFactorStepFunction(
             &self,
-            tessellationFactorStepFunction: MTLTessellationFactorStepFunction,
+            tessellationFactorStepFunction: Metal::MTLTessellationFactorStepFunction,
         );
 
         #[method(tessellationOutputWindingOrder)]
-        pub fn tessellationOutputWindingOrder(&self) -> MTLWinding;
+        pub fn tessellationOutputWindingOrder(&self) -> Metal::MTLWinding;
 
         #[method(setTessellationOutputWindingOrder:)]
-        pub fn setTessellationOutputWindingOrder(&self, tessellationOutputWindingOrder: MTLWinding);
+        pub fn setTessellationOutputWindingOrder(
+            &self,
+            tessellationOutputWindingOrder: Metal::MTLWinding,
+        );
 
         #[cfg(feature = "Metal_MTLPipelineBufferDescriptorArray")]
         #[method_id(@__retain_semantics Other vertexBuffers)]
@@ -541,7 +558,7 @@ extern_protocol!(
         #[method(imageblockMemoryLengthForDimensions:)]
         pub unsafe fn imageblockMemoryLengthForDimensions(
             &self,
-            imageblockDimensions: MTLSize,
+            imageblockDimensions: Metal::MTLSize,
         ) -> NSUInteger;
 
         #[method(supportIndirectCommandBuffers)]
@@ -551,21 +568,21 @@ extern_protocol!(
         pub unsafe fn functionHandleWithFunction_stage(
             &self,
             function: &Metal::MTLFunction,
-            stage: MTLRenderStages,
+            stage: Metal::MTLRenderStages,
         ) -> Option<Id<Metal::MTLFunctionHandle, Shared>>;
 
         #[method_id(@__retain_semantics New newVisibleFunctionTableWithDescriptor:stage:)]
         pub unsafe fn newVisibleFunctionTableWithDescriptor_stage(
             &self,
             descriptor: &Metal::MTLVisibleFunctionTableDescriptor,
-            stage: MTLRenderStages,
+            stage: Metal::MTLRenderStages,
         ) -> Option<Id<Metal::MTLVisibleFunctionTable, Shared>>;
 
         #[method_id(@__retain_semantics New newIntersectionFunctionTableWithDescriptor:stage:)]
         pub unsafe fn newIntersectionFunctionTableWithDescriptor_stage(
             &self,
             descriptor: &Metal::MTLIntersectionFunctionTableDescriptor,
-            stage: MTLRenderStages,
+            stage: Metal::MTLRenderStages,
         ) -> Option<Id<Metal::MTLIntersectionFunctionTable, Shared>>;
 
         #[method_id(@__retain_semantics New newRenderPipelineStateWithAdditionalBinaryFunctions:error:_)]
@@ -618,10 +635,10 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLTileRenderPipelineColorAttachmentDescriptor")]
     unsafe impl MTLTileRenderPipelineColorAttachmentDescriptor {
         #[method(pixelFormat)]
-        pub unsafe fn pixelFormat(&self) -> MTLPixelFormat;
+        pub unsafe fn pixelFormat(&self) -> Metal::MTLPixelFormat;
 
         #[method(setPixelFormat:)]
-        pub unsafe fn setPixelFormat(&self, pixelFormat: MTLPixelFormat);
+        pub unsafe fn setPixelFormat(&self, pixelFormat: Metal::MTLPixelFormat);
     }
 );
 

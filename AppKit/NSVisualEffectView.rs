@@ -61,25 +61,25 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSVisualEffectView")]
     unsafe impl NSVisualEffectView {
         #[method(material)]
-        pub unsafe fn material(&self) -> NSVisualEffectMaterial;
+        pub unsafe fn material(&self) -> AppKit::NSVisualEffectMaterial;
 
         #[method(setMaterial:)]
-        pub unsafe fn setMaterial(&self, material: NSVisualEffectMaterial);
+        pub unsafe fn setMaterial(&self, material: AppKit::NSVisualEffectMaterial);
 
         #[method(interiorBackgroundStyle)]
-        pub unsafe fn interiorBackgroundStyle(&self) -> NSBackgroundStyle;
+        pub unsafe fn interiorBackgroundStyle(&self) -> AppKit::NSBackgroundStyle;
 
         #[method(blendingMode)]
-        pub unsafe fn blendingMode(&self) -> NSVisualEffectBlendingMode;
+        pub unsafe fn blendingMode(&self) -> AppKit::NSVisualEffectBlendingMode;
 
         #[method(setBlendingMode:)]
-        pub unsafe fn setBlendingMode(&self, blendingMode: NSVisualEffectBlendingMode);
+        pub unsafe fn setBlendingMode(&self, blendingMode: AppKit::NSVisualEffectBlendingMode);
 
         #[method(state)]
-        pub unsafe fn state(&self) -> NSVisualEffectState;
+        pub unsafe fn state(&self) -> AppKit::NSVisualEffectState;
 
         #[method(setState:)]
-        pub unsafe fn setState(&self, state: NSVisualEffectState);
+        pub unsafe fn setState(&self, state: AppKit::NSVisualEffectState);
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other maskImage)]
@@ -111,7 +111,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frameRect: Foundation::NSRect,
         ) -> Id<Self, Shared>;
     }
 );

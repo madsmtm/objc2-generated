@@ -28,10 +28,10 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSPathCell")]
     unsafe impl NSPathCell {
         #[method(pathStyle)]
-        pub unsafe fn pathStyle(&self) -> NSPathStyle;
+        pub unsafe fn pathStyle(&self) -> AppKit::NSPathStyle;
 
         #[method(setPathStyle:)]
-        pub unsafe fn setPathStyle(&self, pathStyle: NSPathStyle);
+        pub unsafe fn setPathStyle(&self, pathStyle: AppKit::NSPathStyle);
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other URL)]
@@ -84,16 +84,16 @@ extern_methods!(
         pub unsafe fn rectOfPathComponentCell_withFrame_inView(
             &self,
             cell: &AppKit::NSPathComponentCell,
-            frame: NSRect,
+            frame: Foundation::NSRect,
             view: &AppKit::NSView,
-        ) -> NSRect;
+        ) -> Foundation::NSRect;
 
         #[cfg(all(feature = "AppKit_NSPathComponentCell", feature = "AppKit_NSView"))]
         #[method_id(@__retain_semantics Other pathComponentCellAtPoint:withFrame:inView:)]
         pub unsafe fn pathComponentCellAtPoint_withFrame_inView(
             &self,
-            point: NSPoint,
-            frame: NSRect,
+            point: Foundation::NSPoint,
+            frame: Foundation::NSRect,
             view: &AppKit::NSView,
         ) -> Option<Id<AppKit::NSPathComponentCell, Shared>>;
 
@@ -108,7 +108,7 @@ extern_methods!(
         pub unsafe fn mouseEntered_withFrame_inView(
             &self,
             event: &AppKit::NSEvent,
-            frame: NSRect,
+            frame: Foundation::NSRect,
             view: &AppKit::NSView,
         );
 
@@ -117,7 +117,7 @@ extern_methods!(
         pub unsafe fn mouseExited_withFrame_inView(
             &self,
             event: &AppKit::NSEvent,
-            frame: NSRect,
+            frame: Foundation::NSRect,
             view: &AppKit::NSView,
         );
 

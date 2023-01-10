@@ -13,7 +13,7 @@ extern_struct!(
 );
 
 inline_fn!(
-    pub unsafe fn MTLOriginMake(x: NSUInteger, y: NSUInteger, z: NSUInteger) -> MTLOrigin {
+    pub unsafe fn MTLOriginMake(x: NSUInteger, y: NSUInteger, z: NSUInteger) -> Metal::MTLOrigin {
         todo!()
     }
 );
@@ -27,20 +27,24 @@ extern_struct!(
 );
 
 inline_fn!(
-    pub unsafe fn MTLSizeMake(width: NSUInteger, height: NSUInteger, depth: NSUInteger) -> MTLSize {
+    pub unsafe fn MTLSizeMake(
+        width: NSUInteger,
+        height: NSUInteger,
+        depth: NSUInteger,
+    ) -> Metal::MTLSize {
         todo!()
     }
 );
 
 extern_struct!(
     pub struct MTLRegion {
-        pub origin: MTLOrigin,
-        pub size: MTLSize,
+        pub origin: Metal::MTLOrigin,
+        pub size: Metal::MTLSize,
     }
 );
 
 inline_fn!(
-    pub unsafe fn MTLRegionMake1D(x: NSUInteger, width: NSUInteger) -> MTLRegion {
+    pub unsafe fn MTLRegionMake1D(x: NSUInteger, width: NSUInteger) -> Metal::MTLRegion {
         todo!()
     }
 );
@@ -51,7 +55,7 @@ inline_fn!(
         y: NSUInteger,
         width: NSUInteger,
         height: NSUInteger,
-    ) -> MTLRegion {
+    ) -> Metal::MTLRegion {
         todo!()
     }
 );
@@ -64,7 +68,7 @@ inline_fn!(
         width: NSUInteger,
         height: NSUInteger,
         depth: NSUInteger,
-    ) -> MTLRegion {
+    ) -> Metal::MTLRegion {
         todo!()
     }
 );
@@ -77,15 +81,15 @@ extern_struct!(
 );
 
 inline_fn!(
-    pub unsafe fn MTLSamplePositionMake(x: c_float, y: c_float) -> MTLSamplePosition {
+    pub unsafe fn MTLSamplePositionMake(x: c_float, y: c_float) -> Metal::MTLSamplePosition {
         todo!()
     }
 );
 
-pub type MTLCoordinate2D = MTLSamplePosition;
+pub type MTLCoordinate2D = Metal::MTLSamplePosition;
 
 inline_fn!(
-    pub unsafe fn MTLCoordinate2DMake(x: c_float, y: c_float) -> MTLCoordinate2D {
+    pub unsafe fn MTLCoordinate2DMake(x: c_float, y: c_float) -> Metal::MTLCoordinate2D {
         todo!()
     }
 );

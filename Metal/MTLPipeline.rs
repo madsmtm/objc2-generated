@@ -26,10 +26,10 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLPipelineBufferDescriptor")]
     unsafe impl MTLPipelineBufferDescriptor {
         #[method(mutability)]
-        pub fn mutability(&self) -> MTLMutability;
+        pub fn mutability(&self) -> Metal::MTLMutability;
 
         #[method(setMutability:)]
-        pub fn setMutability(&self, mutability: MTLMutability);
+        pub fn setMutability(&self, mutability: Metal::MTLMutability);
     }
 );
 

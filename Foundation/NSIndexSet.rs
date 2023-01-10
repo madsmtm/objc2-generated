@@ -22,12 +22,12 @@ extern_methods!(
         pub unsafe fn indexSetWithIndex(value: NSUInteger) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Other indexSetWithIndexesInRange:)]
-        pub unsafe fn indexSetWithIndexesInRange(range: NSRange) -> Id<Self, Shared>;
+        pub unsafe fn indexSetWithIndexesInRange(range: Foundation::NSRange) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Init initWithIndexesInRange:)]
         pub unsafe fn initWithIndexesInRange(
             this: Option<Allocated<Self>>,
-            range: NSRange,
+            range: Foundation::NSRange,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Init initWithIndexSet:)]
@@ -71,23 +71,23 @@ extern_methods!(
             &self,
             indexBuffer: NonNull<NSUInteger>,
             bufferSize: NSUInteger,
-            range: NSRangePointer,
+            range: Foundation::NSRangePointer,
         ) -> NSUInteger;
 
         #[method(countOfIndexesInRange:)]
-        pub unsafe fn countOfIndexesInRange(&self, range: NSRange) -> NSUInteger;
+        pub unsafe fn countOfIndexesInRange(&self, range: Foundation::NSRange) -> NSUInteger;
 
         #[method(containsIndex:)]
         pub unsafe fn containsIndex(&self, value: NSUInteger) -> bool;
 
         #[method(containsIndexesInRange:)]
-        pub unsafe fn containsIndexesInRange(&self, range: NSRange) -> bool;
+        pub unsafe fn containsIndexesInRange(&self, range: Foundation::NSRange) -> bool;
 
         #[method(containsIndexes:)]
         pub unsafe fn containsIndexes(&self, indexSet: &Foundation::NSIndexSet) -> bool;
 
         #[method(intersectsIndexesInRange:)]
-        pub unsafe fn intersectsIndexesInRange(&self, range: NSRange) -> bool;
+        pub unsafe fn intersectsIndexesInRange(&self, range: Foundation::NSRange) -> bool;
 
         #[method(enumerateIndexesUsingBlock:)]
         pub unsafe fn enumerateIndexesUsingBlock(
@@ -98,15 +98,15 @@ extern_methods!(
         #[method(enumerateIndexesWithOptions:usingBlock:)]
         pub unsafe fn enumerateIndexesWithOptions_usingBlock(
             &self,
-            opts: NSEnumerationOptions,
+            opts: Foundation::NSEnumerationOptions,
             block: &Block<(NSUInteger, NonNull<Bool>), ()>,
         );
 
         #[method(enumerateIndexesInRange:options:usingBlock:)]
         pub unsafe fn enumerateIndexesInRange_options_usingBlock(
             &self,
-            range: NSRange,
-            opts: NSEnumerationOptions,
+            range: Foundation::NSRange,
+            opts: Foundation::NSEnumerationOptions,
             block: &Block<(NSUInteger, NonNull<Bool>), ()>,
         );
 
@@ -119,15 +119,15 @@ extern_methods!(
         #[method(indexWithOptions:passingTest:)]
         pub unsafe fn indexWithOptions_passingTest(
             &self,
-            opts: NSEnumerationOptions,
+            opts: Foundation::NSEnumerationOptions,
             predicate: &Block<(NSUInteger, NonNull<Bool>), Bool>,
         ) -> NSUInteger;
 
         #[method(indexInRange:options:passingTest:)]
         pub unsafe fn indexInRange_options_passingTest(
             &self,
-            range: NSRange,
-            opts: NSEnumerationOptions,
+            range: Foundation::NSRange,
+            opts: Foundation::NSEnumerationOptions,
             predicate: &Block<(NSUInteger, NonNull<Bool>), Bool>,
         ) -> NSUInteger;
 
@@ -140,34 +140,37 @@ extern_methods!(
         #[method_id(@__retain_semantics Other indexesWithOptions:passingTest:)]
         pub unsafe fn indexesWithOptions_passingTest(
             &self,
-            opts: NSEnumerationOptions,
+            opts: Foundation::NSEnumerationOptions,
             predicate: &Block<(NSUInteger, NonNull<Bool>), Bool>,
         ) -> Id<Foundation::NSIndexSet, Shared>;
 
         #[method_id(@__retain_semantics Other indexesInRange:options:passingTest:)]
         pub unsafe fn indexesInRange_options_passingTest(
             &self,
-            range: NSRange,
-            opts: NSEnumerationOptions,
+            range: Foundation::NSRange,
+            opts: Foundation::NSEnumerationOptions,
             predicate: &Block<(NSUInteger, NonNull<Bool>), Bool>,
         ) -> Id<Foundation::NSIndexSet, Shared>;
 
         #[method(enumerateRangesUsingBlock:)]
-        pub unsafe fn enumerateRangesUsingBlock(&self, block: &Block<(NSRange, NonNull<Bool>), ()>);
+        pub unsafe fn enumerateRangesUsingBlock(
+            &self,
+            block: &Block<(Foundation::NSRange, NonNull<Bool>), ()>,
+        );
 
         #[method(enumerateRangesWithOptions:usingBlock:)]
         pub unsafe fn enumerateRangesWithOptions_usingBlock(
             &self,
-            opts: NSEnumerationOptions,
-            block: &Block<(NSRange, NonNull<Bool>), ()>,
+            opts: Foundation::NSEnumerationOptions,
+            block: &Block<(Foundation::NSRange, NonNull<Bool>), ()>,
         );
 
         #[method(enumerateRangesInRange:options:usingBlock:)]
         pub unsafe fn enumerateRangesInRange_options_usingBlock(
             &self,
-            range: NSRange,
-            opts: NSEnumerationOptions,
-            block: &Block<(NSRange, NonNull<Bool>), ()>,
+            range: Foundation::NSRange,
+            opts: Foundation::NSEnumerationOptions,
+            block: &Block<(Foundation::NSRange, NonNull<Bool>), ()>,
         );
     }
 );
@@ -201,10 +204,10 @@ extern_methods!(
         pub unsafe fn removeIndex(&self, value: NSUInteger);
 
         #[method(addIndexesInRange:)]
-        pub unsafe fn addIndexesInRange(&self, range: NSRange);
+        pub unsafe fn addIndexesInRange(&self, range: Foundation::NSRange);
 
         #[method(removeIndexesInRange:)]
-        pub unsafe fn removeIndexesInRange(&self, range: NSRange);
+        pub unsafe fn removeIndexesInRange(&self, range: Foundation::NSRange);
 
         #[method(shiftIndexesStartingAtIndex:by:)]
         pub unsafe fn shiftIndexesStartingAtIndex_by(&self, index: NSUInteger, delta: NSInteger);
@@ -222,12 +225,12 @@ extern_methods!(
         pub unsafe fn indexSetWithIndex(value: NSUInteger) -> Id<Self, Owned>;
 
         #[method_id(@__retain_semantics Other indexSetWithIndexesInRange:)]
-        pub unsafe fn indexSetWithIndexesInRange(range: NSRange) -> Id<Self, Owned>;
+        pub unsafe fn indexSetWithIndexesInRange(range: Foundation::NSRange) -> Id<Self, Owned>;
 
         #[method_id(@__retain_semantics Init initWithIndexesInRange:)]
         pub unsafe fn initWithIndexesInRange(
             this: Option<Allocated<Self>>,
-            range: NSRange,
+            range: Foundation::NSRange,
         ) -> Id<Self, Owned>;
 
         #[method_id(@__retain_semantics Init initWithIndexSet:)]

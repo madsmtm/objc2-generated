@@ -44,7 +44,7 @@ pub type NSItemProviderCompletionHandler =
 
 pub type NSItemProviderLoadHandler = *mut Block<
     (
-        NSItemProviderCompletionHandler,
+        Foundation::NSItemProviderCompletionHandler,
         *const Class,
         *mut Foundation::NSDictionary,
     ),
@@ -76,7 +76,7 @@ extern_methods!(
         pub unsafe fn registerDataRepresentationForTypeIdentifier_visibility_loadHandler(
             &self,
             typeIdentifier: &Foundation::NSString,
-            visibility: NSItemProviderRepresentationVisibility,
+            visibility: Foundation::NSItemProviderRepresentationVisibility,
             loadHandler: &Block<
                 (NonNull<Block<(*mut Foundation::NSData, *mut Foundation::NSError), ()>>,),
                 *mut Foundation::NSProgress,
@@ -93,8 +93,8 @@ extern_methods!(
         pub unsafe fn registerFileRepresentationForTypeIdentifier_fileOptions_visibility_loadHandler(
             &self,
             typeIdentifier: &Foundation::NSString,
-            fileOptions: NSItemProviderFileOptions,
-            visibility: NSItemProviderRepresentationVisibility,
+            fileOptions: Foundation::NSItemProviderFileOptions,
+            visibility: Foundation::NSItemProviderRepresentationVisibility,
             loadHandler: &Block<
                 (NonNull<Block<(*mut Foundation::NSURL, Bool, *mut Foundation::NSError), ()>>,),
                 *mut Foundation::NSProgress,
@@ -111,7 +111,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other registeredTypeIdentifiersWithFileOptions:)]
         pub unsafe fn registeredTypeIdentifiersWithFileOptions(
             &self,
-            fileOptions: NSItemProviderFileOptions,
+            fileOptions: Foundation::NSItemProviderFileOptions,
         ) -> Id<Foundation::NSArray<Foundation::NSString>, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -126,7 +126,7 @@ extern_methods!(
         pub unsafe fn hasRepresentationConformingToTypeIdentifier_fileOptions(
             &self,
             typeIdentifier: &Foundation::NSString,
-            fileOptions: NSItemProviderFileOptions,
+            fileOptions: Foundation::NSItemProviderFileOptions,
         ) -> bool;
 
         #[cfg(all(
@@ -186,7 +186,7 @@ extern_methods!(
         pub unsafe fn registerObject_visibility(
             &self,
             object: &Foundation::NSItemProviderWriting,
-            visibility: NSItemProviderRepresentationVisibility,
+            visibility: Foundation::NSItemProviderRepresentationVisibility,
         );
 
         #[cfg(feature = "Foundation_NSString")]
@@ -209,7 +209,7 @@ extern_methods!(
         pub unsafe fn registerItemForTypeIdentifier_loadHandler(
             &self,
             typeIdentifier: &Foundation::NSString,
-            loadHandler: NSItemProviderLoadHandler,
+            loadHandler: Foundation::NSItemProviderLoadHandler,
         );
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
@@ -218,7 +218,7 @@ extern_methods!(
             &self,
             typeIdentifier: &Foundation::NSString,
             options: Option<&Foundation::NSDictionary>,
-            completionHandler: NSItemProviderCompletionHandler,
+            completionHandler: Foundation::NSItemProviderCompletionHandler,
         );
     }
 );
@@ -230,17 +230,20 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSItemProvider")]
     unsafe impl NSItemProvider {
         #[method(previewImageHandler)]
-        pub unsafe fn previewImageHandler(&self) -> NSItemProviderLoadHandler;
+        pub unsafe fn previewImageHandler(&self) -> Foundation::NSItemProviderLoadHandler;
 
         #[method(setPreviewImageHandler:)]
-        pub unsafe fn setPreviewImageHandler(&self, previewImageHandler: NSItemProviderLoadHandler);
+        pub unsafe fn setPreviewImageHandler(
+            &self,
+            previewImageHandler: Foundation::NSItemProviderLoadHandler,
+        );
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(loadPreviewImageWithOptions:completionHandler:)]
         pub unsafe fn loadPreviewImageWithOptions_completionHandler(
             &self,
             options: Option<&Foundation::NSDictionary>,
-            completionHandler: NSItemProviderCompletionHandler,
+            completionHandler: Foundation::NSItemProviderCompletionHandler,
         );
     }
 );

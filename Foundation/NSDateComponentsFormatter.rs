@@ -73,7 +73,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other stringFromTimeInterval:)]
         pub unsafe fn stringFromTimeInterval(
             &self,
-            ti: NSTimeInterval,
+            ti: Foundation::NSTimeInterval,
         ) -> Option<Id<Foundation::NSString, Shared>>;
 
         #[cfg(all(
@@ -83,30 +83,33 @@ extern_methods!(
         #[method_id(@__retain_semantics Other localizedStringFromDateComponents:unitsStyle:)]
         pub unsafe fn localizedStringFromDateComponents_unitsStyle(
             components: &Foundation::NSDateComponents,
-            unitsStyle: NSDateComponentsFormatterUnitsStyle,
+            unitsStyle: Foundation::NSDateComponentsFormatterUnitsStyle,
         ) -> Option<Id<Foundation::NSString, Shared>>;
 
         #[method(unitsStyle)]
-        pub unsafe fn unitsStyle(&self) -> NSDateComponentsFormatterUnitsStyle;
+        pub unsafe fn unitsStyle(&self) -> Foundation::NSDateComponentsFormatterUnitsStyle;
 
         #[method(setUnitsStyle:)]
-        pub unsafe fn setUnitsStyle(&self, unitsStyle: NSDateComponentsFormatterUnitsStyle);
+        pub unsafe fn setUnitsStyle(
+            &self,
+            unitsStyle: Foundation::NSDateComponentsFormatterUnitsStyle,
+        );
 
         #[method(allowedUnits)]
-        pub unsafe fn allowedUnits(&self) -> NSCalendarUnit;
+        pub unsafe fn allowedUnits(&self) -> Foundation::NSCalendarUnit;
 
         #[method(setAllowedUnits:)]
-        pub unsafe fn setAllowedUnits(&self, allowedUnits: NSCalendarUnit);
+        pub unsafe fn setAllowedUnits(&self, allowedUnits: Foundation::NSCalendarUnit);
 
         #[method(zeroFormattingBehavior)]
         pub unsafe fn zeroFormattingBehavior(
             &self,
-        ) -> NSDateComponentsFormatterZeroFormattingBehavior;
+        ) -> Foundation::NSDateComponentsFormatterZeroFormattingBehavior;
 
         #[method(setZeroFormattingBehavior:)]
         pub unsafe fn setZeroFormattingBehavior(
             &self,
-            zeroFormattingBehavior: NSDateComponentsFormatterZeroFormattingBehavior,
+            zeroFormattingBehavior: Foundation::NSDateComponentsFormatterZeroFormattingBehavior,
         );
 
         #[cfg(feature = "Foundation_NSCalendar")]
@@ -156,10 +159,13 @@ extern_methods!(
         pub unsafe fn setIncludesTimeRemainingPhrase(&self, includesTimeRemainingPhrase: bool);
 
         #[method(formattingContext)]
-        pub unsafe fn formattingContext(&self) -> NSFormattingContext;
+        pub unsafe fn formattingContext(&self) -> Foundation::NSFormattingContext;
 
         #[method(setFormattingContext:)]
-        pub unsafe fn setFormattingContext(&self, formattingContext: NSFormattingContext);
+        pub unsafe fn setFormattingContext(
+            &self,
+            formattingContext: Foundation::NSFormattingContext,
+        );
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(getObjectValue:forString:errorDescription:)]

@@ -44,7 +44,7 @@ extern_methods!(
             userID: &Foundation::NSString,
             completion: &Block<
                 (
-                    ASAuthorizationAppleIDProviderCredentialState,
+                    AuthenticationServices::ASAuthorizationAppleIDProviderCredentialState,
                     *mut Foundation::NSError,
                 ),
                 (),

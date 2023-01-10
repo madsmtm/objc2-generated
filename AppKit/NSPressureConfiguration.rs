@@ -18,12 +18,12 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSPressureConfiguration")]
     unsafe impl NSPressureConfiguration {
         #[method(pressureBehavior)]
-        pub unsafe fn pressureBehavior(&self) -> NSPressureBehavior;
+        pub unsafe fn pressureBehavior(&self) -> AppKit::NSPressureBehavior;
 
         #[method_id(@__retain_semantics Init initWithPressureBehavior:)]
         pub unsafe fn initWithPressureBehavior(
             this: Option<Allocated<Self>>,
-            pressureBehavior: NSPressureBehavior,
+            pressureBehavior: AppKit::NSPressureBehavior,
         ) -> Id<Self, Shared>;
 
         #[method(set)]

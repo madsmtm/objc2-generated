@@ -28,13 +28,13 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other rowActionWithStyle:title:handler:)]
         pub unsafe fn rowActionWithStyle_title_handler(
-            style: NSTableViewRowActionStyle,
+            style: AppKit::NSTableViewRowActionStyle,
             title: &Foundation::NSString,
             handler: &Block<(NonNull<AppKit::NSTableViewRowAction>, NSInteger), ()>,
         ) -> Id<Self, Shared>;
 
         #[method(style)]
-        pub unsafe fn style(&self) -> NSTableViewRowActionStyle;
+        pub unsafe fn style(&self) -> AppKit::NSTableViewRowActionStyle;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]

@@ -87,7 +87,7 @@ extern_methods!(
         );
 
         #[method(streamStatus)]
-        pub unsafe fn streamStatus(&self) -> NSStreamStatus;
+        pub unsafe fn streamStatus(&self) -> Foundation::NSStreamStatus;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other streamError)]
@@ -298,7 +298,7 @@ extern_protocol!(
         pub unsafe fn stream_handleEvent(
             &self,
             aStream: &Foundation::NSStream,
-            eventCode: NSStreamEvent,
+            eventCode: Foundation::NSStreamEvent,
         );
     }
 );

@@ -3,20 +3,25 @@
 use crate::common::*;
 use crate::Foundation;
 
-extern_static!(NSMapTableStrongMemory: NSPointerFunctionsOptions = NSPointerFunctionsStrongMemory);
-
 extern_static!(
-    NSMapTableZeroingWeakMemory: NSPointerFunctionsOptions = NSPointerFunctionsZeroingWeakMemory
+    NSMapTableStrongMemory: Foundation::NSPointerFunctionsOptions = NSPointerFunctionsStrongMemory
 );
 
-extern_static!(NSMapTableCopyIn: NSPointerFunctionsOptions = NSPointerFunctionsCopyIn);
+extern_static!(
+    NSMapTableZeroingWeakMemory: Foundation::NSPointerFunctionsOptions =
+        NSPointerFunctionsZeroingWeakMemory
+);
+
+extern_static!(NSMapTableCopyIn: Foundation::NSPointerFunctionsOptions = NSPointerFunctionsCopyIn);
 
 extern_static!(
-    NSMapTableObjectPointerPersonality: NSPointerFunctionsOptions =
+    NSMapTableObjectPointerPersonality: Foundation::NSPointerFunctionsOptions =
         NSPointerFunctionsObjectPointerPersonality
 );
 
-extern_static!(NSMapTableWeakMemory: NSPointerFunctionsOptions = NSPointerFunctionsWeakMemory);
+extern_static!(
+    NSMapTableWeakMemory: Foundation::NSPointerFunctionsOptions = NSPointerFunctionsWeakMemory
+);
 
 pub type NSMapTableOptions = NSUInteger;
 
@@ -56,8 +61,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithKeyOptions:valueOptions:capacity:)]
         pub unsafe fn initWithKeyOptions_valueOptions_capacity(
             this: Option<Allocated<Self>>,
-            keyOptions: NSPointerFunctionsOptions,
-            valueOptions: NSPointerFunctionsOptions,
+            keyOptions: Foundation::NSPointerFunctionsOptions,
+            valueOptions: Foundation::NSPointerFunctionsOptions,
             initialCapacity: NSUInteger,
         ) -> Id<Self, Shared>;
 
@@ -72,8 +77,8 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other mapTableWithKeyOptions:valueOptions:)]
         pub unsafe fn mapTableWithKeyOptions_valueOptions(
-            keyOptions: NSPointerFunctionsOptions,
-            valueOptions: NSPointerFunctionsOptions,
+            keyOptions: Foundation::NSPointerFunctionsOptions,
+            valueOptions: Foundation::NSPointerFunctionsOptions,
         ) -> Id<Foundation::NSMapTable<KeyType, ObjectType>, Shared>;
 
         #[method_id(@__retain_semantics Other mapTableWithStrongToStrongObjects)]
@@ -178,7 +183,7 @@ extern_fn!(
 extern_fn!(
     pub unsafe fn NSCopyMapTableWithZone(
         table: &Foundation::NSMapTable,
-        zone: *mut NSZone,
+        zone: *mut Foundation::NSZone,
     ) -> NonNull<Foundation::NSMapTable>;
 );
 
@@ -220,19 +225,21 @@ extern_fn!(
 );
 
 extern_fn!(
-    pub unsafe fn NSEnumerateMapTable(table: &Foundation::NSMapTable) -> NSMapEnumerator;
+    pub unsafe fn NSEnumerateMapTable(
+        table: &Foundation::NSMapTable,
+    ) -> Foundation::NSMapEnumerator;
 );
 
 extern_fn!(
     pub unsafe fn NSNextMapEnumeratorPair(
-        enumerator: NonNull<NSMapEnumerator>,
+        enumerator: NonNull<Foundation::NSMapEnumerator>,
         key: *mut *mut c_void,
         value: *mut *mut c_void,
     ) -> Bool;
 );
 
 extern_fn!(
-    pub unsafe fn NSEndMapTableEnumeration(enumerator: NonNull<NSMapEnumerator>);
+    pub unsafe fn NSEndMapTableEnumeration(enumerator: NonNull<Foundation::NSMapEnumerator>);
 );
 
 extern_fn!(
@@ -295,43 +302,43 @@ extern_struct!(
 
 extern_fn!(
     pub unsafe fn NSCreateMapTableWithZone(
-        keyCallBacks: NSMapTableKeyCallBacks,
-        valueCallBacks: NSMapTableValueCallBacks,
+        keyCallBacks: Foundation::NSMapTableKeyCallBacks,
+        valueCallBacks: Foundation::NSMapTableValueCallBacks,
         capacity: NSUInteger,
-        zone: *mut NSZone,
+        zone: *mut Foundation::NSZone,
     ) -> NonNull<Foundation::NSMapTable>;
 );
 
 extern_fn!(
     pub unsafe fn NSCreateMapTable(
-        keyCallBacks: NSMapTableKeyCallBacks,
-        valueCallBacks: NSMapTableValueCallBacks,
+        keyCallBacks: Foundation::NSMapTableKeyCallBacks,
+        valueCallBacks: Foundation::NSMapTableValueCallBacks,
         capacity: NSUInteger,
     ) -> NonNull<Foundation::NSMapTable>;
 );
 
-extern_static!(NSIntegerMapKeyCallBacks: NSMapTableKeyCallBacks);
+extern_static!(NSIntegerMapKeyCallBacks: Foundation::NSMapTableKeyCallBacks);
 
-extern_static!(NSNonOwnedPointerMapKeyCallBacks: NSMapTableKeyCallBacks);
+extern_static!(NSNonOwnedPointerMapKeyCallBacks: Foundation::NSMapTableKeyCallBacks);
 
-extern_static!(NSNonOwnedPointerOrNullMapKeyCallBacks: NSMapTableKeyCallBacks);
+extern_static!(NSNonOwnedPointerOrNullMapKeyCallBacks: Foundation::NSMapTableKeyCallBacks);
 
-extern_static!(NSNonRetainedObjectMapKeyCallBacks: NSMapTableKeyCallBacks);
+extern_static!(NSNonRetainedObjectMapKeyCallBacks: Foundation::NSMapTableKeyCallBacks);
 
-extern_static!(NSObjectMapKeyCallBacks: NSMapTableKeyCallBacks);
+extern_static!(NSObjectMapKeyCallBacks: Foundation::NSMapTableKeyCallBacks);
 
-extern_static!(NSOwnedPointerMapKeyCallBacks: NSMapTableKeyCallBacks);
+extern_static!(NSOwnedPointerMapKeyCallBacks: Foundation::NSMapTableKeyCallBacks);
 
-extern_static!(NSIntMapKeyCallBacks: NSMapTableKeyCallBacks);
+extern_static!(NSIntMapKeyCallBacks: Foundation::NSMapTableKeyCallBacks);
 
-extern_static!(NSIntegerMapValueCallBacks: NSMapTableValueCallBacks);
+extern_static!(NSIntegerMapValueCallBacks: Foundation::NSMapTableValueCallBacks);
 
-extern_static!(NSNonOwnedPointerMapValueCallBacks: NSMapTableValueCallBacks);
+extern_static!(NSNonOwnedPointerMapValueCallBacks: Foundation::NSMapTableValueCallBacks);
 
-extern_static!(NSObjectMapValueCallBacks: NSMapTableValueCallBacks);
+extern_static!(NSObjectMapValueCallBacks: Foundation::NSMapTableValueCallBacks);
 
-extern_static!(NSNonRetainedObjectMapValueCallBacks: NSMapTableValueCallBacks);
+extern_static!(NSNonRetainedObjectMapValueCallBacks: Foundation::NSMapTableValueCallBacks);
 
-extern_static!(NSOwnedPointerMapValueCallBacks: NSMapTableValueCallBacks);
+extern_static!(NSOwnedPointerMapValueCallBacks: Foundation::NSMapTableValueCallBacks);
 
-extern_static!(NSIntMapValueCallBacks: NSMapTableValueCallBacks);
+extern_static!(NSIntMapValueCallBacks: Foundation::NSMapTableValueCallBacks);

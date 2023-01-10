@@ -144,14 +144,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other portWithMachPort:options:)]
         pub unsafe fn portWithMachPort_options(
             machPort: u32,
-            f: NSMachPortOptions,
+            f: Foundation::NSMachPortOptions,
         ) -> Id<Foundation::NSPort, Shared>;
 
         #[method_id(@__retain_semantics Init initWithMachPort:options:)]
         pub unsafe fn initWithMachPort_options(
             this: Option<Allocated<Self>>,
             machPort: u32,
-            f: NSMachPortOptions,
+            f: Foundation::NSMachPortOptions,
         ) -> Id<Self, Shared>;
 
         #[method(machPort)]
@@ -238,7 +238,7 @@ extern_methods!(
             family: c_int,
             type_: c_int,
             protocol: c_int,
-            sock: NSSocketNativeHandle,
+            sock: Foundation::NSSocketNativeHandle,
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -273,6 +273,6 @@ extern_methods!(
         pub unsafe fn address(&self) -> Id<Foundation::NSData, Shared>;
 
         #[method(socket)]
-        pub unsafe fn socket(&self) -> NSSocketNativeHandle;
+        pub unsafe fn socket(&self) -> Foundation::NSSocketNativeHandle;
     }
 );

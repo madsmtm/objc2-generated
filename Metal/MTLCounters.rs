@@ -126,10 +126,10 @@ extern_methods!(
         pub unsafe fn setLabel(&self, label: &Foundation::NSString);
 
         #[method(storageMode)]
-        pub unsafe fn storageMode(&self) -> MTLStorageMode;
+        pub unsafe fn storageMode(&self) -> Metal::MTLStorageMode;
 
         #[method(setStorageMode:)]
-        pub unsafe fn setStorageMode(&self, storageMode: MTLStorageMode);
+        pub unsafe fn setStorageMode(&self, storageMode: Metal::MTLStorageMode);
 
         #[method(sampleCount)]
         pub unsafe fn sampleCount(&self) -> NSUInteger;
@@ -155,7 +155,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other resolveCounterRange:)]
         pub unsafe fn resolveCounterRange(
             &self,
-            range: NSRange,
+            range: Foundation::NSRange,
         ) -> Option<Id<Foundation::NSData, Shared>>;
     }
 );

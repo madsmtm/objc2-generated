@@ -16,7 +16,7 @@ extern_protocol!(
 
     unsafe impl ProtocolType for NSDecimalNumberBehaviors {
         #[method(roundingMode)]
-        pub unsafe fn roundingMode(&self) -> NSRoundingMode;
+        pub unsafe fn roundingMode(&self) -> Foundation::NSRoundingMode;
 
         #[method(scale)]
         pub unsafe fn scale(&self) -> c_short;
@@ -25,7 +25,7 @@ extern_protocol!(
         pub unsafe fn exceptionDuringOperation_error_leftOperand_rightOperand(
             &self,
             operation: Sel,
-            error: NSCalculationError,
+            error: Foundation::NSCalculationError,
             leftOperand: &Foundation::NSDecimalNumber,
             rightOperand: Option<&Foundation::NSDecimalNumber>,
         ) -> Option<Id<Foundation::NSDecimalNumber, Shared>>;
@@ -56,7 +56,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithDecimal:)]
         pub unsafe fn initWithDecimal(
             this: Option<Allocated<Self>>,
-            dcm: NSDecimal,
+            dcm: Foundation::NSDecimal,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -82,7 +82,7 @@ extern_methods!(
         ) -> Id<Foundation::NSString, Shared>;
 
         #[method(decimalValue)]
-        pub unsafe fn decimalValue(&self) -> NSDecimal;
+        pub unsafe fn decimalValue(&self) -> Foundation::NSDecimal;
 
         #[method_id(@__retain_semantics Other decimalNumberWithMantissa:exponent:isNegative:)]
         pub unsafe fn decimalNumberWithMantissa_exponent_isNegative(
@@ -93,7 +93,7 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other decimalNumberWithDecimal:)]
         pub unsafe fn decimalNumberWithDecimal(
-            dcm: NSDecimal,
+            dcm: Foundation::NSDecimal,
         ) -> Id<Foundation::NSDecimalNumber, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -209,7 +209,10 @@ extern_methods!(
         ) -> Id<Foundation::NSDecimalNumber, Shared>;
 
         #[method(compare:)]
-        pub unsafe fn compare(&self, decimalNumber: &Foundation::NSNumber) -> NSComparisonResult;
+        pub unsafe fn compare(
+            &self,
+            decimalNumber: &Foundation::NSNumber,
+        ) -> Foundation::NSComparisonResult;
 
         #[method_id(@__retain_semantics Other defaultBehavior)]
         pub unsafe fn defaultBehavior() -> Id<Foundation::NSDecimalNumberBehaviors, Shared>;
@@ -243,7 +246,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithRoundingMode:scale:raiseOnExactness:raiseOnOverflow:raiseOnUnderflow:raiseOnDivideByZero:)]
         pub unsafe fn initWithRoundingMode_scale_raiseOnExactness_raiseOnOverflow_raiseOnUnderflow_raiseOnDivideByZero(
             this: Option<Allocated<Self>>,
-            roundingMode: NSRoundingMode,
+            roundingMode: Foundation::NSRoundingMode,
             scale: c_short,
             exact: bool,
             overflow: bool,
@@ -253,7 +256,7 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other decimalNumberHandlerWithRoundingMode:scale:raiseOnExactness:raiseOnOverflow:raiseOnUnderflow:raiseOnDivideByZero:)]
         pub unsafe fn decimalNumberHandlerWithRoundingMode_scale_raiseOnExactness_raiseOnOverflow_raiseOnUnderflow_raiseOnDivideByZero(
-            roundingMode: NSRoundingMode,
+            roundingMode: Foundation::NSRoundingMode,
             scale: c_short,
             exact: bool,
             overflow: bool,
@@ -268,7 +271,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSNumber")]
     unsafe impl Foundation::NSNumber {
         #[method(decimalValue)]
-        pub unsafe fn decimalValue(&self) -> NSDecimal;
+        pub unsafe fn decimalValue(&self) -> Foundation::NSDecimal;
     }
 );
 
@@ -277,7 +280,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSScanner")]
     unsafe impl Foundation::NSScanner {
         #[method(scanDecimal:)]
-        pub unsafe fn scanDecimal(&self, dcm: *mut NSDecimal) -> bool;
+        pub unsafe fn scanDecimal(&self, dcm: *mut Foundation::NSDecimal) -> bool;
     }
 );
 

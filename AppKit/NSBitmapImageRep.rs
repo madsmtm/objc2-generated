@@ -106,7 +106,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFocusedViewRect:)]
         pub unsafe fn initWithFocusedViewRect(
             this: Option<Allocated<Self>>,
-            rect: NSRect,
+            rect: Foundation::NSRect,
         ) -> Option<Id<Self, Shared>>;
 
         #[method_id(@__retain_semantics Init initWithBitmapDataPlanes:pixelsWide:pixelsHigh:bitsPerSample:samplesPerPixel:hasAlpha:isPlanar:colorSpaceName:bytesPerRow:bitsPerPixel:)]
@@ -135,7 +135,7 @@ extern_methods!(
             alpha: bool,
             isPlanar: bool,
             colorSpaceName: &AppKit::NSColorSpaceName,
-            bitmapFormat: NSBitmapFormat,
+            bitmapFormat: AppKit::NSBitmapFormat,
             rBytes: NSInteger,
             pBits: NSInteger,
         ) -> Option<Id<Self, Shared>>;
@@ -182,17 +182,21 @@ extern_methods!(
         pub unsafe fn numberOfPlanes(&self) -> NSInteger;
 
         #[method(bitmapFormat)]
-        pub unsafe fn bitmapFormat(&self) -> NSBitmapFormat;
+        pub unsafe fn bitmapFormat(&self) -> AppKit::NSBitmapFormat;
 
         #[method(getCompression:factor:)]
         pub unsafe fn getCompression_factor(
             &self,
-            compression: *mut NSTIFFCompression,
+            compression: *mut AppKit::NSTIFFCompression,
             factor: *mut c_float,
         );
 
         #[method(setCompression:factor:)]
-        pub unsafe fn setCompression_factor(&self, compression: NSTIFFCompression, factor: c_float);
+        pub unsafe fn setCompression_factor(
+            &self,
+            compression: AppKit::NSTIFFCompression,
+            factor: c_float,
+        );
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other TIFFRepresentation)]
@@ -202,7 +206,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other TIFFRepresentationUsingCompression:factor:)]
         pub unsafe fn TIFFRepresentationUsingCompression_factor(
             &self,
-            comp: NSTIFFCompression,
+            comp: AppKit::NSTIFFCompression,
             factor: c_float,
         ) -> Option<Id<Foundation::NSData, Shared>>;
 
@@ -216,30 +220,30 @@ extern_methods!(
         #[method_id(@__retain_semantics Other TIFFRepresentationOfImageRepsInArray:usingCompression:factor:)]
         pub unsafe fn TIFFRepresentationOfImageRepsInArray_usingCompression_factor(
             array: &Foundation::NSArray<AppKit::NSImageRep>,
-            comp: NSTIFFCompression,
+            comp: AppKit::NSTIFFCompression,
             factor: c_float,
         ) -> Option<Id<Foundation::NSData, Shared>>;
 
         #[method(getTIFFCompressionTypes:count:)]
         pub unsafe fn getTIFFCompressionTypes_count(
-            list: NonNull<*mut NSTIFFCompression>,
+            list: NonNull<*mut AppKit::NSTIFFCompression>,
             numTypes: NonNull<NSInteger>,
         );
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedNameForTIFFCompressionType:)]
         pub unsafe fn localizedNameForTIFFCompressionType(
-            compression: NSTIFFCompression,
+            compression: AppKit::NSTIFFCompression,
         ) -> Option<Id<Foundation::NSString, Shared>>;
 
         #[method(canBeCompressedUsing:)]
-        pub unsafe fn canBeCompressedUsing(&self, compression: NSTIFFCompression) -> bool;
+        pub unsafe fn canBeCompressedUsing(&self, compression: AppKit::NSTIFFCompression) -> bool;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(colorizeByMappingGray:toColor:blackMapping:whiteMapping:)]
         pub unsafe fn colorizeByMappingGray_toColor_blackMapping_whiteMapping(
             &self,
-            midPoint: CGFloat,
+            midPoint: CoreGraphics::CGFloat,
             midPointColor: Option<&AppKit::NSColor>,
             shadowColor: Option<&AppKit::NSColor>,
             lightColor: Option<&AppKit::NSColor>,
@@ -283,7 +287,7 @@ extern_methods!(
         pub unsafe fn bitmapImageRepByConvertingToColorSpace_renderingIntent(
             &self,
             targetSpace: &AppKit::NSColorSpace,
-            renderingIntent: NSColorRenderingIntent,
+            renderingIntent: AppKit::NSColorRenderingIntent,
         ) -> Option<Id<AppKit::NSBitmapImageRep, Shared>>;
 
         #[cfg(feature = "AppKit_NSColorSpace")]
@@ -308,7 +312,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other representationOfImageRepsInArray:usingType:properties:)]
         pub unsafe fn representationOfImageRepsInArray_usingType_properties(
             imageReps: &Foundation::NSArray<AppKit::NSImageRep>,
-            storageType: NSBitmapImageFileType,
+            storageType: AppKit::NSBitmapImageFileType,
             properties: &Foundation::NSDictionary<AppKit::NSBitmapImageRepPropertyKey, Object>,
         ) -> Option<Id<Foundation::NSData, Shared>>;
 
@@ -316,7 +320,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other representationUsingType:properties:)]
         pub unsafe fn representationUsingType_properties(
             &self,
-            storageType: NSBitmapImageFileType,
+            storageType: AppKit::NSBitmapImageFileType,
             properties: &Foundation::NSDictionary<AppKit::NSBitmapImageRepPropertyKey, Object>,
         ) -> Option<Id<Foundation::NSData, Shared>>;
 
@@ -335,36 +339,42 @@ extern_methods!(
     }
 );
 
-extern_static!(NSTIFFFileType: NSBitmapImageFileType = NSBitmapImageFileTypeTIFF);
+extern_static!(NSTIFFFileType: AppKit::NSBitmapImageFileType = NSBitmapImageFileTypeTIFF);
 
-extern_static!(NSBMPFileType: NSBitmapImageFileType = NSBitmapImageFileTypeBMP);
+extern_static!(NSBMPFileType: AppKit::NSBitmapImageFileType = NSBitmapImageFileTypeBMP);
 
-extern_static!(NSGIFFileType: NSBitmapImageFileType = NSBitmapImageFileTypeGIF);
+extern_static!(NSGIFFileType: AppKit::NSBitmapImageFileType = NSBitmapImageFileTypeGIF);
 
-extern_static!(NSJPEGFileType: NSBitmapImageFileType = NSBitmapImageFileTypeJPEG);
+extern_static!(NSJPEGFileType: AppKit::NSBitmapImageFileType = NSBitmapImageFileTypeJPEG);
 
-extern_static!(NSPNGFileType: NSBitmapImageFileType = NSBitmapImageFileTypePNG);
+extern_static!(NSPNGFileType: AppKit::NSBitmapImageFileType = NSBitmapImageFileTypePNG);
 
-extern_static!(NSJPEG2000FileType: NSBitmapImageFileType = NSBitmapImageFileTypeJPEG2000);
+extern_static!(NSJPEG2000FileType: AppKit::NSBitmapImageFileType = NSBitmapImageFileTypeJPEG2000);
 
-extern_static!(NSAlphaFirstBitmapFormat: NSBitmapFormat = NSBitmapFormatAlphaFirst);
+extern_static!(NSAlphaFirstBitmapFormat: AppKit::NSBitmapFormat = NSBitmapFormatAlphaFirst);
 
 extern_static!(
-    NSAlphaNonpremultipliedBitmapFormat: NSBitmapFormat = NSBitmapFormatAlphaNonpremultiplied
+    NSAlphaNonpremultipliedBitmapFormat: AppKit::NSBitmapFormat =
+        NSBitmapFormatAlphaNonpremultiplied
 );
 
 extern_static!(
-    NSFloatingPointSamplesBitmapFormat: NSBitmapFormat = NSBitmapFormatFloatingPointSamples
+    NSFloatingPointSamplesBitmapFormat: AppKit::NSBitmapFormat = NSBitmapFormatFloatingPointSamples
 );
 
 extern_static!(
-    NS16BitLittleEndianBitmapFormat: NSBitmapFormat = NSBitmapFormatSixteenBitLittleEndian
+    NS16BitLittleEndianBitmapFormat: AppKit::NSBitmapFormat = NSBitmapFormatSixteenBitLittleEndian
 );
 
 extern_static!(
-    NS32BitLittleEndianBitmapFormat: NSBitmapFormat = NSBitmapFormatThirtyTwoBitLittleEndian
+    NS32BitLittleEndianBitmapFormat: AppKit::NSBitmapFormat =
+        NSBitmapFormatThirtyTwoBitLittleEndian
 );
 
-extern_static!(NS16BitBigEndianBitmapFormat: NSBitmapFormat = NSBitmapFormatSixteenBitBigEndian);
+extern_static!(
+    NS16BitBigEndianBitmapFormat: AppKit::NSBitmapFormat = NSBitmapFormatSixteenBitBigEndian
+);
 
-extern_static!(NS32BitBigEndianBitmapFormat: NSBitmapFormat = NSBitmapFormatThirtyTwoBitBigEndian);
+extern_static!(
+    NS32BitBigEndianBitmapFormat: AppKit::NSBitmapFormat = NSBitmapFormatThirtyTwoBitBigEndian
+);

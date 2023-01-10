@@ -38,10 +38,10 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLAccelerationStructureDescriptor")]
     unsafe impl MTLAccelerationStructureDescriptor {
         #[method(usage)]
-        pub unsafe fn usage(&self) -> MTLAccelerationStructureUsage;
+        pub unsafe fn usage(&self) -> Metal::MTLAccelerationStructureUsage;
 
         #[method(setUsage:)]
-        pub unsafe fn setUsage(&self, usage: MTLAccelerationStructureUsage);
+        pub unsafe fn setUsage(&self, usage: Metal::MTLAccelerationStructureUsage);
     }
 );
 
@@ -136,16 +136,22 @@ extern_methods!(
         );
 
         #[method(motionStartBorderMode)]
-        pub unsafe fn motionStartBorderMode(&self) -> MTLMotionBorderMode;
+        pub unsafe fn motionStartBorderMode(&self) -> Metal::MTLMotionBorderMode;
 
         #[method(setMotionStartBorderMode:)]
-        pub unsafe fn setMotionStartBorderMode(&self, motionStartBorderMode: MTLMotionBorderMode);
+        pub unsafe fn setMotionStartBorderMode(
+            &self,
+            motionStartBorderMode: Metal::MTLMotionBorderMode,
+        );
 
         #[method(motionEndBorderMode)]
-        pub unsafe fn motionEndBorderMode(&self) -> MTLMotionBorderMode;
+        pub unsafe fn motionEndBorderMode(&self) -> Metal::MTLMotionBorderMode;
 
         #[method(setMotionEndBorderMode:)]
-        pub unsafe fn setMotionEndBorderMode(&self, motionEndBorderMode: MTLMotionBorderMode);
+        pub unsafe fn setMotionEndBorderMode(
+            &self,
+            motionEndBorderMode: Metal::MTLMotionBorderMode,
+        );
 
         #[method(motionStartTime)]
         pub unsafe fn motionStartTime(&self) -> c_float;
@@ -214,10 +220,10 @@ extern_methods!(
         pub unsafe fn setIndexBufferOffset(&self, indexBufferOffset: NSUInteger);
 
         #[method(indexType)]
-        pub unsafe fn indexType(&self) -> MTLIndexType;
+        pub unsafe fn indexType(&self) -> Metal::MTLIndexType;
 
         #[method(setIndexType:)]
-        pub unsafe fn setIndexType(&self, indexType: MTLIndexType);
+        pub unsafe fn setIndexType(&self, indexType: Metal::MTLIndexType);
 
         #[method(triangleCount)]
         pub unsafe fn triangleCount(&self) -> NSUInteger;
@@ -352,10 +358,10 @@ extern_methods!(
         pub unsafe fn setIndexBufferOffset(&self, indexBufferOffset: NSUInteger);
 
         #[method(indexType)]
-        pub unsafe fn indexType(&self) -> MTLIndexType;
+        pub unsafe fn indexType(&self) -> Metal::MTLIndexType;
 
         #[method(setIndexType:)]
-        pub unsafe fn setIndexType(&self, indexType: MTLIndexType);
+        pub unsafe fn setIndexType(&self, indexType: Metal::MTLIndexType);
 
         #[method(triangleCount)]
         pub unsafe fn triangleCount(&self) -> NSUInteger;
@@ -419,8 +425,8 @@ extern_methods!(
 
 extern_struct!(
     pub struct MTLAccelerationStructureInstanceDescriptor {
-        pub transformationMatrix: MTLPackedFloat4x3,
-        pub options: MTLAccelerationStructureInstanceOptions,
+        pub transformationMatrix: Metal::MTLPackedFloat4x3,
+        pub options: Metal::MTLAccelerationStructureInstanceOptions,
         pub mask: u32,
         pub intersectionFunctionTableOffset: u32,
         pub accelerationStructureIndex: u32,
@@ -429,8 +435,8 @@ extern_struct!(
 
 extern_struct!(
     pub struct MTLAccelerationStructureUserIDInstanceDescriptor {
-        pub transformationMatrix: MTLPackedFloat4x3,
-        pub options: MTLAccelerationStructureInstanceOptions,
+        pub transformationMatrix: Metal::MTLPackedFloat4x3,
+        pub options: Metal::MTLAccelerationStructureInstanceOptions,
         pub mask: u32,
         pub intersectionFunctionTableOffset: u32,
         pub accelerationStructureIndex: u32,
@@ -449,15 +455,15 @@ ns_enum!(
 
 extern_struct!(
     pub struct MTLAccelerationStructureMotionInstanceDescriptor {
-        pub options: MTLAccelerationStructureInstanceOptions,
+        pub options: Metal::MTLAccelerationStructureInstanceOptions,
         pub mask: u32,
         pub intersectionFunctionTableOffset: u32,
         pub accelerationStructureIndex: u32,
         pub userID: u32,
         pub motionTransformsStartIndex: u32,
         pub motionTransformsCount: u32,
-        pub motionStartBorderMode: MTLMotionBorderMode,
-        pub motionEndBorderMode: MTLMotionBorderMode,
+        pub motionStartBorderMode: Metal::MTLMotionBorderMode,
+        pub motionEndBorderMode: Metal::MTLMotionBorderMode,
         pub motionStartTime: c_float,
         pub motionEndTime: c_float,
     }
@@ -524,12 +530,12 @@ extern_methods!(
         #[method(instanceDescriptorType)]
         pub unsafe fn instanceDescriptorType(
             &self,
-        ) -> MTLAccelerationStructureInstanceDescriptorType;
+        ) -> Metal::MTLAccelerationStructureInstanceDescriptorType;
 
         #[method(setInstanceDescriptorType:)]
         pub unsafe fn setInstanceDescriptorType(
             &self,
-            instanceDescriptorType: MTLAccelerationStructureInstanceDescriptorType,
+            instanceDescriptorType: Metal::MTLAccelerationStructureInstanceDescriptorType,
         );
 
         #[method_id(@__retain_semantics Other motionTransformBuffer)]

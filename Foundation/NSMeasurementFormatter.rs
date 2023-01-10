@@ -26,16 +26,19 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSMeasurementFormatter")]
     unsafe impl NSMeasurementFormatter {
         #[method(unitOptions)]
-        pub unsafe fn unitOptions(&self) -> NSMeasurementFormatterUnitOptions;
+        pub unsafe fn unitOptions(&self) -> Foundation::NSMeasurementFormatterUnitOptions;
 
         #[method(setUnitOptions:)]
-        pub unsafe fn setUnitOptions(&self, unitOptions: NSMeasurementFormatterUnitOptions);
+        pub unsafe fn setUnitOptions(
+            &self,
+            unitOptions: Foundation::NSMeasurementFormatterUnitOptions,
+        );
 
         #[method(unitStyle)]
-        pub unsafe fn unitStyle(&self) -> NSFormattingUnitStyle;
+        pub unsafe fn unitStyle(&self) -> Foundation::NSFormattingUnitStyle;
 
         #[method(setUnitStyle:)]
-        pub unsafe fn setUnitStyle(&self, unitStyle: NSFormattingUnitStyle);
+        pub unsafe fn setUnitStyle(&self, unitStyle: Foundation::NSFormattingUnitStyle);
 
         #[cfg(feature = "Foundation_NSLocale")]
         #[method_id(@__retain_semantics Other locale)]

@@ -18,7 +18,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithOptions:)]
         pub unsafe fn initWithOptions(
             this: Option<Allocated<Self>>,
-            options: NSPointerFunctionsOptions,
+            options: Foundation::NSPointerFunctionsOptions,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSPointerFunctions")]
@@ -30,7 +30,7 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other pointerArrayWithOptions:)]
         pub unsafe fn pointerArrayWithOptions(
-            options: NSPointerFunctionsOptions,
+            options: Foundation::NSPointerFunctionsOptions,
         ) -> Id<Foundation::NSPointerArray, Shared>;
 
         #[cfg(feature = "Foundation_NSPointerFunctions")]

@@ -267,26 +267,32 @@ extern_methods!(
         pub unsafe fn PMSymbol(&self) -> Id<Foundation::NSString, Shared>;
 
         #[method(minimumRangeOfUnit:)]
-        pub unsafe fn minimumRangeOfUnit(&self, unit: NSCalendarUnit) -> NSRange;
+        pub unsafe fn minimumRangeOfUnit(
+            &self,
+            unit: Foundation::NSCalendarUnit,
+        ) -> Foundation::NSRange;
 
         #[method(maximumRangeOfUnit:)]
-        pub unsafe fn maximumRangeOfUnit(&self, unit: NSCalendarUnit) -> NSRange;
+        pub unsafe fn maximumRangeOfUnit(
+            &self,
+            unit: Foundation::NSCalendarUnit,
+        ) -> Foundation::NSRange;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method(rangeOfUnit:inUnit:forDate:)]
         pub unsafe fn rangeOfUnit_inUnit_forDate(
             &self,
-            smaller: NSCalendarUnit,
-            larger: NSCalendarUnit,
+            smaller: Foundation::NSCalendarUnit,
+            larger: Foundation::NSCalendarUnit,
             date: &Foundation::NSDate,
-        ) -> NSRange;
+        ) -> Foundation::NSRange;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method(ordinalityOfUnit:inUnit:forDate:)]
         pub unsafe fn ordinalityOfUnit_inUnit_forDate(
             &self,
-            smaller: NSCalendarUnit,
-            larger: NSCalendarUnit,
+            smaller: Foundation::NSCalendarUnit,
+            larger: Foundation::NSCalendarUnit,
             date: &Foundation::NSDate,
         ) -> NSUInteger;
 
@@ -294,9 +300,9 @@ extern_methods!(
         #[method(rangeOfUnit:startDate:interval:forDate:)]
         pub unsafe fn rangeOfUnit_startDate_interval_forDate(
             &self,
-            unit: NSCalendarUnit,
+            unit: Foundation::NSCalendarUnit,
             datep: *mut *mut Foundation::NSDate,
-            tip: *mut NSTimeInterval,
+            tip: *mut Foundation::NSTimeInterval,
             date: &Foundation::NSDate,
         ) -> bool;
 
@@ -311,7 +317,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other components:fromDate:)]
         pub unsafe fn components_fromDate(
             &self,
-            unitFlags: NSCalendarUnit,
+            unitFlags: Foundation::NSCalendarUnit,
             date: &Foundation::NSDate,
         ) -> Id<Foundation::NSDateComponents, Shared>;
 
@@ -321,17 +327,17 @@ extern_methods!(
             &self,
             comps: &Foundation::NSDateComponents,
             date: &Foundation::NSDate,
-            opts: NSCalendarOptions,
+            opts: Foundation::NSCalendarOptions,
         ) -> Option<Id<Foundation::NSDate, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSDateComponents"))]
         #[method_id(@__retain_semantics Other components:fromDate:toDate:options:)]
         pub unsafe fn components_fromDate_toDate_options(
             &self,
-            unitFlags: NSCalendarUnit,
+            unitFlags: Foundation::NSCalendarUnit,
             startingDate: &Foundation::NSDate,
             resultDate: &Foundation::NSDate,
-            opts: NSCalendarOptions,
+            opts: Foundation::NSCalendarOptions,
         ) -> Id<Foundation::NSDateComponents, Shared>;
 
         #[cfg(feature = "Foundation_NSDate")]
@@ -371,7 +377,7 @@ extern_methods!(
         #[method(component:fromDate:)]
         pub unsafe fn component_fromDate(
             &self,
-            unit: NSCalendarUnit,
+            unit: Foundation::NSCalendarUnit,
             date: &Foundation::NSDate,
         ) -> NSInteger;
 
@@ -428,8 +434,8 @@ extern_methods!(
             &self,
             date1: &Foundation::NSDate,
             date2: &Foundation::NSDate,
-            unit: NSCalendarUnit,
-        ) -> NSComparisonResult;
+            unit: Foundation::NSCalendarUnit,
+        ) -> Foundation::NSComparisonResult;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method(isDate:equalToDate:toUnitGranularity:)]
@@ -437,7 +443,7 @@ extern_methods!(
             &self,
             date1: &Foundation::NSDate,
             date2: &Foundation::NSDate,
-            unit: NSCalendarUnit,
+            unit: Foundation::NSCalendarUnit,
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSDate")]
@@ -469,7 +475,7 @@ extern_methods!(
         pub unsafe fn rangeOfWeekendStartDate_interval_containingDate(
             &self,
             datep: *mut *mut Foundation::NSDate,
-            tip: *mut NSTimeInterval,
+            tip: *mut Foundation::NSTimeInterval,
             date: &Foundation::NSDate,
         ) -> bool;
 
@@ -478,8 +484,8 @@ extern_methods!(
         pub unsafe fn nextWeekendStartDate_interval_options_afterDate(
             &self,
             datep: *mut *mut Foundation::NSDate,
-            tip: *mut NSTimeInterval,
-            options: NSCalendarOptions,
+            tip: *mut Foundation::NSTimeInterval,
+            options: Foundation::NSCalendarOptions,
             date: &Foundation::NSDate,
         ) -> bool;
 
@@ -487,20 +493,20 @@ extern_methods!(
         #[method_id(@__retain_semantics Other components:fromDateComponents:toDateComponents:options:)]
         pub unsafe fn components_fromDateComponents_toDateComponents_options(
             &self,
-            unitFlags: NSCalendarUnit,
+            unitFlags: Foundation::NSCalendarUnit,
             startingDateComp: &Foundation::NSDateComponents,
             resultDateComp: &Foundation::NSDateComponents,
-            options: NSCalendarOptions,
+            options: Foundation::NSCalendarOptions,
         ) -> Id<Foundation::NSDateComponents, Shared>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other dateByAddingUnit:value:toDate:options:)]
         pub unsafe fn dateByAddingUnit_value_toDate_options(
             &self,
-            unit: NSCalendarUnit,
+            unit: Foundation::NSCalendarUnit,
             value: NSInteger,
             date: &Foundation::NSDate,
-            options: NSCalendarOptions,
+            options: Foundation::NSCalendarOptions,
         ) -> Option<Id<Foundation::NSDate, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSDateComponents"))]
@@ -509,7 +515,7 @@ extern_methods!(
             &self,
             start: &Foundation::NSDate,
             comps: &Foundation::NSDateComponents,
-            opts: NSCalendarOptions,
+            opts: Foundation::NSCalendarOptions,
             block: &Block<(*mut Foundation::NSDate, Bool, NonNull<Bool>), ()>,
         );
 
@@ -519,7 +525,7 @@ extern_methods!(
             &self,
             date: &Foundation::NSDate,
             comps: &Foundation::NSDateComponents,
-            options: NSCalendarOptions,
+            options: Foundation::NSCalendarOptions,
         ) -> Option<Id<Foundation::NSDate, Shared>>;
 
         #[cfg(feature = "Foundation_NSDate")]
@@ -527,9 +533,9 @@ extern_methods!(
         pub unsafe fn nextDateAfterDate_matchingUnit_value_options(
             &self,
             date: &Foundation::NSDate,
-            unit: NSCalendarUnit,
+            unit: Foundation::NSCalendarUnit,
             value: NSInteger,
-            options: NSCalendarOptions,
+            options: Foundation::NSCalendarOptions,
         ) -> Option<Id<Foundation::NSDate, Shared>>;
 
         #[cfg(feature = "Foundation_NSDate")]
@@ -540,17 +546,17 @@ extern_methods!(
             hourValue: NSInteger,
             minuteValue: NSInteger,
             secondValue: NSInteger,
-            options: NSCalendarOptions,
+            options: Foundation::NSCalendarOptions,
         ) -> Option<Id<Foundation::NSDate, Shared>>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other dateBySettingUnit:value:ofDate:options:)]
         pub unsafe fn dateBySettingUnit_value_ofDate_options(
             &self,
-            unit: NSCalendarUnit,
+            unit: Foundation::NSCalendarUnit,
             v: NSInteger,
             date: &Foundation::NSDate,
-            opts: NSCalendarOptions,
+            opts: Foundation::NSCalendarOptions,
         ) -> Option<Id<Foundation::NSDate, Shared>>;
 
         #[cfg(feature = "Foundation_NSDate")]
@@ -561,7 +567,7 @@ extern_methods!(
             m: NSInteger,
             s: NSInteger,
             date: &Foundation::NSDate,
-            opts: NSCalendarOptions,
+            opts: Foundation::NSCalendarOptions,
         ) -> Option<Id<Foundation::NSDate, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSDateComponents"))]
@@ -713,10 +719,14 @@ extern_methods!(
         pub unsafe fn setWeek(&self, v: NSInteger);
 
         #[method(setValue:forComponent:)]
-        pub unsafe fn setValue_forComponent(&self, value: NSInteger, unit: NSCalendarUnit);
+        pub unsafe fn setValue_forComponent(
+            &self,
+            value: NSInteger,
+            unit: Foundation::NSCalendarUnit,
+        );
 
         #[method(valueForComponent:)]
-        pub unsafe fn valueForComponent(&self, unit: NSCalendarUnit) -> NSInteger;
+        pub unsafe fn valueForComponent(&self, unit: Foundation::NSCalendarUnit) -> NSInteger;
 
         #[method(isValidDate)]
         pub unsafe fn isValidDate(&self) -> bool;

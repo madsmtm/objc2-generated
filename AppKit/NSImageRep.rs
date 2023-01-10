@@ -51,28 +51,28 @@ extern_methods!(
         pub unsafe fn draw(&self) -> bool;
 
         #[method(drawAtPoint:)]
-        pub unsafe fn drawAtPoint(&self, point: NSPoint) -> bool;
+        pub unsafe fn drawAtPoint(&self, point: Foundation::NSPoint) -> bool;
 
         #[method(drawInRect:)]
-        pub unsafe fn drawInRect(&self, rect: NSRect) -> bool;
+        pub unsafe fn drawInRect(&self, rect: Foundation::NSRect) -> bool;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(drawInRect:fromRect:operation:fraction:respectFlipped:hints:)]
         pub unsafe fn drawInRect_fromRect_operation_fraction_respectFlipped_hints(
             &self,
-            dstSpacePortionRect: NSRect,
-            srcSpacePortionRect: NSRect,
-            op: NSCompositingOperation,
-            requestedAlpha: CGFloat,
+            dstSpacePortionRect: Foundation::NSRect,
+            srcSpacePortionRect: Foundation::NSRect,
+            op: AppKit::NSCompositingOperation,
+            requestedAlpha: CoreGraphics::CGFloat,
             respectContextIsFlipped: bool,
             hints: Option<&Foundation::NSDictionary<AppKit::NSImageHintKey, Object>>,
         ) -> bool;
 
         #[method(size)]
-        pub unsafe fn size(&self) -> NSSize;
+        pub unsafe fn size(&self) -> Foundation::NSSize;
 
         #[method(setSize:)]
-        pub unsafe fn setSize(&self, size: NSSize);
+        pub unsafe fn setSize(&self, size: Foundation::NSSize);
 
         #[method(hasAlpha)]
         pub unsafe fn hasAlpha(&self) -> bool;
@@ -111,10 +111,10 @@ extern_methods!(
         pub unsafe fn setPixelsHigh(&self, pixelsHigh: NSInteger);
 
         #[method(layoutDirection)]
-        pub unsafe fn layoutDirection(&self) -> NSImageLayoutDirection;
+        pub unsafe fn layoutDirection(&self) -> AppKit::NSImageLayoutDirection;
 
         #[method(setLayoutDirection:)]
-        pub unsafe fn setLayoutDirection(&self, layoutDirection: NSImageLayoutDirection);
+        pub unsafe fn setLayoutDirection(&self, layoutDirection: AppKit::NSImageLayoutDirection);
 
         #[method(registerImageRepClass:)]
         pub unsafe fn registerImageRepClass(imageRepClass: &Class);

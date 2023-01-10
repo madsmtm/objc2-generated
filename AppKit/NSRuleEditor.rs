@@ -92,16 +92,16 @@ extern_methods!(
         pub unsafe fn reloadCriteria(&self);
 
         #[method(nestingMode)]
-        pub unsafe fn nestingMode(&self) -> NSRuleEditorNestingMode;
+        pub unsafe fn nestingMode(&self) -> AppKit::NSRuleEditorNestingMode;
 
         #[method(setNestingMode:)]
-        pub unsafe fn setNestingMode(&self, nestingMode: NSRuleEditorNestingMode);
+        pub unsafe fn setNestingMode(&self, nestingMode: AppKit::NSRuleEditorNestingMode);
 
         #[method(rowHeight)]
-        pub unsafe fn rowHeight(&self) -> CGFloat;
+        pub unsafe fn rowHeight(&self) -> CoreGraphics::CGFloat;
 
         #[method(setRowHeight:)]
-        pub unsafe fn setRowHeight(&self, rowHeight: CGFloat);
+        pub unsafe fn setRowHeight(&self, rowHeight: CoreGraphics::CGFloat);
 
         #[method(isEditable)]
         pub unsafe fn isEditable(&self) -> bool;
@@ -152,7 +152,7 @@ extern_methods!(
         pub unsafe fn rowForDisplayValue(&self, displayValue: &Object) -> NSInteger;
 
         #[method(rowTypeForRow:)]
-        pub unsafe fn rowTypeForRow(&self, rowIndex: NSInteger) -> NSRuleEditorRowType;
+        pub unsafe fn rowTypeForRow(&self, rowIndex: NSInteger) -> AppKit::NSRuleEditorRowType;
 
         #[method(parentRowForRow:)]
         pub unsafe fn parentRowForRow(&self, rowIndex: NSInteger) -> NSInteger;
@@ -164,7 +164,7 @@ extern_methods!(
         pub unsafe fn insertRowAtIndex_withType_asSubrowOfRow_animate(
             &self,
             rowIndex: NSInteger,
-            rowType: NSRuleEditorRowType,
+            rowType: AppKit::NSRuleEditorRowType,
             parentRow: NSInteger,
             shouldAnimate: bool,
         );
@@ -250,7 +250,7 @@ extern_protocol!(
             &self,
             editor: &AppKit::NSRuleEditor,
             criterion: Option<&Object>,
-            rowType: NSRuleEditorRowType,
+            rowType: AppKit::NSRuleEditorRowType,
         ) -> NSInteger;
 
         #[method_id(@__retain_semantics Other ruleEditor:child:forCriterion:withRowType:)]
@@ -259,7 +259,7 @@ extern_protocol!(
             editor: &AppKit::NSRuleEditor,
             index: NSInteger,
             criterion: Option<&Object>,
-            rowType: NSRuleEditorRowType,
+            rowType: AppKit::NSRuleEditorRowType,
         ) -> Id<Object, Shared>;
 
         #[method_id(@__retain_semantics Other ruleEditor:displayValueForCriterion:inRow:)]
@@ -297,7 +297,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frameRect: Foundation::NSRect,
         ) -> Id<Self, Shared>;
     }
 );

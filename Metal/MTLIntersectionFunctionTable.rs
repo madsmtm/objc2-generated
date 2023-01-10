@@ -58,7 +58,7 @@ extern_protocol!(
             &self,
             buffers: NonNull<*const Metal::MTLBuffer>,
             offsets: NonNull<NSUInteger>,
-            range: NSRange,
+            range: Foundation::NSRange,
         );
 
         #[method(setFunction:atIndex:)]
@@ -72,21 +72,21 @@ extern_protocol!(
         pub unsafe fn setFunctions_withRange(
             &self,
             functions: NonNull<*const Metal::MTLFunctionHandle>,
-            range: NSRange,
+            range: Foundation::NSRange,
         );
 
         #[method(setOpaqueTriangleIntersectionFunctionWithSignature:atIndex:)]
         pub unsafe fn setOpaqueTriangleIntersectionFunctionWithSignature_atIndex(
             &self,
-            signature: MTLIntersectionFunctionSignature,
+            signature: Metal::MTLIntersectionFunctionSignature,
             index: NSUInteger,
         );
 
         #[method(setOpaqueTriangleIntersectionFunctionWithSignature:withRange:)]
         pub unsafe fn setOpaqueTriangleIntersectionFunctionWithSignature_withRange(
             &self,
-            signature: MTLIntersectionFunctionSignature,
-            range: NSRange,
+            signature: Metal::MTLIntersectionFunctionSignature,
+            range: Foundation::NSRange,
         );
 
         #[method(setVisibleFunctionTable:atBufferIndex:)]
@@ -100,7 +100,7 @@ extern_protocol!(
         pub unsafe fn setVisibleFunctionTables_withBufferRange(
             &self,
             functionTables: NonNull<*const Metal::MTLVisibleFunctionTable>,
-            bufferRange: NSRange,
+            bufferRange: Foundation::NSRange,
         );
     }
 );

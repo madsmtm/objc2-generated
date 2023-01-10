@@ -75,25 +75,25 @@ extern_methods!(
         ) -> Id<Self, Shared>;
 
         #[method(bezelStyle)]
-        pub unsafe fn bezelStyle(&self) -> NSBezelStyle;
+        pub unsafe fn bezelStyle(&self) -> AppKit::NSBezelStyle;
 
         #[method(setBezelStyle:)]
-        pub unsafe fn setBezelStyle(&self, bezelStyle: NSBezelStyle);
+        pub unsafe fn setBezelStyle(&self, bezelStyle: AppKit::NSBezelStyle);
 
         #[method(setButtonType:)]
-        pub unsafe fn setButtonType(&self, type_: NSButtonType);
+        pub unsafe fn setButtonType(&self, type_: AppKit::NSButtonType);
 
         #[method(highlightsBy)]
-        pub unsafe fn highlightsBy(&self) -> NSCellStyleMask;
+        pub unsafe fn highlightsBy(&self) -> AppKit::NSCellStyleMask;
 
         #[method(setHighlightsBy:)]
-        pub unsafe fn setHighlightsBy(&self, highlightsBy: NSCellStyleMask);
+        pub unsafe fn setHighlightsBy(&self, highlightsBy: AppKit::NSCellStyleMask);
 
         #[method(showsStateBy)]
-        pub unsafe fn showsStateBy(&self) -> NSCellStyleMask;
+        pub unsafe fn showsStateBy(&self) -> AppKit::NSCellStyleMask;
 
         #[method(setShowsStateBy:)]
-        pub unsafe fn setShowsStateBy(&self, showsStateBy: NSCellStyleMask);
+        pub unsafe fn setShowsStateBy(&self, showsStateBy: AppKit::NSCellStyleMask);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
@@ -140,16 +140,16 @@ extern_methods!(
         pub unsafe fn setAlternateImage(&self, alternateImage: Option<&AppKit::NSImage>);
 
         #[method(imagePosition)]
-        pub unsafe fn imagePosition(&self) -> NSCellImagePosition;
+        pub unsafe fn imagePosition(&self) -> AppKit::NSCellImagePosition;
 
         #[method(setImagePosition:)]
-        pub unsafe fn setImagePosition(&self, imagePosition: NSCellImagePosition);
+        pub unsafe fn setImagePosition(&self, imagePosition: AppKit::NSCellImagePosition);
 
         #[method(imageScaling)]
-        pub unsafe fn imageScaling(&self) -> NSImageScaling;
+        pub unsafe fn imageScaling(&self) -> AppKit::NSImageScaling;
 
         #[method(setImageScaling:)]
-        pub unsafe fn setImageScaling(&self, imageScaling: NSImageScaling);
+        pub unsafe fn setImageScaling(&self, imageScaling: AppKit::NSImageScaling);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other keyEquivalent)]
@@ -160,12 +160,12 @@ extern_methods!(
         pub unsafe fn setKeyEquivalent(&self, keyEquivalent: &Foundation::NSString);
 
         #[method(keyEquivalentModifierMask)]
-        pub unsafe fn keyEquivalentModifierMask(&self) -> NSEventModifierFlags;
+        pub unsafe fn keyEquivalentModifierMask(&self) -> AppKit::NSEventModifierFlags;
 
         #[method(setKeyEquivalentModifierMask:)]
         pub unsafe fn setKeyEquivalentModifierMask(
             &self,
-            keyEquivalentModifierMask: NSEventModifierFlags,
+            keyEquivalentModifierMask: AppKit::NSEventModifierFlags,
         );
 
         #[method(isTransparent)]
@@ -231,14 +231,18 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(drawBezelWithFrame:inView:)]
-        pub unsafe fn drawBezelWithFrame_inView(&self, frame: NSRect, controlView: &AppKit::NSView);
+        pub unsafe fn drawBezelWithFrame_inView(
+            &self,
+            frame: Foundation::NSRect,
+            controlView: &AppKit::NSView,
+        );
 
         #[cfg(all(feature = "AppKit_NSImage", feature = "AppKit_NSView"))]
         #[method(drawImage:withFrame:inView:)]
         pub unsafe fn drawImage_withFrame_inView(
             &self,
             image: &AppKit::NSImage,
-            frame: NSRect,
+            frame: Foundation::NSRect,
             controlView: &AppKit::NSView,
         );
 
@@ -247,9 +251,9 @@ extern_methods!(
         pub unsafe fn drawTitle_withFrame_inView(
             &self,
             title: &Foundation::NSAttributedString,
-            frame: NSRect,
+            frame: Foundation::NSRect,
             controlView: &AppKit::NSView,
-        ) -> NSRect;
+        ) -> Foundation::NSRect;
     }
 );
 
@@ -264,71 +268,73 @@ ns_enum!(
     }
 );
 
-extern_static!(NSMomentaryLightButton: NSButtonType = NSButtonTypeMomentaryLight);
+extern_static!(NSMomentaryLightButton: AppKit::NSButtonType = NSButtonTypeMomentaryLight);
 
-extern_static!(NSPushOnPushOffButton: NSButtonType = NSButtonTypePushOnPushOff);
+extern_static!(NSPushOnPushOffButton: AppKit::NSButtonType = NSButtonTypePushOnPushOff);
 
-extern_static!(NSToggleButton: NSButtonType = NSButtonTypeToggle);
+extern_static!(NSToggleButton: AppKit::NSButtonType = NSButtonTypeToggle);
 
-extern_static!(NSSwitchButton: NSButtonType = NSButtonTypeSwitch);
+extern_static!(NSSwitchButton: AppKit::NSButtonType = NSButtonTypeSwitch);
 
-extern_static!(NSRadioButton: NSButtonType = NSButtonTypeRadio);
+extern_static!(NSRadioButton: AppKit::NSButtonType = NSButtonTypeRadio);
 
-extern_static!(NSMomentaryChangeButton: NSButtonType = NSButtonTypeMomentaryChange);
+extern_static!(NSMomentaryChangeButton: AppKit::NSButtonType = NSButtonTypeMomentaryChange);
 
-extern_static!(NSOnOffButton: NSButtonType = NSButtonTypeOnOff);
+extern_static!(NSOnOffButton: AppKit::NSButtonType = NSButtonTypeOnOff);
 
-extern_static!(NSMomentaryPushInButton: NSButtonType = NSButtonTypeMomentaryPushIn);
+extern_static!(NSMomentaryPushInButton: AppKit::NSButtonType = NSButtonTypeMomentaryPushIn);
 
-extern_static!(NSAcceleratorButton: NSButtonType = NSButtonTypeAccelerator);
+extern_static!(NSAcceleratorButton: AppKit::NSButtonType = NSButtonTypeAccelerator);
 
-extern_static!(NSMultiLevelAcceleratorButton: NSButtonType = NSButtonTypeMultiLevelAccelerator);
+extern_static!(
+    NSMultiLevelAcceleratorButton: AppKit::NSButtonType = NSButtonTypeMultiLevelAccelerator
+);
 
-extern_static!(NSMomentaryPushButton: NSButtonType = NSButtonTypeMomentaryLight);
+extern_static!(NSMomentaryPushButton: AppKit::NSButtonType = NSButtonTypeMomentaryLight);
 
-extern_static!(NSMomentaryLight: NSButtonType = NSButtonTypeMomentaryPushIn);
+extern_static!(NSMomentaryLight: AppKit::NSButtonType = NSButtonTypeMomentaryPushIn);
 
-extern_static!(NSRoundedBezelStyle: NSBezelStyle = NSBezelStyleRounded);
+extern_static!(NSRoundedBezelStyle: AppKit::NSBezelStyle = NSBezelStyleRounded);
 
-extern_static!(NSRegularSquareBezelStyle: NSBezelStyle = NSBezelStyleRegularSquare);
+extern_static!(NSRegularSquareBezelStyle: AppKit::NSBezelStyle = NSBezelStyleRegularSquare);
 
-extern_static!(NSDisclosureBezelStyle: NSBezelStyle = NSBezelStyleDisclosure);
+extern_static!(NSDisclosureBezelStyle: AppKit::NSBezelStyle = NSBezelStyleDisclosure);
 
-extern_static!(NSShadowlessSquareBezelStyle: NSBezelStyle = NSBezelStyleShadowlessSquare);
+extern_static!(NSShadowlessSquareBezelStyle: AppKit::NSBezelStyle = NSBezelStyleShadowlessSquare);
 
-extern_static!(NSCircularBezelStyle: NSBezelStyle = NSBezelStyleCircular);
+extern_static!(NSCircularBezelStyle: AppKit::NSBezelStyle = NSBezelStyleCircular);
 
-extern_static!(NSTexturedSquareBezelStyle: NSBezelStyle = NSBezelStyleTexturedSquare);
+extern_static!(NSTexturedSquareBezelStyle: AppKit::NSBezelStyle = NSBezelStyleTexturedSquare);
 
-extern_static!(NSHelpButtonBezelStyle: NSBezelStyle = NSBezelStyleHelpButton);
+extern_static!(NSHelpButtonBezelStyle: AppKit::NSBezelStyle = NSBezelStyleHelpButton);
 
-extern_static!(NSSmallSquareBezelStyle: NSBezelStyle = NSBezelStyleSmallSquare);
+extern_static!(NSSmallSquareBezelStyle: AppKit::NSBezelStyle = NSBezelStyleSmallSquare);
 
-extern_static!(NSTexturedRoundedBezelStyle: NSBezelStyle = NSBezelStyleTexturedRounded);
+extern_static!(NSTexturedRoundedBezelStyle: AppKit::NSBezelStyle = NSBezelStyleTexturedRounded);
 
-extern_static!(NSRoundRectBezelStyle: NSBezelStyle = NSBezelStyleRoundRect);
+extern_static!(NSRoundRectBezelStyle: AppKit::NSBezelStyle = NSBezelStyleRoundRect);
 
-extern_static!(NSRecessedBezelStyle: NSBezelStyle = NSBezelStyleRecessed);
+extern_static!(NSRecessedBezelStyle: AppKit::NSBezelStyle = NSBezelStyleRecessed);
 
-extern_static!(NSRoundedDisclosureBezelStyle: NSBezelStyle = NSBezelStyleRoundedDisclosure);
+extern_static!(NSRoundedDisclosureBezelStyle: AppKit::NSBezelStyle = NSBezelStyleRoundedDisclosure);
 
-extern_static!(NSInlineBezelStyle: NSBezelStyle = NSBezelStyleInline);
+extern_static!(NSInlineBezelStyle: AppKit::NSBezelStyle = NSBezelStyleInline);
 
-extern_static!(NSSmallIconButtonBezelStyle: NSBezelStyle = 2);
+extern_static!(NSSmallIconButtonBezelStyle: AppKit::NSBezelStyle = 2);
 
-extern_static!(NSThickSquareBezelStyle: NSBezelStyle = 3);
+extern_static!(NSThickSquareBezelStyle: AppKit::NSBezelStyle = 3);
 
-extern_static!(NSThickerSquareBezelStyle: NSBezelStyle = 4);
+extern_static!(NSThickerSquareBezelStyle: AppKit::NSBezelStyle = 4);
 
 extern_methods!(
     /// NSDeprecated
     #[cfg(feature = "AppKit_NSButtonCell")]
     unsafe impl NSButtonCell {
         #[method(gradientType)]
-        pub unsafe fn gradientType(&self) -> NSGradientType;
+        pub unsafe fn gradientType(&self) -> AppKit::NSGradientType;
 
         #[method(setGradientType:)]
-        pub unsafe fn setGradientType(&self, gradientType: NSGradientType);
+        pub unsafe fn setGradientType(&self, gradientType: AppKit::NSGradientType);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setTitleWithMnemonic:)]
@@ -367,7 +373,7 @@ extern_methods!(
         pub unsafe fn setKeyEquivalentFont_size(
             &self,
             fontName: &Foundation::NSString,
-            fontSize: CGFloat,
+            fontSize: CoreGraphics::CGFloat,
         );
     }
 );

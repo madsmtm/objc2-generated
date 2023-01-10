@@ -22,10 +22,10 @@ extern_methods!(
         pub unsafe fn indexOfSelectedItem(&self) -> NSInteger;
 
         #[method(setEntryWidth:)]
-        pub unsafe fn setEntryWidth(&self, width: CGFloat);
+        pub unsafe fn setEntryWidth(&self, width: CoreGraphics::CGFloat);
 
         #[method(setInterlineSpacing:)]
-        pub unsafe fn setInterlineSpacing(&self, spacing: CGFloat);
+        pub unsafe fn setInterlineSpacing(&self, spacing: CoreGraphics::CGFloat);
 
         #[method(setBordered:)]
         pub unsafe fn setBordered(&self, flag: bool);
@@ -34,10 +34,10 @@ extern_methods!(
         pub unsafe fn setBezeled(&self, flag: bool);
 
         #[method(setTitleAlignment:)]
-        pub unsafe fn setTitleAlignment(&self, mode: NSTextAlignment);
+        pub unsafe fn setTitleAlignment(&self, mode: AppKit::NSTextAlignment);
 
         #[method(setTextAlignment:)]
-        pub unsafe fn setTextAlignment(&self, mode: NSTextAlignment);
+        pub unsafe fn setTextAlignment(&self, mode: AppKit::NSTextAlignment);
 
         #[cfg(feature = "AppKit_NSFont")]
         #[method(setTitleFont:)]
@@ -78,19 +78,25 @@ extern_methods!(
         pub unsafe fn selectTextAtIndex(&self, index: NSInteger);
 
         #[method(setFrameSize:)]
-        pub unsafe fn setFrameSize(&self, newSize: NSSize);
+        pub unsafe fn setFrameSize(&self, newSize: Foundation::NSSize);
 
         #[method(setTitleBaseWritingDirection:)]
-        pub unsafe fn setTitleBaseWritingDirection(&self, writingDirection: NSWritingDirection);
+        pub unsafe fn setTitleBaseWritingDirection(
+            &self,
+            writingDirection: AppKit::NSWritingDirection,
+        );
 
         #[method(setTextBaseWritingDirection:)]
-        pub unsafe fn setTextBaseWritingDirection(&self, writingDirection: NSWritingDirection);
+        pub unsafe fn setTextBaseWritingDirection(
+            &self,
+            writingDirection: AppKit::NSWritingDirection,
+        );
 
         #[method(setPreferredTextFieldWidth:)]
-        pub unsafe fn setPreferredTextFieldWidth(&self, preferredWidth: CGFloat);
+        pub unsafe fn setPreferredTextFieldWidth(&self, preferredWidth: CoreGraphics::CGFloat);
 
         #[method(preferredTextFieldWidth)]
-        pub unsafe fn preferredTextFieldWidth(&self) -> CGFloat;
+        pub unsafe fn preferredTextFieldWidth(&self) -> CoreGraphics::CGFloat;
     }
 );
 
@@ -101,15 +107,15 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frameRect: Foundation::NSRect,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "AppKit_NSCell")]
         #[method_id(@__retain_semantics Init initWithFrame:mode:prototype:numberOfRows:numberOfColumns:)]
         pub unsafe fn initWithFrame_mode_prototype_numberOfRows_numberOfColumns(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
-            mode: NSMatrixMode,
+            frameRect: Foundation::NSRect,
+            mode: AppKit::NSMatrixMode,
             cell: &AppKit::NSCell,
             rowsHigh: NSInteger,
             colsWide: NSInteger,
@@ -118,8 +124,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:mode:cellClass:numberOfRows:numberOfColumns:)]
         pub unsafe fn initWithFrame_mode_cellClass_numberOfRows_numberOfColumns(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
-            mode: NSMatrixMode,
+            frameRect: Foundation::NSRect,
+            mode: AppKit::NSMatrixMode,
             factoryId: Option<&Class>,
             rowsHigh: NSInteger,
             colsWide: NSInteger,

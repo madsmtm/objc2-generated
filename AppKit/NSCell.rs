@@ -69,11 +69,11 @@ typed_extensible_enum!(
     pub type NSControlStateValue = NSInteger;
 );
 
-extern_static!(NSControlStateValueMixed: NSControlStateValue = -1);
+extern_static!(NSControlStateValueMixed: AppKit::NSControlStateValue = -1);
 
-extern_static!(NSControlStateValueOff: NSControlStateValue = 0);
+extern_static!(NSControlStateValueOff: AppKit::NSControlStateValue = 0);
 
-extern_static!(NSControlStateValueOn: NSControlStateValue = 1);
+extern_static!(NSControlStateValueOn: AppKit::NSControlStateValue = 1);
 
 ns_options!(
     #[underlying(NSUInteger)]
@@ -154,16 +154,16 @@ extern_methods!(
         pub unsafe fn setControlView(&self, controlView: Option<&AppKit::NSView>);
 
         #[method(type)]
-        pub unsafe fn type_(&self) -> NSCellType;
+        pub unsafe fn type_(&self) -> AppKit::NSCellType;
 
         #[method(setType:)]
-        pub unsafe fn setType(&self, type_: NSCellType);
+        pub unsafe fn setType(&self, type_: AppKit::NSCellType);
 
         #[method(state)]
-        pub unsafe fn state(&self) -> NSControlStateValue;
+        pub unsafe fn state(&self) -> AppKit::NSControlStateValue;
 
         #[method(setState:)]
-        pub unsafe fn setState(&self, state: NSControlStateValue);
+        pub unsafe fn setState(&self, state: AppKit::NSControlStateValue);
 
         #[method_id(@__retain_semantics Other target)]
         pub unsafe fn target(&self) -> Option<Id<Object, Shared>>;
@@ -201,7 +201,7 @@ extern_methods!(
         pub unsafe fn setEnabled(&self, enabled: bool);
 
         #[method(sendActionOn:)]
-        pub unsafe fn sendActionOn(&self, mask: NSEventMask) -> NSInteger;
+        pub unsafe fn sendActionOn(&self, mask: AppKit::NSEventMask) -> NSInteger;
 
         #[method(isContinuous)]
         pub unsafe fn isContinuous(&self) -> bool;
@@ -246,10 +246,10 @@ extern_methods!(
         pub unsafe fn setHighlighted(&self, highlighted: bool);
 
         #[method(alignment)]
-        pub unsafe fn alignment(&self) -> NSTextAlignment;
+        pub unsafe fn alignment(&self) -> AppKit::NSTextAlignment;
 
         #[method(setAlignment:)]
-        pub unsafe fn setAlignment(&self, alignment: NSTextAlignment);
+        pub unsafe fn setAlignment(&self, alignment: AppKit::NSTextAlignment);
 
         #[method(wraps)]
         pub unsafe fn wraps(&self) -> bool;
@@ -295,7 +295,7 @@ extern_methods!(
         pub unsafe fn setStringValue(&self, stringValue: &Foundation::NSString);
 
         #[method(compare:)]
-        pub unsafe fn compare(&self, otherCell: &Object) -> NSComparisonResult;
+        pub unsafe fn compare(&self, otherCell: &Object) -> Foundation::NSComparisonResult;
 
         #[method(intValue)]
         pub unsafe fn intValue(&self) -> c_int;
@@ -348,10 +348,10 @@ extern_methods!(
         pub unsafe fn setImage(&self, image: Option<&AppKit::NSImage>);
 
         #[method(controlSize)]
-        pub unsafe fn controlSize(&self) -> NSControlSize;
+        pub unsafe fn controlSize(&self) -> AppKit::NSControlSize;
 
         #[method(setControlSize:)]
-        pub unsafe fn setControlSize(&self, controlSize: NSControlSize);
+        pub unsafe fn setControlSize(&self, controlSize: AppKit::NSControlSize);
 
         #[method_id(@__retain_semantics Other representedObject)]
         pub unsafe fn representedObject(&self) -> Option<Id<Object, Shared>>;
@@ -360,36 +360,40 @@ extern_methods!(
         pub unsafe fn setRepresentedObject(&self, representedObject: Option<&Object>);
 
         #[method(cellAttribute:)]
-        pub unsafe fn cellAttribute(&self, parameter: NSCellAttribute) -> NSInteger;
+        pub unsafe fn cellAttribute(&self, parameter: AppKit::NSCellAttribute) -> NSInteger;
 
         #[method(setCellAttribute:to:)]
-        pub unsafe fn setCellAttribute_to(&self, parameter: NSCellAttribute, value: NSInteger);
+        pub unsafe fn setCellAttribute_to(
+            &self,
+            parameter: AppKit::NSCellAttribute,
+            value: NSInteger,
+        );
 
         #[method(imageRectForBounds:)]
-        pub unsafe fn imageRectForBounds(&self, rect: NSRect) -> NSRect;
+        pub unsafe fn imageRectForBounds(&self, rect: Foundation::NSRect) -> Foundation::NSRect;
 
         #[method(titleRectForBounds:)]
-        pub unsafe fn titleRectForBounds(&self, rect: NSRect) -> NSRect;
+        pub unsafe fn titleRectForBounds(&self, rect: Foundation::NSRect) -> Foundation::NSRect;
 
         #[method(drawingRectForBounds:)]
-        pub unsafe fn drawingRectForBounds(&self, rect: NSRect) -> NSRect;
+        pub unsafe fn drawingRectForBounds(&self, rect: Foundation::NSRect) -> Foundation::NSRect;
 
         #[method(cellSize)]
-        pub unsafe fn cellSize(&self) -> NSSize;
+        pub unsafe fn cellSize(&self) -> Foundation::NSSize;
 
         #[method(cellSizeForBounds:)]
-        pub unsafe fn cellSizeForBounds(&self, rect: NSRect) -> NSSize;
+        pub unsafe fn cellSizeForBounds(&self, rect: Foundation::NSRect) -> Foundation::NSSize;
 
         #[cfg(all(feature = "AppKit_NSColor", feature = "AppKit_NSView"))]
         #[method_id(@__retain_semantics Other highlightColorWithFrame:inView:)]
         pub unsafe fn highlightColorWithFrame_inView(
             &self,
-            cellFrame: NSRect,
+            cellFrame: Foundation::NSRect,
             controlView: &AppKit::NSView,
         ) -> Option<Id<AppKit::NSColor, Shared>>;
 
         #[method(calcDrawInfo:)]
-        pub unsafe fn calcDrawInfo(&self, rect: NSRect);
+        pub unsafe fn calcDrawInfo(&self, rect: Foundation::NSRect);
 
         #[cfg(feature = "AppKit_NSText")]
         #[method_id(@__retain_semantics Other setUpFieldEditorAttributes:)]
@@ -402,20 +406,24 @@ extern_methods!(
         #[method(drawInteriorWithFrame:inView:)]
         pub unsafe fn drawInteriorWithFrame_inView(
             &self,
-            cellFrame: NSRect,
+            cellFrame: Foundation::NSRect,
             controlView: &AppKit::NSView,
         );
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(drawWithFrame:inView:)]
-        pub unsafe fn drawWithFrame_inView(&self, cellFrame: NSRect, controlView: &AppKit::NSView);
+        pub unsafe fn drawWithFrame_inView(
+            &self,
+            cellFrame: Foundation::NSRect,
+            controlView: &AppKit::NSView,
+        );
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(highlight:withFrame:inView:)]
         pub unsafe fn highlight_withFrame_inView(
             &self,
             flag: bool,
-            cellFrame: NSRect,
+            cellFrame: Foundation::NSRect,
             controlView: &AppKit::NSView,
         );
 
@@ -433,7 +441,7 @@ extern_methods!(
         #[method(startTrackingAt:inView:)]
         pub unsafe fn startTrackingAt_inView(
             &self,
-            startPoint: NSPoint,
+            startPoint: Foundation::NSPoint,
             controlView: &AppKit::NSView,
         ) -> bool;
 
@@ -441,8 +449,8 @@ extern_methods!(
         #[method(continueTracking:at:inView:)]
         pub unsafe fn continueTracking_at_inView(
             &self,
-            lastPoint: NSPoint,
-            currentPoint: NSPoint,
+            lastPoint: Foundation::NSPoint,
+            currentPoint: Foundation::NSPoint,
             controlView: &AppKit::NSView,
         ) -> bool;
 
@@ -450,8 +458,8 @@ extern_methods!(
         #[method(stopTracking:at:inView:mouseIsUp:)]
         pub unsafe fn stopTracking_at_inView_mouseIsUp(
             &self,
-            lastPoint: NSPoint,
-            stopPoint: NSPoint,
+            lastPoint: Foundation::NSPoint,
+            stopPoint: Foundation::NSPoint,
             controlView: &AppKit::NSView,
             flag: bool,
         );
@@ -461,7 +469,7 @@ extern_methods!(
         pub unsafe fn trackMouse_inRect_ofView_untilMouseUp(
             &self,
             event: &AppKit::NSEvent,
-            cellFrame: NSRect,
+            cellFrame: Foundation::NSRect,
             controlView: &AppKit::NSView,
             flag: bool,
         ) -> bool;
@@ -474,7 +482,7 @@ extern_methods!(
         #[method(editWithFrame:inView:editor:delegate:event:)]
         pub unsafe fn editWithFrame_inView_editor_delegate_event(
             &self,
-            rect: NSRect,
+            rect: Foundation::NSRect,
             controlView: &AppKit::NSView,
             textObj: &AppKit::NSText,
             delegate: Option<&Object>,
@@ -485,7 +493,7 @@ extern_methods!(
         #[method(selectWithFrame:inView:editor:delegate:start:length:)]
         pub unsafe fn selectWithFrame_inView_editor_delegate_start_length(
             &self,
-            rect: NSRect,
+            rect: Foundation::NSRect,
             controlView: &AppKit::NSView,
             textObj: &AppKit::NSText,
             delegate: Option<&Object>,
@@ -501,7 +509,7 @@ extern_methods!(
         #[method(resetCursorRect:inView:)]
         pub unsafe fn resetCursorRect_inView(
             &self,
-            cellFrame: NSRect,
+            cellFrame: Foundation::NSRect,
             controlView: &AppKit::NSView,
         );
 
@@ -522,7 +530,7 @@ extern_methods!(
         pub unsafe fn menuForEvent_inRect_ofView(
             &self,
             event: &AppKit::NSEvent,
-            cellFrame: NSRect,
+            cellFrame: Foundation::NSRect,
             view: &AppKit::NSView,
         ) -> Option<Id<AppKit::NSMenu, Shared>>;
 
@@ -537,16 +545,19 @@ extern_methods!(
         pub unsafe fn setSendsActionOnEndEditing(&self, sendsActionOnEndEditing: bool);
 
         #[method(baseWritingDirection)]
-        pub unsafe fn baseWritingDirection(&self) -> NSWritingDirection;
+        pub unsafe fn baseWritingDirection(&self) -> AppKit::NSWritingDirection;
 
         #[method(setBaseWritingDirection:)]
-        pub unsafe fn setBaseWritingDirection(&self, baseWritingDirection: NSWritingDirection);
+        pub unsafe fn setBaseWritingDirection(
+            &self,
+            baseWritingDirection: AppKit::NSWritingDirection,
+        );
 
         #[method(lineBreakMode)]
-        pub unsafe fn lineBreakMode(&self) -> NSLineBreakMode;
+        pub unsafe fn lineBreakMode(&self) -> AppKit::NSLineBreakMode;
 
         #[method(setLineBreakMode:)]
-        pub unsafe fn setLineBreakMode(&self, lineBreakMode: NSLineBreakMode);
+        pub unsafe fn setLineBreakMode(&self, lineBreakMode: AppKit::NSLineBreakMode);
 
         #[method(allowsUndo)]
         pub unsafe fn allowsUndo(&self) -> bool;
@@ -561,12 +572,13 @@ extern_methods!(
         pub unsafe fn setTruncatesLastVisibleLine(&self, truncatesLastVisibleLine: bool);
 
         #[method(userInterfaceLayoutDirection)]
-        pub unsafe fn userInterfaceLayoutDirection(&self) -> NSUserInterfaceLayoutDirection;
+        pub unsafe fn userInterfaceLayoutDirection(&self)
+            -> AppKit::NSUserInterfaceLayoutDirection;
 
         #[method(setUserInterfaceLayoutDirection:)]
         pub unsafe fn setUserInterfaceLayoutDirection(
             &self,
-            userInterfaceLayoutDirection: NSUserInterfaceLayoutDirection,
+            userInterfaceLayoutDirection: AppKit::NSUserInterfaceLayoutDirection,
         );
 
         #[cfg(all(feature = "AppKit_NSTextView", feature = "AppKit_NSView"))]
@@ -590,7 +602,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other draggingImageComponentsWithFrame:inView:)]
         pub unsafe fn draggingImageComponentsWithFrame_inView(
             &self,
-            frame: NSRect,
+            frame: Foundation::NSRect,
             view: &AppKit::NSView,
         ) -> Id<Foundation::NSArray<AppKit::NSDraggingImageComponent>, Shared>;
     }
@@ -619,19 +631,19 @@ extern_methods!(
         pub unsafe fn performClick(&self, sender: Option<&Object>);
 
         #[method(focusRingType)]
-        pub unsafe fn focusRingType(&self) -> NSFocusRingType;
+        pub unsafe fn focusRingType(&self) -> AppKit::NSFocusRingType;
 
         #[method(setFocusRingType:)]
-        pub unsafe fn setFocusRingType(&self, focusRingType: NSFocusRingType);
+        pub unsafe fn setFocusRingType(&self, focusRingType: AppKit::NSFocusRingType);
 
         #[method(defaultFocusRingType)]
-        pub unsafe fn defaultFocusRingType() -> NSFocusRingType;
+        pub unsafe fn defaultFocusRingType() -> AppKit::NSFocusRingType;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(drawFocusRingMaskWithFrame:inView:)]
         pub unsafe fn drawFocusRingMaskWithFrame_inView(
             &self,
-            cellFrame: NSRect,
+            cellFrame: Foundation::NSRect,
             controlView: &AppKit::NSView,
         );
 
@@ -639,9 +651,9 @@ extern_methods!(
         #[method(focusRingMaskBoundsForFrame:inView:)]
         pub unsafe fn focusRingMaskBoundsForFrame_inView(
             &self,
-            cellFrame: NSRect,
+            cellFrame: Foundation::NSRect,
             controlView: &AppKit::NSView,
-        ) -> NSRect;
+        ) -> Foundation::NSRect;
 
         #[method(wantsNotificationForMarkedText)]
         pub unsafe fn wantsNotificationForMarkedText(&self) -> bool;
@@ -714,9 +726,9 @@ extern_methods!(
         pub unsafe fn hitTestForEvent_inRect_ofView(
             &self,
             event: &AppKit::NSEvent,
-            cellFrame: NSRect,
+            cellFrame: Foundation::NSRect,
             controlView: &AppKit::NSView,
-        ) -> NSCellHitResult;
+        ) -> AppKit::NSCellHitResult;
     }
 );
 
@@ -728,15 +740,15 @@ extern_methods!(
         #[method(expansionFrameWithFrame:inView:)]
         pub unsafe fn expansionFrameWithFrame_inView(
             &self,
-            cellFrame: NSRect,
+            cellFrame: Foundation::NSRect,
             view: &AppKit::NSView,
-        ) -> NSRect;
+        ) -> Foundation::NSRect;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(drawWithExpansionFrame:inView:)]
         pub unsafe fn drawWithExpansionFrame_inView(
             &self,
-            cellFrame: NSRect,
+            cellFrame: Foundation::NSRect,
             view: &AppKit::NSView,
         );
     }
@@ -757,32 +769,32 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSCell")]
     unsafe impl NSCell {
         #[method(backgroundStyle)]
-        pub unsafe fn backgroundStyle(&self) -> NSBackgroundStyle;
+        pub unsafe fn backgroundStyle(&self) -> AppKit::NSBackgroundStyle;
 
         #[method(setBackgroundStyle:)]
-        pub unsafe fn setBackgroundStyle(&self, backgroundStyle: NSBackgroundStyle);
+        pub unsafe fn setBackgroundStyle(&self, backgroundStyle: AppKit::NSBackgroundStyle);
 
         #[method(interiorBackgroundStyle)]
-        pub unsafe fn interiorBackgroundStyle(&self) -> NSBackgroundStyle;
+        pub unsafe fn interiorBackgroundStyle(&self) -> AppKit::NSBackgroundStyle;
     }
 );
 
 extern_fn!(
     pub unsafe fn NSDrawThreePartImage(
-        frame: NSRect,
+        frame: Foundation::NSRect,
         startCap: Option<&AppKit::NSImage>,
         centerFill: Option<&AppKit::NSImage>,
         endCap: Option<&AppKit::NSImage>,
         vertical: Bool,
-        op: NSCompositingOperation,
-        alphaFraction: CGFloat,
+        op: AppKit::NSCompositingOperation,
+        alphaFraction: CoreGraphics::CGFloat,
         flipped: Bool,
     );
 );
 
 extern_fn!(
     pub unsafe fn NSDrawNinePartImage(
-        frame: NSRect,
+        frame: Foundation::NSRect,
         topLeftCorner: Option<&AppKit::NSImage>,
         topEdgeFill: Option<&AppKit::NSImage>,
         topRightCorner: Option<&AppKit::NSImage>,
@@ -792,8 +804,8 @@ extern_fn!(
         bottomLeftCorner: Option<&AppKit::NSImage>,
         bottomEdgeFill: Option<&AppKit::NSImage>,
         bottomRightCorner: Option<&AppKit::NSImage>,
-        op: NSCompositingOperation,
-        alphaFraction: CGFloat,
+        op: AppKit::NSCompositingOperation,
+        alphaFraction: CoreGraphics::CGFloat,
         flipped: Bool,
     );
 );
@@ -803,10 +815,10 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSCell")]
     unsafe impl NSCell {
         #[method(controlTint)]
-        pub unsafe fn controlTint(&self) -> NSControlTint;
+        pub unsafe fn controlTint(&self) -> AppKit::NSControlTint;
 
         #[method(setControlTint:)]
-        pub unsafe fn setControlTint(&self, controlTint: NSControlTint);
+        pub unsafe fn setControlTint(&self, controlTint: AppKit::NSControlTint);
 
         #[method(entryType)]
         pub unsafe fn entryType(&self) -> NSInteger;
@@ -842,23 +854,23 @@ extern_methods!(
     }
 );
 
-extern_static!(NSBackgroundStyleLight: NSBackgroundStyle = NSBackgroundStyleNormal);
+extern_static!(NSBackgroundStyleLight: AppKit::NSBackgroundStyle = NSBackgroundStyleNormal);
 
-extern_static!(NSBackgroundStyleDark: NSBackgroundStyle = NSBackgroundStyleEmphasized);
+extern_static!(NSBackgroundStyleDark: AppKit::NSBackgroundStyle = NSBackgroundStyleEmphasized);
 
-pub type NSCellStateValue = NSControlStateValue;
+pub type NSCellStateValue = AppKit::NSControlStateValue;
 
-extern_static!(NSMixedState: NSControlStateValue = NSControlStateValueMixed);
+extern_static!(NSMixedState: AppKit::NSControlStateValue = NSControlStateValueMixed);
 
-extern_static!(NSOffState: NSControlStateValue = NSControlStateValueOff);
+extern_static!(NSOffState: AppKit::NSControlStateValue = NSControlStateValueOff);
 
-extern_static!(NSOnState: NSControlStateValue = NSControlStateValueOn);
+extern_static!(NSOnState: AppKit::NSControlStateValue = NSControlStateValueOn);
 
-extern_static!(NSRegularControlSize: NSControlSize = NSControlSizeRegular);
+extern_static!(NSRegularControlSize: AppKit::NSControlSize = NSControlSizeRegular);
 
-extern_static!(NSSmallControlSize: NSControlSize = NSControlSizeSmall);
+extern_static!(NSSmallControlSize: AppKit::NSControlSize = NSControlSizeSmall);
 
-extern_static!(NSMiniControlSize: NSControlSize = NSControlSizeMini);
+extern_static!(NSMiniControlSize: AppKit::NSControlSize = NSControlSizeMini);
 
 extern_static!(NSControlTintDidChangeNotification: &'static Foundation::NSNotificationName);
 

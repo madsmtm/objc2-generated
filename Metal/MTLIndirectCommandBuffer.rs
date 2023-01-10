@@ -27,7 +27,7 @@ inline_fn!(
     pub unsafe fn MTLIndirectCommandBufferExecutionRangeMake(
         location: u32,
         length: u32,
-    ) -> MTLIndirectCommandBufferExecutionRange {
+    ) -> Metal::MTLIndirectCommandBufferExecutionRange {
         todo!()
     }
 );
@@ -45,10 +45,10 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLIndirectCommandBufferDescriptor")]
     unsafe impl MTLIndirectCommandBufferDescriptor {
         #[method(commandTypes)]
-        pub fn commandTypes(&self) -> MTLIndirectCommandType;
+        pub fn commandTypes(&self) -> Metal::MTLIndirectCommandType;
 
         #[method(setCommandTypes:)]
-        pub fn setCommandTypes(&self, commandTypes: MTLIndirectCommandType);
+        pub fn setCommandTypes(&self, commandTypes: Metal::MTLIndirectCommandType);
 
         #[method(inheritPipelineState)]
         pub fn inheritPipelineState(&self) -> bool;
@@ -90,7 +90,7 @@ extern_protocol!(
         pub fn size(&self) -> NSUInteger;
 
         #[method(resetWithRange:)]
-        pub unsafe fn resetWithRange(&self, range: NSRange);
+        pub unsafe fn resetWithRange(&self, range: Foundation::NSRange);
 
         #[method_id(@__retain_semantics Other indirectRenderCommandAtIndex:)]
         pub unsafe fn indirectRenderCommandAtIndex(

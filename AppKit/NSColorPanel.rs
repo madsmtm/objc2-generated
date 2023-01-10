@@ -67,10 +67,10 @@ extern_methods!(
         ) -> bool;
 
         #[method(setPickerMask:)]
-        pub unsafe fn setPickerMask(mask: NSColorPanelOptions);
+        pub unsafe fn setPickerMask(mask: AppKit::NSColorPanelOptions);
 
         #[method(setPickerMode:)]
-        pub unsafe fn setPickerMode(mode: NSColorPanelMode);
+        pub unsafe fn setPickerMode(mode: AppKit::NSColorPanelMode);
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other accessoryView)]
@@ -93,10 +93,10 @@ extern_methods!(
         pub unsafe fn setShowsAlpha(&self, showsAlpha: bool);
 
         #[method(mode)]
-        pub unsafe fn mode(&self) -> NSColorPanelMode;
+        pub unsafe fn mode(&self) -> AppKit::NSColorPanelMode;
 
         #[method(setMode:)]
-        pub unsafe fn setMode(&self, mode: NSColorPanelMode);
+        pub unsafe fn setMode(&self, mode: AppKit::NSColorPanelMode);
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other color)]
@@ -107,7 +107,7 @@ extern_methods!(
         pub unsafe fn setColor(&self, color: &AppKit::NSColor);
 
         #[method(alpha)]
-        pub unsafe fn alpha(&self) -> CGFloat;
+        pub unsafe fn alpha(&self) -> CoreGraphics::CGFloat;
 
         #[method(setAction:)]
         pub unsafe fn setAction(&self, selector: Option<Sel>);
@@ -145,23 +145,25 @@ extern_protocol!(
 
 extern_static!(NSColorPanelColorDidChangeNotification: &'static Foundation::NSNotificationName);
 
-extern_static!(NSNoModeColorPanel: NSColorPanelMode = NSColorPanelModeNone);
+extern_static!(NSNoModeColorPanel: AppKit::NSColorPanelMode = NSColorPanelModeNone);
 
-extern_static!(NSGrayModeColorPanel: NSColorPanelMode = NSColorPanelModeGray);
+extern_static!(NSGrayModeColorPanel: AppKit::NSColorPanelMode = NSColorPanelModeGray);
 
-extern_static!(NSRGBModeColorPanel: NSColorPanelMode = NSColorPanelModeRGB);
+extern_static!(NSRGBModeColorPanel: AppKit::NSColorPanelMode = NSColorPanelModeRGB);
 
-extern_static!(NSCMYKModeColorPanel: NSColorPanelMode = NSColorPanelModeCMYK);
+extern_static!(NSCMYKModeColorPanel: AppKit::NSColorPanelMode = NSColorPanelModeCMYK);
 
-extern_static!(NSHSBModeColorPanel: NSColorPanelMode = NSColorPanelModeHSB);
+extern_static!(NSHSBModeColorPanel: AppKit::NSColorPanelMode = NSColorPanelModeHSB);
 
-extern_static!(NSCustomPaletteModeColorPanel: NSColorPanelMode = NSColorPanelModeCustomPalette);
+extern_static!(
+    NSCustomPaletteModeColorPanel: AppKit::NSColorPanelMode = NSColorPanelModeCustomPalette
+);
 
-extern_static!(NSColorListModeColorPanel: NSColorPanelMode = NSColorPanelModeColorList);
+extern_static!(NSColorListModeColorPanel: AppKit::NSColorPanelMode = NSColorPanelModeColorList);
 
-extern_static!(NSWheelModeColorPanel: NSColorPanelMode = NSColorPanelModeWheel);
+extern_static!(NSWheelModeColorPanel: AppKit::NSColorPanelMode = NSColorPanelModeWheel);
 
-extern_static!(NSCrayonModeColorPanel: NSColorPanelMode = NSColorPanelModeCrayon);
+extern_static!(NSCrayonModeColorPanel: AppKit::NSColorPanelMode = NSColorPanelModeCrayon);
 
 extern_methods!(
     /// Methods declared on superclass `NSWindow`
@@ -170,9 +172,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer(
             this: Option<Allocated<Self>>,
-            contentRect: NSRect,
-            style: NSWindowStyleMask,
-            backingStoreType: NSBackingStoreType,
+            contentRect: Foundation::NSRect,
+            style: AppKit::NSWindowStyleMask,
+            backingStoreType: AppKit::NSBackingStoreType,
             flag: bool,
         ) -> Id<Self, Shared>;
 
@@ -180,9 +182,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:screen:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer_screen(
             this: Option<Allocated<Self>>,
-            contentRect: NSRect,
-            style: NSWindowStyleMask,
-            backingStoreType: NSBackingStoreType,
+            contentRect: Foundation::NSRect,
+            style: AppKit::NSWindowStyleMask,
+            backingStoreType: AppKit::NSBackingStoreType,
             flag: bool,
             screen: Option<&AppKit::NSScreen>,
         ) -> Id<Self, Shared>;

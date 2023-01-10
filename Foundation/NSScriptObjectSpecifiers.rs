@@ -296,12 +296,12 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithPosition:objectSpecifier:)]
         pub unsafe fn initWithPosition_objectSpecifier(
             this: Option<Allocated<Self>>,
-            position: NSInsertionPosition,
+            position: Foundation::NSInsertionPosition,
             specifier: &Foundation::NSScriptObjectSpecifier,
         ) -> Id<Self, Shared>;
 
         #[method(position)]
-        pub unsafe fn position(&self) -> NSInsertionPosition;
+        pub unsafe fn position(&self) -> Foundation::NSInsertionPosition;
 
         #[cfg(feature = "Foundation_NSScriptObjectSpecifier")]
         #[method_id(@__retain_semantics Other objectSpecifier)]
@@ -450,15 +450,15 @@ extern_methods!(
             classDesc: &Foundation::NSScriptClassDescription,
             container: Option<&Foundation::NSScriptObjectSpecifier>,
             property: &Foundation::NSString,
-            relPos: NSRelativePosition,
+            relPos: Foundation::NSRelativePosition,
             baseSpecifier: Option<&Foundation::NSScriptObjectSpecifier>,
         ) -> Id<Self, Shared>;
 
         #[method(relativePosition)]
-        pub unsafe fn relativePosition(&self) -> NSRelativePosition;
+        pub unsafe fn relativePosition(&self) -> Foundation::NSRelativePosition;
 
         #[method(setRelativePosition:)]
-        pub unsafe fn setRelativePosition(&self, relativePosition: NSRelativePosition);
+        pub unsafe fn setRelativePosition(&self, relativePosition: Foundation::NSRelativePosition);
 
         #[method_id(@__retain_semantics Other baseSpecifier)]
         pub unsafe fn baseSpecifier(
@@ -557,12 +557,12 @@ extern_methods!(
         pub unsafe fn setTest(&self, test: &Foundation::NSScriptWhoseTest);
 
         #[method(startSubelementIdentifier)]
-        pub unsafe fn startSubelementIdentifier(&self) -> NSWhoseSubelementIdentifier;
+        pub unsafe fn startSubelementIdentifier(&self) -> Foundation::NSWhoseSubelementIdentifier;
 
         #[method(setStartSubelementIdentifier:)]
         pub unsafe fn setStartSubelementIdentifier(
             &self,
-            startSubelementIdentifier: NSWhoseSubelementIdentifier,
+            startSubelementIdentifier: Foundation::NSWhoseSubelementIdentifier,
         );
 
         #[method(startSubelementIndex)]
@@ -572,12 +572,12 @@ extern_methods!(
         pub unsafe fn setStartSubelementIndex(&self, startSubelementIndex: NSInteger);
 
         #[method(endSubelementIdentifier)]
-        pub unsafe fn endSubelementIdentifier(&self) -> NSWhoseSubelementIdentifier;
+        pub unsafe fn endSubelementIdentifier(&self) -> Foundation::NSWhoseSubelementIdentifier;
 
         #[method(setEndSubelementIdentifier:)]
         pub unsafe fn setEndSubelementIdentifier(
             &self,
-            endSubelementIdentifier: NSWhoseSubelementIdentifier,
+            endSubelementIdentifier: Foundation::NSWhoseSubelementIdentifier,
         );
 
         #[method(endSubelementIndex)]

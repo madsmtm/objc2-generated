@@ -47,7 +47,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other stringFromByteCount:countStyle:)]
         pub unsafe fn stringFromByteCount_countStyle(
             byteCount: c_longlong,
-            countStyle: NSByteCountFormatterCountStyle,
+            countStyle: Foundation::NSByteCountFormatterCountStyle,
         ) -> Id<Foundation::NSString, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -65,7 +65,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other stringFromMeasurement:countStyle:)]
         pub unsafe fn stringFromMeasurement_countStyle(
             measurement: &Foundation::NSMeasurement<Foundation::NSUnitInformationStorage>,
-            countStyle: NSByteCountFormatterCountStyle,
+            countStyle: Foundation::NSByteCountFormatterCountStyle,
         ) -> Id<Foundation::NSString, Shared>;
 
         #[cfg(all(
@@ -87,16 +87,16 @@ extern_methods!(
         ) -> Option<Id<Foundation::NSString, Shared>>;
 
         #[method(allowedUnits)]
-        pub unsafe fn allowedUnits(&self) -> NSByteCountFormatterUnits;
+        pub unsafe fn allowedUnits(&self) -> Foundation::NSByteCountFormatterUnits;
 
         #[method(setAllowedUnits:)]
-        pub unsafe fn setAllowedUnits(&self, allowedUnits: NSByteCountFormatterUnits);
+        pub unsafe fn setAllowedUnits(&self, allowedUnits: Foundation::NSByteCountFormatterUnits);
 
         #[method(countStyle)]
-        pub unsafe fn countStyle(&self) -> NSByteCountFormatterCountStyle;
+        pub unsafe fn countStyle(&self) -> Foundation::NSByteCountFormatterCountStyle;
 
         #[method(setCountStyle:)]
-        pub unsafe fn setCountStyle(&self, countStyle: NSByteCountFormatterCountStyle);
+        pub unsafe fn setCountStyle(&self, countStyle: Foundation::NSByteCountFormatterCountStyle);
 
         #[method(allowsNonnumericFormatting)]
         pub unsafe fn allowsNonnumericFormatting(&self) -> bool;
@@ -135,9 +135,12 @@ extern_methods!(
         pub unsafe fn setZeroPadsFractionDigits(&self, zeroPadsFractionDigits: bool);
 
         #[method(formattingContext)]
-        pub unsafe fn formattingContext(&self) -> NSFormattingContext;
+        pub unsafe fn formattingContext(&self) -> Foundation::NSFormattingContext;
 
         #[method(setFormattingContext:)]
-        pub unsafe fn setFormattingContext(&self, formattingContext: NSFormattingContext);
+        pub unsafe fn setFormattingContext(
+            &self,
+            formattingContext: Foundation::NSFormattingContext,
+        );
     }
 );

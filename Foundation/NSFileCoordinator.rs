@@ -40,14 +40,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other readingIntentWithURL:options:)]
         pub unsafe fn readingIntentWithURL_options(
             url: &Foundation::NSURL,
-            options: NSFileCoordinatorReadingOptions,
+            options: Foundation::NSFileCoordinatorReadingOptions,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other writingIntentWithURL:options:)]
         pub unsafe fn writingIntentWithURL_options(
             url: &Foundation::NSURL,
-            options: NSFileCoordinatorWritingOptions,
+            options: Foundation::NSFileCoordinatorWritingOptions,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSURL")]
@@ -112,7 +112,7 @@ extern_methods!(
         pub unsafe fn coordinateReadingItemAtURL_options_error_byAccessor(
             &self,
             url: &Foundation::NSURL,
-            options: NSFileCoordinatorReadingOptions,
+            options: Foundation::NSFileCoordinatorReadingOptions,
             outError: *mut *mut Foundation::NSError,
             reader: &Block<(NonNull<Foundation::NSURL>,), ()>,
         );
@@ -122,7 +122,7 @@ extern_methods!(
         pub unsafe fn coordinateWritingItemAtURL_options_error_byAccessor(
             &self,
             url: &Foundation::NSURL,
-            options: NSFileCoordinatorWritingOptions,
+            options: Foundation::NSFileCoordinatorWritingOptions,
             outError: *mut *mut Foundation::NSError,
             writer: &Block<(NonNull<Foundation::NSURL>,), ()>,
         );
@@ -132,9 +132,9 @@ extern_methods!(
         pub unsafe fn coordinateReadingItemAtURL_options_writingItemAtURL_options_error_byAccessor(
             &self,
             readingURL: &Foundation::NSURL,
-            readingOptions: NSFileCoordinatorReadingOptions,
+            readingOptions: Foundation::NSFileCoordinatorReadingOptions,
             writingURL: &Foundation::NSURL,
-            writingOptions: NSFileCoordinatorWritingOptions,
+            writingOptions: Foundation::NSFileCoordinatorWritingOptions,
             outError: *mut *mut Foundation::NSError,
             readerWriter: &Block<(NonNull<Foundation::NSURL>, NonNull<Foundation::NSURL>), ()>,
         );
@@ -144,9 +144,9 @@ extern_methods!(
         pub unsafe fn coordinateWritingItemAtURL_options_writingItemAtURL_options_error_byAccessor(
             &self,
             url1: &Foundation::NSURL,
-            options1: NSFileCoordinatorWritingOptions,
+            options1: Foundation::NSFileCoordinatorWritingOptions,
             url2: &Foundation::NSURL,
-            options2: NSFileCoordinatorWritingOptions,
+            options2: Foundation::NSFileCoordinatorWritingOptions,
             outError: *mut *mut Foundation::NSError,
             writer: &Block<(NonNull<Foundation::NSURL>, NonNull<Foundation::NSURL>), ()>,
         );
@@ -160,9 +160,9 @@ extern_methods!(
         pub unsafe fn prepareForReadingItemsAtURLs_options_writingItemsAtURLs_options_error_byAccessor(
             &self,
             readingURLs: &Foundation::NSArray<Foundation::NSURL>,
-            readingOptions: NSFileCoordinatorReadingOptions,
+            readingOptions: Foundation::NSFileCoordinatorReadingOptions,
             writingURLs: &Foundation::NSArray<Foundation::NSURL>,
-            writingOptions: NSFileCoordinatorWritingOptions,
+            writingOptions: Foundation::NSFileCoordinatorWritingOptions,
             outError: *mut *mut Foundation::NSError,
             batchAccessor: &Block<(NonNull<Block<(), ()>>,), ()>,
         );

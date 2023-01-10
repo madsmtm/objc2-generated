@@ -82,7 +82,7 @@ extern_methods!(
         pub unsafe fn initWithImage_hotSpot(
             this: Option<Allocated<Self>>,
             newImage: &AppKit::NSImage,
-            point: NSPoint,
+            point: Foundation::NSPoint,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSCoder")]
@@ -106,7 +106,7 @@ extern_methods!(
         pub unsafe fn image(&self) -> Id<AppKit::NSImage, Shared>;
 
         #[method(hotSpot)]
-        pub unsafe fn hotSpot(&self) -> NSPoint;
+        pub unsafe fn hotSpot(&self) -> Foundation::NSPoint;
 
         #[method(push)]
         pub unsafe fn push(&self);
@@ -116,7 +116,7 @@ extern_methods!(
     }
 );
 
-extern_static!(NSAppKitVersionNumberWithCursorSizeSupport: NSAppKitVersion = 682.0);
+extern_static!(NSAppKitVersionNumberWithCursorSizeSupport: AppKit::NSAppKitVersion = 682.0);
 
 extern_methods!(
     /// NSDeprecated
@@ -129,7 +129,7 @@ extern_methods!(
             newImage: &AppKit::NSImage,
             fg: Option<&AppKit::NSColor>,
             bg: Option<&AppKit::NSColor>,
-            hotSpot: NSPoint,
+            hotSpot: Foundation::NSPoint,
         ) -> Id<Self, Shared>;
 
         #[method(setOnMouseExited:)]

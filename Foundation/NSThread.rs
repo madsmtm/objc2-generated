@@ -40,16 +40,16 @@ extern_methods!(
         pub unsafe fn sleepUntilDate(date: &Foundation::NSDate);
 
         #[method(sleepForTimeInterval:)]
-        pub unsafe fn sleepForTimeInterval(ti: NSTimeInterval);
+        pub unsafe fn sleepForTimeInterval(ti: Foundation::NSTimeInterval);
 
         #[method(exit)]
         pub unsafe fn exit();
 
         #[method(qualityOfService)]
-        pub unsafe fn qualityOfService(&self) -> NSQualityOfService;
+        pub unsafe fn qualityOfService(&self) -> Foundation::NSQualityOfService;
 
         #[method(setQualityOfService:)]
-        pub unsafe fn setQualityOfService(&self, qualityOfService: NSQualityOfService);
+        pub unsafe fn setQualityOfService(&self, qualityOfService: Foundation::NSQualityOfService);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method_id(@__retain_semantics Other callStackReturnAddresses)]

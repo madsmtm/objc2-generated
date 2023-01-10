@@ -237,7 +237,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithTimeIntervalSinceReferenceDate:)]
         pub unsafe fn initWithTimeIntervalSinceReferenceDate(
             this: Option<Allocated<Self>>,
-            ti: NSTimeInterval,
+            ti: Foundation::NSTimeInterval,
         ) -> Id<Self, Shared>;
     }
 );
@@ -252,38 +252,42 @@ extern_methods!(
         pub unsafe fn date() -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Other dateWithTimeIntervalSinceNow:)]
-        pub unsafe fn dateWithTimeIntervalSinceNow(secs: NSTimeInterval) -> Id<Self, Shared>;
+        pub unsafe fn dateWithTimeIntervalSinceNow(
+            secs: Foundation::NSTimeInterval,
+        ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Other dateWithTimeIntervalSinceReferenceDate:)]
         pub unsafe fn dateWithTimeIntervalSinceReferenceDate(
-            ti: NSTimeInterval,
+            ti: Foundation::NSTimeInterval,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Other dateWithTimeIntervalSince1970:)]
-        pub unsafe fn dateWithTimeIntervalSince1970(secs: NSTimeInterval) -> Id<Self, Shared>;
+        pub unsafe fn dateWithTimeIntervalSince1970(
+            secs: Foundation::NSTimeInterval,
+        ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Other dateWithTimeInterval:sinceDate:)]
         pub unsafe fn dateWithTimeInterval_sinceDate(
-            secsToBeAdded: NSTimeInterval,
+            secsToBeAdded: Foundation::NSTimeInterval,
             date: &Foundation::NSDate,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Init initWithTimeIntervalSinceNow:)]
         pub unsafe fn initWithTimeIntervalSinceNow(
             this: Option<Allocated<Self>>,
-            secs: NSTimeInterval,
+            secs: Foundation::NSTimeInterval,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Init initWithTimeIntervalSince1970:)]
         pub unsafe fn initWithTimeIntervalSince1970(
             this: Option<Allocated<Self>>,
-            secs: NSTimeInterval,
+            secs: Foundation::NSTimeInterval,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Init initWithTimeInterval:sinceDate:)]
         pub unsafe fn initWithTimeInterval_sinceDate(
             this: Option<Allocated<Self>>,
-            secsToBeAdded: NSTimeInterval,
+            secsToBeAdded: Foundation::NSTimeInterval,
             date: &Foundation::NSDate,
         ) -> Id<Self, Shared>;
     }

@@ -55,7 +55,7 @@ extern_methods!(
         pub unsafe fn numberOfColorComponents(&self) -> NSInteger;
 
         #[method(colorSpaceModel)]
-        pub unsafe fn colorSpaceModel(&self) -> NSColorSpaceModel;
+        pub unsafe fn colorSpaceModel(&self) -> AppKit::NSColorSpaceModel;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedName)]
@@ -100,23 +100,23 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other availableColorSpacesWithModel:)]
         pub unsafe fn availableColorSpacesWithModel(
-            model: NSColorSpaceModel,
+            model: AppKit::NSColorSpaceModel,
         ) -> Id<Foundation::NSArray<AppKit::NSColorSpace>, Shared>;
     }
 );
 
-extern_static!(NSUnknownColorSpaceModel: NSColorSpaceModel = NSColorSpaceModelUnknown);
+extern_static!(NSUnknownColorSpaceModel: AppKit::NSColorSpaceModel = NSColorSpaceModelUnknown);
 
-extern_static!(NSGrayColorSpaceModel: NSColorSpaceModel = NSColorSpaceModelGray);
+extern_static!(NSGrayColorSpaceModel: AppKit::NSColorSpaceModel = NSColorSpaceModelGray);
 
-extern_static!(NSRGBColorSpaceModel: NSColorSpaceModel = NSColorSpaceModelRGB);
+extern_static!(NSRGBColorSpaceModel: AppKit::NSColorSpaceModel = NSColorSpaceModelRGB);
 
-extern_static!(NSCMYKColorSpaceModel: NSColorSpaceModel = NSColorSpaceModelCMYK);
+extern_static!(NSCMYKColorSpaceModel: AppKit::NSColorSpaceModel = NSColorSpaceModelCMYK);
 
-extern_static!(NSLABColorSpaceModel: NSColorSpaceModel = NSColorSpaceModelLAB);
+extern_static!(NSLABColorSpaceModel: AppKit::NSColorSpaceModel = NSColorSpaceModelLAB);
 
-extern_static!(NSDeviceNColorSpaceModel: NSColorSpaceModel = NSColorSpaceModelDeviceN);
+extern_static!(NSDeviceNColorSpaceModel: AppKit::NSColorSpaceModel = NSColorSpaceModelDeviceN);
 
-extern_static!(NSIndexedColorSpaceModel: NSColorSpaceModel = NSColorSpaceModelIndexed);
+extern_static!(NSIndexedColorSpaceModel: AppKit::NSColorSpaceModel = NSColorSpaceModelIndexed);
 
-extern_static!(NSPatternColorSpaceModel: NSColorSpaceModel = NSColorSpaceModelPatterned);
+extern_static!(NSPatternColorSpaceModel: AppKit::NSColorSpaceModel = NSColorSpaceModelPatterned);

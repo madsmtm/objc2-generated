@@ -33,23 +33,23 @@ extern_methods!(
         pub unsafe fn invalidate(&self);
 
         #[method(didChangeTextInRange:)]
-        pub unsafe fn didChangeTextInRange(&self, range: NSRange);
+        pub unsafe fn didChangeTextInRange(&self, range: Foundation::NSRange);
 
         #[method(insertedTextInRange:)]
-        pub unsafe fn insertedTextInRange(&self, range: NSRange);
+        pub unsafe fn insertedTextInRange(&self, range: Foundation::NSRange);
 
         #[method(didChangeSelectedRange)]
         pub unsafe fn didChangeSelectedRange(&self);
 
         #[method(considerTextCheckingForRange:)]
-        pub unsafe fn considerTextCheckingForRange(&self, range: NSRange);
+        pub unsafe fn considerTextCheckingForRange(&self, range: Foundation::NSRange);
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(checkTextInRange:types:options:)]
         pub unsafe fn checkTextInRange_types_options(
             &self,
-            range: NSRange,
-            checkingTypes: NSTextCheckingTypes,
+            range: Foundation::NSRange,
+            checkingTypes: Foundation::NSTextCheckingTypes,
             options: &Foundation::NSDictionary<AppKit::NSTextCheckingOptionKey, Object>,
         );
 
@@ -89,7 +89,7 @@ extern_methods!(
             &self,
             location: NSUInteger,
             clickedOnSelection: bool,
-            effectiveRange: NSRangePointer,
+            effectiveRange: Foundation::NSRangePointer,
         ) -> Option<Id<AppKit::NSMenu, Shared>>;
 
         #[method(spellCheckerDocumentTag)]

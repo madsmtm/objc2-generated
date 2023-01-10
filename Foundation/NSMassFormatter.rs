@@ -39,10 +39,10 @@ extern_methods!(
         );
 
         #[method(unitStyle)]
-        pub unsafe fn unitStyle(&self) -> NSFormattingUnitStyle;
+        pub unsafe fn unitStyle(&self) -> Foundation::NSFormattingUnitStyle;
 
         #[method(setUnitStyle:)]
-        pub unsafe fn setUnitStyle(&self, unitStyle: NSFormattingUnitStyle);
+        pub unsafe fn setUnitStyle(&self, unitStyle: Foundation::NSFormattingUnitStyle);
 
         #[method(isForPersonMassUse)]
         pub unsafe fn isForPersonMassUse(&self) -> bool;
@@ -55,7 +55,7 @@ extern_methods!(
         pub unsafe fn stringFromValue_unit(
             &self,
             value: c_double,
-            unit: NSMassFormatterUnit,
+            unit: Foundation::NSMassFormatterUnit,
         ) -> Id<Foundation::NSString, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -70,7 +70,7 @@ extern_methods!(
         pub unsafe fn unitStringFromValue_unit(
             &self,
             value: c_double,
-            unit: NSMassFormatterUnit,
+            unit: Foundation::NSMassFormatterUnit,
         ) -> Id<Foundation::NSString, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -78,7 +78,7 @@ extern_methods!(
         pub unsafe fn unitStringFromKilograms_usedUnit(
             &self,
             numberInKilograms: c_double,
-            unitp: *mut NSMassFormatterUnit,
+            unitp: *mut Foundation::NSMassFormatterUnit,
         ) -> Id<Foundation::NSString, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]

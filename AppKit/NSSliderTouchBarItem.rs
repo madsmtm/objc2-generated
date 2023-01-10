@@ -6,12 +6,12 @@ use crate::CoreData;
 use crate::Foundation;
 
 typed_extensible_enum!(
-    pub type NSSliderAccessoryWidth = CGFloat;
+    pub type NSSliderAccessoryWidth = CoreGraphics::CGFloat;
 );
 
-extern_static!(NSSliderAccessoryWidthDefault: NSSliderAccessoryWidth);
+extern_static!(NSSliderAccessoryWidthDefault: AppKit::NSSliderAccessoryWidth);
 
-extern_static!(NSSliderAccessoryWidthWide: NSSliderAccessoryWidth);
+extern_static!(NSSliderAccessoryWidthWide: AppKit::NSSliderAccessoryWidth);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -45,16 +45,16 @@ extern_methods!(
         pub unsafe fn setDoubleValue(&self, doubleValue: c_double);
 
         #[method(minimumSliderWidth)]
-        pub unsafe fn minimumSliderWidth(&self) -> CGFloat;
+        pub unsafe fn minimumSliderWidth(&self) -> CoreGraphics::CGFloat;
 
         #[method(setMinimumSliderWidth:)]
-        pub unsafe fn setMinimumSliderWidth(&self, minimumSliderWidth: CGFloat);
+        pub unsafe fn setMinimumSliderWidth(&self, minimumSliderWidth: CoreGraphics::CGFloat);
 
         #[method(maximumSliderWidth)]
-        pub unsafe fn maximumSliderWidth(&self) -> CGFloat;
+        pub unsafe fn maximumSliderWidth(&self) -> CoreGraphics::CGFloat;
 
         #[method(setMaximumSliderWidth:)]
-        pub unsafe fn setMaximumSliderWidth(&self, maximumSliderWidth: CGFloat);
+        pub unsafe fn setMaximumSliderWidth(&self, maximumSliderWidth: CoreGraphics::CGFloat);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
@@ -89,10 +89,13 @@ extern_methods!(
         );
 
         #[method(valueAccessoryWidth)]
-        pub unsafe fn valueAccessoryWidth(&self) -> NSSliderAccessoryWidth;
+        pub unsafe fn valueAccessoryWidth(&self) -> AppKit::NSSliderAccessoryWidth;
 
         #[method(setValueAccessoryWidth:)]
-        pub unsafe fn setValueAccessoryWidth(&self, valueAccessoryWidth: NSSliderAccessoryWidth);
+        pub unsafe fn setValueAccessoryWidth(
+            &self,
+            valueAccessoryWidth: AppKit::NSSliderAccessoryWidth,
+        );
 
         #[method_id(@__retain_semantics Other target)]
         pub unsafe fn target(&self) -> Option<Id<Object, Shared>>;

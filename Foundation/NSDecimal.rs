@@ -25,100 +25,103 @@ ns_enum!(
 );
 
 inline_fn!(
-    pub unsafe fn NSDecimalIsNotANumber(dcm: NonNull<NSDecimal>) -> Bool {
+    pub unsafe fn NSDecimalIsNotANumber(dcm: NonNull<Foundation::NSDecimal>) -> Bool {
         todo!()
     }
 );
 
 extern_fn!(
-    pub unsafe fn NSDecimalCopy(destination: NonNull<NSDecimal>, source: NonNull<NSDecimal>);
+    pub unsafe fn NSDecimalCopy(
+        destination: NonNull<Foundation::NSDecimal>,
+        source: NonNull<Foundation::NSDecimal>,
+    );
 );
 
 extern_fn!(
-    pub unsafe fn NSDecimalCompact(number: NonNull<NSDecimal>);
+    pub unsafe fn NSDecimalCompact(number: NonNull<Foundation::NSDecimal>);
 );
 
 extern_fn!(
     pub unsafe fn NSDecimalCompare(
-        leftOperand: NonNull<NSDecimal>,
-        rightOperand: NonNull<NSDecimal>,
-    ) -> NSComparisonResult;
+        leftOperand: NonNull<Foundation::NSDecimal>,
+        rightOperand: NonNull<Foundation::NSDecimal>,
+    ) -> Foundation::NSComparisonResult;
 );
 
 extern_fn!(
     pub unsafe fn NSDecimalRound(
-        result: NonNull<NSDecimal>,
-        number: NonNull<NSDecimal>,
+        result: NonNull<Foundation::NSDecimal>,
+        number: NonNull<Foundation::NSDecimal>,
         scale: NSInteger,
-        roundingMode: NSRoundingMode,
+        roundingMode: Foundation::NSRoundingMode,
     );
 );
 
 extern_fn!(
     pub unsafe fn NSDecimalNormalize(
-        number1: NonNull<NSDecimal>,
-        number2: NonNull<NSDecimal>,
-        roundingMode: NSRoundingMode,
-    ) -> NSCalculationError;
+        number1: NonNull<Foundation::NSDecimal>,
+        number2: NonNull<Foundation::NSDecimal>,
+        roundingMode: Foundation::NSRoundingMode,
+    ) -> Foundation::NSCalculationError;
 );
 
 extern_fn!(
     pub unsafe fn NSDecimalAdd(
-        result: NonNull<NSDecimal>,
-        leftOperand: NonNull<NSDecimal>,
-        rightOperand: NonNull<NSDecimal>,
-        roundingMode: NSRoundingMode,
-    ) -> NSCalculationError;
+        result: NonNull<Foundation::NSDecimal>,
+        leftOperand: NonNull<Foundation::NSDecimal>,
+        rightOperand: NonNull<Foundation::NSDecimal>,
+        roundingMode: Foundation::NSRoundingMode,
+    ) -> Foundation::NSCalculationError;
 );
 
 extern_fn!(
     pub unsafe fn NSDecimalSubtract(
-        result: NonNull<NSDecimal>,
-        leftOperand: NonNull<NSDecimal>,
-        rightOperand: NonNull<NSDecimal>,
-        roundingMode: NSRoundingMode,
-    ) -> NSCalculationError;
+        result: NonNull<Foundation::NSDecimal>,
+        leftOperand: NonNull<Foundation::NSDecimal>,
+        rightOperand: NonNull<Foundation::NSDecimal>,
+        roundingMode: Foundation::NSRoundingMode,
+    ) -> Foundation::NSCalculationError;
 );
 
 extern_fn!(
     pub unsafe fn NSDecimalMultiply(
-        result: NonNull<NSDecimal>,
-        leftOperand: NonNull<NSDecimal>,
-        rightOperand: NonNull<NSDecimal>,
-        roundingMode: NSRoundingMode,
-    ) -> NSCalculationError;
+        result: NonNull<Foundation::NSDecimal>,
+        leftOperand: NonNull<Foundation::NSDecimal>,
+        rightOperand: NonNull<Foundation::NSDecimal>,
+        roundingMode: Foundation::NSRoundingMode,
+    ) -> Foundation::NSCalculationError;
 );
 
 extern_fn!(
     pub unsafe fn NSDecimalDivide(
-        result: NonNull<NSDecimal>,
-        leftOperand: NonNull<NSDecimal>,
-        rightOperand: NonNull<NSDecimal>,
-        roundingMode: NSRoundingMode,
-    ) -> NSCalculationError;
+        result: NonNull<Foundation::NSDecimal>,
+        leftOperand: NonNull<Foundation::NSDecimal>,
+        rightOperand: NonNull<Foundation::NSDecimal>,
+        roundingMode: Foundation::NSRoundingMode,
+    ) -> Foundation::NSCalculationError;
 );
 
 extern_fn!(
     pub unsafe fn NSDecimalPower(
-        result: NonNull<NSDecimal>,
-        number: NonNull<NSDecimal>,
+        result: NonNull<Foundation::NSDecimal>,
+        number: NonNull<Foundation::NSDecimal>,
         power: NSUInteger,
-        roundingMode: NSRoundingMode,
-    ) -> NSCalculationError;
+        roundingMode: Foundation::NSRoundingMode,
+    ) -> Foundation::NSCalculationError;
 );
 
 extern_fn!(
     pub unsafe fn NSDecimalMultiplyByPowerOf10(
-        result: NonNull<NSDecimal>,
-        number: NonNull<NSDecimal>,
+        result: NonNull<Foundation::NSDecimal>,
+        number: NonNull<Foundation::NSDecimal>,
         power: c_short,
-        roundingMode: NSRoundingMode,
-    ) -> NSCalculationError;
+        roundingMode: Foundation::NSRoundingMode,
+    ) -> Foundation::NSCalculationError;
 );
 
 extern_fn!(
     pub unsafe fn NSDecimalString(
-        dcm: NonNull<NSDecimal>,
+        dcm: NonNull<Foundation::NSDecimal>,
         locale: Option<&Object>,
     ) -> NonNull<Foundation::NSString>;
 );

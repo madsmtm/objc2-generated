@@ -37,10 +37,13 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSDateFormatter")]
     unsafe impl NSDateFormatter {
         #[method(formattingContext)]
-        pub unsafe fn formattingContext(&self) -> NSFormattingContext;
+        pub unsafe fn formattingContext(&self) -> Foundation::NSFormattingContext;
 
         #[method(setFormattingContext:)]
-        pub unsafe fn setFormattingContext(&self, formattingContext: NSFormattingContext);
+        pub unsafe fn setFormattingContext(
+            &self,
+            formattingContext: Foundation::NSFormattingContext,
+        );
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method(getObjectValue:forString:range:error:_)]
@@ -48,7 +51,7 @@ extern_methods!(
             &self,
             obj: *mut *mut Object,
             string: &Foundation::NSString,
-            rangep: *mut NSRange,
+            rangep: *mut Foundation::NSRange,
         ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSString"))]
@@ -69,8 +72,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Other localizedStringFromDate:dateStyle:timeStyle:)]
         pub unsafe fn localizedStringFromDate_dateStyle_timeStyle(
             date: &Foundation::NSDate,
-            dstyle: NSDateFormatterStyle,
-            tstyle: NSDateFormatterStyle,
+            dstyle: Foundation::NSDateFormatterStyle,
+            tstyle: Foundation::NSDateFormatterStyle,
         ) -> Id<Foundation::NSString, Shared>;
 
         #[cfg(all(feature = "Foundation_NSLocale", feature = "Foundation_NSString"))]
@@ -82,11 +85,11 @@ extern_methods!(
         ) -> Option<Id<Foundation::NSString, Shared>>;
 
         #[method(defaultFormatterBehavior)]
-        pub unsafe fn defaultFormatterBehavior() -> NSDateFormatterBehavior;
+        pub unsafe fn defaultFormatterBehavior() -> Foundation::NSDateFormatterBehavior;
 
         #[method(setDefaultFormatterBehavior:)]
         pub unsafe fn setDefaultFormatterBehavior(
-            defaultFormatterBehavior: NSDateFormatterBehavior,
+            defaultFormatterBehavior: Foundation::NSDateFormatterBehavior,
         );
 
         #[cfg(feature = "Foundation_NSString")]
@@ -105,16 +108,16 @@ extern_methods!(
         pub unsafe fn setDateFormat(&self, dateFormat: Option<&Foundation::NSString>);
 
         #[method(dateStyle)]
-        pub unsafe fn dateStyle(&self) -> NSDateFormatterStyle;
+        pub unsafe fn dateStyle(&self) -> Foundation::NSDateFormatterStyle;
 
         #[method(setDateStyle:)]
-        pub unsafe fn setDateStyle(&self, dateStyle: NSDateFormatterStyle);
+        pub unsafe fn setDateStyle(&self, dateStyle: Foundation::NSDateFormatterStyle);
 
         #[method(timeStyle)]
-        pub unsafe fn timeStyle(&self) -> NSDateFormatterStyle;
+        pub unsafe fn timeStyle(&self) -> Foundation::NSDateFormatterStyle;
 
         #[method(setTimeStyle:)]
-        pub unsafe fn setTimeStyle(&self, timeStyle: NSDateFormatterStyle);
+        pub unsafe fn setTimeStyle(&self, timeStyle: Foundation::NSDateFormatterStyle);
 
         #[cfg(feature = "Foundation_NSLocale")]
         #[method_id(@__retain_semantics Other locale)]
@@ -131,10 +134,13 @@ extern_methods!(
         pub unsafe fn setGeneratesCalendarDates(&self, generatesCalendarDates: bool);
 
         #[method(formatterBehavior)]
-        pub unsafe fn formatterBehavior(&self) -> NSDateFormatterBehavior;
+        pub unsafe fn formatterBehavior(&self) -> Foundation::NSDateFormatterBehavior;
 
         #[method(setFormatterBehavior:)]
-        pub unsafe fn setFormatterBehavior(&self, formatterBehavior: NSDateFormatterBehavior);
+        pub unsafe fn setFormatterBehavior(
+            &self,
+            formatterBehavior: Foundation::NSDateFormatterBehavior,
+        );
 
         #[cfg(feature = "Foundation_NSTimeZone")]
         #[method_id(@__retain_semantics Other timeZone)]

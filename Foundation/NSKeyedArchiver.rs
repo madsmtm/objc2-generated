@@ -65,10 +65,10 @@ extern_methods!(
         pub unsafe fn setDelegate(&self, delegate: Option<&Foundation::NSKeyedArchiverDelegate>);
 
         #[method(outputFormat)]
-        pub unsafe fn outputFormat(&self) -> NSPropertyListFormat;
+        pub unsafe fn outputFormat(&self) -> Foundation::NSPropertyListFormat;
 
         #[method(setOutputFormat:)]
-        pub unsafe fn setOutputFormat(&self, outputFormat: NSPropertyListFormat);
+        pub unsafe fn setOutputFormat(&self, outputFormat: Foundation::NSPropertyListFormat);
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other encodedData)]
@@ -307,12 +307,12 @@ extern_methods!(
         pub unsafe fn setRequiresSecureCoding(&self, requiresSecureCoding: bool);
 
         #[method(decodingFailurePolicy)]
-        pub unsafe fn decodingFailurePolicy(&self) -> NSDecodingFailurePolicy;
+        pub unsafe fn decodingFailurePolicy(&self) -> Foundation::NSDecodingFailurePolicy;
 
         #[method(setDecodingFailurePolicy:)]
         pub unsafe fn setDecodingFailurePolicy(
             &self,
-            decodingFailurePolicy: NSDecodingFailurePolicy,
+            decodingFailurePolicy: Foundation::NSDecodingFailurePolicy,
         );
     }
 );

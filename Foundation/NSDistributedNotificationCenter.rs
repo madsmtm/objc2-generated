@@ -30,12 +30,12 @@ ns_options!(
 );
 
 extern_static!(
-    NSNotificationDeliverImmediately: NSDistributedNotificationOptions =
+    NSNotificationDeliverImmediately: Foundation::NSDistributedNotificationOptions =
         NSDistributedNotificationDeliverImmediately
 );
 
 extern_static!(
-    NSNotificationPostToAllSessions: NSDistributedNotificationOptions =
+    NSNotificationPostToAllSessions: Foundation::NSDistributedNotificationOptions =
         NSDistributedNotificationPostToAllSessions
 );
 
@@ -68,7 +68,7 @@ extern_methods!(
             selector: Sel,
             name: Option<&Foundation::NSNotificationName>,
             object: Option<&Foundation::NSString>,
-            suspensionBehavior: NSNotificationSuspensionBehavior,
+            suspensionBehavior: Foundation::NSNotificationSuspensionBehavior,
         );
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
@@ -88,7 +88,7 @@ extern_methods!(
             name: &Foundation::NSNotificationName,
             object: Option<&Foundation::NSString>,
             userInfo: Option<&Foundation::NSDictionary>,
-            options: NSDistributedNotificationOptions,
+            options: Foundation::NSDistributedNotificationOptions,
         );
 
         #[method(suspended)]

@@ -20,7 +20,7 @@ extern_methods!(
         pub unsafe fn setConstantValue_type_atIndex(
             &self,
             value: NonNull<c_void>,
-            type_: MTLDataType,
+            type_: Metal::MTLDataType,
             index: NSUInteger,
         );
 
@@ -28,8 +28,8 @@ extern_methods!(
         pub unsafe fn setConstantValues_type_withRange(
             &self,
             values: NonNull<c_void>,
-            type_: MTLDataType,
-            range: NSRange,
+            type_: Metal::MTLDataType,
+            range: Foundation::NSRange,
         );
 
         #[cfg(feature = "Foundation_NSString")]
@@ -37,7 +37,7 @@ extern_methods!(
         pub unsafe fn setConstantValue_type_withName(
             &self,
             value: NonNull<c_void>,
-            type_: MTLDataType,
+            type_: Metal::MTLDataType,
             name: &Foundation::NSString,
         );
 

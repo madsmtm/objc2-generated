@@ -76,10 +76,13 @@ extern_methods!(
         );
 
         #[method(cookieAcceptPolicy)]
-        pub unsafe fn cookieAcceptPolicy(&self) -> NSHTTPCookieAcceptPolicy;
+        pub unsafe fn cookieAcceptPolicy(&self) -> Foundation::NSHTTPCookieAcceptPolicy;
 
         #[method(setCookieAcceptPolicy:)]
-        pub unsafe fn setCookieAcceptPolicy(&self, cookieAcceptPolicy: NSHTTPCookieAcceptPolicy);
+        pub unsafe fn setCookieAcceptPolicy(
+            &self,
+            cookieAcceptPolicy: Foundation::NSHTTPCookieAcceptPolicy,
+        );
 
         #[cfg(all(
             feature = "Foundation_NSArray",

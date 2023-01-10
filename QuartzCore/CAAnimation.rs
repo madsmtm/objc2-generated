@@ -69,10 +69,13 @@ extern_methods!(
         pub unsafe fn setRemovedOnCompletion(&self, removedOnCompletion: bool);
 
         #[method(preferredFrameRateRange)]
-        pub unsafe fn preferredFrameRateRange(&self) -> CAFrameRateRange;
+        pub unsafe fn preferredFrameRateRange(&self) -> CoreAnimation::CAFrameRateRange;
 
         #[method(setPreferredFrameRateRange:)]
-        pub unsafe fn setPreferredFrameRateRange(&self, preferredFrameRateRange: CAFrameRateRange);
+        pub unsafe fn setPreferredFrameRateRange(
+            &self,
+            preferredFrameRateRange: CoreAnimation::CAFrameRateRange,
+        );
     }
 );
 
@@ -322,31 +325,31 @@ extern_methods!(
     #[cfg(feature = "CoreAnimation_CASpringAnimation")]
     unsafe impl CASpringAnimation {
         #[method(mass)]
-        pub unsafe fn mass(&self) -> CGFloat;
+        pub unsafe fn mass(&self) -> CoreGraphics::CGFloat;
 
         #[method(setMass:)]
-        pub unsafe fn setMass(&self, mass: CGFloat);
+        pub unsafe fn setMass(&self, mass: CoreGraphics::CGFloat);
 
         #[method(stiffness)]
-        pub unsafe fn stiffness(&self) -> CGFloat;
+        pub unsafe fn stiffness(&self) -> CoreGraphics::CGFloat;
 
         #[method(setStiffness:)]
-        pub unsafe fn setStiffness(&self, stiffness: CGFloat);
+        pub unsafe fn setStiffness(&self, stiffness: CoreGraphics::CGFloat);
 
         #[method(damping)]
-        pub unsafe fn damping(&self) -> CGFloat;
+        pub unsafe fn damping(&self) -> CoreGraphics::CGFloat;
 
         #[method(setDamping:)]
-        pub unsafe fn setDamping(&self, damping: CGFloat);
+        pub unsafe fn setDamping(&self, damping: CoreGraphics::CGFloat);
 
         #[method(initialVelocity)]
-        pub unsafe fn initialVelocity(&self) -> CGFloat;
+        pub unsafe fn initialVelocity(&self) -> CoreGraphics::CGFloat;
 
         #[method(setInitialVelocity:)]
-        pub unsafe fn setInitialVelocity(&self, initialVelocity: CGFloat);
+        pub unsafe fn setInitialVelocity(&self, initialVelocity: CoreGraphics::CGFloat);
 
         #[method(settlingDuration)]
-        pub unsafe fn settlingDuration(&self) -> CFTimeInterval;
+        pub unsafe fn settlingDuration(&self) -> CoreFoundation::CFTimeInterval;
     }
 );
 

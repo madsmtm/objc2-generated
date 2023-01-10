@@ -64,15 +64,15 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithRotorType:itemSearchDelegate:)]
         pub unsafe fn initWithRotorType_itemSearchDelegate(
             this: Option<Allocated<Self>>,
-            rotorType: NSAccessibilityCustomRotorType,
+            rotorType: AppKit::NSAccessibilityCustomRotorType,
             itemSearchDelegate: &AppKit::NSAccessibilityCustomRotorItemSearchDelegate,
         ) -> Id<Self, Shared>;
 
         #[method(type)]
-        pub unsafe fn type_(&self) -> NSAccessibilityCustomRotorType;
+        pub unsafe fn type_(&self) -> AppKit::NSAccessibilityCustomRotorType;
 
         #[method(setType:)]
-        pub unsafe fn setType(&self, type_: NSAccessibilityCustomRotorType);
+        pub unsafe fn setType(&self, type_: AppKit::NSAccessibilityCustomRotorType);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
@@ -132,12 +132,12 @@ extern_methods!(
         );
 
         #[method(searchDirection)]
-        pub unsafe fn searchDirection(&self) -> NSAccessibilityCustomRotorSearchDirection;
+        pub unsafe fn searchDirection(&self) -> AppKit::NSAccessibilityCustomRotorSearchDirection;
 
         #[method(setSearchDirection:)]
         pub unsafe fn setSearchDirection(
             &self,
-            searchDirection: NSAccessibilityCustomRotorSearchDirection,
+            searchDirection: AppKit::NSAccessibilityCustomRotorSearchDirection,
         );
 
         #[cfg(feature = "Foundation_NSString")]
@@ -191,10 +191,10 @@ extern_methods!(
         ) -> Option<Id<AppKit::NSAccessibilityLoadingToken, Shared>>;
 
         #[method(targetRange)]
-        pub unsafe fn targetRange(&self) -> NSRange;
+        pub unsafe fn targetRange(&self) -> Foundation::NSRange;
 
         #[method(setTargetRange:)]
-        pub unsafe fn setTargetRange(&self, targetRange: NSRange);
+        pub unsafe fn setTargetRange(&self, targetRange: Foundation::NSRange);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other customLabel)]

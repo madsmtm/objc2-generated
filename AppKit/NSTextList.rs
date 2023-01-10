@@ -73,7 +73,7 @@ extern_methods!(
         pub unsafe fn markerFormat(&self) -> Id<AppKit::NSTextListMarkerFormat, Shared>;
 
         #[method(listOptions)]
-        pub unsafe fn listOptions(&self) -> NSTextListOptions;
+        pub unsafe fn listOptions(&self) -> AppKit::NSTextListOptions;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other markerForItemNumber:)]

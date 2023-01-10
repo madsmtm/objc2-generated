@@ -118,16 +118,19 @@ extern_methods!(
         pub unsafe fn acceptsFirstResponder(&self) -> bool;
 
         #[method(bezelStyle)]
-        pub unsafe fn bezelStyle(&self) -> NSTextFieldBezelStyle;
+        pub unsafe fn bezelStyle(&self) -> AppKit::NSTextFieldBezelStyle;
 
         #[method(setBezelStyle:)]
-        pub unsafe fn setBezelStyle(&self, bezelStyle: NSTextFieldBezelStyle);
+        pub unsafe fn setBezelStyle(&self, bezelStyle: AppKit::NSTextFieldBezelStyle);
 
         #[method(preferredMaxLayoutWidth)]
-        pub unsafe fn preferredMaxLayoutWidth(&self) -> CGFloat;
+        pub unsafe fn preferredMaxLayoutWidth(&self) -> CoreGraphics::CGFloat;
 
         #[method(setPreferredMaxLayoutWidth:)]
-        pub unsafe fn setPreferredMaxLayoutWidth(&self, preferredMaxLayoutWidth: CGFloat);
+        pub unsafe fn setPreferredMaxLayoutWidth(
+            &self,
+            preferredMaxLayoutWidth: CoreGraphics::CGFloat,
+        );
 
         #[method(maximumNumberOfLines)]
         pub unsafe fn maximumNumberOfLines(&self) -> NSInteger;
@@ -145,10 +148,10 @@ extern_methods!(
         );
 
         #[method(lineBreakStrategy)]
-        pub unsafe fn lineBreakStrategy(&self) -> NSLineBreakStrategy;
+        pub unsafe fn lineBreakStrategy(&self) -> AppKit::NSLineBreakStrategy;
 
         #[method(setLineBreakStrategy:)]
-        pub unsafe fn setLineBreakStrategy(&self, lineBreakStrategy: NSLineBreakStrategy);
+        pub unsafe fn setLineBreakStrategy(&self, lineBreakStrategy: AppKit::NSLineBreakStrategy);
     }
 );
 
@@ -230,7 +233,7 @@ extern_protocol!(
             &self,
             textField: &AppKit::NSTextField,
             textView: &AppKit::NSTextView,
-            selectedRange: NSRange,
+            selectedRange: Foundation::NSRange,
         ) -> Option<Id<Foundation::NSArray, Shared>>;
 
         #[optional]
@@ -240,7 +243,7 @@ extern_protocol!(
             textField: &AppKit::NSTextField,
             textView: &AppKit::NSTextView,
             candidates: &Foundation::NSArray<Foundation::NSTextCheckingResult>,
-            selectedRange: NSRange,
+            selectedRange: Foundation::NSRange,
         ) -> Id<Foundation::NSArray<Foundation::NSTextCheckingResult>, Shared>;
 
         #[optional]
@@ -274,7 +277,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frameRect: Foundation::NSRect,
         ) -> Id<Self, Shared>;
     }
 );

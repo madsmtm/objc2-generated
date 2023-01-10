@@ -40,16 +40,16 @@ extern_methods!(
         pub unsafe fn setTagNames(&self, tagNames: &Foundation::NSArray<Foundation::NSString>);
 
         #[method(orientation)]
-        pub unsafe fn orientation(&self) -> NSPaperOrientation;
+        pub unsafe fn orientation(&self) -> AppKit::NSPaperOrientation;
 
         #[method(setOrientation:)]
-        pub unsafe fn setOrientation(&self, orientation: NSPaperOrientation);
+        pub unsafe fn setOrientation(&self, orientation: AppKit::NSPaperOrientation);
 
         #[method(paperSize)]
-        pub unsafe fn paperSize(&self) -> NSSize;
+        pub unsafe fn paperSize(&self) -> Foundation::NSSize;
 
         #[method(setPaperSize:)]
-        pub unsafe fn setPaperSize(&self, paperSize: NSSize);
+        pub unsafe fn setPaperSize(&self, paperSize: Foundation::NSSize);
 
         #[cfg(feature = "Foundation_NSMutableDictionary")]
         #[method_id(@__retain_semantics Other attributes)]

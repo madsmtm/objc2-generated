@@ -41,7 +41,7 @@ extern_methods!(
         pub unsafe fn groupWithItemIdentifier_titles_selectionMode_labels_target_action(
             itemIdentifier: &AppKit::NSToolbarItemIdentifier,
             titles: &Foundation::NSArray<Foundation::NSString>,
-            selectionMode: NSToolbarItemGroupSelectionMode,
+            selectionMode: AppKit::NSToolbarItemGroupSelectionMode,
             labels: Option<&Foundation::NSArray<Foundation::NSString>>,
             target: Option<&Object>,
             action: Option<Sel>,
@@ -56,7 +56,7 @@ extern_methods!(
         pub unsafe fn groupWithItemIdentifier_images_selectionMode_labels_target_action(
             itemIdentifier: &AppKit::NSToolbarItemIdentifier,
             images: &Foundation::NSArray<AppKit::NSImage>,
-            selectionMode: NSToolbarItemGroupSelectionMode,
+            selectionMode: AppKit::NSToolbarItemGroupSelectionMode,
             labels: Option<&Foundation::NSArray<Foundation::NSString>>,
             target: Option<&Object>,
             action: Option<Sel>,
@@ -71,19 +71,24 @@ extern_methods!(
         pub unsafe fn setSubitems(&self, subitems: &Foundation::NSArray<AppKit::NSToolbarItem>);
 
         #[method(controlRepresentation)]
-        pub unsafe fn controlRepresentation(&self) -> NSToolbarItemGroupControlRepresentation;
+        pub unsafe fn controlRepresentation(
+            &self,
+        ) -> AppKit::NSToolbarItemGroupControlRepresentation;
 
         #[method(setControlRepresentation:)]
         pub unsafe fn setControlRepresentation(
             &self,
-            controlRepresentation: NSToolbarItemGroupControlRepresentation,
+            controlRepresentation: AppKit::NSToolbarItemGroupControlRepresentation,
         );
 
         #[method(selectionMode)]
-        pub unsafe fn selectionMode(&self) -> NSToolbarItemGroupSelectionMode;
+        pub unsafe fn selectionMode(&self) -> AppKit::NSToolbarItemGroupSelectionMode;
 
         #[method(setSelectionMode:)]
-        pub unsafe fn setSelectionMode(&self, selectionMode: NSToolbarItemGroupSelectionMode);
+        pub unsafe fn setSelectionMode(
+            &self,
+            selectionMode: AppKit::NSToolbarItemGroupSelectionMode,
+        );
 
         #[method(selectedIndex)]
         pub unsafe fn selectedIndex(&self) -> NSInteger;

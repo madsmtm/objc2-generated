@@ -70,13 +70,22 @@ extern_methods!(
         pub unsafe fn resetCancelButtonCell(&self);
 
         #[method(searchTextRectForBounds:)]
-        pub unsafe fn searchTextRectForBounds(&self, rect: NSRect) -> NSRect;
+        pub unsafe fn searchTextRectForBounds(
+            &self,
+            rect: Foundation::NSRect,
+        ) -> Foundation::NSRect;
 
         #[method(searchButtonRectForBounds:)]
-        pub unsafe fn searchButtonRectForBounds(&self, rect: NSRect) -> NSRect;
+        pub unsafe fn searchButtonRectForBounds(
+            &self,
+            rect: Foundation::NSRect,
+        ) -> Foundation::NSRect;
 
         #[method(cancelButtonRectForBounds:)]
-        pub unsafe fn cancelButtonRectForBounds(&self, rect: NSRect) -> NSRect;
+        pub unsafe fn cancelButtonRectForBounds(
+            &self,
+            rect: Foundation::NSRect,
+        ) -> Foundation::NSRect;
 
         #[cfg(feature = "AppKit_NSMenu")]
         #[method_id(@__retain_semantics Other searchMenuTemplate)]

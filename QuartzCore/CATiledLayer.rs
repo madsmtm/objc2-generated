@@ -18,7 +18,7 @@ extern_methods!(
     #[cfg(feature = "CoreAnimation_CATiledLayer")]
     unsafe impl CATiledLayer {
         #[method(fadeDuration)]
-        pub unsafe fn fadeDuration() -> CFTimeInterval;
+        pub unsafe fn fadeDuration() -> CoreFoundation::CFTimeInterval;
 
         #[method(levelsOfDetail)]
         pub unsafe fn levelsOfDetail(&self) -> usize;
@@ -33,10 +33,10 @@ extern_methods!(
         pub unsafe fn setLevelsOfDetailBias(&self, levelsOfDetailBias: usize);
 
         #[method(tileSize)]
-        pub unsafe fn tileSize(&self) -> CGSize;
+        pub unsafe fn tileSize(&self) -> CoreGraphics::CGSize;
 
         #[method(setTileSize:)]
-        pub unsafe fn setTileSize(&self, tileSize: CGSize);
+        pub unsafe fn setTileSize(&self, tileSize: CoreGraphics::CGSize);
     }
 );
 

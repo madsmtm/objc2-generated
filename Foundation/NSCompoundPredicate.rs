@@ -29,7 +29,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithType:subpredicates:)]
         pub unsafe fn initWithType_subpredicates(
             this: Option<Allocated<Self>>,
-            type_: NSCompoundPredicateType,
+            type_: Foundation::NSCompoundPredicateType,
             subpredicates: &Foundation::NSArray<Foundation::NSPredicate>,
         ) -> Id<Self, Shared>;
 
@@ -41,7 +41,7 @@ extern_methods!(
         ) -> Option<Id<Self, Shared>>;
 
         #[method(compoundPredicateType)]
-        pub unsafe fn compoundPredicateType(&self) -> NSCompoundPredicateType;
+        pub unsafe fn compoundPredicateType(&self) -> Foundation::NSCompoundPredicateType;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other subpredicates)]

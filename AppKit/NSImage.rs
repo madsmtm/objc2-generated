@@ -58,8 +58,10 @@ extern_methods!(
         ) -> Option<Id<Self, Shared>>;
 
         #[method_id(@__retain_semantics Init initWithSize:)]
-        pub unsafe fn initWithSize(this: Option<Allocated<Self>>, size: NSSize)
-            -> Id<Self, Shared>;
+        pub unsafe fn initWithSize(
+            this: Option<Allocated<Self>>,
+            size: Foundation::NSSize,
+        ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
@@ -119,16 +121,16 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other imageWithSize:flipped:drawingHandler:)]
         pub unsafe fn imageWithSize_flipped_drawingHandler(
-            size: NSSize,
+            size: Foundation::NSSize,
             drawingHandlerShouldBeCalledWithFlippedContext: bool,
-            drawingHandler: &Block<(NSRect,), Bool>,
+            drawingHandler: &Block<(Foundation::NSRect,), Bool>,
         ) -> Id<Self, Shared>;
 
         #[method(size)]
-        pub unsafe fn size(&self) -> NSSize;
+        pub unsafe fn size(&self) -> Foundation::NSSize;
 
         #[method(setSize:)]
-        pub unsafe fn setSize(&self, size: NSSize);
+        pub unsafe fn setSize(&self, size: Foundation::NSSize);
 
         #[method(setName:)]
         pub unsafe fn setName(&self, string: Option<&AppKit::NSImageName>) -> bool;
@@ -171,29 +173,29 @@ extern_methods!(
         #[method(drawAtPoint:fromRect:operation:fraction:)]
         pub unsafe fn drawAtPoint_fromRect_operation_fraction(
             &self,
-            point: NSPoint,
-            fromRect: NSRect,
-            op: NSCompositingOperation,
-            delta: CGFloat,
+            point: Foundation::NSPoint,
+            fromRect: Foundation::NSRect,
+            op: AppKit::NSCompositingOperation,
+            delta: CoreGraphics::CGFloat,
         );
 
         #[method(drawInRect:fromRect:operation:fraction:)]
         pub unsafe fn drawInRect_fromRect_operation_fraction(
             &self,
-            rect: NSRect,
-            fromRect: NSRect,
-            op: NSCompositingOperation,
-            delta: CGFloat,
+            rect: Foundation::NSRect,
+            fromRect: Foundation::NSRect,
+            op: AppKit::NSCompositingOperation,
+            delta: CoreGraphics::CGFloat,
         );
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(drawInRect:fromRect:operation:fraction:respectFlipped:hints:)]
         pub unsafe fn drawInRect_fromRect_operation_fraction_respectFlipped_hints(
             &self,
-            dstSpacePortionRect: NSRect,
-            srcSpacePortionRect: NSRect,
-            op: NSCompositingOperation,
-            requestedAlpha: CGFloat,
+            dstSpacePortionRect: Foundation::NSRect,
+            srcSpacePortionRect: Foundation::NSRect,
+            op: AppKit::NSCompositingOperation,
+            requestedAlpha: CoreGraphics::CGFloat,
             respectContextIsFlipped: bool,
             hints: Option<&Foundation::NSDictionary<AppKit::NSImageHintKey, Object>>,
         );
@@ -203,11 +205,11 @@ extern_methods!(
         pub unsafe fn drawRepresentation_inRect(
             &self,
             imageRep: &AppKit::NSImageRep,
-            rect: NSRect,
+            rect: Foundation::NSRect,
         ) -> bool;
 
         #[method(drawInRect:)]
-        pub unsafe fn drawInRect(&self, rect: NSRect);
+        pub unsafe fn drawInRect(&self, rect: Foundation::NSRect);
 
         #[method(recache)]
         pub unsafe fn recache(&self);
@@ -220,7 +222,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other TIFFRepresentationUsingCompression:factor:)]
         pub unsafe fn TIFFRepresentationUsingCompression_factor(
             &self,
-            comp: NSTIFFCompression,
+            comp: AppKit::NSTIFFCompression,
             factor: c_float,
         ) -> Option<Id<Foundation::NSData, Shared>>;
 
@@ -278,16 +280,16 @@ extern_methods!(
         pub unsafe fn cancelIncrementalLoad(&self);
 
         #[method(cacheMode)]
-        pub unsafe fn cacheMode(&self) -> NSImageCacheMode;
+        pub unsafe fn cacheMode(&self) -> AppKit::NSImageCacheMode;
 
         #[method(setCacheMode:)]
-        pub unsafe fn setCacheMode(&self, cacheMode: NSImageCacheMode);
+        pub unsafe fn setCacheMode(&self, cacheMode: AppKit::NSImageCacheMode);
 
         #[method(alignmentRect)]
-        pub unsafe fn alignmentRect(&self) -> NSRect;
+        pub unsafe fn alignmentRect(&self) -> Foundation::NSRect;
 
         #[method(setAlignmentRect:)]
-        pub unsafe fn setAlignmentRect(&self, alignmentRect: NSRect);
+        pub unsafe fn setAlignmentRect(&self, alignmentRect: Foundation::NSRect);
 
         #[method(isTemplate)]
         pub unsafe fn isTemplate(&self) -> bool;
@@ -314,7 +316,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other bestRepresentationForRect:context:hints:)]
         pub unsafe fn bestRepresentationForRect_context_hints(
             &self,
-            rect: NSRect,
+            rect: Foundation::NSRect,
             referenceContext: Option<&AppKit::NSGraphicsContext>,
             hints: Option<&Foundation::NSDictionary<AppKit::NSImageHintKey, Object>>,
         ) -> Option<Id<AppKit::NSImageRep, Shared>>;
@@ -326,8 +328,8 @@ extern_methods!(
         #[method(hitTestRect:withImageDestinationRect:context:hints:flipped:)]
         pub unsafe fn hitTestRect_withImageDestinationRect_context_hints_flipped(
             &self,
-            testRectDestSpace: NSRect,
-            imageRectDestSpace: NSRect,
+            testRectDestSpace: Foundation::NSRect,
+            imageRectDestSpace: Foundation::NSRect,
             context: Option<&AppKit::NSGraphicsContext>,
             hints: Option<&Foundation::NSDictionary<AppKit::NSImageHintKey, Object>>,
             flipped: bool,
@@ -336,26 +338,26 @@ extern_methods!(
         #[method(recommendedLayerContentsScale:)]
         pub unsafe fn recommendedLayerContentsScale(
             &self,
-            preferredContentsScale: CGFloat,
-        ) -> CGFloat;
+            preferredContentsScale: CoreGraphics::CGFloat,
+        ) -> CoreGraphics::CGFloat;
 
         #[method_id(@__retain_semantics Other layerContentsForContentsScale:)]
         pub unsafe fn layerContentsForContentsScale(
             &self,
-            layerContentsScale: CGFloat,
+            layerContentsScale: CoreGraphics::CGFloat,
         ) -> Id<Object, Shared>;
 
         #[method(capInsets)]
-        pub unsafe fn capInsets(&self) -> NSEdgeInsets;
+        pub unsafe fn capInsets(&self) -> Foundation::NSEdgeInsets;
 
         #[method(setCapInsets:)]
-        pub unsafe fn setCapInsets(&self, capInsets: NSEdgeInsets);
+        pub unsafe fn setCapInsets(&self, capInsets: Foundation::NSEdgeInsets);
 
         #[method(resizingMode)]
-        pub unsafe fn resizingMode(&self) -> NSImageResizingMode;
+        pub unsafe fn resizingMode(&self) -> AppKit::NSImageResizingMode;
 
         #[method(setResizingMode:)]
-        pub unsafe fn setResizingMode(&self, resizingMode: NSImageResizingMode);
+        pub unsafe fn setResizingMode(&self, resizingMode: AppKit::NSImageResizingMode);
 
         #[cfg(feature = "AppKit_NSImageSymbolConfiguration")]
         #[method_id(@__retain_semantics Other imageWithSymbolConfiguration:)]
@@ -384,7 +386,7 @@ extern_protocol!(
         pub unsafe fn imageDidNotDraw_inRect(
             &self,
             sender: &AppKit::NSImage,
-            rect: NSRect,
+            rect: Foundation::NSRect,
         ) -> Option<Id<AppKit::NSImage, Shared>>;
 
         #[optional]
@@ -418,7 +420,7 @@ extern_protocol!(
             &self,
             image: &AppKit::NSImage,
             rep: &AppKit::NSImageRep,
-            status: NSImageLoadStatus,
+            status: AppKit::NSImageLoadStatus,
         );
     }
 );
@@ -486,42 +488,50 @@ extern_methods!(
         pub unsafe fn isFlipped(&self) -> bool;
 
         #[method(dissolveToPoint:fraction:)]
-        pub unsafe fn dissolveToPoint_fraction(&self, point: NSPoint, fraction: CGFloat);
+        pub unsafe fn dissolveToPoint_fraction(
+            &self,
+            point: Foundation::NSPoint,
+            fraction: CoreGraphics::CGFloat,
+        );
 
         #[method(dissolveToPoint:fromRect:fraction:)]
         pub unsafe fn dissolveToPoint_fromRect_fraction(
             &self,
-            point: NSPoint,
-            rect: NSRect,
-            fraction: CGFloat,
+            point: Foundation::NSPoint,
+            rect: Foundation::NSRect,
+            fraction: CoreGraphics::CGFloat,
         );
 
         #[method(compositeToPoint:operation:)]
-        pub unsafe fn compositeToPoint_operation(&self, point: NSPoint, op: NSCompositingOperation);
+        pub unsafe fn compositeToPoint_operation(
+            &self,
+            point: Foundation::NSPoint,
+            op: AppKit::NSCompositingOperation,
+        );
 
         #[method(compositeToPoint:fromRect:operation:)]
         pub unsafe fn compositeToPoint_fromRect_operation(
             &self,
-            point: NSPoint,
-            rect: NSRect,
-            op: NSCompositingOperation,
+            point: Foundation::NSPoint,
+            rect: Foundation::NSRect,
+            op: AppKit::NSCompositingOperation,
         );
 
         #[method(compositeToPoint:operation:fraction:)]
         pub unsafe fn compositeToPoint_operation_fraction(
             &self,
-            point: NSPoint,
-            op: NSCompositingOperation,
-            delta: CGFloat,
+            point: Foundation::NSPoint,
+            op: AppKit::NSCompositingOperation,
+            delta: CoreGraphics::CGFloat,
         );
 
         #[method(compositeToPoint:fromRect:operation:fraction:)]
         pub unsafe fn compositeToPoint_fromRect_operation_fraction(
             &self,
-            point: NSPoint,
-            rect: NSRect,
-            op: NSCompositingOperation,
-            delta: CGFloat,
+            point: Foundation::NSPoint,
+            rect: Foundation::NSRect,
+            op: AppKit::NSCompositingOperation,
+            delta: CoreGraphics::CGFloat,
         );
 
         #[cfg(feature = "AppKit_NSImageRep")]
@@ -858,21 +868,21 @@ extern_methods!(
     unsafe impl NSImageSymbolConfiguration {
         #[method_id(@__retain_semantics Other configurationWithPointSize:weight:scale:)]
         pub unsafe fn configurationWithPointSize_weight_scale(
-            pointSize: CGFloat,
-            weight: NSFontWeight,
-            scale: NSImageSymbolScale,
+            pointSize: CoreGraphics::CGFloat,
+            weight: AppKit::NSFontWeight,
+            scale: AppKit::NSImageSymbolScale,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Other configurationWithPointSize:weight:)]
         pub unsafe fn configurationWithPointSize_weight(
-            pointSize: CGFloat,
-            weight: NSFontWeight,
+            pointSize: CoreGraphics::CGFloat,
+            weight: AppKit::NSFontWeight,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Other configurationWithTextStyle:scale:)]
         pub unsafe fn configurationWithTextStyle_scale(
             style: &AppKit::NSFontTextStyle,
-            scale: NSImageSymbolScale,
+            scale: AppKit::NSImageSymbolScale,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Other configurationWithTextStyle:)]
@@ -881,7 +891,8 @@ extern_methods!(
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Other configurationWithScale:)]
-        pub unsafe fn configurationWithScale(scale: NSImageSymbolScale) -> Id<Self, Shared>;
+        pub unsafe fn configurationWithScale(scale: AppKit::NSImageSymbolScale)
+            -> Id<Self, Shared>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other configurationWithHierarchicalColor:)]

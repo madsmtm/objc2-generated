@@ -31,15 +31,15 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frameRect: Foundation::NSRect,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "AppKit_NSCell")]
         #[method_id(@__retain_semantics Init initWithFrame:mode:prototype:numberOfRows:numberOfColumns:)]
         pub unsafe fn initWithFrame_mode_prototype_numberOfRows_numberOfColumns(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
-            mode: NSMatrixMode,
+            frameRect: Foundation::NSRect,
+            mode: AppKit::NSMatrixMode,
             cell: &AppKit::NSCell,
             rowsHigh: NSInteger,
             colsWide: NSInteger,
@@ -48,8 +48,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:mode:cellClass:numberOfRows:numberOfColumns:)]
         pub unsafe fn initWithFrame_mode_cellClass_numberOfRows_numberOfColumns(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
-            mode: NSMatrixMode,
+            frameRect: Foundation::NSRect,
+            mode: AppKit::NSMatrixMode,
             factoryId: Option<&Class>,
             rowsHigh: NSInteger,
             colsWide: NSInteger,
@@ -78,10 +78,10 @@ extern_methods!(
         ) -> Id<AppKit::NSCell, Shared>;
 
         #[method(mode)]
-        pub unsafe fn mode(&self) -> NSMatrixMode;
+        pub unsafe fn mode(&self) -> AppKit::NSMatrixMode;
 
         #[method(setMode:)]
-        pub unsafe fn setMode(&self, mode: NSMatrixMode);
+        pub unsafe fn setMode(&self, mode: AppKit::NSMatrixMode);
 
         #[method(allowsEmptySelection)]
         pub unsafe fn allowsEmptySelection(&self) -> bool;
@@ -155,16 +155,16 @@ extern_methods!(
         pub unsafe fn selectCellWithTag(&self, tag: NSInteger) -> bool;
 
         #[method(cellSize)]
-        pub unsafe fn cellSize(&self) -> NSSize;
+        pub unsafe fn cellSize(&self) -> Foundation::NSSize;
 
         #[method(setCellSize:)]
-        pub unsafe fn setCellSize(&self, cellSize: NSSize);
+        pub unsafe fn setCellSize(&self, cellSize: Foundation::NSSize);
 
         #[method(intercellSpacing)]
-        pub unsafe fn intercellSpacing(&self) -> NSSize;
+        pub unsafe fn intercellSpacing(&self) -> Foundation::NSSize;
 
         #[method(setIntercellSpacing:)]
-        pub unsafe fn setIntercellSpacing(&self, intercellSpacing: NSSize);
+        pub unsafe fn setIntercellSpacing(&self, intercellSpacing: Foundation::NSSize);
 
         #[method(setScrollable:)]
         pub unsafe fn setScrollable(&self, flag: bool);
@@ -227,7 +227,11 @@ extern_methods!(
         ) -> Option<Id<AppKit::NSCell, Shared>>;
 
         #[method(cellFrameAtRow:column:)]
-        pub unsafe fn cellFrameAtRow_column(&self, row: NSInteger, col: NSInteger) -> NSRect;
+        pub unsafe fn cellFrameAtRow_column(
+            &self,
+            row: NSInteger,
+            col: NSInteger,
+        ) -> Foundation::NSRect;
 
         #[cfg(feature = "AppKit_NSCell")]
         #[method(getRow:column:ofCell:)]
@@ -243,7 +247,7 @@ extern_methods!(
             &self,
             row: NonNull<NSInteger>,
             col: NonNull<NSInteger>,
-            point: NSPoint,
+            point: Foundation::NSPoint,
         ) -> bool;
 
         #[method(renewRows:columns:)]

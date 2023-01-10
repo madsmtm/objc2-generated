@@ -60,16 +60,16 @@ extern_methods!(
         pub unsafe fn setDateTemplate(&self, dateTemplate: Option<&Foundation::NSString>);
 
         #[method(dateStyle)]
-        pub unsafe fn dateStyle(&self) -> NSDateIntervalFormatterStyle;
+        pub unsafe fn dateStyle(&self) -> Foundation::NSDateIntervalFormatterStyle;
 
         #[method(setDateStyle:)]
-        pub unsafe fn setDateStyle(&self, dateStyle: NSDateIntervalFormatterStyle);
+        pub unsafe fn setDateStyle(&self, dateStyle: Foundation::NSDateIntervalFormatterStyle);
 
         #[method(timeStyle)]
-        pub unsafe fn timeStyle(&self) -> NSDateIntervalFormatterStyle;
+        pub unsafe fn timeStyle(&self) -> Foundation::NSDateIntervalFormatterStyle;
 
         #[method(setTimeStyle:)]
-        pub unsafe fn setTimeStyle(&self, timeStyle: NSDateIntervalFormatterStyle);
+        pub unsafe fn setTimeStyle(&self, timeStyle: Foundation::NSDateIntervalFormatterStyle);
 
         #[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other stringFromDate:toDate:)]

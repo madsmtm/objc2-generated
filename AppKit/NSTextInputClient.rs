@@ -13,7 +13,7 @@ extern_protocol!(
         pub unsafe fn insertText_replacementRange(
             &self,
             string: &Object,
-            replacementRange: NSRange,
+            replacementRange: Foundation::NSRange,
         );
 
         #[method(doCommandBySelector:)]
@@ -23,18 +23,18 @@ extern_protocol!(
         pub unsafe fn setMarkedText_selectedRange_replacementRange(
             &self,
             string: &Object,
-            selectedRange: NSRange,
-            replacementRange: NSRange,
+            selectedRange: Foundation::NSRange,
+            replacementRange: Foundation::NSRange,
         );
 
         #[method(unmarkText)]
         pub unsafe fn unmarkText(&self);
 
         #[method(selectedRange)]
-        pub unsafe fn selectedRange(&self) -> NSRange;
+        pub unsafe fn selectedRange(&self) -> Foundation::NSRange;
 
         #[method(markedRange)]
-        pub unsafe fn markedRange(&self) -> NSRange;
+        pub unsafe fn markedRange(&self) -> Foundation::NSRange;
 
         #[method(hasMarkedText)]
         pub unsafe fn hasMarkedText(&self) -> bool;
@@ -42,8 +42,8 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other attributedSubstringForProposedRange:actualRange:)]
         pub unsafe fn attributedSubstringForProposedRange_actualRange(
             &self,
-            range: NSRange,
-            actualRange: NSRangePointer,
+            range: Foundation::NSRange,
+            actualRange: Foundation::NSRangePointer,
         ) -> Option<Id<Foundation::NSAttributedString, Shared>>;
 
         #[method_id(@__retain_semantics Other validAttributesForMarkedText)]
@@ -54,12 +54,12 @@ extern_protocol!(
         #[method(firstRectForCharacterRange:actualRange:)]
         pub unsafe fn firstRectForCharacterRange_actualRange(
             &self,
-            range: NSRange,
-            actualRange: NSRangePointer,
-        ) -> NSRect;
+            range: Foundation::NSRange,
+            actualRange: Foundation::NSRangePointer,
+        ) -> Foundation::NSRect;
 
         #[method(characterIndexForPoint:)]
-        pub unsafe fn characterIndexForPoint(&self, point: NSPoint) -> NSUInteger;
+        pub unsafe fn characterIndexForPoint(&self, point: Foundation::NSPoint) -> NSUInteger;
 
         #[optional]
         #[method_id(@__retain_semantics Other attributedString)]
@@ -67,11 +67,17 @@ extern_protocol!(
 
         #[optional]
         #[method(fractionOfDistanceThroughGlyphForPoint:)]
-        pub unsafe fn fractionOfDistanceThroughGlyphForPoint(&self, point: NSPoint) -> CGFloat;
+        pub unsafe fn fractionOfDistanceThroughGlyphForPoint(
+            &self,
+            point: Foundation::NSPoint,
+        ) -> CoreGraphics::CGFloat;
 
         #[optional]
         #[method(baselineDeltaForCharacterAtIndex:)]
-        pub unsafe fn baselineDeltaForCharacterAtIndex(&self, anIndex: NSUInteger) -> CGFloat;
+        pub unsafe fn baselineDeltaForCharacterAtIndex(
+            &self,
+            anIndex: NSUInteger,
+        ) -> CoreGraphics::CGFloat;
 
         #[optional]
         #[method(windowLevel)]

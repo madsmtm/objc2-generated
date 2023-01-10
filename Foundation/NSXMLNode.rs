@@ -40,14 +40,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithKind:)]
         pub unsafe fn initWithKind(
             this: Option<Allocated<Self>>,
-            kind: NSXMLNodeKind,
+            kind: Foundation::NSXMLNodeKind,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Init initWithKind:options:)]
         pub unsafe fn initWithKind_options(
             this: Option<Allocated<Self>>,
-            kind: NSXMLNodeKind,
-            options: NSXMLNodeOptions,
+            kind: Foundation::NSXMLNodeKind,
+            options: Foundation::NSXMLNodeOptions,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Other document)]
@@ -132,7 +132,7 @@ extern_methods!(
         ) -> Option<Id<Object, Shared>>;
 
         #[method(kind)]
-        pub unsafe fn kind(&self) -> NSXMLNodeKind;
+        pub unsafe fn kind(&self) -> Foundation::NSXMLNodeKind;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
@@ -257,7 +257,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other XMLStringWithOptions:)]
         pub unsafe fn XMLStringWithOptions(
             &self,
-            options: NSXMLNodeOptions,
+            options: Foundation::NSXMLNodeOptions,
         ) -> Id<Foundation::NSString, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]

@@ -37,10 +37,10 @@ extern_methods!(
         pub unsafe fn setName(&self, name: Option<&Foundation::NSString>);
 
         #[method(mappingType)]
-        pub unsafe fn mappingType(&self) -> NSEntityMappingType;
+        pub unsafe fn mappingType(&self) -> CoreData::NSEntityMappingType;
 
         #[method(setMappingType:)]
-        pub unsafe fn setMappingType(&self, mappingType: NSEntityMappingType);
+        pub unsafe fn setMappingType(&self, mappingType: CoreData::NSEntityMappingType);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other sourceEntityName)]

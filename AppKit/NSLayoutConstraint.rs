@@ -9,19 +9,19 @@ typed_extensible_enum!(
     pub type NSLayoutPriority = c_float;
 );
 
-extern_static!(NSLayoutPriorityRequired: NSLayoutPriority = 1000);
+extern_static!(NSLayoutPriorityRequired: AppKit::NSLayoutPriority = 1000);
 
-extern_static!(NSLayoutPriorityDefaultHigh: NSLayoutPriority = 750);
+extern_static!(NSLayoutPriorityDefaultHigh: AppKit::NSLayoutPriority = 750);
 
-extern_static!(NSLayoutPriorityDragThatCanResizeWindow: NSLayoutPriority = 510);
+extern_static!(NSLayoutPriorityDragThatCanResizeWindow: AppKit::NSLayoutPriority = 510);
 
-extern_static!(NSLayoutPriorityWindowSizeStayPut: NSLayoutPriority = 500);
+extern_static!(NSLayoutPriorityWindowSizeStayPut: AppKit::NSLayoutPriority = 500);
 
-extern_static!(NSLayoutPriorityDragThatCannotResizeWindow: NSLayoutPriority = 490);
+extern_static!(NSLayoutPriorityDragThatCannotResizeWindow: AppKit::NSLayoutPriority = 490);
 
-extern_static!(NSLayoutPriorityDefaultLow: NSLayoutPriority = 250);
+extern_static!(NSLayoutPriorityDefaultLow: AppKit::NSLayoutPriority = 250);
 
-extern_static!(NSLayoutPriorityFittingSizeCompression: NSLayoutPriority = 50);
+extern_static!(NSLayoutPriorityFittingSizeCompression: AppKit::NSLayoutPriority = 50);
 
 ns_enum!(
     #[underlying(NSInteger)]
@@ -102,7 +102,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other constraintsWithVisualFormat:options:metrics:views:)]
         pub unsafe fn constraintsWithVisualFormat_options_metrics_views(
             format: &Foundation::NSString,
-            opts: NSLayoutFormatOptions,
+            opts: AppKit::NSLayoutFormatOptions,
             metrics: Option<&Foundation::NSDictionary<Foundation::NSString, Object>>,
             views: &Foundation::NSDictionary<Foundation::NSString, Object>,
         ) -> Id<Foundation::NSArray<AppKit::NSLayoutConstraint>, Shared>;
@@ -110,19 +110,19 @@ extern_methods!(
         #[method_id(@__retain_semantics Other constraintWithItem:attribute:relatedBy:toItem:attribute:multiplier:constant:)]
         pub unsafe fn constraintWithItem_attribute_relatedBy_toItem_attribute_multiplier_constant(
             view1: &Object,
-            attr1: NSLayoutAttribute,
-            relation: NSLayoutRelation,
+            attr1: AppKit::NSLayoutAttribute,
+            relation: AppKit::NSLayoutRelation,
             view2: Option<&Object>,
-            attr2: NSLayoutAttribute,
-            multiplier: CGFloat,
-            c: CGFloat,
+            attr2: AppKit::NSLayoutAttribute,
+            multiplier: CoreGraphics::CGFloat,
+            c: CoreGraphics::CGFloat,
         ) -> Id<Self, Shared>;
 
         #[method(priority)]
-        pub unsafe fn priority(&self) -> NSLayoutPriority;
+        pub unsafe fn priority(&self) -> AppKit::NSLayoutPriority;
 
         #[method(setPriority:)]
-        pub unsafe fn setPriority(&self, priority: NSLayoutPriority);
+        pub unsafe fn setPriority(&self, priority: AppKit::NSLayoutPriority);
 
         #[method(shouldBeArchived)]
         pub unsafe fn shouldBeArchived(&self) -> bool;
@@ -137,10 +137,10 @@ extern_methods!(
         pub unsafe fn secondItem(&self) -> Option<Id<Object, Shared>>;
 
         #[method(firstAttribute)]
-        pub unsafe fn firstAttribute(&self) -> NSLayoutAttribute;
+        pub unsafe fn firstAttribute(&self) -> AppKit::NSLayoutAttribute;
 
         #[method(secondAttribute)]
-        pub unsafe fn secondAttribute(&self) -> NSLayoutAttribute;
+        pub unsafe fn secondAttribute(&self) -> AppKit::NSLayoutAttribute;
 
         #[cfg(feature = "AppKit_NSLayoutAnchor")]
         #[method_id(@__retain_semantics Other firstAnchor)]
@@ -151,16 +151,16 @@ extern_methods!(
         pub unsafe fn secondAnchor(&self) -> Option<Id<AppKit::NSLayoutAnchor, Shared>>;
 
         #[method(relation)]
-        pub unsafe fn relation(&self) -> NSLayoutRelation;
+        pub unsafe fn relation(&self) -> AppKit::NSLayoutRelation;
 
         #[method(multiplier)]
-        pub unsafe fn multiplier(&self) -> CGFloat;
+        pub unsafe fn multiplier(&self) -> CoreGraphics::CGFloat;
 
         #[method(constant)]
-        pub unsafe fn constant(&self) -> CGFloat;
+        pub unsafe fn constant(&self) -> CoreGraphics::CGFloat;
 
         #[method(setConstant:)]
-        pub unsafe fn setConstant(&self, constant: CGFloat);
+        pub unsafe fn setConstant(&self, constant: CoreGraphics::CGFloat);
 
         #[method(isActive)]
         pub unsafe fn isActive(&self) -> bool;
@@ -331,34 +331,38 @@ extern_methods!(
     }
 );
 
-extern_static!(NSViewNoInstrinsicMetric: CGFloat);
+extern_static!(NSViewNoInstrinsicMetric: CoreGraphics::CGFloat);
 
-extern_static!(NSViewNoIntrinsicMetric: CGFloat);
+extern_static!(NSViewNoIntrinsicMetric: CoreGraphics::CGFloat);
 
 extern_methods!(
     /// NSConstraintBasedLayoutLayering
     #[cfg(feature = "AppKit_NSView")]
     unsafe impl AppKit::NSView {
         #[method(alignmentRectForFrame:)]
-        pub unsafe fn alignmentRectForFrame(&self, frame: NSRect) -> NSRect;
+        pub unsafe fn alignmentRectForFrame(&self, frame: Foundation::NSRect)
+            -> Foundation::NSRect;
 
         #[method(frameForAlignmentRect:)]
-        pub unsafe fn frameForAlignmentRect(&self, alignmentRect: NSRect) -> NSRect;
+        pub unsafe fn frameForAlignmentRect(
+            &self,
+            alignmentRect: Foundation::NSRect,
+        ) -> Foundation::NSRect;
 
         #[method(alignmentRectInsets)]
-        pub unsafe fn alignmentRectInsets(&self) -> NSEdgeInsets;
+        pub unsafe fn alignmentRectInsets(&self) -> Foundation::NSEdgeInsets;
 
         #[method(firstBaselineOffsetFromTop)]
-        pub unsafe fn firstBaselineOffsetFromTop(&self) -> CGFloat;
+        pub unsafe fn firstBaselineOffsetFromTop(&self) -> CoreGraphics::CGFloat;
 
         #[method(lastBaselineOffsetFromBottom)]
-        pub unsafe fn lastBaselineOffsetFromBottom(&self) -> CGFloat;
+        pub unsafe fn lastBaselineOffsetFromBottom(&self) -> CoreGraphics::CGFloat;
 
         #[method(baselineOffsetFromBottom)]
-        pub unsafe fn baselineOffsetFromBottom(&self) -> CGFloat;
+        pub unsafe fn baselineOffsetFromBottom(&self) -> CoreGraphics::CGFloat;
 
         #[method(intrinsicContentSize)]
-        pub unsafe fn intrinsicContentSize(&self) -> NSSize;
+        pub unsafe fn intrinsicContentSize(&self) -> Foundation::NSSize;
 
         #[method(invalidateIntrinsicContentSize)]
         pub unsafe fn invalidateIntrinsicContentSize(&self);
@@ -366,27 +370,27 @@ extern_methods!(
         #[method(contentHuggingPriorityForOrientation:)]
         pub unsafe fn contentHuggingPriorityForOrientation(
             &self,
-            orientation: NSLayoutConstraintOrientation,
-        ) -> NSLayoutPriority;
+            orientation: AppKit::NSLayoutConstraintOrientation,
+        ) -> AppKit::NSLayoutPriority;
 
         #[method(setContentHuggingPriority:forOrientation:)]
         pub unsafe fn setContentHuggingPriority_forOrientation(
             &self,
-            priority: NSLayoutPriority,
-            orientation: NSLayoutConstraintOrientation,
+            priority: AppKit::NSLayoutPriority,
+            orientation: AppKit::NSLayoutConstraintOrientation,
         );
 
         #[method(contentCompressionResistancePriorityForOrientation:)]
         pub unsafe fn contentCompressionResistancePriorityForOrientation(
             &self,
-            orientation: NSLayoutConstraintOrientation,
-        ) -> NSLayoutPriority;
+            orientation: AppKit::NSLayoutConstraintOrientation,
+        ) -> AppKit::NSLayoutPriority;
 
         #[method(setContentCompressionResistancePriority:forOrientation:)]
         pub unsafe fn setContentCompressionResistancePriority_forOrientation(
             &self,
-            priority: NSLayoutPriority,
-            orientation: NSLayoutConstraintOrientation,
+            priority: AppKit::NSLayoutPriority,
+            orientation: AppKit::NSLayoutConstraintOrientation,
         );
 
         #[method(isHorizontalContentSizeConstraintActive)]
@@ -426,14 +430,14 @@ extern_methods!(
         #[method(anchorAttributeForOrientation:)]
         pub unsafe fn anchorAttributeForOrientation(
             &self,
-            orientation: NSLayoutConstraintOrientation,
-        ) -> NSLayoutAttribute;
+            orientation: AppKit::NSLayoutConstraintOrientation,
+        ) -> AppKit::NSLayoutAttribute;
 
         #[method(setAnchorAttribute:forOrientation:)]
         pub unsafe fn setAnchorAttribute_forOrientation(
             &self,
-            attr: NSLayoutAttribute,
-            orientation: NSLayoutConstraintOrientation,
+            attr: AppKit::NSLayoutAttribute,
+            orientation: AppKit::NSLayoutConstraintOrientation,
         );
     }
 );
@@ -443,7 +447,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSView")]
     unsafe impl AppKit::NSView {
         #[method(fittingSize)]
-        pub unsafe fn fittingSize(&self) -> NSSize;
+        pub unsafe fn fittingSize(&self) -> Foundation::NSSize;
     }
 );
 
@@ -455,7 +459,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other constraintsAffectingLayoutForOrientation:)]
         pub unsafe fn constraintsAffectingLayoutForOrientation(
             &self,
-            orientation: NSLayoutConstraintOrientation,
+            orientation: AppKit::NSLayoutConstraintOrientation,
         ) -> Id<Foundation::NSArray<AppKit::NSLayoutConstraint>, Shared>;
 
         #[method(hasAmbiguousLayout)]

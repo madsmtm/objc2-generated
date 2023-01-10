@@ -58,28 +58,28 @@ extern_methods!(
         pub unsafe fn setAltIncrementValue(&self, altIncrementValue: c_double);
 
         #[method(sliderType)]
-        pub unsafe fn sliderType(&self) -> NSSliderType;
+        pub unsafe fn sliderType(&self) -> AppKit::NSSliderType;
 
         #[method(setSliderType:)]
-        pub unsafe fn setSliderType(&self, sliderType: NSSliderType);
+        pub unsafe fn setSliderType(&self, sliderType: AppKit::NSSliderType);
 
         #[method(setVertical:)]
         pub unsafe fn setVertical(&self, vertical: bool);
 
         #[method(trackRect)]
-        pub unsafe fn trackRect(&self) -> NSRect;
+        pub unsafe fn trackRect(&self) -> Foundation::NSRect;
 
         #[method(knobThickness)]
-        pub unsafe fn knobThickness(&self) -> CGFloat;
+        pub unsafe fn knobThickness(&self) -> CoreGraphics::CGFloat;
 
         #[method(knobRectFlipped:)]
-        pub unsafe fn knobRectFlipped(&self, flipped: bool) -> NSRect;
+        pub unsafe fn knobRectFlipped(&self, flipped: bool) -> Foundation::NSRect;
 
         #[method(barRectFlipped:)]
-        pub unsafe fn barRectFlipped(&self, flipped: bool) -> NSRect;
+        pub unsafe fn barRectFlipped(&self, flipped: bool) -> Foundation::NSRect;
 
         #[method(drawBarInside:flipped:)]
-        pub unsafe fn drawBarInside_flipped(&self, rect: NSRect, flipped: bool);
+        pub unsafe fn drawBarInside_flipped(&self, rect: Foundation::NSRect, flipped: bool);
     }
 );
 
@@ -100,10 +100,10 @@ extern_methods!(
         pub unsafe fn setNumberOfTickMarks(&self, numberOfTickMarks: NSInteger);
 
         #[method(tickMarkPosition)]
-        pub unsafe fn tickMarkPosition(&self) -> NSTickMarkPosition;
+        pub unsafe fn tickMarkPosition(&self) -> AppKit::NSTickMarkPosition;
 
         #[method(setTickMarkPosition:)]
-        pub unsafe fn setTickMarkPosition(&self, tickMarkPosition: NSTickMarkPosition);
+        pub unsafe fn setTickMarkPosition(&self, tickMarkPosition: AppKit::NSTickMarkPosition);
 
         #[method(allowsTickMarkValuesOnly)]
         pub unsafe fn allowsTickMarkValuesOnly(&self) -> bool;
@@ -115,10 +115,10 @@ extern_methods!(
         pub unsafe fn tickMarkValueAtIndex(&self, index: NSInteger) -> c_double;
 
         #[method(rectOfTickMarkAtIndex:)]
-        pub unsafe fn rectOfTickMarkAtIndex(&self, index: NSInteger) -> NSRect;
+        pub unsafe fn rectOfTickMarkAtIndex(&self, index: NSInteger) -> Foundation::NSRect;
 
         #[method(indexOfTickMarkAtPoint:)]
-        pub unsafe fn indexOfTickMarkAtPoint(&self, point: NSPoint) -> NSInteger;
+        pub unsafe fn indexOfTickMarkAtPoint(&self, point: Foundation::NSPoint) -> NSInteger;
 
         #[method(closestTickMarkValueToValue:)]
         pub unsafe fn closestTickMarkValueToValue(&self, value: c_double) -> c_double;
@@ -164,7 +164,7 @@ extern_methods!(
         pub unsafe fn setTitle(&self, string: Option<&Foundation::NSString>);
 
         #[method(setKnobThickness:)]
-        pub unsafe fn setKnobThickness(&self, thickness: CGFloat);
+        pub unsafe fn setKnobThickness(&self, thickness: CoreGraphics::CGFloat);
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method(setImage:)]
@@ -176,17 +176,17 @@ extern_methods!(
     }
 );
 
-extern_static!(NSTickMarkBelow: NSTickMarkPosition = NSTickMarkPositionBelow);
+extern_static!(NSTickMarkBelow: AppKit::NSTickMarkPosition = NSTickMarkPositionBelow);
 
-extern_static!(NSTickMarkAbove: NSTickMarkPosition = NSTickMarkPositionAbove);
+extern_static!(NSTickMarkAbove: AppKit::NSTickMarkPosition = NSTickMarkPositionAbove);
 
-extern_static!(NSTickMarkLeft: NSTickMarkPosition = NSTickMarkPositionLeading);
+extern_static!(NSTickMarkLeft: AppKit::NSTickMarkPosition = NSTickMarkPositionLeading);
 
-extern_static!(NSTickMarkRight: NSTickMarkPosition = NSTickMarkPositionTrailing);
+extern_static!(NSTickMarkRight: AppKit::NSTickMarkPosition = NSTickMarkPositionTrailing);
 
-extern_static!(NSLinearSlider: NSSliderType = NSSliderTypeLinear);
+extern_static!(NSLinearSlider: AppKit::NSSliderType = NSSliderTypeLinear);
 
-extern_static!(NSCircularSlider: NSSliderType = NSSliderTypeCircular);
+extern_static!(NSCircularSlider: AppKit::NSSliderType = NSSliderTypeCircular);
 
 extern_methods!(
     /// Methods declared on superclass `NSCell`

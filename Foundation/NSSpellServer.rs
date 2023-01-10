@@ -61,7 +61,7 @@ extern_protocol!(
             language: &Foundation::NSString,
             wordCount: NonNull<NSInteger>,
             countOnly: bool,
-        ) -> NSRange;
+        ) -> Foundation::NSRange;
 
         #[optional]
         #[method_id(@__retain_semantics Other spellServer:suggestGuessesForWord:inLanguage:)]
@@ -95,7 +95,7 @@ extern_protocol!(
         pub unsafe fn spellServer_suggestCompletionsForPartialWordRange_inString_language(
             &self,
             sender: &Foundation::NSSpellServer,
-            range: NSRange,
+            range: Foundation::NSRange,
             string: &Foundation::NSString,
             language: &Foundation::NSString,
         ) -> Option<Id<Foundation::NSArray<Foundation::NSString>, Shared>>;
@@ -110,7 +110,7 @@ extern_protocol!(
             details: *mut *mut Foundation::NSArray<
                 Foundation::NSDictionary<Foundation::NSString, Object>,
             >,
-        ) -> NSRange;
+        ) -> Foundation::NSRange;
 
         #[optional]
         #[method_id(@__retain_semantics Other spellServer:checkString:offset:types:options:orthography:wordCount:)]
@@ -119,7 +119,7 @@ extern_protocol!(
             sender: &Foundation::NSSpellServer,
             stringToCheck: &Foundation::NSString,
             offset: NSUInteger,
-            checkingTypes: NSTextCheckingTypes,
+            checkingTypes: Foundation::NSTextCheckingTypes,
             options: Option<&Foundation::NSDictionary<Foundation::NSString, Object>>,
             orthography: Option<&Foundation::NSOrthography>,
             wordCount: NonNull<NSInteger>,

@@ -96,11 +96,11 @@ extern_methods!(
 pub type NSUncaughtExceptionHandler = TodoFunction;
 
 extern_fn!(
-    pub unsafe fn NSGetUncaughtExceptionHandler() -> *mut NSUncaughtExceptionHandler;
+    pub unsafe fn NSGetUncaughtExceptionHandler() -> *mut Foundation::NSUncaughtExceptionHandler;
 );
 
 extern_fn!(
-    pub unsafe fn NSSetUncaughtExceptionHandler(_: *mut NSUncaughtExceptionHandler);
+    pub unsafe fn NSSetUncaughtExceptionHandler(_: *mut Foundation::NSUncaughtExceptionHandler);
 );
 
 extern_static!(NSAssertionHandlerKey: &'static Foundation::NSString);

@@ -87,10 +87,10 @@ extern_methods!(
         ) -> Option<Id<Self, Shared>>;
 
         #[method(setObjectZone:)]
-        pub unsafe fn setObjectZone(&self, zone: *mut NSZone);
+        pub unsafe fn setObjectZone(&self, zone: *mut Foundation::NSZone);
 
         #[method(objectZone)]
-        pub unsafe fn objectZone(&self) -> *mut NSZone;
+        pub unsafe fn objectZone(&self) -> *mut Foundation::NSZone;
 
         #[method(isAtEnd)]
         pub unsafe fn isAtEnd(&self) -> bool;

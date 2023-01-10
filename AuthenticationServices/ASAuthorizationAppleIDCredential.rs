@@ -56,7 +56,7 @@ extern_methods!(
         pub unsafe fn fullName(&self) -> Option<Id<Foundation::NSPersonNameComponents, Shared>>;
 
         #[method(realUserStatus)]
-        pub unsafe fn realUserStatus(&self) -> ASUserDetectionStatus;
+        pub unsafe fn realUserStatus(&self) -> AuthenticationServices::ASUserDetectionStatus;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self, Shared>;

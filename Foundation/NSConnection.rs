@@ -91,16 +91,16 @@ extern_methods!(
         ) -> Option<Id<Self, Shared>>;
 
         #[method(requestTimeout)]
-        pub unsafe fn requestTimeout(&self) -> NSTimeInterval;
+        pub unsafe fn requestTimeout(&self) -> Foundation::NSTimeInterval;
 
         #[method(setRequestTimeout:)]
-        pub unsafe fn setRequestTimeout(&self, requestTimeout: NSTimeInterval);
+        pub unsafe fn setRequestTimeout(&self, requestTimeout: Foundation::NSTimeInterval);
 
         #[method(replyTimeout)]
-        pub unsafe fn replyTimeout(&self) -> NSTimeInterval;
+        pub unsafe fn replyTimeout(&self) -> Foundation::NSTimeInterval;
 
         #[method(setReplyTimeout:)]
-        pub unsafe fn setReplyTimeout(&self, replyTimeout: NSTimeInterval);
+        pub unsafe fn setReplyTimeout(&self, replyTimeout: Foundation::NSTimeInterval);
 
         #[method_id(@__retain_semantics Other rootObject)]
         pub unsafe fn rootObject(&self) -> Option<Id<Object, Shared>>;

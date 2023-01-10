@@ -62,8 +62,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Other requestWithURL:cachePolicy:timeoutInterval:)]
         pub unsafe fn requestWithURL_cachePolicy_timeoutInterval(
             URL: &Foundation::NSURL,
-            cachePolicy: NSURLRequestCachePolicy,
-            timeoutInterval: NSTimeInterval,
+            cachePolicy: Foundation::NSURLRequestCachePolicy,
+            timeoutInterval: Foundation::NSTimeInterval,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSURL")]
@@ -78,8 +78,8 @@ extern_methods!(
         pub unsafe fn initWithURL_cachePolicy_timeoutInterval(
             this: Option<Allocated<Self>>,
             URL: &Foundation::NSURL,
-            cachePolicy: NSURLRequestCachePolicy,
-            timeoutInterval: NSTimeInterval,
+            cachePolicy: Foundation::NSURLRequestCachePolicy,
+            timeoutInterval: Foundation::NSTimeInterval,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSURL")]
@@ -87,17 +87,17 @@ extern_methods!(
         pub unsafe fn URL(&self) -> Option<Id<Foundation::NSURL, Shared>>;
 
         #[method(cachePolicy)]
-        pub unsafe fn cachePolicy(&self) -> NSURLRequestCachePolicy;
+        pub unsafe fn cachePolicy(&self) -> Foundation::NSURLRequestCachePolicy;
 
         #[method(timeoutInterval)]
-        pub unsafe fn timeoutInterval(&self) -> NSTimeInterval;
+        pub unsafe fn timeoutInterval(&self) -> Foundation::NSTimeInterval;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other mainDocumentURL)]
         pub unsafe fn mainDocumentURL(&self) -> Option<Id<Foundation::NSURL, Shared>>;
 
         #[method(networkServiceType)]
-        pub unsafe fn networkServiceType(&self) -> NSURLRequestNetworkServiceType;
+        pub unsafe fn networkServiceType(&self) -> Foundation::NSURLRequestNetworkServiceType;
 
         #[method(allowsCellularAccess)]
         pub unsafe fn allowsCellularAccess(&self) -> bool;
@@ -112,7 +112,7 @@ extern_methods!(
         pub unsafe fn assumesHTTP3Capable(&self) -> bool;
 
         #[method(attribution)]
-        pub unsafe fn attribution(&self) -> NSURLRequestAttribution;
+        pub unsafe fn attribution(&self) -> Foundation::NSURLRequestAttribution;
     }
 );
 
@@ -138,16 +138,16 @@ extern_methods!(
         pub unsafe fn setURL(&self, URL: Option<&Foundation::NSURL>);
 
         #[method(cachePolicy)]
-        pub unsafe fn cachePolicy(&self) -> NSURLRequestCachePolicy;
+        pub unsafe fn cachePolicy(&self) -> Foundation::NSURLRequestCachePolicy;
 
         #[method(setCachePolicy:)]
-        pub unsafe fn setCachePolicy(&self, cachePolicy: NSURLRequestCachePolicy);
+        pub unsafe fn setCachePolicy(&self, cachePolicy: Foundation::NSURLRequestCachePolicy);
 
         #[method(timeoutInterval)]
-        pub unsafe fn timeoutInterval(&self) -> NSTimeInterval;
+        pub unsafe fn timeoutInterval(&self) -> Foundation::NSTimeInterval;
 
         #[method(setTimeoutInterval:)]
-        pub unsafe fn setTimeoutInterval(&self, timeoutInterval: NSTimeInterval);
+        pub unsafe fn setTimeoutInterval(&self, timeoutInterval: Foundation::NSTimeInterval);
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other mainDocumentURL)]
@@ -158,12 +158,12 @@ extern_methods!(
         pub unsafe fn setMainDocumentURL(&self, mainDocumentURL: Option<&Foundation::NSURL>);
 
         #[method(networkServiceType)]
-        pub unsafe fn networkServiceType(&self) -> NSURLRequestNetworkServiceType;
+        pub unsafe fn networkServiceType(&self) -> Foundation::NSURLRequestNetworkServiceType;
 
         #[method(setNetworkServiceType:)]
         pub unsafe fn setNetworkServiceType(
             &self,
-            networkServiceType: NSURLRequestNetworkServiceType,
+            networkServiceType: Foundation::NSURLRequestNetworkServiceType,
         );
 
         #[method(allowsCellularAccess)]
@@ -194,10 +194,10 @@ extern_methods!(
         pub unsafe fn setAssumesHTTP3Capable(&self, assumesHTTP3Capable: bool);
 
         #[method(attribution)]
-        pub unsafe fn attribution(&self) -> NSURLRequestAttribution;
+        pub unsafe fn attribution(&self) -> Foundation::NSURLRequestAttribution;
 
         #[method(setAttribution:)]
-        pub unsafe fn setAttribution(&self, attribution: NSURLRequestAttribution);
+        pub unsafe fn setAttribution(&self, attribution: Foundation::NSURLRequestAttribution);
     }
 );
 
@@ -323,8 +323,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Other requestWithURL:cachePolicy:timeoutInterval:)]
         pub unsafe fn requestWithURL_cachePolicy_timeoutInterval(
             URL: &Foundation::NSURL,
-            cachePolicy: NSURLRequestCachePolicy,
-            timeoutInterval: NSTimeInterval,
+            cachePolicy: Foundation::NSURLRequestCachePolicy,
+            timeoutInterval: Foundation::NSTimeInterval,
         ) -> Id<Self, Owned>;
 
         #[cfg(feature = "Foundation_NSURL")]
@@ -339,8 +339,8 @@ extern_methods!(
         pub unsafe fn initWithURL_cachePolicy_timeoutInterval(
             this: Option<Allocated<Self>>,
             URL: &Foundation::NSURL,
-            cachePolicy: NSURLRequestCachePolicy,
-            timeoutInterval: NSTimeInterval,
+            cachePolicy: Foundation::NSURLRequestCachePolicy,
+            timeoutInterval: Foundation::NSTimeInterval,
         ) -> Id<Self, Owned>;
     }
 );

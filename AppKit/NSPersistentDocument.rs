@@ -69,7 +69,7 @@ extern_methods!(
             &self,
             absoluteURL: &Foundation::NSURL,
             typeName: &Foundation::NSString,
-            saveOperation: NSSaveOperationType,
+            saveOperation: AppKit::NSSaveOperationType,
             absoluteOriginalContentsURL: Option<&Foundation::NSURL>,
         ) -> Result<(), Id<Foundation::NSError, Shared>>;
 

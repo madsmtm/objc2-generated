@@ -85,7 +85,7 @@ extern_methods!(
         pub unsafe fn setViewController(&self, viewController: Option<&AppKit::NSViewController>);
 
         #[method(tabState)]
-        pub unsafe fn tabState(&self) -> NSTabState;
+        pub unsafe fn tabState(&self) -> AppKit::NSTabState;
 
         #[cfg(feature = "AppKit_NSTabView")]
         #[method_id(@__retain_semantics Other tabView)]
@@ -111,9 +111,13 @@ extern_methods!(
         pub unsafe fn setToolTip(&self, toolTip: Option<&Foundation::NSString>);
 
         #[method(drawLabel:inRect:)]
-        pub unsafe fn drawLabel_inRect(&self, shouldTruncateLabel: bool, labelRect: NSRect);
+        pub unsafe fn drawLabel_inRect(
+            &self,
+            shouldTruncateLabel: bool,
+            labelRect: Foundation::NSRect,
+        );
 
         #[method(sizeOfLabel:)]
-        pub unsafe fn sizeOfLabel(&self, computeMin: bool) -> NSSize;
+        pub unsafe fn sizeOfLabel(&self, computeMin: bool) -> Foundation::NSSize;
     }
 );

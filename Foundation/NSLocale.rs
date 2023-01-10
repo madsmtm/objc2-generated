@@ -292,13 +292,13 @@ extern_methods!(
         #[method(characterDirectionForLanguage:)]
         pub unsafe fn characterDirectionForLanguage(
             isoLangCode: &Foundation::NSString,
-        ) -> NSLocaleLanguageDirection;
+        ) -> Foundation::NSLocaleLanguageDirection;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(lineDirectionForLanguage:)]
         pub unsafe fn lineDirectionForLanguage(
             isoLangCode: &Foundation::NSString,
-        ) -> NSLocaleLanguageDirection;
+        ) -> Foundation::NSLocaleLanguageDirection;
     }
 );
 

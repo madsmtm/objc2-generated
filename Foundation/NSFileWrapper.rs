@@ -36,7 +36,7 @@ extern_methods!(
         pub unsafe fn initWithURL_options_error(
             this: Option<Allocated<Self>>,
             url: &Foundation::NSURL,
-            options: NSFileWrapperReadingOptions,
+            options: Foundation::NSFileWrapperReadingOptions,
         ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
@@ -124,7 +124,7 @@ extern_methods!(
         pub unsafe fn readFromURL_options_error(
             &self,
             url: &Foundation::NSURL,
-            options: NSFileWrapperReadingOptions,
+            options: Foundation::NSFileWrapperReadingOptions,
         ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
@@ -132,7 +132,7 @@ extern_methods!(
         pub unsafe fn writeToURL_options_originalContentsURL_error(
             &self,
             url: &Foundation::NSURL,
-            options: NSFileWrapperWritingOptions,
+            options: Foundation::NSFileWrapperWritingOptions,
             originalContentsURL: Option<&Foundation::NSURL>,
         ) -> Result<(), Id<Foundation::NSError, Shared>>;
 

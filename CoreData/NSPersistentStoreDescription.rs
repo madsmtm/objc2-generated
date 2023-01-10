@@ -67,10 +67,10 @@ extern_methods!(
         pub unsafe fn setReadOnly(&self, readOnly: bool);
 
         #[method(timeout)]
-        pub unsafe fn timeout(&self) -> NSTimeInterval;
+        pub unsafe fn timeout(&self) -> Foundation::NSTimeInterval;
 
         #[method(setTimeout:)]
-        pub unsafe fn setTimeout(&self, timeout: NSTimeInterval);
+        pub unsafe fn setTimeout(&self, timeout: Foundation::NSTimeInterval);
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other sqlitePragmas)]

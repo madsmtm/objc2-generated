@@ -141,10 +141,10 @@ extern_methods!(
         pub unsafe fn stopSpeaking(&self);
 
         #[method(stopSpeakingAtBoundary:)]
-        pub unsafe fn stopSpeakingAtBoundary(&self, boundary: NSSpeechBoundary);
+        pub unsafe fn stopSpeakingAtBoundary(&self, boundary: AppKit::NSSpeechBoundary);
 
         #[method(pauseSpeakingAtBoundary:)]
-        pub unsafe fn pauseSpeakingAtBoundary(&self, boundary: NSSpeechBoundary);
+        pub unsafe fn pauseSpeakingAtBoundary(&self, boundary: AppKit::NSSpeechBoundary);
 
         #[method(continueSpeaking)]
         pub unsafe fn continueSpeaking(&self);
@@ -245,7 +245,7 @@ extern_protocol!(
         pub unsafe fn speechSynthesizer_willSpeakWord_ofString(
             &self,
             sender: &AppKit::NSSpeechSynthesizer,
-            characterRange: NSRange,
+            characterRange: Foundation::NSRange,
             string: &Foundation::NSString,
         );
 

@@ -52,7 +52,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSCloseCommand")]
     unsafe impl NSCloseCommand {
         #[method(saveOptions)]
-        pub unsafe fn saveOptions(&self) -> NSSaveOptions;
+        pub unsafe fn saveOptions(&self) -> Foundation::NSSaveOptions;
     }
 );
 
@@ -194,7 +194,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSQuitCommand")]
     unsafe impl NSQuitCommand {
         #[method(saveOptions)]
-        pub unsafe fn saveOptions(&self) -> NSSaveOptions;
+        pub unsafe fn saveOptions(&self) -> Foundation::NSSaveOptions;
     }
 );
 

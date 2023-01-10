@@ -113,10 +113,10 @@ extern_methods!(
         pub unsafe fn viewDidDisappear(&self);
 
         #[method(preferredContentSize)]
-        pub unsafe fn preferredContentSize(&self) -> NSSize;
+        pub unsafe fn preferredContentSize(&self) -> Foundation::NSSize;
 
         #[method(setPreferredContentSize:)]
-        pub unsafe fn setPreferredContentSize(&self, preferredContentSize: NSSize);
+        pub unsafe fn setPreferredContentSize(&self, preferredContentSize: Foundation::NSSize);
 
         #[method(updateViewConstraints)]
         pub unsafe fn updateViewConstraints(&self);
@@ -180,10 +180,10 @@ extern_methods!(
         pub unsafe fn presentViewController_asPopoverRelativeToRect_ofView_preferredEdge_behavior(
             &self,
             viewController: &AppKit::NSViewController,
-            positioningRect: NSRect,
+            positioningRect: Foundation::NSRect,
             positioningView: &AppKit::NSView,
-            preferredEdge: NSRectEdge,
-            behavior: NSPopoverBehavior,
+            preferredEdge: Foundation::NSRectEdge,
+            behavior: AppKit::NSPopoverBehavior,
         );
 
         #[method(transitionFromViewController:toViewController:options:completionHandler:)]
@@ -191,7 +191,7 @@ extern_methods!(
             &self,
             fromViewController: &AppKit::NSViewController,
             toViewController: &AppKit::NSViewController,
-            options: NSViewControllerTransitionOptions,
+            options: AppKit::NSViewControllerTransitionOptions,
             completion: Option<&Block<(), ()>>,
         );
     }
@@ -240,7 +240,7 @@ extern_methods!(
         );
 
         #[method(viewWillTransitionToSize:)]
-        pub unsafe fn viewWillTransitionToSize(&self, newSize: NSSize);
+        pub unsafe fn viewWillTransitionToSize(&self, newSize: Foundation::NSSize);
     }
 );
 
@@ -292,15 +292,15 @@ extern_methods!(
         pub unsafe fn setSourceItemView(&self, sourceItemView: Option<&AppKit::NSView>);
 
         #[method(preferredScreenOrigin)]
-        pub unsafe fn preferredScreenOrigin(&self) -> NSPoint;
+        pub unsafe fn preferredScreenOrigin(&self) -> Foundation::NSPoint;
 
         #[method(setPreferredScreenOrigin:)]
-        pub unsafe fn setPreferredScreenOrigin(&self, preferredScreenOrigin: NSPoint);
+        pub unsafe fn setPreferredScreenOrigin(&self, preferredScreenOrigin: Foundation::NSPoint);
 
         #[method(preferredMinimumSize)]
-        pub unsafe fn preferredMinimumSize(&self) -> NSSize;
+        pub unsafe fn preferredMinimumSize(&self) -> Foundation::NSSize;
 
         #[method(preferredMaximumSize)]
-        pub unsafe fn preferredMaximumSize(&self) -> NSSize;
+        pub unsafe fn preferredMaximumSize(&self) -> Foundation::NSSize;
     }
 );

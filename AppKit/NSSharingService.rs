@@ -208,7 +208,7 @@ extern_protocol!(
             &self,
             sharingService: &AppKit::NSSharingService,
             item: &Object,
-        ) -> NSRect;
+        ) -> Foundation::NSRect;
 
         #[optional]
         #[method_id(@__retain_semantics Other sharingService:transitionImageForShareItem:contentRect:)]
@@ -216,7 +216,7 @@ extern_protocol!(
             &self,
             sharingService: &AppKit::NSSharingService,
             item: &Object,
-            contentRect: NonNull<NSRect>,
+            contentRect: NonNull<Foundation::NSRect>,
         ) -> Option<Id<AppKit::NSImage, Shared>>;
 
         #[optional]
@@ -225,7 +225,7 @@ extern_protocol!(
             &self,
             sharingService: &AppKit::NSSharingService,
             items: &Foundation::NSArray,
-            sharingContentScope: NonNull<NSSharingContentScope>,
+            sharingContentScope: NonNull<AppKit::NSSharingContentScope>,
         ) -> Option<Id<AppKit::NSWindow, Shared>>;
 
         #[optional]
@@ -233,8 +233,8 @@ extern_protocol!(
         pub unsafe fn anchoringViewForSharingService_showRelativeToRect_preferredEdge(
             &self,
             sharingService: &AppKit::NSSharingService,
-            positioningRect: NonNull<NSRect>,
-            preferredEdge: NonNull<NSRectEdge>,
+            positioningRect: NonNull<Foundation::NSRect>,
+            preferredEdge: NonNull<Foundation::NSRectEdge>,
         ) -> Option<Id<AppKit::NSView, Shared>>;
     }
 );
@@ -269,7 +269,7 @@ extern_protocol!(
             &self,
             cloudKitSharingService: &AppKit::NSSharingService,
             provider: &Foundation::NSItemProvider,
-        ) -> NSCloudKitSharingServiceOptions;
+        ) -> AppKit::NSCloudKitSharingServiceOptions;
     }
 );
 
@@ -312,9 +312,9 @@ extern_methods!(
         #[method(showRelativeToRect:ofView:preferredEdge:)]
         pub unsafe fn showRelativeToRect_ofView_preferredEdge(
             &self,
-            rect: NSRect,
+            rect: Foundation::NSRect,
             view: &AppKit::NSView,
-            preferredEdge: NSRectEdge,
+            preferredEdge: Foundation::NSRectEdge,
         );
     }
 );

@@ -39,16 +39,16 @@ extern_methods!(
         pub unsafe fn setBezeled(&self, bezeled: bool);
 
         #[method(controlTint)]
-        pub unsafe fn controlTint(&self) -> NSControlTint;
+        pub unsafe fn controlTint(&self) -> AppKit::NSControlTint;
 
         #[method(setControlTint:)]
-        pub unsafe fn setControlTint(&self, controlTint: NSControlTint);
+        pub unsafe fn setControlTint(&self, controlTint: AppKit::NSControlTint);
 
         #[method(controlSize)]
-        pub unsafe fn controlSize(&self) -> NSControlSize;
+        pub unsafe fn controlSize(&self) -> AppKit::NSControlSize;
 
         #[method(setControlSize:)]
-        pub unsafe fn setControlSize(&self, controlSize: NSControlSize);
+        pub unsafe fn setControlSize(&self, controlSize: AppKit::NSControlSize);
 
         #[method(doubleValue)]
         pub unsafe fn doubleValue(&self) -> c_double;
@@ -84,10 +84,10 @@ extern_methods!(
         pub unsafe fn stopAnimation(&self, sender: Option<&Object>);
 
         #[method(style)]
-        pub unsafe fn style(&self) -> NSProgressIndicatorStyle;
+        pub unsafe fn style(&self) -> AppKit::NSProgressIndicatorStyle;
 
         #[method(setStyle:)]
-        pub unsafe fn setStyle(&self, style: NSProgressIndicatorStyle);
+        pub unsafe fn setStyle(&self, style: AppKit::NSProgressIndicatorStyle);
 
         #[method(sizeToFit)]
         pub unsafe fn sizeToFit(&self);
@@ -110,10 +110,13 @@ ns_enum!(
     }
 );
 
-extern_static!(NSProgressIndicatorBarStyle: NSProgressIndicatorStyle = NSProgressIndicatorStyleBar);
+extern_static!(
+    NSProgressIndicatorBarStyle: AppKit::NSProgressIndicatorStyle = NSProgressIndicatorStyleBar
+);
 
 extern_static!(
-    NSProgressIndicatorSpinningStyle: NSProgressIndicatorStyle = NSProgressIndicatorStyleSpinning
+    NSProgressIndicatorSpinningStyle: AppKit::NSProgressIndicatorStyle =
+        NSProgressIndicatorStyleSpinning
 );
 
 extern_methods!(
@@ -121,10 +124,10 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSProgressIndicator")]
     unsafe impl NSProgressIndicator {
         #[method(animationDelay)]
-        pub unsafe fn animationDelay(&self) -> NSTimeInterval;
+        pub unsafe fn animationDelay(&self) -> Foundation::NSTimeInterval;
 
         #[method(setAnimationDelay:)]
-        pub unsafe fn setAnimationDelay(&self, delay: NSTimeInterval);
+        pub unsafe fn setAnimationDelay(&self, delay: Foundation::NSTimeInterval);
 
         #[method(animate:)]
         pub unsafe fn animate(&self, sender: Option<&Object>);
@@ -138,7 +141,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frameRect: Foundation::NSRect,
         ) -> Id<Self, Shared>;
     }
 );

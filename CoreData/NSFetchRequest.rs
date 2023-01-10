@@ -145,10 +145,10 @@ extern_methods!(
         );
 
         #[method(resultType)]
-        pub unsafe fn resultType(&self) -> NSFetchRequestResultType;
+        pub unsafe fn resultType(&self) -> CoreData::NSFetchRequestResultType;
 
         #[method(setResultType:)]
-        pub unsafe fn setResultType(&self, resultType: NSFetchRequestResultType);
+        pub unsafe fn setResultType(&self, resultType: CoreData::NSFetchRequestResultType);
 
         #[method(includesSubentities)]
         pub unsafe fn includesSubentities(&self) -> bool;
@@ -273,7 +273,7 @@ extern_methods!(
         #[method(completionBlock)]
         pub unsafe fn completionBlock(
             &self,
-        ) -> NSPersistentStoreAsynchronousFetchResultCompletionBlock;
+        ) -> CoreData::NSPersistentStoreAsynchronousFetchResultCompletionBlock;
 
         #[method(estimatedResultCount)]
         pub unsafe fn estimatedResultCount(&self) -> NSInteger;

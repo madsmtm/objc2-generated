@@ -21,13 +21,13 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithSize:flipped:drawingHandler:)]
         pub unsafe fn initWithSize_flipped_drawingHandler(
             this: Option<Allocated<Self>>,
-            size: NSSize,
+            size: Foundation::NSSize,
             drawingHandlerShouldBeCalledWithFlippedContext: bool,
-            drawingHandler: &Block<(NSRect,), Bool>,
+            drawingHandler: &Block<(Foundation::NSRect,), Bool>,
         ) -> Id<Self, Shared>;
 
         #[method(drawingHandler)]
-        pub unsafe fn drawingHandler(&self) -> *mut Block<(NSRect,), Bool>;
+        pub unsafe fn drawingHandler(&self) -> *mut Block<(Foundation::NSRect,), Bool>;
 
         #[method_id(@__retain_semantics Init initWithDrawSelector:delegate:)]
         pub unsafe fn initWithDrawSelector_delegate(

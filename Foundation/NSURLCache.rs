@@ -43,7 +43,7 @@ extern_methods!(
             response: &Foundation::NSURLResponse,
             data: &Foundation::NSData,
             userInfo: Option<&Foundation::NSDictionary>,
-            storagePolicy: NSURLCacheStoragePolicy,
+            storagePolicy: Foundation::NSURLCacheStoragePolicy,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSURLResponse")]
@@ -59,7 +59,7 @@ extern_methods!(
         pub unsafe fn userInfo(&self) -> Option<Id<Foundation::NSDictionary, Shared>>;
 
         #[method(storagePolicy)]
-        pub unsafe fn storagePolicy(&self) -> NSURLCacheStoragePolicy;
+        pub unsafe fn storagePolicy(&self) -> Foundation::NSURLCacheStoragePolicy;
     }
 );
 

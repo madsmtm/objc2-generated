@@ -32,10 +32,10 @@ extern_methods!(
         pub unsafe fn unlock();
 
         #[method(animationDuration)]
-        pub fn animationDuration() -> CFTimeInterval;
+        pub fn animationDuration() -> CoreFoundation::CFTimeInterval;
 
         #[method(setAnimationDuration:)]
-        pub fn setAnimationDuration(dur: CFTimeInterval);
+        pub fn setAnimationDuration(dur: CoreFoundation::CFTimeInterval);
 
         #[cfg(feature = "CoreAnimation_CAMediaTimingFunction")]
         #[method_id(@__retain_semantics Other animationTimingFunction)]

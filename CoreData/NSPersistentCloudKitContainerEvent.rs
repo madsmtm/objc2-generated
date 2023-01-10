@@ -40,7 +40,7 @@ extern_methods!(
         pub unsafe fn storeIdentifier(&self) -> Id<Foundation::NSString, Shared>;
 
         #[method(type)]
-        pub unsafe fn type_(&self) -> NSPersistentCloudKitContainerEventType;
+        pub unsafe fn type_(&self) -> CoreData::NSPersistentCloudKitContainerEventType;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other startDate)]

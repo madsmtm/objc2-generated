@@ -62,7 +62,7 @@ extern_protocol!(
         #[method(drawPrimitives:vertexStart:vertexCount:instanceCount:baseInstance:)]
         pub unsafe fn drawPrimitives_vertexStart_vertexCount_instanceCount_baseInstance(
             &self,
-            primitiveType: MTLPrimitiveType,
+            primitiveType: Metal::MTLPrimitiveType,
             vertexStart: NSUInteger,
             vertexCount: NSUInteger,
             instanceCount: NSUInteger,
@@ -72,9 +72,9 @@ extern_protocol!(
         #[method(drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:baseVertex:baseInstance:)]
         pub unsafe fn drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset_instanceCount_baseVertex_baseInstance(
             &self,
-            primitiveType: MTLPrimitiveType,
+            primitiveType: Metal::MTLPrimitiveType,
             indexCount: NSUInteger,
-            indexType: MTLIndexType,
+            indexType: Metal::MTLIndexType,
             indexBuffer: &Metal::MTLBuffer,
             indexBufferOffset: NSUInteger,
             instanceCount: NSUInteger,
@@ -108,15 +108,15 @@ extern_protocol!(
         #[method(concurrentDispatchThreadgroups:threadsPerThreadgroup:)]
         pub unsafe fn concurrentDispatchThreadgroups_threadsPerThreadgroup(
             &self,
-            threadgroupsPerGrid: MTLSize,
-            threadsPerThreadgroup: MTLSize,
+            threadgroupsPerGrid: Metal::MTLSize,
+            threadsPerThreadgroup: Metal::MTLSize,
         );
 
         #[method(concurrentDispatchThreads:threadsPerThreadgroup:)]
         pub unsafe fn concurrentDispatchThreads_threadsPerThreadgroup(
             &self,
-            threadsPerGrid: MTLSize,
-            threadsPerThreadgroup: MTLSize,
+            threadsPerGrid: Metal::MTLSize,
+            threadsPerThreadgroup: Metal::MTLSize,
         );
 
         #[method(setBarrier)]
@@ -139,6 +139,6 @@ extern_protocol!(
         );
 
         #[method(setStageInRegion:)]
-        pub unsafe fn setStageInRegion(&self, region: MTLRegion);
+        pub unsafe fn setStageInRegion(&self, region: Metal::MTLRegion);
     }
 );

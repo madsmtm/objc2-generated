@@ -54,7 +54,7 @@ extern_methods!(
         pub unsafe fn showContextHelpForObject_locationHint(
             &self,
             object: &Object,
-            pt: NSPoint,
+            pt: Foundation::NSPoint,
         ) -> bool;
 
         #[method(openHelpAnchor:inBook:)]

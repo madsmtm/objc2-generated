@@ -60,7 +60,7 @@ extern_methods!(
         pub unsafe fn initWithMachServiceName_options(
             this: Option<Allocated<Self>>,
             name: &Foundation::NSString,
-            options: NSXPCConnectionOptions,
+            options: Foundation::NSXPCConnectionOptions,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSXPCListenerEndpoint")]

@@ -73,7 +73,7 @@ extern_methods!(
         pub unsafe fn initWithTableView_cellProvider(
             this: Option<Allocated<Self>>,
             tableView: &AppKit::NSTableView,
-            cellProvider: NSTableViewDiffableDataSourceCellProvider,
+            cellProvider: AppKit::NSTableViewDiffableDataSourceCellProvider,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Init init)]
@@ -136,32 +136,32 @@ extern_methods!(
         ) -> NSInteger;
 
         #[method(rowViewProvider)]
-        pub unsafe fn rowViewProvider(&self) -> NSTableViewDiffableDataSourceRowProvider;
+        pub unsafe fn rowViewProvider(&self) -> AppKit::NSTableViewDiffableDataSourceRowProvider;
 
         #[method(setRowViewProvider:)]
         pub unsafe fn setRowViewProvider(
             &self,
-            rowViewProvider: NSTableViewDiffableDataSourceRowProvider,
+            rowViewProvider: AppKit::NSTableViewDiffableDataSourceRowProvider,
         );
 
         #[method(sectionHeaderViewProvider)]
         pub unsafe fn sectionHeaderViewProvider(
             &self,
-        ) -> NSTableViewDiffableDataSourceSectionHeaderViewProvider;
+        ) -> AppKit::NSTableViewDiffableDataSourceSectionHeaderViewProvider;
 
         #[method(setSectionHeaderViewProvider:)]
         pub unsafe fn setSectionHeaderViewProvider(
             &self,
-            sectionHeaderViewProvider: NSTableViewDiffableDataSourceSectionHeaderViewProvider,
+            sectionHeaderViewProvider: AppKit::NSTableViewDiffableDataSourceSectionHeaderViewProvider,
         );
 
         #[method(defaultRowAnimation)]
-        pub unsafe fn defaultRowAnimation(&self) -> NSTableViewAnimationOptions;
+        pub unsafe fn defaultRowAnimation(&self) -> AppKit::NSTableViewAnimationOptions;
 
         #[method(setDefaultRowAnimation:)]
         pub unsafe fn setDefaultRowAnimation(
             &self,
-            defaultRowAnimation: NSTableViewAnimationOptions,
+            defaultRowAnimation: AppKit::NSTableViewAnimationOptions,
         );
     }
 );

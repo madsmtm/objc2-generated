@@ -77,19 +77,22 @@ extern_protocol!(
         pub fn device(&self) -> Id<Metal::MTLDevice, Shared>;
 
         #[method(cpuCacheMode)]
-        pub fn cpuCacheMode(&self) -> MTLCPUCacheMode;
+        pub fn cpuCacheMode(&self) -> Metal::MTLCPUCacheMode;
 
         #[method(storageMode)]
-        pub fn storageMode(&self) -> MTLStorageMode;
+        pub fn storageMode(&self) -> Metal::MTLStorageMode;
 
         #[method(hazardTrackingMode)]
-        pub fn hazardTrackingMode(&self) -> MTLHazardTrackingMode;
+        pub fn hazardTrackingMode(&self) -> Metal::MTLHazardTrackingMode;
 
         #[method(resourceOptions)]
-        pub fn resourceOptions(&self) -> MTLResourceOptions;
+        pub fn resourceOptions(&self) -> Metal::MTLResourceOptions;
 
         #[method(setPurgeableState:)]
-        pub fn setPurgeableState(&self, state: MTLPurgeableState) -> MTLPurgeableState;
+        pub fn setPurgeableState(
+            &self,
+            state: Metal::MTLPurgeableState,
+        ) -> Metal::MTLPurgeableState;
 
         #[method_id(@__retain_semantics Other heap)]
         pub fn heap(&self) -> Option<Id<Metal::MTLHeap, Shared>>;

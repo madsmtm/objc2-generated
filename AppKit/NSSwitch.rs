@@ -19,10 +19,10 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSSwitch")]
     unsafe impl NSSwitch {
         #[method(state)]
-        pub unsafe fn state(&self) -> NSControlStateValue;
+        pub unsafe fn state(&self) -> AppKit::NSControlStateValue;
 
         #[method(setState:)]
-        pub unsafe fn setState(&self, state: NSControlStateValue);
+        pub unsafe fn setState(&self, state: AppKit::NSControlStateValue);
     }
 );
 
@@ -33,7 +33,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frameRect: Foundation::NSRect,
         ) -> Id<Self, Shared>;
     }
 );

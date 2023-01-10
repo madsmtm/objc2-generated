@@ -91,10 +91,10 @@ extern_methods!(
         );
 
         #[method(resultType)]
-        pub unsafe fn resultType(&self) -> NSBatchInsertRequestResultType;
+        pub unsafe fn resultType(&self) -> CoreData::NSBatchInsertRequestResultType;
 
         #[method(setResultType:)]
-        pub unsafe fn setResultType(&self, resultType: NSBatchInsertRequestResultType);
+        pub unsafe fn setResultType(&self, resultType: CoreData::NSBatchInsertRequestResultType);
 
         #[cfg(all(
             feature = "Foundation_NSArray",

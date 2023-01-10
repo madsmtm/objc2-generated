@@ -106,16 +106,16 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSMutableAttributedString")]
     unsafe impl NSMutableAttributedString {
         #[method(fixAttributesInRange:)]
-        pub unsafe fn fixAttributesInRange(&self, range: NSRange);
+        pub unsafe fn fixAttributesInRange(&self, range: Foundation::NSRange);
 
         #[method(fixFontAttributeInRange:)]
-        pub unsafe fn fixFontAttributeInRange(&self, range: NSRange);
+        pub unsafe fn fixFontAttributeInRange(&self, range: Foundation::NSRange);
 
         #[method(fixParagraphStyleAttributeInRange:)]
-        pub unsafe fn fixParagraphStyleAttributeInRange(&self, range: NSRange);
+        pub unsafe fn fixParagraphStyleAttributeInRange(&self, range: Foundation::NSRange);
 
         #[method(fixAttachmentAttributeInRange:)]
-        pub unsafe fn fixAttachmentAttributeInRange(&self, range: NSRange);
+        pub unsafe fn fixAttachmentAttributeInRange(&self, range: Foundation::NSRange);
     }
 );
 
@@ -400,7 +400,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other dataFromRange:documentAttributes:error:_)]
         pub unsafe fn dataFromRange_documentAttributes_error(
             &self,
-            range: NSRange,
+            range: Foundation::NSRange,
             dict: &Foundation::NSDictionary<AppKit::NSAttributedStringDocumentAttributeKey, Object>,
         ) -> Result<Id<Foundation::NSData, Shared>, Id<Foundation::NSError, Shared>>;
 
@@ -412,7 +412,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other fileWrapperFromRange:documentAttributes:error:_)]
         pub unsafe fn fileWrapperFromRange_documentAttributes_error(
             &self,
-            range: NSRange,
+            range: Foundation::NSRange,
             dict: &Foundation::NSDictionary<AppKit::NSAttributedStringDocumentAttributeKey, Object>,
         ) -> Result<Id<Foundation::NSFileWrapper, Shared>, Id<Foundation::NSError, Shared>>;
 
@@ -509,7 +509,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other RTFFromRange:documentAttributes:)]
         pub unsafe fn RTFFromRange_documentAttributes(
             &self,
-            range: NSRange,
+            range: Foundation::NSRange,
             dict: &Foundation::NSDictionary<AppKit::NSAttributedStringDocumentAttributeKey, Object>,
         ) -> Option<Id<Foundation::NSData, Shared>>;
 
@@ -517,7 +517,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other RTFDFromRange:documentAttributes:)]
         pub unsafe fn RTFDFromRange_documentAttributes(
             &self,
-            range: NSRange,
+            range: Foundation::NSRange,
             dict: &Foundation::NSDictionary<AppKit::NSAttributedStringDocumentAttributeKey, Object>,
         ) -> Option<Id<Foundation::NSData, Shared>>;
 
@@ -528,7 +528,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other RTFDFileWrapperFromRange:documentAttributes:)]
         pub unsafe fn RTFDFileWrapperFromRange_documentAttributes(
             &self,
-            range: NSRange,
+            range: Foundation::NSRange,
             dict: &Foundation::NSDictionary<AppKit::NSAttributedStringDocumentAttributeKey, Object>,
         ) -> Option<Id<Foundation::NSFileWrapper, Shared>>;
 
@@ -536,7 +536,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other docFormatFromRange:documentAttributes:)]
         pub unsafe fn docFormatFromRange_documentAttributes(
             &self,
-            range: NSRange,
+            range: Foundation::NSRange,
             dict: &Foundation::NSDictionary<AppKit::NSAttributedStringDocumentAttributeKey, Object>,
         ) -> Option<Id<Foundation::NSData, Shared>>;
     }
@@ -594,35 +594,35 @@ extern_methods!(
         #[method_id(@__retain_semantics Other fontAttributesInRange:)]
         pub unsafe fn fontAttributesInRange(
             &self,
-            range: NSRange,
+            range: Foundation::NSRange,
         ) -> Id<Foundation::NSDictionary<Foundation::NSAttributedStringKey, Object>, Shared>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other rulerAttributesInRange:)]
         pub unsafe fn rulerAttributesInRange(
             &self,
-            range: NSRange,
+            range: Foundation::NSRange,
         ) -> Id<Foundation::NSDictionary<Foundation::NSAttributedStringKey, Object>, Shared>;
 
         #[method(containsAttachmentsInRange:)]
-        pub unsafe fn containsAttachmentsInRange(&self, range: NSRange) -> bool;
+        pub unsafe fn containsAttachmentsInRange(&self, range: Foundation::NSRange) -> bool;
 
         #[method(lineBreakBeforeIndex:withinRange:)]
         pub unsafe fn lineBreakBeforeIndex_withinRange(
             &self,
             location: NSUInteger,
-            aRange: NSRange,
+            aRange: Foundation::NSRange,
         ) -> NSUInteger;
 
         #[method(lineBreakByHyphenatingBeforeIndex:withinRange:)]
         pub unsafe fn lineBreakByHyphenatingBeforeIndex_withinRange(
             &self,
             location: NSUInteger,
-            aRange: NSRange,
+            aRange: Foundation::NSRange,
         ) -> NSUInteger;
 
         #[method(doubleClickAtIndex:)]
-        pub unsafe fn doubleClickAtIndex(&self, location: NSUInteger) -> NSRange;
+        pub unsafe fn doubleClickAtIndex(&self, location: NSUInteger) -> Foundation::NSRange;
 
         #[method(nextWordFromIndex:forward:)]
         pub unsafe fn nextWordFromIndex_forward(
@@ -637,7 +637,7 @@ extern_methods!(
             &self,
             block: &AppKit::NSTextBlock,
             location: NSUInteger,
-        ) -> NSRange;
+        ) -> Foundation::NSRange;
 
         #[cfg(feature = "AppKit_NSTextTable")]
         #[method(rangeOfTextTable:atIndex:)]
@@ -645,7 +645,7 @@ extern_methods!(
             &self,
             table: &AppKit::NSTextTable,
             location: NSUInteger,
-        ) -> NSRange;
+        ) -> Foundation::NSRange;
 
         #[cfg(feature = "AppKit_NSTextList")]
         #[method(rangeOfTextList:atIndex:)]
@@ -653,7 +653,7 @@ extern_methods!(
             &self,
             list: &AppKit::NSTextList,
             location: NSUInteger,
-        ) -> NSRange;
+        ) -> Foundation::NSRange;
 
         #[cfg(feature = "AppKit_NSTextList")]
         #[method(itemNumberInTextList:atIndex:)]
@@ -684,40 +684,52 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSMutableAttributedString")]
     unsafe impl NSMutableAttributedString {
         #[method(superscriptRange:)]
-        pub unsafe fn superscriptRange(&self, range: NSRange);
+        pub unsafe fn superscriptRange(&self, range: Foundation::NSRange);
 
         #[method(subscriptRange:)]
-        pub unsafe fn subscriptRange(&self, range: NSRange);
+        pub unsafe fn subscriptRange(&self, range: Foundation::NSRange);
 
         #[method(unscriptRange:)]
-        pub unsafe fn unscriptRange(&self, range: NSRange);
+        pub unsafe fn unscriptRange(&self, range: Foundation::NSRange);
 
         #[method(applyFontTraits:range:)]
-        pub unsafe fn applyFontTraits_range(&self, traitMask: NSFontTraitMask, range: NSRange);
+        pub unsafe fn applyFontTraits_range(
+            &self,
+            traitMask: AppKit::NSFontTraitMask,
+            range: Foundation::NSRange,
+        );
 
         #[method(setAlignment:range:)]
-        pub unsafe fn setAlignment_range(&self, alignment: NSTextAlignment, range: NSRange);
+        pub unsafe fn setAlignment_range(
+            &self,
+            alignment: AppKit::NSTextAlignment,
+            range: Foundation::NSRange,
+        );
 
         #[method(setBaseWritingDirection:range:)]
         pub unsafe fn setBaseWritingDirection_range(
             &self,
-            writingDirection: NSWritingDirection,
-            range: NSRange,
+            writingDirection: AppKit::NSWritingDirection,
+            range: Foundation::NSRange,
         );
     }
 );
 
-extern_static!(NSUnderlinePatternSolid: NSUnderlineStyle = NSUnderlineStylePatternSolid);
+extern_static!(NSUnderlinePatternSolid: AppKit::NSUnderlineStyle = NSUnderlineStylePatternSolid);
 
-extern_static!(NSUnderlinePatternDot: NSUnderlineStyle = NSUnderlineStylePatternDot);
+extern_static!(NSUnderlinePatternDot: AppKit::NSUnderlineStyle = NSUnderlineStylePatternDot);
 
-extern_static!(NSUnderlinePatternDash: NSUnderlineStyle = NSUnderlineStylePatternDash);
+extern_static!(NSUnderlinePatternDash: AppKit::NSUnderlineStyle = NSUnderlineStylePatternDash);
 
-extern_static!(NSUnderlinePatternDashDot: NSUnderlineStyle = NSUnderlineStylePatternDashDot);
+extern_static!(
+    NSUnderlinePatternDashDot: AppKit::NSUnderlineStyle = NSUnderlineStylePatternDashDot
+);
 
-extern_static!(NSUnderlinePatternDashDotDot: NSUnderlineStyle = NSUnderlineStylePatternDashDotDot);
+extern_static!(
+    NSUnderlinePatternDashDotDot: AppKit::NSUnderlineStyle = NSUnderlineStylePatternDashDotDot
+);
 
-extern_static!(NSUnderlineByWord: NSUnderlineStyle = NSUnderlineStyleByWord);
+extern_static!(NSUnderlineByWord: AppKit::NSUnderlineStyle = NSUnderlineStyleByWord);
 
 extern_static!(NSCharacterShapeAttributeName: &'static Foundation::NSAttributedStringKey);
 
@@ -779,7 +791,7 @@ extern_methods!(
         pub unsafe fn URLAtIndex_effectiveRange(
             &self,
             location: NSUInteger,
-            effectiveRange: NSRangePointer,
+            effectiveRange: Foundation::NSRangePointer,
         ) -> Option<Id<Foundation::NSURL, Shared>>;
     }
 );

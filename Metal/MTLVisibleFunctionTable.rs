@@ -43,7 +43,7 @@ extern_protocol!(
         pub unsafe fn setFunctions_withRange(
             &self,
             functions: NonNull<*const Metal::MTLFunctionHandle>,
-            range: NSRange,
+            range: Foundation::NSRange,
         );
     }
 );

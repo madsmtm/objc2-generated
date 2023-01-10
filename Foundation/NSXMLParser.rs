@@ -67,12 +67,12 @@ extern_methods!(
         #[method(externalEntityResolvingPolicy)]
         pub unsafe fn externalEntityResolvingPolicy(
             &self,
-        ) -> NSXMLParserExternalEntityResolvingPolicy;
+        ) -> Foundation::NSXMLParserExternalEntityResolvingPolicy;
 
         #[method(setExternalEntityResolvingPolicy:)]
         pub unsafe fn setExternalEntityResolvingPolicy(
             &self,
-            externalEntityResolvingPolicy: NSXMLParserExternalEntityResolvingPolicy,
+            externalEntityResolvingPolicy: Foundation::NSXMLParserExternalEntityResolvingPolicy,
         );
 
         #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSURL"))]

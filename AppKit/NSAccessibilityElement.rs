@@ -21,7 +21,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other accessibilityElementWithRole:frame:label:parent:)]
         pub unsafe fn accessibilityElementWithRole_frame_label_parent(
             role: &AppKit::NSAccessibilityRole,
-            frame: NSRect,
+            frame: Foundation::NSRect,
             label: Option<&Foundation::NSString>,
             parent: Option<&Object>,
         ) -> Id<Object, Shared>;
@@ -33,12 +33,12 @@ extern_methods!(
         );
 
         #[method(accessibilityFrameInParentSpace)]
-        pub unsafe fn accessibilityFrameInParentSpace(&self) -> NSRect;
+        pub unsafe fn accessibilityFrameInParentSpace(&self) -> Foundation::NSRect;
 
         #[method(setAccessibilityFrameInParentSpace:)]
         pub unsafe fn setAccessibilityFrameInParentSpace(
             &self,
-            accessibilityFrameInParentSpace: NSRect,
+            accessibilityFrameInParentSpace: Foundation::NSRect,
         );
     }
 );

@@ -65,7 +65,7 @@ extern_protocol!(
             collectionView: &AppKit::NSCollectionView,
             collectionViewLayout: &AppKit::NSCollectionViewLayout,
             indexPath: &Foundation::NSIndexPath,
-        ) -> NSSize;
+        ) -> Foundation::NSSize;
 
         #[optional]
         #[method(collectionView:layout:insetForSectionAtIndex:)]
@@ -74,7 +74,7 @@ extern_protocol!(
             collectionView: &AppKit::NSCollectionView,
             collectionViewLayout: &AppKit::NSCollectionViewLayout,
             section: NSInteger,
-        ) -> NSEdgeInsets;
+        ) -> Foundation::NSEdgeInsets;
 
         #[optional]
         #[method(collectionView:layout:minimumLineSpacingForSectionAtIndex:)]
@@ -83,7 +83,7 @@ extern_protocol!(
             collectionView: &AppKit::NSCollectionView,
             collectionViewLayout: &AppKit::NSCollectionViewLayout,
             section: NSInteger,
-        ) -> CGFloat;
+        ) -> CoreGraphics::CGFloat;
 
         #[optional]
         #[method(collectionView:layout:minimumInteritemSpacingForSectionAtIndex:)]
@@ -92,7 +92,7 @@ extern_protocol!(
             collectionView: &AppKit::NSCollectionView,
             collectionViewLayout: &AppKit::NSCollectionViewLayout,
             section: NSInteger,
-        ) -> CGFloat;
+        ) -> CoreGraphics::CGFloat;
 
         #[optional]
         #[method(collectionView:layout:referenceSizeForHeaderInSection:)]
@@ -101,7 +101,7 @@ extern_protocol!(
             collectionView: &AppKit::NSCollectionView,
             collectionViewLayout: &AppKit::NSCollectionViewLayout,
             section: NSInteger,
-        ) -> NSSize;
+        ) -> Foundation::NSSize;
 
         #[optional]
         #[method(collectionView:layout:referenceSizeForFooterInSection:)]
@@ -110,7 +110,7 @@ extern_protocol!(
             collectionView: &AppKit::NSCollectionView,
             collectionViewLayout: &AppKit::NSCollectionViewLayout,
             section: NSInteger,
-        ) -> NSSize;
+        ) -> Foundation::NSSize;
     }
 );
 
@@ -128,52 +128,58 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSCollectionViewFlowLayout")]
     unsafe impl NSCollectionViewFlowLayout {
         #[method(minimumLineSpacing)]
-        pub unsafe fn minimumLineSpacing(&self) -> CGFloat;
+        pub unsafe fn minimumLineSpacing(&self) -> CoreGraphics::CGFloat;
 
         #[method(setMinimumLineSpacing:)]
-        pub unsafe fn setMinimumLineSpacing(&self, minimumLineSpacing: CGFloat);
+        pub unsafe fn setMinimumLineSpacing(&self, minimumLineSpacing: CoreGraphics::CGFloat);
 
         #[method(minimumInteritemSpacing)]
-        pub unsafe fn minimumInteritemSpacing(&self) -> CGFloat;
+        pub unsafe fn minimumInteritemSpacing(&self) -> CoreGraphics::CGFloat;
 
         #[method(setMinimumInteritemSpacing:)]
-        pub unsafe fn setMinimumInteritemSpacing(&self, minimumInteritemSpacing: CGFloat);
+        pub unsafe fn setMinimumInteritemSpacing(
+            &self,
+            minimumInteritemSpacing: CoreGraphics::CGFloat,
+        );
 
         #[method(itemSize)]
-        pub unsafe fn itemSize(&self) -> NSSize;
+        pub unsafe fn itemSize(&self) -> Foundation::NSSize;
 
         #[method(setItemSize:)]
-        pub unsafe fn setItemSize(&self, itemSize: NSSize);
+        pub unsafe fn setItemSize(&self, itemSize: Foundation::NSSize);
 
         #[method(estimatedItemSize)]
-        pub unsafe fn estimatedItemSize(&self) -> NSSize;
+        pub unsafe fn estimatedItemSize(&self) -> Foundation::NSSize;
 
         #[method(setEstimatedItemSize:)]
-        pub unsafe fn setEstimatedItemSize(&self, estimatedItemSize: NSSize);
+        pub unsafe fn setEstimatedItemSize(&self, estimatedItemSize: Foundation::NSSize);
 
         #[method(scrollDirection)]
-        pub unsafe fn scrollDirection(&self) -> NSCollectionViewScrollDirection;
+        pub unsafe fn scrollDirection(&self) -> AppKit::NSCollectionViewScrollDirection;
 
         #[method(setScrollDirection:)]
-        pub unsafe fn setScrollDirection(&self, scrollDirection: NSCollectionViewScrollDirection);
+        pub unsafe fn setScrollDirection(
+            &self,
+            scrollDirection: AppKit::NSCollectionViewScrollDirection,
+        );
 
         #[method(headerReferenceSize)]
-        pub unsafe fn headerReferenceSize(&self) -> NSSize;
+        pub unsafe fn headerReferenceSize(&self) -> Foundation::NSSize;
 
         #[method(setHeaderReferenceSize:)]
-        pub unsafe fn setHeaderReferenceSize(&self, headerReferenceSize: NSSize);
+        pub unsafe fn setHeaderReferenceSize(&self, headerReferenceSize: Foundation::NSSize);
 
         #[method(footerReferenceSize)]
-        pub unsafe fn footerReferenceSize(&self) -> NSSize;
+        pub unsafe fn footerReferenceSize(&self) -> Foundation::NSSize;
 
         #[method(setFooterReferenceSize:)]
-        pub unsafe fn setFooterReferenceSize(&self, footerReferenceSize: NSSize);
+        pub unsafe fn setFooterReferenceSize(&self, footerReferenceSize: Foundation::NSSize);
 
         #[method(sectionInset)]
-        pub unsafe fn sectionInset(&self) -> NSEdgeInsets;
+        pub unsafe fn sectionInset(&self) -> Foundation::NSEdgeInsets;
 
         #[method(setSectionInset:)]
-        pub unsafe fn setSectionInset(&self, sectionInset: NSEdgeInsets);
+        pub unsafe fn setSectionInset(&self, sectionInset: Foundation::NSEdgeInsets);
 
         #[method(sectionHeadersPinToVisibleBounds)]
         pub unsafe fn sectionHeadersPinToVisibleBounds(&self) -> bool;

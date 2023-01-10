@@ -72,7 +72,7 @@ extern_methods!(
         pub unsafe fn sortDescriptorWithKey_ascending_comparator(
             key: Option<&Foundation::NSString>,
             ascending: bool,
-            cmptr: NSComparator,
+            cmptr: Foundation::NSComparator,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -81,18 +81,18 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             key: Option<&Foundation::NSString>,
             ascending: bool,
-            cmptr: NSComparator,
+            cmptr: Foundation::NSComparator,
         ) -> Id<Self, Shared>;
 
         #[method(comparator)]
-        pub unsafe fn comparator(&self) -> NSComparator;
+        pub unsafe fn comparator(&self) -> Foundation::NSComparator;
 
         #[method(compareObject:toObject:)]
         pub unsafe fn compareObject_toObject(
             &self,
             object1: &Object,
             object2: &Object,
-        ) -> NSComparisonResult;
+        ) -> Foundation::NSComparisonResult;
 
         #[method_id(@__retain_semantics Other reversedSortDescriptor)]
         pub unsafe fn reversedSortDescriptor(&self) -> Id<Object, Shared>;

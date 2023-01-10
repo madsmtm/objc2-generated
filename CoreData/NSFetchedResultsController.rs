@@ -169,7 +169,7 @@ extern_protocol!(
             controller: &CoreData::NSFetchedResultsController,
             anObject: &Object,
             indexPath: Option<&Foundation::NSIndexPath>,
-            type_: NSFetchedResultsChangeType,
+            type_: CoreData::NSFetchedResultsChangeType,
             newIndexPath: Option<&Foundation::NSIndexPath>,
         );
 
@@ -180,7 +180,7 @@ extern_protocol!(
             controller: &CoreData::NSFetchedResultsController,
             sectionInfo: &CoreData::NSFetchedResultsSectionInfo,
             sectionIndex: NSUInteger,
-            type_: NSFetchedResultsChangeType,
+            type_: CoreData::NSFetchedResultsChangeType,
         );
 
         #[optional]

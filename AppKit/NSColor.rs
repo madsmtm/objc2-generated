@@ -5,7 +5,7 @@ use crate::AppKit;
 use crate::CoreData;
 use crate::Foundation;
 
-extern_static!(NSAppKitVersionNumberWithPatternColorLeakFix: NSAppKitVersion = 641.0);
+extern_static!(NSAppKitVersionNumberWithPatternColorLeakFix: AppKit::NSAppKitVersion = 641.0);
 
 ns_enum!(
     #[underlying(NSInteger)]
@@ -53,62 +53,62 @@ extern_methods!(
         #[method_id(@__retain_semantics Other colorWithColorSpace:components:count:)]
         pub unsafe fn colorWithColorSpace_components_count(
             space: &AppKit::NSColorSpace,
-            components: NonNull<CGFloat>,
+            components: NonNull<CoreGraphics::CGFloat>,
             numberOfComponents: NSInteger,
         ) -> Id<AppKit::NSColor, Shared>;
 
         #[method_id(@__retain_semantics Other colorWithSRGBRed:green:blue:alpha:)]
         pub unsafe fn colorWithSRGBRed_green_blue_alpha(
-            red: CGFloat,
-            green: CGFloat,
-            blue: CGFloat,
-            alpha: CGFloat,
+            red: CoreGraphics::CGFloat,
+            green: CoreGraphics::CGFloat,
+            blue: CoreGraphics::CGFloat,
+            alpha: CoreGraphics::CGFloat,
         ) -> Id<AppKit::NSColor, Shared>;
 
         #[method_id(@__retain_semantics Other colorWithGenericGamma22White:alpha:)]
         pub unsafe fn colorWithGenericGamma22White_alpha(
-            white: CGFloat,
-            alpha: CGFloat,
+            white: CoreGraphics::CGFloat,
+            alpha: CoreGraphics::CGFloat,
         ) -> Id<AppKit::NSColor, Shared>;
 
         #[method_id(@__retain_semantics Other colorWithDisplayP3Red:green:blue:alpha:)]
         pub unsafe fn colorWithDisplayP3Red_green_blue_alpha(
-            red: CGFloat,
-            green: CGFloat,
-            blue: CGFloat,
-            alpha: CGFloat,
+            red: CoreGraphics::CGFloat,
+            green: CoreGraphics::CGFloat,
+            blue: CoreGraphics::CGFloat,
+            alpha: CoreGraphics::CGFloat,
         ) -> Id<AppKit::NSColor, Shared>;
 
         #[method_id(@__retain_semantics Other colorWithWhite:alpha:)]
         pub unsafe fn colorWithWhite_alpha(
-            white: CGFloat,
-            alpha: CGFloat,
+            white: CoreGraphics::CGFloat,
+            alpha: CoreGraphics::CGFloat,
         ) -> Id<AppKit::NSColor, Shared>;
 
         #[method_id(@__retain_semantics Other colorWithRed:green:blue:alpha:)]
         pub unsafe fn colorWithRed_green_blue_alpha(
-            red: CGFloat,
-            green: CGFloat,
-            blue: CGFloat,
-            alpha: CGFloat,
+            red: CoreGraphics::CGFloat,
+            green: CoreGraphics::CGFloat,
+            blue: CoreGraphics::CGFloat,
+            alpha: CoreGraphics::CGFloat,
         ) -> Id<AppKit::NSColor, Shared>;
 
         #[method_id(@__retain_semantics Other colorWithHue:saturation:brightness:alpha:)]
         pub unsafe fn colorWithHue_saturation_brightness_alpha(
-            hue: CGFloat,
-            saturation: CGFloat,
-            brightness: CGFloat,
-            alpha: CGFloat,
+            hue: CoreGraphics::CGFloat,
+            saturation: CoreGraphics::CGFloat,
+            brightness: CoreGraphics::CGFloat,
+            alpha: CoreGraphics::CGFloat,
         ) -> Id<AppKit::NSColor, Shared>;
 
         #[cfg(feature = "AppKit_NSColorSpace")]
         #[method_id(@__retain_semantics Other colorWithColorSpace:hue:saturation:brightness:alpha:)]
         pub unsafe fn colorWithColorSpace_hue_saturation_brightness_alpha(
             space: &AppKit::NSColorSpace,
-            hue: CGFloat,
-            saturation: CGFloat,
-            brightness: CGFloat,
-            alpha: CGFloat,
+            hue: CoreGraphics::CGFloat,
+            saturation: CoreGraphics::CGFloat,
+            brightness: CoreGraphics::CGFloat,
+            alpha: CoreGraphics::CGFloat,
         ) -> Id<AppKit::NSColor, Shared>;
 
         #[method_id(@__retain_semantics Other colorWithCatalogName:colorName:)]
@@ -137,55 +137,55 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other colorWithDeviceWhite:alpha:)]
         pub unsafe fn colorWithDeviceWhite_alpha(
-            white: CGFloat,
-            alpha: CGFloat,
+            white: CoreGraphics::CGFloat,
+            alpha: CoreGraphics::CGFloat,
         ) -> Id<AppKit::NSColor, Shared>;
 
         #[method_id(@__retain_semantics Other colorWithDeviceRed:green:blue:alpha:)]
         pub unsafe fn colorWithDeviceRed_green_blue_alpha(
-            red: CGFloat,
-            green: CGFloat,
-            blue: CGFloat,
-            alpha: CGFloat,
+            red: CoreGraphics::CGFloat,
+            green: CoreGraphics::CGFloat,
+            blue: CoreGraphics::CGFloat,
+            alpha: CoreGraphics::CGFloat,
         ) -> Id<AppKit::NSColor, Shared>;
 
         #[method_id(@__retain_semantics Other colorWithDeviceHue:saturation:brightness:alpha:)]
         pub unsafe fn colorWithDeviceHue_saturation_brightness_alpha(
-            hue: CGFloat,
-            saturation: CGFloat,
-            brightness: CGFloat,
-            alpha: CGFloat,
+            hue: CoreGraphics::CGFloat,
+            saturation: CoreGraphics::CGFloat,
+            brightness: CoreGraphics::CGFloat,
+            alpha: CoreGraphics::CGFloat,
         ) -> Id<AppKit::NSColor, Shared>;
 
         #[method_id(@__retain_semantics Other colorWithDeviceCyan:magenta:yellow:black:alpha:)]
         pub unsafe fn colorWithDeviceCyan_magenta_yellow_black_alpha(
-            cyan: CGFloat,
-            magenta: CGFloat,
-            yellow: CGFloat,
-            black: CGFloat,
-            alpha: CGFloat,
+            cyan: CoreGraphics::CGFloat,
+            magenta: CoreGraphics::CGFloat,
+            yellow: CoreGraphics::CGFloat,
+            black: CoreGraphics::CGFloat,
+            alpha: CoreGraphics::CGFloat,
         ) -> Id<AppKit::NSColor, Shared>;
 
         #[method_id(@__retain_semantics Other colorWithCalibratedWhite:alpha:)]
         pub unsafe fn colorWithCalibratedWhite_alpha(
-            white: CGFloat,
-            alpha: CGFloat,
+            white: CoreGraphics::CGFloat,
+            alpha: CoreGraphics::CGFloat,
         ) -> Id<AppKit::NSColor, Shared>;
 
         #[method_id(@__retain_semantics Other colorWithCalibratedRed:green:blue:alpha:)]
         pub unsafe fn colorWithCalibratedRed_green_blue_alpha(
-            red: CGFloat,
-            green: CGFloat,
-            blue: CGFloat,
-            alpha: CGFloat,
+            red: CoreGraphics::CGFloat,
+            green: CoreGraphics::CGFloat,
+            blue: CoreGraphics::CGFloat,
+            alpha: CoreGraphics::CGFloat,
         ) -> Id<AppKit::NSColor, Shared>;
 
         #[method_id(@__retain_semantics Other colorWithCalibratedHue:saturation:brightness:alpha:)]
         pub unsafe fn colorWithCalibratedHue_saturation_brightness_alpha(
-            hue: CGFloat,
-            saturation: CGFloat,
-            brightness: CGFloat,
-            alpha: CGFloat,
+            hue: CoreGraphics::CGFloat,
+            saturation: CoreGraphics::CGFloat,
+            brightness: CoreGraphics::CGFloat,
+            alpha: CoreGraphics::CGFloat,
         ) -> Id<AppKit::NSColor, Shared>;
 
         #[cfg(feature = "AppKit_NSImage")]
@@ -194,12 +194,12 @@ extern_methods!(
             -> Id<AppKit::NSColor, Shared>;
 
         #[method(type)]
-        pub unsafe fn type_(&self) -> NSColorType;
+        pub unsafe fn type_(&self) -> AppKit::NSColorType;
 
         #[method_id(@__retain_semantics Other colorUsingType:)]
         pub unsafe fn colorUsingType(
             &self,
-            type_: NSColorType,
+            type_: AppKit::NSColorType,
         ) -> Option<Id<AppKit::NSColor, Shared>>;
 
         #[cfg(feature = "AppKit_NSColorSpace")]
@@ -395,11 +395,11 @@ extern_methods!(
         pub unsafe fn controlAccentColor() -> Id<AppKit::NSColor, Shared>;
 
         #[method(currentControlTint)]
-        pub unsafe fn currentControlTint() -> NSControlTint;
+        pub unsafe fn currentControlTint() -> AppKit::NSControlTint;
 
         #[method_id(@__retain_semantics Other colorForControlTint:)]
         pub unsafe fn colorForControlTint(
-            controlTint: NSControlTint,
+            controlTint: AppKit::NSControlTint,
         ) -> Id<AppKit::NSColor, Shared>;
 
         #[method_id(@__retain_semantics Other highlightColor)]
@@ -411,16 +411,19 @@ extern_methods!(
         #[method_id(@__retain_semantics Other highlightWithLevel:)]
         pub unsafe fn highlightWithLevel(
             &self,
-            val: CGFloat,
+            val: CoreGraphics::CGFloat,
         ) -> Option<Id<AppKit::NSColor, Shared>>;
 
         #[method_id(@__retain_semantics Other shadowWithLevel:)]
-        pub unsafe fn shadowWithLevel(&self, val: CGFloat) -> Option<Id<AppKit::NSColor, Shared>>;
+        pub unsafe fn shadowWithLevel(
+            &self,
+            val: CoreGraphics::CGFloat,
+        ) -> Option<Id<AppKit::NSColor, Shared>>;
 
         #[method_id(@__retain_semantics Other colorWithSystemEffect:)]
         pub unsafe fn colorWithSystemEffect(
             &self,
-            systemEffect: NSColorSystemEffect,
+            systemEffect: AppKit::NSColorSystemEffect,
         ) -> Id<AppKit::NSColor, Shared>;
 
         #[method(set)]
@@ -435,13 +438,15 @@ extern_methods!(
         #[method_id(@__retain_semantics Other blendedColorWithFraction:ofColor:)]
         pub unsafe fn blendedColorWithFraction_ofColor(
             &self,
-            fraction: CGFloat,
+            fraction: CoreGraphics::CGFloat,
             color: &AppKit::NSColor,
         ) -> Option<Id<AppKit::NSColor, Shared>>;
 
         #[method_id(@__retain_semantics Other colorWithAlphaComponent:)]
-        pub unsafe fn colorWithAlphaComponent(&self, alpha: CGFloat)
-            -> Id<AppKit::NSColor, Shared>;
+        pub unsafe fn colorWithAlphaComponent(
+            &self,
+            alpha: CoreGraphics::CGFloat,
+        ) -> Id<AppKit::NSColor, Shared>;
 
         #[method_id(@__retain_semantics Other catalogNameComponent)]
         pub unsafe fn catalogNameComponent(&self) -> Id<AppKit::NSColorListName, Shared>;
@@ -458,67 +463,71 @@ extern_methods!(
         pub unsafe fn localizedColorNameComponent(&self) -> Id<Foundation::NSString, Shared>;
 
         #[method(redComponent)]
-        pub unsafe fn redComponent(&self) -> CGFloat;
+        pub unsafe fn redComponent(&self) -> CoreGraphics::CGFloat;
 
         #[method(greenComponent)]
-        pub unsafe fn greenComponent(&self) -> CGFloat;
+        pub unsafe fn greenComponent(&self) -> CoreGraphics::CGFloat;
 
         #[method(blueComponent)]
-        pub unsafe fn blueComponent(&self) -> CGFloat;
+        pub unsafe fn blueComponent(&self) -> CoreGraphics::CGFloat;
 
         #[method(getRed:green:blue:alpha:)]
         pub unsafe fn getRed_green_blue_alpha(
             &self,
-            red: *mut CGFloat,
-            green: *mut CGFloat,
-            blue: *mut CGFloat,
-            alpha: *mut CGFloat,
+            red: *mut CoreGraphics::CGFloat,
+            green: *mut CoreGraphics::CGFloat,
+            blue: *mut CoreGraphics::CGFloat,
+            alpha: *mut CoreGraphics::CGFloat,
         );
 
         #[method(hueComponent)]
-        pub unsafe fn hueComponent(&self) -> CGFloat;
+        pub unsafe fn hueComponent(&self) -> CoreGraphics::CGFloat;
 
         #[method(saturationComponent)]
-        pub unsafe fn saturationComponent(&self) -> CGFloat;
+        pub unsafe fn saturationComponent(&self) -> CoreGraphics::CGFloat;
 
         #[method(brightnessComponent)]
-        pub unsafe fn brightnessComponent(&self) -> CGFloat;
+        pub unsafe fn brightnessComponent(&self) -> CoreGraphics::CGFloat;
 
         #[method(getHue:saturation:brightness:alpha:)]
         pub unsafe fn getHue_saturation_brightness_alpha(
             &self,
-            hue: *mut CGFloat,
-            saturation: *mut CGFloat,
-            brightness: *mut CGFloat,
-            alpha: *mut CGFloat,
+            hue: *mut CoreGraphics::CGFloat,
+            saturation: *mut CoreGraphics::CGFloat,
+            brightness: *mut CoreGraphics::CGFloat,
+            alpha: *mut CoreGraphics::CGFloat,
         );
 
         #[method(whiteComponent)]
-        pub unsafe fn whiteComponent(&self) -> CGFloat;
+        pub unsafe fn whiteComponent(&self) -> CoreGraphics::CGFloat;
 
         #[method(getWhite:alpha:)]
-        pub unsafe fn getWhite_alpha(&self, white: *mut CGFloat, alpha: *mut CGFloat);
+        pub unsafe fn getWhite_alpha(
+            &self,
+            white: *mut CoreGraphics::CGFloat,
+            alpha: *mut CoreGraphics::CGFloat,
+        );
 
         #[method(cyanComponent)]
-        pub unsafe fn cyanComponent(&self) -> CGFloat;
+        pub unsafe fn cyanComponent(&self) -> CoreGraphics::CGFloat;
 
         #[method(magentaComponent)]
-        pub unsafe fn magentaComponent(&self) -> CGFloat;
+        pub unsafe fn magentaComponent(&self) -> CoreGraphics::CGFloat;
 
         #[method(yellowComponent)]
-        pub unsafe fn yellowComponent(&self) -> CGFloat;
+        pub unsafe fn yellowComponent(&self) -> CoreGraphics::CGFloat;
 
         #[method(blackComponent)]
-        pub unsafe fn blackComponent(&self) -> CGFloat;
+        pub unsafe fn blackComponent(&self) -> CoreGraphics::CGFloat;
 
         #[method(getCyan:magenta:yellow:black:alpha:)]
         pub unsafe fn getCyan_magenta_yellow_black_alpha(
             &self,
-            cyan: *mut CGFloat,
-            magenta: *mut CGFloat,
-            yellow: *mut CGFloat,
-            black: *mut CGFloat,
-            alpha: *mut CGFloat,
+            cyan: *mut CoreGraphics::CGFloat,
+            magenta: *mut CoreGraphics::CGFloat,
+            yellow: *mut CoreGraphics::CGFloat,
+            black: *mut CoreGraphics::CGFloat,
+            alpha: *mut CoreGraphics::CGFloat,
         );
 
         #[cfg(feature = "AppKit_NSColorSpace")]
@@ -529,14 +538,14 @@ extern_methods!(
         pub unsafe fn numberOfComponents(&self) -> NSInteger;
 
         #[method(getComponents:)]
-        pub unsafe fn getComponents(&self, components: NonNull<CGFloat>);
+        pub unsafe fn getComponents(&self, components: NonNull<CoreGraphics::CGFloat>);
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other patternImage)]
         pub unsafe fn patternImage(&self) -> Id<AppKit::NSImage, Shared>;
 
         #[method(alphaComponent)]
-        pub unsafe fn alphaComponent(&self) -> CGFloat;
+        pub unsafe fn alphaComponent(&self) -> CoreGraphics::CGFloat;
 
         #[cfg(feature = "AppKit_NSPasteboard")]
         #[method_id(@__retain_semantics Other colorFromPasteboard:)]
@@ -549,7 +558,7 @@ extern_methods!(
         pub unsafe fn writeToPasteboard(&self, pasteBoard: &AppKit::NSPasteboard);
 
         #[method(drawSwatchInRect:)]
-        pub unsafe fn drawSwatchInRect(&self, rect: NSRect);
+        pub unsafe fn drawSwatchInRect(&self, rect: Foundation::NSRect);
 
         #[method(ignoresAlpha)]
         pub unsafe fn ignoresAlpha() -> bool;

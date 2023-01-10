@@ -6,90 +6,104 @@ use crate::Foundation;
 
 extern_struct!(
     pub struct CATransform3D {
-        pub m11: CGFloat,
-        pub m12: CGFloat,
-        pub m13: CGFloat,
-        pub m14: CGFloat,
-        pub m21: CGFloat,
-        pub m22: CGFloat,
-        pub m23: CGFloat,
-        pub m24: CGFloat,
-        pub m31: CGFloat,
-        pub m32: CGFloat,
-        pub m33: CGFloat,
-        pub m34: CGFloat,
-        pub m41: CGFloat,
-        pub m42: CGFloat,
-        pub m43: CGFloat,
-        pub m44: CGFloat,
+        pub m11: CoreGraphics::CGFloat,
+        pub m12: CoreGraphics::CGFloat,
+        pub m13: CoreGraphics::CGFloat,
+        pub m14: CoreGraphics::CGFloat,
+        pub m21: CoreGraphics::CGFloat,
+        pub m22: CoreGraphics::CGFloat,
+        pub m23: CoreGraphics::CGFloat,
+        pub m24: CoreGraphics::CGFloat,
+        pub m31: CoreGraphics::CGFloat,
+        pub m32: CoreGraphics::CGFloat,
+        pub m33: CoreGraphics::CGFloat,
+        pub m34: CoreGraphics::CGFloat,
+        pub m41: CoreGraphics::CGFloat,
+        pub m42: CoreGraphics::CGFloat,
+        pub m43: CoreGraphics::CGFloat,
+        pub m44: CoreGraphics::CGFloat,
     }
 );
 
-extern_static!(CATransform3DIdentity: CATransform3D);
+extern_static!(CATransform3DIdentity: CoreAnimation::CATransform3D);
 
 extern_fn!(
-    pub fn CATransform3DIsIdentity(t: CATransform3D) -> bool;
+    pub fn CATransform3DIsIdentity(t: CoreAnimation::CATransform3D) -> bool;
 );
 
 extern_fn!(
-    pub fn CATransform3DEqualToTransform(a: CATransform3D, b: CATransform3D) -> bool;
+    pub fn CATransform3DEqualToTransform(
+        a: CoreAnimation::CATransform3D,
+        b: CoreAnimation::CATransform3D,
+    ) -> bool;
 );
 
 extern_fn!(
-    pub fn CATransform3DMakeTranslation(tx: CGFloat, ty: CGFloat, tz: CGFloat) -> CATransform3D;
+    pub fn CATransform3DMakeTranslation(
+        tx: CoreGraphics::CGFloat,
+        ty: CoreGraphics::CGFloat,
+        tz: CoreGraphics::CGFloat,
+    ) -> CoreAnimation::CATransform3D;
 );
 
 extern_fn!(
-    pub fn CATransform3DMakeScale(sx: CGFloat, sy: CGFloat, sz: CGFloat) -> CATransform3D;
+    pub fn CATransform3DMakeScale(
+        sx: CoreGraphics::CGFloat,
+        sy: CoreGraphics::CGFloat,
+        sz: CoreGraphics::CGFloat,
+    ) -> CoreAnimation::CATransform3D;
 );
 
 extern_fn!(
     pub fn CATransform3DMakeRotation(
-        angle: CGFloat,
-        x: CGFloat,
-        y: CGFloat,
-        z: CGFloat,
-    ) -> CATransform3D;
+        angle: CoreGraphics::CGFloat,
+        x: CoreGraphics::CGFloat,
+        y: CoreGraphics::CGFloat,
+        z: CoreGraphics::CGFloat,
+    ) -> CoreAnimation::CATransform3D;
 );
 
 extern_fn!(
     pub fn CATransform3DTranslate(
-        t: CATransform3D,
-        tx: CGFloat,
-        ty: CGFloat,
-        tz: CGFloat,
-    ) -> CATransform3D;
+        t: CoreAnimation::CATransform3D,
+        tx: CoreGraphics::CGFloat,
+        ty: CoreGraphics::CGFloat,
+        tz: CoreGraphics::CGFloat,
+    ) -> CoreAnimation::CATransform3D;
 );
 
 extern_fn!(
     pub fn CATransform3DScale(
-        t: CATransform3D,
-        sx: CGFloat,
-        sy: CGFloat,
-        sz: CGFloat,
-    ) -> CATransform3D;
+        t: CoreAnimation::CATransform3D,
+        sx: CoreGraphics::CGFloat,
+        sy: CoreGraphics::CGFloat,
+        sz: CoreGraphics::CGFloat,
+    ) -> CoreAnimation::CATransform3D;
 );
 
 extern_fn!(
     pub fn CATransform3DRotate(
-        t: CATransform3D,
-        angle: CGFloat,
-        x: CGFloat,
-        y: CGFloat,
-        z: CGFloat,
-    ) -> CATransform3D;
+        t: CoreAnimation::CATransform3D,
+        angle: CoreGraphics::CGFloat,
+        x: CoreGraphics::CGFloat,
+        y: CoreGraphics::CGFloat,
+        z: CoreGraphics::CGFloat,
+    ) -> CoreAnimation::CATransform3D;
 );
 
 extern_fn!(
-    pub fn CATransform3DConcat(a: CATransform3D, b: CATransform3D) -> CATransform3D;
+    pub fn CATransform3DConcat(
+        a: CoreAnimation::CATransform3D,
+        b: CoreAnimation::CATransform3D,
+    ) -> CoreAnimation::CATransform3D;
 );
 
 extern_fn!(
-    pub fn CATransform3DInvert(t: CATransform3D) -> CATransform3D;
+    pub fn CATransform3DInvert(t: CoreAnimation::CATransform3D) -> CoreAnimation::CATransform3D;
 );
 
 extern_fn!(
-    pub fn CATransform3DIsAffine(t: CATransform3D) -> bool;
+    pub fn CATransform3DIsAffine(t: CoreAnimation::CATransform3D) -> bool;
 );
 
 extern_methods!(
@@ -97,9 +111,11 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSValue")]
     unsafe impl Foundation::NSValue {
         #[method_id(@__retain_semantics Other valueWithCATransform3D:)]
-        pub unsafe fn valueWithCATransform3D(t: CATransform3D) -> Id<Foundation::NSValue, Shared>;
+        pub unsafe fn valueWithCATransform3D(
+            t: CoreAnimation::CATransform3D,
+        ) -> Id<Foundation::NSValue, Shared>;
 
         #[method(CATransform3DValue)]
-        pub unsafe fn CATransform3DValue(&self) -> CATransform3D;
+        pub unsafe fn CATransform3DValue(&self) -> CoreAnimation::CATransform3D;
     }
 );

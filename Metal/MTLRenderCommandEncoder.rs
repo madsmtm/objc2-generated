@@ -166,7 +166,7 @@ extern_protocol!(
             &self,
             buffers: NonNull<*const Metal::MTLBuffer>,
             offsets: NonNull<NSUInteger>,
-            range: NSRange,
+            range: Foundation::NSRange,
         );
 
         #[method(setVertexTexture:atIndex:)]
@@ -180,7 +180,7 @@ extern_protocol!(
         pub unsafe fn setVertexTextures_withRange(
             &self,
             textures: NonNull<*const Metal::MTLTexture>,
-            range: NSRange,
+            range: Foundation::NSRange,
         );
 
         #[method(setVertexSamplerState:atIndex:)]
@@ -194,7 +194,7 @@ extern_protocol!(
         pub unsafe fn setVertexSamplerStates_withRange(
             &self,
             samplers: NonNull<*const Metal::MTLSamplerState>,
-            range: NSRange,
+            range: Foundation::NSRange,
         );
 
         #[method(setVertexSamplerState:lodMinClamp:lodMaxClamp:atIndex:)]
@@ -212,7 +212,7 @@ extern_protocol!(
             samplers: NonNull<*const Metal::MTLSamplerState>,
             lodMinClamps: NonNull<c_float>,
             lodMaxClamps: NonNull<c_float>,
-            range: NSRange,
+            range: Foundation::NSRange,
         );
 
         #[method(setVertexVisibleFunctionTable:atBufferIndex:)]
@@ -226,7 +226,7 @@ extern_protocol!(
         pub unsafe fn setVertexVisibleFunctionTables_withBufferRange(
             &self,
             functionTables: NonNull<*const Metal::MTLVisibleFunctionTable>,
-            range: NSRange,
+            range: Foundation::NSRange,
         );
 
         #[method(setVertexIntersectionFunctionTable:atBufferIndex:)]
@@ -240,7 +240,7 @@ extern_protocol!(
         pub unsafe fn setVertexIntersectionFunctionTables_withBufferRange(
             &self,
             intersectionFunctionTable: NonNull<*const Metal::MTLIntersectionFunctionTable>,
-            range: NSRange,
+            range: Foundation::NSRange,
         );
 
         #[method(setVertexAccelerationStructure:atBufferIndex:)]
@@ -251,26 +251,30 @@ extern_protocol!(
         );
 
         #[method(setViewport:)]
-        pub fn setViewport(&self, viewport: MTLViewport);
+        pub fn setViewport(&self, viewport: Metal::MTLViewport);
 
         #[method(setViewports:count:)]
-        pub unsafe fn setViewports_count(&self, viewports: NonNull<MTLViewport>, count: NSUInteger);
+        pub unsafe fn setViewports_count(
+            &self,
+            viewports: NonNull<Metal::MTLViewport>,
+            count: NSUInteger,
+        );
 
         #[method(setFrontFacingWinding:)]
-        pub fn setFrontFacingWinding(&self, frontFacingWinding: MTLWinding);
+        pub fn setFrontFacingWinding(&self, frontFacingWinding: Metal::MTLWinding);
 
         #[method(setVertexAmplificationCount:viewMappings:)]
         pub unsafe fn setVertexAmplificationCount_viewMappings(
             &self,
             count: NSUInteger,
-            viewMappings: *mut MTLVertexAmplificationViewMapping,
+            viewMappings: *mut Metal::MTLVertexAmplificationViewMapping,
         );
 
         #[method(setCullMode:)]
-        pub fn setCullMode(&self, cullMode: MTLCullMode);
+        pub fn setCullMode(&self, cullMode: Metal::MTLCullMode);
 
         #[method(setDepthClipMode:)]
-        pub fn setDepthClipMode(&self, depthClipMode: MTLDepthClipMode);
+        pub fn setDepthClipMode(&self, depthClipMode: Metal::MTLDepthClipMode);
 
         #[method(setDepthBias:slopeScale:clamp:)]
         pub fn setDepthBias_slopeScale_clamp(
@@ -281,17 +285,17 @@ extern_protocol!(
         );
 
         #[method(setScissorRect:)]
-        pub fn setScissorRect(&self, rect: MTLScissorRect);
+        pub fn setScissorRect(&self, rect: Metal::MTLScissorRect);
 
         #[method(setScissorRects:count:)]
         pub unsafe fn setScissorRects_count(
             &self,
-            scissorRects: NonNull<MTLScissorRect>,
+            scissorRects: NonNull<Metal::MTLScissorRect>,
             count: NSUInteger,
         );
 
         #[method(setTriangleFillMode:)]
-        pub fn setTriangleFillMode(&self, fillMode: MTLTriangleFillMode);
+        pub fn setTriangleFillMode(&self, fillMode: Metal::MTLTriangleFillMode);
 
         #[method(setFragmentBytes:length:atIndex:)]
         pub unsafe fn setFragmentBytes_length_atIndex(
@@ -317,7 +321,7 @@ extern_protocol!(
             &self,
             buffers: NonNull<*const Metal::MTLBuffer>,
             offsets: NonNull<NSUInteger>,
-            range: NSRange,
+            range: Foundation::NSRange,
         );
 
         #[method(setFragmentTexture:atIndex:)]
@@ -331,7 +335,7 @@ extern_protocol!(
         pub unsafe fn setFragmentTextures_withRange(
             &self,
             textures: NonNull<*const Metal::MTLTexture>,
-            range: NSRange,
+            range: Foundation::NSRange,
         );
 
         #[method(setFragmentSamplerState:atIndex:)]
@@ -345,7 +349,7 @@ extern_protocol!(
         pub unsafe fn setFragmentSamplerStates_withRange(
             &self,
             samplers: NonNull<*const Metal::MTLSamplerState>,
-            range: NSRange,
+            range: Foundation::NSRange,
         );
 
         #[method(setFragmentSamplerState:lodMinClamp:lodMaxClamp:atIndex:)]
@@ -363,7 +367,7 @@ extern_protocol!(
             samplers: NonNull<*const Metal::MTLSamplerState>,
             lodMinClamps: NonNull<c_float>,
             lodMaxClamps: NonNull<c_float>,
-            range: NSRange,
+            range: Foundation::NSRange,
         );
 
         #[method(setFragmentVisibleFunctionTable:atBufferIndex:)]
@@ -377,7 +381,7 @@ extern_protocol!(
         pub unsafe fn setFragmentVisibleFunctionTables_withBufferRange(
             &self,
             functionTables: NonNull<*const Metal::MTLVisibleFunctionTable>,
-            range: NSRange,
+            range: Foundation::NSRange,
         );
 
         #[method(setFragmentIntersectionFunctionTable:atBufferIndex:)]
@@ -391,7 +395,7 @@ extern_protocol!(
         pub unsafe fn setFragmentIntersectionFunctionTables_withBufferRange(
             &self,
             intersectionFunctionTable: NonNull<*const Metal::MTLIntersectionFunctionTable>,
-            range: NSRange,
+            range: Foundation::NSRange,
         );
 
         #[method(setFragmentAccelerationStructure:atBufferIndex:)]
@@ -426,43 +430,46 @@ extern_protocol!(
         #[method(setVisibilityResultMode:offset:)]
         pub fn setVisibilityResultMode_offset(
             &self,
-            mode: MTLVisibilityResultMode,
+            mode: Metal::MTLVisibilityResultMode,
             offset: NSUInteger,
         );
 
         #[method(setColorStoreAction:atIndex:)]
         pub unsafe fn setColorStoreAction_atIndex(
             &self,
-            storeAction: MTLStoreAction,
+            storeAction: Metal::MTLStoreAction,
             colorAttachmentIndex: NSUInteger,
         );
 
         #[method(setDepthStoreAction:)]
-        pub unsafe fn setDepthStoreAction(&self, storeAction: MTLStoreAction);
+        pub unsafe fn setDepthStoreAction(&self, storeAction: Metal::MTLStoreAction);
 
         #[method(setStencilStoreAction:)]
-        pub unsafe fn setStencilStoreAction(&self, storeAction: MTLStoreAction);
+        pub unsafe fn setStencilStoreAction(&self, storeAction: Metal::MTLStoreAction);
 
         #[method(setColorStoreActionOptions:atIndex:)]
         pub unsafe fn setColorStoreActionOptions_atIndex(
             &self,
-            storeActionOptions: MTLStoreActionOptions,
+            storeActionOptions: Metal::MTLStoreActionOptions,
             colorAttachmentIndex: NSUInteger,
         );
 
         #[method(setDepthStoreActionOptions:)]
-        pub unsafe fn setDepthStoreActionOptions(&self, storeActionOptions: MTLStoreActionOptions);
+        pub unsafe fn setDepthStoreActionOptions(
+            &self,
+            storeActionOptions: Metal::MTLStoreActionOptions,
+        );
 
         #[method(setStencilStoreActionOptions:)]
         pub unsafe fn setStencilStoreActionOptions(
             &self,
-            storeActionOptions: MTLStoreActionOptions,
+            storeActionOptions: Metal::MTLStoreActionOptions,
         );
 
         #[method(drawPrimitives:vertexStart:vertexCount:instanceCount:)]
         pub unsafe fn drawPrimitives_vertexStart_vertexCount_instanceCount(
             &self,
-            primitiveType: MTLPrimitiveType,
+            primitiveType: Metal::MTLPrimitiveType,
             vertexStart: NSUInteger,
             vertexCount: NSUInteger,
             instanceCount: NSUInteger,
@@ -471,7 +478,7 @@ extern_protocol!(
         #[method(drawPrimitives:vertexStart:vertexCount:)]
         pub unsafe fn drawPrimitives_vertexStart_vertexCount(
             &self,
-            primitiveType: MTLPrimitiveType,
+            primitiveType: Metal::MTLPrimitiveType,
             vertexStart: NSUInteger,
             vertexCount: NSUInteger,
         );
@@ -479,9 +486,9 @@ extern_protocol!(
         #[method(drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:)]
         pub unsafe fn drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset_instanceCount(
             &self,
-            primitiveType: MTLPrimitiveType,
+            primitiveType: Metal::MTLPrimitiveType,
             indexCount: NSUInteger,
-            indexType: MTLIndexType,
+            indexType: Metal::MTLIndexType,
             indexBuffer: &Metal::MTLBuffer,
             indexBufferOffset: NSUInteger,
             instanceCount: NSUInteger,
@@ -490,9 +497,9 @@ extern_protocol!(
         #[method(drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:)]
         pub unsafe fn drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset(
             &self,
-            primitiveType: MTLPrimitiveType,
+            primitiveType: Metal::MTLPrimitiveType,
             indexCount: NSUInteger,
-            indexType: MTLIndexType,
+            indexType: Metal::MTLIndexType,
             indexBuffer: &Metal::MTLBuffer,
             indexBufferOffset: NSUInteger,
         );
@@ -500,7 +507,7 @@ extern_protocol!(
         #[method(drawPrimitives:vertexStart:vertexCount:instanceCount:baseInstance:)]
         pub unsafe fn drawPrimitives_vertexStart_vertexCount_instanceCount_baseInstance(
             &self,
-            primitiveType: MTLPrimitiveType,
+            primitiveType: Metal::MTLPrimitiveType,
             vertexStart: NSUInteger,
             vertexCount: NSUInteger,
             instanceCount: NSUInteger,
@@ -510,9 +517,9 @@ extern_protocol!(
         #[method(drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:baseVertex:baseInstance:)]
         pub unsafe fn drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset_instanceCount_baseVertex_baseInstance(
             &self,
-            primitiveType: MTLPrimitiveType,
+            primitiveType: Metal::MTLPrimitiveType,
             indexCount: NSUInteger,
-            indexType: MTLIndexType,
+            indexType: Metal::MTLIndexType,
             indexBuffer: &Metal::MTLBuffer,
             indexBufferOffset: NSUInteger,
             instanceCount: NSUInteger,
@@ -523,7 +530,7 @@ extern_protocol!(
         #[method(drawPrimitives:indirectBuffer:indirectBufferOffset:)]
         pub unsafe fn drawPrimitives_indirectBuffer_indirectBufferOffset(
             &self,
-            primitiveType: MTLPrimitiveType,
+            primitiveType: Metal::MTLPrimitiveType,
             indirectBuffer: &Metal::MTLBuffer,
             indirectBufferOffset: NSUInteger,
         );
@@ -531,8 +538,8 @@ extern_protocol!(
         #[method(drawIndexedPrimitives:indexType:indexBuffer:indexBufferOffset:indirectBuffer:indirectBufferOffset:)]
         pub unsafe fn drawIndexedPrimitives_indexType_indexBuffer_indexBufferOffset_indirectBuffer_indirectBufferOffset(
             &self,
-            primitiveType: MTLPrimitiveType,
-            indexType: MTLIndexType,
+            primitiveType: Metal::MTLPrimitiveType,
+            indexType: Metal::MTLIndexType,
             indexBuffer: &Metal::MTLBuffer,
             indexBufferOffset: NSUInteger,
             indirectBuffer: &Metal::MTLBuffer,
@@ -543,10 +550,18 @@ extern_protocol!(
         pub unsafe fn textureBarrier(&self);
 
         #[method(updateFence:afterStages:)]
-        pub fn updateFence_afterStages(&self, fence: &Metal::MTLFence, stages: MTLRenderStages);
+        pub fn updateFence_afterStages(
+            &self,
+            fence: &Metal::MTLFence,
+            stages: Metal::MTLRenderStages,
+        );
 
         #[method(waitForFence:beforeStages:)]
-        pub fn waitForFence_beforeStages(&self, fence: &Metal::MTLFence, stages: MTLRenderStages);
+        pub fn waitForFence_beforeStages(
+            &self,
+            fence: &Metal::MTLFence,
+            stages: Metal::MTLRenderStages,
+        );
 
         #[method(setTessellationFactorBuffer:offset:instanceStride:)]
         pub unsafe fn setTessellationFactorBuffer_offset_instanceStride(
@@ -637,7 +652,7 @@ extern_protocol!(
             &self,
             buffers: NonNull<*const Metal::MTLBuffer>,
             offsets: NonNull<NSUInteger>,
-            range: NSRange,
+            range: Foundation::NSRange,
         );
 
         #[method(setTileTexture:atIndex:)]
@@ -651,7 +666,7 @@ extern_protocol!(
         pub unsafe fn setTileTextures_withRange(
             &self,
             textures: NonNull<*const Metal::MTLTexture>,
-            range: NSRange,
+            range: Foundation::NSRange,
         );
 
         #[method(setTileSamplerState:atIndex:)]
@@ -665,7 +680,7 @@ extern_protocol!(
         pub unsafe fn setTileSamplerStates_withRange(
             &self,
             samplers: NonNull<*const Metal::MTLSamplerState>,
-            range: NSRange,
+            range: Foundation::NSRange,
         );
 
         #[method(setTileSamplerState:lodMinClamp:lodMaxClamp:atIndex:)]
@@ -683,7 +698,7 @@ extern_protocol!(
             samplers: NonNull<*const Metal::MTLSamplerState>,
             lodMinClamps: NonNull<c_float>,
             lodMaxClamps: NonNull<c_float>,
-            range: NSRange,
+            range: Foundation::NSRange,
         );
 
         #[method(setTileVisibleFunctionTable:atBufferIndex:)]
@@ -697,7 +712,7 @@ extern_protocol!(
         pub unsafe fn setTileVisibleFunctionTables_withBufferRange(
             &self,
             functionTables: NonNull<*const Metal::MTLVisibleFunctionTable>,
-            range: NSRange,
+            range: Foundation::NSRange,
         );
 
         #[method(setTileIntersectionFunctionTable:atBufferIndex:)]
@@ -711,7 +726,7 @@ extern_protocol!(
         pub unsafe fn setTileIntersectionFunctionTables_withBufferRange(
             &self,
             intersectionFunctionTable: NonNull<*const Metal::MTLIntersectionFunctionTable>,
-            range: NSRange,
+            range: Foundation::NSRange,
         );
 
         #[method(setTileAccelerationStructure:atBufferIndex:)]
@@ -722,7 +737,7 @@ extern_protocol!(
         );
 
         #[method(dispatchThreadsPerTile:)]
-        pub unsafe fn dispatchThreadsPerTile(&self, threadsPerTile: MTLSize);
+        pub unsafe fn dispatchThreadsPerTile(&self, threadsPerTile: Metal::MTLSize);
 
         #[method(setThreadgroupMemoryLength:offset:atIndex:)]
         pub unsafe fn setThreadgroupMemoryLength_offset_atIndex(
@@ -733,22 +748,26 @@ extern_protocol!(
         );
 
         #[method(useResource:usage:)]
-        pub fn useResource_usage(&self, resource: &Metal::MTLResource, usage: MTLResourceUsage);
+        pub fn useResource_usage(
+            &self,
+            resource: &Metal::MTLResource,
+            usage: Metal::MTLResourceUsage,
+        );
 
         #[method(useResources:count:usage:)]
         pub unsafe fn useResources_count_usage(
             &self,
             resources: NonNull<NonNull<Metal::MTLResource>>,
             count: NSUInteger,
-            usage: MTLResourceUsage,
+            usage: Metal::MTLResourceUsage,
         );
 
         #[method(useResource:usage:stages:)]
         pub fn useResource_usage_stages(
             &self,
             resource: &Metal::MTLResource,
-            usage: MTLResourceUsage,
-            stages: MTLRenderStages,
+            usage: Metal::MTLResourceUsage,
+            stages: Metal::MTLRenderStages,
         );
 
         #[method(useResources:count:usage:stages:)]
@@ -756,8 +775,8 @@ extern_protocol!(
             &self,
             resources: NonNull<NonNull<Metal::MTLResource>>,
             count: NSUInteger,
-            usage: MTLResourceUsage,
-            stages: MTLRenderStages,
+            usage: Metal::MTLResourceUsage,
+            stages: Metal::MTLRenderStages,
         );
 
         #[method(useHeap:)]
@@ -771,21 +790,21 @@ extern_protocol!(
         );
 
         #[method(useHeap:stages:)]
-        pub fn useHeap_stages(&self, heap: &Metal::MTLHeap, stages: MTLRenderStages);
+        pub fn useHeap_stages(&self, heap: &Metal::MTLHeap, stages: Metal::MTLRenderStages);
 
         #[method(useHeaps:count:stages:)]
         pub unsafe fn useHeaps_count_stages(
             &self,
             heaps: NonNull<NonNull<Metal::MTLHeap>>,
             count: NSUInteger,
-            stages: MTLRenderStages,
+            stages: Metal::MTLRenderStages,
         );
 
         #[method(executeCommandsInBuffer:withRange:)]
         pub unsafe fn executeCommandsInBuffer_withRange(
             &self,
             indirectCommandBuffer: &Metal::MTLIndirectCommandBuffer,
-            executionRange: NSRange,
+            executionRange: Foundation::NSRange,
         );
 
         #[method(executeCommandsInBuffer:indirectBuffer:indirectBufferOffset:)]
@@ -799,9 +818,9 @@ extern_protocol!(
         #[method(memoryBarrierWithScope:afterStages:beforeStages:)]
         pub unsafe fn memoryBarrierWithScope_afterStages_beforeStages(
             &self,
-            scope: MTLBarrierScope,
-            after: MTLRenderStages,
-            before: MTLRenderStages,
+            scope: Metal::MTLBarrierScope,
+            after: Metal::MTLRenderStages,
+            before: Metal::MTLRenderStages,
         );
 
         #[method(memoryBarrierWithResources:count:afterStages:beforeStages:)]
@@ -809,8 +828,8 @@ extern_protocol!(
             &self,
             resources: NonNull<NonNull<Metal::MTLResource>>,
             count: NSUInteger,
-            after: MTLRenderStages,
-            before: MTLRenderStages,
+            after: Metal::MTLRenderStages,
+            before: Metal::MTLRenderStages,
         );
 
         #[method(sampleCountersInBuffer:atSampleIndex:withBarrier:)]

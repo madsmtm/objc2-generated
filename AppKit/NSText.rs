@@ -30,7 +30,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frameRect: Foundation::NSRect,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSCoder")]
@@ -52,7 +52,7 @@ extern_methods!(
         #[method(replaceCharactersInRange:withString:)]
         pub unsafe fn replaceCharactersInRange_withString(
             &self,
-            range: NSRange,
+            range: Foundation::NSRange,
             string: &Foundation::NSString,
         );
 
@@ -60,7 +60,7 @@ extern_methods!(
         #[method(replaceCharactersInRange:withRTF:)]
         pub unsafe fn replaceCharactersInRange_withRTF(
             &self,
-            range: NSRange,
+            range: Foundation::NSRange,
             rtfData: &Foundation::NSData,
         );
 
@@ -68,20 +68,22 @@ extern_methods!(
         #[method(replaceCharactersInRange:withRTFD:)]
         pub unsafe fn replaceCharactersInRange_withRTFD(
             &self,
-            range: NSRange,
+            range: Foundation::NSRange,
             rtfdData: &Foundation::NSData,
         );
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other RTFFromRange:)]
-        pub unsafe fn RTFFromRange(&self, range: NSRange)
-            -> Option<Id<Foundation::NSData, Shared>>;
+        pub unsafe fn RTFFromRange(
+            &self,
+            range: Foundation::NSRange,
+        ) -> Option<Id<Foundation::NSData, Shared>>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other RTFDFromRange:)]
         pub unsafe fn RTFDFromRange(
             &self,
-            range: NSRange,
+            range: Foundation::NSRange,
         ) -> Option<Id<Foundation::NSData, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -156,13 +158,13 @@ extern_methods!(
         pub unsafe fn isRulerVisible(&self) -> bool;
 
         #[method(selectedRange)]
-        pub unsafe fn selectedRange(&self) -> NSRange;
+        pub unsafe fn selectedRange(&self) -> Foundation::NSRange;
 
         #[method(setSelectedRange:)]
-        pub unsafe fn setSelectedRange(&self, selectedRange: NSRange);
+        pub unsafe fn setSelectedRange(&self, selectedRange: Foundation::NSRange);
 
         #[method(scrollRangeToVisible:)]
-        pub unsafe fn scrollRangeToVisible(&self, range: NSRange);
+        pub unsafe fn scrollRangeToVisible(&self, range: Foundation::NSRange);
 
         #[cfg(feature = "AppKit_NSFont")]
         #[method_id(@__retain_semantics Other font)]
@@ -181,36 +183,43 @@ extern_methods!(
         pub unsafe fn setTextColor(&self, textColor: Option<&AppKit::NSColor>);
 
         #[method(alignment)]
-        pub unsafe fn alignment(&self) -> NSTextAlignment;
+        pub unsafe fn alignment(&self) -> AppKit::NSTextAlignment;
 
         #[method(setAlignment:)]
-        pub unsafe fn setAlignment(&self, alignment: NSTextAlignment);
+        pub unsafe fn setAlignment(&self, alignment: AppKit::NSTextAlignment);
 
         #[method(baseWritingDirection)]
-        pub unsafe fn baseWritingDirection(&self) -> NSWritingDirection;
+        pub unsafe fn baseWritingDirection(&self) -> AppKit::NSWritingDirection;
 
         #[method(setBaseWritingDirection:)]
-        pub unsafe fn setBaseWritingDirection(&self, baseWritingDirection: NSWritingDirection);
+        pub unsafe fn setBaseWritingDirection(
+            &self,
+            baseWritingDirection: AppKit::NSWritingDirection,
+        );
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setTextColor:range:)]
-        pub unsafe fn setTextColor_range(&self, color: Option<&AppKit::NSColor>, range: NSRange);
+        pub unsafe fn setTextColor_range(
+            &self,
+            color: Option<&AppKit::NSColor>,
+            range: Foundation::NSRange,
+        );
 
         #[cfg(feature = "AppKit_NSFont")]
         #[method(setFont:range:)]
-        pub unsafe fn setFont_range(&self, font: &AppKit::NSFont, range: NSRange);
+        pub unsafe fn setFont_range(&self, font: &AppKit::NSFont, range: Foundation::NSRange);
 
         #[method(maxSize)]
-        pub unsafe fn maxSize(&self) -> NSSize;
+        pub unsafe fn maxSize(&self) -> Foundation::NSSize;
 
         #[method(setMaxSize:)]
-        pub unsafe fn setMaxSize(&self, maxSize: NSSize);
+        pub unsafe fn setMaxSize(&self, maxSize: Foundation::NSSize);
 
         #[method(minSize)]
-        pub unsafe fn minSize(&self) -> NSSize;
+        pub unsafe fn minSize(&self) -> Foundation::NSSize;
 
         #[method(setMinSize:)]
-        pub unsafe fn setMinSize(&self, minSize: NSSize);
+        pub unsafe fn setMinSize(&self, minSize: Foundation::NSSize);
 
         #[method(isHorizontallyResizable)]
         pub unsafe fn isHorizontallyResizable(&self) -> bool;
@@ -378,12 +387,12 @@ extern_enum!(
     }
 );
 
-extern_static!(NSLeftTextAlignment: NSTextAlignment = NSTextAlignmentLeft);
+extern_static!(NSLeftTextAlignment: AppKit::NSTextAlignment = NSTextAlignmentLeft);
 
-extern_static!(NSRightTextAlignment: NSTextAlignment = NSTextAlignmentRight);
+extern_static!(NSRightTextAlignment: AppKit::NSTextAlignment = NSTextAlignmentRight);
 
-extern_static!(NSCenterTextAlignment: NSTextAlignment = NSTextAlignmentCenter);
+extern_static!(NSCenterTextAlignment: AppKit::NSTextAlignment = NSTextAlignmentCenter);
 
-extern_static!(NSJustifiedTextAlignment: NSTextAlignment = NSTextAlignmentJustified);
+extern_static!(NSJustifiedTextAlignment: AppKit::NSTextAlignment = NSTextAlignmentJustified);
 
-extern_static!(NSNaturalTextAlignment: NSTextAlignment = NSTextAlignmentNatural);
+extern_static!(NSNaturalTextAlignment: AppKit::NSTextAlignment = NSTextAlignmentNatural);

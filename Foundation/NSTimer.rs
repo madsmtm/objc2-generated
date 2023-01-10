@@ -18,7 +18,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSInvocation")]
         #[method_id(@__retain_semantics Other timerWithTimeInterval:invocation:repeats:)]
         pub unsafe fn timerWithTimeInterval_invocation_repeats(
-            ti: NSTimeInterval,
+            ti: Foundation::NSTimeInterval,
             invocation: &Foundation::NSInvocation,
             yesOrNo: bool,
         ) -> Id<Foundation::NSTimer, Shared>;
@@ -26,14 +26,14 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSInvocation")]
         #[method_id(@__retain_semantics Other scheduledTimerWithTimeInterval:invocation:repeats:)]
         pub unsafe fn scheduledTimerWithTimeInterval_invocation_repeats(
-            ti: NSTimeInterval,
+            ti: Foundation::NSTimeInterval,
             invocation: &Foundation::NSInvocation,
             yesOrNo: bool,
         ) -> Id<Foundation::NSTimer, Shared>;
 
         #[method_id(@__retain_semantics Other timerWithTimeInterval:target:selector:userInfo:repeats:)]
         pub unsafe fn timerWithTimeInterval_target_selector_userInfo_repeats(
-            ti: NSTimeInterval,
+            ti: Foundation::NSTimeInterval,
             aTarget: &Object,
             aSelector: Sel,
             userInfo: Option<&Object>,
@@ -42,7 +42,7 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other scheduledTimerWithTimeInterval:target:selector:userInfo:repeats:)]
         pub unsafe fn scheduledTimerWithTimeInterval_target_selector_userInfo_repeats(
-            ti: NSTimeInterval,
+            ti: Foundation::NSTimeInterval,
             aTarget: &Object,
             aSelector: Sel,
             userInfo: Option<&Object>,
@@ -51,14 +51,14 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other timerWithTimeInterval:repeats:block:)]
         pub unsafe fn timerWithTimeInterval_repeats_block(
-            interval: NSTimeInterval,
+            interval: Foundation::NSTimeInterval,
             repeats: bool,
             block: &Block<(NonNull<Foundation::NSTimer>,), ()>,
         ) -> Id<Foundation::NSTimer, Shared>;
 
         #[method_id(@__retain_semantics Other scheduledTimerWithTimeInterval:repeats:block:)]
         pub unsafe fn scheduledTimerWithTimeInterval_repeats_block(
-            interval: NSTimeInterval,
+            interval: Foundation::NSTimeInterval,
             repeats: bool,
             block: &Block<(NonNull<Foundation::NSTimer>,), ()>,
         ) -> Id<Foundation::NSTimer, Shared>;
@@ -68,7 +68,7 @@ extern_methods!(
         pub unsafe fn initWithFireDate_interval_repeats_block(
             this: Option<Allocated<Self>>,
             date: &Foundation::NSDate,
-            interval: NSTimeInterval,
+            interval: Foundation::NSTimeInterval,
             repeats: bool,
             block: &Block<(NonNull<Foundation::NSTimer>,), ()>,
         ) -> Id<Self, Shared>;
@@ -78,7 +78,7 @@ extern_methods!(
         pub unsafe fn initWithFireDate_interval_target_selector_userInfo_repeats(
             this: Option<Allocated<Self>>,
             date: &Foundation::NSDate,
-            ti: NSTimeInterval,
+            ti: Foundation::NSTimeInterval,
             t: &Object,
             s: Sel,
             ui: Option<&Object>,
@@ -97,13 +97,13 @@ extern_methods!(
         pub unsafe fn setFireDate(&self, fireDate: &Foundation::NSDate);
 
         #[method(timeInterval)]
-        pub unsafe fn timeInterval(&self) -> NSTimeInterval;
+        pub unsafe fn timeInterval(&self) -> Foundation::NSTimeInterval;
 
         #[method(tolerance)]
-        pub unsafe fn tolerance(&self) -> NSTimeInterval;
+        pub unsafe fn tolerance(&self) -> Foundation::NSTimeInterval;
 
         #[method(setTolerance:)]
-        pub unsafe fn setTolerance(&self, tolerance: NSTimeInterval);
+        pub unsafe fn setTolerance(&self, tolerance: Foundation::NSTimeInterval);
 
         #[method(invalidate)]
         pub unsafe fn invalidate(&self);

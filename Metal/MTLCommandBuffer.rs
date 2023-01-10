@@ -76,10 +76,10 @@ extern_methods!(
         pub unsafe fn setRetainedReferences(&self, retainedReferences: bool);
 
         #[method(errorOptions)]
-        pub unsafe fn errorOptions(&self) -> MTLCommandBufferErrorOption;
+        pub unsafe fn errorOptions(&self) -> Metal::MTLCommandBufferErrorOption;
 
         #[method(setErrorOptions:)]
-        pub unsafe fn setErrorOptions(&self, errorOptions: MTLCommandBufferErrorOption);
+        pub unsafe fn setErrorOptions(&self, errorOptions: Metal::MTLCommandBufferErrorOption);
     }
 );
 
@@ -96,7 +96,7 @@ extern_protocol!(
         ) -> Id<Foundation::NSArray<Foundation::NSString>, Shared>;
 
         #[method(errorState)]
-        pub unsafe fn errorState(&self) -> MTLCommandEncoderErrorState;
+        pub unsafe fn errorState(&self) -> Metal::MTLCommandEncoderErrorState;
     }
 );
 
@@ -124,7 +124,7 @@ extern_protocol!(
         pub unsafe fn retainedReferences(&self) -> bool;
 
         #[method(errorOptions)]
-        pub unsafe fn errorOptions(&self) -> MTLCommandBufferErrorOption;
+        pub unsafe fn errorOptions(&self) -> Metal::MTLCommandBufferErrorOption;
 
         #[method_id(@__retain_semantics Other label)]
         pub fn label(&self) -> Option<Id<Foundation::NSString, Shared>>;
@@ -133,19 +133,19 @@ extern_protocol!(
         pub fn setLabel(&self, label: Option<&Foundation::NSString>);
 
         #[method(kernelStartTime)]
-        pub unsafe fn kernelStartTime(&self) -> CFTimeInterval;
+        pub unsafe fn kernelStartTime(&self) -> CoreFoundation::CFTimeInterval;
 
         #[method(kernelEndTime)]
-        pub unsafe fn kernelEndTime(&self) -> CFTimeInterval;
+        pub unsafe fn kernelEndTime(&self) -> CoreFoundation::CFTimeInterval;
 
         #[method_id(@__retain_semantics Other logs)]
         pub unsafe fn logs(&self) -> Id<Metal::MTLLogContainer, Shared>;
 
         #[method(GPUStartTime)]
-        pub unsafe fn GPUStartTime(&self) -> CFTimeInterval;
+        pub unsafe fn GPUStartTime(&self) -> CoreFoundation::CFTimeInterval;
 
         #[method(GPUEndTime)]
-        pub unsafe fn GPUEndTime(&self) -> CFTimeInterval;
+        pub unsafe fn GPUEndTime(&self) -> CoreFoundation::CFTimeInterval;
 
         #[method(enqueue)]
         pub fn enqueue(&self);
@@ -154,7 +154,7 @@ extern_protocol!(
         pub fn commit(&self);
 
         #[method(addScheduledHandler:)]
-        pub unsafe fn addScheduledHandler(&self, block: MTLCommandBufferHandler);
+        pub unsafe fn addScheduledHandler(&self, block: Metal::MTLCommandBufferHandler);
 
         #[method(presentDrawable:)]
         pub fn presentDrawable(&self, drawable: &Metal::MTLDrawable);
@@ -163,27 +163,27 @@ extern_protocol!(
         pub unsafe fn presentDrawable_atTime(
             &self,
             drawable: &Metal::MTLDrawable,
-            presentationTime: CFTimeInterval,
+            presentationTime: CoreFoundation::CFTimeInterval,
         );
 
         #[method(presentDrawable:afterMinimumDuration:)]
         pub unsafe fn presentDrawable_afterMinimumDuration(
             &self,
             drawable: &Metal::MTLDrawable,
-            duration: CFTimeInterval,
+            duration: CoreFoundation::CFTimeInterval,
         );
 
         #[method(waitUntilScheduled)]
         pub fn waitUntilScheduled(&self);
 
         #[method(addCompletedHandler:)]
-        pub unsafe fn addCompletedHandler(&self, block: MTLCommandBufferHandler);
+        pub unsafe fn addCompletedHandler(&self, block: Metal::MTLCommandBufferHandler);
 
         #[method(waitUntilCompleted)]
         pub unsafe fn waitUntilCompleted(&self);
 
         #[method(status)]
-        pub fn status(&self) -> MTLCommandBufferStatus;
+        pub fn status(&self) -> Metal::MTLCommandBufferStatus;
 
         #[method_id(@__retain_semantics Other error)]
         pub unsafe fn error(&self) -> Option<Id<Foundation::NSError, Shared>>;
@@ -215,7 +215,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other computeCommandEncoderWithDispatchType:)]
         pub fn computeCommandEncoderWithDispatchType(
             &self,
-            dispatchType: MTLDispatchType,
+            dispatchType: Metal::MTLDispatchType,
         ) -> Option<Id<Metal::MTLComputeCommandEncoder, Shared>>;
 
         #[method(encodeWaitForEvent:value:)]

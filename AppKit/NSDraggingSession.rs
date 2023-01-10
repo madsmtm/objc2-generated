@@ -18,10 +18,10 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSDraggingSession")]
     unsafe impl NSDraggingSession {
         #[method(draggingFormation)]
-        pub unsafe fn draggingFormation(&self) -> NSDraggingFormation;
+        pub unsafe fn draggingFormation(&self) -> AppKit::NSDraggingFormation;
 
         #[method(setDraggingFormation:)]
-        pub unsafe fn setDraggingFormation(&self, draggingFormation: NSDraggingFormation);
+        pub unsafe fn setDraggingFormation(&self, draggingFormation: AppKit::NSDraggingFormation);
 
         #[method(animatesToStartingPositionsOnCancelOrFail)]
         pub unsafe fn animatesToStartingPositionsOnCancelOrFail(&self) -> bool;
@@ -46,7 +46,7 @@ extern_methods!(
         pub unsafe fn draggingSequenceNumber(&self) -> NSInteger;
 
         #[method(draggingLocation)]
-        pub unsafe fn draggingLocation(&self) -> NSPoint;
+        pub unsafe fn draggingLocation(&self) -> Foundation::NSPoint;
 
         #[cfg(all(
             feature = "AppKit_NSDraggingItem",
@@ -57,7 +57,7 @@ extern_methods!(
         #[method(enumerateDraggingItemsWithOptions:forView:classes:searchOptions:usingBlock:)]
         pub unsafe fn enumerateDraggingItemsWithOptions_forView_classes_searchOptions_usingBlock(
             &self,
-            enumOpts: NSDraggingItemEnumerationOptions,
+            enumOpts: AppKit::NSDraggingItemEnumerationOptions,
             view: Option<&AppKit::NSView>,
             classArray: &Foundation::NSArray<TodoClass>,
             searchOptions: &Foundation::NSDictionary<AppKit::NSPasteboardReadingOptionKey, Object>,

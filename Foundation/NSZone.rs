@@ -4,7 +4,7 @@ use crate::common::*;
 use crate::Foundation;
 
 extern_fn!(
-    pub unsafe fn NSDefaultMallocZone() -> NonNull<NSZone>;
+    pub unsafe fn NSDefaultMallocZone() -> NonNull<Foundation::NSZone>;
 );
 
 extern_fn!(
@@ -12,32 +12,32 @@ extern_fn!(
         startSize: NSUInteger,
         granularity: NSUInteger,
         canFree: Bool,
-    ) -> NonNull<NSZone>;
+    ) -> NonNull<Foundation::NSZone>;
 );
 
 extern_fn!(
-    pub unsafe fn NSRecycleZone(zone: NonNull<NSZone>);
+    pub unsafe fn NSRecycleZone(zone: NonNull<Foundation::NSZone>);
 );
 
 extern_fn!(
-    pub unsafe fn NSSetZoneName(zone: *mut NSZone, name: &Foundation::NSString);
+    pub unsafe fn NSSetZoneName(zone: *mut Foundation::NSZone, name: &Foundation::NSString);
 );
 
 extern_fn!(
-    pub unsafe fn NSZoneName(zone: *mut NSZone) -> NonNull<Foundation::NSString>;
+    pub unsafe fn NSZoneName(zone: *mut Foundation::NSZone) -> NonNull<Foundation::NSString>;
 );
 
 extern_fn!(
-    pub unsafe fn NSZoneFromPointer(ptr: NonNull<c_void>) -> *mut NSZone;
+    pub unsafe fn NSZoneFromPointer(ptr: NonNull<c_void>) -> *mut Foundation::NSZone;
 );
 
 extern_fn!(
-    pub unsafe fn NSZoneMalloc(zone: *mut NSZone, size: NSUInteger) -> NonNull<c_void>;
+    pub unsafe fn NSZoneMalloc(zone: *mut Foundation::NSZone, size: NSUInteger) -> NonNull<c_void>;
 );
 
 extern_fn!(
     pub unsafe fn NSZoneCalloc(
-        zone: *mut NSZone,
+        zone: *mut Foundation::NSZone,
         numElems: NSUInteger,
         byteSize: NSUInteger,
     ) -> NonNull<c_void>;
@@ -45,14 +45,14 @@ extern_fn!(
 
 extern_fn!(
     pub unsafe fn NSZoneRealloc(
-        zone: *mut NSZone,
+        zone: *mut Foundation::NSZone,
         ptr: *mut c_void,
         size: NSUInteger,
     ) -> NonNull<c_void>;
 );
 
 extern_fn!(
-    pub unsafe fn NSZoneFree(zone: *mut NSZone, ptr: NonNull<c_void>);
+    pub unsafe fn NSZoneFree(zone: *mut Foundation::NSZone, ptr: NonNull<c_void>);
 );
 
 ns_enum!(
@@ -76,13 +76,13 @@ extern_fn!(
 );
 
 inline_fn!(
-    pub unsafe fn NSMakeCollectable(cf: CFTypeRef) -> *mut Object {
+    pub unsafe fn NSMakeCollectable(cf: CoreFoundation::CFTypeRef) -> *mut Object {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSMakeCollectable(cf: CFTypeRef) -> *mut Object {
+    pub unsafe fn NSMakeCollectable(cf: CoreFoundation::CFTypeRef) -> *mut Object {
         todo!()
     }
 );

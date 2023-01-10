@@ -100,7 +100,7 @@ extern_protocol!(
         pub unsafe fn minimumSizeWithPrioritizedCompressionOptions(
             &self,
             prioritizedOptions: &Foundation::NSArray<AppKit::NSUserInterfaceCompressionOptions>,
-        ) -> NSSize;
+        ) -> Foundation::NSSize;
 
         #[method_id(@__retain_semantics Other activeCompressionOptions)]
         pub unsafe fn activeCompressionOptions(

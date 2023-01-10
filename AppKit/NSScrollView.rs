@@ -30,7 +30,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frameRect: Foundation::NSRect,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSCoder")]
@@ -42,45 +42,45 @@ extern_methods!(
 
         #[method(frameSizeForContentSize:horizontalScrollerClass:verticalScrollerClass:borderType:controlSize:scrollerStyle:)]
         pub unsafe fn frameSizeForContentSize_horizontalScrollerClass_verticalScrollerClass_borderType_controlSize_scrollerStyle(
-            cSize: NSSize,
+            cSize: Foundation::NSSize,
             horizontalScrollerClass: Option<&Class>,
             verticalScrollerClass: Option<&Class>,
-            type_: NSBorderType,
-            controlSize: NSControlSize,
-            scrollerStyle: NSScrollerStyle,
-        ) -> NSSize;
+            type_: AppKit::NSBorderType,
+            controlSize: AppKit::NSControlSize,
+            scrollerStyle: AppKit::NSScrollerStyle,
+        ) -> Foundation::NSSize;
 
         #[method(contentSizeForFrameSize:horizontalScrollerClass:verticalScrollerClass:borderType:controlSize:scrollerStyle:)]
         pub unsafe fn contentSizeForFrameSize_horizontalScrollerClass_verticalScrollerClass_borderType_controlSize_scrollerStyle(
-            fSize: NSSize,
+            fSize: Foundation::NSSize,
             horizontalScrollerClass: Option<&Class>,
             verticalScrollerClass: Option<&Class>,
-            type_: NSBorderType,
-            controlSize: NSControlSize,
-            scrollerStyle: NSScrollerStyle,
-        ) -> NSSize;
+            type_: AppKit::NSBorderType,
+            controlSize: AppKit::NSControlSize,
+            scrollerStyle: AppKit::NSScrollerStyle,
+        ) -> Foundation::NSSize;
 
         #[method(frameSizeForContentSize:hasHorizontalScroller:hasVerticalScroller:borderType:)]
         pub unsafe fn frameSizeForContentSize_hasHorizontalScroller_hasVerticalScroller_borderType(
-            cSize: NSSize,
+            cSize: Foundation::NSSize,
             hFlag: bool,
             vFlag: bool,
-            type_: NSBorderType,
-        ) -> NSSize;
+            type_: AppKit::NSBorderType,
+        ) -> Foundation::NSSize;
 
         #[method(contentSizeForFrameSize:hasHorizontalScroller:hasVerticalScroller:borderType:)]
         pub unsafe fn contentSizeForFrameSize_hasHorizontalScroller_hasVerticalScroller_borderType(
-            fSize: NSSize,
+            fSize: Foundation::NSSize,
             hFlag: bool,
             vFlag: bool,
-            type_: NSBorderType,
-        ) -> NSSize;
+            type_: AppKit::NSBorderType,
+        ) -> Foundation::NSSize;
 
         #[method(documentVisibleRect)]
-        pub unsafe fn documentVisibleRect(&self) -> NSRect;
+        pub unsafe fn documentVisibleRect(&self) -> Foundation::NSRect;
 
         #[method(contentSize)]
-        pub unsafe fn contentSize(&self) -> NSSize;
+        pub unsafe fn contentSize(&self) -> Foundation::NSSize;
 
         #[method_id(@__retain_semantics Other documentView)]
         pub unsafe fn documentView(&self) -> Option<Id<AppKit::NSView, Shared>>;
@@ -105,10 +105,10 @@ extern_methods!(
         pub unsafe fn setDocumentCursor(&self, documentCursor: Option<&AppKit::NSCursor>);
 
         #[method(borderType)]
-        pub unsafe fn borderType(&self) -> NSBorderType;
+        pub unsafe fn borderType(&self) -> AppKit::NSBorderType;
 
         #[method(setBorderType:)]
-        pub unsafe fn setBorderType(&self, borderType: NSBorderType);
+        pub unsafe fn setBorderType(&self, borderType: AppKit::NSBorderType);
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other backgroundColor)]
@@ -159,40 +159,40 @@ extern_methods!(
         pub unsafe fn setAutohidesScrollers(&self, autohidesScrollers: bool);
 
         #[method(horizontalLineScroll)]
-        pub unsafe fn horizontalLineScroll(&self) -> CGFloat;
+        pub unsafe fn horizontalLineScroll(&self) -> CoreGraphics::CGFloat;
 
         #[method(setHorizontalLineScroll:)]
-        pub unsafe fn setHorizontalLineScroll(&self, horizontalLineScroll: CGFloat);
+        pub unsafe fn setHorizontalLineScroll(&self, horizontalLineScroll: CoreGraphics::CGFloat);
 
         #[method(verticalLineScroll)]
-        pub unsafe fn verticalLineScroll(&self) -> CGFloat;
+        pub unsafe fn verticalLineScroll(&self) -> CoreGraphics::CGFloat;
 
         #[method(setVerticalLineScroll:)]
-        pub unsafe fn setVerticalLineScroll(&self, verticalLineScroll: CGFloat);
+        pub unsafe fn setVerticalLineScroll(&self, verticalLineScroll: CoreGraphics::CGFloat);
 
         #[method(lineScroll)]
-        pub unsafe fn lineScroll(&self) -> CGFloat;
+        pub unsafe fn lineScroll(&self) -> CoreGraphics::CGFloat;
 
         #[method(setLineScroll:)]
-        pub unsafe fn setLineScroll(&self, lineScroll: CGFloat);
+        pub unsafe fn setLineScroll(&self, lineScroll: CoreGraphics::CGFloat);
 
         #[method(horizontalPageScroll)]
-        pub unsafe fn horizontalPageScroll(&self) -> CGFloat;
+        pub unsafe fn horizontalPageScroll(&self) -> CoreGraphics::CGFloat;
 
         #[method(setHorizontalPageScroll:)]
-        pub unsafe fn setHorizontalPageScroll(&self, horizontalPageScroll: CGFloat);
+        pub unsafe fn setHorizontalPageScroll(&self, horizontalPageScroll: CoreGraphics::CGFloat);
 
         #[method(verticalPageScroll)]
-        pub unsafe fn verticalPageScroll(&self) -> CGFloat;
+        pub unsafe fn verticalPageScroll(&self) -> CoreGraphics::CGFloat;
 
         #[method(setVerticalPageScroll:)]
-        pub unsafe fn setVerticalPageScroll(&self, verticalPageScroll: CGFloat);
+        pub unsafe fn setVerticalPageScroll(&self, verticalPageScroll: CoreGraphics::CGFloat);
 
         #[method(pageScroll)]
-        pub unsafe fn pageScroll(&self) -> CGFloat;
+        pub unsafe fn pageScroll(&self) -> CoreGraphics::CGFloat;
 
         #[method(setPageScroll:)]
-        pub unsafe fn setPageScroll(&self, pageScroll: CGFloat);
+        pub unsafe fn setPageScroll(&self, pageScroll: CoreGraphics::CGFloat);
 
         #[method(scrollsDynamically)]
         pub unsafe fn scrollsDynamically(&self) -> bool;
@@ -212,36 +212,36 @@ extern_methods!(
         pub unsafe fn scrollWheel(&self, event: &AppKit::NSEvent);
 
         #[method(scrollerStyle)]
-        pub unsafe fn scrollerStyle(&self) -> NSScrollerStyle;
+        pub unsafe fn scrollerStyle(&self) -> AppKit::NSScrollerStyle;
 
         #[method(setScrollerStyle:)]
-        pub unsafe fn setScrollerStyle(&self, scrollerStyle: NSScrollerStyle);
+        pub unsafe fn setScrollerStyle(&self, scrollerStyle: AppKit::NSScrollerStyle);
 
         #[method(scrollerKnobStyle)]
-        pub unsafe fn scrollerKnobStyle(&self) -> NSScrollerKnobStyle;
+        pub unsafe fn scrollerKnobStyle(&self) -> AppKit::NSScrollerKnobStyle;
 
         #[method(setScrollerKnobStyle:)]
-        pub unsafe fn setScrollerKnobStyle(&self, scrollerKnobStyle: NSScrollerKnobStyle);
+        pub unsafe fn setScrollerKnobStyle(&self, scrollerKnobStyle: AppKit::NSScrollerKnobStyle);
 
         #[method(flashScrollers)]
         pub unsafe fn flashScrollers(&self);
 
         #[method(horizontalScrollElasticity)]
-        pub unsafe fn horizontalScrollElasticity(&self) -> NSScrollElasticity;
+        pub unsafe fn horizontalScrollElasticity(&self) -> AppKit::NSScrollElasticity;
 
         #[method(setHorizontalScrollElasticity:)]
         pub unsafe fn setHorizontalScrollElasticity(
             &self,
-            horizontalScrollElasticity: NSScrollElasticity,
+            horizontalScrollElasticity: AppKit::NSScrollElasticity,
         );
 
         #[method(verticalScrollElasticity)]
-        pub unsafe fn verticalScrollElasticity(&self) -> NSScrollElasticity;
+        pub unsafe fn verticalScrollElasticity(&self) -> AppKit::NSScrollElasticity;
 
         #[method(setVerticalScrollElasticity:)]
         pub unsafe fn setVerticalScrollElasticity(
             &self,
-            verticalScrollElasticity: NSScrollElasticity,
+            verticalScrollElasticity: AppKit::NSScrollElasticity,
         );
 
         #[method(usesPredominantAxisScrolling)]
@@ -257,38 +257,38 @@ extern_methods!(
         pub unsafe fn setAllowsMagnification(&self, allowsMagnification: bool);
 
         #[method(magnification)]
-        pub unsafe fn magnification(&self) -> CGFloat;
+        pub unsafe fn magnification(&self) -> CoreGraphics::CGFloat;
 
         #[method(setMagnification:)]
-        pub unsafe fn setMagnification(&self, magnification: CGFloat);
+        pub unsafe fn setMagnification(&self, magnification: CoreGraphics::CGFloat);
 
         #[method(maxMagnification)]
-        pub unsafe fn maxMagnification(&self) -> CGFloat;
+        pub unsafe fn maxMagnification(&self) -> CoreGraphics::CGFloat;
 
         #[method(setMaxMagnification:)]
-        pub unsafe fn setMaxMagnification(&self, maxMagnification: CGFloat);
+        pub unsafe fn setMaxMagnification(&self, maxMagnification: CoreGraphics::CGFloat);
 
         #[method(minMagnification)]
-        pub unsafe fn minMagnification(&self) -> CGFloat;
+        pub unsafe fn minMagnification(&self) -> CoreGraphics::CGFloat;
 
         #[method(setMinMagnification:)]
-        pub unsafe fn setMinMagnification(&self, minMagnification: CGFloat);
+        pub unsafe fn setMinMagnification(&self, minMagnification: CoreGraphics::CGFloat);
 
         #[method(magnifyToFitRect:)]
-        pub unsafe fn magnifyToFitRect(&self, rect: NSRect);
+        pub unsafe fn magnifyToFitRect(&self, rect: Foundation::NSRect);
 
         #[method(setMagnification:centeredAtPoint:)]
         pub unsafe fn setMagnification_centeredAtPoint(
             &self,
-            magnification: CGFloat,
-            point: NSPoint,
+            magnification: CoreGraphics::CGFloat,
+            point: Foundation::NSPoint,
         );
 
         #[method(addFloatingSubview:forAxis:)]
         pub unsafe fn addFloatingSubview_forAxis(
             &self,
             view: &AppKit::NSView,
-            axis: NSEventGestureAxis,
+            axis: AppKit::NSEventGestureAxis,
         );
 
         #[method(automaticallyAdjustsContentInsets)]
@@ -301,16 +301,16 @@ extern_methods!(
         );
 
         #[method(contentInsets)]
-        pub unsafe fn contentInsets(&self) -> NSEdgeInsets;
+        pub unsafe fn contentInsets(&self) -> Foundation::NSEdgeInsets;
 
         #[method(setContentInsets:)]
-        pub unsafe fn setContentInsets(&self, contentInsets: NSEdgeInsets);
+        pub unsafe fn setContentInsets(&self, contentInsets: Foundation::NSEdgeInsets);
 
         #[method(scrollerInsets)]
-        pub unsafe fn scrollerInsets(&self) -> NSEdgeInsets;
+        pub unsafe fn scrollerInsets(&self) -> Foundation::NSEdgeInsets;
 
         #[method(setScrollerInsets:)]
-        pub unsafe fn setScrollerInsets(&self, scrollerInsets: NSEdgeInsets);
+        pub unsafe fn setScrollerInsets(&self, scrollerInsets: Foundation::NSEdgeInsets);
     }
 );
 
@@ -391,9 +391,12 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSScrollView")]
     unsafe impl NSScrollView {
         #[method(findBarPosition)]
-        pub unsafe fn findBarPosition(&self) -> NSScrollViewFindBarPosition;
+        pub unsafe fn findBarPosition(&self) -> AppKit::NSScrollViewFindBarPosition;
 
         #[method(setFindBarPosition:)]
-        pub unsafe fn setFindBarPosition(&self, findBarPosition: NSScrollViewFindBarPosition);
+        pub unsafe fn setFindBarPosition(
+            &self,
+            findBarPosition: AppKit::NSScrollViewFindBarPosition,
+        );
     }
 );

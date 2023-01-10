@@ -3,24 +3,24 @@
 use crate::common::*;
 use crate::Foundation;
 
-pub type NSPointPointer = *mut NSPoint;
+pub type NSPointPointer = *mut Foundation::NSPoint;
 
-pub type NSPointArray = *mut NSPoint;
+pub type NSPointArray = *mut Foundation::NSPoint;
 
-pub type NSSizePointer = *mut NSSize;
+pub type NSSizePointer = *mut Foundation::NSSize;
 
-pub type NSSizeArray = *mut NSSize;
+pub type NSSizeArray = *mut Foundation::NSSize;
 
-pub type NSRectPointer = *mut NSRect;
+pub type NSRectPointer = *mut Foundation::NSRect;
 
-pub type NSRectArray = *mut NSRect;
+pub type NSRectArray = *mut Foundation::NSRect;
 
 extern_struct!(
     pub struct NSEdgeInsets {
-        pub top: CGFloat,
-        pub left: CGFloat,
-        pub bottom: CGFloat,
-        pub right: CGFloat,
+        pub top: CoreGraphics::CGFloat,
+        pub left: CoreGraphics::CGFloat,
+        pub bottom: CoreGraphics::CGFloat,
+        pub right: CoreGraphics::CGFloat,
     }
 );
 
@@ -55,219 +55,254 @@ ns_options!(
     }
 );
 
-extern_static!(NSZeroPoint: NSPoint);
+extern_static!(NSZeroPoint: Foundation::NSPoint);
 
-extern_static!(NSZeroSize: NSSize);
+extern_static!(NSZeroSize: Foundation::NSSize);
 
-extern_static!(NSZeroRect: NSRect);
+extern_static!(NSZeroRect: Foundation::NSRect);
 
-extern_static!(NSEdgeInsetsZero: NSEdgeInsets);
+extern_static!(NSEdgeInsetsZero: Foundation::NSEdgeInsets);
 
 inline_fn!(
-    pub unsafe fn NSMakePoint(x: CGFloat, y: CGFloat) -> NSPoint {
+    pub unsafe fn NSMakePoint(
+        x: CoreGraphics::CGFloat,
+        y: CoreGraphics::CGFloat,
+    ) -> Foundation::NSPoint {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSMakeSize(w: CGFloat, h: CGFloat) -> NSSize {
+    pub unsafe fn NSMakeSize(
+        w: CoreGraphics::CGFloat,
+        h: CoreGraphics::CGFloat,
+    ) -> Foundation::NSSize {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSMakeRect(x: CGFloat, y: CGFloat, w: CGFloat, h: CGFloat) -> NSRect {
+    pub unsafe fn NSMakeRect(
+        x: CoreGraphics::CGFloat,
+        y: CoreGraphics::CGFloat,
+        w: CoreGraphics::CGFloat,
+        h: CoreGraphics::CGFloat,
+    ) -> Foundation::NSRect {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSMaxX(aRect: NSRect) -> CGFloat {
+    pub unsafe fn NSMaxX(aRect: Foundation::NSRect) -> CoreGraphics::CGFloat {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSMaxY(aRect: NSRect) -> CGFloat {
+    pub unsafe fn NSMaxY(aRect: Foundation::NSRect) -> CoreGraphics::CGFloat {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSMidX(aRect: NSRect) -> CGFloat {
+    pub unsafe fn NSMidX(aRect: Foundation::NSRect) -> CoreGraphics::CGFloat {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSMidY(aRect: NSRect) -> CGFloat {
+    pub unsafe fn NSMidY(aRect: Foundation::NSRect) -> CoreGraphics::CGFloat {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSMinX(aRect: NSRect) -> CGFloat {
+    pub unsafe fn NSMinX(aRect: Foundation::NSRect) -> CoreGraphics::CGFloat {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSMinY(aRect: NSRect) -> CGFloat {
+    pub unsafe fn NSMinY(aRect: Foundation::NSRect) -> CoreGraphics::CGFloat {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSWidth(aRect: NSRect) -> CGFloat {
+    pub unsafe fn NSWidth(aRect: Foundation::NSRect) -> CoreGraphics::CGFloat {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSHeight(aRect: NSRect) -> CGFloat {
+    pub unsafe fn NSHeight(aRect: Foundation::NSRect) -> CoreGraphics::CGFloat {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSRectFromCGRect(cgrect: CGRect) -> NSRect {
+    pub unsafe fn NSRectFromCGRect(cgrect: CoreGraphics::CGRect) -> Foundation::NSRect {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSRectToCGRect(nsrect: NSRect) -> CGRect {
+    pub unsafe fn NSRectToCGRect(nsrect: Foundation::NSRect) -> CoreGraphics::CGRect {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSPointFromCGPoint(cgpoint: CGPoint) -> NSPoint {
+    pub unsafe fn NSPointFromCGPoint(cgpoint: CoreGraphics::CGPoint) -> Foundation::NSPoint {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSPointToCGPoint(nspoint: NSPoint) -> CGPoint {
+    pub unsafe fn NSPointToCGPoint(nspoint: Foundation::NSPoint) -> CoreGraphics::CGPoint {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSSizeFromCGSize(cgsize: CGSize) -> NSSize {
+    pub unsafe fn NSSizeFromCGSize(cgsize: CoreGraphics::CGSize) -> Foundation::NSSize {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSSizeToCGSize(nssize: NSSize) -> CGSize {
+    pub unsafe fn NSSizeToCGSize(nssize: Foundation::NSSize) -> CoreGraphics::CGSize {
         todo!()
     }
 );
 
 inline_fn!(
     pub unsafe fn NSEdgeInsetsMake(
-        top: CGFloat,
-        left: CGFloat,
-        bottom: CGFloat,
-        right: CGFloat,
-    ) -> NSEdgeInsets {
+        top: CoreGraphics::CGFloat,
+        left: CoreGraphics::CGFloat,
+        bottom: CoreGraphics::CGFloat,
+        right: CoreGraphics::CGFloat,
+    ) -> Foundation::NSEdgeInsets {
         todo!()
     }
 );
 
 extern_fn!(
-    pub unsafe fn NSEqualPoints(aPoint: NSPoint, bPoint: NSPoint) -> Bool;
+    pub unsafe fn NSEqualPoints(aPoint: Foundation::NSPoint, bPoint: Foundation::NSPoint) -> Bool;
 );
 
 extern_fn!(
-    pub unsafe fn NSEqualSizes(aSize: NSSize, bSize: NSSize) -> Bool;
+    pub unsafe fn NSEqualSizes(aSize: Foundation::NSSize, bSize: Foundation::NSSize) -> Bool;
 );
 
 extern_fn!(
-    pub unsafe fn NSEqualRects(aRect: NSRect, bRect: NSRect) -> Bool;
+    pub unsafe fn NSEqualRects(aRect: Foundation::NSRect, bRect: Foundation::NSRect) -> Bool;
 );
 
 extern_fn!(
-    pub unsafe fn NSIsEmptyRect(aRect: NSRect) -> Bool;
+    pub unsafe fn NSIsEmptyRect(aRect: Foundation::NSRect) -> Bool;
 );
 
 extern_fn!(
-    pub unsafe fn NSEdgeInsetsEqual(aInsets: NSEdgeInsets, bInsets: NSEdgeInsets) -> Bool;
+    pub unsafe fn NSEdgeInsetsEqual(
+        aInsets: Foundation::NSEdgeInsets,
+        bInsets: Foundation::NSEdgeInsets,
+    ) -> Bool;
 );
 
 extern_fn!(
-    pub unsafe fn NSInsetRect(aRect: NSRect, dX: CGFloat, dY: CGFloat) -> NSRect;
+    pub unsafe fn NSInsetRect(
+        aRect: Foundation::NSRect,
+        dX: CoreGraphics::CGFloat,
+        dY: CoreGraphics::CGFloat,
+    ) -> Foundation::NSRect;
 );
 
 extern_fn!(
-    pub unsafe fn NSIntegralRect(aRect: NSRect) -> NSRect;
+    pub unsafe fn NSIntegralRect(aRect: Foundation::NSRect) -> Foundation::NSRect;
 );
 
 extern_fn!(
-    pub unsafe fn NSIntegralRectWithOptions(aRect: NSRect, opts: NSAlignmentOptions) -> NSRect;
+    pub unsafe fn NSIntegralRectWithOptions(
+        aRect: Foundation::NSRect,
+        opts: Foundation::NSAlignmentOptions,
+    ) -> Foundation::NSRect;
 );
 
 extern_fn!(
-    pub unsafe fn NSUnionRect(aRect: NSRect, bRect: NSRect) -> NSRect;
+    pub unsafe fn NSUnionRect(
+        aRect: Foundation::NSRect,
+        bRect: Foundation::NSRect,
+    ) -> Foundation::NSRect;
 );
 
 extern_fn!(
-    pub unsafe fn NSIntersectionRect(aRect: NSRect, bRect: NSRect) -> NSRect;
+    pub unsafe fn NSIntersectionRect(
+        aRect: Foundation::NSRect,
+        bRect: Foundation::NSRect,
+    ) -> Foundation::NSRect;
 );
 
 extern_fn!(
-    pub unsafe fn NSOffsetRect(aRect: NSRect, dX: CGFloat, dY: CGFloat) -> NSRect;
+    pub unsafe fn NSOffsetRect(
+        aRect: Foundation::NSRect,
+        dX: CoreGraphics::CGFloat,
+        dY: CoreGraphics::CGFloat,
+    ) -> Foundation::NSRect;
 );
 
 extern_fn!(
     pub unsafe fn NSDivideRect(
-        inRect: NSRect,
-        slice: NonNull<NSRect>,
-        rem: NonNull<NSRect>,
-        amount: CGFloat,
-        edge: NSRectEdge,
+        inRect: Foundation::NSRect,
+        slice: NonNull<Foundation::NSRect>,
+        rem: NonNull<Foundation::NSRect>,
+        amount: CoreGraphics::CGFloat,
+        edge: Foundation::NSRectEdge,
     );
 );
 
 extern_fn!(
-    pub unsafe fn NSPointInRect(aPoint: NSPoint, aRect: NSRect) -> Bool;
+    pub unsafe fn NSPointInRect(aPoint: Foundation::NSPoint, aRect: Foundation::NSRect) -> Bool;
 );
 
 extern_fn!(
-    pub unsafe fn NSMouseInRect(aPoint: NSPoint, aRect: NSRect, flipped: Bool) -> Bool;
+    pub unsafe fn NSMouseInRect(
+        aPoint: Foundation::NSPoint,
+        aRect: Foundation::NSRect,
+        flipped: Bool,
+    ) -> Bool;
 );
 
 extern_fn!(
-    pub unsafe fn NSContainsRect(aRect: NSRect, bRect: NSRect) -> Bool;
+    pub unsafe fn NSContainsRect(aRect: Foundation::NSRect, bRect: Foundation::NSRect) -> Bool;
 );
 
 extern_fn!(
-    pub unsafe fn NSIntersectsRect(aRect: NSRect, bRect: NSRect) -> Bool;
+    pub unsafe fn NSIntersectsRect(aRect: Foundation::NSRect, bRect: Foundation::NSRect) -> Bool;
 );
 
 extern_fn!(
-    pub unsafe fn NSStringFromPoint(aPoint: NSPoint) -> NonNull<Foundation::NSString>;
+    pub unsafe fn NSStringFromPoint(aPoint: Foundation::NSPoint) -> NonNull<Foundation::NSString>;
 );
 
 extern_fn!(
-    pub unsafe fn NSStringFromSize(aSize: NSSize) -> NonNull<Foundation::NSString>;
+    pub unsafe fn NSStringFromSize(aSize: Foundation::NSSize) -> NonNull<Foundation::NSString>;
 );
 
 extern_fn!(
-    pub unsafe fn NSStringFromRect(aRect: NSRect) -> NonNull<Foundation::NSString>;
+    pub unsafe fn NSStringFromRect(aRect: Foundation::NSRect) -> NonNull<Foundation::NSString>;
 );
 
 extern_fn!(
-    pub unsafe fn NSPointFromString(aString: &Foundation::NSString) -> NSPoint;
+    pub unsafe fn NSPointFromString(aString: &Foundation::NSString) -> Foundation::NSPoint;
 );
 
 extern_fn!(
-    pub unsafe fn NSSizeFromString(aString: &Foundation::NSString) -> NSSize;
+    pub unsafe fn NSSizeFromString(aString: &Foundation::NSString) -> Foundation::NSSize;
 );
 
 extern_fn!(
-    pub unsafe fn NSRectFromString(aString: &Foundation::NSString) -> NSRect;
+    pub unsafe fn NSRectFromString(aString: &Foundation::NSString) -> Foundation::NSRect;
 );
 
 extern_methods!(
@@ -275,28 +310,31 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSValue")]
     unsafe impl Foundation::NSValue {
         #[method_id(@__retain_semantics Other valueWithPoint:)]
-        pub unsafe fn valueWithPoint(point: NSPoint) -> Id<Foundation::NSValue, Shared>;
+        pub unsafe fn valueWithPoint(point: Foundation::NSPoint)
+            -> Id<Foundation::NSValue, Shared>;
 
         #[method_id(@__retain_semantics Other valueWithSize:)]
-        pub unsafe fn valueWithSize(size: NSSize) -> Id<Foundation::NSValue, Shared>;
+        pub unsafe fn valueWithSize(size: Foundation::NSSize) -> Id<Foundation::NSValue, Shared>;
 
         #[method_id(@__retain_semantics Other valueWithRect:)]
-        pub unsafe fn valueWithRect(rect: NSRect) -> Id<Foundation::NSValue, Shared>;
+        pub unsafe fn valueWithRect(rect: Foundation::NSRect) -> Id<Foundation::NSValue, Shared>;
 
         #[method_id(@__retain_semantics Other valueWithEdgeInsets:)]
-        pub unsafe fn valueWithEdgeInsets(insets: NSEdgeInsets) -> Id<Foundation::NSValue, Shared>;
+        pub unsafe fn valueWithEdgeInsets(
+            insets: Foundation::NSEdgeInsets,
+        ) -> Id<Foundation::NSValue, Shared>;
 
         #[method(pointValue)]
-        pub unsafe fn pointValue(&self) -> NSPoint;
+        pub unsafe fn pointValue(&self) -> Foundation::NSPoint;
 
         #[method(sizeValue)]
-        pub unsafe fn sizeValue(&self) -> NSSize;
+        pub unsafe fn sizeValue(&self) -> Foundation::NSSize;
 
         #[method(rectValue)]
-        pub unsafe fn rectValue(&self) -> NSRect;
+        pub unsafe fn rectValue(&self) -> Foundation::NSRect;
 
         #[method(edgeInsetsValue)]
-        pub unsafe fn edgeInsetsValue(&self) -> NSEdgeInsets;
+        pub unsafe fn edgeInsetsValue(&self) -> Foundation::NSEdgeInsets;
     }
 );
 
@@ -305,22 +343,22 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSCoder")]
     unsafe impl Foundation::NSCoder {
         #[method(encodePoint:)]
-        pub unsafe fn encodePoint(&self, point: NSPoint);
+        pub unsafe fn encodePoint(&self, point: Foundation::NSPoint);
 
         #[method(decodePoint)]
-        pub unsafe fn decodePoint(&self) -> NSPoint;
+        pub unsafe fn decodePoint(&self) -> Foundation::NSPoint;
 
         #[method(encodeSize:)]
-        pub unsafe fn encodeSize(&self, size: NSSize);
+        pub unsafe fn encodeSize(&self, size: Foundation::NSSize);
 
         #[method(decodeSize)]
-        pub unsafe fn decodeSize(&self) -> NSSize;
+        pub unsafe fn decodeSize(&self) -> Foundation::NSSize;
 
         #[method(encodeRect:)]
-        pub unsafe fn encodeRect(&self, rect: NSRect);
+        pub unsafe fn encodeRect(&self, rect: Foundation::NSRect);
 
         #[method(decodeRect)]
-        pub unsafe fn decodeRect(&self) -> NSRect;
+        pub unsafe fn decodeRect(&self) -> Foundation::NSRect;
     }
 );
 
@@ -330,26 +368,38 @@ extern_methods!(
     unsafe impl Foundation::NSCoder {
         #[cfg(feature = "Foundation_NSString")]
         #[method(encodePoint:forKey:)]
-        pub unsafe fn encodePoint_forKey(&self, point: NSPoint, key: &Foundation::NSString);
+        pub unsafe fn encodePoint_forKey(
+            &self,
+            point: Foundation::NSPoint,
+            key: &Foundation::NSString,
+        );
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(encodeSize:forKey:)]
-        pub unsafe fn encodeSize_forKey(&self, size: NSSize, key: &Foundation::NSString);
+        pub unsafe fn encodeSize_forKey(
+            &self,
+            size: Foundation::NSSize,
+            key: &Foundation::NSString,
+        );
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(encodeRect:forKey:)]
-        pub unsafe fn encodeRect_forKey(&self, rect: NSRect, key: &Foundation::NSString);
+        pub unsafe fn encodeRect_forKey(
+            &self,
+            rect: Foundation::NSRect,
+            key: &Foundation::NSString,
+        );
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(decodePointForKey:)]
-        pub unsafe fn decodePointForKey(&self, key: &Foundation::NSString) -> NSPoint;
+        pub unsafe fn decodePointForKey(&self, key: &Foundation::NSString) -> Foundation::NSPoint;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(decodeSizeForKey:)]
-        pub unsafe fn decodeSizeForKey(&self, key: &Foundation::NSString) -> NSSize;
+        pub unsafe fn decodeSizeForKey(&self, key: &Foundation::NSString) -> Foundation::NSSize;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(decodeRectForKey:)]
-        pub unsafe fn decodeRectForKey(&self, key: &Foundation::NSString) -> NSRect;
+        pub unsafe fn decodeRectForKey(&self, key: &Foundation::NSString) -> Foundation::NSRect;
     }
 );

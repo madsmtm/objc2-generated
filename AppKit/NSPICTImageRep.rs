@@ -34,6 +34,6 @@ extern_methods!(
         pub unsafe fn PICTRepresentation(&self) -> Id<Foundation::NSData, Shared>;
 
         #[method(boundingBox)]
-        pub unsafe fn boundingBox(&self) -> NSRect;
+        pub unsafe fn boundingBox(&self) -> Foundation::NSRect;
     }
 );

@@ -139,7 +139,7 @@ extern_methods!(
         pub unsafe fn result(&self) -> Option<Id<Object, Shared>>;
 
         #[method(resultType)]
-        pub unsafe fn resultType(&self) -> NSBatchInsertRequestResultType;
+        pub unsafe fn resultType(&self) -> CoreData::NSBatchInsertRequestResultType;
     }
 );
 
@@ -160,7 +160,7 @@ extern_methods!(
         pub unsafe fn result(&self) -> Option<Id<Object, Shared>>;
 
         #[method(resultType)]
-        pub unsafe fn resultType(&self) -> NSBatchUpdateRequestResultType;
+        pub unsafe fn resultType(&self) -> CoreData::NSBatchUpdateRequestResultType;
     }
 );
 
@@ -181,7 +181,7 @@ extern_methods!(
         pub unsafe fn result(&self) -> Option<Id<Object, Shared>>;
 
         #[method(resultType)]
-        pub unsafe fn resultType(&self) -> NSBatchDeleteRequestResultType;
+        pub unsafe fn resultType(&self) -> CoreData::NSBatchDeleteRequestResultType;
     }
 );
 
@@ -202,7 +202,7 @@ extern_methods!(
         pub unsafe fn result(&self) -> Option<Id<Object, Shared>>;
 
         #[method(resultType)]
-        pub unsafe fn resultType(&self) -> NSPersistentHistoryResultType;
+        pub unsafe fn resultType(&self) -> CoreData::NSPersistentHistoryResultType;
     }
 );
 
@@ -231,7 +231,7 @@ extern_methods!(
         pub unsafe fn result(&self) -> Option<Id<Object, Shared>>;
 
         #[method(resultType)]
-        pub unsafe fn resultType(&self) -> NSPersistentCloudKitContainerEventResultType;
+        pub unsafe fn resultType(&self) -> CoreData::NSPersistentCloudKitContainerEventResultType;
 
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;

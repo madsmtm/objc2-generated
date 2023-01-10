@@ -13,11 +13,11 @@ typed_extensible_enum!(
     pub type NSTouchBarItemPriority = c_float;
 );
 
-extern_static!(NSTouchBarItemPriorityHigh: NSTouchBarItemPriority = 1000);
+extern_static!(NSTouchBarItemPriorityHigh: AppKit::NSTouchBarItemPriority = 1000);
 
-extern_static!(NSTouchBarItemPriorityNormal: NSTouchBarItemPriority = 0);
+extern_static!(NSTouchBarItemPriorityNormal: AppKit::NSTouchBarItemPriority = 0);
 
-extern_static!(NSTouchBarItemPriorityLow: NSTouchBarItemPriority = -1000);
+extern_static!(NSTouchBarItemPriorityLow: AppKit::NSTouchBarItemPriority = -1000);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -51,10 +51,13 @@ extern_methods!(
         pub unsafe fn identifier(&self) -> Id<AppKit::NSTouchBarItemIdentifier, Shared>;
 
         #[method(visibilityPriority)]
-        pub unsafe fn visibilityPriority(&self) -> NSTouchBarItemPriority;
+        pub unsafe fn visibilityPriority(&self) -> AppKit::NSTouchBarItemPriority;
 
         #[method(setVisibilityPriority:)]
-        pub unsafe fn setVisibilityPriority(&self, visibilityPriority: NSTouchBarItemPriority);
+        pub unsafe fn setVisibilityPriority(
+            &self,
+            visibilityPriority: AppKit::NSTouchBarItemPriority,
+        );
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other view)]

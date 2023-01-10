@@ -45,7 +45,8 @@ extern_fn!(
     ) -> NonNull<c_char>;
 );
 
-pub type NSComparator = *mut Block<(NonNull<Object>, NonNull<Object>), NSComparisonResult>;
+pub type NSComparator =
+    *mut Block<(NonNull<Object>, NonNull<Object>), Foundation::NSComparisonResult>;
 
 ns_options!(
     #[underlying(NSUInteger)]

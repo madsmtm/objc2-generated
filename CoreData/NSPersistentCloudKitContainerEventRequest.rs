@@ -18,12 +18,12 @@ extern_methods!(
     #[cfg(feature = "CoreData_NSPersistentCloudKitContainerEventRequest")]
     unsafe impl NSPersistentCloudKitContainerEventRequest {
         #[method(resultType)]
-        pub unsafe fn resultType(&self) -> NSPersistentCloudKitContainerEventResultType;
+        pub unsafe fn resultType(&self) -> CoreData::NSPersistentCloudKitContainerEventResultType;
 
         #[method(setResultType:)]
         pub unsafe fn setResultType(
             &self,
-            resultType: NSPersistentCloudKitContainerEventResultType,
+            resultType: CoreData::NSPersistentCloudKitContainerEventResultType,
         );
 
         #[cfg(feature = "Foundation_NSDate")]

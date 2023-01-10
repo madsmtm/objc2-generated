@@ -6,13 +6,13 @@ use crate::Metal;
 
 extern_struct!(
     pub struct MTLPackedFloat4x3 {
-        pub columns: [MTLPackedFloat3; 4],
+        pub columns: [Metal::MTLPackedFloat3; 4],
     }
 );
 
 extern_struct!(
     pub struct MTLAxisAlignedBoundingBox {
-        pub min: MTLPackedFloat3,
-        pub max: MTLPackedFloat3,
+        pub min: Metal::MTLPackedFloat3,
+        pub max: Metal::MTLPackedFloat3,
     }
 );

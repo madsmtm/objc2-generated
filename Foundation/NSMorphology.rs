@@ -60,22 +60,25 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSMorphology")]
     unsafe impl NSMorphology {
         #[method(grammaticalGender)]
-        pub unsafe fn grammaticalGender(&self) -> NSGrammaticalGender;
+        pub unsafe fn grammaticalGender(&self) -> Foundation::NSGrammaticalGender;
 
         #[method(setGrammaticalGender:)]
-        pub unsafe fn setGrammaticalGender(&self, grammaticalGender: NSGrammaticalGender);
+        pub unsafe fn setGrammaticalGender(
+            &self,
+            grammaticalGender: Foundation::NSGrammaticalGender,
+        );
 
         #[method(partOfSpeech)]
-        pub unsafe fn partOfSpeech(&self) -> NSGrammaticalPartOfSpeech;
+        pub unsafe fn partOfSpeech(&self) -> Foundation::NSGrammaticalPartOfSpeech;
 
         #[method(setPartOfSpeech:)]
-        pub unsafe fn setPartOfSpeech(&self, partOfSpeech: NSGrammaticalPartOfSpeech);
+        pub unsafe fn setPartOfSpeech(&self, partOfSpeech: Foundation::NSGrammaticalPartOfSpeech);
 
         #[method(number)]
-        pub unsafe fn number(&self) -> NSGrammaticalNumber;
+        pub unsafe fn number(&self) -> Foundation::NSGrammaticalNumber;
 
         #[method(setNumber:)]
-        pub unsafe fn setNumber(&self, number: NSGrammaticalNumber);
+        pub unsafe fn setNumber(&self, number: Foundation::NSGrammaticalNumber);
     }
 );
 

@@ -128,7 +128,7 @@ extern_methods!(
         pub unsafe fn setHasActionButton(&self, hasActionButton: bool);
 
         #[method(activationType)]
-        pub unsafe fn activationType(&self) -> NSUserNotificationActivationType;
+        pub unsafe fn activationType(&self) -> Foundation::NSUserNotificationActivationType;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other otherButtonTitle)]

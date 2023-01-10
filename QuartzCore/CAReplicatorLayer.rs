@@ -30,16 +30,16 @@ extern_methods!(
         pub unsafe fn setPreservesDepth(&self, preservesDepth: bool);
 
         #[method(instanceDelay)]
-        pub unsafe fn instanceDelay(&self) -> CFTimeInterval;
+        pub unsafe fn instanceDelay(&self) -> CoreFoundation::CFTimeInterval;
 
         #[method(setInstanceDelay:)]
-        pub unsafe fn setInstanceDelay(&self, instanceDelay: CFTimeInterval);
+        pub unsafe fn setInstanceDelay(&self, instanceDelay: CoreFoundation::CFTimeInterval);
 
         #[method(instanceTransform)]
-        pub unsafe fn instanceTransform(&self) -> CATransform3D;
+        pub unsafe fn instanceTransform(&self) -> CoreAnimation::CATransform3D;
 
         #[method(setInstanceTransform:)]
-        pub unsafe fn setInstanceTransform(&self, instanceTransform: CATransform3D);
+        pub unsafe fn setInstanceTransform(&self, instanceTransform: CoreAnimation::CATransform3D);
 
         #[method(instanceRedOffset)]
         pub unsafe fn instanceRedOffset(&self) -> c_float;

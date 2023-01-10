@@ -48,7 +48,7 @@ inline_fn!(
         green: c_double,
         blue: c_double,
         alpha: c_double,
-    ) -> MTLClearColor {
+    ) -> Metal::MTLClearColor {
         todo!()
     }
 );
@@ -114,22 +114,22 @@ extern_methods!(
         pub fn setResolveDepthPlane(&self, resolveDepthPlane: NSUInteger);
 
         #[method(loadAction)]
-        pub fn loadAction(&self) -> MTLLoadAction;
+        pub fn loadAction(&self) -> Metal::MTLLoadAction;
 
         #[method(setLoadAction:)]
-        pub fn setLoadAction(&self, loadAction: MTLLoadAction);
+        pub fn setLoadAction(&self, loadAction: Metal::MTLLoadAction);
 
         #[method(storeAction)]
-        pub fn storeAction(&self) -> MTLStoreAction;
+        pub fn storeAction(&self) -> Metal::MTLStoreAction;
 
         #[method(setStoreAction:)]
-        pub fn setStoreAction(&self, storeAction: MTLStoreAction);
+        pub fn setStoreAction(&self, storeAction: Metal::MTLStoreAction);
 
         #[method(storeActionOptions)]
-        pub fn storeActionOptions(&self) -> MTLStoreActionOptions;
+        pub fn storeActionOptions(&self) -> Metal::MTLStoreActionOptions;
 
         #[method(setStoreActionOptions:)]
-        pub fn setStoreActionOptions(&self, storeActionOptions: MTLStoreActionOptions);
+        pub fn setStoreActionOptions(&self, storeActionOptions: Metal::MTLStoreActionOptions);
     }
 );
 
@@ -147,10 +147,10 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLRenderPassColorAttachmentDescriptor")]
     unsafe impl MTLRenderPassColorAttachmentDescriptor {
         #[method(clearColor)]
-        pub fn clearColor(&self) -> MTLClearColor;
+        pub fn clearColor(&self) -> Metal::MTLClearColor;
 
         #[method(setClearColor:)]
-        pub fn setClearColor(&self, clearColor: MTLClearColor);
+        pub fn setClearColor(&self, clearColor: Metal::MTLClearColor);
     }
 );
 
@@ -183,10 +183,13 @@ extern_methods!(
         pub fn setClearDepth(&self, clearDepth: c_double);
 
         #[method(depthResolveFilter)]
-        pub fn depthResolveFilter(&self) -> MTLMultisampleDepthResolveFilter;
+        pub fn depthResolveFilter(&self) -> Metal::MTLMultisampleDepthResolveFilter;
 
         #[method(setDepthResolveFilter:)]
-        pub fn setDepthResolveFilter(&self, depthResolveFilter: MTLMultisampleDepthResolveFilter);
+        pub fn setDepthResolveFilter(
+            &self,
+            depthResolveFilter: Metal::MTLMultisampleDepthResolveFilter,
+        );
     }
 );
 
@@ -218,12 +221,12 @@ extern_methods!(
         pub fn setClearStencil(&self, clearStencil: u32);
 
         #[method(stencilResolveFilter)]
-        pub fn stencilResolveFilter(&self) -> MTLMultisampleStencilResolveFilter;
+        pub fn stencilResolveFilter(&self) -> Metal::MTLMultisampleStencilResolveFilter;
 
         #[method(setStencilResolveFilter:)]
         pub fn setStencilResolveFilter(
             &self,
-            stencilResolveFilter: MTLMultisampleStencilResolveFilter,
+            stencilResolveFilter: Metal::MTLMultisampleStencilResolveFilter,
         );
     }
 );
@@ -432,14 +435,14 @@ extern_methods!(
         #[method(setSamplePositions:count:)]
         pub unsafe fn setSamplePositions_count(
             &self,
-            positions: *mut MTLSamplePosition,
+            positions: *mut Metal::MTLSamplePosition,
             count: NSUInteger,
         );
 
         #[method(getSamplePositions:count:)]
         pub unsafe fn getSamplePositions_count(
             &self,
-            positions: *mut MTLSamplePosition,
+            positions: *mut Metal::MTLSamplePosition,
             count: NSUInteger,
         ) -> NSUInteger;
 
@@ -466,7 +469,7 @@ inline_fn!(
         green: c_double,
         blue: c_double,
         alpha: c_double,
-    ) -> MTLClearColor {
+    ) -> Metal::MTLClearColor {
         todo!()
     }
 );

@@ -41,10 +41,10 @@ extern_methods!(
         );
 
         #[method(options)]
-        pub unsafe fn options(&self) -> NSPDFPanelOptions;
+        pub unsafe fn options(&self) -> AppKit::NSPDFPanelOptions;
 
         #[method(setOptions:)]
-        pub unsafe fn setOptions(&self, options: NSPDFPanelOptions);
+        pub unsafe fn setOptions(&self, options: AppKit::NSPDFPanelOptions);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other defaultFileName)]

@@ -76,7 +76,7 @@ extern_methods!(
         pub unsafe fn addVersionOfItemAtURL_withContentsOfURL_options_error(
             url: &Foundation::NSURL,
             contentsURL: &Foundation::NSURL,
-            options: NSFileVersionAddingOptions,
+            options: Foundation::NSFileVersionAddingOptions,
         ) -> Result<Id<Foundation::NSFileVersion, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSURL")]
@@ -138,7 +138,7 @@ extern_methods!(
         pub unsafe fn replaceItemAtURL_options_error(
             &self,
             url: &Foundation::NSURL,
-            options: NSFileVersionReplacingOptions,
+            options: Foundation::NSFileVersionReplacingOptions,
         ) -> Result<Id<Foundation::NSURL, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSError")]

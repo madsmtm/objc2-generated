@@ -24,7 +24,7 @@ ns_enum!(
     }
 );
 
-extern_static!(NSSplitViewItemUnspecifiedDimension: CGFloat);
+extern_static!(NSSplitViewItemUnspecifiedDimension: CoreGraphics::CGFloat);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -57,7 +57,7 @@ extern_methods!(
         ) -> Id<Self, Shared>;
 
         #[method(behavior)]
-        pub unsafe fn behavior(&self) -> NSSplitViewItemBehavior;
+        pub unsafe fn behavior(&self) -> AppKit::NSSplitViewItemBehavior;
 
         #[cfg(feature = "AppKit_NSViewController")]
         #[method_id(@__retain_semantics Other viewController)]
@@ -80,40 +80,49 @@ extern_methods!(
         pub unsafe fn setCanCollapse(&self, canCollapse: bool);
 
         #[method(collapseBehavior)]
-        pub unsafe fn collapseBehavior(&self) -> NSSplitViewItemCollapseBehavior;
+        pub unsafe fn collapseBehavior(&self) -> AppKit::NSSplitViewItemCollapseBehavior;
 
         #[method(setCollapseBehavior:)]
-        pub unsafe fn setCollapseBehavior(&self, collapseBehavior: NSSplitViewItemCollapseBehavior);
+        pub unsafe fn setCollapseBehavior(
+            &self,
+            collapseBehavior: AppKit::NSSplitViewItemCollapseBehavior,
+        );
 
         #[method(minimumThickness)]
-        pub unsafe fn minimumThickness(&self) -> CGFloat;
+        pub unsafe fn minimumThickness(&self) -> CoreGraphics::CGFloat;
 
         #[method(setMinimumThickness:)]
-        pub unsafe fn setMinimumThickness(&self, minimumThickness: CGFloat);
+        pub unsafe fn setMinimumThickness(&self, minimumThickness: CoreGraphics::CGFloat);
 
         #[method(maximumThickness)]
-        pub unsafe fn maximumThickness(&self) -> CGFloat;
+        pub unsafe fn maximumThickness(&self) -> CoreGraphics::CGFloat;
 
         #[method(setMaximumThickness:)]
-        pub unsafe fn setMaximumThickness(&self, maximumThickness: CGFloat);
+        pub unsafe fn setMaximumThickness(&self, maximumThickness: CoreGraphics::CGFloat);
 
         #[method(preferredThicknessFraction)]
-        pub unsafe fn preferredThicknessFraction(&self) -> CGFloat;
+        pub unsafe fn preferredThicknessFraction(&self) -> CoreGraphics::CGFloat;
 
         #[method(setPreferredThicknessFraction:)]
-        pub unsafe fn setPreferredThicknessFraction(&self, preferredThicknessFraction: CGFloat);
+        pub unsafe fn setPreferredThicknessFraction(
+            &self,
+            preferredThicknessFraction: CoreGraphics::CGFloat,
+        );
 
         #[method(holdingPriority)]
-        pub unsafe fn holdingPriority(&self) -> NSLayoutPriority;
+        pub unsafe fn holdingPriority(&self) -> AppKit::NSLayoutPriority;
 
         #[method(setHoldingPriority:)]
-        pub unsafe fn setHoldingPriority(&self, holdingPriority: NSLayoutPriority);
+        pub unsafe fn setHoldingPriority(&self, holdingPriority: AppKit::NSLayoutPriority);
 
         #[method(automaticMaximumThickness)]
-        pub unsafe fn automaticMaximumThickness(&self) -> CGFloat;
+        pub unsafe fn automaticMaximumThickness(&self) -> CoreGraphics::CGFloat;
 
         #[method(setAutomaticMaximumThickness:)]
-        pub unsafe fn setAutomaticMaximumThickness(&self, automaticMaximumThickness: CGFloat);
+        pub unsafe fn setAutomaticMaximumThickness(
+            &self,
+            automaticMaximumThickness: CoreGraphics::CGFloat,
+        );
 
         #[method(isSpringLoaded)]
         pub unsafe fn isSpringLoaded(&self) -> bool;
@@ -128,12 +137,12 @@ extern_methods!(
         pub unsafe fn setAllowsFullHeightLayout(&self, allowsFullHeightLayout: bool);
 
         #[method(titlebarSeparatorStyle)]
-        pub unsafe fn titlebarSeparatorStyle(&self) -> NSTitlebarSeparatorStyle;
+        pub unsafe fn titlebarSeparatorStyle(&self) -> AppKit::NSTitlebarSeparatorStyle;
 
         #[method(setTitlebarSeparatorStyle:)]
         pub unsafe fn setTitlebarSeparatorStyle(
             &self,
-            titlebarSeparatorStyle: NSTitlebarSeparatorStyle,
+            titlebarSeparatorStyle: AppKit::NSTitlebarSeparatorStyle,
         );
     }
 );

@@ -60,7 +60,7 @@ extern_methods!(
         ) -> Id<Self, Shared>;
 
         #[method(setButtonType:)]
-        pub unsafe fn setButtonType(&self, type_: NSButtonType);
+        pub unsafe fn setButtonType(&self, type_: AppKit::NSButtonType);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
@@ -135,10 +135,10 @@ extern_methods!(
         );
 
         #[method(bezelStyle)]
-        pub unsafe fn bezelStyle(&self) -> NSBezelStyle;
+        pub unsafe fn bezelStyle(&self) -> AppKit::NSBezelStyle;
 
         #[method(setBezelStyle:)]
-        pub unsafe fn setBezelStyle(&self, bezelStyle: NSBezelStyle);
+        pub unsafe fn setBezelStyle(&self, bezelStyle: AppKit::NSBezelStyle);
 
         #[method(isBordered)]
         pub unsafe fn isBordered(&self) -> bool;
@@ -178,16 +178,16 @@ extern_methods!(
         pub unsafe fn setAlternateImage(&self, alternateImage: Option<&AppKit::NSImage>);
 
         #[method(imagePosition)]
-        pub unsafe fn imagePosition(&self) -> NSCellImagePosition;
+        pub unsafe fn imagePosition(&self) -> AppKit::NSCellImagePosition;
 
         #[method(setImagePosition:)]
-        pub unsafe fn setImagePosition(&self, imagePosition: NSCellImagePosition);
+        pub unsafe fn setImagePosition(&self, imagePosition: AppKit::NSCellImagePosition);
 
         #[method(imageScaling)]
-        pub unsafe fn imageScaling(&self) -> NSImageScaling;
+        pub unsafe fn imageScaling(&self) -> AppKit::NSImageScaling;
 
         #[method(setImageScaling:)]
-        pub unsafe fn setImageScaling(&self, imageScaling: NSImageScaling);
+        pub unsafe fn setImageScaling(&self, imageScaling: AppKit::NSImageScaling);
 
         #[method(imageHugsTitle)]
         pub unsafe fn imageHugsTitle(&self) -> bool;
@@ -225,10 +225,10 @@ extern_methods!(
         pub unsafe fn setContentTintColor(&self, contentTintColor: Option<&AppKit::NSColor>);
 
         #[method(state)]
-        pub unsafe fn state(&self) -> NSControlStateValue;
+        pub unsafe fn state(&self) -> AppKit::NSControlStateValue;
 
         #[method(setState:)]
-        pub unsafe fn setState(&self, state: NSControlStateValue);
+        pub unsafe fn setState(&self, state: AppKit::NSControlStateValue);
 
         #[method(allowsMixedState)]
         pub unsafe fn allowsMixedState(&self) -> bool;
@@ -251,12 +251,12 @@ extern_methods!(
         pub unsafe fn setKeyEquivalent(&self, keyEquivalent: &Foundation::NSString);
 
         #[method(keyEquivalentModifierMask)]
-        pub unsafe fn keyEquivalentModifierMask(&self) -> NSEventModifierFlags;
+        pub unsafe fn keyEquivalentModifierMask(&self) -> AppKit::NSEventModifierFlags;
 
         #[method(setKeyEquivalentModifierMask:)]
         pub unsafe fn setKeyEquivalentModifierMask(
             &self,
-            keyEquivalentModifierMask: NSEventModifierFlags,
+            keyEquivalentModifierMask: AppKit::NSEventModifierFlags,
         );
 
         #[cfg(feature = "AppKit_NSEvent")]
@@ -281,7 +281,7 @@ extern_methods!(
         pub unsafe fn minimumSizeWithPrioritizedCompressionOptions(
             &self,
             prioritizedOptions: &Foundation::NSArray<AppKit::NSUserInterfaceCompressionOptions>,
-        ) -> NSSize;
+        ) -> Foundation::NSSize;
 
         #[cfg(feature = "AppKit_NSUserInterfaceCompressionOptions")]
         #[method_id(@__retain_semantics Other activeCompressionOptions)]
@@ -311,7 +311,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frameRect: Foundation::NSRect,
         ) -> Id<Self, Shared>;
     }
 );

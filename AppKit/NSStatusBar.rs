@@ -5,9 +5,9 @@ use crate::AppKit;
 use crate::CoreData;
 use crate::Foundation;
 
-extern_static!(NSVariableStatusItemLength: CGFloat = -1.0);
+extern_static!(NSVariableStatusItemLength: CoreGraphics::CGFloat = -1.0);
 
-extern_static!(NSSquareStatusItemLength: CGFloat = -2.0);
+extern_static!(NSSquareStatusItemLength: CoreGraphics::CGFloat = -2.0);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -28,7 +28,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other statusItemWithLength:)]
         pub unsafe fn statusItemWithLength(
             &self,
-            length: CGFloat,
+            length: CoreGraphics::CGFloat,
         ) -> Id<AppKit::NSStatusItem, Shared>;
 
         #[cfg(feature = "AppKit_NSStatusItem")]
@@ -39,6 +39,6 @@ extern_methods!(
         pub unsafe fn isVertical(&self) -> bool;
 
         #[method(thickness)]
-        pub unsafe fn thickness(&self) -> CGFloat;
+        pub unsafe fn thickness(&self) -> CoreGraphics::CGFloat;
     }
 );

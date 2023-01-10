@@ -52,7 +52,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other PDFOperationWithView:insideRect:toData:printInfo:)]
         pub unsafe fn PDFOperationWithView_insideRect_toData_printInfo(
             view: &AppKit::NSView,
-            rect: NSRect,
+            rect: Foundation::NSRect,
             data: &Foundation::NSMutableData,
             printInfo: &AppKit::NSPrintInfo,
         ) -> Id<AppKit::NSPrintOperation, Shared>;
@@ -65,7 +65,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other PDFOperationWithView:insideRect:toPath:printInfo:)]
         pub unsafe fn PDFOperationWithView_insideRect_toPath_printInfo(
             view: &AppKit::NSView,
-            rect: NSRect,
+            rect: Foundation::NSRect,
             path: &Foundation::NSString,
             printInfo: &AppKit::NSPrintInfo,
         ) -> Id<AppKit::NSPrintOperation, Shared>;
@@ -78,7 +78,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other EPSOperationWithView:insideRect:toData:printInfo:)]
         pub unsafe fn EPSOperationWithView_insideRect_toData_printInfo(
             view: &AppKit::NSView,
-            rect: NSRect,
+            rect: Foundation::NSRect,
             data: &Foundation::NSMutableData,
             printInfo: &AppKit::NSPrintInfo,
         ) -> Id<AppKit::NSPrintOperation, Shared>;
@@ -91,7 +91,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other EPSOperationWithView:insideRect:toPath:printInfo:)]
         pub unsafe fn EPSOperationWithView_insideRect_toPath_printInfo(
             view: &AppKit::NSView,
-            rect: NSRect,
+            rect: Foundation::NSRect,
             path: &Foundation::NSString,
             printInfo: &AppKit::NSPrintInfo,
         ) -> Id<AppKit::NSPrintOperation, Shared>;
@@ -106,7 +106,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other PDFOperationWithView:insideRect:toData:)]
         pub unsafe fn PDFOperationWithView_insideRect_toData(
             view: &AppKit::NSView,
-            rect: NSRect,
+            rect: Foundation::NSRect,
             data: &Foundation::NSMutableData,
         ) -> Id<AppKit::NSPrintOperation, Shared>;
 
@@ -114,7 +114,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other EPSOperationWithView:insideRect:toData:)]
         pub unsafe fn EPSOperationWithView_insideRect_toData(
             view: &AppKit::NSView,
-            rect: NSRect,
+            rect: Foundation::NSRect,
             data: Option<&Foundation::NSMutableData>,
         ) -> Id<AppKit::NSPrintOperation, Shared>;
 
@@ -128,7 +128,7 @@ extern_methods!(
         pub unsafe fn isCopyingOperation(&self) -> bool;
 
         #[method(preferredRenderingQuality)]
-        pub unsafe fn preferredRenderingQuality(&self) -> NSPrintRenderingQuality;
+        pub unsafe fn preferredRenderingQuality(&self) -> AppKit::NSPrintRenderingQuality;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other jobTitle)]
@@ -173,10 +173,10 @@ extern_methods!(
         pub unsafe fn setCanSpawnSeparateThread(&self, canSpawnSeparateThread: bool);
 
         #[method(pageOrder)]
-        pub unsafe fn pageOrder(&self) -> NSPrintingPageOrder;
+        pub unsafe fn pageOrder(&self) -> AppKit::NSPrintingPageOrder;
 
         #[method(setPageOrder:)]
-        pub unsafe fn setPageOrder(&self, pageOrder: NSPrintingPageOrder);
+        pub unsafe fn setPageOrder(&self, pageOrder: AppKit::NSPrintingPageOrder);
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[method(runOperationModalForWindow:delegate:didRunSelector:contextInfo:)]
@@ -208,7 +208,7 @@ extern_methods!(
         pub unsafe fn context(&self) -> Option<Id<AppKit::NSGraphicsContext, Shared>>;
 
         #[method(pageRange)]
-        pub unsafe fn pageRange(&self) -> NSRange;
+        pub unsafe fn pageRange(&self) -> Foundation::NSRange;
 
         #[method(currentPage)]
         pub unsafe fn currentPage(&self) -> NSInteger;

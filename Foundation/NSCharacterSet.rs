@@ -69,7 +69,7 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other characterSetWithRange:)]
         pub unsafe fn characterSetWithRange(
-            aRange: NSRange,
+            aRange: Foundation::NSRange,
         ) -> Id<Foundation::NSCharacterSet, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -98,7 +98,7 @@ extern_methods!(
         ) -> Id<Self, Shared>;
 
         #[method(characterIsMember:)]
-        pub unsafe fn characterIsMember(&self, aCharacter: unichar) -> bool;
+        pub unsafe fn characterIsMember(&self, aCharacter: Foundation::unichar) -> bool;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other bitmapRepresentation)]
@@ -132,10 +132,10 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSMutableCharacterSet")]
     unsafe impl NSMutableCharacterSet {
         #[method(addCharactersInRange:)]
-        pub unsafe fn addCharactersInRange(&self, aRange: NSRange);
+        pub unsafe fn addCharactersInRange(&self, aRange: Foundation::NSRange);
 
         #[method(removeCharactersInRange:)]
-        pub unsafe fn removeCharactersInRange(&self, aRange: NSRange);
+        pub unsafe fn removeCharactersInRange(&self, aRange: Foundation::NSRange);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(addCharactersInString:)]
@@ -205,7 +205,7 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other characterSetWithRange:)]
         pub unsafe fn characterSetWithRange(
-            aRange: NSRange,
+            aRange: Foundation::NSRange,
         ) -> Id<Foundation::NSMutableCharacterSet, Owned>;
 
         #[cfg(feature = "Foundation_NSString")]

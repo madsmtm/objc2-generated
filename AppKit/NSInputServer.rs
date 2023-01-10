@@ -25,7 +25,7 @@ extern_protocol!(
         #[method(markedTextSelectionChanged:client:)]
         pub unsafe fn markedTextSelectionChanged_client(
             &self,
-            newSel: NSRange,
+            newSel: Foundation::NSRange,
             sender: Option<&Object>,
         );
 
@@ -80,7 +80,7 @@ extern_protocol!(
         pub unsafe fn mouseDownOnCharacterIndex_atCoordinate_withModifier_client(
             &self,
             index: NSUInteger,
-            point: NSPoint,
+            point: Foundation::NSPoint,
             flags: NSUInteger,
             sender: Option<&Object>,
         ) -> bool;
@@ -89,7 +89,7 @@ extern_protocol!(
         pub unsafe fn mouseDraggedOnCharacterIndex_atCoordinate_withModifier_client(
             &self,
             index: NSUInteger,
-            point: NSPoint,
+            point: Foundation::NSPoint,
             flags: NSUInteger,
             sender: Option<&Object>,
         ) -> bool;
@@ -98,7 +98,7 @@ extern_protocol!(
         pub unsafe fn mouseUpOnCharacterIndex_atCoordinate_withModifier_client(
             &self,
             index: NSUInteger,
-            point: NSPoint,
+            point: Foundation::NSPoint,
             flags: NSUInteger,
             sender: Option<&Object>,
         );

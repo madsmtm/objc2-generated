@@ -52,7 +52,7 @@ typed_extensible_enum!(
 );
 
 typed_extensible_enum!(
-    pub type NSFontWeight = CGFloat;
+    pub type NSFontWeight = CoreGraphics::CGFloat;
 );
 
 typed_enum!(
@@ -84,14 +84,14 @@ extern_methods!(
         pub unsafe fn postscriptName(&self) -> Option<Id<Foundation::NSString, Shared>>;
 
         #[method(pointSize)]
-        pub unsafe fn pointSize(&self) -> CGFloat;
+        pub unsafe fn pointSize(&self) -> CoreGraphics::CGFloat;
 
         #[cfg(feature = "Foundation_NSAffineTransform")]
         #[method_id(@__retain_semantics Other matrix)]
         pub unsafe fn matrix(&self) -> Option<Id<Foundation::NSAffineTransform, Shared>>;
 
         #[method(symbolicTraits)]
-        pub unsafe fn symbolicTraits(&self) -> NSFontDescriptorSymbolicTraits;
+        pub unsafe fn symbolicTraits(&self) -> AppKit::NSFontDescriptorSymbolicTraits;
 
         #[method(requiresFontAssetRequest)]
         pub unsafe fn requiresFontAssetRequest(&self) -> bool;
@@ -120,7 +120,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other fontDescriptorWithName:size:)]
         pub unsafe fn fontDescriptorWithName_size(
             fontName: &Foundation::NSString,
-            size: CGFloat,
+            size: CoreGraphics::CGFloat,
         ) -> Id<AppKit::NSFontDescriptor, Shared>;
 
         #[cfg(all(
@@ -166,13 +166,13 @@ extern_methods!(
         #[method_id(@__retain_semantics Other fontDescriptorWithSymbolicTraits:)]
         pub unsafe fn fontDescriptorWithSymbolicTraits(
             &self,
-            symbolicTraits: NSFontDescriptorSymbolicTraits,
+            symbolicTraits: AppKit::NSFontDescriptorSymbolicTraits,
         ) -> Id<AppKit::NSFontDescriptor, Shared>;
 
         #[method_id(@__retain_semantics Other fontDescriptorWithSize:)]
         pub unsafe fn fontDescriptorWithSize(
             &self,
-            newPointSize: CGFloat,
+            newPointSize: CoreGraphics::CGFloat,
         ) -> Id<AppKit::NSFontDescriptor, Shared>;
 
         #[cfg(feature = "Foundation_NSAffineTransform")]
@@ -250,23 +250,23 @@ extern_static!(NSFontFeatureTypeIdentifierKey: &'static AppKit::NSFontDescriptor
 
 extern_static!(NSFontFeatureSelectorIdentifierKey: &'static AppKit::NSFontDescriptorFeatureKey);
 
-extern_static!(NSFontWeightUltraLight: NSFontWeight);
+extern_static!(NSFontWeightUltraLight: AppKit::NSFontWeight);
 
-extern_static!(NSFontWeightThin: NSFontWeight);
+extern_static!(NSFontWeightThin: AppKit::NSFontWeight);
 
-extern_static!(NSFontWeightLight: NSFontWeight);
+extern_static!(NSFontWeightLight: AppKit::NSFontWeight);
 
-extern_static!(NSFontWeightRegular: NSFontWeight);
+extern_static!(NSFontWeightRegular: AppKit::NSFontWeight);
 
-extern_static!(NSFontWeightMedium: NSFontWeight);
+extern_static!(NSFontWeightMedium: AppKit::NSFontWeight);
 
-extern_static!(NSFontWeightSemibold: NSFontWeight);
+extern_static!(NSFontWeightSemibold: AppKit::NSFontWeight);
 
-extern_static!(NSFontWeightBold: NSFontWeight);
+extern_static!(NSFontWeightBold: AppKit::NSFontWeight);
 
-extern_static!(NSFontWeightHeavy: NSFontWeight);
+extern_static!(NSFontWeightHeavy: AppKit::NSFontWeight);
 
-extern_static!(NSFontWeightBlack: NSFontWeight);
+extern_static!(NSFontWeightBlack: AppKit::NSFontWeight);
 
 extern_static!(NSFontDescriptorSystemDesignDefault: &'static AppKit::NSFontDescriptorSystemDesign);
 

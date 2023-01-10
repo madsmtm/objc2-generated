@@ -29,7 +29,7 @@ extern_methods!(
         pub unsafe fn initWithProperty_collationType(
             this: Option<Allocated<Self>>,
             property: &CoreData::NSPropertyDescription,
-            collationType: NSFetchIndexElementType,
+            collationType: CoreData::NSFetchIndexElementType,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "CoreData_NSPropertyDescription")]
@@ -41,10 +41,10 @@ extern_methods!(
         pub unsafe fn propertyName(&self) -> Option<Id<Foundation::NSString, Shared>>;
 
         #[method(collationType)]
-        pub unsafe fn collationType(&self) -> NSFetchIndexElementType;
+        pub unsafe fn collationType(&self) -> CoreData::NSFetchIndexElementType;
 
         #[method(setCollationType:)]
-        pub unsafe fn setCollationType(&self, collationType: NSFetchIndexElementType);
+        pub unsafe fn setCollationType(&self, collationType: CoreData::NSFetchIndexElementType);
 
         #[method(isAscending)]
         pub unsafe fn isAscending(&self) -> bool;

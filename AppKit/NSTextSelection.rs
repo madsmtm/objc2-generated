@@ -41,8 +41,8 @@ extern_methods!(
         pub unsafe fn initWithRanges_affinity_granularity(
             this: Option<Allocated<Self>>,
             textRanges: &Foundation::NSArray<AppKit::NSTextRange>,
-            affinity: NSTextSelectionAffinity,
-            granularity: NSTextSelectionGranularity,
+            affinity: AppKit::NSTextSelectionAffinity,
+            granularity: AppKit::NSTextSelectionGranularity,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSCoder")]
@@ -57,15 +57,15 @@ extern_methods!(
         pub unsafe fn initWithRange_affinity_granularity(
             this: Option<Allocated<Self>>,
             range: &AppKit::NSTextRange,
-            affinity: NSTextSelectionAffinity,
-            granularity: NSTextSelectionGranularity,
+            affinity: AppKit::NSTextSelectionAffinity,
+            granularity: AppKit::NSTextSelectionGranularity,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Init initWithLocation:affinity:)]
         pub unsafe fn initWithLocation_affinity(
             this: Option<Allocated<Self>>,
             location: &AppKit::NSTextLocation,
-            affinity: NSTextSelectionAffinity,
+            affinity: AppKit::NSTextSelectionAffinity,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Init init)]
@@ -76,19 +76,19 @@ extern_methods!(
         pub unsafe fn textRanges(&self) -> Id<Foundation::NSArray<AppKit::NSTextRange>, Shared>;
 
         #[method(granularity)]
-        pub unsafe fn granularity(&self) -> NSTextSelectionGranularity;
+        pub unsafe fn granularity(&self) -> AppKit::NSTextSelectionGranularity;
 
         #[method(affinity)]
-        pub unsafe fn affinity(&self) -> NSTextSelectionAffinity;
+        pub unsafe fn affinity(&self) -> AppKit::NSTextSelectionAffinity;
 
         #[method(isTransient)]
         pub unsafe fn isTransient(&self) -> bool;
 
         #[method(anchorPositionOffset)]
-        pub unsafe fn anchorPositionOffset(&self) -> CGFloat;
+        pub unsafe fn anchorPositionOffset(&self) -> CoreGraphics::CGFloat;
 
         #[method(setAnchorPositionOffset:)]
-        pub unsafe fn setAnchorPositionOffset(&self, anchorPositionOffset: CGFloat);
+        pub unsafe fn setAnchorPositionOffset(&self, anchorPositionOffset: CoreGraphics::CGFloat);
 
         #[method(isLogical)]
         pub unsafe fn isLogical(&self) -> bool;

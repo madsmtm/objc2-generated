@@ -116,7 +116,7 @@ extern_methods!(
         pub unsafe fn getObjects_range(
             &self,
             objects: NonNull<NonNull<ObjectType>>,
-            range: NSRange,
+            range: Foundation::NSRange,
         );
 
         #[method(indexOfObject:)]
@@ -126,7 +126,7 @@ extern_methods!(
         pub unsafe fn indexOfObject_inRange(
             &self,
             anObject: &ObjectType,
-            range: NSRange,
+            range: Foundation::NSRange,
         ) -> NSUInteger;
 
         #[method(indexOfObjectIdenticalTo:)]
@@ -136,7 +136,7 @@ extern_methods!(
         pub unsafe fn indexOfObjectIdenticalTo_inRange(
             &self,
             anObject: &ObjectType,
-            range: NSRange,
+            range: Foundation::NSRange,
         ) -> NSUInteger;
 
         #[method(isEqualToArray:)]
@@ -195,7 +195,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other subarrayWithRange:)]
         pub unsafe fn subarrayWithRange(
             &self,
-            range: NSRange,
+            range: Foundation::NSRange,
         ) -> Id<Foundation::NSArray<ObjectType>, Shared>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
@@ -237,7 +237,7 @@ extern_methods!(
         #[method(enumerateObjectsWithOptions:usingBlock:)]
         pub unsafe fn enumerateObjectsWithOptions_usingBlock(
             &self,
-            opts: NSEnumerationOptions,
+            opts: Foundation::NSEnumerationOptions,
             block: &Block<(NonNull<ObjectType>, NSUInteger, NonNull<Bool>), ()>,
         );
 
@@ -246,7 +246,7 @@ extern_methods!(
         pub unsafe fn enumerateObjectsAtIndexes_options_usingBlock(
             &self,
             s: &Foundation::NSIndexSet,
-            opts: NSEnumerationOptions,
+            opts: Foundation::NSEnumerationOptions,
             block: &Block<(NonNull<ObjectType>, NSUInteger, NonNull<Bool>), ()>,
         );
 
@@ -259,7 +259,7 @@ extern_methods!(
         #[method(indexOfObjectWithOptions:passingTest:)]
         pub unsafe fn indexOfObjectWithOptions_passingTest(
             &self,
-            opts: NSEnumerationOptions,
+            opts: Foundation::NSEnumerationOptions,
             predicate: &Block<(NonNull<ObjectType>, NSUInteger, NonNull<Bool>), Bool>,
         ) -> NSUInteger;
 
@@ -268,7 +268,7 @@ extern_methods!(
         pub unsafe fn indexOfObjectAtIndexes_options_passingTest(
             &self,
             s: &Foundation::NSIndexSet,
-            opts: NSEnumerationOptions,
+            opts: Foundation::NSEnumerationOptions,
             predicate: &Block<(NonNull<ObjectType>, NSUInteger, NonNull<Bool>), Bool>,
         ) -> NSUInteger;
 
@@ -283,7 +283,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other indexesOfObjectsWithOptions:passingTest:)]
         pub unsafe fn indexesOfObjectsWithOptions_passingTest(
             &self,
-            opts: NSEnumerationOptions,
+            opts: Foundation::NSEnumerationOptions,
             predicate: &Block<(NonNull<ObjectType>, NSUInteger, NonNull<Bool>), Bool>,
         ) -> Id<Foundation::NSIndexSet, Shared>;
 
@@ -292,30 +292,30 @@ extern_methods!(
         pub unsafe fn indexesOfObjectsAtIndexes_options_passingTest(
             &self,
             s: &Foundation::NSIndexSet,
-            opts: NSEnumerationOptions,
+            opts: Foundation::NSEnumerationOptions,
             predicate: &Block<(NonNull<ObjectType>, NSUInteger, NonNull<Bool>), Bool>,
         ) -> Id<Foundation::NSIndexSet, Shared>;
 
         #[method_id(@__retain_semantics Other sortedArrayUsingComparator:)]
         pub unsafe fn sortedArrayUsingComparator(
             &self,
-            cmptr: NSComparator,
+            cmptr: Foundation::NSComparator,
         ) -> Id<Foundation::NSArray<ObjectType>, Shared>;
 
         #[method_id(@__retain_semantics Other sortedArrayWithOptions:usingComparator:)]
         pub unsafe fn sortedArrayWithOptions_usingComparator(
             &self,
-            opts: NSSortOptions,
-            cmptr: NSComparator,
+            opts: Foundation::NSSortOptions,
+            cmptr: Foundation::NSComparator,
         ) -> Id<Foundation::NSArray<ObjectType>, Shared>;
 
         #[method(indexOfObject:inSortedRange:options:usingComparator:)]
         pub unsafe fn indexOfObject_inSortedRange_options_usingComparator(
             &self,
             obj: &ObjectType,
-            r: NSRange,
-            opts: NSBinarySearchingOptions,
-            cmp: NSComparator,
+            r: Foundation::NSRange,
+            opts: Foundation::NSBinarySearchingOptions,
+            cmp: Foundation::NSComparator,
         ) -> NSUInteger;
     }
 );
@@ -373,7 +373,7 @@ extern_methods!(
         pub unsafe fn differenceFromArray_withOptions_usingEquivalenceTest(
             &self,
             other: &Foundation::NSArray<ObjectType>,
-            options: NSOrderedCollectionDifferenceCalculationOptions,
+            options: Foundation::NSOrderedCollectionDifferenceCalculationOptions,
             block: &Block<(NonNull<ObjectType>, NonNull<ObjectType>), Bool>,
         ) -> Id<Foundation::NSOrderedCollectionDifference<ObjectType>, Shared>;
 
@@ -382,7 +382,7 @@ extern_methods!(
         pub unsafe fn differenceFromArray_withOptions(
             &self,
             other: &Foundation::NSArray<ObjectType>,
-            options: NSOrderedCollectionDifferenceCalculationOptions,
+            options: Foundation::NSOrderedCollectionDifferenceCalculationOptions,
         ) -> Id<Foundation::NSOrderedCollectionDifference<ObjectType>, Shared>;
 
         #[cfg(feature = "Foundation_NSOrderedCollectionDifference")]
@@ -518,13 +518,21 @@ extern_methods!(
         pub fn removeAllObjects(&mut self);
 
         #[method(removeObject:inRange:)]
-        pub unsafe fn removeObject_inRange(&self, anObject: &ObjectType, range: NSRange);
+        pub unsafe fn removeObject_inRange(
+            &self,
+            anObject: &ObjectType,
+            range: Foundation::NSRange,
+        );
 
         #[method(removeObject:)]
         pub unsafe fn removeObject(&self, anObject: &ObjectType);
 
         #[method(removeObjectIdenticalTo:inRange:)]
-        pub unsafe fn removeObjectIdenticalTo_inRange(&self, anObject: &ObjectType, range: NSRange);
+        pub unsafe fn removeObjectIdenticalTo_inRange(
+            &self,
+            anObject: &ObjectType,
+            range: Foundation::NSRange,
+        );
 
         #[method(removeObjectIdenticalTo:)]
         pub unsafe fn removeObjectIdenticalTo(&self, anObject: &ObjectType);
@@ -541,22 +549,22 @@ extern_methods!(
         pub unsafe fn removeObjectsInArray(&self, otherArray: &Foundation::NSArray<ObjectType>);
 
         #[method(removeObjectsInRange:)]
-        pub unsafe fn removeObjectsInRange(&self, range: NSRange);
+        pub unsafe fn removeObjectsInRange(&self, range: Foundation::NSRange);
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(replaceObjectsInRange:withObjectsFromArray:range:)]
         pub unsafe fn replaceObjectsInRange_withObjectsFromArray_range(
             &self,
-            range: NSRange,
+            range: Foundation::NSRange,
             otherArray: &Foundation::NSArray<ObjectType>,
-            otherRange: NSRange,
+            otherRange: Foundation::NSRange,
         );
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(replaceObjectsInRange:withObjectsFromArray:)]
         pub unsafe fn replaceObjectsInRange_withObjectsFromArray(
             &self,
-            range: NSRange,
+            range: Foundation::NSRange,
             otherArray: &Foundation::NSArray<ObjectType>,
         );
 
@@ -602,13 +610,13 @@ extern_methods!(
         pub unsafe fn setObject_atIndexedSubscript(&self, obj: &ObjectType, idx: NSUInteger);
 
         #[method(sortUsingComparator:)]
-        pub unsafe fn sortUsingComparator(&self, cmptr: NSComparator);
+        pub unsafe fn sortUsingComparator(&self, cmptr: Foundation::NSComparator);
 
         #[method(sortWithOptions:usingComparator:)]
         pub unsafe fn sortWithOptions_usingComparator(
             &self,
-            opts: NSSortOptions,
-            cmptr: NSComparator,
+            opts: Foundation::NSSortOptions,
+            cmptr: Foundation::NSComparator,
         );
     }
 );

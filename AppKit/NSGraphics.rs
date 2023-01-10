@@ -40,71 +40,106 @@ ns_enum!(
     }
 );
 
-extern_static!(NSCompositeClear: NSCompositingOperation = NSCompositingOperationClear);
+extern_static!(NSCompositeClear: AppKit::NSCompositingOperation = NSCompositingOperationClear);
 
-extern_static!(NSCompositeCopy: NSCompositingOperation = NSCompositingOperationCopy);
-
-extern_static!(NSCompositeSourceOver: NSCompositingOperation = NSCompositingOperationSourceOver);
-
-extern_static!(NSCompositeSourceIn: NSCompositingOperation = NSCompositingOperationSourceIn);
-
-extern_static!(NSCompositeSourceOut: NSCompositingOperation = NSCompositingOperationSourceOut);
-
-extern_static!(NSCompositeSourceAtop: NSCompositingOperation = NSCompositingOperationSourceAtop);
+extern_static!(NSCompositeCopy: AppKit::NSCompositingOperation = NSCompositingOperationCopy);
 
 extern_static!(
-    NSCompositeDestinationOver: NSCompositingOperation = NSCompositingOperationDestinationOver
+    NSCompositeSourceOver: AppKit::NSCompositingOperation = NSCompositingOperationSourceOver
 );
 
 extern_static!(
-    NSCompositeDestinationIn: NSCompositingOperation = NSCompositingOperationDestinationIn
+    NSCompositeSourceIn: AppKit::NSCompositingOperation = NSCompositingOperationSourceIn
 );
 
 extern_static!(
-    NSCompositeDestinationOut: NSCompositingOperation = NSCompositingOperationDestinationOut
+    NSCompositeSourceOut: AppKit::NSCompositingOperation = NSCompositingOperationSourceOut
 );
 
 extern_static!(
-    NSCompositeDestinationAtop: NSCompositingOperation = NSCompositingOperationDestinationAtop
+    NSCompositeSourceAtop: AppKit::NSCompositingOperation = NSCompositingOperationSourceAtop
 );
 
-extern_static!(NSCompositeXOR: NSCompositingOperation = NSCompositingOperationXOR);
+extern_static!(
+    NSCompositeDestinationOver: AppKit::NSCompositingOperation =
+        NSCompositingOperationDestinationOver
+);
 
-extern_static!(NSCompositePlusDarker: NSCompositingOperation = NSCompositingOperationPlusDarker);
+extern_static!(
+    NSCompositeDestinationIn: AppKit::NSCompositingOperation = NSCompositingOperationDestinationIn
+);
 
-extern_static!(NSCompositeHighlight: NSCompositingOperation = NSCompositingOperationHighlight);
+extern_static!(
+    NSCompositeDestinationOut: AppKit::NSCompositingOperation =
+        NSCompositingOperationDestinationOut
+);
 
-extern_static!(NSCompositePlusLighter: NSCompositingOperation = NSCompositingOperationPlusLighter);
+extern_static!(
+    NSCompositeDestinationAtop: AppKit::NSCompositingOperation =
+        NSCompositingOperationDestinationAtop
+);
 
-extern_static!(NSCompositeMultiply: NSCompositingOperation = NSCompositingOperationMultiply);
+extern_static!(NSCompositeXOR: AppKit::NSCompositingOperation = NSCompositingOperationXOR);
 
-extern_static!(NSCompositeScreen: NSCompositingOperation = NSCompositingOperationScreen);
+extern_static!(
+    NSCompositePlusDarker: AppKit::NSCompositingOperation = NSCompositingOperationPlusDarker
+);
 
-extern_static!(NSCompositeOverlay: NSCompositingOperation = NSCompositingOperationOverlay);
+extern_static!(
+    NSCompositeHighlight: AppKit::NSCompositingOperation = NSCompositingOperationHighlight
+);
 
-extern_static!(NSCompositeDarken: NSCompositingOperation = NSCompositingOperationDarken);
+extern_static!(
+    NSCompositePlusLighter: AppKit::NSCompositingOperation = NSCompositingOperationPlusLighter
+);
 
-extern_static!(NSCompositeLighten: NSCompositingOperation = NSCompositingOperationLighten);
+extern_static!(
+    NSCompositeMultiply: AppKit::NSCompositingOperation = NSCompositingOperationMultiply
+);
 
-extern_static!(NSCompositeColorDodge: NSCompositingOperation = NSCompositingOperationColorDodge);
+extern_static!(NSCompositeScreen: AppKit::NSCompositingOperation = NSCompositingOperationScreen);
 
-extern_static!(NSCompositeColorBurn: NSCompositingOperation = NSCompositingOperationColorBurn);
+extern_static!(NSCompositeOverlay: AppKit::NSCompositingOperation = NSCompositingOperationOverlay);
 
-extern_static!(NSCompositeSoftLight: NSCompositingOperation = NSCompositingOperationSoftLight);
+extern_static!(NSCompositeDarken: AppKit::NSCompositingOperation = NSCompositingOperationDarken);
 
-extern_static!(NSCompositeHardLight: NSCompositingOperation = NSCompositingOperationHardLight);
+extern_static!(NSCompositeLighten: AppKit::NSCompositingOperation = NSCompositingOperationLighten);
 
-extern_static!(NSCompositeDifference: NSCompositingOperation = NSCompositingOperationDifference);
+extern_static!(
+    NSCompositeColorDodge: AppKit::NSCompositingOperation = NSCompositingOperationColorDodge
+);
 
-extern_static!(NSCompositeExclusion: NSCompositingOperation = NSCompositingOperationExclusion);
+extern_static!(
+    NSCompositeColorBurn: AppKit::NSCompositingOperation = NSCompositingOperationColorBurn
+);
 
-extern_static!(NSCompositeHue: NSCompositingOperation = NSCompositingOperationHue);
+extern_static!(
+    NSCompositeSoftLight: AppKit::NSCompositingOperation = NSCompositingOperationSoftLight
+);
 
-extern_static!(NSCompositeSaturation: NSCompositingOperation = NSCompositingOperationSaturation);
+extern_static!(
+    NSCompositeHardLight: AppKit::NSCompositingOperation = NSCompositingOperationHardLight
+);
 
-extern_static!(NSCompositeColor: NSCompositingOperation = NSCompositingOperationColor);
+extern_static!(
+    NSCompositeDifference: AppKit::NSCompositingOperation = NSCompositingOperationDifference
+);
 
-extern_static!(NSCompositeLuminosity: NSCompositingOperation = NSCompositingOperationLuminosity);
+extern_static!(
+    NSCompositeExclusion: AppKit::NSCompositingOperation = NSCompositingOperationExclusion
+);
+
+extern_static!(NSCompositeHue: AppKit::NSCompositingOperation = NSCompositingOperationHue);
+
+extern_static!(
+    NSCompositeSaturation: AppKit::NSCompositingOperation = NSCompositingOperationSaturation
+);
+
+extern_static!(NSCompositeColor: AppKit::NSCompositingOperation = NSCompositingOperationColor);
+
+extern_static!(
+    NSCompositeLuminosity: AppKit::NSCompositingOperation = NSCompositingOperationLuminosity
+);
 
 ns_enum!(
     #[underlying(NSUInteger)]
@@ -193,23 +228,25 @@ extern_fn!(
         bpp: NSInteger,
         planar: Bool,
         exactMatch: *mut Bool,
-    ) -> NSWindowDepth;
+    ) -> AppKit::NSWindowDepth;
 );
 
 extern_fn!(
-    pub unsafe fn NSPlanarFromDepth(depth: NSWindowDepth) -> Bool;
+    pub unsafe fn NSPlanarFromDepth(depth: AppKit::NSWindowDepth) -> Bool;
 );
 
 extern_fn!(
-    pub unsafe fn NSColorSpaceFromDepth(depth: NSWindowDepth) -> *mut AppKit::NSColorSpaceName;
+    pub unsafe fn NSColorSpaceFromDepth(
+        depth: AppKit::NSWindowDepth,
+    ) -> *mut AppKit::NSColorSpaceName;
 );
 
 extern_fn!(
-    pub unsafe fn NSBitsPerSampleFromDepth(depth: NSWindowDepth) -> NSInteger;
+    pub unsafe fn NSBitsPerSampleFromDepth(depth: AppKit::NSWindowDepth) -> NSInteger;
 );
 
 extern_fn!(
-    pub unsafe fn NSBitsPerPixelFromDepth(depth: NSWindowDepth) -> NSInteger;
+    pub unsafe fn NSBitsPerPixelFromDepth(depth: AppKit::NSWindowDepth) -> NSInteger;
 );
 
 extern_fn!(
@@ -218,16 +255,16 @@ extern_fn!(
 );
 
 extern_fn!(
-    pub unsafe fn NSAvailableWindowDepths() -> NonNull<NSWindowDepth>;
+    pub unsafe fn NSAvailableWindowDepths() -> NonNull<AppKit::NSWindowDepth>;
 );
 
-extern_static!(NSWhite: CGFloat);
+extern_static!(NSWhite: CoreGraphics::CGFloat);
 
-extern_static!(NSLightGray: CGFloat);
+extern_static!(NSLightGray: CoreGraphics::CGFloat);
 
-extern_static!(NSDarkGray: CGFloat);
+extern_static!(NSDarkGray: CoreGraphics::CGFloat);
 
-extern_static!(NSBlack: CGFloat);
+extern_static!(NSBlack: CoreGraphics::CGFloat);
 
 ns_enum!(
     #[underlying(NSInteger)]
@@ -254,110 +291,113 @@ extern_static!(NSDeviceIsPrinter: &'static AppKit::NSDeviceDescriptionKey);
 extern_static!(NSDeviceSize: &'static AppKit::NSDeviceDescriptionKey);
 
 extern_fn!(
-    pub unsafe fn NSRectFill(rect: NSRect);
+    pub unsafe fn NSRectFill(rect: Foundation::NSRect);
 );
 
 extern_fn!(
-    pub unsafe fn NSRectFillList(rects: NonNull<NSRect>, count: NSInteger);
+    pub unsafe fn NSRectFillList(rects: NonNull<Foundation::NSRect>, count: NSInteger);
 );
 
 extern_fn!(
     pub unsafe fn NSRectFillListWithGrays(
-        rects: NonNull<NSRect>,
-        grays: NonNull<CGFloat>,
+        rects: NonNull<Foundation::NSRect>,
+        grays: NonNull<CoreGraphics::CGFloat>,
         num: NSInteger,
     );
 );
 
 extern_fn!(
     pub unsafe fn NSRectFillListWithColors(
-        rects: NonNull<NSRect>,
+        rects: NonNull<Foundation::NSRect>,
         colors: NonNull<NonNull<AppKit::NSColor>>,
         num: NSInteger,
     );
 );
 
 extern_fn!(
-    pub unsafe fn NSRectFillUsingOperation(rect: NSRect, op: NSCompositingOperation);
+    pub unsafe fn NSRectFillUsingOperation(
+        rect: Foundation::NSRect,
+        op: AppKit::NSCompositingOperation,
+    );
 );
 
 extern_fn!(
     pub unsafe fn NSRectFillListUsingOperation(
-        rects: NonNull<NSRect>,
+        rects: NonNull<Foundation::NSRect>,
         count: NSInteger,
-        op: NSCompositingOperation,
+        op: AppKit::NSCompositingOperation,
     );
 );
 
 extern_fn!(
     pub unsafe fn NSRectFillListWithColorsUsingOperation(
-        rects: NonNull<NSRect>,
+        rects: NonNull<Foundation::NSRect>,
         colors: NonNull<NonNull<AppKit::NSColor>>,
         num: NSInteger,
-        op: NSCompositingOperation,
+        op: AppKit::NSCompositingOperation,
     );
 );
 
 extern_fn!(
-    pub unsafe fn NSFrameRect(rect: NSRect);
+    pub unsafe fn NSFrameRect(rect: Foundation::NSRect);
 );
 
 extern_fn!(
-    pub unsafe fn NSFrameRectWithWidth(rect: NSRect, frameWidth: CGFloat);
+    pub unsafe fn NSFrameRectWithWidth(rect: Foundation::NSRect, frameWidth: CoreGraphics::CGFloat);
 );
 
 extern_fn!(
     pub unsafe fn NSFrameRectWithWidthUsingOperation(
-        rect: NSRect,
-        frameWidth: CGFloat,
-        op: NSCompositingOperation,
+        rect: Foundation::NSRect,
+        frameWidth: CoreGraphics::CGFloat,
+        op: AppKit::NSCompositingOperation,
     );
 );
 
 extern_fn!(
-    pub unsafe fn NSRectClip(rect: NSRect);
+    pub unsafe fn NSRectClip(rect: Foundation::NSRect);
 );
 
 extern_fn!(
-    pub unsafe fn NSRectClipList(rects: NonNull<NSRect>, count: NSInteger);
+    pub unsafe fn NSRectClipList(rects: NonNull<Foundation::NSRect>, count: NSInteger);
 );
 
 extern_fn!(
     pub unsafe fn NSDrawTiledRects(
-        boundsRect: NSRect,
-        clipRect: NSRect,
-        sides: NonNull<NSRectEdge>,
-        grays: NonNull<CGFloat>,
+        boundsRect: Foundation::NSRect,
+        clipRect: Foundation::NSRect,
+        sides: NonNull<Foundation::NSRectEdge>,
+        grays: NonNull<CoreGraphics::CGFloat>,
         count: NSInteger,
-    ) -> NSRect;
+    ) -> Foundation::NSRect;
 );
 
 extern_fn!(
-    pub unsafe fn NSDrawGrayBezel(rect: NSRect, clipRect: NSRect);
+    pub unsafe fn NSDrawGrayBezel(rect: Foundation::NSRect, clipRect: Foundation::NSRect);
 );
 
 extern_fn!(
-    pub unsafe fn NSDrawGroove(rect: NSRect, clipRect: NSRect);
+    pub unsafe fn NSDrawGroove(rect: Foundation::NSRect, clipRect: Foundation::NSRect);
 );
 
 extern_fn!(
-    pub unsafe fn NSDrawWhiteBezel(rect: NSRect, clipRect: NSRect);
+    pub unsafe fn NSDrawWhiteBezel(rect: Foundation::NSRect, clipRect: Foundation::NSRect);
 );
 
 extern_fn!(
-    pub unsafe fn NSDrawButton(rect: NSRect, clipRect: NSRect);
+    pub unsafe fn NSDrawButton(rect: Foundation::NSRect, clipRect: Foundation::NSRect);
 );
 
 extern_fn!(
-    pub unsafe fn NSEraseRect(rect: NSRect);
+    pub unsafe fn NSEraseRect(rect: Foundation::NSRect);
 );
 
 extern_fn!(
-    pub unsafe fn NSReadPixel(passedPoint: NSPoint) -> *mut AppKit::NSColor;
+    pub unsafe fn NSReadPixel(passedPoint: Foundation::NSPoint) -> *mut AppKit::NSColor;
 );
 
 extern_fn!(
-    pub unsafe fn NSHighlightRect(rect: NSRect);
+    pub unsafe fn NSHighlightRect(rect: Foundation::NSRect);
 );
 
 extern_fn!(
@@ -375,32 +415,32 @@ extern_fn!(
 
 extern_fn!(
     pub unsafe fn NSDrawColorTiledRects(
-        boundsRect: NSRect,
-        clipRect: NSRect,
-        sides: NonNull<NSRectEdge>,
+        boundsRect: Foundation::NSRect,
+        clipRect: Foundation::NSRect,
+        sides: NonNull<Foundation::NSRectEdge>,
         colors: NonNull<NonNull<AppKit::NSColor>>,
         count: NSInteger,
-    ) -> NSRect;
+    ) -> Foundation::NSRect;
 );
 
 extern_fn!(
-    pub unsafe fn NSDrawDarkBezel(rect: NSRect, clipRect: NSRect);
+    pub unsafe fn NSDrawDarkBezel(rect: Foundation::NSRect, clipRect: Foundation::NSRect);
 );
 
 extern_fn!(
-    pub unsafe fn NSDrawLightBezel(rect: NSRect, clipRect: NSRect);
+    pub unsafe fn NSDrawLightBezel(rect: Foundation::NSRect, clipRect: Foundation::NSRect);
 );
 
 extern_fn!(
-    pub unsafe fn NSDottedFrameRect(rect: NSRect);
+    pub unsafe fn NSDottedFrameRect(rect: Foundation::NSRect);
 );
 
 extern_fn!(
-    pub unsafe fn NSDrawWindowBackground(rect: NSRect);
+    pub unsafe fn NSDrawWindowBackground(rect: Foundation::NSRect);
 );
 
 extern_fn!(
-    pub unsafe fn NSSetFocusRingStyle(placement: NSFocusRingPlacement);
+    pub unsafe fn NSSetFocusRingStyle(placement: AppKit::NSFocusRingPlacement);
 );
 
 extern_fn!(
@@ -421,9 +461,9 @@ ns_enum!(
 
 extern_fn!(
     pub unsafe fn NSShowAnimationEffect(
-        animationEffect: NSAnimationEffect,
-        centerLocation: NSPoint,
-        size: NSSize,
+        animationEffect: AppKit::NSAnimationEffect,
+        centerLocation: Foundation::NSPoint,
+        size: Foundation::NSSize,
         animationDelegate: Option<&Object>,
         didEndSelector: Option<Sel>,
         contextInfo: *mut c_void,
@@ -451,5 +491,9 @@ extern_fn!(
 );
 
 extern_fn!(
-    pub unsafe fn NSCopyBits(srcGState: NSInteger, srcRect: NSRect, destPoint: NSPoint);
+    pub unsafe fn NSCopyBits(
+        srcGState: NSInteger,
+        srcRect: Foundation::NSRect,
+        destPoint: Foundation::NSPoint,
+    );
 );

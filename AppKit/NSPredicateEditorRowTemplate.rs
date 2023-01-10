@@ -53,7 +53,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             leftExpressions: &Foundation::NSArray<Foundation::NSExpression>,
             rightExpressions: &Foundation::NSArray<Foundation::NSExpression>,
-            modifier: NSComparisonPredicateModifier,
+            modifier: Foundation::NSComparisonPredicateModifier,
             operators: &Foundation::NSArray<Foundation::NSNumber>,
             options: NSUInteger,
         ) -> Id<Self, Shared>;
@@ -67,8 +67,8 @@ extern_methods!(
         pub unsafe fn initWithLeftExpressions_rightExpressionAttributeType_modifier_operators_options(
             this: Option<Allocated<Self>>,
             leftExpressions: &Foundation::NSArray<Foundation::NSExpression>,
-            attributeType: NSAttributeType,
-            modifier: NSComparisonPredicateModifier,
+            attributeType: CoreData::NSAttributeType,
+            modifier: Foundation::NSComparisonPredicateModifier,
             operators: &Foundation::NSArray<Foundation::NSNumber>,
             options: NSUInteger,
         ) -> Id<Self, Shared>;
@@ -93,10 +93,10 @@ extern_methods!(
         ) -> Option<Id<Foundation::NSArray<Foundation::NSExpression>, Shared>>;
 
         #[method(rightExpressionAttributeType)]
-        pub unsafe fn rightExpressionAttributeType(&self) -> NSAttributeType;
+        pub unsafe fn rightExpressionAttributeType(&self) -> CoreData::NSAttributeType;
 
         #[method(modifier)]
-        pub unsafe fn modifier(&self) -> NSComparisonPredicateModifier;
+        pub unsafe fn modifier(&self) -> Foundation::NSComparisonPredicateModifier;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method_id(@__retain_semantics Other operators)]

@@ -41,16 +41,16 @@ extern_methods!(
         pub unsafe fn setImageView(&self, imageView: Option<&AppKit::NSImageView>);
 
         #[method(backgroundStyle)]
-        pub unsafe fn backgroundStyle(&self) -> NSBackgroundStyle;
+        pub unsafe fn backgroundStyle(&self) -> AppKit::NSBackgroundStyle;
 
         #[method(setBackgroundStyle:)]
-        pub unsafe fn setBackgroundStyle(&self, backgroundStyle: NSBackgroundStyle);
+        pub unsafe fn setBackgroundStyle(&self, backgroundStyle: AppKit::NSBackgroundStyle);
 
         #[method(rowSizeStyle)]
-        pub unsafe fn rowSizeStyle(&self) -> NSTableViewRowSizeStyle;
+        pub unsafe fn rowSizeStyle(&self) -> AppKit::NSTableViewRowSizeStyle;
 
         #[method(setRowSizeStyle:)]
-        pub unsafe fn setRowSizeStyle(&self, rowSizeStyle: NSTableViewRowSizeStyle);
+        pub unsafe fn setRowSizeStyle(&self, rowSizeStyle: AppKit::NSTableViewRowSizeStyle);
 
         #[cfg(all(
             feature = "AppKit_NSDraggingImageComponent",
@@ -70,7 +70,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frameRect: Foundation::NSRect,
         ) -> Id<Self, Shared>;
     }
 );

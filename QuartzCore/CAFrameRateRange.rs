@@ -12,19 +12,19 @@ extern_struct!(
     }
 );
 
-extern_static!(CAFrameRateRangeDefault: CAFrameRateRange);
+extern_static!(CAFrameRateRangeDefault: CoreAnimation::CAFrameRateRange);
 
 extern_fn!(
     pub unsafe fn CAFrameRateRangeMake(
         minimum: c_float,
         maximum: c_float,
         preferred: c_float,
-    ) -> CAFrameRateRange;
+    ) -> CoreAnimation::CAFrameRateRange;
 );
 
 extern_fn!(
     pub unsafe fn CAFrameRateRangeIsEqualToRange(
-        range: CAFrameRateRange,
-        other: CAFrameRateRange,
+        range: CoreAnimation::CAFrameRateRange,
+        other: CoreAnimation::CAFrameRateRange,
     ) -> bool;
 );

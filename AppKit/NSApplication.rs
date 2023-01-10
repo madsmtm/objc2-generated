@@ -9,127 +9,127 @@ typed_extensible_enum!(
     pub type NSAppKitVersion = c_double;
 );
 
-extern_static!(NSAppKitVersionNumber: NSAppKitVersion);
+extern_static!(NSAppKitVersionNumber: AppKit::NSAppKitVersion);
 
-extern_static!(NSAppKitVersionNumber10_0: NSAppKitVersion = 577);
+extern_static!(NSAppKitVersionNumber10_0: AppKit::NSAppKitVersion = 577);
 
-extern_static!(NSAppKitVersionNumber10_1: NSAppKitVersion = 620);
+extern_static!(NSAppKitVersionNumber10_1: AppKit::NSAppKitVersion = 620);
 
-extern_static!(NSAppKitVersionNumber10_2: NSAppKitVersion = 663);
+extern_static!(NSAppKitVersionNumber10_2: AppKit::NSAppKitVersion = 663);
 
-extern_static!(NSAppKitVersionNumber10_2_3: NSAppKitVersion = 663.6);
+extern_static!(NSAppKitVersionNumber10_2_3: AppKit::NSAppKitVersion = 663.6);
 
-extern_static!(NSAppKitVersionNumber10_3: NSAppKitVersion = 743);
+extern_static!(NSAppKitVersionNumber10_3: AppKit::NSAppKitVersion = 743);
 
-extern_static!(NSAppKitVersionNumber10_3_2: NSAppKitVersion = 743.14);
+extern_static!(NSAppKitVersionNumber10_3_2: AppKit::NSAppKitVersion = 743.14);
 
-extern_static!(NSAppKitVersionNumber10_3_3: NSAppKitVersion = 743.2);
+extern_static!(NSAppKitVersionNumber10_3_3: AppKit::NSAppKitVersion = 743.2);
 
-extern_static!(NSAppKitVersionNumber10_3_5: NSAppKitVersion = 743.24);
+extern_static!(NSAppKitVersionNumber10_3_5: AppKit::NSAppKitVersion = 743.24);
 
-extern_static!(NSAppKitVersionNumber10_3_7: NSAppKitVersion = 743.33);
+extern_static!(NSAppKitVersionNumber10_3_7: AppKit::NSAppKitVersion = 743.33);
 
-extern_static!(NSAppKitVersionNumber10_3_9: NSAppKitVersion = 743.36);
+extern_static!(NSAppKitVersionNumber10_3_9: AppKit::NSAppKitVersion = 743.36);
 
-extern_static!(NSAppKitVersionNumber10_4: NSAppKitVersion = 824);
+extern_static!(NSAppKitVersionNumber10_4: AppKit::NSAppKitVersion = 824);
 
-extern_static!(NSAppKitVersionNumber10_4_1: NSAppKitVersion = 824.1);
+extern_static!(NSAppKitVersionNumber10_4_1: AppKit::NSAppKitVersion = 824.1);
 
-extern_static!(NSAppKitVersionNumber10_4_3: NSAppKitVersion = 824.23);
+extern_static!(NSAppKitVersionNumber10_4_3: AppKit::NSAppKitVersion = 824.23);
 
-extern_static!(NSAppKitVersionNumber10_4_4: NSAppKitVersion = 824.33);
+extern_static!(NSAppKitVersionNumber10_4_4: AppKit::NSAppKitVersion = 824.33);
 
-extern_static!(NSAppKitVersionNumber10_4_7: NSAppKitVersion = 824.41);
+extern_static!(NSAppKitVersionNumber10_4_7: AppKit::NSAppKitVersion = 824.41);
 
-extern_static!(NSAppKitVersionNumber10_5: NSAppKitVersion = 949);
+extern_static!(NSAppKitVersionNumber10_5: AppKit::NSAppKitVersion = 949);
 
-extern_static!(NSAppKitVersionNumber10_5_2: NSAppKitVersion = 949.27);
+extern_static!(NSAppKitVersionNumber10_5_2: AppKit::NSAppKitVersion = 949.27);
 
-extern_static!(NSAppKitVersionNumber10_5_3: NSAppKitVersion = 949.33);
+extern_static!(NSAppKitVersionNumber10_5_3: AppKit::NSAppKitVersion = 949.33);
 
-extern_static!(NSAppKitVersionNumber10_6: NSAppKitVersion = 1038);
+extern_static!(NSAppKitVersionNumber10_6: AppKit::NSAppKitVersion = 1038);
 
-extern_static!(NSAppKitVersionNumber10_7: NSAppKitVersion = 1138);
+extern_static!(NSAppKitVersionNumber10_7: AppKit::NSAppKitVersion = 1138);
 
-extern_static!(NSAppKitVersionNumber10_7_2: NSAppKitVersion = 1138.23);
+extern_static!(NSAppKitVersionNumber10_7_2: AppKit::NSAppKitVersion = 1138.23);
 
-extern_static!(NSAppKitVersionNumber10_7_3: NSAppKitVersion = 1138.32);
+extern_static!(NSAppKitVersionNumber10_7_3: AppKit::NSAppKitVersion = 1138.32);
 
-extern_static!(NSAppKitVersionNumber10_7_4: NSAppKitVersion = 1138.47);
+extern_static!(NSAppKitVersionNumber10_7_4: AppKit::NSAppKitVersion = 1138.47);
 
-extern_static!(NSAppKitVersionNumber10_8: NSAppKitVersion = 1187);
+extern_static!(NSAppKitVersionNumber10_8: AppKit::NSAppKitVersion = 1187);
 
-extern_static!(NSAppKitVersionNumber10_9: NSAppKitVersion = 1265);
+extern_static!(NSAppKitVersionNumber10_9: AppKit::NSAppKitVersion = 1265);
 
-extern_static!(NSAppKitVersionNumber10_10: NSAppKitVersion = 1343);
+extern_static!(NSAppKitVersionNumber10_10: AppKit::NSAppKitVersion = 1343);
 
-extern_static!(NSAppKitVersionNumber10_10_2: NSAppKitVersion = 1344);
+extern_static!(NSAppKitVersionNumber10_10_2: AppKit::NSAppKitVersion = 1344);
 
-extern_static!(NSAppKitVersionNumber10_10_3: NSAppKitVersion = 1347);
+extern_static!(NSAppKitVersionNumber10_10_3: AppKit::NSAppKitVersion = 1347);
 
-extern_static!(NSAppKitVersionNumber10_10_4: NSAppKitVersion = 1348);
+extern_static!(NSAppKitVersionNumber10_10_4: AppKit::NSAppKitVersion = 1348);
 
-extern_static!(NSAppKitVersionNumber10_10_5: NSAppKitVersion = 1348);
+extern_static!(NSAppKitVersionNumber10_10_5: AppKit::NSAppKitVersion = 1348);
 
-extern_static!(NSAppKitVersionNumber10_10_Max: NSAppKitVersion = 1349);
+extern_static!(NSAppKitVersionNumber10_10_Max: AppKit::NSAppKitVersion = 1349);
 
-extern_static!(NSAppKitVersionNumber10_11: NSAppKitVersion = 1404);
+extern_static!(NSAppKitVersionNumber10_11: AppKit::NSAppKitVersion = 1404);
 
-extern_static!(NSAppKitVersionNumber10_11_1: NSAppKitVersion = 1404.13);
+extern_static!(NSAppKitVersionNumber10_11_1: AppKit::NSAppKitVersion = 1404.13);
 
-extern_static!(NSAppKitVersionNumber10_11_2: NSAppKitVersion = 1404.34);
+extern_static!(NSAppKitVersionNumber10_11_2: AppKit::NSAppKitVersion = 1404.34);
 
-extern_static!(NSAppKitVersionNumber10_11_3: NSAppKitVersion = 1404.34);
+extern_static!(NSAppKitVersionNumber10_11_3: AppKit::NSAppKitVersion = 1404.34);
 
-extern_static!(NSAppKitVersionNumber10_12: NSAppKitVersion = 1504);
+extern_static!(NSAppKitVersionNumber10_12: AppKit::NSAppKitVersion = 1504);
 
-extern_static!(NSAppKitVersionNumber10_12_1: NSAppKitVersion = 1504.60);
+extern_static!(NSAppKitVersionNumber10_12_1: AppKit::NSAppKitVersion = 1504.60);
 
-extern_static!(NSAppKitVersionNumber10_12_2: NSAppKitVersion = 1504.76);
+extern_static!(NSAppKitVersionNumber10_12_2: AppKit::NSAppKitVersion = 1504.76);
 
-extern_static!(NSAppKitVersionNumber10_13: NSAppKitVersion = 1561);
+extern_static!(NSAppKitVersionNumber10_13: AppKit::NSAppKitVersion = 1561);
 
-extern_static!(NSAppKitVersionNumber10_13_1: NSAppKitVersion = 1561.1);
+extern_static!(NSAppKitVersionNumber10_13_1: AppKit::NSAppKitVersion = 1561.1);
 
-extern_static!(NSAppKitVersionNumber10_13_2: NSAppKitVersion = 1561.2);
+extern_static!(NSAppKitVersionNumber10_13_2: AppKit::NSAppKitVersion = 1561.2);
 
-extern_static!(NSAppKitVersionNumber10_13_4: NSAppKitVersion = 1561.4);
+extern_static!(NSAppKitVersionNumber10_13_4: AppKit::NSAppKitVersion = 1561.4);
 
-extern_static!(NSAppKitVersionNumber10_14: NSAppKitVersion = 1671);
+extern_static!(NSAppKitVersionNumber10_14: AppKit::NSAppKitVersion = 1671);
 
-extern_static!(NSAppKitVersionNumber10_14_1: NSAppKitVersion = 1671.1);
+extern_static!(NSAppKitVersionNumber10_14_1: AppKit::NSAppKitVersion = 1671.1);
 
-extern_static!(NSAppKitVersionNumber10_14_2: NSAppKitVersion = 1671.2);
+extern_static!(NSAppKitVersionNumber10_14_2: AppKit::NSAppKitVersion = 1671.2);
 
-extern_static!(NSAppKitVersionNumber10_14_3: NSAppKitVersion = 1671.3);
+extern_static!(NSAppKitVersionNumber10_14_3: AppKit::NSAppKitVersion = 1671.3);
 
-extern_static!(NSAppKitVersionNumber10_14_4: NSAppKitVersion = 1671.4);
+extern_static!(NSAppKitVersionNumber10_14_4: AppKit::NSAppKitVersion = 1671.4);
 
-extern_static!(NSAppKitVersionNumber10_14_5: NSAppKitVersion = 1671.5);
+extern_static!(NSAppKitVersionNumber10_14_5: AppKit::NSAppKitVersion = 1671.5);
 
-extern_static!(NSAppKitVersionNumber10_15: NSAppKitVersion = 1894);
+extern_static!(NSAppKitVersionNumber10_15: AppKit::NSAppKitVersion = 1894);
 
-extern_static!(NSAppKitVersionNumber10_15_1: NSAppKitVersion = 1894.1);
+extern_static!(NSAppKitVersionNumber10_15_1: AppKit::NSAppKitVersion = 1894.1);
 
-extern_static!(NSAppKitVersionNumber10_15_2: NSAppKitVersion = 1894.2);
+extern_static!(NSAppKitVersionNumber10_15_2: AppKit::NSAppKitVersion = 1894.2);
 
-extern_static!(NSAppKitVersionNumber10_15_3: NSAppKitVersion = 1894.3);
+extern_static!(NSAppKitVersionNumber10_15_3: AppKit::NSAppKitVersion = 1894.3);
 
-extern_static!(NSAppKitVersionNumber10_15_4: NSAppKitVersion = 1894.4);
+extern_static!(NSAppKitVersionNumber10_15_4: AppKit::NSAppKitVersion = 1894.4);
 
-extern_static!(NSAppKitVersionNumber10_15_5: NSAppKitVersion = 1894.5);
+extern_static!(NSAppKitVersionNumber10_15_5: AppKit::NSAppKitVersion = 1894.5);
 
-extern_static!(NSAppKitVersionNumber10_15_6: NSAppKitVersion = 1894.6);
+extern_static!(NSAppKitVersionNumber10_15_6: AppKit::NSAppKitVersion = 1894.6);
 
-extern_static!(NSAppKitVersionNumber11_0: NSAppKitVersion = 2022);
+extern_static!(NSAppKitVersionNumber11_0: AppKit::NSAppKitVersion = 2022);
 
-extern_static!(NSAppKitVersionNumber11_1: NSAppKitVersion = 2022.2);
+extern_static!(NSAppKitVersionNumber11_1: AppKit::NSAppKitVersion = 2022.2);
 
-extern_static!(NSAppKitVersionNumber11_2: NSAppKitVersion = 2022.3);
+extern_static!(NSAppKitVersionNumber11_2: AppKit::NSAppKitVersion = 2022.3);
 
-extern_static!(NSAppKitVersionNumber11_3: NSAppKitVersion = 2022.4);
+extern_static!(NSAppKitVersionNumber11_3: AppKit::NSAppKitVersion = 2022.4);
 
-extern_static!(NSAppKitVersionNumber11_4: NSAppKitVersion = 2022.5);
+extern_static!(NSAppKitVersionNumber11_4: AppKit::NSAppKitVersion = 2022.5);
 
 extern_static!(NSModalPanelRunLoopMode: &'static Foundation::NSRunLoopMode);
 
@@ -139,11 +139,11 @@ typed_extensible_enum!(
     pub type NSModalResponse = NSInteger;
 );
 
-extern_static!(NSModalResponseStop: NSModalResponse = -1000);
+extern_static!(NSModalResponseStop: AppKit::NSModalResponse = -1000);
 
-extern_static!(NSModalResponseAbort: NSModalResponse = -1001);
+extern_static!(NSModalResponseAbort: AppKit::NSModalResponse = -1001);
 
-extern_static!(NSModalResponseContinue: NSModalResponse = -1002);
+extern_static!(NSModalResponseContinue: AppKit::NSModalResponse = -1002);
 
 extern_enum!(
     #[underlying(c_uint)]
@@ -282,7 +282,10 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[method(runModalForWindow:)]
-        pub unsafe fn runModalForWindow(&self, window: &AppKit::NSWindow) -> NSModalResponse;
+        pub unsafe fn runModalForWindow(
+            &self,
+            window: &AppKit::NSWindow,
+        ) -> AppKit::NSModalResponse;
 
         #[method(stop:)]
         pub unsafe fn stop(&self, sender: Option<&Object>);
@@ -291,7 +294,7 @@ extern_methods!(
         pub unsafe fn stopModal(&self);
 
         #[method(stopModalWithCode:)]
-        pub unsafe fn stopModalWithCode(&self, returnCode: NSModalResponse);
+        pub unsafe fn stopModalWithCode(&self, returnCode: AppKit::NSModalResponse);
 
         #[method(abortModal)]
         pub unsafe fn abortModal(&self);
@@ -305,13 +308,16 @@ extern_methods!(
         pub unsafe fn beginModalSessionForWindow(
             &self,
             window: &AppKit::NSWindow,
-        ) -> NSModalSession;
+        ) -> AppKit::NSModalSession;
 
         #[method(runModalSession:)]
-        pub unsafe fn runModalSession(&self, session: NSModalSession) -> NSModalResponse;
+        pub unsafe fn runModalSession(
+            &self,
+            session: AppKit::NSModalSession,
+        ) -> AppKit::NSModalResponse;
 
         #[method(endModalSession:)]
-        pub unsafe fn endModalSession(&self, session: NSModalSession);
+        pub unsafe fn endModalSession(&self, session: AppKit::NSModalSession);
 
         #[method(terminate:)]
         pub unsafe fn terminate(&self, sender: Option<&Object>);
@@ -319,7 +325,7 @@ extern_methods!(
         #[method(requestUserAttention:)]
         pub unsafe fn requestUserAttention(
             &self,
-            requestType: NSRequestUserAttentionType,
+            requestType: AppKit::NSRequestUserAttentionType,
         ) -> NSInteger;
 
         #[method(cancelUserAttentionRequest:)]
@@ -329,7 +335,7 @@ extern_methods!(
         #[method(enumerateWindowsWithOptions:usingBlock:)]
         pub unsafe fn enumerateWindowsWithOptions_usingBlock(
             &self,
-            options: NSWindowListOptions,
+            options: AppKit::NSWindowListOptions,
             block: &Block<(NonNull<AppKit::NSWindow>, NonNull<Bool>), ()>,
         );
 
@@ -374,12 +380,12 @@ extern_methods!(
         );
 
         #[method(activationPolicy)]
-        pub unsafe fn activationPolicy(&self) -> NSApplicationActivationPolicy;
+        pub unsafe fn activationPolicy(&self) -> AppKit::NSApplicationActivationPolicy;
 
         #[method(setActivationPolicy:)]
         pub unsafe fn setActivationPolicy(
             &self,
-            activationPolicy: NSApplicationActivationPolicy,
+            activationPolicy: AppKit::NSApplicationActivationPolicy,
         ) -> bool;
 
         #[cfg(feature = "AppKit_NSDockTile")]
@@ -401,25 +407,27 @@ extern_methods!(
         pub unsafe fn replyToApplicationShouldTerminate(&self, shouldTerminate: bool);
 
         #[method(replyToOpenOrPrint:)]
-        pub unsafe fn replyToOpenOrPrint(&self, reply: NSApplicationDelegateReply);
+        pub unsafe fn replyToOpenOrPrint(&self, reply: AppKit::NSApplicationDelegateReply);
 
         #[method(orderFrontCharacterPalette:)]
         pub unsafe fn orderFrontCharacterPalette(&self, sender: Option<&Object>);
 
         #[method(presentationOptions)]
-        pub unsafe fn presentationOptions(&self) -> NSApplicationPresentationOptions;
+        pub unsafe fn presentationOptions(&self) -> AppKit::NSApplicationPresentationOptions;
 
         #[method(setPresentationOptions:)]
         pub unsafe fn setPresentationOptions(
             &self,
-            presentationOptions: NSApplicationPresentationOptions,
+            presentationOptions: AppKit::NSApplicationPresentationOptions,
         );
 
         #[method(currentSystemPresentationOptions)]
-        pub unsafe fn currentSystemPresentationOptions(&self) -> NSApplicationPresentationOptions;
+        pub unsafe fn currentSystemPresentationOptions(
+            &self,
+        ) -> AppKit::NSApplicationPresentationOptions;
 
         #[method(occlusionState)]
-        pub unsafe fn occlusionState(&self) -> NSApplicationOcclusionState;
+        pub unsafe fn occlusionState(&self) -> AppKit::NSApplicationOcclusionState;
 
         #[method(isProtectedDataAvailable)]
         pub unsafe fn isProtectedDataAvailable(&self) -> bool;
@@ -464,7 +472,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other nextEventMatchingMask:untilDate:inMode:dequeue:)]
         pub unsafe fn nextEventMatchingMask_untilDate_inMode_dequeue(
             &self,
-            mask: NSEventMask,
+            mask: AppKit::NSEventMask,
             expiration: Option<&Foundation::NSDate>,
             mode: &Foundation::NSRunLoopMode,
             deqFlag: bool,
@@ -474,7 +482,7 @@ extern_methods!(
         #[method(discardEventsMatchingMask:beforeEvent:)]
         pub unsafe fn discardEventsMatchingMask_beforeEvent(
             &self,
-            mask: NSEventMask,
+            mask: AppKit::NSEventMask,
             lastEvent: Option<&AppKit::NSEvent>,
         );
     }
@@ -598,7 +606,7 @@ extern_protocol!(
         pub unsafe fn applicationShouldTerminate(
             &self,
             sender: &AppKit::NSApplication,
-        ) -> NSApplicationTerminateReply;
+        ) -> AppKit::NSApplicationTerminateReply;
 
         #[optional]
         #[method(application:openURLs:)]
@@ -667,7 +675,7 @@ extern_protocol!(
             fileNames: &Foundation::NSArray<Foundation::NSString>,
             printSettings: &Foundation::NSDictionary<AppKit::NSPrintInfoAttributeKey, Object>,
             showPrintPanels: bool,
-        ) -> NSApplicationPrintReply;
+        ) -> AppKit::NSApplicationPrintReply;
 
         #[optional]
         #[method(applicationShouldTerminateAfterLastWindowClosed:)]
@@ -973,7 +981,8 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSApplication")]
     unsafe impl NSApplication {
         #[method(userInterfaceLayoutDirection)]
-        pub unsafe fn userInterfaceLayoutDirection(&self) -> NSUserInterfaceLayoutDirection;
+        pub unsafe fn userInterfaceLayoutDirection(&self)
+            -> AppKit::NSUserInterfaceLayoutDirection;
     }
 );
 
@@ -1013,10 +1022,13 @@ extern_methods!(
         pub unsafe fn isRegisteredForRemoteNotifications(&self) -> bool;
 
         #[method(registerForRemoteNotificationTypes:)]
-        pub unsafe fn registerForRemoteNotificationTypes(&self, types: NSRemoteNotificationType);
+        pub unsafe fn registerForRemoteNotificationTypes(
+            &self,
+            types: AppKit::NSRemoteNotificationType,
+        );
 
         #[method(enabledRemoteNotificationTypes)]
-        pub unsafe fn enabledRemoteNotificationTypes(&self) -> NSRemoteNotificationType;
+        pub unsafe fn enabledRemoteNotificationTypes(&self) -> AppKit::NSRemoteNotificationType;
     }
 );
 
@@ -1144,7 +1156,7 @@ extern_methods!(
             &self,
             window: Option<&AppKit::NSWindow>,
             docWindow: Option<&AppKit::NSWindow>,
-        ) -> NSModalSession;
+        ) -> AppKit::NSModalSession;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(application:printFiles:)]

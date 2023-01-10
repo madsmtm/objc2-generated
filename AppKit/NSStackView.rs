@@ -32,13 +32,13 @@ typed_extensible_enum!(
     pub type NSStackViewVisibilityPriority = c_float;
 );
 
-extern_static!(NSStackViewVisibilityPriorityMustHold: NSStackViewVisibilityPriority = 1000);
+extern_static!(NSStackViewVisibilityPriorityMustHold: AppKit::NSStackViewVisibilityPriority = 1000);
 
 extern_static!(
-    NSStackViewVisibilityPriorityDetachOnlyIfNecessary: NSStackViewVisibilityPriority = 900
+    NSStackViewVisibilityPriorityDetachOnlyIfNecessary: AppKit::NSStackViewVisibilityPriority = 900
 );
 
-extern_static!(NSStackViewVisibilityPriorityNotVisible: NSStackViewVisibilityPriority = 0);
+extern_static!(NSStackViewVisibilityPriorityNotVisible: AppKit::NSStackViewVisibilityPriority = 0);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -66,40 +66,45 @@ extern_methods!(
         pub unsafe fn setDelegate(&self, delegate: Option<&AppKit::NSStackViewDelegate>);
 
         #[method(orientation)]
-        pub unsafe fn orientation(&self) -> NSUserInterfaceLayoutOrientation;
+        pub unsafe fn orientation(&self) -> AppKit::NSUserInterfaceLayoutOrientation;
 
         #[method(setOrientation:)]
-        pub unsafe fn setOrientation(&self, orientation: NSUserInterfaceLayoutOrientation);
+        pub unsafe fn setOrientation(&self, orientation: AppKit::NSUserInterfaceLayoutOrientation);
 
         #[method(alignment)]
-        pub unsafe fn alignment(&self) -> NSLayoutAttribute;
+        pub unsafe fn alignment(&self) -> AppKit::NSLayoutAttribute;
 
         #[method(setAlignment:)]
-        pub unsafe fn setAlignment(&self, alignment: NSLayoutAttribute);
+        pub unsafe fn setAlignment(&self, alignment: AppKit::NSLayoutAttribute);
 
         #[method(edgeInsets)]
-        pub unsafe fn edgeInsets(&self) -> NSEdgeInsets;
+        pub unsafe fn edgeInsets(&self) -> Foundation::NSEdgeInsets;
 
         #[method(setEdgeInsets:)]
-        pub unsafe fn setEdgeInsets(&self, edgeInsets: NSEdgeInsets);
+        pub unsafe fn setEdgeInsets(&self, edgeInsets: Foundation::NSEdgeInsets);
 
         #[method(distribution)]
-        pub unsafe fn distribution(&self) -> NSStackViewDistribution;
+        pub unsafe fn distribution(&self) -> AppKit::NSStackViewDistribution;
 
         #[method(setDistribution:)]
-        pub unsafe fn setDistribution(&self, distribution: NSStackViewDistribution);
+        pub unsafe fn setDistribution(&self, distribution: AppKit::NSStackViewDistribution);
 
         #[method(spacing)]
-        pub unsafe fn spacing(&self) -> CGFloat;
+        pub unsafe fn spacing(&self) -> CoreGraphics::CGFloat;
 
         #[method(setSpacing:)]
-        pub unsafe fn setSpacing(&self, spacing: CGFloat);
+        pub unsafe fn setSpacing(&self, spacing: CoreGraphics::CGFloat);
 
         #[method(setCustomSpacing:afterView:)]
-        pub unsafe fn setCustomSpacing_afterView(&self, spacing: CGFloat, view: &AppKit::NSView);
+        pub unsafe fn setCustomSpacing_afterView(
+            &self,
+            spacing: CoreGraphics::CGFloat,
+            view: &AppKit::NSView,
+        );
 
         #[method(customSpacingAfterView:)]
-        pub unsafe fn customSpacingAfterView(&self, view: &AppKit::NSView) -> CGFloat;
+        pub unsafe fn customSpacingAfterView(&self, view: &AppKit::NSView)
+            -> CoreGraphics::CGFloat;
 
         #[method(detachesHiddenViews)]
         pub unsafe fn detachesHiddenViews(&self) -> bool;
@@ -127,7 +132,7 @@ extern_methods!(
         #[method(setVisibilityPriority:forView:)]
         pub unsafe fn setVisibilityPriority_forView(
             &self,
-            priority: NSStackViewVisibilityPriority,
+            priority: AppKit::NSStackViewVisibilityPriority,
             view: &AppKit::NSView,
         );
 
@@ -135,32 +140,32 @@ extern_methods!(
         pub unsafe fn visibilityPriorityForView(
             &self,
             view: &AppKit::NSView,
-        ) -> NSStackViewVisibilityPriority;
+        ) -> AppKit::NSStackViewVisibilityPriority;
 
         #[method(clippingResistancePriorityForOrientation:)]
         pub unsafe fn clippingResistancePriorityForOrientation(
             &self,
-            orientation: NSLayoutConstraintOrientation,
-        ) -> NSLayoutPriority;
+            orientation: AppKit::NSLayoutConstraintOrientation,
+        ) -> AppKit::NSLayoutPriority;
 
         #[method(setClippingResistancePriority:forOrientation:)]
         pub unsafe fn setClippingResistancePriority_forOrientation(
             &self,
-            clippingResistancePriority: NSLayoutPriority,
-            orientation: NSLayoutConstraintOrientation,
+            clippingResistancePriority: AppKit::NSLayoutPriority,
+            orientation: AppKit::NSLayoutConstraintOrientation,
         );
 
         #[method(huggingPriorityForOrientation:)]
         pub unsafe fn huggingPriorityForOrientation(
             &self,
-            orientation: NSLayoutConstraintOrientation,
-        ) -> NSLayoutPriority;
+            orientation: AppKit::NSLayoutConstraintOrientation,
+        ) -> AppKit::NSLayoutPriority;
 
         #[method(setHuggingPriority:forOrientation:)]
         pub unsafe fn setHuggingPriority_forOrientation(
             &self,
-            huggingPriority: NSLayoutPriority,
-            orientation: NSLayoutConstraintOrientation,
+            huggingPriority: AppKit::NSLayoutPriority,
+            orientation: AppKit::NSLayoutConstraintOrientation,
         );
     }
 );
@@ -193,7 +198,11 @@ extern_methods!(
     unsafe impl NSStackView {
         #[cfg(feature = "AppKit_NSView")]
         #[method(addView:inGravity:)]
-        pub unsafe fn addView_inGravity(&self, view: &AppKit::NSView, gravity: NSStackViewGravity);
+        pub unsafe fn addView_inGravity(
+            &self,
+            view: &AppKit::NSView,
+            gravity: AppKit::NSStackViewGravity,
+        );
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(insertView:atIndex:inGravity:)]
@@ -201,7 +210,7 @@ extern_methods!(
             &self,
             view: &AppKit::NSView,
             index: NSUInteger,
-            gravity: NSStackViewGravity,
+            gravity: AppKit::NSStackViewGravity,
         );
 
         #[cfg(feature = "AppKit_NSView")]
@@ -212,7 +221,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other viewsInGravity:)]
         pub unsafe fn viewsInGravity(
             &self,
-            gravity: NSStackViewGravity,
+            gravity: AppKit::NSStackViewGravity,
         ) -> Id<Foundation::NSArray<AppKit::NSView>, Shared>;
 
         #[cfg(all(feature = "AppKit_NSView", feature = "Foundation_NSArray"))]
@@ -220,7 +229,7 @@ extern_methods!(
         pub unsafe fn setViews_inGravity(
             &self,
             views: &Foundation::NSArray<AppKit::NSView>,
-            gravity: NSStackViewGravity,
+            gravity: AppKit::NSStackViewGravity,
         );
 
         #[cfg(all(feature = "AppKit_NSView", feature = "Foundation_NSArray"))]
@@ -248,7 +257,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frameRect: Foundation::NSRect,
         ) -> Id<Self, Shared>;
     }
 );

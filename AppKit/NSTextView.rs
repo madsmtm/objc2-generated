@@ -41,7 +41,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:textContainer:)]
         pub unsafe fn initWithFrame_textContainer(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frameRect: Foundation::NSRect,
             container: Option<&AppKit::NSTextContainer>,
         ) -> Id<Self, Shared>;
 
@@ -55,7 +55,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frameRect: Foundation::NSRect,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "AppKit_NSTextContainer")]
@@ -71,13 +71,13 @@ extern_methods!(
         pub unsafe fn replaceTextContainer(&self, newContainer: &AppKit::NSTextContainer);
 
         #[method(textContainerInset)]
-        pub unsafe fn textContainerInset(&self) -> NSSize;
+        pub unsafe fn textContainerInset(&self) -> Foundation::NSSize;
 
         #[method(setTextContainerInset:)]
-        pub unsafe fn setTextContainerInset(&self, textContainerInset: NSSize);
+        pub unsafe fn setTextContainerInset(&self, textContainerInset: Foundation::NSSize);
 
         #[method(textContainerOrigin)]
-        pub unsafe fn textContainerOrigin(&self) -> NSPoint;
+        pub unsafe fn textContainerOrigin(&self) -> Foundation::NSPoint;
 
         #[method(invalidateTextContainerOrigin)]
         pub unsafe fn invalidateTextContainerOrigin(&self);
@@ -103,16 +103,20 @@ extern_methods!(
         pub unsafe fn insertText(&self, insertString: &Object);
 
         #[method(setConstrainedFrameSize:)]
-        pub unsafe fn setConstrainedFrameSize(&self, desiredSize: NSSize);
+        pub unsafe fn setConstrainedFrameSize(&self, desiredSize: Foundation::NSSize);
 
         #[method(setAlignment:range:)]
-        pub unsafe fn setAlignment_range(&self, alignment: NSTextAlignment, range: NSRange);
+        pub unsafe fn setAlignment_range(
+            &self,
+            alignment: AppKit::NSTextAlignment,
+            range: Foundation::NSRange,
+        );
 
         #[method(setBaseWritingDirection:range:)]
         pub unsafe fn setBaseWritingDirection_range(
             &self,
-            writingDirection: NSWritingDirection,
-            range: NSRange,
+            writingDirection: AppKit::NSWritingDirection,
+            range: Foundation::NSRange,
         );
 
         #[method(turnOffKerning:)]
@@ -221,8 +225,8 @@ extern_methods!(
             &self,
             ruler: &AppKit::NSRulerView,
             marker: &AppKit::NSRulerMarker,
-            location: CGFloat,
-        ) -> CGFloat;
+            location: CoreGraphics::CGFloat,
+        ) -> CoreGraphics::CGFloat;
 
         #[cfg(all(feature = "AppKit_NSRulerMarker", feature = "AppKit_NSRulerView"))]
         #[method(rulerView:shouldRemoveMarker:)]
@@ -238,8 +242,8 @@ extern_methods!(
             &self,
             ruler: &AppKit::NSRulerView,
             marker: &AppKit::NSRulerMarker,
-            location: CGFloat,
-        ) -> CGFloat;
+            location: CoreGraphics::CGFloat,
+        ) -> CoreGraphics::CGFloat;
 
         #[cfg(all(feature = "AppKit_NSEvent", feature = "AppKit_NSRulerView"))]
         #[method(rulerView:handleMouseDown:)]
@@ -250,7 +254,11 @@ extern_methods!(
         );
 
         #[method(setNeedsDisplayInRect:avoidAdditionalLayout:)]
-        pub unsafe fn setNeedsDisplayInRect_avoidAdditionalLayout(&self, rect: NSRect, flag: bool);
+        pub unsafe fn setNeedsDisplayInRect_avoidAdditionalLayout(
+            &self,
+            rect: Foundation::NSRect,
+            flag: bool,
+        );
 
         #[method(shouldDrawInsertionPoint)]
         pub unsafe fn shouldDrawInsertionPoint(&self) -> bool;
@@ -259,13 +267,13 @@ extern_methods!(
         #[method(drawInsertionPointInRect:color:turnedOn:)]
         pub unsafe fn drawInsertionPointInRect_color_turnedOn(
             &self,
-            rect: NSRect,
+            rect: Foundation::NSRect,
             color: &AppKit::NSColor,
             flag: bool,
         );
 
         #[method(drawViewBackgroundInRect:)]
-        pub unsafe fn drawViewBackgroundInRect(&self, rect: NSRect);
+        pub unsafe fn drawViewBackgroundInRect(&self, rect: Foundation::NSRect);
 
         #[method(updateRuler)]
         pub unsafe fn updateRuler(&self);
@@ -279,9 +287,9 @@ extern_methods!(
         #[method(selectionRangeForProposedRange:granularity:)]
         pub unsafe fn selectionRangeForProposedRange_granularity(
             &self,
-            proposedCharRange: NSRange,
-            granularity: NSSelectionGranularity,
-        ) -> NSRange;
+            proposedCharRange: Foundation::NSRange,
+            granularity: AppKit::NSSelectionGranularity,
+        ) -> Foundation::NSRange;
 
         #[method(clickedOnLink:atIndex:)]
         pub unsafe fn clickedOnLink_atIndex(&self, link: &Object, charIndex: NSUInteger);
@@ -293,13 +301,16 @@ extern_methods!(
         pub unsafe fn stopSpeaking(&self, sender: Option<&Object>);
 
         #[method(setLayoutOrientation:)]
-        pub unsafe fn setLayoutOrientation(&self, orientation: NSTextLayoutOrientation);
+        pub unsafe fn setLayoutOrientation(&self, orientation: AppKit::NSTextLayoutOrientation);
 
         #[method(changeLayoutOrientation:)]
         pub unsafe fn changeLayoutOrientation(&self, sender: Option<&Object>);
 
         #[method(characterIndexForInsertionAtPoint:)]
-        pub unsafe fn characterIndexForInsertionAtPoint(&self, point: NSPoint) -> NSUInteger;
+        pub unsafe fn characterIndexForInsertionAtPoint(
+            &self,
+            point: Foundation::NSPoint,
+        ) -> NSUInteger;
 
         #[method(stronglyReferencesTextStorage)]
         pub unsafe fn stronglyReferencesTextStorage() -> bool;
@@ -308,7 +319,7 @@ extern_methods!(
         #[method(performValidatedReplacementInRange:withAttributedString:)]
         pub unsafe fn performValidatedReplacementInRange_withAttributedString(
             &self,
-            range: NSRange,
+            range: Foundation::NSRange,
             attributedString: &Foundation::NSAttributedString,
         ) -> bool;
 
@@ -331,13 +342,13 @@ extern_methods!(
         pub unsafe fn complete(&self, sender: Option<&Object>);
 
         #[method(rangeForUserCompletion)]
-        pub unsafe fn rangeForUserCompletion(&self) -> NSRange;
+        pub unsafe fn rangeForUserCompletion(&self) -> Foundation::NSRange;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other completionsForPartialWordRange:indexOfSelectedItem:)]
         pub unsafe fn completionsForPartialWordRange_indexOfSelectedItem(
             &self,
-            charRange: NSRange,
+            charRange: Foundation::NSRange,
             index: NonNull<NSInteger>,
         ) -> Option<Id<Foundation::NSArray<Foundation::NSString>, Shared>>;
 
@@ -346,7 +357,7 @@ extern_methods!(
         pub unsafe fn insertCompletion_forPartialWordRange_movement_isFinal(
             &self,
             word: &Foundation::NSString,
-            charRange: NSRange,
+            charRange: Foundation::NSRange,
             movement: NSInteger,
             flag: bool,
         );
@@ -432,7 +443,7 @@ extern_methods!(
         pub unsafe fn dragSelectionWithEvent_offset_slideBack(
             &self,
             event: &AppKit::NSEvent,
-            mouseOffset: NSSize,
+            mouseOffset: Foundation::NSSize,
             slideBack: bool,
         ) -> bool;
 
@@ -441,7 +452,7 @@ extern_methods!(
         pub unsafe fn dragImageForSelectionWithEvent_origin(
             &self,
             event: &AppKit::NSEvent,
-            origin: NSPointPointer,
+            origin: Foundation::NSPointPointer,
         ) -> Option<Id<AppKit::NSImage, Shared>>;
 
         #[cfg(feature = "Foundation_NSArray")]
@@ -455,7 +466,7 @@ extern_methods!(
             &self,
             dragInfo: &AppKit::NSDraggingInfo,
             type_: &AppKit::NSPasteboardType,
-        ) -> NSDragOperation;
+        ) -> AppKit::NSDragOperation;
 
         #[method(cleanUpAfterDragOperation)]
         pub unsafe fn cleanUpAfterDragOperation(&self);
@@ -483,26 +494,29 @@ extern_methods!(
         pub unsafe fn setSelectedRanges_affinity_stillSelecting(
             &self,
             ranges: &Foundation::NSArray<Foundation::NSValue>,
-            affinity: NSSelectionAffinity,
+            affinity: AppKit::NSSelectionAffinity,
             stillSelectingFlag: bool,
         );
 
         #[method(setSelectedRange:affinity:stillSelecting:)]
         pub unsafe fn setSelectedRange_affinity_stillSelecting(
             &self,
-            charRange: NSRange,
-            affinity: NSSelectionAffinity,
+            charRange: Foundation::NSRange,
+            affinity: AppKit::NSSelectionAffinity,
             stillSelectingFlag: bool,
         );
 
         #[method(selectionAffinity)]
-        pub unsafe fn selectionAffinity(&self) -> NSSelectionAffinity;
+        pub unsafe fn selectionAffinity(&self) -> AppKit::NSSelectionAffinity;
 
         #[method(selectionGranularity)]
-        pub unsafe fn selectionGranularity(&self) -> NSSelectionGranularity;
+        pub unsafe fn selectionGranularity(&self) -> AppKit::NSSelectionGranularity;
 
         #[method(setSelectionGranularity:)]
-        pub unsafe fn setSelectionGranularity(&self, selectionGranularity: NSSelectionGranularity);
+        pub unsafe fn setSelectionGranularity(
+            &self,
+            selectionGranularity: AppKit::NSSelectionGranularity,
+        );
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other selectedTextAttributes)]
@@ -610,7 +624,11 @@ extern_methods!(
         pub unsafe fn toggleGrammarChecking(&self, sender: Option<&Object>);
 
         #[method(setSpellingState:range:)]
-        pub unsafe fn setSpellingState_range(&self, value: NSInteger, charRange: NSRange);
+        pub unsafe fn setSpellingState_range(
+            &self,
+            value: NSInteger,
+            charRange: Foundation::NSRange,
+        );
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other typingAttributes)]
@@ -659,7 +677,7 @@ extern_methods!(
         #[method(shouldChangeTextInRange:replacementString:)]
         pub unsafe fn shouldChangeTextInRange_replacementString(
             &self,
-            affectedCharRange: NSRange,
+            affectedCharRange: Foundation::NSRange,
             replacementString: Option<&Foundation::NSString>,
         ) -> bool;
 
@@ -667,13 +685,13 @@ extern_methods!(
         pub unsafe fn didChangeText(&self);
 
         #[method(rangeForUserTextChange)]
-        pub unsafe fn rangeForUserTextChange(&self) -> NSRange;
+        pub unsafe fn rangeForUserTextChange(&self) -> Foundation::NSRange;
 
         #[method(rangeForUserCharacterAttributeChange)]
-        pub unsafe fn rangeForUserCharacterAttributeChange(&self) -> NSRange;
+        pub unsafe fn rangeForUserCharacterAttributeChange(&self) -> Foundation::NSRange;
 
         #[method(rangeForUserParagraphAttributeChange)]
-        pub unsafe fn rangeForUserParagraphAttributeChange(&self) -> NSRange;
+        pub unsafe fn rangeForUserParagraphAttributeChange(&self) -> Foundation::NSRange;
 
         #[method(allowsDocumentBackgroundColorChange)]
         pub unsafe fn allowsDocumentBackgroundColorChange(&self) -> bool;
@@ -714,7 +732,7 @@ extern_methods!(
         pub unsafe fn setAllowsImageEditing(&self, allowsImageEditing: bool);
 
         #[method(showFindIndicatorForRange:)]
-        pub unsafe fn showFindIndicatorForRange(&self, charRange: NSRange);
+        pub unsafe fn showFindIndicatorForRange(&self, charRange: Foundation::NSRange);
 
         #[method(usesRolloverButtonForSelection)]
         pub unsafe fn usesRolloverButtonForSelection(&self) -> bool;
@@ -788,7 +806,7 @@ extern_methods!(
         pub unsafe fn setRulerVisible(&self, rulerVisible: bool);
 
         #[method(setSelectedRange:)]
-        pub unsafe fn setSelectedRange(&self, charRange: NSRange);
+        pub unsafe fn setSelectedRange(&self, charRange: Foundation::NSRange);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other allowedInputSourceLocales)]
@@ -818,8 +836,8 @@ extern_methods!(
         #[method(smartDeleteRangeForProposedRange:)]
         pub unsafe fn smartDeleteRangeForProposedRange(
             &self,
-            proposedCharRange: NSRange,
-        ) -> NSRange;
+            proposedCharRange: Foundation::NSRange,
+        ) -> Foundation::NSRange;
 
         #[method(toggleSmartInsertDelete:)]
         pub unsafe fn toggleSmartInsertDelete(&self, sender: Option<&Object>);
@@ -829,7 +847,7 @@ extern_methods!(
         pub unsafe fn smartInsertForString_replacingRange_beforeString_afterString(
             &self,
             pasteString: &Foundation::NSString,
-            charRangeToReplace: NSRange,
+            charRangeToReplace: Foundation::NSRange,
             beforeString: *mut *mut Foundation::NSString,
             afterString: *mut *mut Foundation::NSString,
         );
@@ -839,7 +857,7 @@ extern_methods!(
         pub unsafe fn smartInsertBeforeStringForString_replacingRange(
             &self,
             pasteString: &Foundation::NSString,
-            charRangeToReplace: NSRange,
+            charRangeToReplace: Foundation::NSRange,
         ) -> Option<Id<Foundation::NSString, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -847,7 +865,7 @@ extern_methods!(
         pub unsafe fn smartInsertAfterStringForString_replacingRange(
             &self,
             pasteString: &Foundation::NSString,
-            charRangeToReplace: NSRange,
+            charRangeToReplace: Foundation::NSRange,
         ) -> Option<Id<Foundation::NSString, Shared>>;
 
         #[method(isAutomaticQuoteSubstitutionEnabled)]
@@ -917,20 +935,20 @@ extern_methods!(
         pub unsafe fn toggleAutomaticSpellingCorrection(&self, sender: Option<&Object>);
 
         #[method(enabledTextCheckingTypes)]
-        pub unsafe fn enabledTextCheckingTypes(&self) -> NSTextCheckingTypes;
+        pub unsafe fn enabledTextCheckingTypes(&self) -> Foundation::NSTextCheckingTypes;
 
         #[method(setEnabledTextCheckingTypes:)]
         pub unsafe fn setEnabledTextCheckingTypes(
             &self,
-            enabledTextCheckingTypes: NSTextCheckingTypes,
+            enabledTextCheckingTypes: Foundation::NSTextCheckingTypes,
         );
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(checkTextInRange:types:options:)]
         pub unsafe fn checkTextInRange_types_options(
             &self,
-            range: NSRange,
-            checkingTypes: NSTextCheckingTypes,
+            range: Foundation::NSRange,
+            checkingTypes: Foundation::NSTextCheckingTypes,
             options: &Foundation::NSDictionary<AppKit::NSTextCheckingOptionKey, Object>,
         );
 
@@ -944,8 +962,8 @@ extern_methods!(
         pub unsafe fn handleTextCheckingResults_forRange_types_options_orthography_wordCount(
             &self,
             results: &Foundation::NSArray<Foundation::NSTextCheckingResult>,
-            range: NSRange,
-            checkingTypes: NSTextCheckingTypes,
+            range: Foundation::NSRange,
+            checkingTypes: Foundation::NSTextCheckingTypes,
             options: &Foundation::NSDictionary<AppKit::NSTextCheckingOptionKey, Object>,
             orthography: &Foundation::NSOrthography,
             wordCount: NSInteger,
@@ -1092,7 +1110,7 @@ extern_protocol!(
             &self,
             textView: &AppKit::NSTextView,
             cell: &AppKit::NSTextAttachmentCell,
-            cellFrame: NSRect,
+            cellFrame: Foundation::NSRect,
             charIndex: NSUInteger,
         );
 
@@ -1102,7 +1120,7 @@ extern_protocol!(
             &self,
             textView: &AppKit::NSTextView,
             cell: &AppKit::NSTextAttachmentCell,
-            cellFrame: NSRect,
+            cellFrame: Foundation::NSRect,
             charIndex: NSUInteger,
         );
 
@@ -1112,7 +1130,7 @@ extern_protocol!(
             &self,
             view: &AppKit::NSTextView,
             cell: &AppKit::NSTextAttachmentCell,
-            rect: NSRect,
+            rect: Foundation::NSRect,
             event: &AppKit::NSEvent,
             charIndex: NSUInteger,
         );
@@ -1142,9 +1160,9 @@ extern_protocol!(
         pub unsafe fn textView_willChangeSelectionFromCharacterRange_toCharacterRange(
             &self,
             textView: &AppKit::NSTextView,
-            oldSelectedCharRange: NSRange,
-            newSelectedCharRange: NSRange,
-        ) -> NSRange;
+            oldSelectedCharRange: Foundation::NSRange,
+            newSelectedCharRange: Foundation::NSRange,
+        ) -> Foundation::NSRange;
 
         #[optional]
         #[method_id(@__retain_semantics Other textView:willChangeSelectionFromCharacterRanges:toCharacterRanges:)]
@@ -1202,7 +1220,7 @@ extern_protocol!(
             &self,
             textView: &AppKit::NSTextView,
             words: &Foundation::NSArray<Foundation::NSString>,
-            charRange: NSRange,
+            charRange: Foundation::NSRange,
             index: *mut NSInteger,
         ) -> Id<Foundation::NSArray<Foundation::NSString>, Shared>;
 
@@ -1211,7 +1229,7 @@ extern_protocol!(
         pub unsafe fn textView_shouldChangeTextInRange_replacementString(
             &self,
             textView: &AppKit::NSTextView,
-            affectedCharRange: NSRange,
+            affectedCharRange: Foundation::NSRange,
             replacementString: Option<&Foundation::NSString>,
         ) -> bool;
 
@@ -1229,7 +1247,7 @@ extern_protocol!(
             &self,
             textView: &AppKit::NSTextView,
             value: NSInteger,
-            affectedCharRange: NSRange,
+            affectedCharRange: Foundation::NSRange,
         ) -> NSInteger;
 
         #[optional]
@@ -1247,9 +1265,9 @@ extern_protocol!(
         pub unsafe fn textView_willCheckTextInRange_options_types(
             &self,
             view: &AppKit::NSTextView,
-            range: NSRange,
+            range: Foundation::NSRange,
             options: &Foundation::NSDictionary<AppKit::NSTextCheckingOptionKey, Object>,
-            checkingTypes: NonNull<NSTextCheckingTypes>,
+            checkingTypes: NonNull<Foundation::NSTextCheckingTypes>,
         ) -> Id<Foundation::NSDictionary<AppKit::NSTextCheckingOptionKey, Object>, Shared>;
 
         #[optional]
@@ -1257,8 +1275,8 @@ extern_protocol!(
         pub unsafe fn textView_didCheckTextInRange_types_options_results_orthography_wordCount(
             &self,
             view: &AppKit::NSTextView,
-            range: NSRange,
-            checkingTypes: NSTextCheckingTypes,
+            range: Foundation::NSRange,
+            checkingTypes: Foundation::NSTextCheckingTypes,
             options: &Foundation::NSDictionary<AppKit::NSTextCheckingOptionKey, Object>,
             results: &Foundation::NSArray<Foundation::NSTextCheckingResult>,
             orthography: &Foundation::NSOrthography,
@@ -1303,7 +1321,7 @@ extern_protocol!(
         pub unsafe fn textView_candidatesForSelectedRange(
             &self,
             textView: &AppKit::NSTextView,
-            selectedRange: NSRange,
+            selectedRange: Foundation::NSRange,
         ) -> Option<Id<Foundation::NSArray, Shared>>;
 
         #[optional]
@@ -1312,7 +1330,7 @@ extern_protocol!(
             &self,
             textView: &AppKit::NSTextView,
             candidates: &Foundation::NSArray<Foundation::NSTextCheckingResult>,
-            selectedRange: NSRange,
+            selectedRange: Foundation::NSRange,
         ) -> Id<Foundation::NSArray<Foundation::NSTextCheckingResult>, Shared>;
 
         #[optional]
@@ -1337,7 +1355,7 @@ extern_protocol!(
             &self,
             textView: &AppKit::NSTextView,
             cell: Option<&AppKit::NSTextAttachmentCell>,
-            cellFrame: NSRect,
+            cellFrame: Foundation::NSRect,
         );
 
         #[optional]
@@ -1346,7 +1364,7 @@ extern_protocol!(
             &self,
             textView: &AppKit::NSTextView,
             cell: Option<&AppKit::NSTextAttachmentCell>,
-            cellFrame: NSRect,
+            cellFrame: Foundation::NSRect,
         );
 
         #[optional]
@@ -1355,7 +1373,7 @@ extern_protocol!(
             &self,
             view: &AppKit::NSTextView,
             cell: Option<&AppKit::NSTextAttachmentCell>,
-            rect: NSRect,
+            rect: Foundation::NSRect,
             event: Option<&AppKit::NSEvent>,
         );
     }

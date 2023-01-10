@@ -101,7 +101,7 @@ extern_methods!(
         pub unsafe fn setCandidates_forSelectedRange_inString(
             &self,
             candidates: &Foundation::NSArray<CandidateType>,
-            selectedRange: NSRange,
+            selectedRange: Foundation::NSRange,
             originalString: Option<&Foundation::NSString>,
         );
 

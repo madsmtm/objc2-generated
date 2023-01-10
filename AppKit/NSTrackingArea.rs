@@ -37,17 +37,17 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithRect:options:owner:userInfo:)]
         pub unsafe fn initWithRect_options_owner_userInfo(
             this: Option<Allocated<Self>>,
-            rect: NSRect,
-            options: NSTrackingAreaOptions,
+            rect: Foundation::NSRect,
+            options: AppKit::NSTrackingAreaOptions,
             owner: Option<&Object>,
             userInfo: Option<&Foundation::NSDictionary<Object, Object>>,
         ) -> Id<Self, Shared>;
 
         #[method(rect)]
-        pub unsafe fn rect(&self) -> NSRect;
+        pub unsafe fn rect(&self) -> Foundation::NSRect;
 
         #[method(options)]
-        pub unsafe fn options(&self) -> NSTrackingAreaOptions;
+        pub unsafe fn options(&self) -> AppKit::NSTrackingAreaOptions;
 
         #[method_id(@__retain_semantics Other owner)]
         pub unsafe fn owner(&self) -> Option<Id<Object, Shared>>;

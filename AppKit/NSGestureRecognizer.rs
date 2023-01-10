@@ -127,7 +127,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(locationInView:)]
-        pub unsafe fn locationInView(&self, view: Option<&AppKit::NSView>) -> NSPoint;
+        pub unsafe fn locationInView(&self, view: Option<&AppKit::NSView>) -> Foundation::NSPoint;
     }
 );
 
@@ -136,10 +136,10 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSGestureRecognizer")]
     unsafe impl NSGestureRecognizer {
         #[method(allowedTouchTypes)]
-        pub unsafe fn allowedTouchTypes(&self) -> NSTouchTypeMask;
+        pub unsafe fn allowedTouchTypes(&self) -> AppKit::NSTouchTypeMask;
 
         #[method(setAllowedTouchTypes:)]
-        pub unsafe fn setAllowedTouchTypes(&self, allowedTouchTypes: NSTouchTypeMask);
+        pub unsafe fn setAllowedTouchTypes(&self, allowedTouchTypes: AppKit::NSTouchTypeMask);
     }
 );
 
@@ -201,7 +201,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSGestureRecognizer")]
     unsafe impl NSGestureRecognizer {
         #[method(setState:)]
-        pub unsafe fn setState(&self, state: NSGestureRecognizerState);
+        pub unsafe fn setState(&self, state: AppKit::NSGestureRecognizerState);
 
         #[method(reset)]
         pub unsafe fn reset(&self);

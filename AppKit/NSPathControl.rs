@@ -73,10 +73,10 @@ extern_methods!(
         pub unsafe fn setDoubleAction(&self, doubleAction: Option<Sel>);
 
         #[method(pathStyle)]
-        pub unsafe fn pathStyle(&self) -> NSPathStyle;
+        pub unsafe fn pathStyle(&self) -> AppKit::NSPathStyle;
 
         #[method(setPathStyle:)]
-        pub unsafe fn setPathStyle(&self, pathStyle: NSPathStyle);
+        pub unsafe fn setPathStyle(&self, pathStyle: AppKit::NSPathStyle);
 
         #[cfg(feature = "AppKit_NSPathControlItem")]
         #[method_id(@__retain_semantics Other clickedPathItem)]
@@ -112,7 +112,7 @@ extern_methods!(
         #[method(setDraggingSourceOperationMask:forLocal:)]
         pub unsafe fn setDraggingSourceOperationMask_forLocal(
             &self,
-            mask: NSDragOperation,
+            mask: AppKit::NSDragOperation,
             isLocal: bool,
         );
 
@@ -154,7 +154,7 @@ extern_protocol!(
             &self,
             pathControl: &AppKit::NSPathControl,
             info: &AppKit::NSDraggingInfo,
-        ) -> NSDragOperation;
+        ) -> AppKit::NSDragOperation;
 
         #[optional]
         #[method(pathControl:acceptDrop:)]
@@ -214,7 +214,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frameRect: Foundation::NSRect,
         ) -> Id<Self, Shared>;
     }
 );

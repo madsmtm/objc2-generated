@@ -11,7 +11,8 @@ ns_enum!(
     }
 );
 
-pub type NSBackgroundActivityCompletionHandler = *mut Block<(NSBackgroundActivityResult,), ()>;
+pub type NSBackgroundActivityCompletionHandler =
+    *mut Block<(Foundation::NSBackgroundActivityResult,), ()>;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -37,10 +38,10 @@ extern_methods!(
         pub unsafe fn identifier(&self) -> Id<Foundation::NSString, Shared>;
 
         #[method(qualityOfService)]
-        pub unsafe fn qualityOfService(&self) -> NSQualityOfService;
+        pub unsafe fn qualityOfService(&self) -> Foundation::NSQualityOfService;
 
         #[method(setQualityOfService:)]
-        pub unsafe fn setQualityOfService(&self, qualityOfService: NSQualityOfService);
+        pub unsafe fn setQualityOfService(&self, qualityOfService: Foundation::NSQualityOfService);
 
         #[method(repeats)]
         pub unsafe fn repeats(&self) -> bool;
@@ -49,21 +50,21 @@ extern_methods!(
         pub unsafe fn setRepeats(&self, repeats: bool);
 
         #[method(interval)]
-        pub unsafe fn interval(&self) -> NSTimeInterval;
+        pub unsafe fn interval(&self) -> Foundation::NSTimeInterval;
 
         #[method(setInterval:)]
-        pub unsafe fn setInterval(&self, interval: NSTimeInterval);
+        pub unsafe fn setInterval(&self, interval: Foundation::NSTimeInterval);
 
         #[method(tolerance)]
-        pub unsafe fn tolerance(&self) -> NSTimeInterval;
+        pub unsafe fn tolerance(&self) -> Foundation::NSTimeInterval;
 
         #[method(setTolerance:)]
-        pub unsafe fn setTolerance(&self, tolerance: NSTimeInterval);
+        pub unsafe fn setTolerance(&self, tolerance: Foundation::NSTimeInterval);
 
         #[method(scheduleWithBlock:)]
         pub unsafe fn scheduleWithBlock(
             &self,
-            block: &Block<(NSBackgroundActivityCompletionHandler,), ()>,
+            block: &Block<(Foundation::NSBackgroundActivityCompletionHandler,), ()>,
         );
 
         #[method(invalidate)]

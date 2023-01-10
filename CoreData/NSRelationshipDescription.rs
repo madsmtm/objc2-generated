@@ -63,10 +63,10 @@ extern_methods!(
         pub unsafe fn setMinCount(&self, minCount: NSUInteger);
 
         #[method(deleteRule)]
-        pub unsafe fn deleteRule(&self) -> NSDeleteRule;
+        pub unsafe fn deleteRule(&self) -> CoreData::NSDeleteRule;
 
         #[method(setDeleteRule:)]
-        pub unsafe fn setDeleteRule(&self, deleteRule: NSDeleteRule);
+        pub unsafe fn setDeleteRule(&self, deleteRule: CoreData::NSDeleteRule);
 
         #[method(isToMany)]
         pub unsafe fn isToMany(&self) -> bool;

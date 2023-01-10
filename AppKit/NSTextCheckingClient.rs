@@ -20,83 +20,98 @@ extern_protocol!(
     unsafe impl ProtocolType for NSTextInputTraits {
         #[optional]
         #[method(autocorrectionType)]
-        pub unsafe fn autocorrectionType(&self) -> NSTextInputTraitType;
+        pub unsafe fn autocorrectionType(&self) -> AppKit::NSTextInputTraitType;
 
         #[optional]
         #[method(setAutocorrectionType:)]
-        pub unsafe fn setAutocorrectionType(&self, autocorrectionType: NSTextInputTraitType);
+        pub unsafe fn setAutocorrectionType(
+            &self,
+            autocorrectionType: AppKit::NSTextInputTraitType,
+        );
 
         #[optional]
         #[method(spellCheckingType)]
-        pub unsafe fn spellCheckingType(&self) -> NSTextInputTraitType;
+        pub unsafe fn spellCheckingType(&self) -> AppKit::NSTextInputTraitType;
 
         #[optional]
         #[method(setSpellCheckingType:)]
-        pub unsafe fn setSpellCheckingType(&self, spellCheckingType: NSTextInputTraitType);
+        pub unsafe fn setSpellCheckingType(&self, spellCheckingType: AppKit::NSTextInputTraitType);
 
         #[optional]
         #[method(grammarCheckingType)]
-        pub unsafe fn grammarCheckingType(&self) -> NSTextInputTraitType;
+        pub unsafe fn grammarCheckingType(&self) -> AppKit::NSTextInputTraitType;
 
         #[optional]
         #[method(setGrammarCheckingType:)]
-        pub unsafe fn setGrammarCheckingType(&self, grammarCheckingType: NSTextInputTraitType);
+        pub unsafe fn setGrammarCheckingType(
+            &self,
+            grammarCheckingType: AppKit::NSTextInputTraitType,
+        );
 
         #[optional]
         #[method(smartQuotesType)]
-        pub unsafe fn smartQuotesType(&self) -> NSTextInputTraitType;
+        pub unsafe fn smartQuotesType(&self) -> AppKit::NSTextInputTraitType;
 
         #[optional]
         #[method(setSmartQuotesType:)]
-        pub unsafe fn setSmartQuotesType(&self, smartQuotesType: NSTextInputTraitType);
+        pub unsafe fn setSmartQuotesType(&self, smartQuotesType: AppKit::NSTextInputTraitType);
 
         #[optional]
         #[method(smartDashesType)]
-        pub unsafe fn smartDashesType(&self) -> NSTextInputTraitType;
+        pub unsafe fn smartDashesType(&self) -> AppKit::NSTextInputTraitType;
 
         #[optional]
         #[method(setSmartDashesType:)]
-        pub unsafe fn setSmartDashesType(&self, smartDashesType: NSTextInputTraitType);
+        pub unsafe fn setSmartDashesType(&self, smartDashesType: AppKit::NSTextInputTraitType);
 
         #[optional]
         #[method(smartInsertDeleteType)]
-        pub unsafe fn smartInsertDeleteType(&self) -> NSTextInputTraitType;
+        pub unsafe fn smartInsertDeleteType(&self) -> AppKit::NSTextInputTraitType;
 
         #[optional]
         #[method(setSmartInsertDeleteType:)]
-        pub unsafe fn setSmartInsertDeleteType(&self, smartInsertDeleteType: NSTextInputTraitType);
+        pub unsafe fn setSmartInsertDeleteType(
+            &self,
+            smartInsertDeleteType: AppKit::NSTextInputTraitType,
+        );
 
         #[optional]
         #[method(textReplacementType)]
-        pub unsafe fn textReplacementType(&self) -> NSTextInputTraitType;
+        pub unsafe fn textReplacementType(&self) -> AppKit::NSTextInputTraitType;
 
         #[optional]
         #[method(setTextReplacementType:)]
-        pub unsafe fn setTextReplacementType(&self, textReplacementType: NSTextInputTraitType);
+        pub unsafe fn setTextReplacementType(
+            &self,
+            textReplacementType: AppKit::NSTextInputTraitType,
+        );
 
         #[optional]
         #[method(dataDetectionType)]
-        pub unsafe fn dataDetectionType(&self) -> NSTextInputTraitType;
+        pub unsafe fn dataDetectionType(&self) -> AppKit::NSTextInputTraitType;
 
         #[optional]
         #[method(setDataDetectionType:)]
-        pub unsafe fn setDataDetectionType(&self, dataDetectionType: NSTextInputTraitType);
+        pub unsafe fn setDataDetectionType(&self, dataDetectionType: AppKit::NSTextInputTraitType);
 
         #[optional]
         #[method(linkDetectionType)]
-        pub unsafe fn linkDetectionType(&self) -> NSTextInputTraitType;
+        pub unsafe fn linkDetectionType(&self) -> AppKit::NSTextInputTraitType;
 
         #[optional]
         #[method(setLinkDetectionType:)]
-        pub unsafe fn setLinkDetectionType(&self, linkDetectionType: NSTextInputTraitType);
+        pub unsafe fn setLinkDetectionType(&self, linkDetectionType: AppKit::NSTextInputTraitType);
 
         #[optional]
         #[method(textCompletionType)]
-        pub unsafe fn textCompletionType(&self) -> NSTextInputTraitType;
+        pub unsafe fn textCompletionType(&self) -> AppKit::NSTextInputTraitType;
 
         #[optional]
         #[method(setTextCompletionType:)]
-        pub unsafe fn setTextCompletionType(&self, textCompletionType: NSTextInputTraitType);
+        pub unsafe fn setTextCompletionType(
+            &self,
+            textCompletionType: AppKit::NSTextInputTraitType,
+        );
     }
 );
 
@@ -107,8 +122,8 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other annotatedSubstringForProposedRange:actualRange:)]
         pub unsafe fn annotatedSubstringForProposedRange_actualRange(
             &self,
-            range: NSRange,
-            actualRange: NSRangePointer,
+            range: Foundation::NSRange,
+            actualRange: Foundation::NSRangePointer,
         ) -> Option<Id<Foundation::NSAttributedString, Shared>>;
 
         #[method(setAnnotations:range:)]
@@ -118,7 +133,7 @@ extern_protocol!(
                 Foundation::NSAttributedStringKey,
                 Foundation::NSString,
             >,
-            range: NSRange,
+            range: Foundation::NSRange,
         );
 
         #[method(addAnnotations:range:)]
@@ -128,32 +143,32 @@ extern_protocol!(
                 Foundation::NSAttributedStringKey,
                 Foundation::NSString,
             >,
-            range: NSRange,
+            range: Foundation::NSRange,
         );
 
         #[method(removeAnnotation:range:)]
         pub unsafe fn removeAnnotation_range(
             &self,
             annotationName: &Foundation::NSAttributedStringKey,
-            range: NSRange,
+            range: Foundation::NSRange,
         );
 
         #[method(replaceCharactersInRange:withAnnotatedString:)]
         pub unsafe fn replaceCharactersInRange_withAnnotatedString(
             &self,
-            range: NSRange,
+            range: Foundation::NSRange,
             annotatedString: &Foundation::NSAttributedString,
         );
 
         #[method(selectAndShowRange:)]
-        pub unsafe fn selectAndShowRange(&self, range: NSRange);
+        pub unsafe fn selectAndShowRange(&self, range: Foundation::NSRange);
 
         #[method_id(@__retain_semantics Other viewForRange:firstRect:actualRange:)]
         pub unsafe fn viewForRange_firstRect_actualRange(
             &self,
-            range: NSRange,
-            firstRect: NSRectPointer,
-            actualRange: NSRangePointer,
+            range: Foundation::NSRange,
+            firstRect: Foundation::NSRectPointer,
+            actualRange: Foundation::NSRangePointer,
         ) -> Option<Id<AppKit::NSView, Shared>>;
 
         #[method_id(@__retain_semantics Other candidateListTouchBarItem)]

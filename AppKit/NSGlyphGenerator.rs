@@ -21,7 +21,7 @@ extern_protocol!(
         #[method(insertGlyphs:length:forStartingGlyphAtIndex:characterIndex:)]
         pub unsafe fn insertGlyphs_length_forStartingGlyphAtIndex_characterIndex(
             &self,
-            glyphs: NonNull<NSGlyph>,
+            glyphs: NonNull<AppKit::NSGlyph>,
             length: NSUInteger,
             glyphIndex: NSUInteger,
             charIndex: NSUInteger,

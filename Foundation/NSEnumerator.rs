@@ -19,7 +19,7 @@ extern_protocol!(
         #[method(countByEnumeratingWithState:objects:count:)]
         pub unsafe fn countByEnumeratingWithState_objects_count(
             &self,
-            state: NonNull<NSFastEnumerationState>,
+            state: NonNull<Foundation::NSFastEnumerationState>,
             buffer: NonNull<*mut Object>,
             len: NSUInteger,
         ) -> NSUInteger;

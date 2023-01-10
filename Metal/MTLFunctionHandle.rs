@@ -9,7 +9,7 @@ extern_protocol!(
 
     unsafe impl ProtocolType for MTLFunctionHandle {
         #[method(functionType)]
-        pub fn functionType(&self) -> MTLFunctionType;
+        pub fn functionType(&self) -> Metal::MTLFunctionType;
 
         #[method_id(@__retain_semantics Other name)]
         pub fn name(&self) -> Id<Foundation::NSString, Shared>;

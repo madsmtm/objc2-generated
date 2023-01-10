@@ -29,7 +29,10 @@ extern_methods!(
         ) -> Option<Id<Self, Shared>>;
 
         #[method(compare:)]
-        pub unsafe fn compare(&self, otherUUID: &Foundation::NSUUID) -> NSComparisonResult;
+        pub unsafe fn compare(
+            &self,
+            otherUUID: &Foundation::NSUUID,
+        ) -> Foundation::NSComparisonResult;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other UUIDString)]

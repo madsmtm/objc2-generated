@@ -118,7 +118,7 @@ extern_methods!(
         pub unsafe fn publish(&self);
 
         #[method(publishWithOptions:)]
-        pub unsafe fn publishWithOptions(&self, options: NSNetServiceOptions);
+        pub unsafe fn publishWithOptions(&self, options: Foundation::NSNetServiceOptions);
 
         #[method(resolve)]
         pub unsafe fn resolve(&self);
@@ -147,7 +147,7 @@ extern_methods!(
         ) -> Id<Foundation::NSData, Shared>;
 
         #[method(resolveWithTimeout:)]
-        pub unsafe fn resolveWithTimeout(&self, timeout: NSTimeInterval);
+        pub unsafe fn resolveWithTimeout(&self, timeout: Foundation::NSTimeInterval);
 
         #[cfg(feature = "Foundation_NSData")]
         #[method(setTXTRecordData:)]

@@ -52,10 +52,10 @@ extern_methods!(
         pub fn setConstantValues(&self, constantValues: Option<&Metal::MTLFunctionConstantValues>);
 
         #[method(options)]
-        pub fn options(&self) -> MTLFunctionOptions;
+        pub fn options(&self) -> Metal::MTLFunctionOptions;
 
         #[method(setOptions:)]
-        pub fn setOptions(&self, options: MTLFunctionOptions);
+        pub fn setOptions(&self, options: Metal::MTLFunctionOptions);
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other binaryArchives)]

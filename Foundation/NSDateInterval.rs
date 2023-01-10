@@ -24,7 +24,7 @@ extern_methods!(
         pub unsafe fn endDate(&self) -> Id<Foundation::NSDate, Shared>;
 
         #[method(duration)]
-        pub unsafe fn duration(&self) -> NSTimeInterval;
+        pub unsafe fn duration(&self) -> Foundation::NSTimeInterval;
 
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
@@ -41,7 +41,7 @@ extern_methods!(
         pub unsafe fn initWithStartDate_duration(
             this: Option<Allocated<Self>>,
             startDate: &Foundation::NSDate,
-            duration: NSTimeInterval,
+            duration: Foundation::NSTimeInterval,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSDate")]
@@ -56,7 +56,7 @@ extern_methods!(
         pub unsafe fn compare(
             &self,
             dateInterval: &Foundation::NSDateInterval,
-        ) -> NSComparisonResult;
+        ) -> Foundation::NSComparisonResult;
 
         #[method(isEqualToDateInterval:)]
         pub unsafe fn isEqualToDateInterval(

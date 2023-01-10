@@ -30,16 +30,16 @@ extern_methods!(
         pub unsafe fn draggedColumn(&self) -> NSInteger;
 
         #[method(draggedDistance)]
-        pub unsafe fn draggedDistance(&self) -> CGFloat;
+        pub unsafe fn draggedDistance(&self) -> CoreGraphics::CGFloat;
 
         #[method(resizedColumn)]
         pub unsafe fn resizedColumn(&self) -> NSInteger;
 
         #[method(headerRectOfColumn:)]
-        pub unsafe fn headerRectOfColumn(&self, column: NSInteger) -> NSRect;
+        pub unsafe fn headerRectOfColumn(&self, column: NSInteger) -> Foundation::NSRect;
 
         #[method(columnAtPoint:)]
-        pub unsafe fn columnAtPoint(&self, point: NSPoint) -> NSInteger;
+        pub unsafe fn columnAtPoint(&self, point: Foundation::NSPoint) -> NSInteger;
     }
 );
 
@@ -50,7 +50,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frameRect: Foundation::NSRect,
         ) -> Id<Self, Shared>;
     }
 );

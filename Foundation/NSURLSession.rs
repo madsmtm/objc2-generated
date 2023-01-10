@@ -501,7 +501,7 @@ extern_methods!(
         pub unsafe fn cancel(&self);
 
         #[method(state)]
-        pub unsafe fn state(&self) -> NSURLSessionTaskState;
+        pub unsafe fn state(&self) -> Foundation::NSURLSessionTaskState;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other error)]
@@ -628,7 +628,7 @@ extern_methods!(
             &self,
             minBytes: NSUInteger,
             maxBytes: NSUInteger,
-            timeout: NSTimeInterval,
+            timeout: Foundation::NSTimeInterval,
             completionHandler: &Block<
                 (*mut Foundation::NSData, Bool, *mut Foundation::NSError),
                 (),
@@ -640,7 +640,7 @@ extern_methods!(
         pub unsafe fn writeData_timeout_completionHandler(
             &self,
             data: &Foundation::NSData,
-            timeout: NSTimeInterval,
+            timeout: Foundation::NSTimeInterval,
             completionHandler: &Block<(*mut Foundation::NSError,), ()>,
         );
 
@@ -702,7 +702,7 @@ extern_methods!(
         ) -> Id<Self, Shared>;
 
         #[method(type)]
-        pub unsafe fn type_(&self) -> NSURLSessionWebSocketMessageType;
+        pub unsafe fn type_(&self) -> Foundation::NSURLSessionWebSocketMessageType;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other data)]
@@ -790,7 +790,7 @@ extern_methods!(
         #[method(cancelWithCloseCode:reason:)]
         pub unsafe fn cancelWithCloseCode_reason(
             &self,
-            closeCode: NSURLSessionWebSocketCloseCode,
+            closeCode: Foundation::NSURLSessionWebSocketCloseCode,
             reason: Option<&Foundation::NSData>,
         );
 
@@ -801,7 +801,7 @@ extern_methods!(
         pub unsafe fn setMaximumMessageSize(&self, maximumMessageSize: NSInteger);
 
         #[method(closeCode)]
-        pub unsafe fn closeCode(&self) -> NSURLSessionWebSocketCloseCode;
+        pub unsafe fn closeCode(&self) -> Foundation::NSURLSessionWebSocketCloseCode;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other closeReason)]
@@ -856,36 +856,39 @@ extern_methods!(
         pub unsafe fn identifier(&self) -> Option<Id<Foundation::NSString, Shared>>;
 
         #[method(requestCachePolicy)]
-        pub unsafe fn requestCachePolicy(&self) -> NSURLRequestCachePolicy;
+        pub unsafe fn requestCachePolicy(&self) -> Foundation::NSURLRequestCachePolicy;
 
         #[method(setRequestCachePolicy:)]
-        pub unsafe fn setRequestCachePolicy(&self, requestCachePolicy: NSURLRequestCachePolicy);
+        pub unsafe fn setRequestCachePolicy(
+            &self,
+            requestCachePolicy: Foundation::NSURLRequestCachePolicy,
+        );
 
         #[method(timeoutIntervalForRequest)]
-        pub unsafe fn timeoutIntervalForRequest(&self) -> NSTimeInterval;
+        pub unsafe fn timeoutIntervalForRequest(&self) -> Foundation::NSTimeInterval;
 
         #[method(setTimeoutIntervalForRequest:)]
         pub unsafe fn setTimeoutIntervalForRequest(
             &self,
-            timeoutIntervalForRequest: NSTimeInterval,
+            timeoutIntervalForRequest: Foundation::NSTimeInterval,
         );
 
         #[method(timeoutIntervalForResource)]
-        pub unsafe fn timeoutIntervalForResource(&self) -> NSTimeInterval;
+        pub unsafe fn timeoutIntervalForResource(&self) -> Foundation::NSTimeInterval;
 
         #[method(setTimeoutIntervalForResource:)]
         pub unsafe fn setTimeoutIntervalForResource(
             &self,
-            timeoutIntervalForResource: NSTimeInterval,
+            timeoutIntervalForResource: Foundation::NSTimeInterval,
         );
 
         #[method(networkServiceType)]
-        pub unsafe fn networkServiceType(&self) -> NSURLRequestNetworkServiceType;
+        pub unsafe fn networkServiceType(&self) -> Foundation::NSURLRequestNetworkServiceType;
 
         #[method(setNetworkServiceType:)]
         pub unsafe fn setNetworkServiceType(
             &self,
-            networkServiceType: NSURLRequestNetworkServiceType,
+            networkServiceType: Foundation::NSURLRequestNetworkServiceType,
         );
 
         #[method(allowsCellularAccess)]
@@ -964,12 +967,12 @@ extern_methods!(
         pub unsafe fn setHTTPShouldSetCookies(&self, HTTPShouldSetCookies: bool);
 
         #[method(HTTPCookieAcceptPolicy)]
-        pub unsafe fn HTTPCookieAcceptPolicy(&self) -> NSHTTPCookieAcceptPolicy;
+        pub unsafe fn HTTPCookieAcceptPolicy(&self) -> Foundation::NSHTTPCookieAcceptPolicy;
 
         #[method(setHTTPCookieAcceptPolicy:)]
         pub unsafe fn setHTTPCookieAcceptPolicy(
             &self,
-            HTTPCookieAcceptPolicy: NSHTTPCookieAcceptPolicy,
+            HTTPCookieAcceptPolicy: Foundation::NSHTTPCookieAcceptPolicy,
         );
 
         #[cfg(feature = "Foundation_NSDictionary")]
@@ -1047,12 +1050,12 @@ extern_methods!(
         );
 
         #[method(multipathServiceType)]
-        pub unsafe fn multipathServiceType(&self) -> NSURLSessionMultipathServiceType;
+        pub unsafe fn multipathServiceType(&self) -> Foundation::NSURLSessionMultipathServiceType;
 
         #[method(setMultipathServiceType:)]
         pub unsafe fn setMultipathServiceType(
             &self,
-            multipathServiceType: NSURLSessionMultipathServiceType,
+            multipathServiceType: Foundation::NSURLSessionMultipathServiceType,
         );
 
         #[method_id(@__retain_semantics Init init)]
@@ -1112,7 +1115,7 @@ extern_protocol!(
             challenge: &Foundation::NSURLAuthenticationChallenge,
             completionHandler: &Block<
                 (
-                    NSURLSessionAuthChallengeDisposition,
+                    Foundation::NSURLSessionAuthChallengeDisposition,
                     *mut Foundation::NSURLCredential,
                 ),
                 (),
@@ -1141,7 +1144,7 @@ extern_protocol!(
             request: &Foundation::NSURLRequest,
             completionHandler: &Block<
                 (
-                    NSURLSessionDelayedRequestDisposition,
+                    Foundation::NSURLSessionDelayedRequestDisposition,
                     *mut Foundation::NSURLRequest,
                 ),
                 (),
@@ -1176,7 +1179,7 @@ extern_protocol!(
             challenge: &Foundation::NSURLAuthenticationChallenge,
             completionHandler: &Block<
                 (
-                    NSURLSessionAuthChallengeDisposition,
+                    Foundation::NSURLSessionAuthChallengeDisposition,
                     *mut Foundation::NSURLCredential,
                 ),
                 (),
@@ -1234,7 +1237,7 @@ extern_protocol!(
             session: &Foundation::NSURLSession,
             dataTask: &Foundation::NSURLSessionDataTask,
             response: &Foundation::NSURLResponse,
-            completionHandler: &Block<(NSURLSessionResponseDisposition,), ()>,
+            completionHandler: &Block<(Foundation::NSURLSessionResponseDisposition,), ()>,
         );
 
         #[optional]
@@ -1370,7 +1373,7 @@ extern_protocol!(
             &self,
             session: &Foundation::NSURLSession,
             webSocketTask: &Foundation::NSURLSessionWebSocketTask,
-            closeCode: NSURLSessionWebSocketCloseCode,
+            closeCode: Foundation::NSURLSessionWebSocketCloseCode,
             reason: Option<&Foundation::NSData>,
         );
     }
@@ -1486,7 +1489,9 @@ extern_methods!(
         pub unsafe fn isReusedConnection(&self) -> bool;
 
         #[method(resourceFetchType)]
-        pub unsafe fn resourceFetchType(&self) -> NSURLSessionTaskMetricsResourceFetchType;
+        pub unsafe fn resourceFetchType(
+            &self,
+        ) -> Foundation::NSURLSessionTaskMetricsResourceFetchType;
 
         #[method(countOfRequestHeaderBytesSent)]
         pub unsafe fn countOfRequestHeaderBytesSent(&self) -> i64;
@@ -1547,7 +1552,7 @@ extern_methods!(
         #[method(domainResolutionProtocol)]
         pub unsafe fn domainResolutionProtocol(
             &self,
-        ) -> NSURLSessionTaskMetricsDomainResolutionProtocol;
+        ) -> Foundation::NSURLSessionTaskMetricsDomainResolutionProtocol;
 
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;

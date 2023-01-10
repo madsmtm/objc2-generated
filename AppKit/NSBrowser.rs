@@ -5,9 +5,11 @@ use crate::AppKit;
 use crate::CoreData;
 use crate::Foundation;
 
-extern_static!(NSAppKitVersionNumberWithContinuousScrollingBrowser: NSAppKitVersion = 680.0);
+extern_static!(
+    NSAppKitVersionNumberWithContinuousScrollingBrowser: AppKit::NSAppKitVersion = 680.0
+);
 
-extern_static!(NSAppKitVersionNumberWithColumnResizingBrowser: NSAppKitVersion = 685.0);
+extern_static!(NSAppKitVersionNumberWithColumnResizingBrowser: AppKit::NSAppKitVersion = 685.0);
 
 pub type NSBrowserColumnsAutosaveName = Foundation::NSString;
 
@@ -102,10 +104,10 @@ extern_methods!(
         pub unsafe fn setTitled(&self, titled: bool);
 
         #[method(minColumnWidth)]
-        pub unsafe fn minColumnWidth(&self) -> CGFloat;
+        pub unsafe fn minColumnWidth(&self) -> CoreGraphics::CGFloat;
 
         #[method(setMinColumnWidth:)]
-        pub unsafe fn setMinColumnWidth(&self, minColumnWidth: CGFloat);
+        pub unsafe fn setMinColumnWidth(&self, minColumnWidth: CoreGraphics::CGFloat);
 
         #[method(maxVisibleColumns)]
         pub unsafe fn maxVisibleColumns(&self) -> NSInteger;
@@ -337,45 +339,55 @@ extern_methods!(
         pub unsafe fn sendAction(&self) -> bool;
 
         #[method(titleFrameOfColumn:)]
-        pub unsafe fn titleFrameOfColumn(&self, column: NSInteger) -> NSRect;
+        pub unsafe fn titleFrameOfColumn(&self, column: NSInteger) -> Foundation::NSRect;
 
         #[method(drawTitleOfColumn:inRect:)]
-        pub unsafe fn drawTitleOfColumn_inRect(&self, column: NSInteger, rect: NSRect);
+        pub unsafe fn drawTitleOfColumn_inRect(&self, column: NSInteger, rect: Foundation::NSRect);
 
         #[method(titleHeight)]
-        pub unsafe fn titleHeight(&self) -> CGFloat;
+        pub unsafe fn titleHeight(&self) -> CoreGraphics::CGFloat;
 
         #[method(frameOfColumn:)]
-        pub unsafe fn frameOfColumn(&self, column: NSInteger) -> NSRect;
+        pub unsafe fn frameOfColumn(&self, column: NSInteger) -> Foundation::NSRect;
 
         #[method(frameOfInsideOfColumn:)]
-        pub unsafe fn frameOfInsideOfColumn(&self, column: NSInteger) -> NSRect;
+        pub unsafe fn frameOfInsideOfColumn(&self, column: NSInteger) -> Foundation::NSRect;
 
         #[method(frameOfRow:inColumn:)]
-        pub unsafe fn frameOfRow_inColumn(&self, row: NSInteger, column: NSInteger) -> NSRect;
+        pub unsafe fn frameOfRow_inColumn(
+            &self,
+            row: NSInteger,
+            column: NSInteger,
+        ) -> Foundation::NSRect;
 
         #[method(getRow:column:forPoint:)]
         pub unsafe fn getRow_column_forPoint(
             &self,
             row: *mut NSInteger,
             column: *mut NSInteger,
-            point: NSPoint,
+            point: Foundation::NSPoint,
         ) -> bool;
 
         #[method(columnWidthForColumnContentWidth:)]
         pub unsafe fn columnWidthForColumnContentWidth(
             &self,
-            columnContentWidth: CGFloat,
-        ) -> CGFloat;
+            columnContentWidth: CoreGraphics::CGFloat,
+        ) -> CoreGraphics::CGFloat;
 
         #[method(columnContentWidthForColumnWidth:)]
-        pub unsafe fn columnContentWidthForColumnWidth(&self, columnWidth: CGFloat) -> CGFloat;
+        pub unsafe fn columnContentWidthForColumnWidth(
+            &self,
+            columnWidth: CoreGraphics::CGFloat,
+        ) -> CoreGraphics::CGFloat;
 
         #[method(columnResizingType)]
-        pub unsafe fn columnResizingType(&self) -> NSBrowserColumnResizingType;
+        pub unsafe fn columnResizingType(&self) -> AppKit::NSBrowserColumnResizingType;
 
         #[method(setColumnResizingType:)]
-        pub unsafe fn setColumnResizingType(&self, columnResizingType: NSBrowserColumnResizingType);
+        pub unsafe fn setColumnResizingType(
+            &self,
+            columnResizingType: AppKit::NSBrowserColumnResizingType,
+        );
 
         #[method(prefersAllColumnUserResizing)]
         pub unsafe fn prefersAllColumnUserResizing(&self) -> bool;
@@ -384,16 +396,20 @@ extern_methods!(
         pub unsafe fn setPrefersAllColumnUserResizing(&self, prefersAllColumnUserResizing: bool);
 
         #[method(setWidth:ofColumn:)]
-        pub unsafe fn setWidth_ofColumn(&self, columnWidth: CGFloat, columnIndex: NSInteger);
+        pub unsafe fn setWidth_ofColumn(
+            &self,
+            columnWidth: CoreGraphics::CGFloat,
+            columnIndex: NSInteger,
+        );
 
         #[method(widthOfColumn:)]
-        pub unsafe fn widthOfColumn(&self, column: NSInteger) -> CGFloat;
+        pub unsafe fn widthOfColumn(&self, column: NSInteger) -> CoreGraphics::CGFloat;
 
         #[method(rowHeight)]
-        pub unsafe fn rowHeight(&self) -> CGFloat;
+        pub unsafe fn rowHeight(&self) -> CoreGraphics::CGFloat;
 
         #[method(setRowHeight:)]
-        pub unsafe fn setRowHeight(&self, rowHeight: CGFloat);
+        pub unsafe fn setRowHeight(&self, rowHeight: CoreGraphics::CGFloat);
 
         #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(noteHeightOfRowsWithIndexesChanged:inColumn:)]
@@ -404,10 +420,10 @@ extern_methods!(
         );
 
         #[method(setDefaultColumnWidth:)]
-        pub unsafe fn setDefaultColumnWidth(&self, columnWidth: CGFloat);
+        pub unsafe fn setDefaultColumnWidth(&self, columnWidth: CoreGraphics::CGFloat);
 
         #[method(defaultColumnWidth)]
-        pub unsafe fn defaultColumnWidth(&self) -> CGFloat;
+        pub unsafe fn defaultColumnWidth(&self) -> CoreGraphics::CGFloat;
 
         #[method_id(@__retain_semantics Other columnsAutosaveName)]
         pub unsafe fn columnsAutosaveName(
@@ -445,13 +461,13 @@ extern_methods!(
             rowIndexes: &Foundation::NSIndexSet,
             column: NSInteger,
             event: &AppKit::NSEvent,
-            dragImageOffset: NSPointPointer,
+            dragImageOffset: Foundation::NSPointPointer,
         ) -> Option<Id<AppKit::NSImage, Shared>>;
 
         #[method(setDraggingSourceOperationMask:forLocal:)]
         pub unsafe fn setDraggingSourceOperationMask_forLocal(
             &self,
-            mask: NSDragOperation,
+            mask: AppKit::NSDragOperation,
             isLocal: bool,
         );
 
@@ -545,7 +561,7 @@ extern_protocol!(
             browser: &AppKit::NSBrowser,
             row: NSInteger,
             columnIndex: NSInteger,
-        ) -> CGFloat;
+        ) -> CoreGraphics::CGFloat;
 
         #[optional]
         #[method_id(@__retain_semantics Other rootItemForBrowser:)]
@@ -630,8 +646,8 @@ extern_protocol!(
             browser: &AppKit::NSBrowser,
             columnIndex: NSInteger,
             forUserResize: bool,
-            suggestedWidth: CGFloat,
-        ) -> CGFloat;
+            suggestedWidth: CoreGraphics::CGFloat,
+        ) -> CoreGraphics::CGFloat;
 
         #[optional]
         #[method(browser:sizeToFitWidthOfColumn:)]
@@ -639,7 +655,7 @@ extern_protocol!(
             &self,
             browser: &AppKit::NSBrowser,
             columnIndex: NSInteger,
-        ) -> CGFloat;
+        ) -> CoreGraphics::CGFloat;
 
         #[optional]
         #[method(browserColumnConfigurationDidChange:)]
@@ -695,7 +711,7 @@ extern_protocol!(
             rowIndexes: &Foundation::NSIndexSet,
             column: NSInteger,
             event: &AppKit::NSEvent,
-            dragImageOffset: NSPointPointer,
+            dragImageOffset: Foundation::NSPointPointer,
         ) -> Option<Id<AppKit::NSImage, Shared>>;
 
         #[optional]
@@ -706,8 +722,8 @@ extern_protocol!(
             info: &AppKit::NSDraggingInfo,
             row: NonNull<NSInteger>,
             column: NonNull<NSInteger>,
-            dropOperation: NonNull<NSBrowserDropOperation>,
-        ) -> NSDragOperation;
+            dropOperation: NonNull<AppKit::NSBrowserDropOperation>,
+        ) -> AppKit::NSDragOperation;
 
         #[optional]
         #[method(browser:acceptDrop:atRow:column:dropOperation:)]
@@ -717,7 +733,7 @@ extern_protocol!(
             info: &AppKit::NSDraggingInfo,
             row: NSInteger,
             column: NSInteger,
-            dropOperation: NSBrowserDropOperation,
+            dropOperation: AppKit::NSBrowserDropOperation,
         ) -> bool;
 
         #[optional]
@@ -834,7 +850,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frameRect: Foundation::NSRect,
         ) -> Id<Self, Shared>;
     }
 );

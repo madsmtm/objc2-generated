@@ -53,13 +53,13 @@ extern_methods!(
         pub unsafe fn detachColorList(&self, colorList: &AppKit::NSColorList);
 
         #[method(setMode:)]
-        pub unsafe fn setMode(&self, mode: NSColorPanelMode);
+        pub unsafe fn setMode(&self, mode: AppKit::NSColorPanelMode);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other buttonToolTip)]
         pub unsafe fn buttonToolTip(&self) -> Id<Foundation::NSString, Shared>;
 
         #[method(minContentSize)]
-        pub unsafe fn minContentSize(&self) -> NSSize;
+        pub unsafe fn minContentSize(&self) -> Foundation::NSSize;
     }
 );

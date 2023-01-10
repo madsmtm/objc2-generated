@@ -19,16 +19,16 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSRotationGestureRecognizer")]
     unsafe impl NSRotationGestureRecognizer {
         #[method(rotation)]
-        pub unsafe fn rotation(&self) -> CGFloat;
+        pub unsafe fn rotation(&self) -> CoreGraphics::CGFloat;
 
         #[method(setRotation:)]
-        pub unsafe fn setRotation(&self, rotation: CGFloat);
+        pub unsafe fn setRotation(&self, rotation: CoreGraphics::CGFloat);
 
         #[method(rotationInDegrees)]
-        pub unsafe fn rotationInDegrees(&self) -> CGFloat;
+        pub unsafe fn rotationInDegrees(&self) -> CoreGraphics::CGFloat;
 
         #[method(setRotationInDegrees:)]
-        pub unsafe fn setRotationInDegrees(&self, rotationInDegrees: CGFloat);
+        pub unsafe fn setRotationInDegrees(&self, rotationInDegrees: CoreGraphics::CGFloat);
     }
 );
 

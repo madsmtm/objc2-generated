@@ -50,7 +50,7 @@ extern_methods!(
         pub unsafe fn changedObjectID(&self) -> Id<CoreData::NSManagedObjectID, Shared>;
 
         #[method(changeType)]
-        pub unsafe fn changeType(&self) -> NSPersistentHistoryChangeType;
+        pub unsafe fn changeType(&self) -> CoreData::NSPersistentHistoryChangeType;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other tombstone)]

@@ -3,46 +3,52 @@
 use crate::common::*;
 use crate::Foundation;
 
-pub type NSRangePointer = *mut NSRange;
+pub type NSRangePointer = *mut Foundation::NSRange;
 
 inline_fn!(
-    pub unsafe fn NSMakeRange(loc: NSUInteger, len: NSUInteger) -> NSRange {
+    pub unsafe fn NSMakeRange(loc: NSUInteger, len: NSUInteger) -> Foundation::NSRange {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSMaxRange(range: NSRange) -> NSUInteger {
+    pub unsafe fn NSMaxRange(range: Foundation::NSRange) -> NSUInteger {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSLocationInRange(loc: NSUInteger, range: NSRange) -> Bool {
+    pub unsafe fn NSLocationInRange(loc: NSUInteger, range: Foundation::NSRange) -> Bool {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSEqualRanges(range1: NSRange, range2: NSRange) -> Bool {
+    pub unsafe fn NSEqualRanges(range1: Foundation::NSRange, range2: Foundation::NSRange) -> Bool {
         todo!()
     }
 );
 
 extern_fn!(
-    pub unsafe fn NSUnionRange(range1: NSRange, range2: NSRange) -> NSRange;
+    pub unsafe fn NSUnionRange(
+        range1: Foundation::NSRange,
+        range2: Foundation::NSRange,
+    ) -> Foundation::NSRange;
 );
 
 extern_fn!(
-    pub unsafe fn NSIntersectionRange(range1: NSRange, range2: NSRange) -> NSRange;
+    pub unsafe fn NSIntersectionRange(
+        range1: Foundation::NSRange,
+        range2: Foundation::NSRange,
+    ) -> Foundation::NSRange;
 );
 
 extern_fn!(
-    pub unsafe fn NSStringFromRange(range: NSRange) -> NonNull<Foundation::NSString>;
+    pub unsafe fn NSStringFromRange(range: Foundation::NSRange) -> NonNull<Foundation::NSString>;
 );
 
 extern_fn!(
-    pub unsafe fn NSRangeFromString(aString: &Foundation::NSString) -> NSRange;
+    pub unsafe fn NSRangeFromString(aString: &Foundation::NSString) -> Foundation::NSRange;
 );
 
 extern_methods!(
@@ -50,9 +56,10 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSValue")]
     unsafe impl Foundation::NSValue {
         #[method_id(@__retain_semantics Other valueWithRange:)]
-        pub unsafe fn valueWithRange(range: NSRange) -> Id<Foundation::NSValue, Shared>;
+        pub unsafe fn valueWithRange(range: Foundation::NSRange)
+            -> Id<Foundation::NSValue, Shared>;
 
         #[method(rangeValue)]
-        pub unsafe fn rangeValue(&self) -> NSRange;
+        pub unsafe fn rangeValue(&self) -> Foundation::NSRange;
     }
 );

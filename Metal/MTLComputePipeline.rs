@@ -172,7 +172,7 @@ extern_protocol!(
         #[method(imageblockMemoryLengthForDimensions:)]
         pub unsafe fn imageblockMemoryLengthForDimensions(
             &self,
-            imageblockDimensions: MTLSize,
+            imageblockDimensions: Metal::MTLSize,
         ) -> NSUInteger;
 
         #[method(supportIndirectCommandBuffers)]

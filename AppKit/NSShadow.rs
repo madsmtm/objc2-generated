@@ -21,16 +21,16 @@ extern_methods!(
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
         #[method(shadowOffset)]
-        pub unsafe fn shadowOffset(&self) -> NSSize;
+        pub unsafe fn shadowOffset(&self) -> Foundation::NSSize;
 
         #[method(setShadowOffset:)]
-        pub unsafe fn setShadowOffset(&self, shadowOffset: NSSize);
+        pub unsafe fn setShadowOffset(&self, shadowOffset: Foundation::NSSize);
 
         #[method(shadowBlurRadius)]
-        pub unsafe fn shadowBlurRadius(&self) -> CGFloat;
+        pub unsafe fn shadowBlurRadius(&self) -> CoreGraphics::CGFloat;
 
         #[method(setShadowBlurRadius:)]
-        pub unsafe fn setShadowBlurRadius(&self, shadowBlurRadius: CGFloat);
+        pub unsafe fn setShadowBlurRadius(&self, shadowBlurRadius: CoreGraphics::CGFloat);
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other shadowColor)]

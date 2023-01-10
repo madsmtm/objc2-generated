@@ -48,7 +48,7 @@ extern_protocol!(
             accelerationStructure: &Metal::MTLAccelerationStructure,
             buffer: &Metal::MTLBuffer,
             offset: NSUInteger,
-            sizeDataType: MTLDataType,
+            sizeDataType: Metal::MTLDataType,
         );
 
         #[method(copyAndCompactAccelerationStructure:toAccelerationStructure:)]
@@ -68,7 +68,7 @@ extern_protocol!(
         pub unsafe fn useResource_usage(
             &self,
             resource: &Metal::MTLResource,
-            usage: MTLResourceUsage,
+            usage: Metal::MTLResourceUsage,
         );
 
         #[method(useResources:count:usage:)]
@@ -76,7 +76,7 @@ extern_protocol!(
             &self,
             resources: NonNull<NonNull<Metal::MTLResource>>,
             count: NSUInteger,
-            usage: MTLResourceUsage,
+            usage: Metal::MTLResourceUsage,
         );
 
         #[method(useHeap:)]

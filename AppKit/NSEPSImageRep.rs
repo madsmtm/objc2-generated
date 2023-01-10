@@ -37,6 +37,6 @@ extern_methods!(
         pub unsafe fn EPSRepresentation(&self) -> Id<Foundation::NSData, Shared>;
 
         #[method(boundingBox)]
-        pub unsafe fn boundingBox(&self) -> NSRect;
+        pub unsafe fn boundingBox(&self) -> Foundation::NSRect;
     }
 );

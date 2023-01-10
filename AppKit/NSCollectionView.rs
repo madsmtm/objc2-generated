@@ -123,10 +123,13 @@ extern_methods!(
         pub unsafe fn setSelected(&self, selected: bool);
 
         #[method(highlightState)]
-        pub unsafe fn highlightState(&self) -> NSCollectionViewItemHighlightState;
+        pub unsafe fn highlightState(&self) -> AppKit::NSCollectionViewItemHighlightState;
 
         #[method(setHighlightState:)]
-        pub unsafe fn setHighlightState(&self, highlightState: NSCollectionViewItemHighlightState);
+        pub unsafe fn setHighlightState(
+            &self,
+            highlightState: AppKit::NSCollectionViewItemHighlightState,
+        );
 
         #[cfg(feature = "AppKit_NSImageView")]
         #[method_id(@__retain_semantics Other imageView)]
@@ -252,14 +255,14 @@ extern_methods!(
         ) -> Option<Id<AppKit::NSCollectionViewLayoutAttributes, Shared>>;
 
         #[method(frameForItemAtIndex:)]
-        pub unsafe fn frameForItemAtIndex(&self, index: NSUInteger) -> NSRect;
+        pub unsafe fn frameForItemAtIndex(&self, index: NSUInteger) -> Foundation::NSRect;
 
         #[method(frameForItemAtIndex:withNumberOfItems:)]
         pub unsafe fn frameForItemAtIndex_withNumberOfItems(
             &self,
             index: NSUInteger,
             numberOfItems: NSUInteger,
-        ) -> NSRect;
+        ) -> Foundation::NSRect;
 
         #[cfg(all(feature = "AppKit_NSColor", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other backgroundColors)]
@@ -325,7 +328,7 @@ extern_methods!(
         pub unsafe fn selectItemsAtIndexPaths_scrollPosition(
             &self,
             indexPaths: &Foundation::NSSet<Foundation::NSIndexPath>,
-            scrollPosition: NSCollectionViewScrollPosition,
+            scrollPosition: AppKit::NSCollectionViewScrollPosition,
         );
 
         #[cfg(all(feature = "Foundation_NSIndexPath", feature = "Foundation_NSSet"))]
@@ -439,7 +442,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other indexPathForItemAtPoint:)]
         pub unsafe fn indexPathForItemAtPoint(
             &self,
-            point: NSPoint,
+            point: Foundation::NSPoint,
         ) -> Option<Id<Foundation::NSIndexPath, Shared>>;
 
         #[cfg(feature = "Foundation_NSIndexPath")]
@@ -523,13 +526,13 @@ extern_methods!(
         pub unsafe fn scrollToItemsAtIndexPaths_scrollPosition(
             &self,
             indexPaths: &Foundation::NSSet<Foundation::NSIndexPath>,
-            scrollPosition: NSCollectionViewScrollPosition,
+            scrollPosition: AppKit::NSCollectionViewScrollPosition,
         );
 
         #[method(setDraggingSourceOperationMask:forLocal:)]
         pub unsafe fn setDraggingSourceOperationMask_forLocal(
             &self,
-            dragOperationMask: NSDragOperation,
+            dragOperationMask: AppKit::NSDragOperation,
             localDestination: bool,
         );
 
@@ -544,7 +547,7 @@ extern_methods!(
             &self,
             indexPaths: &Foundation::NSSet<Foundation::NSIndexPath>,
             event: &AppKit::NSEvent,
-            dragImageOffset: NSPointPointer,
+            dragImageOffset: Foundation::NSPointPointer,
         ) -> Id<AppKit::NSImage, Shared>;
 
         #[cfg(all(
@@ -557,7 +560,7 @@ extern_methods!(
             &self,
             indexes: &Foundation::NSIndexSet,
             event: &AppKit::NSEvent,
-            dragImageOffset: NSPointPointer,
+            dragImageOffset: Foundation::NSPointPointer,
         ) -> Id<AppKit::NSImage, Shared>;
     }
 );
@@ -684,7 +687,7 @@ extern_protocol!(
             collectionView: &AppKit::NSCollectionView,
             indexPaths: &Foundation::NSSet<Foundation::NSIndexPath>,
             event: &AppKit::NSEvent,
-            dragImageOffset: NSPointPointer,
+            dragImageOffset: Foundation::NSPointPointer,
         ) -> Id<AppKit::NSImage, Shared>;
 
         #[optional]
@@ -694,7 +697,7 @@ extern_protocol!(
             collectionView: &AppKit::NSCollectionView,
             indexes: &Foundation::NSIndexSet,
             event: &AppKit::NSEvent,
-            dragImageOffset: NSPointPointer,
+            dragImageOffset: Foundation::NSPointPointer,
         ) -> Id<AppKit::NSImage, Shared>;
 
         #[optional]
@@ -704,8 +707,8 @@ extern_protocol!(
             collectionView: &AppKit::NSCollectionView,
             draggingInfo: &AppKit::NSDraggingInfo,
             proposedDropIndexPath: NonNull<NonNull<Foundation::NSIndexPath>>,
-            proposedDropOperation: NonNull<NSCollectionViewDropOperation>,
-        ) -> NSDragOperation;
+            proposedDropOperation: NonNull<AppKit::NSCollectionViewDropOperation>,
+        ) -> AppKit::NSDragOperation;
 
         #[optional]
         #[method(collectionView:validateDrop:proposedIndex:dropOperation:)]
@@ -714,8 +717,8 @@ extern_protocol!(
             collectionView: &AppKit::NSCollectionView,
             draggingInfo: &AppKit::NSDraggingInfo,
             proposedDropIndex: NonNull<NSInteger>,
-            proposedDropOperation: NonNull<NSCollectionViewDropOperation>,
-        ) -> NSDragOperation;
+            proposedDropOperation: NonNull<AppKit::NSCollectionViewDropOperation>,
+        ) -> AppKit::NSDragOperation;
 
         #[optional]
         #[method(collectionView:acceptDrop:indexPath:dropOperation:)]
@@ -724,7 +727,7 @@ extern_protocol!(
             collectionView: &AppKit::NSCollectionView,
             draggingInfo: &AppKit::NSDraggingInfo,
             indexPath: &Foundation::NSIndexPath,
-            dropOperation: NSCollectionViewDropOperation,
+            dropOperation: AppKit::NSCollectionViewDropOperation,
         ) -> bool;
 
         #[optional]
@@ -734,7 +737,7 @@ extern_protocol!(
             collectionView: &AppKit::NSCollectionView,
             draggingInfo: &AppKit::NSDraggingInfo,
             index: NSInteger,
-            dropOperation: NSCollectionViewDropOperation,
+            dropOperation: AppKit::NSCollectionViewDropOperation,
         ) -> bool;
 
         #[optional]
@@ -759,7 +762,7 @@ extern_protocol!(
             &self,
             collectionView: &AppKit::NSCollectionView,
             session: &AppKit::NSDraggingSession,
-            screenPoint: NSPoint,
+            screenPoint: Foundation::NSPoint,
             indexPaths: &Foundation::NSSet<Foundation::NSIndexPath>,
         );
 
@@ -769,7 +772,7 @@ extern_protocol!(
             &self,
             collectionView: &AppKit::NSCollectionView,
             session: &AppKit::NSDraggingSession,
-            screenPoint: NSPoint,
+            screenPoint: Foundation::NSPoint,
             indexes: &Foundation::NSIndexSet,
         );
 
@@ -779,8 +782,8 @@ extern_protocol!(
             &self,
             collectionView: &AppKit::NSCollectionView,
             session: &AppKit::NSDraggingSession,
-            screenPoint: NSPoint,
-            operation: NSDragOperation,
+            screenPoint: Foundation::NSPoint,
+            operation: AppKit::NSDragOperation,
         );
 
         #[optional]
@@ -797,7 +800,7 @@ extern_protocol!(
             &self,
             collectionView: &AppKit::NSCollectionView,
             indexPaths: &Foundation::NSSet<Foundation::NSIndexPath>,
-            highlightState: NSCollectionViewItemHighlightState,
+            highlightState: AppKit::NSCollectionViewItemHighlightState,
         ) -> Id<Foundation::NSSet<Foundation::NSIndexPath>, Shared>;
 
         #[optional]
@@ -806,7 +809,7 @@ extern_protocol!(
             &self,
             collectionView: &AppKit::NSCollectionView,
             indexPaths: &Foundation::NSSet<Foundation::NSIndexPath>,
-            highlightState: NSCollectionViewItemHighlightState,
+            highlightState: AppKit::NSCollectionViewItemHighlightState,
         );
 
         #[optional]
@@ -928,7 +931,7 @@ extern_methods!(
         #[method(enumerateIndexPathsWithOptions:usingBlock:)]
         pub unsafe fn enumerateIndexPathsWithOptions_usingBlock(
             &self,
-            opts: NSEnumerationOptions,
+            opts: Foundation::NSEnumerationOptions,
             block: &Block<(NonNull<Foundation::NSIndexPath>, NonNull<Bool>), ()>,
         );
     }
@@ -966,16 +969,16 @@ extern_methods!(
         pub unsafe fn setMaxNumberOfColumns(&self, maxNumberOfColumns: NSUInteger);
 
         #[method(minItemSize)]
-        pub unsafe fn minItemSize(&self) -> NSSize;
+        pub unsafe fn minItemSize(&self) -> Foundation::NSSize;
 
         #[method(setMinItemSize:)]
-        pub unsafe fn setMinItemSize(&self, minItemSize: NSSize);
+        pub unsafe fn setMinItemSize(&self, minItemSize: Foundation::NSSize);
 
         #[method(maxItemSize)]
-        pub unsafe fn maxItemSize(&self) -> NSSize;
+        pub unsafe fn maxItemSize(&self) -> Foundation::NSSize;
 
         #[method(setMaxItemSize:)]
-        pub unsafe fn setMaxItemSize(&self, maxItemSize: NSSize);
+        pub unsafe fn setMaxItemSize(&self, maxItemSize: Foundation::NSSize);
     }
 );
 
@@ -1000,7 +1003,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frameRect: Foundation::NSRect,
         ) -> Id<Self, Shared>;
     }
 );

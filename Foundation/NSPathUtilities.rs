@@ -176,8 +176,8 @@ ns_options!(
 
 extern_fn!(
     pub unsafe fn NSSearchPathForDirectoriesInDomains(
-        directory: NSSearchPathDirectory,
-        domainMask: NSSearchPathDomainMask,
+        directory: Foundation::NSSearchPathDirectory,
+        domainMask: Foundation::NSSearchPathDomainMask,
         expandTilde: Bool,
     ) -> NonNull<Foundation::NSArray<Foundation::NSString>>;
 );

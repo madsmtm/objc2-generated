@@ -15,7 +15,7 @@ extern_protocol!(
         pub fn contents(&self) -> NonNull<c_void>;
 
         #[method(didModifyRange:)]
-        pub fn didModifyRange(&self, range: NSRange);
+        pub fn didModifyRange(&self, range: Foundation::NSRange);
 
         #[method_id(@__retain_semantics New newTextureWithDescriptor:offset:bytesPerRow:)]
         pub fn newTextureWithDescriptor_offset_bytesPerRow(
@@ -26,7 +26,11 @@ extern_protocol!(
         ) -> Option<Id<Metal::MTLTexture, Shared>>;
 
         #[method(addDebugMarker:range:)]
-        pub fn addDebugMarker_range(&self, marker: &Foundation::NSString, range: NSRange);
+        pub fn addDebugMarker_range(
+            &self,
+            marker: &Foundation::NSString,
+            range: Foundation::NSRange,
+        );
 
         #[method(removeAllDebugMarkers)]
         pub fn removeAllDebugMarkers(&self);

@@ -139,7 +139,7 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLType")]
     unsafe impl MTLType {
         #[method(dataType)]
-        pub unsafe fn dataType(&self) -> MTLDataType;
+        pub unsafe fn dataType(&self) -> Metal::MTLDataType;
     }
 );
 
@@ -163,7 +163,7 @@ extern_methods!(
         pub fn offset(&self) -> NSUInteger;
 
         #[method(dataType)]
-        pub fn dataType(&self) -> MTLDataType;
+        pub fn dataType(&self) -> Metal::MTLDataType;
 
         #[cfg(feature = "Metal_MTLStructType")]
         #[method_id(@__retain_semantics Other structType)]
@@ -228,7 +228,7 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLArrayType")]
     unsafe impl MTLArrayType {
         #[method(elementType)]
-        pub fn elementType(&self) -> MTLDataType;
+        pub fn elementType(&self) -> Metal::MTLDataType;
 
         #[method(arrayLength)]
         pub fn arrayLength(&self) -> NSUInteger;
@@ -272,10 +272,10 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLPointerType")]
     unsafe impl MTLPointerType {
         #[method(elementType)]
-        pub unsafe fn elementType(&self) -> MTLDataType;
+        pub unsafe fn elementType(&self) -> Metal::MTLDataType;
 
         #[method(access)]
-        pub unsafe fn access(&self) -> MTLArgumentAccess;
+        pub unsafe fn access(&self) -> Metal::MTLArgumentAccess;
 
         #[method(alignment)]
         pub unsafe fn alignment(&self) -> NSUInteger;
@@ -310,13 +310,13 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLTextureReferenceType")]
     unsafe impl MTLTextureReferenceType {
         #[method(textureDataType)]
-        pub unsafe fn textureDataType(&self) -> MTLDataType;
+        pub unsafe fn textureDataType(&self) -> Metal::MTLDataType;
 
         #[method(textureType)]
-        pub unsafe fn textureType(&self) -> MTLTextureType;
+        pub unsafe fn textureType(&self) -> Metal::MTLTextureType;
 
         #[method(access)]
-        pub unsafe fn access(&self) -> MTLArgumentAccess;
+        pub unsafe fn access(&self) -> Metal::MTLArgumentAccess;
 
         #[method(isDepthTexture)]
         pub unsafe fn isDepthTexture(&self) -> bool;
@@ -340,10 +340,10 @@ extern_methods!(
         pub fn name(&self) -> Id<Foundation::NSString, Shared>;
 
         #[method(type)]
-        pub unsafe fn type_(&self) -> MTLArgumentType;
+        pub unsafe fn type_(&self) -> Metal::MTLArgumentType;
 
         #[method(access)]
-        pub fn access(&self) -> MTLArgumentAccess;
+        pub fn access(&self) -> Metal::MTLArgumentAccess;
 
         #[method(index)]
         pub fn index(&self) -> NSUInteger;
@@ -358,7 +358,7 @@ extern_methods!(
         pub fn bufferDataSize(&self) -> NSUInteger;
 
         #[method(bufferDataType)]
-        pub fn bufferDataType(&self) -> MTLDataType;
+        pub fn bufferDataType(&self) -> Metal::MTLDataType;
 
         #[cfg(feature = "Metal_MTLStructType")]
         #[method_id(@__retain_semantics Other bufferStructType)]
@@ -375,10 +375,10 @@ extern_methods!(
         pub fn threadgroupMemoryDataSize(&self) -> NSUInteger;
 
         #[method(textureType)]
-        pub fn textureType(&self) -> MTLTextureType;
+        pub fn textureType(&self) -> Metal::MTLTextureType;
 
         #[method(textureDataType)]
-        pub fn textureDataType(&self) -> MTLDataType;
+        pub fn textureDataType(&self) -> Metal::MTLDataType;
 
         #[method(isDepthTexture)]
         pub unsafe fn isDepthTexture(&self) -> bool;

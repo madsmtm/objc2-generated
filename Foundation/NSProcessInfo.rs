@@ -80,7 +80,7 @@ extern_methods!(
         pub unsafe fn operatingSystemVersionString(&self) -> Id<Foundation::NSString, Shared>;
 
         #[method(operatingSystemVersion)]
-        pub unsafe fn operatingSystemVersion(&self) -> NSOperatingSystemVersion;
+        pub unsafe fn operatingSystemVersion(&self) -> Foundation::NSOperatingSystemVersion;
 
         #[method(processorCount)]
         pub unsafe fn processorCount(&self) -> NSUInteger;
@@ -94,11 +94,11 @@ extern_methods!(
         #[method(isOperatingSystemAtLeastVersion:)]
         pub unsafe fn isOperatingSystemAtLeastVersion(
             &self,
-            version: NSOperatingSystemVersion,
+            version: Foundation::NSOperatingSystemVersion,
         ) -> bool;
 
         #[method(systemUptime)]
-        pub unsafe fn systemUptime(&self) -> NSTimeInterval;
+        pub unsafe fn systemUptime(&self) -> Foundation::NSTimeInterval;
 
         #[method(disableSuddenTermination)]
         pub unsafe fn disableSuddenTermination(&self);
@@ -148,7 +148,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other beginActivityWithOptions:reason:)]
         pub unsafe fn beginActivityWithOptions_reason(
             &self,
-            options: NSActivityOptions,
+            options: Foundation::NSActivityOptions,
             reason: &Foundation::NSString,
         ) -> Id<NSObject, Shared>;
 
@@ -159,7 +159,7 @@ extern_methods!(
         #[method(performActivityWithOptions:reason:usingBlock:)]
         pub unsafe fn performActivityWithOptions_reason_usingBlock(
             &self,
-            options: NSActivityOptions,
+            options: Foundation::NSActivityOptions,
             reason: &Foundation::NSString,
             block: &Block<(), ()>,
         );
@@ -203,7 +203,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSProcessInfo")]
     unsafe impl NSProcessInfo {
         #[method(thermalState)]
-        pub unsafe fn thermalState(&self) -> NSProcessInfoThermalState;
+        pub unsafe fn thermalState(&self) -> Foundation::NSProcessInfoThermalState;
     }
 );
 

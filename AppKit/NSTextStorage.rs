@@ -41,10 +41,10 @@ extern_methods!(
         pub unsafe fn removeLayoutManager(&self, aLayoutManager: &AppKit::NSLayoutManager);
 
         #[method(editedMask)]
-        pub unsafe fn editedMask(&self) -> NSTextStorageEditActions;
+        pub unsafe fn editedMask(&self) -> AppKit::NSTextStorageEditActions;
 
         #[method(editedRange)]
-        pub unsafe fn editedRange(&self) -> NSRange;
+        pub unsafe fn editedRange(&self) -> Foundation::NSRange;
 
         #[method(changeInLength)]
         pub unsafe fn changeInLength(&self) -> NSInteger;
@@ -58,8 +58,8 @@ extern_methods!(
         #[method(edited:range:changeInLength:)]
         pub unsafe fn edited_range_changeInLength(
             &self,
-            editedMask: NSTextStorageEditActions,
-            editedRange: NSRange,
+            editedMask: AppKit::NSTextStorageEditActions,
+            editedRange: Foundation::NSRange,
             delta: NSInteger,
         );
 
@@ -70,10 +70,10 @@ extern_methods!(
         pub unsafe fn fixesAttributesLazily(&self) -> bool;
 
         #[method(invalidateAttributesInRange:)]
-        pub unsafe fn invalidateAttributesInRange(&self, range: NSRange);
+        pub unsafe fn invalidateAttributesInRange(&self, range: Foundation::NSRange);
 
         #[method(ensureAttributesAreFixedInRange:)]
-        pub unsafe fn ensureAttributesAreFixedInRange(&self, range: NSRange);
+        pub unsafe fn ensureAttributesAreFixedInRange(&self, range: Foundation::NSRange);
 
         #[method_id(@__retain_semantics Other textStorageObserver)]
         pub unsafe fn textStorageObserver(
@@ -97,8 +97,8 @@ extern_protocol!(
         pub unsafe fn textStorage_willProcessEditing_range_changeInLength(
             &self,
             textStorage: &AppKit::NSTextStorage,
-            editedMask: NSTextStorageEditActions,
-            editedRange: NSRange,
+            editedMask: AppKit::NSTextStorageEditActions,
+            editedRange: Foundation::NSRange,
             delta: NSInteger,
         );
 
@@ -107,8 +107,8 @@ extern_protocol!(
         pub unsafe fn textStorage_didProcessEditing_range_changeInLength(
             &self,
             textStorage: &AppKit::NSTextStorage,
-            editedMask: NSTextStorageEditActions,
-            editedRange: NSRange,
+            editedMask: AppKit::NSTextStorageEditActions,
+            editedRange: Foundation::NSRange,
             delta: NSInteger,
         );
     }
@@ -134,10 +134,10 @@ extern_protocol!(
         pub unsafe fn processEditingForTextStorage_edited_range_changeInLength_invalidatedRange(
             &self,
             textStorage: &AppKit::NSTextStorage,
-            editMask: NSTextStorageEditActions,
-            newCharRange: NSRange,
+            editMask: AppKit::NSTextStorageEditActions,
+            newCharRange: Foundation::NSRange,
             delta: NSInteger,
-            invalidatedCharRange: NSRange,
+            invalidatedCharRange: Foundation::NSRange,
         );
 
         #[method(performEditingTransactionForTextStorage:usingBlock:)]

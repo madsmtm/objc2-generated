@@ -55,22 +55,22 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLSamplerDescriptor")]
     unsafe impl MTLSamplerDescriptor {
         #[method(minFilter)]
-        pub fn minFilter(&self) -> MTLSamplerMinMagFilter;
+        pub fn minFilter(&self) -> Metal::MTLSamplerMinMagFilter;
 
         #[method(setMinFilter:)]
-        pub fn setMinFilter(&self, minFilter: MTLSamplerMinMagFilter);
+        pub fn setMinFilter(&self, minFilter: Metal::MTLSamplerMinMagFilter);
 
         #[method(magFilter)]
-        pub fn magFilter(&self) -> MTLSamplerMinMagFilter;
+        pub fn magFilter(&self) -> Metal::MTLSamplerMinMagFilter;
 
         #[method(setMagFilter:)]
-        pub fn setMagFilter(&self, magFilter: MTLSamplerMinMagFilter);
+        pub fn setMagFilter(&self, magFilter: Metal::MTLSamplerMinMagFilter);
 
         #[method(mipFilter)]
-        pub fn mipFilter(&self) -> MTLSamplerMipFilter;
+        pub fn mipFilter(&self) -> Metal::MTLSamplerMipFilter;
 
         #[method(setMipFilter:)]
-        pub fn setMipFilter(&self, mipFilter: MTLSamplerMipFilter);
+        pub fn setMipFilter(&self, mipFilter: Metal::MTLSamplerMipFilter);
 
         #[method(maxAnisotropy)]
         pub fn maxAnisotropy(&self) -> NSUInteger;
@@ -79,28 +79,28 @@ extern_methods!(
         pub fn setMaxAnisotropy(&self, maxAnisotropy: NSUInteger);
 
         #[method(sAddressMode)]
-        pub fn sAddressMode(&self) -> MTLSamplerAddressMode;
+        pub fn sAddressMode(&self) -> Metal::MTLSamplerAddressMode;
 
         #[method(setSAddressMode:)]
-        pub fn setSAddressMode(&self, sAddressMode: MTLSamplerAddressMode);
+        pub fn setSAddressMode(&self, sAddressMode: Metal::MTLSamplerAddressMode);
 
         #[method(tAddressMode)]
-        pub fn tAddressMode(&self) -> MTLSamplerAddressMode;
+        pub fn tAddressMode(&self) -> Metal::MTLSamplerAddressMode;
 
         #[method(setTAddressMode:)]
-        pub fn setTAddressMode(&self, tAddressMode: MTLSamplerAddressMode);
+        pub fn setTAddressMode(&self, tAddressMode: Metal::MTLSamplerAddressMode);
 
         #[method(rAddressMode)]
-        pub fn rAddressMode(&self) -> MTLSamplerAddressMode;
+        pub fn rAddressMode(&self) -> Metal::MTLSamplerAddressMode;
 
         #[method(setRAddressMode:)]
-        pub fn setRAddressMode(&self, rAddressMode: MTLSamplerAddressMode);
+        pub fn setRAddressMode(&self, rAddressMode: Metal::MTLSamplerAddressMode);
 
         #[method(borderColor)]
-        pub fn borderColor(&self) -> MTLSamplerBorderColor;
+        pub fn borderColor(&self) -> Metal::MTLSamplerBorderColor;
 
         #[method(setBorderColor:)]
-        pub fn setBorderColor(&self, borderColor: MTLSamplerBorderColor);
+        pub fn setBorderColor(&self, borderColor: Metal::MTLSamplerBorderColor);
 
         #[method(normalizedCoordinates)]
         pub fn normalizedCoordinates(&self) -> bool;
@@ -127,10 +127,10 @@ extern_methods!(
         pub fn setLodAverage(&self, lodAverage: bool);
 
         #[method(compareFunction)]
-        pub fn compareFunction(&self) -> MTLCompareFunction;
+        pub fn compareFunction(&self) -> Metal::MTLCompareFunction;
 
         #[method(setCompareFunction:)]
-        pub fn setCompareFunction(&self, compareFunction: MTLCompareFunction);
+        pub fn setCompareFunction(&self, compareFunction: Metal::MTLCompareFunction);
 
         #[method(supportArgumentBuffers)]
         pub fn supportArgumentBuffers(&self) -> bool;

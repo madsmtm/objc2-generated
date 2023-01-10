@@ -34,7 +34,7 @@ extern_methods!(
         pub unsafe fn PDFRepresentation(&self) -> Id<Foundation::NSData, Shared>;
 
         #[method(bounds)]
-        pub unsafe fn bounds(&self) -> NSRect;
+        pub unsafe fn bounds(&self) -> Foundation::NSRect;
 
         #[method(currentPage)]
         pub unsafe fn currentPage(&self) -> NSInteger;

@@ -94,68 +94,73 @@ ns_enum!(
 );
 
 extern_static!(
-    NSOpenGLCPSwapInterval: NSOpenGLContextParameter = NSOpenGLContextParameterSwapInterval
+    NSOpenGLCPSwapInterval: AppKit::NSOpenGLContextParameter = NSOpenGLContextParameterSwapInterval
 );
 
 extern_static!(
-    NSOpenGLCPSurfaceOrder: NSOpenGLContextParameter = NSOpenGLContextParameterSurfaceOrder
+    NSOpenGLCPSurfaceOrder: AppKit::NSOpenGLContextParameter = NSOpenGLContextParameterSurfaceOrder
 );
 
 extern_static!(
-    NSOpenGLCPSurfaceOpacity: NSOpenGLContextParameter = NSOpenGLContextParameterSurfaceOpacity
+    NSOpenGLCPSurfaceOpacity: AppKit::NSOpenGLContextParameter =
+        NSOpenGLContextParameterSurfaceOpacity
 );
 
 extern_static!(
-    NSOpenGLCPSurfaceBackingSize: NSOpenGLContextParameter =
+    NSOpenGLCPSurfaceBackingSize: AppKit::NSOpenGLContextParameter =
         NSOpenGLContextParameterSurfaceBackingSize
 );
 
 extern_static!(
-    NSOpenGLCPReclaimResources: NSOpenGLContextParameter = NSOpenGLContextParameterReclaimResources
+    NSOpenGLCPReclaimResources: AppKit::NSOpenGLContextParameter =
+        NSOpenGLContextParameterReclaimResources
 );
 
 extern_static!(
-    NSOpenGLCPCurrentRendererID: NSOpenGLContextParameter =
+    NSOpenGLCPCurrentRendererID: AppKit::NSOpenGLContextParameter =
         NSOpenGLContextParameterCurrentRendererID
 );
 
 extern_static!(
-    NSOpenGLCPGPUVertexProcessing: NSOpenGLContextParameter =
+    NSOpenGLCPGPUVertexProcessing: AppKit::NSOpenGLContextParameter =
         NSOpenGLContextParameterGPUVertexProcessing
 );
 
 extern_static!(
-    NSOpenGLCPGPUFragmentProcessing: NSOpenGLContextParameter =
+    NSOpenGLCPGPUFragmentProcessing: AppKit::NSOpenGLContextParameter =
         NSOpenGLContextParameterGPUFragmentProcessing
 );
 
 extern_static!(
-    NSOpenGLCPHasDrawable: NSOpenGLContextParameter = NSOpenGLContextParameterHasDrawable
+    NSOpenGLCPHasDrawable: AppKit::NSOpenGLContextParameter = NSOpenGLContextParameterHasDrawable
 );
 
 extern_static!(
-    NSOpenGLCPMPSwapsInFlight: NSOpenGLContextParameter = NSOpenGLContextParameterMPSwapsInFlight
+    NSOpenGLCPMPSwapsInFlight: AppKit::NSOpenGLContextParameter =
+        NSOpenGLContextParameterMPSwapsInFlight
 );
 
 extern_static!(
-    NSOpenGLCPSwapRectangle: NSOpenGLContextParameter = NSOpenGLContextParameterSwapRectangle
+    NSOpenGLCPSwapRectangle: AppKit::NSOpenGLContextParameter =
+        NSOpenGLContextParameterSwapRectangle
 );
 
 extern_static!(
-    NSOpenGLCPSwapRectangleEnable: NSOpenGLContextParameter =
+    NSOpenGLCPSwapRectangleEnable: AppKit::NSOpenGLContextParameter =
         NSOpenGLContextParameterSwapRectangleEnable
 );
 
 extern_static!(
-    NSOpenGLCPRasterizationEnable: NSOpenGLContextParameter =
+    NSOpenGLCPRasterizationEnable: AppKit::NSOpenGLContextParameter =
         NSOpenGLContextParameterRasterizationEnable
 );
 
 extern_static!(
-    NSOpenGLCPStateValidation: NSOpenGLContextParameter = NSOpenGLContextParameterStateValidation
+    NSOpenGLCPStateValidation: AppKit::NSOpenGLContextParameter =
+        NSOpenGLContextParameterStateValidation
 );
 
 extern_static!(
-    NSOpenGLCPSurfaceSurfaceVolatile: NSOpenGLContextParameter =
+    NSOpenGLCPSurfaceSurfaceVolatile: AppKit::NSOpenGLContextParameter =
         NSOpenGLContextParameterSurfaceSurfaceVolatile
 );

@@ -107,8 +107,8 @@ extern_methods!(
         pub unsafe fn destinationSelectionForTextSelection_direction_destination_extending_confined(
             &self,
             textSelection: &AppKit::NSTextSelection,
-            direction: NSTextSelectionNavigationDirection,
-            destination: NSTextSelectionNavigationDestination,
+            direction: AppKit::NSTextSelectionNavigationDirection,
+            destination: AppKit::NSTextSelectionNavigationDestination,
             extending: bool,
             confined: bool,
         ) -> Option<Id<AppKit::NSTextSelection, Shared>>;
@@ -117,19 +117,19 @@ extern_methods!(
         #[method_id(@__retain_semantics Other textSelectionsInteractingAtPoint:inContainerAtLocation:anchors:modifiers:selecting:bounds:)]
         pub unsafe fn textSelectionsInteractingAtPoint_inContainerAtLocation_anchors_modifiers_selecting_bounds(
             &self,
-            point: CGPoint,
+            point: CoreGraphics::CGPoint,
             containerLocation: &AppKit::NSTextLocation,
             anchors: &Foundation::NSArray<AppKit::NSTextSelection>,
-            modifiers: NSTextSelectionNavigationModifier,
+            modifiers: AppKit::NSTextSelectionNavigationModifier,
             selecting: bool,
-            bounds: CGRect,
+            bounds: CoreGraphics::CGRect,
         ) -> Id<Foundation::NSArray<AppKit::NSTextSelection>, Shared>;
 
         #[cfg(feature = "AppKit_NSTextSelection")]
         #[method_id(@__retain_semantics Other textSelectionForSelectionGranularity:enclosingTextSelection:)]
         pub unsafe fn textSelectionForSelectionGranularity_enclosingTextSelection(
             &self,
-            selectionGranularity: NSTextSelectionGranularity,
+            selectionGranularity: AppKit::NSTextSelectionGranularity,
             textSelection: &AppKit::NSTextSelection,
         ) -> Id<AppKit::NSTextSelection, Shared>;
 
@@ -137,8 +137,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Other textSelectionForSelectionGranularity:enclosingPoint:inContainerAtLocation:)]
         pub unsafe fn textSelectionForSelectionGranularity_enclosingPoint_inContainerAtLocation(
             &self,
-            selectionGranularity: NSTextSelectionGranularity,
-            point: CGPoint,
+            selectionGranularity: AppKit::NSTextSelectionGranularity,
+            point: CoreGraphics::CGPoint,
             location: &AppKit::NSTextLocation,
         ) -> Option<Id<AppKit::NSTextSelection, Shared>>;
 
@@ -147,7 +147,7 @@ extern_methods!(
         pub unsafe fn resolvedInsertionLocationForTextSelection_writingDirection(
             &self,
             textSelection: &AppKit::NSTextSelection,
-            writingDirection: NSTextSelectionNavigationWritingDirection,
+            writingDirection: AppKit::NSTextSelectionNavigationWritingDirection,
         ) -> Option<Id<AppKit::NSTextLocation, Shared>>;
 
         #[cfg(all(
@@ -159,8 +159,8 @@ extern_methods!(
         pub unsafe fn deletionRangesForTextSelection_direction_destination_allowsDecomposition(
             &self,
             textSelection: &AppKit::NSTextSelection,
-            direction: NSTextSelectionNavigationDirection,
-            destination: NSTextSelectionNavigationDestination,
+            direction: AppKit::NSTextSelectionNavigationDirection,
+            destination: AppKit::NSTextSelectionNavigationDestination,
             allowsDecomposition: bool,
         ) -> Id<Foundation::NSArray<AppKit::NSTextRange>, Shared>;
     }
@@ -177,7 +177,7 @@ extern_protocol!(
         pub unsafe fn enumerateSubstringsFromLocation_options_usingBlock(
             &self,
             location: &AppKit::NSTextLocation,
-            options: NSStringEnumerationOptions,
+            options: Foundation::NSStringEnumerationOptions,
             block: &Block<
                 (
                     *mut Foundation::NSString,
@@ -192,7 +192,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other textRangeForSelectionGranularity:enclosingLocation:)]
         pub unsafe fn textRangeForSelectionGranularity_enclosingLocation(
             &self,
-            selectionGranularity: NSTextSelectionGranularity,
+            selectionGranularity: AppKit::NSTextSelectionGranularity,
             location: &AppKit::NSTextLocation,
         ) -> Option<Id<AppKit::NSTextRange, Shared>>;
 
@@ -214,7 +214,7 @@ extern_protocol!(
         pub unsafe fn baseWritingDirectionAtLocation(
             &self,
             location: &AppKit::NSTextLocation,
-        ) -> NSTextSelectionNavigationWritingDirection;
+        ) -> AppKit::NSTextSelectionNavigationWritingDirection;
 
         #[method(enumerateCaretOffsetsInLineFragmentAtLocation:usingBlock:)]
         pub unsafe fn enumerateCaretOffsetsInLineFragmentAtLocation_usingBlock(
@@ -222,7 +222,7 @@ extern_protocol!(
             location: &AppKit::NSTextLocation,
             block: &Block<
                 (
-                    CGFloat,
+                    CoreGraphics::CGFloat,
                     NonNull<AppKit::NSTextLocation>,
                     Bool,
                     NonNull<Bool>,
@@ -234,7 +234,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other lineFragmentRangeForPoint:inContainerAtLocation:)]
         pub unsafe fn lineFragmentRangeForPoint_inContainerAtLocation(
             &self,
-            point: CGPoint,
+            point: CoreGraphics::CGPoint,
             location: &AppKit::NSTextLocation,
         ) -> Option<Id<AppKit::NSTextRange, Shared>>;
 
@@ -252,6 +252,6 @@ extern_protocol!(
         pub unsafe fn textLayoutOrientationAtLocation(
             &self,
             location: &AppKit::NSTextLocation,
-        ) -> NSTextSelectionNavigationLayoutOrientation;
+        ) -> AppKit::NSTextSelectionNavigationLayoutOrientation;
     }
 );

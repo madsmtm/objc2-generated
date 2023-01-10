@@ -75,12 +75,12 @@ extern_methods!(
         );
 
         #[method(notificationBatchingInterval)]
-        pub unsafe fn notificationBatchingInterval(&self) -> NSTimeInterval;
+        pub unsafe fn notificationBatchingInterval(&self) -> Foundation::NSTimeInterval;
 
         #[method(setNotificationBatchingInterval:)]
         pub unsafe fn setNotificationBatchingInterval(
             &self,
-            notificationBatchingInterval: NSTimeInterval,
+            notificationBatchingInterval: Foundation::NSTimeInterval,
         );
 
         #[cfg(feature = "Foundation_NSArray")]
@@ -146,7 +146,7 @@ extern_methods!(
         #[method(enumerateResultsWithOptions:usingBlock:)]
         pub unsafe fn enumerateResultsWithOptions_usingBlock(
             &self,
-            opts: NSEnumerationOptions,
+            opts: Foundation::NSEnumerationOptions,
             block: &Block<(NonNull<Object>, NSUInteger, NonNull<Bool>), ()>,
         );
 

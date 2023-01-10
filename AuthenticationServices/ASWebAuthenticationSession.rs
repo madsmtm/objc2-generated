@@ -36,7 +36,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             URL: &Foundation::NSURL,
             callbackURLScheme: Option<&Foundation::NSString>,
-            completionHandler: ASWebAuthenticationSessionCompletionHandler,
+            completionHandler: AuthenticationServices::ASWebAuthenticationSessionCompletionHandler,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Other presentationContextProvider)]

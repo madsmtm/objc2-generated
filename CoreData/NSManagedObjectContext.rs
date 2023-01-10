@@ -70,7 +70,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithConcurrencyType:)]
         pub unsafe fn initWithConcurrencyType(
             this: Option<Allocated<Self>>,
-            ct: NSManagedObjectContextConcurrencyType,
+            ct: CoreData::NSManagedObjectContextConcurrencyType,
         ) -> Id<Self, Shared>;
 
         #[method(performBlock:)]
@@ -125,7 +125,7 @@ extern_methods!(
         pub unsafe fn userInfo(&self) -> Id<Foundation::NSMutableDictionary, Owned>;
 
         #[method(concurrencyType)]
-        pub unsafe fn concurrencyType(&self) -> NSManagedObjectContextConcurrencyType;
+        pub unsafe fn concurrencyType(&self) -> CoreData::NSManagedObjectContextConcurrencyType;
 
         #[cfg(all(
             feature = "CoreData_NSManagedObject",
@@ -308,10 +308,10 @@ extern_methods!(
         ) -> bool;
 
         #[method(stalenessInterval)]
-        pub unsafe fn stalenessInterval(&self) -> NSTimeInterval;
+        pub unsafe fn stalenessInterval(&self) -> Foundation::NSTimeInterval;
 
         #[method(setStalenessInterval:)]
-        pub unsafe fn setStalenessInterval(&self, stalenessInterval: NSTimeInterval);
+        pub unsafe fn setStalenessInterval(&self, stalenessInterval: Foundation::NSTimeInterval);
 
         #[method_id(@__retain_semantics Other mergePolicy)]
         pub unsafe fn mergePolicy(&self) -> Id<Object, Shared>;

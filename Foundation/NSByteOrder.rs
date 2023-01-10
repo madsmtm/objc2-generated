@@ -142,85 +142,85 @@ extern_struct!(
 );
 
 inline_fn!(
-    pub unsafe fn NSConvertHostFloatToSwapped(x: c_float) -> NSSwappedFloat {
+    pub unsafe fn NSConvertHostFloatToSwapped(x: c_float) -> Foundation::NSSwappedFloat {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSConvertSwappedFloatToHost(x: NSSwappedFloat) -> c_float {
+    pub unsafe fn NSConvertSwappedFloatToHost(x: Foundation::NSSwappedFloat) -> c_float {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSConvertHostDoubleToSwapped(x: c_double) -> NSSwappedDouble {
+    pub unsafe fn NSConvertHostDoubleToSwapped(x: c_double) -> Foundation::NSSwappedDouble {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSConvertSwappedDoubleToHost(x: NSSwappedDouble) -> c_double {
+    pub unsafe fn NSConvertSwappedDoubleToHost(x: Foundation::NSSwappedDouble) -> c_double {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSSwapFloat(x: NSSwappedFloat) -> NSSwappedFloat {
+    pub unsafe fn NSSwapFloat(x: Foundation::NSSwappedFloat) -> Foundation::NSSwappedFloat {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSSwapDouble(x: NSSwappedDouble) -> NSSwappedDouble {
+    pub unsafe fn NSSwapDouble(x: Foundation::NSSwappedDouble) -> Foundation::NSSwappedDouble {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSSwapBigDoubleToHost(x: NSSwappedDouble) -> c_double {
+    pub unsafe fn NSSwapBigDoubleToHost(x: Foundation::NSSwappedDouble) -> c_double {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSSwapBigFloatToHost(x: NSSwappedFloat) -> c_float {
+    pub unsafe fn NSSwapBigFloatToHost(x: Foundation::NSSwappedFloat) -> c_float {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSSwapHostDoubleToBig(x: c_double) -> NSSwappedDouble {
+    pub unsafe fn NSSwapHostDoubleToBig(x: c_double) -> Foundation::NSSwappedDouble {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSSwapHostFloatToBig(x: c_float) -> NSSwappedFloat {
+    pub unsafe fn NSSwapHostFloatToBig(x: c_float) -> Foundation::NSSwappedFloat {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSSwapLittleDoubleToHost(x: NSSwappedDouble) -> c_double {
+    pub unsafe fn NSSwapLittleDoubleToHost(x: Foundation::NSSwappedDouble) -> c_double {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSSwapLittleFloatToHost(x: NSSwappedFloat) -> c_float {
+    pub unsafe fn NSSwapLittleFloatToHost(x: Foundation::NSSwappedFloat) -> c_float {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSSwapHostDoubleToLittle(x: c_double) -> NSSwappedDouble {
+    pub unsafe fn NSSwapHostDoubleToLittle(x: c_double) -> Foundation::NSSwappedDouble {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSSwapHostFloatToLittle(x: c_float) -> NSSwappedFloat {
+    pub unsafe fn NSSwapHostFloatToLittle(x: c_float) -> Foundation::NSSwappedFloat {
         todo!()
     }
 );

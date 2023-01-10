@@ -22,7 +22,7 @@ extern_protocol!(
 
     unsafe impl ProtocolType for MTLComputeCommandEncoder {
         #[method(dispatchType)]
-        pub unsafe fn dispatchType(&self) -> MTLDispatchType;
+        pub unsafe fn dispatchType(&self) -> Metal::MTLDispatchType;
 
         #[method(setComputePipelineState:)]
         pub fn setComputePipelineState(&self, state: &Metal::MTLComputePipelineState);
@@ -51,7 +51,7 @@ extern_protocol!(
             &self,
             buffers: NonNull<*const Metal::MTLBuffer>,
             offsets: NonNull<NSUInteger>,
-            range: NSRange,
+            range: Foundation::NSRange,
         );
 
         #[method(setVisibleFunctionTable:atBufferIndex:)]
@@ -65,7 +65,7 @@ extern_protocol!(
         pub unsafe fn setVisibleFunctionTables_withBufferRange(
             &self,
             visibleFunctionTables: NonNull<*const Metal::MTLVisibleFunctionTable>,
-            range: NSRange,
+            range: Foundation::NSRange,
         );
 
         #[method(setIntersectionFunctionTable:atBufferIndex:)]
@@ -79,7 +79,7 @@ extern_protocol!(
         pub unsafe fn setIntersectionFunctionTables_withBufferRange(
             &self,
             intersectionFunctionTables: NonNull<*const Metal::MTLIntersectionFunctionTable>,
-            range: NSRange,
+            range: Foundation::NSRange,
         );
 
         #[method(setAccelerationStructure:atBufferIndex:)]
@@ -100,7 +100,7 @@ extern_protocol!(
         pub unsafe fn setTextures_withRange(
             &self,
             textures: NonNull<*const Metal::MTLTexture>,
-            range: NSRange,
+            range: Foundation::NSRange,
         );
 
         #[method(setSamplerState:atIndex:)]
@@ -114,7 +114,7 @@ extern_protocol!(
         pub unsafe fn setSamplerStates_withRange(
             &self,
             samplers: NonNull<*const Metal::MTLSamplerState>,
-            range: NSRange,
+            range: Foundation::NSRange,
         );
 
         #[method(setSamplerState:lodMinClamp:lodMaxClamp:atIndex:)]
@@ -132,7 +132,7 @@ extern_protocol!(
             samplers: NonNull<*const Metal::MTLSamplerState>,
             lodMinClamps: NonNull<c_float>,
             lodMaxClamps: NonNull<c_float>,
-            range: NSRange,
+            range: Foundation::NSRange,
         );
 
         #[method(setThreadgroupMemoryLength:atIndex:)]
@@ -146,7 +146,7 @@ extern_protocol!(
         pub unsafe fn setImageblockWidth_height(&self, width: NSUInteger, height: NSUInteger);
 
         #[method(setStageInRegion:)]
-        pub unsafe fn setStageInRegion(&self, region: MTLRegion);
+        pub unsafe fn setStageInRegion(&self, region: Metal::MTLRegion);
 
         #[method(setStageInRegionWithIndirectBuffer:indirectBufferOffset:)]
         pub unsafe fn setStageInRegionWithIndirectBuffer_indirectBufferOffset(
@@ -158,8 +158,8 @@ extern_protocol!(
         #[method(dispatchThreadgroups:threadsPerThreadgroup:)]
         pub fn dispatchThreadgroups_threadsPerThreadgroup(
             &self,
-            threadgroupsPerGrid: MTLSize,
-            threadsPerThreadgroup: MTLSize,
+            threadgroupsPerGrid: Metal::MTLSize,
+            threadsPerThreadgroup: Metal::MTLSize,
         );
 
         #[method(dispatchThreadgroupsWithIndirectBuffer:indirectBufferOffset:threadsPerThreadgroup:)]
@@ -167,14 +167,14 @@ extern_protocol!(
             &self,
             indirectBuffer: &Metal::MTLBuffer,
             indirectBufferOffset: NSUInteger,
-            threadsPerThreadgroup: MTLSize,
+            threadsPerThreadgroup: Metal::MTLSize,
         );
 
         #[method(dispatchThreads:threadsPerThreadgroup:)]
         pub fn dispatchThreads_threadsPerThreadgroup(
             &self,
-            threadsPerGrid: MTLSize,
-            threadsPerThreadgroup: MTLSize,
+            threadsPerGrid: Metal::MTLSize,
+            threadsPerThreadgroup: Metal::MTLSize,
         );
 
         #[method(updateFence:)]
@@ -184,14 +184,18 @@ extern_protocol!(
         pub fn waitForFence(&self, fence: &Metal::MTLFence);
 
         #[method(useResource:usage:)]
-        pub fn useResource_usage(&self, resource: &Metal::MTLResource, usage: MTLResourceUsage);
+        pub fn useResource_usage(
+            &self,
+            resource: &Metal::MTLResource,
+            usage: Metal::MTLResourceUsage,
+        );
 
         #[method(useResources:count:usage:)]
         pub unsafe fn useResources_count_usage(
             &self,
             resources: NonNull<NonNull<Metal::MTLResource>>,
             count: NSUInteger,
-            usage: MTLResourceUsage,
+            usage: Metal::MTLResourceUsage,
         );
 
         #[method(useHeap:)]
@@ -208,7 +212,7 @@ extern_protocol!(
         pub unsafe fn executeCommandsInBuffer_withRange(
             &self,
             indirectCommandBuffer: &Metal::MTLIndirectCommandBuffer,
-            executionRange: NSRange,
+            executionRange: Foundation::NSRange,
         );
 
         #[method(executeCommandsInBuffer:indirectBuffer:indirectBufferOffset:)]
@@ -220,7 +224,7 @@ extern_protocol!(
         );
 
         #[method(memoryBarrierWithScope:)]
-        pub unsafe fn memoryBarrierWithScope(&self, scope: MTLBarrierScope);
+        pub unsafe fn memoryBarrierWithScope(&self, scope: Metal::MTLBarrierScope);
 
         #[method(memoryBarrierWithResources:count:)]
         pub unsafe fn memoryBarrierWithResources_count(

@@ -14,11 +14,11 @@ ns_enum!(
     }
 );
 
-extern_static!(NSAlertFirstButtonReturn: NSModalResponse = 1000);
+extern_static!(NSAlertFirstButtonReturn: AppKit::NSModalResponse = 1000);
 
-extern_static!(NSAlertSecondButtonReturn: NSModalResponse = 1001);
+extern_static!(NSAlertSecondButtonReturn: AppKit::NSModalResponse = 1001);
 
-extern_static!(NSAlertThirdButtonReturn: NSModalResponse = 1002);
+extern_static!(NSAlertThirdButtonReturn: AppKit::NSModalResponse = 1002);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -84,10 +84,10 @@ extern_methods!(
         pub unsafe fn setHelpAnchor(&self, helpAnchor: Option<&AppKit::NSHelpAnchorName>);
 
         #[method(alertStyle)]
-        pub unsafe fn alertStyle(&self) -> NSAlertStyle;
+        pub unsafe fn alertStyle(&self) -> AppKit::NSAlertStyle;
 
         #[method(setAlertStyle:)]
-        pub unsafe fn setAlertStyle(&self, alertStyle: NSAlertStyle);
+        pub unsafe fn setAlertStyle(&self, alertStyle: AppKit::NSAlertStyle);
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<AppKit::NSAlertDelegate, Shared>>;
@@ -117,14 +117,14 @@ extern_methods!(
         pub unsafe fn layout(&self);
 
         #[method(runModal)]
-        pub unsafe fn runModal(&self) -> NSModalResponse;
+        pub unsafe fn runModal(&self) -> AppKit::NSModalResponse;
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[method(beginSheetModalForWindow:completionHandler:)]
         pub unsafe fn beginSheetModalForWindow_completionHandler(
             &self,
             sheetWindow: &AppKit::NSWindow,
-            handler: Option<&Block<(NSModalResponse,), ()>>,
+            handler: Option<&Block<(AppKit::NSModalResponse,), ()>>,
         );
 
         #[cfg(feature = "AppKit_NSWindow")]
@@ -159,8 +159,8 @@ extern_methods!(
     }
 );
 
-extern_static!(NSWarningAlertStyle: NSAlertStyle = NSAlertStyleWarning);
+extern_static!(NSWarningAlertStyle: AppKit::NSAlertStyle = NSAlertStyleWarning);
 
-extern_static!(NSInformationalAlertStyle: NSAlertStyle = NSAlertStyleInformational);
+extern_static!(NSInformationalAlertStyle: AppKit::NSAlertStyle = NSAlertStyleInformational);
 
-extern_static!(NSCriticalAlertStyle: NSAlertStyle = NSAlertStyleCritical);
+extern_static!(NSCriticalAlertStyle: AppKit::NSAlertStyle = NSAlertStyleCritical);

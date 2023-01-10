@@ -70,65 +70,75 @@ extern_methods!(
         #[method(setValue:type:forDimension:)]
         pub unsafe fn setValue_type_forDimension(
             &self,
-            val: CGFloat,
-            type_: NSTextBlockValueType,
-            dimension: NSTextBlockDimension,
+            val: CoreGraphics::CGFloat,
+            type_: AppKit::NSTextBlockValueType,
+            dimension: AppKit::NSTextBlockDimension,
         );
 
         #[method(valueForDimension:)]
-        pub unsafe fn valueForDimension(&self, dimension: NSTextBlockDimension) -> CGFloat;
+        pub unsafe fn valueForDimension(
+            &self,
+            dimension: AppKit::NSTextBlockDimension,
+        ) -> CoreGraphics::CGFloat;
 
         #[method(valueTypeForDimension:)]
         pub unsafe fn valueTypeForDimension(
             &self,
-            dimension: NSTextBlockDimension,
-        ) -> NSTextBlockValueType;
+            dimension: AppKit::NSTextBlockDimension,
+        ) -> AppKit::NSTextBlockValueType;
 
         #[method(setContentWidth:type:)]
-        pub unsafe fn setContentWidth_type(&self, val: CGFloat, type_: NSTextBlockValueType);
+        pub unsafe fn setContentWidth_type(
+            &self,
+            val: CoreGraphics::CGFloat,
+            type_: AppKit::NSTextBlockValueType,
+        );
 
         #[method(contentWidth)]
-        pub unsafe fn contentWidth(&self) -> CGFloat;
+        pub unsafe fn contentWidth(&self) -> CoreGraphics::CGFloat;
 
         #[method(contentWidthValueType)]
-        pub unsafe fn contentWidthValueType(&self) -> NSTextBlockValueType;
+        pub unsafe fn contentWidthValueType(&self) -> AppKit::NSTextBlockValueType;
 
         #[method(setWidth:type:forLayer:edge:)]
         pub unsafe fn setWidth_type_forLayer_edge(
             &self,
-            val: CGFloat,
-            type_: NSTextBlockValueType,
-            layer: NSTextBlockLayer,
-            edge: NSRectEdge,
+            val: CoreGraphics::CGFloat,
+            type_: AppKit::NSTextBlockValueType,
+            layer: AppKit::NSTextBlockLayer,
+            edge: Foundation::NSRectEdge,
         );
 
         #[method(setWidth:type:forLayer:)]
         pub unsafe fn setWidth_type_forLayer(
             &self,
-            val: CGFloat,
-            type_: NSTextBlockValueType,
-            layer: NSTextBlockLayer,
+            val: CoreGraphics::CGFloat,
+            type_: AppKit::NSTextBlockValueType,
+            layer: AppKit::NSTextBlockLayer,
         );
 
         #[method(widthForLayer:edge:)]
         pub unsafe fn widthForLayer_edge(
             &self,
-            layer: NSTextBlockLayer,
-            edge: NSRectEdge,
-        ) -> CGFloat;
+            layer: AppKit::NSTextBlockLayer,
+            edge: Foundation::NSRectEdge,
+        ) -> CoreGraphics::CGFloat;
 
         #[method(widthValueTypeForLayer:edge:)]
         pub unsafe fn widthValueTypeForLayer_edge(
             &self,
-            layer: NSTextBlockLayer,
-            edge: NSRectEdge,
-        ) -> NSTextBlockValueType;
+            layer: AppKit::NSTextBlockLayer,
+            edge: Foundation::NSRectEdge,
+        ) -> AppKit::NSTextBlockValueType;
 
         #[method(verticalAlignment)]
-        pub unsafe fn verticalAlignment(&self) -> NSTextBlockVerticalAlignment;
+        pub unsafe fn verticalAlignment(&self) -> AppKit::NSTextBlockVerticalAlignment;
 
         #[method(setVerticalAlignment:)]
-        pub unsafe fn setVerticalAlignment(&self, verticalAlignment: NSTextBlockVerticalAlignment);
+        pub unsafe fn setVerticalAlignment(
+            &self,
+            verticalAlignment: AppKit::NSTextBlockVerticalAlignment,
+        );
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other backgroundColor)]
@@ -143,7 +153,7 @@ extern_methods!(
         pub unsafe fn setBorderColor_forEdge(
             &self,
             color: Option<&AppKit::NSColor>,
-            edge: NSRectEdge,
+            edge: Foundation::NSRectEdge,
         );
 
         #[cfg(feature = "AppKit_NSColor")]
@@ -154,36 +164,36 @@ extern_methods!(
         #[method_id(@__retain_semantics Other borderColorForEdge:)]
         pub unsafe fn borderColorForEdge(
             &self,
-            edge: NSRectEdge,
+            edge: Foundation::NSRectEdge,
         ) -> Option<Id<AppKit::NSColor, Shared>>;
 
         #[cfg(feature = "AppKit_NSTextContainer")]
         #[method(rectForLayoutAtPoint:inRect:textContainer:characterRange:)]
         pub unsafe fn rectForLayoutAtPoint_inRect_textContainer_characterRange(
             &self,
-            startingPoint: NSPoint,
-            rect: NSRect,
+            startingPoint: Foundation::NSPoint,
+            rect: Foundation::NSRect,
             textContainer: &AppKit::NSTextContainer,
-            charRange: NSRange,
-        ) -> NSRect;
+            charRange: Foundation::NSRange,
+        ) -> Foundation::NSRect;
 
         #[cfg(feature = "AppKit_NSTextContainer")]
         #[method(boundsRectForContentRect:inRect:textContainer:characterRange:)]
         pub unsafe fn boundsRectForContentRect_inRect_textContainer_characterRange(
             &self,
-            contentRect: NSRect,
-            rect: NSRect,
+            contentRect: Foundation::NSRect,
+            rect: Foundation::NSRect,
             textContainer: &AppKit::NSTextContainer,
-            charRange: NSRange,
-        ) -> NSRect;
+            charRange: Foundation::NSRange,
+        ) -> Foundation::NSRect;
 
         #[cfg(all(feature = "AppKit_NSLayoutManager", feature = "AppKit_NSView"))]
         #[method(drawBackgroundWithFrame:inView:characterRange:layoutManager:)]
         pub unsafe fn drawBackgroundWithFrame_inView_characterRange_layoutManager(
             &self,
-            frameRect: NSRect,
+            frameRect: Foundation::NSRect,
             controlView: &AppKit::NSView,
-            charRange: NSRange,
+            charRange: Foundation::NSRange,
             layoutManager: &AppKit::NSLayoutManager,
         );
     }
@@ -251,10 +261,13 @@ extern_methods!(
         pub unsafe fn setNumberOfColumns(&self, numberOfColumns: NSUInteger);
 
         #[method(layoutAlgorithm)]
-        pub unsafe fn layoutAlgorithm(&self) -> NSTextTableLayoutAlgorithm;
+        pub unsafe fn layoutAlgorithm(&self) -> AppKit::NSTextTableLayoutAlgorithm;
 
         #[method(setLayoutAlgorithm:)]
-        pub unsafe fn setLayoutAlgorithm(&self, layoutAlgorithm: NSTextTableLayoutAlgorithm);
+        pub unsafe fn setLayoutAlgorithm(
+            &self,
+            layoutAlgorithm: AppKit::NSTextTableLayoutAlgorithm,
+        );
 
         #[method(collapsesBorders)]
         pub unsafe fn collapsesBorders(&self) -> bool;
@@ -276,11 +289,11 @@ extern_methods!(
         pub unsafe fn rectForBlock_layoutAtPoint_inRect_textContainer_characterRange(
             &self,
             block: &AppKit::NSTextTableBlock,
-            startingPoint: NSPoint,
-            rect: NSRect,
+            startingPoint: Foundation::NSPoint,
+            rect: Foundation::NSRect,
             textContainer: &AppKit::NSTextContainer,
-            charRange: NSRange,
-        ) -> NSRect;
+            charRange: Foundation::NSRange,
+        ) -> Foundation::NSRect;
 
         #[cfg(all(
             feature = "AppKit_NSTextContainer",
@@ -290,11 +303,11 @@ extern_methods!(
         pub unsafe fn boundsRectForBlock_contentRect_inRect_textContainer_characterRange(
             &self,
             block: &AppKit::NSTextTableBlock,
-            contentRect: NSRect,
-            rect: NSRect,
+            contentRect: Foundation::NSRect,
+            rect: Foundation::NSRect,
             textContainer: &AppKit::NSTextContainer,
-            charRange: NSRange,
-        ) -> NSRect;
+            charRange: Foundation::NSRange,
+        ) -> Foundation::NSRect;
 
         #[cfg(all(
             feature = "AppKit_NSLayoutManager",
@@ -305,9 +318,9 @@ extern_methods!(
         pub unsafe fn drawBackgroundForBlock_withFrame_inView_characterRange_layoutManager(
             &self,
             block: &AppKit::NSTextTableBlock,
-            frameRect: NSRect,
+            frameRect: Foundation::NSRect,
             controlView: &AppKit::NSView,
-            charRange: NSRange,
+            charRange: Foundation::NSRange,
             layoutManager: &AppKit::NSLayoutManager,
         );
     }

@@ -236,7 +236,8 @@ extern_methods!(
         pub fn stringValue(&self) -> Id<Foundation::NSString, Shared>;
 
         #[method(compare:)]
-        pub fn compare(&self, otherNumber: &Foundation::NSNumber) -> NSComparisonResult;
+        pub fn compare(&self, otherNumber: &Foundation::NSNumber)
+            -> Foundation::NSComparisonResult;
 
         #[method(isEqualToNumber:)]
         pub fn isEqualToNumber(&self, number: &Foundation::NSNumber) -> bool;

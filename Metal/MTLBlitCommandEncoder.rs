@@ -35,12 +35,12 @@ extern_protocol!(
             sourceTexture: &Metal::MTLTexture,
             sourceSlice: NSUInteger,
             sourceLevel: NSUInteger,
-            sourceOrigin: MTLOrigin,
-            sourceSize: MTLSize,
+            sourceOrigin: Metal::MTLOrigin,
+            sourceSize: Metal::MTLSize,
             destinationTexture: &Metal::MTLTexture,
             destinationSlice: NSUInteger,
             destinationLevel: NSUInteger,
-            destinationOrigin: MTLOrigin,
+            destinationOrigin: Metal::MTLOrigin,
         );
 
         #[method(copyFromBuffer:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:)]
@@ -50,11 +50,11 @@ extern_protocol!(
             sourceOffset: NSUInteger,
             sourceBytesPerRow: NSUInteger,
             sourceBytesPerImage: NSUInteger,
-            sourceSize: MTLSize,
+            sourceSize: Metal::MTLSize,
             destinationTexture: &Metal::MTLTexture,
             destinationSlice: NSUInteger,
             destinationLevel: NSUInteger,
-            destinationOrigin: MTLOrigin,
+            destinationOrigin: Metal::MTLOrigin,
         );
 
         #[method(copyFromBuffer:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:options:)]
@@ -64,12 +64,12 @@ extern_protocol!(
             sourceOffset: NSUInteger,
             sourceBytesPerRow: NSUInteger,
             sourceBytesPerImage: NSUInteger,
-            sourceSize: MTLSize,
+            sourceSize: Metal::MTLSize,
             destinationTexture: &Metal::MTLTexture,
             destinationSlice: NSUInteger,
             destinationLevel: NSUInteger,
-            destinationOrigin: MTLOrigin,
-            options: MTLBlitOption,
+            destinationOrigin: Metal::MTLOrigin,
+            options: Metal::MTLBlitOption,
         );
 
         #[method(copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toBuffer:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:)]
@@ -78,8 +78,8 @@ extern_protocol!(
             sourceTexture: &Metal::MTLTexture,
             sourceSlice: NSUInteger,
             sourceLevel: NSUInteger,
-            sourceOrigin: MTLOrigin,
-            sourceSize: MTLSize,
+            sourceOrigin: Metal::MTLOrigin,
+            sourceSize: Metal::MTLSize,
             destinationBuffer: &Metal::MTLBuffer,
             destinationOffset: NSUInteger,
             destinationBytesPerRow: NSUInteger,
@@ -92,20 +92,25 @@ extern_protocol!(
             sourceTexture: &Metal::MTLTexture,
             sourceSlice: NSUInteger,
             sourceLevel: NSUInteger,
-            sourceOrigin: MTLOrigin,
-            sourceSize: MTLSize,
+            sourceOrigin: Metal::MTLOrigin,
+            sourceSize: Metal::MTLSize,
             destinationBuffer: &Metal::MTLBuffer,
             destinationOffset: NSUInteger,
             destinationBytesPerRow: NSUInteger,
             destinationBytesPerImage: NSUInteger,
-            options: MTLBlitOption,
+            options: Metal::MTLBlitOption,
         );
 
         #[method(generateMipmapsForTexture:)]
         pub fn generateMipmapsForTexture(&self, texture: &Metal::MTLTexture);
 
         #[method(fillBuffer:range:value:)]
-        pub fn fillBuffer_range_value(&self, buffer: &Metal::MTLBuffer, range: NSRange, value: u8);
+        pub fn fillBuffer_range_value(
+            &self,
+            buffer: &Metal::MTLBuffer,
+            range: Foundation::NSRange,
+            value: u8,
+        );
 
         #[method(copyFromTexture:sourceSlice:sourceLevel:toTexture:destinationSlice:destinationLevel:sliceCount:levelCount:)]
         pub unsafe fn copyFromTexture_sourceSlice_sourceLevel_toTexture_destinationSlice_destinationLevel_sliceCount_levelCount(
@@ -148,7 +153,7 @@ extern_protocol!(
         pub unsafe fn getTextureAccessCounters_region_mipLevel_slice_resetCounters_countersBuffer_countersBufferOffset(
             &self,
             texture: &Metal::MTLTexture,
-            region: MTLRegion,
+            region: Metal::MTLRegion,
             mipLevel: NSUInteger,
             slice: NSUInteger,
             resetCounters: bool,
@@ -161,7 +166,7 @@ extern_protocol!(
         pub unsafe fn resetTextureAccessCounters_region_mipLevel_slice(
             &self,
             texture: &Metal::MTLTexture,
-            region: MTLRegion,
+            region: Metal::MTLRegion,
             mipLevel: NSUInteger,
             slice: NSUInteger,
         );
@@ -192,14 +197,14 @@ extern_protocol!(
         pub unsafe fn resetCommandsInBuffer_withRange(
             &self,
             buffer: &Metal::MTLIndirectCommandBuffer,
-            range: NSRange,
+            range: Foundation::NSRange,
         );
 
         #[method(copyIndirectCommandBuffer:sourceRange:destination:destinationIndex:)]
         pub unsafe fn copyIndirectCommandBuffer_sourceRange_destination_destinationIndex(
             &self,
             source: &Metal::MTLIndirectCommandBuffer,
-            sourceRange: NSRange,
+            sourceRange: Foundation::NSRange,
             destination: &Metal::MTLIndirectCommandBuffer,
             destinationIndex: NSUInteger,
         );
@@ -208,7 +213,7 @@ extern_protocol!(
         pub unsafe fn optimizeIndirectCommandBuffer_withRange(
             &self,
             indirectCommandBuffer: &Metal::MTLIndirectCommandBuffer,
-            range: NSRange,
+            range: Foundation::NSRange,
         );
 
         #[method(sampleCountersInBuffer:atSampleIndex:withBarrier:)]
@@ -223,7 +228,7 @@ extern_protocol!(
         pub unsafe fn resolveCounters_inRange_destinationBuffer_destinationOffset(
             &self,
             sampleBuffer: &Metal::MTLCounterSampleBuffer,
-            range: NSRange,
+            range: Foundation::NSRange,
             destinationBuffer: &Metal::MTLBuffer,
             destinationOffset: NSUInteger,
         );

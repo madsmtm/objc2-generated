@@ -21,7 +21,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:pullsDown:)]
         pub unsafe fn initWithFrame_pullsDown(
             this: Option<Allocated<Self>>,
-            buttonFrame: NSRect,
+            buttonFrame: Foundation::NSRect,
             flag: bool,
         ) -> Id<Self, Shared>;
 
@@ -46,10 +46,10 @@ extern_methods!(
         pub unsafe fn setAutoenablesItems(&self, autoenablesItems: bool);
 
         #[method(preferredEdge)]
-        pub unsafe fn preferredEdge(&self) -> NSRectEdge;
+        pub unsafe fn preferredEdge(&self) -> Foundation::NSRectEdge;
 
         #[method(setPreferredEdge:)]
-        pub unsafe fn setPreferredEdge(&self, preferredEdge: NSRectEdge);
+        pub unsafe fn setPreferredEdge(&self, preferredEdge: Foundation::NSRectEdge);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(addItemWithTitle:)]
@@ -228,7 +228,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frameRect: Foundation::NSRect,
         ) -> Id<Self, Shared>;
     }
 );

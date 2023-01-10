@@ -23,14 +23,14 @@ extern_methods!(
         pub unsafe fn initWithWindow_rect(
             this: Option<Allocated<Self>>,
             win: Option<&AppKit::NSWindow>,
-            rect: NSRect,
+            rect: Foundation::NSRect,
         ) -> Option<Id<Self, Shared>>;
 
         #[method_id(@__retain_semantics Init initWithSize:depth:separate:alpha:)]
         pub unsafe fn initWithSize_depth_separate_alpha(
             this: Option<Allocated<Self>>,
-            size: NSSize,
-            depth: NSWindowDepth,
+            size: Foundation::NSSize,
+            depth: AppKit::NSWindowDepth,
             flag: bool,
             alpha: bool,
         ) -> Option<Id<Self, Shared>>;
@@ -40,6 +40,6 @@ extern_methods!(
         pub unsafe fn window(&self) -> Option<Id<AppKit::NSWindow, Shared>>;
 
         #[method(rect)]
-        pub unsafe fn rect(&self) -> NSRect;
+        pub unsafe fn rect(&self) -> Foundation::NSRect;
     }
 );

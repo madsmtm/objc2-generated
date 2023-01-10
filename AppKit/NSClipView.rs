@@ -39,7 +39,7 @@ extern_methods!(
         pub unsafe fn setDocumentView(&self, documentView: Option<&AppKit::NSView>);
 
         #[method(documentRect)]
-        pub unsafe fn documentRect(&self) -> NSRect;
+        pub unsafe fn documentRect(&self) -> Foundation::NSRect;
 
         #[cfg(feature = "AppKit_NSCursor")]
         #[method_id(@__retain_semantics Other documentCursor)]
@@ -50,7 +50,7 @@ extern_methods!(
         pub unsafe fn setDocumentCursor(&self, documentCursor: Option<&AppKit::NSCursor>);
 
         #[method(documentVisibleRect)]
-        pub unsafe fn documentVisibleRect(&self) -> NSRect;
+        pub unsafe fn documentVisibleRect(&self) -> Foundation::NSRect;
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[method(viewFrameChanged:)]
@@ -65,16 +65,19 @@ extern_methods!(
         pub unsafe fn autoscroll(&self, event: &AppKit::NSEvent) -> bool;
 
         #[method(scrollToPoint:)]
-        pub unsafe fn scrollToPoint(&self, newOrigin: NSPoint);
+        pub unsafe fn scrollToPoint(&self, newOrigin: Foundation::NSPoint);
 
         #[method(constrainBoundsRect:)]
-        pub unsafe fn constrainBoundsRect(&self, proposedBounds: NSRect) -> NSRect;
+        pub unsafe fn constrainBoundsRect(
+            &self,
+            proposedBounds: Foundation::NSRect,
+        ) -> Foundation::NSRect;
 
         #[method(contentInsets)]
-        pub unsafe fn contentInsets(&self) -> NSEdgeInsets;
+        pub unsafe fn contentInsets(&self) -> Foundation::NSEdgeInsets;
 
         #[method(setContentInsets:)]
-        pub unsafe fn setContentInsets(&self, contentInsets: NSEdgeInsets);
+        pub unsafe fn setContentInsets(&self, contentInsets: Foundation::NSEdgeInsets);
 
         #[method(automaticallyAdjustsContentInsets)]
         pub unsafe fn automaticallyAdjustsContentInsets(&self) -> bool;
@@ -97,7 +100,11 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSClipView")]
         #[method(scrollClipView:toPoint:)]
-        pub unsafe fn scrollClipView_toPoint(&self, clipView: &AppKit::NSClipView, point: NSPoint);
+        pub unsafe fn scrollClipView_toPoint(
+            &self,
+            clipView: &AppKit::NSClipView,
+            point: Foundation::NSPoint,
+        );
     }
 );
 
@@ -105,7 +112,10 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSClipView")]
     unsafe impl NSClipView {
         #[method(constrainScrollPoint:)]
-        pub unsafe fn constrainScrollPoint(&self, newOrigin: NSPoint) -> NSPoint;
+        pub unsafe fn constrainScrollPoint(
+            &self,
+            newOrigin: Foundation::NSPoint,
+        ) -> Foundation::NSPoint;
 
         #[method(copiesOnScroll)]
         pub unsafe fn copiesOnScroll(&self) -> bool;
@@ -122,7 +132,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frameRect: Foundation::NSRect,
         ) -> Id<Self, Shared>;
     }
 );

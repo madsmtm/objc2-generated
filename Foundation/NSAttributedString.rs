@@ -28,7 +28,7 @@ extern_methods!(
         pub unsafe fn attributesAtIndex_effectiveRange(
             &self,
             location: NSUInteger,
-            range: NSRangePointer,
+            range: Foundation::NSRangePointer,
         ) -> Id<Foundation::NSDictionary<Foundation::NSAttributedStringKey, Object>, Shared>;
     }
 );
@@ -53,13 +53,13 @@ extern_methods!(
             &self,
             attrName: &Foundation::NSAttributedStringKey,
             location: NSUInteger,
-            range: NSRangePointer,
+            range: Foundation::NSRangePointer,
         ) -> Option<Id<Object, Shared>>;
 
         #[method_id(@__retain_semantics Other attributedSubstringFromRange:)]
         pub unsafe fn attributedSubstringFromRange(
             &self,
-            range: NSRange,
+            range: Foundation::NSRange,
         ) -> Id<Foundation::NSAttributedString, Shared>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
@@ -67,8 +67,8 @@ extern_methods!(
         pub unsafe fn attributesAtIndex_longestEffectiveRange_inRange(
             &self,
             location: NSUInteger,
-            range: NSRangePointer,
-            rangeLimit: NSRange,
+            range: Foundation::NSRangePointer,
+            rangeLimit: Foundation::NSRange,
         ) -> Id<Foundation::NSDictionary<Foundation::NSAttributedStringKey, Object>, Shared>;
 
         #[method_id(@__retain_semantics Other attribute:atIndex:longestEffectiveRange:inRange:)]
@@ -76,8 +76,8 @@ extern_methods!(
             &self,
             attrName: &Foundation::NSAttributedStringKey,
             location: NSUInteger,
-            range: NSRangePointer,
-            rangeLimit: NSRange,
+            range: Foundation::NSRangePointer,
+            rangeLimit: Foundation::NSRange,
         ) -> Option<Id<Object, Shared>>;
 
         #[method(isEqualToAttributedString:)]
@@ -111,12 +111,12 @@ extern_methods!(
         #[method(enumerateAttributesInRange:options:usingBlock:)]
         pub unsafe fn enumerateAttributesInRange_options_usingBlock(
             &self,
-            enumerationRange: NSRange,
-            opts: NSAttributedStringEnumerationOptions,
+            enumerationRange: Foundation::NSRange,
+            opts: Foundation::NSAttributedStringEnumerationOptions,
             block: &Block<
                 (
                     NonNull<Foundation::NSDictionary<Foundation::NSAttributedStringKey, Object>>,
-                    NSRange,
+                    Foundation::NSRange,
                     NonNull<Bool>,
                 ),
                 (),
@@ -127,9 +127,9 @@ extern_methods!(
         pub unsafe fn enumerateAttribute_inRange_options_usingBlock(
             &self,
             attrName: &Foundation::NSAttributedStringKey,
-            enumerationRange: NSRange,
-            opts: NSAttributedStringEnumerationOptions,
-            block: &Block<(*mut Object, NSRange, NonNull<Bool>), ()>,
+            enumerationRange: Foundation::NSRange,
+            opts: Foundation::NSAttributedStringEnumerationOptions,
+            block: &Block<(*mut Object, Foundation::NSRange, NonNull<Bool>), ()>,
         );
     }
 );
@@ -151,7 +151,7 @@ extern_methods!(
         #[method(replaceCharactersInRange:withString:)]
         pub unsafe fn replaceCharactersInRange_withString(
             &self,
-            range: NSRange,
+            range: Foundation::NSRange,
             str: &Foundation::NSString,
         );
 
@@ -160,7 +160,7 @@ extern_methods!(
         pub unsafe fn setAttributes_range(
             &self,
             attrs: Option<&Foundation::NSDictionary<Foundation::NSAttributedStringKey, Object>>,
-            range: NSRange,
+            range: Foundation::NSRange,
         );
     }
 );
@@ -178,7 +178,7 @@ extern_methods!(
             &self,
             name: &Foundation::NSAttributedStringKey,
             value: &Object,
-            range: NSRange,
+            range: Foundation::NSRange,
         );
 
         #[cfg(feature = "Foundation_NSDictionary")]
@@ -186,21 +186,21 @@ extern_methods!(
         pub unsafe fn addAttributes_range(
             &self,
             attrs: &Foundation::NSDictionary<Foundation::NSAttributedStringKey, Object>,
-            range: NSRange,
+            range: Foundation::NSRange,
         );
 
         #[method(removeAttribute:range:)]
         pub unsafe fn removeAttribute_range(
             &self,
             name: &Foundation::NSAttributedStringKey,
-            range: NSRange,
+            range: Foundation::NSRange,
         );
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(replaceCharactersInRange:withAttributedString:)]
         pub unsafe fn replaceCharactersInRange_withAttributedString(
             &self,
-            range: NSRange,
+            range: Foundation::NSRange,
             attrString: &Foundation::NSAttributedString,
         );
 
@@ -217,7 +217,7 @@ extern_methods!(
         pub unsafe fn appendAttributedString(&self, attrString: &Foundation::NSAttributedString);
 
         #[method(deleteCharactersInRange:)]
-        pub unsafe fn deleteCharactersInRange(&self, range: NSRange);
+        pub unsafe fn deleteCharactersInRange(&self, range: Foundation::NSRange);
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setAttributedString:)]
@@ -292,21 +292,25 @@ extern_methods!(
         pub unsafe fn setAllowsExtendedAttributes(&self, allowsExtendedAttributes: bool);
 
         #[method(interpretedSyntax)]
-        pub unsafe fn interpretedSyntax(&self) -> NSAttributedStringMarkdownInterpretedSyntax;
+        pub unsafe fn interpretedSyntax(
+            &self,
+        ) -> Foundation::NSAttributedStringMarkdownInterpretedSyntax;
 
         #[method(setInterpretedSyntax:)]
         pub unsafe fn setInterpretedSyntax(
             &self,
-            interpretedSyntax: NSAttributedStringMarkdownInterpretedSyntax,
+            interpretedSyntax: Foundation::NSAttributedStringMarkdownInterpretedSyntax,
         );
 
         #[method(failurePolicy)]
-        pub unsafe fn failurePolicy(&self) -> NSAttributedStringMarkdownParsingFailurePolicy;
+        pub unsafe fn failurePolicy(
+            &self,
+        ) -> Foundation::NSAttributedStringMarkdownParsingFailurePolicy;
 
         #[method(setFailurePolicy:)]
         pub unsafe fn setFailurePolicy(
             &self,
-            failurePolicy: NSAttributedStringMarkdownParsingFailurePolicy,
+            failurePolicy: Foundation::NSAttributedStringMarkdownParsingFailurePolicy,
         );
 
         #[cfg(feature = "Foundation_NSString")]
@@ -447,7 +451,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSPresentationIntent")]
     unsafe impl NSPresentationIntent {
         #[method(intentKind)]
-        pub unsafe fn intentKind(&self) -> NSPresentationIntentKind;
+        pub unsafe fn intentKind(&self) -> Foundation::NSPresentationIntentKind;
 
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;

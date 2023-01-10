@@ -60,10 +60,10 @@ extern_methods!(
         pub unsafe fn setIncludesSubentities(&self, includesSubentities: bool);
 
         #[method(resultType)]
-        pub unsafe fn resultType(&self) -> NSBatchUpdateRequestResultType;
+        pub unsafe fn resultType(&self) -> CoreData::NSBatchUpdateRequestResultType;
 
         #[method(setResultType:)]
-        pub unsafe fn setResultType(&self, resultType: NSBatchUpdateRequestResultType);
+        pub unsafe fn setResultType(&self, resultType: CoreData::NSBatchUpdateRequestResultType);
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other propertiesToUpdate)]

@@ -161,14 +161,17 @@ extern_methods!(
         pub unsafe fn beginSheetModalForWindow_completionHandler(
             &self,
             window: &AppKit::NSWindow,
-            handler: &Block<(NSModalResponse,), ()>,
+            handler: &Block<(AppKit::NSModalResponse,), ()>,
         );
 
         #[method(beginWithCompletionHandler:)]
-        pub unsafe fn beginWithCompletionHandler(&self, handler: &Block<(NSModalResponse,), ()>);
+        pub unsafe fn beginWithCompletionHandler(
+            &self,
+            handler: &Block<(AppKit::NSModalResponse,), ()>,
+        );
 
         #[method(runModal)]
-        pub unsafe fn runModal(&self) -> NSModalResponse;
+        pub unsafe fn runModal(&self) -> AppKit::NSModalResponse;
     }
 );
 
@@ -288,9 +291,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer(
             this: Option<Allocated<Self>>,
-            contentRect: NSRect,
-            style: NSWindowStyleMask,
-            backingStoreType: NSBackingStoreType,
+            contentRect: Foundation::NSRect,
+            style: AppKit::NSWindowStyleMask,
+            backingStoreType: AppKit::NSBackingStoreType,
             flag: bool,
         ) -> Id<Self, Shared>;
 
@@ -298,9 +301,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:screen:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer_screen(
             this: Option<Allocated<Self>>,
-            contentRect: NSRect,
-            style: NSWindowStyleMask,
-            backingStoreType: NSBackingStoreType,
+            contentRect: Foundation::NSRect,
+            style: AppKit::NSWindowStyleMask,
+            backingStoreType: AppKit::NSBackingStoreType,
             flag: bool,
             screen: Option<&AppKit::NSScreen>,
         ) -> Id<Self, Shared>;

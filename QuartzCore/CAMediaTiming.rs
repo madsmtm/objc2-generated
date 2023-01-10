@@ -13,16 +13,16 @@ extern_protocol!(
 
     unsafe impl ProtocolType for CAMediaTiming {
         #[method(beginTime)]
-        pub unsafe fn beginTime(&self) -> CFTimeInterval;
+        pub unsafe fn beginTime(&self) -> CoreFoundation::CFTimeInterval;
 
         #[method(setBeginTime:)]
-        pub unsafe fn setBeginTime(&self, beginTime: CFTimeInterval);
+        pub unsafe fn setBeginTime(&self, beginTime: CoreFoundation::CFTimeInterval);
 
         #[method(duration)]
-        pub unsafe fn duration(&self) -> CFTimeInterval;
+        pub unsafe fn duration(&self) -> CoreFoundation::CFTimeInterval;
 
         #[method(setDuration:)]
-        pub unsafe fn setDuration(&self, duration: CFTimeInterval);
+        pub unsafe fn setDuration(&self, duration: CoreFoundation::CFTimeInterval);
 
         #[method(speed)]
         pub unsafe fn speed(&self) -> c_float;
@@ -31,10 +31,10 @@ extern_protocol!(
         pub unsafe fn setSpeed(&self, speed: c_float);
 
         #[method(timeOffset)]
-        pub unsafe fn timeOffset(&self) -> CFTimeInterval;
+        pub unsafe fn timeOffset(&self) -> CoreFoundation::CFTimeInterval;
 
         #[method(setTimeOffset:)]
-        pub unsafe fn setTimeOffset(&self, timeOffset: CFTimeInterval);
+        pub unsafe fn setTimeOffset(&self, timeOffset: CoreFoundation::CFTimeInterval);
 
         #[method(repeatCount)]
         pub unsafe fn repeatCount(&self) -> c_float;
@@ -43,10 +43,10 @@ extern_protocol!(
         pub unsafe fn setRepeatCount(&self, repeatCount: c_float);
 
         #[method(repeatDuration)]
-        pub unsafe fn repeatDuration(&self) -> CFTimeInterval;
+        pub unsafe fn repeatDuration(&self) -> CoreFoundation::CFTimeInterval;
 
         #[method(setRepeatDuration:)]
-        pub unsafe fn setRepeatDuration(&self, repeatDuration: CFTimeInterval);
+        pub unsafe fn setRepeatDuration(&self, repeatDuration: CoreFoundation::CFTimeInterval);
 
         #[method(autoreverses)]
         pub unsafe fn autoreverses(&self) -> bool;

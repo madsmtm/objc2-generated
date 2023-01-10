@@ -128,7 +128,7 @@ extern_methods!(
         #[method(enumerateObjectsWithOptions:usingBlock:)]
         pub unsafe fn enumerateObjectsWithOptions_usingBlock(
             &self,
-            opts: NSEnumerationOptions,
+            opts: Foundation::NSEnumerationOptions,
             block: &Block<(NonNull<ObjectType>, NonNull<Bool>), ()>,
         );
 
@@ -141,7 +141,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other objectsWithOptions:passingTest:)]
         pub unsafe fn objectsWithOptions_passingTest(
             &self,
-            opts: NSEnumerationOptions,
+            opts: Foundation::NSEnumerationOptions,
             predicate: &Block<(NonNull<ObjectType>, NonNull<Bool>), Bool>,
         ) -> Id<Foundation::NSSet<ObjectType>, Shared>;
     }

@@ -110,28 +110,37 @@ extern_methods!(
         pub unsafe fn setShouldAntialias(&self, shouldAntialias: bool);
 
         #[method(imageInterpolation)]
-        pub unsafe fn imageInterpolation(&self) -> NSImageInterpolation;
+        pub unsafe fn imageInterpolation(&self) -> AppKit::NSImageInterpolation;
 
         #[method(setImageInterpolation:)]
-        pub unsafe fn setImageInterpolation(&self, imageInterpolation: NSImageInterpolation);
+        pub unsafe fn setImageInterpolation(
+            &self,
+            imageInterpolation: AppKit::NSImageInterpolation,
+        );
 
         #[method(patternPhase)]
-        pub unsafe fn patternPhase(&self) -> NSPoint;
+        pub unsafe fn patternPhase(&self) -> Foundation::NSPoint;
 
         #[method(setPatternPhase:)]
-        pub unsafe fn setPatternPhase(&self, patternPhase: NSPoint);
+        pub unsafe fn setPatternPhase(&self, patternPhase: Foundation::NSPoint);
 
         #[method(compositingOperation)]
-        pub unsafe fn compositingOperation(&self) -> NSCompositingOperation;
+        pub unsafe fn compositingOperation(&self) -> AppKit::NSCompositingOperation;
 
         #[method(setCompositingOperation:)]
-        pub unsafe fn setCompositingOperation(&self, compositingOperation: NSCompositingOperation);
+        pub unsafe fn setCompositingOperation(
+            &self,
+            compositingOperation: AppKit::NSCompositingOperation,
+        );
 
         #[method(colorRenderingIntent)]
-        pub unsafe fn colorRenderingIntent(&self) -> NSColorRenderingIntent;
+        pub unsafe fn colorRenderingIntent(&self) -> AppKit::NSColorRenderingIntent;
 
         #[method(setColorRenderingIntent:)]
-        pub unsafe fn setColorRenderingIntent(&self, colorRenderingIntent: NSColorRenderingIntent);
+        pub unsafe fn setColorRenderingIntent(
+            &self,
+            colorRenderingIntent: AppKit::NSColorRenderingIntent,
+        );
     }
 );
 

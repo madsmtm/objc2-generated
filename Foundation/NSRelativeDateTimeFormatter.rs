@@ -35,22 +35,31 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSRelativeDateTimeFormatter")]
     unsafe impl NSRelativeDateTimeFormatter {
         #[method(dateTimeStyle)]
-        pub unsafe fn dateTimeStyle(&self) -> NSRelativeDateTimeFormatterStyle;
+        pub unsafe fn dateTimeStyle(&self) -> Foundation::NSRelativeDateTimeFormatterStyle;
 
         #[method(setDateTimeStyle:)]
-        pub unsafe fn setDateTimeStyle(&self, dateTimeStyle: NSRelativeDateTimeFormatterStyle);
+        pub unsafe fn setDateTimeStyle(
+            &self,
+            dateTimeStyle: Foundation::NSRelativeDateTimeFormatterStyle,
+        );
 
         #[method(unitsStyle)]
-        pub unsafe fn unitsStyle(&self) -> NSRelativeDateTimeFormatterUnitsStyle;
+        pub unsafe fn unitsStyle(&self) -> Foundation::NSRelativeDateTimeFormatterUnitsStyle;
 
         #[method(setUnitsStyle:)]
-        pub unsafe fn setUnitsStyle(&self, unitsStyle: NSRelativeDateTimeFormatterUnitsStyle);
+        pub unsafe fn setUnitsStyle(
+            &self,
+            unitsStyle: Foundation::NSRelativeDateTimeFormatterUnitsStyle,
+        );
 
         #[method(formattingContext)]
-        pub unsafe fn formattingContext(&self) -> NSFormattingContext;
+        pub unsafe fn formattingContext(&self) -> Foundation::NSFormattingContext;
 
         #[method(setFormattingContext:)]
-        pub unsafe fn setFormattingContext(&self, formattingContext: NSFormattingContext);
+        pub unsafe fn setFormattingContext(
+            &self,
+            formattingContext: Foundation::NSFormattingContext,
+        );
 
         #[cfg(feature = "Foundation_NSCalendar")]
         #[method_id(@__retain_semantics Other calendar)]
@@ -82,7 +91,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other localizedStringFromTimeInterval:)]
         pub unsafe fn localizedStringFromTimeInterval(
             &self,
-            timeInterval: NSTimeInterval,
+            timeInterval: Foundation::NSTimeInterval,
         ) -> Id<Foundation::NSString, Shared>;
 
         #[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSString"))]

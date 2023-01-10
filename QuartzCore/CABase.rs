@@ -5,5 +5,5 @@ use crate::CoreAnimation;
 use crate::Foundation;
 
 extern_fn!(
-    pub fn CACurrentMediaTime() -> CFTimeInterval;
+    pub fn CACurrentMediaTime() -> CoreFoundation::CFTimeInterval;
 );

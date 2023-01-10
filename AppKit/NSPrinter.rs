@@ -64,7 +64,10 @@ extern_methods!(
         pub unsafe fn languageLevel(&self) -> NSInteger;
 
         #[method(pageSizeForPaper:)]
-        pub unsafe fn pageSizeForPaper(&self, paperName: &AppKit::NSPrinterPaperName) -> NSSize;
+        pub unsafe fn pageSizeForPaper(
+            &self,
+            paperName: &AppKit::NSPrinterPaperName,
+        ) -> Foundation::NSSize;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other deviceDescription)]
@@ -83,7 +86,7 @@ extern_methods!(
         pub unsafe fn statusForTable(
             &self,
             tableName: &Foundation::NSString,
-        ) -> NSPrinterTableStatus;
+        ) -> AppKit::NSPrinterTableStatus;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(isKey:inTable:)]
@@ -123,7 +126,7 @@ extern_methods!(
             &self,
             key: Option<&Foundation::NSString>,
             table: &Foundation::NSString,
-        ) -> NSRect;
+        ) -> Foundation::NSRect;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(sizeForKey:inTable:)]
@@ -131,7 +134,7 @@ extern_methods!(
             &self,
             key: Option<&Foundation::NSString>,
             table: &Foundation::NSString,
-        ) -> NSSize;
+        ) -> Foundation::NSSize;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringForKey:inTable:)]
@@ -151,7 +154,10 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(imageRectForPaper:)]
-        pub unsafe fn imageRectForPaper(&self, paperName: Option<&Foundation::NSString>) -> NSRect;
+        pub unsafe fn imageRectForPaper(
+            &self,
+            paperName: Option<&Foundation::NSString>,
+        ) -> Foundation::NSRect;
 
         #[method(acceptsBinary)]
         pub unsafe fn acceptsBinary(&self) -> bool;

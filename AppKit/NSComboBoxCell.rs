@@ -25,16 +25,16 @@ extern_methods!(
         pub unsafe fn setHasVerticalScroller(&self, hasVerticalScroller: bool);
 
         #[method(intercellSpacing)]
-        pub unsafe fn intercellSpacing(&self) -> NSSize;
+        pub unsafe fn intercellSpacing(&self) -> Foundation::NSSize;
 
         #[method(setIntercellSpacing:)]
-        pub unsafe fn setIntercellSpacing(&self, intercellSpacing: NSSize);
+        pub unsafe fn setIntercellSpacing(&self, intercellSpacing: Foundation::NSSize);
 
         #[method(itemHeight)]
-        pub unsafe fn itemHeight(&self) -> CGFloat;
+        pub unsafe fn itemHeight(&self) -> CoreGraphics::CGFloat;
 
         #[method(setItemHeight:)]
-        pub unsafe fn setItemHeight(&self, itemHeight: CGFloat);
+        pub unsafe fn setItemHeight(&self, itemHeight: CoreGraphics::CGFloat);
 
         #[method(numberOfVisibleItems)]
         pub unsafe fn numberOfVisibleItems(&self) -> NSInteger;

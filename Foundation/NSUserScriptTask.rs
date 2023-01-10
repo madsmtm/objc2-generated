@@ -31,7 +31,7 @@ extern_methods!(
         #[method(executeWithCompletionHandler:)]
         pub unsafe fn executeWithCompletionHandler(
             &self,
-            handler: NSUserScriptTaskCompletionHandler,
+            handler: Foundation::NSUserScriptTaskCompletionHandler,
         );
     }
 );
@@ -80,7 +80,7 @@ extern_methods!(
         pub unsafe fn executeWithArguments_completionHandler(
             &self,
             arguments: Option<&Foundation::NSArray<Foundation::NSString>>,
-            handler: NSUserUnixTaskCompletionHandler,
+            handler: Foundation::NSUserUnixTaskCompletionHandler,
         );
     }
 );
@@ -111,7 +111,7 @@ extern_methods!(
         pub unsafe fn executeWithAppleEvent_completionHandler(
             &self,
             event: Option<&Foundation::NSAppleEventDescriptor>,
-            handler: NSUserAppleScriptTaskCompletionHandler,
+            handler: Foundation::NSUserAppleScriptTaskCompletionHandler,
         );
     }
 );
@@ -149,7 +149,7 @@ extern_methods!(
         pub unsafe fn executeWithInput_completionHandler(
             &self,
             input: Option<&Foundation::NSSecureCoding>,
-            handler: NSUserAutomatorTaskCompletionHandler,
+            handler: Foundation::NSUserAutomatorTaskCompletionHandler,
         );
     }
 );

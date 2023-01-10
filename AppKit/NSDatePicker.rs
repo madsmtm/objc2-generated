@@ -19,10 +19,10 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSDatePicker")]
     unsafe impl NSDatePicker {
         #[method(datePickerStyle)]
-        pub unsafe fn datePickerStyle(&self) -> NSDatePickerStyle;
+        pub unsafe fn datePickerStyle(&self) -> AppKit::NSDatePickerStyle;
 
         #[method(setDatePickerStyle:)]
-        pub unsafe fn setDatePickerStyle(&self, datePickerStyle: NSDatePickerStyle);
+        pub unsafe fn setDatePickerStyle(&self, datePickerStyle: AppKit::NSDatePickerStyle);
 
         #[method(isBezeled)]
         pub unsafe fn isBezeled(&self) -> bool;
@@ -59,16 +59,19 @@ extern_methods!(
         pub unsafe fn setTextColor(&self, textColor: &AppKit::NSColor);
 
         #[method(datePickerMode)]
-        pub unsafe fn datePickerMode(&self) -> NSDatePickerMode;
+        pub unsafe fn datePickerMode(&self) -> AppKit::NSDatePickerMode;
 
         #[method(setDatePickerMode:)]
-        pub unsafe fn setDatePickerMode(&self, datePickerMode: NSDatePickerMode);
+        pub unsafe fn setDatePickerMode(&self, datePickerMode: AppKit::NSDatePickerMode);
 
         #[method(datePickerElements)]
-        pub unsafe fn datePickerElements(&self) -> NSDatePickerElementFlags;
+        pub unsafe fn datePickerElements(&self) -> AppKit::NSDatePickerElementFlags;
 
         #[method(setDatePickerElements:)]
-        pub unsafe fn setDatePickerElements(&self, datePickerElements: NSDatePickerElementFlags);
+        pub unsafe fn setDatePickerElements(
+            &self,
+            datePickerElements: AppKit::NSDatePickerElementFlags,
+        );
 
         #[cfg(feature = "Foundation_NSCalendar")]
         #[method_id(@__retain_semantics Other calendar)]
@@ -103,10 +106,10 @@ extern_methods!(
         pub unsafe fn setDateValue(&self, dateValue: &Foundation::NSDate);
 
         #[method(timeInterval)]
-        pub unsafe fn timeInterval(&self) -> NSTimeInterval;
+        pub unsafe fn timeInterval(&self) -> Foundation::NSTimeInterval;
 
         #[method(setTimeInterval:)]
-        pub unsafe fn setTimeInterval(&self, timeInterval: NSTimeInterval);
+        pub unsafe fn setTimeInterval(&self, timeInterval: Foundation::NSTimeInterval);
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other minDate)]
@@ -145,7 +148,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frameRect: Foundation::NSRect,
         ) -> Id<Self, Shared>;
     }
 );

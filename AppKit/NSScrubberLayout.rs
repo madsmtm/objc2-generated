@@ -24,16 +24,16 @@ extern_methods!(
         pub unsafe fn setItemIndex(&self, itemIndex: NSInteger);
 
         #[method(frame)]
-        pub unsafe fn frame(&self) -> NSRect;
+        pub unsafe fn frame(&self) -> Foundation::NSRect;
 
         #[method(setFrame:)]
-        pub unsafe fn setFrame(&self, frame: NSRect);
+        pub unsafe fn setFrame(&self, frame: Foundation::NSRect);
 
         #[method(alpha)]
-        pub unsafe fn alpha(&self) -> CGFloat;
+        pub unsafe fn alpha(&self) -> CoreGraphics::CGFloat;
 
         #[method(setAlpha:)]
-        pub unsafe fn setAlpha(&self, alpha: CGFloat);
+        pub unsafe fn setAlpha(&self, alpha: CoreGraphics::CGFloat);
 
         #[method_id(@__retain_semantics Other layoutAttributesForItemAtIndex:)]
         pub unsafe fn layoutAttributesForItemAtIndex(index: NSInteger) -> Id<Self, Shared>;
@@ -60,7 +60,7 @@ extern_methods!(
         pub unsafe fn scrubber(&self) -> Option<Id<AppKit::NSScrubber, Shared>>;
 
         #[method(visibleRect)]
-        pub unsafe fn visibleRect(&self) -> NSRect;
+        pub unsafe fn visibleRect(&self) -> Foundation::NSRect;
 
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
@@ -79,7 +79,7 @@ extern_methods!(
         pub unsafe fn prepareLayout(&self);
 
         #[method(scrubberContentSize)]
-        pub unsafe fn scrubberContentSize(&self) -> NSSize;
+        pub unsafe fn scrubberContentSize(&self) -> Foundation::NSSize;
 
         #[cfg(feature = "AppKit_NSScrubberLayoutAttributes")]
         #[method_id(@__retain_semantics Other layoutAttributesForItemAtIndex:)]
@@ -95,7 +95,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other layoutAttributesForItemsInRect:)]
         pub unsafe fn layoutAttributesForItemsInRect(
             &self,
-            rect: NSRect,
+            rect: Foundation::NSRect,
         ) -> Id<Foundation::NSSet<AppKit::NSScrubberLayoutAttributes>, Shared>;
 
         #[method(shouldInvalidateLayoutForSelectionChange)]
@@ -107,8 +107,8 @@ extern_methods!(
         #[method(shouldInvalidateLayoutForChangeFromVisibleRect:toVisibleRect:)]
         pub unsafe fn shouldInvalidateLayoutForChangeFromVisibleRect_toVisibleRect(
             &self,
-            fromVisibleRect: NSRect,
-            toVisibleRect: NSRect,
+            fromVisibleRect: Foundation::NSRect,
+            toVisibleRect: Foundation::NSRect,
         ) -> bool;
 
         #[method(automaticallyMirrorsInRightToLeftLayout)]
@@ -127,7 +127,7 @@ extern_protocol!(
             scrubber: &AppKit::NSScrubber,
             layout: &AppKit::NSScrubberFlowLayout,
             itemIndex: NSInteger,
-        ) -> NSSize;
+        ) -> Foundation::NSSize;
     }
 );
 
@@ -145,16 +145,16 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSScrubberFlowLayout")]
     unsafe impl NSScrubberFlowLayout {
         #[method(itemSpacing)]
-        pub unsafe fn itemSpacing(&self) -> CGFloat;
+        pub unsafe fn itemSpacing(&self) -> CoreGraphics::CGFloat;
 
         #[method(setItemSpacing:)]
-        pub unsafe fn setItemSpacing(&self, itemSpacing: CGFloat);
+        pub unsafe fn setItemSpacing(&self, itemSpacing: CoreGraphics::CGFloat);
 
         #[method(itemSize)]
-        pub unsafe fn itemSize(&self) -> NSSize;
+        pub unsafe fn itemSize(&self) -> Foundation::NSSize;
 
         #[method(setItemSize:)]
-        pub unsafe fn setItemSize(&self, itemSize: NSSize);
+        pub unsafe fn setItemSize(&self, itemSize: Foundation::NSSize);
 
         #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(invalidateLayoutForItemsAtIndexes:)]

@@ -77,7 +77,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frameRect: Foundation::NSRect,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSCoder")]
@@ -126,12 +126,12 @@ extern_methods!(
         #[method(getRectsBeingDrawn:count:)]
         pub unsafe fn getRectsBeingDrawn_count(
             &self,
-            rects: *mut *mut NSRect,
+            rects: *mut *mut Foundation::NSRect,
             count: *mut NSInteger,
         );
 
         #[method(needsToDrawRect:)]
-        pub unsafe fn needsToDrawRect(&self, rect: NSRect) -> bool;
+        pub unsafe fn needsToDrawRect(&self, rect: Foundation::NSRect) -> bool;
 
         #[method(wantsDefaultClipping)]
         pub unsafe fn wantsDefaultClipping(&self) -> bool;
@@ -149,7 +149,7 @@ extern_methods!(
         pub unsafe fn addSubview_positioned_relativeTo(
             &self,
             view: &AppKit::NSView,
-            place: NSWindowOrderingMode,
+            place: AppKit::NSWindowOrderingMode,
             otherView: Option<&AppKit::NSView>,
         );
 
@@ -160,7 +160,7 @@ extern_methods!(
                 NonNull<AppKit::NSView>,
                 NonNull<AppKit::NSView>,
                 *mut c_void,
-            ) -> NSComparisonResult,
+            ) -> Foundation::NSComparisonResult,
             context: *mut c_void,
         );
 
@@ -209,10 +209,10 @@ extern_methods!(
         );
 
         #[method(resizeSubviewsWithOldSize:)]
-        pub unsafe fn resizeSubviewsWithOldSize(&self, oldSize: NSSize);
+        pub unsafe fn resizeSubviewsWithOldSize(&self, oldSize: Foundation::NSSize);
 
         #[method(resizeWithOldSuperviewSize:)]
-        pub unsafe fn resizeWithOldSuperviewSize(&self, oldSize: NSSize);
+        pub unsafe fn resizeWithOldSuperviewSize(&self, oldSize: Foundation::NSSize);
 
         #[method(autoresizesSubviews)]
         pub unsafe fn autoresizesSubviews(&self) -> bool;
@@ -221,61 +221,64 @@ extern_methods!(
         pub unsafe fn setAutoresizesSubviews(&self, autoresizesSubviews: bool);
 
         #[method(autoresizingMask)]
-        pub unsafe fn autoresizingMask(&self) -> NSAutoresizingMaskOptions;
+        pub unsafe fn autoresizingMask(&self) -> AppKit::NSAutoresizingMaskOptions;
 
         #[method(setAutoresizingMask:)]
-        pub unsafe fn setAutoresizingMask(&self, autoresizingMask: NSAutoresizingMaskOptions);
+        pub unsafe fn setAutoresizingMask(
+            &self,
+            autoresizingMask: AppKit::NSAutoresizingMaskOptions,
+        );
 
         #[method(setFrameOrigin:)]
-        pub unsafe fn setFrameOrigin(&self, newOrigin: NSPoint);
+        pub unsafe fn setFrameOrigin(&self, newOrigin: Foundation::NSPoint);
 
         #[method(setFrameSize:)]
-        pub unsafe fn setFrameSize(&self, newSize: NSSize);
+        pub unsafe fn setFrameSize(&self, newSize: Foundation::NSSize);
 
         #[method(frame)]
-        pub unsafe fn frame(&self) -> NSRect;
+        pub unsafe fn frame(&self) -> Foundation::NSRect;
 
         #[method(setFrame:)]
-        pub unsafe fn setFrame(&self, frame: NSRect);
+        pub unsafe fn setFrame(&self, frame: Foundation::NSRect);
 
         #[method(frameRotation)]
-        pub unsafe fn frameRotation(&self) -> CGFloat;
+        pub unsafe fn frameRotation(&self) -> CoreGraphics::CGFloat;
 
         #[method(setFrameRotation:)]
-        pub unsafe fn setFrameRotation(&self, frameRotation: CGFloat);
+        pub unsafe fn setFrameRotation(&self, frameRotation: CoreGraphics::CGFloat);
 
         #[method(frameCenterRotation)]
-        pub unsafe fn frameCenterRotation(&self) -> CGFloat;
+        pub unsafe fn frameCenterRotation(&self) -> CoreGraphics::CGFloat;
 
         #[method(setFrameCenterRotation:)]
-        pub unsafe fn setFrameCenterRotation(&self, frameCenterRotation: CGFloat);
+        pub unsafe fn setFrameCenterRotation(&self, frameCenterRotation: CoreGraphics::CGFloat);
 
         #[method(setBoundsOrigin:)]
-        pub unsafe fn setBoundsOrigin(&self, newOrigin: NSPoint);
+        pub unsafe fn setBoundsOrigin(&self, newOrigin: Foundation::NSPoint);
 
         #[method(setBoundsSize:)]
-        pub unsafe fn setBoundsSize(&self, newSize: NSSize);
+        pub unsafe fn setBoundsSize(&self, newSize: Foundation::NSSize);
 
         #[method(boundsRotation)]
-        pub unsafe fn boundsRotation(&self) -> CGFloat;
+        pub unsafe fn boundsRotation(&self) -> CoreGraphics::CGFloat;
 
         #[method(setBoundsRotation:)]
-        pub unsafe fn setBoundsRotation(&self, boundsRotation: CGFloat);
+        pub unsafe fn setBoundsRotation(&self, boundsRotation: CoreGraphics::CGFloat);
 
         #[method(translateOriginToPoint:)]
-        pub unsafe fn translateOriginToPoint(&self, translation: NSPoint);
+        pub unsafe fn translateOriginToPoint(&self, translation: Foundation::NSPoint);
 
         #[method(scaleUnitSquareToSize:)]
-        pub unsafe fn scaleUnitSquareToSize(&self, newUnitSize: NSSize);
+        pub unsafe fn scaleUnitSquareToSize(&self, newUnitSize: Foundation::NSSize);
 
         #[method(rotateByAngle:)]
-        pub unsafe fn rotateByAngle(&self, angle: CGFloat);
+        pub unsafe fn rotateByAngle(&self, angle: CoreGraphics::CGFloat);
 
         #[method(bounds)]
-        pub unsafe fn bounds(&self) -> NSRect;
+        pub unsafe fn bounds(&self) -> Foundation::NSRect;
 
         #[method(setBounds:)]
-        pub unsafe fn setBounds(&self, bounds: NSRect);
+        pub unsafe fn setBounds(&self, bounds: Foundation::NSRect);
 
         #[method(isFlipped)]
         pub unsafe fn isFlipped(&self) -> bool;
@@ -292,90 +295,102 @@ extern_methods!(
         #[method(convertPoint:fromView:)]
         pub unsafe fn convertPoint_fromView(
             &self,
-            point: NSPoint,
+            point: Foundation::NSPoint,
             view: Option<&AppKit::NSView>,
-        ) -> NSPoint;
+        ) -> Foundation::NSPoint;
 
         #[method(convertPoint:toView:)]
         pub unsafe fn convertPoint_toView(
             &self,
-            point: NSPoint,
+            point: Foundation::NSPoint,
             view: Option<&AppKit::NSView>,
-        ) -> NSPoint;
+        ) -> Foundation::NSPoint;
 
         #[method(convertSize:fromView:)]
         pub unsafe fn convertSize_fromView(
             &self,
-            size: NSSize,
+            size: Foundation::NSSize,
             view: Option<&AppKit::NSView>,
-        ) -> NSSize;
+        ) -> Foundation::NSSize;
 
         #[method(convertSize:toView:)]
         pub unsafe fn convertSize_toView(
             &self,
-            size: NSSize,
+            size: Foundation::NSSize,
             view: Option<&AppKit::NSView>,
-        ) -> NSSize;
+        ) -> Foundation::NSSize;
 
         #[method(convertRect:fromView:)]
         pub unsafe fn convertRect_fromView(
             &self,
-            rect: NSRect,
+            rect: Foundation::NSRect,
             view: Option<&AppKit::NSView>,
-        ) -> NSRect;
+        ) -> Foundation::NSRect;
 
         #[method(convertRect:toView:)]
         pub unsafe fn convertRect_toView(
             &self,
-            rect: NSRect,
+            rect: Foundation::NSRect,
             view: Option<&AppKit::NSView>,
-        ) -> NSRect;
+        ) -> Foundation::NSRect;
 
         #[method(backingAlignedRect:options:)]
         pub unsafe fn backingAlignedRect_options(
             &self,
-            rect: NSRect,
-            options: NSAlignmentOptions,
-        ) -> NSRect;
+            rect: Foundation::NSRect,
+            options: Foundation::NSAlignmentOptions,
+        ) -> Foundation::NSRect;
 
         #[method(centerScanRect:)]
-        pub unsafe fn centerScanRect(&self, rect: NSRect) -> NSRect;
+        pub unsafe fn centerScanRect(&self, rect: Foundation::NSRect) -> Foundation::NSRect;
 
         #[method(convertPointToBacking:)]
-        pub unsafe fn convertPointToBacking(&self, point: NSPoint) -> NSPoint;
+        pub unsafe fn convertPointToBacking(
+            &self,
+            point: Foundation::NSPoint,
+        ) -> Foundation::NSPoint;
 
         #[method(convertPointFromBacking:)]
-        pub unsafe fn convertPointFromBacking(&self, point: NSPoint) -> NSPoint;
+        pub unsafe fn convertPointFromBacking(
+            &self,
+            point: Foundation::NSPoint,
+        ) -> Foundation::NSPoint;
 
         #[method(convertSizeToBacking:)]
-        pub unsafe fn convertSizeToBacking(&self, size: NSSize) -> NSSize;
+        pub unsafe fn convertSizeToBacking(&self, size: Foundation::NSSize) -> Foundation::NSSize;
 
         #[method(convertSizeFromBacking:)]
-        pub unsafe fn convertSizeFromBacking(&self, size: NSSize) -> NSSize;
+        pub unsafe fn convertSizeFromBacking(&self, size: Foundation::NSSize)
+            -> Foundation::NSSize;
 
         #[method(convertRectToBacking:)]
-        pub unsafe fn convertRectToBacking(&self, rect: NSRect) -> NSRect;
+        pub unsafe fn convertRectToBacking(&self, rect: Foundation::NSRect) -> Foundation::NSRect;
 
         #[method(convertRectFromBacking:)]
-        pub unsafe fn convertRectFromBacking(&self, rect: NSRect) -> NSRect;
+        pub unsafe fn convertRectFromBacking(&self, rect: Foundation::NSRect)
+            -> Foundation::NSRect;
 
         #[method(convertPointToLayer:)]
-        pub unsafe fn convertPointToLayer(&self, point: NSPoint) -> NSPoint;
+        pub unsafe fn convertPointToLayer(&self, point: Foundation::NSPoint)
+            -> Foundation::NSPoint;
 
         #[method(convertPointFromLayer:)]
-        pub unsafe fn convertPointFromLayer(&self, point: NSPoint) -> NSPoint;
+        pub unsafe fn convertPointFromLayer(
+            &self,
+            point: Foundation::NSPoint,
+        ) -> Foundation::NSPoint;
 
         #[method(convertSizeToLayer:)]
-        pub unsafe fn convertSizeToLayer(&self, size: NSSize) -> NSSize;
+        pub unsafe fn convertSizeToLayer(&self, size: Foundation::NSSize) -> Foundation::NSSize;
 
         #[method(convertSizeFromLayer:)]
-        pub unsafe fn convertSizeFromLayer(&self, size: NSSize) -> NSSize;
+        pub unsafe fn convertSizeFromLayer(&self, size: Foundation::NSSize) -> Foundation::NSSize;
 
         #[method(convertRectToLayer:)]
-        pub unsafe fn convertRectToLayer(&self, rect: NSRect) -> NSRect;
+        pub unsafe fn convertRectToLayer(&self, rect: Foundation::NSRect) -> Foundation::NSRect;
 
         #[method(convertRectFromLayer:)]
-        pub unsafe fn convertRectFromLayer(&self, rect: NSRect) -> NSRect;
+        pub unsafe fn convertRectFromLayer(&self, rect: Foundation::NSRect) -> Foundation::NSRect;
 
         #[method(canDrawConcurrently)]
         pub unsafe fn canDrawConcurrently(&self) -> bool;
@@ -387,7 +402,7 @@ extern_methods!(
         pub unsafe fn canDraw(&self) -> bool;
 
         #[method(setNeedsDisplayInRect:)]
-        pub unsafe fn setNeedsDisplayInRect(&self, invalidRect: NSRect);
+        pub unsafe fn setNeedsDisplayInRect(&self, invalidRect: Foundation::NSRect);
 
         #[method(needsDisplay)]
         pub unsafe fn needsDisplay(&self) -> bool;
@@ -415,7 +430,7 @@ extern_methods!(
         pub unsafe fn focusView() -> Option<Id<AppKit::NSView, Shared>>;
 
         #[method(visibleRect)]
-        pub unsafe fn visibleRect(&self) -> NSRect;
+        pub unsafe fn visibleRect(&self) -> Foundation::NSRect;
 
         #[method(display)]
         pub unsafe fn display(&self);
@@ -427,25 +442,25 @@ extern_methods!(
         pub unsafe fn displayIfNeededIgnoringOpacity(&self);
 
         #[method(displayRect:)]
-        pub unsafe fn displayRect(&self, rect: NSRect);
+        pub unsafe fn displayRect(&self, rect: Foundation::NSRect);
 
         #[method(displayIfNeededInRect:)]
-        pub unsafe fn displayIfNeededInRect(&self, rect: NSRect);
+        pub unsafe fn displayIfNeededInRect(&self, rect: Foundation::NSRect);
 
         #[method(displayRectIgnoringOpacity:)]
-        pub unsafe fn displayRectIgnoringOpacity(&self, rect: NSRect);
+        pub unsafe fn displayRectIgnoringOpacity(&self, rect: Foundation::NSRect);
 
         #[method(displayIfNeededInRectIgnoringOpacity:)]
-        pub unsafe fn displayIfNeededInRectIgnoringOpacity(&self, rect: NSRect);
+        pub unsafe fn displayIfNeededInRectIgnoringOpacity(&self, rect: Foundation::NSRect);
 
         #[method(drawRect:)]
-        pub unsafe fn drawRect(&self, dirtyRect: NSRect);
+        pub unsafe fn drawRect(&self, dirtyRect: Foundation::NSRect);
 
         #[cfg(feature = "AppKit_NSGraphicsContext")]
         #[method(displayRectIgnoringOpacity:inContext:)]
         pub unsafe fn displayRectIgnoringOpacity_inContext(
             &self,
-            rect: NSRect,
+            rect: Foundation::NSRect,
             context: &AppKit::NSGraphicsContext,
         );
 
@@ -453,14 +468,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other bitmapImageRepForCachingDisplayInRect:)]
         pub unsafe fn bitmapImageRepForCachingDisplayInRect(
             &self,
-            rect: NSRect,
+            rect: Foundation::NSRect,
         ) -> Option<Id<AppKit::NSBitmapImageRep, Shared>>;
 
         #[cfg(feature = "AppKit_NSBitmapImageRep")]
         #[method(cacheDisplayInRect:toBitmapImageRep:)]
         pub unsafe fn cacheDisplayInRect_toBitmapImageRep(
             &self,
-            rect: NSRect,
+            rect: Foundation::NSRect,
             bitmapImageRep: &AppKit::NSBitmapImageRep,
         );
 
@@ -468,29 +483,40 @@ extern_methods!(
         pub unsafe fn viewWillDraw(&self);
 
         #[method(scrollPoint:)]
-        pub unsafe fn scrollPoint(&self, point: NSPoint);
+        pub unsafe fn scrollPoint(&self, point: Foundation::NSPoint);
 
         #[method(scrollRectToVisible:)]
-        pub unsafe fn scrollRectToVisible(&self, rect: NSRect) -> bool;
+        pub unsafe fn scrollRectToVisible(&self, rect: Foundation::NSRect) -> bool;
 
         #[cfg(feature = "AppKit_NSEvent")]
         #[method(autoscroll:)]
         pub unsafe fn autoscroll(&self, event: &AppKit::NSEvent) -> bool;
 
         #[method(adjustScroll:)]
-        pub unsafe fn adjustScroll(&self, newVisible: NSRect) -> NSRect;
+        pub unsafe fn adjustScroll(&self, newVisible: Foundation::NSRect) -> Foundation::NSRect;
 
         #[method(scrollRect:by:)]
-        pub unsafe fn scrollRect_by(&self, rect: NSRect, delta: NSSize);
+        pub unsafe fn scrollRect_by(&self, rect: Foundation::NSRect, delta: Foundation::NSSize);
 
         #[method(translateRectsNeedingDisplayInRect:by:)]
-        pub unsafe fn translateRectsNeedingDisplayInRect_by(&self, clipRect: NSRect, delta: NSSize);
+        pub unsafe fn translateRectsNeedingDisplayInRect_by(
+            &self,
+            clipRect: Foundation::NSRect,
+            delta: Foundation::NSSize,
+        );
 
         #[method_id(@__retain_semantics Other hitTest:)]
-        pub unsafe fn hitTest(&self, point: NSPoint) -> Option<Id<AppKit::NSView, Shared>>;
+        pub unsafe fn hitTest(
+            &self,
+            point: Foundation::NSPoint,
+        ) -> Option<Id<AppKit::NSView, Shared>>;
 
         #[method(mouse:inRect:)]
-        pub unsafe fn mouse_inRect(&self, point: NSPoint, rect: NSRect) -> bool;
+        pub unsafe fn mouse_inRect(
+            &self,
+            point: Foundation::NSPoint,
+            rect: Foundation::NSRect,
+        ) -> bool;
 
         #[method_id(@__retain_semantics Other viewWithTag:)]
         pub unsafe fn viewWithTag(&self, tag: NSInteger) -> Option<Id<AppKit::NSView, Shared>>;
@@ -530,11 +556,19 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSCursor")]
         #[method(addCursorRect:cursor:)]
-        pub unsafe fn addCursorRect_cursor(&self, rect: NSRect, object: &AppKit::NSCursor);
+        pub unsafe fn addCursorRect_cursor(
+            &self,
+            rect: Foundation::NSRect,
+            object: &AppKit::NSCursor,
+        );
 
         #[cfg(feature = "AppKit_NSCursor")]
         #[method(removeCursorRect:cursor:)]
-        pub unsafe fn removeCursorRect_cursor(&self, rect: NSRect, object: &AppKit::NSCursor);
+        pub unsafe fn removeCursorRect_cursor(
+            &self,
+            rect: Foundation::NSRect,
+            object: &AppKit::NSCursor,
+        );
 
         #[method(discardCursorRects)]
         pub unsafe fn discardCursorRects(&self);
@@ -545,31 +579,31 @@ extern_methods!(
         #[method(addTrackingRect:owner:userData:assumeInside:)]
         pub unsafe fn addTrackingRect_owner_userData_assumeInside(
             &self,
-            rect: NSRect,
+            rect: Foundation::NSRect,
             owner: &Object,
             data: *mut c_void,
             flag: bool,
-        ) -> NSTrackingRectTag;
+        ) -> AppKit::NSTrackingRectTag;
 
         #[method(removeTrackingRect:)]
-        pub unsafe fn removeTrackingRect(&self, tag: NSTrackingRectTag);
+        pub unsafe fn removeTrackingRect(&self, tag: AppKit::NSTrackingRectTag);
 
         #[method(layerContentsRedrawPolicy)]
-        pub unsafe fn layerContentsRedrawPolicy(&self) -> NSViewLayerContentsRedrawPolicy;
+        pub unsafe fn layerContentsRedrawPolicy(&self) -> AppKit::NSViewLayerContentsRedrawPolicy;
 
         #[method(setLayerContentsRedrawPolicy:)]
         pub unsafe fn setLayerContentsRedrawPolicy(
             &self,
-            layerContentsRedrawPolicy: NSViewLayerContentsRedrawPolicy,
+            layerContentsRedrawPolicy: AppKit::NSViewLayerContentsRedrawPolicy,
         );
 
         #[method(layerContentsPlacement)]
-        pub unsafe fn layerContentsPlacement(&self) -> NSViewLayerContentsPlacement;
+        pub unsafe fn layerContentsPlacement(&self) -> AppKit::NSViewLayerContentsPlacement;
 
         #[method(setLayerContentsPlacement:)]
         pub unsafe fn setLayerContentsPlacement(
             &self,
-            layerContentsPlacement: NSViewLayerContentsPlacement,
+            layerContentsPlacement: AppKit::NSViewLayerContentsPlacement,
         );
 
         #[method(wantsLayer)]
@@ -603,10 +637,10 @@ extern_methods!(
         pub unsafe fn setNeedsLayout(&self, needsLayout: bool);
 
         #[method(alphaValue)]
-        pub unsafe fn alphaValue(&self) -> CGFloat;
+        pub unsafe fn alphaValue(&self) -> CoreGraphics::CGFloat;
 
         #[method(setAlphaValue:)]
-        pub unsafe fn setAlphaValue(&self, alphaValue: CGFloat);
+        pub unsafe fn setAlphaValue(&self, alphaValue: CoreGraphics::CGFloat);
 
         #[method(layerUsesCoreImageFilters)]
         pub unsafe fn layerUsesCoreImageFilters(&self) -> bool;
@@ -686,13 +720,13 @@ extern_methods!(
         #[method(addToolTipRect:owner:userData:)]
         pub unsafe fn addToolTipRect_owner_userData(
             &self,
-            rect: NSRect,
+            rect: Foundation::NSRect,
             owner: &Object,
             data: *mut c_void,
-        ) -> NSToolTipTag;
+        ) -> AppKit::NSToolTipTag;
 
         #[method(removeToolTip:)]
-        pub unsafe fn removeToolTip(&self, tag: NSToolTipTag);
+        pub unsafe fn removeToolTip(&self, tag: AppKit::NSToolTipTag);
 
         #[method(removeAllToolTips)]
         pub unsafe fn removeAllToolTips(&self);
@@ -710,7 +744,7 @@ extern_methods!(
         pub unsafe fn preservesContentDuringLiveResize(&self) -> bool;
 
         #[method(rectPreservedDuringLiveResize)]
-        pub unsafe fn rectPreservedDuringLiveResize(&self) -> NSRect;
+        pub unsafe fn rectPreservedDuringLiveResize(&self) -> Foundation::NSRect;
 
         #[cfg(feature = "AppKit_NSTextInputContext")]
         #[method_id(@__retain_semantics Other inputContext)]
@@ -719,17 +753,18 @@ extern_methods!(
         #[method(rectForSmartMagnificationAtPoint:inRect:)]
         pub unsafe fn rectForSmartMagnificationAtPoint_inRect(
             &self,
-            location: NSPoint,
-            visibleRect: NSRect,
-        ) -> NSRect;
+            location: Foundation::NSPoint,
+            visibleRect: Foundation::NSRect,
+        ) -> Foundation::NSRect;
 
         #[method(userInterfaceLayoutDirection)]
-        pub unsafe fn userInterfaceLayoutDirection(&self) -> NSUserInterfaceLayoutDirection;
+        pub unsafe fn userInterfaceLayoutDirection(&self)
+            -> AppKit::NSUserInterfaceLayoutDirection;
 
         #[method(setUserInterfaceLayoutDirection:)]
         pub unsafe fn setUserInterfaceLayoutDirection(
             &self,
-            userInterfaceLayoutDirection: NSUserInterfaceLayoutDirection,
+            userInterfaceLayoutDirection: AppKit::NSUserInterfaceLayoutDirection,
         );
 
         #[method(prepareForReuse)]
@@ -739,13 +774,13 @@ extern_methods!(
         pub unsafe fn isCompatibleWithResponsiveScrolling() -> bool;
 
         #[method(prepareContentInRect:)]
-        pub unsafe fn prepareContentInRect(&self, rect: NSRect);
+        pub unsafe fn prepareContentInRect(&self, rect: Foundation::NSRect);
 
         #[method(preparedContentRect)]
-        pub unsafe fn preparedContentRect(&self) -> NSRect;
+        pub unsafe fn preparedContentRect(&self) -> Foundation::NSRect;
 
         #[method(setPreparedContentRect:)]
-        pub unsafe fn setPreparedContentRect(&self, preparedContentRect: NSRect);
+        pub unsafe fn setPreparedContentRect(&self, preparedContentRect: Foundation::NSRect);
 
         #[method(allowsVibrancy)]
         pub unsafe fn allowsVibrancy(&self) -> bool;
@@ -763,8 +798,8 @@ extern_protocol!(
         pub unsafe fn view_stringForToolTip_point_userData(
             &self,
             view: &AppKit::NSView,
-            tag: NSToolTipTag,
-            point: NSPoint,
+            tag: AppKit::NSToolTipTag,
+            point: Foundation::NSPoint,
             data: *mut c_void,
         ) -> Id<Foundation::NSString, Shared>;
     }
@@ -793,22 +828,22 @@ extern_methods!(
         pub unsafe fn canBecomeKeyView(&self) -> bool;
 
         #[method(setKeyboardFocusRingNeedsDisplayInRect:)]
-        pub unsafe fn setKeyboardFocusRingNeedsDisplayInRect(&self, rect: NSRect);
+        pub unsafe fn setKeyboardFocusRingNeedsDisplayInRect(&self, rect: Foundation::NSRect);
 
         #[method(focusRingType)]
-        pub unsafe fn focusRingType(&self) -> NSFocusRingType;
+        pub unsafe fn focusRingType(&self) -> AppKit::NSFocusRingType;
 
         #[method(setFocusRingType:)]
-        pub unsafe fn setFocusRingType(&self, focusRingType: NSFocusRingType);
+        pub unsafe fn setFocusRingType(&self, focusRingType: AppKit::NSFocusRingType);
 
         #[method(defaultFocusRingType)]
-        pub unsafe fn defaultFocusRingType() -> NSFocusRingType;
+        pub unsafe fn defaultFocusRingType() -> AppKit::NSFocusRingType;
 
         #[method(drawFocusRingMask)]
         pub unsafe fn drawFocusRingMask(&self);
 
         #[method(focusRingMaskBounds)]
-        pub unsafe fn focusRingMaskBounds(&self) -> NSRect;
+        pub unsafe fn focusRingMaskBounds(&self) -> Foundation::NSRect;
 
         #[method(noteFocusRingMaskChanged)]
         pub unsafe fn noteFocusRingMaskChanged(&self);
@@ -823,64 +858,70 @@ extern_methods!(
         #[method(writeEPSInsideRect:toPasteboard:)]
         pub unsafe fn writeEPSInsideRect_toPasteboard(
             &self,
-            rect: NSRect,
+            rect: Foundation::NSRect,
             pasteboard: &AppKit::NSPasteboard,
         );
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other dataWithEPSInsideRect:)]
-        pub unsafe fn dataWithEPSInsideRect(&self, rect: NSRect) -> Id<Foundation::NSData, Shared>;
+        pub unsafe fn dataWithEPSInsideRect(
+            &self,
+            rect: Foundation::NSRect,
+        ) -> Id<Foundation::NSData, Shared>;
 
         #[cfg(feature = "AppKit_NSPasteboard")]
         #[method(writePDFInsideRect:toPasteboard:)]
         pub unsafe fn writePDFInsideRect_toPasteboard(
             &self,
-            rect: NSRect,
+            rect: Foundation::NSRect,
             pasteboard: &AppKit::NSPasteboard,
         );
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other dataWithPDFInsideRect:)]
-        pub unsafe fn dataWithPDFInsideRect(&self, rect: NSRect) -> Id<Foundation::NSData, Shared>;
+        pub unsafe fn dataWithPDFInsideRect(
+            &self,
+            rect: Foundation::NSRect,
+        ) -> Id<Foundation::NSData, Shared>;
 
         #[method(print:)]
         pub unsafe fn print(&self, sender: Option<&Object>);
 
         #[method(knowsPageRange:)]
-        pub unsafe fn knowsPageRange(&self, range: NSRangePointer) -> bool;
+        pub unsafe fn knowsPageRange(&self, range: Foundation::NSRangePointer) -> bool;
 
         #[method(heightAdjustLimit)]
-        pub unsafe fn heightAdjustLimit(&self) -> CGFloat;
+        pub unsafe fn heightAdjustLimit(&self) -> CoreGraphics::CGFloat;
 
         #[method(widthAdjustLimit)]
-        pub unsafe fn widthAdjustLimit(&self) -> CGFloat;
+        pub unsafe fn widthAdjustLimit(&self) -> CoreGraphics::CGFloat;
 
         #[method(adjustPageWidthNew:left:right:limit:)]
         pub unsafe fn adjustPageWidthNew_left_right_limit(
             &self,
-            newRight: NonNull<CGFloat>,
-            oldLeft: CGFloat,
-            oldRight: CGFloat,
-            rightLimit: CGFloat,
+            newRight: NonNull<CoreGraphics::CGFloat>,
+            oldLeft: CoreGraphics::CGFloat,
+            oldRight: CoreGraphics::CGFloat,
+            rightLimit: CoreGraphics::CGFloat,
         );
 
         #[method(adjustPageHeightNew:top:bottom:limit:)]
         pub unsafe fn adjustPageHeightNew_top_bottom_limit(
             &self,
-            newBottom: NonNull<CGFloat>,
-            oldTop: CGFloat,
-            oldBottom: CGFloat,
-            bottomLimit: CGFloat,
+            newBottom: NonNull<CoreGraphics::CGFloat>,
+            oldTop: CoreGraphics::CGFloat,
+            oldBottom: CoreGraphics::CGFloat,
+            bottomLimit: CoreGraphics::CGFloat,
         );
 
         #[method(rectForPage:)]
-        pub unsafe fn rectForPage(&self, page: NSInteger) -> NSRect;
+        pub unsafe fn rectForPage(&self, page: NSInteger) -> Foundation::NSRect;
 
         #[method(locationOfPrintRect:)]
-        pub unsafe fn locationOfPrintRect(&self, rect: NSRect) -> NSPoint;
+        pub unsafe fn locationOfPrintRect(&self, rect: Foundation::NSRect) -> Foundation::NSPoint;
 
         #[method(drawPageBorderWithSize:)]
-        pub unsafe fn drawPageBorderWithSize(&self, borderSize: NSSize);
+        pub unsafe fn drawPageBorderWithSize(&self, borderSize: Foundation::NSSize);
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other pageHeader)]
@@ -891,7 +932,7 @@ extern_methods!(
         pub unsafe fn pageFooter(&self) -> Id<Foundation::NSAttributedString, Shared>;
 
         #[method(drawSheetBorderWithSize:)]
-        pub unsafe fn drawSheetBorderWithSize(&self, borderSize: NSSize);
+        pub unsafe fn drawSheetBorderWithSize(&self, borderSize: Foundation::NSSize);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other printJobTitle)]
@@ -904,7 +945,11 @@ extern_methods!(
         pub unsafe fn endDocument(&self);
 
         #[method(beginPageInRect:atPlacement:)]
-        pub unsafe fn beginPageInRect_atPlacement(&self, rect: NSRect, location: NSPoint);
+        pub unsafe fn beginPageInRect_atPlacement(
+            &self,
+            rect: Foundation::NSRect,
+            location: Foundation::NSPoint,
+        );
 
         #[method(endPage)]
         pub unsafe fn endPage(&self);
@@ -1015,7 +1060,7 @@ extern_methods!(
         pub unsafe fn showDefinitionForAttributedString_atPoint(
             &self,
             attrString: Option<&Foundation::NSAttributedString>,
-            textBaselineOrigin: NSPoint,
+            textBaselineOrigin: Foundation::NSPoint,
         );
 
         #[cfg(all(
@@ -1026,9 +1071,9 @@ extern_methods!(
         pub unsafe fn showDefinitionForAttributedString_range_options_baselineOriginProvider(
             &self,
             attrString: Option<&Foundation::NSAttributedString>,
-            targetRange: NSRange,
+            targetRange: Foundation::NSRange,
             options: Option<&Foundation::NSDictionary<AppKit::NSDefinitionOptionKey, Object>>,
-            originProvider: Option<&Block<(NSRange,), NSPoint>>,
+            originProvider: Option<&Block<(Foundation::NSRange,), Foundation::NSPoint>>,
         );
     }
 );
@@ -1077,10 +1122,10 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSView")]
     unsafe impl NSView {
         #[method(allowedTouchTypes)]
-        pub unsafe fn allowedTouchTypes(&self) -> NSTouchTypeMask;
+        pub unsafe fn allowedTouchTypes(&self) -> AppKit::NSTouchTypeMask;
 
         #[method(setAllowedTouchTypes:)]
-        pub unsafe fn setAllowedTouchTypes(&self, allowedTouchTypes: NSTouchTypeMask);
+        pub unsafe fn setAllowedTouchTypes(&self, allowedTouchTypes: AppKit::NSTouchTypeMask);
     }
 );
 
@@ -1089,20 +1134,23 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSView")]
     unsafe impl NSView {
         #[method(safeAreaInsets)]
-        pub unsafe fn safeAreaInsets(&self) -> NSEdgeInsets;
+        pub unsafe fn safeAreaInsets(&self) -> Foundation::NSEdgeInsets;
 
         #[method(additionalSafeAreaInsets)]
-        pub unsafe fn additionalSafeAreaInsets(&self) -> NSEdgeInsets;
+        pub unsafe fn additionalSafeAreaInsets(&self) -> Foundation::NSEdgeInsets;
 
         #[method(setAdditionalSafeAreaInsets:)]
-        pub unsafe fn setAdditionalSafeAreaInsets(&self, additionalSafeAreaInsets: NSEdgeInsets);
+        pub unsafe fn setAdditionalSafeAreaInsets(
+            &self,
+            additionalSafeAreaInsets: Foundation::NSEdgeInsets,
+        );
 
         #[cfg(feature = "AppKit_NSLayoutGuide")]
         #[method_id(@__retain_semantics Other safeAreaLayoutGuide)]
         pub unsafe fn safeAreaLayoutGuide(&self) -> Id<AppKit::NSLayoutGuide, Shared>;
 
         #[method(safeAreaRect)]
-        pub unsafe fn safeAreaRect(&self) -> NSRect;
+        pub unsafe fn safeAreaRect(&self) -> Foundation::NSRect;
 
         #[cfg(feature = "AppKit_NSLayoutGuide")]
         #[method_id(@__retain_semantics Other layoutMarginsGuide)]
@@ -1123,8 +1171,8 @@ extern_methods!(
         pub unsafe fn dragImage_at_offset_event_pasteboard_source_slideBack(
             &self,
             image: &AppKit::NSImage,
-            viewLocation: NSPoint,
-            initialOffset: NSSize,
+            viewLocation: Foundation::NSPoint,
+            initialOffset: Foundation::NSSize,
             event: &AppKit::NSEvent,
             pboard: &AppKit::NSPasteboard,
             sourceObj: &Object,
@@ -1136,7 +1184,7 @@ extern_methods!(
         pub unsafe fn dragFile_fromRect_slideBack_event(
             &self,
             filename: &Foundation::NSString,
-            rect: NSRect,
+            rect: Foundation::NSRect,
             flag: bool,
             event: &AppKit::NSEvent,
         ) -> bool;
@@ -1150,29 +1198,32 @@ extern_methods!(
         pub unsafe fn dragPromisedFilesOfTypes_fromRect_source_slideBack_event(
             &self,
             typeArray: &Foundation::NSArray<Foundation::NSString>,
-            rect: NSRect,
+            rect: Foundation::NSRect,
             sourceObject: &Object,
             flag: bool,
             event: &AppKit::NSEvent,
         ) -> bool;
 
         #[method(convertPointToBase:)]
-        pub unsafe fn convertPointToBase(&self, point: NSPoint) -> NSPoint;
+        pub unsafe fn convertPointToBase(&self, point: Foundation::NSPoint) -> Foundation::NSPoint;
 
         #[method(convertPointFromBase:)]
-        pub unsafe fn convertPointFromBase(&self, point: NSPoint) -> NSPoint;
+        pub unsafe fn convertPointFromBase(
+            &self,
+            point: Foundation::NSPoint,
+        ) -> Foundation::NSPoint;
 
         #[method(convertSizeToBase:)]
-        pub unsafe fn convertSizeToBase(&self, size: NSSize) -> NSSize;
+        pub unsafe fn convertSizeToBase(&self, size: Foundation::NSSize) -> Foundation::NSSize;
 
         #[method(convertSizeFromBase:)]
-        pub unsafe fn convertSizeFromBase(&self, size: NSSize) -> NSSize;
+        pub unsafe fn convertSizeFromBase(&self, size: Foundation::NSSize) -> Foundation::NSSize;
 
         #[method(convertRectToBase:)]
-        pub unsafe fn convertRectToBase(&self, rect: NSRect) -> NSRect;
+        pub unsafe fn convertRectToBase(&self, rect: Foundation::NSRect) -> Foundation::NSRect;
 
         #[method(convertRectFromBase:)]
-        pub unsafe fn convertRectFromBase(&self, rect: NSRect) -> NSRect;
+        pub unsafe fn convertRectFromBase(&self, rect: Foundation::NSRect) -> Foundation::NSRect;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(performMnemonic:)]

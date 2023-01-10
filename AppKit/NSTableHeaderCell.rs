@@ -22,14 +22,17 @@ extern_methods!(
         #[method(drawSortIndicatorWithFrame:inView:ascending:priority:)]
         pub unsafe fn drawSortIndicatorWithFrame_inView_ascending_priority(
             &self,
-            cellFrame: NSRect,
+            cellFrame: Foundation::NSRect,
             controlView: &AppKit::NSView,
             ascending: bool,
             priority: NSInteger,
         );
 
         #[method(sortIndicatorRectForBounds:)]
-        pub unsafe fn sortIndicatorRectForBounds(&self, rect: NSRect) -> NSRect;
+        pub unsafe fn sortIndicatorRectForBounds(
+            &self,
+            rect: Foundation::NSRect,
+        ) -> Foundation::NSRect;
     }
 );
 

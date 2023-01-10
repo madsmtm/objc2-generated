@@ -35,7 +35,7 @@ ns_options!(
 );
 
 inline_fn!(
-    pub unsafe fn NSTouchTypeMaskFromType(type_: NSTouchType) -> NSTouchTypeMask {
+    pub unsafe fn NSTouchTypeMaskFromType(type_: AppKit::NSTouchType) -> AppKit::NSTouchTypeMask {
         todo!()
     }
 );
@@ -56,10 +56,10 @@ extern_methods!(
         pub unsafe fn identity(&self) -> Id<TodoProtocols, Shared>;
 
         #[method(phase)]
-        pub unsafe fn phase(&self) -> NSTouchPhase;
+        pub unsafe fn phase(&self) -> AppKit::NSTouchPhase;
 
         #[method(normalizedPosition)]
-        pub unsafe fn normalizedPosition(&self) -> NSPoint;
+        pub unsafe fn normalizedPosition(&self) -> Foundation::NSPoint;
 
         #[method(isResting)]
         pub unsafe fn isResting(&self) -> bool;
@@ -68,7 +68,7 @@ extern_methods!(
         pub unsafe fn device(&self) -> Option<Id<Object, Shared>>;
 
         #[method(deviceSize)]
-        pub unsafe fn deviceSize(&self) -> NSSize;
+        pub unsafe fn deviceSize(&self) -> Foundation::NSSize;
     }
 );
 
@@ -77,14 +77,17 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTouch")]
     unsafe impl NSTouch {
         #[method(type)]
-        pub unsafe fn type_(&self) -> NSTouchType;
+        pub unsafe fn type_(&self) -> AppKit::NSTouchType;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(locationInView:)]
-        pub unsafe fn locationInView(&self, view: Option<&AppKit::NSView>) -> NSPoint;
+        pub unsafe fn locationInView(&self, view: Option<&AppKit::NSView>) -> Foundation::NSPoint;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(previousLocationInView:)]
-        pub unsafe fn previousLocationInView(&self, view: Option<&AppKit::NSView>) -> NSPoint;
+        pub unsafe fn previousLocationInView(
+            &self,
+            view: Option<&AppKit::NSView>,
+        ) -> Foundation::NSPoint;
     }
 );

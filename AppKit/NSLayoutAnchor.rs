@@ -36,7 +36,7 @@ extern_methods!(
         pub unsafe fn constraintEqualToAnchor_constant(
             &self,
             anchor: &AppKit::NSLayoutAnchor<AnchorType>,
-            c: CGFloat,
+            c: CoreGraphics::CGFloat,
         ) -> Id<AppKit::NSLayoutConstraint, Shared>;
 
         #[cfg(feature = "AppKit_NSLayoutConstraint")]
@@ -44,7 +44,7 @@ extern_methods!(
         pub unsafe fn constraintGreaterThanOrEqualToAnchor_constant(
             &self,
             anchor: &AppKit::NSLayoutAnchor<AnchorType>,
-            c: CGFloat,
+            c: CoreGraphics::CGFloat,
         ) -> Id<AppKit::NSLayoutConstraint, Shared>;
 
         #[cfg(feature = "AppKit_NSLayoutConstraint")]
@@ -52,7 +52,7 @@ extern_methods!(
         pub unsafe fn constraintLessThanOrEqualToAnchor_constant(
             &self,
             anchor: &AppKit::NSLayoutAnchor<AnchorType>,
-            c: CGFloat,
+            c: CoreGraphics::CGFloat,
         ) -> Id<AppKit::NSLayoutConstraint, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -98,7 +98,7 @@ extern_methods!(
         pub unsafe fn constraintEqualToSystemSpacingAfterAnchor_multiplier(
             &self,
             anchor: &AppKit::NSLayoutXAxisAnchor,
-            multiplier: CGFloat,
+            multiplier: CoreGraphics::CGFloat,
         ) -> Id<AppKit::NSLayoutConstraint, Shared>;
 
         #[cfg(feature = "AppKit_NSLayoutConstraint")]
@@ -106,7 +106,7 @@ extern_methods!(
         pub unsafe fn constraintGreaterThanOrEqualToSystemSpacingAfterAnchor_multiplier(
             &self,
             anchor: &AppKit::NSLayoutXAxisAnchor,
-            multiplier: CGFloat,
+            multiplier: CoreGraphics::CGFloat,
         ) -> Id<AppKit::NSLayoutConstraint, Shared>;
 
         #[cfg(feature = "AppKit_NSLayoutConstraint")]
@@ -114,7 +114,7 @@ extern_methods!(
         pub unsafe fn constraintLessThanOrEqualToSystemSpacingAfterAnchor_multiplier(
             &self,
             anchor: &AppKit::NSLayoutXAxisAnchor,
-            multiplier: CGFloat,
+            multiplier: CoreGraphics::CGFloat,
         ) -> Id<AppKit::NSLayoutConstraint, Shared>;
     }
 );
@@ -144,7 +144,7 @@ extern_methods!(
         pub unsafe fn constraintEqualToSystemSpacingBelowAnchor_multiplier(
             &self,
             anchor: &AppKit::NSLayoutYAxisAnchor,
-            multiplier: CGFloat,
+            multiplier: CoreGraphics::CGFloat,
         ) -> Id<AppKit::NSLayoutConstraint, Shared>;
 
         #[cfg(feature = "AppKit_NSLayoutConstraint")]
@@ -152,7 +152,7 @@ extern_methods!(
         pub unsafe fn constraintGreaterThanOrEqualToSystemSpacingBelowAnchor_multiplier(
             &self,
             anchor: &AppKit::NSLayoutYAxisAnchor,
-            multiplier: CGFloat,
+            multiplier: CoreGraphics::CGFloat,
         ) -> Id<AppKit::NSLayoutConstraint, Shared>;
 
         #[cfg(feature = "AppKit_NSLayoutConstraint")]
@@ -160,7 +160,7 @@ extern_methods!(
         pub unsafe fn constraintLessThanOrEqualToSystemSpacingBelowAnchor_multiplier(
             &self,
             anchor: &AppKit::NSLayoutYAxisAnchor,
-            multiplier: CGFloat,
+            multiplier: CoreGraphics::CGFloat,
         ) -> Id<AppKit::NSLayoutConstraint, Shared>;
     }
 );
@@ -182,21 +182,21 @@ extern_methods!(
         #[method_id(@__retain_semantics Other constraintEqualToConstant:)]
         pub unsafe fn constraintEqualToConstant(
             &self,
-            c: CGFloat,
+            c: CoreGraphics::CGFloat,
         ) -> Id<AppKit::NSLayoutConstraint, Shared>;
 
         #[cfg(feature = "AppKit_NSLayoutConstraint")]
         #[method_id(@__retain_semantics Other constraintGreaterThanOrEqualToConstant:)]
         pub unsafe fn constraintGreaterThanOrEqualToConstant(
             &self,
-            c: CGFloat,
+            c: CoreGraphics::CGFloat,
         ) -> Id<AppKit::NSLayoutConstraint, Shared>;
 
         #[cfg(feature = "AppKit_NSLayoutConstraint")]
         #[method_id(@__retain_semantics Other constraintLessThanOrEqualToConstant:)]
         pub unsafe fn constraintLessThanOrEqualToConstant(
             &self,
-            c: CGFloat,
+            c: CoreGraphics::CGFloat,
         ) -> Id<AppKit::NSLayoutConstraint, Shared>;
 
         #[cfg(feature = "AppKit_NSLayoutConstraint")]
@@ -204,7 +204,7 @@ extern_methods!(
         pub unsafe fn constraintEqualToAnchor_multiplier(
             &self,
             anchor: &AppKit::NSLayoutDimension,
-            m: CGFloat,
+            m: CoreGraphics::CGFloat,
         ) -> Id<AppKit::NSLayoutConstraint, Shared>;
 
         #[cfg(feature = "AppKit_NSLayoutConstraint")]
@@ -212,7 +212,7 @@ extern_methods!(
         pub unsafe fn constraintGreaterThanOrEqualToAnchor_multiplier(
             &self,
             anchor: &AppKit::NSLayoutDimension,
-            m: CGFloat,
+            m: CoreGraphics::CGFloat,
         ) -> Id<AppKit::NSLayoutConstraint, Shared>;
 
         #[cfg(feature = "AppKit_NSLayoutConstraint")]
@@ -220,7 +220,7 @@ extern_methods!(
         pub unsafe fn constraintLessThanOrEqualToAnchor_multiplier(
             &self,
             anchor: &AppKit::NSLayoutDimension,
-            m: CGFloat,
+            m: CoreGraphics::CGFloat,
         ) -> Id<AppKit::NSLayoutConstraint, Shared>;
 
         #[cfg(feature = "AppKit_NSLayoutConstraint")]
@@ -228,8 +228,8 @@ extern_methods!(
         pub unsafe fn constraintEqualToAnchor_multiplier_constant(
             &self,
             anchor: &AppKit::NSLayoutDimension,
-            m: CGFloat,
-            c: CGFloat,
+            m: CoreGraphics::CGFloat,
+            c: CoreGraphics::CGFloat,
         ) -> Id<AppKit::NSLayoutConstraint, Shared>;
 
         #[cfg(feature = "AppKit_NSLayoutConstraint")]
@@ -237,8 +237,8 @@ extern_methods!(
         pub unsafe fn constraintGreaterThanOrEqualToAnchor_multiplier_constant(
             &self,
             anchor: &AppKit::NSLayoutDimension,
-            m: CGFloat,
-            c: CGFloat,
+            m: CoreGraphics::CGFloat,
+            c: CoreGraphics::CGFloat,
         ) -> Id<AppKit::NSLayoutConstraint, Shared>;
 
         #[cfg(feature = "AppKit_NSLayoutConstraint")]
@@ -246,8 +246,8 @@ extern_methods!(
         pub unsafe fn constraintLessThanOrEqualToAnchor_multiplier_constant(
             &self,
             anchor: &AppKit::NSLayoutDimension,
-            m: CGFloat,
-            c: CGFloat,
+            m: CoreGraphics::CGFloat,
+            c: CoreGraphics::CGFloat,
         ) -> Id<AppKit::NSLayoutConstraint, Shared>;
     }
 );

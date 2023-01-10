@@ -40,7 +40,7 @@ extern_protocol!(
 
     unsafe impl ProtocolType for MTLFunctionLog {
         #[method(type)]
-        pub unsafe fn type_(&self) -> MTLFunctionLogType;
+        pub unsafe fn type_(&self) -> Metal::MTLFunctionLogType;
 
         #[method_id(@__retain_semantics Other encoderLabel)]
         pub unsafe fn encoderLabel(&self) -> Option<Id<Foundation::NSString, Shared>>;

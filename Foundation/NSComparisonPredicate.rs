@@ -59,9 +59,9 @@ extern_methods!(
         pub unsafe fn predicateWithLeftExpression_rightExpression_modifier_type_options(
             lhs: &Foundation::NSExpression,
             rhs: &Foundation::NSExpression,
-            modifier: NSComparisonPredicateModifier,
-            type_: NSPredicateOperatorType,
-            options: NSComparisonPredicateOptions,
+            modifier: Foundation::NSComparisonPredicateModifier,
+            type_: Foundation::NSPredicateOperatorType,
+            options: Foundation::NSComparisonPredicateOptions,
         ) -> Id<Foundation::NSComparisonPredicate, Shared>;
 
         #[cfg(feature = "Foundation_NSExpression")]
@@ -78,9 +78,9 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             lhs: &Foundation::NSExpression,
             rhs: &Foundation::NSExpression,
-            modifier: NSComparisonPredicateModifier,
-            type_: NSPredicateOperatorType,
-            options: NSComparisonPredicateOptions,
+            modifier: Foundation::NSComparisonPredicateModifier,
+            type_: Foundation::NSPredicateOperatorType,
+            options: Foundation::NSComparisonPredicateOptions,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSExpression")]
@@ -100,10 +100,12 @@ extern_methods!(
         ) -> Option<Id<Self, Shared>>;
 
         #[method(predicateOperatorType)]
-        pub unsafe fn predicateOperatorType(&self) -> NSPredicateOperatorType;
+        pub unsafe fn predicateOperatorType(&self) -> Foundation::NSPredicateOperatorType;
 
         #[method(comparisonPredicateModifier)]
-        pub unsafe fn comparisonPredicateModifier(&self) -> NSComparisonPredicateModifier;
+        pub unsafe fn comparisonPredicateModifier(
+            &self,
+        ) -> Foundation::NSComparisonPredicateModifier;
 
         #[cfg(feature = "Foundation_NSExpression")]
         #[method_id(@__retain_semantics Other leftExpression)]
@@ -117,6 +119,6 @@ extern_methods!(
         pub unsafe fn customSelector(&self) -> Option<Sel>;
 
         #[method(options)]
-        pub unsafe fn options(&self) -> NSComparisonPredicateOptions;
+        pub unsafe fn options(&self) -> Foundation::NSComparisonPredicateOptions;
     }
 );

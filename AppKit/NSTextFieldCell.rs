@@ -77,10 +77,10 @@ extern_methods!(
         ) -> Id<AppKit::NSText, Shared>;
 
         #[method(bezelStyle)]
-        pub unsafe fn bezelStyle(&self) -> NSTextFieldBezelStyle;
+        pub unsafe fn bezelStyle(&self) -> AppKit::NSTextFieldBezelStyle;
 
         #[method(setBezelStyle:)]
-        pub unsafe fn setBezelStyle(&self, bezelStyle: NSTextFieldBezelStyle);
+        pub unsafe fn setBezelStyle(&self, bezelStyle: AppKit::NSTextFieldBezelStyle);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other placeholderString)]

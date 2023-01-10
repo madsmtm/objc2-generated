@@ -35,13 +35,13 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSSearchField")]
     unsafe impl NSSearchField {
         #[method(searchTextBounds)]
-        pub unsafe fn searchTextBounds(&self) -> NSRect;
+        pub unsafe fn searchTextBounds(&self) -> Foundation::NSRect;
 
         #[method(searchButtonBounds)]
-        pub unsafe fn searchButtonBounds(&self) -> NSRect;
+        pub unsafe fn searchButtonBounds(&self) -> Foundation::NSRect;
 
         #[method(cancelButtonBounds)]
-        pub unsafe fn cancelButtonBounds(&self) -> NSRect;
+        pub unsafe fn cancelButtonBounds(&self) -> Foundation::NSRect;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other recentSearches)]
@@ -106,13 +106,19 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSSearchField")]
     unsafe impl NSSearchField {
         #[method(rectForSearchTextWhenCentered:)]
-        pub unsafe fn rectForSearchTextWhenCentered(&self, isCentered: bool) -> NSRect;
+        pub unsafe fn rectForSearchTextWhenCentered(&self, isCentered: bool) -> Foundation::NSRect;
 
         #[method(rectForSearchButtonWhenCentered:)]
-        pub unsafe fn rectForSearchButtonWhenCentered(&self, isCentered: bool) -> NSRect;
+        pub unsafe fn rectForSearchButtonWhenCentered(
+            &self,
+            isCentered: bool,
+        ) -> Foundation::NSRect;
 
         #[method(rectForCancelButtonWhenCentered:)]
-        pub unsafe fn rectForCancelButtonWhenCentered(&self, isCentered: bool) -> NSRect;
+        pub unsafe fn rectForCancelButtonWhenCentered(
+            &self,
+            isCentered: bool,
+        ) -> Foundation::NSRect;
 
         #[method(centersPlaceholder)]
         pub unsafe fn centersPlaceholder(&self) -> bool;
@@ -157,7 +163,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frameRect: Foundation::NSRect,
         ) -> Id<Self, Shared>;
     }
 );

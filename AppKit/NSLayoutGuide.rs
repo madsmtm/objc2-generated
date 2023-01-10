@@ -18,7 +18,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSLayoutGuide")]
     unsafe impl NSLayoutGuide {
         #[method(frame)]
-        pub unsafe fn frame(&self) -> NSRect;
+        pub unsafe fn frame(&self) -> Foundation::NSRect;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other owningView)]
@@ -81,7 +81,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other constraintsAffectingLayoutForOrientation:)]
         pub unsafe fn constraintsAffectingLayoutForOrientation(
             &self,
-            orientation: NSLayoutConstraintOrientation,
+            orientation: AppKit::NSLayoutConstraintOrientation,
         ) -> Id<Foundation::NSArray<AppKit::NSLayoutConstraint>, Shared>;
     }
 );

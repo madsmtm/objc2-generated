@@ -97,7 +97,7 @@ extern_methods!(
         pub unsafe fn setDelegate(&self, delegate: Option<&AppKit::NSSoundDelegate>);
 
         #[method(duration)]
-        pub unsafe fn duration(&self) -> NSTimeInterval;
+        pub unsafe fn duration(&self) -> Foundation::NSTimeInterval;
 
         #[method(volume)]
         pub unsafe fn volume(&self) -> c_float;
@@ -106,10 +106,10 @@ extern_methods!(
         pub unsafe fn setVolume(&self, volume: c_float);
 
         #[method(currentTime)]
-        pub unsafe fn currentTime(&self) -> NSTimeInterval;
+        pub unsafe fn currentTime(&self) -> Foundation::NSTimeInterval;
 
         #[method(setCurrentTime:)]
-        pub unsafe fn setCurrentTime(&self, currentTime: NSTimeInterval);
+        pub unsafe fn setCurrentTime(&self, currentTime: Foundation::NSTimeInterval);
 
         #[method(loops)]
         pub unsafe fn loops(&self) -> bool;
