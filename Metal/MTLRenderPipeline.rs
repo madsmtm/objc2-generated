@@ -572,7 +572,7 @@ extern_protocol!(
         pub unsafe fn newRenderPipelineStateWithAdditionalBinaryFunctions_error(
             &self,
             additionalBinaryFunctions: &Metal::MTLRenderPipelineFunctionsDescriptor,
-        ) -> Result<Id<Metal::MTLRenderPipelineState, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Metal::MTLRenderPipelineState, Shared>, Id<Foundation::NSError, Shared>>;
     }
 );
 

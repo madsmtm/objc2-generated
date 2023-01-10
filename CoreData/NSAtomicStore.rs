@@ -34,11 +34,11 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(load:_)]
-        pub unsafe fn load(&self) -> Result<(), Id<NSError, Shared>>;
+        pub unsafe fn load(&self) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(save:_)]
-        pub unsafe fn save(&self) -> Result<(), Id<NSError, Shared>>;
+        pub unsafe fn save(&self) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(
             feature = "CoreData_NSAtomicStoreCacheNode",

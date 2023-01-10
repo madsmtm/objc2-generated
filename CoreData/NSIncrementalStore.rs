@@ -19,7 +19,7 @@ extern_methods!(
     unsafe impl NSIncrementalStore {
         #[cfg(feature = "Foundation_NSError")]
         #[method(loadMetadata:_)]
-        pub unsafe fn loadMetadata(&self) -> Result<(), Id<NSError, Shared>>;
+        pub unsafe fn loadMetadata(&self) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(
             feature = "CoreData_NSManagedObjectContext",
@@ -31,7 +31,7 @@ extern_methods!(
             &self,
             request: &CoreData::NSPersistentStoreRequest,
             context: Option<&CoreData::NSManagedObjectContext>,
-        ) -> Result<Id<Object, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Object, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(
             feature = "CoreData_NSIncrementalStoreNode",
@@ -44,7 +44,7 @@ extern_methods!(
             &self,
             objectID: &CoreData::NSManagedObjectID,
             context: &CoreData::NSManagedObjectContext,
-        ) -> Result<Id<CoreData::NSIncrementalStoreNode, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<CoreData::NSIncrementalStoreNode, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(
             feature = "CoreData_NSManagedObjectContext",
@@ -58,7 +58,7 @@ extern_methods!(
             relationship: &CoreData::NSRelationshipDescription,
             objectID: &CoreData::NSManagedObjectID,
             context: Option<&CoreData::NSManagedObjectContext>,
-        ) -> Result<Id<Object, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Object, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other identifierForNewStoreAtURL:)]
@@ -76,7 +76,10 @@ extern_methods!(
         pub unsafe fn obtainPermanentIDsForObjects_error(
             &self,
             array: &Foundation::NSArray<CoreData::NSManagedObject>,
-        ) -> Result<Id<Foundation::NSArray<CoreData::NSManagedObjectID>, Shared>, Id<NSError, Shared>>;
+        ) -> Result<
+            Id<Foundation::NSArray<CoreData::NSManagedObjectID>, Shared>,
+            Id<Foundation::NSError, Shared>,
+        >;
 
         #[cfg(all(feature = "CoreData_NSManagedObjectID", feature = "Foundation_NSArray"))]
         #[method(managedObjectContextDidRegisterObjectsWithIDs:)]

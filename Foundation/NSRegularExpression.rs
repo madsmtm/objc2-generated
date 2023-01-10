@@ -33,7 +33,7 @@ extern_methods!(
         pub unsafe fn regularExpressionWithPattern_options_error(
             pattern: &Foundation::NSString,
             options: NSRegularExpressionOptions,
-        ) -> Result<Id<Foundation::NSRegularExpression, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Foundation::NSRegularExpression, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithPattern:options:error:_)]
@@ -41,7 +41,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             pattern: &Foundation::NSString,
             options: NSRegularExpressionOptions,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other pattern)]
@@ -217,14 +217,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other dataDetectorWithTypes:error:_)]
         pub unsafe fn dataDetectorWithTypes_error(
             checkingTypes: NSTextCheckingTypes,
-        ) -> Result<Id<Foundation::NSDataDetector, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Foundation::NSDataDetector, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Init initWithTypes:error:_)]
         pub unsafe fn initWithTypes_error(
             this: Option<Allocated<Self>>,
             checkingTypes: NSTextCheckingTypes,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[method(checkingTypes)]
         pub unsafe fn checkingTypes(&self) -> NSTextCheckingTypes;
@@ -241,6 +241,6 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             pattern: &Foundation::NSString,
             options: NSRegularExpressionOptions,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
     }
 );

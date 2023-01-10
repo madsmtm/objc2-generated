@@ -38,7 +38,7 @@ extern_methods!(
             &self,
             mapping: &CoreData::NSEntityMapping,
             manager: &CoreData::NSMigrationManager,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(
             feature = "CoreData_NSEntityMapping",
@@ -52,7 +52,7 @@ extern_methods!(
             sInstance: &CoreData::NSManagedObject,
             mapping: &CoreData::NSEntityMapping,
             manager: &CoreData::NSMigrationManager,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(
             feature = "CoreData_NSEntityMapping",
@@ -64,7 +64,7 @@ extern_methods!(
             &self,
             mapping: &CoreData::NSEntityMapping,
             manager: &CoreData::NSMigrationManager,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(
             feature = "CoreData_NSEntityMapping",
@@ -78,7 +78,7 @@ extern_methods!(
             dInstance: &CoreData::NSManagedObject,
             mapping: &CoreData::NSEntityMapping,
             manager: &CoreData::NSMigrationManager,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(
             feature = "CoreData_NSEntityMapping",
@@ -90,7 +90,7 @@ extern_methods!(
             &self,
             mapping: &CoreData::NSEntityMapping,
             manager: &CoreData::NSMigrationManager,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(
             feature = "CoreData_NSEntityMapping",
@@ -102,7 +102,7 @@ extern_methods!(
             &self,
             mapping: &CoreData::NSEntityMapping,
             manager: &CoreData::NSMigrationManager,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(
             feature = "CoreData_NSEntityMapping",
@@ -114,6 +114,6 @@ extern_methods!(
             &self,
             mapping: &CoreData::NSEntityMapping,
             manager: &CoreData::NSMigrationManager,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
     }
 );

@@ -559,7 +559,7 @@ extern_methods!(
             url: &Foundation::NSURL,
             useAuxiliaryFile: bool,
             enc: NSStringEncoding,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(writeToFile:atomically:encoding:error:_)]
@@ -568,7 +568,7 @@ extern_methods!(
             path: &Foundation::NSString,
             useAuxiliaryFile: bool,
             enc: NSStringEncoding,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[method_id(@__retain_semantics Other description)]
         pub unsafe fn description(&self) -> Id<Foundation::NSString, Shared>;
@@ -681,7 +681,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             url: &Foundation::NSURL,
             enc: NSStringEncoding,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Init initWithContentsOfFile:encoding:error:_)]
@@ -689,21 +689,21 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             path: &Foundation::NSString,
             enc: NSStringEncoding,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other stringWithContentsOfURL:encoding:error:_)]
         pub unsafe fn stringWithContentsOfURL_encoding_error(
             url: &Foundation::NSURL,
             enc: NSStringEncoding,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other stringWithContentsOfFile:encoding:error:_)]
         pub unsafe fn stringWithContentsOfFile_encoding_error(
             path: &Foundation::NSString,
             enc: NSStringEncoding,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:usedEncoding:error:_)]
@@ -711,7 +711,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             url: &Foundation::NSURL,
             enc: *mut NSStringEncoding,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Init initWithContentsOfFile:usedEncoding:error:_)]
@@ -719,21 +719,21 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             path: &Foundation::NSString,
             enc: *mut NSStringEncoding,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other stringWithContentsOfURL:usedEncoding:error:_)]
         pub unsafe fn stringWithContentsOfURL_usedEncoding_error(
             url: &Foundation::NSURL,
             enc: *mut NSStringEncoding,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other stringWithContentsOfFile:usedEncoding:error:_)]
         pub unsafe fn stringWithContentsOfFile_usedEncoding_error(
             path: &Foundation::NSString,
             enc: *mut NSStringEncoding,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
     }
 );
 
@@ -1132,7 +1132,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             url: &Foundation::NSURL,
             enc: NSStringEncoding,
-        ) -> Result<Id<Self, Owned>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Owned>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Init initWithContentsOfFile:encoding:error:_)]
@@ -1140,21 +1140,21 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             path: &Foundation::NSString,
             enc: NSStringEncoding,
-        ) -> Result<Id<Self, Owned>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Owned>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other stringWithContentsOfURL:encoding:error:_)]
         pub unsafe fn stringWithContentsOfURL_encoding_error(
             url: &Foundation::NSURL,
             enc: NSStringEncoding,
-        ) -> Result<Id<Self, Owned>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Owned>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other stringWithContentsOfFile:encoding:error:_)]
         pub unsafe fn stringWithContentsOfFile_encoding_error(
             path: &Foundation::NSString,
             enc: NSStringEncoding,
-        ) -> Result<Id<Self, Owned>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Owned>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:usedEncoding:error:_)]
@@ -1162,7 +1162,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             url: &Foundation::NSURL,
             enc: *mut NSStringEncoding,
-        ) -> Result<Id<Self, Owned>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Owned>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Init initWithContentsOfFile:usedEncoding:error:_)]
@@ -1170,21 +1170,21 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             path: &Foundation::NSString,
             enc: *mut NSStringEncoding,
-        ) -> Result<Id<Self, Owned>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Owned>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other stringWithContentsOfURL:usedEncoding:error:_)]
         pub unsafe fn stringWithContentsOfURL_usedEncoding_error(
             url: &Foundation::NSURL,
             enc: *mut NSStringEncoding,
-        ) -> Result<Id<Self, Owned>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Owned>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other stringWithContentsOfFile:usedEncoding:error:_)]
         pub unsafe fn stringWithContentsOfFile_usedEncoding_error(
             path: &Foundation::NSString,
             enc: *mut NSStringEncoding,
-        ) -> Result<Id<Self, Owned>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Owned>, Id<Foundation::NSError, Shared>>;
     }
 );
 
@@ -1341,7 +1341,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             url: &Foundation::NSURL,
             enc: NSStringEncoding,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Init initWithContentsOfFile:encoding:error:_)]
@@ -1349,21 +1349,21 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             path: &Foundation::NSString,
             enc: NSStringEncoding,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other stringWithContentsOfURL:encoding:error:_)]
         pub unsafe fn stringWithContentsOfURL_encoding_error(
             url: &Foundation::NSURL,
             enc: NSStringEncoding,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other stringWithContentsOfFile:encoding:error:_)]
         pub unsafe fn stringWithContentsOfFile_encoding_error(
             path: &Foundation::NSString,
             enc: NSStringEncoding,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:usedEncoding:error:_)]
@@ -1371,7 +1371,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             url: &Foundation::NSURL,
             enc: *mut NSStringEncoding,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Init initWithContentsOfFile:usedEncoding:error:_)]
@@ -1379,21 +1379,21 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             path: &Foundation::NSString,
             enc: *mut NSStringEncoding,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other stringWithContentsOfURL:usedEncoding:error:_)]
         pub unsafe fn stringWithContentsOfURL_usedEncoding_error(
             url: &Foundation::NSURL,
             enc: *mut NSStringEncoding,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other stringWithContentsOfFile:usedEncoding:error:_)]
         pub unsafe fn stringWithContentsOfFile_usedEncoding_error(
             path: &Foundation::NSString,
             enc: *mut NSStringEncoding,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
     }
 );
 
@@ -1550,7 +1550,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             url: &Foundation::NSURL,
             enc: NSStringEncoding,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Init initWithContentsOfFile:encoding:error:_)]
@@ -1558,21 +1558,21 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             path: &Foundation::NSString,
             enc: NSStringEncoding,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other stringWithContentsOfURL:encoding:error:_)]
         pub unsafe fn stringWithContentsOfURL_encoding_error(
             url: &Foundation::NSURL,
             enc: NSStringEncoding,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other stringWithContentsOfFile:encoding:error:_)]
         pub unsafe fn stringWithContentsOfFile_encoding_error(
             path: &Foundation::NSString,
             enc: NSStringEncoding,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:usedEncoding:error:_)]
@@ -1580,7 +1580,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             url: &Foundation::NSURL,
             enc: *mut NSStringEncoding,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Init initWithContentsOfFile:usedEncoding:error:_)]
@@ -1588,21 +1588,21 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             path: &Foundation::NSString,
             enc: *mut NSStringEncoding,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other stringWithContentsOfURL:usedEncoding:error:_)]
         pub unsafe fn stringWithContentsOfURL_usedEncoding_error(
             url: &Foundation::NSURL,
             enc: *mut NSStringEncoding,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other stringWithContentsOfFile:usedEncoding:error:_)]
         pub unsafe fn stringWithContentsOfFile_usedEncoding_error(
             path: &Foundation::NSString,
             enc: *mut NSStringEncoding,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
     }
 );
 

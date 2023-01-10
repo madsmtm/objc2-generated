@@ -38,6 +38,6 @@ extern_protocol!(
         pub fn serializeToURL_error(
             &self,
             url: &Foundation::NSURL,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
     }
 );

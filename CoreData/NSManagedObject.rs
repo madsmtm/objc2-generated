@@ -209,19 +209,19 @@ extern_methods!(
             &self,
             value: NonNull<*mut Object>,
             key: &Foundation::NSString,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(validateForDelete:_)]
-        pub unsafe fn validateForDelete(&self) -> Result<(), Id<NSError, Shared>>;
+        pub unsafe fn validateForDelete(&self) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(validateForInsert:_)]
-        pub unsafe fn validateForInsert(&self) -> Result<(), Id<NSError, Shared>>;
+        pub unsafe fn validateForInsert(&self) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(validateForUpdate:_)]
-        pub unsafe fn validateForUpdate(&self) -> Result<(), Id<NSError, Shared>>;
+        pub unsafe fn validateForUpdate(&self) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[method(setObservationInfo:)]
         pub unsafe fn setObservationInfo(&self, inObservationInfo: *mut c_void);

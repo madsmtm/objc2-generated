@@ -22,7 +22,7 @@ extern_methods!(
         pub unsafe fn initWithURL_error(
             this: Option<Allocated<Self>>,
             url: &Foundation::NSURL,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other scriptURL)]
@@ -163,7 +163,7 @@ extern_methods!(
         pub unsafe fn initWithURL_error(
             this: Option<Allocated<Self>>,
             url: &Foundation::NSURL,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
     }
 );
 
@@ -176,7 +176,7 @@ extern_methods!(
         pub unsafe fn initWithURL_error(
             this: Option<Allocated<Self>>,
             url: &Foundation::NSURL,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
     }
 );
 
@@ -189,6 +189,6 @@ extern_methods!(
         pub unsafe fn initWithURL_error(
             this: Option<Allocated<Self>>,
             url: &Foundation::NSURL,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
     }
 );

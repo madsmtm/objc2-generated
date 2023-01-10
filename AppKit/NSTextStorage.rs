@@ -174,7 +174,7 @@ extern_methods!(
                 AppKit::NSAttributedStringDocumentAttributeKey,
                 Object,
             >,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(
             feature = "Foundation_NSData",
@@ -193,7 +193,7 @@ extern_methods!(
                 AppKit::NSAttributedStringDocumentAttributeKey,
                 Object,
             >,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSDictionary"))]
         #[method_id(@__retain_semantics Init initWithRTF:documentAttributes:)]
@@ -356,7 +356,7 @@ extern_methods!(
             markdownFile: &Foundation::NSURL,
             options: Option<&Foundation::NSAttributedStringMarkdownParsingOptions>,
             baseURL: Option<&Foundation::NSURL>,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(
             feature = "Foundation_NSAttributedStringMarkdownParsingOptions",
@@ -370,7 +370,7 @@ extern_methods!(
             markdown: &Foundation::NSData,
             options: Option<&Foundation::NSAttributedStringMarkdownParsingOptions>,
             baseURL: Option<&Foundation::NSURL>,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(
             feature = "Foundation_NSAttributedStringMarkdownParsingOptions",
@@ -384,6 +384,6 @@ extern_methods!(
             markdownString: &Foundation::NSString,
             options: Option<&Foundation::NSAttributedStringMarkdownParsingOptions>,
             baseURL: Option<&Foundation::NSURL>,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
     }
 );

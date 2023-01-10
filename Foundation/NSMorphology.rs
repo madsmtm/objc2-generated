@@ -103,7 +103,7 @@ extern_methods!(
             &self,
             features: Option<&Foundation::NSMorphologyCustomPronoun>,
             language: &Foundation::NSString,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
     }
 );
 

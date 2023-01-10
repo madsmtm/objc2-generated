@@ -49,7 +49,7 @@ extern_methods!(
             obj: *mut *mut Object,
             string: &Foundation::NSString,
             rangep: *mut NSRange,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other stringFromDate:)]

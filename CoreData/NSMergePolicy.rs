@@ -181,7 +181,7 @@ extern_methods!(
         pub unsafe fn resolveConflicts_error(
             &self,
             list: &Foundation::NSArray,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(
             feature = "CoreData_NSMergeConflict",
@@ -192,7 +192,7 @@ extern_methods!(
         pub unsafe fn resolveOptimisticLockingVersionConflicts_error(
             &self,
             list: &Foundation::NSArray<CoreData::NSMergeConflict>,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(
             feature = "CoreData_NSConstraintConflict",
@@ -203,6 +203,6 @@ extern_methods!(
         pub unsafe fn resolveConstraintConflicts_error(
             &self,
             list: &Foundation::NSArray<CoreData::NSConstraintConflict>,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
     }
 );

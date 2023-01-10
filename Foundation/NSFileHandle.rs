@@ -37,57 +37,59 @@ extern_methods!(
         #[method_id(@__retain_semantics Other readDataToEndOfFileAndReturnError:_)]
         pub unsafe fn readDataToEndOfFileAndReturnError(
             &self,
-        ) -> Result<Id<Foundation::NSData, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Foundation::NSData, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
         #[method_id(@__retain_semantics Other readDataUpToLength:error:_)]
         pub unsafe fn readDataUpToLength_error(
             &self,
             length: NSUInteger,
-        ) -> Result<Id<Foundation::NSData, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Foundation::NSData, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
         #[method(writeData:error:_)]
         pub unsafe fn writeData_error(
             &self,
             data: &Foundation::NSData,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(getOffset:error:_)]
         pub unsafe fn getOffset_error(
             &self,
             offsetInFile: NonNull<c_ulonglong>,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(seekToEndReturningOffset:error:_)]
         pub unsafe fn seekToEndReturningOffset_error(
             &self,
             offsetInFile: *mut c_ulonglong,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(seekToOffset:error:_)]
         pub unsafe fn seekToOffset_error(
             &self,
             offset: c_ulonglong,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(truncateAtOffset:error:_)]
         pub unsafe fn truncateAtOffset_error(
             &self,
             offset: c_ulonglong,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(synchronizeAndReturnError:_)]
-        pub unsafe fn synchronizeAndReturnError(&self) -> Result<(), Id<NSError, Shared>>;
+        pub unsafe fn synchronizeAndReturnError(
+            &self,
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(closeAndReturnError:_)]
-        pub unsafe fn closeAndReturnError(&self) -> Result<(), Id<NSError, Shared>>;
+        pub unsafe fn closeAndReturnError(&self) -> Result<(), Id<Foundation::NSError, Shared>>;
     }
 );
 
@@ -129,19 +131,19 @@ extern_methods!(
         #[method_id(@__retain_semantics Other fileHandleForReadingFromURL:error:_)]
         pub unsafe fn fileHandleForReadingFromURL_error(
             url: &Foundation::NSURL,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other fileHandleForWritingToURL:error:_)]
         pub unsafe fn fileHandleForWritingToURL_error(
             url: &Foundation::NSURL,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other fileHandleForUpdatingURL:error:_)]
         pub unsafe fn fileHandleForUpdatingURL_error(
             url: &Foundation::NSURL,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
     }
 );
 

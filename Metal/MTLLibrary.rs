@@ -300,7 +300,7 @@ extern_protocol!(
             &self,
             name: &Foundation::NSString,
             constantValues: &Metal::MTLFunctionConstantValues,
-        ) -> Result<Id<Metal::MTLFunction, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Metal::MTLFunction, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[method(newFunctionWithName:constantValues:completionHandler:)]
         pub unsafe fn newFunctionWithName_constantValues_completionHandler(
@@ -321,7 +321,7 @@ extern_protocol!(
         pub fn newFunctionWithDescriptor_error(
             &self,
             descriptor: &Metal::MTLFunctionDescriptor,
-        ) -> Result<Id<Metal::MTLFunction, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Metal::MTLFunction, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[method(newIntersectionFunctionWithDescriptor:completionHandler:)]
         pub unsafe fn newIntersectionFunctionWithDescriptor_completionHandler(
@@ -334,7 +334,7 @@ extern_protocol!(
         pub fn newIntersectionFunctionWithDescriptor_error(
             &self,
             descriptor: &Metal::MTLIntersectionFunctionDescriptor,
-        ) -> Result<Id<Metal::MTLFunction, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Metal::MTLFunction, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[method_id(@__retain_semantics Other functionNames)]
         pub fn functionNames(&self) -> Id<Foundation::NSArray<Foundation::NSString>, Shared>;

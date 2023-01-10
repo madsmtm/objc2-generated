@@ -82,7 +82,7 @@ extern_methods!(
         pub unsafe fn writeToURL_error(
             &self,
             url: Option<&Foundation::NSURL>,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(writeToFile:)]

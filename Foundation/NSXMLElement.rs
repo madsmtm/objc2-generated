@@ -44,7 +44,7 @@ extern_methods!(
         pub unsafe fn initWithXMLString_error(
             this: Option<Allocated<Self>>,
             string: &Foundation::NSString,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[method_id(@__retain_semantics Init initWithKind:options:)]
         pub unsafe fn initWithKind_options(

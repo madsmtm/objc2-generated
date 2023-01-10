@@ -239,7 +239,7 @@ extern_methods!(
         pub unsafe fn sendSynchronousRequest_returningResponse_error(
             request: &Foundation::NSURLRequest,
             response: *mut *mut Foundation::NSURLResponse,
-        ) -> Result<Id<Foundation::NSData, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Foundation::NSData, Shared>, Id<Foundation::NSError, Shared>>;
     }
 );
 

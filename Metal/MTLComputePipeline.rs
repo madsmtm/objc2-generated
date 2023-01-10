@@ -188,7 +188,7 @@ extern_protocol!(
         pub fn newComputePipelineStateWithAdditionalBinaryFunctions_error(
             &self,
             functions: &Foundation::NSArray<Metal::MTLFunction>,
-        ) -> Result<Id<Metal::MTLComputePipelineState, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Metal::MTLComputePipelineState, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[method_id(@__retain_semantics New newVisibleFunctionTableWithDescriptor:)]
         pub fn newVisibleFunctionTableWithDescriptor(

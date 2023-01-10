@@ -84,7 +84,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other execute:_)]
         pub unsafe fn execute(
             &self,
-        ) -> Result<Id<Foundation::NSArray<ResultType>, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Foundation::NSArray<ResultType>, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "CoreData_NSEntityDescription")]
         #[method_id(@__retain_semantics Other entity)]

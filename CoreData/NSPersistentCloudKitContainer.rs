@@ -31,7 +31,7 @@ extern_methods!(
         pub unsafe fn initializeCloudKitSchemaWithOptions_error(
             &self,
             options: NSPersistentCloudKitContainerSchemaInitializationOptions,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "CoreData_NSManagedObjectID")]
         #[method(canUpdateRecordForManagedObjectWithID:)]

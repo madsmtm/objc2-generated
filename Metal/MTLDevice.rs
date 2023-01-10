@@ -413,26 +413,26 @@ extern_protocol!(
         pub unsafe fn newDefaultLibraryWithBundle_error(
             &self,
             bundle: &Foundation::NSBundle,
-        ) -> Result<Id<Metal::MTLLibrary, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Metal::MTLLibrary, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[method_id(@__retain_semantics New newLibraryWithFile:error:_)]
         pub fn newLibraryWithFile_error(
             &self,
             filepath: &Foundation::NSString,
-        ) -> Result<Id<Metal::MTLLibrary, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Metal::MTLLibrary, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[method_id(@__retain_semantics New newLibraryWithURL:error:_)]
         pub unsafe fn newLibraryWithURL_error(
             &self,
             url: &Foundation::NSURL,
-        ) -> Result<Id<Metal::MTLLibrary, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Metal::MTLLibrary, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[method_id(@__retain_semantics New newLibraryWithSource:options:error:_)]
         pub fn newLibraryWithSource_options_error(
             &self,
             source: &Foundation::NSString,
             options: Option<&Metal::MTLCompileOptions>,
-        ) -> Result<Id<Metal::MTLLibrary, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Metal::MTLLibrary, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[method(newLibraryWithSource:options:completionHandler:)]
         pub unsafe fn newLibraryWithSource_options_completionHandler(
@@ -446,7 +446,7 @@ extern_protocol!(
         pub unsafe fn newLibraryWithStitchedDescriptor_error(
             &self,
             descriptor: &Metal::MTLStitchedLibraryDescriptor,
-        ) -> Result<Id<Metal::MTLLibrary, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Metal::MTLLibrary, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[method(newLibraryWithStitchedDescriptor:completionHandler:)]
         pub unsafe fn newLibraryWithStitchedDescriptor_completionHandler(
@@ -459,7 +459,7 @@ extern_protocol!(
         pub fn newRenderPipelineStateWithDescriptor_error(
             &self,
             descriptor: &Metal::MTLRenderPipelineDescriptor,
-        ) -> Result<Id<Metal::MTLRenderPipelineState, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Metal::MTLRenderPipelineState, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[method(newRenderPipelineStateWithDescriptor:completionHandler:)]
         pub unsafe fn newRenderPipelineStateWithDescriptor_completionHandler(
@@ -480,7 +480,7 @@ extern_protocol!(
         pub fn newComputePipelineStateWithFunction_error(
             &self,
             computeFunction: &Metal::MTLFunction,
-        ) -> Result<Id<Metal::MTLComputePipelineState, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Metal::MTLComputePipelineState, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[method(newComputePipelineStateWithFunction:completionHandler:)]
         pub unsafe fn newComputePipelineStateWithFunction_completionHandler(
@@ -644,7 +644,7 @@ extern_protocol!(
         pub unsafe fn newCounterSampleBufferWithDescriptor_error(
             &self,
             descriptor: &Metal::MTLCounterSampleBufferDescriptor,
-        ) -> Result<Id<Metal::MTLCounterSampleBuffer, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Metal::MTLCounterSampleBuffer, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[method(sampleTimestamps:gpuTimestamp:)]
         pub unsafe fn sampleTimestamps_gpuTimestamp(
@@ -669,19 +669,19 @@ extern_protocol!(
         pub fn newDynamicLibrary_error(
             &self,
             library: &Metal::MTLLibrary,
-        ) -> Result<Id<Metal::MTLDynamicLibrary, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Metal::MTLDynamicLibrary, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[method_id(@__retain_semantics New newDynamicLibraryWithURL:error:_)]
         pub fn newDynamicLibraryWithURL_error(
             &self,
             url: &Foundation::NSURL,
-        ) -> Result<Id<Metal::MTLDynamicLibrary, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Metal::MTLDynamicLibrary, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[method_id(@__retain_semantics New newBinaryArchiveWithDescriptor:error:_)]
         pub fn newBinaryArchiveWithDescriptor_error(
             &self,
             descriptor: &Metal::MTLBinaryArchiveDescriptor,
-        ) -> Result<Id<Metal::MTLBinaryArchive, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Metal::MTLBinaryArchive, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[method(supportsRaytracing)]
         pub fn supportsRaytracing(&self) -> bool;

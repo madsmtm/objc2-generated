@@ -156,7 +156,7 @@ extern_methods!(
         pub unsafe fn existingObjectWithID_error(
             &self,
             objectID: &CoreData::NSManagedObjectID,
-        ) -> Result<Id<CoreData::NSManagedObject, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<CoreData::NSManagedObject, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(
             feature = "CoreData_NSFetchRequest",
@@ -167,7 +167,7 @@ extern_methods!(
         pub unsafe fn executeFetchRequest_error(
             &self,
             request: &CoreData::NSFetchRequest,
-        ) -> Result<Id<Foundation::NSArray, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Foundation::NSArray, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(
             feature = "CoreData_NSPersistentStoreRequest",
@@ -178,7 +178,7 @@ extern_methods!(
         pub unsafe fn executeRequest_error(
             &self,
             request: &CoreData::NSPersistentStoreRequest,
-        ) -> Result<Id<CoreData::NSPersistentStoreResult, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<CoreData::NSPersistentStoreResult, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "CoreData_NSManagedObject")]
         #[method(insertObject:)]
@@ -259,7 +259,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(save:_)]
-        pub unsafe fn save(&self) -> Result<(), Id<NSError, Shared>>;
+        pub unsafe fn save(&self) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[method(refreshAllObjects)]
         pub unsafe fn refreshAllObjects(&self);
@@ -328,7 +328,7 @@ extern_methods!(
         pub unsafe fn obtainPermanentIDsForObjects_error(
             &self,
             objects: &Foundation::NSArray<CoreData::NSManagedObject>,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[method(mergeChangesFromContextDidSaveNotification:)]
@@ -358,7 +358,7 @@ extern_methods!(
         pub unsafe fn setQueryGenerationFromToken_error(
             &self,
             generation: Option<&CoreData::NSQueryGenerationToken>,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[method(automaticallyMergesChangesFromParent)]
         pub unsafe fn automaticallyMergesChangesFromParent(&self) -> bool;

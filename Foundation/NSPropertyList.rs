@@ -49,7 +49,7 @@ extern_methods!(
             plist: &Object,
             format: NSPropertyListFormat,
             opt: NSPropertyListWriteOptions,
-        ) -> Result<Id<Foundation::NSData, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Foundation::NSData, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
         #[method_id(@__retain_semantics Other propertyListWithData:options:format:error:_)]
@@ -57,7 +57,7 @@ extern_methods!(
             data: &Foundation::NSData,
             opt: NSPropertyListReadOptions,
             format: *mut NSPropertyListFormat,
-        ) -> Result<Id<Object, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Object, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSInputStream"))]
         #[method_id(@__retain_semantics Other propertyListWithStream:options:format:error:_)]
@@ -65,6 +65,6 @@ extern_methods!(
             stream: &Foundation::NSInputStream,
             opt: NSPropertyListReadOptions,
             format: *mut NSPropertyListFormat,
-        ) -> Result<Id<Object, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Object, Shared>, Id<Foundation::NSError, Shared>>;
     }
 );

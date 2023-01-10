@@ -69,14 +69,14 @@ extern_methods!(
             collection: &AppKit::NSFontCollection,
             name: &AppKit::NSFontCollectionName,
             visibility: NSFontCollectionVisibility,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(hideFontCollectionWithName:visibility:error:_)]
         pub unsafe fn hideFontCollectionWithName_visibility_error(
             name: &AppKit::NSFontCollectionName,
             visibility: NSFontCollectionVisibility,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(renameFontCollectionWithName:visibility:toName:error:_)]
@@ -84,7 +84,7 @@ extern_methods!(
             oldName: &AppKit::NSFontCollectionName,
             visibility: NSFontCollectionVisibility,
             newName: &AppKit::NSFontCollectionName,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other allFontCollectionNames)]

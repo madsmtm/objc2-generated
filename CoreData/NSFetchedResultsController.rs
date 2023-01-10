@@ -42,7 +42,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(performFetch:_)]
-        pub unsafe fn performFetch(&self) -> Result<(), Id<NSError, Shared>>;
+        pub unsafe fn performFetch(&self) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "CoreData_NSFetchRequest")]
         #[method_id(@__retain_semantics Other fetchRequest)]

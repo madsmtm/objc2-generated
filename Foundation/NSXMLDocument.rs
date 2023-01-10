@@ -35,7 +35,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             string: &Foundation::NSString,
             mask: NSXMLNodeOptions,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:options:error:_)]
@@ -43,7 +43,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             url: &Foundation::NSURL,
             mask: NSXMLNodeOptions,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
         #[method_id(@__retain_semantics Init initWithData:options:error:_)]
@@ -51,7 +51,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             data: &Foundation::NSData,
             mask: NSXMLNodeOptions,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSXMLElement")]
         #[method_id(@__retain_semantics Init initWithRootElement:)]
@@ -170,7 +170,7 @@ extern_methods!(
             arguments: Option<
                 &Foundation::NSDictionary<Foundation::NSString, Foundation::NSString>,
             >,
-        ) -> Result<Id<Object, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Object, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",
@@ -184,7 +184,7 @@ extern_methods!(
             arguments: Option<
                 &Foundation::NSDictionary<Foundation::NSString, Foundation::NSString>,
             >,
-        ) -> Result<Id<Object, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Object, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",
@@ -197,11 +197,11 @@ extern_methods!(
             &self,
             xsltURL: &Foundation::NSURL,
             argument: Option<&Foundation::NSDictionary<Foundation::NSString, Foundation::NSString>>,
-        ) -> Result<Id<Object, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Object, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(validateAndReturnError:_)]
-        pub unsafe fn validateAndReturnError(&self) -> Result<(), Id<NSError, Shared>>;
+        pub unsafe fn validateAndReturnError(&self) -> Result<(), Id<Foundation::NSError, Shared>>;
     }
 );
 

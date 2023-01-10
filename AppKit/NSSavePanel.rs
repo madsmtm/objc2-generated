@@ -190,7 +190,7 @@ extern_protocol!(
             &self,
             sender: &Object,
             url: &Foundation::NSURL,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[optional]
         #[method(panel:didChangeToDirectoryURL:)]

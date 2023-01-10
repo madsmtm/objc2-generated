@@ -89,7 +89,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other decodeTopLevelObjectAndReturnError:_)]
         pub unsafe fn decodeTopLevelObjectAndReturnError(
             &self,
-        ) -> Result<Id<Object, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Object, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[method(decodeArrayOfObjCType:count:at:)]
         pub unsafe fn decodeArrayOfObjCType_count_at(
@@ -188,7 +188,7 @@ extern_methods!(
         pub unsafe fn decodeTopLevelObjectForKey_error(
             &self,
             key: &Foundation::NSString,
-        ) -> Result<Id<Object, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Object, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(decodeBoolForKey:)]
@@ -247,7 +247,7 @@ extern_methods!(
             &self,
             aClass: &Class,
             key: &Foundation::NSString,
-        ) -> Result<Id<Object, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Object, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other decodeArrayOfObjectsOfClass:forKey:)]
@@ -284,7 +284,7 @@ extern_methods!(
             &self,
             classes: Option<&Foundation::NSSet<TodoClass>>,
             key: &Foundation::NSString,
-        ) -> Result<Id<Object, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Object, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",

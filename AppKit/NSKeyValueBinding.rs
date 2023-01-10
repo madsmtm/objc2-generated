@@ -93,7 +93,9 @@ extern_protocol!(
         );
 
         #[method(commitEditingAndReturnError:_)]
-        pub unsafe fn commitEditingAndReturnError(&self) -> Result<(), Id<NSError, Shared>>;
+        pub unsafe fn commitEditingAndReturnError(
+            &self,
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
     }
 );
 

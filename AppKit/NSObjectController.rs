@@ -133,7 +133,7 @@ extern_methods!(
             &self,
             fetchRequest: Option<&CoreData::NSFetchRequest>,
             merge: bool,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[method(fetch:)]
         pub unsafe fn fetch(&self, sender: Option<&Object>);

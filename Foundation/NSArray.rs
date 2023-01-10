@@ -203,7 +203,7 @@ extern_methods!(
         pub unsafe fn writeToURL_error(
             &self,
             url: &Foundation::NSURL,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[method(makeObjectsPerformSelector:)]
         pub unsafe fn makeObjectsPerformSelector(&self, aSelector: Sel);
@@ -358,7 +358,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other arrayWithContentsOfURL:error:_)]
         pub unsafe fn arrayWithContentsOfURL_error(
             url: &Foundation::NSURL,
-        ) -> Result<Id<Foundation::NSArray<ObjectType>, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Foundation::NSArray<ObjectType>, Shared>, Id<Foundation::NSError, Shared>>;
     }
 );
 

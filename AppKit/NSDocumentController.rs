@@ -72,7 +72,7 @@ extern_methods!(
         pub unsafe fn openUntitledDocumentAndDisplay_error(
             &self,
             displayDocument: bool,
-        ) -> Result<Id<AppKit::NSDocument, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<AppKit::NSDocument, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(
             feature = "AppKit_NSDocument",
@@ -83,7 +83,7 @@ extern_methods!(
         pub unsafe fn makeUntitledDocumentOfType_error(
             &self,
             typeName: &Foundation::NSString,
-        ) -> Result<Id<AppKit::NSDocument, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<AppKit::NSDocument, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[method(openDocument:)]
         pub unsafe fn openDocument(&self, sender: Option<&Object>);
@@ -153,7 +153,7 @@ extern_methods!(
             &self,
             url: &Foundation::NSURL,
             typeName: &Foundation::NSString,
-        ) -> Result<Id<AppKit::NSDocument, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<AppKit::NSDocument, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(
             feature = "AppKit_NSDocument",
@@ -184,7 +184,7 @@ extern_methods!(
             urlOrNil: Option<&Foundation::NSURL>,
             contentsURL: &Foundation::NSURL,
             typeName: &Foundation::NSString,
-        ) -> Result<Id<AppKit::NSDocument, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<AppKit::NSDocument, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[method(autosavingDelay)]
         pub unsafe fn autosavingDelay(&self) -> NSTimeInterval;
@@ -229,7 +229,7 @@ extern_methods!(
             url: &Foundation::NSURL,
             duplicateByCopying: bool,
             displayNameOrNil: Option<&Foundation::NSString>,
-        ) -> Result<Id<AppKit::NSDocument, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<AppKit::NSDocument, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[method(allowsAutomaticShareMenu)]
         pub unsafe fn allowsAutomaticShareMenu(&self) -> bool;
@@ -293,7 +293,7 @@ extern_methods!(
         pub unsafe fn typeForContentsOfURL_error(
             &self,
             url: &Foundation::NSURL,
-        ) -> Result<Id<Foundation::NSString, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Foundation::NSString, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other documentClassNames)]
@@ -333,7 +333,7 @@ extern_methods!(
             &self,
             url: &Foundation::NSURL,
             displayDocument: bool,
-        ) -> Result<Id<Object, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Object, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method(reopenDocumentForURL:withContentsOfURL:error:_)]
@@ -341,7 +341,7 @@ extern_methods!(
             &self,
             url: Option<&Foundation::NSURL>,
             contentsURL: &Foundation::NSURL,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other fileExtensionsFromType:)]

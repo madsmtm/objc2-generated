@@ -41,7 +41,7 @@ extern_methods!(
             dURL: &Foundation::NSURL,
             dStoreType: &Foundation::NSString,
             dOptions: Option<&Foundation::NSDictionary>,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[method(usesStoreSpecificMigrationManager)]
         pub unsafe fn usesStoreSpecificMigrationManager(&self) -> bool;

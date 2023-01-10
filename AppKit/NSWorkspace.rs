@@ -210,7 +210,7 @@ extern_methods!(
         pub unsafe fn unmountAndEjectDeviceAtURL_error(
             &self,
             url: &Foundation::NSURL,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[method(extendPowerOffBy:)]
         pub unsafe fn extendPowerOffBy(&self, requested: NSInteger) -> NSInteger;
@@ -430,7 +430,7 @@ extern_methods!(
             url: &Foundation::NSURL,
             screen: &AppKit::NSScreen,
             options: &Foundation::NSDictionary<AppKit::NSWorkspaceDesktopImageOptionKey, Object>,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(feature = "AppKit_NSScreen", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other desktopImageURLForScreen:)]
@@ -662,7 +662,7 @@ extern_methods!(
                 AppKit::NSWorkspaceLaunchConfigurationKey,
                 Object,
             >,
-        ) -> Result<Id<AppKit::NSRunningApplication, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<AppKit::NSRunningApplication, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(
             feature = "AppKit_NSRunningApplication",
@@ -679,7 +679,7 @@ extern_methods!(
                 AppKit::NSWorkspaceLaunchConfigurationKey,
                 Object,
             >,
-        ) -> Result<Id<AppKit::NSRunningApplication, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<AppKit::NSRunningApplication, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(
             feature = "AppKit_NSRunningApplication",
@@ -698,7 +698,7 @@ extern_methods!(
                 AppKit::NSWorkspaceLaunchConfigurationKey,
                 Object,
             >,
-        ) -> Result<Id<AppKit::NSRunningApplication, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<AppKit::NSRunningApplication, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(launchApplication:showIcon:autolaunch:)]
@@ -848,7 +848,7 @@ extern_methods!(
         pub unsafe fn typeOfFile_error(
             &self,
             absoluteFilePath: &Foundation::NSString,
-        ) -> Result<Id<Foundation::NSString, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Foundation::NSString, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedDescriptionForType:)]

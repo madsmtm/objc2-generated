@@ -36,7 +36,7 @@ extern_methods!(
         pub unsafe fn inferredMappingModelForSourceModel_destinationModel_error(
             sourceModel: &CoreData::NSManagedObjectModel,
             destinationModel: &CoreData::NSManagedObjectModel,
-        ) -> Result<Id<CoreData::NSMappingModel, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<CoreData::NSMappingModel, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:)]

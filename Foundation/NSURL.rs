@@ -606,7 +606,7 @@ extern_methods!(
         #[method(checkResourceIsReachableAndReturnError:_)]
         pub unsafe fn checkResourceIsReachableAndReturnError(
             &self,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[method(isFileReferenceURL)]
         pub unsafe fn isFileReferenceURL(&self) -> bool;
@@ -623,7 +623,7 @@ extern_methods!(
             &self,
             value: NonNull<*mut Object>,
             key: &Foundation::NSURLResourceKey,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -636,7 +636,7 @@ extern_methods!(
             keys: &Foundation::NSArray<Foundation::NSURLResourceKey>,
         ) -> Result<
             Id<Foundation::NSDictionary<Foundation::NSURLResourceKey, Object>, Shared>,
-            Id<NSError, Shared>,
+            Id<Foundation::NSError, Shared>,
         >;
 
         #[cfg(feature = "Foundation_NSError")]
@@ -645,14 +645,14 @@ extern_methods!(
             &self,
             value: Option<&Object>,
             key: &Foundation::NSURLResourceKey,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSError"))]
         #[method(setResourceValues:error:_)]
         pub unsafe fn setResourceValues_error(
             &self,
             keyedValues: &Foundation::NSDictionary<Foundation::NSURLResourceKey, Object>,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[method(removeCachedResourceValueForKey:)]
         pub unsafe fn removeCachedResourceValueForKey(&self, key: &Foundation::NSURLResourceKey);
@@ -678,7 +678,7 @@ extern_methods!(
             options: NSURLBookmarkCreationOptions,
             keys: Option<&Foundation::NSArray<Foundation::NSURLResourceKey>>,
             relativeURL: Option<&Foundation::NSURL>,
-        ) -> Result<Id<Foundation::NSData, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Foundation::NSData, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
         #[method_id(@__retain_semantics Init initByResolvingBookmarkData:options:relativeToURL:bookmarkDataIsStale:error:_)]
@@ -688,7 +688,7 @@ extern_methods!(
             options: NSURLBookmarkResolutionOptions,
             relativeURL: Option<&Foundation::NSURL>,
             isStale: *mut Bool,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
         #[method_id(@__retain_semantics Other URLByResolvingBookmarkData:options:relativeToURL:bookmarkDataIsStale:error:_)]
@@ -697,7 +697,7 @@ extern_methods!(
             options: NSURLBookmarkResolutionOptions,
             relativeURL: Option<&Foundation::NSURL>,
             isStale: *mut Bool,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -716,20 +716,20 @@ extern_methods!(
             bookmarkData: &Foundation::NSData,
             bookmarkFileURL: &Foundation::NSURL,
             options: NSURLBookmarkFileCreationOptions,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
         #[method_id(@__retain_semantics Other bookmarkDataWithContentsOfURL:error:_)]
         pub unsafe fn bookmarkDataWithContentsOfURL_error(
             bookmarkFileURL: &Foundation::NSURL,
-        ) -> Result<Id<Foundation::NSData, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Foundation::NSData, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other URLByResolvingAliasFileAtURL:options:error:_)]
         pub unsafe fn URLByResolvingAliasFileAtURL_options_error(
             url: &Foundation::NSURL,
             options: NSURLBookmarkResolutionOptions,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[method(startAccessingSecurityScopedResource)]
         pub unsafe fn startAccessingSecurityScopedResource(&self) -> bool;
@@ -749,7 +749,7 @@ extern_methods!(
             &self,
             value: NonNull<*mut Object>,
             key: &Foundation::NSURLResourceKey,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -762,14 +762,14 @@ extern_methods!(
             keys: &Foundation::NSArray<Foundation::NSURLResourceKey>,
         ) -> Result<
             Id<Foundation::NSDictionary<Foundation::NSURLResourceKey, Object>, Shared>,
-            Id<NSError, Shared>,
+            Id<Foundation::NSError, Shared>,
         >;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(checkPromisedItemIsReachableAndReturnError:_)]
         pub unsafe fn checkPromisedItemIsReachableAndReturnError(
             &self,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
     }
 );
 

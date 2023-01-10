@@ -95,7 +95,7 @@ extern_methods!(
         pub fn startCaptureWithDescriptor_error(
             &self,
             descriptor: &Metal::MTLCaptureDescriptor,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[method(startCaptureWithDevice:)]
         pub fn startCaptureWithDevice(&self, device: &Metal::MTLDevice);

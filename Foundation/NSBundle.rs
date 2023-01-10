@@ -79,11 +79,12 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(preflightAndReturnError:_)]
-        pub unsafe fn preflightAndReturnError(&self) -> Result<(), Id<NSError, Shared>>;
+        pub unsafe fn preflightAndReturnError(&self)
+            -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(loadAndReturnError:_)]
-        pub unsafe fn loadAndReturnError(&self) -> Result<(), Id<NSError, Shared>>;
+        pub unsafe fn loadAndReturnError(&self) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other bundleURL)]

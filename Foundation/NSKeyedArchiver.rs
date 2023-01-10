@@ -33,7 +33,7 @@ extern_methods!(
         pub unsafe fn archivedDataWithRootObject_requiringSecureCoding_error(
             object: &Object,
             requiresSecureCoding: bool,
-        ) -> Result<Id<Foundation::NSData, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Foundation::NSData, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
@@ -152,14 +152,14 @@ extern_methods!(
         pub unsafe fn initForReadingFromData_error(
             this: Option<Allocated<Self>>,
             data: &Foundation::NSData,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
         #[method_id(@__retain_semantics Other unarchivedObjectOfClass:fromData:error:_)]
         pub unsafe fn unarchivedObjectOfClass_fromData_error(
             cls: &Class,
             data: &Foundation::NSData,
-        ) -> Result<Id<Object, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Object, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -170,7 +170,7 @@ extern_methods!(
         pub unsafe fn unarchivedArrayOfObjectsOfClass_fromData_error(
             cls: &Class,
             data: &Foundation::NSData,
-        ) -> Result<Id<Foundation::NSArray, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Foundation::NSArray, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(
             feature = "Foundation_NSData",
@@ -182,7 +182,7 @@ extern_methods!(
             keyCls: &Class,
             valueCls: &Class,
             data: &Foundation::NSData,
-        ) -> Result<Id<Foundation::NSDictionary, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Foundation::NSDictionary, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(
             feature = "Foundation_NSData",
@@ -193,7 +193,7 @@ extern_methods!(
         pub unsafe fn unarchivedObjectOfClasses_fromData_error(
             classes: &Foundation::NSSet<TodoClass>,
             data: &Foundation::NSData,
-        ) -> Result<Id<Object, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Object, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -205,7 +205,7 @@ extern_methods!(
         pub unsafe fn unarchivedArrayOfObjectsOfClasses_fromData_error(
             classes: &Foundation::NSSet<TodoClass>,
             data: &Foundation::NSData,
-        ) -> Result<Id<Foundation::NSArray, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Foundation::NSArray, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(
             feature = "Foundation_NSData",
@@ -218,7 +218,7 @@ extern_methods!(
             keyClasses: &Foundation::NSSet<TodoClass>,
             valueClasses: &Foundation::NSSet<TodoClass>,
             data: &Foundation::NSData,
-        ) -> Result<Id<Foundation::NSDictionary, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Foundation::NSDictionary, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
@@ -240,7 +240,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other unarchiveTopLevelObjectWithData:error:_)]
         pub unsafe fn unarchiveTopLevelObjectWithData_error(
             data: &Foundation::NSData,
-        ) -> Result<Id<Object, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Object, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other unarchiveObjectWithFile:)]

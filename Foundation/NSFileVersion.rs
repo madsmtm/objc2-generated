@@ -77,7 +77,7 @@ extern_methods!(
             url: &Foundation::NSURL,
             contentsURL: &Foundation::NSURL,
             options: NSFileVersionAddingOptions,
-        ) -> Result<Id<Foundation::NSFileVersion, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Foundation::NSFileVersion, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other temporaryDirectoryURLForNewVersionOfItemAtURL:)]
@@ -139,16 +139,16 @@ extern_methods!(
             &self,
             url: &Foundation::NSURL,
             options: NSFileVersionReplacingOptions,
-        ) -> Result<Id<Foundation::NSURL, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Foundation::NSURL, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(removeAndReturnError:_)]
-        pub unsafe fn removeAndReturnError(&self) -> Result<(), Id<NSError, Shared>>;
+        pub unsafe fn removeAndReturnError(&self) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method(removeOtherVersionsOfItemAtURL:error:_)]
         pub unsafe fn removeOtherVersionsOfItemAtURL_error(
             url: &Foundation::NSURL,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
     }
 );

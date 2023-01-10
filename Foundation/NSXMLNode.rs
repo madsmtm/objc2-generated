@@ -276,7 +276,10 @@ extern_methods!(
         pub unsafe fn nodesForXPath_error(
             &self,
             xpath: &Foundation::NSString,
-        ) -> Result<Id<Foundation::NSArray<Foundation::NSXMLNode>, Shared>, Id<NSError, Shared>>;
+        ) -> Result<
+            Id<Foundation::NSArray<Foundation::NSXMLNode>, Shared>,
+            Id<Foundation::NSError, Shared>,
+        >;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -289,7 +292,7 @@ extern_methods!(
             &self,
             xquery: &Foundation::NSString,
             constants: Option<&Foundation::NSDictionary<Foundation::NSString, Object>>,
-        ) -> Result<Id<Foundation::NSArray, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Foundation::NSArray, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -300,6 +303,6 @@ extern_methods!(
         pub unsafe fn objectsForXQuery_error(
             &self,
             xquery: &Foundation::NSString,
-        ) -> Result<Id<Foundation::NSArray, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Foundation::NSArray, Shared>, Id<Foundation::NSError, Shared>>;
     }
 );

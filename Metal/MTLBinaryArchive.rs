@@ -55,31 +55,31 @@ extern_protocol!(
         pub fn addComputePipelineFunctionsWithDescriptor_error(
             &self,
             descriptor: &Metal::MTLComputePipelineDescriptor,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[method(addRenderPipelineFunctionsWithDescriptor:error:_)]
         pub fn addRenderPipelineFunctionsWithDescriptor_error(
             &self,
             descriptor: &Metal::MTLRenderPipelineDescriptor,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[method(addTileRenderPipelineFunctionsWithDescriptor:error:_)]
         pub unsafe fn addTileRenderPipelineFunctionsWithDescriptor_error(
             &self,
             descriptor: &Metal::MTLTileRenderPipelineDescriptor,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[method(serializeToURL:error:_)]
         pub fn serializeToURL_error(
             &self,
             url: &Foundation::NSURL,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[method(addFunctionWithDescriptor:library:error:_)]
         pub unsafe fn addFunctionWithDescriptor_library_error(
             &self,
             descriptor: &Metal::MTLFunctionDescriptor,
             library: &Metal::MTLLibrary,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
     }
 );

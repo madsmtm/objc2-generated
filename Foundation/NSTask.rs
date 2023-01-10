@@ -93,7 +93,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(launchAndReturnError:_)]
-        pub unsafe fn launchAndReturnError(&self) -> Result<(), Id<NSError, Shared>>;
+        pub unsafe fn launchAndReturnError(&self) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[method(interrupt)]
         pub unsafe fn interrupt(&self);

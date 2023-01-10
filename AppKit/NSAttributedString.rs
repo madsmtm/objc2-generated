@@ -371,7 +371,7 @@ extern_methods!(
                 AppKit::NSAttributedStringDocumentAttributeKey,
                 Object,
             >,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(
             feature = "Foundation_NSData",
@@ -390,7 +390,7 @@ extern_methods!(
                 AppKit::NSAttributedStringDocumentAttributeKey,
                 Object,
             >,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(
             feature = "Foundation_NSData",
@@ -402,7 +402,7 @@ extern_methods!(
             &self,
             range: NSRange,
             dict: &Foundation::NSDictionary<AppKit::NSAttributedStringDocumentAttributeKey, Object>,
-        ) -> Result<Id<Foundation::NSData, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Foundation::NSData, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",
@@ -414,7 +414,7 @@ extern_methods!(
             &self,
             range: NSRange,
             dict: &Foundation::NSDictionary<AppKit::NSAttributedStringDocumentAttributeKey, Object>,
-        ) -> Result<Id<Foundation::NSFileWrapper, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Foundation::NSFileWrapper, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSDictionary"))]
         #[method_id(@__retain_semantics Init initWithRTF:documentAttributes:)]
@@ -563,7 +563,7 @@ extern_methods!(
                 AppKit::NSAttributedStringDocumentAttributeKey,
                 Object,
             >,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(
             feature = "Foundation_NSData",
@@ -582,7 +582,7 @@ extern_methods!(
                 AppKit::NSAttributedStringDocumentAttributeKey,
                 Object,
             >,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
     }
 );
 

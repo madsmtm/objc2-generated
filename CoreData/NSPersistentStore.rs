@@ -27,7 +27,7 @@ extern_methods!(
             url: &Foundation::NSURL,
         ) -> Result<
             Id<Foundation::NSDictionary<Foundation::NSString, Object>, Shared>,
-            Id<NSError, Shared>,
+            Id<Foundation::NSError, Shared>,
         >;
 
         #[cfg(all(
@@ -40,7 +40,7 @@ extern_methods!(
         pub unsafe fn setMetadata_forPersistentStoreWithURL_error(
             metadata: Option<&Foundation::NSDictionary<Foundation::NSString, Object>>,
             url: &Foundation::NSURL,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[method(migrationManagerClass)]
         pub unsafe fn migrationManagerClass() -> &'static Class;
@@ -65,7 +65,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(loadMetadata:_)]
-        pub unsafe fn loadMetadata(&self) -> Result<(), Id<NSError, Shared>>;
+        pub unsafe fn loadMetadata(&self) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "CoreData_NSPersistentStoreCoordinator")]
         #[method_id(@__retain_semantics Other persistentStoreCoordinator)]

@@ -199,7 +199,7 @@ extern_methods!(
         pub unsafe fn objectForProperty_error(
             &self,
             property: &AppKit::NSSpeechPropertyKey,
-        ) -> Result<Id<Object, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Object, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(setObject:forProperty:error:_)]
@@ -207,7 +207,7 @@ extern_methods!(
             &self,
             object: Option<&Object>,
             property: &AppKit::NSSpeechPropertyKey,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[method(isAnyApplicationSpeaking)]
         pub unsafe fn isAnyApplicationSpeaking() -> bool;

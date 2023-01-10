@@ -45,20 +45,20 @@ extern_methods!(
         pub unsafe fn dataWithJSONObject_options_error(
             obj: &Object,
             opt: NSJSONWritingOptions,
-        ) -> Result<Id<Foundation::NSData, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Foundation::NSData, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
         #[method_id(@__retain_semantics Other JSONObjectWithData:options:error:_)]
         pub unsafe fn JSONObjectWithData_options_error(
             data: &Foundation::NSData,
             opt: NSJSONReadingOptions,
-        ) -> Result<Id<Object, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Object, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSInputStream"))]
         #[method_id(@__retain_semantics Other JSONObjectWithStream:options:error:_)]
         pub unsafe fn JSONObjectWithStream_options_error(
             stream: &Foundation::NSInputStream,
             opt: NSJSONReadingOptions,
-        ) -> Result<Id<Object, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Object, Shared>, Id<Foundation::NSError, Shared>>;
     }
 );

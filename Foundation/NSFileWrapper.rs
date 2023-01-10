@@ -37,7 +37,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             url: &Foundation::NSURL,
             options: NSFileWrapperReadingOptions,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self, Shared>, Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initDirectoryWithFileWrappers:)]
@@ -125,7 +125,7 @@ extern_methods!(
             &self,
             url: &Foundation::NSURL,
             options: NSFileWrapperReadingOptions,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method(writeToURL:options:originalContentsURL:error:_)]
@@ -134,7 +134,7 @@ extern_methods!(
             url: &Foundation::NSURL,
             options: NSFileWrapperWritingOptions,
             originalContentsURL: Option<&Foundation::NSURL>,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<Foundation::NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other serializedRepresentation)]
