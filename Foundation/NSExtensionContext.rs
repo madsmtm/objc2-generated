@@ -15,9 +15,11 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Foundation_NSExtensionContext")]
     unsafe impl NSExtensionContext {
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other inputItems)]
         pub unsafe fn inputItems(&self) -> Id<NSArray, Shared>;
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(completeRequestReturningItems:completionHandler:)]
         pub unsafe fn completeRequestReturningItems_completionHandler(
             &self,
@@ -25,9 +27,11 @@ extern_methods!(
             completionHandler: Option<&Block<(Bool,), ()>>,
         );
 
+        #[cfg(feature = "Foundation_NSError")]
         #[method(cancelRequestWithError:)]
         pub unsafe fn cancelRequestWithError(&self, error: &NSError);
 
+        #[cfg(feature = "Foundation_NSURL")]
         #[method(openURL:completionHandler:)]
         pub unsafe fn openURL_completionHandler(
             &self,

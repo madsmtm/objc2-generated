@@ -197,6 +197,7 @@ extern_methods!(
             style: NSWindowStyleMask,
         ) -> NSRect;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(minFrameWidthWithTitle:styleMask:)]
         pub unsafe fn minFrameWidthWithTitle_styleMask(
             title: &NSString,
@@ -232,21 +233,26 @@ extern_methods!(
             screen: Option<&NSScreen>,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other subtitle)]
         pub unsafe fn subtitle(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setSubtitle:)]
         pub unsafe fn setSubtitle(&self, subtitle: &NSString);
 
@@ -274,13 +280,19 @@ extern_methods!(
         #[method_id(@__retain_semantics Other contentLayoutGuide)]
         pub unsafe fn contentLayoutGuide(&self) -> Option<Id<Object, Shared>>;
 
-        #[cfg(feature = "AppKit_NSTitlebarAccessoryViewController")]
+        #[cfg(all(
+            feature = "AppKit_NSTitlebarAccessoryViewController",
+            feature = "Foundation_NSArray"
+        ))]
         #[method_id(@__retain_semantics Other titlebarAccessoryViewControllers)]
         pub unsafe fn titlebarAccessoryViewControllers(
             &self,
         ) -> Id<NSArray<NSTitlebarAccessoryViewController>, Shared>;
 
-        #[cfg(feature = "AppKit_NSTitlebarAccessoryViewController")]
+        #[cfg(all(
+            feature = "AppKit_NSTitlebarAccessoryViewController",
+            feature = "Foundation_NSArray"
+        ))]
         #[method(setTitlebarAccessoryViewControllers:)]
         pub unsafe fn setTitlebarAccessoryViewControllers(
             &self,
@@ -305,18 +317,23 @@ extern_methods!(
         #[method(removeTitlebarAccessoryViewControllerAtIndex:)]
         pub unsafe fn removeTitlebarAccessoryViewControllerAtIndex(&self, index: NSInteger);
 
+        #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other representedURL)]
         pub unsafe fn representedURL(&self) -> Option<Id<NSURL, Shared>>;
 
+        #[cfg(feature = "Foundation_NSURL")]
         #[method(setRepresentedURL:)]
         pub unsafe fn setRepresentedURL(&self, representedURL: Option<&NSURL>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other representedFilename)]
         pub unsafe fn representedFilename(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setRepresentedFilename:)]
         pub unsafe fn setRepresentedFilename(&self, representedFilename: &NSString);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setTitleWithRepresentedFilename:)]
         pub unsafe fn setTitleWithRepresentedFilename(&self, filename: &NSString);
 
@@ -582,9 +599,11 @@ extern_methods!(
         #[method(setMiniwindowImage:)]
         pub unsafe fn setMiniwindowImage(&self, miniwindowImage: Option<&NSImage>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other miniwindowTitle)]
         pub unsafe fn miniwindowTitle(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setMiniwindowTitle:)]
         pub unsafe fn setMiniwindowTitle(&self, miniwindowTitle: Option<&NSString>);
 
@@ -686,9 +705,11 @@ extern_methods!(
         #[method(performZoom:)]
         pub unsafe fn performZoom(&self, sender: Option<&Object>);
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other dataWithEPSInsideRect:)]
         pub unsafe fn dataWithEPSInsideRect(&self, rect: NSRect) -> Id<NSData, Shared>;
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other dataWithPDFInsideRect:)]
         pub unsafe fn dataWithPDFInsideRect(&self, rect: NSRect) -> Id<NSData, Shared>;
 
@@ -878,7 +899,10 @@ extern_methods!(
         #[method(setMaxFullScreenContentSize:)]
         pub unsafe fn setMaxFullScreenContentSize(&self, maxFullScreenContentSize: NSSize);
 
-        #[cfg(feature = "AppKit_NSDeviceDescriptionKey")]
+        #[cfg(all(
+            feature = "AppKit_NSDeviceDescriptionKey",
+            feature = "Foundation_NSDictionary"
+        ))]
         #[method_id(@__retain_semantics Other deviceDescription)]
         pub unsafe fn deviceDescription(
             &self,
@@ -916,6 +940,7 @@ extern_methods!(
             returnCode: NSModalResponse,
         );
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other sheets)]
         pub unsafe fn sheets(&self) -> Id<NSArray<NSWindow>, Shared>;
 
@@ -952,6 +977,7 @@ extern_methods!(
         #[method(removeChildWindow:)]
         pub unsafe fn removeChildWindow(&self, childWin: &NSWindow);
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other childWindows)]
         pub unsafe fn childWindows(&self) -> Option<Id<NSArray<NSWindow>, Shared>>;
 
@@ -978,6 +1004,7 @@ extern_methods!(
         #[method(canRepresentDisplayGamut:)]
         pub unsafe fn canRepresentDisplayGamut(&self, displayGamut: NSDisplayGamut) -> bool;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method_id(@__retain_semantics Other windowNumbersWithOptions:)]
         pub unsafe fn windowNumbersWithOptions(
             options: NSWindowNumberListOptions,
@@ -1131,6 +1158,7 @@ extern_methods!(
         #[method(toggleTabOverview:)]
         pub unsafe fn toggleTabOverview(&self, sender: Option<&Object>);
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other tabbedWindows)]
         pub unsafe fn tabbedWindows(&self) -> Option<Id<NSArray<NSWindow>, Shared>>;
 
@@ -1158,7 +1186,7 @@ extern_methods!(
     /// NSEvent
     #[cfg(feature = "AppKit_NSWindow")]
     unsafe impl NSWindow {
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(all(feature = "AppKit_NSEvent", feature = "Foundation_NSRunLoopMode"))]
         #[method(trackEventsMatchingMask:timeout:mode:handler:)]
         pub unsafe fn trackEventsMatchingMask_timeout_mode_handler(
             &self,
@@ -1175,7 +1203,11 @@ extern_methods!(
             mask: NSEventMask,
         ) -> Option<Id<NSEvent, Shared>>;
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(all(
+            feature = "AppKit_NSEvent",
+            feature = "Foundation_NSDate",
+            feature = "Foundation_NSRunLoopMode"
+        ))]
         #[method_id(@__retain_semantics Other nextEventMatchingMask:untilDate:inMode:dequeue:)]
         pub unsafe fn nextEventMatchingMask_untilDate_inMode_dequeue(
             &self,
@@ -1268,7 +1300,7 @@ extern_methods!(
             slideFlag: bool,
         );
 
-        #[cfg(feature = "AppKit_NSPasteboardType")]
+        #[cfg(all(feature = "AppKit_NSPasteboardType", feature = "Foundation_NSArray"))]
         #[method(registerForDraggedTypes:)]
         pub unsafe fn registerForDraggedTypes(&self, newTypes: &NSArray<NSPasteboardType>);
 

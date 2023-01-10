@@ -7,7 +7,7 @@ use crate::Foundation::*;
 
 extern_methods!(
     /// NSExtensions
-    #[cfg(feature = "AppKit_NSFileWrapper")]
+    #[cfg(feature = "Foundation_NSFileWrapper")]
     unsafe impl NSFileWrapper {
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other icon)]

@@ -328,21 +328,27 @@ extern_methods!(
     /// NSGeometryKeyedCoding
     #[cfg(feature = "Foundation_NSCoder")]
     unsafe impl NSCoder {
+        #[cfg(feature = "Foundation_NSString")]
         #[method(encodePoint:forKey:)]
         pub unsafe fn encodePoint_forKey(&self, point: NSPoint, key: &NSString);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(encodeSize:forKey:)]
         pub unsafe fn encodeSize_forKey(&self, size: NSSize, key: &NSString);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(encodeRect:forKey:)]
         pub unsafe fn encodeRect_forKey(&self, rect: NSRect, key: &NSString);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(decodePointForKey:)]
         pub unsafe fn decodePointForKey(&self, key: &NSString) -> NSPoint;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(decodeSizeForKey:)]
         pub unsafe fn decodeSizeForKey(&self, key: &NSString) -> NSSize;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(decodeRectForKey:)]
         pub unsafe fn decodeRectForKey(&self, key: &NSString) -> NSRect;
     }

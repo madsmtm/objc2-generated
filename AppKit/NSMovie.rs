@@ -17,6 +17,7 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSMovie")]
     unsafe impl NSMovie {
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,

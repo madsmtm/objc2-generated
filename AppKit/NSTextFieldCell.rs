@@ -26,12 +26,14 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSTextFieldCell")]
     unsafe impl NSTextFieldCell {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initTextCell:)]
         pub unsafe fn initTextCell(
             this: Option<Allocated<Self>>,
             string: &NSString,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -77,15 +79,19 @@ extern_methods!(
         #[method(setBezelStyle:)]
         pub unsafe fn setBezelStyle(&self, bezelStyle: NSTextFieldBezelStyle);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other placeholderString)]
         pub unsafe fn placeholderString(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setPlaceholderString:)]
         pub unsafe fn setPlaceholderString(&self, placeholderString: Option<&NSString>);
 
+        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other placeholderAttributedString)]
         pub unsafe fn placeholderAttributedString(&self) -> Option<Id<NSAttributedString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setPlaceholderAttributedString:)]
         pub unsafe fn setPlaceholderAttributedString(
             &self,
@@ -95,9 +101,11 @@ extern_methods!(
         #[method(setWantsNotificationForMarkedText:)]
         pub unsafe fn setWantsNotificationForMarkedText(&self, flag: bool);
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other allowedInputSourceLocales)]
         pub unsafe fn allowedInputSourceLocales(&self) -> Option<Id<NSArray<NSString>, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setAllowedInputSourceLocales:)]
         pub unsafe fn setAllowedInputSourceLocales(
             &self,

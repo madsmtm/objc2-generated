@@ -82,6 +82,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other defaultManager)]
         pub unsafe fn defaultManager() -> Id<NSFileManager, Shared>;
 
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSURL",
+            feature = "Foundation_NSURLResourceKey"
+        ))]
         #[method_id(@__retain_semantics Other mountedVolumeURLsIncludingResourceValuesForKeys:options:)]
         pub unsafe fn mountedVolumeURLsIncludingResourceValuesForKeys_options(
             &self,
@@ -89,6 +94,7 @@ extern_methods!(
             options: NSVolumeEnumerationOptions,
         ) -> Option<Id<NSArray<NSURL>, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method(unmountVolumeAtURL:options:completionHandler:)]
         pub unsafe fn unmountVolumeAtURL_options_completionHandler(
             &self,
@@ -97,7 +103,12 @@ extern_methods!(
             completionHandler: &Block<(*mut NSError,), ()>,
         );
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSURL",
+            feature = "Foundation_NSURLResourceKey"
+        ))]
         #[method_id(@__retain_semantics Other contentsOfDirectoryAtURL:includingPropertiesForKeys:options:error:_)]
         pub unsafe fn contentsOfDirectoryAtURL_includingPropertiesForKeys_options_error(
             &self,
@@ -106,6 +117,7 @@ extern_methods!(
             mask: NSDirectoryEnumerationOptions,
         ) -> Result<Id<NSArray<NSURL>, Shared>, Id<NSError, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other URLsForDirectory:inDomains:)]
         pub unsafe fn URLsForDirectory_inDomains(
             &self,
@@ -113,7 +125,7 @@ extern_methods!(
             domainMask: NSSearchPathDomainMask,
         ) -> Id<NSArray<NSURL>, Shared>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other URLForDirectory:inDomain:appropriateForURL:create:error:_)]
         pub unsafe fn URLForDirectory_inDomain_appropriateForURL_create_error(
             &self,
@@ -123,7 +135,7 @@ extern_methods!(
             shouldCreate: bool,
         ) -> Result<Id<NSURL, Shared>, Id<NSError, Shared>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method(getRelationship:ofDirectoryAtURL:toItemAtURL:error:_)]
         pub unsafe fn getRelationship_ofDirectoryAtURL_toItemAtURL_error(
             &self,
@@ -132,7 +144,7 @@ extern_methods!(
             otherURL: &NSURL,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method(getRelationship:ofDirectory:inDomain:toItemAtURL:error:_)]
         pub unsafe fn getRelationship_ofDirectory_inDomain_toItemAtURL_error(
             &self,
@@ -142,7 +154,12 @@ extern_methods!(
             url: &NSURL,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSFileAttributeKey",
+            feature = "Foundation_NSURL"
+        ))]
         #[method(createDirectoryAtURL:withIntermediateDirectories:attributes:error:_)]
         pub unsafe fn createDirectoryAtURL_withIntermediateDirectories_attributes_error(
             &self,
@@ -151,7 +168,7 @@ extern_methods!(
             attributes: Option<&NSDictionary<NSFileAttributeKey, Object>>,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method(createSymbolicLinkAtURL:withDestinationURL:error:_)]
         pub unsafe fn createSymbolicLinkAtURL_withDestinationURL_error(
             &self,
@@ -159,13 +176,20 @@ extern_methods!(
             destURL: &NSURL,
         ) -> Result<(), Id<NSError, Shared>>;
 
+        #[cfg(feature = "Foundation_NSFileManagerDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSFileManagerDelegate, Shared>>;
 
+        #[cfg(feature = "Foundation_NSFileManagerDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&NSFileManagerDelegate>);
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSFileAttributeKey",
+            feature = "Foundation_NSString"
+        ))]
         #[method(setAttributes:ofItemAtPath:error:_)]
         pub unsafe fn setAttributes_ofItemAtPath_error(
             &self,
@@ -173,7 +197,12 @@ extern_methods!(
             path: &NSString,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSFileAttributeKey",
+            feature = "Foundation_NSString"
+        ))]
         #[method(createDirectoryAtPath:withIntermediateDirectories:attributes:error:_)]
         pub unsafe fn createDirectoryAtPath_withIntermediateDirectories_attributes_error(
             &self,
@@ -182,35 +211,53 @@ extern_methods!(
             attributes: Option<&NSDictionary<NSFileAttributeKey, Object>>,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other contentsOfDirectoryAtPath:error:_)]
         pub unsafe fn contentsOfDirectoryAtPath_error(
             &self,
             path: &NSString,
         ) -> Result<Id<NSArray<NSString>, Shared>, Id<NSError, Shared>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other subpathsOfDirectoryAtPath:error:_)]
         pub unsafe fn subpathsOfDirectoryAtPath_error(
             &self,
             path: &NSString,
         ) -> Result<Id<NSArray<NSString>, Shared>, Id<NSError, Shared>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSFileAttributeKey",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other attributesOfItemAtPath:error:_)]
         pub unsafe fn attributesOfItemAtPath_error(
             &self,
             path: &NSString,
         ) -> Result<Id<NSDictionary<NSFileAttributeKey, Object>, Shared>, Id<NSError, Shared>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSFileAttributeKey",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other attributesOfFileSystemForPath:error:_)]
         pub unsafe fn attributesOfFileSystemForPath_error(
             &self,
             path: &NSString,
         ) -> Result<Id<NSDictionary<NSFileAttributeKey, Object>, Shared>, Id<NSError, Shared>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method(createSymbolicLinkAtPath:withDestinationPath:error:_)]
         pub unsafe fn createSymbolicLinkAtPath_withDestinationPath_error(
             &self,
@@ -218,14 +265,14 @@ extern_methods!(
             destPath: &NSString,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other destinationOfSymbolicLinkAtPath:error:_)]
         pub unsafe fn destinationOfSymbolicLinkAtPath_error(
             &self,
             path: &NSString,
         ) -> Result<Id<NSString, Shared>, Id<NSError, Shared>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method(copyItemAtPath:toPath:error:_)]
         pub unsafe fn copyItemAtPath_toPath_error(
             &self,
@@ -233,7 +280,7 @@ extern_methods!(
             dstPath: &NSString,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method(moveItemAtPath:toPath:error:_)]
         pub unsafe fn moveItemAtPath_toPath_error(
             &self,
@@ -241,7 +288,7 @@ extern_methods!(
             dstPath: &NSString,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method(linkItemAtPath:toPath:error:_)]
         pub unsafe fn linkItemAtPath_toPath_error(
             &self,
@@ -249,14 +296,14 @@ extern_methods!(
             dstPath: &NSString,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method(removeItemAtPath:error:_)]
         pub unsafe fn removeItemAtPath_error(
             &self,
             path: &NSString,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method(copyItemAtURL:toURL:error:_)]
         pub unsafe fn copyItemAtURL_toURL_error(
             &self,
@@ -264,7 +311,7 @@ extern_methods!(
             dstURL: &NSURL,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method(moveItemAtURL:toURL:error:_)]
         pub unsafe fn moveItemAtURL_toURL_error(
             &self,
@@ -272,7 +319,7 @@ extern_methods!(
             dstURL: &NSURL,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method(linkItemAtURL:toURL:error:_)]
         pub unsafe fn linkItemAtURL_toURL_error(
             &self,
@@ -280,11 +327,11 @@ extern_methods!(
             dstURL: &NSURL,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method(removeItemAtURL:error:_)]
         pub unsafe fn removeItemAtURL_error(&self, URL: &NSURL) -> Result<(), Id<NSError, Shared>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method(trashItemAtURL:resultingItemURL:error:_)]
         pub unsafe fn trashItemAtURL_resultingItemURL_error(
             &self,
@@ -292,6 +339,7 @@ extern_methods!(
             outResultingURL: *mut *mut NSURL,
         ) -> Result<(), Id<NSError, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other fileAttributesAtPath:traverseLink:)]
         pub unsafe fn fileAttributesAtPath_traverseLink(
             &self,
@@ -299,6 +347,7 @@ extern_methods!(
             yorn: bool,
         ) -> Option<Id<NSDictionary, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(changeFileAttributes:atPath:)]
         pub unsafe fn changeFileAttributes_atPath(
             &self,
@@ -306,24 +355,28 @@ extern_methods!(
             path: &NSString,
         ) -> bool;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other directoryContentsAtPath:)]
         pub unsafe fn directoryContentsAtPath(
             &self,
             path: &NSString,
         ) -> Option<Id<NSArray, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other fileSystemAttributesAtPath:)]
         pub unsafe fn fileSystemAttributesAtPath(
             &self,
             path: &NSString,
         ) -> Option<Id<NSDictionary, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other pathContentOfSymbolicLinkAtPath:)]
         pub unsafe fn pathContentOfSymbolicLinkAtPath(
             &self,
             path: &NSString,
         ) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(createSymbolicLinkAtPath:pathContent:)]
         pub unsafe fn createSymbolicLinkAtPath_pathContent(
             &self,
@@ -331,6 +384,7 @@ extern_methods!(
             otherpath: &NSString,
         ) -> bool;
 
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(createDirectoryAtPath:attributes:)]
         pub unsafe fn createDirectoryAtPath_attributes(
             &self,
@@ -338,6 +392,7 @@ extern_methods!(
             attributes: &NSDictionary,
         ) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(linkPath:toPath:handler:)]
         pub unsafe fn linkPath_toPath_handler(
             &self,
@@ -346,6 +401,7 @@ extern_methods!(
             handler: Option<&Object>,
         ) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(copyPath:toPath:handler:)]
         pub unsafe fn copyPath_toPath_handler(
             &self,
@@ -354,6 +410,7 @@ extern_methods!(
             handler: Option<&Object>,
         ) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(movePath:toPath:handler:)]
         pub unsafe fn movePath_toPath_handler(
             &self,
@@ -362,6 +419,7 @@ extern_methods!(
             handler: Option<&Object>,
         ) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(removeFileAtPath:handler:)]
         pub unsafe fn removeFileAtPath_handler(
             &self,
@@ -369,15 +427,19 @@ extern_methods!(
             handler: Option<&Object>,
         ) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other currentDirectoryPath)]
         pub unsafe fn currentDirectoryPath(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(changeCurrentDirectoryPath:)]
         pub unsafe fn changeCurrentDirectoryPath(&self, path: &NSString) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(fileExistsAtPath:)]
         pub unsafe fn fileExistsAtPath(&self, path: &NSString) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(fileExistsAtPath:isDirectory:)]
         pub unsafe fn fileExistsAtPath_isDirectory(
             &self,
@@ -385,18 +447,23 @@ extern_methods!(
             isDirectory: *mut Bool,
         ) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(isReadableFileAtPath:)]
         pub unsafe fn isReadableFileAtPath(&self, path: &NSString) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(isWritableFileAtPath:)]
         pub unsafe fn isWritableFileAtPath(&self, path: &NSString) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(isExecutableFileAtPath:)]
         pub unsafe fn isExecutableFileAtPath(&self, path: &NSString) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(isDeletableFileAtPath:)]
         pub unsafe fn isDeletableFileAtPath(&self, path: &NSString) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(contentsEqualAtPath:andPath:)]
         pub unsafe fn contentsEqualAtPath_andPath(
             &self,
@@ -404,21 +471,34 @@ extern_methods!(
             path2: &NSString,
         ) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other displayNameAtPath:)]
         pub unsafe fn displayNameAtPath(&self, path: &NSString) -> Id<NSString, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other componentsToDisplayForPath:)]
         pub unsafe fn componentsToDisplayForPath(
             &self,
             path: &NSString,
         ) -> Option<Id<NSArray<NSString>, Shared>>;
 
+        #[cfg(all(
+            feature = "Foundation_NSDirectoryEnumerator",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other enumeratorAtPath:)]
         pub unsafe fn enumeratorAtPath(
             &self,
             path: &NSString,
         ) -> Option<Id<NSDirectoryEnumerator<NSString>, Shared>>;
 
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSDirectoryEnumerator",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSURL",
+            feature = "Foundation_NSURLResourceKey"
+        ))]
         #[method_id(@__retain_semantics Other enumeratorAtURL:includingPropertiesForKeys:options:errorHandler:)]
         pub unsafe fn enumeratorAtURL_includingPropertiesForKeys_options_errorHandler(
             &self,
@@ -428,15 +508,23 @@ extern_methods!(
             handler: Option<&Block<(NonNull<NSURL>, NonNull<NSError>), Bool>>,
         ) -> Option<Id<NSDirectoryEnumerator<NSURL>, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other subpathsAtPath:)]
         pub unsafe fn subpathsAtPath(
             &self,
             path: &NSString,
         ) -> Option<Id<NSArray<NSString>, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other contentsAtPath:)]
         pub unsafe fn contentsAtPath(&self, path: &NSString) -> Option<Id<NSData, Shared>>;
 
+        #[cfg(all(
+            feature = "Foundation_NSData",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSFileAttributeKey",
+            feature = "Foundation_NSString"
+        ))]
         #[method(createFileAtPath:contents:attributes:)]
         pub unsafe fn createFileAtPath_contents_attributes(
             &self,
@@ -445,9 +533,11 @@ extern_methods!(
             attr: Option<&NSDictionary<NSFileAttributeKey, Object>>,
         ) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(fileSystemRepresentationWithPath:)]
         pub unsafe fn fileSystemRepresentationWithPath(&self, path: &NSString) -> NonNull<c_char>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringWithFileSystemRepresentation:length:)]
         pub unsafe fn stringWithFileSystemRepresentation_length(
             &self,
@@ -455,7 +545,11 @@ extern_methods!(
             len: NSUInteger,
         ) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSURL"
+        ))]
         #[method(replaceItemAtURL:withItemAtURL:backupItemName:options:resultingItemURL:error:_)]
         pub unsafe fn replaceItemAtURL_withItemAtURL_backupItemName_options_resultingItemURL_error(
             &self,
@@ -466,7 +560,7 @@ extern_methods!(
             resultingURL: *mut *mut NSURL,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method(setUbiquitous:itemAtURL:destinationURL:error:_)]
         pub unsafe fn setUbiquitous_itemAtURL_destinationURL_error(
             &self,
@@ -475,30 +569,36 @@ extern_methods!(
             destinationURL: &NSURL,
         ) -> Result<(), Id<NSError, Shared>>;
 
+        #[cfg(feature = "Foundation_NSURL")]
         #[method(isUbiquitousItemAtURL:)]
         pub unsafe fn isUbiquitousItemAtURL(&self, url: &NSURL) -> bool;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method(startDownloadingUbiquitousItemAtURL:error:_)]
         pub unsafe fn startDownloadingUbiquitousItemAtURL_error(
             &self,
             url: &NSURL,
         ) -> Result<(), Id<NSError, Shared>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method(evictUbiquitousItemAtURL:error:_)]
         pub unsafe fn evictUbiquitousItemAtURL_error(
             &self,
             url: &NSURL,
         ) -> Result<(), Id<NSError, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other URLForUbiquityContainerIdentifier:)]
         pub unsafe fn URLForUbiquityContainerIdentifier(
             &self,
             containerIdentifier: Option<&NSString>,
         ) -> Option<Id<NSURL, Shared>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(
+            feature = "Foundation_NSDate",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSURL"
+        ))]
         #[method_id(@__retain_semantics Other URLForPublishingUbiquitousItemAtURL:expirationDate:error:_)]
         pub unsafe fn URLForPublishingUbiquitousItemAtURL_expirationDate_error(
             &self,
@@ -509,6 +609,13 @@ extern_methods!(
         #[method_id(@__retain_semantics Other ubiquityIdentityToken)]
         pub unsafe fn ubiquityIdentityToken(&self) -> Option<Id<TodoProtocols, Shared>>;
 
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSFileProviderService",
+            feature = "Foundation_NSFileProviderServiceName",
+            feature = "Foundation_NSURL"
+        ))]
         #[method(getFileProviderServicesForItemAtURL:completionHandler:)]
         pub unsafe fn getFileProviderServicesForItemAtURL_completionHandler(
             &self,
@@ -522,6 +629,7 @@ extern_methods!(
             >,
         );
 
+        #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other containerURLForSecurityApplicationGroupIdentifier:)]
         pub unsafe fn containerURLForSecurityApplicationGroupIdentifier(
             &self,
@@ -534,12 +642,15 @@ extern_methods!(
     /// NSUserInformation
     #[cfg(feature = "Foundation_NSFileManager")]
     unsafe impl NSFileManager {
+        #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other homeDirectoryForCurrentUser)]
         pub unsafe fn homeDirectoryForCurrentUser(&self) -> Id<NSURL, Shared>;
 
+        #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other temporaryDirectory)]
         pub unsafe fn temporaryDirectory(&self) -> Id<NSURL, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other homeDirectoryForUser:)]
         pub unsafe fn homeDirectoryForUser(&self, userName: &NSString)
             -> Option<Id<NSURL, Shared>>;
@@ -723,11 +834,19 @@ extern_methods!(
     unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
         NSDirectoryEnumerator<ObjectType, ObjectTypeOwnership>
     {
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSFileAttributeKey"
+        ))]
         #[method_id(@__retain_semantics Other fileAttributes)]
         pub unsafe fn fileAttributes(
             &self,
         ) -> Option<Id<NSDictionary<NSFileAttributeKey, Object>, Shared>>;
 
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSFileAttributeKey"
+        ))]
         #[method_id(@__retain_semantics Other directoryAttributes)]
         pub unsafe fn directoryAttributes(
             &self,
@@ -759,12 +878,14 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Foundation_NSFileProviderService")]
     unsafe impl NSFileProviderService {
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSXPCConnection"))]
         #[method(getFileProviderConnectionWithCompletionHandler:)]
         pub unsafe fn getFileProviderConnectionWithCompletionHandler(
             &self,
             completionHandler: &Block<(*mut NSXPCConnection, *mut NSError), ()>,
         );
 
+        #[cfg(feature = "Foundation_NSFileProviderServiceName")]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Id<NSFileProviderServiceName, Shared>;
     }
@@ -853,18 +974,22 @@ extern_methods!(
         #[method(fileSize)]
         pub unsafe fn fileSize(&self) -> c_ulonglong;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other fileModificationDate)]
         pub unsafe fn fileModificationDate(&self) -> Option<Id<NSDate, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fileType)]
         pub unsafe fn fileType(&self) -> Option<Id<NSString, Shared>>;
 
         #[method(filePosixPermissions)]
         pub unsafe fn filePosixPermissions(&self) -> NSUInteger;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fileOwnerAccountName)]
         pub unsafe fn fileOwnerAccountName(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fileGroupOwnerAccountName)]
         pub unsafe fn fileGroupOwnerAccountName(&self) -> Option<Id<NSString, Shared>>;
 
@@ -889,12 +1014,15 @@ extern_methods!(
         #[method(fileIsAppendOnly)]
         pub unsafe fn fileIsAppendOnly(&self) -> bool;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other fileCreationDate)]
         pub unsafe fn fileCreationDate(&self) -> Option<Id<NSDate, Shared>>;
 
+        #[cfg(feature = "Foundation_NSNumber")]
         #[method_id(@__retain_semantics Other fileOwnerAccountID)]
         pub unsafe fn fileOwnerAccountID(&self) -> Option<Id<NSNumber, Shared>>;
 
+        #[cfg(feature = "Foundation_NSNumber")]
         #[method_id(@__retain_semantics Other fileGroupOwnerAccountID)]
         pub unsafe fn fileGroupOwnerAccountID(&self) -> Option<Id<NSNumber, Shared>>;
     }

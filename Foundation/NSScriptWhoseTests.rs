@@ -35,6 +35,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -56,12 +57,14 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Foundation_NSLogicalTest")]
     unsafe impl NSLogicalTest {
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSSpecifierTest"))]
         #[method_id(@__retain_semantics Init initAndTestWithTests:)]
         pub unsafe fn initAndTestWithTests(
             this: Option<Allocated<Self>>,
             subTests: &NSArray<NSSpecifierTest>,
         ) -> Id<Self, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSSpecifierTest"))]
         #[method_id(@__retain_semantics Init initOrTestWithTests:)]
         pub unsafe fn initOrTestWithTests(
             this: Option<Allocated<Self>>,
@@ -92,12 +95,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             inCoder: &NSCoder,
         ) -> Option<Id<Self, Shared>>;
 
+        #[cfg(feature = "Foundation_NSScriptObjectSpecifier")]
         #[method_id(@__retain_semantics Init initWithObjectSpecifier:comparisonOperator:testObject:)]
         pub unsafe fn initWithObjectSpecifier_comparisonOperator_testObject(
             this: Option<Allocated<Self>>,

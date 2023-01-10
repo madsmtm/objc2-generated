@@ -25,25 +25,34 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDCredential")]
     unsafe impl ASAuthorizationAppleIDCredential {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other user)]
         pub unsafe fn user(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other state)]
         pub unsafe fn state(&self) -> Option<Id<NSString, Shared>>;
 
-        #[cfg(feature = "AuthenticationServices_ASAuthorizationScope")]
+        #[cfg(all(
+            feature = "AuthenticationServices_ASAuthorizationScope",
+            feature = "Foundation_NSArray"
+        ))]
         #[method_id(@__retain_semantics Other authorizedScopes)]
         pub unsafe fn authorizedScopes(&self) -> Id<NSArray<ASAuthorizationScope>, Shared>;
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other authorizationCode)]
         pub unsafe fn authorizationCode(&self) -> Option<Id<NSData, Shared>>;
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other identityToken)]
         pub unsafe fn identityToken(&self) -> Option<Id<NSData, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other email)]
         pub unsafe fn email(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSPersonNameComponents")]
         #[method_id(@__retain_semantics Other fullName)]
         pub unsafe fn fullName(&self) -> Option<Id<NSPersonNameComponents, Shared>>;
 

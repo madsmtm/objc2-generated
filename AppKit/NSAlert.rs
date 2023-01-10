@@ -32,18 +32,23 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSAlert")]
     unsafe impl NSAlert {
+        #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other alertWithError:)]
         pub unsafe fn alertWithError(error: &NSError) -> Id<NSAlert, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other messageText)]
         pub unsafe fn messageText(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setMessageText:)]
         pub unsafe fn setMessageText(&self, messageText: &NSString);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other informativeText)]
         pub unsafe fn informativeText(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setInformativeText:)]
         pub unsafe fn setInformativeText(&self, informativeText: &NSString);
 
@@ -55,11 +60,11 @@ extern_methods!(
         #[method(setIcon:)]
         pub unsafe fn setIcon(&self, icon: Option<&NSImage>);
 
-        #[cfg(feature = "AppKit_NSButton")]
+        #[cfg(all(feature = "AppKit_NSButton", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other addButtonWithTitle:)]
         pub unsafe fn addButtonWithTitle(&self, title: &NSString) -> Id<NSButton, Shared>;
 
-        #[cfg(feature = "AppKit_NSButton")]
+        #[cfg(all(feature = "AppKit_NSButton", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other buttons)]
         pub unsafe fn buttons(&self) -> Id<NSArray<NSButton>, Shared>;
 

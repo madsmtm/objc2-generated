@@ -23,7 +23,9 @@ extern_methods!(
     unsafe impl NSApplication {
         #[cfg(all(
             feature = "AppKit_NSUserInterfaceItemIdentifier",
-            feature = "AppKit_NSWindow"
+            feature = "AppKit_NSWindow",
+            feature = "Foundation_NSCoder",
+            feature = "Foundation_NSError"
         ))]
         #[method(restoreWindowWithIdentifier:state:completionHandler:)]
         pub unsafe fn restoreWindowWithIdentifier_state_completionHandler(
@@ -65,9 +67,14 @@ extern_methods!(
     /// NSRestorableState
     #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSResponder {
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method(encodeRestorableStateWithCoder:)]
         pub unsafe fn encodeRestorableStateWithCoder(&self, coder: &NSCoder);
 
+        #[cfg(all(
+            feature = "Foundation_NSCoder",
+            feature = "Foundation_NSOperationQueue"
+        ))]
         #[method(encodeRestorableStateWithCoder:backgroundQueue:)]
         pub unsafe fn encodeRestorableStateWithCoder_backgroundQueue(
             &self,
@@ -75,15 +82,18 @@ extern_methods!(
             queue: &NSOperationQueue,
         );
 
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method(restoreStateWithCoder:)]
         pub unsafe fn restoreStateWithCoder(&self, coder: &NSCoder);
 
         #[method(invalidateRestorableState)]
         pub unsafe fn invalidateRestorableState(&self);
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other restorableStateKeyPaths)]
         pub unsafe fn restorableStateKeyPaths() -> Id<NSArray<NSString>, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other allowedClassesForRestorableStateKeyPath:)]
         pub unsafe fn allowedClassesForRestorableStateKeyPath(
             keyPath: &NSString,
@@ -109,7 +119,9 @@ extern_methods!(
     unsafe impl NSDocument {
         #[cfg(all(
             feature = "AppKit_NSUserInterfaceItemIdentifier",
-            feature = "AppKit_NSWindow"
+            feature = "AppKit_NSWindow",
+            feature = "Foundation_NSCoder",
+            feature = "Foundation_NSError"
         ))]
         #[method(restoreDocumentWindowWithIdentifier:state:completionHandler:)]
         pub unsafe fn restoreDocumentWindowWithIdentifier_state_completionHandler(
@@ -119,9 +131,14 @@ extern_methods!(
             completionHandler: &Block<(*mut NSWindow, *mut NSError), ()>,
         );
 
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method(encodeRestorableStateWithCoder:)]
         pub unsafe fn encodeRestorableStateWithCoder(&self, coder: &NSCoder);
 
+        #[cfg(all(
+            feature = "Foundation_NSCoder",
+            feature = "Foundation_NSOperationQueue"
+        ))]
         #[method(encodeRestorableStateWithCoder:backgroundQueue:)]
         pub unsafe fn encodeRestorableStateWithCoder_backgroundQueue(
             &self,
@@ -129,15 +146,18 @@ extern_methods!(
             queue: &NSOperationQueue,
         );
 
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method(restoreStateWithCoder:)]
         pub unsafe fn restoreStateWithCoder(&self, coder: &NSCoder);
 
         #[method(invalidateRestorableState)]
         pub unsafe fn invalidateRestorableState(&self);
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other restorableStateKeyPaths)]
         pub unsafe fn restorableStateKeyPaths() -> Id<NSArray<NSString>, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other allowedClassesForRestorableStateKeyPath:)]
         pub unsafe fn allowedClassesForRestorableStateKeyPath(
             keyPath: &NSString,

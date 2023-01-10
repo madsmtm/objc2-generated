@@ -26,7 +26,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other mainStoryboard)]
         pub unsafe fn mainStoryboard() -> Option<Id<NSStoryboard, Shared>>;
 
-        #[cfg(feature = "AppKit_NSStoryboardName")]
+        #[cfg(all(feature = "AppKit_NSStoryboardName", feature = "Foundation_NSBundle"))]
         #[method_id(@__retain_semantics Other storyboardWithName:bundle:)]
         pub unsafe fn storyboardWithName_bundle(
             name: &NSStoryboardName,

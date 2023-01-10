@@ -53,6 +53,7 @@ extern_methods!(
     unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
         NSArray<ObjectType, ObjectTypeOwnership>
     {
+        #[cfg(all(feature = "Foundation_NSIndexSet", feature = "Foundation_NSString"))]
         #[method(addObserver:toObjectsAtIndexes:forKeyPath:options:context:)]
         pub unsafe fn addObserver_toObjectsAtIndexes_forKeyPath_options_context(
             &self,
@@ -63,6 +64,7 @@ extern_methods!(
             context: *mut c_void,
         );
 
+        #[cfg(all(feature = "Foundation_NSIndexSet", feature = "Foundation_NSString"))]
         #[method(removeObserver:fromObjectsAtIndexes:forKeyPath:context:)]
         pub unsafe fn removeObserver_fromObjectsAtIndexes_forKeyPath_context(
             &self,
@@ -72,6 +74,7 @@ extern_methods!(
             context: *mut c_void,
         );
 
+        #[cfg(all(feature = "Foundation_NSIndexSet", feature = "Foundation_NSString"))]
         #[method(removeObserver:fromObjectsAtIndexes:forKeyPath:)]
         pub unsafe fn removeObserver_fromObjectsAtIndexes_forKeyPath(
             &self,
@@ -80,6 +83,7 @@ extern_methods!(
             keyPath: &NSString,
         );
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(addObserver:forKeyPath:options:context:)]
         pub unsafe fn addObserver_forKeyPath_options_context(
             &self,
@@ -89,6 +93,7 @@ extern_methods!(
             context: *mut c_void,
         );
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(removeObserver:forKeyPath:context:)]
         pub unsafe fn removeObserver_forKeyPath_context(
             &self,
@@ -97,6 +102,7 @@ extern_methods!(
             context: *mut c_void,
         );
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(removeObserver:forKeyPath:)]
         pub unsafe fn removeObserver_forKeyPath(&self, observer: &NSObject, keyPath: &NSString);
     }
@@ -108,6 +114,7 @@ extern_methods!(
     unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
         NSOrderedSet<ObjectType, ObjectTypeOwnership>
     {
+        #[cfg(feature = "Foundation_NSString")]
         #[method(addObserver:forKeyPath:options:context:)]
         pub unsafe fn addObserver_forKeyPath_options_context(
             &self,
@@ -117,6 +124,7 @@ extern_methods!(
             context: *mut c_void,
         );
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(removeObserver:forKeyPath:context:)]
         pub unsafe fn removeObserver_forKeyPath_context(
             &self,
@@ -125,6 +133,7 @@ extern_methods!(
             context: *mut c_void,
         );
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(removeObserver:forKeyPath:)]
         pub unsafe fn removeObserver_forKeyPath(&self, observer: &NSObject, keyPath: &NSString);
     }
@@ -136,6 +145,7 @@ extern_methods!(
     unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
         NSSet<ObjectType, ObjectTypeOwnership>
     {
+        #[cfg(feature = "Foundation_NSString")]
         #[method(addObserver:forKeyPath:options:context:)]
         pub unsafe fn addObserver_forKeyPath_options_context(
             &self,
@@ -145,6 +155,7 @@ extern_methods!(
             context: *mut c_void,
         );
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(removeObserver:forKeyPath:context:)]
         pub unsafe fn removeObserver_forKeyPath_context(
             &self,
@@ -153,6 +164,7 @@ extern_methods!(
             context: *mut c_void,
         );
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(removeObserver:forKeyPath:)]
         pub unsafe fn removeObserver_forKeyPath(&self, observer: &NSObject, keyPath: &NSString);
     }

@@ -145,6 +145,7 @@ extern_methods!(
         #[method(setSendsActionOnArrowKeys:)]
         pub unsafe fn setSendsActionOnArrowKeys(&self, sendsActionOnArrowKeys: bool);
 
+        #[cfg(feature = "Foundation_NSIndexPath")]
         #[method_id(@__retain_semantics Other itemAtIndexPath:)]
         pub unsafe fn itemAtIndexPath(&self, indexPath: &NSIndexPath)
             -> Option<Id<Object, Shared>>;
@@ -156,12 +157,14 @@ extern_methods!(
             column: NSInteger,
         ) -> Option<Id<Object, Shared>>;
 
+        #[cfg(feature = "Foundation_NSIndexPath")]
         #[method_id(@__retain_semantics Other indexPathForColumn:)]
         pub unsafe fn indexPathForColumn(&self, column: NSInteger) -> Id<NSIndexPath, Shared>;
 
         #[method(isLeafItem:)]
         pub unsafe fn isLeafItem(&self, item: Option<&Object>) -> bool;
 
+        #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(reloadDataForRowIndexes:inColumn:)]
         pub unsafe fn reloadDataForRowIndexes_inColumn(
             &self,
@@ -178,24 +181,31 @@ extern_methods!(
         #[method(scrollRowToVisible:inColumn:)]
         pub unsafe fn scrollRowToVisible_inColumn(&self, row: NSInteger, column: NSInteger);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setTitle:ofColumn:)]
         pub unsafe fn setTitle_ofColumn(&self, string: &NSString, column: NSInteger);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other titleOfColumn:)]
         pub unsafe fn titleOfColumn(&self, column: NSInteger) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other pathSeparator)]
         pub unsafe fn pathSeparator(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setPathSeparator:)]
         pub unsafe fn setPathSeparator(&self, pathSeparator: &NSString);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setPath:)]
         pub unsafe fn setPath(&self, path: &NSString) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other path)]
         pub unsafe fn path(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other pathToColumn:)]
         pub unsafe fn pathToColumn(&self, column: NSInteger) -> Id<NSString, Shared>;
 
@@ -214,7 +224,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other selectedCellInColumn:)]
         pub unsafe fn selectedCellInColumn(&self, column: NSInteger) -> Option<Id<Object, Shared>>;
 
-        #[cfg(feature = "AppKit_NSCell")]
+        #[cfg(all(feature = "AppKit_NSCell", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other selectedCells)]
         pub unsafe fn selectedCells(&self) -> Option<Id<NSArray<NSCell>, Shared>>;
 
@@ -224,21 +234,27 @@ extern_methods!(
         #[method(selectedRowInColumn:)]
         pub unsafe fn selectedRowInColumn(&self, column: NSInteger) -> NSInteger;
 
+        #[cfg(feature = "Foundation_NSIndexPath")]
         #[method_id(@__retain_semantics Other selectionIndexPath)]
         pub unsafe fn selectionIndexPath(&self) -> Option<Id<NSIndexPath, Shared>>;
 
+        #[cfg(feature = "Foundation_NSIndexPath")]
         #[method(setSelectionIndexPath:)]
         pub unsafe fn setSelectionIndexPath(&self, selectionIndexPath: Option<&NSIndexPath>);
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSIndexPath"))]
         #[method_id(@__retain_semantics Other selectionIndexPaths)]
         pub unsafe fn selectionIndexPaths(&self) -> Id<NSArray<NSIndexPath>, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSIndexPath"))]
         #[method(setSelectionIndexPaths:)]
         pub unsafe fn setSelectionIndexPaths(&self, selectionIndexPaths: &NSArray<NSIndexPath>);
 
+        #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(selectRowIndexes:inColumn:)]
         pub unsafe fn selectRowIndexes_inColumn(&self, indexes: &NSIndexSet, column: NSInteger);
 
+        #[cfg(feature = "Foundation_NSIndexSet")]
         #[method_id(@__retain_semantics Other selectedRowIndexesInColumn:)]
         pub unsafe fn selectedRowIndexesInColumn(
             &self,
@@ -359,6 +375,7 @@ extern_methods!(
         #[method(setRowHeight:)]
         pub unsafe fn setRowHeight(&self, rowHeight: CGFloat);
 
+        #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(noteHeightOfRowsWithIndexesChanged:inColumn:)]
         pub unsafe fn noteHeightOfRowsWithIndexesChanged_inColumn(
             &self,
@@ -387,7 +404,7 @@ extern_methods!(
         #[method(removeSavedColumnsWithAutosaveName:)]
         pub unsafe fn removeSavedColumnsWithAutosaveName(name: &NSBrowserColumnsAutosaveName);
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(all(feature = "AppKit_NSEvent", feature = "Foundation_NSIndexSet"))]
         #[method(canDragRowsWithIndexes:inColumn:withEvent:)]
         pub unsafe fn canDragRowsWithIndexes_inColumn_withEvent(
             &self,
@@ -396,7 +413,11 @@ extern_methods!(
             event: &NSEvent,
         ) -> bool;
 
-        #[cfg(all(feature = "AppKit_NSEvent", feature = "AppKit_NSImage"))]
+        #[cfg(all(
+            feature = "AppKit_NSEvent",
+            feature = "AppKit_NSImage",
+            feature = "Foundation_NSIndexSet"
+        ))]
         #[method_id(@__retain_semantics Other draggingImageForRowsWithIndexes:inColumn:withEvent:offset:)]
         pub unsafe fn draggingImageForRowsWithIndexes_inColumn_withEvent_offset(
             &self,
@@ -427,7 +448,7 @@ extern_methods!(
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, backgroundColor: &NSColor);
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(all(feature = "AppKit_NSEvent", feature = "Foundation_NSIndexPath"))]
         #[method(editItemAtIndexPath:withEvent:select:)]
         pub unsafe fn editItemAtIndexPath_withEvent_select(
             &self,

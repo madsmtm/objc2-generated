@@ -44,21 +44,27 @@ extern_methods!(
         #[method_id(@__retain_semantics Other toolbar)]
         pub unsafe fn toolbar(&self) -> Option<Id<NSToolbar, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
         pub unsafe fn label(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:)]
         pub unsafe fn setLabel(&self, label: &NSString);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other paletteLabel)]
         pub unsafe fn paletteLabel(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setPaletteLabel:)]
         pub unsafe fn setPaletteLabel(&self, paletteLabel: &NSString);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other toolTip)]
         pub unsafe fn toolTip(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setToolTip:)]
         pub unsafe fn setToolTip(&self, toolTip: Option<&NSString>);
 
@@ -102,9 +108,11 @@ extern_methods!(
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&NSImage>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
 

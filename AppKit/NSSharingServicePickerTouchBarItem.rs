@@ -37,9 +37,11 @@ extern_methods!(
         #[method(setEnabled:)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other buttonTitle)]
         pub unsafe fn buttonTitle(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setButtonTitle:)]
         pub unsafe fn setButtonTitle(&self, buttonTitle: &NSString);
 

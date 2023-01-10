@@ -25,6 +25,7 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Foundation_NSCompoundPredicate")]
     unsafe impl NSCompoundPredicate {
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Init initWithType:subpredicates:)]
         pub unsafe fn initWithType_subpredicates(
             this: Option<Allocated<Self>>,
@@ -32,6 +33,7 @@ extern_methods!(
             subpredicates: &NSArray<NSPredicate>,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -41,14 +43,17 @@ extern_methods!(
         #[method(compoundPredicateType)]
         pub unsafe fn compoundPredicateType(&self) -> NSCompoundPredicateType;
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other subpredicates)]
         pub unsafe fn subpredicates(&self) -> Id<NSArray, Shared>;
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other andPredicateWithSubpredicates:)]
         pub unsafe fn andPredicateWithSubpredicates(
             subpredicates: &NSArray<NSPredicate>,
         ) -> Id<NSCompoundPredicate, Shared>;
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other orPredicateWithSubpredicates:)]
         pub unsafe fn orPredicateWithSubpredicates(
             subpredicates: &NSArray<NSPredicate>,

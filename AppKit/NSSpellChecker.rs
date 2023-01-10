@@ -71,6 +71,7 @@ extern_methods!(
         #[method(uniqueSpellDocumentTag)]
         pub unsafe fn uniqueSpellDocumentTag() -> NSInteger;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(checkSpellingOfString:startingAt:language:wrap:inSpellDocumentWithTag:wordCount:)]
         pub unsafe fn checkSpellingOfString_startingAt_language_wrap_inSpellDocumentWithTag_wordCount(
             &self,
@@ -82,6 +83,7 @@ extern_methods!(
             wordCount: *mut NSInteger,
         ) -> NSRange;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(checkSpellingOfString:startingAt:)]
         pub unsafe fn checkSpellingOfString_startingAt(
             &self,
@@ -89,6 +91,7 @@ extern_methods!(
             startingOffset: NSInteger,
         ) -> NSRange;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(countWordsInString:language:)]
         pub unsafe fn countWordsInString_language(
             &self,
@@ -96,6 +99,11 @@ extern_methods!(
             language: Option<&NSString>,
         ) -> NSInteger;
 
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString"
+        ))]
         #[method(checkGrammarOfString:startingAt:language:wrap:inSpellDocumentWithTag:details:)]
         pub unsafe fn checkGrammarOfString_startingAt_language_wrap_inSpellDocumentWithTag_details(
             &self,
@@ -107,7 +115,14 @@ extern_methods!(
             details: *mut *mut NSArray<NSDictionary<NSString, Object>>,
         ) -> NSRange;
 
-        #[cfg(feature = "AppKit_NSTextCheckingOptionKey")]
+        #[cfg(all(
+            feature = "AppKit_NSTextCheckingOptionKey",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSOrthography",
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSTextCheckingResult"
+        ))]
         #[method_id(@__retain_semantics Other checkString:range:types:options:inSpellDocumentWithTag:orthography:wordCount:)]
         pub unsafe fn checkString_range_types_options_inSpellDocumentWithTag_orthography_wordCount(
             &self,
@@ -120,7 +135,14 @@ extern_methods!(
             wordCount: *mut NSInteger,
         ) -> Id<NSArray<NSTextCheckingResult>, Shared>;
 
-        #[cfg(feature = "AppKit_NSTextCheckingOptionKey")]
+        #[cfg(all(
+            feature = "AppKit_NSTextCheckingOptionKey",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSOrthography",
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSTextCheckingResult"
+        ))]
         #[method(requestCheckingOfString:range:types:options:inSpellDocumentWithTag:completionHandler:)]
         pub unsafe fn requestCheckingOfString_range_types_options_inSpellDocumentWithTag_completionHandler(
             &self,
@@ -142,7 +164,13 @@ extern_methods!(
             >,
         ) -> NSInteger;
 
-        #[cfg(feature = "AppKit_NSTextCheckingOptionKey")]
+        #[cfg(all(
+            feature = "AppKit_NSTextCheckingOptionKey",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSTextCheckingResult"
+        ))]
         #[method(requestCandidatesForSelectedRange:inString:types:options:inSpellDocumentWithTag:completionHandler:)]
         pub unsafe fn requestCandidatesForSelectedRange_inString_types_options_inSpellDocumentWithTag_completionHandler(
             &self,
@@ -159,7 +187,10 @@ extern_methods!(
         #[cfg(all(
             feature = "AppKit_NSMenu",
             feature = "AppKit_NSTextCheckingOptionKey",
-            feature = "AppKit_NSView"
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSTextCheckingResult"
         ))]
         #[method_id(@__retain_semantics Other menuForResult:string:options:atLocation:inView:)]
         pub unsafe fn menuForResult_string_options_atLocation_inView(
@@ -171,20 +202,24 @@ extern_methods!(
             view: &NSView,
         ) -> Option<Id<NSMenu, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other userQuotesArrayForLanguage:)]
         pub unsafe fn userQuotesArrayForLanguage(
             &self,
             language: &NSString,
         ) -> Id<NSArray<NSString>, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other userReplacementsDictionary)]
         pub unsafe fn userReplacementsDictionary(
             &self,
         ) -> Id<NSDictionary<NSString, NSString>, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(updateSpellingPanelWithMisspelledWord:)]
         pub unsafe fn updateSpellingPanelWithMisspelledWord(&self, word: &NSString);
 
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(updateSpellingPanelWithGrammarString:detail:)]
         pub unsafe fn updateSpellingPanelWithGrammarString_detail(
             &self,
@@ -224,6 +259,7 @@ extern_methods!(
         #[method(updatePanels)]
         pub unsafe fn updatePanels(&self);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(ignoreWord:inSpellDocumentWithTag:)]
         pub unsafe fn ignoreWord_inSpellDocumentWithTag(
             &self,
@@ -231,12 +267,14 @@ extern_methods!(
             tag: NSInteger,
         );
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other ignoredWordsInSpellDocumentWithTag:)]
         pub unsafe fn ignoredWordsInSpellDocumentWithTag(
             &self,
             tag: NSInteger,
         ) -> Option<Id<NSArray<NSString>, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setIgnoredWords:inSpellDocumentWithTag:)]
         pub unsafe fn setIgnoredWords_inSpellDocumentWithTag(
             &self,
@@ -244,6 +282,7 @@ extern_methods!(
             tag: NSInteger,
         );
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other guessesForWordRange:inString:language:inSpellDocumentWithTag:)]
         pub unsafe fn guessesForWordRange_inString_language_inSpellDocumentWithTag(
             &self,
@@ -253,6 +292,7 @@ extern_methods!(
             tag: NSInteger,
         ) -> Option<Id<NSArray<NSString>, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other correctionForWordRange:inString:language:inSpellDocumentWithTag:)]
         pub unsafe fn correctionForWordRange_inString_language_inSpellDocumentWithTag(
             &self,
@@ -262,6 +302,7 @@ extern_methods!(
             tag: NSInteger,
         ) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other completionsForPartialWordRange:inString:language:inSpellDocumentWithTag:)]
         pub unsafe fn completionsForPartialWordRange_inString_language_inSpellDocumentWithTag(
             &self,
@@ -271,6 +312,7 @@ extern_methods!(
             tag: NSInteger,
         ) -> Option<Id<NSArray<NSString>, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSOrthography", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other languageForWordRange:inString:orthography:)]
         pub unsafe fn languageForWordRange_inString_orthography(
             &self,
@@ -282,6 +324,7 @@ extern_methods!(
         #[method(closeSpellDocumentWithTag:)]
         pub unsafe fn closeSpellDocumentWithTag(&self, tag: NSInteger);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(recordResponse:toCorrection:forWord:language:inSpellDocumentWithTag:)]
         pub unsafe fn recordResponse_toCorrection_forWord_language_inSpellDocumentWithTag(
             &self,
@@ -292,7 +335,11 @@ extern_methods!(
             tag: NSInteger,
         );
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString"
+        ))]
         #[method(showCorrectionIndicatorOfType:primaryString:alternativeStrings:forStringInRect:view:completionHandler:)]
         pub unsafe fn showCorrectionIndicatorOfType_primaryString_alternativeStrings_forStringInRect_view_completionHandler(
             &self,
@@ -308,6 +355,7 @@ extern_methods!(
         #[method(dismissCorrectionIndicatorForView:)]
         pub unsafe fn dismissCorrectionIndicatorForView(&self, view: &NSView);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(preventsAutocorrectionBeforeString:language:)]
         pub unsafe fn preventsAutocorrectionBeforeString_language(
             &self,
@@ -315,6 +363,7 @@ extern_methods!(
             language: Option<&NSString>,
         ) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(deletesAutospaceBetweenString:andString:language:)]
         pub unsafe fn deletesAutospaceBetweenString_andString_language(
             &self,
@@ -323,9 +372,11 @@ extern_methods!(
             language: Option<&NSString>,
         ) -> bool;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other availableLanguages)]
         pub unsafe fn availableLanguages(&self) -> Id<NSArray<NSString>, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other userPreferredLanguages)]
         pub unsafe fn userPreferredLanguages(&self) -> Id<NSArray<NSString>, Shared>;
 
@@ -338,15 +389,19 @@ extern_methods!(
             automaticallyIdentifiesLanguages: bool,
         );
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setWordFieldStringValue:)]
         pub unsafe fn setWordFieldStringValue(&self, string: &NSString);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(learnWord:)]
         pub unsafe fn learnWord(&self, word: &NSString);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(hasLearnedWord:)]
         pub unsafe fn hasLearnedWord(&self, word: &NSString) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(unlearnWord:)]
         pub unsafe fn unlearnWord(&self, word: &NSString);
 
@@ -371,9 +426,11 @@ extern_methods!(
         #[method(isAutomaticTextCompletionEnabled)]
         pub unsafe fn isAutomaticTextCompletionEnabled() -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other language)]
         pub unsafe fn language(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setLanguage:)]
         pub unsafe fn setLanguage(&self, language: &NSString) -> bool;
     }
@@ -411,10 +468,12 @@ extern_methods!(
     /// NSDeprecated
     #[cfg(feature = "AppKit_NSSpellChecker")]
     unsafe impl NSSpellChecker {
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other guessesForWord:)]
         pub unsafe fn guessesForWord(&self, word: Option<&NSString>)
             -> Option<Id<NSArray, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(forgetWord:)]
         pub unsafe fn forgetWord(&self, word: Option<&NSString>);
     }

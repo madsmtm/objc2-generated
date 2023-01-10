@@ -28,7 +28,8 @@ extern_methods!(
     {
         #[cfg(all(
             feature = "CoreData_NSFetchRequest",
-            feature = "CoreData_NSManagedObjectContext"
+            feature = "CoreData_NSManagedObjectContext",
+            feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Init initWithFetchRequest:managedObjectContext:sectionNameKeyPath:cacheName:)]
         pub unsafe fn initWithFetchRequest_managedObjectContext_sectionNameKeyPath_cacheName(
@@ -51,9 +52,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other managedObjectContext)]
         pub unsafe fn managedObjectContext(&self) -> Id<NSManagedObjectContext, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other sectionNameKeyPath)]
         pub unsafe fn sectionNameKeyPath(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other cacheName)]
         pub unsafe fn cacheName(&self) -> Option<Id<NSString, Shared>>;
 
@@ -65,37 +68,47 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&NSFetchedResultsControllerDelegate>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(deleteCacheWithName:)]
         pub unsafe fn deleteCacheWithName(name: Option<&NSString>);
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other fetchedObjects)]
         pub unsafe fn fetchedObjects(&self) -> Option<Id<NSArray<ResultType>, Shared>>;
 
+        #[cfg(feature = "Foundation_NSIndexPath")]
         #[method_id(@__retain_semantics Other objectAtIndexPath:)]
         pub unsafe fn objectAtIndexPath(
             &self,
             indexPath: &NSIndexPath,
         ) -> Id<ResultType, ResultTypeOwnership>;
 
+        #[cfg(feature = "Foundation_NSIndexPath")]
         #[method_id(@__retain_semantics Other indexPathForObject:)]
         pub unsafe fn indexPathForObject(
             &self,
             object: &ResultType,
         ) -> Option<Id<NSIndexPath, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other sectionIndexTitleForSectionName:)]
         pub unsafe fn sectionIndexTitleForSectionName(
             &self,
             sectionName: &NSString,
         ) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other sectionIndexTitles)]
         pub unsafe fn sectionIndexTitles(&self) -> Id<NSArray<NSString>, Shared>;
 
-        #[cfg(feature = "CoreData_NSFetchedResultsSectionInfo")]
+        #[cfg(all(
+            feature = "CoreData_NSFetchedResultsSectionInfo",
+            feature = "Foundation_NSArray"
+        ))]
         #[method_id(@__retain_semantics Other sections)]
         pub unsafe fn sections(&self) -> Option<Id<NSArray<NSFetchedResultsSectionInfo>, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(sectionForSectionIndexTitle:atIndex:)]
         pub unsafe fn sectionForSectionIndexTitle_atIndex(
             &self,

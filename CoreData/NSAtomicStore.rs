@@ -17,7 +17,12 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "CoreData_NSAtomicStore")]
     unsafe impl NSAtomicStore {
-        #[cfg(feature = "CoreData_NSPersistentStoreCoordinator")]
+        #[cfg(all(
+            feature = "CoreData_NSPersistentStoreCoordinator",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSURL"
+        ))]
         #[method_id(@__retain_semantics Init initWithPersistentStoreCoordinator:configurationName:URL:options:)]
         pub unsafe fn initWithPersistentStoreCoordinator_configurationName_URL_options(
             this: Option<Allocated<Self>>,
@@ -56,15 +61,24 @@ extern_methods!(
             managedObject: &NSManagedObject,
         );
 
-        #[cfg(feature = "CoreData_NSAtomicStoreCacheNode")]
+        #[cfg(all(
+            feature = "CoreData_NSAtomicStoreCacheNode",
+            feature = "Foundation_NSSet"
+        ))]
         #[method_id(@__retain_semantics Other cacheNodes)]
         pub unsafe fn cacheNodes(&self) -> Id<NSSet<NSAtomicStoreCacheNode>, Shared>;
 
-        #[cfg(feature = "CoreData_NSAtomicStoreCacheNode")]
+        #[cfg(all(
+            feature = "CoreData_NSAtomicStoreCacheNode",
+            feature = "Foundation_NSSet"
+        ))]
         #[method(addCacheNodes:)]
         pub unsafe fn addCacheNodes(&self, cacheNodes: &NSSet<NSAtomicStoreCacheNode>);
 
-        #[cfg(feature = "CoreData_NSAtomicStoreCacheNode")]
+        #[cfg(all(
+            feature = "CoreData_NSAtomicStoreCacheNode",
+            feature = "Foundation_NSSet"
+        ))]
         #[method(willRemoveCacheNodes:)]
         pub unsafe fn willRemoveCacheNodes(&self, cacheNodes: &NSSet<NSAtomicStoreCacheNode>);
 

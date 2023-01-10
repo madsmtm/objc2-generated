@@ -7,7 +7,7 @@ use crate::Foundation::*;
 
 extern_methods!(
     /// NSItemSourceInfo
-    #[cfg(feature = "AppKit_NSItemProvider")]
+    #[cfg(feature = "Foundation_NSItemProvider")]
     unsafe impl NSItemProvider {
         #[method(sourceFrame)]
         pub unsafe fn sourceFrame(&self) -> NSRect;

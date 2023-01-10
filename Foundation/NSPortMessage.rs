@@ -15,6 +15,7 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Foundation_NSPortMessage")]
     unsafe impl NSPortMessage {
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSPort"))]
         #[method_id(@__retain_semantics Init initWithSendPort:receivePort:components:)]
         pub unsafe fn initWithSendPort_receivePort_components(
             this: Option<Allocated<Self>>,
@@ -23,15 +24,19 @@ extern_methods!(
             components: Option<&NSArray>,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other components)]
         pub unsafe fn components(&self) -> Option<Id<NSArray, Shared>>;
 
+        #[cfg(feature = "Foundation_NSPort")]
         #[method_id(@__retain_semantics Other receivePort)]
         pub unsafe fn receivePort(&self) -> Option<Id<NSPort, Shared>>;
 
+        #[cfg(feature = "Foundation_NSPort")]
         #[method_id(@__retain_semantics Other sendPort)]
         pub unsafe fn sendPort(&self) -> Option<Id<NSPort, Shared>>;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(sendBeforeDate:)]
         pub unsafe fn sendBeforeDate(&self, date: &NSDate) -> bool;
 

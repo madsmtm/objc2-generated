@@ -19,7 +19,7 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSNib")]
     unsafe impl NSNib {
-        #[cfg(feature = "AppKit_NSNibName")]
+        #[cfg(all(feature = "AppKit_NSNibName", feature = "Foundation_NSBundle"))]
         #[method_id(@__retain_semantics Init initWithNibNamed:bundle:)]
         pub unsafe fn initWithNibNamed_bundle(
             this: Option<Allocated<Self>>,
@@ -27,6 +27,7 @@ extern_methods!(
             bundle: Option<&NSBundle>,
         ) -> Option<Id<Self, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSBundle", feature = "Foundation_NSData"))]
         #[method_id(@__retain_semantics Init initWithNibData:bundle:)]
         pub unsafe fn initWithNibData_bundle(
             this: Option<Allocated<Self>>,
@@ -34,6 +35,7 @@ extern_methods!(
             bundle: Option<&NSBundle>,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(instantiateWithOwner:topLevelObjects:)]
         pub unsafe fn instantiateWithOwner_topLevelObjects(
             &self,
@@ -47,18 +49,21 @@ extern_methods!(
     /// NSDeprecated
     #[cfg(feature = "AppKit_NSNib")]
     unsafe impl NSNib {
+        #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
         pub unsafe fn initWithContentsOfURL(
             this: Option<Allocated<Self>>,
             nibFileURL: Option<&NSURL>,
         ) -> Option<Id<Self, Shared>>;
 
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method(instantiateNibWithExternalNameTable:)]
         pub unsafe fn instantiateNibWithExternalNameTable(
             &self,
             externalNameTable: Option<&NSDictionary>,
         ) -> bool;
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(instantiateNibWithOwner:topLevelObjects:)]
         pub unsafe fn instantiateNibWithOwner_topLevelObjects(
             &self,

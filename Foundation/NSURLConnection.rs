@@ -15,6 +15,7 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Foundation_NSURLConnection")]
     unsafe impl NSURLConnection {
+        #[cfg(feature = "Foundation_NSURLRequest")]
         #[method_id(@__retain_semantics Init initWithRequest:delegate:startImmediately:)]
         pub unsafe fn initWithRequest_delegate_startImmediately(
             this: Option<Allocated<Self>>,
@@ -23,6 +24,7 @@ extern_methods!(
             startImmediately: bool,
         ) -> Option<Id<Self, Shared>>;
 
+        #[cfg(feature = "Foundation_NSURLRequest")]
         #[method_id(@__retain_semantics Init initWithRequest:delegate:)]
         pub unsafe fn initWithRequest_delegate(
             this: Option<Allocated<Self>>,
@@ -30,15 +32,18 @@ extern_methods!(
             delegate: Option<&Object>,
         ) -> Option<Id<Self, Shared>>;
 
+        #[cfg(feature = "Foundation_NSURLRequest")]
         #[method_id(@__retain_semantics Other connectionWithRequest:delegate:)]
         pub unsafe fn connectionWithRequest_delegate(
             request: &NSURLRequest,
             delegate: Option<&Object>,
         ) -> Option<Id<NSURLConnection, Shared>>;
 
+        #[cfg(feature = "Foundation_NSURLRequest")]
         #[method_id(@__retain_semantics Other originalRequest)]
         pub unsafe fn originalRequest(&self) -> Id<NSURLRequest, Shared>;
 
+        #[cfg(feature = "Foundation_NSURLRequest")]
         #[method_id(@__retain_semantics Other currentRequest)]
         pub unsafe fn currentRequest(&self) -> Id<NSURLRequest, Shared>;
 
@@ -48,9 +53,11 @@ extern_methods!(
         #[method(cancel)]
         pub unsafe fn cancel(&self);
 
+        #[cfg(all(feature = "Foundation_NSRunLoop", feature = "Foundation_NSRunLoopMode"))]
         #[method(scheduleInRunLoop:forMode:)]
         pub unsafe fn scheduleInRunLoop_forMode(&self, aRunLoop: &NSRunLoop, mode: &NSRunLoopMode);
 
+        #[cfg(all(feature = "Foundation_NSRunLoop", feature = "Foundation_NSRunLoopMode"))]
         #[method(unscheduleFromRunLoop:forMode:)]
         pub unsafe fn unscheduleFromRunLoop_forMode(
             &self,
@@ -58,9 +65,11 @@ extern_methods!(
             mode: &NSRunLoopMode,
         );
 
+        #[cfg(feature = "Foundation_NSOperationQueue")]
         #[method(setDelegateQueue:)]
         pub unsafe fn setDelegateQueue(&self, queue: Option<&NSOperationQueue>);
 
+        #[cfg(feature = "Foundation_NSURLRequest")]
         #[method(canHandleRequest:)]
         pub unsafe fn canHandleRequest(request: &NSURLRequest) -> bool;
     }
@@ -212,7 +221,12 @@ extern_methods!(
     /// NSURLConnectionSynchronousLoading
     #[cfg(feature = "Foundation_NSURLConnection")]
     unsafe impl NSURLConnection {
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(
+            feature = "Foundation_NSData",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSURLRequest",
+            feature = "Foundation_NSURLResponse"
+        ))]
         #[method_id(@__retain_semantics Other sendSynchronousRequest:returningResponse:error:_)]
         pub unsafe fn sendSynchronousRequest_returningResponse_error(
             request: &NSURLRequest,
@@ -225,6 +239,13 @@ extern_methods!(
     /// NSURLConnectionQueuedLoading
     #[cfg(feature = "Foundation_NSURLConnection")]
     unsafe impl NSURLConnection {
+        #[cfg(all(
+            feature = "Foundation_NSData",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSOperationQueue",
+            feature = "Foundation_NSURLRequest",
+            feature = "Foundation_NSURLResponse"
+        ))]
         #[method(sendAsynchronousRequest:queue:completionHandler:)]
         pub unsafe fn sendAsynchronousRequest_queue_completionHandler(
             request: &NSURLRequest,

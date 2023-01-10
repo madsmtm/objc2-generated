@@ -138,9 +138,11 @@ extern_methods!(
         #[method(setSupportArgumentBuffers:)]
         pub fn setSupportArgumentBuffers(&self, supportArgumentBuffers: bool);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
         pub fn label(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:)]
         pub fn setLabel(&self, label: Option<&NSString>);
     }

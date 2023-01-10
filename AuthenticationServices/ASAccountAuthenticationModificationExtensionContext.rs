@@ -17,7 +17,11 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationExtensionContext")]
     unsafe impl ASAccountAuthenticationModificationExtensionContext {
-        #[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDCredential")]
+        #[cfg(all(
+            feature = "AuthenticationServices_ASAuthorizationAppleIDCredential",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString"
+        ))]
         #[method(getSignInWithAppleUpgradeAuthorizationWithState:nonce:completionHandler:)]
         pub unsafe fn getSignInWithAppleUpgradeAuthorizationWithState_nonce_completionHandler(
             &self,
@@ -26,13 +30,17 @@ extern_methods!(
             completionHandler: &Block<(*mut ASAuthorizationAppleIDCredential, *mut NSError), ()>,
         );
 
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method(completeUpgradeToSignInWithAppleWithUserInfo:)]
         pub unsafe fn completeUpgradeToSignInWithAppleWithUserInfo(
             &self,
             userInfo: Option<&NSDictionary>,
         );
 
-        #[cfg(feature = "AuthenticationServices_ASPasswordCredential")]
+        #[cfg(all(
+            feature = "AuthenticationServices_ASPasswordCredential",
+            feature = "Foundation_NSDictionary"
+        ))]
         #[method(completeChangePasswordRequestWithUpdatedCredential:userInfo:)]
         pub unsafe fn completeChangePasswordRequestWithUpdatedCredential_userInfo(
             &self,
@@ -40,6 +48,7 @@ extern_methods!(
             userInfo: Option<&NSDictionary>,
         );
 
+        #[cfg(feature = "Foundation_NSError")]
         #[method(cancelRequestWithError:)]
         pub unsafe fn cancelRequestWithError(&self, error: &NSError);
     }

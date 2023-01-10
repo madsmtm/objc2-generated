@@ -22,9 +22,11 @@ extern_methods!(
             sel: Sel,
         ) -> Id<CADisplayLink, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSRunLoop", feature = "Foundation_NSRunLoopMode"))]
         #[method(addToRunLoop:forMode:)]
         pub unsafe fn addToRunLoop_forMode(&self, runloop: &NSRunLoop, mode: &NSRunLoopMode);
 
+        #[cfg(all(feature = "Foundation_NSRunLoop", feature = "Foundation_NSRunLoopMode"))]
         #[method(removeFromRunLoop:forMode:)]
         pub unsafe fn removeFromRunLoop_forMode(&self, runloop: &NSRunLoop, mode: &NSRunLoopMode);
 

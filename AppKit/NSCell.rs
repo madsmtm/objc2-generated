@@ -121,6 +121,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initTextCell:)]
         pub unsafe fn initTextCell(
             this: Option<Allocated<Self>>,
@@ -134,6 +135,7 @@ extern_methods!(
             image: Option<&NSImage>,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -181,9 +183,11 @@ extern_methods!(
         #[method(setTag:)]
         pub unsafe fn setTag(&self, tag: NSInteger);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
@@ -261,12 +265,15 @@ extern_methods!(
         #[method(setFont:)]
         pub unsafe fn setFont(&self, font: Option<&NSFont>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other keyEquivalent)]
         pub unsafe fn keyEquivalent(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSFormatter")]
         #[method_id(@__retain_semantics Other formatter)]
         pub unsafe fn formatter(&self) -> Option<Id<NSFormatter, Shared>>;
 
+        #[cfg(feature = "Foundation_NSFormatter")]
         #[method(setFormatter:)]
         pub unsafe fn setFormatter(&self, formatter: Option<&NSFormatter>);
 
@@ -279,9 +286,11 @@ extern_methods!(
         #[method(hasValidObjectValue)]
         pub unsafe fn hasValidObjectValue(&self) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringValue)]
         pub unsafe fn stringValue(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setStringValue:)]
         pub unsafe fn setStringValue(&self, stringValue: &NSString);
 
@@ -562,7 +571,11 @@ extern_methods!(
         #[method(setUsesSingleLineMode:)]
         pub unsafe fn setUsesSingleLineMode(&self, usesSingleLineMode: bool);
 
-        #[cfg(all(feature = "AppKit_NSDraggingImageComponent", feature = "AppKit_NSView"))]
+        #[cfg(all(
+            feature = "AppKit_NSDraggingImageComponent",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSArray"
+        ))]
         #[method_id(@__retain_semantics Other draggingImageComponentsWithFrame:inView:)]
         pub unsafe fn draggingImageComponentsWithFrame_inView(
             &self,
@@ -628,9 +641,11 @@ extern_methods!(
     /// NSCellAttributedStringMethods
     #[cfg(feature = "AppKit_NSCell")]
     unsafe impl NSCell {
+        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedStringValue)]
         pub unsafe fn attributedStringValue(&self) -> Id<NSAttributedString, Shared>;
 
+        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setAttributedStringValue:)]
         pub unsafe fn setAttributedStringValue(&self, attributedStringValue: &NSAttributedString);
 
@@ -781,6 +796,7 @@ extern_methods!(
         #[method(setEntryType:)]
         pub unsafe fn setEntryType(&self, type_: NSInteger);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(isEntryAcceptable:)]
         pub unsafe fn isEntryAcceptable(&self, string: &NSString) -> bool;
 
@@ -798,9 +814,11 @@ extern_methods!(
         #[method(mnemonicLocation)]
         pub unsafe fn mnemonicLocation(&self) -> NSUInteger;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other mnemonic)]
         pub unsafe fn mnemonic(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setTitleWithMnemonic:)]
         pub unsafe fn setTitleWithMnemonic(&self, stringWithAmpersand: &NSString);
     }

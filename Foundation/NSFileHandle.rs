@@ -15,6 +15,7 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Foundation_NSFileHandle")]
     unsafe impl NSFileHandle {
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other availableData)]
         pub unsafe fn availableData(&self) -> Id<NSData, Shared>;
 
@@ -25,26 +26,27 @@ extern_methods!(
             closeopt: bool,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
         ) -> Option<Id<Self, Shared>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
         #[method_id(@__retain_semantics Other readDataToEndOfFileAndReturnError:_)]
         pub unsafe fn readDataToEndOfFileAndReturnError(
             &self,
         ) -> Result<Id<NSData, Shared>, Id<NSError, Shared>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
         #[method_id(@__retain_semantics Other readDataUpToLength:error:_)]
         pub unsafe fn readDataUpToLength_error(
             &self,
             length: NSUInteger,
         ) -> Result<Id<NSData, Shared>, Id<NSError, Shared>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
         #[method(writeData:error:_)]
         pub unsafe fn writeData_error(&self, data: &NSData) -> Result<(), Id<NSError, Shared>>;
 
@@ -102,28 +104,31 @@ extern_methods!(
         #[method_id(@__retain_semantics Other fileHandleWithNullDevice)]
         pub unsafe fn fileHandleWithNullDevice() -> Id<NSFileHandle, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fileHandleForReadingAtPath:)]
         pub unsafe fn fileHandleForReadingAtPath(path: &NSString) -> Option<Id<Self, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fileHandleForWritingAtPath:)]
         pub unsafe fn fileHandleForWritingAtPath(path: &NSString) -> Option<Id<Self, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fileHandleForUpdatingAtPath:)]
         pub unsafe fn fileHandleForUpdatingAtPath(path: &NSString) -> Option<Id<Self, Shared>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other fileHandleForReadingFromURL:error:_)]
         pub unsafe fn fileHandleForReadingFromURL_error(
             url: &NSURL,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other fileHandleForWritingToURL:error:_)]
         pub unsafe fn fileHandleForWritingToURL_error(
             url: &NSURL,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other fileHandleForUpdatingURL:error:_)]
         pub unsafe fn fileHandleForUpdatingURL_error(
             url: &NSURL,
@@ -151,6 +156,7 @@ extern_methods!(
     /// NSFileHandleAsynchronousAccess
     #[cfg(feature = "Foundation_NSFileHandle")]
     unsafe impl NSFileHandle {
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSRunLoopMode"))]
         #[method(readInBackgroundAndNotifyForModes:)]
         pub unsafe fn readInBackgroundAndNotifyForModes(
             &self,
@@ -160,6 +166,7 @@ extern_methods!(
         #[method(readInBackgroundAndNotify)]
         pub unsafe fn readInBackgroundAndNotify(&self);
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSRunLoopMode"))]
         #[method(readToEndOfFileInBackgroundAndNotifyForModes:)]
         pub unsafe fn readToEndOfFileInBackgroundAndNotifyForModes(
             &self,
@@ -169,6 +176,7 @@ extern_methods!(
         #[method(readToEndOfFileInBackgroundAndNotify)]
         pub unsafe fn readToEndOfFileInBackgroundAndNotify(&self);
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSRunLoopMode"))]
         #[method(acceptConnectionInBackgroundAndNotifyForModes:)]
         pub unsafe fn acceptConnectionInBackgroundAndNotifyForModes(
             &self,
@@ -178,6 +186,7 @@ extern_methods!(
         #[method(acceptConnectionInBackgroundAndNotify)]
         pub unsafe fn acceptConnectionInBackgroundAndNotify(&self);
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSRunLoopMode"))]
         #[method(waitForDataInBackgroundAndNotifyForModes:)]
         pub unsafe fn waitForDataInBackgroundAndNotifyForModes(
             &self,
@@ -225,12 +234,15 @@ extern_methods!(
 extern_methods!(
     #[cfg(feature = "Foundation_NSFileHandle")]
     unsafe impl NSFileHandle {
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other readDataToEndOfFile)]
         pub unsafe fn readDataToEndOfFile(&self) -> Id<NSData, Shared>;
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other readDataOfLength:)]
         pub unsafe fn readDataOfLength(&self, length: NSUInteger) -> Id<NSData, Shared>;
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method(writeData:)]
         pub unsafe fn writeData(&self, data: &NSData);
 
@@ -266,9 +278,11 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Foundation_NSPipe")]
     unsafe impl NSPipe {
+        #[cfg(feature = "Foundation_NSFileHandle")]
         #[method_id(@__retain_semantics Other fileHandleForReading)]
         pub unsafe fn fileHandleForReading(&self) -> Id<NSFileHandle, Shared>;
 
+        #[cfg(feature = "Foundation_NSFileHandle")]
         #[method_id(@__retain_semantics Other fileHandleForWriting)]
         pub unsafe fn fileHandleForWriting(&self) -> Id<NSFileHandle, Shared>;
 

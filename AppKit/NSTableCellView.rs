@@ -52,7 +52,10 @@ extern_methods!(
         #[method(setRowSizeStyle:)]
         pub unsafe fn setRowSizeStyle(&self, rowSizeStyle: NSTableViewRowSizeStyle);
 
-        #[cfg(feature = "AppKit_NSDraggingImageComponent")]
+        #[cfg(all(
+            feature = "AppKit_NSDraggingImageComponent",
+            feature = "Foundation_NSArray"
+        ))]
         #[method_id(@__retain_semantics Other draggingImageComponents)]
         pub unsafe fn draggingImageComponents(
             &self,

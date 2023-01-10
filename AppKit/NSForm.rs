@@ -53,11 +53,11 @@ extern_methods!(
         #[method(drawCellAtIndex:)]
         pub unsafe fn drawCellAtIndex(&self, index: NSInteger);
 
-        #[cfg(feature = "AppKit_NSFormCell")]
+        #[cfg(all(feature = "AppKit_NSFormCell", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other addEntry:)]
         pub unsafe fn addEntry(&self, title: &NSString) -> Id<NSFormCell, Shared>;
 
-        #[cfg(feature = "AppKit_NSFormCell")]
+        #[cfg(all(feature = "AppKit_NSFormCell", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other insertEntry:atIndex:)]
         pub unsafe fn insertEntry_atIndex(
             &self,

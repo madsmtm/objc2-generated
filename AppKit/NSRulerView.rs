@@ -38,7 +38,12 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSRulerView")]
     unsafe impl NSRulerView {
-        #[cfg(feature = "AppKit_NSRulerViewUnitName")]
+        #[cfg(all(
+            feature = "AppKit_NSRulerViewUnitName",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSNumber",
+            feature = "Foundation_NSString"
+        ))]
         #[method(registerUnitWithName:abbreviation:unitToPointsConversionFactor:stepUpCycle:stepDownCycle:)]
         pub unsafe fn registerUnitWithName_abbreviation_unitToPointsConversionFactor_stepUpCycle_stepDownCycle(
             unitName: &NSRulerViewUnitName,
@@ -48,6 +53,7 @@ extern_methods!(
             stepDownCycle: &NSArray<NSNumber>,
         );
 
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -131,11 +137,11 @@ extern_methods!(
         #[method(removeMarker:)]
         pub unsafe fn removeMarker(&self, marker: &NSRulerMarker);
 
-        #[cfg(feature = "AppKit_NSRulerMarker")]
+        #[cfg(all(feature = "AppKit_NSRulerMarker", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other markers)]
         pub unsafe fn markers(&self) -> Option<Id<NSArray<NSRulerMarker>, Shared>>;
 
-        #[cfg(feature = "AppKit_NSRulerMarker")]
+        #[cfg(all(feature = "AppKit_NSRulerMarker", feature = "Foundation_NSArray"))]
         #[method(setMarkers:)]
         pub unsafe fn setMarkers(&self, markers: Option<&NSArray<NSRulerMarker>>);
 

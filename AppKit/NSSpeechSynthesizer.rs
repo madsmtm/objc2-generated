@@ -123,9 +123,11 @@ extern_methods!(
             voice: Option<&NSSpeechSynthesizerVoiceName>,
         ) -> Option<Id<Self, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(startSpeakingString:)]
         pub unsafe fn startSpeakingString(&self, string: &NSString) -> bool;
 
+        #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
         #[method(startSpeakingString:toURL:)]
         pub unsafe fn startSpeakingString_toURL(&self, string: &NSString, url: &NSURL) -> bool;
 
@@ -178,13 +180,17 @@ extern_methods!(
         #[method(setUsesFeedbackWindow:)]
         pub unsafe fn setUsesFeedbackWindow(&self, usesFeedbackWindow: bool);
 
-        #[cfg(feature = "AppKit_NSSpeechDictionaryKey")]
+        #[cfg(all(
+            feature = "AppKit_NSSpeechDictionaryKey",
+            feature = "Foundation_NSDictionary"
+        ))]
         #[method(addSpeechDictionary:)]
         pub unsafe fn addSpeechDictionary(
             &self,
             speechDictionary: &NSDictionary<NSSpeechDictionaryKey, Object>,
         );
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other phonemesFromText:)]
         pub unsafe fn phonemesFromText(&self, text: &NSString) -> Id<NSString, Shared>;
 
@@ -210,13 +216,17 @@ extern_methods!(
         #[method_id(@__retain_semantics Other defaultVoice)]
         pub unsafe fn defaultVoice() -> Id<NSSpeechSynthesizerVoiceName, Shared>;
 
-        #[cfg(feature = "AppKit_NSSpeechSynthesizerVoiceName")]
+        #[cfg(all(
+            feature = "AppKit_NSSpeechSynthesizerVoiceName",
+            feature = "Foundation_NSArray"
+        ))]
         #[method_id(@__retain_semantics Other availableVoices)]
         pub unsafe fn availableVoices() -> Id<NSArray<NSSpeechSynthesizerVoiceName>, Shared>;
 
         #[cfg(all(
             feature = "AppKit_NSSpeechSynthesizerVoiceName",
-            feature = "AppKit_NSVoiceAttributeKey"
+            feature = "AppKit_NSVoiceAttributeKey",
+            feature = "Foundation_NSDictionary"
         ))]
         #[method_id(@__retain_semantics Other attributesForVoice:)]
         pub unsafe fn attributesForVoice(

@@ -33,6 +33,7 @@ extern_methods!(
             identifier: &NSUserInterfaceItemIdentifier,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -73,9 +74,11 @@ extern_methods!(
         #[method(setMaxWidth:)]
         pub unsafe fn setMaxWidth(&self, maxWidth: CGFloat);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
@@ -96,9 +99,11 @@ extern_methods!(
         #[method(sizeToFit)]
         pub unsafe fn sizeToFit(&self);
 
+        #[cfg(feature = "Foundation_NSSortDescriptor")]
         #[method_id(@__retain_semantics Other sortDescriptorPrototype)]
         pub unsafe fn sortDescriptorPrototype(&self) -> Option<Id<NSSortDescriptor, Shared>>;
 
+        #[cfg(feature = "Foundation_NSSortDescriptor")]
         #[method(setSortDescriptorPrototype:)]
         pub unsafe fn setSortDescriptorPrototype(
             &self,
@@ -111,9 +116,11 @@ extern_methods!(
         #[method(setResizingMask:)]
         pub unsafe fn setResizingMask(&self, resizingMask: NSTableColumnResizingOptions);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other headerToolTip)]
         pub unsafe fn headerToolTip(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setHeaderToolTip:)]
         pub unsafe fn setHeaderToolTip(&self, headerToolTip: Option<&NSString>);
 

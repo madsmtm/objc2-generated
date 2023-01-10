@@ -16,9 +16,11 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Metal_MTLRasterizationRateSampleArray")]
     unsafe impl MTLRasterizationRateSampleArray {
+        #[cfg(feature = "Foundation_NSNumber")]
         #[method_id(@__retain_semantics Other objectAtIndexedSubscript:)]
         pub unsafe fn objectAtIndexedSubscript(&self, index: NSUInteger) -> Id<NSNumber, Shared>;
 
+        #[cfg(feature = "Foundation_NSNumber")]
         #[method(setObject:atIndexedSubscript:)]
         pub unsafe fn setObject_atIndexedSubscript(&self, value: &NSNumber, index: NSUInteger);
     }
@@ -163,9 +165,11 @@ extern_methods!(
         #[method(setScreenSize:)]
         pub unsafe fn setScreenSize(&self, screenSize: MTLSize);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
         pub unsafe fn label(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:)]
         pub unsafe fn setLabel(&self, label: Option<&NSString>);
 

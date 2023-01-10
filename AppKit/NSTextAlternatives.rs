@@ -17,6 +17,7 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSTextAlternatives")]
     unsafe impl NSTextAlternatives {
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithPrimaryString:alternativeStrings:)]
         pub unsafe fn initWithPrimaryString_alternativeStrings(
             this: Option<Allocated<Self>>,
@@ -24,12 +25,15 @@ extern_methods!(
             alternativeStrings: &NSArray<NSString>,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other primaryString)]
         pub unsafe fn primaryString(&self) -> Id<NSString, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other alternativeStrings)]
         pub unsafe fn alternativeStrings(&self) -> Id<NSArray<NSString>, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(noteSelectedAlternativeString:)]
         pub unsafe fn noteSelectedAlternativeString(&self, alternativeString: &NSString);
     }

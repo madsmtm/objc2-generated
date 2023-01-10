@@ -29,24 +29,29 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "CoreData_NSPersistentCloudKitContainerEvent")]
     unsafe impl NSPersistentCloudKitContainerEvent {
+        #[cfg(feature = "Foundation_NSUUID")]
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Id<NSUUID, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other storeIdentifier)]
         pub unsafe fn storeIdentifier(&self) -> Id<NSString, Shared>;
 
         #[method(type)]
         pub unsafe fn type_(&self) -> NSPersistentCloudKitContainerEventType;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other startDate)]
         pub unsafe fn startDate(&self) -> Id<NSDate, Shared>;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other endDate)]
         pub unsafe fn endDate(&self) -> Option<Id<NSDate, Shared>>;
 
         #[method(succeeded)]
         pub unsafe fn succeeded(&self) -> bool;
 
+        #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other error)]
         pub unsafe fn error(&self) -> Option<Id<NSError, Shared>>;
 

@@ -18,15 +18,19 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSTextField")]
     unsafe impl NSTextField {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other placeholderString)]
         pub unsafe fn placeholderString(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setPlaceholderString:)]
         pub unsafe fn setPlaceholderString(&self, placeholderString: Option<&NSString>);
 
+        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other placeholderAttributedString)]
         pub unsafe fn placeholderAttributedString(&self) -> Option<Id<NSAttributedString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setPlaceholderAttributedString:)]
         pub unsafe fn setPlaceholderAttributedString(
             &self,
@@ -98,12 +102,15 @@ extern_methods!(
         #[method(textShouldEndEditing:)]
         pub unsafe fn textShouldEndEditing(&self, textObject: &NSText) -> bool;
 
+        #[cfg(feature = "Foundation_NSNotification")]
         #[method(textDidBeginEditing:)]
         pub unsafe fn textDidBeginEditing(&self, notification: &NSNotification);
 
+        #[cfg(feature = "Foundation_NSNotification")]
         #[method(textDidEndEditing:)]
         pub unsafe fn textDidEndEditing(&self, notification: &NSNotification);
 
+        #[cfg(feature = "Foundation_NSNotification")]
         #[method(textDidChange:)]
         pub unsafe fn textDidChange(&self, notification: &NSNotification);
 
@@ -173,17 +180,21 @@ extern_methods!(
     /// NSTextFieldConvenience
     #[cfg(feature = "AppKit_NSTextField")]
     unsafe impl NSTextField {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other labelWithString:)]
         pub unsafe fn labelWithString(stringValue: &NSString) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other wrappingLabelWithString:)]
         pub unsafe fn wrappingLabelWithString(stringValue: &NSString) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other labelWithAttributedString:)]
         pub unsafe fn labelWithAttributedString(
             attributedStringValue: &NSAttributedString,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other textFieldWithString:)]
         pub unsafe fn textFieldWithString(stringValue: &NSString) -> Id<Self, Shared>;
     }
@@ -245,6 +256,7 @@ extern_methods!(
     /// NSDeprecated
     #[cfg(feature = "AppKit_NSTextField")]
     unsafe impl NSTextField {
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setTitleWithMnemonic:)]
         pub unsafe fn setTitleWithMnemonic(&self, stringWithAmpersand: Option<&NSString>);
     }

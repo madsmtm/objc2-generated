@@ -44,18 +44,24 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Foundation_NSDateComponentsFormatter")]
     unsafe impl NSDateComponentsFormatter {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringForObjectValue:)]
         pub unsafe fn stringForObjectValue(
             &self,
             obj: Option<&Object>,
         ) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(all(
+            feature = "Foundation_NSDateComponents",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other stringFromDateComponents:)]
         pub unsafe fn stringFromDateComponents(
             &self,
             components: &NSDateComponents,
         ) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other stringFromDate:toDate:)]
         pub unsafe fn stringFromDate_toDate(
             &self,
@@ -63,12 +69,17 @@ extern_methods!(
             endDate: &NSDate,
         ) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringFromTimeInterval:)]
         pub unsafe fn stringFromTimeInterval(
             &self,
             ti: NSTimeInterval,
         ) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(all(
+            feature = "Foundation_NSDateComponents",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other localizedStringFromDateComponents:unitsStyle:)]
         pub unsafe fn localizedStringFromDateComponents_unitsStyle(
             components: &NSDateComponents,
@@ -98,15 +109,19 @@ extern_methods!(
             zeroFormattingBehavior: NSDateComponentsFormatterZeroFormattingBehavior,
         );
 
+        #[cfg(feature = "Foundation_NSCalendar")]
         #[method_id(@__retain_semantics Other calendar)]
         pub unsafe fn calendar(&self) -> Option<Id<NSCalendar, Shared>>;
 
+        #[cfg(feature = "Foundation_NSCalendar")]
         #[method(setCalendar:)]
         pub unsafe fn setCalendar(&self, calendar: Option<&NSCalendar>);
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other referenceDate)]
         pub unsafe fn referenceDate(&self) -> Option<Id<NSDate, Shared>>;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(setReferenceDate:)]
         pub unsafe fn setReferenceDate(&self, referenceDate: Option<&NSDate>);
 
@@ -146,6 +161,7 @@ extern_methods!(
         #[method(setFormattingContext:)]
         pub unsafe fn setFormattingContext(&self, formattingContext: NSFormattingContext);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(getObjectValue:forString:errorDescription:)]
         pub unsafe fn getObjectValue_forString_errorDescription(
             &self,

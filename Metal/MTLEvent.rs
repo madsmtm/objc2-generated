@@ -73,6 +73,7 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Metal_MTLSharedEventHandle")]
     unsafe impl MTLSharedEventHandle {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
         pub fn label(&self) -> Option<Id<NSString, Shared>>;
     }

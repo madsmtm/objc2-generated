@@ -19,9 +19,11 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Foundation_NSLocale")]
     unsafe impl NSLocale {
+        #[cfg(feature = "Foundation_NSLocaleKey")]
         #[method_id(@__retain_semantics Other objectForKey:)]
         pub unsafe fn objectForKey(&self, key: &NSLocaleKey) -> Option<Id<Object, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSLocaleKey", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other displayNameForKey:value:)]
         pub unsafe fn displayNameForKey_value(
             &self,
@@ -29,12 +31,14 @@ extern_methods!(
             value: &Object,
         ) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithLocaleIdentifier:)]
         pub unsafe fn initWithLocaleIdentifier(
             this: Option<Allocated<Self>>,
             string: &NSString,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -47,66 +51,81 @@ extern_methods!(
     /// NSExtendedLocale
     #[cfg(feature = "Foundation_NSLocale")]
     unsafe impl NSLocale {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localeIdentifier)]
         pub unsafe fn localeIdentifier(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedStringForLocaleIdentifier:)]
         pub unsafe fn localizedStringForLocaleIdentifier(
             &self,
             localeIdentifier: &NSString,
         ) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other languageCode)]
         pub unsafe fn languageCode(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedStringForLanguageCode:)]
         pub unsafe fn localizedStringForLanguageCode(
             &self,
             languageCode: &NSString,
         ) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other countryCode)]
         pub unsafe fn countryCode(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedStringForCountryCode:)]
         pub unsafe fn localizedStringForCountryCode(
             &self,
             countryCode: &NSString,
         ) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other scriptCode)]
         pub unsafe fn scriptCode(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedStringForScriptCode:)]
         pub unsafe fn localizedStringForScriptCode(
             &self,
             scriptCode: &NSString,
         ) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other variantCode)]
         pub unsafe fn variantCode(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedStringForVariantCode:)]
         pub unsafe fn localizedStringForVariantCode(
             &self,
             variantCode: &NSString,
         ) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSCharacterSet")]
         #[method_id(@__retain_semantics Other exemplarCharacterSet)]
         pub unsafe fn exemplarCharacterSet(&self) -> Id<NSCharacterSet, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other calendarIdentifier)]
         pub unsafe fn calendarIdentifier(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedStringForCalendarIdentifier:)]
         pub unsafe fn localizedStringForCalendarIdentifier(
             &self,
             calendarIdentifier: &NSString,
         ) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other collationIdentifier)]
         pub unsafe fn collationIdentifier(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedStringForCollationIdentifier:)]
         pub unsafe fn localizedStringForCollationIdentifier(
             &self,
@@ -116,42 +135,53 @@ extern_methods!(
         #[method(usesMetricSystem)]
         pub unsafe fn usesMetricSystem(&self) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other decimalSeparator)]
         pub unsafe fn decimalSeparator(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other groupingSeparator)]
         pub unsafe fn groupingSeparator(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other currencySymbol)]
         pub unsafe fn currencySymbol(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other currencyCode)]
         pub unsafe fn currencyCode(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedStringForCurrencyCode:)]
         pub unsafe fn localizedStringForCurrencyCode(
             &self,
             currencyCode: &NSString,
         ) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other collatorIdentifier)]
         pub unsafe fn collatorIdentifier(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedStringForCollatorIdentifier:)]
         pub unsafe fn localizedStringForCollatorIdentifier(
             &self,
             collatorIdentifier: &NSString,
         ) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other quotationBeginDelimiter)]
         pub unsafe fn quotationBeginDelimiter(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other quotationEndDelimiter)]
         pub unsafe fn quotationEndDelimiter(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other alternateQuotationBeginDelimiter)]
         pub unsafe fn alternateQuotationBeginDelimiter(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other alternateQuotationEndDelimiter)]
         pub unsafe fn alternateQuotationEndDelimiter(&self) -> Id<NSString, Shared>;
     }
@@ -170,6 +200,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other systemLocale)]
         pub unsafe fn systemLocale() -> Id<NSLocale, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localeWithLocaleIdentifier:)]
         pub unsafe fn localeWithLocaleIdentifier(ident: &NSString) -> Id<Self, Shared>;
 
@@ -193,57 +224,71 @@ extern_methods!(
     /// NSLocaleGeneralInfo
     #[cfg(feature = "Foundation_NSLocale")]
     unsafe impl NSLocale {
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other availableLocaleIdentifiers)]
         pub unsafe fn availableLocaleIdentifiers() -> Id<NSArray<NSString>, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other ISOLanguageCodes)]
         pub unsafe fn ISOLanguageCodes() -> Id<NSArray<NSString>, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other ISOCountryCodes)]
         pub unsafe fn ISOCountryCodes() -> Id<NSArray<NSString>, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other ISOCurrencyCodes)]
         pub unsafe fn ISOCurrencyCodes() -> Id<NSArray<NSString>, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other commonISOCurrencyCodes)]
         pub unsafe fn commonISOCurrencyCodes() -> Id<NSArray<NSString>, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other preferredLanguages)]
         pub unsafe fn preferredLanguages() -> Id<NSArray<NSString>, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other componentsFromLocaleIdentifier:)]
         pub unsafe fn componentsFromLocaleIdentifier(
             string: &NSString,
         ) -> Id<NSDictionary<NSString, NSString>, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other localeIdentifierFromComponents:)]
         pub unsafe fn localeIdentifierFromComponents(
             dict: &NSDictionary<NSString, NSString>,
         ) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other canonicalLocaleIdentifierFromString:)]
         pub unsafe fn canonicalLocaleIdentifierFromString(
             string: &NSString,
         ) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other canonicalLanguageIdentifierFromString:)]
         pub unsafe fn canonicalLanguageIdentifierFromString(
             string: &NSString,
         ) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localeIdentifierFromWindowsLocaleCode:)]
         pub unsafe fn localeIdentifierFromWindowsLocaleCode(
             lcid: u32,
         ) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(windowsLocaleCodeFromLocaleIdentifier:)]
         pub unsafe fn windowsLocaleCodeFromLocaleIdentifier(localeIdentifier: &NSString) -> u32;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(characterDirectionForLanguage:)]
         pub unsafe fn characterDirectionForLanguage(
             isoLangCode: &NSString,
         ) -> NSLocaleLanguageDirection;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(lineDirectionForLanguage:)]
         pub unsafe fn lineDirectionForLanguage(isoLangCode: &NSString)
             -> NSLocaleLanguageDirection;

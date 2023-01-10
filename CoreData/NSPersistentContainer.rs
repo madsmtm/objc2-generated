@@ -16,19 +16,25 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "CoreData_NSPersistentContainer")]
     unsafe impl NSPersistentContainer {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other persistentContainerWithName:)]
         pub unsafe fn persistentContainerWithName(name: &NSString) -> Id<Self, Shared>;
 
-        #[cfg(feature = "CoreData_NSManagedObjectModel")]
+        #[cfg(all(
+            feature = "CoreData_NSManagedObjectModel",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other persistentContainerWithName:managedObjectModel:)]
         pub unsafe fn persistentContainerWithName_managedObjectModel(
             name: &NSString,
             model: &NSManagedObjectModel,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other defaultDirectoryURL)]
         pub unsafe fn defaultDirectoryURL() -> Id<NSURL, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Id<NSString, Shared>;
 
@@ -45,26 +51,36 @@ extern_methods!(
         pub unsafe fn persistentStoreCoordinator(&self)
             -> Id<NSPersistentStoreCoordinator, Shared>;
 
-        #[cfg(feature = "CoreData_NSPersistentStoreDescription")]
+        #[cfg(all(
+            feature = "CoreData_NSPersistentStoreDescription",
+            feature = "Foundation_NSArray"
+        ))]
         #[method_id(@__retain_semantics Other persistentStoreDescriptions)]
         pub unsafe fn persistentStoreDescriptions(
             &self,
         ) -> Id<NSArray<NSPersistentStoreDescription>, Shared>;
 
-        #[cfg(feature = "CoreData_NSPersistentStoreDescription")]
+        #[cfg(all(
+            feature = "CoreData_NSPersistentStoreDescription",
+            feature = "Foundation_NSArray"
+        ))]
         #[method(setPersistentStoreDescriptions:)]
         pub unsafe fn setPersistentStoreDescriptions(
             &self,
             persistentStoreDescriptions: &NSArray<NSPersistentStoreDescription>,
         );
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithName:)]
         pub unsafe fn initWithName(
             this: Option<Allocated<Self>>,
             name: &NSString,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "CoreData_NSManagedObjectModel")]
+        #[cfg(all(
+            feature = "CoreData_NSManagedObjectModel",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Init initWithName:managedObjectModel:)]
         pub unsafe fn initWithName_managedObjectModel(
             this: Option<Allocated<Self>>,
@@ -72,7 +88,10 @@ extern_methods!(
             model: &NSManagedObjectModel,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "CoreData_NSPersistentStoreDescription")]
+        #[cfg(all(
+            feature = "CoreData_NSPersistentStoreDescription",
+            feature = "Foundation_NSError"
+        ))]
         #[method(loadPersistentStoresWithCompletionHandler:)]
         pub unsafe fn loadPersistentStoresWithCompletionHandler(
             &self,

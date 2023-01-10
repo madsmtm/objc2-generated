@@ -75,6 +75,7 @@ extern_methods!(
         #[method(cycleToNextInputServerInLanguage:)]
         pub unsafe fn cycleToNextInputServerInLanguage(sender: Option<&Object>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithName:host:)]
         pub unsafe fn initWithName_host(
             this: Option<Allocated<Self>>,
@@ -82,6 +83,7 @@ extern_methods!(
             hostName: Option<&NSString>,
         ) -> Option<Id<NSInputManager, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedInputManagerName)]
         pub unsafe fn localizedInputManagerName(&self) -> Option<Id<NSString, Shared>>;
 
@@ -98,6 +100,7 @@ extern_methods!(
         #[method(wantsToInterpretAllKeystrokes)]
         pub unsafe fn wantsToInterpretAllKeystrokes(&self) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other language)]
         pub unsafe fn language(&self) -> Option<Id<NSString, Shared>>;
 

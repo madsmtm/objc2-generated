@@ -21,7 +21,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Id<NSWindowTabbingIdentifier, Shared>;
 
-        #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(all(feature = "AppKit_NSWindow", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other windows)]
         pub unsafe fn windows(&self) -> Id<NSArray<NSWindow>, Shared>;
 

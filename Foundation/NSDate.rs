@@ -28,6 +28,7 @@ extern_methods!(
             ti: NSTimeInterval,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -67,9 +68,11 @@ extern_methods!(
         #[method(isEqualToDate:)]
         pub unsafe fn isEqualToDate(&self, otherDate: &NSDate) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other description)]
         pub unsafe fn description(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other descriptionWithLocale:)]
         pub unsafe fn descriptionWithLocale(&self, locale: Option<&Object>)
             -> Id<NSString, Shared>;

@@ -79,18 +79,22 @@ extern_methods!(
         #[method(registerURLHandleClass:)]
         pub unsafe fn registerURLHandleClass(anURLHandleSubclass: Option<&Class>);
 
+        #[cfg(feature = "Foundation_NSURL")]
         #[method(URLHandleClassForURL:)]
         pub unsafe fn URLHandleClassForURL(anURL: Option<&NSURL>) -> Option<&'static Class>;
 
         #[method(status)]
         pub unsafe fn status(&self) -> NSURLHandleStatus;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other failureReason)]
         pub unsafe fn failureReason(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSURLHandleClient")]
         #[method(addClient:)]
         pub unsafe fn addClient(&self, client: Option<&NSURLHandleClient>);
 
+        #[cfg(feature = "Foundation_NSURLHandleClient")]
         #[method(removeClient:)]
         pub unsafe fn removeClient(&self, client: Option<&NSURLHandleClient>);
 
@@ -100,9 +104,11 @@ extern_methods!(
         #[method(cancelLoadInBackground)]
         pub unsafe fn cancelLoadInBackground(&self);
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other resourceData)]
         pub unsafe fn resourceData(&self) -> Option<Id<NSData, Shared>>;
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other availableResourceData)]
         pub unsafe fn availableResourceData(&self) -> Option<Id<NSData, Shared>>;
 
@@ -112,18 +118,23 @@ extern_methods!(
         #[method(flushCachedData)]
         pub unsafe fn flushCachedData(&self);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(backgroundLoadDidFailWithReason:)]
         pub unsafe fn backgroundLoadDidFailWithReason(&self, reason: Option<&NSString>);
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method(didLoadBytes:loadComplete:)]
         pub unsafe fn didLoadBytes_loadComplete(&self, newBytes: Option<&NSData>, yorn: bool);
 
+        #[cfg(feature = "Foundation_NSURL")]
         #[method(canInitWithURL:)]
         pub unsafe fn canInitWithURL(anURL: Option<&NSURL>) -> bool;
 
+        #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other cachedHandleForURL:)]
         pub unsafe fn cachedHandleForURL(anURL: Option<&NSURL>) -> Option<Id<NSURLHandle, Shared>>;
 
+        #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Init initWithURL:cached:)]
         pub unsafe fn initWithURL_cached(
             this: Option<Allocated<Self>>,
@@ -131,18 +142,21 @@ extern_methods!(
             willCache: bool,
         ) -> Option<Id<Self, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other propertyForKey:)]
         pub unsafe fn propertyForKey(
             &self,
             propertyKey: Option<&NSString>,
         ) -> Option<Id<Object, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other propertyForKeyIfAvailable:)]
         pub unsafe fn propertyForKeyIfAvailable(
             &self,
             propertyKey: Option<&NSString>,
         ) -> Option<Id<Object, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(writeProperty:forKey:)]
         pub unsafe fn writeProperty_forKey(
             &self,
@@ -150,9 +164,11 @@ extern_methods!(
             propertyKey: Option<&NSString>,
         ) -> bool;
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method(writeData:)]
         pub unsafe fn writeData(&self, data: Option<&NSData>) -> bool;
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other loadInForeground)]
         pub unsafe fn loadInForeground(&self) -> Option<Id<NSData, Shared>>;
 

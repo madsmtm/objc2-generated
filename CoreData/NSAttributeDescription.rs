@@ -44,9 +44,11 @@ extern_methods!(
         #[method(setAttributeType:)]
         pub unsafe fn setAttributeType(&self, attributeType: NSAttributeType);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other attributeValueClassName)]
         pub unsafe fn attributeValueClassName(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setAttributeValueClassName:)]
         pub unsafe fn setAttributeValueClassName(&self, attributeValueClassName: Option<&NSString>);
 
@@ -56,12 +58,15 @@ extern_methods!(
         #[method(setDefaultValue:)]
         pub unsafe fn setDefaultValue(&self, defaultValue: Option<&Object>);
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other versionHash)]
         pub unsafe fn versionHash(&self) -> Id<NSData, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other valueTransformerName)]
         pub unsafe fn valueTransformerName(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setValueTransformerName:)]
         pub unsafe fn setValueTransformerName(&self, valueTransformerName: Option<&NSString>);
 

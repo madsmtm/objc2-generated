@@ -54,6 +54,7 @@ extern_methods!(
     /// Methods declared on superclass `NSCell`
     #[cfg(feature = "AppKit_NSStepperCell")]
     unsafe impl NSStepperCell {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initTextCell:)]
         pub unsafe fn initTextCell(
             this: Option<Allocated<Self>>,

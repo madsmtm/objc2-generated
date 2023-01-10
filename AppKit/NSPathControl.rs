@@ -24,30 +24,38 @@ extern_methods!(
         #[method(setEditable:)]
         pub unsafe fn setEditable(&self, editable: bool);
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other allowedTypes)]
         pub unsafe fn allowedTypes(&self) -> Option<Id<NSArray<NSString>, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setAllowedTypes:)]
         pub unsafe fn setAllowedTypes(&self, allowedTypes: Option<&NSArray<NSString>>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other placeholderString)]
         pub unsafe fn placeholderString(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setPlaceholderString:)]
         pub unsafe fn setPlaceholderString(&self, placeholderString: Option<&NSString>);
 
+        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other placeholderAttributedString)]
         pub unsafe fn placeholderAttributedString(&self) -> Option<Id<NSAttributedString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setPlaceholderAttributedString:)]
         pub unsafe fn setPlaceholderAttributedString(
             &self,
             placeholderAttributedString: Option<&NSAttributedString>,
         );
 
+        #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other URL)]
         pub unsafe fn URL(&self) -> Option<Id<NSURL, Shared>>;
 
+        #[cfg(feature = "Foundation_NSURL")]
         #[method(setURL:)]
         pub unsafe fn setURL(&self, URL: Option<&NSURL>);
 
@@ -67,11 +75,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other clickedPathItem)]
         pub unsafe fn clickedPathItem(&self) -> Option<Id<NSPathControlItem, Shared>>;
 
-        #[cfg(feature = "AppKit_NSPathControlItem")]
+        #[cfg(all(feature = "AppKit_NSPathControlItem", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other pathItems)]
         pub unsafe fn pathItems(&self) -> Id<NSArray<NSPathControlItem>, Shared>;
 
-        #[cfg(feature = "AppKit_NSPathControlItem")]
+        #[cfg(all(feature = "AppKit_NSPathControlItem", feature = "Foundation_NSArray"))]
         #[method(setPathItems:)]
         pub unsafe fn setPathItems(&self, pathItems: &NSArray<NSPathControlItem>);
 
@@ -168,11 +176,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other clickedPathComponentCell)]
         pub unsafe fn clickedPathComponentCell(&self) -> Option<Id<NSPathComponentCell, Shared>>;
 
-        #[cfg(feature = "AppKit_NSPathComponentCell")]
+        #[cfg(all(feature = "AppKit_NSPathComponentCell", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other pathComponentCells)]
         pub unsafe fn pathComponentCells(&self) -> Id<NSArray<NSPathComponentCell>, Shared>;
 
-        #[cfg(feature = "AppKit_NSPathComponentCell")]
+        #[cfg(all(feature = "AppKit_NSPathComponentCell", feature = "Foundation_NSArray"))]
         #[method(setPathComponentCells:)]
         pub unsafe fn setPathComponentCells(&self, cells: &NSArray<NSPathComponentCell>);
     }

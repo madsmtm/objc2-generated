@@ -27,27 +27,35 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Foundation_NSDateIntervalFormatter")]
     unsafe impl NSDateIntervalFormatter {
+        #[cfg(feature = "Foundation_NSLocale")]
         #[method_id(@__retain_semantics Other locale)]
         pub unsafe fn locale(&self) -> Id<NSLocale, Shared>;
 
+        #[cfg(feature = "Foundation_NSLocale")]
         #[method(setLocale:)]
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
 
+        #[cfg(feature = "Foundation_NSCalendar")]
         #[method_id(@__retain_semantics Other calendar)]
         pub unsafe fn calendar(&self) -> Id<NSCalendar, Shared>;
 
+        #[cfg(feature = "Foundation_NSCalendar")]
         #[method(setCalendar:)]
         pub unsafe fn setCalendar(&self, calendar: Option<&NSCalendar>);
 
+        #[cfg(feature = "Foundation_NSTimeZone")]
         #[method_id(@__retain_semantics Other timeZone)]
         pub unsafe fn timeZone(&self) -> Id<NSTimeZone, Shared>;
 
+        #[cfg(feature = "Foundation_NSTimeZone")]
         #[method(setTimeZone:)]
         pub unsafe fn setTimeZone(&self, timeZone: Option<&NSTimeZone>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other dateTemplate)]
         pub unsafe fn dateTemplate(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setDateTemplate:)]
         pub unsafe fn setDateTemplate(&self, dateTemplate: Option<&NSString>);
 
@@ -63,6 +71,7 @@ extern_methods!(
         #[method(setTimeStyle:)]
         pub unsafe fn setTimeStyle(&self, timeStyle: NSDateIntervalFormatterStyle);
 
+        #[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other stringFromDate:toDate:)]
         pub unsafe fn stringFromDate_toDate(
             &self,
@@ -70,6 +79,7 @@ extern_methods!(
             toDate: &NSDate,
         ) -> Id<NSString, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSDateInterval", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other stringFromDateInterval:)]
         pub unsafe fn stringFromDateInterval(
             &self,

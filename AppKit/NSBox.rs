@@ -52,9 +52,11 @@ extern_methods!(
         #[method(setTitlePosition:)]
         pub unsafe fn setTitlePosition(&self, titlePosition: NSTitlePosition);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
@@ -139,6 +141,7 @@ extern_methods!(
         #[method(setBorderType:)]
         pub unsafe fn setBorderType(&self, borderType: NSBorderType);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setTitleWithMnemonic:)]
         pub unsafe fn setTitleWithMnemonic(&self, stringWithAmpersand: Option<&NSString>);
     }

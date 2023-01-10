@@ -64,7 +64,10 @@ extern_methods!(
             defaultY: CGFloat,
         ) -> Option<Id<NSAlignmentFeedbackToken, Shared>>;
 
-        #[cfg(feature = "AppKit_NSAlignmentFeedbackToken")]
+        #[cfg(all(
+            feature = "AppKit_NSAlignmentFeedbackToken",
+            feature = "Foundation_NSArray"
+        ))]
         #[method(performFeedback:performanceTime:)]
         pub unsafe fn performFeedback_performanceTime(
             &self,

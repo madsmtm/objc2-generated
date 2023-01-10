@@ -15,9 +15,11 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Foundation_NSDateInterval")]
     unsafe impl NSDateInterval {
+        #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other startDate)]
         pub unsafe fn startDate(&self) -> Id<NSDate, Shared>;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other endDate)]
         pub unsafe fn endDate(&self) -> Id<NSDate, Shared>;
 
@@ -27,12 +29,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Init initWithStartDate:duration:)]
         pub unsafe fn initWithStartDate_duration(
             this: Option<Allocated<Self>>,
@@ -40,6 +44,7 @@ extern_methods!(
             duration: NSTimeInterval,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Init initWithStartDate:endDate:)]
         pub unsafe fn initWithStartDate_endDate(
             this: Option<Allocated<Self>>,
@@ -62,6 +67,7 @@ extern_methods!(
             dateInterval: &NSDateInterval,
         ) -> Option<Id<NSDateInterval, Shared>>;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(containsDate:)]
         pub unsafe fn containsDate(&self, date: &NSDate) -> bool;
     }

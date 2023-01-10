@@ -47,9 +47,11 @@ extern_methods!(
         #[method(setDestination:)]
         pub fn setDestination(&self, destination: MTLCaptureDestination);
 
+        #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other outputURL)]
         pub fn outputURL(&self) -> Option<Id<NSURL, Shared>>;
 
+        #[cfg(feature = "Foundation_NSURL")]
         #[method(setOutputURL:)]
         pub fn setOutputURL(&self, outputURL: Option<&NSURL>);
     }

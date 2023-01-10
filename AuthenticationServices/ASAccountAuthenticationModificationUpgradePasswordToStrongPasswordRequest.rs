@@ -21,7 +21,11 @@ extern_methods!(
         feature = "AuthenticationServices_ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest"
     )]
     unsafe impl ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest {
-        #[cfg(feature = "AuthenticationServices_ASCredentialServiceIdentifier")]
+        #[cfg(all(
+            feature = "AuthenticationServices_ASCredentialServiceIdentifier",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Init initWithUser:serviceIdentifier:userInfo:)]
         pub unsafe fn initWithUser_serviceIdentifier_userInfo(
             this: Option<Allocated<Self>>,
@@ -30,6 +34,7 @@ extern_methods!(
             userInfo: Option<&NSDictionary>,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other user)]
         pub unsafe fn user(&self) -> Id<NSString, Shared>;
 
@@ -37,6 +42,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other serviceIdentifier)]
         pub unsafe fn serviceIdentifier(&self) -> Id<ASCredentialServiceIdentifier, Shared>;
 
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other userInfo)]
         pub unsafe fn userInfo(&self) -> Option<Id<NSDictionary, Shared>>;
     }

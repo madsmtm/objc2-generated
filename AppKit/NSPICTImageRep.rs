@@ -18,15 +18,18 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSPICTImageRep")]
     unsafe impl NSPICTImageRep {
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other imageRepWithData:)]
         pub unsafe fn imageRepWithData(pictData: &NSData) -> Option<Id<Self, Shared>>;
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Init initWithData:)]
         pub unsafe fn initWithData(
             this: Option<Allocated<Self>>,
             pictData: &NSData,
         ) -> Option<Id<Self, Shared>>;
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other PICTRepresentation)]
         pub unsafe fn PICTRepresentation(&self) -> Id<NSData, Shared>;
 

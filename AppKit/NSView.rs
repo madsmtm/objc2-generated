@@ -80,6 +80,7 @@ extern_methods!(
             frameRect: NSRect,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -93,9 +94,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other superview)]
         pub unsafe fn superview(&self) -> Option<Id<NSView, Shared>>;
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other subviews)]
         pub unsafe fn subviews(&self) -> Id<NSArray<NSView>, Shared>;
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(setSubviews:)]
         pub unsafe fn setSubviews(&self, subviews: &NSArray<NSView>);
 
@@ -597,7 +600,7 @@ extern_methods!(
         #[method(removeTrackingArea:)]
         pub unsafe fn removeTrackingArea(&self, trackingArea: &NSTrackingArea);
 
-        #[cfg(feature = "AppKit_NSTrackingArea")]
+        #[cfg(all(feature = "AppKit_NSTrackingArea", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other trackingAreas)]
         pub unsafe fn trackingAreas(&self) -> Id<NSArray<NSTrackingArea>, Shared>;
 
@@ -633,9 +636,11 @@ extern_methods!(
         #[method(didCloseMenu:withEvent:)]
         pub unsafe fn didCloseMenu_withEvent(&self, menu: &NSMenu, event: Option<&NSEvent>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other toolTip)]
         pub unsafe fn toolTip(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setToolTip:)]
         pub unsafe fn setToolTip(&self, toolTip: Option<&NSString>);
 
@@ -783,6 +788,7 @@ extern_methods!(
             pasteboard: &NSPasteboard,
         );
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other dataWithEPSInsideRect:)]
         pub unsafe fn dataWithEPSInsideRect(&self, rect: NSRect) -> Id<NSData, Shared>;
 
@@ -794,6 +800,7 @@ extern_methods!(
             pasteboard: &NSPasteboard,
         );
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other dataWithPDFInsideRect:)]
         pub unsafe fn dataWithPDFInsideRect(&self, rect: NSRect) -> Id<NSData, Shared>;
 
@@ -836,15 +843,18 @@ extern_methods!(
         #[method(drawPageBorderWithSize:)]
         pub unsafe fn drawPageBorderWithSize(&self, borderSize: NSSize);
 
+        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other pageHeader)]
         pub unsafe fn pageHeader(&self) -> Id<NSAttributedString, Shared>;
 
+        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other pageFooter)]
         pub unsafe fn pageFooter(&self) -> Id<NSAttributedString, Shared>;
 
         #[method(drawSheetBorderWithSize:)]
         pub unsafe fn drawSheetBorderWithSize(&self, borderSize: NSSize);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other printJobTitle)]
         pub unsafe fn printJobTitle(&self) -> Id<NSString, Shared>;
 
@@ -870,7 +880,8 @@ extern_methods!(
             feature = "AppKit_NSDraggingItem",
             feature = "AppKit_NSDraggingSession",
             feature = "AppKit_NSDraggingSource",
-            feature = "AppKit_NSEvent"
+            feature = "AppKit_NSEvent",
+            feature = "Foundation_NSArray"
         ))]
         #[method_id(@__retain_semantics Other beginDraggingSessionWithItems:event:source:)]
         pub unsafe fn beginDraggingSessionWithItems_event_source(
@@ -880,11 +891,11 @@ extern_methods!(
             source: &NSDraggingSource,
         ) -> Id<NSDraggingSession, Shared>;
 
-        #[cfg(feature = "AppKit_NSPasteboardType")]
+        #[cfg(all(feature = "AppKit_NSPasteboardType", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other registeredDraggedTypes)]
         pub unsafe fn registeredDraggedTypes(&self) -> Id<NSArray<NSPasteboardType>, Shared>;
 
-        #[cfg(feature = "AppKit_NSPasteboardType")]
+        #[cfg(all(feature = "AppKit_NSPasteboardType", feature = "Foundation_NSArray"))]
         #[method(registerForDraggedTypes:)]
         pub unsafe fn registerForDraggedTypes(&self, newTypes: &NSArray<NSPasteboardType>);
 
@@ -913,7 +924,8 @@ extern_methods!(
     unsafe impl NSView {
         #[cfg(all(
             feature = "AppKit_NSScreen",
-            feature = "AppKit_NSViewFullScreenModeOptionKey"
+            feature = "AppKit_NSViewFullScreenModeOptionKey",
+            feature = "Foundation_NSDictionary"
         ))]
         #[method(enterFullScreenMode:withOptions:)]
         pub unsafe fn enterFullScreenMode_withOptions(
@@ -922,7 +934,10 @@ extern_methods!(
             options: Option<&NSDictionary<NSViewFullScreenModeOptionKey, Object>>,
         ) -> bool;
 
-        #[cfg(feature = "AppKit_NSViewFullScreenModeOptionKey")]
+        #[cfg(all(
+            feature = "AppKit_NSViewFullScreenModeOptionKey",
+            feature = "Foundation_NSDictionary"
+        ))]
         #[method(exitFullScreenModeWithOptions:)]
         pub unsafe fn exitFullScreenModeWithOptions(
             &self,
@@ -954,6 +969,7 @@ extern_methods!(
     /// NSDefinition
     #[cfg(feature = "AppKit_NSView")]
     unsafe impl NSView {
+        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(showDefinitionForAttributedString:atPoint:)]
         pub unsafe fn showDefinitionForAttributedString_atPoint(
             &self,
@@ -961,7 +977,11 @@ extern_methods!(
             textBaselineOrigin: NSPoint,
         );
 
-        #[cfg(feature = "AppKit_NSDefinitionOptionKey")]
+        #[cfg(all(
+            feature = "AppKit_NSDefinitionOptionKey",
+            feature = "Foundation_NSAttributedString",
+            feature = "Foundation_NSDictionary"
+        ))]
         #[method(showDefinitionForAttributedString:range:options:baselineOriginProvider:)]
         pub unsafe fn showDefinitionForAttributedString_range_options_baselineOriginProvider(
             &self,
@@ -986,11 +1006,11 @@ extern_methods!(
     /// NSGestureRecognizer
     #[cfg(feature = "AppKit_NSView")]
     unsafe impl NSView {
-        #[cfg(feature = "AppKit_NSGestureRecognizer")]
+        #[cfg(all(feature = "AppKit_NSGestureRecognizer", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other gestureRecognizers)]
         pub unsafe fn gestureRecognizers(&self) -> Id<NSArray<NSGestureRecognizer>, Shared>;
 
-        #[cfg(feature = "AppKit_NSGestureRecognizer")]
+        #[cfg(all(feature = "AppKit_NSGestureRecognizer", feature = "Foundation_NSArray"))]
         #[method(setGestureRecognizers:)]
         pub unsafe fn setGestureRecognizers(
             &self,
@@ -1066,7 +1086,7 @@ extern_methods!(
             slideFlag: bool,
         );
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(all(feature = "AppKit_NSEvent", feature = "Foundation_NSString"))]
         #[method(dragFile:fromRect:slideBack:event:)]
         pub unsafe fn dragFile_fromRect_slideBack_event(
             &self,
@@ -1076,7 +1096,11 @@ extern_methods!(
             event: &NSEvent,
         ) -> bool;
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(all(
+            feature = "AppKit_NSEvent",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString"
+        ))]
         #[method(dragPromisedFilesOfTypes:fromRect:source:slideBack:event:)]
         pub unsafe fn dragPromisedFilesOfTypes_fromRect_source_slideBack_event(
             &self,
@@ -1105,6 +1129,7 @@ extern_methods!(
         #[method(convertRectFromBase:)]
         pub unsafe fn convertRectFromBase(&self, rect: NSRect) -> NSRect;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(performMnemonic:)]
         pub unsafe fn performMnemonic(&self, string: &NSString) -> bool;
 

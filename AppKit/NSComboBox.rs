@@ -167,6 +167,7 @@ extern_methods!(
         #[method(addItemWithObjectValue:)]
         pub unsafe fn addItemWithObjectValue(&self, object: &Object);
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(addItemsWithObjectValues:)]
         pub unsafe fn addItemsWithObjectValues(&self, objects: &NSArray);
 
@@ -194,6 +195,7 @@ extern_methods!(
         #[method(indexOfItemWithObjectValue:)]
         pub unsafe fn indexOfItemWithObjectValue(&self, object: &Object) -> NSInteger;
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other objectValues)]
         pub unsafe fn objectValues(&self) -> Id<NSArray, Shared>;
     }
@@ -205,17 +207,21 @@ extern_methods!(
     /// NSTextFieldConvenience
     #[cfg(feature = "AppKit_NSComboBox")]
     unsafe impl NSComboBox {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other labelWithString:)]
         pub unsafe fn labelWithString(stringValue: &NSString) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other wrappingLabelWithString:)]
         pub unsafe fn wrappingLabelWithString(stringValue: &NSString) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other labelWithAttributedString:)]
         pub unsafe fn labelWithAttributedString(
             attributedStringValue: &NSAttributedString,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other textFieldWithString:)]
         pub unsafe fn textFieldWithString(stringValue: &NSString) -> Id<Self, Shared>;
     }

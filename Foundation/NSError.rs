@@ -53,6 +53,11 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Foundation_NSError")]
     unsafe impl NSError {
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSErrorDomain",
+            feature = "Foundation_NSErrorUserInfoKey"
+        ))]
         #[method_id(@__retain_semantics Init initWithDomain:code:userInfo:)]
         pub unsafe fn initWithDomain_code_userInfo(
             this: Option<Allocated<Self>>,
@@ -61,6 +66,11 @@ extern_methods!(
             dict: Option<&NSDictionary<NSErrorUserInfoKey, Object>>,
         ) -> Id<Self, Shared>;
 
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSErrorDomain",
+            feature = "Foundation_NSErrorUserInfoKey"
+        ))]
         #[method_id(@__retain_semantics Other errorWithDomain:code:userInfo:)]
         pub unsafe fn errorWithDomain_code_userInfo(
             domain: &NSErrorDomain,
@@ -68,42 +78,61 @@ extern_methods!(
             dict: Option<&NSDictionary<NSErrorUserInfoKey, Object>>,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSErrorDomain")]
         #[method_id(@__retain_semantics Other domain)]
         pub fn domain(&self) -> Id<NSErrorDomain, Shared>;
 
         #[method(code)]
         pub fn code(&self) -> NSInteger;
 
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSErrorUserInfoKey"
+        ))]
         #[method_id(@__retain_semantics Other userInfo)]
         pub fn userInfo(&self) -> Id<NSDictionary<NSErrorUserInfoKey, Object>, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedDescription)]
         pub fn localizedDescription(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedFailureReason)]
         pub unsafe fn localizedFailureReason(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedRecoverySuggestion)]
         pub unsafe fn localizedRecoverySuggestion(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other localizedRecoveryOptions)]
         pub unsafe fn localizedRecoveryOptions(&self) -> Option<Id<NSArray<NSString>, Shared>>;
 
         #[method_id(@__retain_semantics Other recoveryAttempter)]
         pub unsafe fn recoveryAttempter(&self) -> Option<Id<Object, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other helpAnchor)]
         pub unsafe fn helpAnchor(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other underlyingErrors)]
         pub unsafe fn underlyingErrors(&self) -> Id<NSArray<NSError>, Shared>;
 
+        #[cfg(all(
+            feature = "Foundation_NSErrorDomain",
+            feature = "Foundation_NSErrorUserInfoKey"
+        ))]
         #[method(setUserInfoValueProviderForDomain:provider:)]
         pub unsafe fn setUserInfoValueProviderForDomain_provider(
             errorDomain: &NSErrorDomain,
             provider: Option<&Block<(NonNull<NSError>, NonNull<NSErrorUserInfoKey>), *mut Object>>,
         );
 
+        #[cfg(all(
+            feature = "Foundation_NSErrorDomain",
+            feature = "Foundation_NSErrorUserInfoKey"
+        ))]
         #[method(userInfoValueProviderForDomain:)]
         pub unsafe fn userInfoValueProviderForDomain(
             errorDomain: &NSErrorDomain,

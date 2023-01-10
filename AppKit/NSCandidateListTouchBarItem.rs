@@ -71,11 +71,13 @@ extern_methods!(
             allowsTextInputContextCandidates: bool,
         );
 
+        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(attributedStringForCandidate)]
         pub unsafe fn attributedStringForCandidate(
             &self,
         ) -> *mut Block<(NonNull<CandidateType>, NSInteger), NonNull<NSAttributedString>>;
 
+        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setAttributedStringForCandidate:)]
         pub unsafe fn setAttributedStringForCandidate(
             &self,
@@ -84,9 +86,11 @@ extern_methods!(
             >,
         );
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other candidates)]
         pub unsafe fn candidates(&self) -> Id<NSArray<CandidateType>, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setCandidates:forSelectedRange:inString:)]
         pub unsafe fn setCandidates_forSelectedRange_inString(
             &self,
@@ -95,9 +99,11 @@ extern_methods!(
             originalString: Option<&NSString>,
         );
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other customizationLabel)]
         pub unsafe fn customizationLabel(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setCustomizationLabel:)]
         pub unsafe fn setCustomizationLabel(&self, customizationLabel: Option<&NSString>);
     }

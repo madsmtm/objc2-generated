@@ -68,32 +68,46 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Metal_MTLFunctionStitchingFunctionNode")]
     unsafe impl MTLFunctionStitchingFunctionNode {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]
         pub unsafe fn setName(&self, name: &NSString);
 
-        #[cfg(feature = "Metal_MTLFunctionStitchingNode")]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Metal_MTLFunctionStitchingNode"
+        ))]
         #[method_id(@__retain_semantics Other arguments)]
         pub unsafe fn arguments(&self) -> Id<NSArray<MTLFunctionStitchingNode>, Shared>;
 
-        #[cfg(feature = "Metal_MTLFunctionStitchingNode")]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Metal_MTLFunctionStitchingNode"
+        ))]
         #[method(setArguments:)]
         pub unsafe fn setArguments(&self, arguments: &NSArray<MTLFunctionStitchingNode>);
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other controlDependencies)]
         pub unsafe fn controlDependencies(
             &self,
         ) -> Id<NSArray<MTLFunctionStitchingFunctionNode>, Shared>;
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(setControlDependencies:)]
         pub unsafe fn setControlDependencies(
             &self,
             controlDependencies: &NSArray<MTLFunctionStitchingFunctionNode>,
         );
 
-        #[cfg(feature = "Metal_MTLFunctionStitchingNode")]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString",
+            feature = "Metal_MTLFunctionStitchingNode"
+        ))]
         #[method_id(@__retain_semantics Init initWithName:arguments:controlDependencies:)]
         pub unsafe fn initWithName_arguments_controlDependencies(
             this: Option<Allocated<Self>>,
@@ -116,17 +130,25 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Metal_MTLFunctionStitchingGraph")]
     unsafe impl MTLFunctionStitchingGraph {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other functionName)]
         pub unsafe fn functionName(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setFunctionName:)]
         pub unsafe fn setFunctionName(&self, functionName: &NSString);
 
-        #[cfg(feature = "Metal_MTLFunctionStitchingFunctionNode")]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Metal_MTLFunctionStitchingFunctionNode"
+        ))]
         #[method_id(@__retain_semantics Other nodes)]
         pub unsafe fn nodes(&self) -> Id<NSArray<MTLFunctionStitchingFunctionNode>, Shared>;
 
-        #[cfg(feature = "Metal_MTLFunctionStitchingFunctionNode")]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Metal_MTLFunctionStitchingFunctionNode"
+        ))]
         #[method(setNodes:)]
         pub unsafe fn setNodes(&self, nodes: &NSArray<MTLFunctionStitchingFunctionNode>);
 
@@ -138,15 +160,23 @@ extern_methods!(
         #[method(setOutputNode:)]
         pub unsafe fn setOutputNode(&self, outputNode: Option<&MTLFunctionStitchingFunctionNode>);
 
-        #[cfg(feature = "Metal_MTLFunctionStitchingAttribute")]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Metal_MTLFunctionStitchingAttribute"
+        ))]
         #[method_id(@__retain_semantics Other attributes)]
         pub unsafe fn attributes(&self) -> Id<NSArray<MTLFunctionStitchingAttribute>, Shared>;
 
-        #[cfg(feature = "Metal_MTLFunctionStitchingAttribute")]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Metal_MTLFunctionStitchingAttribute"
+        ))]
         #[method(setAttributes:)]
         pub unsafe fn setAttributes(&self, attributes: &NSArray<MTLFunctionStitchingAttribute>);
 
         #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString",
             feature = "Metal_MTLFunctionStitchingAttribute",
             feature = "Metal_MTLFunctionStitchingFunctionNode"
         ))]
@@ -173,19 +203,25 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Metal_MTLStitchedLibraryDescriptor")]
     unsafe impl MTLStitchedLibraryDescriptor {
-        #[cfg(feature = "Metal_MTLFunctionStitchingGraph")]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Metal_MTLFunctionStitchingGraph"
+        ))]
         #[method_id(@__retain_semantics Other functionGraphs)]
         pub unsafe fn functionGraphs(&self) -> Id<NSArray<MTLFunctionStitchingGraph>, Shared>;
 
-        #[cfg(feature = "Metal_MTLFunctionStitchingGraph")]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Metal_MTLFunctionStitchingGraph"
+        ))]
         #[method(setFunctionGraphs:)]
         pub unsafe fn setFunctionGraphs(&self, functionGraphs: &NSArray<MTLFunctionStitchingGraph>);
 
-        #[cfg(feature = "Metal_MTLFunction")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLFunction"))]
         #[method_id(@__retain_semantics Other functions)]
         pub unsafe fn functions(&self) -> Id<NSArray<MTLFunction>, Shared>;
 
-        #[cfg(feature = "Metal_MTLFunction")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLFunction"))]
         #[method(setFunctions:)]
         pub unsafe fn setFunctions(&self, functions: &NSArray<MTLFunction>);
     }

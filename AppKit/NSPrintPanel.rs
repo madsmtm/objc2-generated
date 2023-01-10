@@ -77,7 +77,7 @@ extern_methods!(
         #[method(removeAccessoryController:)]
         pub unsafe fn removeAccessoryController(&self, accessoryController: &NSViewController);
 
-        #[cfg(feature = "AppKit_NSViewController")]
+        #[cfg(all(feature = "AppKit_NSViewController", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other accessoryControllers)]
         pub unsafe fn accessoryControllers(&self) -> Id<NSArray<NSViewController>, Shared>;
 
@@ -87,9 +87,11 @@ extern_methods!(
         #[method(setOptions:)]
         pub unsafe fn setOptions(&self, options: NSPrintPanelOptions);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setDefaultButtonTitle:)]
         pub unsafe fn setDefaultButtonTitle(&self, defaultButtonTitle: Option<&NSString>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other defaultButtonTitle)]
         pub unsafe fn defaultButtonTitle(&self) -> Option<Id<NSString, Shared>>;
 

@@ -36,12 +36,14 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Foundation_NSInflectionRuleExplicit")]
     unsafe impl NSInflectionRuleExplicit {
+        #[cfg(feature = "Foundation_NSMorphology")]
         #[method_id(@__retain_semantics Init initWithMorphology:)]
         pub unsafe fn initWithMorphology(
             this: Option<Allocated<Self>>,
             morphology: &NSMorphology,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSMorphology")]
         #[method_id(@__retain_semantics Other morphology)]
         pub unsafe fn morphology(&self) -> Id<NSMorphology, Shared>;
     }
@@ -51,6 +53,7 @@ extern_methods!(
     /// NSInflectionAvailability
     #[cfg(feature = "Foundation_NSInflectionRule")]
     unsafe impl NSInflectionRule {
+        #[cfg(feature = "Foundation_NSString")]
         #[method(canInflectLanguage:)]
         pub unsafe fn canInflectLanguage(language: &NSString) -> bool;
 

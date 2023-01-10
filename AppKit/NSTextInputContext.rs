@@ -42,9 +42,11 @@ extern_methods!(
         #[method(setAcceptsGlyphInfo:)]
         pub unsafe fn setAcceptsGlyphInfo(&self, acceptsGlyphInfo: bool);
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other allowedInputSourceLocales)]
         pub unsafe fn allowedInputSourceLocales(&self) -> Option<Id<NSArray<NSString>, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setAllowedInputSourceLocales:)]
         pub unsafe fn setAllowedInputSourceLocales(
             &self,
@@ -67,7 +69,10 @@ extern_methods!(
         #[method(invalidateCharacterCoordinates)]
         pub unsafe fn invalidateCharacterCoordinates(&self);
 
-        #[cfg(feature = "AppKit_NSTextInputSourceIdentifier")]
+        #[cfg(all(
+            feature = "AppKit_NSTextInputSourceIdentifier",
+            feature = "Foundation_NSArray"
+        ))]
         #[method_id(@__retain_semantics Other keyboardInputSources)]
         pub unsafe fn keyboardInputSources(
             &self,
@@ -86,7 +91,10 @@ extern_methods!(
             selectedKeyboardInputSource: Option<&NSTextInputSourceIdentifier>,
         );
 
-        #[cfg(feature = "AppKit_NSTextInputSourceIdentifier")]
+        #[cfg(all(
+            feature = "AppKit_NSTextInputSourceIdentifier",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other localizedNameForInputSource:)]
         pub unsafe fn localizedNameForInputSource(
             inputSourceIdentifier: &NSTextInputSourceIdentifier,

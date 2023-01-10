@@ -25,27 +25,32 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Foundation_NSXMLParser")]
     unsafe impl NSXMLParser {
+        #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
         pub unsafe fn initWithContentsOfURL(
             this: Option<Allocated<Self>>,
             url: &NSURL,
         ) -> Option<Id<Self, Shared>>;
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Init initWithData:)]
         pub unsafe fn initWithData(
             this: Option<Allocated<Self>>,
             data: &NSData,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSInputStream")]
         #[method_id(@__retain_semantics Init initWithStream:)]
         pub unsafe fn initWithStream(
             this: Option<Allocated<Self>>,
             stream: &NSInputStream,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSXMLParserDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSXMLParserDelegate, Shared>>;
 
+        #[cfg(feature = "Foundation_NSXMLParserDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&NSXMLParserDelegate>);
 
@@ -72,9 +77,11 @@ extern_methods!(
             externalEntityResolvingPolicy: NSXMLParserExternalEntityResolvingPolicy,
         );
 
+        #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other allowedExternalEntityURLs)]
         pub unsafe fn allowedExternalEntityURLs(&self) -> Option<Id<NSSet<NSURL>, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSURL"))]
         #[method(setAllowedExternalEntityURLs:)]
         pub unsafe fn setAllowedExternalEntityURLs(
             &self,
@@ -87,6 +94,7 @@ extern_methods!(
         #[method(abortParsing)]
         pub unsafe fn abortParsing(&self);
 
+        #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other parserError)]
         pub unsafe fn parserError(&self) -> Option<Id<NSError, Shared>>;
 
@@ -102,9 +110,11 @@ extern_methods!(
     /// NSXMLParserLocatorAdditions
     #[cfg(feature = "Foundation_NSXMLParser")]
     unsafe impl NSXMLParser {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other publicID)]
         pub unsafe fn publicID(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other systemID)]
         pub unsafe fn systemID(&self) -> Option<Id<NSString, Shared>>;
 

@@ -138,6 +138,7 @@ extern_methods!(
         #[method(setAutosaveExpandedItems:)]
         pub unsafe fn setAutosaveExpandedItems(&self, autosaveExpandedItems: bool);
 
+        #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(insertItemsAtIndexes:inParent:withAnimation:)]
         pub unsafe fn insertItemsAtIndexes_inParent_withAnimation(
             &self,
@@ -146,6 +147,7 @@ extern_methods!(
             animationOptions: NSTableViewAnimationOptions,
         );
 
+        #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(removeItemsAtIndexes:inParent:withAnimation:)]
         pub unsafe fn removeItemsAtIndexes_inParent_withAnimation(
             &self,
@@ -163,6 +165,7 @@ extern_methods!(
             newParent: Option<&Object>,
         );
 
+        #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(insertRowsAtIndexes:withAnimation:)]
         pub unsafe fn insertRowsAtIndexes_withAnimation(
             &self,
@@ -170,6 +173,7 @@ extern_methods!(
             animationOptions: NSTableViewAnimationOptions,
         );
 
+        #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(removeRowsAtIndexes:withAnimation:)]
         pub unsafe fn removeRowsAtIndexes_withAnimation(
             &self,

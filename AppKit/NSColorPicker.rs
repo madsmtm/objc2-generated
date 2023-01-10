@@ -55,6 +55,7 @@ extern_methods!(
         #[method(setMode:)]
         pub unsafe fn setMode(&self, mode: NSColorPanelMode);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other buttonToolTip)]
         pub unsafe fn buttonToolTip(&self) -> Id<NSString, Shared>;
 

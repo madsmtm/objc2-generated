@@ -80,6 +80,7 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSTextAttachment")]
     unsafe impl NSTextAttachment {
+        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithData:ofType:)]
         pub unsafe fn initWithData_ofType(
             this: Option<Allocated<Self>>,
@@ -87,21 +88,26 @@ extern_methods!(
             uti: Option<&NSString>,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSFileWrapper")]
         #[method_id(@__retain_semantics Init initWithFileWrapper:)]
         pub unsafe fn initWithFileWrapper(
             this: Option<Allocated<Self>>,
             fileWrapper: Option<&NSFileWrapper>,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other contents)]
         pub unsafe fn contents(&self) -> Option<Id<NSData, Shared>>;
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method(setContents:)]
         pub unsafe fn setContents(&self, contents: Option<&NSData>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fileType)]
         pub unsafe fn fileType(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setFileType:)]
         pub unsafe fn setFileType(&self, fileType: Option<&NSString>);
 
@@ -119,9 +125,11 @@ extern_methods!(
         #[method(setBounds:)]
         pub unsafe fn setBounds(&self, bounds: CGRect);
 
+        #[cfg(feature = "Foundation_NSFileWrapper")]
         #[method_id(@__retain_semantics Other fileWrapper)]
         pub unsafe fn fileWrapper(&self) -> Option<Id<NSFileWrapper, Shared>>;
 
+        #[cfg(feature = "Foundation_NSFileWrapper")]
         #[method(setFileWrapper:)]
         pub unsafe fn setFileWrapper(&self, fileWrapper: Option<&NSFileWrapper>);
 
@@ -139,11 +147,13 @@ extern_methods!(
         #[method(setLineLayoutPadding:)]
         pub unsafe fn setLineLayoutPadding(&self, lineLayoutPadding: CGFloat);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(textAttachmentViewProviderClassForFileType:)]
         pub unsafe fn textAttachmentViewProviderClassForFileType(
             fileType: &NSString,
         ) -> Option<&'static Class>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(registerTextAttachmentViewProviderClass:forFileType:)]
         pub unsafe fn registerTextAttachmentViewProviderClass_forFileType(
             textAttachmentViewProviderClass: &Class,
@@ -163,7 +173,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSAttributedStringAttachmentConveniences
-    #[cfg(feature = "AppKit_NSAttributedString")]
+    #[cfg(feature = "Foundation_NSAttributedString")]
     unsafe impl NSAttributedString {
         #[cfg(feature = "AppKit_NSTextAttachment")]
         #[method_id(@__retain_semantics Other attributedStringWithAttachment:)]
@@ -238,7 +248,12 @@ extern_methods!(
             tracksTextAttachmentViewBounds: bool,
         );
 
-        #[cfg(all(feature = "AppKit_NSTextContainer", feature = "AppKit_NSTextLocation"))]
+        #[cfg(all(
+            feature = "AppKit_NSTextContainer",
+            feature = "AppKit_NSTextLocation",
+            feature = "Foundation_NSAttributedStringKey",
+            feature = "Foundation_NSDictionary"
+        ))]
         #[method(attachmentBoundsForAttributes:location:textContainer:proposedLineFragment:position:)]
         pub unsafe fn attachmentBoundsForAttributes_location_textContainer_proposedLineFragment_position(
             &self,
@@ -253,8 +268,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSMutableAttributedStringAttachmentConveniences
-    #[cfg(feature = "AppKit_NSMutableAttributedString")]
+    #[cfg(feature = "Foundation_NSMutableAttributedString")]
     unsafe impl NSMutableAttributedString {
+        #[cfg(feature = "Foundation_NSString")]
         #[method(updateAttachmentsFromPath:)]
         pub unsafe fn updateAttachmentsFromPath(&self, path: &NSString);
     }

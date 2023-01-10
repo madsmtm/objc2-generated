@@ -34,15 +34,19 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&NSSpeechRecognizerDelegate>);
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other commands)]
         pub unsafe fn commands(&self) -> Option<Id<NSArray<NSString>, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setCommands:)]
         pub unsafe fn setCommands(&self, commands: Option<&NSArray<NSString>>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other displayedCommandsTitle)]
         pub unsafe fn displayedCommandsTitle(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setDisplayedCommandsTitle:)]
         pub unsafe fn setDisplayedCommandsTitle(&self, displayedCommandsTitle: Option<&NSString>);
 

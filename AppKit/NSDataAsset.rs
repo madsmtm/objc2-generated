@@ -29,7 +29,7 @@ extern_methods!(
             name: &NSDataAssetName,
         ) -> Option<Id<Self, Shared>>;
 
-        #[cfg(feature = "AppKit_NSDataAssetName")]
+        #[cfg(all(feature = "AppKit_NSDataAssetName", feature = "Foundation_NSBundle"))]
         #[method_id(@__retain_semantics Init initWithName:bundle:)]
         pub unsafe fn initWithName_bundle(
             this: Option<Allocated<Self>>,
@@ -41,9 +41,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Id<NSDataAssetName, Shared>;
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other data)]
         pub unsafe fn data(&self) -> Id<NSData, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other typeIdentifier)]
         pub unsafe fn typeIdentifier(&self) -> Id<NSString, Shared>;
     }

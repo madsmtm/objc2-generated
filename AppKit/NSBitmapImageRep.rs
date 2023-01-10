@@ -142,12 +142,15 @@ extern_methods!(
             pBits: NSInteger,
         ) -> Option<Id<Self, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSData"))]
         #[method_id(@__retain_semantics Other imageRepsWithData:)]
         pub unsafe fn imageRepsWithData(data: &NSData) -> Id<NSArray<NSImageRep>, Shared>;
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other imageRepWithData:)]
         pub unsafe fn imageRepWithData(data: &NSData) -> Option<Id<Self, Shared>>;
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Init initWithData:)]
         pub unsafe fn initWithData(
             this: Option<Allocated<Self>>,
@@ -191,9 +194,11 @@ extern_methods!(
         #[method(setCompression:factor:)]
         pub unsafe fn setCompression_factor(&self, compression: NSTIFFCompression, factor: c_float);
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other TIFFRepresentation)]
         pub unsafe fn TIFFRepresentation(&self) -> Option<Id<NSData, Shared>>;
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other TIFFRepresentationUsingCompression:factor:)]
         pub unsafe fn TIFFRepresentationUsingCompression_factor(
             &self,
@@ -201,11 +206,13 @@ extern_methods!(
             factor: c_float,
         ) -> Option<Id<NSData, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSData"))]
         #[method_id(@__retain_semantics Other TIFFRepresentationOfImageRepsInArray:)]
         pub unsafe fn TIFFRepresentationOfImageRepsInArray(
             array: &NSArray<NSImageRep>,
         ) -> Option<Id<NSData, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSData"))]
         #[method_id(@__retain_semantics Other TIFFRepresentationOfImageRepsInArray:usingCompression:factor:)]
         pub unsafe fn TIFFRepresentationOfImageRepsInArray_usingCompression_factor(
             array: &NSArray<NSImageRep>,
@@ -219,6 +226,7 @@ extern_methods!(
             numTypes: NonNull<NSInteger>,
         );
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedNameForTIFFCompressionType:)]
         pub unsafe fn localizedNameForTIFFCompressionType(
             compression: NSTIFFCompression,
@@ -240,6 +248,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initForIncrementalLoad)]
         pub unsafe fn initForIncrementalLoad(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method(incrementalLoadFromData:complete:)]
         pub unsafe fn incrementalLoadFromData_complete(
             &self,
@@ -288,7 +297,10 @@ extern_methods!(
     unsafe impl NSBitmapImageRep {
         #[cfg(all(
             feature = "AppKit_NSBitmapImageRepPropertyKey",
-            feature = "AppKit_NSImageRep"
+            feature = "AppKit_NSImageRep",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSData",
+            feature = "Foundation_NSDictionary"
         ))]
         #[method_id(@__retain_semantics Other representationOfImageRepsInArray:usingType:properties:)]
         pub unsafe fn representationOfImageRepsInArray_usingType_properties(
@@ -297,7 +309,11 @@ extern_methods!(
             properties: &NSDictionary<NSBitmapImageRepPropertyKey, Object>,
         ) -> Option<Id<NSData, Shared>>;
 
-        #[cfg(feature = "AppKit_NSBitmapImageRepPropertyKey")]
+        #[cfg(all(
+            feature = "AppKit_NSBitmapImageRepPropertyKey",
+            feature = "Foundation_NSData",
+            feature = "Foundation_NSDictionary"
+        ))]
         #[method_id(@__retain_semantics Other representationUsingType:properties:)]
         pub unsafe fn representationUsingType_properties(
             &self,

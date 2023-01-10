@@ -57,7 +57,7 @@ extern_methods!(
     /// Methods declared on superclass `NSViewController`
     #[cfg(feature = "AppKit_NSTitlebarAccessoryViewController")]
     unsafe impl NSTitlebarAccessoryViewController {
-        #[cfg(feature = "AppKit_NSNibName")]
+        #[cfg(all(feature = "AppKit_NSNibName", feature = "Foundation_NSBundle"))]
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Option<Allocated<Self>>,

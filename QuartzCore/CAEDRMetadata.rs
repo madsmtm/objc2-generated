@@ -19,6 +19,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other HDR10MetadataWithDisplayInfo:contentInfo:opticalOutputScale:)]
         pub unsafe fn HDR10MetadataWithDisplayInfo_contentInfo_opticalOutputScale(
             displayData: Option<&NSData>,

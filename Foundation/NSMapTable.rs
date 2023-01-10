@@ -61,6 +61,7 @@ extern_methods!(
             initialCapacity: NSUInteger,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSPointerFunctions")]
         #[method_id(@__retain_semantics Init initWithKeyPointerFunctions:valuePointerFunctions:capacity:)]
         pub unsafe fn initWithKeyPointerFunctions_valuePointerFunctions_capacity(
             this: Option<Allocated<Self>>,
@@ -99,9 +100,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other weakToWeakObjectsMapTable)]
         pub unsafe fn weakToWeakObjectsMapTable() -> Id<NSMapTable<KeyType, ObjectType>, Shared>;
 
+        #[cfg(feature = "Foundation_NSPointerFunctions")]
         #[method_id(@__retain_semantics Other keyPointerFunctions)]
         pub unsafe fn keyPointerFunctions(&self) -> Id<NSPointerFunctions, Shared>;
 
+        #[cfg(feature = "Foundation_NSPointerFunctions")]
         #[method_id(@__retain_semantics Other valuePointerFunctions)]
         pub unsafe fn valuePointerFunctions(&self) -> Id<NSPointerFunctions, Shared>;
 
@@ -124,15 +127,18 @@ extern_methods!(
         #[method(count)]
         pub unsafe fn count(&self) -> NSUInteger;
 
+        #[cfg(feature = "Foundation_NSEnumerator")]
         #[method_id(@__retain_semantics Other keyEnumerator)]
         pub unsafe fn keyEnumerator(&self) -> Id<NSEnumerator<KeyType>, Shared>;
 
+        #[cfg(feature = "Foundation_NSEnumerator")]
         #[method_id(@__retain_semantics Other objectEnumerator)]
         pub unsafe fn objectEnumerator(&self) -> Option<Id<NSEnumerator<ObjectType>, Shared>>;
 
         #[method(removeAllObjects)]
         pub unsafe fn removeAllObjects(&self);
 
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other dictionaryRepresentation)]
         pub unsafe fn dictionaryRepresentation(
             &self,

@@ -17,6 +17,7 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "CoreData_NSPersistentHistoryChangeRequest")]
     unsafe impl NSPersistentHistoryChangeRequest {
+        #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other fetchHistoryAfterDate:)]
         pub unsafe fn fetchHistoryAfterDate(date: &NSDate) -> Id<Self, Shared>;
 
@@ -38,6 +39,7 @@ extern_methods!(
             fetchRequest: &NSFetchRequest,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other deleteHistoryBeforeDate:)]
         pub unsafe fn deleteHistoryBeforeDate(date: &NSDate) -> Id<Self, Shared>;
 

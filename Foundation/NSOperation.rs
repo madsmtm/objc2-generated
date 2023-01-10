@@ -59,6 +59,7 @@ extern_methods!(
         #[method(removeDependency:)]
         pub unsafe fn removeDependency(&self, op: &NSOperation);
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other dependencies)]
         pub unsafe fn dependencies(&self) -> Id<NSArray<NSOperation>, Shared>;
 
@@ -89,9 +90,11 @@ extern_methods!(
         #[method(setQualityOfService:)]
         pub unsafe fn setQualityOfService(&self, qualityOfService: NSQualityOfService);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
     }
@@ -139,12 +142,14 @@ extern_methods!(
             arg: Option<&Object>,
         ) -> Option<Id<Self, Shared>>;
 
+        #[cfg(feature = "Foundation_NSInvocation")]
         #[method_id(@__retain_semantics Init initWithInvocation:)]
         pub unsafe fn initWithInvocation(
             this: Option<Allocated<Self>>,
             inv: &NSInvocation,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSInvocation")]
         #[method_id(@__retain_semantics Other invocation)]
         pub unsafe fn invocation(&self) -> Id<NSInvocation, Shared>;
 
@@ -171,12 +176,15 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Foundation_NSOperationQueue")]
     unsafe impl NSOperationQueue {
+        #[cfg(feature = "Foundation_NSProgress")]
         #[method_id(@__retain_semantics Other progress)]
         pub unsafe fn progress(&self) -> Id<NSProgress, Shared>;
 
+        #[cfg(feature = "Foundation_NSOperation")]
         #[method(addOperation:)]
         pub unsafe fn addOperation(&self, op: &NSOperation);
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSOperation"))]
         #[method(addOperations:waitUntilFinished:)]
         pub unsafe fn addOperations_waitUntilFinished(
             &self,
@@ -202,9 +210,11 @@ extern_methods!(
         #[method(setSuspended:)]
         pub unsafe fn setSuspended(&self, suspended: bool);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
@@ -232,6 +242,7 @@ extern_methods!(
     /// NSDeprecated
     #[cfg(feature = "Foundation_NSOperationQueue")]
     unsafe impl NSOperationQueue {
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSOperation"))]
         #[method_id(@__retain_semantics Other operations)]
         pub unsafe fn operations(&self) -> Id<NSArray<NSOperation>, Shared>;
 

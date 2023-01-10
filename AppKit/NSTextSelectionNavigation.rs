@@ -115,7 +115,11 @@ extern_methods!(
             confined: bool,
         ) -> Option<Id<NSTextSelection, Shared>>;
 
-        #[cfg(all(feature = "AppKit_NSTextLocation", feature = "AppKit_NSTextSelection"))]
+        #[cfg(all(
+            feature = "AppKit_NSTextLocation",
+            feature = "AppKit_NSTextSelection",
+            feature = "Foundation_NSArray"
+        ))]
         #[method_id(@__retain_semantics Other textSelectionsInteractingAtPoint:inContainerAtLocation:anchors:modifiers:selecting:bounds:)]
         pub unsafe fn textSelectionsInteractingAtPoint_inContainerAtLocation_anchors_modifiers_selecting_bounds(
             &self,
@@ -152,7 +156,11 @@ extern_methods!(
             writingDirection: NSTextSelectionNavigationWritingDirection,
         ) -> Option<Id<NSTextLocation, Shared>>;
 
-        #[cfg(all(feature = "AppKit_NSTextRange", feature = "AppKit_NSTextSelection"))]
+        #[cfg(all(
+            feature = "AppKit_NSTextRange",
+            feature = "AppKit_NSTextSelection",
+            feature = "Foundation_NSArray"
+        ))]
         #[method_id(@__retain_semantics Other deletionRangesForTextSelection:direction:destination:allowsDecomposition:)]
         pub unsafe fn deletionRangesForTextSelection_direction_destination_allowsDecomposition(
             &self,

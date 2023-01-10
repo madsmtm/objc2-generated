@@ -405,12 +405,15 @@ extern_methods!(
         #[method(isDirectionInvertedFromDevice)]
         pub unsafe fn isDirectionInvertedFromDevice(&self) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other characters)]
         pub unsafe fn characters(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other charactersIgnoringModifiers)]
         pub unsafe fn charactersIgnoringModifiers(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other charactersByApplyingModifiers:)]
         pub unsafe fn charactersByApplyingModifiers(
             &self,
@@ -514,7 +517,11 @@ extern_methods!(
         #[method(isEnteringProximity)]
         pub unsafe fn isEnteringProximity(&self) -> bool;
 
-        #[cfg(all(feature = "AppKit_NSTouch", feature = "AppKit_NSView"))]
+        #[cfg(all(
+            feature = "AppKit_NSTouch",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSSet"
+        ))]
         #[method_id(@__retain_semantics Other touchesMatchingPhase:inView:)]
         pub unsafe fn touchesMatchingPhase_inView(
             &self,
@@ -522,15 +529,19 @@ extern_methods!(
             view: Option<&NSView>,
         ) -> Id<NSSet<NSTouch>, Shared>;
 
-        #[cfg(feature = "AppKit_NSTouch")]
+        #[cfg(all(feature = "AppKit_NSTouch", feature = "Foundation_NSSet"))]
         #[method_id(@__retain_semantics Other allTouches)]
         pub unsafe fn allTouches(&self) -> Id<NSSet<NSTouch>, Shared>;
 
-        #[cfg(all(feature = "AppKit_NSTouch", feature = "AppKit_NSView"))]
+        #[cfg(all(
+            feature = "AppKit_NSTouch",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSSet"
+        ))]
         #[method_id(@__retain_semantics Other touchesForView:)]
         pub unsafe fn touchesForView(&self, view: &NSView) -> Id<NSSet<NSTouch>, Shared>;
 
-        #[cfg(feature = "AppKit_NSTouch")]
+        #[cfg(all(feature = "AppKit_NSTouch", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other coalescedTouchesForTouch:)]
         pub unsafe fn coalescedTouchesForTouch(
             &self,
@@ -587,7 +598,7 @@ extern_methods!(
             pressure: c_float,
         ) -> Option<Id<NSEvent, Shared>>;
 
-        #[cfg(feature = "AppKit_NSGraphicsContext")]
+        #[cfg(all(feature = "AppKit_NSGraphicsContext", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other keyEventWithType:location:modifierFlags:timestamp:windowNumber:context:characters:charactersIgnoringModifiers:isARepeat:keyCode:)]
         pub unsafe fn keyEventWithType_location_modifierFlags_timestamp_windowNumber_context_characters_charactersIgnoringModifiers_isARepeat_keyCode(
             type_: NSEventType,

@@ -52,9 +52,11 @@ extern_methods!(
         #[method(documentVisibleRect)]
         pub unsafe fn documentVisibleRect(&self) -> NSRect;
 
+        #[cfg(feature = "Foundation_NSNotification")]
         #[method(viewFrameChanged:)]
         pub unsafe fn viewFrameChanged(&self, notification: &NSNotification);
 
+        #[cfg(feature = "Foundation_NSNotification")]
         #[method(viewBoundsChanged:)]
         pub unsafe fn viewBoundsChanged(&self, notification: &NSNotification);
 

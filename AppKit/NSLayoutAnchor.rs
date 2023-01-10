@@ -55,6 +55,7 @@ extern_methods!(
             c: CGFloat,
         ) -> Id<NSLayoutConstraint, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Id<NSString, Shared>;
 
@@ -64,7 +65,7 @@ extern_methods!(
         #[method(hasAmbiguousLayout)]
         pub unsafe fn hasAmbiguousLayout(&self) -> bool;
 
-        #[cfg(feature = "AppKit_NSLayoutConstraint")]
+        #[cfg(all(feature = "AppKit_NSLayoutConstraint", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other constraintsAffectingLayout)]
         pub unsafe fn constraintsAffectingLayout(&self) -> Id<NSArray<NSLayoutConstraint>, Shared>;
     }

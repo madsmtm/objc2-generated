@@ -37,6 +37,7 @@ extern_methods!(
     /// Methods declared on superclass `NSTextFieldCell`
     #[cfg(feature = "AppKit_NSTableHeaderCell")]
     unsafe impl NSTableHeaderCell {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initTextCell:)]
         pub unsafe fn initTextCell(
             this: Option<Allocated<Self>>,

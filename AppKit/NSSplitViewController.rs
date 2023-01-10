@@ -28,11 +28,11 @@ extern_methods!(
         #[method(setSplitView:)]
         pub unsafe fn setSplitView(&self, splitView: &NSSplitView);
 
-        #[cfg(feature = "AppKit_NSSplitViewItem")]
+        #[cfg(all(feature = "AppKit_NSSplitViewItem", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other splitViewItems)]
         pub unsafe fn splitViewItems(&self) -> Id<NSArray<NSSplitViewItem>, Shared>;
 
-        #[cfg(feature = "AppKit_NSSplitViewItem")]
+        #[cfg(all(feature = "AppKit_NSSplitViewItem", feature = "Foundation_NSArray"))]
         #[method(setSplitViewItems:)]
         pub unsafe fn setSplitViewItems(&self, splitViewItems: &NSArray<NSSplitViewItem>);
 
@@ -134,7 +134,7 @@ extern_methods!(
     /// Methods declared on superclass `NSViewController`
     #[cfg(feature = "AppKit_NSSplitViewController")]
     unsafe impl NSSplitViewController {
-        #[cfg(feature = "AppKit_NSNibName")]
+        #[cfg(all(feature = "AppKit_NSNibName", feature = "Foundation_NSBundle"))]
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Option<Allocated<Self>>,

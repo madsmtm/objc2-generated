@@ -49,6 +49,7 @@ extern_methods!(
             animationCurve: NSAnimationCurve,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -108,9 +109,11 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&NSAnimationDelegate>);
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method_id(@__retain_semantics Other progressMarks)]
         pub unsafe fn progressMarks(&self) -> Id<NSArray<NSNumber>, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method(setProgressMarks:)]
         pub unsafe fn setProgressMarks(&self, progressMarks: &NSArray<NSNumber>);
 
@@ -140,6 +143,7 @@ extern_methods!(
         #[method(clearStopAnimation)]
         pub unsafe fn clearStopAnimation(&self);
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSRunLoopMode"))]
         #[method_id(@__retain_semantics Other runLoopModesForAnimating)]
         pub unsafe fn runLoopModesForAnimating(&self)
             -> Option<Id<NSArray<NSRunLoopMode>, Shared>>;
@@ -213,20 +217,32 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSViewAnimation")]
     unsafe impl NSViewAnimation {
-        #[cfg(feature = "AppKit_NSViewAnimationKey")]
+        #[cfg(all(
+            feature = "AppKit_NSViewAnimationKey",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSDictionary"
+        ))]
         #[method_id(@__retain_semantics Init initWithViewAnimations:)]
         pub unsafe fn initWithViewAnimations(
             this: Option<Allocated<Self>>,
             viewAnimations: &NSArray<NSDictionary<NSViewAnimationKey, Object>>,
         ) -> Id<Self, Shared>;
 
-        #[cfg(feature = "AppKit_NSViewAnimationKey")]
+        #[cfg(all(
+            feature = "AppKit_NSViewAnimationKey",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSDictionary"
+        ))]
         #[method_id(@__retain_semantics Other viewAnimations)]
         pub unsafe fn viewAnimations(
             &self,
         ) -> Id<NSArray<NSDictionary<NSViewAnimationKey, Object>>, Shared>;
 
-        #[cfg(feature = "AppKit_NSViewAnimationKey")]
+        #[cfg(all(
+            feature = "AppKit_NSViewAnimationKey",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSDictionary"
+        ))]
         #[method(setViewAnimations:)]
         pub unsafe fn setViewAnimations(
             &self,

@@ -17,21 +17,25 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSMenu")]
     unsafe impl NSMenu {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithTitle:)]
         pub unsafe fn initWithTitle(
             this: Option<Allocated<Self>>,
             title: &NSString,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
@@ -85,7 +89,7 @@ extern_methods!(
         #[method(addItem:)]
         pub unsafe fn addItem(&self, newItem: &NSMenuItem);
 
-        #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(all(feature = "AppKit_NSMenuItem", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other insertItemWithTitle:action:keyEquivalent:atIndex:)]
         pub unsafe fn insertItemWithTitle_action_keyEquivalent_atIndex(
             &self,
@@ -95,7 +99,7 @@ extern_methods!(
             index: NSInteger,
         ) -> Id<NSMenuItem, Shared>;
 
-        #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(all(feature = "AppKit_NSMenuItem", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other addItemWithTitle:action:keyEquivalent:)]
         pub unsafe fn addItemWithTitle_action_keyEquivalent(
             &self,
@@ -118,11 +122,11 @@ extern_methods!(
         #[method(removeAllItems)]
         pub unsafe fn removeAllItems(&self);
 
-        #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(all(feature = "AppKit_NSMenuItem", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other itemArray)]
         pub unsafe fn itemArray(&self) -> Id<NSArray<NSMenuItem>, Shared>;
 
-        #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(all(feature = "AppKit_NSMenuItem", feature = "Foundation_NSArray"))]
         #[method(setItemArray:)]
         pub unsafe fn setItemArray(&self, itemArray: &NSArray<NSMenuItem>);
 
@@ -137,6 +141,7 @@ extern_methods!(
         #[method(indexOfItem:)]
         pub unsafe fn indexOfItem(&self, item: &NSMenuItem) -> NSInteger;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(indexOfItemWithTitle:)]
         pub unsafe fn indexOfItemWithTitle(&self, title: &NSString) -> NSInteger;
 
@@ -157,7 +162,7 @@ extern_methods!(
             actionSelector: Option<Sel>,
         ) -> NSInteger;
 
-        #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(all(feature = "AppKit_NSMenuItem", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other itemWithTitle:)]
         pub unsafe fn itemWithTitle(&self, title: &NSString) -> Option<Id<NSMenuItem, Shared>>;
 

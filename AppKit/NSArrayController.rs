@@ -30,6 +30,7 @@ extern_methods!(
             automaticallyRearrangesObjects: bool,
         );
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other automaticRearrangementKeyPaths)]
         pub unsafe fn automaticRearrangementKeyPaths(
             &self,
@@ -38,15 +39,25 @@ extern_methods!(
         #[method(didChangeArrangementCriteria)]
         pub unsafe fn didChangeArrangementCriteria(&self);
 
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSSortDescriptor"
+        ))]
         #[method_id(@__retain_semantics Other sortDescriptors)]
         pub unsafe fn sortDescriptors(&self) -> Id<NSArray<NSSortDescriptor>, Shared>;
 
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSSortDescriptor"
+        ))]
         #[method(setSortDescriptors:)]
         pub unsafe fn setSortDescriptors(&self, sortDescriptors: &NSArray<NSSortDescriptor>);
 
+        #[cfg(feature = "Foundation_NSPredicate")]
         #[method_id(@__retain_semantics Other filterPredicate)]
         pub unsafe fn filterPredicate(&self) -> Option<Id<NSPredicate, Shared>>;
 
+        #[cfg(feature = "Foundation_NSPredicate")]
         #[method(setFilterPredicate:)]
         pub unsafe fn setFilterPredicate(&self, filterPredicate: Option<&NSPredicate>);
 
@@ -59,6 +70,7 @@ extern_methods!(
             clearsFilterPredicateOnInsertion: bool,
         );
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other arrangeObjects:)]
         pub unsafe fn arrangeObjects(&self, objects: &NSArray) -> Id<NSArray, Shared>;
 
@@ -92,9 +104,11 @@ extern_methods!(
             alwaysUsesMultipleValuesMarker: bool,
         );
 
+        #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(setSelectionIndexes:)]
         pub unsafe fn setSelectionIndexes(&self, indexes: &NSIndexSet) -> bool;
 
+        #[cfg(feature = "Foundation_NSIndexSet")]
         #[method_id(@__retain_semantics Other selectionIndexes)]
         pub unsafe fn selectionIndexes(&self) -> Id<NSIndexSet, Shared>;
 
@@ -104,21 +118,27 @@ extern_methods!(
         #[method(selectionIndex)]
         pub unsafe fn selectionIndex(&self) -> NSUInteger;
 
+        #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(addSelectionIndexes:)]
         pub unsafe fn addSelectionIndexes(&self, indexes: &NSIndexSet) -> bool;
 
+        #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(removeSelectionIndexes:)]
         pub unsafe fn removeSelectionIndexes(&self, indexes: &NSIndexSet) -> bool;
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(setSelectedObjects:)]
         pub unsafe fn setSelectedObjects(&self, objects: &NSArray) -> bool;
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other selectedObjects)]
         pub unsafe fn selectedObjects(&self) -> Id<NSArray, Shared>;
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(addSelectedObjects:)]
         pub unsafe fn addSelectedObjects(&self, objects: &NSArray) -> bool;
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(removeSelectedObjects:)]
         pub unsafe fn removeSelectedObjects(&self, objects: &NSArray) -> bool;
 
@@ -149,12 +169,14 @@ extern_methods!(
         #[method(addObject:)]
         pub unsafe fn addObject(&self, object: &Object);
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(addObjects:)]
         pub unsafe fn addObjects(&self, objects: &NSArray);
 
         #[method(insertObject:atArrangedObjectIndex:)]
         pub unsafe fn insertObject_atArrangedObjectIndex(&self, object: &Object, index: NSUInteger);
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSIndexSet"))]
         #[method(insertObjects:atArrangedObjectIndexes:)]
         pub unsafe fn insertObjects_atArrangedObjectIndexes(
             &self,
@@ -165,12 +187,14 @@ extern_methods!(
         #[method(removeObjectAtArrangedObjectIndex:)]
         pub unsafe fn removeObjectAtArrangedObjectIndex(&self, index: NSUInteger);
 
+        #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(removeObjectsAtArrangedObjectIndexes:)]
         pub unsafe fn removeObjectsAtArrangedObjectIndexes(&self, indexes: &NSIndexSet);
 
         #[method(removeObject:)]
         pub unsafe fn removeObject(&self, object: &Object);
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(removeObjects:)]
         pub unsafe fn removeObjects(&self, objects: &NSArray);
     }

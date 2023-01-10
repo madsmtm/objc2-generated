@@ -34,6 +34,7 @@ extern_methods!(
     /// NSInternetPassword
     #[cfg(feature = "Foundation_NSURLCredential")]
     unsafe impl NSURLCredential {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithUser:password:persistence:)]
         pub unsafe fn initWithUser_password_persistence(
             this: Option<Allocated<Self>>,
@@ -42,6 +43,7 @@ extern_methods!(
             persistence: NSURLCredentialPersistence,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other credentialWithUser:password:persistence:)]
         pub unsafe fn credentialWithUser_password_persistence(
             user: &NSString,
@@ -49,9 +51,11 @@ extern_methods!(
             persistence: NSURLCredentialPersistence,
         ) -> Id<NSURLCredential, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other user)]
         pub unsafe fn user(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other password)]
         pub unsafe fn password(&self) -> Option<Id<NSString, Shared>>;
 
@@ -64,6 +68,7 @@ extern_methods!(
     /// NSClientCertificate
     #[cfg(feature = "Foundation_NSURLCredential")]
     unsafe impl NSURLCredential {
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other certificates)]
         pub unsafe fn certificates(&self) -> Id<NSArray, Shared>;
     }

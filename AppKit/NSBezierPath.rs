@@ -224,6 +224,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other bezierPathByReversingPath)]
         pub unsafe fn bezierPathByReversingPath(&self) -> Id<NSBezierPath, Shared>;
 
+        #[cfg(feature = "Foundation_NSAffineTransform")]
         #[method(transformUsingAffineTransform:)]
         pub unsafe fn transformUsingAffineTransform(&self, transform: &NSAffineTransform);
 

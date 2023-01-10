@@ -117,7 +117,7 @@ extern_methods!(
         #[method(setArrangesAllSubviews:)]
         pub unsafe fn setArrangesAllSubviews(&self, arrangesAllSubviews: bool);
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(feature = "AppKit_NSView", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other arrangedSubviews)]
         pub unsafe fn arrangedSubviews(&self) -> Id<NSArray<NSView>, Shared>;
 

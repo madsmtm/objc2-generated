@@ -155,6 +155,7 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Metal_MTLStructMember")]
     unsafe impl MTLStructMember {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
         pub fn name(&self) -> Id<NSString, Shared>;
 
@@ -198,11 +199,11 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Metal_MTLStructType")]
     unsafe impl MTLStructType {
-        #[cfg(feature = "Metal_MTLStructMember")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLStructMember"))]
         #[method_id(@__retain_semantics Other members)]
         pub fn members(&self) -> Id<NSArray<MTLStructMember>, Shared>;
 
-        #[cfg(feature = "Metal_MTLStructMember")]
+        #[cfg(all(feature = "Foundation_NSString", feature = "Metal_MTLStructMember"))]
         #[method_id(@__retain_semantics Other memberByName:)]
         pub fn memberByName(&self, name: &NSString) -> Option<Id<MTLStructMember, Shared>>;
     }
@@ -329,6 +330,7 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Metal_MTLArgument")]
     unsafe impl MTLArgument {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
         pub fn name(&self) -> Id<NSString, Shared>;
 

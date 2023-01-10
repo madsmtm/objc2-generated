@@ -36,12 +36,18 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Foundation_NSFormatter")]
     unsafe impl NSFormatter {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringForObjectValue:)]
         pub unsafe fn stringForObjectValue(
             &self,
             obj: Option<&Object>,
         ) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(all(
+            feature = "Foundation_NSAttributedString",
+            feature = "Foundation_NSAttributedStringKey",
+            feature = "Foundation_NSDictionary"
+        ))]
         #[method_id(@__retain_semantics Other attributedStringForObjectValue:withDefaultAttributes:)]
         pub unsafe fn attributedStringForObjectValue_withDefaultAttributes(
             &self,
@@ -49,12 +55,14 @@ extern_methods!(
             attrs: Option<&NSDictionary<NSAttributedStringKey, Object>>,
         ) -> Option<Id<NSAttributedString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other editingStringForObjectValue:)]
         pub unsafe fn editingStringForObjectValue(
             &self,
             obj: &Object,
         ) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(getObjectValue:forString:errorDescription:)]
         pub unsafe fn getObjectValue_forString_errorDescription(
             &self,
@@ -63,6 +71,7 @@ extern_methods!(
             error: *mut *mut NSString,
         ) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(isPartialStringValid:newEditingString:errorDescription:)]
         pub unsafe fn isPartialStringValid_newEditingString_errorDescription(
             &self,
@@ -71,6 +80,7 @@ extern_methods!(
             error: *mut *mut NSString,
         ) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(isPartialStringValid:proposedSelectedRange:originalString:originalSelectedRange:errorDescription:)]
         pub unsafe fn isPartialStringValid_proposedSelectedRange_originalString_originalSelectedRange_errorDescription(
             &self,

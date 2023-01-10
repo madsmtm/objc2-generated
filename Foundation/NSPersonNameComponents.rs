@@ -15,39 +15,51 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Foundation_NSPersonNameComponents")]
     unsafe impl NSPersonNameComponents {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other namePrefix)]
         pub unsafe fn namePrefix(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setNamePrefix:)]
         pub unsafe fn setNamePrefix(&self, namePrefix: Option<&NSString>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other givenName)]
         pub unsafe fn givenName(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setGivenName:)]
         pub unsafe fn setGivenName(&self, givenName: Option<&NSString>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other middleName)]
         pub unsafe fn middleName(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setMiddleName:)]
         pub unsafe fn setMiddleName(&self, middleName: Option<&NSString>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other familyName)]
         pub unsafe fn familyName(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setFamilyName:)]
         pub unsafe fn setFamilyName(&self, familyName: Option<&NSString>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other nameSuffix)]
         pub unsafe fn nameSuffix(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setNameSuffix:)]
         pub unsafe fn setNameSuffix(&self, nameSuffix: Option<&NSString>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other nickname)]
         pub unsafe fn nickname(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setNickname:)]
         pub unsafe fn setNickname(&self, nickname: Option<&NSString>);
 

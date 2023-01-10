@@ -60,9 +60,11 @@ extern_methods!(
         #[method(setBidiProcessingEnabled:)]
         pub unsafe fn setBidiProcessingEnabled(&self, bidiProcessingEnabled: bool);
 
+        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedString)]
         pub unsafe fn attributedString(&self) -> Option<Id<NSAttributedString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setAttributedString:)]
         pub unsafe fn setAttributedString(&self, attributedString: Option<&NSAttributedString>);
 
@@ -133,6 +135,10 @@ extern_methods!(
             lineOrigin: NSPoint,
         );
 
+        #[cfg(all(
+            feature = "Foundation_NSAttributedStringKey",
+            feature = "Foundation_NSDictionary"
+        ))]
         #[method_id(@__retain_semantics Other attributesForExtraLineFragment)]
         pub unsafe fn attributesForExtraLineFragment(
             &self,
@@ -142,7 +148,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other layoutManager)]
         pub unsafe fn layoutManager(&self) -> Option<Id<NSLayoutManager, Shared>>;
 
-        #[cfg(feature = "AppKit_NSTextContainer")]
+        #[cfg(all(feature = "AppKit_NSTextContainer", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other textContainers)]
         pub unsafe fn textContainers(&self) -> Option<Id<NSArray<NSTextContainer>, Shared>>;
 

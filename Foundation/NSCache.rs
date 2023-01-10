@@ -36,15 +36,19 @@ extern_methods!(
             ObjectTypeOwnership: Ownership,
         > NSCache<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
     {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]
         pub unsafe fn setName(&self, name: &NSString);
 
+        #[cfg(feature = "Foundation_NSCacheDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSCacheDelegate, Shared>>;
 
+        #[cfg(feature = "Foundation_NSCacheDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&NSCacheDelegate>);
 

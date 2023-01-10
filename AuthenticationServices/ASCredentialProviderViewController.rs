@@ -11,7 +11,10 @@ extern_methods!(
         #[method_id(@__retain_semantics Other extensionContext)]
         pub unsafe fn extensionContext(&self) -> Id<ASCredentialProviderExtensionContext, Shared>;
 
-        #[cfg(feature = "AuthenticationServices_ASCredentialServiceIdentifier")]
+        #[cfg(all(
+            feature = "AuthenticationServices_ASCredentialServiceIdentifier",
+            feature = "Foundation_NSArray"
+        ))]
         #[method(prepareCredentialListForServiceIdentifiers:)]
         pub unsafe fn prepareCredentialListForServiceIdentifiers(
             &self,

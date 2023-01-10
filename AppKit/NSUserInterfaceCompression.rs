@@ -20,18 +20,21 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
             this: Option<Allocated<Self>>,
             identifier: &NSString,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSSet")]
         #[method_id(@__retain_semantics Init initWithCompressionOptions:)]
         pub unsafe fn initWithCompressionOptions(
             this: Option<Allocated<Self>>,

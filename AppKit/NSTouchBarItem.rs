@@ -38,6 +38,7 @@ extern_methods!(
             identifier: &NSTouchBarItemIdentifier,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -65,6 +66,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other viewController)]
         pub unsafe fn viewController(&self) -> Option<Id<NSViewController, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other customizationLabel)]
         pub unsafe fn customizationLabel(&self) -> Id<NSString, Shared>;
 

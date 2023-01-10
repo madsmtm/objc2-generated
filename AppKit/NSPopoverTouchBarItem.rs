@@ -26,9 +26,11 @@ extern_methods!(
         #[method(setPopoverTouchBar:)]
         pub unsafe fn setPopoverTouchBar(&self, popoverTouchBar: &NSTouchBar);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other customizationLabel)]
         pub unsafe fn customizationLabel(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setCustomizationLabel:)]
         pub unsafe fn setCustomizationLabel(&self, customizationLabel: Option<&NSString>);
 
@@ -51,9 +53,11 @@ extern_methods!(
             collapsedRepresentationImage: Option<&NSImage>,
         );
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other collapsedRepresentationLabel)]
         pub unsafe fn collapsedRepresentationLabel(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setCollapsedRepresentationLabel:)]
         pub unsafe fn setCollapsedRepresentationLabel(
             &self,

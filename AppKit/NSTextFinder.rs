@@ -57,6 +57,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -112,6 +113,7 @@ extern_methods!(
             incrementalSearchingShouldDimContentView: bool,
         );
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[method_id(@__retain_semantics Other incrementalMatchRanges)]
         pub unsafe fn incrementalMatchRanges(&self) -> Id<NSArray<NSValue>, Shared>;
 

@@ -21,6 +21,7 @@ extern_methods!(
             options: NSPointerFunctionsOptions,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSPointerFunctions")]
         #[method_id(@__retain_semantics Init initWithPointerFunctions:)]
         pub unsafe fn initWithPointerFunctions(
             this: Option<Allocated<Self>>,
@@ -32,11 +33,13 @@ extern_methods!(
             options: NSPointerFunctionsOptions,
         ) -> Id<NSPointerArray, Shared>;
 
+        #[cfg(feature = "Foundation_NSPointerFunctions")]
         #[method_id(@__retain_semantics Other pointerArrayWithPointerFunctions:)]
         pub unsafe fn pointerArrayWithPointerFunctions(
             functions: &NSPointerFunctions,
         ) -> Id<NSPointerArray, Shared>;
 
+        #[cfg(feature = "Foundation_NSPointerFunctions")]
         #[method_id(@__retain_semantics Other pointerFunctions)]
         pub unsafe fn pointerFunctions(&self) -> Id<NSPointerFunctions, Shared>;
 
@@ -86,6 +89,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other weakObjectsPointerArray)]
         pub unsafe fn weakObjectsPointerArray() -> Id<NSPointerArray, Shared>;
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other allObjects)]
         pub unsafe fn allObjects(&self) -> Id<NSArray, Shared>;
     }

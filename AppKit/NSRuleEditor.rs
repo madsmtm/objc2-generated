@@ -62,20 +62,24 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&NSRuleEditorDelegate>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other formattingStringsFilename)]
         pub unsafe fn formattingStringsFilename(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setFormattingStringsFilename:)]
         pub unsafe fn setFormattingStringsFilename(
             &self,
             formattingStringsFilename: Option<&NSString>,
         );
 
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other formattingDictionary)]
         pub unsafe fn formattingDictionary(
             &self,
         ) -> Option<Id<NSDictionary<NSString, NSString>, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setFormattingDictionary:)]
         pub unsafe fn setFormattingDictionary(
             &self,
@@ -109,24 +113,29 @@ extern_methods!(
         #[method(setCanRemoveAllRows:)]
         pub unsafe fn setCanRemoveAllRows(&self, canRemoveAllRows: bool);
 
+        #[cfg(feature = "Foundation_NSPredicate")]
         #[method_id(@__retain_semantics Other predicate)]
         pub unsafe fn predicate(&self) -> Option<Id<NSPredicate, Shared>>;
 
         #[method(reloadPredicate)]
         pub unsafe fn reloadPredicate(&self);
 
+        #[cfg(feature = "Foundation_NSPredicate")]
         #[method_id(@__retain_semantics Other predicateForRow:)]
         pub unsafe fn predicateForRow(&self, row: NSInteger) -> Option<Id<NSPredicate, Shared>>;
 
         #[method(numberOfRows)]
         pub unsafe fn numberOfRows(&self) -> NSInteger;
 
+        #[cfg(feature = "Foundation_NSIndexSet")]
         #[method_id(@__retain_semantics Other subrowIndexesForRow:)]
         pub unsafe fn subrowIndexesForRow(&self, rowIndex: NSInteger) -> Id<NSIndexSet, Shared>;
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other criteriaForRow:)]
         pub unsafe fn criteriaForRow(&self, row: NSInteger) -> Id<NSArray, Shared>;
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other displayValuesForRow:)]
         pub unsafe fn displayValuesForRow(&self, row: NSInteger) -> Id<NSArray, Shared>;
 
@@ -151,6 +160,7 @@ extern_methods!(
             shouldAnimate: bool,
         );
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(setCriteria:andDisplayValues:forRowAtIndex:)]
         pub unsafe fn setCriteria_andDisplayValues_forRowAtIndex(
             &self,
@@ -162,6 +172,7 @@ extern_methods!(
         #[method(removeRowAtIndex:)]
         pub unsafe fn removeRowAtIndex(&self, rowIndex: NSInteger);
 
+        #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(removeRowsAtIndexes:includeSubrows:)]
         pub unsafe fn removeRowsAtIndexes_includeSubrows(
             &self,
@@ -169,9 +180,11 @@ extern_methods!(
             includeSubrows: bool,
         );
 
+        #[cfg(feature = "Foundation_NSIndexSet")]
         #[method_id(@__retain_semantics Other selectedRowIndexes)]
         pub unsafe fn selectedRowIndexes(&self) -> Id<NSIndexSet, Shared>;
 
+        #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(selectRowIndexes:byExtendingSelection:)]
         pub unsafe fn selectRowIndexes_byExtendingSelection(
             &self,
@@ -185,27 +198,35 @@ extern_methods!(
         #[method(setRowClass:)]
         pub unsafe fn setRowClass(&self, rowClass: &Class);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other rowTypeKeyPath)]
         pub unsafe fn rowTypeKeyPath(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setRowTypeKeyPath:)]
         pub unsafe fn setRowTypeKeyPath(&self, rowTypeKeyPath: &NSString);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other subrowsKeyPath)]
         pub unsafe fn subrowsKeyPath(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setSubrowsKeyPath:)]
         pub unsafe fn setSubrowsKeyPath(&self, subrowsKeyPath: &NSString);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other criteriaKeyPath)]
         pub unsafe fn criteriaKeyPath(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setCriteriaKeyPath:)]
         pub unsafe fn setCriteriaKeyPath(&self, criteriaKeyPath: &NSString);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other displayValuesKeyPath)]
         pub unsafe fn displayValuesKeyPath(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setDisplayValuesKeyPath:)]
         pub unsafe fn setDisplayValuesKeyPath(&self, displayValuesKeyPath: &NSString);
     }

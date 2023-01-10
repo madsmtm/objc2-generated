@@ -33,14 +33,18 @@ extern_methods!(
             endingColor: &NSColor,
         ) -> Option<Id<Self, Shared>>;
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(all(feature = "AppKit_NSColor", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Init initWithColors:)]
         pub unsafe fn initWithColors(
             this: Option<Allocated<Self>>,
             colorArray: &NSArray<NSColor>,
         ) -> Option<Id<Self, Shared>>;
 
-        #[cfg(all(feature = "AppKit_NSColor", feature = "AppKit_NSColorSpace"))]
+        #[cfg(all(
+            feature = "AppKit_NSColor",
+            feature = "AppKit_NSColorSpace",
+            feature = "Foundation_NSArray"
+        ))]
         #[method_id(@__retain_semantics Init initWithColors:atLocations:colorSpace:)]
         pub unsafe fn initWithColors_atLocations_colorSpace(
             this: Option<Allocated<Self>>,
@@ -49,6 +53,7 @@ extern_methods!(
             colorSpace: &NSColorSpace,
         ) -> Option<Id<Self, Shared>>;
 
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,

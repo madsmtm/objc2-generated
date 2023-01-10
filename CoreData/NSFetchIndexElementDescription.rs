@@ -36,6 +36,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other property)]
         pub unsafe fn property(&self) -> Option<Id<NSPropertyDescription, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other propertyName)]
         pub unsafe fn propertyName(&self) -> Option<Id<NSString, Shared>>;
 

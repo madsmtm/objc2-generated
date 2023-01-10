@@ -17,6 +17,7 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Foundation_NSUserActivity")]
     unsafe impl NSUserActivity {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithActivityType:)]
         pub unsafe fn initWithActivityType(
             this: Option<Allocated<Self>>,
@@ -26,27 +27,35 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other activityType)]
         pub unsafe fn activityType(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other userInfo)]
         pub unsafe fn userInfo(&self) -> Option<Id<NSDictionary, Shared>>;
 
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method(setUserInfo:)]
         pub unsafe fn setUserInfo(&self, userInfo: Option<&NSDictionary>);
 
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method(addUserInfoEntriesFromDictionary:)]
         pub unsafe fn addUserInfoEntriesFromDictionary(&self, otherDictionary: &NSDictionary);
 
+        #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other requiredUserInfoKeys)]
         pub unsafe fn requiredUserInfoKeys(&self) -> Option<Id<NSSet<NSString>, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
         #[method(setRequiredUserInfoKeys:)]
         pub unsafe fn setRequiredUserInfoKeys(
             &self,
@@ -59,27 +68,35 @@ extern_methods!(
         #[method(setNeedsSave:)]
         pub unsafe fn setNeedsSave(&self, needsSave: bool);
 
+        #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other webpageURL)]
         pub unsafe fn webpageURL(&self) -> Option<Id<NSURL, Shared>>;
 
+        #[cfg(feature = "Foundation_NSURL")]
         #[method(setWebpageURL:)]
         pub unsafe fn setWebpageURL(&self, webpageURL: Option<&NSURL>);
 
+        #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other referrerURL)]
         pub unsafe fn referrerURL(&self) -> Option<Id<NSURL, Shared>>;
 
+        #[cfg(feature = "Foundation_NSURL")]
         #[method(setReferrerURL:)]
         pub unsafe fn setReferrerURL(&self, referrerURL: Option<&NSURL>);
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other expirationDate)]
         pub unsafe fn expirationDate(&self) -> Option<Id<NSDate, Shared>>;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(setExpirationDate:)]
         pub unsafe fn setExpirationDate(&self, expirationDate: Option<&NSDate>);
 
+        #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other keywords)]
         pub unsafe fn keywords(&self) -> Id<NSSet<NSString>, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
         #[method(setKeywords:)]
         pub unsafe fn setKeywords(&self, keywords: &NSSet<NSString>);
 
@@ -89,15 +106,19 @@ extern_methods!(
         #[method(setSupportsContinuationStreams:)]
         pub unsafe fn setSupportsContinuationStreams(&self, supportsContinuationStreams: bool);
 
+        #[cfg(feature = "Foundation_NSUserActivityDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSUserActivityDelegate, Shared>>;
 
+        #[cfg(feature = "Foundation_NSUserActivityDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&NSUserActivityDelegate>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other targetContentIdentifier)]
         pub unsafe fn targetContentIdentifier(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setTargetContentIdentifier:)]
         pub unsafe fn setTargetContentIdentifier(&self, targetContentIdentifier: Option<&NSString>);
 
@@ -110,6 +131,11 @@ extern_methods!(
         #[method(invalidate)]
         pub unsafe fn invalidate(&self);
 
+        #[cfg(all(
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSInputStream",
+            feature = "Foundation_NSOutputStream"
+        ))]
         #[method(getContinuationStreamsWithCompletionHandler:)]
         pub unsafe fn getContinuationStreamsWithCompletionHandler(
             &self,
@@ -140,17 +166,23 @@ extern_methods!(
         #[method(setEligibleForPrediction:)]
         pub unsafe fn setEligibleForPrediction(&self, eligibleForPrediction: bool);
 
+        #[cfg(feature = "Foundation_NSUserActivityPersistentIdentifier")]
         #[method_id(@__retain_semantics Other persistentIdentifier)]
         pub unsafe fn persistentIdentifier(
             &self,
         ) -> Option<Id<NSUserActivityPersistentIdentifier, Shared>>;
 
+        #[cfg(feature = "Foundation_NSUserActivityPersistentIdentifier")]
         #[method(setPersistentIdentifier:)]
         pub unsafe fn setPersistentIdentifier(
             &self,
             persistentIdentifier: Option<&NSUserActivityPersistentIdentifier>,
         );
 
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSUserActivityPersistentIdentifier"
+        ))]
         #[method(deleteSavedUserActivitiesWithPersistentIdentifiers:completionHandler:)]
         pub unsafe fn deleteSavedUserActivitiesWithPersistentIdentifiers_completionHandler(
             persistentIdentifiers: &NSArray<NSUserActivityPersistentIdentifier>,

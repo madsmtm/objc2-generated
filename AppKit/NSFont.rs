@@ -19,12 +19,14 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSFont")]
     unsafe impl NSFont {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fontWithName:size:)]
         pub unsafe fn fontWithName_size(
             fontName: &NSString,
             fontSize: CGFloat,
         ) -> Option<Id<NSFont, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fontWithName:matrix:)]
         pub unsafe fn fontWithName_matrix(
             fontName: &NSString,
@@ -38,7 +40,10 @@ extern_methods!(
             fontSize: CGFloat,
         ) -> Option<Id<NSFont, Shared>>;
 
-        #[cfg(feature = "AppKit_NSFontDescriptor")]
+        #[cfg(all(
+            feature = "AppKit_NSFontDescriptor",
+            feature = "Foundation_NSAffineTransform"
+        ))]
         #[method_id(@__retain_semantics Other fontWithDescriptor:textTransform:)]
         pub unsafe fn fontWithDescriptor_textTransform(
             fontDescriptor: &NSFontDescriptor,
@@ -120,6 +125,7 @@ extern_methods!(
         #[method(systemFontSizeForControlSize:)]
         pub unsafe fn systemFontSizeForControlSize(controlSize: NSControlSize) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fontName)]
         pub unsafe fn fontName(&self) -> Id<NSString, Shared>;
 
@@ -129,9 +135,11 @@ extern_methods!(
         #[method(matrix)]
         pub unsafe fn matrix(&self) -> NonNull<CGFloat>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other familyName)]
         pub unsafe fn familyName(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other displayName)]
         pub unsafe fn displayName(&self) -> Option<Id<NSString, Shared>>;
 
@@ -139,6 +147,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other fontDescriptor)]
         pub unsafe fn fontDescriptor(&self) -> Id<NSFontDescriptor, Shared>;
 
+        #[cfg(feature = "Foundation_NSAffineTransform")]
         #[method_id(@__retain_semantics Other textTransform)]
         pub unsafe fn textTransform(&self) -> Id<NSAffineTransform, Shared>;
 
@@ -148,6 +157,7 @@ extern_methods!(
         #[method(mostCompatibleStringEncoding)]
         pub unsafe fn mostCompatibleStringEncoding(&self) -> NSStringEncoding;
 
+        #[cfg(feature = "Foundation_NSCharacterSet")]
         #[method_id(@__retain_semantics Other coveredCharacterSet)]
         pub unsafe fn coveredCharacterSet(&self) -> Id<NSCharacterSet, Shared>;
 
@@ -243,6 +253,7 @@ extern_methods!(
     /// NSFont_Deprecated
     #[cfg(feature = "AppKit_NSFont")]
     unsafe impl NSFont {
+        #[cfg(feature = "Foundation_NSString")]
         #[method(glyphWithName:)]
         pub unsafe fn glyphWithName(&self, name: &NSString) -> NSGlyph;
 
@@ -299,7 +310,8 @@ extern_methods!(
     unsafe impl NSFont {
         #[cfg(all(
             feature = "AppKit_NSFontTextStyle",
-            feature = "AppKit_NSFontTextStyleOptionKey"
+            feature = "AppKit_NSFontTextStyleOptionKey",
+            feature = "Foundation_NSDictionary"
         ))]
         #[method_id(@__retain_semantics Other preferredFontForTextStyle:options:)]
         pub unsafe fn preferredFontForTextStyle_options(

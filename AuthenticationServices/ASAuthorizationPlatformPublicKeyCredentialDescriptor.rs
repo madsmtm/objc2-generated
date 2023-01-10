@@ -16,6 +16,7 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialDescriptor")]
     unsafe impl ASAuthorizationPlatformPublicKeyCredentialDescriptor {
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Init initWithCredentialID:)]
         pub unsafe fn initWithCredentialID(
             this: Option<Allocated<Self>>,

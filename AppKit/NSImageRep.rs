@@ -40,6 +40,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -55,7 +56,7 @@ extern_methods!(
         #[method(drawInRect:)]
         pub unsafe fn drawInRect(&self, rect: NSRect) -> bool;
 
-        #[cfg(feature = "AppKit_NSImageHintKey")]
+        #[cfg(all(feature = "AppKit_NSImageHintKey", feature = "Foundation_NSDictionary"))]
         #[method(drawInRect:fromRect:operation:fraction:respectFlipped:hints:)]
         pub unsafe fn drawInRect_fromRect_operation_fraction_respectFlipped_hints(
             &self,
@@ -123,9 +124,11 @@ extern_methods!(
         #[method(unregisterImageRepClass:)]
         pub unsafe fn unregisterImageRepClass(imageRepClass: &Class);
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other registeredImageRepClasses)]
         pub unsafe fn registeredImageRepClasses() -> Id<NSArray<TodoClass>, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(imageRepClassForFileType:)]
         pub unsafe fn imageRepClassForFileType(type_: &NSString) -> Option<&'static Class>;
 
@@ -135,32 +138,39 @@ extern_methods!(
             type_: &NSPasteboardType,
         ) -> Option<&'static Class>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(imageRepClassForType:)]
         pub unsafe fn imageRepClassForType(type_: &NSString) -> Option<&'static Class>;
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method(imageRepClassForData:)]
         pub unsafe fn imageRepClassForData(data: &NSData) -> Option<&'static Class>;
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method(canInitWithData:)]
         pub unsafe fn canInitWithData(data: &NSData) -> bool;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other imageUnfilteredFileTypes)]
         pub unsafe fn imageUnfilteredFileTypes() -> Id<NSArray<NSString>, Shared>;
 
-        #[cfg(feature = "AppKit_NSPasteboardType")]
+        #[cfg(all(feature = "AppKit_NSPasteboardType", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other imageUnfilteredPasteboardTypes)]
         pub unsafe fn imageUnfilteredPasteboardTypes() -> Id<NSArray<NSPasteboardType>, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other imageFileTypes)]
         pub unsafe fn imageFileTypes() -> Id<NSArray<NSString>, Shared>;
 
-        #[cfg(feature = "AppKit_NSPasteboardType")]
+        #[cfg(all(feature = "AppKit_NSPasteboardType", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other imagePasteboardTypes)]
         pub unsafe fn imagePasteboardTypes() -> Id<NSArray<NSPasteboardType>, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other imageUnfilteredTypes)]
         pub unsafe fn imageUnfilteredTypes() -> Id<NSArray<NSString>, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other imageTypes)]
         pub unsafe fn imageTypes() -> Id<NSArray<NSString>, Shared>;
 
@@ -168,25 +178,29 @@ extern_methods!(
         #[method(canInitWithPasteboard:)]
         pub unsafe fn canInitWithPasteboard(pasteboard: &NSPasteboard) -> bool;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other imageRepsWithContentsOfFile:)]
         pub unsafe fn imageRepsWithContentsOfFile(
             filename: &NSString,
         ) -> Option<Id<NSArray<NSImageRep>, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other imageRepWithContentsOfFile:)]
         pub unsafe fn imageRepWithContentsOfFile(
             filename: &NSString,
         ) -> Option<Id<NSImageRep, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other imageRepsWithContentsOfURL:)]
         pub unsafe fn imageRepsWithContentsOfURL(
             url: &NSURL,
         ) -> Option<Id<NSArray<NSImageRep>, Shared>>;
 
+        #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other imageRepWithContentsOfURL:)]
         pub unsafe fn imageRepWithContentsOfURL(url: &NSURL) -> Option<Id<NSImageRep, Shared>>;
 
-        #[cfg(feature = "AppKit_NSPasteboard")]
+        #[cfg(all(feature = "AppKit_NSPasteboard", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other imageRepsWithPasteboard:)]
         pub unsafe fn imageRepsWithPasteboard(
             pasteboard: &NSPasteboard,

@@ -7,9 +7,9 @@ use crate::Foundation::*;
 
 extern_methods!(
     /// NSNibLoading
-    #[cfg(feature = "AppKit_NSBundle")]
+    #[cfg(feature = "Foundation_NSBundle")]
     unsafe impl NSBundle {
-        #[cfg(feature = "AppKit_NSNibName")]
+        #[cfg(all(feature = "AppKit_NSNibName", feature = "Foundation_NSArray"))]
         #[method(loadNibNamed:owner:topLevelObjects:)]
         pub unsafe fn loadNibNamed_owner_topLevelObjects(
             &self,
@@ -22,8 +22,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSNibLoadingDeprecated
-    #[cfg(feature = "AppKit_NSBundle")]
+    #[cfg(feature = "Foundation_NSBundle")]
     unsafe impl NSBundle {
+        #[cfg(feature = "Foundation_NSString")]
         #[method(loadNibNamed:owner:)]
         pub unsafe fn loadNibNamed_owner(
             nibName: Option<&NSString>,

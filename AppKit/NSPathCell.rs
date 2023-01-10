@@ -33,18 +33,22 @@ extern_methods!(
         #[method(setPathStyle:)]
         pub unsafe fn setPathStyle(&self, pathStyle: NSPathStyle);
 
+        #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other URL)]
         pub unsafe fn URL(&self) -> Option<Id<NSURL, Shared>>;
 
+        #[cfg(feature = "Foundation_NSURL")]
         #[method(setURL:)]
         pub unsafe fn setURL(&self, URL: Option<&NSURL>);
 
         #[method(setObjectValue:)]
         pub unsafe fn setObjectValue(&self, obj: Option<&Object>);
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other allowedTypes)]
         pub unsafe fn allowedTypes(&self) -> Option<Id<NSArray<NSString>, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setAllowedTypes:)]
         pub unsafe fn setAllowedTypes(&self, allowedTypes: Option<&NSArray<NSString>>);
 
@@ -59,11 +63,11 @@ extern_methods!(
         #[method(pathComponentCellClass)]
         pub unsafe fn pathComponentCellClass() -> &'static Class;
 
-        #[cfg(feature = "AppKit_NSPathComponentCell")]
+        #[cfg(all(feature = "AppKit_NSPathComponentCell", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other pathComponentCells)]
         pub unsafe fn pathComponentCells(&self) -> Id<NSArray<NSPathComponentCell>, Shared>;
 
-        #[cfg(feature = "AppKit_NSPathComponentCell")]
+        #[cfg(all(feature = "AppKit_NSPathComponentCell", feature = "Foundation_NSArray"))]
         #[method(setPathComponentCells:)]
         pub unsafe fn setPathComponentCells(
             &self,
@@ -124,15 +128,19 @@ extern_methods!(
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, backgroundColor: Option<&NSColor>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other placeholderString)]
         pub unsafe fn placeholderString(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setPlaceholderString:)]
         pub unsafe fn setPlaceholderString(&self, placeholderString: Option<&NSString>);
 
+        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other placeholderAttributedString)]
         pub unsafe fn placeholderAttributedString(&self) -> Option<Id<NSAttributedString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setPlaceholderAttributedString:)]
         pub unsafe fn setPlaceholderAttributedString(
             &self,
@@ -163,6 +171,7 @@ extern_methods!(
     /// Methods declared on superclass `NSCell`
     #[cfg(feature = "AppKit_NSPathCell")]
     unsafe impl NSPathCell {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initTextCell:)]
         pub unsafe fn initTextCell(
             this: Option<Allocated<Self>>,

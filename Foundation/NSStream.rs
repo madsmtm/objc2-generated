@@ -51,18 +51,22 @@ extern_methods!(
         #[method(close)]
         pub unsafe fn close(&self);
 
+        #[cfg(feature = "Foundation_NSStreamDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSStreamDelegate, Shared>>;
 
+        #[cfg(feature = "Foundation_NSStreamDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&NSStreamDelegate>);
 
+        #[cfg(feature = "Foundation_NSStreamPropertyKey")]
         #[method_id(@__retain_semantics Other propertyForKey:)]
         pub unsafe fn propertyForKey(
             &self,
             key: &NSStreamPropertyKey,
         ) -> Option<Id<Object, Shared>>;
 
+        #[cfg(feature = "Foundation_NSStreamPropertyKey")]
         #[method(setProperty:forKey:)]
         pub unsafe fn setProperty_forKey(
             &self,
@@ -70,15 +74,18 @@ extern_methods!(
             key: &NSStreamPropertyKey,
         ) -> bool;
 
+        #[cfg(all(feature = "Foundation_NSRunLoop", feature = "Foundation_NSRunLoopMode"))]
         #[method(scheduleInRunLoop:forMode:)]
         pub unsafe fn scheduleInRunLoop_forMode(&self, aRunLoop: &NSRunLoop, mode: &NSRunLoopMode);
 
+        #[cfg(all(feature = "Foundation_NSRunLoop", feature = "Foundation_NSRunLoopMode"))]
         #[method(removeFromRunLoop:forMode:)]
         pub unsafe fn removeFromRunLoop_forMode(&self, aRunLoop: &NSRunLoop, mode: &NSRunLoopMode);
 
         #[method(streamStatus)]
         pub unsafe fn streamStatus(&self) -> NSStreamStatus;
 
+        #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other streamError)]
         pub unsafe fn streamError(&self) -> Option<Id<NSError, Shared>>;
     }
@@ -110,12 +117,14 @@ extern_methods!(
         #[method(hasBytesAvailable)]
         pub unsafe fn hasBytesAvailable(&self) -> bool;
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Init initWithData:)]
         pub unsafe fn initWithData(
             this: Option<Allocated<Self>>,
             data: &NSData,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Init initWithURL:)]
         pub unsafe fn initWithURL(
             this: Option<Allocated<Self>>,
@@ -153,6 +162,7 @@ extern_methods!(
             capacity: NSUInteger,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Init initWithURL:append:)]
         pub unsafe fn initWithURL_append(
             this: Option<Allocated<Self>>,
@@ -166,6 +176,11 @@ extern_methods!(
     /// NSSocketStreamCreationExtensions
     #[cfg(feature = "Foundation_NSStream")]
     unsafe impl NSStream {
+        #[cfg(all(
+            feature = "Foundation_NSInputStream",
+            feature = "Foundation_NSOutputStream",
+            feature = "Foundation_NSString"
+        ))]
         #[method(getStreamsToHostWithName:port:inputStream:outputStream:)]
         pub unsafe fn getStreamsToHostWithName_port_inputStream_outputStream(
             hostname: &NSString,
@@ -174,6 +189,11 @@ extern_methods!(
             outputStream: *mut *mut NSOutputStream,
         );
 
+        #[cfg(all(
+            feature = "Foundation_NSHost",
+            feature = "Foundation_NSInputStream",
+            feature = "Foundation_NSOutputStream"
+        ))]
         #[method(getStreamsToHost:port:inputStream:outputStream:)]
         pub unsafe fn getStreamsToHost_port_inputStream_outputStream(
             host: &NSHost,
@@ -188,6 +208,10 @@ extern_methods!(
     /// NSStreamBoundPairCreationExtensions
     #[cfg(feature = "Foundation_NSStream")]
     unsafe impl NSStream {
+        #[cfg(all(
+            feature = "Foundation_NSInputStream",
+            feature = "Foundation_NSOutputStream"
+        ))]
         #[method(getBoundStreamsWithBufferSize:inputStream:outputStream:)]
         pub unsafe fn getBoundStreamsWithBufferSize_inputStream_outputStream(
             bufferSize: NSUInteger,
@@ -201,18 +225,22 @@ extern_methods!(
     /// NSInputStreamExtensions
     #[cfg(feature = "Foundation_NSInputStream")]
     unsafe impl NSInputStream {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithFileAtPath:)]
         pub unsafe fn initWithFileAtPath(
             this: Option<Allocated<Self>>,
             path: &NSString,
         ) -> Option<Id<Self, Shared>>;
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other inputStreamWithData:)]
         pub unsafe fn inputStreamWithData(data: &NSData) -> Option<Id<Self, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other inputStreamWithFileAtPath:)]
         pub unsafe fn inputStreamWithFileAtPath(path: &NSString) -> Option<Id<Self, Shared>>;
 
+        #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other inputStreamWithURL:)]
         pub unsafe fn inputStreamWithURL(url: &NSURL) -> Option<Id<Self, Shared>>;
     }
@@ -222,6 +250,7 @@ extern_methods!(
     /// NSOutputStreamExtensions
     #[cfg(feature = "Foundation_NSOutputStream")]
     unsafe impl NSOutputStream {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initToFileAtPath:append:)]
         pub unsafe fn initToFileAtPath_append(
             this: Option<Allocated<Self>>,
@@ -238,12 +267,14 @@ extern_methods!(
             capacity: NSUInteger,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other outputStreamToFileAtPath:append:)]
         pub unsafe fn outputStreamToFileAtPath_append(
             path: &NSString,
             shouldAppend: bool,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other outputStreamWithURL:append:)]
         pub unsafe fn outputStreamWithURL_append(
             url: &NSURL,

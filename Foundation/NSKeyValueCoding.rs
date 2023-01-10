@@ -37,9 +37,11 @@ extern_methods!(
     unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
         NSArray<ObjectType, ObjectTypeOwnership>
     {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other valueForKey:)]
         pub unsafe fn valueForKey(&self, key: &NSString) -> Id<Object, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setValue:forKey:)]
         pub unsafe fn setValue_forKey(&self, value: Option<&Object>, key: &NSString);
     }
@@ -55,6 +57,7 @@ extern_methods!(
             ObjectTypeOwnership: Ownership,
         > NSDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
     {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other valueForKey:)]
         pub unsafe fn valueForKey(
             &self,
@@ -73,6 +76,7 @@ extern_methods!(
             ObjectTypeOwnership: Ownership,
         > NSMutableDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
     {
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setValue:forKey:)]
         pub unsafe fn setValue_forKey(&self, value: Option<&ObjectType>, key: &NSString);
     }
@@ -84,9 +88,11 @@ extern_methods!(
     unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
         NSOrderedSet<ObjectType, ObjectTypeOwnership>
     {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other valueForKey:)]
         pub unsafe fn valueForKey(&self, key: &NSString) -> Id<Object, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setValue:forKey:)]
         pub unsafe fn setValue_forKey(&self, value: Option<&Object>, key: &NSString);
     }
@@ -98,9 +104,11 @@ extern_methods!(
     unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
         NSSet<ObjectType, ObjectTypeOwnership>
     {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other valueForKey:)]
         pub unsafe fn valueForKey(&self, key: &NSString) -> Id<Object, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setValue:forKey:)]
         pub unsafe fn setValue_forKey(&self, value: Option<&Object>, key: &NSString);
     }

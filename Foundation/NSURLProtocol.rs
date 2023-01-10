@@ -71,6 +71,11 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Foundation_NSURLProtocol")]
     unsafe impl NSURLProtocol {
+        #[cfg(all(
+            feature = "Foundation_NSCachedURLResponse",
+            feature = "Foundation_NSURLProtocolClient",
+            feature = "Foundation_NSURLRequest"
+        ))]
         #[method_id(@__retain_semantics Init initWithRequest:cachedResponse:client:)]
         pub unsafe fn initWithRequest_cachedResponse_client(
             this: Option<Allocated<Self>>,
@@ -79,23 +84,29 @@ extern_methods!(
             client: Option<&NSURLProtocolClient>,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSURLProtocolClient")]
         #[method_id(@__retain_semantics Other client)]
         pub unsafe fn client(&self) -> Option<Id<NSURLProtocolClient, Shared>>;
 
+        #[cfg(feature = "Foundation_NSURLRequest")]
         #[method_id(@__retain_semantics Other request)]
         pub unsafe fn request(&self) -> Id<NSURLRequest, Shared>;
 
+        #[cfg(feature = "Foundation_NSCachedURLResponse")]
         #[method_id(@__retain_semantics Other cachedResponse)]
         pub unsafe fn cachedResponse(&self) -> Option<Id<NSCachedURLResponse, Shared>>;
 
+        #[cfg(feature = "Foundation_NSURLRequest")]
         #[method(canInitWithRequest:)]
         pub unsafe fn canInitWithRequest(request: &NSURLRequest) -> bool;
 
+        #[cfg(feature = "Foundation_NSURLRequest")]
         #[method_id(@__retain_semantics Other canonicalRequestForRequest:)]
         pub unsafe fn canonicalRequestForRequest(
             request: &NSURLRequest,
         ) -> Id<NSURLRequest, Shared>;
 
+        #[cfg(feature = "Foundation_NSURLRequest")]
         #[method(requestIsCacheEquivalent:toRequest:)]
         pub unsafe fn requestIsCacheEquivalent_toRequest(
             a: &NSURLRequest,
@@ -108,12 +119,17 @@ extern_methods!(
         #[method(stopLoading)]
         pub unsafe fn stopLoading(&self);
 
+        #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURLRequest"))]
         #[method_id(@__retain_semantics Other propertyForKey:inRequest:)]
         pub unsafe fn propertyForKey_inRequest(
             key: &NSString,
             request: &NSURLRequest,
         ) -> Option<Id<Object, Shared>>;
 
+        #[cfg(all(
+            feature = "Foundation_NSMutableURLRequest",
+            feature = "Foundation_NSString"
+        ))]
         #[method(setProperty:forKey:inRequest:)]
         pub unsafe fn setProperty_forKey_inRequest(
             value: &Object,
@@ -121,6 +137,10 @@ extern_methods!(
             request: &NSMutableURLRequest,
         );
 
+        #[cfg(all(
+            feature = "Foundation_NSMutableURLRequest",
+            feature = "Foundation_NSString"
+        ))]
         #[method(removePropertyForKey:inRequest:)]
         pub unsafe fn removePropertyForKey_inRequest(key: &NSString, request: &NSMutableURLRequest);
 
@@ -136,9 +156,15 @@ extern_methods!(
     /// NSURLSessionTaskAdditions
     #[cfg(feature = "Foundation_NSURLProtocol")]
     unsafe impl NSURLProtocol {
+        #[cfg(feature = "Foundation_NSURLSessionTask")]
         #[method(canInitWithTask:)]
         pub unsafe fn canInitWithTask(task: &NSURLSessionTask) -> bool;
 
+        #[cfg(all(
+            feature = "Foundation_NSCachedURLResponse",
+            feature = "Foundation_NSURLProtocolClient",
+            feature = "Foundation_NSURLSessionTask"
+        ))]
         #[method_id(@__retain_semantics Init initWithTask:cachedResponse:client:)]
         pub unsafe fn initWithTask_cachedResponse_client(
             this: Option<Allocated<Self>>,
@@ -147,6 +173,7 @@ extern_methods!(
             client: Option<&NSURLProtocolClient>,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSURLSessionTask")]
         #[method_id(@__retain_semantics Other task)]
         pub unsafe fn task(&self) -> Option<Id<NSURLSessionTask, Shared>>;
     }

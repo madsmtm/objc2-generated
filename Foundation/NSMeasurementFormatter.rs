@@ -37,24 +37,30 @@ extern_methods!(
         #[method(setUnitStyle:)]
         pub unsafe fn setUnitStyle(&self, unitStyle: NSFormattingUnitStyle);
 
+        #[cfg(feature = "Foundation_NSLocale")]
         #[method_id(@__retain_semantics Other locale)]
         pub unsafe fn locale(&self) -> Id<NSLocale, Shared>;
 
+        #[cfg(feature = "Foundation_NSLocale")]
         #[method(setLocale:)]
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
 
+        #[cfg(feature = "Foundation_NSNumberFormatter")]
         #[method_id(@__retain_semantics Other numberFormatter)]
         pub unsafe fn numberFormatter(&self) -> Id<NSNumberFormatter, Shared>;
 
+        #[cfg(feature = "Foundation_NSNumberFormatter")]
         #[method(setNumberFormatter:)]
         pub unsafe fn setNumberFormatter(&self, numberFormatter: Option<&NSNumberFormatter>);
 
+        #[cfg(all(feature = "Foundation_NSMeasurement", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other stringFromMeasurement:)]
         pub unsafe fn stringFromMeasurement(
             &self,
             measurement: &NSMeasurement,
         ) -> Id<NSString, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSUnit"))]
         #[method_id(@__retain_semantics Other stringFromUnit:)]
         pub unsafe fn stringFromUnit(&self, unit: &NSUnit) -> Id<NSString, Shared>;
     }

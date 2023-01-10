@@ -70,27 +70,35 @@ extern_methods!(
         #[method(setDatePickerElements:)]
         pub unsafe fn setDatePickerElements(&self, datePickerElements: NSDatePickerElementFlags);
 
+        #[cfg(feature = "Foundation_NSCalendar")]
         #[method_id(@__retain_semantics Other calendar)]
         pub unsafe fn calendar(&self) -> Option<Id<NSCalendar, Shared>>;
 
+        #[cfg(feature = "Foundation_NSCalendar")]
         #[method(setCalendar:)]
         pub unsafe fn setCalendar(&self, calendar: Option<&NSCalendar>);
 
+        #[cfg(feature = "Foundation_NSLocale")]
         #[method_id(@__retain_semantics Other locale)]
         pub unsafe fn locale(&self) -> Option<Id<NSLocale, Shared>>;
 
+        #[cfg(feature = "Foundation_NSLocale")]
         #[method(setLocale:)]
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
 
+        #[cfg(feature = "Foundation_NSTimeZone")]
         #[method_id(@__retain_semantics Other timeZone)]
         pub unsafe fn timeZone(&self) -> Option<Id<NSTimeZone, Shared>>;
 
+        #[cfg(feature = "Foundation_NSTimeZone")]
         #[method(setTimeZone:)]
         pub unsafe fn setTimeZone(&self, timeZone: Option<&NSTimeZone>);
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other dateValue)]
         pub unsafe fn dateValue(&self) -> Id<NSDate, Shared>;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(setDateValue:)]
         pub unsafe fn setDateValue(&self, dateValue: &NSDate);
 
@@ -100,15 +108,19 @@ extern_methods!(
         #[method(setTimeInterval:)]
         pub unsafe fn setTimeInterval(&self, timeInterval: NSTimeInterval);
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other minDate)]
         pub unsafe fn minDate(&self) -> Option<Id<NSDate, Shared>>;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(setMinDate:)]
         pub unsafe fn setMinDate(&self, minDate: Option<&NSDate>);
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other maxDate)]
         pub unsafe fn maxDate(&self) -> Option<Id<NSDate, Shared>>;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(setMaxDate:)]
         pub unsafe fn setMaxDate(&self, maxDate: Option<&NSDate>);
 

@@ -28,21 +28,26 @@ extern_methods!(
         #[method(isValid)]
         pub unsafe fn isValid(&self) -> bool;
 
+        #[cfg(feature = "Foundation_NSPortDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, anObject: Option<&NSPortDelegate>);
 
+        #[cfg(feature = "Foundation_NSPortDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSPortDelegate, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSRunLoop", feature = "Foundation_NSRunLoopMode"))]
         #[method(scheduleInRunLoop:forMode:)]
         pub unsafe fn scheduleInRunLoop_forMode(&self, runLoop: &NSRunLoop, mode: &NSRunLoopMode);
 
+        #[cfg(all(feature = "Foundation_NSRunLoop", feature = "Foundation_NSRunLoopMode"))]
         #[method(removeFromRunLoop:forMode:)]
         pub unsafe fn removeFromRunLoop_forMode(&self, runLoop: &NSRunLoop, mode: &NSRunLoopMode);
 
         #[method(reservedSpaceLength)]
         pub unsafe fn reservedSpaceLength(&self) -> NSUInteger;
 
+        #[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSMutableArray"))]
         #[method(sendBeforeDate:components:from:reserved:)]
         pub unsafe fn sendBeforeDate_components_from_reserved(
             &self,
@@ -52,6 +57,7 @@ extern_methods!(
             headerSpaceReserved: NSUInteger,
         ) -> bool;
 
+        #[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSMutableArray"))]
         #[method(sendBeforeDate:msgid:components:from:reserved:)]
         pub unsafe fn sendBeforeDate_msgid_components_from_reserved(
             &self,
@@ -62,6 +68,11 @@ extern_methods!(
             headerSpaceReserved: NSUInteger,
         ) -> bool;
 
+        #[cfg(all(
+            feature = "Foundation_NSConnection",
+            feature = "Foundation_NSRunLoop",
+            feature = "Foundation_NSRunLoopMode"
+        ))]
         #[method(addConnection:toRunLoop:forMode:)]
         pub unsafe fn addConnection_toRunLoop_forMode(
             &self,
@@ -70,6 +81,11 @@ extern_methods!(
             mode: &NSRunLoopMode,
         );
 
+        #[cfg(all(
+            feature = "Foundation_NSConnection",
+            feature = "Foundation_NSRunLoop",
+            feature = "Foundation_NSRunLoopMode"
+        ))]
         #[method(removeConnection:fromRunLoop:forMode:)]
         pub unsafe fn removeConnection_fromRunLoop_forMode(
             &self,
@@ -121,9 +137,11 @@ extern_methods!(
             machPort: u32,
         ) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSMachPortDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, anObject: Option<&NSMachPortDelegate>);
 
+        #[cfg(feature = "Foundation_NSMachPortDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSMachPortDelegate, Shared>>;
 
@@ -143,9 +161,11 @@ extern_methods!(
         #[method(machPort)]
         pub unsafe fn machPort(&self) -> u32;
 
+        #[cfg(all(feature = "Foundation_NSRunLoop", feature = "Foundation_NSRunLoopMode"))]
         #[method(scheduleInRunLoop:forMode:)]
         pub unsafe fn scheduleInRunLoop_forMode(&self, runLoop: &NSRunLoop, mode: &NSRunLoopMode);
 
+        #[cfg(all(feature = "Foundation_NSRunLoop", feature = "Foundation_NSRunLoopMode"))]
         #[method(removeFromRunLoop:forMode:)]
         pub unsafe fn removeFromRunLoop_forMode(&self, runLoop: &NSRunLoop, mode: &NSRunLoopMode);
     }
@@ -198,6 +218,7 @@ extern_methods!(
             port: c_ushort,
         ) -> Option<Id<Self, Shared>>;
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Init initWithProtocolFamily:socketType:protocol:address:)]
         pub unsafe fn initWithProtocolFamily_socketType_protocol_address(
             this: Option<Allocated<Self>>,
@@ -216,6 +237,7 @@ extern_methods!(
             sock: NSSocketNativeHandle,
         ) -> Option<Id<Self, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initRemoteWithTCPPort:host:)]
         pub unsafe fn initRemoteWithTCPPort_host(
             this: Option<Allocated<Self>>,
@@ -223,6 +245,7 @@ extern_methods!(
             hostName: Option<&NSString>,
         ) -> Option<Id<Self, Shared>>;
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Init initRemoteWithProtocolFamily:socketType:protocol:address:)]
         pub unsafe fn initRemoteWithProtocolFamily_socketType_protocol_address(
             this: Option<Allocated<Self>>,
@@ -241,6 +264,7 @@ extern_methods!(
         #[method(protocol)]
         pub unsafe fn protocol(&self) -> c_int;
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other address)]
         pub unsafe fn address(&self) -> Id<NSData, Shared>;
 

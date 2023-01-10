@@ -32,6 +32,7 @@ extern_methods!(
             range: NSRange,
         );
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setConstantValue:type:withName:)]
         pub unsafe fn setConstantValue_type_withName(
             &self,

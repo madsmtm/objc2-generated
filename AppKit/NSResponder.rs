@@ -20,6 +20,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -187,7 +188,7 @@ extern_methods!(
         #[method(resignFirstResponder)]
         pub unsafe fn resignFirstResponder(&self) -> bool;
 
-        #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(all(feature = "AppKit_NSEvent", feature = "Foundation_NSArray"))]
         #[method(interpretKeyEvents:)]
         pub unsafe fn interpretKeyEvents(&self, eventArray: &NSArray<NSEvent>);
 
@@ -627,6 +628,7 @@ extern_methods!(
     /// NSUndoSupport
     #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSResponder {
+        #[cfg(feature = "Foundation_NSUndoManager")]
         #[method_id(@__retain_semantics Other undoManager)]
         pub unsafe fn undoManager(&self) -> Option<Id<NSUndoManager, Shared>>;
     }
@@ -650,7 +652,7 @@ extern_methods!(
     /// NSErrorPresentation
     #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSResponder {
-        #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(all(feature = "AppKit_NSWindow", feature = "Foundation_NSError"))]
         #[method(presentError:modalForWindow:delegate:didPresentSelector:contextInfo:)]
         pub unsafe fn presentError_modalForWindow_delegate_didPresentSelector_contextInfo(
             &self,
@@ -661,9 +663,11 @@ extern_methods!(
             contextInfo: *mut c_void,
         );
 
+        #[cfg(feature = "Foundation_NSError")]
         #[method(presentError:)]
         pub unsafe fn presentError(&self, error: &NSError) -> bool;
 
+        #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other willPresentError:)]
         pub unsafe fn willPresentError(&self, error: &NSError) -> Id<NSError, Shared>;
     }
@@ -691,6 +695,7 @@ extern_methods!(
     /// NSDeprecated
     #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSResponder {
+        #[cfg(feature = "Foundation_NSString")]
         #[method(performMnemonic:)]
         pub unsafe fn performMnemonic(&self, string: &NSString) -> bool;
     }

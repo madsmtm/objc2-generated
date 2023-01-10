@@ -21,6 +21,7 @@ extern_methods!(
             aClass: &Class,
         ) -> Option<Id<NSScriptClassDescription, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithSuiteName:className:dictionary:)]
         pub unsafe fn initWithSuiteName_className_dictionary(
             this: Option<Allocated<Self>>,
@@ -29,12 +30,15 @@ extern_methods!(
             classDeclaration: Option<&NSDictionary>,
         ) -> Option<Id<Self, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other suiteName)]
         pub unsafe fn suiteName(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other className)]
         pub unsafe fn className(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other implementationClassName)]
         pub unsafe fn implementationClassName(&self) -> Option<Id<NSString, Shared>>;
 
@@ -47,54 +51,66 @@ extern_methods!(
         #[method(matchesAppleEventCode:)]
         pub unsafe fn matchesAppleEventCode(&self, appleEventCode: FourCharCode) -> bool;
 
+        #[cfg(feature = "Foundation_NSScriptCommandDescription")]
         #[method(supportsCommand:)]
         pub unsafe fn supportsCommand(
             &self,
             commandDescription: &NSScriptCommandDescription,
         ) -> bool;
 
+        #[cfg(feature = "Foundation_NSScriptCommandDescription")]
         #[method(selectorForCommand:)]
         pub unsafe fn selectorForCommand(
             &self,
             commandDescription: &NSScriptCommandDescription,
         ) -> Option<Sel>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other typeForKey:)]
         pub unsafe fn typeForKey(&self, key: &NSString) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other classDescriptionForKey:)]
         pub unsafe fn classDescriptionForKey(
             &self,
             key: &NSString,
         ) -> Option<Id<NSScriptClassDescription, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(appleEventCodeForKey:)]
         pub unsafe fn appleEventCodeForKey(&self, key: &NSString) -> FourCharCode;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other keyWithAppleEventCode:)]
         pub unsafe fn keyWithAppleEventCode(
             &self,
             appleEventCode: FourCharCode,
         ) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other defaultSubcontainerAttributeKey)]
         pub unsafe fn defaultSubcontainerAttributeKey(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(isLocationRequiredToCreateForKey:)]
         pub unsafe fn isLocationRequiredToCreateForKey(
             &self,
             toManyRelationshipKey: &NSString,
         ) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(hasPropertyForKey:)]
         pub unsafe fn hasPropertyForKey(&self, key: &NSString) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(hasOrderedToManyRelationshipForKey:)]
         pub unsafe fn hasOrderedToManyRelationshipForKey(&self, key: &NSString) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(hasReadablePropertyForKey:)]
         pub unsafe fn hasReadablePropertyForKey(&self, key: &NSString) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(hasWritablePropertyForKey:)]
         pub unsafe fn hasWritablePropertyForKey(&self, key: &NSString) -> bool;
     }
@@ -104,6 +120,7 @@ extern_methods!(
     /// NSDeprecated
     #[cfg(feature = "Foundation_NSScriptClassDescription")]
     unsafe impl NSScriptClassDescription {
+        #[cfg(feature = "Foundation_NSString")]
         #[method(isReadOnlyKey:)]
         pub unsafe fn isReadOnlyKey(&self, key: &NSString) -> bool;
     }
