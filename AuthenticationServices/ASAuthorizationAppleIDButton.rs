@@ -40,9 +40,9 @@ extern_methods!(
         ) -> Id<Self, Shared>;
 
         #[method(cornerRadius)]
-        pub unsafe fn cornerRadius(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn cornerRadius(&self) -> Foundation::CGFloat;
 
         #[method(setCornerRadius:)]
-        pub unsafe fn setCornerRadius(&self, cornerRadius: CoreGraphics::CGFloat);
+        pub unsafe fn setCornerRadius(&self, cornerRadius: Foundation::CGFloat);
     }
 );

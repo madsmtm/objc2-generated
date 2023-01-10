@@ -36,28 +36,28 @@ extern_methods!(
         pub unsafe fn setFillRule(&self, fillRule: &CoreAnimation::CAShapeLayerFillRule);
 
         #[method(strokeStart)]
-        pub unsafe fn strokeStart(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn strokeStart(&self) -> Foundation::CGFloat;
 
         #[method(setStrokeStart:)]
-        pub unsafe fn setStrokeStart(&self, strokeStart: CoreGraphics::CGFloat);
+        pub unsafe fn setStrokeStart(&self, strokeStart: Foundation::CGFloat);
 
         #[method(strokeEnd)]
-        pub unsafe fn strokeEnd(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn strokeEnd(&self) -> Foundation::CGFloat;
 
         #[method(setStrokeEnd:)]
-        pub unsafe fn setStrokeEnd(&self, strokeEnd: CoreGraphics::CGFloat);
+        pub unsafe fn setStrokeEnd(&self, strokeEnd: Foundation::CGFloat);
 
         #[method(lineWidth)]
-        pub unsafe fn lineWidth(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn lineWidth(&self) -> Foundation::CGFloat;
 
         #[method(setLineWidth:)]
-        pub unsafe fn setLineWidth(&self, lineWidth: CoreGraphics::CGFloat);
+        pub unsafe fn setLineWidth(&self, lineWidth: Foundation::CGFloat);
 
         #[method(miterLimit)]
-        pub unsafe fn miterLimit(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn miterLimit(&self) -> Foundation::CGFloat;
 
         #[method(setMiterLimit:)]
-        pub unsafe fn setMiterLimit(&self, miterLimit: CoreGraphics::CGFloat);
+        pub unsafe fn setMiterLimit(&self, miterLimit: Foundation::CGFloat);
 
         #[method_id(@__retain_semantics Other lineCap)]
         pub unsafe fn lineCap(&self) -> Id<CoreAnimation::CAShapeLayerLineCap, Shared>;
@@ -72,10 +72,10 @@ extern_methods!(
         pub unsafe fn setLineJoin(&self, lineJoin: &CoreAnimation::CAShapeLayerLineJoin);
 
         #[method(lineDashPhase)]
-        pub unsafe fn lineDashPhase(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn lineDashPhase(&self) -> Foundation::CGFloat;
 
         #[method(setLineDashPhase:)]
-        pub unsafe fn setLineDashPhase(&self, lineDashPhase: CoreGraphics::CGFloat);
+        pub unsafe fn setLineDashPhase(&self, lineDashPhase: Foundation::CGFloat);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method_id(@__retain_semantics Other lineDashPattern)]

@@ -43,16 +43,16 @@ extern_methods!(
         );
 
         #[method(startPoint)]
-        pub unsafe fn startPoint(&self) -> CoreGraphics::CGPoint;
+        pub unsafe fn startPoint(&self) -> Foundation::CGPoint;
 
         #[method(setStartPoint:)]
-        pub unsafe fn setStartPoint(&self, startPoint: CoreGraphics::CGPoint);
+        pub unsafe fn setStartPoint(&self, startPoint: Foundation::CGPoint);
 
         #[method(endPoint)]
-        pub unsafe fn endPoint(&self) -> CoreGraphics::CGPoint;
+        pub unsafe fn endPoint(&self) -> Foundation::CGPoint;
 
         #[method(setEndPoint:)]
-        pub unsafe fn setEndPoint(&self, endPoint: CoreGraphics::CGPoint);
+        pub unsafe fn setEndPoint(&self, endPoint: Foundation::CGPoint);
 
         #[method_id(@__retain_semantics Other type)]
         pub unsafe fn type_(&self) -> Id<CoreAnimation::CAGradientLayerType, Shared>;

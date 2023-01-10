@@ -225,8 +225,8 @@ extern_methods!(
             &self,
             ruler: &AppKit::NSRulerView,
             marker: &AppKit::NSRulerMarker,
-            location: CoreGraphics::CGFloat,
-        ) -> CoreGraphics::CGFloat;
+            location: Foundation::CGFloat,
+        ) -> Foundation::CGFloat;
 
         #[cfg(all(feature = "AppKit_NSRulerMarker", feature = "AppKit_NSRulerView"))]
         #[method(rulerView:shouldRemoveMarker:)]
@@ -242,8 +242,8 @@ extern_methods!(
             &self,
             ruler: &AppKit::NSRulerView,
             marker: &AppKit::NSRulerMarker,
-            location: CoreGraphics::CGFloat,
-        ) -> CoreGraphics::CGFloat;
+            location: Foundation::CGFloat,
+        ) -> Foundation::CGFloat;
 
         #[cfg(all(feature = "AppKit_NSEvent", feature = "AppKit_NSRulerView"))]
         #[method(rulerView:handleMouseDown:)]

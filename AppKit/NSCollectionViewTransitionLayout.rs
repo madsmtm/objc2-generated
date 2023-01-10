@@ -21,10 +21,10 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSCollectionViewTransitionLayout")]
     unsafe impl NSCollectionViewTransitionLayout {
         #[method(transitionProgress)]
-        pub unsafe fn transitionProgress(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn transitionProgress(&self) -> Foundation::CGFloat;
 
         #[method(setTransitionProgress:)]
-        pub unsafe fn setTransitionProgress(&self, transitionProgress: CoreGraphics::CGFloat);
+        pub unsafe fn setTransitionProgress(&self, transitionProgress: Foundation::CGFloat);
 
         #[method_id(@__retain_semantics Other currentLayout)]
         pub unsafe fn currentLayout(&self) -> Id<AppKit::NSCollectionViewLayout, Shared>;
@@ -42,7 +42,7 @@ extern_methods!(
         #[method(updateValue:forAnimatedKey:)]
         pub unsafe fn updateValue_forAnimatedKey(
             &self,
-            value: CoreGraphics::CGFloat,
+            value: Foundation::CGFloat,
             key: &AppKit::NSCollectionViewTransitionLayoutAnimatedKey,
         );
 
@@ -50,6 +50,6 @@ extern_methods!(
         pub unsafe fn valueForAnimatedKey(
             &self,
             key: &AppKit::NSCollectionViewTransitionLayoutAnimatedKey,
-        ) -> CoreGraphics::CGFloat;
+        ) -> Foundation::CGFloat;
     }
 );

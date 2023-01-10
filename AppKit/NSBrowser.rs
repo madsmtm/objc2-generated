@@ -104,10 +104,10 @@ extern_methods!(
         pub unsafe fn setTitled(&self, titled: bool);
 
         #[method(minColumnWidth)]
-        pub unsafe fn minColumnWidth(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn minColumnWidth(&self) -> Foundation::CGFloat;
 
         #[method(setMinColumnWidth:)]
-        pub unsafe fn setMinColumnWidth(&self, minColumnWidth: CoreGraphics::CGFloat);
+        pub unsafe fn setMinColumnWidth(&self, minColumnWidth: Foundation::CGFloat);
 
         #[method(maxVisibleColumns)]
         pub unsafe fn maxVisibleColumns(&self) -> NSInteger;
@@ -345,7 +345,7 @@ extern_methods!(
         pub unsafe fn drawTitleOfColumn_inRect(&self, column: NSInteger, rect: Foundation::NSRect);
 
         #[method(titleHeight)]
-        pub unsafe fn titleHeight(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn titleHeight(&self) -> Foundation::CGFloat;
 
         #[method(frameOfColumn:)]
         pub unsafe fn frameOfColumn(&self, column: NSInteger) -> Foundation::NSRect;
@@ -371,14 +371,14 @@ extern_methods!(
         #[method(columnWidthForColumnContentWidth:)]
         pub unsafe fn columnWidthForColumnContentWidth(
             &self,
-            columnContentWidth: CoreGraphics::CGFloat,
-        ) -> CoreGraphics::CGFloat;
+            columnContentWidth: Foundation::CGFloat,
+        ) -> Foundation::CGFloat;
 
         #[method(columnContentWidthForColumnWidth:)]
         pub unsafe fn columnContentWidthForColumnWidth(
             &self,
-            columnWidth: CoreGraphics::CGFloat,
-        ) -> CoreGraphics::CGFloat;
+            columnWidth: Foundation::CGFloat,
+        ) -> Foundation::CGFloat;
 
         #[method(columnResizingType)]
         pub unsafe fn columnResizingType(&self) -> AppKit::NSBrowserColumnResizingType;
@@ -398,18 +398,18 @@ extern_methods!(
         #[method(setWidth:ofColumn:)]
         pub unsafe fn setWidth_ofColumn(
             &self,
-            columnWidth: CoreGraphics::CGFloat,
+            columnWidth: Foundation::CGFloat,
             columnIndex: NSInteger,
         );
 
         #[method(widthOfColumn:)]
-        pub unsafe fn widthOfColumn(&self, column: NSInteger) -> CoreGraphics::CGFloat;
+        pub unsafe fn widthOfColumn(&self, column: NSInteger) -> Foundation::CGFloat;
 
         #[method(rowHeight)]
-        pub unsafe fn rowHeight(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn rowHeight(&self) -> Foundation::CGFloat;
 
         #[method(setRowHeight:)]
-        pub unsafe fn setRowHeight(&self, rowHeight: CoreGraphics::CGFloat);
+        pub unsafe fn setRowHeight(&self, rowHeight: Foundation::CGFloat);
 
         #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(noteHeightOfRowsWithIndexesChanged:inColumn:)]
@@ -420,10 +420,10 @@ extern_methods!(
         );
 
         #[method(setDefaultColumnWidth:)]
-        pub unsafe fn setDefaultColumnWidth(&self, columnWidth: CoreGraphics::CGFloat);
+        pub unsafe fn setDefaultColumnWidth(&self, columnWidth: Foundation::CGFloat);
 
         #[method(defaultColumnWidth)]
-        pub unsafe fn defaultColumnWidth(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn defaultColumnWidth(&self) -> Foundation::CGFloat;
 
         #[method_id(@__retain_semantics Other columnsAutosaveName)]
         pub unsafe fn columnsAutosaveName(
@@ -561,7 +561,7 @@ extern_protocol!(
             browser: &AppKit::NSBrowser,
             row: NSInteger,
             columnIndex: NSInteger,
-        ) -> CoreGraphics::CGFloat;
+        ) -> Foundation::CGFloat;
 
         #[optional]
         #[method_id(@__retain_semantics Other rootItemForBrowser:)]
@@ -646,8 +646,8 @@ extern_protocol!(
             browser: &AppKit::NSBrowser,
             columnIndex: NSInteger,
             forUserResize: bool,
-            suggestedWidth: CoreGraphics::CGFloat,
-        ) -> CoreGraphics::CGFloat;
+            suggestedWidth: Foundation::CGFloat,
+        ) -> Foundation::CGFloat;
 
         #[optional]
         #[method(browser:sizeToFitWidthOfColumn:)]
@@ -655,7 +655,7 @@ extern_protocol!(
             &self,
             browser: &AppKit::NSBrowser,
             columnIndex: NSInteger,
-        ) -> CoreGraphics::CGFloat;
+        ) -> Foundation::CGFloat;
 
         #[optional]
         #[method(browserColumnConfigurationDidChange:)]

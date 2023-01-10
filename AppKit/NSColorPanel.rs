@@ -107,7 +107,7 @@ extern_methods!(
         pub unsafe fn setColor(&self, color: &AppKit::NSColor);
 
         #[method(alpha)]
-        pub unsafe fn alpha(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn alpha(&self) -> Foundation::CGFloat;
 
         #[method(setAction:)]
         pub unsafe fn setAction(&self, selector: Option<Sel>);

@@ -25,19 +25,19 @@ extern_methods!(
         pub unsafe fn setMargins(&self, margins: Foundation::NSEdgeInsets);
 
         #[method(minimumInteritemSpacing)]
-        pub unsafe fn minimumInteritemSpacing(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn minimumInteritemSpacing(&self) -> Foundation::CGFloat;
 
         #[method(setMinimumInteritemSpacing:)]
         pub unsafe fn setMinimumInteritemSpacing(
             &self,
-            minimumInteritemSpacing: CoreGraphics::CGFloat,
+            minimumInteritemSpacing: Foundation::CGFloat,
         );
 
         #[method(minimumLineSpacing)]
-        pub unsafe fn minimumLineSpacing(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn minimumLineSpacing(&self) -> Foundation::CGFloat;
 
         #[method(setMinimumLineSpacing:)]
-        pub unsafe fn setMinimumLineSpacing(&self, minimumLineSpacing: CoreGraphics::CGFloat);
+        pub unsafe fn setMinimumLineSpacing(&self, minimumLineSpacing: Foundation::CGFloat);
 
         #[method(maximumNumberOfRows)]
         pub unsafe fn maximumNumberOfRows(&self) -> NSUInteger;

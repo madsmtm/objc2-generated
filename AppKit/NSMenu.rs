@@ -207,7 +207,7 @@ extern_methods!(
         pub unsafe fn setDelegate(&self, delegate: Option<&AppKit::NSMenuDelegate>);
 
         #[method(menuBarHeight)]
-        pub unsafe fn menuBarHeight(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn menuBarHeight(&self) -> Foundation::CGFloat;
 
         #[method(cancelTracking)]
         pub unsafe fn cancelTracking(&self);
@@ -220,10 +220,10 @@ extern_methods!(
         pub unsafe fn highlightedItem(&self) -> Option<Id<AppKit::NSMenuItem, Shared>>;
 
         #[method(minimumWidth)]
-        pub unsafe fn minimumWidth(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn minimumWidth(&self) -> Foundation::CGFloat;
 
         #[method(setMinimumWidth:)]
-        pub unsafe fn setMinimumWidth(&self, minimumWidth: CoreGraphics::CGFloat);
+        pub unsafe fn setMinimumWidth(&self, minimumWidth: Foundation::CGFloat);
 
         #[method(size)]
         pub unsafe fn size(&self) -> Foundation::NSSize;

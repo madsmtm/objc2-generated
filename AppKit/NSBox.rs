@@ -102,16 +102,16 @@ extern_methods!(
         pub unsafe fn setTransparent(&self, transparent: bool);
 
         #[method(borderWidth)]
-        pub unsafe fn borderWidth(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn borderWidth(&self) -> Foundation::CGFloat;
 
         #[method(setBorderWidth:)]
-        pub unsafe fn setBorderWidth(&self, borderWidth: CoreGraphics::CGFloat);
+        pub unsafe fn setBorderWidth(&self, borderWidth: Foundation::CGFloat);
 
         #[method(cornerRadius)]
-        pub unsafe fn cornerRadius(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn cornerRadius(&self) -> Foundation::CGFloat;
 
         #[method(setCornerRadius:)]
-        pub unsafe fn setCornerRadius(&self, cornerRadius: CoreGraphics::CGFloat);
+        pub unsafe fn setCornerRadius(&self, cornerRadius: Foundation::CGFloat);
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other borderColor)]

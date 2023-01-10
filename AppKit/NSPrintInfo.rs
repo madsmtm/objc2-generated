@@ -160,34 +160,34 @@ extern_methods!(
         pub unsafe fn setOrientation(&self, orientation: AppKit::NSPaperOrientation);
 
         #[method(scalingFactor)]
-        pub unsafe fn scalingFactor(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn scalingFactor(&self) -> Foundation::CGFloat;
 
         #[method(setScalingFactor:)]
-        pub unsafe fn setScalingFactor(&self, scalingFactor: CoreGraphics::CGFloat);
+        pub unsafe fn setScalingFactor(&self, scalingFactor: Foundation::CGFloat);
 
         #[method(leftMargin)]
-        pub unsafe fn leftMargin(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn leftMargin(&self) -> Foundation::CGFloat;
 
         #[method(setLeftMargin:)]
-        pub unsafe fn setLeftMargin(&self, leftMargin: CoreGraphics::CGFloat);
+        pub unsafe fn setLeftMargin(&self, leftMargin: Foundation::CGFloat);
 
         #[method(rightMargin)]
-        pub unsafe fn rightMargin(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn rightMargin(&self) -> Foundation::CGFloat;
 
         #[method(setRightMargin:)]
-        pub unsafe fn setRightMargin(&self, rightMargin: CoreGraphics::CGFloat);
+        pub unsafe fn setRightMargin(&self, rightMargin: Foundation::CGFloat);
 
         #[method(topMargin)]
-        pub unsafe fn topMargin(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn topMargin(&self) -> Foundation::CGFloat;
 
         #[method(setTopMargin:)]
-        pub unsafe fn setTopMargin(&self, topMargin: CoreGraphics::CGFloat);
+        pub unsafe fn setTopMargin(&self, topMargin: Foundation::CGFloat);
 
         #[method(bottomMargin)]
-        pub unsafe fn bottomMargin(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn bottomMargin(&self) -> Foundation::CGFloat;
 
         #[method(setBottomMargin:)]
-        pub unsafe fn setBottomMargin(&self, bottomMargin: CoreGraphics::CGFloat);
+        pub unsafe fn setBottomMargin(&self, bottomMargin: Foundation::CGFloat);
 
         #[method(isHorizontallyCentered)]
         pub unsafe fn isHorizontallyCentered(&self) -> bool;

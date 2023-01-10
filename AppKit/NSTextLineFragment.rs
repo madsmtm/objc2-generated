@@ -52,22 +52,21 @@ extern_methods!(
         pub unsafe fn characterRange(&self) -> Foundation::NSRange;
 
         #[method(typographicBounds)]
-        pub unsafe fn typographicBounds(&self) -> CoreGraphics::CGRect;
+        pub unsafe fn typographicBounds(&self) -> Foundation::CGRect;
 
         #[method(glyphOrigin)]
-        pub unsafe fn glyphOrigin(&self) -> CoreGraphics::CGPoint;
+        pub unsafe fn glyphOrigin(&self) -> Foundation::CGPoint;
 
         #[method(locationForCharacterAtIndex:)]
-        pub unsafe fn locationForCharacterAtIndex(&self, index: NSInteger)
-            -> CoreGraphics::CGPoint;
+        pub unsafe fn locationForCharacterAtIndex(&self, index: NSInteger) -> Foundation::CGPoint;
 
         #[method(characterIndexForPoint:)]
-        pub unsafe fn characterIndexForPoint(&self, point: CoreGraphics::CGPoint) -> NSInteger;
+        pub unsafe fn characterIndexForPoint(&self, point: Foundation::CGPoint) -> NSInteger;
 
         #[method(fractionOfDistanceThroughGlyphForPoint:)]
         pub unsafe fn fractionOfDistanceThroughGlyphForPoint(
             &self,
-            point: CoreGraphics::CGPoint,
-        ) -> CoreGraphics::CGFloat;
+            point: Foundation::CGPoint,
+        ) -> Foundation::CGFloat;
     }
 );

@@ -81,12 +81,12 @@ extern_methods!(
         );
 
         #[method(indentationForDropOperation)]
-        pub unsafe fn indentationForDropOperation(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn indentationForDropOperation(&self) -> Foundation::CGFloat;
 
         #[method(setIndentationForDropOperation:)]
         pub unsafe fn setIndentationForDropOperation(
             &self,
-            indentationForDropOperation: CoreGraphics::CGFloat,
+            indentationForDropOperation: Foundation::CGFloat,
         );
 
         #[method(interiorBackgroundStyle)]

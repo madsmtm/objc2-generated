@@ -63,7 +63,7 @@ extern_methods!(
             dstSpacePortionRect: Foundation::NSRect,
             srcSpacePortionRect: Foundation::NSRect,
             op: AppKit::NSCompositingOperation,
-            requestedAlpha: CoreGraphics::CGFloat,
+            requestedAlpha: Foundation::CGFloat,
             respectContextIsFlipped: bool,
             hints: Option<&Foundation::NSDictionary<AppKit::NSImageHintKey, Object>>,
         ) -> bool;

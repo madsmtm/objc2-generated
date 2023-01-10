@@ -219,10 +219,10 @@ extern_methods!(
         pub unsafe fn effectiveRowSizeStyle(&self) -> AppKit::NSTableViewRowSizeStyle;
 
         #[method(rowHeight)]
-        pub unsafe fn rowHeight(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn rowHeight(&self) -> Foundation::CGFloat;
 
         #[method(setRowHeight:)]
-        pub unsafe fn setRowHeight(&self, rowHeight: CoreGraphics::CGFloat);
+        pub unsafe fn setRowHeight(&self, rowHeight: Foundation::CGFloat);
 
         #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(noteHeightOfRowsWithIndexesChanged:)]
@@ -879,7 +879,7 @@ extern_protocol!(
             &self,
             tableView: &AppKit::NSTableView,
             row: NSInteger,
-        ) -> CoreGraphics::CGFloat;
+        ) -> Foundation::CGFloat;
 
         #[optional]
         #[method_id(@__retain_semantics Other tableView:typeSelectStringForTableColumn:row:)]
@@ -923,7 +923,7 @@ extern_protocol!(
             &self,
             tableView: &AppKit::NSTableView,
             column: NSInteger,
-        ) -> CoreGraphics::CGFloat;
+        ) -> Foundation::CGFloat;
 
         #[optional]
         #[method(tableView:shouldReorderColumn:toColumn:)]

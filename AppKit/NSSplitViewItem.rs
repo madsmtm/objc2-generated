@@ -24,7 +24,7 @@ ns_enum!(
     }
 );
 
-extern_static!(NSSplitViewItemUnspecifiedDimension: CoreGraphics::CGFloat);
+extern_static!(NSSplitViewItemUnspecifiedDimension: Foundation::CGFloat);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -89,24 +89,24 @@ extern_methods!(
         );
 
         #[method(minimumThickness)]
-        pub unsafe fn minimumThickness(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn minimumThickness(&self) -> Foundation::CGFloat;
 
         #[method(setMinimumThickness:)]
-        pub unsafe fn setMinimumThickness(&self, minimumThickness: CoreGraphics::CGFloat);
+        pub unsafe fn setMinimumThickness(&self, minimumThickness: Foundation::CGFloat);
 
         #[method(maximumThickness)]
-        pub unsafe fn maximumThickness(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn maximumThickness(&self) -> Foundation::CGFloat;
 
         #[method(setMaximumThickness:)]
-        pub unsafe fn setMaximumThickness(&self, maximumThickness: CoreGraphics::CGFloat);
+        pub unsafe fn setMaximumThickness(&self, maximumThickness: Foundation::CGFloat);
 
         #[method(preferredThicknessFraction)]
-        pub unsafe fn preferredThicknessFraction(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn preferredThicknessFraction(&self) -> Foundation::CGFloat;
 
         #[method(setPreferredThicknessFraction:)]
         pub unsafe fn setPreferredThicknessFraction(
             &self,
-            preferredThicknessFraction: CoreGraphics::CGFloat,
+            preferredThicknessFraction: Foundation::CGFloat,
         );
 
         #[method(holdingPriority)]
@@ -116,12 +116,12 @@ extern_methods!(
         pub unsafe fn setHoldingPriority(&self, holdingPriority: AppKit::NSLayoutPriority);
 
         #[method(automaticMaximumThickness)]
-        pub unsafe fn automaticMaximumThickness(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn automaticMaximumThickness(&self) -> Foundation::CGFloat;
 
         #[method(setAutomaticMaximumThickness:)]
         pub unsafe fn setAutomaticMaximumThickness(
             &self,
-            automaticMaximumThickness: CoreGraphics::CGFloat,
+            automaticMaximumThickness: Foundation::CGFloat,
         );
 
         #[method(isSpringLoaded)]

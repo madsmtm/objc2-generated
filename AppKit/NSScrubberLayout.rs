@@ -30,10 +30,10 @@ extern_methods!(
         pub unsafe fn setFrame(&self, frame: Foundation::NSRect);
 
         #[method(alpha)]
-        pub unsafe fn alpha(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn alpha(&self) -> Foundation::CGFloat;
 
         #[method(setAlpha:)]
-        pub unsafe fn setAlpha(&self, alpha: CoreGraphics::CGFloat);
+        pub unsafe fn setAlpha(&self, alpha: Foundation::CGFloat);
 
         #[method_id(@__retain_semantics Other layoutAttributesForItemAtIndex:)]
         pub unsafe fn layoutAttributesForItemAtIndex(index: NSInteger) -> Id<Self, Shared>;
@@ -145,10 +145,10 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSScrubberFlowLayout")]
     unsafe impl NSScrubberFlowLayout {
         #[method(itemSpacing)]
-        pub unsafe fn itemSpacing(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn itemSpacing(&self) -> Foundation::CGFloat;
 
         #[method(setItemSpacing:)]
-        pub unsafe fn setItemSpacing(&self, itemSpacing: CoreGraphics::CGFloat);
+        pub unsafe fn setItemSpacing(&self, itemSpacing: Foundation::CGFloat);
 
         #[method(itemSize)]
         pub unsafe fn itemSize(&self) -> Foundation::NSSize;

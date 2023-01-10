@@ -62,10 +62,10 @@ extern_methods!(
         pub unsafe fn setHyphenationFactor(&self, hyphenationFactor: c_float);
 
         #[method(lineFragmentPadding)]
-        pub unsafe fn lineFragmentPadding(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn lineFragmentPadding(&self) -> Foundation::CGFloat;
 
         #[method(setLineFragmentPadding:)]
-        pub unsafe fn setLineFragmentPadding(&self, lineFragmentPadding: CoreGraphics::CGFloat);
+        pub unsafe fn setLineFragmentPadding(&self, lineFragmentPadding: Foundation::CGFloat);
 
         #[cfg(feature = "AppKit_NSFont")]
         #[method_id(@__retain_semantics Other substituteFontForFont:)]
@@ -78,9 +78,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Other textTabForGlyphLocation:writingDirection:maxLocation:)]
         pub unsafe fn textTabForGlyphLocation_writingDirection_maxLocation(
             &self,
-            glyphLocation: CoreGraphics::CGFloat,
+            glyphLocation: Foundation::CGFloat,
             direction: AppKit::NSWritingDirection,
-            maxLocation: CoreGraphics::CGFloat,
+            maxLocation: Foundation::CGFloat,
         ) -> Option<Id<AppKit::NSTextTab, Shared>>;
 
         #[method(bidiProcessingEnabled)]
@@ -125,21 +125,21 @@ extern_methods!(
             &self,
             glyphIndex: NSUInteger,
             rect: Foundation::NSRect,
-        ) -> CoreGraphics::CGFloat;
+        ) -> Foundation::CGFloat;
 
         #[method(paragraphSpacingBeforeGlyphAtIndex:withProposedLineFragmentRect:)]
         pub unsafe fn paragraphSpacingBeforeGlyphAtIndex_withProposedLineFragmentRect(
             &self,
             glyphIndex: NSUInteger,
             rect: Foundation::NSRect,
-        ) -> CoreGraphics::CGFloat;
+        ) -> Foundation::CGFloat;
 
         #[method(paragraphSpacingAfterGlyphAtIndex:withProposedLineFragmentRect:)]
         pub unsafe fn paragraphSpacingAfterGlyphAtIndex_withProposedLineFragmentRect(
             &self,
             glyphIndex: NSUInteger,
             rect: Foundation::NSRect,
-        ) -> CoreGraphics::CGFloat;
+        ) -> Foundation::CGFloat;
 
         #[cfg(feature = "AppKit_NSLayoutManager")]
         #[method_id(@__retain_semantics Other layoutManager)]
@@ -177,7 +177,7 @@ extern_methods!(
             lineRect: NonNull<Foundation::NSRect>,
             glyphRange: Foundation::NSRange,
             usedRect: NonNull<Foundation::NSRect>,
-            baselineOffset: NonNull<CoreGraphics::CGFloat>,
+            baselineOffset: NonNull<Foundation::CGFloat>,
         );
 
         #[method(shouldBreakLineByWordBeforeCharacterAtIndex:)]

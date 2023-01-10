@@ -385,22 +385,22 @@ extern_methods!(
         pub unsafe fn locationInWindow(&self) -> Foundation::NSPoint;
 
         #[method(deltaX)]
-        pub unsafe fn deltaX(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn deltaX(&self) -> Foundation::CGFloat;
 
         #[method(deltaY)]
-        pub unsafe fn deltaY(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn deltaY(&self) -> Foundation::CGFloat;
 
         #[method(deltaZ)]
-        pub unsafe fn deltaZ(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn deltaZ(&self) -> Foundation::CGFloat;
 
         #[method(hasPreciseScrollingDeltas)]
         pub unsafe fn hasPreciseScrollingDeltas(&self) -> bool;
 
         #[method(scrollingDeltaX)]
-        pub unsafe fn scrollingDeltaX(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn scrollingDeltaX(&self) -> Foundation::CGFloat;
 
         #[method(scrollingDeltaY)]
-        pub unsafe fn scrollingDeltaY(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn scrollingDeltaY(&self) -> Foundation::CGFloat;
 
         #[method(momentumPhase)]
         pub unsafe fn momentumPhase(&self) -> AppKit::NSEventPhase;
@@ -465,7 +465,7 @@ extern_methods!(
         pub unsafe fn setMouseCoalescingEnabled(mouseCoalescingEnabled: bool);
 
         #[method(magnification)]
-        pub unsafe fn magnification(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn magnification(&self) -> Foundation::CGFloat;
 
         #[method(deviceID)]
         pub unsafe fn deviceID(&self) -> NSUInteger;
@@ -565,7 +565,7 @@ extern_methods!(
         pub unsafe fn stage(&self) -> NSInteger;
 
         #[method(stageTransition)]
-        pub unsafe fn stageTransition(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn stageTransition(&self) -> Foundation::CGFloat;
 
         #[method(associatedEventsMask)]
         pub unsafe fn associatedEventsMask(&self) -> AppKit::NSEventMask;
@@ -580,11 +580,11 @@ extern_methods!(
         pub unsafe fn trackSwipeEventWithOptions_dampenAmountThresholdMin_max_usingHandler(
             &self,
             options: AppKit::NSEventSwipeTrackingOptions,
-            minDampenThreshold: CoreGraphics::CGFloat,
-            maxDampenThreshold: CoreGraphics::CGFloat,
+            minDampenThreshold: Foundation::CGFloat,
+            maxDampenThreshold: Foundation::CGFloat,
             trackingHandler: &Block<
                 (
-                    CoreGraphics::CGFloat,
+                    Foundation::CGFloat,
                     AppKit::NSEventPhase,
                     Bool,
                     NonNull<Bool>,

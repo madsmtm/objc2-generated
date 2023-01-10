@@ -60,82 +60,82 @@ extern_methods!(
         pub unsafe fn setLifetimeRange(&self, lifetimeRange: c_float);
 
         #[method(emissionLatitude)]
-        pub unsafe fn emissionLatitude(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn emissionLatitude(&self) -> Foundation::CGFloat;
 
         #[method(setEmissionLatitude:)]
-        pub unsafe fn setEmissionLatitude(&self, emissionLatitude: CoreGraphics::CGFloat);
+        pub unsafe fn setEmissionLatitude(&self, emissionLatitude: Foundation::CGFloat);
 
         #[method(emissionLongitude)]
-        pub unsafe fn emissionLongitude(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn emissionLongitude(&self) -> Foundation::CGFloat;
 
         #[method(setEmissionLongitude:)]
-        pub unsafe fn setEmissionLongitude(&self, emissionLongitude: CoreGraphics::CGFloat);
+        pub unsafe fn setEmissionLongitude(&self, emissionLongitude: Foundation::CGFloat);
 
         #[method(emissionRange)]
-        pub unsafe fn emissionRange(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn emissionRange(&self) -> Foundation::CGFloat;
 
         #[method(setEmissionRange:)]
-        pub unsafe fn setEmissionRange(&self, emissionRange: CoreGraphics::CGFloat);
+        pub unsafe fn setEmissionRange(&self, emissionRange: Foundation::CGFloat);
 
         #[method(velocity)]
-        pub unsafe fn velocity(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn velocity(&self) -> Foundation::CGFloat;
 
         #[method(setVelocity:)]
-        pub unsafe fn setVelocity(&self, velocity: CoreGraphics::CGFloat);
+        pub unsafe fn setVelocity(&self, velocity: Foundation::CGFloat);
 
         #[method(velocityRange)]
-        pub unsafe fn velocityRange(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn velocityRange(&self) -> Foundation::CGFloat;
 
         #[method(setVelocityRange:)]
-        pub unsafe fn setVelocityRange(&self, velocityRange: CoreGraphics::CGFloat);
+        pub unsafe fn setVelocityRange(&self, velocityRange: Foundation::CGFloat);
 
         #[method(xAcceleration)]
-        pub unsafe fn xAcceleration(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn xAcceleration(&self) -> Foundation::CGFloat;
 
         #[method(setXAcceleration:)]
-        pub unsafe fn setXAcceleration(&self, xAcceleration: CoreGraphics::CGFloat);
+        pub unsafe fn setXAcceleration(&self, xAcceleration: Foundation::CGFloat);
 
         #[method(yAcceleration)]
-        pub unsafe fn yAcceleration(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn yAcceleration(&self) -> Foundation::CGFloat;
 
         #[method(setYAcceleration:)]
-        pub unsafe fn setYAcceleration(&self, yAcceleration: CoreGraphics::CGFloat);
+        pub unsafe fn setYAcceleration(&self, yAcceleration: Foundation::CGFloat);
 
         #[method(zAcceleration)]
-        pub unsafe fn zAcceleration(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn zAcceleration(&self) -> Foundation::CGFloat;
 
         #[method(setZAcceleration:)]
-        pub unsafe fn setZAcceleration(&self, zAcceleration: CoreGraphics::CGFloat);
+        pub unsafe fn setZAcceleration(&self, zAcceleration: Foundation::CGFloat);
 
         #[method(scale)]
-        pub unsafe fn scale(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn scale(&self) -> Foundation::CGFloat;
 
         #[method(setScale:)]
-        pub unsafe fn setScale(&self, scale: CoreGraphics::CGFloat);
+        pub unsafe fn setScale(&self, scale: Foundation::CGFloat);
 
         #[method(scaleRange)]
-        pub unsafe fn scaleRange(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn scaleRange(&self) -> Foundation::CGFloat;
 
         #[method(setScaleRange:)]
-        pub unsafe fn setScaleRange(&self, scaleRange: CoreGraphics::CGFloat);
+        pub unsafe fn setScaleRange(&self, scaleRange: Foundation::CGFloat);
 
         #[method(scaleSpeed)]
-        pub unsafe fn scaleSpeed(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn scaleSpeed(&self) -> Foundation::CGFloat;
 
         #[method(setScaleSpeed:)]
-        pub unsafe fn setScaleSpeed(&self, scaleSpeed: CoreGraphics::CGFloat);
+        pub unsafe fn setScaleSpeed(&self, scaleSpeed: Foundation::CGFloat);
 
         #[method(spin)]
-        pub unsafe fn spin(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn spin(&self) -> Foundation::CGFloat;
 
         #[method(setSpin:)]
-        pub unsafe fn setSpin(&self, spin: CoreGraphics::CGFloat);
+        pub unsafe fn setSpin(&self, spin: Foundation::CGFloat);
 
         #[method(spinRange)]
-        pub unsafe fn spinRange(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn spinRange(&self) -> Foundation::CGFloat;
 
         #[method(setSpinRange:)]
-        pub unsafe fn setSpinRange(&self, spinRange: CoreGraphics::CGFloat);
+        pub unsafe fn setSpinRange(&self, spinRange: Foundation::CGFloat);
 
         #[method(redRange)]
         pub unsafe fn redRange(&self) -> c_float;
@@ -192,16 +192,16 @@ extern_methods!(
         pub unsafe fn setContents(&self, contents: Option<&Object>);
 
         #[method(contentsRect)]
-        pub unsafe fn contentsRect(&self) -> CoreGraphics::CGRect;
+        pub unsafe fn contentsRect(&self) -> Foundation::CGRect;
 
         #[method(setContentsRect:)]
-        pub unsafe fn setContentsRect(&self, contentsRect: CoreGraphics::CGRect);
+        pub unsafe fn setContentsRect(&self, contentsRect: Foundation::CGRect);
 
         #[method(contentsScale)]
-        pub unsafe fn contentsScale(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn contentsScale(&self) -> Foundation::CGFloat;
 
         #[method(setContentsScale:)]
-        pub unsafe fn setContentsScale(&self, contentsScale: CoreGraphics::CGFloat);
+        pub unsafe fn setContentsScale(&self, contentsScale: Foundation::CGFloat);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other minificationFilter)]

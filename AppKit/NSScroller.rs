@@ -64,7 +64,7 @@ extern_methods!(
         pub unsafe fn scrollerWidthForControlSize_scrollerStyle(
             controlSize: AppKit::NSControlSize,
             scrollerStyle: AppKit::NSScrollerStyle,
-        ) -> CoreGraphics::CGFloat;
+        ) -> Foundation::CGFloat;
 
         #[method(preferredScrollerStyle)]
         pub unsafe fn preferredScrollerStyle() -> AppKit::NSScrollerStyle;
@@ -113,10 +113,10 @@ extern_methods!(
         pub unsafe fn hitPart(&self) -> AppKit::NSScrollerPart;
 
         #[method(knobProportion)]
-        pub unsafe fn knobProportion(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn knobProportion(&self) -> Foundation::CGFloat;
 
         #[method(setKnobProportion:)]
-        pub unsafe fn setKnobProportion(&self, knobProportion: CoreGraphics::CGFloat);
+        pub unsafe fn setKnobProportion(&self, knobProportion: Foundation::CGFloat);
     }
 );
 
@@ -149,16 +149,16 @@ extern_methods!(
         #[method(scrollerWidthForControlSize:)]
         pub unsafe fn scrollerWidthForControlSize(
             controlSize: AppKit::NSControlSize,
-        ) -> CoreGraphics::CGFloat;
+        ) -> Foundation::CGFloat;
 
         #[method(scrollerWidth)]
-        pub unsafe fn scrollerWidth() -> CoreGraphics::CGFloat;
+        pub unsafe fn scrollerWidth() -> Foundation::CGFloat;
 
         #[method(setFloatValue:knobProportion:)]
         pub unsafe fn setFloatValue_knobProportion(
             &self,
             value: c_float,
-            proportion: CoreGraphics::CGFloat,
+            proportion: Foundation::CGFloat,
         );
 
         #[method(arrowsPosition)]

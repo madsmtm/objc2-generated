@@ -159,40 +159,40 @@ extern_methods!(
         pub unsafe fn setAutohidesScrollers(&self, autohidesScrollers: bool);
 
         #[method(horizontalLineScroll)]
-        pub unsafe fn horizontalLineScroll(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn horizontalLineScroll(&self) -> Foundation::CGFloat;
 
         #[method(setHorizontalLineScroll:)]
-        pub unsafe fn setHorizontalLineScroll(&self, horizontalLineScroll: CoreGraphics::CGFloat);
+        pub unsafe fn setHorizontalLineScroll(&self, horizontalLineScroll: Foundation::CGFloat);
 
         #[method(verticalLineScroll)]
-        pub unsafe fn verticalLineScroll(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn verticalLineScroll(&self) -> Foundation::CGFloat;
 
         #[method(setVerticalLineScroll:)]
-        pub unsafe fn setVerticalLineScroll(&self, verticalLineScroll: CoreGraphics::CGFloat);
+        pub unsafe fn setVerticalLineScroll(&self, verticalLineScroll: Foundation::CGFloat);
 
         #[method(lineScroll)]
-        pub unsafe fn lineScroll(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn lineScroll(&self) -> Foundation::CGFloat;
 
         #[method(setLineScroll:)]
-        pub unsafe fn setLineScroll(&self, lineScroll: CoreGraphics::CGFloat);
+        pub unsafe fn setLineScroll(&self, lineScroll: Foundation::CGFloat);
 
         #[method(horizontalPageScroll)]
-        pub unsafe fn horizontalPageScroll(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn horizontalPageScroll(&self) -> Foundation::CGFloat;
 
         #[method(setHorizontalPageScroll:)]
-        pub unsafe fn setHorizontalPageScroll(&self, horizontalPageScroll: CoreGraphics::CGFloat);
+        pub unsafe fn setHorizontalPageScroll(&self, horizontalPageScroll: Foundation::CGFloat);
 
         #[method(verticalPageScroll)]
-        pub unsafe fn verticalPageScroll(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn verticalPageScroll(&self) -> Foundation::CGFloat;
 
         #[method(setVerticalPageScroll:)]
-        pub unsafe fn setVerticalPageScroll(&self, verticalPageScroll: CoreGraphics::CGFloat);
+        pub unsafe fn setVerticalPageScroll(&self, verticalPageScroll: Foundation::CGFloat);
 
         #[method(pageScroll)]
-        pub unsafe fn pageScroll(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn pageScroll(&self) -> Foundation::CGFloat;
 
         #[method(setPageScroll:)]
-        pub unsafe fn setPageScroll(&self, pageScroll: CoreGraphics::CGFloat);
+        pub unsafe fn setPageScroll(&self, pageScroll: Foundation::CGFloat);
 
         #[method(scrollsDynamically)]
         pub unsafe fn scrollsDynamically(&self) -> bool;
@@ -257,22 +257,22 @@ extern_methods!(
         pub unsafe fn setAllowsMagnification(&self, allowsMagnification: bool);
 
         #[method(magnification)]
-        pub unsafe fn magnification(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn magnification(&self) -> Foundation::CGFloat;
 
         #[method(setMagnification:)]
-        pub unsafe fn setMagnification(&self, magnification: CoreGraphics::CGFloat);
+        pub unsafe fn setMagnification(&self, magnification: Foundation::CGFloat);
 
         #[method(maxMagnification)]
-        pub unsafe fn maxMagnification(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn maxMagnification(&self) -> Foundation::CGFloat;
 
         #[method(setMaxMagnification:)]
-        pub unsafe fn setMaxMagnification(&self, maxMagnification: CoreGraphics::CGFloat);
+        pub unsafe fn setMaxMagnification(&self, maxMagnification: Foundation::CGFloat);
 
         #[method(minMagnification)]
-        pub unsafe fn minMagnification(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn minMagnification(&self) -> Foundation::CGFloat;
 
         #[method(setMinMagnification:)]
-        pub unsafe fn setMinMagnification(&self, minMagnification: CoreGraphics::CGFloat);
+        pub unsafe fn setMinMagnification(&self, minMagnification: Foundation::CGFloat);
 
         #[method(magnifyToFitRect:)]
         pub unsafe fn magnifyToFitRect(&self, rect: Foundation::NSRect);
@@ -280,7 +280,7 @@ extern_methods!(
         #[method(setMagnification:centeredAtPoint:)]
         pub unsafe fn setMagnification_centeredAtPoint(
             &self,
-            magnification: CoreGraphics::CGFloat,
+            magnification: Foundation::CGFloat,
             point: Foundation::NSPoint,
         );
 

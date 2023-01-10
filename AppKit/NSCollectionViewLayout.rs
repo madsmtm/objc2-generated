@@ -47,10 +47,10 @@ extern_methods!(
         pub unsafe fn setSize(&self, size: Foundation::NSSize);
 
         #[method(alpha)]
-        pub unsafe fn alpha(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn alpha(&self) -> Foundation::CGFloat;
 
         #[method(setAlpha:)]
-        pub unsafe fn setAlpha(&self, alpha: CoreGraphics::CGFloat);
+        pub unsafe fn setAlpha(&self, alpha: Foundation::CGFloat);
 
         #[method(zIndex)]
         pub unsafe fn zIndex(&self) -> NSInteger;

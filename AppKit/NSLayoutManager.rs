@@ -495,7 +495,7 @@ extern_methods!(
             &self,
             point: Foundation::NSPoint,
             container: &AppKit::NSTextContainer,
-        ) -> CoreGraphics::CGFloat;
+        ) -> Foundation::CGFloat;
 
         #[cfg(feature = "AppKit_NSTextContainer")]
         #[method(characterIndexForPoint:inTextContainer:fractionOfDistanceBetweenInsertionPoints:)]
@@ -503,7 +503,7 @@ extern_methods!(
             &self,
             point: Foundation::NSPoint,
             container: &AppKit::NSTextContainer,
-            partialFraction: *mut CoreGraphics::CGFloat,
+            partialFraction: *mut Foundation::CGFloat,
         ) -> NSUInteger;
 
         #[method(getLineFragmentInsertionPointsForCharacterAtIndex:alternatePositions:inDisplayOrder:positions:characterIndexes:)]
@@ -512,7 +512,7 @@ extern_methods!(
             charIndex: NSUInteger,
             aFlag: bool,
             dFlag: bool,
-            positions: *mut CoreGraphics::CGFloat,
+            positions: *mut Foundation::CGFloat,
             charIndexes: *mut NSUInteger,
         ) -> NSUInteger;
 
@@ -572,7 +572,7 @@ extern_methods!(
             &self,
             glyphRange: Foundation::NSRange,
             underlineVal: AppKit::NSUnderlineStyle,
-            baselineOffset: CoreGraphics::CGFloat,
+            baselineOffset: Foundation::CGFloat,
             lineRect: Foundation::NSRect,
             lineGlyphRange: Foundation::NSRange,
             containerOrigin: Foundation::NSPoint,
@@ -593,7 +593,7 @@ extern_methods!(
             &self,
             glyphRange: Foundation::NSRange,
             strikethroughVal: AppKit::NSUnderlineStyle,
-            baselineOffset: CoreGraphics::CGFloat,
+            baselineOffset: Foundation::CGFloat,
             lineRect: Foundation::NSRect,
             lineGlyphRange: Foundation::NSRange,
             containerOrigin: Foundation::NSPoint,
@@ -740,14 +740,14 @@ extern_methods!(
         pub unsafe fn defaultLineHeightForFont(
             &self,
             theFont: &AppKit::NSFont,
-        ) -> CoreGraphics::CGFloat;
+        ) -> Foundation::CGFloat;
 
         #[cfg(feature = "AppKit_NSFont")]
         #[method(defaultBaselineOffsetForFont:)]
         pub unsafe fn defaultBaselineOffsetForFont(
             &self,
             theFont: &AppKit::NSFont,
-        ) -> CoreGraphics::CGFloat;
+        ) -> Foundation::CGFloat;
     }
 );
 
@@ -815,7 +815,7 @@ extern_protocol!(
             layoutManager: &AppKit::NSLayoutManager,
             glyphIndex: NSUInteger,
             rect: Foundation::NSRect,
-        ) -> CoreGraphics::CGFloat;
+        ) -> Foundation::CGFloat;
 
         #[optional]
         #[method(layoutManager:paragraphSpacingBeforeGlyphAtIndex:withProposedLineFragmentRect:)]
@@ -824,7 +824,7 @@ extern_protocol!(
             layoutManager: &AppKit::NSLayoutManager,
             glyphIndex: NSUInteger,
             rect: Foundation::NSRect,
-        ) -> CoreGraphics::CGFloat;
+        ) -> Foundation::CGFloat;
 
         #[optional]
         #[method(layoutManager:paragraphSpacingAfterGlyphAtIndex:withProposedLineFragmentRect:)]
@@ -833,7 +833,7 @@ extern_protocol!(
             layoutManager: &AppKit::NSLayoutManager,
             glyphIndex: NSUInteger,
             rect: Foundation::NSRect,
-        ) -> CoreGraphics::CGFloat;
+        ) -> Foundation::CGFloat;
 
         #[optional]
         #[method(layoutManager:shouldUseAction:forControlCharacterAtIndex:)]
@@ -879,7 +879,7 @@ extern_protocol!(
             layoutManager: &AppKit::NSLayoutManager,
             lineFragmentRect: NonNull<Foundation::NSRect>,
             lineFragmentUsedRect: NonNull<Foundation::NSRect>,
-            baselineOffset: NonNull<CoreGraphics::CGFloat>,
+            baselineOffset: NonNull<Foundation::CGFloat>,
             textContainer: &AppKit::NSTextContainer,
             glyphRange: Foundation::NSRange,
         ) -> bool;

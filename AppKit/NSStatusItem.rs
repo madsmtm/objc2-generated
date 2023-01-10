@@ -32,10 +32,10 @@ extern_methods!(
         pub unsafe fn statusBar(&self) -> Option<Id<AppKit::NSStatusBar, Shared>>;
 
         #[method(length)]
-        pub unsafe fn length(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn length(&self) -> Foundation::CGFloat;
 
         #[method(setLength:)]
-        pub unsafe fn setLength(&self, length: CoreGraphics::CGFloat);
+        pub unsafe fn setLength(&self, length: Foundation::CGFloat);
 
         #[cfg(feature = "AppKit_NSMenu")]
         #[method_id(@__retain_semantics Other menu)]

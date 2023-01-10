@@ -232,21 +232,21 @@ extern_methods!(
         );
 
         #[method(fullScreenAccessoryViewMinHeight)]
-        pub unsafe fn fullScreenAccessoryViewMinHeight(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn fullScreenAccessoryViewMinHeight(&self) -> Foundation::CGFloat;
 
         #[method(setFullScreenAccessoryViewMinHeight:)]
         pub unsafe fn setFullScreenAccessoryViewMinHeight(
             &self,
-            fullScreenAccessoryViewMinHeight: CoreGraphics::CGFloat,
+            fullScreenAccessoryViewMinHeight: Foundation::CGFloat,
         );
 
         #[method(fullScreenAccessoryViewMaxHeight)]
-        pub unsafe fn fullScreenAccessoryViewMaxHeight(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn fullScreenAccessoryViewMaxHeight(&self) -> Foundation::CGFloat;
 
         #[method(setFullScreenAccessoryViewMaxHeight:)]
         pub unsafe fn setFullScreenAccessoryViewMaxHeight(
             &self,
-            fullScreenAccessoryViewMaxHeight: CoreGraphics::CGFloat,
+            fullScreenAccessoryViewMaxHeight: Foundation::CGFloat,
         );
     }
 );

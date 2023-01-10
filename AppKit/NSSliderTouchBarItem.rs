@@ -6,7 +6,7 @@ use crate::CoreData;
 use crate::Foundation;
 
 typed_extensible_enum!(
-    pub type NSSliderAccessoryWidth = CoreGraphics::CGFloat;
+    pub type NSSliderAccessoryWidth = Foundation::CGFloat;
 );
 
 extern_static!(NSSliderAccessoryWidthDefault: AppKit::NSSliderAccessoryWidth);
@@ -45,16 +45,16 @@ extern_methods!(
         pub unsafe fn setDoubleValue(&self, doubleValue: c_double);
 
         #[method(minimumSliderWidth)]
-        pub unsafe fn minimumSliderWidth(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn minimumSliderWidth(&self) -> Foundation::CGFloat;
 
         #[method(setMinimumSliderWidth:)]
-        pub unsafe fn setMinimumSliderWidth(&self, minimumSliderWidth: CoreGraphics::CGFloat);
+        pub unsafe fn setMinimumSliderWidth(&self, minimumSliderWidth: Foundation::CGFloat);
 
         #[method(maximumSliderWidth)]
-        pub unsafe fn maximumSliderWidth(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn maximumSliderWidth(&self) -> Foundation::CGFloat;
 
         #[method(setMaximumSliderWidth:)]
-        pub unsafe fn setMaximumSliderWidth(&self, maximumSliderWidth: CoreGraphics::CGFloat);
+        pub unsafe fn setMaximumSliderWidth(&self, maximumSliderWidth: Foundation::CGFloat);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]

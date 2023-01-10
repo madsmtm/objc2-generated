@@ -25,10 +25,10 @@ extern_methods!(
         pub unsafe fn setLayoutAttribute(&self, layoutAttribute: AppKit::NSLayoutAttribute);
 
         #[method(fullScreenMinHeight)]
-        pub unsafe fn fullScreenMinHeight(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn fullScreenMinHeight(&self) -> Foundation::CGFloat;
 
         #[method(setFullScreenMinHeight:)]
-        pub unsafe fn setFullScreenMinHeight(&self, fullScreenMinHeight: CoreGraphics::CGFloat);
+        pub unsafe fn setFullScreenMinHeight(&self, fullScreenMinHeight: Foundation::CGFloat);
 
         #[method(isHidden)]
         pub unsafe fn isHidden(&self) -> bool;

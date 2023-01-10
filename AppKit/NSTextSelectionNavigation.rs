@@ -117,12 +117,12 @@ extern_methods!(
         #[method_id(@__retain_semantics Other textSelectionsInteractingAtPoint:inContainerAtLocation:anchors:modifiers:selecting:bounds:)]
         pub unsafe fn textSelectionsInteractingAtPoint_inContainerAtLocation_anchors_modifiers_selecting_bounds(
             &self,
-            point: CoreGraphics::CGPoint,
+            point: Foundation::CGPoint,
             containerLocation: &AppKit::NSTextLocation,
             anchors: &Foundation::NSArray<AppKit::NSTextSelection>,
             modifiers: AppKit::NSTextSelectionNavigationModifier,
             selecting: bool,
-            bounds: CoreGraphics::CGRect,
+            bounds: Foundation::CGRect,
         ) -> Id<Foundation::NSArray<AppKit::NSTextSelection>, Shared>;
 
         #[cfg(feature = "AppKit_NSTextSelection")]
@@ -138,7 +138,7 @@ extern_methods!(
         pub unsafe fn textSelectionForSelectionGranularity_enclosingPoint_inContainerAtLocation(
             &self,
             selectionGranularity: AppKit::NSTextSelectionGranularity,
-            point: CoreGraphics::CGPoint,
+            point: Foundation::CGPoint,
             location: &AppKit::NSTextLocation,
         ) -> Option<Id<AppKit::NSTextSelection, Shared>>;
 
@@ -222,7 +222,7 @@ extern_protocol!(
             location: &AppKit::NSTextLocation,
             block: &Block<
                 (
-                    CoreGraphics::CGFloat,
+                    Foundation::CGFloat,
                     NonNull<AppKit::NSTextLocation>,
                     Bool,
                     NonNull<Bool>,
@@ -234,7 +234,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other lineFragmentRangeForPoint:inContainerAtLocation:)]
         pub unsafe fn lineFragmentRangeForPoint_inContainerAtLocation(
             &self,
-            point: CoreGraphics::CGPoint,
+            point: Foundation::CGPoint,
             location: &AppKit::NSTextLocation,
         ) -> Option<Id<AppKit::NSTextRange, Shared>>;
 

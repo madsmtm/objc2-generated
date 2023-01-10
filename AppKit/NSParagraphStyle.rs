@@ -56,7 +56,7 @@ extern_methods!(
         pub unsafe fn initWithTextAlignment_location_options(
             this: Option<Allocated<Self>>,
             alignment: AppKit::NSTextAlignment,
-            loc: CoreGraphics::CGFloat,
+            loc: Foundation::CGFloat,
             options: &Foundation::NSDictionary<AppKit::NSTextTabOptionKey, Object>,
         ) -> Id<Self, Shared>;
 
@@ -64,7 +64,7 @@ extern_methods!(
         pub unsafe fn alignment(&self) -> AppKit::NSTextAlignment;
 
         #[method(location)]
-        pub unsafe fn location(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn location(&self) -> Foundation::CGFloat;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other options)]
@@ -96,28 +96,28 @@ extern_methods!(
         ) -> AppKit::NSWritingDirection;
 
         #[method(lineSpacing)]
-        pub unsafe fn lineSpacing(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn lineSpacing(&self) -> Foundation::CGFloat;
 
         #[method(paragraphSpacing)]
-        pub unsafe fn paragraphSpacing(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn paragraphSpacing(&self) -> Foundation::CGFloat;
 
         #[method(alignment)]
         pub unsafe fn alignment(&self) -> AppKit::NSTextAlignment;
 
         #[method(headIndent)]
-        pub unsafe fn headIndent(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn headIndent(&self) -> Foundation::CGFloat;
 
         #[method(tailIndent)]
-        pub unsafe fn tailIndent(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn tailIndent(&self) -> Foundation::CGFloat;
 
         #[method(firstLineHeadIndent)]
-        pub unsafe fn firstLineHeadIndent(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn firstLineHeadIndent(&self) -> Foundation::CGFloat;
 
         #[method(minimumLineHeight)]
-        pub unsafe fn minimumLineHeight(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn minimumLineHeight(&self) -> Foundation::CGFloat;
 
         #[method(maximumLineHeight)]
-        pub unsafe fn maximumLineHeight(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn maximumLineHeight(&self) -> Foundation::CGFloat;
 
         #[method(lineBreakMode)]
         pub unsafe fn lineBreakMode(&self) -> AppKit::NSLineBreakMode;
@@ -126,10 +126,10 @@ extern_methods!(
         pub unsafe fn baseWritingDirection(&self) -> AppKit::NSWritingDirection;
 
         #[method(lineHeightMultiple)]
-        pub unsafe fn lineHeightMultiple(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn lineHeightMultiple(&self) -> Foundation::CGFloat;
 
         #[method(paragraphSpacingBefore)]
-        pub unsafe fn paragraphSpacingBefore(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn paragraphSpacingBefore(&self) -> Foundation::CGFloat;
 
         #[method(hyphenationFactor)]
         pub unsafe fn hyphenationFactor(&self) -> c_float;
@@ -142,7 +142,7 @@ extern_methods!(
         pub unsafe fn tabStops(&self) -> Id<Foundation::NSArray<AppKit::NSTextTab>, Shared>;
 
         #[method(defaultTabInterval)]
-        pub unsafe fn defaultTabInterval(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn defaultTabInterval(&self) -> Foundation::CGFloat;
 
         #[method(allowsDefaultTighteningForTruncation)]
         pub unsafe fn allowsDefaultTighteningForTruncation(&self) -> bool;
@@ -180,16 +180,16 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSMutableParagraphStyle")]
     unsafe impl NSMutableParagraphStyle {
         #[method(lineSpacing)]
-        pub unsafe fn lineSpacing(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn lineSpacing(&self) -> Foundation::CGFloat;
 
         #[method(setLineSpacing:)]
-        pub unsafe fn setLineSpacing(&self, lineSpacing: CoreGraphics::CGFloat);
+        pub unsafe fn setLineSpacing(&self, lineSpacing: Foundation::CGFloat);
 
         #[method(paragraphSpacing)]
-        pub unsafe fn paragraphSpacing(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn paragraphSpacing(&self) -> Foundation::CGFloat;
 
         #[method(setParagraphSpacing:)]
-        pub unsafe fn setParagraphSpacing(&self, paragraphSpacing: CoreGraphics::CGFloat);
+        pub unsafe fn setParagraphSpacing(&self, paragraphSpacing: Foundation::CGFloat);
 
         #[method(alignment)]
         pub unsafe fn alignment(&self) -> AppKit::NSTextAlignment;
@@ -198,22 +198,22 @@ extern_methods!(
         pub unsafe fn setAlignment(&self, alignment: AppKit::NSTextAlignment);
 
         #[method(firstLineHeadIndent)]
-        pub unsafe fn firstLineHeadIndent(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn firstLineHeadIndent(&self) -> Foundation::CGFloat;
 
         #[method(setFirstLineHeadIndent:)]
-        pub unsafe fn setFirstLineHeadIndent(&self, firstLineHeadIndent: CoreGraphics::CGFloat);
+        pub unsafe fn setFirstLineHeadIndent(&self, firstLineHeadIndent: Foundation::CGFloat);
 
         #[method(headIndent)]
-        pub unsafe fn headIndent(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn headIndent(&self) -> Foundation::CGFloat;
 
         #[method(setHeadIndent:)]
-        pub unsafe fn setHeadIndent(&self, headIndent: CoreGraphics::CGFloat);
+        pub unsafe fn setHeadIndent(&self, headIndent: Foundation::CGFloat);
 
         #[method(tailIndent)]
-        pub unsafe fn tailIndent(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn tailIndent(&self) -> Foundation::CGFloat;
 
         #[method(setTailIndent:)]
-        pub unsafe fn setTailIndent(&self, tailIndent: CoreGraphics::CGFloat);
+        pub unsafe fn setTailIndent(&self, tailIndent: Foundation::CGFloat);
 
         #[method(lineBreakMode)]
         pub unsafe fn lineBreakMode(&self) -> AppKit::NSLineBreakMode;
@@ -222,16 +222,16 @@ extern_methods!(
         pub unsafe fn setLineBreakMode(&self, lineBreakMode: AppKit::NSLineBreakMode);
 
         #[method(minimumLineHeight)]
-        pub unsafe fn minimumLineHeight(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn minimumLineHeight(&self) -> Foundation::CGFloat;
 
         #[method(setMinimumLineHeight:)]
-        pub unsafe fn setMinimumLineHeight(&self, minimumLineHeight: CoreGraphics::CGFloat);
+        pub unsafe fn setMinimumLineHeight(&self, minimumLineHeight: Foundation::CGFloat);
 
         #[method(maximumLineHeight)]
-        pub unsafe fn maximumLineHeight(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn maximumLineHeight(&self) -> Foundation::CGFloat;
 
         #[method(setMaximumLineHeight:)]
-        pub unsafe fn setMaximumLineHeight(&self, maximumLineHeight: CoreGraphics::CGFloat);
+        pub unsafe fn setMaximumLineHeight(&self, maximumLineHeight: Foundation::CGFloat);
 
         #[method(baseWritingDirection)]
         pub unsafe fn baseWritingDirection(&self) -> AppKit::NSWritingDirection;
@@ -243,19 +243,16 @@ extern_methods!(
         );
 
         #[method(lineHeightMultiple)]
-        pub unsafe fn lineHeightMultiple(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn lineHeightMultiple(&self) -> Foundation::CGFloat;
 
         #[method(setLineHeightMultiple:)]
-        pub unsafe fn setLineHeightMultiple(&self, lineHeightMultiple: CoreGraphics::CGFloat);
+        pub unsafe fn setLineHeightMultiple(&self, lineHeightMultiple: Foundation::CGFloat);
 
         #[method(paragraphSpacingBefore)]
-        pub unsafe fn paragraphSpacingBefore(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn paragraphSpacingBefore(&self) -> Foundation::CGFloat;
 
         #[method(setParagraphSpacingBefore:)]
-        pub unsafe fn setParagraphSpacingBefore(
-            &self,
-            paragraphSpacingBefore: CoreGraphics::CGFloat,
-        );
+        pub unsafe fn setParagraphSpacingBefore(&self, paragraphSpacingBefore: Foundation::CGFloat);
 
         #[method(hyphenationFactor)]
         pub unsafe fn hyphenationFactor(&self) -> c_float;
@@ -278,10 +275,10 @@ extern_methods!(
         pub unsafe fn setTabStops(&self, tabStops: Option<&Foundation::NSArray<AppKit::NSTextTab>>);
 
         #[method(defaultTabInterval)]
-        pub unsafe fn defaultTabInterval(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn defaultTabInterval(&self) -> Foundation::CGFloat;
 
         #[method(setDefaultTabInterval:)]
-        pub unsafe fn setDefaultTabInterval(&self, defaultTabInterval: CoreGraphics::CGFloat);
+        pub unsafe fn setDefaultTabInterval(&self, defaultTabInterval: Foundation::CGFloat);
 
         #[method(allowsDefaultTighteningForTruncation)]
         pub unsafe fn allowsDefaultTighteningForTruncation(&self) -> bool;
@@ -360,7 +357,7 @@ extern_methods!(
         pub unsafe fn initWithType_location(
             this: Option<Allocated<Self>>,
             type_: AppKit::NSTextTabType,
-            loc: CoreGraphics::CGFloat,
+            loc: Foundation::CGFloat,
         ) -> Id<Self, Shared>;
 
         #[method(tabStopType)]

@@ -258,13 +258,13 @@ extern_fn!(
     pub unsafe fn NSAvailableWindowDepths() -> NonNull<AppKit::NSWindowDepth>;
 );
 
-extern_static!(NSWhite: CoreGraphics::CGFloat);
+extern_static!(NSWhite: Foundation::CGFloat);
 
-extern_static!(NSLightGray: CoreGraphics::CGFloat);
+extern_static!(NSLightGray: Foundation::CGFloat);
 
-extern_static!(NSDarkGray: CoreGraphics::CGFloat);
+extern_static!(NSDarkGray: Foundation::CGFloat);
 
-extern_static!(NSBlack: CoreGraphics::CGFloat);
+extern_static!(NSBlack: Foundation::CGFloat);
 
 ns_enum!(
     #[underlying(NSInteger)]
@@ -301,7 +301,7 @@ extern_fn!(
 extern_fn!(
     pub unsafe fn NSRectFillListWithGrays(
         rects: NonNull<Foundation::NSRect>,
-        grays: NonNull<CoreGraphics::CGFloat>,
+        grays: NonNull<Foundation::CGFloat>,
         num: NSInteger,
     );
 );
@@ -343,13 +343,13 @@ extern_fn!(
 );
 
 extern_fn!(
-    pub unsafe fn NSFrameRectWithWidth(rect: Foundation::NSRect, frameWidth: CoreGraphics::CGFloat);
+    pub unsafe fn NSFrameRectWithWidth(rect: Foundation::NSRect, frameWidth: Foundation::CGFloat);
 );
 
 extern_fn!(
     pub unsafe fn NSFrameRectWithWidthUsingOperation(
         rect: Foundation::NSRect,
-        frameWidth: CoreGraphics::CGFloat,
+        frameWidth: Foundation::CGFloat,
         op: AppKit::NSCompositingOperation,
     );
 );
@@ -367,7 +367,7 @@ extern_fn!(
         boundsRect: Foundation::NSRect,
         clipRect: Foundation::NSRect,
         sides: NonNull<Foundation::NSRectEdge>,
-        grays: NonNull<CoreGraphics::CGFloat>,
+        grays: NonNull<Foundation::CGFloat>,
         count: NSInteger,
     ) -> Foundation::NSRect;
 );

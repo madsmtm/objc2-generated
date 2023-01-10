@@ -90,21 +90,20 @@ extern_methods!(
         pub unsafe fn setDistribution(&self, distribution: AppKit::NSStackViewDistribution);
 
         #[method(spacing)]
-        pub unsafe fn spacing(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn spacing(&self) -> Foundation::CGFloat;
 
         #[method(setSpacing:)]
-        pub unsafe fn setSpacing(&self, spacing: CoreGraphics::CGFloat);
+        pub unsafe fn setSpacing(&self, spacing: Foundation::CGFloat);
 
         #[method(setCustomSpacing:afterView:)]
         pub unsafe fn setCustomSpacing_afterView(
             &self,
-            spacing: CoreGraphics::CGFloat,
+            spacing: Foundation::CGFloat,
             view: &AppKit::NSView,
         );
 
         #[method(customSpacingAfterView:)]
-        pub unsafe fn customSpacingAfterView(&self, view: &AppKit::NSView)
-            -> CoreGraphics::CGFloat;
+        pub unsafe fn customSpacingAfterView(&self, view: &AppKit::NSView) -> Foundation::CGFloat;
 
         #[method(detachesHiddenViews)]
         pub unsafe fn detachesHiddenViews(&self) -> bool;

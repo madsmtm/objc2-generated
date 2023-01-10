@@ -85,10 +85,10 @@ extern_methods!(
         pub unsafe fn isTransient(&self) -> bool;
 
         #[method(anchorPositionOffset)]
-        pub unsafe fn anchorPositionOffset(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn anchorPositionOffset(&self) -> Foundation::CGFloat;
 
         #[method(setAnchorPositionOffset:)]
-        pub unsafe fn setAnchorPositionOffset(&self, anchorPositionOffset: CoreGraphics::CGFloat);
+        pub unsafe fn setAnchorPositionOffset(&self, anchorPositionOffset: Foundation::CGFloat);
 
         #[method(isLogical)]
         pub unsafe fn isLogical(&self) -> bool;

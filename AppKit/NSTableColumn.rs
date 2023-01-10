@@ -54,22 +54,22 @@ extern_methods!(
         pub unsafe fn setTableView(&self, tableView: Option<&AppKit::NSTableView>);
 
         #[method(width)]
-        pub unsafe fn width(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn width(&self) -> Foundation::CGFloat;
 
         #[method(setWidth:)]
-        pub unsafe fn setWidth(&self, width: CoreGraphics::CGFloat);
+        pub unsafe fn setWidth(&self, width: Foundation::CGFloat);
 
         #[method(minWidth)]
-        pub unsafe fn minWidth(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn minWidth(&self) -> Foundation::CGFloat;
 
         #[method(setMinWidth:)]
-        pub unsafe fn setMinWidth(&self, minWidth: CoreGraphics::CGFloat);
+        pub unsafe fn setMinWidth(&self, minWidth: Foundation::CGFloat);
 
         #[method(maxWidth)]
-        pub unsafe fn maxWidth(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn maxWidth(&self) -> Foundation::CGFloat;
 
         #[method(setMaxWidth:)]
-        pub unsafe fn setMaxWidth(&self, maxWidth: CoreGraphics::CGFloat);
+        pub unsafe fn setMaxWidth(&self, maxWidth: Foundation::CGFloat);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]

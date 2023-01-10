@@ -47,7 +47,7 @@ extern_methods!(
         pub unsafe fn registerUnitWithName_abbreviation_unitToPointsConversionFactor_stepUpCycle_stepDownCycle(
             unitName: &AppKit::NSRulerViewUnitName,
             abbreviation: &Foundation::NSString,
-            conversionFactor: CoreGraphics::CGFloat,
+            conversionFactor: Foundation::CGFloat,
             stepUpCycle: &Foundation::NSArray<Foundation::NSNumber>,
             stepDownCycle: &Foundation::NSArray<Foundation::NSNumber>,
         );
@@ -82,33 +82,33 @@ extern_methods!(
         pub unsafe fn setOrientation(&self, orientation: AppKit::NSRulerOrientation);
 
         #[method(baselineLocation)]
-        pub unsafe fn baselineLocation(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn baselineLocation(&self) -> Foundation::CGFloat;
 
         #[method(requiredThickness)]
-        pub unsafe fn requiredThickness(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn requiredThickness(&self) -> Foundation::CGFloat;
 
         #[method(ruleThickness)]
-        pub unsafe fn ruleThickness(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn ruleThickness(&self) -> Foundation::CGFloat;
 
         #[method(setRuleThickness:)]
-        pub unsafe fn setRuleThickness(&self, ruleThickness: CoreGraphics::CGFloat);
+        pub unsafe fn setRuleThickness(&self, ruleThickness: Foundation::CGFloat);
 
         #[method(reservedThicknessForMarkers)]
-        pub unsafe fn reservedThicknessForMarkers(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn reservedThicknessForMarkers(&self) -> Foundation::CGFloat;
 
         #[method(setReservedThicknessForMarkers:)]
         pub unsafe fn setReservedThicknessForMarkers(
             &self,
-            reservedThicknessForMarkers: CoreGraphics::CGFloat,
+            reservedThicknessForMarkers: Foundation::CGFloat,
         );
 
         #[method(reservedThicknessForAccessoryView)]
-        pub unsafe fn reservedThicknessForAccessoryView(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn reservedThicknessForAccessoryView(&self) -> Foundation::CGFloat;
 
         #[method(setReservedThicknessForAccessoryView:)]
         pub unsafe fn setReservedThicknessForAccessoryView(
             &self,
-            reservedThicknessForAccessoryView: CoreGraphics::CGFloat,
+            reservedThicknessForAccessoryView: Foundation::CGFloat,
         );
 
         #[method_id(@__retain_semantics Other measurementUnits)]
@@ -118,10 +118,10 @@ extern_methods!(
         pub unsafe fn setMeasurementUnits(&self, measurementUnits: &AppKit::NSRulerViewUnitName);
 
         #[method(originOffset)]
-        pub unsafe fn originOffset(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn originOffset(&self) -> Foundation::CGFloat;
 
         #[method(setOriginOffset:)]
-        pub unsafe fn setOriginOffset(&self, originOffset: CoreGraphics::CGFloat);
+        pub unsafe fn setOriginOffset(&self, originOffset: Foundation::CGFloat);
 
         #[method_id(@__retain_semantics Other clientView)]
         pub unsafe fn clientView(&self) -> Option<Id<AppKit::NSView, Shared>>;
@@ -167,8 +167,8 @@ extern_methods!(
         #[method(moveRulerlineFromLocation:toLocation:)]
         pub unsafe fn moveRulerlineFromLocation_toLocation(
             &self,
-            oldLocation: CoreGraphics::CGFloat,
-            newLocation: CoreGraphics::CGFloat,
+            oldLocation: Foundation::CGFloat,
+            newLocation: Foundation::CGFloat,
         );
 
         #[method(invalidateHashMarks)]
@@ -203,8 +203,8 @@ extern_methods!(
             &self,
             ruler: &AppKit::NSRulerView,
             marker: &AppKit::NSRulerMarker,
-            location: CoreGraphics::CGFloat,
-        ) -> CoreGraphics::CGFloat;
+            location: Foundation::CGFloat,
+        ) -> Foundation::CGFloat;
 
         #[cfg(all(feature = "AppKit_NSRulerMarker", feature = "AppKit_NSRulerView"))]
         #[method(rulerView:didMoveMarker:)]
@@ -244,8 +244,8 @@ extern_methods!(
             &self,
             ruler: &AppKit::NSRulerView,
             marker: &AppKit::NSRulerMarker,
-            location: CoreGraphics::CGFloat,
-        ) -> CoreGraphics::CGFloat;
+            location: Foundation::CGFloat,
+        ) -> Foundation::CGFloat;
 
         #[cfg(all(feature = "AppKit_NSRulerMarker", feature = "AppKit_NSRulerView"))]
         #[method(rulerView:didAddMarker:)]
@@ -277,14 +277,14 @@ extern_methods!(
             &self,
             ruler: &AppKit::NSRulerView,
             point: Foundation::NSPoint,
-        ) -> CoreGraphics::CGFloat;
+        ) -> Foundation::CGFloat;
 
         #[cfg(feature = "AppKit_NSRulerView")]
         #[method(rulerView:pointForLocation:)]
         pub unsafe fn rulerView_pointForLocation(
             &self,
             ruler: &AppKit::NSRulerView,
-            point: CoreGraphics::CGFloat,
+            point: Foundation::CGFloat,
         ) -> Foundation::NSPoint;
     }
 );

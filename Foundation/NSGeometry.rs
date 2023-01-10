@@ -17,10 +17,10 @@ pub type NSRectArray = *mut Foundation::NSRect;
 
 extern_struct!(
     pub struct NSEdgeInsets {
-        pub top: CoreGraphics::CGFloat,
-        pub left: CoreGraphics::CGFloat,
-        pub bottom: CoreGraphics::CGFloat,
-        pub right: CoreGraphics::CGFloat,
+        pub top: Foundation::CGFloat,
+        pub left: Foundation::CGFloat,
+        pub bottom: Foundation::CGFloat,
+        pub right: Foundation::CGFloat,
     }
 );
 
@@ -65,123 +65,120 @@ extern_static!(NSEdgeInsetsZero: Foundation::NSEdgeInsets);
 
 inline_fn!(
     pub unsafe fn NSMakePoint(
-        x: CoreGraphics::CGFloat,
-        y: CoreGraphics::CGFloat,
+        x: Foundation::CGFloat,
+        y: Foundation::CGFloat,
     ) -> Foundation::NSPoint {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSMakeSize(
-        w: CoreGraphics::CGFloat,
-        h: CoreGraphics::CGFloat,
-    ) -> Foundation::NSSize {
+    pub unsafe fn NSMakeSize(w: Foundation::CGFloat, h: Foundation::CGFloat) -> Foundation::NSSize {
         todo!()
     }
 );
 
 inline_fn!(
     pub unsafe fn NSMakeRect(
-        x: CoreGraphics::CGFloat,
-        y: CoreGraphics::CGFloat,
-        w: CoreGraphics::CGFloat,
-        h: CoreGraphics::CGFloat,
+        x: Foundation::CGFloat,
+        y: Foundation::CGFloat,
+        w: Foundation::CGFloat,
+        h: Foundation::CGFloat,
     ) -> Foundation::NSRect {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSMaxX(aRect: Foundation::NSRect) -> CoreGraphics::CGFloat {
+    pub unsafe fn NSMaxX(aRect: Foundation::NSRect) -> Foundation::CGFloat {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSMaxY(aRect: Foundation::NSRect) -> CoreGraphics::CGFloat {
+    pub unsafe fn NSMaxY(aRect: Foundation::NSRect) -> Foundation::CGFloat {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSMidX(aRect: Foundation::NSRect) -> CoreGraphics::CGFloat {
+    pub unsafe fn NSMidX(aRect: Foundation::NSRect) -> Foundation::CGFloat {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSMidY(aRect: Foundation::NSRect) -> CoreGraphics::CGFloat {
+    pub unsafe fn NSMidY(aRect: Foundation::NSRect) -> Foundation::CGFloat {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSMinX(aRect: Foundation::NSRect) -> CoreGraphics::CGFloat {
+    pub unsafe fn NSMinX(aRect: Foundation::NSRect) -> Foundation::CGFloat {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSMinY(aRect: Foundation::NSRect) -> CoreGraphics::CGFloat {
+    pub unsafe fn NSMinY(aRect: Foundation::NSRect) -> Foundation::CGFloat {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSWidth(aRect: Foundation::NSRect) -> CoreGraphics::CGFloat {
+    pub unsafe fn NSWidth(aRect: Foundation::NSRect) -> Foundation::CGFloat {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSHeight(aRect: Foundation::NSRect) -> CoreGraphics::CGFloat {
+    pub unsafe fn NSHeight(aRect: Foundation::NSRect) -> Foundation::CGFloat {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSRectFromCGRect(cgrect: CoreGraphics::CGRect) -> Foundation::NSRect {
+    pub unsafe fn NSRectFromCGRect(cgrect: Foundation::CGRect) -> Foundation::NSRect {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSRectToCGRect(nsrect: Foundation::NSRect) -> CoreGraphics::CGRect {
+    pub unsafe fn NSRectToCGRect(nsrect: Foundation::NSRect) -> Foundation::CGRect {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSPointFromCGPoint(cgpoint: CoreGraphics::CGPoint) -> Foundation::NSPoint {
+    pub unsafe fn NSPointFromCGPoint(cgpoint: Foundation::CGPoint) -> Foundation::NSPoint {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSPointToCGPoint(nspoint: Foundation::NSPoint) -> CoreGraphics::CGPoint {
+    pub unsafe fn NSPointToCGPoint(nspoint: Foundation::NSPoint) -> Foundation::CGPoint {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSSizeFromCGSize(cgsize: CoreGraphics::CGSize) -> Foundation::NSSize {
+    pub unsafe fn NSSizeFromCGSize(cgsize: Foundation::CGSize) -> Foundation::NSSize {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSSizeToCGSize(nssize: Foundation::NSSize) -> CoreGraphics::CGSize {
+    pub unsafe fn NSSizeToCGSize(nssize: Foundation::NSSize) -> Foundation::CGSize {
         todo!()
     }
 );
 
 inline_fn!(
     pub unsafe fn NSEdgeInsetsMake(
-        top: CoreGraphics::CGFloat,
-        left: CoreGraphics::CGFloat,
-        bottom: CoreGraphics::CGFloat,
-        right: CoreGraphics::CGFloat,
+        top: Foundation::CGFloat,
+        left: Foundation::CGFloat,
+        bottom: Foundation::CGFloat,
+        right: Foundation::CGFloat,
     ) -> Foundation::NSEdgeInsets {
         todo!()
     }
@@ -213,8 +210,8 @@ extern_fn!(
 extern_fn!(
     pub unsafe fn NSInsetRect(
         aRect: Foundation::NSRect,
-        dX: CoreGraphics::CGFloat,
-        dY: CoreGraphics::CGFloat,
+        dX: Foundation::CGFloat,
+        dY: Foundation::CGFloat,
     ) -> Foundation::NSRect;
 );
 
@@ -246,8 +243,8 @@ extern_fn!(
 extern_fn!(
     pub unsafe fn NSOffsetRect(
         aRect: Foundation::NSRect,
-        dX: CoreGraphics::CGFloat,
-        dY: CoreGraphics::CGFloat,
+        dX: Foundation::CGFloat,
+        dY: Foundation::CGFloat,
     ) -> Foundation::NSRect;
 );
 
@@ -256,7 +253,7 @@ extern_fn!(
         inRect: Foundation::NSRect,
         slice: NonNull<Foundation::NSRect>,
         rem: NonNull<Foundation::NSRect>,
-        amount: CoreGraphics::CGFloat,
+        amount: Foundation::CGFloat,
         edge: Foundation::NSRectEdge,
     );
 );

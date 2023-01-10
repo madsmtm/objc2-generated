@@ -105,10 +105,10 @@ extern_methods!(
         pub unsafe fn isItemExpanded(&self, item: Option<&Object>) -> bool;
 
         #[method(indentationPerLevel)]
-        pub unsafe fn indentationPerLevel(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn indentationPerLevel(&self) -> Foundation::CGFloat;
 
         #[method(setIndentationPerLevel:)]
-        pub unsafe fn setIndentationPerLevel(&self, indentationPerLevel: CoreGraphics::CGFloat);
+        pub unsafe fn setIndentationPerLevel(&self, indentationPerLevel: Foundation::CGFloat);
 
         #[method(indentationMarkerFollowsCell)]
         pub unsafe fn indentationMarkerFollowsCell(&self) -> bool;
@@ -480,7 +480,7 @@ extern_protocol!(
             &self,
             outlineView: &AppKit::NSOutlineView,
             item: &Object,
-        ) -> CoreGraphics::CGFloat;
+        ) -> Foundation::CGFloat;
 
         #[optional]
         #[method_id(@__retain_semantics Other outlineView:tintConfigurationForItem:)]
@@ -586,7 +586,7 @@ extern_protocol!(
             &self,
             outlineView: &AppKit::NSOutlineView,
             column: NSInteger,
-        ) -> CoreGraphics::CGFloat;
+        ) -> Foundation::CGFloat;
 
         #[optional]
         #[method(outlineView:shouldReorderColumn:toColumn:)]

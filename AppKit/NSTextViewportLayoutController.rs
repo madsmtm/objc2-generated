@@ -13,7 +13,7 @@ extern_protocol!(
         pub unsafe fn viewportBoundsForTextViewportLayoutController(
             &self,
             textViewportLayoutController: &AppKit::NSTextViewportLayoutController,
-        ) -> CoreGraphics::CGRect;
+        ) -> Foundation::CGRect;
 
         #[method(textViewportLayoutController:configureRenderingSurfaceForTextLayoutFragment:)]
         pub unsafe fn textViewportLayoutController_configureRenderingSurfaceForTextLayoutFragment(
@@ -79,7 +79,7 @@ extern_methods!(
         pub unsafe fn textLayoutManager(&self) -> Option<Id<AppKit::NSTextLayoutManager, Shared>>;
 
         #[method(viewportBounds)]
-        pub unsafe fn viewportBounds(&self) -> CoreGraphics::CGRect;
+        pub unsafe fn viewportBounds(&self) -> Foundation::CGRect;
 
         #[cfg(feature = "AppKit_NSTextRange")]
         #[method_id(@__retain_semantics Other viewportRange)]
@@ -92,9 +92,9 @@ extern_methods!(
         pub unsafe fn relocateViewportToTextLocation(
             &self,
             textLocation: &AppKit::NSTextLocation,
-        ) -> CoreGraphics::CGFloat;
+        ) -> Foundation::CGFloat;
 
         #[method(adjustViewportByVerticalOffset:)]
-        pub unsafe fn adjustViewportByVerticalOffset(&self, verticalOffset: CoreGraphics::CGFloat);
+        pub unsafe fn adjustViewportByVerticalOffset(&self, verticalOffset: Foundation::CGFloat);
     }
 );

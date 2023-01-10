@@ -33,10 +33,10 @@ extern_methods!(
         pub unsafe fn setLevelsOfDetailBias(&self, levelsOfDetailBias: usize);
 
         #[method(tileSize)]
-        pub unsafe fn tileSize(&self) -> CoreGraphics::CGSize;
+        pub unsafe fn tileSize(&self) -> Foundation::CGSize;
 
         #[method(setTileSize:)]
-        pub unsafe fn setTileSize(&self, tileSize: CoreGraphics::CGSize);
+        pub unsafe fn setTileSize(&self, tileSize: Foundation::CGSize);
     }
 );
 

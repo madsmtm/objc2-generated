@@ -6,22 +6,22 @@ use crate::Foundation;
 
 extern_struct!(
     pub struct CATransform3D {
-        pub m11: CoreGraphics::CGFloat,
-        pub m12: CoreGraphics::CGFloat,
-        pub m13: CoreGraphics::CGFloat,
-        pub m14: CoreGraphics::CGFloat,
-        pub m21: CoreGraphics::CGFloat,
-        pub m22: CoreGraphics::CGFloat,
-        pub m23: CoreGraphics::CGFloat,
-        pub m24: CoreGraphics::CGFloat,
-        pub m31: CoreGraphics::CGFloat,
-        pub m32: CoreGraphics::CGFloat,
-        pub m33: CoreGraphics::CGFloat,
-        pub m34: CoreGraphics::CGFloat,
-        pub m41: CoreGraphics::CGFloat,
-        pub m42: CoreGraphics::CGFloat,
-        pub m43: CoreGraphics::CGFloat,
-        pub m44: CoreGraphics::CGFloat,
+        pub m11: Foundation::CGFloat,
+        pub m12: Foundation::CGFloat,
+        pub m13: Foundation::CGFloat,
+        pub m14: Foundation::CGFloat,
+        pub m21: Foundation::CGFloat,
+        pub m22: Foundation::CGFloat,
+        pub m23: Foundation::CGFloat,
+        pub m24: Foundation::CGFloat,
+        pub m31: Foundation::CGFloat,
+        pub m32: Foundation::CGFloat,
+        pub m33: Foundation::CGFloat,
+        pub m34: Foundation::CGFloat,
+        pub m41: Foundation::CGFloat,
+        pub m42: Foundation::CGFloat,
+        pub m43: Foundation::CGFloat,
+        pub m44: Foundation::CGFloat,
     }
 );
 
@@ -40,54 +40,54 @@ extern_fn!(
 
 extern_fn!(
     pub fn CATransform3DMakeTranslation(
-        tx: CoreGraphics::CGFloat,
-        ty: CoreGraphics::CGFloat,
-        tz: CoreGraphics::CGFloat,
+        tx: Foundation::CGFloat,
+        ty: Foundation::CGFloat,
+        tz: Foundation::CGFloat,
     ) -> CoreAnimation::CATransform3D;
 );
 
 extern_fn!(
     pub fn CATransform3DMakeScale(
-        sx: CoreGraphics::CGFloat,
-        sy: CoreGraphics::CGFloat,
-        sz: CoreGraphics::CGFloat,
+        sx: Foundation::CGFloat,
+        sy: Foundation::CGFloat,
+        sz: Foundation::CGFloat,
     ) -> CoreAnimation::CATransform3D;
 );
 
 extern_fn!(
     pub fn CATransform3DMakeRotation(
-        angle: CoreGraphics::CGFloat,
-        x: CoreGraphics::CGFloat,
-        y: CoreGraphics::CGFloat,
-        z: CoreGraphics::CGFloat,
+        angle: Foundation::CGFloat,
+        x: Foundation::CGFloat,
+        y: Foundation::CGFloat,
+        z: Foundation::CGFloat,
     ) -> CoreAnimation::CATransform3D;
 );
 
 extern_fn!(
     pub fn CATransform3DTranslate(
         t: CoreAnimation::CATransform3D,
-        tx: CoreGraphics::CGFloat,
-        ty: CoreGraphics::CGFloat,
-        tz: CoreGraphics::CGFloat,
+        tx: Foundation::CGFloat,
+        ty: Foundation::CGFloat,
+        tz: Foundation::CGFloat,
     ) -> CoreAnimation::CATransform3D;
 );
 
 extern_fn!(
     pub fn CATransform3DScale(
         t: CoreAnimation::CATransform3D,
-        sx: CoreGraphics::CGFloat,
-        sy: CoreGraphics::CGFloat,
-        sz: CoreGraphics::CGFloat,
+        sx: Foundation::CGFloat,
+        sy: Foundation::CGFloat,
+        sz: Foundation::CGFloat,
     ) -> CoreAnimation::CATransform3D;
 );
 
 extern_fn!(
     pub fn CATransform3DRotate(
         t: CoreAnimation::CATransform3D,
-        angle: CoreGraphics::CGFloat,
-        x: CoreGraphics::CGFloat,
-        y: CoreGraphics::CGFloat,
-        z: CoreGraphics::CGFloat,
+        angle: Foundation::CGFloat,
+        x: Foundation::CGFloat,
+        y: Foundation::CGFloat,
+        z: Foundation::CGFloat,
     ) -> CoreAnimation::CATransform3D;
 );
 

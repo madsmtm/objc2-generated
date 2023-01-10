@@ -40,7 +40,7 @@ extern_methods!(
         ) -> Id<Self, Shared>;
 
         #[method(setTitleWidth:)]
-        pub unsafe fn setTitleWidth(&self, titleWidth: CoreGraphics::CGFloat);
+        pub unsafe fn setTitleWidth(&self, titleWidth: Foundation::CGFloat);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
@@ -98,12 +98,12 @@ extern_methods!(
         );
 
         #[method(preferredTextFieldWidth)]
-        pub unsafe fn preferredTextFieldWidth(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn preferredTextFieldWidth(&self) -> Foundation::CGFloat;
 
         #[method(setPreferredTextFieldWidth:)]
         pub unsafe fn setPreferredTextFieldWidth(
             &self,
-            preferredTextFieldWidth: CoreGraphics::CGFloat,
+            preferredTextFieldWidth: Foundation::CGFloat,
         );
     }
 );

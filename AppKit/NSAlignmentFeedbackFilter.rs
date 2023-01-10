@@ -52,9 +52,9 @@ extern_methods!(
         pub unsafe fn alignmentFeedbackTokenForHorizontalMovementInView_previousX_alignedX_defaultX(
             &self,
             view: Option<&AppKit::NSView>,
-            previousX: CoreGraphics::CGFloat,
-            alignedX: CoreGraphics::CGFloat,
-            defaultX: CoreGraphics::CGFloat,
+            previousX: Foundation::CGFloat,
+            alignedX: Foundation::CGFloat,
+            defaultX: Foundation::CGFloat,
         ) -> Option<Id<AppKit::NSAlignmentFeedbackToken, Shared>>;
 
         #[cfg(feature = "AppKit_NSView")]
@@ -62,9 +62,9 @@ extern_methods!(
         pub unsafe fn alignmentFeedbackTokenForVerticalMovementInView_previousY_alignedY_defaultY(
             &self,
             view: Option<&AppKit::NSView>,
-            previousY: CoreGraphics::CGFloat,
-            alignedY: CoreGraphics::CGFloat,
-            defaultY: CoreGraphics::CGFloat,
+            previousY: Foundation::CGFloat,
+            alignedY: Foundation::CGFloat,
+            defaultY: Foundation::CGFloat,
         ) -> Option<Id<AppKit::NSAlignmentFeedbackToken, Shared>>;
 
         #[cfg(feature = "Foundation_NSArray")]

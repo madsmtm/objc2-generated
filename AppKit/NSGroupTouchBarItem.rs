@@ -78,10 +78,10 @@ extern_methods!(
         pub unsafe fn setPrefersEqualWidths(&self, prefersEqualWidths: bool);
 
         #[method(preferredItemWidth)]
-        pub unsafe fn preferredItemWidth(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn preferredItemWidth(&self) -> Foundation::CGFloat;
 
         #[method(setPreferredItemWidth:)]
-        pub unsafe fn setPreferredItemWidth(&self, preferredItemWidth: CoreGraphics::CGFloat);
+        pub unsafe fn setPreferredItemWidth(&self, preferredItemWidth: Foundation::CGFloat);
 
         #[cfg(feature = "AppKit_NSUserInterfaceCompressionOptions")]
         #[method_id(@__retain_semantics Other effectiveCompressionOptions)]

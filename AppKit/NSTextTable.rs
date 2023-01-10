@@ -70,7 +70,7 @@ extern_methods!(
         #[method(setValue:type:forDimension:)]
         pub unsafe fn setValue_type_forDimension(
             &self,
-            val: CoreGraphics::CGFloat,
+            val: Foundation::CGFloat,
             type_: AppKit::NSTextBlockValueType,
             dimension: AppKit::NSTextBlockDimension,
         );
@@ -79,7 +79,7 @@ extern_methods!(
         pub unsafe fn valueForDimension(
             &self,
             dimension: AppKit::NSTextBlockDimension,
-        ) -> CoreGraphics::CGFloat;
+        ) -> Foundation::CGFloat;
 
         #[method(valueTypeForDimension:)]
         pub unsafe fn valueTypeForDimension(
@@ -90,12 +90,12 @@ extern_methods!(
         #[method(setContentWidth:type:)]
         pub unsafe fn setContentWidth_type(
             &self,
-            val: CoreGraphics::CGFloat,
+            val: Foundation::CGFloat,
             type_: AppKit::NSTextBlockValueType,
         );
 
         #[method(contentWidth)]
-        pub unsafe fn contentWidth(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn contentWidth(&self) -> Foundation::CGFloat;
 
         #[method(contentWidthValueType)]
         pub unsafe fn contentWidthValueType(&self) -> AppKit::NSTextBlockValueType;
@@ -103,7 +103,7 @@ extern_methods!(
         #[method(setWidth:type:forLayer:edge:)]
         pub unsafe fn setWidth_type_forLayer_edge(
             &self,
-            val: CoreGraphics::CGFloat,
+            val: Foundation::CGFloat,
             type_: AppKit::NSTextBlockValueType,
             layer: AppKit::NSTextBlockLayer,
             edge: Foundation::NSRectEdge,
@@ -112,7 +112,7 @@ extern_methods!(
         #[method(setWidth:type:forLayer:)]
         pub unsafe fn setWidth_type_forLayer(
             &self,
-            val: CoreGraphics::CGFloat,
+            val: Foundation::CGFloat,
             type_: AppKit::NSTextBlockValueType,
             layer: AppKit::NSTextBlockLayer,
         );
@@ -122,7 +122,7 @@ extern_methods!(
             &self,
             layer: AppKit::NSTextBlockLayer,
             edge: Foundation::NSRectEdge,
-        ) -> CoreGraphics::CGFloat;
+        ) -> Foundation::CGFloat;
 
         #[method(widthValueTypeForLayer:edge:)]
         pub unsafe fn widthValueTypeForLayer_edge(

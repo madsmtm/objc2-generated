@@ -787,7 +787,7 @@ extern_fn!(
         endCap: Option<&AppKit::NSImage>,
         vertical: Bool,
         op: AppKit::NSCompositingOperation,
-        alphaFraction: CoreGraphics::CGFloat,
+        alphaFraction: Foundation::CGFloat,
         flipped: Bool,
     );
 );
@@ -805,7 +805,7 @@ extern_fn!(
         bottomEdgeFill: Option<&AppKit::NSImage>,
         bottomRightCorner: Option<&AppKit::NSImage>,
         op: AppKit::NSCompositingOperation,
-        alphaFraction: CoreGraphics::CGFloat,
+        alphaFraction: Foundation::CGFloat,
         flipped: Bool,
     );
 );

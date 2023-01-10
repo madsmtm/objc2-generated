@@ -5,7 +5,7 @@ use crate::AppKit;
 use crate::CoreData;
 use crate::Foundation;
 
-extern_static!(NSSplitViewControllerAutomaticDimension: CoreGraphics::CGFloat);
+extern_static!(NSSplitViewControllerAutomaticDimension: Foundation::CGFloat);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -65,12 +65,12 @@ extern_methods!(
         ) -> Option<Id<AppKit::NSSplitViewItem, Shared>>;
 
         #[method(minimumThicknessForInlineSidebars)]
-        pub unsafe fn minimumThicknessForInlineSidebars(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn minimumThicknessForInlineSidebars(&self) -> Foundation::CGFloat;
 
         #[method(setMinimumThicknessForInlineSidebars:)]
         pub unsafe fn setMinimumThicknessForInlineSidebars(
             &self,
-            minimumThicknessForInlineSidebars: CoreGraphics::CGFloat,
+            minimumThicknessForInlineSidebars: Foundation::CGFloat,
         );
 
         #[method(validateUserInterfaceItem:)]

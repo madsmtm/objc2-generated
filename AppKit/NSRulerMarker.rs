@@ -22,7 +22,7 @@ extern_methods!(
         pub unsafe fn initWithRulerView_markerLocation_image_imageOrigin(
             this: Option<Allocated<Self>>,
             ruler: &AppKit::NSRulerView,
-            location: CoreGraphics::CGFloat,
+            location: Foundation::CGFloat,
             image: &AppKit::NSImage,
             imageOrigin: Foundation::NSPoint,
         ) -> Id<Self, Shared>;
@@ -42,10 +42,10 @@ extern_methods!(
         pub unsafe fn ruler(&self) -> Option<Id<AppKit::NSRulerView, Shared>>;
 
         #[method(markerLocation)]
-        pub unsafe fn markerLocation(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn markerLocation(&self) -> Foundation::CGFloat;
 
         #[method(setMarkerLocation:)]
-        pub unsafe fn setMarkerLocation(&self, markerLocation: CoreGraphics::CGFloat);
+        pub unsafe fn setMarkerLocation(&self, markerLocation: Foundation::CGFloat);
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other image)]
@@ -86,7 +86,7 @@ extern_methods!(
         pub unsafe fn imageRectInRuler(&self) -> Foundation::NSRect;
 
         #[method(thicknessRequiredInRuler)]
-        pub unsafe fn thicknessRequiredInRuler(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn thicknessRequiredInRuler(&self) -> Foundation::CGFloat;
 
         #[method(drawRect:)]
         pub unsafe fn drawRect(&self, rect: Foundation::NSRect);

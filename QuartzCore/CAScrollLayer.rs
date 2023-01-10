@@ -22,10 +22,10 @@ extern_methods!(
     #[cfg(feature = "CoreAnimation_CAScrollLayer")]
     unsafe impl CAScrollLayer {
         #[method(scrollToPoint:)]
-        pub unsafe fn scrollToPoint(&self, p: CoreGraphics::CGPoint);
+        pub unsafe fn scrollToPoint(&self, p: Foundation::CGPoint);
 
         #[method(scrollToRect:)]
-        pub unsafe fn scrollToRect(&self, r: CoreGraphics::CGRect);
+        pub unsafe fn scrollToRect(&self, r: Foundation::CGRect);
 
         #[method_id(@__retain_semantics Other scrollMode)]
         pub unsafe fn scrollMode(&self) -> Id<CoreAnimation::CAScrollLayerScrollMode, Shared>;
@@ -40,13 +40,13 @@ extern_methods!(
     #[cfg(feature = "CoreAnimation_CALayer")]
     unsafe impl CoreAnimation::CALayer {
         #[method(scrollPoint:)]
-        pub unsafe fn scrollPoint(&self, p: CoreGraphics::CGPoint);
+        pub unsafe fn scrollPoint(&self, p: Foundation::CGPoint);
 
         #[method(scrollRectToVisible:)]
-        pub unsafe fn scrollRectToVisible(&self, r: CoreGraphics::CGRect);
+        pub unsafe fn scrollRectToVisible(&self, r: Foundation::CGRect);
 
         #[method(visibleRect)]
-        pub unsafe fn visibleRect(&self) -> CoreGraphics::CGRect;
+        pub unsafe fn visibleRect(&self) -> Foundation::CGRect;
     }
 );
 

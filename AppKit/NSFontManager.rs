@@ -95,7 +95,7 @@ extern_methods!(
             family: &Foundation::NSString,
             traits: AppKit::NSFontTraitMask,
             weight: NSInteger,
-            size: CoreGraphics::CGFloat,
+            size: Foundation::CGFloat,
         ) -> Option<Id<AppKit::NSFont, Shared>>;
 
         #[cfg(feature = "AppKit_NSFont")]
@@ -134,7 +134,7 @@ extern_methods!(
         pub unsafe fn convertFont_toSize(
             &self,
             fontObj: &AppKit::NSFont,
-            size: CoreGraphics::CGFloat,
+            size: Foundation::CGFloat,
         ) -> Id<AppKit::NSFont, Shared>;
 
         #[cfg(all(feature = "AppKit_NSFont", feature = "Foundation_NSString"))]

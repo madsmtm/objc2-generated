@@ -204,7 +204,7 @@ extern_methods!(
         pub unsafe fn minFrameWidthWithTitle_styleMask(
             title: &Foundation::NSString,
             style: AppKit::NSWindowStyleMask,
-        ) -> CoreGraphics::CGFloat;
+        ) -> Foundation::CGFloat;
 
         #[method(defaultDepthLimit)]
         pub unsafe fn defaultDepthLimit() -> AppKit::NSWindowDepth;
@@ -538,7 +538,7 @@ extern_methods!(
         #[method(setContentBorderThickness:forEdge:)]
         pub unsafe fn setContentBorderThickness_forEdge(
             &self,
-            thickness: CoreGraphics::CGFloat,
+            thickness: Foundation::CGFloat,
             edge: Foundation::NSRectEdge,
         );
 
@@ -546,7 +546,7 @@ extern_methods!(
         pub unsafe fn contentBorderThicknessForEdge(
             &self,
             edge: Foundation::NSRectEdge,
-        ) -> CoreGraphics::CGFloat;
+        ) -> Foundation::CGFloat;
 
         #[method(setAutorecalculatesContentBorderThickness:forEdge:)]
         pub unsafe fn setAutorecalculatesContentBorderThickness_forEdge(
@@ -726,7 +726,7 @@ extern_methods!(
         ) -> Foundation::NSRect;
 
         #[method(backingScaleFactor)]
-        pub unsafe fn backingScaleFactor(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn backingScaleFactor(&self) -> Foundation::CGFloat;
 
         #[method(performClose:)]
         pub unsafe fn performClose(&self, sender: Option<&Object>);
@@ -805,10 +805,10 @@ extern_methods!(
         pub unsafe fn invalidateShadow(&self);
 
         #[method(alphaValue)]
-        pub unsafe fn alphaValue(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn alphaValue(&self) -> Foundation::CGFloat;
 
         #[method(setAlphaValue:)]
-        pub unsafe fn setAlphaValue(&self, alphaValue: CoreGraphics::CGFloat);
+        pub unsafe fn setAlphaValue(&self, alphaValue: Foundation::CGFloat);
 
         #[method(isOpaque)]
         pub unsafe fn isOpaque(&self) -> bool;
@@ -1793,7 +1793,7 @@ extern_methods!(
             -> Foundation::NSPoint;
 
         #[method(userSpaceScaleFactor)]
-        pub unsafe fn userSpaceScaleFactor(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn userSpaceScaleFactor(&self) -> Foundation::CGFloat;
 
         #[method(useOptimizedDrawing:)]
         pub unsafe fn useOptimizedDrawing(&self, flag: bool);

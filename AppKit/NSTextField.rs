@@ -124,12 +124,12 @@ extern_methods!(
         pub unsafe fn setBezelStyle(&self, bezelStyle: AppKit::NSTextFieldBezelStyle);
 
         #[method(preferredMaxLayoutWidth)]
-        pub unsafe fn preferredMaxLayoutWidth(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn preferredMaxLayoutWidth(&self) -> Foundation::CGFloat;
 
         #[method(setPreferredMaxLayoutWidth:)]
         pub unsafe fn setPreferredMaxLayoutWidth(
             &self,
-            preferredMaxLayoutWidth: CoreGraphics::CGFloat,
+            preferredMaxLayoutWidth: Foundation::CGFloat,
         );
 
         #[method(maximumNumberOfLines)]

@@ -325,28 +325,28 @@ extern_methods!(
     #[cfg(feature = "CoreAnimation_CASpringAnimation")]
     unsafe impl CASpringAnimation {
         #[method(mass)]
-        pub unsafe fn mass(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn mass(&self) -> Foundation::CGFloat;
 
         #[method(setMass:)]
-        pub unsafe fn setMass(&self, mass: CoreGraphics::CGFloat);
+        pub unsafe fn setMass(&self, mass: Foundation::CGFloat);
 
         #[method(stiffness)]
-        pub unsafe fn stiffness(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn stiffness(&self) -> Foundation::CGFloat;
 
         #[method(setStiffness:)]
-        pub unsafe fn setStiffness(&self, stiffness: CoreGraphics::CGFloat);
+        pub unsafe fn setStiffness(&self, stiffness: Foundation::CGFloat);
 
         #[method(damping)]
-        pub unsafe fn damping(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn damping(&self) -> Foundation::CGFloat;
 
         #[method(setDamping:)]
-        pub unsafe fn setDamping(&self, damping: CoreGraphics::CGFloat);
+        pub unsafe fn setDamping(&self, damping: Foundation::CGFloat);
 
         #[method(initialVelocity)]
-        pub unsafe fn initialVelocity(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn initialVelocity(&self) -> Foundation::CGFloat;
 
         #[method(setInitialVelocity:)]
-        pub unsafe fn setInitialVelocity(&self, initialVelocity: CoreGraphics::CGFloat);
+        pub unsafe fn setInitialVelocity(&self, initialVelocity: Foundation::CGFloat);
 
         #[method(settlingDuration)]
         pub unsafe fn settlingDuration(&self) -> CoreFoundation::CFTimeInterval;

@@ -52,7 +52,7 @@ typed_extensible_enum!(
 );
 
 typed_extensible_enum!(
-    pub type NSFontWeight = CoreGraphics::CGFloat;
+    pub type NSFontWeight = Foundation::CGFloat;
 );
 
 typed_enum!(
@@ -84,7 +84,7 @@ extern_methods!(
         pub unsafe fn postscriptName(&self) -> Option<Id<Foundation::NSString, Shared>>;
 
         #[method(pointSize)]
-        pub unsafe fn pointSize(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn pointSize(&self) -> Foundation::CGFloat;
 
         #[cfg(feature = "Foundation_NSAffineTransform")]
         #[method_id(@__retain_semantics Other matrix)]
@@ -120,7 +120,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other fontDescriptorWithName:size:)]
         pub unsafe fn fontDescriptorWithName_size(
             fontName: &Foundation::NSString,
-            size: CoreGraphics::CGFloat,
+            size: Foundation::CGFloat,
         ) -> Id<AppKit::NSFontDescriptor, Shared>;
 
         #[cfg(all(
@@ -172,7 +172,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other fontDescriptorWithSize:)]
         pub unsafe fn fontDescriptorWithSize(
             &self,
-            newPointSize: CoreGraphics::CGFloat,
+            newPointSize: Foundation::CGFloat,
         ) -> Id<AppKit::NSFontDescriptor, Shared>;
 
         #[cfg(feature = "Foundation_NSAffineTransform")]

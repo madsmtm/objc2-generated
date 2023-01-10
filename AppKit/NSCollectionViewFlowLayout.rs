@@ -83,7 +83,7 @@ extern_protocol!(
             collectionView: &AppKit::NSCollectionView,
             collectionViewLayout: &AppKit::NSCollectionViewLayout,
             section: NSInteger,
-        ) -> CoreGraphics::CGFloat;
+        ) -> Foundation::CGFloat;
 
         #[optional]
         #[method(collectionView:layout:minimumInteritemSpacingForSectionAtIndex:)]
@@ -92,7 +92,7 @@ extern_protocol!(
             collectionView: &AppKit::NSCollectionView,
             collectionViewLayout: &AppKit::NSCollectionViewLayout,
             section: NSInteger,
-        ) -> CoreGraphics::CGFloat;
+        ) -> Foundation::CGFloat;
 
         #[optional]
         #[method(collectionView:layout:referenceSizeForHeaderInSection:)]
@@ -128,18 +128,18 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSCollectionViewFlowLayout")]
     unsafe impl NSCollectionViewFlowLayout {
         #[method(minimumLineSpacing)]
-        pub unsafe fn minimumLineSpacing(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn minimumLineSpacing(&self) -> Foundation::CGFloat;
 
         #[method(setMinimumLineSpacing:)]
-        pub unsafe fn setMinimumLineSpacing(&self, minimumLineSpacing: CoreGraphics::CGFloat);
+        pub unsafe fn setMinimumLineSpacing(&self, minimumLineSpacing: Foundation::CGFloat);
 
         #[method(minimumInteritemSpacing)]
-        pub unsafe fn minimumInteritemSpacing(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn minimumInteritemSpacing(&self) -> Foundation::CGFloat;
 
         #[method(setMinimumInteritemSpacing:)]
         pub unsafe fn setMinimumInteritemSpacing(
             &self,
-            minimumInteritemSpacing: CoreGraphics::CGFloat,
+            minimumInteritemSpacing: Foundation::CGFloat,
         );
 
         #[method(itemSize)]

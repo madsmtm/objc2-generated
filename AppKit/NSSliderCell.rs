@@ -70,7 +70,7 @@ extern_methods!(
         pub unsafe fn trackRect(&self) -> Foundation::NSRect;
 
         #[method(knobThickness)]
-        pub unsafe fn knobThickness(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn knobThickness(&self) -> Foundation::CGFloat;
 
         #[method(knobRectFlipped:)]
         pub unsafe fn knobRectFlipped(&self, flipped: bool) -> Foundation::NSRect;
@@ -164,7 +164,7 @@ extern_methods!(
         pub unsafe fn setTitle(&self, string: Option<&Foundation::NSString>);
 
         #[method(setKnobThickness:)]
-        pub unsafe fn setKnobThickness(&self, thickness: CoreGraphics::CGFloat);
+        pub unsafe fn setKnobThickness(&self, thickness: Foundation::CGFloat);
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method(setImage:)]

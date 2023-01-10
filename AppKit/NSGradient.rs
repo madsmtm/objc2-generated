@@ -49,7 +49,7 @@ extern_methods!(
         pub unsafe fn initWithColors_atLocations_colorSpace(
             this: Option<Allocated<Self>>,
             colorArray: &Foundation::NSArray<AppKit::NSColor>,
-            locations: *mut CoreGraphics::CGFloat,
+            locations: *mut Foundation::CGFloat,
             colorSpace: &AppKit::NSColorSpace,
         ) -> Option<Id<Self, Shared>>;
 
@@ -69,27 +69,23 @@ extern_methods!(
         );
 
         #[method(drawInRect:angle:)]
-        pub unsafe fn drawInRect_angle(
-            &self,
-            rect: Foundation::NSRect,
-            angle: CoreGraphics::CGFloat,
-        );
+        pub unsafe fn drawInRect_angle(&self, rect: Foundation::NSRect, angle: Foundation::CGFloat);
 
         #[cfg(feature = "AppKit_NSBezierPath")]
         #[method(drawInBezierPath:angle:)]
         pub unsafe fn drawInBezierPath_angle(
             &self,
             path: &AppKit::NSBezierPath,
-            angle: CoreGraphics::CGFloat,
+            angle: Foundation::CGFloat,
         );
 
         #[method(drawFromCenter:radius:toCenter:radius:options:)]
         pub unsafe fn drawFromCenter_radius_toCenter_radius_options(
             &self,
             startCenter: Foundation::NSPoint,
-            startRadius: CoreGraphics::CGFloat,
+            startRadius: Foundation::CGFloat,
             endCenter: Foundation::NSPoint,
-            endRadius: CoreGraphics::CGFloat,
+            endRadius: Foundation::CGFloat,
             options: AppKit::NSGradientDrawingOptions,
         );
 
@@ -120,7 +116,7 @@ extern_methods!(
         pub unsafe fn getColor_location_atIndex(
             &self,
             color: *mut NonNull<AppKit::NSColor>,
-            location: *mut CoreGraphics::CGFloat,
+            location: *mut Foundation::CGFloat,
             index: NSInteger,
         );
 
@@ -128,7 +124,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other interpolatedColorAtLocation:)]
         pub unsafe fn interpolatedColorAtLocation(
             &self,
-            location: CoreGraphics::CGFloat,
+            location: Foundation::CGFloat,
         ) -> Id<AppKit::NSColor, Shared>;
     }
 );

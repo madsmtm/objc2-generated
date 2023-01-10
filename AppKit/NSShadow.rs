@@ -27,10 +27,10 @@ extern_methods!(
         pub unsafe fn setShadowOffset(&self, shadowOffset: Foundation::NSSize);
 
         #[method(shadowBlurRadius)]
-        pub unsafe fn shadowBlurRadius(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn shadowBlurRadius(&self) -> Foundation::CGFloat;
 
         #[method(setShadowBlurRadius:)]
-        pub unsafe fn setShadowBlurRadius(&self, shadowBlurRadius: CoreGraphics::CGFloat);
+        pub unsafe fn setShadowBlurRadius(&self, shadowBlurRadius: Foundation::CGFloat);
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other shadowColor)]

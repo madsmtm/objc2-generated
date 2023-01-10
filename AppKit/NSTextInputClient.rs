@@ -70,14 +70,14 @@ extern_protocol!(
         pub unsafe fn fractionOfDistanceThroughGlyphForPoint(
             &self,
             point: Foundation::NSPoint,
-        ) -> CoreGraphics::CGFloat;
+        ) -> Foundation::CGFloat;
 
         #[optional]
         #[method(baselineDeltaForCharacterAtIndex:)]
         pub unsafe fn baselineDeltaForCharacterAtIndex(
             &self,
             anIndex: NSUInteger,
-        ) -> CoreGraphics::CGFloat;
+        ) -> Foundation::CGFloat;
 
         #[optional]
         #[method(windowLevel)]

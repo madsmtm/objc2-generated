@@ -30,7 +30,7 @@ extern_methods!(
         pub unsafe fn draggedColumn(&self) -> NSInteger;
 
         #[method(draggedDistance)]
-        pub unsafe fn draggedDistance(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn draggedDistance(&self) -> Foundation::CGFloat;
 
         #[method(resizedColumn)]
         pub unsafe fn resizedColumn(&self) -> NSInteger;

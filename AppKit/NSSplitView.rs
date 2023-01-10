@@ -64,7 +64,7 @@ extern_methods!(
         pub unsafe fn dividerColor(&self) -> Id<AppKit::NSColor, Shared>;
 
         #[method(dividerThickness)]
-        pub unsafe fn dividerThickness(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn dividerThickness(&self) -> Foundation::CGFloat;
 
         #[method(adjustSubviews)]
         pub unsafe fn adjustSubviews(&self);
@@ -76,18 +76,18 @@ extern_methods!(
         pub unsafe fn minPossiblePositionOfDividerAtIndex(
             &self,
             dividerIndex: NSInteger,
-        ) -> CoreGraphics::CGFloat;
+        ) -> Foundation::CGFloat;
 
         #[method(maxPossiblePositionOfDividerAtIndex:)]
         pub unsafe fn maxPossiblePositionOfDividerAtIndex(
             &self,
             dividerIndex: NSInteger,
-        ) -> CoreGraphics::CGFloat;
+        ) -> Foundation::CGFloat;
 
         #[method(setPosition:ofDividerAtIndex:)]
         pub unsafe fn setPosition_ofDividerAtIndex(
             &self,
-            position: CoreGraphics::CGFloat,
+            position: Foundation::CGFloat,
             dividerIndex: NSInteger,
         );
 
@@ -160,27 +160,27 @@ extern_protocol!(
         pub unsafe fn splitView_constrainMinCoordinate_ofSubviewAt(
             &self,
             splitView: &AppKit::NSSplitView,
-            proposedMinimumPosition: CoreGraphics::CGFloat,
+            proposedMinimumPosition: Foundation::CGFloat,
             dividerIndex: NSInteger,
-        ) -> CoreGraphics::CGFloat;
+        ) -> Foundation::CGFloat;
 
         #[optional]
         #[method(splitView:constrainMaxCoordinate:ofSubviewAt:)]
         pub unsafe fn splitView_constrainMaxCoordinate_ofSubviewAt(
             &self,
             splitView: &AppKit::NSSplitView,
-            proposedMaximumPosition: CoreGraphics::CGFloat,
+            proposedMaximumPosition: Foundation::CGFloat,
             dividerIndex: NSInteger,
-        ) -> CoreGraphics::CGFloat;
+        ) -> Foundation::CGFloat;
 
         #[optional]
         #[method(splitView:constrainSplitPosition:ofSubviewAt:)]
         pub unsafe fn splitView_constrainSplitPosition_ofSubviewAt(
             &self,
             splitView: &AppKit::NSSplitView,
-            proposedPosition: CoreGraphics::CGFloat,
+            proposedPosition: Foundation::CGFloat,
             dividerIndex: NSInteger,
-        ) -> CoreGraphics::CGFloat;
+        ) -> Foundation::CGFloat;
 
         #[optional]
         #[method(splitView:resizeSubviewsWithOldSize:)]

@@ -72,10 +72,10 @@ extern_methods!(
         pub unsafe fn setLineBreakMode(&self, lineBreakMode: AppKit::NSLineBreakMode);
 
         #[method(lineFragmentPadding)]
-        pub unsafe fn lineFragmentPadding(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn lineFragmentPadding(&self) -> Foundation::CGFloat;
 
         #[method(setLineFragmentPadding:)]
-        pub unsafe fn setLineFragmentPadding(&self, lineFragmentPadding: CoreGraphics::CGFloat);
+        pub unsafe fn setLineFragmentPadding(&self, lineFragmentPadding: Foundation::CGFloat);
 
         #[method(maximumNumberOfLines)]
         pub unsafe fn maximumNumberOfLines(&self) -> NSUInteger;

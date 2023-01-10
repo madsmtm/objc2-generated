@@ -18,13 +18,13 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSStringDrawingContext")]
     unsafe impl NSStringDrawingContext {
         #[method(minimumScaleFactor)]
-        pub unsafe fn minimumScaleFactor(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn minimumScaleFactor(&self) -> Foundation::CGFloat;
 
         #[method(setMinimumScaleFactor:)]
-        pub unsafe fn setMinimumScaleFactor(&self, minimumScaleFactor: CoreGraphics::CGFloat);
+        pub unsafe fn setMinimumScaleFactor(&self, minimumScaleFactor: Foundation::CGFloat);
 
         #[method(actualScaleFactor)]
-        pub unsafe fn actualScaleFactor(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn actualScaleFactor(&self) -> Foundation::CGFloat;
 
         #[method(totalBounds)]
         pub unsafe fn totalBounds(&self) -> Foundation::NSRect;

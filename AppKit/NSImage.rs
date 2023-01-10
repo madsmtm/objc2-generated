@@ -176,7 +176,7 @@ extern_methods!(
             point: Foundation::NSPoint,
             fromRect: Foundation::NSRect,
             op: AppKit::NSCompositingOperation,
-            delta: CoreGraphics::CGFloat,
+            delta: Foundation::CGFloat,
         );
 
         #[method(drawInRect:fromRect:operation:fraction:)]
@@ -185,7 +185,7 @@ extern_methods!(
             rect: Foundation::NSRect,
             fromRect: Foundation::NSRect,
             op: AppKit::NSCompositingOperation,
-            delta: CoreGraphics::CGFloat,
+            delta: Foundation::CGFloat,
         );
 
         #[cfg(feature = "Foundation_NSDictionary")]
@@ -195,7 +195,7 @@ extern_methods!(
             dstSpacePortionRect: Foundation::NSRect,
             srcSpacePortionRect: Foundation::NSRect,
             op: AppKit::NSCompositingOperation,
-            requestedAlpha: CoreGraphics::CGFloat,
+            requestedAlpha: Foundation::CGFloat,
             respectContextIsFlipped: bool,
             hints: Option<&Foundation::NSDictionary<AppKit::NSImageHintKey, Object>>,
         );
@@ -338,13 +338,13 @@ extern_methods!(
         #[method(recommendedLayerContentsScale:)]
         pub unsafe fn recommendedLayerContentsScale(
             &self,
-            preferredContentsScale: CoreGraphics::CGFloat,
-        ) -> CoreGraphics::CGFloat;
+            preferredContentsScale: Foundation::CGFloat,
+        ) -> Foundation::CGFloat;
 
         #[method_id(@__retain_semantics Other layerContentsForContentsScale:)]
         pub unsafe fn layerContentsForContentsScale(
             &self,
-            layerContentsScale: CoreGraphics::CGFloat,
+            layerContentsScale: Foundation::CGFloat,
         ) -> Id<Object, Shared>;
 
         #[method(capInsets)]
@@ -491,7 +491,7 @@ extern_methods!(
         pub unsafe fn dissolveToPoint_fraction(
             &self,
             point: Foundation::NSPoint,
-            fraction: CoreGraphics::CGFloat,
+            fraction: Foundation::CGFloat,
         );
 
         #[method(dissolveToPoint:fromRect:fraction:)]
@@ -499,7 +499,7 @@ extern_methods!(
             &self,
             point: Foundation::NSPoint,
             rect: Foundation::NSRect,
-            fraction: CoreGraphics::CGFloat,
+            fraction: Foundation::CGFloat,
         );
 
         #[method(compositeToPoint:operation:)]
@@ -522,7 +522,7 @@ extern_methods!(
             &self,
             point: Foundation::NSPoint,
             op: AppKit::NSCompositingOperation,
-            delta: CoreGraphics::CGFloat,
+            delta: Foundation::CGFloat,
         );
 
         #[method(compositeToPoint:fromRect:operation:fraction:)]
@@ -531,7 +531,7 @@ extern_methods!(
             point: Foundation::NSPoint,
             rect: Foundation::NSRect,
             op: AppKit::NSCompositingOperation,
-            delta: CoreGraphics::CGFloat,
+            delta: Foundation::CGFloat,
         );
 
         #[cfg(feature = "AppKit_NSImageRep")]
@@ -868,14 +868,14 @@ extern_methods!(
     unsafe impl NSImageSymbolConfiguration {
         #[method_id(@__retain_semantics Other configurationWithPointSize:weight:scale:)]
         pub unsafe fn configurationWithPointSize_weight_scale(
-            pointSize: CoreGraphics::CGFloat,
+            pointSize: Foundation::CGFloat,
             weight: AppKit::NSFontWeight,
             scale: AppKit::NSImageSymbolScale,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Other configurationWithPointSize:weight:)]
         pub unsafe fn configurationWithPointSize_weight(
-            pointSize: CoreGraphics::CGFloat,
+            pointSize: Foundation::CGFloat,
             weight: AppKit::NSFontWeight,
         ) -> Id<Self, Shared>;
 

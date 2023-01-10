@@ -56,16 +56,16 @@ extern_methods!(
         pub unsafe fn setNeedsDisplay(&self, needsDisplay: bool);
 
         #[method(stateImageWidth)]
-        pub unsafe fn stateImageWidth(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn stateImageWidth(&self) -> Foundation::CGFloat;
 
         #[method(imageWidth)]
-        pub unsafe fn imageWidth(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn imageWidth(&self) -> Foundation::CGFloat;
 
         #[method(titleWidth)]
-        pub unsafe fn titleWidth(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn titleWidth(&self) -> Foundation::CGFloat;
 
         #[method(keyEquivalentWidth)]
-        pub unsafe fn keyEquivalentWidth(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn keyEquivalentWidth(&self) -> Foundation::CGFloat;
 
         #[method(stateImageRectForBounds:)]
         pub unsafe fn stateImageRectForBounds(

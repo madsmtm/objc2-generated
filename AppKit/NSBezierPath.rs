@@ -69,8 +69,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Other bezierPathWithRoundedRect:xRadius:yRadius:)]
         pub unsafe fn bezierPathWithRoundedRect_xRadius_yRadius(
             rect: Foundation::NSRect,
-            xRadius: CoreGraphics::CGFloat,
-            yRadius: CoreGraphics::CGFloat,
+            xRadius: Foundation::CGFloat,
+            yRadius: Foundation::CGFloat,
         ) -> Id<AppKit::NSBezierPath, Shared>;
 
         #[method(fillRect:)]
@@ -95,16 +95,16 @@ extern_methods!(
         );
 
         #[method(defaultMiterLimit)]
-        pub unsafe fn defaultMiterLimit() -> CoreGraphics::CGFloat;
+        pub unsafe fn defaultMiterLimit() -> Foundation::CGFloat;
 
         #[method(setDefaultMiterLimit:)]
-        pub unsafe fn setDefaultMiterLimit(defaultMiterLimit: CoreGraphics::CGFloat);
+        pub unsafe fn setDefaultMiterLimit(defaultMiterLimit: Foundation::CGFloat);
 
         #[method(defaultFlatness)]
-        pub unsafe fn defaultFlatness() -> CoreGraphics::CGFloat;
+        pub unsafe fn defaultFlatness() -> Foundation::CGFloat;
 
         #[method(setDefaultFlatness:)]
-        pub unsafe fn setDefaultFlatness(defaultFlatness: CoreGraphics::CGFloat);
+        pub unsafe fn setDefaultFlatness(defaultFlatness: Foundation::CGFloat);
 
         #[method(defaultWindingRule)]
         pub unsafe fn defaultWindingRule() -> AppKit::NSWindingRule;
@@ -125,10 +125,10 @@ extern_methods!(
         pub unsafe fn setDefaultLineJoinStyle(defaultLineJoinStyle: AppKit::NSLineJoinStyle);
 
         #[method(defaultLineWidth)]
-        pub unsafe fn defaultLineWidth() -> CoreGraphics::CGFloat;
+        pub unsafe fn defaultLineWidth() -> Foundation::CGFloat;
 
         #[method(setDefaultLineWidth:)]
-        pub unsafe fn setDefaultLineWidth(defaultLineWidth: CoreGraphics::CGFloat);
+        pub unsafe fn setDefaultLineWidth(defaultLineWidth: Foundation::CGFloat);
 
         #[method(moveToPoint:)]
         pub unsafe fn moveToPoint(&self, point: Foundation::NSPoint);
@@ -165,10 +165,10 @@ extern_methods!(
         );
 
         #[method(lineWidth)]
-        pub unsafe fn lineWidth(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn lineWidth(&self) -> Foundation::CGFloat;
 
         #[method(setLineWidth:)]
-        pub unsafe fn setLineWidth(&self, lineWidth: CoreGraphics::CGFloat);
+        pub unsafe fn setLineWidth(&self, lineWidth: Foundation::CGFloat);
 
         #[method(lineCapStyle)]
         pub unsafe fn lineCapStyle(&self) -> AppKit::NSLineCapStyle;
@@ -189,31 +189,31 @@ extern_methods!(
         pub unsafe fn setWindingRule(&self, windingRule: AppKit::NSWindingRule);
 
         #[method(miterLimit)]
-        pub unsafe fn miterLimit(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn miterLimit(&self) -> Foundation::CGFloat;
 
         #[method(setMiterLimit:)]
-        pub unsafe fn setMiterLimit(&self, miterLimit: CoreGraphics::CGFloat);
+        pub unsafe fn setMiterLimit(&self, miterLimit: Foundation::CGFloat);
 
         #[method(flatness)]
-        pub unsafe fn flatness(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn flatness(&self) -> Foundation::CGFloat;
 
         #[method(setFlatness:)]
-        pub unsafe fn setFlatness(&self, flatness: CoreGraphics::CGFloat);
+        pub unsafe fn setFlatness(&self, flatness: Foundation::CGFloat);
 
         #[method(getLineDash:count:phase:)]
         pub unsafe fn getLineDash_count_phase(
             &self,
-            pattern: *mut CoreGraphics::CGFloat,
+            pattern: *mut Foundation::CGFloat,
             count: *mut NSInteger,
-            phase: *mut CoreGraphics::CGFloat,
+            phase: *mut Foundation::CGFloat,
         );
 
         #[method(setLineDash:count:phase:)]
         pub unsafe fn setLineDash_count_phase(
             &self,
-            pattern: *mut CoreGraphics::CGFloat,
+            pattern: *mut Foundation::CGFloat,
             count: NSInteger,
-            phase: CoreGraphics::CGFloat,
+            phase: Foundation::CGFloat,
         );
 
         #[method(stroke)]
@@ -293,9 +293,9 @@ extern_methods!(
         pub unsafe fn appendBezierPathWithArcWithCenter_radius_startAngle_endAngle_clockwise(
             &self,
             center: Foundation::NSPoint,
-            radius: CoreGraphics::CGFloat,
-            startAngle: CoreGraphics::CGFloat,
-            endAngle: CoreGraphics::CGFloat,
+            radius: Foundation::CGFloat,
+            startAngle: Foundation::CGFloat,
+            endAngle: Foundation::CGFloat,
             clockwise: bool,
         );
 
@@ -303,9 +303,9 @@ extern_methods!(
         pub unsafe fn appendBezierPathWithArcWithCenter_radius_startAngle_endAngle(
             &self,
             center: Foundation::NSPoint,
-            radius: CoreGraphics::CGFloat,
-            startAngle: CoreGraphics::CGFloat,
-            endAngle: CoreGraphics::CGFloat,
+            radius: Foundation::CGFloat,
+            startAngle: Foundation::CGFloat,
+            endAngle: Foundation::CGFloat,
         );
 
         #[method(appendBezierPathWithArcFromPoint:toPoint:radius:)]
@@ -313,15 +313,15 @@ extern_methods!(
             &self,
             point1: Foundation::NSPoint,
             point2: Foundation::NSPoint,
-            radius: CoreGraphics::CGFloat,
+            radius: Foundation::CGFloat,
         );
 
         #[method(appendBezierPathWithRoundedRect:xRadius:yRadius:)]
         pub unsafe fn appendBezierPathWithRoundedRect_xRadius_yRadius(
             &self,
             rect: Foundation::NSRect,
-            xRadius: CoreGraphics::CGFloat,
-            yRadius: CoreGraphics::CGFloat,
+            xRadius: Foundation::CGFloat,
+            yRadius: Foundation::CGFloat,
         );
 
         #[method(containsPoint:)]

@@ -31,10 +31,10 @@ extern_methods!(
         pub unsafe fn setIntercellSpacing(&self, intercellSpacing: Foundation::NSSize);
 
         #[method(itemHeight)]
-        pub unsafe fn itemHeight(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn itemHeight(&self) -> Foundation::CGFloat;
 
         #[method(setItemHeight:)]
-        pub unsafe fn setItemHeight(&self, itemHeight: CoreGraphics::CGFloat);
+        pub unsafe fn setItemHeight(&self, itemHeight: Foundation::CGFloat);
 
         #[method(numberOfVisibleItems)]
         pub unsafe fn numberOfVisibleItems(&self) -> NSInteger;

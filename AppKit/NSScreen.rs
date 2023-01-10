@@ -71,7 +71,7 @@ extern_methods!(
         ) -> Foundation::NSRect;
 
         #[method(backingScaleFactor)]
-        pub unsafe fn backingScaleFactor(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn backingScaleFactor(&self) -> Foundation::CGFloat;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedName)]
@@ -94,19 +94,17 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSScreen")]
     unsafe impl NSScreen {
         #[method(maximumExtendedDynamicRangeColorComponentValue)]
-        pub unsafe fn maximumExtendedDynamicRangeColorComponentValue(
-            &self,
-        ) -> CoreGraphics::CGFloat;
+        pub unsafe fn maximumExtendedDynamicRangeColorComponentValue(&self) -> Foundation::CGFloat;
 
         #[method(maximumPotentialExtendedDynamicRangeColorComponentValue)]
         pub unsafe fn maximumPotentialExtendedDynamicRangeColorComponentValue(
             &self,
-        ) -> CoreGraphics::CGFloat;
+        ) -> Foundation::CGFloat;
 
         #[method(maximumReferenceExtendedDynamicRangeColorComponentValue)]
         pub unsafe fn maximumReferenceExtendedDynamicRangeColorComponentValue(
             &self,
-        ) -> CoreGraphics::CGFloat;
+        ) -> Foundation::CGFloat;
     }
 );
 
@@ -135,6 +133,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSScreen")]
     unsafe impl NSScreen {
         #[method(userSpaceScaleFactor)]
-        pub unsafe fn userSpaceScaleFactor(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn userSpaceScaleFactor(&self) -> Foundation::CGFloat;
     }
 );

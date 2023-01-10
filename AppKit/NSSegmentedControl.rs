@@ -68,10 +68,10 @@ extern_methods!(
         pub unsafe fn selectSegmentWithTag(&self, tag: NSInteger) -> bool;
 
         #[method(setWidth:forSegment:)]
-        pub unsafe fn setWidth_forSegment(&self, width: CoreGraphics::CGFloat, segment: NSInteger);
+        pub unsafe fn setWidth_forSegment(&self, width: Foundation::CGFloat, segment: NSInteger);
 
         #[method(widthForSegment:)]
-        pub unsafe fn widthForSegment(&self, segment: NSInteger) -> CoreGraphics::CGFloat;
+        pub unsafe fn widthForSegment(&self, segment: NSInteger) -> Foundation::CGFloat;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method(setImage:forSegment:)]

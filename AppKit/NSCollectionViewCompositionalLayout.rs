@@ -22,10 +22,10 @@ ns_options!(
 
 extern_struct!(
     pub struct NSDirectionalEdgeInsets {
-        pub top: CoreGraphics::CGFloat,
-        pub leading: CoreGraphics::CGFloat,
-        pub bottom: CoreGraphics::CGFloat,
-        pub trailing: CoreGraphics::CGFloat,
+        pub top: Foundation::CGFloat,
+        pub leading: Foundation::CGFloat,
+        pub bottom: Foundation::CGFloat,
+        pub trailing: Foundation::CGFloat,
     }
 );
 
@@ -48,10 +48,10 @@ ns_enum!(
 
 inline_fn!(
     pub unsafe fn NSDirectionalEdgeInsetsMake(
-        top: CoreGraphics::CGFloat,
-        leading: CoreGraphics::CGFloat,
-        bottom: CoreGraphics::CGFloat,
-        trailing: CoreGraphics::CGFloat,
+        top: Foundation::CGFloat,
+        leading: Foundation::CGFloat,
+        bottom: Foundation::CGFloat,
+        trailing: Foundation::CGFloat,
     ) -> AppKit::NSDirectionalEdgeInsets {
         todo!()
     }
@@ -79,10 +79,10 @@ extern_methods!(
         );
 
         #[method(interSectionSpacing)]
-        pub unsafe fn interSectionSpacing(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn interSectionSpacing(&self) -> Foundation::CGFloat;
 
         #[method(setInterSectionSpacing:)]
-        pub unsafe fn setInterSectionSpacing(&self, interSectionSpacing: CoreGraphics::CGFloat);
+        pub unsafe fn setInterSectionSpacing(&self, interSectionSpacing: Foundation::CGFloat);
 
         #[cfg(all(
             feature = "AppKit_NSCollectionLayoutBoundarySupplementaryItem",
@@ -229,10 +229,10 @@ extern_methods!(
         pub unsafe fn setContentInsets(&self, contentInsets: AppKit::NSDirectionalEdgeInsets);
 
         #[method(interGroupSpacing)]
-        pub unsafe fn interGroupSpacing(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn interGroupSpacing(&self) -> Foundation::CGFloat;
 
         #[method(setInterGroupSpacing:)]
-        pub unsafe fn setInterGroupSpacing(&self, interGroupSpacing: CoreGraphics::CGFloat);
+        pub unsafe fn setInterGroupSpacing(&self, interGroupSpacing: Foundation::CGFloat);
 
         #[method(orthogonalScrollingBehavior)]
         pub unsafe fn orthogonalScrollingBehavior(
@@ -536,22 +536,21 @@ extern_methods!(
     unsafe impl NSCollectionLayoutDimension {
         #[method_id(@__retain_semantics Other fractionalWidthDimension:)]
         pub unsafe fn fractionalWidthDimension(
-            fractionalWidth: CoreGraphics::CGFloat,
+            fractionalWidth: Foundation::CGFloat,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Other fractionalHeightDimension:)]
         pub unsafe fn fractionalHeightDimension(
-            fractionalHeight: CoreGraphics::CGFloat,
+            fractionalHeight: Foundation::CGFloat,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Other absoluteDimension:)]
-        pub unsafe fn absoluteDimension(
-            absoluteDimension: CoreGraphics::CGFloat,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn absoluteDimension(absoluteDimension: Foundation::CGFloat)
+            -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Other estimatedDimension:)]
         pub unsafe fn estimatedDimension(
-            estimatedDimension: CoreGraphics::CGFloat,
+            estimatedDimension: Foundation::CGFloat,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Init init)]
@@ -573,7 +572,7 @@ extern_methods!(
         pub unsafe fn isEstimated(&self) -> bool;
 
         #[method(dimension)]
-        pub unsafe fn dimension(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn dimension(&self) -> Foundation::CGFloat;
     }
 );
 
@@ -625,10 +624,10 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSCollectionLayoutSpacing")]
     unsafe impl NSCollectionLayoutSpacing {
         #[method_id(@__retain_semantics Other flexibleSpacing:)]
-        pub unsafe fn flexibleSpacing(flexibleSpacing: CoreGraphics::CGFloat) -> Id<Self, Shared>;
+        pub unsafe fn flexibleSpacing(flexibleSpacing: Foundation::CGFloat) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Other fixedSpacing:)]
-        pub unsafe fn fixedSpacing(fixedSpacing: CoreGraphics::CGFloat) -> Id<Self, Shared>;
+        pub unsafe fn fixedSpacing(fixedSpacing: Foundation::CGFloat) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
@@ -637,7 +636,7 @@ extern_methods!(
         pub unsafe fn new() -> Id<Self, Shared>;
 
         #[method(spacing)]
-        pub unsafe fn spacing(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn spacing(&self) -> Foundation::CGFloat;
 
         #[method(isFlexibleSpacing)]
         pub unsafe fn isFlexibleSpacing(&self) -> bool;
@@ -936,10 +935,10 @@ extern_protocol!(
 
     unsafe impl ProtocolType for NSCollectionLayoutVisibleItem {
         #[method(alpha)]
-        pub unsafe fn alpha(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn alpha(&self) -> Foundation::CGFloat;
 
         #[method(setAlpha:)]
-        pub unsafe fn setAlpha(&self, alpha: CoreGraphics::CGFloat);
+        pub unsafe fn setAlpha(&self, alpha: Foundation::CGFloat);
 
         #[method(zIndex)]
         pub unsafe fn zIndex(&self) -> NSInteger;

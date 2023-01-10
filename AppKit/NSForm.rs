@@ -22,10 +22,10 @@ extern_methods!(
         pub unsafe fn indexOfSelectedItem(&self) -> NSInteger;
 
         #[method(setEntryWidth:)]
-        pub unsafe fn setEntryWidth(&self, width: CoreGraphics::CGFloat);
+        pub unsafe fn setEntryWidth(&self, width: Foundation::CGFloat);
 
         #[method(setInterlineSpacing:)]
-        pub unsafe fn setInterlineSpacing(&self, spacing: CoreGraphics::CGFloat);
+        pub unsafe fn setInterlineSpacing(&self, spacing: Foundation::CGFloat);
 
         #[method(setBordered:)]
         pub unsafe fn setBordered(&self, flag: bool);
@@ -93,10 +93,10 @@ extern_methods!(
         );
 
         #[method(setPreferredTextFieldWidth:)]
-        pub unsafe fn setPreferredTextFieldWidth(&self, preferredWidth: CoreGraphics::CGFloat);
+        pub unsafe fn setPreferredTextFieldWidth(&self, preferredWidth: Foundation::CGFloat);
 
         #[method(preferredTextFieldWidth)]
-        pub unsafe fn preferredTextFieldWidth(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn preferredTextFieldWidth(&self) -> Foundation::CGFloat;
     }
 );
 

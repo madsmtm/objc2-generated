@@ -44,12 +44,12 @@ extern_methods!(
         );
 
         #[method(preferredWidthForSearchField)]
-        pub unsafe fn preferredWidthForSearchField(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn preferredWidthForSearchField(&self) -> Foundation::CGFloat;
 
         #[method(setPreferredWidthForSearchField:)]
         pub unsafe fn setPreferredWidthForSearchField(
             &self,
-            preferredWidthForSearchField: CoreGraphics::CGFloat,
+            preferredWidthForSearchField: Foundation::CGFloat,
         );
 
         #[method(beginSearchInteraction)]

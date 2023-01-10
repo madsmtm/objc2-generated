@@ -76,8 +76,8 @@ extern_methods!(
             attr: CoreAnimation::CAConstraintAttribute,
             srcId: &Foundation::NSString,
             srcAttr: CoreAnimation::CAConstraintAttribute,
-            m: CoreGraphics::CGFloat,
-            c: CoreGraphics::CGFloat,
+            m: Foundation::CGFloat,
+            c: Foundation::CGFloat,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -86,7 +86,7 @@ extern_methods!(
             attr: CoreAnimation::CAConstraintAttribute,
             srcId: &Foundation::NSString,
             srcAttr: CoreAnimation::CAConstraintAttribute,
-            c: CoreGraphics::CGFloat,
+            c: Foundation::CGFloat,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -104,8 +104,8 @@ extern_methods!(
             attr: CoreAnimation::CAConstraintAttribute,
             srcId: &Foundation::NSString,
             srcAttr: CoreAnimation::CAConstraintAttribute,
-            m: CoreGraphics::CGFloat,
-            c: CoreGraphics::CGFloat,
+            m: Foundation::CGFloat,
+            c: Foundation::CGFloat,
         ) -> Id<Self, Shared>;
 
         #[method(attribute)]
@@ -119,9 +119,9 @@ extern_methods!(
         pub unsafe fn sourceAttribute(&self) -> CoreAnimation::CAConstraintAttribute;
 
         #[method(scale)]
-        pub unsafe fn scale(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn scale(&self) -> Foundation::CGFloat;
 
         #[method(offset)]
-        pub unsafe fn offset(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn offset(&self) -> Foundation::CGFloat;
     }
 );

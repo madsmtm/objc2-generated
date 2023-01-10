@@ -98,10 +98,10 @@ extern_methods!(
         pub unsafe fn setNestingMode(&self, nestingMode: AppKit::NSRuleEditorNestingMode);
 
         #[method(rowHeight)]
-        pub unsafe fn rowHeight(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn rowHeight(&self) -> Foundation::CGFloat;
 
         #[method(setRowHeight:)]
-        pub unsafe fn setRowHeight(&self, rowHeight: CoreGraphics::CGFloat);
+        pub unsafe fn setRowHeight(&self, rowHeight: Foundation::CGFloat);
 
         #[method(isEditable)]
         pub unsafe fn isEditable(&self) -> bool;

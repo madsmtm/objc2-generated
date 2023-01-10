@@ -243,7 +243,7 @@ extern_methods!(
         #[method(colorizeByMappingGray:toColor:blackMapping:whiteMapping:)]
         pub unsafe fn colorizeByMappingGray_toColor_blackMapping_whiteMapping(
             &self,
-            midPoint: CoreGraphics::CGFloat,
+            midPoint: Foundation::CGFloat,
             midPointColor: Option<&AppKit::NSColor>,
             shadowColor: Option<&AppKit::NSColor>,
             lightColor: Option<&AppKit::NSColor>,

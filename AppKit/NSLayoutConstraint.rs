@@ -114,8 +114,8 @@ extern_methods!(
             relation: AppKit::NSLayoutRelation,
             view2: Option<&Object>,
             attr2: AppKit::NSLayoutAttribute,
-            multiplier: CoreGraphics::CGFloat,
-            c: CoreGraphics::CGFloat,
+            multiplier: Foundation::CGFloat,
+            c: Foundation::CGFloat,
         ) -> Id<Self, Shared>;
 
         #[method(priority)]
@@ -154,13 +154,13 @@ extern_methods!(
         pub unsafe fn relation(&self) -> AppKit::NSLayoutRelation;
 
         #[method(multiplier)]
-        pub unsafe fn multiplier(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn multiplier(&self) -> Foundation::CGFloat;
 
         #[method(constant)]
-        pub unsafe fn constant(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn constant(&self) -> Foundation::CGFloat;
 
         #[method(setConstant:)]
-        pub unsafe fn setConstant(&self, constant: CoreGraphics::CGFloat);
+        pub unsafe fn setConstant(&self, constant: Foundation::CGFloat);
 
         #[method(isActive)]
         pub unsafe fn isActive(&self) -> bool;
@@ -331,9 +331,9 @@ extern_methods!(
     }
 );
 
-extern_static!(NSViewNoInstrinsicMetric: CoreGraphics::CGFloat);
+extern_static!(NSViewNoInstrinsicMetric: Foundation::CGFloat);
 
-extern_static!(NSViewNoIntrinsicMetric: CoreGraphics::CGFloat);
+extern_static!(NSViewNoIntrinsicMetric: Foundation::CGFloat);
 
 extern_methods!(
     /// NSConstraintBasedLayoutLayering
@@ -353,13 +353,13 @@ extern_methods!(
         pub unsafe fn alignmentRectInsets(&self) -> Foundation::NSEdgeInsets;
 
         #[method(firstBaselineOffsetFromTop)]
-        pub unsafe fn firstBaselineOffsetFromTop(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn firstBaselineOffsetFromTop(&self) -> Foundation::CGFloat;
 
         #[method(lastBaselineOffsetFromBottom)]
-        pub unsafe fn lastBaselineOffsetFromBottom(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn lastBaselineOffsetFromBottom(&self) -> Foundation::CGFloat;
 
         #[method(baselineOffsetFromBottom)]
-        pub unsafe fn baselineOffsetFromBottom(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn baselineOffsetFromBottom(&self) -> Foundation::CGFloat;
 
         #[method(intrinsicContentSize)]
         pub unsafe fn intrinsicContentSize(&self) -> Foundation::NSSize;

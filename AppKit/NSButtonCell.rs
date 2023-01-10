@@ -373,7 +373,7 @@ extern_methods!(
         pub unsafe fn setKeyEquivalentFont_size(
             &self,
             fontName: &Foundation::NSString,
-            fontSize: CoreGraphics::CGFloat,
+            fontSize: Foundation::CGFloat,
         );
     }
 );

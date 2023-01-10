@@ -242,16 +242,16 @@ extern_methods!(
         pub unsafe fn setFrame(&self, frame: Foundation::NSRect);
 
         #[method(frameRotation)]
-        pub unsafe fn frameRotation(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn frameRotation(&self) -> Foundation::CGFloat;
 
         #[method(setFrameRotation:)]
-        pub unsafe fn setFrameRotation(&self, frameRotation: CoreGraphics::CGFloat);
+        pub unsafe fn setFrameRotation(&self, frameRotation: Foundation::CGFloat);
 
         #[method(frameCenterRotation)]
-        pub unsafe fn frameCenterRotation(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn frameCenterRotation(&self) -> Foundation::CGFloat;
 
         #[method(setFrameCenterRotation:)]
-        pub unsafe fn setFrameCenterRotation(&self, frameCenterRotation: CoreGraphics::CGFloat);
+        pub unsafe fn setFrameCenterRotation(&self, frameCenterRotation: Foundation::CGFloat);
 
         #[method(setBoundsOrigin:)]
         pub unsafe fn setBoundsOrigin(&self, newOrigin: Foundation::NSPoint);
@@ -260,10 +260,10 @@ extern_methods!(
         pub unsafe fn setBoundsSize(&self, newSize: Foundation::NSSize);
 
         #[method(boundsRotation)]
-        pub unsafe fn boundsRotation(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn boundsRotation(&self) -> Foundation::CGFloat;
 
         #[method(setBoundsRotation:)]
-        pub unsafe fn setBoundsRotation(&self, boundsRotation: CoreGraphics::CGFloat);
+        pub unsafe fn setBoundsRotation(&self, boundsRotation: Foundation::CGFloat);
 
         #[method(translateOriginToPoint:)]
         pub unsafe fn translateOriginToPoint(&self, translation: Foundation::NSPoint);
@@ -272,7 +272,7 @@ extern_methods!(
         pub unsafe fn scaleUnitSquareToSize(&self, newUnitSize: Foundation::NSSize);
 
         #[method(rotateByAngle:)]
-        pub unsafe fn rotateByAngle(&self, angle: CoreGraphics::CGFloat);
+        pub unsafe fn rotateByAngle(&self, angle: Foundation::CGFloat);
 
         #[method(bounds)]
         pub unsafe fn bounds(&self) -> Foundation::NSRect;
@@ -637,10 +637,10 @@ extern_methods!(
         pub unsafe fn setNeedsLayout(&self, needsLayout: bool);
 
         #[method(alphaValue)]
-        pub unsafe fn alphaValue(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn alphaValue(&self) -> Foundation::CGFloat;
 
         #[method(setAlphaValue:)]
-        pub unsafe fn setAlphaValue(&self, alphaValue: CoreGraphics::CGFloat);
+        pub unsafe fn setAlphaValue(&self, alphaValue: Foundation::CGFloat);
 
         #[method(layerUsesCoreImageFilters)]
         pub unsafe fn layerUsesCoreImageFilters(&self) -> bool;
@@ -891,27 +891,27 @@ extern_methods!(
         pub unsafe fn knowsPageRange(&self, range: Foundation::NSRangePointer) -> bool;
 
         #[method(heightAdjustLimit)]
-        pub unsafe fn heightAdjustLimit(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn heightAdjustLimit(&self) -> Foundation::CGFloat;
 
         #[method(widthAdjustLimit)]
-        pub unsafe fn widthAdjustLimit(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn widthAdjustLimit(&self) -> Foundation::CGFloat;
 
         #[method(adjustPageWidthNew:left:right:limit:)]
         pub unsafe fn adjustPageWidthNew_left_right_limit(
             &self,
-            newRight: NonNull<CoreGraphics::CGFloat>,
-            oldLeft: CoreGraphics::CGFloat,
-            oldRight: CoreGraphics::CGFloat,
-            rightLimit: CoreGraphics::CGFloat,
+            newRight: NonNull<Foundation::CGFloat>,
+            oldLeft: Foundation::CGFloat,
+            oldRight: Foundation::CGFloat,
+            rightLimit: Foundation::CGFloat,
         );
 
         #[method(adjustPageHeightNew:top:bottom:limit:)]
         pub unsafe fn adjustPageHeightNew_top_bottom_limit(
             &self,
-            newBottom: NonNull<CoreGraphics::CGFloat>,
-            oldTop: CoreGraphics::CGFloat,
-            oldBottom: CoreGraphics::CGFloat,
-            bottomLimit: CoreGraphics::CGFloat,
+            newBottom: NonNull<Foundation::CGFloat>,
+            oldTop: Foundation::CGFloat,
+            oldBottom: Foundation::CGFloat,
+            bottomLimit: Foundation::CGFloat,
         );
 
         #[method(rectForPage:)]

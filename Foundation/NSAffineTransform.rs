@@ -5,12 +5,12 @@ use crate::Foundation;
 
 extern_struct!(
     pub struct NSAffineTransformStruct {
-        pub m11: CoreGraphics::CGFloat,
-        pub m12: CoreGraphics::CGFloat,
-        pub m21: CoreGraphics::CGFloat,
-        pub m22: CoreGraphics::CGFloat,
-        pub tX: CoreGraphics::CGFloat,
-        pub tY: CoreGraphics::CGFloat,
+        pub m11: Foundation::CGFloat,
+        pub m12: Foundation::CGFloat,
+        pub m21: Foundation::CGFloat,
+        pub m22: Foundation::CGFloat,
+        pub tX: Foundation::CGFloat,
+        pub tY: Foundation::CGFloat,
     }
 );
 
@@ -41,25 +41,21 @@ extern_methods!(
         #[method(translateXBy:yBy:)]
         pub unsafe fn translateXBy_yBy(
             &self,
-            deltaX: CoreGraphics::CGFloat,
-            deltaY: CoreGraphics::CGFloat,
+            deltaX: Foundation::CGFloat,
+            deltaY: Foundation::CGFloat,
         );
 
         #[method(rotateByDegrees:)]
-        pub unsafe fn rotateByDegrees(&self, angle: CoreGraphics::CGFloat);
+        pub unsafe fn rotateByDegrees(&self, angle: Foundation::CGFloat);
 
         #[method(rotateByRadians:)]
-        pub unsafe fn rotateByRadians(&self, angle: CoreGraphics::CGFloat);
+        pub unsafe fn rotateByRadians(&self, angle: Foundation::CGFloat);
 
         #[method(scaleBy:)]
-        pub unsafe fn scaleBy(&self, scale: CoreGraphics::CGFloat);
+        pub unsafe fn scaleBy(&self, scale: Foundation::CGFloat);
 
         #[method(scaleXBy:yBy:)]
-        pub unsafe fn scaleXBy_yBy(
-            &self,
-            scaleX: CoreGraphics::CGFloat,
-            scaleY: CoreGraphics::CGFloat,
-        );
+        pub unsafe fn scaleXBy_yBy(&self, scaleX: Foundation::CGFloat, scaleY: Foundation::CGFloat);
 
         #[method(invert)]
         pub unsafe fn invert(&self);

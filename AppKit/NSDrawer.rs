@@ -94,16 +94,16 @@ extern_methods!(
         pub unsafe fn setMaxContentSize(&self, maxContentSize: Foundation::NSSize);
 
         #[method(leadingOffset)]
-        pub unsafe fn leadingOffset(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn leadingOffset(&self) -> Foundation::CGFloat;
 
         #[method(setLeadingOffset:)]
-        pub unsafe fn setLeadingOffset(&self, leadingOffset: CoreGraphics::CGFloat);
+        pub unsafe fn setLeadingOffset(&self, leadingOffset: Foundation::CGFloat);
 
         #[method(trailingOffset)]
-        pub unsafe fn trailingOffset(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn trailingOffset(&self) -> Foundation::CGFloat;
 
         #[method(setTrailingOffset:)]
-        pub unsafe fn setTrailingOffset(&self, trailingOffset: CoreGraphics::CGFloat);
+        pub unsafe fn setTrailingOffset(&self, trailingOffset: Foundation::CGFloat);
     }
 );
 

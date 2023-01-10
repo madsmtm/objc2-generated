@@ -34,10 +34,10 @@ extern_methods!(
         );
 
         #[method(allowableMovement)]
-        pub unsafe fn allowableMovement(&self) -> CoreGraphics::CGFloat;
+        pub unsafe fn allowableMovement(&self) -> Foundation::CGFloat;
 
         #[method(setAllowableMovement:)]
-        pub unsafe fn setAllowableMovement(&self, allowableMovement: CoreGraphics::CGFloat);
+        pub unsafe fn setAllowableMovement(&self, allowableMovement: Foundation::CGFloat);
 
         #[method(numberOfTouchesRequired)]
         pub unsafe fn numberOfTouchesRequired(&self) -> NSInteger;
