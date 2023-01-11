@@ -5,11 +5,13 @@ use crate::Foundation::*;
 
 __inner_extern_class!(
     #[derive(PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSArray")]
     pub struct NSArray<ObjectType: Message = Object, ObjectTypeOwnership: Ownership = Shared> {
         _inner0: PhantomData<*mut (ObjectType, ObjectTypeOwnership)>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
+    #[cfg(feature = "Foundation_NSArray")]
     unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> ClassType
         for NSArray<ObjectType, ObjectTypeOwnership>
     {
@@ -426,11 +428,13 @@ extern_methods!(
 
 __inner_extern_class!(
     #[derive(PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSMutableArray")]
     pub struct NSMutableArray<ObjectType: Message = Object, ObjectTypeOwnership: Ownership = Shared> {
         _inner0: PhantomData<*mut (ObjectType, ObjectTypeOwnership)>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
+    #[cfg(feature = "Foundation_NSMutableArray")]
     unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> ClassType
         for NSMutableArray<ObjectType, ObjectTypeOwnership>
     {

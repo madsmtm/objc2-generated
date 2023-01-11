@@ -11,8 +11,10 @@ extern_static!(NSSquareStatusItemLength: CGFloat = -2.0);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSStatusBar")]
     pub struct NSStatusBar;
 
+    #[cfg(feature = "AppKit_NSStatusBar")]
     unsafe impl ClassType for NSStatusBar {
         type Super = NSObject;
     }

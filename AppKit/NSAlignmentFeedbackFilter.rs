@@ -13,8 +13,10 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSAlignmentFeedbackFilter")]
     pub struct NSAlignmentFeedbackFilter;
 
+    #[cfg(feature = "AppKit_NSAlignmentFeedbackFilter")]
     unsafe impl ClassType for NSAlignmentFeedbackFilter {
         type Super = NSObject;
     }

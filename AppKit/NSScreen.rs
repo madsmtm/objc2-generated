@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSScreen")]
     pub struct NSScreen;
 
+    #[cfg(feature = "AppKit_NSScreen")]
     unsafe impl ClassType for NSScreen {
         type Super = NSObject;
     }

@@ -6,8 +6,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreAnimation_CAEDRMetadata")]
     pub struct CAEDRMetadata;
 
+    #[cfg(feature = "CoreAnimation_CAEDRMetadata")]
     unsafe impl ClassType for CAEDRMetadata {
         type Super = NSObject;
     }

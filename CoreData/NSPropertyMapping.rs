@@ -6,8 +6,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreData_NSPropertyMapping")]
     pub struct NSPropertyMapping;
 
+    #[cfg(feature = "CoreData_NSPropertyMapping")]
     unsafe impl ClassType for NSPropertyMapping {
         type Super = NSObject;
     }

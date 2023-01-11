@@ -46,8 +46,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSFontManager")]
     pub struct NSFontManager;
 
+    #[cfg(feature = "AppKit_NSFontManager")]
     unsafe impl ClassType for NSFontManager {
         type Super = NSObject;
     }

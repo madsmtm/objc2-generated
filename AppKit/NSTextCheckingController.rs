@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSTextCheckingController")]
     pub struct NSTextCheckingController;
 
+    #[cfg(feature = "AppKit_NSTextCheckingController")]
     unsafe impl ClassType for NSTextCheckingController {
         type Super = NSObject;
     }

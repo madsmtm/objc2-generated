@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSComboBoxCell")]
     pub struct NSComboBoxCell;
 
+    #[cfg(feature = "AppKit_NSComboBoxCell")]
     unsafe impl ClassType for NSComboBoxCell {
         #[inherits(NSActionCell, NSCell, NSObject)]
         type Super = NSTextFieldCell;

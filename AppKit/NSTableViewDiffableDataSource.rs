@@ -23,6 +23,7 @@ pub type NSTableViewDiffableDataSourceSectionHeaderViewProvider =
 
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSTableViewDiffableDataSource")]
     pub struct NSTableViewDiffableDataSource<
         SectionIdentifierType: Message = Object,
         ItemIdentifierType: Message = Object,
@@ -34,6 +35,7 @@ __inner_extern_class!(
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
+    #[cfg(feature = "AppKit_NSTableViewDiffableDataSource")]
     unsafe impl<
             SectionIdentifierType: Message,
             ItemIdentifierType: Message,

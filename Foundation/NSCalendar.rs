@@ -93,8 +93,10 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSCalendar")]
     pub struct NSCalendar;
 
+    #[cfg(feature = "Foundation_NSCalendar")]
     unsafe impl ClassType for NSCalendar {
         type Super = NSObject;
     }
@@ -543,8 +545,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSDateComponents")]
     pub struct NSDateComponents;
 
+    #[cfg(feature = "Foundation_NSDateComponents")]
     unsafe impl ClassType for NSDateComponents {
         type Super = NSObject;
     }

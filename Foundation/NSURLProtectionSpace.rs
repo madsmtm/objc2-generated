@@ -35,8 +35,10 @@ extern_static!(NSURLAuthenticationMethodServerTrust: &'static NSString);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSURLProtectionSpace")]
     pub struct NSURLProtectionSpace;
 
+    #[cfg(feature = "Foundation_NSURLProtectionSpace")]
     unsafe impl ClassType for NSURLProtectionSpace {
         type Super = NSObject;
     }

@@ -32,8 +32,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSByteCountFormatter")]
     pub struct NSByteCountFormatter;
 
+    #[cfg(feature = "Foundation_NSByteCountFormatter")]
     unsafe impl ClassType for NSByteCountFormatter {
         #[inherits(NSObject)]
         type Super = NSFormatter;

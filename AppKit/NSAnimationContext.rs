@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSAnimationContext")]
     pub struct NSAnimationContext;
 
+    #[cfg(feature = "AppKit_NSAnimationContext")]
     unsafe impl ClassType for NSAnimationContext {
         type Super = NSObject;
     }

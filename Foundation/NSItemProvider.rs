@@ -52,8 +52,10 @@ pub type NSItemProviderLoadHandler = *mut Block<
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSItemProvider")]
     pub struct NSItemProvider;
 
+    #[cfg(feature = "Foundation_NSItemProvider")]
     unsafe impl ClassType for NSItemProvider {
         type Super = NSObject;
     }

@@ -25,8 +25,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSToolbarItemGroup")]
     pub struct NSToolbarItemGroup;
 
+    #[cfg(feature = "AppKit_NSToolbarItemGroup")]
     unsafe impl ClassType for NSToolbarItemGroup {
         #[inherits(NSObject)]
         type Super = NSToolbarItem;

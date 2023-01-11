@@ -16,8 +16,10 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSMediaLibraryBrowserController")]
     pub struct NSMediaLibraryBrowserController;
 
+    #[cfg(feature = "AppKit_NSMediaLibraryBrowserController")]
     unsafe impl ClassType for NSMediaLibraryBrowserController {
         type Super = NSObject;
     }

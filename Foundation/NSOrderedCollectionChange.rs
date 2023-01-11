@@ -13,6 +13,7 @@ ns_enum!(
 
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSOrderedCollectionChange")]
     pub struct NSOrderedCollectionChange<
         ObjectType: Message = Object,
         ObjectTypeOwnership: Ownership = Shared,
@@ -21,6 +22,7 @@ __inner_extern_class!(
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
+    #[cfg(feature = "Foundation_NSOrderedCollectionChange")]
     unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> ClassType
         for NSOrderedCollectionChange<ObjectType, ObjectTypeOwnership>
     {

@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSFilePromiseProvider")]
     pub struct NSFilePromiseProvider;
 
+    #[cfg(feature = "AppKit_NSFilePromiseProvider")]
     unsafe impl ClassType for NSFilePromiseProvider {
         type Super = NSObject;
     }

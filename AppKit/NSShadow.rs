@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSShadow")]
     pub struct NSShadow;
 
+    #[cfg(feature = "AppKit_NSShadow")]
     unsafe impl ClassType for NSShadow {
         type Super = NSObject;
     }

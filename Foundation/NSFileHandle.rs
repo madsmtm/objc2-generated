@@ -5,8 +5,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSFileHandle")]
     pub struct NSFileHandle;
 
+    #[cfg(feature = "Foundation_NSFileHandle")]
     unsafe impl ClassType for NSFileHandle {
         type Super = NSObject;
     }
@@ -268,8 +270,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSPipe")]
     pub struct NSPipe;
 
+    #[cfg(feature = "Foundation_NSPipe")]
     unsafe impl ClassType for NSPipe {
         type Super = NSObject;
     }

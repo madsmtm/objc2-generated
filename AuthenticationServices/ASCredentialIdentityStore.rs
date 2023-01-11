@@ -17,8 +17,10 @@ ns_error_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AuthenticationServices_ASCredentialIdentityStore")]
     pub struct ASCredentialIdentityStore;
 
+    #[cfg(feature = "AuthenticationServices_ASCredentialIdentityStore")]
     unsafe impl ClassType for ASCredentialIdentityStore {
         type Super = NSObject;
     }

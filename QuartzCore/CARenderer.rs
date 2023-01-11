@@ -6,8 +6,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreAnimation_CARenderer")]
     pub struct CARenderer;
 
+    #[cfg(feature = "CoreAnimation_CARenderer")]
     unsafe impl ClassType for CARenderer {
         type Super = NSObject;
     }

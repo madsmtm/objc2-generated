@@ -6,8 +6,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreData_NSManagedObjectModel")]
     pub struct NSManagedObjectModel;
 
+    #[cfg(feature = "CoreData_NSManagedObjectModel")]
     unsafe impl ClassType for NSManagedObjectModel {
         type Super = NSObject;
     }

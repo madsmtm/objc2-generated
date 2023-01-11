@@ -16,8 +16,10 @@ extern_struct!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSAffineTransform")]
     pub struct NSAffineTransform;
 
+    #[cfg(feature = "Foundation_NSAffineTransform")]
     unsafe impl ClassType for NSAffineTransform {
         type Super = NSObject;
     }

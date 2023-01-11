@@ -28,8 +28,10 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSTextLayoutManager")]
     pub struct NSTextLayoutManager;
 
+    #[cfg(feature = "AppKit_NSTextLayoutManager")]
     unsafe impl ClassType for NSTextLayoutManager {
         type Super = NSObject;
     }

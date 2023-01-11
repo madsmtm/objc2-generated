@@ -34,8 +34,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLStencilDescriptor")]
     pub struct MTLStencilDescriptor;
 
+    #[cfg(feature = "Metal_MTLStencilDescriptor")]
     unsafe impl ClassType for MTLStencilDescriptor {
         type Super = NSObject;
     }
@@ -84,8 +86,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLDepthStencilDescriptor")]
     pub struct MTLDepthStencilDescriptor;
 
+    #[cfg(feature = "Metal_MTLDepthStencilDescriptor")]
     unsafe impl ClassType for MTLDepthStencilDescriptor {
         type Super = NSObject;
     }

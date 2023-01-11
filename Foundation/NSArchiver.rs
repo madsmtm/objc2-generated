@@ -5,8 +5,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSArchiver")]
     pub struct NSArchiver;
 
+    #[cfg(feature = "Foundation_NSArchiver")]
     unsafe impl ClassType for NSArchiver {
         #[inherits(NSObject)]
         type Super = NSCoder;
@@ -63,8 +65,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSUnarchiver")]
     pub struct NSUnarchiver;
 
+    #[cfg(feature = "Foundation_NSUnarchiver")]
     unsafe impl ClassType for NSUnarchiver {
         #[inherits(NSObject)]
         type Super = NSCoder;

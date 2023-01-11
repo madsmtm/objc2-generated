@@ -92,8 +92,10 @@ extern_static!(NSImageFallbackBackgroundColor: &'static NSBitmapImageRepProperty
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSBitmapImageRep")]
     pub struct NSBitmapImageRep;
 
+    #[cfg(feature = "AppKit_NSBitmapImageRep")]
     unsafe impl ClassType for NSBitmapImageRep {
         #[inherits(NSObject)]
         type Super = NSImageRep;

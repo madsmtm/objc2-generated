@@ -6,8 +6,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AuthenticationServices_ASAuthorizationSingleSignOnProvider")]
     pub struct ASAuthorizationSingleSignOnProvider;
 
+    #[cfg(feature = "AuthenticationServices_ASAuthorizationSingleSignOnProvider")]
     unsafe impl ClassType for ASAuthorizationSingleSignOnProvider {
         type Super = NSObject;
     }

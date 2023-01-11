@@ -37,8 +37,10 @@ typed_extensible_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSTextCheckingResult")]
     pub struct NSTextCheckingResult;
 
+    #[cfg(feature = "Foundation_NSTextCheckingResult")]
     unsafe impl ClassType for NSTextCheckingResult {
         type Super = NSObject;
     }

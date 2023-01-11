@@ -11,8 +11,10 @@ extern_static!(NSKeyedArchiveRootObjectKey: &'static NSString);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSKeyedArchiver")]
     pub struct NSKeyedArchiver;
 
+    #[cfg(feature = "Foundation_NSKeyedArchiver")]
     unsafe impl ClassType for NSKeyedArchiver {
         #[inherits(NSObject)]
         type Super = NSCoder;
@@ -127,8 +129,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSKeyedUnarchiver")]
     pub struct NSKeyedUnarchiver;
 
+    #[cfg(feature = "Foundation_NSKeyedUnarchiver")]
     unsafe impl ClassType for NSKeyedUnarchiver {
         #[inherits(NSObject)]
         type Super = NSCoder;

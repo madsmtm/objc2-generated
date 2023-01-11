@@ -14,8 +14,10 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLFunctionDescriptor")]
     pub struct MTLFunctionDescriptor;
 
+    #[cfg(feature = "Metal_MTLFunctionDescriptor")]
     unsafe impl ClassType for MTLFunctionDescriptor {
         type Super = NSObject;
     }
@@ -69,8 +71,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLIntersectionFunctionDescriptor")]
     pub struct MTLIntersectionFunctionDescriptor;
 
+    #[cfg(feature = "Metal_MTLIntersectionFunctionDescriptor")]
     unsafe impl ClassType for MTLIntersectionFunctionDescriptor {
         #[inherits(NSObject)]
         type Super = MTLFunctionDescriptor;

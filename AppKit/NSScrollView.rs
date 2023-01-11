@@ -16,8 +16,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSScrollView")]
     pub struct NSScrollView;
 
+    #[cfg(feature = "AppKit_NSScrollView")]
     unsafe impl ClassType for NSScrollView {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;

@@ -5,8 +5,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSURLDownload")]
     pub struct NSURLDownload;
 
+    #[cfg(feature = "Foundation_NSURLDownload")]
     unsafe impl ClassType for NSURLDownload {
         type Super = NSObject;
     }

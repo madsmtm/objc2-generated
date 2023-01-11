@@ -29,8 +29,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSBox")]
     pub struct NSBox;
 
+    #[cfg(feature = "AppKit_NSBox")]
     unsafe impl ClassType for NSBox {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;

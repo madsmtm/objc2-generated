@@ -71,8 +71,10 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSComboBox")]
     pub struct NSComboBox;
 
+    #[cfg(feature = "AppKit_NSComboBox")]
     unsafe impl ClassType for NSComboBox {
         #[inherits(NSControl, NSView, NSResponder, NSObject)]
         type Super = NSTextField;

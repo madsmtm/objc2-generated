@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSSegmentedCell")]
     pub struct NSSegmentedCell;
 
+    #[cfg(feature = "AppKit_NSSegmentedCell")]
     unsafe impl ClassType for NSSegmentedCell {
         #[inherits(NSCell, NSObject)]
         type Super = NSActionCell;

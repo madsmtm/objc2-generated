@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSSharingServicePickerTouchBarItem")]
     pub struct NSSharingServicePickerTouchBarItem;
 
+    #[cfg(feature = "AppKit_NSSharingServicePickerTouchBarItem")]
     unsafe impl ClassType for NSSharingServicePickerTouchBarItem {
         #[inherits(NSObject)]
         type Super = NSTouchBarItem;

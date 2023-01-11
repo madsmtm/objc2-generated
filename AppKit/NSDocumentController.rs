@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSDocumentController")]
     pub struct NSDocumentController;
 
+    #[cfg(feature = "AppKit_NSDocumentController")]
     unsafe impl ClassType for NSDocumentController {
         type Super = NSObject;
     }

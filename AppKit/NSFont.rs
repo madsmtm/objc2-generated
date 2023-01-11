@@ -9,8 +9,10 @@ extern_static!(NSFontIdentityMatrix: NonNull<CGFloat>);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSFont")]
     pub struct NSFont;
 
+    #[cfg(feature = "AppKit_NSFont")]
     unsafe impl ClassType for NSFont {
         type Super = NSObject;
     }

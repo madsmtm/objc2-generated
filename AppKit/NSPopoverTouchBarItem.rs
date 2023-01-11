@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSPopoverTouchBarItem")]
     pub struct NSPopoverTouchBarItem;
 
+    #[cfg(feature = "AppKit_NSPopoverTouchBarItem")]
     unsafe impl ClassType for NSPopoverTouchBarItem {
         #[inherits(NSObject)]
         type Super = NSTouchBarItem;

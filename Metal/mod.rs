@@ -107,17 +107,26 @@ mod __MTLVertexDescriptor;
 mod __MTLVisibleFunctionTable;
 
 pub use self::__MTLAccelerationStructure::MTLAccelerationStructure;
+#[cfg(feature = "Metal_MTLAccelerationStructureBoundingBoxGeometryDescriptor")]
 pub use self::__MTLAccelerationStructure::MTLAccelerationStructureBoundingBoxGeometryDescriptor;
+#[cfg(feature = "Metal_MTLAccelerationStructureDescriptor")]
 pub use self::__MTLAccelerationStructure::MTLAccelerationStructureDescriptor;
+#[cfg(feature = "Metal_MTLAccelerationStructureGeometryDescriptor")]
 pub use self::__MTLAccelerationStructure::MTLAccelerationStructureGeometryDescriptor;
 pub use self::__MTLAccelerationStructure::MTLAccelerationStructureInstanceDescriptor;
+#[cfg(feature = "Metal_MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor")]
 pub use self::__MTLAccelerationStructure::MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor;
 pub use self::__MTLAccelerationStructure::MTLAccelerationStructureMotionInstanceDescriptor;
+#[cfg(feature = "Metal_MTLAccelerationStructureMotionTriangleGeometryDescriptor")]
 pub use self::__MTLAccelerationStructure::MTLAccelerationStructureMotionTriangleGeometryDescriptor;
+#[cfg(feature = "Metal_MTLAccelerationStructureTriangleGeometryDescriptor")]
 pub use self::__MTLAccelerationStructure::MTLAccelerationStructureTriangleGeometryDescriptor;
 pub use self::__MTLAccelerationStructure::MTLAccelerationStructureUserIDInstanceDescriptor;
+#[cfg(feature = "Metal_MTLInstanceAccelerationStructureDescriptor")]
 pub use self::__MTLAccelerationStructure::MTLInstanceAccelerationStructureDescriptor;
+#[cfg(feature = "Metal_MTLMotionKeyframeData")]
 pub use self::__MTLAccelerationStructure::MTLMotionKeyframeData;
+#[cfg(feature = "Metal_MTLPrimitiveAccelerationStructureDescriptor")]
 pub use self::__MTLAccelerationStructure::MTLPrimitiveAccelerationStructureDescriptor;
 pub use self::__MTLAccelerationStructure::{
     MTLAccelerationStructureInstanceDescriptorType,
@@ -143,12 +152,19 @@ pub use self::__MTLAccelerationStructure::{
 pub use self::__MTLAccelerationStructureCommandEncoder::MTLAccelerationStructureCommandEncoder;
 pub use self::__MTLAccelerationStructureTypes::MTLAxisAlignedBoundingBox;
 pub use self::__MTLAccelerationStructureTypes::MTLPackedFloat4x3;
+#[cfg(feature = "Metal_MTLArgument")]
 pub use self::__MTLArgument::MTLArgument;
+#[cfg(feature = "Metal_MTLArrayType")]
 pub use self::__MTLArgument::MTLArrayType;
+#[cfg(feature = "Metal_MTLPointerType")]
 pub use self::__MTLArgument::MTLPointerType;
+#[cfg(feature = "Metal_MTLStructMember")]
 pub use self::__MTLArgument::MTLStructMember;
+#[cfg(feature = "Metal_MTLStructType")]
 pub use self::__MTLArgument::MTLStructType;
+#[cfg(feature = "Metal_MTLTextureReferenceType")]
 pub use self::__MTLArgument::MTLTextureReferenceType;
+#[cfg(feature = "Metal_MTLType")]
 pub use self::__MTLArgument::MTLType;
 pub use self::__MTLArgument::{
     MTLArgumentAccess, MTLArgumentAccessReadOnly, MTLArgumentAccessReadWrite,
@@ -187,6 +203,7 @@ pub use self::__MTLArgument::{
 };
 pub use self::__MTLArgumentEncoder::MTLArgumentEncoder;
 pub use self::__MTLBinaryArchive::MTLBinaryArchive;
+#[cfg(feature = "Metal_MTLBinaryArchiveDescriptor")]
 pub use self::__MTLBinaryArchive::MTLBinaryArchiveDescriptor;
 pub use self::__MTLBinaryArchive::MTLBinaryArchiveDomain;
 pub use self::__MTLBinaryArchive::{
@@ -199,12 +216,17 @@ pub use self::__MTLBlitCommandEncoder::{
     MTLBlitOption, MTLBlitOptionDepthFromDepthStencil, MTLBlitOptionNone,
     MTLBlitOptionRowLinearPVRTC, MTLBlitOptionStencilFromDepthStencil,
 };
+#[cfg(feature = "Metal_MTLBlitPassDescriptor")]
 pub use self::__MTLBlitPass::MTLBlitPassDescriptor;
+#[cfg(feature = "Metal_MTLBlitPassSampleBufferAttachmentDescriptor")]
 pub use self::__MTLBlitPass::MTLBlitPassSampleBufferAttachmentDescriptor;
+#[cfg(feature = "Metal_MTLBlitPassSampleBufferAttachmentDescriptorArray")]
 pub use self::__MTLBlitPass::MTLBlitPassSampleBufferAttachmentDescriptorArray;
 pub use self::__MTLBuffer::MTLBuffer;
+#[cfg(feature = "Metal_MTLCaptureDescriptor")]
 pub use self::__MTLCaptureManager::MTLCaptureDescriptor;
 pub use self::__MTLCaptureManager::MTLCaptureErrorDomain;
+#[cfg(feature = "Metal_MTLCaptureManager")]
 pub use self::__MTLCaptureManager::MTLCaptureManager;
 pub use self::__MTLCaptureManager::{
     MTLCaptureDestination, MTLCaptureDestinationDeveloperTools,
@@ -216,6 +238,7 @@ pub use self::__MTLCaptureManager::{
 };
 pub use self::__MTLCaptureScope::MTLCaptureScope;
 pub use self::__MTLCommandBuffer::MTLCommandBuffer;
+#[cfg(feature = "Metal_MTLCommandBufferDescriptor")]
 pub use self::__MTLCommandBuffer::MTLCommandBufferDescriptor;
 pub use self::__MTLCommandBuffer::MTLCommandBufferEncoderInfo;
 pub use self::__MTLCommandBuffer::MTLCommandBufferEncoderInfoErrorKey;
@@ -257,10 +280,15 @@ pub use self::__MTLCommandQueue::MTLCommandQueue;
 pub use self::__MTLComputeCommandEncoder::MTLComputeCommandEncoder;
 pub use self::__MTLComputeCommandEncoder::MTLDispatchThreadgroupsIndirectArguments;
 pub use self::__MTLComputeCommandEncoder::MTLStageInRegionIndirectArguments;
+#[cfg(feature = "Metal_MTLComputePassDescriptor")]
 pub use self::__MTLComputePass::MTLComputePassDescriptor;
+#[cfg(feature = "Metal_MTLComputePassSampleBufferAttachmentDescriptor")]
 pub use self::__MTLComputePass::MTLComputePassSampleBufferAttachmentDescriptor;
+#[cfg(feature = "Metal_MTLComputePassSampleBufferAttachmentDescriptorArray")]
 pub use self::__MTLComputePass::MTLComputePassSampleBufferAttachmentDescriptorArray;
+#[cfg(feature = "Metal_MTLComputePipelineDescriptor")]
 pub use self::__MTLComputePipeline::MTLComputePipelineDescriptor;
+#[cfg(feature = "Metal_MTLComputePipelineReflection")]
 pub use self::__MTLComputePipeline::MTLComputePipelineReflection;
 pub use self::__MTLComputePipeline::MTLComputePipelineState;
 pub use self::__MTLCounters::MTLCommonCounter;
@@ -289,14 +317,17 @@ pub use self::__MTLCounters::MTLCounterResultStageUtilization;
 pub use self::__MTLCounters::MTLCounterResultStatistic;
 pub use self::__MTLCounters::MTLCounterResultTimestamp;
 pub use self::__MTLCounters::MTLCounterSampleBuffer;
+#[cfg(feature = "Metal_MTLCounterSampleBufferDescriptor")]
 pub use self::__MTLCounters::MTLCounterSampleBufferDescriptor;
 pub use self::__MTLCounters::MTLCounterSet;
 pub use self::__MTLCounters::{
     MTLCounterSampleBufferError, MTLCounterSampleBufferErrorInternal,
     MTLCounterSampleBufferErrorInvalid, MTLCounterSampleBufferErrorOutOfMemory,
 };
+#[cfg(feature = "Metal_MTLDepthStencilDescriptor")]
 pub use self::__MTLDepthStencil::MTLDepthStencilDescriptor;
 pub use self::__MTLDepthStencil::MTLDepthStencilState;
+#[cfg(feature = "Metal_MTLStencilDescriptor")]
 pub use self::__MTLDepthStencil::MTLStencilDescriptor;
 pub use self::__MTLDepthStencil::{
     MTLCompareFunction, MTLCompareFunctionAlways, MTLCompareFunctionEqual,
@@ -309,6 +340,7 @@ pub use self::__MTLDepthStencil::{
     MTLStencilOperationKeep, MTLStencilOperationReplace, MTLStencilOperationZero,
 };
 pub use self::__MTLDevice::MTLAccelerationStructureSizes;
+#[cfg(feature = "Metal_MTLArgumentDescriptor")]
 pub use self::__MTLDevice::MTLArgumentDescriptor;
 #[cfg(feature = "Foundation_NSArray")]
 pub use self::__MTLDevice::MTLCopyAllDevices;
@@ -388,12 +420,17 @@ pub use self::__MTLDynamicLibrary::{
 };
 pub use self::__MTLEvent::MTLEvent;
 pub use self::__MTLEvent::MTLSharedEvent;
+#[cfg(feature = "Metal_MTLSharedEventHandle")]
 pub use self::__MTLEvent::MTLSharedEventHandle;
+#[cfg(feature = "Metal_MTLSharedEventListener")]
 pub use self::__MTLEvent::MTLSharedEventListener;
 pub use self::__MTLEvent::MTLSharedEventNotificationBlock;
 pub use self::__MTLFence::MTLFence;
+#[cfg(feature = "Metal_MTLFunctionConstantValues")]
 pub use self::__MTLFunctionConstantValues::MTLFunctionConstantValues;
+#[cfg(feature = "Metal_MTLFunctionDescriptor")]
 pub use self::__MTLFunctionDescriptor::MTLFunctionDescriptor;
+#[cfg(feature = "Metal_MTLIntersectionFunctionDescriptor")]
 pub use self::__MTLFunctionDescriptor::MTLIntersectionFunctionDescriptor;
 pub use self::__MTLFunctionDescriptor::{
     MTLFunctionOptionCompileToBinary, MTLFunctionOptionNone, MTLFunctionOptions,
@@ -404,18 +441,25 @@ pub use self::__MTLFunctionLog::MTLFunctionLogDebugLocation;
 pub use self::__MTLFunctionLog::MTLLogContainer;
 pub use self::__MTLFunctionLog::{MTLFunctionLogType, MTLFunctionLogTypeValidation};
 pub use self::__MTLFunctionStitching::MTLFunctionStitchingAttribute;
+#[cfg(feature = "Metal_MTLFunctionStitchingAttributeAlwaysInline")]
 pub use self::__MTLFunctionStitching::MTLFunctionStitchingAttributeAlwaysInline;
+#[cfg(feature = "Metal_MTLFunctionStitchingFunctionNode")]
 pub use self::__MTLFunctionStitching::MTLFunctionStitchingFunctionNode;
+#[cfg(feature = "Metal_MTLFunctionStitchingGraph")]
 pub use self::__MTLFunctionStitching::MTLFunctionStitchingGraph;
+#[cfg(feature = "Metal_MTLFunctionStitchingInputNode")]
 pub use self::__MTLFunctionStitching::MTLFunctionStitchingInputNode;
 pub use self::__MTLFunctionStitching::MTLFunctionStitchingNode;
+#[cfg(feature = "Metal_MTLStitchedLibraryDescriptor")]
 pub use self::__MTLFunctionStitching::MTLStitchedLibraryDescriptor;
 pub use self::__MTLHeap::MTLHeap;
+#[cfg(feature = "Metal_MTLHeapDescriptor")]
 pub use self::__MTLHeap::MTLHeapDescriptor;
 pub use self::__MTLHeap::{
     MTLHeapType, MTLHeapTypeAutomatic, MTLHeapTypePlacement, MTLHeapTypeSparse,
 };
 pub use self::__MTLIndirectCommandBuffer::MTLIndirectCommandBuffer;
+#[cfg(feature = "Metal_MTLIndirectCommandBufferDescriptor")]
 pub use self::__MTLIndirectCommandBuffer::MTLIndirectCommandBufferDescriptor;
 pub use self::__MTLIndirectCommandBuffer::MTLIndirectCommandBufferExecutionRange;
 pub use self::__MTLIndirectCommandBuffer::{
@@ -427,6 +471,7 @@ pub use self::__MTLIndirectCommandBuffer::{
 pub use self::__MTLIndirectCommandEncoder::MTLIndirectComputeCommand;
 pub use self::__MTLIndirectCommandEncoder::MTLIndirectRenderCommand;
 pub use self::__MTLIntersectionFunctionTable::MTLIntersectionFunctionTable;
+#[cfg(feature = "Metal_MTLIntersectionFunctionTableDescriptor")]
 pub use self::__MTLIntersectionFunctionTable::MTLIntersectionFunctionTableDescriptor;
 pub use self::__MTLIntersectionFunctionTable::{
     MTLIntersectionFunctionSignature, MTLIntersectionFunctionSignatureExtendedLimits,
@@ -434,12 +479,16 @@ pub use self::__MTLIntersectionFunctionTable::{
     MTLIntersectionFunctionSignatureNone, MTLIntersectionFunctionSignaturePrimitiveMotion,
     MTLIntersectionFunctionSignatureTriangleData, MTLIntersectionFunctionSignatureWorldSpaceData,
 };
+#[cfg(feature = "Metal_MTLAttribute")]
 pub use self::__MTLLibrary::MTLAttribute;
+#[cfg(feature = "Metal_MTLCompileOptions")]
 pub use self::__MTLLibrary::MTLCompileOptions;
 pub use self::__MTLLibrary::MTLFunction;
+#[cfg(feature = "Metal_MTLFunctionConstant")]
 pub use self::__MTLLibrary::MTLFunctionConstant;
 pub use self::__MTLLibrary::MTLLibrary;
 pub use self::__MTLLibrary::MTLLibraryErrorDomain;
+#[cfg(feature = "Metal_MTLVertexAttribute")]
 pub use self::__MTLLibrary::MTLVertexAttribute;
 pub use self::__MTLLibrary::{
     MTLFunctionType, MTLFunctionTypeFragment, MTLFunctionTypeIntersection, MTLFunctionTypeKernel,
@@ -459,9 +508,12 @@ pub use self::__MTLLibrary::{MTLLibraryType, MTLLibraryTypeDynamic, MTLLibraryTy
 pub use self::__MTLLibrary::{
     MTLPatchType, MTLPatchTypeNone, MTLPatchTypeQuad, MTLPatchTypeTriangle,
 };
+#[cfg(feature = "Metal_MTLLinkedFunctions")]
 pub use self::__MTLLinkedFunctions::MTLLinkedFunctions;
 pub use self::__MTLParallelRenderCommandEncoder::MTLParallelRenderCommandEncoder;
+#[cfg(feature = "Metal_MTLPipelineBufferDescriptor")]
 pub use self::__MTLPipeline::MTLPipelineBufferDescriptor;
+#[cfg(feature = "Metal_MTLPipelineBufferDescriptorArray")]
 pub use self::__MTLPipeline::MTLPipelineBufferDescriptorArray;
 pub use self::__MTLPipeline::{
     MTLMutability, MTLMutabilityDefault, MTLMutabilityImmutable, MTLMutabilityMutable,
@@ -514,10 +566,14 @@ pub use self::__MTLPixelFormat::{
     MTLPixelFormatRGBA8Unorm, MTLPixelFormatRGBA8Unorm_sRGB, MTLPixelFormatStencil8,
     MTLPixelFormatX24_Stencil8, MTLPixelFormatX32_Stencil8,
 };
+#[cfg(feature = "Metal_MTLRasterizationRateLayerArray")]
 pub use self::__MTLRasterizationRate::MTLRasterizationRateLayerArray;
+#[cfg(feature = "Metal_MTLRasterizationRateLayerDescriptor")]
 pub use self::__MTLRasterizationRate::MTLRasterizationRateLayerDescriptor;
 pub use self::__MTLRasterizationRate::MTLRasterizationRateMap;
+#[cfg(feature = "Metal_MTLRasterizationRateMapDescriptor")]
 pub use self::__MTLRasterizationRate::MTLRasterizationRateMapDescriptor;
+#[cfg(feature = "Metal_MTLRasterizationRateSampleArray")]
 pub use self::__MTLRasterizationRate::MTLRasterizationRateSampleArray;
 pub use self::__MTLRenderCommandEncoder::MTLDrawIndexedPrimitivesIndirectArguments;
 pub use self::__MTLRenderCommandEncoder::MTLDrawPatchIndirectArguments;
@@ -552,13 +608,21 @@ pub use self::__MTLRenderCommandEncoder::{
     MTLWinding, MTLWindingClockwise, MTLWindingCounterClockwise,
 };
 pub use self::__MTLRenderPass::MTLClearColor;
+#[cfg(feature = "Metal_MTLRenderPassAttachmentDescriptor")]
 pub use self::__MTLRenderPass::MTLRenderPassAttachmentDescriptor;
+#[cfg(feature = "Metal_MTLRenderPassColorAttachmentDescriptor")]
 pub use self::__MTLRenderPass::MTLRenderPassColorAttachmentDescriptor;
+#[cfg(feature = "Metal_MTLRenderPassColorAttachmentDescriptorArray")]
 pub use self::__MTLRenderPass::MTLRenderPassColorAttachmentDescriptorArray;
+#[cfg(feature = "Metal_MTLRenderPassDepthAttachmentDescriptor")]
 pub use self::__MTLRenderPass::MTLRenderPassDepthAttachmentDescriptor;
+#[cfg(feature = "Metal_MTLRenderPassDescriptor")]
 pub use self::__MTLRenderPass::MTLRenderPassDescriptor;
+#[cfg(feature = "Metal_MTLRenderPassSampleBufferAttachmentDescriptor")]
 pub use self::__MTLRenderPass::MTLRenderPassSampleBufferAttachmentDescriptor;
+#[cfg(feature = "Metal_MTLRenderPassSampleBufferAttachmentDescriptorArray")]
 pub use self::__MTLRenderPass::MTLRenderPassSampleBufferAttachmentDescriptorArray;
+#[cfg(feature = "Metal_MTLRenderPassStencilAttachmentDescriptor")]
 pub use self::__MTLRenderPass::MTLRenderPassStencilAttachmentDescriptor;
 pub use self::__MTLRenderPass::{
     MTLLoadAction, MTLLoadActionClear, MTLLoadActionDontCare, MTLLoadActionLoad,
@@ -579,14 +643,22 @@ pub use self::__MTLRenderPass::{
 pub use self::__MTLRenderPass::{
     MTLStoreActionOptionCustomSamplePositions, MTLStoreActionOptionNone, MTLStoreActionOptions,
 };
+#[cfg(feature = "Metal_MTLRenderPipelineColorAttachmentDescriptor")]
 pub use self::__MTLRenderPipeline::MTLRenderPipelineColorAttachmentDescriptor;
+#[cfg(feature = "Metal_MTLRenderPipelineColorAttachmentDescriptorArray")]
 pub use self::__MTLRenderPipeline::MTLRenderPipelineColorAttachmentDescriptorArray;
+#[cfg(feature = "Metal_MTLRenderPipelineDescriptor")]
 pub use self::__MTLRenderPipeline::MTLRenderPipelineDescriptor;
+#[cfg(feature = "Metal_MTLRenderPipelineFunctionsDescriptor")]
 pub use self::__MTLRenderPipeline::MTLRenderPipelineFunctionsDescriptor;
+#[cfg(feature = "Metal_MTLRenderPipelineReflection")]
 pub use self::__MTLRenderPipeline::MTLRenderPipelineReflection;
 pub use self::__MTLRenderPipeline::MTLRenderPipelineState;
+#[cfg(feature = "Metal_MTLTileRenderPipelineColorAttachmentDescriptor")]
 pub use self::__MTLRenderPipeline::MTLTileRenderPipelineColorAttachmentDescriptor;
+#[cfg(feature = "Metal_MTLTileRenderPipelineColorAttachmentDescriptorArray")]
 pub use self::__MTLRenderPipeline::MTLTileRenderPipelineColorAttachmentDescriptorArray;
+#[cfg(feature = "Metal_MTLTileRenderPipelineDescriptor")]
 pub use self::__MTLRenderPipeline::MTLTileRenderPipelineDescriptor;
 pub use self::__MTLRenderPipeline::{
     MTLBlendFactor, MTLBlendFactorBlendAlpha, MTLBlendFactorBlendColor,
@@ -653,9 +725,13 @@ pub use self::__MTLResourceStateCommandEncoder::MTLResourceStateCommandEncoder;
 pub use self::__MTLResourceStateCommandEncoder::{
     MTLSparseTextureMappingMode, MTLSparseTextureMappingModeMap, MTLSparseTextureMappingModeUnmap,
 };
+#[cfg(feature = "Metal_MTLResourceStatePassDescriptor")]
 pub use self::__MTLResourceStatePass::MTLResourceStatePassDescriptor;
+#[cfg(feature = "Metal_MTLResourceStatePassSampleBufferAttachmentDescriptor")]
 pub use self::__MTLResourceStatePass::MTLResourceStatePassSampleBufferAttachmentDescriptor;
+#[cfg(feature = "Metal_MTLResourceStatePassSampleBufferAttachmentDescriptorArray")]
 pub use self::__MTLResourceStatePass::MTLResourceStatePassSampleBufferAttachmentDescriptorArray;
+#[cfg(feature = "Metal_MTLSamplerDescriptor")]
 pub use self::__MTLSampler::MTLSamplerDescriptor;
 pub use self::__MTLSampler::MTLSamplerState;
 pub use self::__MTLSampler::{
@@ -675,10 +751,15 @@ pub use self::__MTLSampler::{
     MTLSamplerMipFilter, MTLSamplerMipFilterLinear, MTLSamplerMipFilterNearest,
     MTLSamplerMipFilterNotMipmapped,
 };
+#[cfg(feature = "Metal_MTLAttributeDescriptor")]
 pub use self::__MTLStageInputOutputDescriptor::MTLAttributeDescriptor;
+#[cfg(feature = "Metal_MTLAttributeDescriptorArray")]
 pub use self::__MTLStageInputOutputDescriptor::MTLAttributeDescriptorArray;
+#[cfg(feature = "Metal_MTLBufferLayoutDescriptor")]
 pub use self::__MTLStageInputOutputDescriptor::MTLBufferLayoutDescriptor;
+#[cfg(feature = "Metal_MTLBufferLayoutDescriptorArray")]
 pub use self::__MTLStageInputOutputDescriptor::MTLBufferLayoutDescriptorArray;
+#[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
 pub use self::__MTLStageInputOutputDescriptor::MTLStageInputOutputDescriptor;
 pub use self::__MTLStageInputOutputDescriptor::{
     MTLAttributeFormat, MTLAttributeFormatChar, MTLAttributeFormatChar2,
@@ -711,8 +792,10 @@ pub use self::__MTLStageInputOutputDescriptor::{
     MTLStepFunctionThreadPositionInGridX, MTLStepFunctionThreadPositionInGridXIndexed,
     MTLStepFunctionThreadPositionInGridY, MTLStepFunctionThreadPositionInGridYIndexed,
 };
+#[cfg(feature = "Metal_MTLSharedTextureHandle")]
 pub use self::__MTLTexture::MTLSharedTextureHandle;
 pub use self::__MTLTexture::MTLTexture;
+#[cfg(feature = "Metal_MTLTextureDescriptor")]
 pub use self::__MTLTexture::MTLTextureDescriptor;
 pub use self::__MTLTexture::MTLTextureSwizzleChannels;
 pub use self::__MTLTexture::{
@@ -733,10 +816,15 @@ pub use self::__MTLTypes::MTLOrigin;
 pub use self::__MTLTypes::MTLRegion;
 pub use self::__MTLTypes::MTLSamplePosition;
 pub use self::__MTLTypes::MTLSize;
+#[cfg(feature = "Metal_MTLVertexAttributeDescriptor")]
 pub use self::__MTLVertexDescriptor::MTLVertexAttributeDescriptor;
+#[cfg(feature = "Metal_MTLVertexAttributeDescriptorArray")]
 pub use self::__MTLVertexDescriptor::MTLVertexAttributeDescriptorArray;
+#[cfg(feature = "Metal_MTLVertexBufferLayoutDescriptor")]
 pub use self::__MTLVertexDescriptor::MTLVertexBufferLayoutDescriptor;
+#[cfg(feature = "Metal_MTLVertexBufferLayoutDescriptorArray")]
 pub use self::__MTLVertexDescriptor::MTLVertexBufferLayoutDescriptorArray;
+#[cfg(feature = "Metal_MTLVertexDescriptor")]
 pub use self::__MTLVertexDescriptor::MTLVertexDescriptor;
 pub use self::__MTLVertexDescriptor::{
     MTLVertexFormat, MTLVertexFormatChar, MTLVertexFormatChar2, MTLVertexFormatChar2Normalized,
@@ -763,4 +851,5 @@ pub use self::__MTLVertexDescriptor::{
     MTLVertexStepFunctionPerVertex,
 };
 pub use self::__MTLVisibleFunctionTable::MTLVisibleFunctionTable;
+#[cfg(feature = "Metal_MTLVisibleFunctionTableDescriptor")]
 pub use self::__MTLVisibleFunctionTable::MTLVisibleFunctionTableDescriptor;

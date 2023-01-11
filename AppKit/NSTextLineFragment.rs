@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSTextLineFragment")]
     pub struct NSTextLineFragment;
 
+    #[cfg(feature = "AppKit_NSTextLineFragment")]
     unsafe impl ClassType for NSTextLineFragment {
         type Super = NSObject;
     }

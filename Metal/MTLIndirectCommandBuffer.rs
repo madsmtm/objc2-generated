@@ -34,8 +34,10 @@ inline_fn!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLIndirectCommandBufferDescriptor")]
     pub struct MTLIndirectCommandBufferDescriptor;
 
+    #[cfg(feature = "Metal_MTLIndirectCommandBufferDescriptor")]
     unsafe impl ClassType for MTLIndirectCommandBufferDescriptor {
         type Super = NSObject;
     }

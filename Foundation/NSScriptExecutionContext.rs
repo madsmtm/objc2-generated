@@ -5,8 +5,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSScriptExecutionContext")]
     pub struct NSScriptExecutionContext;
 
+    #[cfg(feature = "Foundation_NSScriptExecutionContext")]
     unsafe impl ClassType for NSScriptExecutionContext {
         type Super = NSObject;
     }

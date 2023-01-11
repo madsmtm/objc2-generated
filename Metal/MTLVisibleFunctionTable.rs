@@ -6,8 +6,10 @@ use crate::Metal::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLVisibleFunctionTableDescriptor")]
     pub struct MTLVisibleFunctionTableDescriptor;
 
+    #[cfg(feature = "Metal_MTLVisibleFunctionTableDescriptor")]
     unsafe impl ClassType for MTLVisibleFunctionTableDescriptor {
         type Super = NSObject;
     }

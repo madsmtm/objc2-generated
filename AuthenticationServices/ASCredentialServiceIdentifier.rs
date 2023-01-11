@@ -14,8 +14,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AuthenticationServices_ASCredentialServiceIdentifier")]
     pub struct ASCredentialServiceIdentifier;
 
+    #[cfg(feature = "AuthenticationServices_ASCredentialServiceIdentifier")]
     unsafe impl ClassType for ASCredentialServiceIdentifier {
         type Super = NSObject;
     }

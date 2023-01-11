@@ -61,8 +61,10 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSURLProtocol")]
     pub struct NSURLProtocol;
 
+    #[cfg(feature = "Foundation_NSURLProtocol")]
     unsafe impl ClassType for NSURLProtocol {
         type Super = NSObject;
     }

@@ -15,8 +15,10 @@ extern_static!(NSSearchFieldNoRecentsMenuItemTag: NSInteger = 1003);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSSearchFieldCell")]
     pub struct NSSearchFieldCell;
 
+    #[cfg(feature = "AppKit_NSSearchFieldCell")]
     unsafe impl ClassType for NSSearchFieldCell {
         #[inherits(NSActionCell, NSCell, NSObject)]
         type Super = NSTextFieldCell;

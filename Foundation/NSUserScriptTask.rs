@@ -7,8 +7,10 @@ pub type NSUserScriptTaskCompletionHandler = *mut Block<(*mut NSError,), ()>;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSUserScriptTask")]
     pub struct NSUserScriptTask;
 
+    #[cfg(feature = "Foundation_NSUserScriptTask")]
     unsafe impl ClassType for NSUserScriptTask {
         type Super = NSObject;
     }
@@ -40,8 +42,10 @@ pub type NSUserUnixTaskCompletionHandler = *mut Block<(*mut NSError,), ()>;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSUserUnixTask")]
     pub struct NSUserUnixTask;
 
+    #[cfg(feature = "Foundation_NSUserUnixTask")]
     unsafe impl ClassType for NSUserUnixTask {
         #[inherits(NSObject)]
         type Super = NSUserScriptTask;
@@ -90,8 +94,10 @@ pub type NSUserAppleScriptTaskCompletionHandler =
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSUserAppleScriptTask")]
     pub struct NSUserAppleScriptTask;
 
+    #[cfg(feature = "Foundation_NSUserAppleScriptTask")]
     unsafe impl ClassType for NSUserAppleScriptTask {
         #[inherits(NSObject)]
         type Super = NSUserScriptTask;
@@ -115,8 +121,10 @@ pub type NSUserAutomatorTaskCompletionHandler = *mut Block<(*mut Object, *mut NS
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSUserAutomatorTask")]
     pub struct NSUserAutomatorTask;
 
+    #[cfg(feature = "Foundation_NSUserAutomatorTask")]
     unsafe impl ClassType for NSUserAutomatorTask {
         #[inherits(NSObject)]
         type Super = NSUserScriptTask;

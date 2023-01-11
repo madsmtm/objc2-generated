@@ -18,8 +18,10 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreData_NSManagedObject")]
     pub struct NSManagedObject;
 
+    #[cfg(feature = "CoreData_NSManagedObject")]
     unsafe impl ClassType for NSManagedObject {
         type Super = NSObject;
     }

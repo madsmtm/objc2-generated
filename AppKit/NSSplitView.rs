@@ -18,8 +18,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSSplitView")]
     pub struct NSSplitView;
 
+    #[cfg(feature = "AppKit_NSSplitView")]
     unsafe impl ClassType for NSSplitView {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;

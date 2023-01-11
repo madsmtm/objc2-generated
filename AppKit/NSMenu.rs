@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSMenu")]
     pub struct NSMenu;
 
+    #[cfg(feature = "AppKit_NSMenu")]
     unsafe impl ClassType for NSMenu {
         type Super = NSObject;
     }

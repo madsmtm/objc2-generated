@@ -25,8 +25,10 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSISO8601DateFormatter")]
     pub struct NSISO8601DateFormatter;
 
+    #[cfg(feature = "Foundation_NSISO8601DateFormatter")]
     unsafe impl ClassType for NSISO8601DateFormatter {
         #[inherits(NSObject)]
         type Super = NSFormatter;

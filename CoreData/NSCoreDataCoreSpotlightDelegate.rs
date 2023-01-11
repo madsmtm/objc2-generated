@@ -10,8 +10,10 @@ extern_static!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreData_NSCoreDataCoreSpotlightDelegate")]
     pub struct NSCoreDataCoreSpotlightDelegate;
 
+    #[cfg(feature = "CoreData_NSCoreDataCoreSpotlightDelegate")]
     unsafe impl ClassType for NSCoreDataCoreSpotlightDelegate {
         type Super = NSObject;
     }

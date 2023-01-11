@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSCollectionViewGridLayout")]
     pub struct NSCollectionViewGridLayout;
 
+    #[cfg(feature = "AppKit_NSCollectionViewGridLayout")]
     unsafe impl ClassType for NSCollectionViewGridLayout {
         #[inherits(NSObject)]
         type Super = NSCollectionViewLayout;

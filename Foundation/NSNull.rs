@@ -5,8 +5,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSNull")]
     pub struct NSNull;
 
+    #[cfg(feature = "Foundation_NSNull")]
     unsafe impl ClassType for NSNull {
         type Super = NSObject;
     }

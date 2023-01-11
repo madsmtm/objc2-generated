@@ -6,6 +6,7 @@ use crate::Foundation::*;
 
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreData_NSFetchedResultsController")]
     pub struct NSFetchedResultsController<
         ResultType: Message = Object,
         ResultTypeOwnership: Ownership = Shared,
@@ -14,6 +15,7 @@ __inner_extern_class!(
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
+    #[cfg(feature = "CoreData_NSFetchedResultsController")]
     unsafe impl<ResultType: Message, ResultTypeOwnership: Ownership> ClassType
         for NSFetchedResultsController<ResultType, ResultTypeOwnership>
     {

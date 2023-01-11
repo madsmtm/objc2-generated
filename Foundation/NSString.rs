@@ -59,8 +59,10 @@ ns_options!(
 
 extern_class!(
     #[derive(PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSString")]
     pub struct NSString;
 
+    #[cfg(feature = "Foundation_NSString")]
     unsafe impl ClassType for NSString {
         type Super = NSObject;
     }
@@ -766,8 +768,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSMutableString")]
     pub struct NSMutableString;
 
+    #[cfg(feature = "Foundation_NSMutableString")]
     unsafe impl ClassType for NSMutableString {
         #[inherits(NSObject)]
         type Super = NSString;
@@ -948,8 +952,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSSimpleCString")]
     pub struct NSSimpleCString;
 
+    #[cfg(feature = "Foundation_NSSimpleCString")]
     unsafe impl ClassType for NSSimpleCString {
         #[inherits(NSObject)]
         type Super = NSString;
@@ -963,8 +969,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSConstantString")]
     pub struct NSConstantString;
 
+    #[cfg(feature = "Foundation_NSConstantString")]
     unsafe impl ClassType for NSConstantString {
         #[inherits(NSString, NSObject)]
         type Super = NSSimpleCString;

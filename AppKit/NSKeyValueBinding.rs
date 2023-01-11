@@ -15,8 +15,10 @@ typed_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSBindingSelectionMarker")]
     pub struct NSBindingSelectionMarker;
 
+    #[cfg(feature = "AppKit_NSBindingSelectionMarker")]
     unsafe impl ClassType for NSBindingSelectionMarker {
         type Super = NSObject;
     }

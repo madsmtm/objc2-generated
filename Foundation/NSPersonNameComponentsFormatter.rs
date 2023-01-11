@@ -23,8 +23,10 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSPersonNameComponentsFormatter")]
     pub struct NSPersonNameComponentsFormatter;
 
+    #[cfg(feature = "Foundation_NSPersonNameComponentsFormatter")]
     unsafe impl ClassType for NSPersonNameComponentsFormatter {
         #[inherits(NSObject)]
         type Super = NSFormatter;

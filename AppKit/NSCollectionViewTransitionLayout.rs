@@ -9,8 +9,10 @@ pub type NSCollectionViewTransitionLayoutAnimatedKey = NSString;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSCollectionViewTransitionLayout")]
     pub struct NSCollectionViewTransitionLayout;
 
+    #[cfg(feature = "AppKit_NSCollectionViewTransitionLayout")]
     unsafe impl ClassType for NSCollectionViewTransitionLayout {
         #[inherits(NSObject)]
         type Super = NSCollectionViewLayout;

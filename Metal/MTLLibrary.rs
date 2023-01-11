@@ -15,8 +15,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLVertexAttribute")]
     pub struct MTLVertexAttribute;
 
+    #[cfg(feature = "Metal_MTLVertexAttribute")]
     unsafe impl ClassType for MTLVertexAttribute {
         type Super = NSObject;
     }
@@ -48,8 +50,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLAttribute")]
     pub struct MTLAttribute;
 
+    #[cfg(feature = "Metal_MTLAttribute")]
     unsafe impl ClassType for MTLAttribute {
         type Super = NSObject;
     }
@@ -92,8 +96,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLFunctionConstant")]
     pub struct MTLFunctionConstant;
 
+    #[cfg(feature = "Metal_MTLFunctionConstant")]
     unsafe impl ClassType for MTLFunctionConstant {
         type Super = NSObject;
     }
@@ -188,8 +194,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLCompileOptions")]
     pub struct MTLCompileOptions;
 
+    #[cfg(feature = "Metal_MTLCompileOptions")]
     unsafe impl ClassType for MTLCompileOptions {
         type Super = NSObject;
     }

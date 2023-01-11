@@ -58,8 +58,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSLayoutManager")]
     pub struct NSLayoutManager;
 
+    #[cfg(feature = "AppKit_NSLayoutManager")]
     unsafe impl ClassType for NSLayoutManager {
         type Super = NSObject;
     }

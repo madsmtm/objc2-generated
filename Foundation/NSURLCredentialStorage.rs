@@ -5,8 +5,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSURLCredentialStorage")]
     pub struct NSURLCredentialStorage;
 
+    #[cfg(feature = "Foundation_NSURLCredentialStorage")]
     unsafe impl ClassType for NSURLCredentialStorage {
         type Super = NSObject;
     }

@@ -59,8 +59,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLCommandBufferDescriptor")]
     pub struct MTLCommandBufferDescriptor;
 
+    #[cfg(feature = "Metal_MTLCommandBufferDescriptor")]
     unsafe impl ClassType for MTLCommandBufferDescriptor {
         type Super = NSObject;
     }

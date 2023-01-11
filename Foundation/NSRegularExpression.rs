@@ -18,8 +18,10 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSRegularExpression")]
     pub struct NSRegularExpression;
 
+    #[cfg(feature = "Foundation_NSRegularExpression")]
     unsafe impl ClassType for NSRegularExpression {
         type Super = NSObject;
     }
@@ -191,8 +193,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSDataDetector")]
     pub struct NSDataDetector;
 
+    #[cfg(feature = "Foundation_NSDataDetector")]
     unsafe impl ClassType for NSDataDetector {
         #[inherits(NSObject)]
         type Super = NSRegularExpression;

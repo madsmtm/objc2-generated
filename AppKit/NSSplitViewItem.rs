@@ -28,8 +28,10 @@ extern_static!(NSSplitViewItemUnspecifiedDimension: CGFloat);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSSplitViewItem")]
     pub struct NSSplitViewItem;
 
+    #[cfg(feature = "AppKit_NSSplitViewItem")]
     unsafe impl ClassType for NSSplitViewItem {
         type Super = NSObject;
     }

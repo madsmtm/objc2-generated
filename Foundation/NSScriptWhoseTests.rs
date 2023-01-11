@@ -19,8 +19,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSScriptWhoseTest")]
     pub struct NSScriptWhoseTest;
 
+    #[cfg(feature = "Foundation_NSScriptWhoseTest")]
     unsafe impl ClassType for NSScriptWhoseTest {
         type Super = NSObject;
     }
@@ -46,8 +48,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSLogicalTest")]
     pub struct NSLogicalTest;
 
+    #[cfg(feature = "Foundation_NSLogicalTest")]
     unsafe impl ClassType for NSLogicalTest {
         #[inherits(NSObject)]
         type Super = NSScriptWhoseTest;
@@ -81,8 +85,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSSpecifierTest")]
     pub struct NSSpecifierTest;
 
+    #[cfg(feature = "Foundation_NSSpecifierTest")]
     unsafe impl ClassType for NSSpecifierTest {
         #[inherits(NSObject)]
         type Super = NSScriptWhoseTest;

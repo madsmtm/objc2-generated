@@ -9,8 +9,10 @@ pub type NSDataAssetName = NSString;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSDataAsset")]
     pub struct NSDataAsset;
 
+    #[cfg(feature = "AppKit_NSDataAsset")]
     unsafe impl ClassType for NSDataAsset {
         type Super = NSObject;
     }

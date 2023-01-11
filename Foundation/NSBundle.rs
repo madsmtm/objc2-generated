@@ -16,8 +16,10 @@ extern_enum!(
 
 extern_class!(
     #[derive(PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSBundle")]
     pub struct NSBundle;
 
+    #[cfg(feature = "Foundation_NSBundle")]
     unsafe impl ClassType for NSBundle {
         type Super = NSObject;
     }
@@ -343,8 +345,10 @@ extern_static!(NSLoadedClasses: &'static NSString);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSBundleResourceRequest")]
     pub struct NSBundleResourceRequest;
 
+    #[cfg(feature = "Foundation_NSBundleResourceRequest")]
     unsafe impl ClassType for NSBundleResourceRequest {
         type Super = NSObject;
     }

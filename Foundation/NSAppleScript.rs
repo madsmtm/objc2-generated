@@ -15,8 +15,10 @@ extern_static!(NSAppleScriptErrorRange: &'static NSString);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSAppleScript")]
     pub struct NSAppleScript;
 
+    #[cfg(feature = "Foundation_NSAppleScript")]
     unsafe impl ClassType for NSAppleScript {
         type Super = NSObject;
     }

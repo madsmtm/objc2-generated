@@ -54,8 +54,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSTextBlock")]
     pub struct NSTextBlock;
 
+    #[cfg(feature = "AppKit_NSTextBlock")]
     unsafe impl ClassType for NSTextBlock {
         type Super = NSObject;
     }
@@ -184,8 +186,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSTextTableBlock")]
     pub struct NSTextTableBlock;
 
+    #[cfg(feature = "AppKit_NSTextTableBlock")]
     unsafe impl ClassType for NSTextTableBlock {
         #[inherits(NSObject)]
         type Super = NSTextBlock;
@@ -226,8 +230,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSTextTable")]
     pub struct NSTextTable;
 
+    #[cfg(feature = "AppKit_NSTextTable")]
     unsafe impl ClassType for NSTextTable {
         #[inherits(NSObject)]
         type Super = NSTextBlock;

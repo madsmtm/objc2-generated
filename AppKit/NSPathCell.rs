@@ -16,8 +16,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSPathCell")]
     pub struct NSPathCell;
 
+    #[cfg(feature = "AppKit_NSPathCell")]
     unsafe impl ClassType for NSPathCell {
         #[inherits(NSCell, NSObject)]
         type Super = NSActionCell;

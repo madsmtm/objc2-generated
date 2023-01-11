@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSPressGestureRecognizer")]
     pub struct NSPressGestureRecognizer;
 
+    #[cfg(feature = "AppKit_NSPressGestureRecognizer")]
     unsafe impl ClassType for NSPressGestureRecognizer {
         #[inherits(NSObject)]
         type Super = NSGestureRecognizer;

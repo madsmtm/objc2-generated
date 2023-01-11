@@ -23,8 +23,10 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSTrackingArea")]
     pub struct NSTrackingArea;
 
+    #[cfg(feature = "AppKit_NSTrackingArea")]
     unsafe impl ClassType for NSTrackingArea {
         type Super = NSObject;
     }

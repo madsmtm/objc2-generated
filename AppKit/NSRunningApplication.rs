@@ -24,8 +24,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSRunningApplication")]
     pub struct NSRunningApplication;
 
+    #[cfg(feature = "AppKit_NSRunningApplication")]
     unsafe impl ClassType for NSRunningApplication {
         type Super = NSObject;
     }

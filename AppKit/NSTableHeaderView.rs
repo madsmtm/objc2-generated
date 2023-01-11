@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSTableHeaderView")]
     pub struct NSTableHeaderView;
 
+    #[cfg(feature = "AppKit_NSTableHeaderView")]
     unsafe impl ClassType for NSTableHeaderView {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;

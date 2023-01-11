@@ -44,8 +44,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSTextFinder")]
     pub struct NSTextFinder;
 
+    #[cfg(feature = "AppKit_NSTextFinder")]
     unsafe impl ClassType for NSTextFinder {
         type Super = NSObject;
     }

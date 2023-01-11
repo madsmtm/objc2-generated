@@ -14,8 +14,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSCachedURLResponse")]
     pub struct NSCachedURLResponse;
 
+    #[cfg(feature = "Foundation_NSCachedURLResponse")]
     unsafe impl ClassType for NSCachedURLResponse {
         type Super = NSObject;
     }
@@ -65,8 +67,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSURLCache")]
     pub struct NSURLCache;
 
+    #[cfg(feature = "Foundation_NSURLCache")]
     unsafe impl ClassType for NSURLCache {
         type Super = NSObject;
     }

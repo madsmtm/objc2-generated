@@ -15,8 +15,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDCredential")]
     pub struct ASAuthorizationAppleIDCredential;
 
+    #[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDCredential")]
     unsafe impl ClassType for ASAuthorizationAppleIDCredential {
         type Super = NSObject;
     }

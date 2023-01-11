@@ -15,8 +15,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSXMLParser")]
     pub struct NSXMLParser;
 
+    #[cfg(feature = "Foundation_NSXMLParser")]
     unsafe impl ClassType for NSXMLParser {
         type Super = NSObject;
     }

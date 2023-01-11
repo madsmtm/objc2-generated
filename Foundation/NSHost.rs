@@ -5,8 +5,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSHost")]
     pub struct NSHost;
 
+    #[cfg(feature = "Foundation_NSHost")]
     unsafe impl ClassType for NSHost {
         type Super = NSObject;
     }

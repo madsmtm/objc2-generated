@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSPanGestureRecognizer")]
     pub struct NSPanGestureRecognizer;
 
+    #[cfg(feature = "AppKit_NSPanGestureRecognizer")]
     unsafe impl ClassType for NSPanGestureRecognizer {
         #[inherits(NSObject)]
         type Super = NSGestureRecognizer;

@@ -52,8 +52,10 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSTextList")]
     pub struct NSTextList;
 
+    #[cfg(feature = "AppKit_NSTextList")]
     unsafe impl ClassType for NSTextList {
         type Super = NSObject;
     }

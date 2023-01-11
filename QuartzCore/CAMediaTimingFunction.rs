@@ -10,8 +10,10 @@ typed_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreAnimation_CAMediaTimingFunction")]
     pub struct CAMediaTimingFunction;
 
+    #[cfg(feature = "CoreAnimation_CAMediaTimingFunction")]
     unsafe impl ClassType for CAMediaTimingFunction {
         type Super = NSObject;
     }

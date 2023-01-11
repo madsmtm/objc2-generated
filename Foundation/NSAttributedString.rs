@@ -9,8 +9,10 @@ typed_extensible_enum!(
 
 extern_class!(
     #[derive(PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSAttributedString")]
     pub struct NSAttributedString;
 
+    #[cfg(feature = "Foundation_NSAttributedString")]
     unsafe impl ClassType for NSAttributedString {
         type Super = NSObject;
     }
@@ -130,8 +132,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSMutableAttributedString")]
     pub struct NSMutableAttributedString;
 
+    #[cfg(feature = "Foundation_NSMutableAttributedString")]
     unsafe impl ClassType for NSMutableAttributedString {
         #[inherits(NSObject)]
         type Super = NSAttributedString;
@@ -258,8 +262,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSAttributedStringMarkdownParsingOptions")]
     pub struct NSAttributedStringMarkdownParsingOptions;
 
+    #[cfg(feature = "Foundation_NSAttributedStringMarkdownParsingOptions")]
     unsafe impl ClassType for NSAttributedStringMarkdownParsingOptions {
         type Super = NSObject;
     }
@@ -420,8 +426,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSPresentationIntent")]
     pub struct NSPresentationIntent;
 
+    #[cfg(feature = "Foundation_NSPresentationIntent")]
     unsafe impl ClassType for NSPresentationIntent {
         type Super = NSObject;
     }

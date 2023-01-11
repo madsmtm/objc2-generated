@@ -43,8 +43,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSRuleEditor")]
     pub struct NSRuleEditor;
 
+    #[cfg(feature = "AppKit_NSRuleEditor")]
     unsafe impl ClassType for NSRuleEditor {
         #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSControl;

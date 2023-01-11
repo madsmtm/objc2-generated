@@ -70,8 +70,10 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSTextAttachment")]
     pub struct NSTextAttachment;
 
+    #[cfg(feature = "AppKit_NSTextAttachment")]
     unsafe impl ClassType for NSTextAttachment {
         type Super = NSObject;
     }
@@ -183,8 +185,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSTextAttachmentViewProvider")]
     pub struct NSTextAttachmentViewProvider;
 
+    #[cfg(feature = "AppKit_NSTextAttachmentViewProvider")]
     unsafe impl ClassType for NSTextAttachmentViewProvider {
         type Super = NSObject;
     }

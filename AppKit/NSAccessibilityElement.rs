@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSAccessibilityElement")]
     pub struct NSAccessibilityElement;
 
+    #[cfg(feature = "AppKit_NSAccessibilityElement")]
     unsafe impl ClassType for NSAccessibilityElement {
         type Super = NSObject;
     }

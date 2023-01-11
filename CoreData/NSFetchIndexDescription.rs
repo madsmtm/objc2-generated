@@ -6,8 +6,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreData_NSFetchIndexDescription")]
     pub struct NSFetchIndexDescription;
 
+    #[cfg(feature = "CoreData_NSFetchIndexDescription")]
     unsafe impl ClassType for NSFetchIndexDescription {
         type Super = NSObject;
     }

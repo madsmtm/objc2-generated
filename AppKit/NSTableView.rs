@@ -101,8 +101,10 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSTableView")]
     pub struct NSTableView;
 
+    #[cfg(feature = "AppKit_NSTableView")]
     unsafe impl ClassType for NSTableView {
         #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSControl;

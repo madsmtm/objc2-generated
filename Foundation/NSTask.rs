@@ -13,8 +13,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSTask")]
     pub struct NSTask;
 
+    #[cfg(feature = "Foundation_NSTask")]
     unsafe impl ClassType for NSTask {
         type Super = NSObject;
     }

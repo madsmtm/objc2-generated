@@ -5,8 +5,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSPersonNameComponents")]
     pub struct NSPersonNameComponents;
 
+    #[cfg(feature = "Foundation_NSPersonNameComponents")]
     unsafe impl ClassType for NSPersonNameComponents {
         type Super = NSObject;
     }

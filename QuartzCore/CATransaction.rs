@@ -6,8 +6,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreAnimation_CATransaction")]
     pub struct CATransaction;
 
+    #[cfg(feature = "CoreAnimation_CATransaction")]
     unsafe impl ClassType for CATransaction {
         type Super = NSObject;
     }

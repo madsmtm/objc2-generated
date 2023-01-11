@@ -5,8 +5,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSIndexSet")]
     pub struct NSIndexSet;
 
+    #[cfg(feature = "Foundation_NSIndexSet")]
     unsafe impl ClassType for NSIndexSet {
         type Super = NSObject;
     }
@@ -174,8 +176,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSMutableIndexSet")]
     pub struct NSMutableIndexSet;
 
+    #[cfg(feature = "Foundation_NSMutableIndexSet")]
     unsafe impl ClassType for NSMutableIndexSet {
         #[inherits(NSObject)]
         type Super = NSIndexSet;

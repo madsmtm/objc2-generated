@@ -55,8 +55,10 @@ inline_fn!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLRenderPassAttachmentDescriptor")]
     pub struct MTLRenderPassAttachmentDescriptor;
 
+    #[cfg(feature = "Metal_MTLRenderPassAttachmentDescriptor")]
     unsafe impl ClassType for MTLRenderPassAttachmentDescriptor {
         type Super = NSObject;
     }
@@ -135,8 +137,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLRenderPassColorAttachmentDescriptor")]
     pub struct MTLRenderPassColorAttachmentDescriptor;
 
+    #[cfg(feature = "Metal_MTLRenderPassColorAttachmentDescriptor")]
     unsafe impl ClassType for MTLRenderPassColorAttachmentDescriptor {
         #[inherits(NSObject)]
         type Super = MTLRenderPassAttachmentDescriptor;
@@ -165,8 +169,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLRenderPassDepthAttachmentDescriptor")]
     pub struct MTLRenderPassDepthAttachmentDescriptor;
 
+    #[cfg(feature = "Metal_MTLRenderPassDepthAttachmentDescriptor")]
     unsafe impl ClassType for MTLRenderPassDepthAttachmentDescriptor {
         #[inherits(NSObject)]
         type Super = MTLRenderPassAttachmentDescriptor;
@@ -200,8 +206,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLRenderPassStencilAttachmentDescriptor")]
     pub struct MTLRenderPassStencilAttachmentDescriptor;
 
+    #[cfg(feature = "Metal_MTLRenderPassStencilAttachmentDescriptor")]
     unsafe impl ClassType for MTLRenderPassStencilAttachmentDescriptor {
         #[inherits(NSObject)]
         type Super = MTLRenderPassAttachmentDescriptor;
@@ -230,8 +238,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLRenderPassColorAttachmentDescriptorArray")]
     pub struct MTLRenderPassColorAttachmentDescriptorArray;
 
+    #[cfg(feature = "Metal_MTLRenderPassColorAttachmentDescriptorArray")]
     unsafe impl ClassType for MTLRenderPassColorAttachmentDescriptorArray {
         type Super = NSObject;
     }
@@ -259,8 +269,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLRenderPassSampleBufferAttachmentDescriptor")]
     pub struct MTLRenderPassSampleBufferAttachmentDescriptor;
 
+    #[cfg(feature = "Metal_MTLRenderPassSampleBufferAttachmentDescriptor")]
     unsafe impl ClassType for MTLRenderPassSampleBufferAttachmentDescriptor {
         type Super = NSObject;
     }
@@ -303,8 +315,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLRenderPassSampleBufferAttachmentDescriptorArray")]
     pub struct MTLRenderPassSampleBufferAttachmentDescriptorArray;
 
+    #[cfg(feature = "Metal_MTLRenderPassSampleBufferAttachmentDescriptorArray")]
     unsafe impl ClassType for MTLRenderPassSampleBufferAttachmentDescriptorArray {
         type Super = NSObject;
     }
@@ -332,8 +346,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLRenderPassDescriptor")]
     pub struct MTLRenderPassDescriptor;
 
+    #[cfg(feature = "Metal_MTLRenderPassDescriptor")]
     unsafe impl ClassType for MTLRenderPassDescriptor {
         type Super = NSObject;
     }

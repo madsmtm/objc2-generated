@@ -17,8 +17,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSMatrix")]
     pub struct NSMatrix;
 
+    #[cfg(feature = "AppKit_NSMatrix")]
     unsafe impl ClassType for NSMatrix {
         #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSControl;

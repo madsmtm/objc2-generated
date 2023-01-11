@@ -75,8 +75,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLVertexBufferLayoutDescriptor")]
     pub struct MTLVertexBufferLayoutDescriptor;
 
+    #[cfg(feature = "Metal_MTLVertexBufferLayoutDescriptor")]
     unsafe impl ClassType for MTLVertexBufferLayoutDescriptor {
         type Super = NSObject;
     }
@@ -107,8 +109,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLVertexBufferLayoutDescriptorArray")]
     pub struct MTLVertexBufferLayoutDescriptorArray;
 
+    #[cfg(feature = "Metal_MTLVertexBufferLayoutDescriptorArray")]
     unsafe impl ClassType for MTLVertexBufferLayoutDescriptorArray {
         type Super = NSObject;
     }
@@ -136,8 +140,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLVertexAttributeDescriptor")]
     pub struct MTLVertexAttributeDescriptor;
 
+    #[cfg(feature = "Metal_MTLVertexAttributeDescriptor")]
     unsafe impl ClassType for MTLVertexAttributeDescriptor {
         type Super = NSObject;
     }
@@ -168,8 +174,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLVertexAttributeDescriptorArray")]
     pub struct MTLVertexAttributeDescriptorArray;
 
+    #[cfg(feature = "Metal_MTLVertexAttributeDescriptorArray")]
     unsafe impl ClassType for MTLVertexAttributeDescriptorArray {
         type Super = NSObject;
     }
@@ -197,8 +205,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLVertexDescriptor")]
     pub struct MTLVertexDescriptor;
 
+    #[cfg(feature = "Metal_MTLVertexDescriptor")]
     unsafe impl ClassType for MTLVertexDescriptor {
         type Super = NSObject;
     }

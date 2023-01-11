@@ -5,8 +5,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSProtocolChecker")]
     pub struct NSProtocolChecker;
 
+    #[cfg(feature = "Foundation_NSProtocolChecker")]
     unsafe impl ClassType for NSProtocolChecker {
         type Super = NSProxy;
     }

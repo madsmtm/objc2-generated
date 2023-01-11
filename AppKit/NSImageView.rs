@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSImageView")]
     pub struct NSImageView;
 
+    #[cfg(feature = "AppKit_NSImageView")]
     unsafe impl ClassType for NSImageView {
         #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSControl;

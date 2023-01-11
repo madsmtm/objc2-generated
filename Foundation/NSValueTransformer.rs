@@ -21,8 +21,10 @@ extern_static!(NSSecureUnarchiveFromDataTransformerName: &'static NSValueTransfo
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSValueTransformer")]
     pub struct NSValueTransformer;
 
+    #[cfg(feature = "Foundation_NSValueTransformer")]
     unsafe impl ClassType for NSValueTransformer {
         type Super = NSObject;
     }
@@ -66,8 +68,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSSecureUnarchiveFromDataTransformer")]
     pub struct NSSecureUnarchiveFromDataTransformer;
 
+    #[cfg(feature = "Foundation_NSSecureUnarchiveFromDataTransformer")]
     unsafe impl ClassType for NSSecureUnarchiveFromDataTransformer {
         #[inherits(NSObject)]
         type Super = NSValueTransformer;

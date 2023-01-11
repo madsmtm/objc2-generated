@@ -5,8 +5,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSTimer")]
     pub struct NSTimer;
 
+    #[cfg(feature = "Foundation_NSTimer")]
     unsafe impl ClassType for NSTimer {
         type Super = NSObject;
     }

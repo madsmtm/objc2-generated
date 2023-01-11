@@ -30,8 +30,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSBrowser")]
     pub struct NSBrowser;
 
+    #[cfg(feature = "AppKit_NSBrowser")]
     unsafe impl ClassType for NSBrowser {
         #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSControl;

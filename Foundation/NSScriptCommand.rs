@@ -22,8 +22,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSScriptCommand")]
     pub struct NSScriptCommand;
 
+    #[cfg(feature = "Foundation_NSScriptCommand")]
     unsafe impl ClassType for NSScriptCommand {
         type Super = NSObject;
     }

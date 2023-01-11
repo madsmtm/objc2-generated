@@ -9,8 +9,10 @@ typed_extensible_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSNotification")]
     pub struct NSNotification;
 
+    #[cfg(feature = "Foundation_NSNotification")]
     unsafe impl ClassType for NSNotification {
         type Super = NSObject;
     }
@@ -72,8 +74,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSNotificationCenter")]
     pub struct NSNotificationCenter;
 
+    #[cfg(feature = "Foundation_NSNotificationCenter")]
     unsafe impl ClassType for NSNotificationCenter {
         type Super = NSObject;
     }

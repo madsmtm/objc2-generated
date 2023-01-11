@@ -5,8 +5,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSDistantObject")]
     pub struct NSDistantObject;
 
+    #[cfg(feature = "Foundation_NSDistantObject")]
     unsafe impl ClassType for NSDistantObject {
         type Super = NSProxy;
     }

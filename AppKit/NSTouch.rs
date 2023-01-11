@@ -42,8 +42,10 @@ inline_fn!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSTouch")]
     pub struct NSTouch;
 
+    #[cfg(feature = "AppKit_NSTouch")]
     unsafe impl ClassType for NSTouch {
         type Super = NSObject;
     }

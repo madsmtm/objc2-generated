@@ -32,8 +32,10 @@ extern_static!(NSAnimationProgressMark: &'static NSString);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSAnimation")]
     pub struct NSAnimation;
 
+    #[cfg(feature = "AppKit_NSAnimation")]
     unsafe impl ClassType for NSAnimation {
         type Super = NSObject;
     }
@@ -204,8 +206,10 @@ extern_static!(NSViewAnimationFadeOutEffect: &'static NSViewAnimationEffectName)
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSViewAnimation")]
     pub struct NSViewAnimation;
 
+    #[cfg(feature = "AppKit_NSViewAnimation")]
     unsafe impl ClassType for NSViewAnimation {
         #[inherits(NSObject)]
         type Super = NSAnimation;

@@ -7,6 +7,7 @@ use crate::Foundation::*;
 
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSDiffableDataSourceSnapshot")]
     pub struct NSDiffableDataSourceSnapshot<
         SectionIdentifierType: Message = Object,
         ItemIdentifierType: Message = Object,
@@ -18,6 +19,7 @@ __inner_extern_class!(
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
+    #[cfg(feature = "AppKit_NSDiffableDataSourceSnapshot")]
     unsafe impl<
             SectionIdentifierType: Message,
             ItemIdentifierType: Message,
@@ -209,6 +211,7 @@ pub type NSCollectionViewDiffableDataSourceSupplementaryViewProvider = *mut Bloc
 
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSCollectionViewDiffableDataSource")]
     pub struct NSCollectionViewDiffableDataSource<
         SectionIdentifierType: Message = Object,
         ItemIdentifierType: Message = Object,
@@ -220,6 +223,7 @@ __inner_extern_class!(
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
+    #[cfg(feature = "AppKit_NSCollectionViewDiffableDataSource")]
     unsafe impl<
             SectionIdentifierType: Message,
             ItemIdentifierType: Message,

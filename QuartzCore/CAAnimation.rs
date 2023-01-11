@@ -22,8 +22,10 @@ typed_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreAnimation_CAAnimation")]
     pub struct CAAnimation;
 
+    #[cfg(feature = "CoreAnimation_CAAnimation")]
     unsafe impl ClassType for CAAnimation {
         type Super = NSObject;
     }
@@ -87,8 +89,10 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreAnimation_CAPropertyAnimation")]
     pub struct CAPropertyAnimation;
 
+    #[cfg(feature = "CoreAnimation_CAPropertyAnimation")]
     unsafe impl ClassType for CAPropertyAnimation {
         #[inherits(NSObject)]
         type Super = CAAnimation;
@@ -134,8 +138,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreAnimation_CABasicAnimation")]
     pub struct CABasicAnimation;
 
+    #[cfg(feature = "CoreAnimation_CABasicAnimation")]
     unsafe impl ClassType for CABasicAnimation {
         #[inherits(CAAnimation, NSObject)]
         type Super = CAPropertyAnimation;
@@ -167,8 +173,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreAnimation_CAKeyframeAnimation")]
     pub struct CAKeyframeAnimation;
 
+    #[cfg(feature = "CoreAnimation_CAKeyframeAnimation")]
     unsafe impl ClassType for CAKeyframeAnimation {
         #[inherits(CAAnimation, NSObject)]
         type Super = CAPropertyAnimation;
@@ -265,8 +273,10 @@ extern_static!(kCAAnimationRotateAutoReverse: &'static CAAnimationRotationMode);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreAnimation_CASpringAnimation")]
     pub struct CASpringAnimation;
 
+    #[cfg(feature = "CoreAnimation_CASpringAnimation")]
     unsafe impl ClassType for CASpringAnimation {
         #[inherits(CAPropertyAnimation, CAAnimation, NSObject)]
         type Super = CABasicAnimation;
@@ -307,8 +317,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreAnimation_CATransition")]
     pub struct CATransition;
 
+    #[cfg(feature = "CoreAnimation_CATransition")]
     unsafe impl ClassType for CATransition {
         #[inherits(NSObject)]
         type Super = CAAnimation;
@@ -368,8 +380,10 @@ extern_static!(kCATransitionFromBottom: &'static CATransitionSubtype);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreAnimation_CAAnimationGroup")]
     pub struct CAAnimationGroup;
 
+    #[cfg(feature = "CoreAnimation_CAAnimationGroup")]
     unsafe impl ClassType for CAAnimationGroup {
         #[inherits(NSObject)]
         type Super = CAAnimation;

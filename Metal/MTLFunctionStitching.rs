@@ -12,8 +12,10 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLFunctionStitchingAttributeAlwaysInline")]
     pub struct MTLFunctionStitchingAttributeAlwaysInline;
 
+    #[cfg(feature = "Metal_MTLFunctionStitchingAttributeAlwaysInline")]
     unsafe impl ClassType for MTLFunctionStitchingAttributeAlwaysInline {
         type Super = NSObject;
     }
@@ -32,8 +34,10 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLFunctionStitchingInputNode")]
     pub struct MTLFunctionStitchingInputNode;
 
+    #[cfg(feature = "Metal_MTLFunctionStitchingInputNode")]
     unsafe impl ClassType for MTLFunctionStitchingInputNode {
         type Super = NSObject;
     }
@@ -58,8 +62,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLFunctionStitchingFunctionNode")]
     pub struct MTLFunctionStitchingFunctionNode;
 
+    #[cfg(feature = "Metal_MTLFunctionStitchingFunctionNode")]
     unsafe impl ClassType for MTLFunctionStitchingFunctionNode {
         type Super = NSObject;
     }
@@ -110,8 +116,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLFunctionStitchingGraph")]
     pub struct MTLFunctionStitchingGraph;
 
+    #[cfg(feature = "Metal_MTLFunctionStitchingGraph")]
     unsafe impl ClassType for MTLFunctionStitchingGraph {
         type Super = NSObject;
     }
@@ -176,8 +184,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLStitchedLibraryDescriptor")]
     pub struct MTLStitchedLibraryDescriptor;
 
+    #[cfg(feature = "Metal_MTLStitchedLibraryDescriptor")]
     unsafe impl ClassType for MTLStitchedLibraryDescriptor {
         type Super = NSObject;
     }

@@ -14,8 +14,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreData_NSFetchIndexElementDescription")]
     pub struct NSFetchIndexElementDescription;
 
+    #[cfg(feature = "CoreData_NSFetchIndexElementDescription")]
     unsafe impl ClassType for NSFetchIndexElementDescription {
         type Super = NSObject;
     }

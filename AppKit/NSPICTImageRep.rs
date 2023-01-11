@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSPICTImageRep")]
     pub struct NSPICTImageRep;
 
+    #[cfg(feature = "AppKit_NSPICTImageRep")]
     unsafe impl ClassType for NSPICTImageRep {
         #[inherits(NSObject)]
         type Super = NSImageRep;

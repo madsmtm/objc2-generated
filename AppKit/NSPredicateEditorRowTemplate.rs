@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSPredicateEditorRowTemplate")]
     pub struct NSPredicateEditorRowTemplate;
 
+    #[cfg(feature = "AppKit_NSPredicateEditorRowTemplate")]
     unsafe impl ClassType for NSPredicateEditorRowTemplate {
         type Super = NSObject;
     }

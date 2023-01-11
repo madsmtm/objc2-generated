@@ -19,8 +19,10 @@ extern_static!(NSPersistentCloudKitContainerEventUserInfoKey: &'static NSString)
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreData_NSPersistentCloudKitContainerEvent")]
     pub struct NSPersistentCloudKitContainerEvent;
 
+    #[cfg(feature = "CoreData_NSPersistentCloudKitContainerEvent")]
     unsafe impl ClassType for NSPersistentCloudKitContainerEvent {
         type Super = NSObject;
     }

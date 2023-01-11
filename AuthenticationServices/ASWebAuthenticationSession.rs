@@ -19,8 +19,10 @@ pub type ASWebAuthenticationSessionCompletionHandler = *mut Block<(*mut NSURL, *
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AuthenticationServices_ASWebAuthenticationSession")]
     pub struct ASWebAuthenticationSession;
 
+    #[cfg(feature = "AuthenticationServices_ASWebAuthenticationSession")]
     unsafe impl ClassType for ASWebAuthenticationSession {
         type Super = NSObject;
     }

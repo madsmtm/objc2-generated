@@ -44,8 +44,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLSamplerDescriptor")]
     pub struct MTLSamplerDescriptor;
 
+    #[cfg(feature = "Metal_MTLSamplerDescriptor")]
     unsafe impl ClassType for MTLSamplerDescriptor {
         type Super = NSObject;
     }

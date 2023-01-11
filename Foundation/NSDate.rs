@@ -9,8 +9,10 @@ pub type NSTimeInterval = c_double;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSDate")]
     pub struct NSDate;
 
+    #[cfg(feature = "Foundation_NSDate")]
     unsafe impl ClassType for NSDate {
         type Super = NSObject;
     }

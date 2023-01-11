@@ -49,8 +49,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreData_NSManagedObjectContext")]
     pub struct NSManagedObjectContext;
 
+    #[cfg(feature = "CoreData_NSManagedObjectContext")]
     unsafe impl ClassType for NSManagedObjectContext {
         type Super = NSObject;
     }

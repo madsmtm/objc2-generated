@@ -16,8 +16,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSLevelIndicator")]
     pub struct NSLevelIndicator;
 
+    #[cfg(feature = "AppKit_NSLevelIndicator")]
     unsafe impl ClassType for NSLevelIndicator {
         #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSControl;

@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSPersistentDocument")]
     pub struct NSPersistentDocument;
 
+    #[cfg(feature = "AppKit_NSPersistentDocument")]
     unsafe impl ClassType for NSPersistentDocument {
         #[inherits(NSObject)]
         type Super = NSDocument;

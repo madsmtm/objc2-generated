@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSRotationGestureRecognizer")]
     pub struct NSRotationGestureRecognizer;
 
+    #[cfg(feature = "AppKit_NSRotationGestureRecognizer")]
     unsafe impl ClassType for NSRotationGestureRecognizer {
         #[inherits(NSObject)]
         type Super = NSGestureRecognizer;

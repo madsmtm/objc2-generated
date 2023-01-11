@@ -54,8 +54,10 @@ inline_fn!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLSharedTextureHandle")]
     pub struct MTLSharedTextureHandle;
 
+    #[cfg(feature = "Metal_MTLSharedTextureHandle")]
     unsafe impl ClassType for MTLSharedTextureHandle {
         type Super = NSObject;
     }
@@ -86,8 +88,10 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLTextureDescriptor")]
     pub struct MTLTextureDescriptor;
 
+    #[cfg(feature = "Metal_MTLTextureDescriptor")]
     unsafe impl ClassType for MTLTextureDescriptor {
         type Super = NSObject;
     }

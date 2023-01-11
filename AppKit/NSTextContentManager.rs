@@ -69,8 +69,10 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSTextContentManager")]
     pub struct NSTextContentManager;
 
+    #[cfg(feature = "AppKit_NSTextContentManager")]
     unsafe impl ClassType for NSTextContentManager {
         type Super = NSObject;
     }
@@ -209,8 +211,10 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSTextContentStorage")]
     pub struct NSTextContentStorage;
 
+    #[cfg(feature = "AppKit_NSTextContentStorage")]
     unsafe impl ClassType for NSTextContentStorage {
         #[inherits(NSObject)]
         type Super = NSTextContentManager;

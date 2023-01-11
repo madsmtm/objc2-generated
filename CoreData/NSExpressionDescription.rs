@@ -6,8 +6,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreData_NSExpressionDescription")]
     pub struct NSExpressionDescription;
 
+    #[cfg(feature = "CoreData_NSExpressionDescription")]
     unsafe impl ClassType for NSExpressionDescription {
         #[inherits(NSObject)]
         type Super = NSPropertyDescription;

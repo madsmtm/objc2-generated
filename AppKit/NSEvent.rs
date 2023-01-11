@@ -339,8 +339,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSEvent")]
     pub struct NSEvent;
 
+    #[cfg(feature = "AppKit_NSEvent")]
     unsafe impl ClassType for NSEvent {
         type Super = NSObject;
     }

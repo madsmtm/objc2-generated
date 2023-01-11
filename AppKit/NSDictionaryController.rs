@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSDictionaryControllerKeyValuePair")]
     pub struct NSDictionaryControllerKeyValuePair;
 
+    #[cfg(feature = "AppKit_NSDictionaryControllerKeyValuePair")]
     unsafe impl ClassType for NSDictionaryControllerKeyValuePair {
         type Super = NSObject;
     }
@@ -49,8 +51,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSDictionaryController")]
     pub struct NSDictionaryController;
 
+    #[cfg(feature = "AppKit_NSDictionaryController")]
     unsafe impl ClassType for NSDictionaryController {
         #[inherits(NSObjectController, NSController, NSObject)]
         type Super = NSArrayController;

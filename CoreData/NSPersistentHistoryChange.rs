@@ -15,8 +15,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreData_NSPersistentHistoryChange")]
     pub struct NSPersistentHistoryChange;
 
+    #[cfg(feature = "CoreData_NSPersistentHistoryChange")]
     unsafe impl ClassType for NSPersistentHistoryChange {
         type Super = NSObject;
     }

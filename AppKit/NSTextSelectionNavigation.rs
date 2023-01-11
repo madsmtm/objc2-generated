@@ -57,8 +57,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSTextSelectionNavigation")]
     pub struct NSTextSelectionNavigation;
 
+    #[cfg(feature = "AppKit_NSTextSelectionNavigation")]
     unsafe impl ClassType for NSTextSelectionNavigation {
         type Super = NSObject;
     }

@@ -9,8 +9,10 @@ extern_static!(NSAppKitVersionNumberWithDockTilePlugInSupport: NSAppKitVersion =
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSDockTile")]
     pub struct NSDockTile;
 
+    #[cfg(feature = "AppKit_NSDockTile")]
     unsafe impl ClassType for NSDockTile {
         type Super = NSObject;
     }

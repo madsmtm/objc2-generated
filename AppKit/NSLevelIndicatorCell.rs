@@ -17,8 +17,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSLevelIndicatorCell")]
     pub struct NSLevelIndicatorCell;
 
+    #[cfg(feature = "AppKit_NSLevelIndicatorCell")]
     unsafe impl ClassType for NSLevelIndicatorCell {
         #[inherits(NSCell, NSObject)]
         type Super = NSActionCell;

@@ -23,8 +23,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSRelativeDateTimeFormatter")]
     pub struct NSRelativeDateTimeFormatter;
 
+    #[cfg(feature = "Foundation_NSRelativeDateTimeFormatter")]
     unsafe impl ClassType for NSRelativeDateTimeFormatter {
         #[inherits(NSObject)]
         type Super = NSFormatter;

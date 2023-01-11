@@ -16,8 +16,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSUserNotification")]
     pub struct NSUserNotification;
 
+    #[cfg(feature = "Foundation_NSUserNotification")]
     unsafe impl ClassType for NSUserNotification {
         type Super = NSObject;
     }
@@ -186,8 +188,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSUserNotificationAction")]
     pub struct NSUserNotificationAction;
 
+    #[cfg(feature = "Foundation_NSUserNotificationAction")]
     unsafe impl ClassType for NSUserNotificationAction {
         type Super = NSObject;
     }
@@ -217,8 +221,10 @@ extern_static!(NSUserNotificationDefaultSoundName: &'static NSString);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSUserNotificationCenter")]
     pub struct NSUserNotificationCenter;
 
+    #[cfg(feature = "Foundation_NSUserNotificationCenter")]
     unsafe impl ClassType for NSUserNotificationCenter {
         type Super = NSObject;
     }

@@ -6,8 +6,10 @@ use crate::Metal::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLRasterizationRateSampleArray")]
     pub struct MTLRasterizationRateSampleArray;
 
+    #[cfg(feature = "Metal_MTLRasterizationRateSampleArray")]
     unsafe impl ClassType for MTLRasterizationRateSampleArray {
         type Super = NSObject;
     }
@@ -28,8 +30,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLRasterizationRateLayerDescriptor")]
     pub struct MTLRasterizationRateLayerDescriptor;
 
+    #[cfg(feature = "Metal_MTLRasterizationRateLayerDescriptor")]
     unsafe impl ClassType for MTLRasterizationRateLayerDescriptor {
         type Super = NSObject;
     }
@@ -81,8 +85,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLRasterizationRateLayerArray")]
     pub struct MTLRasterizationRateLayerArray;
 
+    #[cfg(feature = "Metal_MTLRasterizationRateLayerArray")]
     unsafe impl ClassType for MTLRasterizationRateLayerArray {
         type Super = NSObject;
     }
@@ -110,8 +116,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLRasterizationRateMapDescriptor")]
     pub struct MTLRasterizationRateMapDescriptor;
 
+    #[cfg(feature = "Metal_MTLRasterizationRateMapDescriptor")]
     unsafe impl ClassType for MTLRasterizationRateMapDescriptor {
         type Super = NSObject;
     }

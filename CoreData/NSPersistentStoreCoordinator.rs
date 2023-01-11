@@ -96,8 +96,10 @@ extern_static!(NSPersistentHistoryTokenKey: &'static NSString);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreData_NSPersistentStoreCoordinator")]
     pub struct NSPersistentStoreCoordinator;
 
+    #[cfg(feature = "CoreData_NSPersistentStoreCoordinator")]
     unsafe impl ClassType for NSPersistentStoreCoordinator {
         type Super = NSObject;
     }

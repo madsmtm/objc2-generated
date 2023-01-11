@@ -23,8 +23,10 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSSearchField")]
     pub struct NSSearchField;
 
+    #[cfg(feature = "AppKit_NSSearchField")]
     unsafe impl ClassType for NSSearchField {
         #[inherits(NSControl, NSView, NSResponder, NSObject)]
         type Super = NSTextField;

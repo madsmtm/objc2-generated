@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSPressureConfiguration")]
     pub struct NSPressureConfiguration;
 
+    #[cfg(feature = "AppKit_NSPressureConfiguration")]
     unsafe impl ClassType for NSPressureConfiguration {
         type Super = NSObject;
     }

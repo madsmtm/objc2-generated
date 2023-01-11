@@ -106,8 +106,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSSpeechSynthesizer")]
     pub struct NSSpeechSynthesizer;
 
+    #[cfg(feature = "AppKit_NSSpeechSynthesizer")]
     unsafe impl ClassType for NSSpeechSynthesizer {
         type Super = NSObject;
     }

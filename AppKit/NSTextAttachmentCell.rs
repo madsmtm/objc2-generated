@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSTextAttachmentCell")]
     pub struct NSTextAttachmentCell;
 
+    #[cfg(feature = "AppKit_NSTextAttachmentCell")]
     unsafe impl ClassType for NSTextAttachmentCell {
         #[inherits(NSObject)]
         type Super = NSCell;

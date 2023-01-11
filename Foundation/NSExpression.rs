@@ -24,8 +24,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSExpression")]
     pub struct NSExpression;
 
+    #[cfg(feature = "Foundation_NSExpression")]
     unsafe impl ClassType for NSExpression {
         type Super = NSObject;
     }

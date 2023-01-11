@@ -16,8 +16,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSPopUpButtonCell")]
     pub struct NSPopUpButtonCell;
 
+    #[cfg(feature = "AppKit_NSPopUpButtonCell")]
     unsafe impl ClassType for NSPopUpButtonCell {
         #[inherits(NSButtonCell, NSActionCell, NSCell, NSObject)]
         type Super = NSMenuItemCell;

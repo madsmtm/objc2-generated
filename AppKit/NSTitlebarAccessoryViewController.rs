@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSTitlebarAccessoryViewController")]
     pub struct NSTitlebarAccessoryViewController;
 
+    #[cfg(feature = "AppKit_NSTitlebarAccessoryViewController")]
     unsafe impl ClassType for NSTitlebarAccessoryViewController {
         #[inherits(NSResponder, NSObject)]
         type Super = NSViewController;

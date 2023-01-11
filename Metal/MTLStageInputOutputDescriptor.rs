@@ -87,8 +87,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLBufferLayoutDescriptor")]
     pub struct MTLBufferLayoutDescriptor;
 
+    #[cfg(feature = "Metal_MTLBufferLayoutDescriptor")]
     unsafe impl ClassType for MTLBufferLayoutDescriptor {
         type Super = NSObject;
     }
@@ -119,8 +121,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLBufferLayoutDescriptorArray")]
     pub struct MTLBufferLayoutDescriptorArray;
 
+    #[cfg(feature = "Metal_MTLBufferLayoutDescriptorArray")]
     unsafe impl ClassType for MTLBufferLayoutDescriptorArray {
         type Super = NSObject;
     }
@@ -148,8 +152,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLAttributeDescriptor")]
     pub struct MTLAttributeDescriptor;
 
+    #[cfg(feature = "Metal_MTLAttributeDescriptor")]
     unsafe impl ClassType for MTLAttributeDescriptor {
         type Super = NSObject;
     }
@@ -180,8 +186,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLAttributeDescriptorArray")]
     pub struct MTLAttributeDescriptorArray;
 
+    #[cfg(feature = "Metal_MTLAttributeDescriptorArray")]
     unsafe impl ClassType for MTLAttributeDescriptorArray {
         type Super = NSObject;
     }
@@ -209,8 +217,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
     pub struct MTLStageInputOutputDescriptor;
 
+    #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
     unsafe impl ClassType for MTLStageInputOutputDescriptor {
         type Super = NSObject;
     }

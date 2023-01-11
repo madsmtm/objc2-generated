@@ -23,8 +23,10 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSNotificationQueue")]
     pub struct NSNotificationQueue;
 
+    #[cfg(feature = "Foundation_NSNotificationQueue")]
     unsafe impl ClassType for NSNotificationQueue {
         type Super = NSObject;
     }

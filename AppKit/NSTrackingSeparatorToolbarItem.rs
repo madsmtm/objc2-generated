@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSTrackingSeparatorToolbarItem")]
     pub struct NSTrackingSeparatorToolbarItem;
 
+    #[cfg(feature = "AppKit_NSTrackingSeparatorToolbarItem")]
     unsafe impl ClassType for NSTrackingSeparatorToolbarItem {
         #[inherits(NSObject)]
         type Super = NSToolbarItem;

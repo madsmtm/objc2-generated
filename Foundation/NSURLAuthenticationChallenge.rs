@@ -44,8 +44,10 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSURLAuthenticationChallenge")]
     pub struct NSURLAuthenticationChallenge;
 
+    #[cfg(feature = "Foundation_NSURLAuthenticationChallenge")]
     unsafe impl ClassType for NSURLAuthenticationChallenge {
         type Super = NSObject;
     }

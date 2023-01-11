@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSTreeNode")]
     pub struct NSTreeNode;
 
+    #[cfg(feature = "AppKit_NSTreeNode")]
     unsafe impl ClassType for NSTreeNode {
         type Super = NSObject;
     }

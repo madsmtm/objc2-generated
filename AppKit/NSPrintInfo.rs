@@ -102,8 +102,10 @@ pub type NSPrintInfoSettingKey = NSString;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSPrintInfo")]
     pub struct NSPrintInfo;
 
+    #[cfg(feature = "AppKit_NSPrintInfo")]
     unsafe impl ClassType for NSPrintInfo {
         type Super = NSObject;
     }

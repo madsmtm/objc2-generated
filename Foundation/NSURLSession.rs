@@ -7,8 +7,10 @@ extern_static!(NSURLSessionTransferSizeUnknown: i64);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSURLSession")]
     pub struct NSURLSession;
 
+    #[cfg(feature = "Foundation_NSURLSession")]
     unsafe impl ClassType for NSURLSession {
         type Super = NSObject;
     }
@@ -358,8 +360,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSURLSessionTask")]
     pub struct NSURLSessionTask;
 
+    #[cfg(feature = "Foundation_NSURLSessionTask")]
     unsafe impl ClassType for NSURLSessionTask {
         type Super = NSObject;
     }
@@ -483,8 +487,10 @@ extern_static!(NSURLSessionTaskPriorityHigh: c_float);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSURLSessionDataTask")]
     pub struct NSURLSessionDataTask;
 
+    #[cfg(feature = "Foundation_NSURLSessionDataTask")]
     unsafe impl ClassType for NSURLSessionDataTask {
         #[inherits(NSObject)]
         type Super = NSURLSessionTask;
@@ -504,8 +510,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSURLSessionUploadTask")]
     pub struct NSURLSessionUploadTask;
 
+    #[cfg(feature = "Foundation_NSURLSessionUploadTask")]
     unsafe impl ClassType for NSURLSessionUploadTask {
         #[inherits(NSURLSessionTask, NSObject)]
         type Super = NSURLSessionDataTask;
@@ -525,8 +533,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSURLSessionDownloadTask")]
     pub struct NSURLSessionDownloadTask;
 
+    #[cfg(feature = "Foundation_NSURLSessionDownloadTask")]
     unsafe impl ClassType for NSURLSessionDownloadTask {
         #[inherits(NSObject)]
         type Super = NSURLSessionTask;
@@ -553,8 +563,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSURLSessionStreamTask")]
     pub struct NSURLSessionStreamTask;
 
+    #[cfg(feature = "Foundation_NSURLSessionStreamTask")]
     unsafe impl ClassType for NSURLSessionStreamTask {
         #[inherits(NSObject)]
         type Super = NSURLSessionTask;
@@ -616,8 +628,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSURLSessionWebSocketMessage")]
     pub struct NSURLSessionWebSocketMessage;
 
+    #[cfg(feature = "Foundation_NSURLSessionWebSocketMessage")]
     unsafe impl ClassType for NSURLSessionWebSocketMessage {
         type Super = NSObject;
     }
@@ -680,8 +694,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSURLSessionWebSocketTask")]
     pub struct NSURLSessionWebSocketTask;
 
+    #[cfg(feature = "Foundation_NSURLSessionWebSocketTask")]
     unsafe impl ClassType for NSURLSessionWebSocketTask {
         #[inherits(NSObject)]
         type Super = NSURLSessionTask;
@@ -760,8 +776,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSURLSessionConfiguration")]
     pub struct NSURLSessionConfiguration;
 
+    #[cfg(feature = "Foundation_NSURLSessionConfiguration")]
     unsafe impl ClassType for NSURLSessionConfiguration {
         type Super = NSObject;
     }
@@ -1320,8 +1338,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSURLSessionTaskTransactionMetrics")]
     pub struct NSURLSessionTaskTransactionMetrics;
 
+    #[cfg(feature = "Foundation_NSURLSessionTaskTransactionMetrics")]
     unsafe impl ClassType for NSURLSessionTaskTransactionMetrics {
         type Super = NSObject;
     }
@@ -1464,8 +1484,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSURLSessionTaskMetrics")]
     pub struct NSURLSessionTaskMetrics;
 
+    #[cfg(feature = "Foundation_NSURLSessionTaskMetrics")]
     unsafe impl ClassType for NSURLSessionTaskMetrics {
         type Super = NSObject;
     }

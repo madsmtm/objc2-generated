@@ -56,8 +56,10 @@ ns_options!(
 
 extern_class!(
     #[derive(PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSData")]
     pub struct NSData;
 
+    #[cfg(feature = "Foundation_NSData")]
     unsafe impl ClassType for NSData {
         type Super = NSObject;
     }
@@ -348,8 +350,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSMutableData")]
     pub struct NSMutableData;
 
+    #[cfg(feature = "Foundation_NSMutableData")]
     unsafe impl ClassType for NSMutableData {
         #[inherits(NSObject)]
         type Super = NSData;
@@ -444,8 +448,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSPurgeableData")]
     pub struct NSPurgeableData;
 
+    #[cfg(feature = "Foundation_NSPurgeableData")]
     unsafe impl ClassType for NSPurgeableData {
         #[inherits(NSData, NSObject)]
         type Super = NSMutableData;

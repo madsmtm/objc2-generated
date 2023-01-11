@@ -19,8 +19,10 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLIntersectionFunctionTableDescriptor")]
     pub struct MTLIntersectionFunctionTableDescriptor;
 
+    #[cfg(feature = "Metal_MTLIntersectionFunctionTableDescriptor")]
     unsafe impl ClassType for MTLIntersectionFunctionTableDescriptor {
         type Super = NSObject;
     }

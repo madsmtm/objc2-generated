@@ -45,8 +45,10 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSGlyphGenerator")]
     pub struct NSGlyphGenerator;
 
+    #[cfg(feature = "AppKit_NSGlyphGenerator")]
     unsafe impl ClassType for NSGlyphGenerator {
         type Super = NSObject;
     }

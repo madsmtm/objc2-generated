@@ -36,8 +36,10 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSDatePickerCell")]
     pub struct NSDatePickerCell;
 
+    #[cfg(feature = "AppKit_NSDatePickerCell")]
     unsafe impl ClassType for NSDatePickerCell {
         #[inherits(NSCell, NSObject)]
         type Super = NSActionCell;

@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSMagnificationGestureRecognizer")]
     pub struct NSMagnificationGestureRecognizer;
 
+    #[cfg(feature = "AppKit_NSMagnificationGestureRecognizer")]
     unsafe impl ClassType for NSMagnificationGestureRecognizer {
         #[inherits(NSObject)]
         type Super = NSGestureRecognizer;

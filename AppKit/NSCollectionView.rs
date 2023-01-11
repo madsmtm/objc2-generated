@@ -98,8 +98,10 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSCollectionViewItem")]
     pub struct NSCollectionViewItem;
 
+    #[cfg(feature = "AppKit_NSCollectionViewItem")]
     unsafe impl ClassType for NSCollectionViewItem {
         #[inherits(NSResponder, NSObject)]
         type Super = NSViewController;
@@ -154,8 +156,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSCollectionView")]
     pub struct NSCollectionView;
 
+    #[cfg(feature = "AppKit_NSCollectionView")]
     unsafe impl ClassType for NSCollectionView {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;

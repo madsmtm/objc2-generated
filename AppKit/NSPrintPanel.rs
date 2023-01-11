@@ -56,8 +56,10 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSPrintPanel")]
     pub struct NSPrintPanel;
 
+    #[cfg(feature = "AppKit_NSPrintPanel")]
     unsafe impl ClassType for NSPrintPanel {
         type Super = NSObject;
     }

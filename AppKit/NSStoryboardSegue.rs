@@ -9,8 +9,10 @@ pub type NSStoryboardSegueIdentifier = NSString;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSStoryboardSegue")]
     pub struct NSStoryboardSegue;
 
+    #[cfg(feature = "AppKit_NSStoryboardSegue")]
     unsafe impl ClassType for NSStoryboardSegue {
         type Super = NSObject;
     }

@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSStepperTouchBarItem")]
     pub struct NSStepperTouchBarItem;
 
+    #[cfg(feature = "AppKit_NSStepperTouchBarItem")]
     unsafe impl ClassType for NSStepperTouchBarItem {
         #[inherits(NSObject)]
         type Super = NSTouchBarItem;

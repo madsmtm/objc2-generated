@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSGlyphInfo")]
     pub struct NSGlyphInfo;
 
+    #[cfg(feature = "AppKit_NSGlyphInfo")]
     unsafe impl ClassType for NSGlyphInfo {
         type Super = NSObject;
     }

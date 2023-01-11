@@ -13,8 +13,10 @@ pub type NSHelpManagerContextHelpKey = NSString;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSHelpManager")]
     pub struct NSHelpManager;
 
+    #[cfg(feature = "AppKit_NSHelpManager")]
     unsafe impl ClassType for NSHelpManager {
         type Super = NSObject;
     }

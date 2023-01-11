@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSPasteboardItem")]
     pub struct NSPasteboardItem;
 
+    #[cfg(feature = "AppKit_NSPasteboardItem")]
     unsafe impl ClassType for NSPasteboardItem {
         type Super = NSObject;
     }

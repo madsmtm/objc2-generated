@@ -6,8 +6,10 @@ use crate::Metal::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLComputePipelineReflection")]
     pub struct MTLComputePipelineReflection;
 
+    #[cfg(feature = "Metal_MTLComputePipelineReflection")]
     unsafe impl ClassType for MTLComputePipelineReflection {
         type Super = NSObject;
     }
@@ -24,8 +26,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLComputePipelineDescriptor")]
     pub struct MTLComputePipelineDescriptor;
 
+    #[cfg(feature = "Metal_MTLComputePipelineDescriptor")]
     unsafe impl ClassType for MTLComputePipelineDescriptor {
         type Super = NSObject;
     }

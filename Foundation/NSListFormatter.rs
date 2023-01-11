@@ -5,8 +5,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSListFormatter")]
     pub struct NSListFormatter;
 
+    #[cfg(feature = "Foundation_NSListFormatter")]
     unsafe impl ClassType for NSListFormatter {
         #[inherits(NSObject)]
         type Super = NSFormatter;

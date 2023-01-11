@@ -40,8 +40,10 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSTextViewportLayoutController")]
     pub struct NSTextViewportLayoutController;
 
+    #[cfg(feature = "AppKit_NSTextViewportLayoutController")]
     unsafe impl ClassType for NSTextViewportLayoutController {
         type Super = NSObject;
     }

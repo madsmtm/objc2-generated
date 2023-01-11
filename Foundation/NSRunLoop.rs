@@ -9,8 +9,10 @@ extern_static!(NSRunLoopCommonModes: &'static NSRunLoopMode);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSRunLoop")]
     pub struct NSRunLoop;
 
+    #[cfg(feature = "Foundation_NSRunLoop")]
     unsafe impl ClassType for NSRunLoop {
         type Super = NSObject;
     }

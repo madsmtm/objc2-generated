@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSTextContainer")]
     pub struct NSTextContainer;
 
+    #[cfg(feature = "AppKit_NSTextContainer")]
     unsafe impl ClassType for NSTextContainer {
         type Super = NSObject;
     }

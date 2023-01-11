@@ -108,8 +108,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSCell")]
     pub struct NSCell;
 
+    #[cfg(feature = "AppKit_NSCell")]
     unsafe impl ClassType for NSCell {
         type Super = NSObject;
     }

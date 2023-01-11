@@ -209,8 +209,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSApplication")]
     pub struct NSApplication;
 
+    #[cfg(feature = "AppKit_NSApplication")]
     unsafe impl ClassType for NSApplication {
         #[inherits(NSObject)]
         type Super = NSResponder;

@@ -6,8 +6,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreData_NSSaveChangesRequest")]
     pub struct NSSaveChangesRequest;
 
+    #[cfg(feature = "CoreData_NSSaveChangesRequest")]
     unsafe impl ClassType for NSSaveChangesRequest {
         #[inherits(NSObject)]
         type Super = NSPersistentStoreRequest;

@@ -22,8 +22,10 @@ pub type NSProgressPublishingHandler =
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSProgress")]
     pub struct NSProgress;
 
+    #[cfg(feature = "Foundation_NSProgress")]
     unsafe impl ClassType for NSProgress {
         type Super = NSObject;
     }

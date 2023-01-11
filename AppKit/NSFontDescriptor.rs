@@ -69,8 +69,10 @@ typed_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSFontDescriptor")]
     pub struct NSFontDescriptor;
 
+    #[cfg(feature = "AppKit_NSFontDescriptor")]
     unsafe impl ClassType for NSFontDescriptor {
         type Super = NSObject;
     }

@@ -19,8 +19,10 @@ extern_static!(NSToolbarItemVisibilityPriorityUser: NSToolbarItemVisibilityPrior
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSToolbarItem")]
     pub struct NSToolbarItem;
 
+    #[cfg(feature = "AppKit_NSToolbarItem")]
     unsafe impl ClassType for NSToolbarItem {
         type Super = NSObject;
     }

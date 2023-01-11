@@ -38,8 +38,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreAnimation_CAConstraintLayoutManager")]
     pub struct CAConstraintLayoutManager;
 
+    #[cfg(feature = "CoreAnimation_CAConstraintLayoutManager")]
     unsafe impl ClassType for CAConstraintLayoutManager {
         type Super = NSObject;
     }
@@ -55,8 +57,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreAnimation_CAConstraint")]
     pub struct CAConstraint;
 
+    #[cfg(feature = "CoreAnimation_CAConstraint")]
     unsafe impl ClassType for CAConstraint {
         type Super = NSObject;
     }

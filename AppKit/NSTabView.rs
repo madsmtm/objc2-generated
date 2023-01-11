@@ -42,8 +42,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSTabView")]
     pub struct NSTabView;
 
+    #[cfg(feature = "AppKit_NSTabView")]
     unsafe impl ClassType for NSTabView {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;

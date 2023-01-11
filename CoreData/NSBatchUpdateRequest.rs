@@ -6,8 +6,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreData_NSBatchUpdateRequest")]
     pub struct NSBatchUpdateRequest;
 
+    #[cfg(feature = "CoreData_NSBatchUpdateRequest")]
     unsafe impl ClassType for NSBatchUpdateRequest {
         #[inherits(NSObject)]
         type Super = NSPersistentStoreRequest;

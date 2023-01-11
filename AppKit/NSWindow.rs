@@ -174,8 +174,10 @@ pub type NSWindowTabbingIdentifier = NSString;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSWindow")]
     pub struct NSWindow;
 
+    #[cfg(feature = "AppKit_NSWindow")]
     unsafe impl ClassType for NSWindow {
         #[inherits(NSObject)]
         type Super = NSResponder;

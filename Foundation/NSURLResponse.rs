@@ -5,8 +5,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSURLResponse")]
     pub struct NSURLResponse;
 
+    #[cfg(feature = "Foundation_NSURLResponse")]
     unsafe impl ClassType for NSURLResponse {
         type Super = NSObject;
     }
@@ -48,8 +50,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSHTTPURLResponse")]
     pub struct NSHTTPURLResponse;
 
+    #[cfg(feature = "Foundation_NSHTTPURLResponse")]
     unsafe impl ClassType for NSHTTPURLResponse {
         #[inherits(NSObject)]
         type Super = NSURLResponse;

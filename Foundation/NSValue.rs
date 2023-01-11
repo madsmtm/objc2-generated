@@ -4,8 +4,10 @@ use crate::common::*;
 use crate::Foundation::*;
 
 extern_class!(
+    #[cfg(feature = "Foundation_NSValue")]
     pub struct NSValue;
 
+    #[cfg(feature = "Foundation_NSValue")]
     unsafe impl ClassType for NSValue {
         type Super = NSObject;
     }
@@ -76,8 +78,10 @@ extern_methods!(
 );
 
 extern_class!(
+    #[cfg(feature = "Foundation_NSNumber")]
     pub struct NSNumber;
 
+    #[cfg(feature = "Foundation_NSNumber")]
     unsafe impl ClassType for NSNumber {
         #[inherits(NSObject)]
         type Super = NSValue;

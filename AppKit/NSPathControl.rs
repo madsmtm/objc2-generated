@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSPathControl")]
     pub struct NSPathControl;
 
+    #[cfg(feature = "AppKit_NSPathControl")]
     unsafe impl ClassType for NSPathControl {
         #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSControl;

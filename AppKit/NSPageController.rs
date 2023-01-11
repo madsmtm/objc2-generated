@@ -18,8 +18,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSPageController")]
     pub struct NSPageController;
 
+    #[cfg(feature = "AppKit_NSPageController")]
     unsafe impl ClassType for NSPageController {
         #[inherits(NSResponder, NSObject)]
         type Super = NSViewController;

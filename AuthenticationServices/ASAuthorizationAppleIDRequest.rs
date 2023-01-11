@@ -6,8 +6,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDRequest")]
     pub struct ASAuthorizationAppleIDRequest;
 
+    #[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDRequest")]
     unsafe impl ClassType for ASAuthorizationAppleIDRequest {
         #[inherits(ASAuthorizationRequest, NSObject)]
         type Super = ASAuthorizationOpenIDRequest;

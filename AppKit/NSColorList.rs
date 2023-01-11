@@ -11,8 +11,10 @@ pub type NSColorName = NSString;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSColorList")]
     pub struct NSColorList;
 
+    #[cfg(feature = "AppKit_NSColorList")]
     unsafe impl ClassType for NSColorList {
         type Super = NSObject;
     }

@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSPopUpButton")]
     pub struct NSPopUpButton;
 
+    #[cfg(feature = "AppKit_NSPopUpButton")]
     unsafe impl ClassType for NSPopUpButton {
         #[inherits(NSControl, NSView, NSResponder, NSObject)]
         type Super = NSButton;

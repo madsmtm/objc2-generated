@@ -18,8 +18,10 @@ extern_static!(ASAuthorizationOperationLogout: &'static ASAuthorizationOpenIDOpe
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AuthenticationServices_ASAuthorizationOpenIDRequest")]
     pub struct ASAuthorizationOpenIDRequest;
 
+    #[cfg(feature = "AuthenticationServices_ASAuthorizationOpenIDRequest")]
     unsafe impl ClassType for ASAuthorizationOpenIDRequest {
         #[inherits(NSObject)]
         type Super = ASAuthorizationRequest;

@@ -42,8 +42,10 @@ extern_static!(NSStackViewVisibilityPriorityNotVisible: NSStackViewVisibilityPri
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSStackView")]
     pub struct NSStackView;
 
+    #[cfg(feature = "AppKit_NSStackView")]
     unsafe impl ClassType for NSStackView {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;

@@ -27,8 +27,10 @@ pub type NSPropertyListWriteOptions = NSUInteger;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSPropertyListSerialization")]
     pub struct NSPropertyListSerialization;
 
+    #[cfg(feature = "Foundation_NSPropertyListSerialization")]
     unsafe impl ClassType for NSPropertyListSerialization {
         type Super = NSObject;
     }

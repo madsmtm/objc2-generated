@@ -6,8 +6,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreData_NSIncrementalStore")]
     pub struct NSIncrementalStore;
 
+    #[cfg(feature = "CoreData_NSIncrementalStore")]
     unsafe impl ClassType for NSIncrementalStore {
         #[inherits(NSObject)]
         type Super = NSPersistentStore;

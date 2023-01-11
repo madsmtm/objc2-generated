@@ -5,8 +5,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSUbiquitousKeyValueStore")]
     pub struct NSUbiquitousKeyValueStore;
 
+    #[cfg(feature = "Foundation_NSUbiquitousKeyValueStore")]
     unsafe impl ClassType for NSUbiquitousKeyValueStore {
         type Super = NSObject;
     }

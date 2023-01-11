@@ -27,8 +27,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSImageRep")]
     pub struct NSImageRep;
 
+    #[cfg(feature = "AppKit_NSImageRep")]
     unsafe impl ClassType for NSImageRep {
         type Super = NSObject;
     }

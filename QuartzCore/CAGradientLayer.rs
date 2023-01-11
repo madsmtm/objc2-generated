@@ -10,8 +10,10 @@ typed_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreAnimation_CAGradientLayer")]
     pub struct CAGradientLayer;
 
+    #[cfg(feature = "CoreAnimation_CAGradientLayer")]
     unsafe impl ClassType for CAGradientLayer {
         #[inherits(NSObject)]
         type Super = CALayer;

@@ -15,8 +15,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLPipelineBufferDescriptor")]
     pub struct MTLPipelineBufferDescriptor;
 
+    #[cfg(feature = "Metal_MTLPipelineBufferDescriptor")]
     unsafe impl ClassType for MTLPipelineBufferDescriptor {
         type Super = NSObject;
     }
@@ -35,8 +37,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLPipelineBufferDescriptorArray")]
     pub struct MTLPipelineBufferDescriptorArray;
 
+    #[cfg(feature = "Metal_MTLPipelineBufferDescriptorArray")]
     unsafe impl ClassType for MTLPipelineBufferDescriptorArray {
         type Super = NSObject;
     }

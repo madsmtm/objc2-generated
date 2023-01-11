@@ -39,8 +39,10 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSFontPanel")]
     pub struct NSFontPanel;
 
+    #[cfg(feature = "AppKit_NSFontPanel")]
     unsafe impl ClassType for NSFontPanel {
         #[inherits(NSWindow, NSResponder, NSObject)]
         type Super = NSPanel;

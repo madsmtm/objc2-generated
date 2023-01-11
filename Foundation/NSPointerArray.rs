@@ -5,8 +5,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSPointerArray")]
     pub struct NSPointerArray;
 
+    #[cfg(feature = "Foundation_NSPointerArray")]
     unsafe impl ClassType for NSPointerArray {
         type Super = NSObject;
     }

@@ -13,8 +13,10 @@ pub type NSStoryboardControllerCreator = *mut Block<(NonNull<NSCoder>,), *mut Ob
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSStoryboard")]
     pub struct NSStoryboard;
 
+    #[cfg(feature = "AppKit_NSStoryboard")]
     unsafe impl ClassType for NSStoryboard {
         type Super = NSObject;
     }

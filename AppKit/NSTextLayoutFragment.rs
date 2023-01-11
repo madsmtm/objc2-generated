@@ -28,8 +28,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSTextLayoutFragment")]
     pub struct NSTextLayoutFragment;
 
+    #[cfg(feature = "AppKit_NSTextLayoutFragment")]
     unsafe impl ClassType for NSTextLayoutFragment {
         type Super = NSObject;
     }

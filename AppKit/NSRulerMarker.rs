@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSRulerMarker")]
     pub struct NSRulerMarker;
 
+    #[cfg(feature = "AppKit_NSRulerMarker")]
     unsafe impl ClassType for NSRulerMarker {
         type Super = NSObject;
     }

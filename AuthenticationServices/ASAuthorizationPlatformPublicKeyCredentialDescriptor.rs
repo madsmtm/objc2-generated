@@ -6,8 +6,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialDescriptor")]
     pub struct ASAuthorizationPlatformPublicKeyCredentialDescriptor;
 
+    #[cfg(feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialDescriptor")]
     unsafe impl ClassType for ASAuthorizationPlatformPublicKeyCredentialDescriptor {
         type Super = NSObject;
     }

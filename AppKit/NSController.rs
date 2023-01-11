@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSController")]
     pub struct NSController;
 
+    #[cfg(feature = "AppKit_NSController")]
     unsafe impl ClassType for NSController {
         type Super = NSObject;
     }

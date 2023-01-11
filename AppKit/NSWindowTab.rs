@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSWindowTab")]
     pub struct NSWindowTab;
 
+    #[cfg(feature = "AppKit_NSWindowTab")]
     unsafe impl ClassType for NSWindowTab {
         type Super = NSObject;
     }

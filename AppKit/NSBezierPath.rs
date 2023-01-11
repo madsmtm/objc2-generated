@@ -43,8 +43,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSBezierPath")]
     pub struct NSBezierPath;
 
+    #[cfg(feature = "AppKit_NSBezierPath")]
     unsafe impl ClassType for NSBezierPath {
         type Super = NSObject;
     }

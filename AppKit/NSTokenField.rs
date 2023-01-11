@@ -97,8 +97,10 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSTokenField")]
     pub struct NSTokenField;
 
+    #[cfg(feature = "AppKit_NSTokenField")]
     unsafe impl ClassType for NSTokenField {
         #[inherits(NSControl, NSView, NSResponder, NSObject)]
         type Super = NSTextField;

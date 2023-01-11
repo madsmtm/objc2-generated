@@ -21,8 +21,10 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLSharedEventListener")]
     pub struct MTLSharedEventListener;
 
+    #[cfg(feature = "Metal_MTLSharedEventListener")]
     unsafe impl ClassType for MTLSharedEventListener {
         type Super = NSObject;
     }
@@ -63,8 +65,10 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLSharedEventHandle")]
     pub struct MTLSharedEventHandle;
 
+    #[cfg(feature = "Metal_MTLSharedEventHandle")]
     unsafe impl ClassType for MTLSharedEventHandle {
         type Super = NSObject;
     }

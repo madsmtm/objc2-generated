@@ -16,8 +16,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSMassFormatter")]
     pub struct NSMassFormatter;
 
+    #[cfg(feature = "Foundation_NSMassFormatter")]
     unsafe impl ClassType for NSMassFormatter {
         #[inherits(NSObject)]
         type Super = NSFormatter;

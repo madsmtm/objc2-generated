@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSScrubberLayoutAttributes")]
     pub struct NSScrubberLayoutAttributes;
 
+    #[cfg(feature = "AppKit_NSScrubberLayoutAttributes")]
     unsafe impl ClassType for NSScrubberLayoutAttributes {
         type Super = NSObject;
     }
@@ -42,8 +44,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSScrubberLayout")]
     pub struct NSScrubberLayout;
 
+    #[cfg(feature = "AppKit_NSScrubberLayout")]
     unsafe impl ClassType for NSScrubberLayout {
         type Super = NSObject;
     }
@@ -133,8 +137,10 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSScrubberFlowLayout")]
     pub struct NSScrubberFlowLayout;
 
+    #[cfg(feature = "AppKit_NSScrubberFlowLayout")]
     unsafe impl ClassType for NSScrubberFlowLayout {
         #[inherits(NSObject)]
         type Super = NSScrubberLayout;
@@ -164,8 +170,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSScrubberProportionalLayout")]
     pub struct NSScrubberProportionalLayout;
 
+    #[cfg(feature = "AppKit_NSScrubberProportionalLayout")]
     unsafe impl ClassType for NSScrubberProportionalLayout {
         #[inherits(NSObject)]
         type Super = NSScrubberLayout;

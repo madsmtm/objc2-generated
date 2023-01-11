@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSDraggingSession")]
     pub struct NSDraggingSession;
 
+    #[cfg(feature = "AppKit_NSDraggingSession")]
     unsafe impl ClassType for NSDraggingSession {
         type Super = NSObject;
     }

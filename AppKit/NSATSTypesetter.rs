@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSATSTypesetter")]
     pub struct NSATSTypesetter;
 
+    #[cfg(feature = "AppKit_NSATSTypesetter")]
     unsafe impl ClassType for NSATSTypesetter {
         #[inherits(NSObject)]
         type Super = NSTypesetter;

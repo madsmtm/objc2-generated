@@ -25,8 +25,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSSliderCell")]
     pub struct NSSliderCell;
 
+    #[cfg(feature = "AppKit_NSSliderCell")]
     unsafe impl ClassType for NSSliderCell {
         #[inherits(NSCell, NSObject)]
         type Super = NSActionCell;

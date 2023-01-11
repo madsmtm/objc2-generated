@@ -5,8 +5,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSPortNameServer")]
     pub struct NSPortNameServer;
 
+    #[cfg(feature = "Foundation_NSPortNameServer")]
     unsafe impl ClassType for NSPortNameServer {
         type Super = NSObject;
     }
@@ -42,8 +44,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSMachBootstrapServer")]
     pub struct NSMachBootstrapServer;
 
+    #[cfg(feature = "Foundation_NSMachBootstrapServer")]
     unsafe impl ClassType for NSMachBootstrapServer {
         #[inherits(NSObject)]
         type Super = NSPortNameServer;
@@ -80,8 +84,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSMessagePortNameServer")]
     pub struct NSMessagePortNameServer;
 
+    #[cfg(feature = "Foundation_NSMessagePortNameServer")]
     unsafe impl ClassType for NSMessagePortNameServer {
         #[inherits(NSObject)]
         type Super = NSPortNameServer;
@@ -110,8 +116,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSSocketPortNameServer")]
     pub struct NSSocketPortNameServer;
 
+    #[cfg(feature = "Foundation_NSSocketPortNameServer")]
     unsafe impl ClassType for NSSocketPortNameServer {
         #[inherits(NSObject)]
         type Super = NSPortNameServer;

@@ -15,8 +15,10 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSWorkspace")]
     pub struct NSWorkspace;
 
+    #[cfg(feature = "AppKit_NSWorkspace")]
     unsafe impl ClassType for NSWorkspace {
         type Super = NSObject;
     }
@@ -259,8 +261,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSWorkspaceOpenConfiguration")]
     pub struct NSWorkspaceOpenConfiguration;
 
+    #[cfg(feature = "AppKit_NSWorkspaceOpenConfiguration")]
     unsafe impl ClassType for NSWorkspaceOpenConfiguration {
         type Super = NSObject;
     }
@@ -410,8 +414,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSWorkspaceAuthorization")]
     pub struct NSWorkspaceAuthorization;
 
+    #[cfg(feature = "AppKit_NSWorkspaceAuthorization")]
     unsafe impl ClassType for NSWorkspaceAuthorization {
         type Super = NSObject;
     }

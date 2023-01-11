@@ -43,8 +43,10 @@ extern_static!(NSFilePathErrorKey: &'static NSErrorUserInfoKey);
 
 extern_class!(
     #[derive(PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSError")]
     pub struct NSError;
 
+    #[cfg(feature = "Foundation_NSError")]
     unsafe impl ClassType for NSError {
         type Super = NSObject;
     }

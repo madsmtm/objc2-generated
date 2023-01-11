@@ -188,8 +188,10 @@ pub type MTLNewComputePipelineStateWithReflectionCompletionHandler = *mut Block<
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLArgumentDescriptor")]
     pub struct MTLArgumentDescriptor;
 
+    #[cfg(feature = "Metal_MTLArgumentDescriptor")]
     unsafe impl ClassType for MTLArgumentDescriptor {
         type Super = NSObject;
     }

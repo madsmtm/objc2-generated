@@ -17,8 +17,10 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSLock")]
     pub struct NSLock;
 
+    #[cfg(feature = "Foundation_NSLock")]
     unsafe impl ClassType for NSLock {
         type Super = NSObject;
     }
@@ -46,8 +48,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSConditionLock")]
     pub struct NSConditionLock;
 
+    #[cfg(feature = "Foundation_NSConditionLock")]
     unsafe impl ClassType for NSConditionLock {
         type Super = NSObject;
     }
@@ -101,8 +105,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSRecursiveLock")]
     pub struct NSRecursiveLock;
 
+    #[cfg(feature = "Foundation_NSRecursiveLock")]
     unsafe impl ClassType for NSRecursiveLock {
         type Super = NSObject;
     }
@@ -130,8 +136,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSCondition")]
     pub struct NSCondition;
 
+    #[cfg(feature = "Foundation_NSCondition")]
     unsafe impl ClassType for NSCondition {
         type Super = NSObject;
     }

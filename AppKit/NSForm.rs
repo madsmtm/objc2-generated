@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSForm")]
     pub struct NSForm;
 
+    #[cfg(feature = "AppKit_NSForm")]
     unsafe impl ClassType for NSForm {
         #[inherits(NSControl, NSView, NSResponder, NSObject)]
         type Super = NSMatrix;

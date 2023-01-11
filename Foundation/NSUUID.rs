@@ -5,8 +5,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSUUID")]
     pub struct NSUUID;
 
+    #[cfg(feature = "Foundation_NSUUID")]
     unsafe impl ClassType for NSUUID {
         type Super = NSObject;
     }

@@ -63,8 +63,10 @@ pub type NSToolTipTag = NSInteger;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSView")]
     pub struct NSView;
 
+    #[cfg(feature = "AppKit_NSView")]
     unsafe impl ClassType for NSView {
         #[inherits(NSObject)]
         type Super = NSResponder;

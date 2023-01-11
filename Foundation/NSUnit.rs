@@ -5,8 +5,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSUnitConverter")]
     pub struct NSUnitConverter;
 
+    #[cfg(feature = "Foundation_NSUnitConverter")]
     unsafe impl ClassType for NSUnitConverter {
         type Super = NSObject;
     }
@@ -25,8 +27,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSUnitConverterLinear")]
     pub struct NSUnitConverterLinear;
 
+    #[cfg(feature = "Foundation_NSUnitConverterLinear")]
     unsafe impl ClassType for NSUnitConverterLinear {
         #[inherits(NSObject)]
         type Super = NSUnitConverter;
@@ -59,8 +63,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSUnit")]
     pub struct NSUnit;
 
+    #[cfg(feature = "Foundation_NSUnit")]
     unsafe impl ClassType for NSUnit {
         type Super = NSObject;
     }
@@ -90,8 +96,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSDimension")]
     pub struct NSDimension;
 
+    #[cfg(feature = "Foundation_NSDimension")]
     unsafe impl ClassType for NSDimension {
         #[inherits(NSObject)]
         type Super = NSUnit;
@@ -123,8 +131,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSUnitAcceleration")]
     pub struct NSUnitAcceleration;
 
+    #[cfg(feature = "Foundation_NSUnitAcceleration")]
     unsafe impl ClassType for NSUnitAcceleration {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
@@ -144,8 +154,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSUnitAngle")]
     pub struct NSUnitAngle;
 
+    #[cfg(feature = "Foundation_NSUnitAngle")]
     unsafe impl ClassType for NSUnitAngle {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
@@ -177,8 +189,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSUnitArea")]
     pub struct NSUnitArea;
 
+    #[cfg(feature = "Foundation_NSUnitArea")]
     unsafe impl ClassType for NSUnitArea {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
@@ -234,8 +248,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSUnitConcentrationMass")]
     pub struct NSUnitConcentrationMass;
 
+    #[cfg(feature = "Foundation_NSUnitConcentrationMass")]
     unsafe impl ClassType for NSUnitConcentrationMass {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
@@ -260,8 +276,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSUnitDispersion")]
     pub struct NSUnitDispersion;
 
+    #[cfg(feature = "Foundation_NSUnitDispersion")]
     unsafe impl ClassType for NSUnitDispersion {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
@@ -278,8 +296,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSUnitDuration")]
     pub struct NSUnitDuration;
 
+    #[cfg(feature = "Foundation_NSUnitDuration")]
     unsafe impl ClassType for NSUnitDuration {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
@@ -314,8 +334,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSUnitElectricCharge")]
     pub struct NSUnitElectricCharge;
 
+    #[cfg(feature = "Foundation_NSUnitElectricCharge")]
     unsafe impl ClassType for NSUnitElectricCharge {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
@@ -347,8 +369,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSUnitElectricCurrent")]
     pub struct NSUnitElectricCurrent;
 
+    #[cfg(feature = "Foundation_NSUnitElectricCurrent")]
     unsafe impl ClassType for NSUnitElectricCurrent {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
@@ -377,8 +401,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSUnitElectricPotentialDifference")]
     pub struct NSUnitElectricPotentialDifference;
 
+    #[cfg(feature = "Foundation_NSUnitElectricPotentialDifference")]
     unsafe impl ClassType for NSUnitElectricPotentialDifference {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
@@ -407,8 +433,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSUnitElectricResistance")]
     pub struct NSUnitElectricResistance;
 
+    #[cfg(feature = "Foundation_NSUnitElectricResistance")]
     unsafe impl ClassType for NSUnitElectricResistance {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
@@ -437,8 +465,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSUnitEnergy")]
     pub struct NSUnitEnergy;
 
+    #[cfg(feature = "Foundation_NSUnitEnergy")]
     unsafe impl ClassType for NSUnitEnergy {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
@@ -467,8 +497,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSUnitFrequency")]
     pub struct NSUnitFrequency;
 
+    #[cfg(feature = "Foundation_NSUnitFrequency")]
     unsafe impl ClassType for NSUnitFrequency {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
@@ -509,8 +541,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSUnitFuelEfficiency")]
     pub struct NSUnitFuelEfficiency;
 
+    #[cfg(feature = "Foundation_NSUnitFuelEfficiency")]
     unsafe impl ClassType for NSUnitFuelEfficiency {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
@@ -533,8 +567,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSUnitInformationStorage")]
     pub struct NSUnitInformationStorage;
 
+    #[cfg(feature = "Foundation_NSUnitInformationStorage")]
     unsafe impl ClassType for NSUnitInformationStorage {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
@@ -653,8 +689,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSUnitLength")]
     pub struct NSUnitLength;
 
+    #[cfg(feature = "Foundation_NSUnitLength")]
     unsafe impl ClassType for NSUnitLength {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
@@ -734,8 +772,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSUnitIlluminance")]
     pub struct NSUnitIlluminance;
 
+    #[cfg(feature = "Foundation_NSUnitIlluminance")]
     unsafe impl ClassType for NSUnitIlluminance {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
@@ -752,8 +792,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSUnitMass")]
     pub struct NSUnitMass;
 
+    #[cfg(feature = "Foundation_NSUnitMass")]
     unsafe impl ClassType for NSUnitMass {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
@@ -815,8 +857,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSUnitPower")]
     pub struct NSUnitPower;
 
+    #[cfg(feature = "Foundation_NSUnitPower")]
     unsafe impl ClassType for NSUnitPower {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
@@ -863,8 +907,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSUnitPressure")]
     pub struct NSUnitPressure;
 
+    #[cfg(feature = "Foundation_NSUnitPressure")]
     unsafe impl ClassType for NSUnitPressure {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
@@ -908,8 +954,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSUnitSpeed")]
     pub struct NSUnitSpeed;
 
+    #[cfg(feature = "Foundation_NSUnitSpeed")]
     unsafe impl ClassType for NSUnitSpeed {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
@@ -935,8 +983,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSUnitTemperature")]
     pub struct NSUnitTemperature;
 
+    #[cfg(feature = "Foundation_NSUnitTemperature")]
     unsafe impl ClassType for NSUnitTemperature {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
@@ -959,8 +1009,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSUnitVolume")]
     pub struct NSUnitVolume;
 
+    #[cfg(feature = "Foundation_NSUnitVolume")]
     unsafe impl ClassType for NSUnitVolume {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;

@@ -18,8 +18,10 @@ extern_static!(NSMigrationEntityPolicyKey: &'static NSString);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreData_NSEntityMigrationPolicy")]
     pub struct NSEntityMigrationPolicy;
 
+    #[cfg(feature = "CoreData_NSEntityMigrationPolicy")]
     unsafe impl ClassType for NSEntityMigrationPolicy {
         type Super = NSObject;
     }

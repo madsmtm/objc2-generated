@@ -5,8 +5,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSDistributedLock")]
     pub struct NSDistributedLock;
 
+    #[cfg(feature = "Foundation_NSDistributedLock")]
     unsafe impl ClassType for NSDistributedLock {
         type Super = NSObject;
     }

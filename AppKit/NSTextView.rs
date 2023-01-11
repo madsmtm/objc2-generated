@@ -26,8 +26,10 @@ extern_static!(NSAllRomanInputSourcesLocaleIdentifier: &'static NSString);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSTextView")]
     pub struct NSTextView;
 
+    #[cfg(feature = "AppKit_NSTextView")]
     unsafe impl ClassType for NSTextView {
         #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSText;

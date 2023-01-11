@@ -16,8 +16,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSDateIntervalFormatter")]
     pub struct NSDateIntervalFormatter;
 
+    #[cfg(feature = "Foundation_NSDateIntervalFormatter")]
     unsafe impl ClassType for NSDateIntervalFormatter {
         #[inherits(NSObject)]
         type Super = NSFormatter;

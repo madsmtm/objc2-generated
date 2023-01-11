@@ -13,8 +13,10 @@ pub type NSSoundPlaybackDeviceIdentifier = NSString;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSSound")]
     pub struct NSSound;
 
+    #[cfg(feature = "AppKit_NSSound")]
     unsafe impl ClassType for NSSound {
         type Super = NSObject;
     }

@@ -6,8 +6,10 @@ use crate::Metal::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLLinkedFunctions")]
     pub struct MTLLinkedFunctions;
 
+    #[cfg(feature = "Metal_MTLLinkedFunctions")]
     unsafe impl ClassType for MTLLinkedFunctions {
         type Super = NSObject;
     }

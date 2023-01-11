@@ -18,8 +18,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSTokenFieldCell")]
     pub struct NSTokenFieldCell;
 
+    #[cfg(feature = "AppKit_NSTokenFieldCell")]
     unsafe impl ClassType for NSTokenFieldCell {
         #[inherits(NSActionCell, NSCell, NSObject)]
         type Super = NSTextFieldCell;

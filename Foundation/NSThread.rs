@@ -5,8 +5,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSThread")]
     pub struct NSThread;
 
+    #[cfg(feature = "Foundation_NSThread")]
     unsafe impl ClassType for NSThread {
         type Super = NSObject;
     }

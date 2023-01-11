@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSPDFInfo")]
     pub struct NSPDFInfo;
 
+    #[cfg(feature = "AppKit_NSPDFInfo")]
     unsafe impl ClassType for NSPDFInfo {
         type Super = NSObject;
     }

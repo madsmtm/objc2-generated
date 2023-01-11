@@ -35,8 +35,10 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSStream")]
     pub struct NSStream;
 
+    #[cfg(feature = "Foundation_NSStream")]
     unsafe impl ClassType for NSStream {
         type Super = NSObject;
     }
@@ -89,8 +91,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSInputStream")]
     pub struct NSInputStream;
 
+    #[cfg(feature = "Foundation_NSInputStream")]
     unsafe impl ClassType for NSInputStream {
         #[inherits(NSObject)]
         type Super = NSStream;
@@ -131,8 +135,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSOutputStream")]
     pub struct NSOutputStream;
 
+    #[cfg(feature = "Foundation_NSOutputStream")]
     unsafe impl ClassType for NSOutputStream {
         #[inherits(NSObject)]
         type Super = NSStream;

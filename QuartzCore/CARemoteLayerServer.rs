@@ -6,8 +6,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreAnimation_CARemoteLayerServer")]
     pub struct CARemoteLayerServer;
 
+    #[cfg(feature = "CoreAnimation_CARemoteLayerServer")]
     unsafe impl ClassType for CARemoteLayerServer {
         type Super = NSObject;
     }

@@ -128,8 +128,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLType")]
     pub struct MTLType;
 
+    #[cfg(feature = "Metal_MTLType")]
     unsafe impl ClassType for MTLType {
         type Super = NSObject;
     }
@@ -145,8 +147,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLStructMember")]
     pub struct MTLStructMember;
 
+    #[cfg(feature = "Metal_MTLStructMember")]
     unsafe impl ClassType for MTLStructMember {
         type Super = NSObject;
     }
@@ -188,8 +192,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLStructType")]
     pub struct MTLStructType;
 
+    #[cfg(feature = "Metal_MTLStructType")]
     unsafe impl ClassType for MTLStructType {
         #[inherits(NSObject)]
         type Super = MTLType;
@@ -211,8 +217,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLArrayType")]
     pub struct MTLArrayType;
 
+    #[cfg(feature = "Metal_MTLArrayType")]
     unsafe impl ClassType for MTLArrayType {
         #[inherits(NSObject)]
         type Super = MTLType;
@@ -255,8 +263,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLPointerType")]
     pub struct MTLPointerType;
 
+    #[cfg(feature = "Metal_MTLPointerType")]
     unsafe impl ClassType for MTLPointerType {
         #[inherits(NSObject)]
         type Super = MTLType;
@@ -293,8 +303,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLTextureReferenceType")]
     pub struct MTLTextureReferenceType;
 
+    #[cfg(feature = "Metal_MTLTextureReferenceType")]
     unsafe impl ClassType for MTLTextureReferenceType {
         #[inherits(NSObject)]
         type Super = MTLType;
@@ -320,8 +332,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLArgument")]
     pub struct MTLArgument;
 
+    #[cfg(feature = "Metal_MTLArgument")]
     unsafe impl ClassType for MTLArgument {
         type Super = NSObject;
     }

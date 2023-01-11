@@ -73,8 +73,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug)]
+    #[cfg(feature = "AppKit_NSLayoutXAxisAnchor")]
     pub struct NSLayoutXAxisAnchor;
 
+    #[cfg(feature = "AppKit_NSLayoutXAxisAnchor")]
     unsafe impl ClassType for NSLayoutXAxisAnchor {
         #[inherits(NSObject)]
         type Super = NSLayoutAnchor;
@@ -119,8 +121,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug)]
+    #[cfg(feature = "AppKit_NSLayoutYAxisAnchor")]
     pub struct NSLayoutYAxisAnchor;
 
+    #[cfg(feature = "AppKit_NSLayoutYAxisAnchor")]
     unsafe impl ClassType for NSLayoutYAxisAnchor {
         #[inherits(NSObject)]
         type Super = NSLayoutAnchor;
@@ -165,8 +169,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug)]
+    #[cfg(feature = "AppKit_NSLayoutDimension")]
     pub struct NSLayoutDimension;
 
+    #[cfg(feature = "AppKit_NSLayoutDimension")]
     unsafe impl ClassType for NSLayoutDimension {
         #[inherits(NSObject)]
         type Super = NSLayoutAnchor;

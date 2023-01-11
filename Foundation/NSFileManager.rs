@@ -69,8 +69,10 @@ extern_static!(NSUbiquityIdentityDidChangeNotification: &'static NSNotificationN
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSFileManager")]
     pub struct NSFileManager;
 
+    #[cfg(feature = "Foundation_NSFileManager")]
     unsafe impl ClassType for NSFileManager {
         type Super = NSObject;
     }
@@ -798,6 +800,7 @@ extern_protocol!(
 
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSDirectoryEnumerator")]
     pub struct NSDirectoryEnumerator<
         ObjectType: Message = Object,
         ObjectTypeOwnership: Ownership = Shared,
@@ -806,6 +809,7 @@ __inner_extern_class!(
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
+    #[cfg(feature = "Foundation_NSDirectoryEnumerator")]
     unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> ClassType
         for NSDirectoryEnumerator<ObjectType, ObjectTypeOwnership>
     {
@@ -847,8 +851,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSFileProviderService")]
     pub struct NSFileProviderService;
 
+    #[cfg(feature = "Foundation_NSFileProviderService")]
     unsafe impl ClassType for NSFileProviderService {
         type Super = NSObject;
     }

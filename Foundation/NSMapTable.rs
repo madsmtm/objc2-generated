@@ -22,6 +22,7 @@ pub type NSMapTableOptions = NSUInteger;
 
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSMapTable")]
     pub struct NSMapTable<
         KeyType: Message = Object,
         ObjectType: Message = Object,
@@ -33,6 +34,7 @@ __inner_extern_class!(
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
+    #[cfg(feature = "Foundation_NSMapTable")]
     unsafe impl<
             KeyType: Message,
             ObjectType: Message,

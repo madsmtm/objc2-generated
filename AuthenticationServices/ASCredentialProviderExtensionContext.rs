@@ -6,8 +6,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AuthenticationServices_ASCredentialProviderExtensionContext")]
     pub struct ASCredentialProviderExtensionContext;
 
+    #[cfg(feature = "AuthenticationServices_ASCredentialProviderExtensionContext")]
     unsafe impl ClassType for ASCredentialProviderExtensionContext {
         #[inherits(NSObject)]
         type Super = NSExtensionContext;

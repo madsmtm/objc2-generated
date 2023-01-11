@@ -9,8 +9,10 @@ pub type NSTextInputSourceIdentifier = NSString;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSTextInputContext")]
     pub struct NSTextInputContext;
 
+    #[cfg(feature = "AppKit_NSTextInputContext")]
     unsafe impl ClassType for NSTextInputContext {
         type Super = NSObject;
     }

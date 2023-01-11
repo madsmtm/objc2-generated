@@ -15,8 +15,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSTableViewRowAction")]
     pub struct NSTableViewRowAction;
 
+    #[cfg(feature = "AppKit_NSTableViewRowAction")]
     unsafe impl ClassType for NSTableViewRowAction {
         type Super = NSObject;
     }

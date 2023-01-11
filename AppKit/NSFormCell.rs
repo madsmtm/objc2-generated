@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSFormCell")]
     pub struct NSFormCell;
 
+    #[cfg(feature = "AppKit_NSFormCell")]
     unsafe impl ClassType for NSFormCell {
         #[inherits(NSCell, NSObject)]
         type Super = NSActionCell;

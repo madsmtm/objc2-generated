@@ -6,8 +6,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreData_NSBatchDeleteRequest")]
     pub struct NSBatchDeleteRequest;
 
+    #[cfg(feature = "CoreData_NSBatchDeleteRequest")]
     unsafe impl ClassType for NSBatchDeleteRequest {
         #[inherits(NSObject)]
         type Super = NSPersistentStoreRequest;

@@ -59,8 +59,10 @@ inline_fn!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSCollectionViewCompositionalLayoutConfiguration")]
     pub struct NSCollectionViewCompositionalLayoutConfiguration;
 
+    #[cfg(feature = "AppKit_NSCollectionViewCompositionalLayoutConfiguration")]
     unsafe impl ClassType for NSCollectionViewCompositionalLayoutConfiguration {
         type Super = NSObject;
     }
@@ -107,8 +109,10 @@ pub type NSCollectionViewCompositionalLayoutSectionProvider =
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSCollectionViewCompositionalLayout")]
     pub struct NSCollectionViewCompositionalLayout;
 
+    #[cfg(feature = "AppKit_NSCollectionViewCompositionalLayout")]
     unsafe impl ClassType for NSCollectionViewCompositionalLayout {
         #[inherits(NSObject)]
         type Super = NSCollectionViewLayout;
@@ -194,8 +198,10 @@ pub type NSCollectionLayoutSectionVisibleItemsInvalidationHandler = *mut Block<
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSCollectionLayoutSection")]
     pub struct NSCollectionLayoutSection;
 
+    #[cfg(feature = "AppKit_NSCollectionLayoutSection")]
     unsafe impl ClassType for NSCollectionLayoutSection {
         type Super = NSObject;
     }
@@ -299,8 +305,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSCollectionLayoutItem")]
     pub struct NSCollectionLayoutItem;
 
+    #[cfg(feature = "AppKit_NSCollectionLayoutItem")]
     unsafe impl ClassType for NSCollectionLayoutItem {
         type Super = NSObject;
     }
@@ -361,8 +369,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSCollectionLayoutGroupCustomItem")]
     pub struct NSCollectionLayoutGroupCustomItem;
 
+    #[cfg(feature = "AppKit_NSCollectionLayoutGroupCustomItem")]
     unsafe impl ClassType for NSCollectionLayoutGroupCustomItem {
         type Super = NSObject;
     }
@@ -401,8 +411,10 @@ pub type NSCollectionLayoutGroupCustomItemProvider = *mut Block<
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSCollectionLayoutGroup")]
     pub struct NSCollectionLayoutGroup;
 
+    #[cfg(feature = "AppKit_NSCollectionLayoutGroup")]
     unsafe impl ClassType for NSCollectionLayoutGroup {
         #[inherits(NSObject)]
         type Super = NSCollectionLayoutItem;
@@ -503,8 +515,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSCollectionLayoutDimension")]
     pub struct NSCollectionLayoutDimension;
 
+    #[cfg(feature = "AppKit_NSCollectionLayoutDimension")]
     unsafe impl ClassType for NSCollectionLayoutDimension {
         type Super = NSObject;
     }
@@ -550,8 +564,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSCollectionLayoutSize")]
     pub struct NSCollectionLayoutSize;
 
+    #[cfg(feature = "AppKit_NSCollectionLayoutSize")]
     unsafe impl ClassType for NSCollectionLayoutSize {
         type Super = NSObject;
     }
@@ -585,8 +601,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSCollectionLayoutSpacing")]
     pub struct NSCollectionLayoutSpacing;
 
+    #[cfg(feature = "AppKit_NSCollectionLayoutSpacing")]
     unsafe impl ClassType for NSCollectionLayoutSpacing {
         type Super = NSObject;
     }
@@ -620,8 +638,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSCollectionLayoutEdgeSpacing")]
     pub struct NSCollectionLayoutEdgeSpacing;
 
+    #[cfg(feature = "AppKit_NSCollectionLayoutEdgeSpacing")]
     unsafe impl ClassType for NSCollectionLayoutEdgeSpacing {
         type Super = NSObject;
     }
@@ -665,8 +685,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSCollectionLayoutSupplementaryItem")]
     pub struct NSCollectionLayoutSupplementaryItem;
 
+    #[cfg(feature = "AppKit_NSCollectionLayoutSupplementaryItem")]
     unsafe impl ClassType for NSCollectionLayoutSupplementaryItem {
         #[inherits(NSObject)]
         type Super = NSCollectionLayoutItem;
@@ -729,8 +751,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSCollectionLayoutBoundarySupplementaryItem")]
     pub struct NSCollectionLayoutBoundarySupplementaryItem;
 
+    #[cfg(feature = "AppKit_NSCollectionLayoutBoundarySupplementaryItem")]
     unsafe impl ClassType for NSCollectionLayoutBoundarySupplementaryItem {
         #[inherits(NSCollectionLayoutItem, NSObject)]
         type Super = NSCollectionLayoutSupplementaryItem;
@@ -791,8 +815,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSCollectionLayoutDecorationItem")]
     pub struct NSCollectionLayoutDecorationItem;
 
+    #[cfg(feature = "AppKit_NSCollectionLayoutDecorationItem")]
     unsafe impl ClassType for NSCollectionLayoutDecorationItem {
         #[inherits(NSObject)]
         type Super = NSCollectionLayoutItem;
@@ -828,8 +854,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSCollectionLayoutAnchor")]
     pub struct NSCollectionLayoutAnchor;
 
+    #[cfg(feature = "AppKit_NSCollectionLayoutAnchor")]
     unsafe impl ClassType for NSCollectionLayoutAnchor {
         type Super = NSObject;
     }

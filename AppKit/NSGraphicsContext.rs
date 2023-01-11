@@ -36,8 +36,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSGraphicsContext")]
     pub struct NSGraphicsContext;
 
+    #[cfg(feature = "AppKit_NSGraphicsContext")]
     unsafe impl ClassType for NSGraphicsContext {
         type Super = NSObject;
     }

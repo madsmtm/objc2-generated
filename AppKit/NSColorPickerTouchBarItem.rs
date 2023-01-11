@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSColorPickerTouchBarItem")]
     pub struct NSColorPickerTouchBarItem;
 
+    #[cfg(feature = "AppKit_NSColorPickerTouchBarItem")]
     unsafe impl ClassType for NSColorPickerTouchBarItem {
         #[inherits(NSObject)]
         type Super = NSTouchBarItem;

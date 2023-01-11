@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSTableHeaderCell")]
     pub struct NSTableHeaderCell;
 
+    #[cfg(feature = "AppKit_NSTableHeaderCell")]
     unsafe impl ClassType for NSTableHeaderCell {
         #[inherits(NSActionCell, NSCell, NSObject)]
         type Super = NSTextFieldCell;

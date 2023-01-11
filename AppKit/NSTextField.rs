@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSTextField")]
     pub struct NSTextField;
 
+    #[cfg(feature = "AppKit_NSTextField")]
     unsafe impl ClassType for NSTextField {
         #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSControl;

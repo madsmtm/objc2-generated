@@ -6,8 +6,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreAnimation_CATransformLayer")]
     pub struct CATransformLayer;
 
+    #[cfg(feature = "CoreAnimation_CATransformLayer")]
     unsafe impl ClassType for CATransformLayer {
         #[inherits(NSObject)]
         type Super = CALayer;

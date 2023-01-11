@@ -33,8 +33,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSImageCell")]
     pub struct NSImageCell;
 
+    #[cfg(feature = "AppKit_NSImageCell")]
     unsafe impl ClassType for NSImageCell {
         #[inherits(NSObject)]
         type Super = NSCell;

@@ -9,8 +9,10 @@ extern_static!(NSSplitViewControllerAutomaticDimension: CGFloat);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSSplitViewController")]
     pub struct NSSplitViewController;
 
+    #[cfg(feature = "AppKit_NSSplitViewController")]
     unsafe impl ClassType for NSSplitViewController {
         #[inherits(NSResponder, NSObject)]
         type Super = NSViewController;

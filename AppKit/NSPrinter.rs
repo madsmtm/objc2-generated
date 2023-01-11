@@ -24,8 +24,10 @@ typed_extensible_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSPrinter")]
     pub struct NSPrinter;
 
+    #[cfg(feature = "AppKit_NSPrinter")]
     unsafe impl ClassType for NSPrinter {
         type Super = NSObject;
     }

@@ -5,8 +5,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSExtensionContext")]
     pub struct NSExtensionContext;
 
+    #[cfg(feature = "Foundation_NSExtensionContext")]
     unsafe impl ClassType for NSExtensionContext {
         type Super = NSObject;
     }

@@ -9,8 +9,10 @@ extern_static!(NSUndoManagerGroupIsDiscardableKey: &'static NSString);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSUndoManager")]
     pub struct NSUndoManager;
 
+    #[cfg(feature = "Foundation_NSUndoManager")]
     unsafe impl ClassType for NSUndoManager {
         type Super = NSObject;
     }

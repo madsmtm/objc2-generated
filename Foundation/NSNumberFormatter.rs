@@ -53,8 +53,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSNumberFormatter")]
     pub struct NSNumberFormatter;
 
+    #[cfg(feature = "Foundation_NSNumberFormatter")]
     unsafe impl ClassType for NSNumberFormatter {
         #[inherits(NSObject)]
         type Super = NSFormatter;

@@ -22,8 +22,10 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSViewController")]
     pub struct NSViewController;
 
+    #[cfg(feature = "AppKit_NSViewController")]
     unsafe impl ClassType for NSViewController {
         #[inherits(NSObject)]
         type Super = NSResponder;

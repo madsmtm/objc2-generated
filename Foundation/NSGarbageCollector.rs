@@ -5,8 +5,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSGarbageCollector")]
     pub struct NSGarbageCollector;
 
+    #[cfg(feature = "Foundation_NSGarbageCollector")]
     unsafe impl ClassType for NSGarbageCollector {
         type Super = NSObject;
     }

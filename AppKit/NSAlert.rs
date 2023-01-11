@@ -22,8 +22,10 @@ extern_static!(NSAlertThirdButtonReturn: NSModalResponse = 1002);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSAlert")]
     pub struct NSAlert;
 
+    #[cfg(feature = "AppKit_NSAlert")]
     unsafe impl ClassType for NSAlert {
         type Super = NSObject;
     }

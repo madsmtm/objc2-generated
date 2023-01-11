@@ -44,8 +44,10 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationController")]
     pub struct ASAccountAuthenticationModificationController;
 
+    #[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationController")]
     unsafe impl ClassType for ASAccountAuthenticationModificationController {
         type Super = NSObject;
     }

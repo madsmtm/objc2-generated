@@ -55,8 +55,10 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreAnimation_CALayer")]
     pub struct CALayer;
 
+    #[cfg(feature = "CoreAnimation_CALayer")]
     unsafe impl ClassType for CALayer {
         type Super = NSObject;
     }

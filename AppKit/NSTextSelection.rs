@@ -26,8 +26,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSTextSelection")]
     pub struct NSTextSelection;
 
+    #[cfg(feature = "AppKit_NSTextSelection")]
     unsafe impl ClassType for NSTextSelection {
         type Super = NSObject;
     }

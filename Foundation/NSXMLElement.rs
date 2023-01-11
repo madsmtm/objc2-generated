@@ -5,8 +5,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSXMLElement")]
     pub struct NSXMLElement;
 
+    #[cfg(feature = "Foundation_NSXMLElement")]
     unsafe impl ClassType for NSXMLElement {
         #[inherits(NSObject)]
         type Super = NSXMLNode;

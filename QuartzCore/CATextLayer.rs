@@ -14,8 +14,10 @@ typed_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreAnimation_CATextLayer")]
     pub struct CATextLayer;
 
+    #[cfg(feature = "CoreAnimation_CATextLayer")]
     unsafe impl ClassType for CATextLayer {
         #[inherits(NSObject)]
         type Super = CALayer;

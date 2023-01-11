@@ -7,6 +7,7 @@ use crate::Foundation::*;
 
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSCandidateListTouchBarItem")]
     pub struct NSCandidateListTouchBarItem<
         CandidateType: Message = Object,
         CandidateTypeOwnership: Ownership = Shared,
@@ -15,6 +16,7 @@ __inner_extern_class!(
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
+    #[cfg(feature = "AppKit_NSCandidateListTouchBarItem")]
     unsafe impl<CandidateType: Message, CandidateTypeOwnership: Ownership> ClassType
         for NSCandidateListTouchBarItem<CandidateType, CandidateTypeOwnership>
     {

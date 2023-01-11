@@ -31,8 +31,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSXMLDTDNode")]
     pub struct NSXMLDTDNode;
 
+    #[cfg(feature = "Foundation_NSXMLDTDNode")]
     unsafe impl ClassType for NSXMLDTDNode {
         #[inherits(NSObject)]
         type Super = NSXMLNode;

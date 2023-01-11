@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSStringDrawingContext")]
     pub struct NSStringDrawingContext;
 
+    #[cfg(feature = "AppKit_NSStringDrawingContext")]
     unsafe impl ClassType for NSStringDrawingContext {
         type Super = NSObject;
     }

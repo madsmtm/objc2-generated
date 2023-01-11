@@ -27,8 +27,10 @@ extern_static!(NSPrintOperationExistsException: &'static NSExceptionName);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSPrintOperation")]
     pub struct NSPrintOperation;
 
+    #[cfg(feature = "AppKit_NSPrintOperation")]
     unsafe impl ClassType for NSPrintOperation {
         type Super = NSObject;
     }

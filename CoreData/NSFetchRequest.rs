@@ -46,11 +46,13 @@ extern_methods!(
 
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreData_NSFetchRequest")]
     pub struct NSFetchRequest<ResultType: Message = Object, ResultTypeOwnership: Ownership = Shared> {
         _inner0: PhantomData<*mut (ResultType, ResultTypeOwnership)>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
+    #[cfg(feature = "CoreData_NSFetchRequest")]
     unsafe impl<ResultType: Message, ResultTypeOwnership: Ownership> ClassType
         for NSFetchRequest<ResultType, ResultTypeOwnership>
     {
@@ -233,6 +235,7 @@ pub type NSPersistentStoreAsynchronousFetchResultCompletionBlock =
 
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreData_NSAsynchronousFetchRequest")]
     pub struct NSAsynchronousFetchRequest<
         ResultType: Message = Object,
         ResultTypeOwnership: Ownership = Shared,
@@ -241,6 +244,7 @@ __inner_extern_class!(
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
+    #[cfg(feature = "CoreData_NSAsynchronousFetchRequest")]
     unsafe impl<ResultType: Message, ResultTypeOwnership: Ownership> ClassType
         for NSAsynchronousFetchRequest<ResultType, ResultTypeOwnership>
     {

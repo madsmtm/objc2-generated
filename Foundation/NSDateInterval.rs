@@ -5,8 +5,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSDateInterval")]
     pub struct NSDateInterval;
 
+    #[cfg(feature = "Foundation_NSDateInterval")]
     unsafe impl ClassType for NSDateInterval {
         type Super = NSObject;
     }

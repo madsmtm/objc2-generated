@@ -18,8 +18,10 @@ typed_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreAnimation_CAEmitterLayer")]
     pub struct CAEmitterLayer;
 
+    #[cfg(feature = "CoreAnimation_CAEmitterLayer")]
     unsafe impl ClassType for CAEmitterLayer {
         #[inherits(NSObject)]
         type Super = CALayer;

@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSWindowController")]
     pub struct NSWindowController;
 
+    #[cfg(feature = "AppKit_NSWindowController")]
     unsafe impl ClassType for NSWindowController {
         #[inherits(NSObject)]
         type Super = NSResponder;

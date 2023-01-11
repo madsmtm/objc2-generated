@@ -23,8 +23,10 @@ extern_static!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSCollectionViewFlowLayoutInvalidationContext")]
     pub struct NSCollectionViewFlowLayoutInvalidationContext;
 
+    #[cfg(feature = "AppKit_NSCollectionViewFlowLayoutInvalidationContext")]
     unsafe impl ClassType for NSCollectionViewFlowLayoutInvalidationContext {
         #[inherits(NSObject)]
         type Super = NSCollectionViewLayoutInvalidationContext;
@@ -116,8 +118,10 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSCollectionViewFlowLayout")]
     pub struct NSCollectionViewFlowLayout;
 
+    #[cfg(feature = "AppKit_NSCollectionViewFlowLayout")]
     unsafe impl ClassType for NSCollectionViewFlowLayout {
         #[inherits(NSObject)]
         type Super = NSCollectionViewLayout;

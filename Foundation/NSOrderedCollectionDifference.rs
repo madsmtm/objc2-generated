@@ -14,6 +14,7 @@ ns_options!(
 
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSOrderedCollectionDifference")]
     pub struct NSOrderedCollectionDifference<
         ObjectType: Message = Object,
         ObjectTypeOwnership: Ownership = Shared,
@@ -22,6 +23,7 @@ __inner_extern_class!(
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
+    #[cfg(feature = "Foundation_NSOrderedCollectionDifference")]
     unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> ClassType
         for NSOrderedCollectionDifference<ObjectType, ObjectTypeOwnership>
     {

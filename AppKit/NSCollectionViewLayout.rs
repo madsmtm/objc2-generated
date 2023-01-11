@@ -23,8 +23,10 @@ extern_static!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSCollectionViewLayoutAttributes")]
     pub struct NSCollectionViewLayoutAttributes;
 
+    #[cfg(feature = "AppKit_NSCollectionViewLayoutAttributes")]
     unsafe impl ClassType for NSCollectionViewLayoutAttributes {
         type Super = NSObject;
     }
@@ -119,8 +121,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSCollectionViewUpdateItem")]
     pub struct NSCollectionViewUpdateItem;
 
+    #[cfg(feature = "AppKit_NSCollectionViewUpdateItem")]
     unsafe impl ClassType for NSCollectionViewUpdateItem {
         type Super = NSObject;
     }
@@ -144,8 +148,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSCollectionViewLayoutInvalidationContext")]
     pub struct NSCollectionViewLayoutInvalidationContext;
 
+    #[cfg(feature = "AppKit_NSCollectionViewLayoutInvalidationContext")]
     unsafe impl ClassType for NSCollectionViewLayoutInvalidationContext {
         type Super = NSObject;
     }
@@ -224,8 +230,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSCollectionViewLayout")]
     pub struct NSCollectionViewLayout;
 
+    #[cfg(feature = "AppKit_NSCollectionViewLayout")]
     unsafe impl ClassType for NSCollectionViewLayout {
         type Super = NSObject;
     }

@@ -36,8 +36,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSImage")]
     pub struct NSImage;
 
+    #[cfg(feature = "AppKit_NSImage")]
     unsafe impl ClassType for NSImage {
         type Super = NSObject;
     }
@@ -818,8 +820,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSImageSymbolConfiguration")]
     pub struct NSImageSymbolConfiguration;
 
+    #[cfg(feature = "AppKit_NSImageSymbolConfiguration")]
     unsafe impl ClassType for NSImageSymbolConfiguration {
         type Super = NSObject;
     }

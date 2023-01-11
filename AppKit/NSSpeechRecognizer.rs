@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSSpeechRecognizer")]
     pub struct NSSpeechRecognizer;
 
+    #[cfg(feature = "AppKit_NSSpeechRecognizer")]
     unsafe impl ClassType for NSSpeechRecognizer {
         type Super = NSObject;
     }

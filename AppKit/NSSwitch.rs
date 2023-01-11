@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSSwitch")]
     pub struct NSSwitch;
 
+    #[cfg(feature = "AppKit_NSSwitch")]
     unsafe impl ClassType for NSSwitch {
         #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSControl;

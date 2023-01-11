@@ -15,8 +15,10 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSGradient")]
     pub struct NSGradient;
 
+    #[cfg(feature = "AppKit_NSGradient")]
     unsafe impl ClassType for NSGradient {
         type Super = NSObject;
     }

@@ -7,8 +7,10 @@ pub type NSUserActivityPersistentIdentifier = NSString;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSUserActivity")]
     pub struct NSUserActivity;
 
+    #[cfg(feature = "Foundation_NSUserActivity")]
     unsafe impl ClassType for NSUserActivity {
         type Super = NSObject;
     }

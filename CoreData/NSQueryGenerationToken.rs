@@ -6,8 +6,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreData_NSQueryGenerationToken")]
     pub struct NSQueryGenerationToken;
 
+    #[cfg(feature = "CoreData_NSQueryGenerationToken")]
     unsafe impl ClassType for NSQueryGenerationToken {
         type Super = NSObject;
     }

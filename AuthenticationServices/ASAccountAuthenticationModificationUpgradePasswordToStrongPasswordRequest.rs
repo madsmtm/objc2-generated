@@ -6,8 +6,14 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(
+        feature = "AuthenticationServices_ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest"
+    )]
     pub struct ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest;
 
+    #[cfg(
+        feature = "AuthenticationServices_ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest"
+    )]
     unsafe impl ClassType
         for ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest
     {

@@ -31,8 +31,14 @@ extern_fn!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(
+        feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor"
+    )]
     pub struct ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor;
 
+    #[cfg(
+        feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor"
+    )]
     unsafe impl ClassType for ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor {
         type Super = NSObject;
     }

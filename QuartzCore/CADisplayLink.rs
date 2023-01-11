@@ -6,8 +6,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreAnimation_CADisplayLink")]
     pub struct CADisplayLink;
 
+    #[cfg(feature = "CoreAnimation_CADisplayLink")]
     unsafe impl ClassType for CADisplayLink {
         type Super = NSObject;
     }

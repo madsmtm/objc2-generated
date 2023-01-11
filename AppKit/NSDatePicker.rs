@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSDatePicker")]
     pub struct NSDatePicker;
 
+    #[cfg(feature = "AppKit_NSDatePicker")]
     unsafe impl ClassType for NSDatePicker {
         #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSControl;

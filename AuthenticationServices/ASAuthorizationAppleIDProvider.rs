@@ -20,8 +20,10 @@ extern_static!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDProvider")]
     pub struct ASAuthorizationAppleIDProvider;
 
+    #[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDProvider")]
     unsafe impl ClassType for ASAuthorizationAppleIDProvider {
         type Super = NSObject;
     }

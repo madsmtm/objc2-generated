@@ -27,8 +27,10 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSJSONSerialization")]
     pub struct NSJSONSerialization;
 
+    #[cfg(feature = "Foundation_NSJSONSerialization")]
     unsafe impl ClassType for NSJSONSerialization {
         type Super = NSObject;
     }

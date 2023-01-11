@@ -15,8 +15,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLHeapDescriptor")]
     pub struct MTLHeapDescriptor;
 
+    #[cfg(feature = "Metal_MTLHeapDescriptor")]
     unsafe impl ClassType for MTLHeapDescriptor {
         type Super = NSObject;
     }

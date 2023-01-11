@@ -9,8 +9,10 @@ typed_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSLocale")]
     pub struct NSLocale;
 
+    #[cfg(feature = "Foundation_NSLocale")]
     unsafe impl ClassType for NSLocale {
         type Super = NSObject;
     }

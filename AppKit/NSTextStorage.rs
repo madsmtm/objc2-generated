@@ -15,8 +15,10 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSTextStorage")]
     pub struct NSTextStorage;
 
+    #[cfg(feature = "AppKit_NSTextStorage")]
     unsafe impl ClassType for NSTextStorage {
         #[inherits(NSAttributedString, NSObject)]
         type Super = NSMutableAttributedString;

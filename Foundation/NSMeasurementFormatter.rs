@@ -14,8 +14,10 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSMeasurementFormatter")]
     pub struct NSMeasurementFormatter;
 
+    #[cfg(feature = "Foundation_NSMeasurementFormatter")]
     unsafe impl ClassType for NSMeasurementFormatter {
         #[inherits(NSObject)]
         type Super = NSFormatter;

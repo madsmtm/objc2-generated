@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSClickGestureRecognizer")]
     pub struct NSClickGestureRecognizer;
 
+    #[cfg(feature = "AppKit_NSClickGestureRecognizer")]
     unsafe impl ClassType for NSClickGestureRecognizer {
         #[inherits(NSObject)]
         type Super = NSGestureRecognizer;

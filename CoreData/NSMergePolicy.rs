@@ -17,8 +17,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreData_NSMergeConflict")]
     pub struct NSMergeConflict;
 
+    #[cfg(feature = "CoreData_NSMergeConflict")]
     unsafe impl ClassType for NSMergeConflict {
         type Super = NSObject;
     }
@@ -73,8 +75,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreData_NSConstraintConflict")]
     pub struct NSConstraintConflict;
 
+    #[cfg(feature = "CoreData_NSConstraintConflict")]
     unsafe impl ClassType for NSConstraintConflict {
         type Super = NSObject;
     }
@@ -128,8 +132,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreData_NSMergePolicy")]
     pub struct NSMergePolicy;
 
+    #[cfg(feature = "CoreData_NSMergePolicy")]
     unsafe impl ClassType for NSMergePolicy {
         type Super = NSObject;
     }

@@ -51,8 +51,10 @@ extern_static!(NSSharingServiceNameCloudSharing: &'static NSSharingServiceName);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSSharingService")]
     pub struct NSSharingService;
 
+    #[cfg(feature = "AppKit_NSSharingService")]
     unsafe impl ClassType for NSSharingService {
         type Super = NSObject;
     }
@@ -270,8 +272,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSSharingServicePicker")]
     pub struct NSSharingServicePicker;
 
+    #[cfg(feature = "AppKit_NSSharingServicePicker")]
     unsafe impl ClassType for NSSharingServicePicker {
         type Super = NSObject;
     }

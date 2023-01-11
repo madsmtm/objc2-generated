@@ -35,8 +35,10 @@ extern_static!(NSTabColumnTerminatorsAttributeName: &'static NSTextTabOptionKey)
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSTextTab")]
     pub struct NSTextTab;
 
+    #[cfg(feature = "AppKit_NSTextTab")]
     unsafe impl ClassType for NSTextTab {
         type Super = NSObject;
     }
@@ -74,8 +76,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSParagraphStyle")]
     pub struct NSParagraphStyle;
 
+    #[cfg(feature = "AppKit_NSParagraphStyle")]
     unsafe impl ClassType for NSParagraphStyle {
         type Super = NSObject;
     }
@@ -166,8 +170,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSMutableParagraphStyle")]
     pub struct NSMutableParagraphStyle;
 
+    #[cfg(feature = "AppKit_NSMutableParagraphStyle")]
     unsafe impl ClassType for NSMutableParagraphStyle {
         #[inherits(NSObject)]
         type Super = NSParagraphStyle;

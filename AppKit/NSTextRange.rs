@@ -16,8 +16,10 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSTextRange")]
     pub struct NSTextRange;
 
+    #[cfg(feature = "AppKit_NSTextRange")]
     unsafe impl ClassType for NSTextRange {
         type Super = NSObject;
     }

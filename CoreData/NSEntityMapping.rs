@@ -18,8 +18,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreData_NSEntityMapping")]
     pub struct NSEntityMapping;
 
+    #[cfg(feature = "CoreData_NSEntityMapping")]
     unsafe impl ClassType for NSEntityMapping {
         type Super = NSObject;
     }

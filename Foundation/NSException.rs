@@ -35,8 +35,10 @@ extern_static!(NSInconsistentArchiveException: &'static NSExceptionName);
 
 extern_class!(
     #[derive(PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSException")]
     pub struct NSException;
 
+    #[cfg(feature = "Foundation_NSException")]
     unsafe impl ClassType for NSException {
         type Super = NSObject;
     }
@@ -103,8 +105,10 @@ extern_static!(NSAssertionHandlerKey: &'static NSString);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSAssertionHandler")]
     pub struct NSAssertionHandler;
 
+    #[cfg(feature = "Foundation_NSAssertionHandler")]
     unsafe impl ClassType for NSAssertionHandler {
         type Super = NSObject;
     }

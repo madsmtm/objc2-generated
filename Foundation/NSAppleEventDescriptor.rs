@@ -22,8 +22,10 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSAppleEventDescriptor")]
     pub struct NSAppleEventDescriptor;
 
+    #[cfg(feature = "Foundation_NSAppleEventDescriptor")]
     unsafe impl ClassType for NSAppleEventDescriptor {
         type Super = NSObject;
     }

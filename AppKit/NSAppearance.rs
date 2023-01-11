@@ -11,8 +11,10 @@ typed_extensible_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSAppearance")]
     pub struct NSAppearance;
 
+    #[cfg(feature = "AppKit_NSAppearance")]
     unsafe impl ClassType for NSAppearance {
         type Super = NSObject;
     }

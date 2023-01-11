@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSSavePanel")]
     pub struct NSSavePanel;
 
+    #[cfg(feature = "AppKit_NSSavePanel")]
     unsafe impl ClassType for NSSavePanel {
         #[inherits(NSWindow, NSResponder, NSObject)]
         type Super = NSPanel;

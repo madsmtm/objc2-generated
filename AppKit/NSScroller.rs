@@ -46,8 +46,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSScroller")]
     pub struct NSScroller;
 
+    #[cfg(feature = "AppKit_NSScroller")]
     unsafe impl ClassType for NSScroller {
         #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSControl;

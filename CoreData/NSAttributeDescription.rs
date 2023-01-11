@@ -27,8 +27,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreData_NSAttributeDescription")]
     pub struct NSAttributeDescription;
 
+    #[cfg(feature = "CoreData_NSAttributeDescription")]
     unsafe impl ClassType for NSAttributeDescription {
         #[inherits(NSObject)]
         type Super = NSPropertyDescription;

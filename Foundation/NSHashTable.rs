@@ -22,11 +22,13 @@ pub type NSHashTableOptions = NSUInteger;
 
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSHashTable")]
     pub struct NSHashTable<ObjectType: Message = Object, ObjectTypeOwnership: Ownership = Shared> {
         _inner0: PhantomData<*mut (ObjectType, ObjectTypeOwnership)>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
+    #[cfg(feature = "Foundation_NSHashTable")]
     unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> ClassType
         for NSHashTable<ObjectType, ObjectTypeOwnership>
     {

@@ -25,8 +25,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSDateFormatter")]
     pub struct NSDateFormatter;
 
+    #[cfg(feature = "Foundation_NSDateFormatter")]
     unsafe impl ClassType for NSDateFormatter {
         #[inherits(NSObject)]
         type Super = NSFormatter;

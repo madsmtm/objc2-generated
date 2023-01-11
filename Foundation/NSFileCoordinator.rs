@@ -26,8 +26,10 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSFileAccessIntent")]
     pub struct NSFileAccessIntent;
 
+    #[cfg(feature = "Foundation_NSFileAccessIntent")]
     unsafe impl ClassType for NSFileAccessIntent {
         type Super = NSObject;
     }
@@ -58,8 +60,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSFileCoordinator")]
     pub struct NSFileCoordinator;
 
+    #[cfg(feature = "Foundation_NSFileCoordinator")]
     unsafe impl ClassType for NSFileCoordinator {
         type Super = NSObject;
     }

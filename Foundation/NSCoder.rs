@@ -13,8 +13,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSCoder")]
     pub struct NSCoder;
 
+    #[cfg(feature = "Foundation_NSCoder")]
     unsafe impl ClassType for NSCoder {
         type Super = NSObject;
     }

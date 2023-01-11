@@ -5,11 +5,13 @@ use crate::Foundation::*;
 
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSOrderedSet")]
     pub struct NSOrderedSet<ObjectType: Message = Object, ObjectTypeOwnership: Ownership = Shared> {
         _inner0: PhantomData<*mut (ObjectType, ObjectTypeOwnership)>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
+    #[cfg(feature = "Foundation_NSOrderedSet")]
     unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> ClassType
         for NSOrderedSet<ObjectType, ObjectTypeOwnership>
     {
@@ -388,6 +390,7 @@ extern_methods!(
 
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSMutableOrderedSet")]
     pub struct NSMutableOrderedSet<
         ObjectType: Message = Object,
         ObjectTypeOwnership: Ownership = Shared,
@@ -396,6 +399,7 @@ __inner_extern_class!(
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
+    #[cfg(feature = "Foundation_NSMutableOrderedSet")]
     unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> ClassType
         for NSMutableOrderedSet<ObjectType, ObjectTypeOwnership>
     {

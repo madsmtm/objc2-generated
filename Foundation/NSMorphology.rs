@@ -49,8 +49,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSMorphology")]
     pub struct NSMorphology;
 
+    #[cfg(feature = "Foundation_NSMorphology")]
     unsafe impl ClassType for NSMorphology {
         type Super = NSObject;
     }
@@ -109,8 +111,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSMorphologyCustomPronoun")]
     pub struct NSMorphologyCustomPronoun;
 
+    #[cfg(feature = "Foundation_NSMorphologyCustomPronoun")]
     unsafe impl ClassType for NSMorphologyCustomPronoun {
         type Super = NSObject;
     }

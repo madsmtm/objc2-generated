@@ -33,8 +33,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSDocument")]
     pub struct NSDocument;
 
+    #[cfg(feature = "AppKit_NSDocument")]
     unsafe impl ClassType for NSDocument {
         type Super = NSObject;
     }

@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSSlider")]
     pub struct NSSlider;
 
+    #[cfg(feature = "AppKit_NSSlider")]
     unsafe impl ClassType for NSSlider {
         #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSControl;

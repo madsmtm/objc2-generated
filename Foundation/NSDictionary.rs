@@ -5,6 +5,7 @@ use crate::Foundation::*;
 
 __inner_extern_class!(
     #[derive(PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSDictionary")]
     pub struct NSDictionary<
         KeyType: Message = Object,
         ObjectType: Message = Object,
@@ -16,6 +17,7 @@ __inner_extern_class!(
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
+    #[cfg(feature = "Foundation_NSDictionary")]
     unsafe impl<
             KeyType: Message,
             ObjectType: Message,
@@ -306,6 +308,7 @@ extern_methods!(
 
 __inner_extern_class!(
     #[derive(PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSMutableDictionary")]
     pub struct NSMutableDictionary<
         KeyType: Message = Object,
         ObjectType: Message = Object,
@@ -317,6 +320,7 @@ __inner_extern_class!(
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
+    #[cfg(feature = "Foundation_NSMutableDictionary")]
     unsafe impl<
             KeyType: Message,
             ObjectType: Message,

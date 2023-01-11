@@ -17,8 +17,10 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSStatusItem")]
     pub struct NSStatusItem;
 
+    #[cfg(feature = "AppKit_NSStatusItem")]
     unsafe impl ClassType for NSStatusItem {
         type Super = NSObject;
     }

@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSColorWell")]
     pub struct NSColorWell;
 
+    #[cfg(feature = "AppKit_NSColorWell")]
     unsafe impl ClassType for NSColorWell {
         #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSControl;

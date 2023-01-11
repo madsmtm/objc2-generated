@@ -6,8 +6,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreAnimation_CAEmitterCell")]
     pub struct CAEmitterCell;
 
+    #[cfg(feature = "CoreAnimation_CAEmitterCell")]
     unsafe impl ClassType for CAEmitterCell {
         type Super = NSObject;
     }

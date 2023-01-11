@@ -5,8 +5,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSMetadataQuery")]
     pub struct NSMetadataQuery;
 
+    #[cfg(feature = "Foundation_NSMetadataQuery")]
     unsafe impl ClassType for NSMetadataQuery {
         type Super = NSObject;
     }
@@ -224,8 +226,10 @@ extern_static!(NSMetadataQueryAccessibleUbiquitousExternalDocumentsScope: &'stat
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSMetadataItem")]
     pub struct NSMetadataItem;
 
+    #[cfg(feature = "Foundation_NSMetadataItem")]
     unsafe impl ClassType for NSMetadataItem {
         type Super = NSObject;
     }
@@ -264,8 +268,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSMetadataQueryAttributeValueTuple")]
     pub struct NSMetadataQueryAttributeValueTuple;
 
+    #[cfg(feature = "Foundation_NSMetadataQueryAttributeValueTuple")]
     unsafe impl ClassType for NSMetadataQueryAttributeValueTuple {
         type Super = NSObject;
     }
@@ -288,8 +294,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSMetadataQueryResultGroup")]
     pub struct NSMetadataQueryResultGroup;
 
+    #[cfg(feature = "Foundation_NSMetadataQueryResultGroup")]
     unsafe impl ClassType for NSMetadataQueryResultGroup {
         type Super = NSObject;
     }

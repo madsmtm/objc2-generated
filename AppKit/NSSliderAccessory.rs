@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSSliderAccessory")]
     pub struct NSSliderAccessory;
 
+    #[cfg(feature = "AppKit_NSSliderAccessory")]
     unsafe impl ClassType for NSSliderAccessory {
         type Super = NSObject;
     }
@@ -44,8 +46,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSSliderAccessoryBehavior")]
     pub struct NSSliderAccessoryBehavior;
 
+    #[cfg(feature = "AppKit_NSSliderAccessoryBehavior")]
     unsafe impl ClassType for NSSliderAccessoryBehavior {
         type Super = NSObject;
     }

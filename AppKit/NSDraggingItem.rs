@@ -15,8 +15,10 @@ extern_static!(NSDraggingImageComponentLabelKey: &'static NSDraggingImageCompone
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSDraggingImageComponent")]
     pub struct NSDraggingImageComponent;
 
+    #[cfg(feature = "AppKit_NSDraggingImageComponent")]
     unsafe impl ClassType for NSDraggingImageComponent {
         type Super = NSObject;
     }
@@ -61,8 +63,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSDraggingItem")]
     pub struct NSDraggingItem;
 
+    #[cfg(feature = "AppKit_NSDraggingItem")]
     unsafe impl ClassType for NSDraggingItem {
         type Super = NSObject;
     }

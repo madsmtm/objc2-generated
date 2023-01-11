@@ -41,8 +41,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSSegmentedControl")]
     pub struct NSSegmentedControl;
 
+    #[cfg(feature = "AppKit_NSSegmentedControl")]
     unsafe impl ClassType for NSSegmentedControl {
         #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSControl;

@@ -17,8 +17,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSDrawer")]
     pub struct NSDrawer;
 
+    #[cfg(feature = "AppKit_NSDrawer")]
     unsafe impl ClassType for NSDrawer {
         #[inherits(NSObject)]
         type Super = NSResponder;

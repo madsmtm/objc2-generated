@@ -74,8 +74,10 @@ extern_static!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSPasteboard")]
     pub struct NSPasteboard;
 
+    #[cfg(feature = "AppKit_NSPasteboard")]
     unsafe impl ClassType for NSPasteboard {
         type Super = NSObject;
     }

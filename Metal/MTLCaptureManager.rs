@@ -25,8 +25,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLCaptureDescriptor")]
     pub struct MTLCaptureDescriptor;
 
+    #[cfg(feature = "Metal_MTLCaptureDescriptor")]
     unsafe impl ClassType for MTLCaptureDescriptor {
         type Super = NSObject;
     }
@@ -59,8 +61,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLCaptureManager")]
     pub struct MTLCaptureManager;
 
+    #[cfg(feature = "Metal_MTLCaptureManager")]
     unsafe impl ClassType for MTLCaptureManager {
         type Super = NSObject;
     }

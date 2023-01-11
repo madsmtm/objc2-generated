@@ -17,8 +17,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
     pub struct NSPersistentStoreRequest;
 
+    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
     unsafe impl ClassType for NSPersistentStoreRequest {
         type Super = NSObject;
     }

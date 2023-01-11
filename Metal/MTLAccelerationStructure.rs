@@ -27,8 +27,10 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLAccelerationStructureDescriptor")]
     pub struct MTLAccelerationStructureDescriptor;
 
+    #[cfg(feature = "Metal_MTLAccelerationStructureDescriptor")]
     unsafe impl ClassType for MTLAccelerationStructureDescriptor {
         type Super = NSObject;
     }
@@ -47,8 +49,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLAccelerationStructureGeometryDescriptor")]
     pub struct MTLAccelerationStructureGeometryDescriptor;
 
+    #[cfg(feature = "Metal_MTLAccelerationStructureGeometryDescriptor")]
     unsafe impl ClassType for MTLAccelerationStructureGeometryDescriptor {
         type Super = NSObject;
     }
@@ -101,8 +105,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLPrimitiveAccelerationStructureDescriptor")]
     pub struct MTLPrimitiveAccelerationStructureDescriptor;
 
+    #[cfg(feature = "Metal_MTLPrimitiveAccelerationStructureDescriptor")]
     unsafe impl ClassType for MTLPrimitiveAccelerationStructureDescriptor {
         #[inherits(NSObject)]
         type Super = MTLAccelerationStructureDescriptor;
@@ -168,8 +174,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLAccelerationStructureTriangleGeometryDescriptor")]
     pub struct MTLAccelerationStructureTriangleGeometryDescriptor;
 
+    #[cfg(feature = "Metal_MTLAccelerationStructureTriangleGeometryDescriptor")]
     unsafe impl ClassType for MTLAccelerationStructureTriangleGeometryDescriptor {
         #[inherits(NSObject)]
         type Super = MTLAccelerationStructureGeometryDescriptor;
@@ -228,8 +236,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLAccelerationStructureBoundingBoxGeometryDescriptor")]
     pub struct MTLAccelerationStructureBoundingBoxGeometryDescriptor;
 
+    #[cfg(feature = "Metal_MTLAccelerationStructureBoundingBoxGeometryDescriptor")]
     unsafe impl ClassType for MTLAccelerationStructureBoundingBoxGeometryDescriptor {
         #[inherits(NSObject)]
         type Super = MTLAccelerationStructureGeometryDescriptor;
@@ -270,8 +280,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLMotionKeyframeData")]
     pub struct MTLMotionKeyframeData;
 
+    #[cfg(feature = "Metal_MTLMotionKeyframeData")]
     unsafe impl ClassType for MTLMotionKeyframeData {
         type Super = NSObject;
     }
@@ -299,8 +311,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLAccelerationStructureMotionTriangleGeometryDescriptor")]
     pub struct MTLAccelerationStructureMotionTriangleGeometryDescriptor;
 
+    #[cfg(feature = "Metal_MTLAccelerationStructureMotionTriangleGeometryDescriptor")]
     unsafe impl ClassType for MTLAccelerationStructureMotionTriangleGeometryDescriptor {
         #[inherits(NSObject)]
         type Super = MTLAccelerationStructureGeometryDescriptor;
@@ -361,8 +375,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor")]
     pub struct MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor;
 
+    #[cfg(feature = "Metal_MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor")]
     unsafe impl ClassType for MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor {
         #[inherits(NSObject)]
         type Super = MTLAccelerationStructureGeometryDescriptor;
@@ -454,8 +470,10 @@ extern_struct!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLInstanceAccelerationStructureDescriptor")]
     pub struct MTLInstanceAccelerationStructureDescriptor;
 
+    #[cfg(feature = "Metal_MTLInstanceAccelerationStructureDescriptor")]
     unsafe impl ClassType for MTLInstanceAccelerationStructureDescriptor {
         #[inherits(NSObject)]
         type Super = MTLAccelerationStructureDescriptor;

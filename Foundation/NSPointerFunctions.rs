@@ -24,8 +24,10 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSPointerFunctions")]
     pub struct NSPointerFunctions;
 
+    #[cfg(feature = "Foundation_NSPointerFunctions")]
     unsafe impl ClassType for NSPointerFunctions {
         type Super = NSObject;
     }

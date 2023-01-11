@@ -14,8 +14,10 @@ extern_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSOutlineView")]
     pub struct NSOutlineView;
 
+    #[cfg(feature = "AppKit_NSOutlineView")]
     unsafe impl ClassType for NSOutlineView {
         #[inherits(NSControl, NSView, NSResponder, NSObject)]
         type Super = NSTableView;

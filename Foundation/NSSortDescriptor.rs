@@ -5,8 +5,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSSortDescriptor")]
     pub struct NSSortDescriptor;
 
+    #[cfg(feature = "Foundation_NSSortDescriptor")]
     unsafe impl ClassType for NSSortDescriptor {
         type Super = NSObject;
     }

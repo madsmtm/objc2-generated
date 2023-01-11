@@ -9,8 +9,10 @@ pub type NSNibName = NSString;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSNib")]
     pub struct NSNib;
 
+    #[cfg(feature = "AppKit_NSNib")]
     unsafe impl ClassType for NSNib {
         type Super = NSObject;
     }

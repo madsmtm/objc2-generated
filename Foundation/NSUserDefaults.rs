@@ -11,8 +11,10 @@ extern_static!(NSRegistrationDomain: &'static NSString);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSUserDefaults")]
     pub struct NSUserDefaults;
 
+    #[cfg(feature = "Foundation_NSUserDefaults")]
     unsafe impl ClassType for NSUserDefaults {
         type Super = NSObject;
     }

@@ -28,8 +28,10 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AuthenticationServices_ASWebAuthenticationSessionRequest")]
     pub struct ASWebAuthenticationSessionRequest;
 
+    #[cfg(feature = "AuthenticationServices_ASWebAuthenticationSessionRequest")]
     unsafe impl ClassType for ASWebAuthenticationSessionRequest {
         type Super = NSObject;
     }

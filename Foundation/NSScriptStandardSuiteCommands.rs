@@ -14,8 +14,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSCloneCommand")]
     pub struct NSCloneCommand;
 
+    #[cfg(feature = "Foundation_NSCloneCommand")]
     unsafe impl ClassType for NSCloneCommand {
         #[inherits(NSObject)]
         type Super = NSScriptCommand;
@@ -37,8 +39,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSCloseCommand")]
     pub struct NSCloseCommand;
 
+    #[cfg(feature = "Foundation_NSCloseCommand")]
     unsafe impl ClassType for NSCloseCommand {
         #[inherits(NSObject)]
         type Super = NSScriptCommand;
@@ -55,8 +59,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSCountCommand")]
     pub struct NSCountCommand;
 
+    #[cfg(feature = "Foundation_NSCountCommand")]
     unsafe impl ClassType for NSCountCommand {
         #[inherits(NSObject)]
         type Super = NSScriptCommand;
@@ -70,8 +76,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSCreateCommand")]
     pub struct NSCreateCommand;
 
+    #[cfg(feature = "Foundation_NSCreateCommand")]
     unsafe impl ClassType for NSCreateCommand {
         #[inherits(NSObject)]
         type Super = NSScriptCommand;
@@ -93,8 +101,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSDeleteCommand")]
     pub struct NSDeleteCommand;
 
+    #[cfg(feature = "Foundation_NSDeleteCommand")]
     unsafe impl ClassType for NSDeleteCommand {
         #[inherits(NSObject)]
         type Super = NSScriptCommand;
@@ -116,8 +126,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSExistsCommand")]
     pub struct NSExistsCommand;
 
+    #[cfg(feature = "Foundation_NSExistsCommand")]
     unsafe impl ClassType for NSExistsCommand {
         #[inherits(NSObject)]
         type Super = NSScriptCommand;
@@ -131,8 +143,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSGetCommand")]
     pub struct NSGetCommand;
 
+    #[cfg(feature = "Foundation_NSGetCommand")]
     unsafe impl ClassType for NSGetCommand {
         #[inherits(NSObject)]
         type Super = NSScriptCommand;
@@ -146,8 +160,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSMoveCommand")]
     pub struct NSMoveCommand;
 
+    #[cfg(feature = "Foundation_NSMoveCommand")]
     unsafe impl ClassType for NSMoveCommand {
         #[inherits(NSObject)]
         type Super = NSScriptCommand;
@@ -169,8 +185,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSQuitCommand")]
     pub struct NSQuitCommand;
 
+    #[cfg(feature = "Foundation_NSQuitCommand")]
     unsafe impl ClassType for NSQuitCommand {
         #[inherits(NSObject)]
         type Super = NSScriptCommand;
@@ -187,8 +205,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSSetCommand")]
     pub struct NSSetCommand;
 
+    #[cfg(feature = "Foundation_NSSetCommand")]
     unsafe impl ClassType for NSSetCommand {
         #[inherits(NSObject)]
         type Super = NSScriptCommand;

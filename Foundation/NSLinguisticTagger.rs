@@ -110,8 +110,10 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSLinguisticTagger")]
     pub struct NSLinguisticTagger;
 
+    #[cfg(feature = "Foundation_NSLinguisticTagger")]
     unsafe impl ClassType for NSLinguisticTagger {
         type Super = NSObject;
     }

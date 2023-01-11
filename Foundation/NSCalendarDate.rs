@@ -5,8 +5,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSCalendarDate")]
     pub struct NSCalendarDate;
 
+    #[cfg(feature = "Foundation_NSCalendarDate")]
     unsafe impl ClassType for NSCalendarDate {
         #[inherits(NSObject)]
         type Super = NSDate;

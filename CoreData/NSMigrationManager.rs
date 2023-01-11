@@ -6,8 +6,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreData_NSMigrationManager")]
     pub struct NSMigrationManager;
 
+    #[cfg(feature = "CoreData_NSMigrationManager")]
     unsafe impl ClassType for NSMigrationManager {
         type Super = NSObject;
     }

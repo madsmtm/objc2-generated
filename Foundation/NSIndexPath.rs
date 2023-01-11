@@ -5,8 +5,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSIndexPath")]
     pub struct NSIndexPath;
 
+    #[cfg(feature = "Foundation_NSIndexPath")]
     unsafe impl ClassType for NSIndexPath {
         type Super = NSObject;
     }

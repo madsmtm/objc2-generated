@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSTintConfiguration")]
     pub struct NSTintConfiguration;
 
+    #[cfg(feature = "AppKit_NSTintConfiguration")]
     unsafe impl ClassType for NSTintConfiguration {
         type Super = NSObject;
     }

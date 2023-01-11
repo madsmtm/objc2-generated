@@ -42,8 +42,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSButtonCell")]
     pub struct NSButtonCell;
 
+    #[cfg(feature = "AppKit_NSButtonCell")]
     unsafe impl ClassType for NSButtonCell {
         #[inherits(NSCell, NSObject)]
         type Super = NSActionCell;

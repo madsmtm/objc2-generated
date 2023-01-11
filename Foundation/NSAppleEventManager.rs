@@ -13,8 +13,10 @@ extern_static!(NSAppleEventManagerWillProcessFirstEventNotification: &'static NS
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSAppleEventManager")]
     pub struct NSAppleEventManager;
 
+    #[cfg(feature = "Foundation_NSAppleEventManager")]
     unsafe impl ClassType for NSAppleEventManager {
         type Super = NSObject;
     }

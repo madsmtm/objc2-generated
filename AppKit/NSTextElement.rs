@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSTextElement")]
     pub struct NSTextElement;
 
+    #[cfg(feature = "AppKit_NSTextElement")]
     unsafe impl ClassType for NSTextElement {
         type Super = NSObject;
     }
@@ -47,8 +49,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSTextParagraph")]
     pub struct NSTextParagraph;
 
+    #[cfg(feature = "AppKit_NSTextParagraph")]
     unsafe impl ClassType for NSTextParagraph {
         #[inherits(NSObject)]
         type Super = NSTextElement;

@@ -14,8 +14,10 @@ extern_static!(ASAuthorizationScopeEmail: &'static ASAuthorizationScope);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AuthenticationServices_ASAuthorization")]
     pub struct ASAuthorization;
 
+    #[cfg(feature = "AuthenticationServices_ASAuthorization")]
     unsafe impl ClassType for ASAuthorization {
         type Super = NSObject;
     }

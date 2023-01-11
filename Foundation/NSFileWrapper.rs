@@ -21,8 +21,10 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSFileWrapper")]
     pub struct NSFileWrapper;
 
+    #[cfg(feature = "Foundation_NSFileWrapper")]
     unsafe impl ClassType for NSFileWrapper {
         type Super = NSObject;
     }

@@ -15,8 +15,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSURLCredential")]
     pub struct NSURLCredential;
 
+    #[cfg(feature = "Foundation_NSURLCredential")]
     unsafe impl ClassType for NSURLCredential {
         type Super = NSObject;
     }

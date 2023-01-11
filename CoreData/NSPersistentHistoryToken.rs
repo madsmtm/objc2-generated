@@ -6,8 +6,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreData_NSPersistentHistoryToken")]
     pub struct NSPersistentHistoryToken;
 
+    #[cfg(feature = "CoreData_NSPersistentHistoryToken")]
     unsafe impl ClassType for NSPersistentHistoryToken {
         type Super = NSObject;
     }

@@ -18,8 +18,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLBinaryArchiveDescriptor")]
     pub struct MTLBinaryArchiveDescriptor;
 
+    #[cfg(feature = "Metal_MTLBinaryArchiveDescriptor")]
     unsafe impl ClassType for MTLBinaryArchiveDescriptor {
         type Super = NSObject;
     }

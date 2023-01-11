@@ -41,8 +41,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSURLRequest")]
     pub struct NSURLRequest;
 
+    #[cfg(feature = "Foundation_NSURLRequest")]
     unsafe impl ClassType for NSURLRequest {
         type Super = NSObject;
     }
@@ -115,8 +117,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSMutableURLRequest")]
     pub struct NSMutableURLRequest;
 
+    #[cfg(feature = "Foundation_NSMutableURLRequest")]
     unsafe impl ClassType for NSMutableURLRequest {
         #[inherits(NSObject)]
         type Super = NSURLRequest;

@@ -5,8 +5,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSScanner")]
     pub struct NSScanner;
 
+    #[cfg(feature = "Foundation_NSScanner")]
     unsafe impl ClassType for NSScanner {
         type Super = NSObject;
     }

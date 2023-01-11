@@ -107,8 +107,10 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSInputServer")]
     pub struct NSInputServer;
 
+    #[cfg(feature = "AppKit_NSInputServer")]
     unsafe impl ClassType for NSInputServer {
         type Super = NSObject;
     }

@@ -5,8 +5,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSOrthography")]
     pub struct NSOrthography;
 
+    #[cfg(feature = "Foundation_NSOrthography")]
     unsafe impl ClassType for NSOrthography {
         type Super = NSObject;
     }

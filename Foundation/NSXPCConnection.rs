@@ -34,8 +34,10 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSXPCConnection")]
     pub struct NSXPCConnection;
 
+    #[cfg(feature = "Foundation_NSXPCConnection")]
     unsafe impl ClassType for NSXPCConnection {
         type Super = NSObject;
     }
@@ -147,8 +149,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSXPCListener")]
     pub struct NSXPCListener;
 
+    #[cfg(feature = "Foundation_NSXPCListener")]
     unsafe impl ClassType for NSXPCListener {
         type Super = NSObject;
     }
@@ -207,8 +211,10 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSXPCInterface")]
     pub struct NSXPCInterface;
 
+    #[cfg(feature = "Foundation_NSXPCInterface")]
     unsafe impl ClassType for NSXPCInterface {
         type Super = NSObject;
     }
@@ -266,8 +272,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSXPCListenerEndpoint")]
     pub struct NSXPCListenerEndpoint;
 
+    #[cfg(feature = "Foundation_NSXPCListenerEndpoint")]
     unsafe impl ClassType for NSXPCListenerEndpoint {
         type Super = NSObject;
     }
@@ -280,8 +288,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSXPCCoder")]
     pub struct NSXPCCoder;
 
+    #[cfg(feature = "Foundation_NSXPCCoder")]
     unsafe impl ClassType for NSXPCCoder {
         #[inherits(NSObject)]
         type Super = NSCoder;

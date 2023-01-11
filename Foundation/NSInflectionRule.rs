@@ -5,8 +5,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSInflectionRule")]
     pub struct NSInflectionRule;
 
+    #[cfg(feature = "Foundation_NSInflectionRule")]
     unsafe impl ClassType for NSInflectionRule {
         type Super = NSObject;
     }
@@ -25,8 +27,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSInflectionRuleExplicit")]
     pub struct NSInflectionRuleExplicit;
 
+    #[cfg(feature = "Foundation_NSInflectionRuleExplicit")]
     unsafe impl ClassType for NSInflectionRuleExplicit {
         #[inherits(NSObject)]
         type Super = NSInflectionRule;

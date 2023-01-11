@@ -6,8 +6,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreData_NSMappingModel")]
     pub struct NSMappingModel;
 
+    #[cfg(feature = "CoreData_NSMappingModel")]
     unsafe impl ClassType for NSMappingModel {
         type Super = NSObject;
     }

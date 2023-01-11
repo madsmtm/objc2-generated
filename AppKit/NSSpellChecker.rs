@@ -52,8 +52,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSSpellChecker")]
     pub struct NSSpellChecker;
 
+    #[cfg(feature = "AppKit_NSSpellChecker")]
     unsafe impl ClassType for NSSpellChecker {
         type Super = NSObject;
     }

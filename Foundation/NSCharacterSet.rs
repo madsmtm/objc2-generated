@@ -12,8 +12,10 @@ extern_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSCharacterSet")]
     pub struct NSCharacterSet;
 
+    #[cfg(feature = "Foundation_NSCharacterSet")]
     unsafe impl ClassType for NSCharacterSet {
         type Super = NSObject;
     }
@@ -118,8 +120,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSMutableCharacterSet")]
     pub struct NSMutableCharacterSet;
 
+    #[cfg(feature = "Foundation_NSMutableCharacterSet")]
     unsafe impl ClassType for NSMutableCharacterSet {
         #[inherits(NSObject)]
         type Super = NSCharacterSet;

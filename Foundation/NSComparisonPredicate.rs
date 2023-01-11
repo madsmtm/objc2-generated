@@ -43,8 +43,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSComparisonPredicate")]
     pub struct NSComparisonPredicate;
 
+    #[cfg(feature = "Foundation_NSComparisonPredicate")]
     unsafe impl ClassType for NSComparisonPredicate {
         #[inherits(NSObject)]
         type Super = NSPredicate;

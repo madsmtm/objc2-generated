@@ -10,8 +10,10 @@ typed_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreAnimation_CAScrollLayer")]
     pub struct CAScrollLayer;
 
+    #[cfg(feature = "CoreAnimation_CAScrollLayer")]
     unsafe impl ClassType for CAScrollLayer {
         #[inherits(NSObject)]
         type Super = CALayer;

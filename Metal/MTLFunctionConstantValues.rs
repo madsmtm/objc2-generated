@@ -6,8 +6,10 @@ use crate::Metal::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLFunctionConstantValues")]
     pub struct MTLFunctionConstantValues;
 
+    #[cfg(feature = "Metal_MTLFunctionConstantValues")]
     unsafe impl ClassType for MTLFunctionConstantValues {
         type Super = NSObject;
     }

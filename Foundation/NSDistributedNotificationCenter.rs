@@ -39,8 +39,10 @@ extern_static!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSDistributedNotificationCenter")]
     pub struct NSDistributedNotificationCenter;
 
+    #[cfg(feature = "Foundation_NSDistributedNotificationCenter")]
     unsafe impl ClassType for NSDistributedNotificationCenter {
         #[inherits(NSObject)]
         type Super = NSNotificationCenter;

@@ -26,8 +26,10 @@ extern_struct!(
 
 extern_class!(
     #[derive(PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSProcessInfo")]
     pub struct NSProcessInfo;
 
+    #[cfg(feature = "Foundation_NSProcessInfo")]
     unsafe impl ClassType for NSProcessInfo {
         type Super = NSObject;
     }

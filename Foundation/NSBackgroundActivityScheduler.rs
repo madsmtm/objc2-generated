@@ -15,8 +15,10 @@ pub type NSBackgroundActivityCompletionHandler = *mut Block<(NSBackgroundActivit
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSBackgroundActivityScheduler")]
     pub struct NSBackgroundActivityScheduler;
 
+    #[cfg(feature = "Foundation_NSBackgroundActivityScheduler")]
     unsafe impl ClassType for NSBackgroundActivityScheduler {
         type Super = NSObject;
     }

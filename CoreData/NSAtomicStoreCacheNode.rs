@@ -6,8 +6,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreData_NSAtomicStoreCacheNode")]
     pub struct NSAtomicStoreCacheNode;
 
+    #[cfg(feature = "CoreData_NSAtomicStoreCacheNode")]
     unsafe impl ClassType for NSAtomicStoreCacheNode {
         type Super = NSObject;
     }

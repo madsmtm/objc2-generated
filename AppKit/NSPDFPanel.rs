@@ -16,8 +16,10 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSPDFPanel")]
     pub struct NSPDFPanel;
 
+    #[cfg(feature = "AppKit_NSPDFPanel")]
     unsafe impl ClassType for NSPDFPanel {
         type Super = NSObject;
     }

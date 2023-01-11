@@ -9,8 +9,10 @@ extern_static!(NSPortDidBecomeInvalidNotification: &'static NSNotificationName);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSPort")]
     pub struct NSPort;
 
+    #[cfg(feature = "Foundation_NSPort")]
     unsafe impl ClassType for NSPort {
         type Super = NSObject;
     }
@@ -107,8 +109,10 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSMachPort")]
     pub struct NSMachPort;
 
+    #[cfg(feature = "Foundation_NSMachPort")]
     unsafe impl ClassType for NSMachPort {
         #[inherits(NSObject)]
         type Super = NSPort;
@@ -171,8 +175,10 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSMessagePort")]
     pub struct NSMessagePort;
 
+    #[cfg(feature = "Foundation_NSMessagePort")]
     unsafe impl ClassType for NSMessagePort {
         #[inherits(NSObject)]
         type Super = NSPort;
@@ -186,8 +192,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSSocketPort")]
     pub struct NSSocketPort;
 
+    #[cfg(feature = "Foundation_NSSocketPort")]
     unsafe impl ClassType for NSSocketPort {
         #[inherits(NSObject)]
         type Super = NSPort;

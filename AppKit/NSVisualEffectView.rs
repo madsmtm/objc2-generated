@@ -49,8 +49,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSVisualEffectView")]
     pub struct NSVisualEffectView;
 
+    #[cfg(feature = "AppKit_NSVisualEffectView")]
     unsafe impl ClassType for NSVisualEffectView {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;

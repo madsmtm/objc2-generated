@@ -15,8 +15,10 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreData_NSPersistentCloudKitContainer")]
     pub struct NSPersistentCloudKitContainer;
 
+    #[cfg(feature = "CoreData_NSPersistentCloudKitContainer")]
     unsafe impl ClassType for NSPersistentCloudKitContainer {
         #[inherits(NSObject)]
         type Super = NSPersistentContainer;

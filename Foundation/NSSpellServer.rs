@@ -5,8 +5,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSSpellServer")]
     pub struct NSSpellServer;
 
+    #[cfg(feature = "Foundation_NSSpellServer")]
     unsafe impl ClassType for NSSpellServer {
         type Super = NSObject;
     }

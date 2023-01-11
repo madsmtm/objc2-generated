@@ -5,8 +5,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSURLConnection")]
     pub struct NSURLConnection;
 
+    #[cfg(feature = "Foundation_NSURLConnection")]
     unsafe impl ClassType for NSURLConnection {
         type Super = NSObject;
     }

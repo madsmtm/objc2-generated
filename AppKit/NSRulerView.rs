@@ -27,8 +27,10 @@ extern_static!(NSRulerViewUnitPicas: &'static NSRulerViewUnitName);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSRulerView")]
     pub struct NSRulerView;
 
+    #[cfg(feature = "AppKit_NSRulerView")]
     unsafe impl ClassType for NSRulerView {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;

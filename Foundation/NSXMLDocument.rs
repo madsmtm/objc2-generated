@@ -15,8 +15,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSXMLDocument")]
     pub struct NSXMLDocument;
 
+    #[cfg(feature = "Foundation_NSXMLDocument")]
     unsafe impl ClassType for NSXMLDocument {
         #[inherits(NSObject)]
         type Super = NSXMLNode;

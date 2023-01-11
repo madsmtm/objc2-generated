@@ -43,8 +43,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSAccessibilityCustomRotor")]
     pub struct NSAccessibilityCustomRotor;
 
+    #[cfg(feature = "AppKit_NSAccessibilityCustomRotor")]
     unsafe impl ClassType for NSAccessibilityCustomRotor {
         type Super = NSObject;
     }
@@ -108,8 +110,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSAccessibilityCustomRotorSearchParameters")]
     pub struct NSAccessibilityCustomRotorSearchParameters;
 
+    #[cfg(feature = "AppKit_NSAccessibilityCustomRotorSearchParameters")]
     unsafe impl ClassType for NSAccessibilityCustomRotorSearchParameters {
         type Super = NSObject;
     }
@@ -152,8 +156,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSAccessibilityCustomRotorItemResult")]
     pub struct NSAccessibilityCustomRotorItemResult;
 
+    #[cfg(feature = "AppKit_NSAccessibilityCustomRotorItemResult")]
     unsafe impl ClassType for NSAccessibilityCustomRotorItemResult {
         type Super = NSObject;
     }

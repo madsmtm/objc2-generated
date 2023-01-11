@@ -45,8 +45,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreData_NSPersistentStoreResult")]
     pub struct NSPersistentStoreResult;
 
+    #[cfg(feature = "CoreData_NSPersistentStoreResult")]
     unsafe impl ClassType for NSPersistentStoreResult {
         type Super = NSObject;
     }
@@ -59,8 +61,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreData_NSPersistentStoreAsynchronousResult")]
     pub struct NSPersistentStoreAsynchronousResult;
 
+    #[cfg(feature = "CoreData_NSPersistentStoreAsynchronousResult")]
     unsafe impl ClassType for NSPersistentStoreAsynchronousResult {
         #[inherits(NSObject)]
         type Super = NSPersistentStoreResult;
@@ -89,6 +93,7 @@ extern_methods!(
 
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreData_NSAsynchronousFetchResult")]
     pub struct NSAsynchronousFetchResult<
         ResultType: Message = Object,
         ResultTypeOwnership: Ownership = Shared,
@@ -97,6 +102,7 @@ __inner_extern_class!(
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
+    #[cfg(feature = "CoreData_NSAsynchronousFetchResult")]
     unsafe impl<ResultType: Message, ResultTypeOwnership: Ownership> ClassType
         for NSAsynchronousFetchResult<ResultType, ResultTypeOwnership>
     {
@@ -122,8 +128,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreData_NSBatchInsertResult")]
     pub struct NSBatchInsertResult;
 
+    #[cfg(feature = "CoreData_NSBatchInsertResult")]
     unsafe impl ClassType for NSBatchInsertResult {
         #[inherits(NSObject)]
         type Super = NSPersistentStoreResult;
@@ -143,8 +151,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreData_NSBatchUpdateResult")]
     pub struct NSBatchUpdateResult;
 
+    #[cfg(feature = "CoreData_NSBatchUpdateResult")]
     unsafe impl ClassType for NSBatchUpdateResult {
         #[inherits(NSObject)]
         type Super = NSPersistentStoreResult;
@@ -164,8 +174,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreData_NSBatchDeleteResult")]
     pub struct NSBatchDeleteResult;
 
+    #[cfg(feature = "CoreData_NSBatchDeleteResult")]
     unsafe impl ClassType for NSBatchDeleteResult {
         #[inherits(NSObject)]
         type Super = NSPersistentStoreResult;
@@ -185,8 +197,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreData_NSPersistentHistoryResult")]
     pub struct NSPersistentHistoryResult;
 
+    #[cfg(feature = "CoreData_NSPersistentHistoryResult")]
     unsafe impl ClassType for NSPersistentHistoryResult {
         #[inherits(NSObject)]
         type Super = NSPersistentStoreResult;
@@ -214,8 +228,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreData_NSPersistentCloudKitContainerEventResult")]
     pub struct NSPersistentCloudKitContainerEventResult;
 
+    #[cfg(feature = "CoreData_NSPersistentCloudKitContainerEventResult")]
     unsafe impl ClassType for NSPersistentCloudKitContainerEventResult {
         #[inherits(NSObject)]
         type Super = NSPersistentStoreResult;

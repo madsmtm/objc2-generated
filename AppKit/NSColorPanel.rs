@@ -37,8 +37,10 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSColorPanel")]
     pub struct NSColorPanel;
 
+    #[cfg(feature = "AppKit_NSColorPanel")]
     unsafe impl ClassType for NSColorPanel {
         #[inherits(NSWindow, NSResponder, NSObject)]
         type Super = NSPanel;

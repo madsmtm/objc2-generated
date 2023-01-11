@@ -14,8 +14,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSHTTPCookieStorage")]
     pub struct NSHTTPCookieStorage;
 
+    #[cfg(feature = "Foundation_NSHTTPCookieStorage")]
     unsafe impl ClassType for NSHTTPCookieStorage {
         type Super = NSObject;
     }

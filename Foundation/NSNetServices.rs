@@ -32,8 +32,10 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSNetService")]
     pub struct NSNetService;
 
+    #[cfg(feature = "Foundation_NSNetService")]
     unsafe impl ClassType for NSNetService {
         type Super = NSObject;
     }
@@ -157,8 +159,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSNetServiceBrowser")]
     pub struct NSNetServiceBrowser;
 
+    #[cfg(feature = "Foundation_NSNetServiceBrowser")]
     unsafe impl ClassType for NSNetServiceBrowser {
         type Super = NSObject;
     }

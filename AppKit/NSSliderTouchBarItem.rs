@@ -15,8 +15,10 @@ extern_static!(NSSliderAccessoryWidthWide: NSSliderAccessoryWidth);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSSliderTouchBarItem")]
     pub struct NSSliderTouchBarItem;
 
+    #[cfg(feature = "AppKit_NSSliderTouchBarItem")]
     unsafe impl ClassType for NSSliderTouchBarItem {
         #[inherits(NSObject)]
         type Super = NSTouchBarItem;

@@ -5,8 +5,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSScriptCoercionHandler")]
     pub struct NSScriptCoercionHandler;
 
+    #[cfg(feature = "Foundation_NSScriptCoercionHandler")]
     unsafe impl ClassType for NSScriptCoercionHandler {
         type Super = NSObject;
     }

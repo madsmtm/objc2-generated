@@ -5,8 +5,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSMethodSignature")]
     pub struct NSMethodSignature;
 
+    #[cfg(feature = "Foundation_NSMethodSignature")]
     unsafe impl ClassType for NSMethodSignature {
         type Super = NSObject;
     }

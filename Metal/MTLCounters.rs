@@ -101,8 +101,10 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLCounterSampleBufferDescriptor")]
     pub struct MTLCounterSampleBufferDescriptor;
 
+    #[cfg(feature = "Metal_MTLCounterSampleBufferDescriptor")]
     unsafe impl ClassType for MTLCounterSampleBufferDescriptor {
         type Super = NSObject;
     }

@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSStepperCell")]
     pub struct NSStepperCell;
 
+    #[cfg(feature = "AppKit_NSStepperCell")]
     unsafe impl ClassType for NSStepperCell {
         #[inherits(NSCell, NSObject)]
         type Super = NSActionCell;

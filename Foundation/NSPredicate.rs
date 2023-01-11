@@ -5,8 +5,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSPredicate")]
     pub struct NSPredicate;
 
+    #[cfg(feature = "Foundation_NSPredicate")]
     unsafe impl ClassType for NSPredicate {
         type Super = NSObject;
     }

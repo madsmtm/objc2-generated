@@ -16,8 +16,10 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSTableColumn")]
     pub struct NSTableColumn;
 
+    #[cfg(feature = "AppKit_NSTableColumn")]
     unsafe impl ClassType for NSTableColumn {
         type Super = NSObject;
     }

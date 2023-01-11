@@ -33,8 +33,10 @@ extern_static!(NSGridViewSizeForContent: CGFloat);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSGridView")]
     pub struct NSGridView;
 
+    #[cfg(feature = "AppKit_NSGridView")]
     unsafe impl ClassType for NSGridView {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;
@@ -181,8 +183,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSGridRow")]
     pub struct NSGridRow;
 
+    #[cfg(feature = "AppKit_NSGridRow")]
     unsafe impl ClassType for NSGridRow {
         type Super = NSObject;
     }
@@ -245,8 +249,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSGridColumn")]
     pub struct NSGridColumn;
 
+    #[cfg(feature = "AppKit_NSGridColumn")]
     unsafe impl ClassType for NSGridColumn {
         type Super = NSObject;
     }
@@ -303,8 +309,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSGridCell")]
     pub struct NSGridCell;
 
+    #[cfg(feature = "AppKit_NSGridCell")]
     unsafe impl ClassType for NSGridCell {
         type Super = NSObject;
     }

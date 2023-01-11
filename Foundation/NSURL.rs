@@ -354,8 +354,10 @@ pub type NSURLBookmarkFileCreationOptions = NSUInteger;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSURL")]
     pub struct NSURL;
 
+    #[cfg(feature = "Foundation_NSURL")]
     unsafe impl ClassType for NSURL {
         type Super = NSObject;
     }
@@ -756,8 +758,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSURLQueryItem")]
     pub struct NSURLQueryItem;
 
+    #[cfg(feature = "Foundation_NSURLQueryItem")]
     unsafe impl ClassType for NSURLQueryItem {
         type Super = NSObject;
     }
@@ -793,8 +797,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSURLComponents")]
     pub struct NSURLComponents;
 
+    #[cfg(feature = "Foundation_NSURLComponents")]
     unsafe impl ClassType for NSURLComponents {
         type Super = NSObject;
     }
@@ -1116,8 +1122,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSFileSecurity")]
     pub struct NSFileSecurity;
 
+    #[cfg(feature = "Foundation_NSFileSecurity")]
     unsafe impl ClassType for NSFileSecurity {
         type Super = NSObject;
     }

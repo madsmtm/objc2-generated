@@ -29,8 +29,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSColor")]
     pub struct NSColor;
 
+    #[cfg(feature = "AppKit_NSColor")]
     unsafe impl ClassType for NSColor {
         type Super = NSObject;
     }

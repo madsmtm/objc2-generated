@@ -100,8 +100,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLRenderPipelineColorAttachmentDescriptor")]
     pub struct MTLRenderPipelineColorAttachmentDescriptor;
 
+    #[cfg(feature = "Metal_MTLRenderPipelineColorAttachmentDescriptor")]
     unsafe impl ClassType for MTLRenderPipelineColorAttachmentDescriptor {
         type Super = NSObject;
     }
@@ -168,8 +170,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLRenderPipelineReflection")]
     pub struct MTLRenderPipelineReflection;
 
+    #[cfg(feature = "Metal_MTLRenderPipelineReflection")]
     unsafe impl ClassType for MTLRenderPipelineReflection {
         type Super = NSObject;
     }
@@ -194,8 +198,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLRenderPipelineDescriptor")]
     pub struct MTLRenderPipelineDescriptor;
 
+    #[cfg(feature = "Metal_MTLRenderPipelineDescriptor")]
     unsafe impl ClassType for MTLRenderPipelineDescriptor {
         type Super = NSObject;
     }
@@ -452,8 +458,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLRenderPipelineFunctionsDescriptor")]
     pub struct MTLRenderPipelineFunctionsDescriptor;
 
+    #[cfg(feature = "Metal_MTLRenderPipelineFunctionsDescriptor")]
     unsafe impl ClassType for MTLRenderPipelineFunctionsDescriptor {
         type Super = NSObject;
     }
@@ -562,8 +570,10 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLRenderPipelineColorAttachmentDescriptorArray")]
     pub struct MTLRenderPipelineColorAttachmentDescriptorArray;
 
+    #[cfg(feature = "Metal_MTLRenderPipelineColorAttachmentDescriptorArray")]
     unsafe impl ClassType for MTLRenderPipelineColorAttachmentDescriptorArray {
         type Super = NSObject;
     }
@@ -591,8 +601,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLTileRenderPipelineColorAttachmentDescriptor")]
     pub struct MTLTileRenderPipelineColorAttachmentDescriptor;
 
+    #[cfg(feature = "Metal_MTLTileRenderPipelineColorAttachmentDescriptor")]
     unsafe impl ClassType for MTLTileRenderPipelineColorAttachmentDescriptor {
         type Super = NSObject;
     }
@@ -611,8 +623,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLTileRenderPipelineColorAttachmentDescriptorArray")]
     pub struct MTLTileRenderPipelineColorAttachmentDescriptorArray;
 
+    #[cfg(feature = "Metal_MTLTileRenderPipelineColorAttachmentDescriptorArray")]
     unsafe impl ClassType for MTLTileRenderPipelineColorAttachmentDescriptorArray {
         type Super = NSObject;
     }
@@ -640,8 +654,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLTileRenderPipelineDescriptor")]
     pub struct MTLTileRenderPipelineDescriptor;
 
+    #[cfg(feature = "Metal_MTLTileRenderPipelineDescriptor")]
     unsafe impl ClassType for MTLTileRenderPipelineDescriptor {
         type Super = NSObject;
     }

@@ -8,8 +8,10 @@ extern_static!(NSFetchRequestExpressionType: NSExpressionType = 50);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreData_NSFetchRequestExpression")]
     pub struct NSFetchRequestExpression;
 
+    #[cfg(feature = "CoreData_NSFetchRequestExpression")]
     unsafe impl ClassType for NSFetchRequestExpression {
         #[inherits(NSObject)]
         type Super = NSExpression;

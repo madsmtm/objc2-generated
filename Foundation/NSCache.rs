@@ -5,6 +5,7 @@ use crate::Foundation::*;
 
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSCache")]
     pub struct NSCache<
         KeyType: Message = Object,
         ObjectType: Message = Object,
@@ -16,6 +17,7 @@ __inner_extern_class!(
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
+    #[cfg(feature = "Foundation_NSCache")]
     unsafe impl<
             KeyType: Message,
             ObjectType: Message,

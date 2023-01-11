@@ -10,8 +10,10 @@ typed_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "CoreAnimation_CAValueFunction")]
     pub struct CAValueFunction;
 
+    #[cfg(feature = "CoreAnimation_CAValueFunction")]
     unsafe impl ClassType for CAValueFunction {
         type Super = NSObject;
     }

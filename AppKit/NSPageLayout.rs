@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSPageLayout")]
     pub struct NSPageLayout;
 
+    #[cfg(feature = "AppKit_NSPageLayout")]
     unsafe impl ClassType for NSPageLayout {
         type Super = NSObject;
     }

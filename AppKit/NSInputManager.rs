@@ -56,8 +56,10 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSInputManager")]
     pub struct NSInputManager;
 
+    #[cfg(feature = "AppKit_NSInputManager")]
     unsafe impl ClassType for NSInputManager {
         type Super = NSObject;
     }

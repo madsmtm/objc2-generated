@@ -84,8 +84,10 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSLayoutConstraint")]
     pub struct NSLayoutConstraint;
 
+    #[cfg(feature = "AppKit_NSLayoutConstraint")]
     unsafe impl ClassType for NSLayoutConstraint {
         type Super = NSObject;
     }

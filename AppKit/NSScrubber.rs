@@ -83,8 +83,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSScrubberSelectionStyle")]
     pub struct NSScrubberSelectionStyle;
 
+    #[cfg(feature = "AppKit_NSScrubberSelectionStyle")]
     unsafe impl ClassType for NSScrubberSelectionStyle {
         type Super = NSObject;
     }
@@ -117,8 +119,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSScrubber")]
     pub struct NSScrubber;
 
+    #[cfg(feature = "AppKit_NSScrubber")]
     unsafe impl ClassType for NSScrubber {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;

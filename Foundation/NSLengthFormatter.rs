@@ -19,8 +19,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSLengthFormatter")]
     pub struct NSLengthFormatter;
 
+    #[cfg(feature = "Foundation_NSLengthFormatter")]
     unsafe impl ClassType for NSLengthFormatter {
         #[inherits(NSObject)]
         type Super = NSFormatter;

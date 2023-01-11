@@ -6,8 +6,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AuthenticationServices_ASWebAuthenticationSessionWebBrowserSessionManager")]
     pub struct ASWebAuthenticationSessionWebBrowserSessionManager;
 
+    #[cfg(feature = "AuthenticationServices_ASWebAuthenticationSessionWebBrowserSessionManager")]
     unsafe impl ClassType for ASWebAuthenticationSessionWebBrowserSessionManager {
         type Super = NSObject;
     }

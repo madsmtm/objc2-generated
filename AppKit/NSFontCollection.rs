@@ -34,8 +34,10 @@ typed_extensible_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSFontCollection")]
     pub struct NSFontCollection;
 
+    #[cfg(feature = "AppKit_NSFontCollection")]
     unsafe impl ClassType for NSFontCollection {
         type Super = NSObject;
     }
@@ -150,8 +152,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSMutableFontCollection")]
     pub struct NSMutableFontCollection;
 
+    #[cfg(feature = "AppKit_NSMutableFontCollection")]
     unsafe impl ClassType for NSMutableFontCollection {
         #[inherits(NSObject)]
         type Super = NSFontCollection;

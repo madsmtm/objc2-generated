@@ -15,8 +15,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSProgressIndicator")]
     pub struct NSProgressIndicator;
 
+    #[cfg(feature = "AppKit_NSProgressIndicator")]
     unsafe impl ClassType for NSProgressIndicator {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;

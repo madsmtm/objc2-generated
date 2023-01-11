@@ -19,8 +19,10 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSFileVersion")]
     pub struct NSFileVersion;
 
+    #[cfg(feature = "Foundation_NSFileVersion")]
     unsafe impl ClassType for NSFileVersion {
         type Super = NSObject;
     }

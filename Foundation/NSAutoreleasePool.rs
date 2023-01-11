@@ -5,8 +5,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSAutoreleasePool")]
     pub struct NSAutoreleasePool;
 
+    #[cfg(feature = "Foundation_NSAutoreleasePool")]
     unsafe impl ClassType for NSAutoreleasePool {
         type Super = NSObject;
     }

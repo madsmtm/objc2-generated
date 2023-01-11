@@ -7,8 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSCursor")]
     pub struct NSCursor;
 
+    #[cfg(feature = "AppKit_NSCursor")]
     unsafe impl ClassType for NSCursor {
         type Super = NSObject;
     }

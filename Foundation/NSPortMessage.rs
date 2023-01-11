@@ -5,8 +5,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSPortMessage")]
     pub struct NSPortMessage;
 
+    #[cfg(feature = "Foundation_NSPortMessage")]
     unsafe impl ClassType for NSPortMessage {
         type Super = NSObject;
     }

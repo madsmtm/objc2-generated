@@ -6,8 +6,10 @@ use crate::Metal::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLComputePassSampleBufferAttachmentDescriptor")]
     pub struct MTLComputePassSampleBufferAttachmentDescriptor;
 
+    #[cfg(feature = "Metal_MTLComputePassSampleBufferAttachmentDescriptor")]
     unsafe impl ClassType for MTLComputePassSampleBufferAttachmentDescriptor {
         type Super = NSObject;
     }
@@ -38,8 +40,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLComputePassSampleBufferAttachmentDescriptorArray")]
     pub struct MTLComputePassSampleBufferAttachmentDescriptorArray;
 
+    #[cfg(feature = "Metal_MTLComputePassSampleBufferAttachmentDescriptorArray")]
     unsafe impl ClassType for MTLComputePassSampleBufferAttachmentDescriptorArray {
         type Super = NSObject;
     }
@@ -67,8 +71,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLComputePassDescriptor")]
     pub struct MTLComputePassDescriptor;
 
+    #[cfg(feature = "Metal_MTLComputePassDescriptor")]
     unsafe impl ClassType for MTLComputePassDescriptor {
         type Super = NSObject;
     }

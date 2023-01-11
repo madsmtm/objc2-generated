@@ -15,8 +15,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSTextFieldCell")]
     pub struct NSTextFieldCell;
 
+    #[cfg(feature = "AppKit_NSTextFieldCell")]
     unsafe impl ClassType for NSTextFieldCell {
         #[inherits(NSCell, NSObject)]
         type Super = NSActionCell;

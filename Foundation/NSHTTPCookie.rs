@@ -45,8 +45,10 @@ extern_static!(NSHTTPCookieSameSiteStrict: &'static NSHTTPCookieStringPolicy);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSHTTPCookie")]
     pub struct NSHTTPCookie;
 
+    #[cfg(feature = "Foundation_NSHTTPCookie")]
     unsafe impl ClassType for NSHTTPCookie {
         type Super = NSObject;
     }

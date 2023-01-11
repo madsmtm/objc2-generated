@@ -20,8 +20,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSGestureRecognizer")]
     pub struct NSGestureRecognizer;
 
+    #[cfg(feature = "AppKit_NSGestureRecognizer")]
     unsafe impl ClassType for NSGestureRecognizer {
         type Super = NSObject;
     }

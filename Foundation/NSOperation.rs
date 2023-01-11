@@ -16,8 +16,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSOperation")]
     pub struct NSOperation;
 
+    #[cfg(feature = "Foundation_NSOperation")]
     unsafe impl ClassType for NSOperation {
         type Super = NSObject;
     }
@@ -102,8 +104,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSBlockOperation")]
     pub struct NSBlockOperation;
 
+    #[cfg(feature = "Foundation_NSBlockOperation")]
     unsafe impl ClassType for NSBlockOperation {
         #[inherits(NSObject)]
         type Super = NSOperation;
@@ -123,8 +127,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSInvocationOperation")]
     pub struct NSInvocationOperation;
 
+    #[cfg(feature = "Foundation_NSInvocationOperation")]
     unsafe impl ClassType for NSInvocationOperation {
         #[inherits(NSObject)]
         type Super = NSOperation;
@@ -166,8 +172,10 @@ extern_static!(NSOperationQueueDefaultMaxConcurrentOperationCount: NSInteger = -
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSOperationQueue")]
     pub struct NSOperationQueue;
 
+    #[cfg(feature = "Foundation_NSOperationQueue")]
     unsafe impl ClassType for NSOperationQueue {
         type Super = NSObject;
     }

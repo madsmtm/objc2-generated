@@ -16,8 +16,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSText")]
     pub struct NSText;
 
+    #[cfg(feature = "AppKit_NSText")]
     unsafe impl ClassType for NSText {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;

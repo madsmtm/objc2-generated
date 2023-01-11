@@ -5,11 +5,13 @@ use crate::Foundation::*;
 
 __inner_extern_class!(
     #[derive(PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSSet")]
     pub struct NSSet<ObjectType: Message = Object, ObjectTypeOwnership: Ownership = Shared> {
         _inner0: PhantomData<*mut (ObjectType, ObjectTypeOwnership)>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
+    #[cfg(feature = "Foundation_NSSet")]
     unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> ClassType
         for NSSet<ObjectType, ObjectTypeOwnership>
     {
@@ -194,11 +196,13 @@ extern_methods!(
 
 __inner_extern_class!(
     #[derive(PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSMutableSet")]
     pub struct NSMutableSet<ObjectType: Message = Object, ObjectTypeOwnership: Ownership = Shared> {
         _inner0: PhantomData<*mut (ObjectType, ObjectTypeOwnership)>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
+    #[cfg(feature = "Foundation_NSMutableSet")]
     unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> ClassType
         for NSMutableSet<ObjectType, ObjectTypeOwnership>
     {
@@ -280,11 +284,13 @@ extern_methods!(
 
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSCountedSet")]
     pub struct NSCountedSet<ObjectType: Message = Object, ObjectTypeOwnership: Ownership = Shared> {
         _inner0: PhantomData<*mut (ObjectType, ObjectTypeOwnership)>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
+    #[cfg(feature = "Foundation_NSCountedSet")]
     unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> ClassType
         for NSCountedSet<ObjectType, ObjectTypeOwnership>
     {
