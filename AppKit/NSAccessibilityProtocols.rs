@@ -316,12 +316,6 @@ extern_protocol!(
     pub struct NSAccessibilityElementLoading;
 
     unsafe impl ProtocolType for NSAccessibilityElementLoading {
-        #[method_id(@__retain_semantics Other accessibilityElementWithToken:)]
-        pub unsafe fn accessibilityElementWithToken(
-            &self,
-            token: &NSAccessibilityLoadingToken,
-        ) -> Option<Id<NSAccessibilityElement, Shared>>;
-
         #[optional]
         #[method(accessibilityRangeInTargetElementWithToken:)]
         pub unsafe fn accessibilityRangeInTargetElementWithToken(
@@ -632,19 +626,6 @@ extern_protocol!(
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setAccessibilityChildren:)]
         pub unsafe fn setAccessibilityChildren(&self, accessibilityChildren: Option<&NSArray>);
-
-        #[cfg(feature = "Foundation_NSArray")]
-        #[method_id(@__retain_semantics Other accessibilityChildrenInNavigationOrder)]
-        pub unsafe fn accessibilityChildrenInNavigationOrder(
-            &self,
-        ) -> Option<Id<NSArray<NSAccessibilityElement>, Shared>>;
-
-        #[cfg(feature = "Foundation_NSArray")]
-        #[method(setAccessibilityChildrenInNavigationOrder:)]
-        pub unsafe fn setAccessibilityChildrenInNavigationOrder(
-            &self,
-            accessibilityChildrenInNavigationOrder: Option<&NSArray<NSAccessibilityElement>>,
-        );
 
         #[method_id(@__retain_semantics Other accessibilityClearButton)]
         pub unsafe fn accessibilityClearButton(&self) -> Option<Id<Object, Shared>>;
