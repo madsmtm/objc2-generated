@@ -7,6 +7,7 @@ extern_protocol!(
     pub struct NSExtensionRequestHandling;
 
     unsafe impl ProtocolType for NSExtensionRequestHandling {
+        #[cfg(feature = "Foundation_NSExtensionContext")]
         #[method(beginRequestWithExtensionContext:)]
         pub unsafe fn beginRequestWithExtensionContext(&self, context: &NSExtensionContext);
     }

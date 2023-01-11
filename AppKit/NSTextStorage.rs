@@ -90,6 +90,7 @@ extern_protocol!(
     pub struct NSTextStorageDelegate;
 
     unsafe impl ProtocolType for NSTextStorageDelegate {
+        #[cfg(feature = "AppKit_NSTextStorage")]
         #[optional]
         #[method(textStorage:willProcessEditing:range:changeInLength:)]
         pub unsafe fn textStorage_willProcessEditing_range_changeInLength(
@@ -100,6 +101,7 @@ extern_protocol!(
             delta: NSInteger,
         );
 
+        #[cfg(feature = "AppKit_NSTextStorage")]
         #[optional]
         #[method(textStorage:didProcessEditing:range:changeInLength:)]
         pub unsafe fn textStorage_didProcessEditing_range_changeInLength(
@@ -120,12 +122,15 @@ extern_protocol!(
     pub struct NSTextStorageObserving;
 
     unsafe impl ProtocolType for NSTextStorageObserving {
+        #[cfg(feature = "AppKit_NSTextStorage")]
         #[method_id(@__retain_semantics Other textStorage)]
         pub unsafe fn textStorage(&self) -> Option<Id<NSTextStorage, Shared>>;
 
+        #[cfg(feature = "AppKit_NSTextStorage")]
         #[method(setTextStorage:)]
         pub unsafe fn setTextStorage(&self, textStorage: Option<&NSTextStorage>);
 
+        #[cfg(feature = "AppKit_NSTextStorage")]
         #[method(processEditingForTextStorage:edited:range:changeInLength:invalidatedRange:)]
         pub unsafe fn processEditingForTextStorage_edited_range_changeInLength_invalidatedRange(
             &self,
@@ -136,6 +141,7 @@ extern_protocol!(
             invalidatedCharRange: NSRange,
         );
 
+        #[cfg(feature = "AppKit_NSTextStorage")]
         #[method(performEditingTransactionForTextStorage:usingBlock:)]
         pub unsafe fn performEditingTransactionForTextStorage_usingBlock(
             &self,

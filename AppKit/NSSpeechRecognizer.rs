@@ -68,6 +68,7 @@ extern_protocol!(
     pub struct NSSpeechRecognizerDelegate;
 
     unsafe impl ProtocolType for NSSpeechRecognizerDelegate {
+        #[cfg(all(feature = "AppKit_NSSpeechRecognizer", feature = "Foundation_NSString"))]
         #[optional]
         #[method(speechRecognizer:didRecognizeCommand:)]
         pub unsafe fn speechRecognizer_didRecognizeCommand(

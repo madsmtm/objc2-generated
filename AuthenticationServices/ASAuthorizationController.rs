@@ -8,6 +8,10 @@ extern_protocol!(
     pub struct ASAuthorizationControllerDelegate;
 
     unsafe impl ProtocolType for ASAuthorizationControllerDelegate {
+        #[cfg(all(
+            feature = "AuthenticationServices_ASAuthorization",
+            feature = "AuthenticationServices_ASAuthorizationController"
+        ))]
         #[optional]
         #[method(authorizationController:didCompleteWithAuthorization:)]
         pub unsafe fn authorizationController_didCompleteWithAuthorization(
@@ -16,6 +20,10 @@ extern_protocol!(
             authorization: &ASAuthorization,
         );
 
+        #[cfg(all(
+            feature = "AuthenticationServices_ASAuthorizationController",
+            feature = "Foundation_NSError"
+        ))]
         #[optional]
         #[method(authorizationController:didCompleteWithError:)]
         pub unsafe fn authorizationController_didCompleteWithError(
@@ -24,6 +32,7 @@ extern_protocol!(
             error: &NSError,
         );
 
+        #[cfg(feature = "AuthenticationServices_ASAuthorizationController")]
         #[optional]
         #[method(authorizationController:didCompleteWithCustomMethod:)]
         pub unsafe fn authorizationController_didCompleteWithCustomMethod(
@@ -38,6 +47,7 @@ extern_protocol!(
     pub struct ASAuthorizationControllerPresentationContextProviding;
 
     unsafe impl ProtocolType for ASAuthorizationControllerPresentationContextProviding {
+        #[cfg(feature = "AuthenticationServices_ASAuthorizationController")]
         #[method_id(@__retain_semantics Other presentationAnchorForAuthorizationController:)]
         pub unsafe fn presentationAnchorForAuthorizationController(
             &self,

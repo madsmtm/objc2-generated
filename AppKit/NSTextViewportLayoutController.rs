@@ -9,12 +9,17 @@ extern_protocol!(
     pub struct NSTextViewportLayoutControllerDelegate;
 
     unsafe impl ProtocolType for NSTextViewportLayoutControllerDelegate {
+        #[cfg(feature = "AppKit_NSTextViewportLayoutController")]
         #[method(viewportBoundsForTextViewportLayoutController:)]
         pub unsafe fn viewportBoundsForTextViewportLayoutController(
             &self,
             textViewportLayoutController: &NSTextViewportLayoutController,
         ) -> CGRect;
 
+        #[cfg(all(
+            feature = "AppKit_NSTextLayoutFragment",
+            feature = "AppKit_NSTextViewportLayoutController"
+        ))]
         #[method(textViewportLayoutController:configureRenderingSurfaceForTextLayoutFragment:)]
         pub unsafe fn textViewportLayoutController_configureRenderingSurfaceForTextLayoutFragment(
             &self,
@@ -22,6 +27,7 @@ extern_protocol!(
             textLayoutFragment: &NSTextLayoutFragment,
         );
 
+        #[cfg(feature = "AppKit_NSTextViewportLayoutController")]
         #[optional]
         #[method(textViewportLayoutControllerWillLayout:)]
         pub unsafe fn textViewportLayoutControllerWillLayout(
@@ -29,6 +35,7 @@ extern_protocol!(
             textViewportLayoutController: &NSTextViewportLayoutController,
         );
 
+        #[cfg(feature = "AppKit_NSTextViewportLayoutController")]
         #[optional]
         #[method(textViewportLayoutControllerDidLayout:)]
         pub unsafe fn textViewportLayoutControllerDidLayout(

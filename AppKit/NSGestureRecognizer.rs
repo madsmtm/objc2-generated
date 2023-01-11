@@ -149,6 +149,7 @@ extern_protocol!(
     pub struct NSGestureRecognizerDelegate;
 
     unsafe impl ProtocolType for NSGestureRecognizerDelegate {
+        #[cfg(all(feature = "AppKit_NSEvent", feature = "AppKit_NSGestureRecognizer"))]
         #[optional]
         #[method(gestureRecognizer:shouldAttemptToRecognizeWithEvent:)]
         pub unsafe fn gestureRecognizer_shouldAttemptToRecognizeWithEvent(
@@ -157,6 +158,7 @@ extern_protocol!(
             event: &NSEvent,
         ) -> bool;
 
+        #[cfg(feature = "AppKit_NSGestureRecognizer")]
         #[optional]
         #[method(gestureRecognizerShouldBegin:)]
         pub unsafe fn gestureRecognizerShouldBegin(
@@ -164,6 +166,7 @@ extern_protocol!(
             gestureRecognizer: &NSGestureRecognizer,
         ) -> bool;
 
+        #[cfg(feature = "AppKit_NSGestureRecognizer")]
         #[optional]
         #[method(gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer:)]
         pub unsafe fn gestureRecognizer_shouldRecognizeSimultaneouslyWithGestureRecognizer(
@@ -172,6 +175,7 @@ extern_protocol!(
             otherGestureRecognizer: &NSGestureRecognizer,
         ) -> bool;
 
+        #[cfg(feature = "AppKit_NSGestureRecognizer")]
         #[optional]
         #[method(gestureRecognizer:shouldRequireFailureOfGestureRecognizer:)]
         pub unsafe fn gestureRecognizer_shouldRequireFailureOfGestureRecognizer(
@@ -180,6 +184,7 @@ extern_protocol!(
             otherGestureRecognizer: &NSGestureRecognizer,
         ) -> bool;
 
+        #[cfg(feature = "AppKit_NSGestureRecognizer")]
         #[optional]
         #[method(gestureRecognizer:shouldBeRequiredToFailByGestureRecognizer:)]
         pub unsafe fn gestureRecognizer_shouldBeRequiredToFailByGestureRecognizer(
@@ -188,6 +193,7 @@ extern_protocol!(
             otherGestureRecognizer: &NSGestureRecognizer,
         ) -> bool;
 
+        #[cfg(all(feature = "AppKit_NSGestureRecognizer", feature = "AppKit_NSTouch"))]
         #[optional]
         #[method(gestureRecognizer:shouldReceiveTouch:)]
         pub unsafe fn gestureRecognizer_shouldReceiveTouch(

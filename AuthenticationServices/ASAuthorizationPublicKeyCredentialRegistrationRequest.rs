@@ -8,30 +8,39 @@ extern_protocol!(
     pub struct ASAuthorizationPublicKeyCredentialRegistrationRequest;
 
     unsafe impl ProtocolType for ASAuthorizationPublicKeyCredentialRegistrationRequest {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other relyingPartyIdentifier)]
         pub unsafe fn relyingPartyIdentifier(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other userID)]
         pub unsafe fn userID(&self) -> Id<NSData, Shared>;
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method(setUserID:)]
         pub unsafe fn setUserID(&self, userID: &NSData);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]
         pub unsafe fn setName(&self, name: &NSString);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other displayName)]
         pub unsafe fn displayName(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setDisplayName:)]
         pub unsafe fn setDisplayName(&self, displayName: Option<&NSString>);
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other challenge)]
         pub unsafe fn challenge(&self) -> Id<NSData, Shared>;
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method(setChallenge:)]
         pub unsafe fn setChallenge(&self, challenge: &NSData);
 

@@ -648,6 +648,7 @@ extern_protocol!(
     pub struct NSFileManagerDelegate;
 
     unsafe impl ProtocolType for NSFileManagerDelegate {
+        #[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
         #[optional]
         #[method(fileManager:shouldCopyItemAtPath:toPath:)]
         pub unsafe fn fileManager_shouldCopyItemAtPath_toPath(
@@ -657,6 +658,7 @@ extern_protocol!(
             dstPath: &NSString,
         ) -> bool;
 
+        #[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSURL"))]
         #[optional]
         #[method(fileManager:shouldCopyItemAtURL:toURL:)]
         pub unsafe fn fileManager_shouldCopyItemAtURL_toURL(
@@ -666,6 +668,11 @@ extern_protocol!(
             dstURL: &NSURL,
         ) -> bool;
 
+        #[cfg(all(
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSFileManager",
+            feature = "Foundation_NSString"
+        ))]
         #[optional]
         #[method(fileManager:shouldProceedAfterError:copyingItemAtPath:toPath:)]
         pub unsafe fn fileManager_shouldProceedAfterError_copyingItemAtPath_toPath(
@@ -676,6 +683,11 @@ extern_protocol!(
             dstPath: &NSString,
         ) -> bool;
 
+        #[cfg(all(
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSFileManager",
+            feature = "Foundation_NSURL"
+        ))]
         #[optional]
         #[method(fileManager:shouldProceedAfterError:copyingItemAtURL:toURL:)]
         pub unsafe fn fileManager_shouldProceedAfterError_copyingItemAtURL_toURL(
@@ -686,6 +698,7 @@ extern_protocol!(
             dstURL: &NSURL,
         ) -> bool;
 
+        #[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
         #[optional]
         #[method(fileManager:shouldMoveItemAtPath:toPath:)]
         pub unsafe fn fileManager_shouldMoveItemAtPath_toPath(
@@ -695,6 +708,7 @@ extern_protocol!(
             dstPath: &NSString,
         ) -> bool;
 
+        #[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSURL"))]
         #[optional]
         #[method(fileManager:shouldMoveItemAtURL:toURL:)]
         pub unsafe fn fileManager_shouldMoveItemAtURL_toURL(
@@ -704,6 +718,11 @@ extern_protocol!(
             dstURL: &NSURL,
         ) -> bool;
 
+        #[cfg(all(
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSFileManager",
+            feature = "Foundation_NSString"
+        ))]
         #[optional]
         #[method(fileManager:shouldProceedAfterError:movingItemAtPath:toPath:)]
         pub unsafe fn fileManager_shouldProceedAfterError_movingItemAtPath_toPath(
@@ -714,6 +733,11 @@ extern_protocol!(
             dstPath: &NSString,
         ) -> bool;
 
+        #[cfg(all(
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSFileManager",
+            feature = "Foundation_NSURL"
+        ))]
         #[optional]
         #[method(fileManager:shouldProceedAfterError:movingItemAtURL:toURL:)]
         pub unsafe fn fileManager_shouldProceedAfterError_movingItemAtURL_toURL(
@@ -724,6 +748,7 @@ extern_protocol!(
             dstURL: &NSURL,
         ) -> bool;
 
+        #[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
         #[optional]
         #[method(fileManager:shouldLinkItemAtPath:toPath:)]
         pub unsafe fn fileManager_shouldLinkItemAtPath_toPath(
@@ -733,6 +758,7 @@ extern_protocol!(
             dstPath: &NSString,
         ) -> bool;
 
+        #[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSURL"))]
         #[optional]
         #[method(fileManager:shouldLinkItemAtURL:toURL:)]
         pub unsafe fn fileManager_shouldLinkItemAtURL_toURL(
@@ -742,6 +768,11 @@ extern_protocol!(
             dstURL: &NSURL,
         ) -> bool;
 
+        #[cfg(all(
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSFileManager",
+            feature = "Foundation_NSString"
+        ))]
         #[optional]
         #[method(fileManager:shouldProceedAfterError:linkingItemAtPath:toPath:)]
         pub unsafe fn fileManager_shouldProceedAfterError_linkingItemAtPath_toPath(
@@ -752,6 +783,11 @@ extern_protocol!(
             dstPath: &NSString,
         ) -> bool;
 
+        #[cfg(all(
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSFileManager",
+            feature = "Foundation_NSURL"
+        ))]
         #[optional]
         #[method(fileManager:shouldProceedAfterError:linkingItemAtURL:toURL:)]
         pub unsafe fn fileManager_shouldProceedAfterError_linkingItemAtURL_toURL(
@@ -762,6 +798,7 @@ extern_protocol!(
             dstURL: &NSURL,
         ) -> bool;
 
+        #[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
         #[optional]
         #[method(fileManager:shouldRemoveItemAtPath:)]
         pub unsafe fn fileManager_shouldRemoveItemAtPath(
@@ -770,6 +807,7 @@ extern_protocol!(
             path: &NSString,
         ) -> bool;
 
+        #[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSURL"))]
         #[optional]
         #[method(fileManager:shouldRemoveItemAtURL:)]
         pub unsafe fn fileManager_shouldRemoveItemAtURL(
@@ -778,6 +816,11 @@ extern_protocol!(
             URL: &NSURL,
         ) -> bool;
 
+        #[cfg(all(
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSFileManager",
+            feature = "Foundation_NSString"
+        ))]
         #[optional]
         #[method(fileManager:shouldProceedAfterError:removingItemAtPath:)]
         pub unsafe fn fileManager_shouldProceedAfterError_removingItemAtPath(
@@ -787,6 +830,11 @@ extern_protocol!(
             path: &NSString,
         ) -> bool;
 
+        #[cfg(all(
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSFileManager",
+            feature = "Foundation_NSURL"
+        ))]
         #[optional]
         #[method(fileManager:shouldProceedAfterError:removingItemAtURL:)]
         pub unsafe fn fileManager_shouldProceedAfterError_removingItemAtURL(

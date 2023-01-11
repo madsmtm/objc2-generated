@@ -373,6 +373,7 @@ extern_protocol!(
     pub struct NSImageDelegate;
 
     unsafe impl ProtocolType for NSImageDelegate {
+        #[cfg(feature = "AppKit_NSImage")]
         #[optional]
         #[method_id(@__retain_semantics Other imageDidNotDraw:inRect:)]
         pub unsafe fn imageDidNotDraw_inRect(
@@ -381,14 +382,17 @@ extern_protocol!(
             rect: NSRect,
         ) -> Option<Id<NSImage, Shared>>;
 
+        #[cfg(all(feature = "AppKit_NSImage", feature = "AppKit_NSImageRep"))]
         #[optional]
         #[method(image:willLoadRepresentation:)]
         pub unsafe fn image_willLoadRepresentation(&self, image: &NSImage, rep: &NSImageRep);
 
+        #[cfg(all(feature = "AppKit_NSImage", feature = "AppKit_NSImageRep"))]
         #[optional]
         #[method(image:didLoadRepresentationHeader:)]
         pub unsafe fn image_didLoadRepresentationHeader(&self, image: &NSImage, rep: &NSImageRep);
 
+        #[cfg(all(feature = "AppKit_NSImage", feature = "AppKit_NSImageRep"))]
         #[optional]
         #[method(image:didLoadPartOfRepresentation:withValidRows:)]
         pub unsafe fn image_didLoadPartOfRepresentation_withValidRows(
@@ -398,6 +402,7 @@ extern_protocol!(
             rows: NSInteger,
         );
 
+        #[cfg(all(feature = "AppKit_NSImage", feature = "AppKit_NSImageRep"))]
         #[optional]
         #[method(image:didLoadRepresentation:withStatus:)]
         pub unsafe fn image_didLoadRepresentation_withStatus(

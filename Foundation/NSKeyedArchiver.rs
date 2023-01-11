@@ -309,6 +309,7 @@ extern_protocol!(
     pub struct NSKeyedArchiverDelegate;
 
     unsafe impl ProtocolType for NSKeyedArchiverDelegate {
+        #[cfg(feature = "Foundation_NSKeyedArchiver")]
         #[optional]
         #[method_id(@__retain_semantics Other archiver:willEncodeObject:)]
         pub unsafe fn archiver_willEncodeObject(
@@ -317,6 +318,7 @@ extern_protocol!(
             object: &Object,
         ) -> Option<Id<Object, Shared>>;
 
+        #[cfg(feature = "Foundation_NSKeyedArchiver")]
         #[optional]
         #[method(archiver:didEncodeObject:)]
         pub unsafe fn archiver_didEncodeObject(
@@ -325,6 +327,7 @@ extern_protocol!(
             object: Option<&Object>,
         );
 
+        #[cfg(feature = "Foundation_NSKeyedArchiver")]
         #[optional]
         #[method(archiver:willReplaceObject:withObject:)]
         pub unsafe fn archiver_willReplaceObject_withObject(
@@ -334,10 +337,12 @@ extern_protocol!(
             newObject: Option<&Object>,
         );
 
+        #[cfg(feature = "Foundation_NSKeyedArchiver")]
         #[optional]
         #[method(archiverWillFinish:)]
         pub unsafe fn archiverWillFinish(&self, archiver: &NSKeyedArchiver);
 
+        #[cfg(feature = "Foundation_NSKeyedArchiver")]
         #[optional]
         #[method(archiverDidFinish:)]
         pub unsafe fn archiverDidFinish(&self, archiver: &NSKeyedArchiver);
@@ -348,6 +353,11 @@ extern_protocol!(
     pub struct NSKeyedUnarchiverDelegate;
 
     unsafe impl ProtocolType for NSKeyedUnarchiverDelegate {
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSKeyedUnarchiver",
+            feature = "Foundation_NSString"
+        ))]
         #[optional]
         #[method(unarchiver:cannotDecodeObjectOfClassName:originalClasses:)]
         pub unsafe fn unarchiver_cannotDecodeObjectOfClassName_originalClasses(
@@ -357,6 +367,7 @@ extern_protocol!(
             classNames: &NSArray<NSString>,
         ) -> Option<&'static Class>;
 
+        #[cfg(feature = "Foundation_NSKeyedUnarchiver")]
         #[optional]
         #[method(unarchiver:willReplaceObject:withObject:)]
         pub unsafe fn unarchiver_willReplaceObject_withObject(
@@ -366,10 +377,12 @@ extern_protocol!(
             newObject: &Object,
         );
 
+        #[cfg(feature = "Foundation_NSKeyedUnarchiver")]
         #[optional]
         #[method(unarchiverWillFinish:)]
         pub unsafe fn unarchiverWillFinish(&self, unarchiver: &NSKeyedUnarchiver);
 
+        #[cfg(feature = "Foundation_NSKeyedUnarchiver")]
         #[optional]
         #[method(unarchiverDidFinish:)]
         pub unsafe fn unarchiverDidFinish(&self, unarchiver: &NSKeyedUnarchiver);

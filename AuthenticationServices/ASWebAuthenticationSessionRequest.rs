@@ -8,6 +8,10 @@ extern_protocol!(
     pub struct ASWebAuthenticationSessionRequestDelegate;
 
     unsafe impl ProtocolType for ASWebAuthenticationSessionRequestDelegate {
+        #[cfg(all(
+            feature = "AuthenticationServices_ASWebAuthenticationSessionRequest",
+            feature = "Foundation_NSURL"
+        ))]
         #[optional]
         #[method(authenticationSessionRequest:didCompleteWithCallbackURL:)]
         pub unsafe fn authenticationSessionRequest_didCompleteWithCallbackURL(
@@ -16,6 +20,10 @@ extern_protocol!(
             callbackURL: &NSURL,
         );
 
+        #[cfg(all(
+            feature = "AuthenticationServices_ASWebAuthenticationSessionRequest",
+            feature = "Foundation_NSError"
+        ))]
         #[optional]
         #[method(authenticationSessionRequest:didCancelWithError:)]
         pub unsafe fn authenticationSessionRequest_didCancelWithError(

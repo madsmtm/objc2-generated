@@ -81,6 +81,7 @@ extern_protocol!(
     pub struct NSURLConnectionDelegate;
 
     unsafe impl ProtocolType for NSURLConnectionDelegate {
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURLConnection"))]
         #[optional]
         #[method(connection:didFailWithError:)]
         pub unsafe fn connection_didFailWithError(
@@ -89,6 +90,7 @@ extern_protocol!(
             error: &NSError,
         );
 
+        #[cfg(feature = "Foundation_NSURLConnection")]
         #[optional]
         #[method(connectionShouldUseCredentialStorage:)]
         pub unsafe fn connectionShouldUseCredentialStorage(
@@ -96,6 +98,10 @@ extern_protocol!(
             connection: &NSURLConnection,
         ) -> bool;
 
+        #[cfg(all(
+            feature = "Foundation_NSURLAuthenticationChallenge",
+            feature = "Foundation_NSURLConnection"
+        ))]
         #[optional]
         #[method(connection:willSendRequestForAuthenticationChallenge:)]
         pub unsafe fn connection_willSendRequestForAuthenticationChallenge(
@@ -104,6 +110,10 @@ extern_protocol!(
             challenge: &NSURLAuthenticationChallenge,
         );
 
+        #[cfg(all(
+            feature = "Foundation_NSURLConnection",
+            feature = "Foundation_NSURLProtectionSpace"
+        ))]
         #[optional]
         #[method(connection:canAuthenticateAgainstProtectionSpace:)]
         pub unsafe fn connection_canAuthenticateAgainstProtectionSpace(
@@ -112,6 +122,10 @@ extern_protocol!(
             protectionSpace: &NSURLProtectionSpace,
         ) -> bool;
 
+        #[cfg(all(
+            feature = "Foundation_NSURLAuthenticationChallenge",
+            feature = "Foundation_NSURLConnection"
+        ))]
         #[optional]
         #[method(connection:didReceiveAuthenticationChallenge:)]
         pub unsafe fn connection_didReceiveAuthenticationChallenge(
@@ -120,6 +134,10 @@ extern_protocol!(
             challenge: &NSURLAuthenticationChallenge,
         );
 
+        #[cfg(all(
+            feature = "Foundation_NSURLAuthenticationChallenge",
+            feature = "Foundation_NSURLConnection"
+        ))]
         #[optional]
         #[method(connection:didCancelAuthenticationChallenge:)]
         pub unsafe fn connection_didCancelAuthenticationChallenge(
@@ -134,6 +152,11 @@ extern_protocol!(
     pub struct NSURLConnectionDataDelegate;
 
     unsafe impl ProtocolType for NSURLConnectionDataDelegate {
+        #[cfg(all(
+            feature = "Foundation_NSURLConnection",
+            feature = "Foundation_NSURLRequest",
+            feature = "Foundation_NSURLResponse"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other connection:willSendRequest:redirectResponse:)]
         pub unsafe fn connection_willSendRequest_redirectResponse(
@@ -143,6 +166,10 @@ extern_protocol!(
             response: Option<&NSURLResponse>,
         ) -> Option<Id<NSURLRequest, Shared>>;
 
+        #[cfg(all(
+            feature = "Foundation_NSURLConnection",
+            feature = "Foundation_NSURLResponse"
+        ))]
         #[optional]
         #[method(connection:didReceiveResponse:)]
         pub unsafe fn connection_didReceiveResponse(
@@ -151,10 +178,16 @@ extern_protocol!(
             response: &NSURLResponse,
         );
 
+        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSURLConnection"))]
         #[optional]
         #[method(connection:didReceiveData:)]
         pub unsafe fn connection_didReceiveData(&self, connection: &NSURLConnection, data: &NSData);
 
+        #[cfg(all(
+            feature = "Foundation_NSInputStream",
+            feature = "Foundation_NSURLConnection",
+            feature = "Foundation_NSURLRequest"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other connection:needNewBodyStream:)]
         pub unsafe fn connection_needNewBodyStream(
@@ -163,6 +196,7 @@ extern_protocol!(
             request: &NSURLRequest,
         ) -> Option<Id<NSInputStream, Shared>>;
 
+        #[cfg(feature = "Foundation_NSURLConnection")]
         #[optional]
         #[method(connection:didSendBodyData:totalBytesWritten:totalBytesExpectedToWrite:)]
         pub unsafe fn connection_didSendBodyData_totalBytesWritten_totalBytesExpectedToWrite(
@@ -173,6 +207,10 @@ extern_protocol!(
             totalBytesExpectedToWrite: NSInteger,
         );
 
+        #[cfg(all(
+            feature = "Foundation_NSCachedURLResponse",
+            feature = "Foundation_NSURLConnection"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other connection:willCacheResponse:)]
         pub unsafe fn connection_willCacheResponse(
@@ -181,6 +219,7 @@ extern_protocol!(
             cachedResponse: &NSCachedURLResponse,
         ) -> Option<Id<NSCachedURLResponse, Shared>>;
 
+        #[cfg(feature = "Foundation_NSURLConnection")]
         #[optional]
         #[method(connectionDidFinishLoading:)]
         pub unsafe fn connectionDidFinishLoading(&self, connection: &NSURLConnection);
@@ -191,6 +230,7 @@ extern_protocol!(
     pub struct NSURLConnectionDownloadDelegate;
 
     unsafe impl ProtocolType for NSURLConnectionDownloadDelegate {
+        #[cfg(feature = "Foundation_NSURLConnection")]
         #[optional]
         #[method(connection:didWriteData:totalBytesWritten:expectedTotalBytes:)]
         pub unsafe fn connection_didWriteData_totalBytesWritten_expectedTotalBytes(
@@ -201,6 +241,7 @@ extern_protocol!(
             expectedTotalBytes: c_longlong,
         );
 
+        #[cfg(feature = "Foundation_NSURLConnection")]
         #[optional]
         #[method(connectionDidResumeDownloading:totalBytesWritten:expectedTotalBytes:)]
         pub unsafe fn connectionDidResumeDownloading_totalBytesWritten_expectedTotalBytes(
@@ -210,6 +251,7 @@ extern_protocol!(
             expectedTotalBytes: c_longlong,
         );
 
+        #[cfg(all(feature = "Foundation_NSURL", feature = "Foundation_NSURLConnection"))]
         #[method(connectionDidFinishDownloading:destinationURL:)]
         pub unsafe fn connectionDidFinishDownloading_destinationURL(
             &self,

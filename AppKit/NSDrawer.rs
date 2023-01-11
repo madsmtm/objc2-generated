@@ -123,14 +123,17 @@ extern_protocol!(
     pub struct NSDrawerDelegate;
 
     unsafe impl ProtocolType for NSDrawerDelegate {
+        #[cfg(feature = "AppKit_NSDrawer")]
         #[optional]
         #[method(drawerShouldOpen:)]
         pub unsafe fn drawerShouldOpen(&self, sender: &NSDrawer) -> bool;
 
+        #[cfg(feature = "AppKit_NSDrawer")]
         #[optional]
         #[method(drawerShouldClose:)]
         pub unsafe fn drawerShouldClose(&self, sender: &NSDrawer) -> bool;
 
+        #[cfg(feature = "AppKit_NSDrawer")]
         #[optional]
         #[method(drawerWillResizeContents:toSize:)]
         pub unsafe fn drawerWillResizeContents_toSize(
@@ -139,18 +142,22 @@ extern_protocol!(
             contentSize: NSSize,
         ) -> NSSize;
 
+        #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(drawerWillOpen:)]
         pub unsafe fn drawerWillOpen(&self, notification: &NSNotification);
 
+        #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(drawerDidOpen:)]
         pub unsafe fn drawerDidOpen(&self, notification: &NSNotification);
 
+        #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(drawerWillClose:)]
         pub unsafe fn drawerWillClose(&self, notification: &NSNotification);
 
+        #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(drawerDidClose:)]
         pub unsafe fn drawerDidClose(&self, notification: &NSNotification);

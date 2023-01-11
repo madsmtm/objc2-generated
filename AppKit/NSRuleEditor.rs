@@ -236,6 +236,7 @@ extern_protocol!(
     pub struct NSRuleEditorDelegate;
 
     unsafe impl ProtocolType for NSRuleEditorDelegate {
+        #[cfg(feature = "AppKit_NSRuleEditor")]
         #[method(ruleEditor:numberOfChildrenForCriterion:withRowType:)]
         pub unsafe fn ruleEditor_numberOfChildrenForCriterion_withRowType(
             &self,
@@ -244,6 +245,7 @@ extern_protocol!(
             rowType: NSRuleEditorRowType,
         ) -> NSInteger;
 
+        #[cfg(feature = "AppKit_NSRuleEditor")]
         #[method_id(@__retain_semantics Other ruleEditor:child:forCriterion:withRowType:)]
         pub unsafe fn ruleEditor_child_forCriterion_withRowType(
             &self,
@@ -253,6 +255,7 @@ extern_protocol!(
             rowType: NSRuleEditorRowType,
         ) -> Id<Object, Shared>;
 
+        #[cfg(feature = "AppKit_NSRuleEditor")]
         #[method_id(@__retain_semantics Other ruleEditor:displayValueForCriterion:inRow:)]
         pub unsafe fn ruleEditor_displayValueForCriterion_inRow(
             &self,
@@ -261,6 +264,7 @@ extern_protocol!(
             row: NSInteger,
         ) -> Id<Object, Shared>;
 
+        #[cfg(all(feature = "AppKit_NSRuleEditor", feature = "Foundation_NSDictionary"))]
         #[optional]
         #[method_id(@__retain_semantics Other ruleEditor:predicatePartsForCriterion:withDisplayValue:inRow:)]
         pub unsafe fn ruleEditor_predicatePartsForCriterion_withDisplayValue_inRow(
@@ -271,6 +275,7 @@ extern_protocol!(
             row: NSInteger,
         ) -> Option<Id<NSDictionary<NSRuleEditorPredicatePartKey, Object>, Shared>>;
 
+        #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(ruleEditorRowsDidChange:)]
         pub unsafe fn ruleEditorRowsDidChange(&self, notification: &NSNotification);

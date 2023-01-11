@@ -776,6 +776,7 @@ extern_protocol!(
     pub struct NSLayoutManagerDelegate;
 
     unsafe impl ProtocolType for NSLayoutManagerDelegate {
+        #[cfg(feature = "AppKit_NSLayoutManager")]
         #[optional]
         #[method(layoutManager:lineSpacingAfterGlyphAtIndex:withProposedLineFragmentRect:)]
         pub unsafe fn layoutManager_lineSpacingAfterGlyphAtIndex_withProposedLineFragmentRect(
@@ -785,6 +786,7 @@ extern_protocol!(
             rect: NSRect,
         ) -> CGFloat;
 
+        #[cfg(feature = "AppKit_NSLayoutManager")]
         #[optional]
         #[method(layoutManager:paragraphSpacingBeforeGlyphAtIndex:withProposedLineFragmentRect:)]
         pub unsafe fn layoutManager_paragraphSpacingBeforeGlyphAtIndex_withProposedLineFragmentRect(
@@ -794,6 +796,7 @@ extern_protocol!(
             rect: NSRect,
         ) -> CGFloat;
 
+        #[cfg(feature = "AppKit_NSLayoutManager")]
         #[optional]
         #[method(layoutManager:paragraphSpacingAfterGlyphAtIndex:withProposedLineFragmentRect:)]
         pub unsafe fn layoutManager_paragraphSpacingAfterGlyphAtIndex_withProposedLineFragmentRect(
@@ -803,6 +806,7 @@ extern_protocol!(
             rect: NSRect,
         ) -> CGFloat;
 
+        #[cfg(feature = "AppKit_NSLayoutManager")]
         #[optional]
         #[method(layoutManager:shouldUseAction:forControlCharacterAtIndex:)]
         pub unsafe fn layoutManager_shouldUseAction_forControlCharacterAtIndex(
@@ -812,6 +816,7 @@ extern_protocol!(
             charIndex: NSUInteger,
         ) -> NSControlCharacterAction;
 
+        #[cfg(feature = "AppKit_NSLayoutManager")]
         #[optional]
         #[method(layoutManager:shouldBreakLineByWordBeforeCharacterAtIndex:)]
         pub unsafe fn layoutManager_shouldBreakLineByWordBeforeCharacterAtIndex(
@@ -820,6 +825,7 @@ extern_protocol!(
             charIndex: NSUInteger,
         ) -> bool;
 
+        #[cfg(feature = "AppKit_NSLayoutManager")]
         #[optional]
         #[method(layoutManager:shouldBreakLineByHyphenatingBeforeCharacterAtIndex:)]
         pub unsafe fn layoutManager_shouldBreakLineByHyphenatingBeforeCharacterAtIndex(
@@ -828,6 +834,7 @@ extern_protocol!(
             charIndex: NSUInteger,
         ) -> bool;
 
+        #[cfg(all(feature = "AppKit_NSLayoutManager", feature = "AppKit_NSTextContainer"))]
         #[optional]
         #[method(layoutManager:boundingBoxForControlGlyphAtIndex:forTextContainer:proposedLineFragment:glyphPosition:characterIndex:)]
         pub unsafe fn layoutManager_boundingBoxForControlGlyphAtIndex_forTextContainer_proposedLineFragment_glyphPosition_characterIndex(
@@ -840,6 +847,7 @@ extern_protocol!(
             charIndex: NSUInteger,
         ) -> NSRect;
 
+        #[cfg(all(feature = "AppKit_NSLayoutManager", feature = "AppKit_NSTextContainer"))]
         #[optional]
         #[method(layoutManager:shouldSetLineFragmentRect:lineFragmentUsedRect:baselineOffset:inTextContainer:forGlyphRange:)]
         pub unsafe fn layoutManager_shouldSetLineFragmentRect_lineFragmentUsedRect_baselineOffset_inTextContainer_forGlyphRange(
@@ -852,10 +860,12 @@ extern_protocol!(
             glyphRange: NSRange,
         ) -> bool;
 
+        #[cfg(feature = "AppKit_NSLayoutManager")]
         #[optional]
         #[method(layoutManagerDidInvalidateLayout:)]
         pub unsafe fn layoutManagerDidInvalidateLayout(&self, sender: &NSLayoutManager);
 
+        #[cfg(all(feature = "AppKit_NSLayoutManager", feature = "AppKit_NSTextContainer"))]
         #[optional]
         #[method(layoutManager:didCompleteLayoutForTextContainer:atEnd:)]
         pub unsafe fn layoutManager_didCompleteLayoutForTextContainer_atEnd(
@@ -865,6 +875,7 @@ extern_protocol!(
             layoutFinishedFlag: bool,
         );
 
+        #[cfg(all(feature = "AppKit_NSLayoutManager", feature = "AppKit_NSTextContainer"))]
         #[optional]
         #[method(layoutManager:textContainer:didChangeGeometryFromSize:)]
         pub unsafe fn layoutManager_textContainer_didChangeGeometryFromSize(
@@ -874,6 +885,10 @@ extern_protocol!(
             oldSize: NSSize,
         );
 
+        #[cfg(all(
+            feature = "AppKit_NSLayoutManager",
+            feature = "Foundation_NSDictionary"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other layoutManager:shouldUseTemporaryAttributes:forDrawingToScreen:atCharacterIndex:effectiveRange:)]
         pub unsafe fn layoutManager_shouldUseTemporaryAttributes_forDrawingToScreen_atCharacterIndex_effectiveRange(

@@ -10,12 +10,14 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other remoteObjectProxy)]
         pub unsafe fn remoteObjectProxy(&self) -> Id<Object, Shared>;
 
+        #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other remoteObjectProxyWithErrorHandler:)]
         pub unsafe fn remoteObjectProxyWithErrorHandler(
             &self,
             handler: &Block<(NonNull<NSError>,), ()>,
         ) -> Id<Object, Shared>;
 
+        #[cfg(feature = "Foundation_NSError")]
         #[optional]
         #[method_id(@__retain_semantics Other synchronousRemoteObjectProxyWithErrorHandler:)]
         pub unsafe fn synchronousRemoteObjectProxyWithErrorHandler(
@@ -199,6 +201,10 @@ extern_protocol!(
     pub struct NSXPCListenerDelegate;
 
     unsafe impl ProtocolType for NSXPCListenerDelegate {
+        #[cfg(all(
+            feature = "Foundation_NSXPCConnection",
+            feature = "Foundation_NSXPCListener"
+        ))]
         #[optional]
         #[method(listener:shouldAcceptNewConnection:)]
         pub unsafe fn listener_shouldAcceptNewConnection(

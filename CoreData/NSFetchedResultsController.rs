@@ -119,15 +119,18 @@ extern_protocol!(
     pub struct NSFetchedResultsSectionInfo;
 
     unsafe impl ProtocolType for NSFetchedResultsSectionInfo {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other indexTitle)]
         pub unsafe fn indexTitle(&self) -> Option<Id<NSString, Shared>>;
 
         #[method(numberOfObjects)]
         pub unsafe fn numberOfObjects(&self) -> NSUInteger;
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other objects)]
         pub unsafe fn objects(&self) -> Option<Id<NSArray, Shared>>;
     }
@@ -147,6 +150,11 @@ extern_protocol!(
     pub struct NSFetchedResultsControllerDelegate;
 
     unsafe impl ProtocolType for NSFetchedResultsControllerDelegate {
+        #[cfg(all(
+            feature = "CoreData_NSFetchedResultsController",
+            feature = "CoreData_NSManagedObjectID",
+            feature = "Foundation_NSOrderedCollectionDifference"
+        ))]
         #[optional]
         #[method(controller:didChangeContentWithDifference:)]
         pub unsafe fn controller_didChangeContentWithDifference(
@@ -155,6 +163,10 @@ extern_protocol!(
             diff: &NSOrderedCollectionDifference<NSManagedObjectID>,
         );
 
+        #[cfg(all(
+            feature = "CoreData_NSFetchedResultsController",
+            feature = "Foundation_NSIndexPath"
+        ))]
         #[optional]
         #[method(controller:didChangeObject:atIndexPath:forChangeType:newIndexPath:)]
         pub unsafe fn controller_didChangeObject_atIndexPath_forChangeType_newIndexPath(
@@ -166,6 +178,7 @@ extern_protocol!(
             newIndexPath: Option<&NSIndexPath>,
         );
 
+        #[cfg(feature = "CoreData_NSFetchedResultsController")]
         #[optional]
         #[method(controller:didChangeSection:atIndex:forChangeType:)]
         pub unsafe fn controller_didChangeSection_atIndex_forChangeType(
@@ -176,14 +189,20 @@ extern_protocol!(
             type_: NSFetchedResultsChangeType,
         );
 
+        #[cfg(feature = "CoreData_NSFetchedResultsController")]
         #[optional]
         #[method(controllerWillChangeContent:)]
         pub unsafe fn controllerWillChangeContent(&self, controller: &NSFetchedResultsController);
 
+        #[cfg(feature = "CoreData_NSFetchedResultsController")]
         #[optional]
         #[method(controllerDidChangeContent:)]
         pub unsafe fn controllerDidChangeContent(&self, controller: &NSFetchedResultsController);
 
+        #[cfg(all(
+            feature = "CoreData_NSFetchedResultsController",
+            feature = "Foundation_NSString"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other controller:sectionIndexTitleForSectionName:)]
         pub unsafe fn controller_sectionIndexTitleForSectionName(

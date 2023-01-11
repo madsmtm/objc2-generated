@@ -8,12 +8,14 @@ extern_protocol!(
     pub struct ASWebAuthenticationSessionWebBrowserSessionHandling;
 
     unsafe impl ProtocolType for ASWebAuthenticationSessionWebBrowserSessionHandling {
+        #[cfg(feature = "AuthenticationServices_ASWebAuthenticationSessionRequest")]
         #[method(beginHandlingWebAuthenticationSessionRequest:)]
         pub unsafe fn beginHandlingWebAuthenticationSessionRequest(
             &self,
             request: Option<&ASWebAuthenticationSessionRequest>,
         );
 
+        #[cfg(feature = "AuthenticationServices_ASWebAuthenticationSessionRequest")]
         #[method(cancelWebAuthenticationSessionRequest:)]
         pub unsafe fn cancelWebAuthenticationSessionRequest(
             &self,

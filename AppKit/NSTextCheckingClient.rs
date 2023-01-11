@@ -104,6 +104,7 @@ extern_protocol!(
     pub struct NSTextCheckingClient;
 
     unsafe impl ProtocolType for NSTextCheckingClient {
+        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other annotatedSubstringForProposedRange:actualRange:)]
         pub unsafe fn annotatedSubstringForProposedRange_actualRange(
             &self,
@@ -111,6 +112,7 @@ extern_protocol!(
             actualRange: NSRangePointer,
         ) -> Option<Id<NSAttributedString, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setAnnotations:range:)]
         pub unsafe fn setAnnotations_range(
             &self,
@@ -118,6 +120,7 @@ extern_protocol!(
             range: NSRange,
         );
 
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(addAnnotations:range:)]
         pub unsafe fn addAnnotations_range(
             &self,
@@ -132,6 +135,7 @@ extern_protocol!(
             range: NSRange,
         );
 
+        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(replaceCharactersInRange:withAnnotatedString:)]
         pub unsafe fn replaceCharactersInRange_withAnnotatedString(
             &self,
@@ -142,6 +146,7 @@ extern_protocol!(
         #[method(selectAndShowRange:)]
         pub unsafe fn selectAndShowRange(&self, range: NSRange);
 
+        #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other viewForRange:firstRect:actualRange:)]
         pub unsafe fn viewForRange_firstRect_actualRange(
             &self,
@@ -150,6 +155,7 @@ extern_protocol!(
             actualRange: NSRangePointer,
         ) -> Option<Id<NSView, Shared>>;
 
+        #[cfg(feature = "AppKit_NSCandidateListTouchBarItem")]
         #[method_id(@__retain_semantics Other candidateListTouchBarItem)]
         pub unsafe fn candidateListTouchBarItem(
             &self,

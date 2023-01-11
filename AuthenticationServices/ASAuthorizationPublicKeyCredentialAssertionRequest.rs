@@ -8,23 +8,29 @@ extern_protocol!(
     pub struct ASAuthorizationPublicKeyCredentialAssertionRequest;
 
     unsafe impl ProtocolType for ASAuthorizationPublicKeyCredentialAssertionRequest {
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other challenge)]
         pub unsafe fn challenge(&self) -> Id<NSData, Shared>;
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method(setChallenge:)]
         pub unsafe fn setChallenge(&self, challenge: &NSData);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other relyingPartyIdentifier)]
         pub unsafe fn relyingPartyIdentifier(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setRelyingPartyIdentifier:)]
         pub unsafe fn setRelyingPartyIdentifier(&self, relyingPartyIdentifier: &NSString);
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other allowedCredentials)]
         pub unsafe fn allowedCredentials(
             &self,
         ) -> Id<NSArray<ASAuthorizationPublicKeyCredentialDescriptor>, Shared>;
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(setAllowedCredentials:)]
         pub unsafe fn setAllowedCredentials(
             &self,

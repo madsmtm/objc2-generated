@@ -39,6 +39,7 @@ extern_protocol!(
     pub struct NSURLHandleClient;
 
     unsafe impl ProtocolType for NSURLHandleClient {
+        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSURLHandle"))]
         #[method(URLHandle:resourceDataDidBecomeAvailable:)]
         pub unsafe fn URLHandle_resourceDataDidBecomeAvailable(
             &self,
@@ -46,15 +47,19 @@ extern_protocol!(
             newBytes: Option<&NSData>,
         );
 
+        #[cfg(feature = "Foundation_NSURLHandle")]
         #[method(URLHandleResourceDidBeginLoading:)]
         pub unsafe fn URLHandleResourceDidBeginLoading(&self, sender: Option<&NSURLHandle>);
 
+        #[cfg(feature = "Foundation_NSURLHandle")]
         #[method(URLHandleResourceDidFinishLoading:)]
         pub unsafe fn URLHandleResourceDidFinishLoading(&self, sender: Option<&NSURLHandle>);
 
+        #[cfg(feature = "Foundation_NSURLHandle")]
         #[method(URLHandleResourceDidCancelLoading:)]
         pub unsafe fn URLHandleResourceDidCancelLoading(&self, sender: Option<&NSURLHandle>);
 
+        #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURLHandle"))]
         #[method(URLHandle:resourceDidFailLoadingWithReason:)]
         pub unsafe fn URLHandle_resourceDidFailLoadingWithReason(
             &self,

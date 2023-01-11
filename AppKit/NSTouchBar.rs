@@ -145,6 +145,7 @@ extern_protocol!(
     pub struct NSTouchBarDelegate;
 
     unsafe impl ProtocolType for NSTouchBarDelegate {
+        #[cfg(all(feature = "AppKit_NSTouchBar", feature = "AppKit_NSTouchBarItem"))]
         #[optional]
         #[method_id(@__retain_semantics Other touchBar:makeItemForIdentifier:)]
         pub unsafe fn touchBar_makeItemForIdentifier(
@@ -159,6 +160,7 @@ extern_protocol!(
     pub struct NSTouchBarProvider;
 
     unsafe impl ProtocolType for NSTouchBarProvider {
+        #[cfg(feature = "AppKit_NSTouchBar")]
         #[method_id(@__retain_semantics Other touchBar)]
         pub unsafe fn touchBar(&self) -> Option<Id<NSTouchBar, Shared>>;
     }

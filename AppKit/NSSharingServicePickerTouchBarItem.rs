@@ -59,6 +59,10 @@ extern_protocol!(
     pub struct NSSharingServicePickerTouchBarItemDelegate;
 
     unsafe impl ProtocolType for NSSharingServicePickerTouchBarItemDelegate {
+        #[cfg(all(
+            feature = "AppKit_NSSharingServicePickerTouchBarItem",
+            feature = "Foundation_NSArray"
+        ))]
         #[method_id(@__retain_semantics Other itemsForSharingServicePickerTouchBarItem:)]
         pub unsafe fn itemsForSharingServicePickerTouchBarItem(
             &self,

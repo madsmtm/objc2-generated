@@ -956,9 +956,11 @@ extern_protocol!(
         #[method(setCenter:)]
         pub unsafe fn setCenter(&self, center: NSPoint);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSIndexPath")]
         #[method_id(@__retain_semantics Other indexPath)]
         pub unsafe fn indexPath(&self) -> Id<NSIndexPath, Shared>;
 
@@ -971,6 +973,7 @@ extern_protocol!(
         #[method(representedElementCategory)]
         pub unsafe fn representedElementCategory(&self) -> NSCollectionElementCategory;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other representedElementKind)]
         pub unsafe fn representedElementKind(&self) -> Option<Id<NSString, Shared>>;
     }

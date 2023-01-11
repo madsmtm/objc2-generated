@@ -700,6 +700,11 @@ extern_protocol!(
     pub struct NSTableViewDelegate;
 
     unsafe impl ProtocolType for NSTableViewDelegate {
+        #[cfg(all(
+            feature = "AppKit_NSTableColumn",
+            feature = "AppKit_NSTableView",
+            feature = "AppKit_NSView"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other tableView:viewForTableColumn:row:)]
         pub unsafe fn tableView_viewForTableColumn_row(
@@ -709,6 +714,7 @@ extern_protocol!(
             row: NSInteger,
         ) -> Option<Id<NSView, Shared>>;
 
+        #[cfg(all(feature = "AppKit_NSTableRowView", feature = "AppKit_NSTableView"))]
         #[optional]
         #[method_id(@__retain_semantics Other tableView:rowViewForRow:)]
         pub unsafe fn tableView_rowViewForRow(
@@ -717,6 +723,7 @@ extern_protocol!(
             row: NSInteger,
         ) -> Option<Id<NSTableRowView, Shared>>;
 
+        #[cfg(all(feature = "AppKit_NSTableRowView", feature = "AppKit_NSTableView"))]
         #[optional]
         #[method(tableView:didAddRowView:forRow:)]
         pub unsafe fn tableView_didAddRowView_forRow(
@@ -726,6 +733,7 @@ extern_protocol!(
             row: NSInteger,
         );
 
+        #[cfg(all(feature = "AppKit_NSTableRowView", feature = "AppKit_NSTableView"))]
         #[optional]
         #[method(tableView:didRemoveRowView:forRow:)]
         pub unsafe fn tableView_didRemoveRowView_forRow(
@@ -735,6 +743,7 @@ extern_protocol!(
             row: NSInteger,
         );
 
+        #[cfg(all(feature = "AppKit_NSTableColumn", feature = "AppKit_NSTableView"))]
         #[optional]
         #[method(tableView:willDisplayCell:forTableColumn:row:)]
         pub unsafe fn tableView_willDisplayCell_forTableColumn_row(
@@ -745,6 +754,7 @@ extern_protocol!(
             row: NSInteger,
         );
 
+        #[cfg(all(feature = "AppKit_NSTableColumn", feature = "AppKit_NSTableView"))]
         #[optional]
         #[method(tableView:shouldEditTableColumn:row:)]
         pub unsafe fn tableView_shouldEditTableColumn_row(
@@ -754,6 +764,12 @@ extern_protocol!(
             row: NSInteger,
         ) -> bool;
 
+        #[cfg(all(
+            feature = "AppKit_NSCell",
+            feature = "AppKit_NSTableColumn",
+            feature = "AppKit_NSTableView",
+            feature = "Foundation_NSString"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other tableView:toolTipForCell:rect:tableColumn:row:mouseLocation:)]
         pub unsafe fn tableView_toolTipForCell_rect_tableColumn_row_mouseLocation(
@@ -766,6 +782,7 @@ extern_protocol!(
             mouseLocation: NSPoint,
         ) -> Id<NSString, Shared>;
 
+        #[cfg(all(feature = "AppKit_NSTableColumn", feature = "AppKit_NSTableView"))]
         #[optional]
         #[method(tableView:shouldShowCellExpansionForTableColumn:row:)]
         pub unsafe fn tableView_shouldShowCellExpansionForTableColumn_row(
@@ -775,6 +792,11 @@ extern_protocol!(
             row: NSInteger,
         ) -> bool;
 
+        #[cfg(all(
+            feature = "AppKit_NSCell",
+            feature = "AppKit_NSTableColumn",
+            feature = "AppKit_NSTableView"
+        ))]
         #[optional]
         #[method(tableView:shouldTrackCell:forTableColumn:row:)]
         pub unsafe fn tableView_shouldTrackCell_forTableColumn_row(
@@ -785,6 +807,11 @@ extern_protocol!(
             row: NSInteger,
         ) -> bool;
 
+        #[cfg(all(
+            feature = "AppKit_NSCell",
+            feature = "AppKit_NSTableColumn",
+            feature = "AppKit_NSTableView"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other tableView:dataCellForTableColumn:row:)]
         pub unsafe fn tableView_dataCellForTableColumn_row(
@@ -794,10 +821,12 @@ extern_protocol!(
             row: NSInteger,
         ) -> Option<Id<NSCell, Shared>>;
 
+        #[cfg(feature = "AppKit_NSTableView")]
         #[optional]
         #[method(selectionShouldChangeInTableView:)]
         pub unsafe fn selectionShouldChangeInTableView(&self, tableView: &NSTableView) -> bool;
 
+        #[cfg(feature = "AppKit_NSTableView")]
         #[optional]
         #[method(tableView:shouldSelectRow:)]
         pub unsafe fn tableView_shouldSelectRow(
@@ -806,6 +835,7 @@ extern_protocol!(
             row: NSInteger,
         ) -> bool;
 
+        #[cfg(all(feature = "AppKit_NSTableView", feature = "Foundation_NSIndexSet"))]
         #[optional]
         #[method_id(@__retain_semantics Other tableView:selectionIndexesForProposedSelection:)]
         pub unsafe fn tableView_selectionIndexesForProposedSelection(
@@ -814,6 +844,7 @@ extern_protocol!(
             proposedSelectionIndexes: &NSIndexSet,
         ) -> Id<NSIndexSet, Shared>;
 
+        #[cfg(all(feature = "AppKit_NSTableColumn", feature = "AppKit_NSTableView"))]
         #[optional]
         #[method(tableView:shouldSelectTableColumn:)]
         pub unsafe fn tableView_shouldSelectTableColumn(
@@ -822,6 +853,7 @@ extern_protocol!(
             tableColumn: Option<&NSTableColumn>,
         ) -> bool;
 
+        #[cfg(all(feature = "AppKit_NSTableColumn", feature = "AppKit_NSTableView"))]
         #[optional]
         #[method(tableView:mouseDownInHeaderOfTableColumn:)]
         pub unsafe fn tableView_mouseDownInHeaderOfTableColumn(
@@ -830,6 +862,7 @@ extern_protocol!(
             tableColumn: &NSTableColumn,
         );
 
+        #[cfg(all(feature = "AppKit_NSTableColumn", feature = "AppKit_NSTableView"))]
         #[optional]
         #[method(tableView:didClickTableColumn:)]
         pub unsafe fn tableView_didClickTableColumn(
@@ -838,6 +871,7 @@ extern_protocol!(
             tableColumn: &NSTableColumn,
         );
 
+        #[cfg(all(feature = "AppKit_NSTableColumn", feature = "AppKit_NSTableView"))]
         #[optional]
         #[method(tableView:didDragTableColumn:)]
         pub unsafe fn tableView_didDragTableColumn(
@@ -846,6 +880,7 @@ extern_protocol!(
             tableColumn: &NSTableColumn,
         );
 
+        #[cfg(feature = "AppKit_NSTableView")]
         #[optional]
         #[method(tableView:heightOfRow:)]
         pub unsafe fn tableView_heightOfRow(
@@ -854,6 +889,11 @@ extern_protocol!(
             row: NSInteger,
         ) -> CGFloat;
 
+        #[cfg(all(
+            feature = "AppKit_NSTableColumn",
+            feature = "AppKit_NSTableView",
+            feature = "Foundation_NSString"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other tableView:typeSelectStringForTableColumn:row:)]
         pub unsafe fn tableView_typeSelectStringForTableColumn_row(
@@ -863,6 +903,7 @@ extern_protocol!(
             row: NSInteger,
         ) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(all(feature = "AppKit_NSTableView", feature = "Foundation_NSString"))]
         #[optional]
         #[method(tableView:nextTypeSelectMatchFromRow:toRow:forString:)]
         pub unsafe fn tableView_nextTypeSelectMatchFromRow_toRow_forString(
@@ -873,6 +914,11 @@ extern_protocol!(
             searchString: &NSString,
         ) -> NSInteger;
 
+        #[cfg(all(
+            feature = "AppKit_NSEvent",
+            feature = "AppKit_NSTableView",
+            feature = "Foundation_NSString"
+        ))]
         #[optional]
         #[method(tableView:shouldTypeSelectForEvent:withCurrentSearchString:)]
         pub unsafe fn tableView_shouldTypeSelectForEvent_withCurrentSearchString(
@@ -882,10 +928,12 @@ extern_protocol!(
             searchString: Option<&NSString>,
         ) -> bool;
 
+        #[cfg(feature = "AppKit_NSTableView")]
         #[optional]
         #[method(tableView:isGroupRow:)]
         pub unsafe fn tableView_isGroupRow(&self, tableView: &NSTableView, row: NSInteger) -> bool;
 
+        #[cfg(feature = "AppKit_NSTableView")]
         #[optional]
         #[method(tableView:sizeToFitWidthOfColumn:)]
         pub unsafe fn tableView_sizeToFitWidthOfColumn(
@@ -894,6 +942,7 @@ extern_protocol!(
             column: NSInteger,
         ) -> CGFloat;
 
+        #[cfg(feature = "AppKit_NSTableView")]
         #[optional]
         #[method(tableView:shouldReorderColumn:toColumn:)]
         pub unsafe fn tableView_shouldReorderColumn_toColumn(
@@ -903,6 +952,11 @@ extern_protocol!(
             newColumnIndex: NSInteger,
         ) -> bool;
 
+        #[cfg(all(
+            feature = "AppKit_NSTableView",
+            feature = "AppKit_NSTableViewRowAction",
+            feature = "Foundation_NSArray"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other tableView:rowActionsForRow:edge:)]
         pub unsafe fn tableView_rowActionsForRow_edge(
@@ -912,18 +966,22 @@ extern_protocol!(
             edge: NSTableRowActionEdge,
         ) -> Id<NSArray<NSTableViewRowAction>, Shared>;
 
+        #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(tableViewSelectionDidChange:)]
         pub unsafe fn tableViewSelectionDidChange(&self, notification: &NSNotification);
 
+        #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(tableViewColumnDidMove:)]
         pub unsafe fn tableViewColumnDidMove(&self, notification: &NSNotification);
 
+        #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(tableViewColumnDidResize:)]
         pub unsafe fn tableViewColumnDidResize(&self, notification: &NSNotification);
 
+        #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(tableViewSelectionIsChanging:)]
         pub unsafe fn tableViewSelectionIsChanging(&self, notification: &NSNotification);
@@ -944,10 +1002,12 @@ extern_protocol!(
     pub struct NSTableViewDataSource;
 
     unsafe impl ProtocolType for NSTableViewDataSource {
+        #[cfg(feature = "AppKit_NSTableView")]
         #[optional]
         #[method(numberOfRowsInTableView:)]
         pub unsafe fn numberOfRowsInTableView(&self, tableView: &NSTableView) -> NSInteger;
 
+        #[cfg(all(feature = "AppKit_NSTableColumn", feature = "AppKit_NSTableView"))]
         #[optional]
         #[method_id(@__retain_semantics Other tableView:objectValueForTableColumn:row:)]
         pub unsafe fn tableView_objectValueForTableColumn_row(
@@ -957,6 +1017,7 @@ extern_protocol!(
             row: NSInteger,
         ) -> Option<Id<Object, Shared>>;
 
+        #[cfg(all(feature = "AppKit_NSTableColumn", feature = "AppKit_NSTableView"))]
         #[optional]
         #[method(tableView:setObjectValue:forTableColumn:row:)]
         pub unsafe fn tableView_setObjectValue_forTableColumn_row(
@@ -967,6 +1028,11 @@ extern_protocol!(
             row: NSInteger,
         );
 
+        #[cfg(all(
+            feature = "AppKit_NSTableView",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSSortDescriptor"
+        ))]
         #[optional]
         #[method(tableView:sortDescriptorsDidChange:)]
         pub unsafe fn tableView_sortDescriptorsDidChange(
@@ -975,6 +1041,7 @@ extern_protocol!(
             oldDescriptors: &NSArray<NSSortDescriptor>,
         );
 
+        #[cfg(feature = "AppKit_NSTableView")]
         #[optional]
         #[method_id(@__retain_semantics Other tableView:pasteboardWriterForRow:)]
         pub unsafe fn tableView_pasteboardWriterForRow(
@@ -983,6 +1050,11 @@ extern_protocol!(
             row: NSInteger,
         ) -> Option<Id<NSPasteboardWriting, Shared>>;
 
+        #[cfg(all(
+            feature = "AppKit_NSDraggingSession",
+            feature = "AppKit_NSTableView",
+            feature = "Foundation_NSIndexSet"
+        ))]
         #[optional]
         #[method(tableView:draggingSession:willBeginAtPoint:forRowIndexes:)]
         pub unsafe fn tableView_draggingSession_willBeginAtPoint_forRowIndexes(
@@ -993,6 +1065,7 @@ extern_protocol!(
             rowIndexes: &NSIndexSet,
         );
 
+        #[cfg(all(feature = "AppKit_NSDraggingSession", feature = "AppKit_NSTableView"))]
         #[optional]
         #[method(tableView:draggingSession:endedAtPoint:operation:)]
         pub unsafe fn tableView_draggingSession_endedAtPoint_operation(
@@ -1003,6 +1076,7 @@ extern_protocol!(
             operation: NSDragOperation,
         );
 
+        #[cfg(feature = "AppKit_NSTableView")]
         #[optional]
         #[method(tableView:updateDraggingItemsForDrag:)]
         pub unsafe fn tableView_updateDraggingItemsForDrag(
@@ -1011,6 +1085,11 @@ extern_protocol!(
             draggingInfo: &NSDraggingInfo,
         );
 
+        #[cfg(all(
+            feature = "AppKit_NSPasteboard",
+            feature = "AppKit_NSTableView",
+            feature = "Foundation_NSIndexSet"
+        ))]
         #[optional]
         #[method(tableView:writeRowsWithIndexes:toPasteboard:)]
         pub unsafe fn tableView_writeRowsWithIndexes_toPasteboard(
@@ -1020,6 +1099,7 @@ extern_protocol!(
             pboard: &NSPasteboard,
         ) -> bool;
 
+        #[cfg(feature = "AppKit_NSTableView")]
         #[optional]
         #[method(tableView:validateDrop:proposedRow:proposedDropOperation:)]
         pub unsafe fn tableView_validateDrop_proposedRow_proposedDropOperation(
@@ -1030,6 +1110,7 @@ extern_protocol!(
             dropOperation: NSTableViewDropOperation,
         ) -> NSDragOperation;
 
+        #[cfg(feature = "AppKit_NSTableView")]
         #[optional]
         #[method(tableView:acceptDrop:row:dropOperation:)]
         pub unsafe fn tableView_acceptDrop_row_dropOperation(
@@ -1040,6 +1121,13 @@ extern_protocol!(
             dropOperation: NSTableViewDropOperation,
         ) -> bool;
 
+        #[cfg(all(
+            feature = "AppKit_NSTableView",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSIndexSet",
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSURL"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other tableView:namesOfPromisedFilesDroppedAtDestination:forDraggedRowsWithIndexes:)]
         pub unsafe fn tableView_namesOfPromisedFilesDroppedAtDestination_forDraggedRowsWithIndexes(

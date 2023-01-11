@@ -69,9 +69,11 @@ extern_protocol!(
     pub struct MTLHeap;
 
     unsafe impl ProtocolType for MTLHeap {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
         pub fn label(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:)]
         pub fn setLabel(&self, label: Option<&NSString>);
 
@@ -109,6 +111,7 @@ extern_protocol!(
             options: MTLResourceOptions,
         ) -> Option<Id<MTLBuffer, Shared>>;
 
+        #[cfg(feature = "Metal_MTLTextureDescriptor")]
         #[method_id(@__retain_semantics New newTextureWithDescriptor:)]
         pub fn newTextureWithDescriptor(
             &self,
@@ -129,6 +132,7 @@ extern_protocol!(
             offset: NSUInteger,
         ) -> Option<Id<MTLBuffer, Shared>>;
 
+        #[cfg(feature = "Metal_MTLTextureDescriptor")]
         #[method_id(@__retain_semantics New newTextureWithDescriptor:offset:)]
         pub unsafe fn newTextureWithDescriptor_offset(
             &self,

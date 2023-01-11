@@ -17,9 +17,11 @@ extern_protocol!(
     pub struct NSTextElementProvider;
 
     unsafe impl ProtocolType for NSTextElementProvider {
+        #[cfg(feature = "AppKit_NSTextRange")]
         #[method_id(@__retain_semantics Other documentRange)]
         pub unsafe fn documentRange(&self) -> Id<NSTextRange, Shared>;
 
+        #[cfg(feature = "AppKit_NSTextElement")]
         #[method_id(@__retain_semantics Other enumerateTextElementsFromLocation:options:usingBlock:)]
         pub unsafe fn enumerateTextElementsFromLocation_options_usingBlock(
             &self,
@@ -28,6 +30,11 @@ extern_protocol!(
             block: &Block<(NonNull<NSTextElement>,), Bool>,
         ) -> Option<Id<NSTextLocation, Shared>>;
 
+        #[cfg(all(
+            feature = "AppKit_NSTextElement",
+            feature = "AppKit_NSTextRange",
+            feature = "Foundation_NSArray"
+        ))]
         #[method(replaceContentsInRange:withTextElements:)]
         pub unsafe fn replaceContentsInRange_withTextElements(
             &self,
@@ -35,6 +42,7 @@ extern_protocol!(
             textElements: Option<&NSArray<NSTextElement>>,
         );
 
+        #[cfg(feature = "Foundation_NSError")]
         #[method(synchronizeToBackingStore:)]
         pub unsafe fn synchronizeToBackingStore(
             &self,
@@ -57,6 +65,7 @@ extern_protocol!(
             to: &NSTextLocation,
         ) -> NSInteger;
 
+        #[cfg(feature = "AppKit_NSTextRange")]
         #[optional]
         #[method_id(@__retain_semantics Other adjustedRangeFromRange:forEditingTextSelection:)]
         pub unsafe fn adjustedRangeFromRange_forEditingTextSelection(
@@ -176,6 +185,10 @@ extern_protocol!(
     pub struct NSTextContentManagerDelegate;
 
     unsafe impl ProtocolType for NSTextContentManagerDelegate {
+        #[cfg(all(
+            feature = "AppKit_NSTextContentManager",
+            feature = "AppKit_NSTextElement"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other textContentManager:textElementAtLocation:)]
         pub unsafe fn textContentManager_textElementAtLocation(
@@ -184,6 +197,10 @@ extern_protocol!(
             location: &NSTextLocation,
         ) -> Option<Id<NSTextElement, Shared>>;
 
+        #[cfg(all(
+            feature = "AppKit_NSTextContentManager",
+            feature = "AppKit_NSTextElement"
+        ))]
         #[optional]
         #[method(textContentManager:shouldEnumerateTextElement:options:)]
         pub unsafe fn textContentManager_shouldEnumerateTextElement_options(
@@ -199,6 +216,10 @@ extern_protocol!(
     pub struct NSTextContentStorageDelegate;
 
     unsafe impl ProtocolType for NSTextContentStorageDelegate {
+        #[cfg(all(
+            feature = "AppKit_NSTextContentStorage",
+            feature = "AppKit_NSTextParagraph"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other textContentStorage:textParagraphWithRange:)]
         pub unsafe fn textContentStorage_textParagraphWithRange(

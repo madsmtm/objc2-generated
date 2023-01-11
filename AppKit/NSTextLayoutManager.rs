@@ -275,6 +275,11 @@ extern_protocol!(
     pub struct NSTextLayoutManagerDelegate;
 
     unsafe impl ProtocolType for NSTextLayoutManagerDelegate {
+        #[cfg(all(
+            feature = "AppKit_NSTextElement",
+            feature = "AppKit_NSTextLayoutFragment",
+            feature = "AppKit_NSTextLayoutManager"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other textLayoutManager:textLayoutFragmentForLocation:inTextElement:)]
         pub unsafe fn textLayoutManager_textLayoutFragmentForLocation_inTextElement(
@@ -284,6 +289,7 @@ extern_protocol!(
             textElement: &NSTextElement,
         ) -> Id<NSTextLayoutFragment, Shared>;
 
+        #[cfg(feature = "AppKit_NSTextLayoutManager")]
         #[optional]
         #[method(textLayoutManager:shouldBreakLineBeforeLocation:hyphenating:)]
         pub unsafe fn textLayoutManager_shouldBreakLineBeforeLocation_hyphenating(
@@ -293,6 +299,10 @@ extern_protocol!(
             hyphenating: bool,
         ) -> bool;
 
+        #[cfg(all(
+            feature = "AppKit_NSTextLayoutManager",
+            feature = "Foundation_NSDictionary"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other textLayoutManager:renderingAttributesForLink:atLocation:defaultAttributes:)]
         pub unsafe fn textLayoutManager_renderingAttributesForLink_atLocation_defaultAttributes(

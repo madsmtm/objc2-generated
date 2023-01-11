@@ -77,10 +77,12 @@ extern_protocol!(
     pub struct CAAnimationDelegate;
 
     unsafe impl ProtocolType for CAAnimationDelegate {
+        #[cfg(feature = "CoreAnimation_CAAnimation")]
         #[optional]
         #[method(animationDidStart:)]
         pub unsafe fn animationDidStart(&self, anim: &CAAnimation);
 
+        #[cfg(feature = "CoreAnimation_CAAnimation")]
         #[optional]
         #[method(animationDidStop:finished:)]
         pub unsafe fn animationDidStop_finished(&self, anim: &CAAnimation, flag: bool);

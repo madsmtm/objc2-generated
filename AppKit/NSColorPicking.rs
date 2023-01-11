@@ -9,6 +9,7 @@ extern_protocol!(
     pub struct NSColorPickingDefault;
 
     unsafe impl ProtocolType for NSColorPickingDefault {
+        #[cfg(feature = "AppKit_NSColorPanel")]
         #[method_id(@__retain_semantics Init initWithPickerMask:colorPanel:)]
         pub unsafe fn initWithPickerMask_colorPanel(
             this: Option<Allocated<Self>>,
@@ -16,9 +17,11 @@ extern_protocol!(
             owningColorPanel: &NSColorPanel,
         ) -> Option<Id<Self, Shared>>;
 
+        #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other provideNewButtonImage)]
         pub unsafe fn provideNewButtonImage(&self) -> Id<NSImage, Shared>;
 
+        #[cfg(all(feature = "AppKit_NSButtonCell", feature = "AppKit_NSImage"))]
         #[method(insertNewButtonImage:in:)]
         pub unsafe fn insertNewButtonImage_in(
             &self,
@@ -32,15 +35,18 @@ extern_protocol!(
         #[method(alphaControlAddedOrRemoved:)]
         pub unsafe fn alphaControlAddedOrRemoved(&self, sender: Option<&Object>);
 
+        #[cfg(feature = "AppKit_NSColorList")]
         #[method(attachColorList:)]
         pub unsafe fn attachColorList(&self, colorList: &NSColorList);
 
+        #[cfg(feature = "AppKit_NSColorList")]
         #[method(detachColorList:)]
         pub unsafe fn detachColorList(&self, colorList: &NSColorList);
 
         #[method(setMode:)]
         pub unsafe fn setMode(&self, mode: NSColorPanelMode);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other buttonToolTip)]
         pub unsafe fn buttonToolTip(&self) -> Id<NSString, Shared>;
 
@@ -59,9 +65,11 @@ extern_protocol!(
         #[method(currentMode)]
         pub unsafe fn currentMode(&self) -> NSColorPanelMode;
 
+        #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other provideNewView:)]
         pub unsafe fn provideNewView(&self, initialRequest: bool) -> Id<NSView, Shared>;
 
+        #[cfg(feature = "AppKit_NSColor")]
         #[method(setColor:)]
         pub unsafe fn setColor(&self, newColor: &NSColor);
     }

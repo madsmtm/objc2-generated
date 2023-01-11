@@ -29,18 +29,22 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other device)]
         pub unsafe fn device(&self) -> Id<MTLDevice, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
         pub fn label(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:)]
         pub fn setLabel(&self, label: Option<&NSString>);
 
         #[method(endEncoding)]
         pub fn endEncoding(&self);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(insertDebugSignpost:)]
         pub fn insertDebugSignpost(&self, string: &NSString);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(pushDebugGroup:)]
         pub fn pushDebugGroup(&self, string: &NSString);
 

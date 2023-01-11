@@ -81,6 +81,7 @@ extern_protocol!(
     pub struct NSPageControllerDelegate;
 
     unsafe impl ProtocolType for NSPageControllerDelegate {
+        #[cfg(feature = "AppKit_NSPageController")]
         #[optional]
         #[method_id(@__retain_semantics Other pageController:identifierForObject:)]
         pub unsafe fn pageController_identifierForObject(
@@ -89,6 +90,10 @@ extern_protocol!(
             object: &Object,
         ) -> Id<NSPageControllerObjectIdentifier, Shared>;
 
+        #[cfg(all(
+            feature = "AppKit_NSPageController",
+            feature = "AppKit_NSViewController"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other pageController:viewControllerForIdentifier:)]
         pub unsafe fn pageController_viewControllerForIdentifier(
@@ -97,6 +102,7 @@ extern_protocol!(
             identifier: &NSPageControllerObjectIdentifier,
         ) -> Id<NSViewController, Shared>;
 
+        #[cfg(feature = "AppKit_NSPageController")]
         #[optional]
         #[method(pageController:frameForObject:)]
         pub unsafe fn pageController_frameForObject(
@@ -105,6 +111,10 @@ extern_protocol!(
             object: Option<&Object>,
         ) -> NSRect;
 
+        #[cfg(all(
+            feature = "AppKit_NSPageController",
+            feature = "AppKit_NSViewController"
+        ))]
         #[optional]
         #[method(pageController:prepareViewController:withObject:)]
         pub unsafe fn pageController_prepareViewController_withObject(
@@ -114,6 +124,7 @@ extern_protocol!(
             object: Option<&Object>,
         );
 
+        #[cfg(feature = "AppKit_NSPageController")]
         #[optional]
         #[method(pageController:didTransitionToObject:)]
         pub unsafe fn pageController_didTransitionToObject(
@@ -122,6 +133,7 @@ extern_protocol!(
             object: &Object,
         );
 
+        #[cfg(feature = "AppKit_NSPageController")]
         #[optional]
         #[method(pageControllerWillStartLiveTransition:)]
         pub unsafe fn pageControllerWillStartLiveTransition(
@@ -129,6 +141,7 @@ extern_protocol!(
             pageController: &NSPageController,
         );
 
+        #[cfg(feature = "AppKit_NSPageController")]
         #[optional]
         #[method(pageControllerDidEndLiveTransition:)]
         pub unsafe fn pageControllerDidEndLiveTransition(&self, pageController: &NSPageController);

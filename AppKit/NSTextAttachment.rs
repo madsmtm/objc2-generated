@@ -16,6 +16,7 @@ extern_protocol!(
     pub struct NSTextAttachmentContainer;
 
     unsafe impl ProtocolType for NSTextAttachmentContainer {
+        #[cfg(all(feature = "AppKit_NSImage", feature = "AppKit_NSTextContainer"))]
         #[method_id(@__retain_semantics Other imageForBounds:textContainer:characterIndex:)]
         pub unsafe fn imageForBounds_textContainer_characterIndex(
             &self,
@@ -24,6 +25,7 @@ extern_protocol!(
             charIndex: NSUInteger,
         ) -> Option<Id<NSImage, Shared>>;
 
+        #[cfg(feature = "AppKit_NSTextContainer")]
         #[method(attachmentBoundsForTextContainer:proposedLineFragment:glyphPosition:characterIndex:)]
         pub unsafe fn attachmentBoundsForTextContainer_proposedLineFragment_glyphPosition_characterIndex(
             &self,
@@ -39,6 +41,11 @@ extern_protocol!(
     pub struct NSTextAttachmentLayout;
 
     unsafe impl ProtocolType for NSTextAttachmentLayout {
+        #[cfg(all(
+            feature = "AppKit_NSImage",
+            feature = "AppKit_NSTextContainer",
+            feature = "Foundation_NSDictionary"
+        ))]
         #[method_id(@__retain_semantics Other imageForBounds:attributes:location:textContainer:)]
         pub unsafe fn imageForBounds_attributes_location_textContainer(
             &self,
@@ -48,6 +55,10 @@ extern_protocol!(
             textContainer: Option<&NSTextContainer>,
         ) -> Option<Id<NSImage, Shared>>;
 
+        #[cfg(all(
+            feature = "AppKit_NSTextContainer",
+            feature = "Foundation_NSDictionary"
+        ))]
         #[method(attachmentBoundsForAttributes:location:textContainer:proposedLineFragment:position:)]
         pub unsafe fn attachmentBoundsForAttributes_location_textContainer_proposedLineFragment_position(
             &self,
@@ -58,6 +69,11 @@ extern_protocol!(
             position: CGPoint,
         ) -> CGRect;
 
+        #[cfg(all(
+            feature = "AppKit_NSTextAttachmentViewProvider",
+            feature = "AppKit_NSTextContainer",
+            feature = "AppKit_NSView"
+        ))]
         #[method_id(@__retain_semantics Other viewProviderForParentView:location:textContainer:)]
         pub unsafe fn viewProviderForParentView_location_textContainer(
             &self,

@@ -94,6 +94,7 @@ extern_protocol!(
             contextInfo: *mut c_void,
         );
 
+        #[cfg(feature = "Foundation_NSError")]
         #[method(commitEditingAndReturnError:_)]
         pub unsafe fn commitEditingAndReturnError(&self) -> Result<(), Id<NSError, Shared>>;
     }

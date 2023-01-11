@@ -522,14 +522,17 @@ extern_protocol!(
     pub struct CALayoutManager;
 
     unsafe impl ProtocolType for CALayoutManager {
+        #[cfg(feature = "CoreAnimation_CALayer")]
         #[optional]
         #[method(preferredSizeOfLayer:)]
         pub unsafe fn preferredSizeOfLayer(&self, layer: &CALayer) -> CGSize;
 
+        #[cfg(feature = "CoreAnimation_CALayer")]
         #[optional]
         #[method(invalidateLayoutOfLayer:)]
         pub unsafe fn invalidateLayoutOfLayer(&self, layer: &CALayer);
 
+        #[cfg(feature = "CoreAnimation_CALayer")]
         #[optional]
         #[method(layoutSublayersOfLayer:)]
         pub unsafe fn layoutSublayersOfLayer(&self, layer: &CALayer);
@@ -540,6 +543,7 @@ extern_protocol!(
     pub struct CAAction;
 
     unsafe impl ProtocolType for CAAction {
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(runActionForKey:object:arguments:)]
         pub unsafe fn runActionForKey_object_arguments(
             &self,
@@ -560,18 +564,22 @@ extern_protocol!(
     pub struct CALayerDelegate;
 
     unsafe impl ProtocolType for CALayerDelegate {
+        #[cfg(feature = "CoreAnimation_CALayer")]
         #[optional]
         #[method(displayLayer:)]
         pub unsafe fn displayLayer(&self, layer: &CALayer);
 
+        #[cfg(feature = "CoreAnimation_CALayer")]
         #[optional]
         #[method(layerWillDraw:)]
         pub unsafe fn layerWillDraw(&self, layer: &CALayer);
 
+        #[cfg(feature = "CoreAnimation_CALayer")]
         #[optional]
         #[method(layoutSublayersOfLayer:)]
         pub unsafe fn layoutSublayersOfLayer(&self, layer: &CALayer);
 
+        #[cfg(all(feature = "CoreAnimation_CALayer", feature = "Foundation_NSString"))]
         #[optional]
         #[method_id(@__retain_semantics Other actionForLayer:forKey:)]
         pub unsafe fn actionForLayer_forKey(

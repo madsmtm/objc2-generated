@@ -113,6 +113,7 @@ extern_protocol!(
     pub struct NSCandidateListTouchBarItemDelegate;
 
     unsafe impl ProtocolType for NSCandidateListTouchBarItemDelegate {
+        #[cfg(feature = "AppKit_NSCandidateListTouchBarItem")]
         #[optional]
         #[method(candidateListTouchBarItem:beginSelectingCandidateAtIndex:)]
         pub unsafe fn candidateListTouchBarItem_beginSelectingCandidateAtIndex(
@@ -121,6 +122,7 @@ extern_protocol!(
             index: NSInteger,
         );
 
+        #[cfg(feature = "AppKit_NSCandidateListTouchBarItem")]
         #[optional]
         #[method(candidateListTouchBarItem:changeSelectionFromCandidateAtIndex:toIndex:)]
         pub unsafe fn candidateListTouchBarItem_changeSelectionFromCandidateAtIndex_toIndex(
@@ -130,6 +132,7 @@ extern_protocol!(
             index: NSInteger,
         );
 
+        #[cfg(feature = "AppKit_NSCandidateListTouchBarItem")]
         #[optional]
         #[method(candidateListTouchBarItem:endSelectingCandidateAtIndex:)]
         pub unsafe fn candidateListTouchBarItem_endSelectingCandidateAtIndex(
@@ -138,6 +141,7 @@ extern_protocol!(
             index: NSInteger,
         );
 
+        #[cfg(feature = "AppKit_NSCandidateListTouchBarItem")]
         #[optional]
         #[method(candidateListTouchBarItem:changedCandidateListVisibility:)]
         pub unsafe fn candidateListTouchBarItem_changedCandidateListVisibility(

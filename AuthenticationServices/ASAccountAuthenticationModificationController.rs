@@ -8,6 +8,11 @@ extern_protocol!(
     pub struct ASAccountAuthenticationModificationControllerDelegate;
 
     unsafe impl ProtocolType for ASAccountAuthenticationModificationControllerDelegate {
+        #[cfg(all(
+            feature = "AuthenticationServices_ASAccountAuthenticationModificationController",
+            feature = "AuthenticationServices_ASAccountAuthenticationModificationRequest",
+            feature = "Foundation_NSDictionary"
+        ))]
         #[optional]
         #[method(accountAuthenticationModificationController:didSuccessfullyCompleteRequest:withUserInfo:)]
         pub unsafe fn accountAuthenticationModificationController_didSuccessfullyCompleteRequest_withUserInfo(
@@ -17,6 +22,11 @@ extern_protocol!(
             userInfo: Option<&NSDictionary>,
         );
 
+        #[cfg(all(
+            feature = "AuthenticationServices_ASAccountAuthenticationModificationController",
+            feature = "AuthenticationServices_ASAccountAuthenticationModificationRequest",
+            feature = "Foundation_NSError"
+        ))]
         #[optional]
         #[method(accountAuthenticationModificationController:didFailRequest:withError:)]
         pub unsafe fn accountAuthenticationModificationController_didFailRequest_withError(
@@ -34,6 +44,7 @@ extern_protocol!(
     unsafe impl ProtocolType
         for ASAccountAuthenticationModificationControllerPresentationContextProviding
     {
+        #[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationController")]
         #[method_id(@__retain_semantics Other presentationAnchorForAccountAuthenticationModificationController:)]
         pub unsafe fn presentationAnchorForAccountAuthenticationModificationController(
             &self,

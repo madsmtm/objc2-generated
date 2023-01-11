@@ -166,6 +166,7 @@ extern_protocol!(
     pub struct NSToolbarDelegate;
 
     unsafe impl ProtocolType for NSToolbarDelegate {
+        #[cfg(all(feature = "AppKit_NSToolbar", feature = "AppKit_NSToolbarItem"))]
         #[optional]
         #[method_id(@__retain_semantics Other toolbar:itemForItemIdentifier:willBeInsertedIntoToolbar:)]
         pub unsafe fn toolbar_itemForItemIdentifier_willBeInsertedIntoToolbar(
@@ -175,6 +176,7 @@ extern_protocol!(
             flag: bool,
         ) -> Option<Id<NSToolbarItem, Shared>>;
 
+        #[cfg(all(feature = "AppKit_NSToolbar", feature = "Foundation_NSArray"))]
         #[optional]
         #[method_id(@__retain_semantics Other toolbarDefaultItemIdentifiers:)]
         pub unsafe fn toolbarDefaultItemIdentifiers(
@@ -182,6 +184,7 @@ extern_protocol!(
             toolbar: &NSToolbar,
         ) -> Id<NSArray<NSToolbarItemIdentifier>, Shared>;
 
+        #[cfg(all(feature = "AppKit_NSToolbar", feature = "Foundation_NSArray"))]
         #[optional]
         #[method_id(@__retain_semantics Other toolbarAllowedItemIdentifiers:)]
         pub unsafe fn toolbarAllowedItemIdentifiers(
@@ -189,6 +192,7 @@ extern_protocol!(
             toolbar: &NSToolbar,
         ) -> Id<NSArray<NSToolbarItemIdentifier>, Shared>;
 
+        #[cfg(all(feature = "AppKit_NSToolbar", feature = "Foundation_NSArray"))]
         #[optional]
         #[method_id(@__retain_semantics Other toolbarSelectableItemIdentifiers:)]
         pub unsafe fn toolbarSelectableItemIdentifiers(
@@ -196,10 +200,12 @@ extern_protocol!(
             toolbar: &NSToolbar,
         ) -> Id<NSArray<NSToolbarItemIdentifier>, Shared>;
 
+        #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(toolbarWillAddItem:)]
         pub unsafe fn toolbarWillAddItem(&self, notification: &NSNotification);
 
+        #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(toolbarDidRemoveItem:)]
         pub unsafe fn toolbarDidRemoveItem(&self, notification: &NSNotification);

@@ -21,9 +21,11 @@ extern_protocol!(
     pub struct MTLFunctionLogDebugLocation;
 
     unsafe impl ProtocolType for MTLFunctionLogDebugLocation {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other functionName)]
         pub unsafe fn functionName(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other URL)]
         pub unsafe fn URL(&self) -> Option<Id<NSURL, Shared>>;
 
@@ -42,6 +44,7 @@ extern_protocol!(
         #[method(type)]
         pub unsafe fn type_(&self) -> MTLFunctionLogType;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other encoderLabel)]
         pub unsafe fn encoderLabel(&self) -> Option<Id<NSString, Shared>>;
 

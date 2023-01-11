@@ -137,6 +137,7 @@ extern_protocol!(
     pub struct NSComboBoxCellDataSource;
 
     unsafe impl ProtocolType for NSComboBoxCellDataSource {
+        #[cfg(feature = "AppKit_NSComboBoxCell")]
         #[optional]
         #[method(numberOfItemsInComboBoxCell:)]
         pub unsafe fn numberOfItemsInComboBoxCell(
@@ -144,6 +145,7 @@ extern_protocol!(
             comboBoxCell: &NSComboBoxCell,
         ) -> NSInteger;
 
+        #[cfg(feature = "AppKit_NSComboBoxCell")]
         #[optional]
         #[method_id(@__retain_semantics Other comboBoxCell:objectValueForItemAtIndex:)]
         pub unsafe fn comboBoxCell_objectValueForItemAtIndex(
@@ -152,6 +154,7 @@ extern_protocol!(
             index: NSInteger,
         ) -> Id<Object, Shared>;
 
+        #[cfg(all(feature = "AppKit_NSComboBoxCell", feature = "Foundation_NSString"))]
         #[optional]
         #[method(comboBoxCell:indexOfItemWithStringValue:)]
         pub unsafe fn comboBoxCell_indexOfItemWithStringValue(
@@ -160,6 +163,7 @@ extern_protocol!(
             string: &NSString,
         ) -> NSUInteger;
 
+        #[cfg(all(feature = "AppKit_NSComboBoxCell", feature = "Foundation_NSString"))]
         #[optional]
         #[method_id(@__retain_semantics Other comboBoxCell:completedString:)]
         pub unsafe fn comboBoxCell_completedString(

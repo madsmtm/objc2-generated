@@ -55,6 +55,7 @@ extern_protocol!(
     pub struct NSSeguePerforming;
 
     unsafe impl ProtocolType for NSSeguePerforming {
+        #[cfg(feature = "AppKit_NSStoryboardSegue")]
         #[optional]
         #[method(prepareForSegue:sender:)]
         pub unsafe fn prepareForSegue_sender(

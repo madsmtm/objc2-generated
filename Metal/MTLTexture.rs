@@ -346,6 +346,7 @@ extern_protocol!(
             sliceRange: NSRange,
         ) -> Option<Id<MTLTexture, Shared>>;
 
+        #[cfg(feature = "Metal_MTLSharedTextureHandle")]
         #[method_id(@__retain_semantics New newSharedTextureHandle)]
         pub fn newSharedTextureHandle(&self) -> Option<Id<MTLSharedTextureHandle, Shared>>;
 

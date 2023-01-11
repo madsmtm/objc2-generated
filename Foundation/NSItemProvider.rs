@@ -24,6 +24,12 @@ extern_protocol!(
     pub struct NSItemProviderWriting;
 
     unsafe impl ProtocolType for NSItemProviderWriting {
+        #[cfg(all(
+            feature = "Foundation_NSData",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSProgress",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other loadDataWithTypeIdentifier:forItemProviderCompletionHandler:)]
         pub unsafe fn loadDataWithTypeIdentifier_forItemProviderCompletionHandler(
             &self,

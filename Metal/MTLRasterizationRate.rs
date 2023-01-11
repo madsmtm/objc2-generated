@@ -193,6 +193,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other device)]
         pub unsafe fn device(&self) -> Id<MTLDevice, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
         pub unsafe fn label(&self) -> Option<Id<NSString, Shared>>;
 

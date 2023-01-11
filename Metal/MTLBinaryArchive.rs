@@ -44,36 +44,55 @@ extern_protocol!(
     pub struct MTLBinaryArchive;
 
     unsafe impl ProtocolType for MTLBinaryArchive {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
         pub fn label(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:)]
         pub fn setLabel(&self, label: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other device)]
         pub fn device(&self) -> Id<MTLDevice, Shared>;
 
+        #[cfg(all(
+            feature = "Foundation_NSError",
+            feature = "Metal_MTLComputePipelineDescriptor"
+        ))]
         #[method(addComputePipelineFunctionsWithDescriptor:error:_)]
         pub fn addComputePipelineFunctionsWithDescriptor_error(
             &self,
             descriptor: &MTLComputePipelineDescriptor,
         ) -> Result<(), Id<NSError, Shared>>;
 
+        #[cfg(all(
+            feature = "Foundation_NSError",
+            feature = "Metal_MTLRenderPipelineDescriptor"
+        ))]
         #[method(addRenderPipelineFunctionsWithDescriptor:error:_)]
         pub fn addRenderPipelineFunctionsWithDescriptor_error(
             &self,
             descriptor: &MTLRenderPipelineDescriptor,
         ) -> Result<(), Id<NSError, Shared>>;
 
+        #[cfg(all(
+            feature = "Foundation_NSError",
+            feature = "Metal_MTLTileRenderPipelineDescriptor"
+        ))]
         #[method(addTileRenderPipelineFunctionsWithDescriptor:error:_)]
         pub unsafe fn addTileRenderPipelineFunctionsWithDescriptor_error(
             &self,
             descriptor: &MTLTileRenderPipelineDescriptor,
         ) -> Result<(), Id<NSError, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method(serializeToURL:error:_)]
         pub fn serializeToURL_error(&self, url: &NSURL) -> Result<(), Id<NSError, Shared>>;
 
+        #[cfg(all(
+            feature = "Foundation_NSError",
+            feature = "Metal_MTLFunctionDescriptor"
+        ))]
         #[method(addFunctionWithDescriptor:library:error:_)]
         pub unsafe fn addFunctionWithDescriptor_library_error(
             &self,

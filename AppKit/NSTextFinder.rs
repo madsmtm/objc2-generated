@@ -139,10 +139,12 @@ extern_protocol!(
         #[method(isEditable)]
         pub unsafe fn isEditable(&self) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[optional]
         #[method_id(@__retain_semantics Other string)]
         pub unsafe fn string(&self) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[optional]
         #[method_id(@__retain_semantics Other stringAtIndex:effectiveRange:endsWithSearchBoundary:)]
         pub unsafe fn stringAtIndex_effectiveRange_endsWithSearchBoundary(
@@ -160,10 +162,12 @@ extern_protocol!(
         #[method(firstSelectedRange)]
         pub unsafe fn firstSelectedRange(&self) -> NSRange;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[optional]
         #[method_id(@__retain_semantics Other selectedRanges)]
         pub unsafe fn selectedRanges(&self) -> Id<NSArray<NSValue>, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[optional]
         #[method(setSelectedRanges:)]
         pub unsafe fn setSelectedRanges(&self, selectedRanges: &NSArray<NSValue>);
@@ -172,6 +176,11 @@ extern_protocol!(
         #[method(scrollRangeToVisible:)]
         pub unsafe fn scrollRangeToVisible(&self, range: NSRange);
 
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSValue"
+        ))]
         #[optional]
         #[method(shouldReplaceCharactersInRanges:withStrings:)]
         pub unsafe fn shouldReplaceCharactersInRanges_withStrings(
@@ -180,6 +189,7 @@ extern_protocol!(
             strings: &NSArray<NSString>,
         ) -> bool;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[optional]
         #[method(replaceCharactersInRange:withString:)]
         pub unsafe fn replaceCharactersInRange_withString(&self, range: NSRange, string: &NSString);
@@ -188,6 +198,7 @@ extern_protocol!(
         #[method(didReplaceCharacters)]
         pub unsafe fn didReplaceCharacters(&self);
 
+        #[cfg(feature = "AppKit_NSView")]
         #[optional]
         #[method_id(@__retain_semantics Other contentViewAtIndex:effectiveCharacterRange:)]
         pub unsafe fn contentViewAtIndex_effectiveCharacterRange(
@@ -196,6 +207,7 @@ extern_protocol!(
             outRange: NSRangePointer,
         ) -> Id<NSView, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[optional]
         #[method_id(@__retain_semantics Other rectsForCharacterRange:)]
         pub unsafe fn rectsForCharacterRange(
@@ -203,10 +215,12 @@ extern_protocol!(
             range: NSRange,
         ) -> Option<Id<NSArray<NSValue>, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[optional]
         #[method_id(@__retain_semantics Other visibleCharacterRanges)]
         pub unsafe fn visibleCharacterRanges(&self) -> Id<NSArray<NSValue>, Shared>;
 
+        #[cfg(feature = "AppKit_NSView")]
         #[optional]
         #[method(drawCharactersInRange:forContentView:)]
         pub unsafe fn drawCharactersInRange_forContentView(&self, range: NSRange, view: &NSView);
@@ -217,9 +231,11 @@ extern_protocol!(
     pub struct NSTextFinderBarContainer;
 
     unsafe impl ProtocolType for NSTextFinderBarContainer {
+        #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other findBarView)]
         pub unsafe fn findBarView(&self) -> Option<Id<NSView, Shared>>;
 
+        #[cfg(feature = "AppKit_NSView")]
         #[method(setFindBarView:)]
         pub unsafe fn setFindBarView(&self, findBarView: Option<&NSView>);
 
@@ -232,6 +248,7 @@ extern_protocol!(
         #[method(findBarViewDidChangeHeight)]
         pub unsafe fn findBarViewDidChangeHeight(&self);
 
+        #[cfg(feature = "AppKit_NSView")]
         #[optional]
         #[method_id(@__retain_semantics Other contentView)]
         pub unsafe fn contentView(&self) -> Option<Id<NSView, Shared>>;

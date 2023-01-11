@@ -137,6 +137,7 @@ extern_protocol!(
     pub struct NSSplitViewDelegate;
 
     unsafe impl ProtocolType for NSSplitViewDelegate {
+        #[cfg(all(feature = "AppKit_NSSplitView", feature = "AppKit_NSView"))]
         #[optional]
         #[method(splitView:canCollapseSubview:)]
         pub unsafe fn splitView_canCollapseSubview(
@@ -145,6 +146,7 @@ extern_protocol!(
             subview: &NSView,
         ) -> bool;
 
+        #[cfg(all(feature = "AppKit_NSSplitView", feature = "AppKit_NSView"))]
         #[optional]
         #[method(splitView:shouldCollapseSubview:forDoubleClickOnDividerAtIndex:)]
         pub unsafe fn splitView_shouldCollapseSubview_forDoubleClickOnDividerAtIndex(
@@ -154,6 +156,7 @@ extern_protocol!(
             dividerIndex: NSInteger,
         ) -> bool;
 
+        #[cfg(feature = "AppKit_NSSplitView")]
         #[optional]
         #[method(splitView:constrainMinCoordinate:ofSubviewAt:)]
         pub unsafe fn splitView_constrainMinCoordinate_ofSubviewAt(
@@ -163,6 +166,7 @@ extern_protocol!(
             dividerIndex: NSInteger,
         ) -> CGFloat;
 
+        #[cfg(feature = "AppKit_NSSplitView")]
         #[optional]
         #[method(splitView:constrainMaxCoordinate:ofSubviewAt:)]
         pub unsafe fn splitView_constrainMaxCoordinate_ofSubviewAt(
@@ -172,6 +176,7 @@ extern_protocol!(
             dividerIndex: NSInteger,
         ) -> CGFloat;
 
+        #[cfg(feature = "AppKit_NSSplitView")]
         #[optional]
         #[method(splitView:constrainSplitPosition:ofSubviewAt:)]
         pub unsafe fn splitView_constrainSplitPosition_ofSubviewAt(
@@ -181,6 +186,7 @@ extern_protocol!(
             dividerIndex: NSInteger,
         ) -> CGFloat;
 
+        #[cfg(feature = "AppKit_NSSplitView")]
         #[optional]
         #[method(splitView:resizeSubviewsWithOldSize:)]
         pub unsafe fn splitView_resizeSubviewsWithOldSize(
@@ -189,6 +195,7 @@ extern_protocol!(
             oldSize: NSSize,
         );
 
+        #[cfg(all(feature = "AppKit_NSSplitView", feature = "AppKit_NSView"))]
         #[optional]
         #[method(splitView:shouldAdjustSizeOfSubview:)]
         pub unsafe fn splitView_shouldAdjustSizeOfSubview(
@@ -197,6 +204,7 @@ extern_protocol!(
             view: &NSView,
         ) -> bool;
 
+        #[cfg(feature = "AppKit_NSSplitView")]
         #[optional]
         #[method(splitView:shouldHideDividerAtIndex:)]
         pub unsafe fn splitView_shouldHideDividerAtIndex(
@@ -205,6 +213,7 @@ extern_protocol!(
             dividerIndex: NSInteger,
         ) -> bool;
 
+        #[cfg(feature = "AppKit_NSSplitView")]
         #[optional]
         #[method(splitView:effectiveRect:forDrawnRect:ofDividerAtIndex:)]
         pub unsafe fn splitView_effectiveRect_forDrawnRect_ofDividerAtIndex(
@@ -215,6 +224,7 @@ extern_protocol!(
             dividerIndex: NSInteger,
         ) -> NSRect;
 
+        #[cfg(feature = "AppKit_NSSplitView")]
         #[optional]
         #[method(splitView:additionalEffectiveRectOfDividerAtIndex:)]
         pub unsafe fn splitView_additionalEffectiveRectOfDividerAtIndex(
@@ -223,10 +233,12 @@ extern_protocol!(
             dividerIndex: NSInteger,
         ) -> NSRect;
 
+        #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(splitViewWillResizeSubviews:)]
         pub unsafe fn splitViewWillResizeSubviews(&self, notification: &NSNotification);
 
+        #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(splitViewDidResizeSubviews:)]
         pub unsafe fn splitViewDidResizeSubviews(&self, notification: &NSNotification);

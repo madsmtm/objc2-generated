@@ -17,10 +17,12 @@ extern_protocol!(
     pub struct NSComboBoxDataSource;
 
     unsafe impl ProtocolType for NSComboBoxDataSource {
+        #[cfg(feature = "AppKit_NSComboBox")]
         #[optional]
         #[method(numberOfItemsInComboBox:)]
         pub unsafe fn numberOfItemsInComboBox(&self, comboBox: &NSComboBox) -> NSInteger;
 
+        #[cfg(feature = "AppKit_NSComboBox")]
         #[optional]
         #[method_id(@__retain_semantics Other comboBox:objectValueForItemAtIndex:)]
         pub unsafe fn comboBox_objectValueForItemAtIndex(
@@ -29,6 +31,7 @@ extern_protocol!(
             index: NSInteger,
         ) -> Option<Id<Object, Shared>>;
 
+        #[cfg(all(feature = "AppKit_NSComboBox", feature = "Foundation_NSString"))]
         #[optional]
         #[method(comboBox:indexOfItemWithStringValue:)]
         pub unsafe fn comboBox_indexOfItemWithStringValue(
@@ -37,6 +40,7 @@ extern_protocol!(
             string: &NSString,
         ) -> NSUInteger;
 
+        #[cfg(all(feature = "AppKit_NSComboBox", feature = "Foundation_NSString"))]
         #[optional]
         #[method_id(@__retain_semantics Other comboBox:completedString:)]
         pub unsafe fn comboBox_completedString(
@@ -51,18 +55,22 @@ extern_protocol!(
     pub struct NSComboBoxDelegate;
 
     unsafe impl ProtocolType for NSComboBoxDelegate {
+        #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(comboBoxWillPopUp:)]
         pub unsafe fn comboBoxWillPopUp(&self, notification: &NSNotification);
 
+        #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(comboBoxWillDismiss:)]
         pub unsafe fn comboBoxWillDismiss(&self, notification: &NSNotification);
 
+        #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(comboBoxSelectionDidChange:)]
         pub unsafe fn comboBoxSelectionDidChange(&self, notification: &NSNotification);
 
+        #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(comboBoxSelectionIsChanging:)]
         pub unsafe fn comboBoxSelectionIsChanging(&self, notification: &NSNotification);

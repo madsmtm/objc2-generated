@@ -291,6 +291,10 @@ extern_protocol!(
     pub struct NSUserNotificationCenterDelegate;
 
     unsafe impl ProtocolType for NSUserNotificationCenterDelegate {
+        #[cfg(all(
+            feature = "Foundation_NSUserNotification",
+            feature = "Foundation_NSUserNotificationCenter"
+        ))]
         #[optional]
         #[method(userNotificationCenter:didDeliverNotification:)]
         pub unsafe fn userNotificationCenter_didDeliverNotification(
@@ -299,6 +303,10 @@ extern_protocol!(
             notification: &NSUserNotification,
         );
 
+        #[cfg(all(
+            feature = "Foundation_NSUserNotification",
+            feature = "Foundation_NSUserNotificationCenter"
+        ))]
         #[optional]
         #[method(userNotificationCenter:didActivateNotification:)]
         pub unsafe fn userNotificationCenter_didActivateNotification(
@@ -307,6 +315,10 @@ extern_protocol!(
             notification: &NSUserNotification,
         );
 
+        #[cfg(all(
+            feature = "Foundation_NSUserNotification",
+            feature = "Foundation_NSUserNotificationCenter"
+        ))]
         #[optional]
         #[method(userNotificationCenter:shouldPresentNotification:)]
         pub unsafe fn userNotificationCenter_shouldPresentNotification(

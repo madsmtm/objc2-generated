@@ -250,6 +250,7 @@ extern_protocol!(
     pub struct NSProgressReporting;
 
     unsafe impl ProtocolType for NSProgressReporting {
+        #[cfg(feature = "Foundation_NSProgress")]
         #[method_id(@__retain_semantics Other progress)]
         pub unsafe fn progress(&self) -> Id<NSProgress, Shared>;
     }

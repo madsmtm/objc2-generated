@@ -97,6 +97,7 @@ extern_protocol!(
     pub struct NSCacheDelegate;
 
     unsafe impl ProtocolType for NSCacheDelegate {
+        #[cfg(feature = "Foundation_NSCache")]
         #[optional]
         #[method(cache:willEvictObject:)]
         pub unsafe fn cache_willEvictObject(&self, cache: &NSCache, obj: &Object);

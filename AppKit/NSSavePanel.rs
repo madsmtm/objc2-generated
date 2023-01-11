@@ -173,10 +173,12 @@ extern_protocol!(
     pub struct NSOpenSavePanelDelegate;
 
     unsafe impl ProtocolType for NSOpenSavePanelDelegate {
+        #[cfg(feature = "Foundation_NSURL")]
         #[optional]
         #[method(panel:shouldEnableURL:)]
         pub unsafe fn panel_shouldEnableURL(&self, sender: &Object, url: &NSURL) -> bool;
 
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[optional]
         #[method(panel:validateURL:error:_)]
         pub unsafe fn panel_validateURL_error(
@@ -185,10 +187,12 @@ extern_protocol!(
             url: &NSURL,
         ) -> Result<(), Id<NSError, Shared>>;
 
+        #[cfg(feature = "Foundation_NSURL")]
         #[optional]
         #[method(panel:didChangeToDirectoryURL:)]
         pub unsafe fn panel_didChangeToDirectoryURL(&self, sender: &Object, url: Option<&NSURL>);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[optional]
         #[method_id(@__retain_semantics Other panel:userEnteredFilename:confirmed:)]
         pub unsafe fn panel_userEnteredFilename_confirmed(

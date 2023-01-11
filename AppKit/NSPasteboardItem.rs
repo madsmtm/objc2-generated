@@ -77,6 +77,7 @@ extern_protocol!(
     pub struct NSPasteboardItemDataProvider;
 
     unsafe impl ProtocolType for NSPasteboardItemDataProvider {
+        #[cfg(all(feature = "AppKit_NSPasteboard", feature = "AppKit_NSPasteboardItem"))]
         #[method(pasteboard:item:provideDataForType:)]
         pub unsafe fn pasteboard_item_provideDataForType(
             &self,
@@ -85,6 +86,7 @@ extern_protocol!(
             type_: &NSPasteboardType,
         );
 
+        #[cfg(feature = "AppKit_NSPasteboard")]
         #[optional]
         #[method(pasteboardFinishedWithDataProvider:)]
         pub unsafe fn pasteboardFinishedWithDataProvider(&self, pasteboard: &NSPasteboard);

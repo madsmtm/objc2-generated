@@ -11,6 +11,7 @@ extern_protocol!(
         #[method(functionType)]
         pub fn functionType(&self) -> MTLFunctionType;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
         pub fn name(&self) -> Id<NSString, Shared>;
 

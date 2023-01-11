@@ -8,9 +8,11 @@ extern_protocol!(
     pub struct ASAuthorizationPublicKeyCredentialDescriptor;
 
     unsafe impl ProtocolType for ASAuthorizationPublicKeyCredentialDescriptor {
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other credentialID)]
         pub unsafe fn credentialID(&self) -> Id<NSData, Shared>;
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method(setCredentialID:)]
         pub unsafe fn setCredentialID(&self, credentialID: &NSData);
     }

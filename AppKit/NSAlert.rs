@@ -136,6 +136,7 @@ extern_protocol!(
     pub struct NSAlertDelegate;
 
     unsafe impl ProtocolType for NSAlertDelegate {
+        #[cfg(feature = "AppKit_NSAlert")]
         #[optional]
         #[method(alertShowHelp:)]
         pub unsafe fn alertShowHelp(&self, alert: &NSAlert) -> bool;

@@ -11,9 +11,11 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other device)]
         pub fn device(&self) -> Option<Id<MTLDevice, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
         pub fn label(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:)]
         pub fn setLabel(&self, label: Option<&NSString>);
     }
@@ -44,6 +46,7 @@ extern_protocol!(
     pub struct MTLSharedEvent;
 
     unsafe impl ProtocolType for MTLSharedEvent {
+        #[cfg(feature = "Metal_MTLSharedEventListener")]
         #[method(notifyListener:atValue:block:)]
         pub unsafe fn notifyListener_atValue_block(
             &self,
@@ -52,6 +55,7 @@ extern_protocol!(
             block: MTLSharedEventNotificationBlock,
         );
 
+        #[cfg(feature = "Metal_MTLSharedEventHandle")]
         #[method_id(@__retain_semantics New newSharedEventHandle)]
         pub unsafe fn newSharedEventHandle(&self) -> Id<MTLSharedEventHandle, Shared>;
 

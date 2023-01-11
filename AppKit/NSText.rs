@@ -330,22 +330,27 @@ extern_protocol!(
     pub struct NSTextDelegate;
 
     unsafe impl ProtocolType for NSTextDelegate {
+        #[cfg(feature = "AppKit_NSText")]
         #[optional]
         #[method(textShouldBeginEditing:)]
         pub unsafe fn textShouldBeginEditing(&self, textObject: &NSText) -> bool;
 
+        #[cfg(feature = "AppKit_NSText")]
         #[optional]
         #[method(textShouldEndEditing:)]
         pub unsafe fn textShouldEndEditing(&self, textObject: &NSText) -> bool;
 
+        #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(textDidBeginEditing:)]
         pub unsafe fn textDidBeginEditing(&self, notification: &NSNotification);
 
+        #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(textDidEndEditing:)]
         pub unsafe fn textDidEndEditing(&self, notification: &NSNotification);
 
+        #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(textDidChange:)]
         pub unsafe fn textDidChange(&self, notification: &NSNotification);

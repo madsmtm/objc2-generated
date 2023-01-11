@@ -26,10 +26,12 @@ extern_protocol!(
     pub struct NSFontChanging;
 
     unsafe impl ProtocolType for NSFontChanging {
+        #[cfg(feature = "AppKit_NSFontManager")]
         #[optional]
         #[method(changeFont:)]
         pub unsafe fn changeFont(&self, sender: Option<&NSFontManager>);
 
+        #[cfg(feature = "AppKit_NSFontPanel")]
         #[optional]
         #[method(validModesForFontPanel:)]
         pub unsafe fn validModesForFontPanel(&self, fontPanel: &NSFontPanel)

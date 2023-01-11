@@ -140,6 +140,7 @@ extern_protocol!(
     pub struct NSColorChanging;
 
     unsafe impl ProtocolType for NSColorChanging {
+        #[cfg(feature = "AppKit_NSColorPanel")]
         #[method(changeColor:)]
         pub unsafe fn changeColor(&self, sender: Option<&NSColorPanel>);
     }

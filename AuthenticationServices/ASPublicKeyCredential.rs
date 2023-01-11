@@ -8,9 +8,11 @@ extern_protocol!(
     pub struct ASPublicKeyCredential;
 
     unsafe impl ProtocolType for ASPublicKeyCredential {
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other rawClientDataJSON)]
         pub unsafe fn rawClientDataJSON(&self) -> Id<NSData, Shared>;
 
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other credentialID)]
         pub unsafe fn credentialID(&self) -> Id<NSData, Shared>;
     }

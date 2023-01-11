@@ -264,6 +264,7 @@ extern_protocol!(
     pub struct NSMenuItemValidation;
 
     unsafe impl ProtocolType for NSMenuItemValidation {
+        #[cfg(feature = "AppKit_NSMenuItem")]
         #[method(validateMenuItem:)]
         pub unsafe fn validateMenuItem(&self, menuItem: &NSMenuItem) -> bool;
     }
@@ -273,14 +274,17 @@ extern_protocol!(
     pub struct NSMenuDelegate;
 
     unsafe impl ProtocolType for NSMenuDelegate {
+        #[cfg(feature = "AppKit_NSMenu")]
         #[optional]
         #[method(menuNeedsUpdate:)]
         pub unsafe fn menuNeedsUpdate(&self, menu: &NSMenu);
 
+        #[cfg(feature = "AppKit_NSMenu")]
         #[optional]
         #[method(numberOfItemsInMenu:)]
         pub unsafe fn numberOfItemsInMenu(&self, menu: &NSMenu) -> NSInteger;
 
+        #[cfg(all(feature = "AppKit_NSMenu", feature = "AppKit_NSMenuItem"))]
         #[optional]
         #[method(menu:updateItem:atIndex:shouldCancel:)]
         pub unsafe fn menu_updateItem_atIndex_shouldCancel(
@@ -291,18 +295,22 @@ extern_protocol!(
             shouldCancel: bool,
         ) -> bool;
 
+        #[cfg(feature = "AppKit_NSMenu")]
         #[optional]
         #[method(menuWillOpen:)]
         pub unsafe fn menuWillOpen(&self, menu: &NSMenu);
 
+        #[cfg(feature = "AppKit_NSMenu")]
         #[optional]
         #[method(menuDidClose:)]
         pub unsafe fn menuDidClose(&self, menu: &NSMenu);
 
+        #[cfg(all(feature = "AppKit_NSMenu", feature = "AppKit_NSMenuItem"))]
         #[optional]
         #[method(menu:willHighlightItem:)]
         pub unsafe fn menu_willHighlightItem(&self, menu: &NSMenu, item: Option<&NSMenuItem>);
 
+        #[cfg(all(feature = "AppKit_NSMenu", feature = "AppKit_NSScreen"))]
         #[optional]
         #[method(confinementRectForMenu:onScreen:)]
         pub unsafe fn confinementRectForMenu_onScreen(

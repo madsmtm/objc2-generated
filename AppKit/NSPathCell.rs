@@ -153,6 +153,7 @@ extern_protocol!(
     pub struct NSPathCellDelegate;
 
     unsafe impl ProtocolType for NSPathCellDelegate {
+        #[cfg(all(feature = "AppKit_NSOpenPanel", feature = "AppKit_NSPathCell"))]
         #[optional]
         #[method(pathCell:willDisplayOpenPanel:)]
         pub unsafe fn pathCell_willDisplayOpenPanel(
@@ -161,6 +162,7 @@ extern_protocol!(
             openPanel: &NSOpenPanel,
         );
 
+        #[cfg(all(feature = "AppKit_NSMenu", feature = "AppKit_NSPathCell"))]
         #[optional]
         #[method(pathCell:willPopUpMenu:)]
         pub unsafe fn pathCell_willPopUpMenu(&self, pathCell: &NSPathCell, menu: &NSMenu);

@@ -141,6 +141,7 @@ extern_protocol!(
     pub struct MTLComputePipelineState;
 
     unsafe impl ProtocolType for MTLComputePipelineState {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
         pub fn label(&self) -> Option<Id<NSString, Shared>>;
 
@@ -171,18 +172,21 @@ extern_protocol!(
             function: &MTLFunction,
         ) -> Option<Id<MTLFunctionHandle, Shared>>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSError"))]
         #[method_id(@__retain_semantics New newComputePipelineStateWithAdditionalBinaryFunctions:error:_)]
         pub fn newComputePipelineStateWithAdditionalBinaryFunctions_error(
             &self,
             functions: &NSArray<MTLFunction>,
         ) -> Result<Id<MTLComputePipelineState, Shared>, Id<NSError, Shared>>;
 
+        #[cfg(feature = "Metal_MTLVisibleFunctionTableDescriptor")]
         #[method_id(@__retain_semantics New newVisibleFunctionTableWithDescriptor:)]
         pub fn newVisibleFunctionTableWithDescriptor(
             &self,
             descriptor: &MTLVisibleFunctionTableDescriptor,
         ) -> Option<Id<MTLVisibleFunctionTable, Shared>>;
 
+        #[cfg(feature = "Metal_MTLIntersectionFunctionTableDescriptor")]
         #[method_id(@__retain_semantics New newIntersectionFunctionTableWithDescriptor:)]
         pub fn newIntersectionFunctionTableWithDescriptor(
             &self,

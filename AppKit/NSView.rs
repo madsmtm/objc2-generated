@@ -722,6 +722,7 @@ extern_protocol!(
     pub struct NSViewToolTipOwner;
 
     unsafe impl ProtocolType for NSViewToolTipOwner {
+        #[cfg(all(feature = "AppKit_NSView", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other view:stringForToolTip:point:userData:)]
         pub unsafe fn view_stringForToolTip_point_userData(
             &self,

@@ -67,9 +67,11 @@ extern_protocol!(
     pub struct MTLResource;
 
     unsafe impl ProtocolType for MTLResource {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
         pub fn label(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:)]
         pub fn setLabel(&self, label: Option<&NSString>);
 

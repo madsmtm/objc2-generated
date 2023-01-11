@@ -169,6 +169,11 @@ extern_protocol!(
     pub struct NSStackViewDelegate;
 
     unsafe impl ProtocolType for NSStackViewDelegate {
+        #[cfg(all(
+            feature = "AppKit_NSStackView",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSArray"
+        ))]
         #[optional]
         #[method(stackView:willDetachViews:)]
         pub unsafe fn stackView_willDetachViews(
@@ -177,6 +182,11 @@ extern_protocol!(
             views: &NSArray<NSView>,
         );
 
+        #[cfg(all(
+            feature = "AppKit_NSStackView",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSArray"
+        ))]
         #[optional]
         #[method(stackView:didReattachViews:)]
         pub unsafe fn stackView_didReattachViews(

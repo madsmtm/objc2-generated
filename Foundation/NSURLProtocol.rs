@@ -7,6 +7,11 @@ extern_protocol!(
     pub struct NSURLProtocolClient;
 
     unsafe impl ProtocolType for NSURLProtocolClient {
+        #[cfg(all(
+            feature = "Foundation_NSURLProtocol",
+            feature = "Foundation_NSURLRequest",
+            feature = "Foundation_NSURLResponse"
+        ))]
         #[method(URLProtocol:wasRedirectedToRequest:redirectResponse:)]
         pub unsafe fn URLProtocol_wasRedirectedToRequest_redirectResponse(
             &self,
@@ -15,6 +20,10 @@ extern_protocol!(
             redirectResponse: &NSURLResponse,
         );
 
+        #[cfg(all(
+            feature = "Foundation_NSCachedURLResponse",
+            feature = "Foundation_NSURLProtocol"
+        ))]
         #[method(URLProtocol:cachedResponseIsValid:)]
         pub unsafe fn URLProtocol_cachedResponseIsValid(
             &self,
@@ -22,6 +31,10 @@ extern_protocol!(
             cachedResponse: &NSCachedURLResponse,
         );
 
+        #[cfg(all(
+            feature = "Foundation_NSURLProtocol",
+            feature = "Foundation_NSURLResponse"
+        ))]
         #[method(URLProtocol:didReceiveResponse:cacheStoragePolicy:)]
         pub unsafe fn URLProtocol_didReceiveResponse_cacheStoragePolicy(
             &self,
@@ -30,12 +43,15 @@ extern_protocol!(
             policy: NSURLCacheStoragePolicy,
         );
 
+        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSURLProtocol"))]
         #[method(URLProtocol:didLoadData:)]
         pub unsafe fn URLProtocol_didLoadData(&self, protocol: &NSURLProtocol, data: &NSData);
 
+        #[cfg(feature = "Foundation_NSURLProtocol")]
         #[method(URLProtocolDidFinishLoading:)]
         pub unsafe fn URLProtocolDidFinishLoading(&self, protocol: &NSURLProtocol);
 
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURLProtocol"))]
         #[method(URLProtocol:didFailWithError:)]
         pub unsafe fn URLProtocol_didFailWithError(
             &self,
@@ -43,6 +59,10 @@ extern_protocol!(
             error: &NSError,
         );
 
+        #[cfg(all(
+            feature = "Foundation_NSURLAuthenticationChallenge",
+            feature = "Foundation_NSURLProtocol"
+        ))]
         #[method(URLProtocol:didReceiveAuthenticationChallenge:)]
         pub unsafe fn URLProtocol_didReceiveAuthenticationChallenge(
             &self,
@@ -50,6 +70,10 @@ extern_protocol!(
             challenge: &NSURLAuthenticationChallenge,
         );
 
+        #[cfg(all(
+            feature = "Foundation_NSURLAuthenticationChallenge",
+            feature = "Foundation_NSURLProtocol"
+        ))]
         #[method(URLProtocol:didCancelAuthenticationChallenge:)]
         pub unsafe fn URLProtocol_didCancelAuthenticationChallenge(
             &self,

@@ -7,6 +7,10 @@ extern_protocol!(
     pub struct NSURLAuthenticationChallengeSender;
 
     unsafe impl ProtocolType for NSURLAuthenticationChallengeSender {
+        #[cfg(all(
+            feature = "Foundation_NSURLAuthenticationChallenge",
+            feature = "Foundation_NSURLCredential"
+        ))]
         #[method(useCredential:forAuthenticationChallenge:)]
         pub unsafe fn useCredential_forAuthenticationChallenge(
             &self,
@@ -14,18 +18,21 @@ extern_protocol!(
             challenge: &NSURLAuthenticationChallenge,
         );
 
+        #[cfg(feature = "Foundation_NSURLAuthenticationChallenge")]
         #[method(continueWithoutCredentialForAuthenticationChallenge:)]
         pub unsafe fn continueWithoutCredentialForAuthenticationChallenge(
             &self,
             challenge: &NSURLAuthenticationChallenge,
         );
 
+        #[cfg(feature = "Foundation_NSURLAuthenticationChallenge")]
         #[method(cancelAuthenticationChallenge:)]
         pub unsafe fn cancelAuthenticationChallenge(
             &self,
             challenge: &NSURLAuthenticationChallenge,
         );
 
+        #[cfg(feature = "Foundation_NSURLAuthenticationChallenge")]
         #[optional]
         #[method(performDefaultHandlingForAuthenticationChallenge:)]
         pub unsafe fn performDefaultHandlingForAuthenticationChallenge(
@@ -33,6 +40,7 @@ extern_protocol!(
             challenge: &NSURLAuthenticationChallenge,
         );
 
+        #[cfg(feature = "Foundation_NSURLAuthenticationChallenge")]
         #[optional]
         #[method(rejectProtectionSpaceAndContinueWithChallenge:)]
         pub unsafe fn rejectProtectionSpaceAndContinueWithChallenge(

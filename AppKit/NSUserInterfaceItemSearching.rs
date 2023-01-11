@@ -9,6 +9,7 @@ extern_protocol!(
     pub struct NSUserInterfaceItemSearching;
 
     unsafe impl ProtocolType for NSUserInterfaceItemSearching {
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(searchForItemsWithSearchString:resultLimit:matchedItemHandler:)]
         pub unsafe fn searchForItemsWithSearchString_resultLimit_matchedItemHandler(
             &self,
@@ -17,6 +18,7 @@ extern_protocol!(
             handleMatchedItems: &Block<(NonNull<NSArray>,), ()>,
         );
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other localizedTitlesForItem:)]
         pub unsafe fn localizedTitlesForItem(&self, item: &Object)
             -> Id<NSArray<NSString>, Shared>;
@@ -25,6 +27,7 @@ extern_protocol!(
         #[method(performActionForItem:)]
         pub unsafe fn performActionForItem(&self, item: &Object);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[optional]
         #[method(showAllHelpTopicsForSearchString:)]
         pub unsafe fn showAllHelpTopicsForSearchString(&self, searchString: &NSString);

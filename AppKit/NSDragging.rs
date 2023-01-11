@@ -61,6 +61,7 @@ extern_protocol!(
     pub struct NSDraggingInfo;
 
     unsafe impl ProtocolType for NSDraggingInfo {
+        #[cfg(feature = "AppKit_NSWindow")]
         #[method_id(@__retain_semantics Other draggingDestinationWindow)]
         pub unsafe fn draggingDestinationWindow(&self) -> Option<Id<NSWindow, Shared>>;
 
@@ -73,9 +74,11 @@ extern_protocol!(
         #[method(draggedImageLocation)]
         pub unsafe fn draggedImageLocation(&self) -> NSPoint;
 
+        #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other draggedImage)]
         pub unsafe fn draggedImage(&self) -> Option<Id<NSImage, Shared>>;
 
+        #[cfg(feature = "AppKit_NSPasteboard")]
         #[method_id(@__retain_semantics Other draggingPasteboard)]
         pub unsafe fn draggingPasteboard(&self) -> Id<NSPasteboard, Shared>;
 
@@ -88,6 +91,11 @@ extern_protocol!(
         #[method(slideDraggedImageTo:)]
         pub unsafe fn slideDraggedImageTo(&self, screenPoint: NSPoint);
 
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSURL"
+        ))]
         #[method_id(@__retain_semantics Other namesOfPromisedFilesDroppedAtDestination:)]
         pub unsafe fn namesOfPromisedFilesDroppedAtDestination(
             &self,
@@ -112,6 +120,12 @@ extern_protocol!(
         #[method(setNumberOfValidItemsForDrop:)]
         pub unsafe fn setNumberOfValidItemsForDrop(&self, numberOfValidItemsForDrop: NSInteger);
 
+        #[cfg(all(
+            feature = "AppKit_NSDraggingItem",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSDictionary"
+        ))]
         #[method(enumerateDraggingItemsWithOptions:forView:classes:searchOptions:usingBlock:)]
         pub unsafe fn enumerateDraggingItemsWithOptions_forView_classes_searchOptions_usingBlock(
             &self,
@@ -176,6 +190,7 @@ extern_protocol!(
     pub struct NSDraggingSource;
 
     unsafe impl ProtocolType for NSDraggingSource {
+        #[cfg(feature = "AppKit_NSDraggingSession")]
         #[method(draggingSession:sourceOperationMaskForDraggingContext:)]
         pub unsafe fn draggingSession_sourceOperationMaskForDraggingContext(
             &self,
@@ -183,6 +198,7 @@ extern_protocol!(
             context: NSDraggingContext,
         ) -> NSDragOperation;
 
+        #[cfg(feature = "AppKit_NSDraggingSession")]
         #[optional]
         #[method(draggingSession:willBeginAtPoint:)]
         pub unsafe fn draggingSession_willBeginAtPoint(
@@ -191,6 +207,7 @@ extern_protocol!(
             screenPoint: NSPoint,
         );
 
+        #[cfg(feature = "AppKit_NSDraggingSession")]
         #[optional]
         #[method(draggingSession:movedToPoint:)]
         pub unsafe fn draggingSession_movedToPoint(
@@ -199,6 +216,7 @@ extern_protocol!(
             screenPoint: NSPoint,
         );
 
+        #[cfg(feature = "AppKit_NSDraggingSession")]
         #[optional]
         #[method(draggingSession:endedAtPoint:operation:)]
         pub unsafe fn draggingSession_endedAtPoint_operation(
@@ -208,6 +226,7 @@ extern_protocol!(
             operation: NSDragOperation,
         );
 
+        #[cfg(feature = "AppKit_NSDraggingSession")]
         #[optional]
         #[method(ignoreModifierKeysForDraggingSession:)]
         pub unsafe fn ignoreModifierKeysForDraggingSession(

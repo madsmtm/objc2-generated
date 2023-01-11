@@ -9,6 +9,7 @@ extern_protocol!(
     pub struct NSUserActivityRestoring;
 
     unsafe impl ProtocolType for NSUserActivityRestoring {
+        #[cfg(feature = "Foundation_NSUserActivity")]
         #[method(restoreUserActivityState:)]
         pub unsafe fn restoreUserActivityState(&self, userActivity: &NSUserActivity);
     }

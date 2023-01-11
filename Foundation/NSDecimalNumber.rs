@@ -21,6 +21,7 @@ extern_protocol!(
         #[method(scale)]
         pub unsafe fn scale(&self) -> c_short;
 
+        #[cfg(feature = "Foundation_NSDecimalNumber")]
         #[method_id(@__retain_semantics Other exceptionDuringOperation:error:leftOperand:rightOperand:)]
         pub unsafe fn exceptionDuringOperation_error_leftOperand_rightOperand(
             &self,

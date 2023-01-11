@@ -7,9 +7,11 @@ extern_protocol!(
     pub struct NSCoding;
 
     unsafe impl ProtocolType for NSCoding {
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method(encodeWithCoder:)]
         pub unsafe fn encodeWithCoder(&self, coder: &NSCoder);
 
+        #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,

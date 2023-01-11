@@ -14,9 +14,11 @@ extern_protocol!(
         #[method(endScope)]
         pub fn endScope(&self);
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
         pub fn label(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:)]
         pub unsafe fn setLabel(&self, label: Option<&NSString>);
 

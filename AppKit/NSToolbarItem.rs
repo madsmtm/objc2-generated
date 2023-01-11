@@ -180,6 +180,7 @@ extern_protocol!(
     pub struct NSToolbarItemValidation;
 
     unsafe impl ProtocolType for NSToolbarItemValidation {
+        #[cfg(feature = "AppKit_NSToolbarItem")]
         #[method(validateToolbarItem:)]
         pub unsafe fn validateToolbarItem(&self, item: &NSToolbarItem) -> bool;
     }

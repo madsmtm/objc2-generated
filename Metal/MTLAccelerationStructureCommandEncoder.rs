@@ -8,6 +8,7 @@ extern_protocol!(
     pub struct MTLAccelerationStructureCommandEncoder;
 
     unsafe impl ProtocolType for MTLAccelerationStructureCommandEncoder {
+        #[cfg(feature = "Metal_MTLAccelerationStructureDescriptor")]
         #[method(buildAccelerationStructure:descriptor:scratchBuffer:scratchBufferOffset:)]
         pub fn buildAccelerationStructure_descriptor_scratchBuffer_scratchBufferOffset(
             &self,
@@ -17,6 +18,7 @@ extern_protocol!(
             scratchBufferOffset: NSUInteger,
         );
 
+        #[cfg(feature = "Metal_MTLAccelerationStructureDescriptor")]
         #[method(refitAccelerationStructure:descriptor:destination:scratchBuffer:scratchBufferOffset:)]
         pub unsafe fn refitAccelerationStructure_descriptor_destination_scratchBuffer_scratchBufferOffset(
             &self,

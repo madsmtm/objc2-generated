@@ -35,6 +35,7 @@ extern_protocol!(
             glyphIndex: NSUInteger,
         );
 
+        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedString)]
         pub unsafe fn attributedString(&self) -> Id<NSAttributedString, Shared>;
 

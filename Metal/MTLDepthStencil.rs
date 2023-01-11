@@ -140,6 +140,7 @@ extern_protocol!(
     pub struct MTLDepthStencilState;
 
     unsafe impl ProtocolType for MTLDepthStencilState {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
         pub fn label(&self) -> Option<Id<NSString, Shared>>;
 

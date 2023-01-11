@@ -195,14 +195,21 @@ extern_protocol!(
     pub struct NSUserActivityDelegate;
 
     unsafe impl ProtocolType for NSUserActivityDelegate {
+        #[cfg(feature = "Foundation_NSUserActivity")]
         #[optional]
         #[method(userActivityWillSave:)]
         pub unsafe fn userActivityWillSave(&self, userActivity: &NSUserActivity);
 
+        #[cfg(feature = "Foundation_NSUserActivity")]
         #[optional]
         #[method(userActivityWasContinued:)]
         pub unsafe fn userActivityWasContinued(&self, userActivity: &NSUserActivity);
 
+        #[cfg(all(
+            feature = "Foundation_NSInputStream",
+            feature = "Foundation_NSOutputStream",
+            feature = "Foundation_NSUserActivity"
+        ))]
         #[optional]
         #[method(userActivity:didReceiveInputStream:outputStream:)]
         pub unsafe fn userActivity_didReceiveInputStream_outputStream(

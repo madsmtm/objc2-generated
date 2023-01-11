@@ -197,6 +197,7 @@ extern_protocol!(
     pub struct NSTabViewDelegate;
 
     unsafe impl ProtocolType for NSTabViewDelegate {
+        #[cfg(all(feature = "AppKit_NSTabView", feature = "AppKit_NSTabViewItem"))]
         #[optional]
         #[method(tabView:shouldSelectTabViewItem:)]
         pub unsafe fn tabView_shouldSelectTabViewItem(
@@ -205,6 +206,7 @@ extern_protocol!(
             tabViewItem: Option<&NSTabViewItem>,
         ) -> bool;
 
+        #[cfg(all(feature = "AppKit_NSTabView", feature = "AppKit_NSTabViewItem"))]
         #[optional]
         #[method(tabView:willSelectTabViewItem:)]
         pub unsafe fn tabView_willSelectTabViewItem(
@@ -213,6 +215,7 @@ extern_protocol!(
             tabViewItem: Option<&NSTabViewItem>,
         );
 
+        #[cfg(all(feature = "AppKit_NSTabView", feature = "AppKit_NSTabViewItem"))]
         #[optional]
         #[method(tabView:didSelectTabViewItem:)]
         pub unsafe fn tabView_didSelectTabViewItem(
@@ -221,6 +224,7 @@ extern_protocol!(
             tabViewItem: Option<&NSTabViewItem>,
         );
 
+        #[cfg(feature = "AppKit_NSTabView")]
         #[optional]
         #[method(tabViewDidChangeNumberOfTabViewItems:)]
         pub unsafe fn tabViewDidChangeNumberOfTabViewItems(&self, tabView: &NSTabView);

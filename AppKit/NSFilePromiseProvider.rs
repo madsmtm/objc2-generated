@@ -56,6 +56,10 @@ extern_protocol!(
     pub struct NSFilePromiseProviderDelegate;
 
     unsafe impl ProtocolType for NSFilePromiseProviderDelegate {
+        #[cfg(all(
+            feature = "AppKit_NSFilePromiseProvider",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other filePromiseProvider:fileNameForType:)]
         pub unsafe fn filePromiseProvider_fileNameForType(
             &self,
@@ -63,6 +67,11 @@ extern_protocol!(
             fileType: &NSString,
         ) -> Id<NSString, Shared>;
 
+        #[cfg(all(
+            feature = "AppKit_NSFilePromiseProvider",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSURL"
+        ))]
         #[method(filePromiseProvider:writePromiseToURL:completionHandler:)]
         pub unsafe fn filePromiseProvider_writePromiseToURL_completionHandler(
             &self,
@@ -71,6 +80,10 @@ extern_protocol!(
             completionHandler: &Block<(*mut NSError,), ()>,
         );
 
+        #[cfg(all(
+            feature = "AppKit_NSFilePromiseProvider",
+            feature = "Foundation_NSOperationQueue"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other operationQueueForFilePromiseProvider:)]
         pub unsafe fn operationQueueForFilePromiseProvider(

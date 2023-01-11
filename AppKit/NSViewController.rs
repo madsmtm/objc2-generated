@@ -240,6 +240,7 @@ extern_protocol!(
     pub struct NSViewControllerPresentationAnimator;
 
     unsafe impl ProtocolType for NSViewControllerPresentationAnimator {
+        #[cfg(feature = "AppKit_NSViewController")]
         #[method(animatePresentationOfViewController:fromViewController:)]
         pub unsafe fn animatePresentationOfViewController_fromViewController(
             &self,
@@ -247,6 +248,7 @@ extern_protocol!(
             fromViewController: &NSViewController,
         );
 
+        #[cfg(feature = "AppKit_NSViewController")]
         #[method(animateDismissalOfViewController:fromViewController:)]
         pub unsafe fn animateDismissalOfViewController_fromViewController(
             &self,

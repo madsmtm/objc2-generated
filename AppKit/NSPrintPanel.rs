@@ -43,11 +43,17 @@ extern_protocol!(
     pub struct NSPrintPanelAccessorizing;
 
     unsafe impl ProtocolType for NSPrintPanelAccessorizing {
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other localizedSummaryItems)]
         pub unsafe fn localizedSummaryItems(
             &self,
         ) -> Id<NSArray<NSDictionary<NSPrintPanelAccessorySummaryKey, NSString>>, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
         #[optional]
         #[method_id(@__retain_semantics Other keyPathsForValuesAffectingPreview)]
         pub unsafe fn keyPathsForValuesAffectingPreview(&self) -> Id<NSSet<NSString>, Shared>;

@@ -8,9 +8,11 @@ extern_protocol!(
     pub struct MTLCommandQueue;
 
     unsafe impl ProtocolType for MTLCommandQueue {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
         pub fn label(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:)]
         pub fn setLabel(&self, label: Option<&NSString>);
 
@@ -20,6 +22,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other commandBuffer)]
         pub fn commandBuffer(&self) -> Option<Id<MTLCommandBuffer, Shared>>;
 
+        #[cfg(feature = "Metal_MTLCommandBufferDescriptor")]
         #[method_id(@__retain_semantics Other commandBufferWithDescriptor:)]
         pub unsafe fn commandBufferWithDescriptor(
             &self,

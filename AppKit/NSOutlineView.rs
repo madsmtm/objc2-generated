@@ -203,6 +203,7 @@ extern_protocol!(
     pub struct NSOutlineViewDataSource;
 
     unsafe impl ProtocolType for NSOutlineViewDataSource {
+        #[cfg(feature = "AppKit_NSOutlineView")]
         #[optional]
         #[method(outlineView:numberOfChildrenOfItem:)]
         pub unsafe fn outlineView_numberOfChildrenOfItem(
@@ -211,6 +212,7 @@ extern_protocol!(
             item: Option<&Object>,
         ) -> NSInteger;
 
+        #[cfg(feature = "AppKit_NSOutlineView")]
         #[optional]
         #[method_id(@__retain_semantics Other outlineView:child:ofItem:)]
         pub unsafe fn outlineView_child_ofItem(
@@ -220,6 +222,7 @@ extern_protocol!(
             item: Option<&Object>,
         ) -> Id<Object, Shared>;
 
+        #[cfg(feature = "AppKit_NSOutlineView")]
         #[optional]
         #[method(outlineView:isItemExpandable:)]
         pub unsafe fn outlineView_isItemExpandable(
@@ -228,6 +231,7 @@ extern_protocol!(
             item: &Object,
         ) -> bool;
 
+        #[cfg(all(feature = "AppKit_NSOutlineView", feature = "AppKit_NSTableColumn"))]
         #[optional]
         #[method_id(@__retain_semantics Other outlineView:objectValueForTableColumn:byItem:)]
         pub unsafe fn outlineView_objectValueForTableColumn_byItem(
@@ -237,6 +241,7 @@ extern_protocol!(
             item: Option<&Object>,
         ) -> Option<Id<Object, Shared>>;
 
+        #[cfg(all(feature = "AppKit_NSOutlineView", feature = "AppKit_NSTableColumn"))]
         #[optional]
         #[method(outlineView:setObjectValue:forTableColumn:byItem:)]
         pub unsafe fn outlineView_setObjectValue_forTableColumn_byItem(
@@ -247,6 +252,7 @@ extern_protocol!(
             item: Option<&Object>,
         );
 
+        #[cfg(feature = "AppKit_NSOutlineView")]
         #[optional]
         #[method_id(@__retain_semantics Other outlineView:itemForPersistentObject:)]
         pub unsafe fn outlineView_itemForPersistentObject(
@@ -255,6 +261,7 @@ extern_protocol!(
             object: &Object,
         ) -> Option<Id<Object, Shared>>;
 
+        #[cfg(feature = "AppKit_NSOutlineView")]
         #[optional]
         #[method_id(@__retain_semantics Other outlineView:persistentObjectForItem:)]
         pub unsafe fn outlineView_persistentObjectForItem(
@@ -263,6 +270,11 @@ extern_protocol!(
             item: Option<&Object>,
         ) -> Option<Id<Object, Shared>>;
 
+        #[cfg(all(
+            feature = "AppKit_NSOutlineView",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSSortDescriptor"
+        ))]
         #[optional]
         #[method(outlineView:sortDescriptorsDidChange:)]
         pub unsafe fn outlineView_sortDescriptorsDidChange(
@@ -271,6 +283,7 @@ extern_protocol!(
             oldDescriptors: &NSArray<NSSortDescriptor>,
         );
 
+        #[cfg(feature = "AppKit_NSOutlineView")]
         #[optional]
         #[method_id(@__retain_semantics Other outlineView:pasteboardWriterForItem:)]
         pub unsafe fn outlineView_pasteboardWriterForItem(
@@ -279,6 +292,11 @@ extern_protocol!(
             item: &Object,
         ) -> Option<Id<NSPasteboardWriting, Shared>>;
 
+        #[cfg(all(
+            feature = "AppKit_NSDraggingSession",
+            feature = "AppKit_NSOutlineView",
+            feature = "Foundation_NSArray"
+        ))]
         #[optional]
         #[method(outlineView:draggingSession:willBeginAtPoint:forItems:)]
         pub unsafe fn outlineView_draggingSession_willBeginAtPoint_forItems(
@@ -289,6 +307,7 @@ extern_protocol!(
             draggedItems: &NSArray,
         );
 
+        #[cfg(all(feature = "AppKit_NSDraggingSession", feature = "AppKit_NSOutlineView"))]
         #[optional]
         #[method(outlineView:draggingSession:endedAtPoint:operation:)]
         pub unsafe fn outlineView_draggingSession_endedAtPoint_operation(
@@ -299,6 +318,11 @@ extern_protocol!(
             operation: NSDragOperation,
         );
 
+        #[cfg(all(
+            feature = "AppKit_NSOutlineView",
+            feature = "AppKit_NSPasteboard",
+            feature = "Foundation_NSArray"
+        ))]
         #[optional]
         #[method(outlineView:writeItems:toPasteboard:)]
         pub unsafe fn outlineView_writeItems_toPasteboard(
@@ -308,6 +332,7 @@ extern_protocol!(
             pasteboard: &NSPasteboard,
         ) -> bool;
 
+        #[cfg(feature = "AppKit_NSOutlineView")]
         #[optional]
         #[method(outlineView:updateDraggingItemsForDrag:)]
         pub unsafe fn outlineView_updateDraggingItemsForDrag(
@@ -316,6 +341,7 @@ extern_protocol!(
             draggingInfo: &NSDraggingInfo,
         );
 
+        #[cfg(feature = "AppKit_NSOutlineView")]
         #[optional]
         #[method(outlineView:validateDrop:proposedItem:proposedChildIndex:)]
         pub unsafe fn outlineView_validateDrop_proposedItem_proposedChildIndex(
@@ -326,6 +352,7 @@ extern_protocol!(
             index: NSInteger,
         ) -> NSDragOperation;
 
+        #[cfg(feature = "AppKit_NSOutlineView")]
         #[optional]
         #[method(outlineView:acceptDrop:item:childIndex:)]
         pub unsafe fn outlineView_acceptDrop_item_childIndex(
@@ -336,6 +363,12 @@ extern_protocol!(
             index: NSInteger,
         ) -> bool;
 
+        #[cfg(all(
+            feature = "AppKit_NSOutlineView",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSURL"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other outlineView:namesOfPromisedFilesDroppedAtDestination:forDraggedItems:)]
         pub unsafe fn outlineView_namesOfPromisedFilesDroppedAtDestination_forDraggedItems(
@@ -351,6 +384,11 @@ extern_protocol!(
     pub struct NSOutlineViewDelegate;
 
     unsafe impl ProtocolType for NSOutlineViewDelegate {
+        #[cfg(all(
+            feature = "AppKit_NSOutlineView",
+            feature = "AppKit_NSTableColumn",
+            feature = "AppKit_NSView"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other outlineView:viewForTableColumn:item:)]
         pub unsafe fn outlineView_viewForTableColumn_item(
@@ -360,6 +398,7 @@ extern_protocol!(
             item: &Object,
         ) -> Option<Id<NSView, Shared>>;
 
+        #[cfg(all(feature = "AppKit_NSOutlineView", feature = "AppKit_NSTableRowView"))]
         #[optional]
         #[method_id(@__retain_semantics Other outlineView:rowViewForItem:)]
         pub unsafe fn outlineView_rowViewForItem(
@@ -368,6 +407,7 @@ extern_protocol!(
             item: &Object,
         ) -> Option<Id<NSTableRowView, Shared>>;
 
+        #[cfg(all(feature = "AppKit_NSOutlineView", feature = "AppKit_NSTableRowView"))]
         #[optional]
         #[method(outlineView:didAddRowView:forRow:)]
         pub unsafe fn outlineView_didAddRowView_forRow(
@@ -377,6 +417,7 @@ extern_protocol!(
             row: NSInteger,
         );
 
+        #[cfg(all(feature = "AppKit_NSOutlineView", feature = "AppKit_NSTableRowView"))]
         #[optional]
         #[method(outlineView:didRemoveRowView:forRow:)]
         pub unsafe fn outlineView_didRemoveRowView_forRow(
@@ -386,6 +427,7 @@ extern_protocol!(
             row: NSInteger,
         );
 
+        #[cfg(all(feature = "AppKit_NSOutlineView", feature = "AppKit_NSTableColumn"))]
         #[optional]
         #[method(outlineView:willDisplayCell:forTableColumn:item:)]
         pub unsafe fn outlineView_willDisplayCell_forTableColumn_item(
@@ -396,6 +438,7 @@ extern_protocol!(
             item: &Object,
         );
 
+        #[cfg(all(feature = "AppKit_NSOutlineView", feature = "AppKit_NSTableColumn"))]
         #[optional]
         #[method(outlineView:shouldEditTableColumn:item:)]
         pub unsafe fn outlineView_shouldEditTableColumn_item(
@@ -405,6 +448,7 @@ extern_protocol!(
             item: &Object,
         ) -> bool;
 
+        #[cfg(feature = "AppKit_NSOutlineView")]
         #[optional]
         #[method(selectionShouldChangeInOutlineView:)]
         pub unsafe fn selectionShouldChangeInOutlineView(
@@ -412,6 +456,7 @@ extern_protocol!(
             outlineView: &NSOutlineView,
         ) -> bool;
 
+        #[cfg(feature = "AppKit_NSOutlineView")]
         #[optional]
         #[method(outlineView:shouldSelectItem:)]
         pub unsafe fn outlineView_shouldSelectItem(
@@ -420,6 +465,7 @@ extern_protocol!(
             item: &Object,
         ) -> bool;
 
+        #[cfg(all(feature = "AppKit_NSOutlineView", feature = "Foundation_NSIndexSet"))]
         #[optional]
         #[method_id(@__retain_semantics Other outlineView:selectionIndexesForProposedSelection:)]
         pub unsafe fn outlineView_selectionIndexesForProposedSelection(
@@ -428,6 +474,7 @@ extern_protocol!(
             proposedSelectionIndexes: &NSIndexSet,
         ) -> Id<NSIndexSet, Shared>;
 
+        #[cfg(all(feature = "AppKit_NSOutlineView", feature = "AppKit_NSTableColumn"))]
         #[optional]
         #[method(outlineView:shouldSelectTableColumn:)]
         pub unsafe fn outlineView_shouldSelectTableColumn(
@@ -436,6 +483,7 @@ extern_protocol!(
             tableColumn: Option<&NSTableColumn>,
         ) -> bool;
 
+        #[cfg(all(feature = "AppKit_NSOutlineView", feature = "AppKit_NSTableColumn"))]
         #[optional]
         #[method(outlineView:mouseDownInHeaderOfTableColumn:)]
         pub unsafe fn outlineView_mouseDownInHeaderOfTableColumn(
@@ -444,6 +492,7 @@ extern_protocol!(
             tableColumn: &NSTableColumn,
         );
 
+        #[cfg(all(feature = "AppKit_NSOutlineView", feature = "AppKit_NSTableColumn"))]
         #[optional]
         #[method(outlineView:didClickTableColumn:)]
         pub unsafe fn outlineView_didClickTableColumn(
@@ -452,6 +501,7 @@ extern_protocol!(
             tableColumn: &NSTableColumn,
         );
 
+        #[cfg(all(feature = "AppKit_NSOutlineView", feature = "AppKit_NSTableColumn"))]
         #[optional]
         #[method(outlineView:didDragTableColumn:)]
         pub unsafe fn outlineView_didDragTableColumn(
@@ -460,6 +510,12 @@ extern_protocol!(
             tableColumn: &NSTableColumn,
         );
 
+        #[cfg(all(
+            feature = "AppKit_NSCell",
+            feature = "AppKit_NSOutlineView",
+            feature = "AppKit_NSTableColumn",
+            feature = "Foundation_NSString"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other outlineView:toolTipForCell:rect:tableColumn:item:mouseLocation:)]
         pub unsafe fn outlineView_toolTipForCell_rect_tableColumn_item_mouseLocation(
@@ -472,6 +528,7 @@ extern_protocol!(
             mouseLocation: NSPoint,
         ) -> Id<NSString, Shared>;
 
+        #[cfg(feature = "AppKit_NSOutlineView")]
         #[optional]
         #[method(outlineView:heightOfRowByItem:)]
         pub unsafe fn outlineView_heightOfRowByItem(
@@ -480,6 +537,10 @@ extern_protocol!(
             item: &Object,
         ) -> CGFloat;
 
+        #[cfg(all(
+            feature = "AppKit_NSOutlineView",
+            feature = "AppKit_NSTintConfiguration"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other outlineView:tintConfigurationForItem:)]
         pub unsafe fn outlineView_tintConfigurationForItem(
@@ -488,6 +549,11 @@ extern_protocol!(
             item: &Object,
         ) -> Option<Id<NSTintConfiguration, Shared>>;
 
+        #[cfg(all(
+            feature = "AppKit_NSOutlineView",
+            feature = "AppKit_NSTableColumn",
+            feature = "Foundation_NSString"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other outlineView:typeSelectStringForTableColumn:item:)]
         pub unsafe fn outlineView_typeSelectStringForTableColumn_item(
@@ -497,6 +563,7 @@ extern_protocol!(
             item: &Object,
         ) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(all(feature = "AppKit_NSOutlineView", feature = "Foundation_NSString"))]
         #[optional]
         #[method_id(@__retain_semantics Other outlineView:nextTypeSelectMatchFromItem:toItem:forString:)]
         pub unsafe fn outlineView_nextTypeSelectMatchFromItem_toItem_forString(
@@ -507,6 +574,11 @@ extern_protocol!(
             searchString: &NSString,
         ) -> Option<Id<Object, Shared>>;
 
+        #[cfg(all(
+            feature = "AppKit_NSEvent",
+            feature = "AppKit_NSOutlineView",
+            feature = "Foundation_NSString"
+        ))]
         #[optional]
         #[method(outlineView:shouldTypeSelectForEvent:withCurrentSearchString:)]
         pub unsafe fn outlineView_shouldTypeSelectForEvent_withCurrentSearchString(
@@ -516,6 +588,7 @@ extern_protocol!(
             searchString: Option<&NSString>,
         ) -> bool;
 
+        #[cfg(all(feature = "AppKit_NSOutlineView", feature = "AppKit_NSTableColumn"))]
         #[optional]
         #[method(outlineView:shouldShowCellExpansionForTableColumn:item:)]
         pub unsafe fn outlineView_shouldShowCellExpansionForTableColumn_item(
@@ -525,6 +598,11 @@ extern_protocol!(
             item: &Object,
         ) -> bool;
 
+        #[cfg(all(
+            feature = "AppKit_NSCell",
+            feature = "AppKit_NSOutlineView",
+            feature = "AppKit_NSTableColumn"
+        ))]
         #[optional]
         #[method(outlineView:shouldTrackCell:forTableColumn:item:)]
         pub unsafe fn outlineView_shouldTrackCell_forTableColumn_item(
@@ -535,6 +613,11 @@ extern_protocol!(
             item: &Object,
         ) -> bool;
 
+        #[cfg(all(
+            feature = "AppKit_NSCell",
+            feature = "AppKit_NSOutlineView",
+            feature = "AppKit_NSTableColumn"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other outlineView:dataCellForTableColumn:item:)]
         pub unsafe fn outlineView_dataCellForTableColumn_item(
@@ -544,6 +627,7 @@ extern_protocol!(
             item: &Object,
         ) -> Option<Id<NSCell, Shared>>;
 
+        #[cfg(feature = "AppKit_NSOutlineView")]
         #[optional]
         #[method(outlineView:isGroupItem:)]
         pub unsafe fn outlineView_isGroupItem(
@@ -552,6 +636,7 @@ extern_protocol!(
             item: &Object,
         ) -> bool;
 
+        #[cfg(feature = "AppKit_NSOutlineView")]
         #[optional]
         #[method(outlineView:shouldExpandItem:)]
         pub unsafe fn outlineView_shouldExpandItem(
@@ -560,6 +645,7 @@ extern_protocol!(
             item: &Object,
         ) -> bool;
 
+        #[cfg(feature = "AppKit_NSOutlineView")]
         #[optional]
         #[method(outlineView:shouldCollapseItem:)]
         pub unsafe fn outlineView_shouldCollapseItem(
@@ -568,6 +654,7 @@ extern_protocol!(
             item: &Object,
         ) -> bool;
 
+        #[cfg(all(feature = "AppKit_NSOutlineView", feature = "AppKit_NSTableColumn"))]
         #[optional]
         #[method(outlineView:willDisplayOutlineCell:forTableColumn:item:)]
         pub unsafe fn outlineView_willDisplayOutlineCell_forTableColumn_item(
@@ -578,6 +665,7 @@ extern_protocol!(
             item: &Object,
         );
 
+        #[cfg(feature = "AppKit_NSOutlineView")]
         #[optional]
         #[method(outlineView:sizeToFitWidthOfColumn:)]
         pub unsafe fn outlineView_sizeToFitWidthOfColumn(
@@ -586,6 +674,7 @@ extern_protocol!(
             column: NSInteger,
         ) -> CGFloat;
 
+        #[cfg(feature = "AppKit_NSOutlineView")]
         #[optional]
         #[method(outlineView:shouldReorderColumn:toColumn:)]
         pub unsafe fn outlineView_shouldReorderColumn_toColumn(
@@ -595,6 +684,7 @@ extern_protocol!(
             newColumnIndex: NSInteger,
         ) -> bool;
 
+        #[cfg(feature = "AppKit_NSOutlineView")]
         #[optional]
         #[method(outlineView:shouldShowOutlineCellForItem:)]
         pub unsafe fn outlineView_shouldShowOutlineCellForItem(
@@ -603,34 +693,42 @@ extern_protocol!(
             item: &Object,
         ) -> bool;
 
+        #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(outlineViewSelectionDidChange:)]
         pub unsafe fn outlineViewSelectionDidChange(&self, notification: &NSNotification);
 
+        #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(outlineViewColumnDidMove:)]
         pub unsafe fn outlineViewColumnDidMove(&self, notification: &NSNotification);
 
+        #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(outlineViewColumnDidResize:)]
         pub unsafe fn outlineViewColumnDidResize(&self, notification: &NSNotification);
 
+        #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(outlineViewSelectionIsChanging:)]
         pub unsafe fn outlineViewSelectionIsChanging(&self, notification: &NSNotification);
 
+        #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(outlineViewItemWillExpand:)]
         pub unsafe fn outlineViewItemWillExpand(&self, notification: &NSNotification);
 
+        #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(outlineViewItemDidExpand:)]
         pub unsafe fn outlineViewItemDidExpand(&self, notification: &NSNotification);
 
+        #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(outlineViewItemWillCollapse:)]
         pub unsafe fn outlineViewItemWillCollapse(&self, notification: &NSNotification);
 
+        #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(outlineViewItemDidCollapse:)]
         pub unsafe fn outlineViewItemDidCollapse(&self, notification: &NSNotification);

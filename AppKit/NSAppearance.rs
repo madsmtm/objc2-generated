@@ -90,12 +90,15 @@ extern_protocol!(
     pub struct NSAppearanceCustomization;
 
     unsafe impl ProtocolType for NSAppearanceCustomization {
+        #[cfg(feature = "AppKit_NSAppearance")]
         #[method_id(@__retain_semantics Other appearance)]
         pub unsafe fn appearance(&self) -> Option<Id<NSAppearance, Shared>>;
 
+        #[cfg(feature = "AppKit_NSAppearance")]
         #[method(setAppearance:)]
         pub unsafe fn setAppearance(&self, appearance: Option<&NSAppearance>);
 
+        #[cfg(feature = "AppKit_NSAppearance")]
         #[method_id(@__retain_semantics Other effectiveAppearance)]
         pub unsafe fn effectiveAppearance(&self) -> Id<NSAppearance, Shared>;
     }

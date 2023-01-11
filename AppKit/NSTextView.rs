@@ -1041,6 +1041,7 @@ extern_protocol!(
     pub struct NSTextViewDelegate;
 
     unsafe impl ProtocolType for NSTextViewDelegate {
+        #[cfg(feature = "AppKit_NSTextView")]
         #[optional]
         #[method(textView:clickedOnLink:atIndex:)]
         pub unsafe fn textView_clickedOnLink_atIndex(
@@ -1050,6 +1051,7 @@ extern_protocol!(
             charIndex: NSUInteger,
         ) -> bool;
 
+        #[cfg(feature = "AppKit_NSTextView")]
         #[optional]
         #[method(textView:clickedOnCell:inRect:atIndex:)]
         pub unsafe fn textView_clickedOnCell_inRect_atIndex(
@@ -1060,6 +1062,7 @@ extern_protocol!(
             charIndex: NSUInteger,
         );
 
+        #[cfg(feature = "AppKit_NSTextView")]
         #[optional]
         #[method(textView:doubleClickedOnCell:inRect:atIndex:)]
         pub unsafe fn textView_doubleClickedOnCell_inRect_atIndex(
@@ -1070,6 +1073,7 @@ extern_protocol!(
             charIndex: NSUInteger,
         );
 
+        #[cfg(all(feature = "AppKit_NSEvent", feature = "AppKit_NSTextView"))]
         #[optional]
         #[method(textView:draggedCell:inRect:event:atIndex:)]
         pub unsafe fn textView_draggedCell_inRect_event_atIndex(
@@ -1081,6 +1085,7 @@ extern_protocol!(
             charIndex: NSUInteger,
         );
 
+        #[cfg(all(feature = "AppKit_NSTextView", feature = "Foundation_NSArray"))]
         #[optional]
         #[method_id(@__retain_semantics Other textView:writablePasteboardTypesForCell:atIndex:)]
         pub unsafe fn textView_writablePasteboardTypesForCell_atIndex(
@@ -1090,6 +1095,7 @@ extern_protocol!(
             charIndex: NSUInteger,
         ) -> Id<NSArray<NSPasteboardType>, Shared>;
 
+        #[cfg(all(feature = "AppKit_NSPasteboard", feature = "AppKit_NSTextView"))]
         #[optional]
         #[method(textView:writeCell:atIndex:toPasteboard:type:)]
         pub unsafe fn textView_writeCell_atIndex_toPasteboard_type(
@@ -1101,6 +1107,7 @@ extern_protocol!(
             type_: &NSPasteboardType,
         ) -> bool;
 
+        #[cfg(feature = "AppKit_NSTextView")]
         #[optional]
         #[method(textView:willChangeSelectionFromCharacterRange:toCharacterRange:)]
         pub unsafe fn textView_willChangeSelectionFromCharacterRange_toCharacterRange(
@@ -1110,6 +1117,11 @@ extern_protocol!(
             newSelectedCharRange: NSRange,
         ) -> NSRange;
 
+        #[cfg(all(
+            feature = "AppKit_NSTextView",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSValue"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other textView:willChangeSelectionFromCharacterRanges:toCharacterRanges:)]
         pub unsafe fn textView_willChangeSelectionFromCharacterRanges_toCharacterRanges(
@@ -1119,6 +1131,12 @@ extern_protocol!(
             newSelectedCharRanges: &NSArray<NSValue>,
         ) -> Id<NSArray<NSValue>, Shared>;
 
+        #[cfg(all(
+            feature = "AppKit_NSTextView",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSValue"
+        ))]
         #[optional]
         #[method(textView:shouldChangeTextInRanges:replacementStrings:)]
         pub unsafe fn textView_shouldChangeTextInRanges_replacementStrings(
@@ -1128,6 +1146,11 @@ extern_protocol!(
             replacementStrings: Option<&NSArray<NSString>>,
         ) -> bool;
 
+        #[cfg(all(
+            feature = "AppKit_NSTextView",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other textView:shouldChangeTypingAttributes:toAttributes:)]
         pub unsafe fn textView_shouldChangeTypingAttributes_toAttributes(
@@ -1137,14 +1160,17 @@ extern_protocol!(
             newTypingAttributes: &NSDictionary<NSAttributedStringKey, Object>,
         ) -> Id<NSDictionary<NSAttributedStringKey, Object>, Shared>;
 
+        #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(textViewDidChangeSelection:)]
         pub unsafe fn textViewDidChangeSelection(&self, notification: &NSNotification);
 
+        #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(textViewDidChangeTypingAttributes:)]
         pub unsafe fn textViewDidChangeTypingAttributes(&self, notification: &NSNotification);
 
+        #[cfg(all(feature = "AppKit_NSTextView", feature = "Foundation_NSString"))]
         #[optional]
         #[method_id(@__retain_semantics Other textView:willDisplayToolTip:forCharacterAtIndex:)]
         pub unsafe fn textView_willDisplayToolTip_forCharacterAtIndex(
@@ -1154,6 +1180,11 @@ extern_protocol!(
             characterIndex: NSUInteger,
         ) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(all(
+            feature = "AppKit_NSTextView",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other textView:completions:forPartialWordRange:indexOfSelectedItem:)]
         pub unsafe fn textView_completions_forPartialWordRange_indexOfSelectedItem(
@@ -1164,6 +1195,7 @@ extern_protocol!(
             index: *mut NSInteger,
         ) -> Id<NSArray<NSString>, Shared>;
 
+        #[cfg(all(feature = "AppKit_NSTextView", feature = "Foundation_NSString"))]
         #[optional]
         #[method(textView:shouldChangeTextInRange:replacementString:)]
         pub unsafe fn textView_shouldChangeTextInRange_replacementString(
@@ -1173,6 +1205,7 @@ extern_protocol!(
             replacementString: Option<&NSString>,
         ) -> bool;
 
+        #[cfg(feature = "AppKit_NSTextView")]
         #[optional]
         #[method(textView:doCommandBySelector:)]
         pub unsafe fn textView_doCommandBySelector(
@@ -1181,6 +1214,7 @@ extern_protocol!(
             commandSelector: Sel,
         ) -> bool;
 
+        #[cfg(feature = "AppKit_NSTextView")]
         #[optional]
         #[method(textView:shouldSetSpellingState:range:)]
         pub unsafe fn textView_shouldSetSpellingState_range(
@@ -1190,6 +1224,11 @@ extern_protocol!(
             affectedCharRange: NSRange,
         ) -> NSInteger;
 
+        #[cfg(all(
+            feature = "AppKit_NSEvent",
+            feature = "AppKit_NSMenu",
+            feature = "AppKit_NSTextView"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other textView:menu:forEvent:atIndex:)]
         pub unsafe fn textView_menu_forEvent_atIndex(
@@ -1200,6 +1239,7 @@ extern_protocol!(
             charIndex: NSUInteger,
         ) -> Option<Id<NSMenu, Shared>>;
 
+        #[cfg(all(feature = "AppKit_NSTextView", feature = "Foundation_NSDictionary"))]
         #[optional]
         #[method_id(@__retain_semantics Other textView:willCheckTextInRange:options:types:)]
         pub unsafe fn textView_willCheckTextInRange_options_types(
@@ -1210,6 +1250,13 @@ extern_protocol!(
             checkingTypes: NonNull<NSTextCheckingTypes>,
         ) -> Id<NSDictionary<NSTextCheckingOptionKey, Object>, Shared>;
 
+        #[cfg(all(
+            feature = "AppKit_NSTextView",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSOrthography",
+            feature = "Foundation_NSTextCheckingResult"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other textView:didCheckTextInRange:types:options:results:orthography:wordCount:)]
         pub unsafe fn textView_didCheckTextInRange_types_options_results_orthography_wordCount(
@@ -1223,6 +1270,11 @@ extern_protocol!(
             wordCount: NSInteger,
         ) -> Id<NSArray<NSTextCheckingResult>, Shared>;
 
+        #[cfg(all(
+            feature = "AppKit_NSTextAttachment",
+            feature = "AppKit_NSTextView",
+            feature = "Foundation_NSURL"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other textView:URLForContentsOfTextAttachment:atIndex:)]
         pub unsafe fn textView_URLForContentsOfTextAttachment_atIndex(
@@ -1232,6 +1284,11 @@ extern_protocol!(
             charIndex: NSUInteger,
         ) -> Option<Id<NSURL, Shared>>;
 
+        #[cfg(all(
+            feature = "AppKit_NSSharingServicePicker",
+            feature = "AppKit_NSTextView",
+            feature = "Foundation_NSArray"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other textView:willShowSharingServicePicker:forItems:)]
         pub unsafe fn textView_willShowSharingServicePicker_forItems(
@@ -1241,6 +1298,7 @@ extern_protocol!(
             items: &NSArray,
         ) -> Option<Id<NSSharingServicePicker, Shared>>;
 
+        #[cfg(all(feature = "AppKit_NSTextView", feature = "Foundation_NSUndoManager"))]
         #[optional]
         #[method_id(@__retain_semantics Other undoManagerForTextView:)]
         pub unsafe fn undoManagerForTextView(
@@ -1248,6 +1306,7 @@ extern_protocol!(
             view: &NSTextView,
         ) -> Option<Id<NSUndoManager, Shared>>;
 
+        #[cfg(all(feature = "AppKit_NSTextView", feature = "Foundation_NSArray"))]
         #[optional]
         #[method_id(@__retain_semantics Other textView:shouldUpdateTouchBarItemIdentifiers:)]
         pub unsafe fn textView_shouldUpdateTouchBarItemIdentifiers(
@@ -1256,6 +1315,7 @@ extern_protocol!(
             identifiers: &NSArray<NSTouchBarItemIdentifier>,
         ) -> Id<NSArray<NSTouchBarItemIdentifier>, Shared>;
 
+        #[cfg(all(feature = "AppKit_NSTextView", feature = "Foundation_NSArray"))]
         #[optional]
         #[method_id(@__retain_semantics Other textView:candidatesForSelectedRange:)]
         pub unsafe fn textView_candidatesForSelectedRange(
@@ -1264,6 +1324,11 @@ extern_protocol!(
             selectedRange: NSRange,
         ) -> Option<Id<NSArray, Shared>>;
 
+        #[cfg(all(
+            feature = "AppKit_NSTextView",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSTextCheckingResult"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other textView:candidates:forSelectedRange:)]
         pub unsafe fn textView_candidates_forSelectedRange(
@@ -1273,6 +1338,7 @@ extern_protocol!(
             selectedRange: NSRange,
         ) -> Id<NSArray<NSTextCheckingResult>, Shared>;
 
+        #[cfg(feature = "AppKit_NSTextView")]
         #[optional]
         #[method(textView:shouldSelectCandidateAtIndex:)]
         pub unsafe fn textView_shouldSelectCandidateAtIndex(
@@ -1281,6 +1347,7 @@ extern_protocol!(
             index: NSUInteger,
         ) -> bool;
 
+        #[cfg(feature = "AppKit_NSTextView")]
         #[optional]
         #[method(textView:clickedOnLink:)]
         pub unsafe fn textView_clickedOnLink(
@@ -1289,6 +1356,7 @@ extern_protocol!(
             link: Option<&Object>,
         ) -> bool;
 
+        #[cfg(feature = "AppKit_NSTextView")]
         #[optional]
         #[method(textView:clickedOnCell:inRect:)]
         pub unsafe fn textView_clickedOnCell_inRect(
@@ -1298,6 +1366,7 @@ extern_protocol!(
             cellFrame: NSRect,
         );
 
+        #[cfg(feature = "AppKit_NSTextView")]
         #[optional]
         #[method(textView:doubleClickedOnCell:inRect:)]
         pub unsafe fn textView_doubleClickedOnCell_inRect(
@@ -1307,6 +1376,7 @@ extern_protocol!(
             cellFrame: NSRect,
         );
 
+        #[cfg(all(feature = "AppKit_NSEvent", feature = "AppKit_NSTextView"))]
         #[optional]
         #[method(textView:draggedCell:inRect:event:)]
         pub unsafe fn textView_draggedCell_inRect_event(

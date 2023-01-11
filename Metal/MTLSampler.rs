@@ -154,6 +154,7 @@ extern_protocol!(
     pub struct MTLSamplerState;
 
     unsafe impl ProtocolType for MTLSamplerState {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
         pub fn label(&self) -> Option<Id<NSString, Shared>>;
 

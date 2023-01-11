@@ -168,6 +168,7 @@ extern_protocol!(
     pub struct NSSharingServiceDelegate;
 
     unsafe impl ProtocolType for NSSharingServiceDelegate {
+        #[cfg(all(feature = "AppKit_NSSharingService", feature = "Foundation_NSArray"))]
         #[optional]
         #[method(sharingService:willShareItems:)]
         pub unsafe fn sharingService_willShareItems(
@@ -176,6 +177,11 @@ extern_protocol!(
             items: &NSArray,
         );
 
+        #[cfg(all(
+            feature = "AppKit_NSSharingService",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSError"
+        ))]
         #[optional]
         #[method(sharingService:didFailToShareItems:error:)]
         pub unsafe fn sharingService_didFailToShareItems_error(
@@ -185,6 +191,7 @@ extern_protocol!(
             error: &NSError,
         );
 
+        #[cfg(all(feature = "AppKit_NSSharingService", feature = "Foundation_NSArray"))]
         #[optional]
         #[method(sharingService:didShareItems:)]
         pub unsafe fn sharingService_didShareItems(
@@ -193,6 +200,7 @@ extern_protocol!(
             items: &NSArray,
         );
 
+        #[cfg(feature = "AppKit_NSSharingService")]
         #[optional]
         #[method(sharingService:sourceFrameOnScreenForShareItem:)]
         pub unsafe fn sharingService_sourceFrameOnScreenForShareItem(
@@ -201,6 +209,7 @@ extern_protocol!(
             item: &Object,
         ) -> NSRect;
 
+        #[cfg(all(feature = "AppKit_NSImage", feature = "AppKit_NSSharingService"))]
         #[optional]
         #[method_id(@__retain_semantics Other sharingService:transitionImageForShareItem:contentRect:)]
         pub unsafe fn sharingService_transitionImageForShareItem_contentRect(
@@ -210,6 +219,11 @@ extern_protocol!(
             contentRect: NonNull<NSRect>,
         ) -> Option<Id<NSImage, Shared>>;
 
+        #[cfg(all(
+            feature = "AppKit_NSSharingService",
+            feature = "AppKit_NSWindow",
+            feature = "Foundation_NSArray"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other sharingService:sourceWindowForShareItems:sharingContentScope:)]
         pub unsafe fn sharingService_sourceWindowForShareItems_sharingContentScope(
@@ -219,6 +233,7 @@ extern_protocol!(
             sharingContentScope: NonNull<NSSharingContentScope>,
         ) -> Option<Id<NSWindow, Shared>>;
 
+        #[cfg(all(feature = "AppKit_NSSharingService", feature = "AppKit_NSView"))]
         #[optional]
         #[method_id(@__retain_semantics Other anchoringViewForSharingService:showRelativeToRect:preferredEdge:)]
         pub unsafe fn anchoringViewForSharingService_showRelativeToRect_preferredEdge(
@@ -245,6 +260,11 @@ extern_protocol!(
     pub struct NSCloudSharingServiceDelegate;
 
     unsafe impl ProtocolType for NSCloudSharingServiceDelegate {
+        #[cfg(all(
+            feature = "AppKit_NSSharingService",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSError"
+        ))]
         #[optional]
         #[method(sharingService:didCompleteForItems:error:)]
         pub unsafe fn sharingService_didCompleteForItems_error(
@@ -254,6 +274,10 @@ extern_protocol!(
             error: Option<&NSError>,
         );
 
+        #[cfg(all(
+            feature = "AppKit_NSSharingService",
+            feature = "Foundation_NSItemProvider"
+        ))]
         #[optional]
         #[method(optionsForSharingService:shareProvider:)]
         pub unsafe fn optionsForSharingService_shareProvider(
@@ -315,6 +339,11 @@ extern_protocol!(
     pub struct NSSharingServicePickerDelegate;
 
     unsafe impl ProtocolType for NSSharingServicePickerDelegate {
+        #[cfg(all(
+            feature = "AppKit_NSSharingService",
+            feature = "AppKit_NSSharingServicePicker",
+            feature = "Foundation_NSArray"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other sharingServicePicker:sharingServicesForItems:proposedSharingServices:)]
         pub unsafe fn sharingServicePicker_sharingServicesForItems_proposedSharingServices(
@@ -324,6 +353,10 @@ extern_protocol!(
             proposedServices: &NSArray<NSSharingService>,
         ) -> Id<NSArray<NSSharingService>, Shared>;
 
+        #[cfg(all(
+            feature = "AppKit_NSSharingService",
+            feature = "AppKit_NSSharingServicePicker"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other sharingServicePicker:delegateForSharingService:)]
         pub unsafe fn sharingServicePicker_delegateForSharingService(
@@ -332,6 +365,10 @@ extern_protocol!(
             sharingService: &NSSharingService,
         ) -> Option<Id<NSSharingServiceDelegate, Shared>>;
 
+        #[cfg(all(
+            feature = "AppKit_NSSharingService",
+            feature = "AppKit_NSSharingServicePicker"
+        ))]
         #[optional]
         #[method(sharingServicePicker:didChooseSharingService:)]
         pub unsafe fn sharingServicePicker_didChooseSharingService(

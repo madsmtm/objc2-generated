@@ -173,6 +173,10 @@ extern_protocol!(
     pub struct NSMetadataQueryDelegate;
 
     unsafe impl ProtocolType for NSMetadataQueryDelegate {
+        #[cfg(all(
+            feature = "Foundation_NSMetadataItem",
+            feature = "Foundation_NSMetadataQuery"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other metadataQuery:replacementObjectForResultObject:)]
         pub unsafe fn metadataQuery_replacementObjectForResultObject(
@@ -181,6 +185,10 @@ extern_protocol!(
             result: &NSMetadataItem,
         ) -> Id<Object, Shared>;
 
+        #[cfg(all(
+            feature = "Foundation_NSMetadataQuery",
+            feature = "Foundation_NSString"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other metadataQuery:replacementValueForAttribute:value:)]
         pub unsafe fn metadataQuery_replacementValueForAttribute_value(

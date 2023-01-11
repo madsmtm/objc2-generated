@@ -225,6 +225,7 @@ extern_protocol!(
     pub struct NSSpeechSynthesizerDelegate;
 
     unsafe impl ProtocolType for NSSpeechSynthesizerDelegate {
+        #[cfg(feature = "AppKit_NSSpeechSynthesizer")]
         #[optional]
         #[method(speechSynthesizer:didFinishSpeaking:)]
         pub unsafe fn speechSynthesizer_didFinishSpeaking(
@@ -233,6 +234,10 @@ extern_protocol!(
             finishedSpeaking: bool,
         );
 
+        #[cfg(all(
+            feature = "AppKit_NSSpeechSynthesizer",
+            feature = "Foundation_NSString"
+        ))]
         #[optional]
         #[method(speechSynthesizer:willSpeakWord:ofString:)]
         pub unsafe fn speechSynthesizer_willSpeakWord_ofString(
@@ -242,6 +247,7 @@ extern_protocol!(
             string: &NSString,
         );
 
+        #[cfg(feature = "AppKit_NSSpeechSynthesizer")]
         #[optional]
         #[method(speechSynthesizer:willSpeakPhoneme:)]
         pub unsafe fn speechSynthesizer_willSpeakPhoneme(
@@ -250,6 +256,10 @@ extern_protocol!(
             phonemeOpcode: c_short,
         );
 
+        #[cfg(all(
+            feature = "AppKit_NSSpeechSynthesizer",
+            feature = "Foundation_NSString"
+        ))]
         #[optional]
         #[method(speechSynthesizer:didEncounterErrorAtIndex:ofString:message:)]
         pub unsafe fn speechSynthesizer_didEncounterErrorAtIndex_ofString_message(
@@ -260,6 +270,10 @@ extern_protocol!(
             message: &NSString,
         );
 
+        #[cfg(all(
+            feature = "AppKit_NSSpeechSynthesizer",
+            feature = "Foundation_NSString"
+        ))]
         #[optional]
         #[method(speechSynthesizer:didEncounterSyncMessage:)]
         pub unsafe fn speechSynthesizer_didEncounterSyncMessage(

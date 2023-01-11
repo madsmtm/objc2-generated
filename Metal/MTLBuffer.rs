@@ -17,6 +17,7 @@ extern_protocol!(
         #[method(didModifyRange:)]
         pub fn didModifyRange(&self, range: NSRange);
 
+        #[cfg(feature = "Metal_MTLTextureDescriptor")]
         #[method_id(@__retain_semantics New newTextureWithDescriptor:offset:bytesPerRow:)]
         pub fn newTextureWithDescriptor_offset_bytesPerRow(
             &self,
@@ -25,6 +26,7 @@ extern_protocol!(
             bytesPerRow: NSUInteger,
         ) -> Option<Id<MTLTexture, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(addDebugMarker:range:)]
         pub fn addDebugMarker_range(&self, marker: &NSString, range: NSRange);
 

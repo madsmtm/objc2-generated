@@ -248,6 +248,7 @@ extern_protocol!(
     pub struct NSPasteboardTypeOwner;
 
     unsafe impl ProtocolType for NSPasteboardTypeOwner {
+        #[cfg(feature = "AppKit_NSPasteboard")]
         #[method(pasteboard:provideDataForType:)]
         pub unsafe fn pasteboard_provideDataForType(
             &self,
@@ -255,6 +256,7 @@ extern_protocol!(
             type_: &NSPasteboardType,
         );
 
+        #[cfg(feature = "AppKit_NSPasteboard")]
         #[optional]
         #[method(pasteboardChangedOwner:)]
         pub unsafe fn pasteboardChangedOwner(&self, sender: &NSPasteboard);
@@ -272,12 +274,14 @@ extern_protocol!(
     pub struct NSPasteboardWriting;
 
     unsafe impl ProtocolType for NSPasteboardWriting {
+        #[cfg(all(feature = "AppKit_NSPasteboard", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other writableTypesForPasteboard:)]
         pub unsafe fn writableTypesForPasteboard(
             &self,
             pasteboard: &NSPasteboard,
         ) -> Id<NSArray<NSPasteboardType>, Shared>;
 
+        #[cfg(feature = "AppKit_NSPasteboard")]
         #[optional]
         #[method(writingOptionsForType:pasteboard:)]
         pub unsafe fn writingOptionsForType_pasteboard(

@@ -120,6 +120,11 @@ extern_protocol!(
     pub struct NSPathControlDelegate;
 
     unsafe impl ProtocolType for NSPathControlDelegate {
+        #[cfg(all(
+            feature = "AppKit_NSPasteboard",
+            feature = "AppKit_NSPathControl",
+            feature = "AppKit_NSPathControlItem"
+        ))]
         #[optional]
         #[method(pathControl:shouldDragItem:withPasteboard:)]
         pub unsafe fn pathControl_shouldDragItem_withPasteboard(
@@ -129,6 +134,11 @@ extern_protocol!(
             pasteboard: &NSPasteboard,
         ) -> bool;
 
+        #[cfg(all(
+            feature = "AppKit_NSPasteboard",
+            feature = "AppKit_NSPathComponentCell",
+            feature = "AppKit_NSPathControl"
+        ))]
         #[optional]
         #[method(pathControl:shouldDragPathComponentCell:withPasteboard:)]
         pub unsafe fn pathControl_shouldDragPathComponentCell_withPasteboard(
@@ -138,6 +148,7 @@ extern_protocol!(
             pasteboard: &NSPasteboard,
         ) -> bool;
 
+        #[cfg(feature = "AppKit_NSPathControl")]
         #[optional]
         #[method(pathControl:validateDrop:)]
         pub unsafe fn pathControl_validateDrop(
@@ -146,6 +157,7 @@ extern_protocol!(
             info: &NSDraggingInfo,
         ) -> NSDragOperation;
 
+        #[cfg(feature = "AppKit_NSPathControl")]
         #[optional]
         #[method(pathControl:acceptDrop:)]
         pub unsafe fn pathControl_acceptDrop(
@@ -154,6 +166,7 @@ extern_protocol!(
             info: &NSDraggingInfo,
         ) -> bool;
 
+        #[cfg(all(feature = "AppKit_NSOpenPanel", feature = "AppKit_NSPathControl"))]
         #[optional]
         #[method(pathControl:willDisplayOpenPanel:)]
         pub unsafe fn pathControl_willDisplayOpenPanel(
@@ -162,6 +175,7 @@ extern_protocol!(
             openPanel: &NSOpenPanel,
         );
 
+        #[cfg(all(feature = "AppKit_NSMenu", feature = "AppKit_NSPathControl"))]
         #[optional]
         #[method(pathControl:willPopUpMenu:)]
         pub unsafe fn pathControl_willPopUpMenu(&self, pathControl: &NSPathControl, menu: &NSMenu);

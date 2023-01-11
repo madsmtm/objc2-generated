@@ -11,10 +11,12 @@ extern_protocol!(
     pub struct NSSearchFieldDelegate;
 
     unsafe impl ProtocolType for NSSearchFieldDelegate {
+        #[cfg(feature = "AppKit_NSSearchField")]
         #[optional]
         #[method(searchFieldDidStartSearching:)]
         pub unsafe fn searchFieldDidStartSearching(&self, sender: &NSSearchField);
 
+        #[cfg(feature = "AppKit_NSSearchField")]
         #[optional]
         #[method(searchFieldDidEndSearching:)]
         pub unsafe fn searchFieldDidEndSearching(&self, sender: &NSSearchField);

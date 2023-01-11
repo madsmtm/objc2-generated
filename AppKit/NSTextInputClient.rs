@@ -39,6 +39,7 @@ extern_protocol!(
         #[method(hasMarkedText)]
         pub unsafe fn hasMarkedText(&self) -> bool;
 
+        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedSubstringForProposedRange:actualRange:)]
         pub unsafe fn attributedSubstringForProposedRange_actualRange(
             &self,
@@ -46,6 +47,7 @@ extern_protocol!(
             actualRange: NSRangePointer,
         ) -> Option<Id<NSAttributedString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other validAttributesForMarkedText)]
         pub unsafe fn validAttributesForMarkedText(
             &self,
@@ -61,6 +63,7 @@ extern_protocol!(
         #[method(characterIndexForPoint:)]
         pub unsafe fn characterIndexForPoint(&self, point: NSPoint) -> NSUInteger;
 
+        #[cfg(feature = "Foundation_NSAttributedString")]
         #[optional]
         #[method_id(@__retain_semantics Other attributedString)]
         pub unsafe fn attributedString(&self) -> Id<NSAttributedString, Shared>;

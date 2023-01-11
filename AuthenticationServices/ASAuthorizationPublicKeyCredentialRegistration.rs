@@ -8,6 +8,7 @@ extern_protocol!(
     pub struct ASAuthorizationPublicKeyCredentialRegistration;
 
     unsafe impl ProtocolType for ASAuthorizationPublicKeyCredentialRegistration {
+        #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other rawAttestationObject)]
         pub unsafe fn rawAttestationObject(&self) -> Option<Id<NSData, Shared>>;
     }

@@ -225,6 +225,7 @@ extern_protocol!(
     pub struct NSConnectionDelegate;
 
     unsafe impl ProtocolType for NSConnectionDelegate {
+        #[cfg(feature = "Foundation_NSConnection")]
         #[optional]
         #[method(makeNewConnection:sender:)]
         pub unsafe fn makeNewConnection_sender(
@@ -233,6 +234,7 @@ extern_protocol!(
             ancestor: &NSConnection,
         ) -> bool;
 
+        #[cfg(feature = "Foundation_NSConnection")]
         #[optional]
         #[method(connection:shouldMakeNewConnection:)]
         pub unsafe fn connection_shouldMakeNewConnection(
@@ -241,6 +243,7 @@ extern_protocol!(
             conn: &NSConnection,
         ) -> bool;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSData"))]
         #[optional]
         #[method_id(@__retain_semantics Other authenticationDataForComponents:)]
         pub unsafe fn authenticationDataForComponents(
@@ -248,6 +251,7 @@ extern_protocol!(
             components: &NSArray,
         ) -> Id<NSData, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSData"))]
         #[optional]
         #[method(authenticateComponents:withData:)]
         pub unsafe fn authenticateComponents_withData(
@@ -256,6 +260,7 @@ extern_protocol!(
             signature: &NSData,
         ) -> bool;
 
+        #[cfg(feature = "Foundation_NSConnection")]
         #[optional]
         #[method_id(@__retain_semantics Other createConversationForConnection:)]
         pub unsafe fn createConversationForConnection(
@@ -263,6 +268,10 @@ extern_protocol!(
             conn: &NSConnection,
         ) -> Id<Object, Shared>;
 
+        #[cfg(all(
+            feature = "Foundation_NSConnection",
+            feature = "Foundation_NSDistantObjectRequest"
+        ))]
         #[optional]
         #[method(connection:handleRequest:)]
         pub unsafe fn connection_handleRequest(

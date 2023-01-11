@@ -222,6 +222,11 @@ extern_protocol!(
     pub struct NSTextFieldDelegate;
 
     unsafe impl ProtocolType for NSTextFieldDelegate {
+        #[cfg(all(
+            feature = "AppKit_NSTextField",
+            feature = "AppKit_NSTextView",
+            feature = "Foundation_NSArray"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other textField:textView:candidatesForSelectedRange:)]
         pub unsafe fn textField_textView_candidatesForSelectedRange(
@@ -231,6 +236,12 @@ extern_protocol!(
             selectedRange: NSRange,
         ) -> Option<Id<NSArray, Shared>>;
 
+        #[cfg(all(
+            feature = "AppKit_NSTextField",
+            feature = "AppKit_NSTextView",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSTextCheckingResult"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other textField:textView:candidates:forSelectedRange:)]
         pub unsafe fn textField_textView_candidates_forSelectedRange(
@@ -241,6 +252,7 @@ extern_protocol!(
             selectedRange: NSRange,
         ) -> Id<NSArray<NSTextCheckingResult>, Shared>;
 
+        #[cfg(all(feature = "AppKit_NSTextField", feature = "AppKit_NSTextView"))]
         #[optional]
         #[method(textField:textView:shouldSelectCandidateAtIndex:)]
         pub unsafe fn textField_textView_shouldSelectCandidateAtIndex(

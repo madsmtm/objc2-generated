@@ -172,9 +172,11 @@ extern_protocol!(
     pub struct NSTextSelectionDataSource;
 
     unsafe impl ProtocolType for NSTextSelectionDataSource {
+        #[cfg(feature = "AppKit_NSTextRange")]
         #[method_id(@__retain_semantics Other documentRange)]
         pub unsafe fn documentRange(&self) -> Id<NSTextRange, Shared>;
 
+        #[cfg(all(feature = "AppKit_NSTextRange", feature = "Foundation_NSString"))]
         #[method(enumerateSubstringsFromLocation:options:usingBlock:)]
         pub unsafe fn enumerateSubstringsFromLocation_options_usingBlock(
             &self,
@@ -191,6 +193,7 @@ extern_protocol!(
             >,
         );
 
+        #[cfg(feature = "AppKit_NSTextRange")]
         #[method_id(@__retain_semantics Other textRangeForSelectionGranularity:enclosingLocation:)]
         pub unsafe fn textRangeForSelectionGranularity_enclosingLocation(
             &self,
@@ -225,6 +228,7 @@ extern_protocol!(
             block: &Block<(CGFloat, NonNull<NSTextLocation>, Bool, NonNull<Bool>), ()>,
         );
 
+        #[cfg(feature = "AppKit_NSTextRange")]
         #[method_id(@__retain_semantics Other lineFragmentRangeForPoint:inContainerAtLocation:)]
         pub unsafe fn lineFragmentRangeForPoint_inContainerAtLocation(
             &self,

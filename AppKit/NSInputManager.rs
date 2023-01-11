@@ -31,6 +31,7 @@ extern_protocol!(
         #[method(conversationIdentifier)]
         pub unsafe fn conversationIdentifier(&self) -> NSInteger;
 
+        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedSubstringFromRange:)]
         pub unsafe fn attributedSubstringFromRange(
             &self,
@@ -49,6 +50,7 @@ extern_protocol!(
         #[method(characterIndexForPoint:)]
         pub unsafe fn characterIndexForPoint(&self, point: NSPoint) -> NSUInteger;
 
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other validAttributesForMarkedText)]
         pub unsafe fn validAttributesForMarkedText(&self) -> Option<Id<NSArray, Shared>>;
     }

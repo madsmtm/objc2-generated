@@ -515,6 +515,7 @@ extern_protocol!(
     pub struct MTLRenderPipelineState;
 
     unsafe impl ProtocolType for MTLRenderPipelineState {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
         pub unsafe fn label(&self) -> Option<Id<NSString, Shared>>;
 
@@ -546,6 +547,7 @@ extern_protocol!(
             stage: MTLRenderStages,
         ) -> Option<Id<MTLFunctionHandle, Shared>>;
 
+        #[cfg(feature = "Metal_MTLVisibleFunctionTableDescriptor")]
         #[method_id(@__retain_semantics New newVisibleFunctionTableWithDescriptor:stage:)]
         pub unsafe fn newVisibleFunctionTableWithDescriptor_stage(
             &self,
@@ -553,6 +555,7 @@ extern_protocol!(
             stage: MTLRenderStages,
         ) -> Option<Id<MTLVisibleFunctionTable, Shared>>;
 
+        #[cfg(feature = "Metal_MTLIntersectionFunctionTableDescriptor")]
         #[method_id(@__retain_semantics New newIntersectionFunctionTableWithDescriptor:stage:)]
         pub unsafe fn newIntersectionFunctionTableWithDescriptor_stage(
             &self,
@@ -560,6 +563,10 @@ extern_protocol!(
             stage: MTLRenderStages,
         ) -> Option<Id<MTLIntersectionFunctionTable, Shared>>;
 
+        #[cfg(all(
+            feature = "Foundation_NSError",
+            feature = "Metal_MTLRenderPipelineFunctionsDescriptor"
+        ))]
         #[method_id(@__retain_semantics New newRenderPipelineStateWithAdditionalBinaryFunctions:error:_)]
         pub unsafe fn newRenderPipelineStateWithAdditionalBinaryFunctions_error(
             &self,

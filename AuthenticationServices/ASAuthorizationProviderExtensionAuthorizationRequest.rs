@@ -17,12 +17,18 @@ extern_protocol!(
     pub struct ASAuthorizationProviderExtensionAuthorizationRequestHandler;
 
     unsafe impl ProtocolType for ASAuthorizationProviderExtensionAuthorizationRequestHandler {
+        #[cfg(
+            feature = "AuthenticationServices_ASAuthorizationProviderExtensionAuthorizationRequest"
+        )]
         #[method(beginAuthorizationWithRequest:)]
         pub unsafe fn beginAuthorizationWithRequest(
             &self,
             request: &ASAuthorizationProviderExtensionAuthorizationRequest,
         );
 
+        #[cfg(
+            feature = "AuthenticationServices_ASAuthorizationProviderExtensionAuthorizationRequest"
+        )]
         #[optional]
         #[method(cancelAuthorizationWithRequest:)]
         pub unsafe fn cancelAuthorizationWithRequest(

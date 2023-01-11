@@ -92,6 +92,7 @@ extern_protocol!(
     pub struct NSPortDelegate;
 
     unsafe impl ProtocolType for NSPortDelegate {
+        #[cfg(feature = "Foundation_NSPortMessage")]
         #[optional]
         #[method(handlePortMessage:)]
         pub unsafe fn handlePortMessage(&self, message: &NSPortMessage);

@@ -217,14 +217,22 @@ extern_protocol!(
     pub struct NSNetServiceDelegate;
 
     unsafe impl ProtocolType for NSNetServiceDelegate {
+        #[cfg(feature = "Foundation_NSNetService")]
         #[optional]
         #[method(netServiceWillPublish:)]
         pub unsafe fn netServiceWillPublish(&self, sender: &NSNetService);
 
+        #[cfg(feature = "Foundation_NSNetService")]
         #[optional]
         #[method(netServiceDidPublish:)]
         pub unsafe fn netServiceDidPublish(&self, sender: &NSNetService);
 
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSNetService",
+            feature = "Foundation_NSNumber",
+            feature = "Foundation_NSString"
+        ))]
         #[optional]
         #[method(netService:didNotPublish:)]
         pub unsafe fn netService_didNotPublish(
@@ -233,14 +241,22 @@ extern_protocol!(
             errorDict: &NSDictionary<NSString, NSNumber>,
         );
 
+        #[cfg(feature = "Foundation_NSNetService")]
         #[optional]
         #[method(netServiceWillResolve:)]
         pub unsafe fn netServiceWillResolve(&self, sender: &NSNetService);
 
+        #[cfg(feature = "Foundation_NSNetService")]
         #[optional]
         #[method(netServiceDidResolveAddress:)]
         pub unsafe fn netServiceDidResolveAddress(&self, sender: &NSNetService);
 
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSNetService",
+            feature = "Foundation_NSNumber",
+            feature = "Foundation_NSString"
+        ))]
         #[optional]
         #[method(netService:didNotResolve:)]
         pub unsafe fn netService_didNotResolve(
@@ -249,10 +265,12 @@ extern_protocol!(
             errorDict: &NSDictionary<NSString, NSNumber>,
         );
 
+        #[cfg(feature = "Foundation_NSNetService")]
         #[optional]
         #[method(netServiceDidStop:)]
         pub unsafe fn netServiceDidStop(&self, sender: &NSNetService);
 
+        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSNetService"))]
         #[optional]
         #[method(netService:didUpdateTXTRecordData:)]
         pub unsafe fn netService_didUpdateTXTRecordData(
@@ -261,6 +279,11 @@ extern_protocol!(
             data: &NSData,
         );
 
+        #[cfg(all(
+            feature = "Foundation_NSInputStream",
+            feature = "Foundation_NSNetService",
+            feature = "Foundation_NSOutputStream"
+        ))]
         #[optional]
         #[method(netService:didAcceptConnectionWithInputStream:outputStream:)]
         pub unsafe fn netService_didAcceptConnectionWithInputStream_outputStream(
@@ -276,14 +299,22 @@ extern_protocol!(
     pub struct NSNetServiceBrowserDelegate;
 
     unsafe impl ProtocolType for NSNetServiceBrowserDelegate {
+        #[cfg(feature = "Foundation_NSNetServiceBrowser")]
         #[optional]
         #[method(netServiceBrowserWillSearch:)]
         pub unsafe fn netServiceBrowserWillSearch(&self, browser: &NSNetServiceBrowser);
 
+        #[cfg(feature = "Foundation_NSNetServiceBrowser")]
         #[optional]
         #[method(netServiceBrowserDidStopSearch:)]
         pub unsafe fn netServiceBrowserDidStopSearch(&self, browser: &NSNetServiceBrowser);
 
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSNetServiceBrowser",
+            feature = "Foundation_NSNumber",
+            feature = "Foundation_NSString"
+        ))]
         #[optional]
         #[method(netServiceBrowser:didNotSearch:)]
         pub unsafe fn netServiceBrowser_didNotSearch(
@@ -292,6 +323,10 @@ extern_protocol!(
             errorDict: &NSDictionary<NSString, NSNumber>,
         );
 
+        #[cfg(all(
+            feature = "Foundation_NSNetServiceBrowser",
+            feature = "Foundation_NSString"
+        ))]
         #[optional]
         #[method(netServiceBrowser:didFindDomain:moreComing:)]
         pub unsafe fn netServiceBrowser_didFindDomain_moreComing(
@@ -301,6 +336,10 @@ extern_protocol!(
             moreComing: bool,
         );
 
+        #[cfg(all(
+            feature = "Foundation_NSNetService",
+            feature = "Foundation_NSNetServiceBrowser"
+        ))]
         #[optional]
         #[method(netServiceBrowser:didFindService:moreComing:)]
         pub unsafe fn netServiceBrowser_didFindService_moreComing(
@@ -310,6 +349,10 @@ extern_protocol!(
             moreComing: bool,
         );
 
+        #[cfg(all(
+            feature = "Foundation_NSNetServiceBrowser",
+            feature = "Foundation_NSString"
+        ))]
         #[optional]
         #[method(netServiceBrowser:didRemoveDomain:moreComing:)]
         pub unsafe fn netServiceBrowser_didRemoveDomain_moreComing(
@@ -319,6 +362,10 @@ extern_protocol!(
             moreComing: bool,
         );
 
+        #[cfg(all(
+            feature = "Foundation_NSNetService",
+            feature = "Foundation_NSNetServiceBrowser"
+        ))]
         #[optional]
         #[method(netServiceBrowser:didRemoveService:moreComing:)]
         pub unsafe fn netServiceBrowser_didRemoveService_moreComing(

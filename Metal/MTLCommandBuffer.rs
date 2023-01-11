@@ -89,9 +89,11 @@ extern_protocol!(
     pub struct MTLCommandBufferEncoderInfo;
 
     unsafe impl ProtocolType for MTLCommandBufferEncoderInfo {
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
         pub unsafe fn label(&self) -> Id<NSString, Shared>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other debugSignposts)]
         pub unsafe fn debugSignposts(&self) -> Id<NSArray<NSString>, Shared>;
 
@@ -126,9 +128,11 @@ extern_protocol!(
         #[method(errorOptions)]
         pub unsafe fn errorOptions(&self) -> MTLCommandBufferErrorOption;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
         pub fn label(&self) -> Option<Id<NSString, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:)]
         pub fn setLabel(&self, label: Option<&NSString>);
 
@@ -185,24 +189,28 @@ extern_protocol!(
         #[method(status)]
         pub fn status(&self) -> MTLCommandBufferStatus;
 
+        #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other error)]
         pub unsafe fn error(&self) -> Option<Id<NSError, Shared>>;
 
         #[method_id(@__retain_semantics Other blitCommandEncoder)]
         pub fn blitCommandEncoder(&self) -> Option<Id<MTLBlitCommandEncoder, Shared>>;
 
+        #[cfg(feature = "Metal_MTLRenderPassDescriptor")]
         #[method_id(@__retain_semantics Other renderCommandEncoderWithDescriptor:)]
         pub fn renderCommandEncoderWithDescriptor(
             &self,
             renderPassDescriptor: &MTLRenderPassDescriptor,
         ) -> Option<Id<MTLRenderCommandEncoder, Shared>>;
 
+        #[cfg(feature = "Metal_MTLComputePassDescriptor")]
         #[method_id(@__retain_semantics Other computeCommandEncoderWithDescriptor:)]
         pub unsafe fn computeCommandEncoderWithDescriptor(
             &self,
             computePassDescriptor: &MTLComputePassDescriptor,
         ) -> Option<Id<MTLComputeCommandEncoder, Shared>>;
 
+        #[cfg(feature = "Metal_MTLBlitPassDescriptor")]
         #[method_id(@__retain_semantics Other blitCommandEncoderWithDescriptor:)]
         pub unsafe fn blitCommandEncoderWithDescriptor(
             &self,
@@ -224,6 +232,7 @@ extern_protocol!(
         #[method(encodeSignalEvent:value:)]
         pub fn encodeSignalEvent_value(&self, event: &MTLEvent, value: u64);
 
+        #[cfg(feature = "Metal_MTLRenderPassDescriptor")]
         #[method_id(@__retain_semantics Other parallelRenderCommandEncoderWithDescriptor:)]
         pub fn parallelRenderCommandEncoderWithDescriptor(
             &self,
@@ -235,6 +244,7 @@ extern_protocol!(
             &self,
         ) -> Option<Id<MTLResourceStateCommandEncoder, Shared>>;
 
+        #[cfg(feature = "Metal_MTLResourceStatePassDescriptor")]
         #[method_id(@__retain_semantics Other resourceStateCommandEncoderWithDescriptor:)]
         pub unsafe fn resourceStateCommandEncoderWithDescriptor(
             &self,
@@ -246,6 +256,7 @@ extern_protocol!(
             &self,
         ) -> Option<Id<MTLAccelerationStructureCommandEncoder, Shared>>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(pushDebugGroup:)]
         pub fn pushDebugGroup(&self, string: &NSString);
 

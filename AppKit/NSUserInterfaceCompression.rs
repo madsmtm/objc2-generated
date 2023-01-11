@@ -86,18 +86,27 @@ extern_protocol!(
     pub struct NSUserInterfaceCompression;
 
     unsafe impl ProtocolType for NSUserInterfaceCompression {
+        #[cfg(all(
+            feature = "AppKit_NSUserInterfaceCompressionOptions",
+            feature = "Foundation_NSArray"
+        ))]
         #[method(compressWithPrioritizedCompressionOptions:)]
         pub unsafe fn compressWithPrioritizedCompressionOptions(
             &self,
             prioritizedOptions: &NSArray<NSUserInterfaceCompressionOptions>,
         );
 
+        #[cfg(all(
+            feature = "AppKit_NSUserInterfaceCompressionOptions",
+            feature = "Foundation_NSArray"
+        ))]
         #[method(minimumSizeWithPrioritizedCompressionOptions:)]
         pub unsafe fn minimumSizeWithPrioritizedCompressionOptions(
             &self,
             prioritizedOptions: &NSArray<NSUserInterfaceCompressionOptions>,
         ) -> NSSize;
 
+        #[cfg(feature = "AppKit_NSUserInterfaceCompressionOptions")]
         #[method_id(@__retain_semantics Other activeCompressionOptions)]
         pub unsafe fn activeCompressionOptions(
             &self,

@@ -269,18 +269,22 @@ extern_protocol!(
     pub struct NSControlTextEditingDelegate;
 
     unsafe impl ProtocolType for NSControlTextEditingDelegate {
+        #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(controlTextDidBeginEditing:)]
         pub unsafe fn controlTextDidBeginEditing(&self, obj: &NSNotification);
 
+        #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(controlTextDidEndEditing:)]
         pub unsafe fn controlTextDidEndEditing(&self, obj: &NSNotification);
 
+        #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(controlTextDidChange:)]
         pub unsafe fn controlTextDidChange(&self, obj: &NSNotification);
 
+        #[cfg(all(feature = "AppKit_NSControl", feature = "AppKit_NSText"))]
         #[optional]
         #[method(control:textShouldBeginEditing:)]
         pub unsafe fn control_textShouldBeginEditing(
@@ -289,6 +293,7 @@ extern_protocol!(
             fieldEditor: &NSText,
         ) -> bool;
 
+        #[cfg(all(feature = "AppKit_NSControl", feature = "AppKit_NSText"))]
         #[optional]
         #[method(control:textShouldEndEditing:)]
         pub unsafe fn control_textShouldEndEditing(
@@ -297,6 +302,7 @@ extern_protocol!(
             fieldEditor: &NSText,
         ) -> bool;
 
+        #[cfg(all(feature = "AppKit_NSControl", feature = "Foundation_NSString"))]
         #[optional]
         #[method(control:didFailToFormatString:errorDescription:)]
         pub unsafe fn control_didFailToFormatString_errorDescription(
@@ -306,6 +312,7 @@ extern_protocol!(
             error: Option<&NSString>,
         ) -> bool;
 
+        #[cfg(all(feature = "AppKit_NSControl", feature = "Foundation_NSString"))]
         #[optional]
         #[method(control:didFailToValidatePartialString:errorDescription:)]
         pub unsafe fn control_didFailToValidatePartialString_errorDescription(
@@ -315,6 +322,7 @@ extern_protocol!(
             error: Option<&NSString>,
         );
 
+        #[cfg(feature = "AppKit_NSControl")]
         #[optional]
         #[method(control:isValidObject:)]
         pub unsafe fn control_isValidObject(
@@ -323,6 +331,7 @@ extern_protocol!(
             obj: Option<&Object>,
         ) -> bool;
 
+        #[cfg(all(feature = "AppKit_NSControl", feature = "AppKit_NSTextView"))]
         #[optional]
         #[method(control:textView:doCommandBySelector:)]
         pub unsafe fn control_textView_doCommandBySelector(
@@ -332,6 +341,12 @@ extern_protocol!(
             commandSelector: Sel,
         ) -> bool;
 
+        #[cfg(all(
+            feature = "AppKit_NSControl",
+            feature = "AppKit_NSTextView",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other control:textView:completions:forPartialWordRange:indexOfSelectedItem:)]
         pub unsafe fn control_textView_completions_forPartialWordRange_indexOfSelectedItem(

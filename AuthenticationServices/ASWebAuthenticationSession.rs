@@ -81,6 +81,7 @@ extern_protocol!(
     pub struct ASWebAuthenticationPresentationContextProviding;
 
     unsafe impl ProtocolType for ASWebAuthenticationPresentationContextProviding {
+        #[cfg(feature = "AuthenticationServices_ASWebAuthenticationSession")]
         #[method_id(@__retain_semantics Other presentationAnchorForWebAuthenticationSession:)]
         pub unsafe fn presentationAnchorForWebAuthenticationSession(
             &self,

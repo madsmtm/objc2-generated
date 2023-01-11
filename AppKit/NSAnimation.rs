@@ -154,18 +154,22 @@ extern_protocol!(
     pub struct NSAnimationDelegate;
 
     unsafe impl ProtocolType for NSAnimationDelegate {
+        #[cfg(feature = "AppKit_NSAnimation")]
         #[optional]
         #[method(animationShouldStart:)]
         pub unsafe fn animationShouldStart(&self, animation: &NSAnimation) -> bool;
 
+        #[cfg(feature = "AppKit_NSAnimation")]
         #[optional]
         #[method(animationDidStop:)]
         pub unsafe fn animationDidStop(&self, animation: &NSAnimation);
 
+        #[cfg(feature = "AppKit_NSAnimation")]
         #[optional]
         #[method(animationDidEnd:)]
         pub unsafe fn animationDidEnd(&self, animation: &NSAnimation);
 
+        #[cfg(feature = "AppKit_NSAnimation")]
         #[optional]
         #[method(animation:valueForProgress:)]
         pub unsafe fn animation_valueForProgress(
@@ -174,6 +178,7 @@ extern_protocol!(
             progress: NSAnimationProgress,
         ) -> c_float;
 
+        #[cfg(feature = "AppKit_NSAnimation")]
         #[optional]
         #[method(animation:didReachProgressMark:)]
         pub unsafe fn animation_didReachProgressMark(
@@ -250,11 +255,13 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other animator)]
         pub unsafe fn animator(&self) -> Id<Self, Shared>;
 
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other animations)]
         pub unsafe fn animations(
             &self,
         ) -> Id<NSDictionary<NSAnimatablePropertyKey, Object>, Shared>;
 
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method(setAnimations:)]
         pub unsafe fn setAnimations(
             &self,

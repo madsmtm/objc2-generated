@@ -9,9 +9,11 @@ extern_protocol!(
     pub struct NSScrubberDataSource;
 
     unsafe impl ProtocolType for NSScrubberDataSource {
+        #[cfg(feature = "AppKit_NSScrubber")]
         #[method(numberOfItemsForScrubber:)]
         pub unsafe fn numberOfItemsForScrubber(&self, scrubber: &NSScrubber) -> NSInteger;
 
+        #[cfg(all(feature = "AppKit_NSScrubber", feature = "AppKit_NSScrubberItemView"))]
         #[method_id(@__retain_semantics Other scrubber:viewForItemAtIndex:)]
         pub unsafe fn scrubber_viewForItemAtIndex(
             &self,
@@ -25,6 +27,7 @@ extern_protocol!(
     pub struct NSScrubberDelegate;
 
     unsafe impl ProtocolType for NSScrubberDelegate {
+        #[cfg(feature = "AppKit_NSScrubber")]
         #[optional]
         #[method(scrubber:didSelectItemAtIndex:)]
         pub unsafe fn scrubber_didSelectItemAtIndex(
@@ -33,6 +36,7 @@ extern_protocol!(
             selectedIndex: NSInteger,
         );
 
+        #[cfg(feature = "AppKit_NSScrubber")]
         #[optional]
         #[method(scrubber:didHighlightItemAtIndex:)]
         pub unsafe fn scrubber_didHighlightItemAtIndex(
@@ -41,6 +45,7 @@ extern_protocol!(
             highlightedIndex: NSInteger,
         );
 
+        #[cfg(feature = "AppKit_NSScrubber")]
         #[optional]
         #[method(scrubber:didChangeVisibleRange:)]
         pub unsafe fn scrubber_didChangeVisibleRange(
@@ -49,14 +54,17 @@ extern_protocol!(
             visibleRange: NSRange,
         );
 
+        #[cfg(feature = "AppKit_NSScrubber")]
         #[optional]
         #[method(didBeginInteractingWithScrubber:)]
         pub unsafe fn didBeginInteractingWithScrubber(&self, scrubber: &NSScrubber);
 
+        #[cfg(feature = "AppKit_NSScrubber")]
         #[optional]
         #[method(didFinishInteractingWithScrubber:)]
         pub unsafe fn didFinishInteractingWithScrubber(&self, scrubber: &NSScrubber);
 
+        #[cfg(feature = "AppKit_NSScrubber")]
         #[optional]
         #[method(didCancelInteractingWithScrubber:)]
         pub unsafe fn didCancelInteractingWithScrubber(&self, scrubber: &NSScrubber);
