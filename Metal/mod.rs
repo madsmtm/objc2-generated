@@ -106,49 +106,74 @@ mod __MTLVertexDescriptor;
 #[path = "MTLVisibleFunctionTable.rs"]
 mod __MTLVisibleFunctionTable;
 
+pub use self::__MTLAccelerationStructure::MTLAccelerationStructure;
+pub use self::__MTLAccelerationStructure::MTLAccelerationStructureBoundingBoxGeometryDescriptor;
+pub use self::__MTLAccelerationStructure::MTLAccelerationStructureDescriptor;
+pub use self::__MTLAccelerationStructure::MTLAccelerationStructureGeometryDescriptor;
+pub use self::__MTLAccelerationStructure::MTLAccelerationStructureInstanceDescriptor;
+pub use self::__MTLAccelerationStructure::MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor;
+pub use self::__MTLAccelerationStructure::MTLAccelerationStructureMotionInstanceDescriptor;
+pub use self::__MTLAccelerationStructure::MTLAccelerationStructureMotionTriangleGeometryDescriptor;
+pub use self::__MTLAccelerationStructure::MTLAccelerationStructureTriangleGeometryDescriptor;
+pub use self::__MTLAccelerationStructure::MTLAccelerationStructureUserIDInstanceDescriptor;
+pub use self::__MTLAccelerationStructure::MTLInstanceAccelerationStructureDescriptor;
+pub use self::__MTLAccelerationStructure::MTLMotionKeyframeData;
+pub use self::__MTLAccelerationStructure::MTLPrimitiveAccelerationStructureDescriptor;
 pub use self::__MTLAccelerationStructure::{
-    MTLAccelerationStructure, MTLAccelerationStructureBoundingBoxGeometryDescriptor,
-    MTLAccelerationStructureDescriptor, MTLAccelerationStructureGeometryDescriptor,
-    MTLAccelerationStructureInstanceDescriptor, MTLAccelerationStructureInstanceDescriptorType,
+    MTLAccelerationStructureInstanceDescriptorType,
     MTLAccelerationStructureInstanceDescriptorTypeDefault,
     MTLAccelerationStructureInstanceDescriptorTypeMotion,
     MTLAccelerationStructureInstanceDescriptorTypeUserID,
+};
+pub use self::__MTLAccelerationStructure::{
     MTLAccelerationStructureInstanceOptionDisableTriangleCulling,
     MTLAccelerationStructureInstanceOptionNonOpaque, MTLAccelerationStructureInstanceOptionNone,
     MTLAccelerationStructureInstanceOptionOpaque,
     MTLAccelerationStructureInstanceOptionTriangleFrontFacingWindingCounterClockwise,
     MTLAccelerationStructureInstanceOptions,
-    MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor,
-    MTLAccelerationStructureMotionInstanceDescriptor,
-    MTLAccelerationStructureMotionTriangleGeometryDescriptor,
-    MTLAccelerationStructureTriangleGeometryDescriptor, MTLAccelerationStructureUsage,
-    MTLAccelerationStructureUsageExtendedLimits, MTLAccelerationStructureUsageNone,
-    MTLAccelerationStructureUsagePreferFastBuild, MTLAccelerationStructureUsageRefit,
-    MTLAccelerationStructureUserIDInstanceDescriptor, MTLInstanceAccelerationStructureDescriptor,
+};
+pub use self::__MTLAccelerationStructure::{
+    MTLAccelerationStructureUsage, MTLAccelerationStructureUsageExtendedLimits,
+    MTLAccelerationStructureUsageNone, MTLAccelerationStructureUsagePreferFastBuild,
+    MTLAccelerationStructureUsageRefit,
+};
+pub use self::__MTLAccelerationStructure::{
     MTLMotionBorderMode, MTLMotionBorderModeClamp, MTLMotionBorderModeVanish,
-    MTLMotionKeyframeData, MTLPrimitiveAccelerationStructureDescriptor,
 };
 pub use self::__MTLAccelerationStructureCommandEncoder::MTLAccelerationStructureCommandEncoder;
-pub use self::__MTLAccelerationStructureTypes::{MTLAxisAlignedBoundingBox, MTLPackedFloat4x3};
+pub use self::__MTLAccelerationStructureTypes::MTLAxisAlignedBoundingBox;
+pub use self::__MTLAccelerationStructureTypes::MTLPackedFloat4x3;
+pub use self::__MTLArgument::MTLArgument;
+pub use self::__MTLArgument::MTLArrayType;
+pub use self::__MTLArgument::MTLPointerType;
+pub use self::__MTLArgument::MTLStructMember;
+pub use self::__MTLArgument::MTLStructType;
+pub use self::__MTLArgument::MTLTextureReferenceType;
+pub use self::__MTLArgument::MTLType;
 pub use self::__MTLArgument::{
-    MTLArgument, MTLArgumentAccess, MTLArgumentAccessReadOnly, MTLArgumentAccessReadWrite,
-    MTLArgumentAccessWriteOnly, MTLArgumentType, MTLArgumentTypeBuffer, MTLArgumentTypeImageblock,
+    MTLArgumentAccess, MTLArgumentAccessReadOnly, MTLArgumentAccessReadWrite,
+    MTLArgumentAccessWriteOnly,
+};
+pub use self::__MTLArgument::{
+    MTLArgumentType, MTLArgumentTypeBuffer, MTLArgumentTypeImageblock,
     MTLArgumentTypeImageblockData, MTLArgumentTypeInstanceAccelerationStructure,
     MTLArgumentTypeIntersectionFunctionTable, MTLArgumentTypePrimitiveAccelerationStructure,
     MTLArgumentTypeSampler, MTLArgumentTypeTexture, MTLArgumentTypeThreadgroupMemory,
-    MTLArgumentTypeVisibleFunctionTable, MTLArrayType, MTLDataType, MTLDataTypeArray,
-    MTLDataTypeBool, MTLDataTypeBool2, MTLDataTypeBool3, MTLDataTypeBool4, MTLDataTypeChar,
-    MTLDataTypeChar2, MTLDataTypeChar3, MTLDataTypeChar4, MTLDataTypeComputePipeline,
-    MTLDataTypeFloat, MTLDataTypeFloat2, MTLDataTypeFloat2x2, MTLDataTypeFloat2x3,
-    MTLDataTypeFloat2x4, MTLDataTypeFloat3, MTLDataTypeFloat3x2, MTLDataTypeFloat3x3,
-    MTLDataTypeFloat3x4, MTLDataTypeFloat4, MTLDataTypeFloat4x2, MTLDataTypeFloat4x3,
-    MTLDataTypeFloat4x4, MTLDataTypeHalf, MTLDataTypeHalf2, MTLDataTypeHalf2x2, MTLDataTypeHalf2x3,
-    MTLDataTypeHalf2x4, MTLDataTypeHalf3, MTLDataTypeHalf3x2, MTLDataTypeHalf3x3,
-    MTLDataTypeHalf3x4, MTLDataTypeHalf4, MTLDataTypeHalf4x2, MTLDataTypeHalf4x3,
-    MTLDataTypeHalf4x4, MTLDataTypeIndirectCommandBuffer, MTLDataTypeInstanceAccelerationStructure,
-    MTLDataTypeInt, MTLDataTypeInt2, MTLDataTypeInt3, MTLDataTypeInt4,
-    MTLDataTypeIntersectionFunctionTable, MTLDataTypeLong, MTLDataTypeLong2, MTLDataTypeLong3,
-    MTLDataTypeLong4, MTLDataTypeNone, MTLDataTypePointer,
+    MTLArgumentTypeVisibleFunctionTable,
+};
+pub use self::__MTLArgument::{
+    MTLDataType, MTLDataTypeArray, MTLDataTypeBool, MTLDataTypeBool2, MTLDataTypeBool3,
+    MTLDataTypeBool4, MTLDataTypeChar, MTLDataTypeChar2, MTLDataTypeChar3, MTLDataTypeChar4,
+    MTLDataTypeComputePipeline, MTLDataTypeFloat, MTLDataTypeFloat2, MTLDataTypeFloat2x2,
+    MTLDataTypeFloat2x3, MTLDataTypeFloat2x4, MTLDataTypeFloat3, MTLDataTypeFloat3x2,
+    MTLDataTypeFloat3x3, MTLDataTypeFloat3x4, MTLDataTypeFloat4, MTLDataTypeFloat4x2,
+    MTLDataTypeFloat4x3, MTLDataTypeFloat4x4, MTLDataTypeHalf, MTLDataTypeHalf2,
+    MTLDataTypeHalf2x2, MTLDataTypeHalf2x3, MTLDataTypeHalf2x4, MTLDataTypeHalf3,
+    MTLDataTypeHalf3x2, MTLDataTypeHalf3x3, MTLDataTypeHalf3x4, MTLDataTypeHalf4,
+    MTLDataTypeHalf4x2, MTLDataTypeHalf4x3, MTLDataTypeHalf4x4, MTLDataTypeIndirectCommandBuffer,
+    MTLDataTypeInstanceAccelerationStructure, MTLDataTypeInt, MTLDataTypeInt2, MTLDataTypeInt3,
+    MTLDataTypeInt4, MTLDataTypeIntersectionFunctionTable, MTLDataTypeLong, MTLDataTypeLong2,
+    MTLDataTypeLong3, MTLDataTypeLong4, MTLDataTypeNone, MTLDataTypePointer,
     MTLDataTypePrimitiveAccelerationStructure, MTLDataTypeR16Snorm, MTLDataTypeR16Unorm,
     MTLDataTypeR8Snorm, MTLDataTypeR8Unorm, MTLDataTypeRG11B10Float, MTLDataTypeRG16Snorm,
     MTLDataTypeRG16Unorm, MTLDataTypeRG8Snorm, MTLDataTypeRG8Unorm, MTLDataTypeRGB10A2Unorm,
@@ -159,193 +184,287 @@ pub use self::__MTLArgument::{
     MTLDataTypeUChar4, MTLDataTypeUInt, MTLDataTypeUInt2, MTLDataTypeUInt3, MTLDataTypeUInt4,
     MTLDataTypeULong, MTLDataTypeULong2, MTLDataTypeULong3, MTLDataTypeULong4, MTLDataTypeUShort,
     MTLDataTypeUShort2, MTLDataTypeUShort3, MTLDataTypeUShort4, MTLDataTypeVisibleFunctionTable,
-    MTLPointerType, MTLStructMember, MTLStructType, MTLTextureReferenceType, MTLType,
 };
 pub use self::__MTLArgumentEncoder::MTLArgumentEncoder;
+pub use self::__MTLBinaryArchive::MTLBinaryArchive;
+pub use self::__MTLBinaryArchive::MTLBinaryArchiveDescriptor;
+pub use self::__MTLBinaryArchive::MTLBinaryArchiveDomain;
 pub use self::__MTLBinaryArchive::{
-    MTLBinaryArchive, MTLBinaryArchiveDescriptor, MTLBinaryArchiveDomain, MTLBinaryArchiveError,
-    MTLBinaryArchiveErrorCompilationFailure, MTLBinaryArchiveErrorInvalidFile,
-    MTLBinaryArchiveErrorNone, MTLBinaryArchiveErrorUnexpectedElement,
+    MTLBinaryArchiveError, MTLBinaryArchiveErrorCompilationFailure,
+    MTLBinaryArchiveErrorInvalidFile, MTLBinaryArchiveErrorNone,
+    MTLBinaryArchiveErrorUnexpectedElement,
 };
+pub use self::__MTLBlitCommandEncoder::MTLBlitCommandEncoder;
 pub use self::__MTLBlitCommandEncoder::{
-    MTLBlitCommandEncoder, MTLBlitOption, MTLBlitOptionDepthFromDepthStencil, MTLBlitOptionNone,
+    MTLBlitOption, MTLBlitOptionDepthFromDepthStencil, MTLBlitOptionNone,
     MTLBlitOptionRowLinearPVRTC, MTLBlitOptionStencilFromDepthStencil,
 };
-pub use self::__MTLBlitPass::{
-    MTLBlitPassDescriptor, MTLBlitPassSampleBufferAttachmentDescriptor,
-    MTLBlitPassSampleBufferAttachmentDescriptorArray,
-};
+pub use self::__MTLBlitPass::MTLBlitPassDescriptor;
+pub use self::__MTLBlitPass::MTLBlitPassSampleBufferAttachmentDescriptor;
+pub use self::__MTLBlitPass::MTLBlitPassSampleBufferAttachmentDescriptorArray;
 pub use self::__MTLBuffer::MTLBuffer;
+pub use self::__MTLCaptureManager::MTLCaptureDescriptor;
+pub use self::__MTLCaptureManager::MTLCaptureErrorDomain;
+pub use self::__MTLCaptureManager::MTLCaptureManager;
 pub use self::__MTLCaptureManager::{
-    MTLCaptureDescriptor, MTLCaptureDestination, MTLCaptureDestinationDeveloperTools,
-    MTLCaptureDestinationGPUTraceDocument, MTLCaptureError, MTLCaptureErrorAlreadyCapturing,
-    MTLCaptureErrorDomain, MTLCaptureErrorInvalidDescriptor, MTLCaptureErrorNotSupported,
-    MTLCaptureManager,
+    MTLCaptureDestination, MTLCaptureDestinationDeveloperTools,
+    MTLCaptureDestinationGPUTraceDocument,
+};
+pub use self::__MTLCaptureManager::{
+    MTLCaptureError, MTLCaptureErrorAlreadyCapturing, MTLCaptureErrorInvalidDescriptor,
+    MTLCaptureErrorNotSupported,
 };
 pub use self::__MTLCaptureScope::MTLCaptureScope;
+pub use self::__MTLCommandBuffer::MTLCommandBuffer;
+pub use self::__MTLCommandBuffer::MTLCommandBufferDescriptor;
+pub use self::__MTLCommandBuffer::MTLCommandBufferEncoderInfo;
+pub use self::__MTLCommandBuffer::MTLCommandBufferEncoderInfoErrorKey;
+pub use self::__MTLCommandBuffer::MTLCommandBufferErrorDomain;
+pub use self::__MTLCommandBuffer::MTLCommandBufferHandler;
 pub use self::__MTLCommandBuffer::{
-    MTLCommandBuffer, MTLCommandBufferDescriptor, MTLCommandBufferEncoderInfo,
-    MTLCommandBufferEncoderInfoErrorKey, MTLCommandBufferError, MTLCommandBufferErrorAccessRevoked,
-    MTLCommandBufferErrorBlacklisted, MTLCommandBufferErrorDeviceRemoved,
-    MTLCommandBufferErrorDomain, MTLCommandBufferErrorInternal,
+    MTLCommandBufferError, MTLCommandBufferErrorAccessRevoked, MTLCommandBufferErrorBlacklisted,
+    MTLCommandBufferErrorDeviceRemoved, MTLCommandBufferErrorInternal,
     MTLCommandBufferErrorInvalidResource, MTLCommandBufferErrorMemoryless,
-    MTLCommandBufferErrorNone, MTLCommandBufferErrorNotPermitted, MTLCommandBufferErrorOption,
-    MTLCommandBufferErrorOptionEncoderExecutionStatus, MTLCommandBufferErrorOptionNone,
-    MTLCommandBufferErrorOutOfMemory, MTLCommandBufferErrorPageFault,
-    MTLCommandBufferErrorStackOverflow, MTLCommandBufferErrorTimeout, MTLCommandBufferHandler,
+    MTLCommandBufferErrorNone, MTLCommandBufferErrorNotPermitted, MTLCommandBufferErrorOutOfMemory,
+    MTLCommandBufferErrorPageFault, MTLCommandBufferErrorStackOverflow,
+    MTLCommandBufferErrorTimeout,
+};
+pub use self::__MTLCommandBuffer::{
+    MTLCommandBufferErrorOption, MTLCommandBufferErrorOptionEncoderExecutionStatus,
+    MTLCommandBufferErrorOptionNone,
+};
+pub use self::__MTLCommandBuffer::{
     MTLCommandBufferStatus, MTLCommandBufferStatusCommitted, MTLCommandBufferStatusCompleted,
     MTLCommandBufferStatusEnqueued, MTLCommandBufferStatusError, MTLCommandBufferStatusNotEnqueued,
-    MTLCommandBufferStatusScheduled, MTLCommandEncoderErrorState,
-    MTLCommandEncoderErrorStateAffected, MTLCommandEncoderErrorStateCompleted,
-    MTLCommandEncoderErrorStateFaulted, MTLCommandEncoderErrorStatePending,
-    MTLCommandEncoderErrorStateUnknown, MTLDispatchType, MTLDispatchTypeConcurrent,
-    MTLDispatchTypeSerial,
+    MTLCommandBufferStatusScheduled,
 };
+pub use self::__MTLCommandBuffer::{
+    MTLCommandEncoderErrorState, MTLCommandEncoderErrorStateAffected,
+    MTLCommandEncoderErrorStateCompleted, MTLCommandEncoderErrorStateFaulted,
+    MTLCommandEncoderErrorStatePending, MTLCommandEncoderErrorStateUnknown,
+};
+pub use self::__MTLCommandBuffer::{
+    MTLDispatchType, MTLDispatchTypeConcurrent, MTLDispatchTypeSerial,
+};
+pub use self::__MTLCommandEncoder::MTLCommandEncoder;
 pub use self::__MTLCommandEncoder::{
     MTLBarrierScope, MTLBarrierScopeBuffers, MTLBarrierScopeRenderTargets, MTLBarrierScopeTextures,
-    MTLCommandEncoder, MTLResourceUsage, MTLResourceUsageRead, MTLResourceUsageSample,
-    MTLResourceUsageWrite,
+};
+pub use self::__MTLCommandEncoder::{
+    MTLResourceUsage, MTLResourceUsageRead, MTLResourceUsageSample, MTLResourceUsageWrite,
 };
 pub use self::__MTLCommandQueue::MTLCommandQueue;
-pub use self::__MTLComputeCommandEncoder::{
-    MTLComputeCommandEncoder, MTLDispatchThreadgroupsIndirectArguments,
-    MTLStageInRegionIndirectArguments,
-};
-pub use self::__MTLComputePass::{
-    MTLComputePassDescriptor, MTLComputePassSampleBufferAttachmentDescriptor,
-    MTLComputePassSampleBufferAttachmentDescriptorArray,
-};
-pub use self::__MTLComputePipeline::{
-    MTLComputePipelineDescriptor, MTLComputePipelineReflection, MTLComputePipelineState,
-};
+pub use self::__MTLComputeCommandEncoder::MTLComputeCommandEncoder;
+pub use self::__MTLComputeCommandEncoder::MTLDispatchThreadgroupsIndirectArguments;
+pub use self::__MTLComputeCommandEncoder::MTLStageInRegionIndirectArguments;
+pub use self::__MTLComputePass::MTLComputePassDescriptor;
+pub use self::__MTLComputePass::MTLComputePassSampleBufferAttachmentDescriptor;
+pub use self::__MTLComputePass::MTLComputePassSampleBufferAttachmentDescriptorArray;
+pub use self::__MTLComputePipeline::MTLComputePipelineDescriptor;
+pub use self::__MTLComputePipeline::MTLComputePipelineReflection;
+pub use self::__MTLComputePipeline::MTLComputePipelineState;
+pub use self::__MTLCounters::MTLCommonCounter;
+pub use self::__MTLCounters::MTLCommonCounterClipperInvocations;
+pub use self::__MTLCounters::MTLCommonCounterClipperPrimitivesOut;
+pub use self::__MTLCounters::MTLCommonCounterComputeKernelInvocations;
+pub use self::__MTLCounters::MTLCommonCounterFragmentCycles;
+pub use self::__MTLCounters::MTLCommonCounterFragmentInvocations;
+pub use self::__MTLCounters::MTLCommonCounterFragmentsPassed;
+pub use self::__MTLCounters::MTLCommonCounterPostTessellationVertexCycles;
+pub use self::__MTLCounters::MTLCommonCounterPostTessellationVertexInvocations;
+pub use self::__MTLCounters::MTLCommonCounterRenderTargetWriteCycles;
+pub use self::__MTLCounters::MTLCommonCounterSet;
+pub use self::__MTLCounters::MTLCommonCounterSetStageUtilization;
+pub use self::__MTLCounters::MTLCommonCounterSetStatistic;
+pub use self::__MTLCounters::MTLCommonCounterSetTimestamp;
+pub use self::__MTLCounters::MTLCommonCounterTessellationCycles;
+pub use self::__MTLCounters::MTLCommonCounterTessellationInputPatches;
+pub use self::__MTLCounters::MTLCommonCounterTimestamp;
+pub use self::__MTLCounters::MTLCommonCounterTotalCycles;
+pub use self::__MTLCounters::MTLCommonCounterVertexCycles;
+pub use self::__MTLCounters::MTLCommonCounterVertexInvocations;
+pub use self::__MTLCounters::MTLCounter;
+pub use self::__MTLCounters::MTLCounterErrorDomain;
+pub use self::__MTLCounters::MTLCounterResultStageUtilization;
+pub use self::__MTLCounters::MTLCounterResultStatistic;
+pub use self::__MTLCounters::MTLCounterResultTimestamp;
+pub use self::__MTLCounters::MTLCounterSampleBuffer;
+pub use self::__MTLCounters::MTLCounterSampleBufferDescriptor;
+pub use self::__MTLCounters::MTLCounterSet;
 pub use self::__MTLCounters::{
-    MTLCommonCounter, MTLCommonCounterClipperInvocations, MTLCommonCounterClipperPrimitivesOut,
-    MTLCommonCounterComputeKernelInvocations, MTLCommonCounterFragmentCycles,
-    MTLCommonCounterFragmentInvocations, MTLCommonCounterFragmentsPassed,
-    MTLCommonCounterPostTessellationVertexCycles,
-    MTLCommonCounterPostTessellationVertexInvocations, MTLCommonCounterRenderTargetWriteCycles,
-    MTLCommonCounterSet, MTLCommonCounterSetStageUtilization, MTLCommonCounterSetStatistic,
-    MTLCommonCounterSetTimestamp, MTLCommonCounterTessellationCycles,
-    MTLCommonCounterTessellationInputPatches, MTLCommonCounterTimestamp,
-    MTLCommonCounterTotalCycles, MTLCommonCounterVertexCycles, MTLCommonCounterVertexInvocations,
-    MTLCounter, MTLCounterErrorDomain, MTLCounterResultStageUtilization, MTLCounterResultStatistic,
-    MTLCounterResultTimestamp, MTLCounterSampleBuffer, MTLCounterSampleBufferDescriptor,
     MTLCounterSampleBufferError, MTLCounterSampleBufferErrorInternal,
-    MTLCounterSampleBufferErrorInvalid, MTLCounterSampleBufferErrorOutOfMemory, MTLCounterSet,
+    MTLCounterSampleBufferErrorInvalid, MTLCounterSampleBufferErrorOutOfMemory,
 };
+pub use self::__MTLDepthStencil::MTLDepthStencilDescriptor;
+pub use self::__MTLDepthStencil::MTLDepthStencilState;
+pub use self::__MTLDepthStencil::MTLStencilDescriptor;
 pub use self::__MTLDepthStencil::{
     MTLCompareFunction, MTLCompareFunctionAlways, MTLCompareFunctionEqual,
     MTLCompareFunctionGreater, MTLCompareFunctionGreaterEqual, MTLCompareFunctionLess,
     MTLCompareFunctionLessEqual, MTLCompareFunctionNever, MTLCompareFunctionNotEqual,
-    MTLDepthStencilDescriptor, MTLDepthStencilState, MTLStencilDescriptor, MTLStencilOperation,
-    MTLStencilOperationDecrementClamp, MTLStencilOperationDecrementWrap,
+};
+pub use self::__MTLDepthStencil::{
+    MTLStencilOperation, MTLStencilOperationDecrementClamp, MTLStencilOperationDecrementWrap,
     MTLStencilOperationIncrementClamp, MTLStencilOperationIncrementWrap, MTLStencilOperationInvert,
     MTLStencilOperationKeep, MTLStencilOperationReplace, MTLStencilOperationZero,
 };
+pub use self::__MTLDevice::MTLAccelerationStructureSizes;
+pub use self::__MTLDevice::MTLArgumentDescriptor;
+#[cfg(feature = "Foundation_NSArray")]
+pub use self::__MTLDevice::MTLCopyAllDevices;
+pub use self::__MTLDevice::MTLCreateSystemDefaultDevice;
+pub use self::__MTLDevice::MTLDevice;
+pub use self::__MTLDevice::MTLDeviceNotificationHandler;
+pub use self::__MTLDevice::MTLDeviceNotificationName;
+pub use self::__MTLDevice::MTLDeviceRemovalRequestedNotification;
+pub use self::__MTLDevice::MTLDeviceWasAddedNotification;
+pub use self::__MTLDevice::MTLDeviceWasRemovedNotification;
+pub use self::__MTLDevice::MTLNewComputePipelineStateCompletionHandler;
+pub use self::__MTLDevice::MTLNewComputePipelineStateWithReflectionCompletionHandler;
+pub use self::__MTLDevice::MTLNewLibraryCompletionHandler;
+pub use self::__MTLDevice::MTLNewRenderPipelineStateCompletionHandler;
+pub use self::__MTLDevice::MTLNewRenderPipelineStateWithReflectionCompletionHandler;
+pub use self::__MTLDevice::MTLRemoveDeviceObserver;
+pub use self::__MTLDevice::MTLSizeAndAlign;
+pub use self::__MTLDevice::MTLTimestamp;
 pub use self::__MTLDevice::{
-    MTLAccelerationStructureSizes, MTLArgumentBuffersTier, MTLArgumentBuffersTier1,
-    MTLArgumentBuffersTier2, MTLArgumentDescriptor, MTLCopyAllDevices, MTLCounterSamplingPoint,
-    MTLCounterSamplingPointAtBlitBoundary, MTLCounterSamplingPointAtDispatchBoundary,
-    MTLCounterSamplingPointAtDrawBoundary, MTLCounterSamplingPointAtStageBoundary,
-    MTLCounterSamplingPointAtTileDispatchBoundary, MTLCreateSystemDefaultDevice, MTLDevice,
+    MTLArgumentBuffersTier, MTLArgumentBuffersTier1, MTLArgumentBuffersTier2,
+};
+pub use self::__MTLDevice::{
+    MTLCounterSamplingPoint, MTLCounterSamplingPointAtBlitBoundary,
+    MTLCounterSamplingPointAtDispatchBoundary, MTLCounterSamplingPointAtDrawBoundary,
+    MTLCounterSamplingPointAtStageBoundary, MTLCounterSamplingPointAtTileDispatchBoundary,
+};
+pub use self::__MTLDevice::{
     MTLDeviceLocation, MTLDeviceLocationBuiltIn, MTLDeviceLocationExternal, MTLDeviceLocationSlot,
-    MTLDeviceLocationUnspecified, MTLDeviceNotificationHandler, MTLDeviceNotificationName,
-    MTLDeviceRemovalRequestedNotification, MTLDeviceWasAddedNotification,
-    MTLDeviceWasRemovedNotification, MTLFeatureSet, MTLFeatureSet_OSX_GPUFamily1_v1,
-    MTLFeatureSet_OSX_GPUFamily1_v2, MTLFeatureSet_OSX_ReadWriteTextureTier2,
-    MTLFeatureSet_TVOS_GPUFamily1_v1, MTLFeatureSet_iOS_GPUFamily1_v1,
-    MTLFeatureSet_iOS_GPUFamily1_v2, MTLFeatureSet_iOS_GPUFamily1_v3,
-    MTLFeatureSet_iOS_GPUFamily1_v4, MTLFeatureSet_iOS_GPUFamily1_v5,
-    MTLFeatureSet_iOS_GPUFamily2_v1, MTLFeatureSet_iOS_GPUFamily2_v2,
-    MTLFeatureSet_iOS_GPUFamily2_v3, MTLFeatureSet_iOS_GPUFamily2_v4,
-    MTLFeatureSet_iOS_GPUFamily2_v5, MTLFeatureSet_iOS_GPUFamily3_v1,
-    MTLFeatureSet_iOS_GPUFamily3_v2, MTLFeatureSet_iOS_GPUFamily3_v3,
-    MTLFeatureSet_iOS_GPUFamily3_v4, MTLFeatureSet_iOS_GPUFamily4_v1,
-    MTLFeatureSet_iOS_GPUFamily4_v2, MTLFeatureSet_iOS_GPUFamily5_v1,
-    MTLFeatureSet_macOS_GPUFamily1_v1, MTLFeatureSet_macOS_GPUFamily1_v2,
-    MTLFeatureSet_macOS_GPUFamily1_v3, MTLFeatureSet_macOS_GPUFamily1_v4,
-    MTLFeatureSet_macOS_GPUFamily2_v1, MTLFeatureSet_macOS_ReadWriteTextureTier2,
-    MTLFeatureSet_tvOS_GPUFamily1_v1, MTLFeatureSet_tvOS_GPUFamily1_v2,
-    MTLFeatureSet_tvOS_GPUFamily1_v3, MTLFeatureSet_tvOS_GPUFamily1_v4,
-    MTLFeatureSet_tvOS_GPUFamily2_v1, MTLFeatureSet_tvOS_GPUFamily2_v2, MTLGPUFamily,
-    MTLGPUFamilyApple1, MTLGPUFamilyApple2, MTLGPUFamilyApple3, MTLGPUFamilyApple4,
+    MTLDeviceLocationUnspecified,
+};
+pub use self::__MTLDevice::{
+    MTLFeatureSet, MTLFeatureSet_OSX_GPUFamily1_v1, MTLFeatureSet_OSX_GPUFamily1_v2,
+    MTLFeatureSet_OSX_ReadWriteTextureTier2, MTLFeatureSet_TVOS_GPUFamily1_v1,
+    MTLFeatureSet_iOS_GPUFamily1_v1, MTLFeatureSet_iOS_GPUFamily1_v2,
+    MTLFeatureSet_iOS_GPUFamily1_v3, MTLFeatureSet_iOS_GPUFamily1_v4,
+    MTLFeatureSet_iOS_GPUFamily1_v5, MTLFeatureSet_iOS_GPUFamily2_v1,
+    MTLFeatureSet_iOS_GPUFamily2_v2, MTLFeatureSet_iOS_GPUFamily2_v3,
+    MTLFeatureSet_iOS_GPUFamily2_v4, MTLFeatureSet_iOS_GPUFamily2_v5,
+    MTLFeatureSet_iOS_GPUFamily3_v1, MTLFeatureSet_iOS_GPUFamily3_v2,
+    MTLFeatureSet_iOS_GPUFamily3_v3, MTLFeatureSet_iOS_GPUFamily3_v4,
+    MTLFeatureSet_iOS_GPUFamily4_v1, MTLFeatureSet_iOS_GPUFamily4_v2,
+    MTLFeatureSet_iOS_GPUFamily5_v1, MTLFeatureSet_macOS_GPUFamily1_v1,
+    MTLFeatureSet_macOS_GPUFamily1_v2, MTLFeatureSet_macOS_GPUFamily1_v3,
+    MTLFeatureSet_macOS_GPUFamily1_v4, MTLFeatureSet_macOS_GPUFamily2_v1,
+    MTLFeatureSet_macOS_ReadWriteTextureTier2, MTLFeatureSet_tvOS_GPUFamily1_v1,
+    MTLFeatureSet_tvOS_GPUFamily1_v2, MTLFeatureSet_tvOS_GPUFamily1_v3,
+    MTLFeatureSet_tvOS_GPUFamily1_v4, MTLFeatureSet_tvOS_GPUFamily2_v1,
+    MTLFeatureSet_tvOS_GPUFamily2_v2,
+};
+pub use self::__MTLDevice::{
+    MTLGPUFamily, MTLGPUFamilyApple1, MTLGPUFamilyApple2, MTLGPUFamilyApple3, MTLGPUFamilyApple4,
     MTLGPUFamilyApple5, MTLGPUFamilyApple6, MTLGPUFamilyApple7, MTLGPUFamilyCommon1,
     MTLGPUFamilyCommon2, MTLGPUFamilyCommon3, MTLGPUFamilyMac1, MTLGPUFamilyMac2,
     MTLGPUFamilyMacCatalyst1, MTLGPUFamilyMacCatalyst2,
-    MTLNewComputePipelineStateCompletionHandler,
-    MTLNewComputePipelineStateWithReflectionCompletionHandler, MTLNewLibraryCompletionHandler,
-    MTLNewRenderPipelineStateCompletionHandler,
-    MTLNewRenderPipelineStateWithReflectionCompletionHandler, MTLPipelineOption,
-    MTLPipelineOptionArgumentInfo, MTLPipelineOptionBufferTypeInfo,
-    MTLPipelineOptionFailOnBinaryArchiveMiss, MTLPipelineOptionNone, MTLReadWriteTextureTier,
-    MTLReadWriteTextureTier1, MTLReadWriteTextureTier2, MTLReadWriteTextureTierNone,
-    MTLRemoveDeviceObserver, MTLSizeAndAlign, MTLSparseTextureRegionAlignmentMode,
-    MTLSparseTextureRegionAlignmentModeInward, MTLSparseTextureRegionAlignmentModeOutward,
-    MTLTimestamp,
 };
-pub use self::__MTLDrawable::{MTLDrawable, MTLDrawablePresentedHandler};
+pub use self::__MTLDevice::{
+    MTLPipelineOption, MTLPipelineOptionArgumentInfo, MTLPipelineOptionBufferTypeInfo,
+    MTLPipelineOptionFailOnBinaryArchiveMiss, MTLPipelineOptionNone,
+};
+pub use self::__MTLDevice::{
+    MTLReadWriteTextureTier, MTLReadWriteTextureTier1, MTLReadWriteTextureTier2,
+    MTLReadWriteTextureTierNone,
+};
+pub use self::__MTLDevice::{
+    MTLSparseTextureRegionAlignmentMode, MTLSparseTextureRegionAlignmentModeInward,
+    MTLSparseTextureRegionAlignmentModeOutward,
+};
+pub use self::__MTLDrawable::MTLDrawable;
+pub use self::__MTLDrawable::MTLDrawablePresentedHandler;
+pub use self::__MTLDynamicLibrary::MTLDynamicLibrary;
+pub use self::__MTLDynamicLibrary::MTLDynamicLibraryDomain;
 pub use self::__MTLDynamicLibrary::{
-    MTLDynamicLibrary, MTLDynamicLibraryDomain, MTLDynamicLibraryError,
-    MTLDynamicLibraryErrorCompilationFailure, MTLDynamicLibraryErrorDependencyLoadFailure,
-    MTLDynamicLibraryErrorInvalidFile, MTLDynamicLibraryErrorNone,
-    MTLDynamicLibraryErrorUnresolvedInstallName, MTLDynamicLibraryErrorUnsupported,
+    MTLDynamicLibraryError, MTLDynamicLibraryErrorCompilationFailure,
+    MTLDynamicLibraryErrorDependencyLoadFailure, MTLDynamicLibraryErrorInvalidFile,
+    MTLDynamicLibraryErrorNone, MTLDynamicLibraryErrorUnresolvedInstallName,
+    MTLDynamicLibraryErrorUnsupported,
 };
-pub use self::__MTLEvent::{
-    MTLEvent, MTLSharedEvent, MTLSharedEventHandle, MTLSharedEventListener,
-    MTLSharedEventNotificationBlock,
-};
+pub use self::__MTLEvent::MTLEvent;
+pub use self::__MTLEvent::MTLSharedEvent;
+pub use self::__MTLEvent::MTLSharedEventHandle;
+pub use self::__MTLEvent::MTLSharedEventListener;
+pub use self::__MTLEvent::MTLSharedEventNotificationBlock;
 pub use self::__MTLFence::MTLFence;
 pub use self::__MTLFunctionConstantValues::MTLFunctionConstantValues;
+pub use self::__MTLFunctionDescriptor::MTLFunctionDescriptor;
+pub use self::__MTLFunctionDescriptor::MTLIntersectionFunctionDescriptor;
 pub use self::__MTLFunctionDescriptor::{
-    MTLFunctionDescriptor, MTLFunctionOptionCompileToBinary, MTLFunctionOptionNone,
-    MTLFunctionOptions, MTLIntersectionFunctionDescriptor,
+    MTLFunctionOptionCompileToBinary, MTLFunctionOptionNone, MTLFunctionOptions,
 };
 pub use self::__MTLFunctionHandle::MTLFunctionHandle;
-pub use self::__MTLFunctionLog::{
-    MTLFunctionLog, MTLFunctionLogDebugLocation, MTLFunctionLogType, MTLFunctionLogTypeValidation,
-    MTLLogContainer,
-};
-pub use self::__MTLFunctionStitching::{
-    MTLFunctionStitchingAttribute, MTLFunctionStitchingAttributeAlwaysInline,
-    MTLFunctionStitchingFunctionNode, MTLFunctionStitchingGraph, MTLFunctionStitchingInputNode,
-    MTLFunctionStitchingNode, MTLStitchedLibraryDescriptor,
-};
+pub use self::__MTLFunctionLog::MTLFunctionLog;
+pub use self::__MTLFunctionLog::MTLFunctionLogDebugLocation;
+pub use self::__MTLFunctionLog::MTLLogContainer;
+pub use self::__MTLFunctionLog::{MTLFunctionLogType, MTLFunctionLogTypeValidation};
+pub use self::__MTLFunctionStitching::MTLFunctionStitchingAttribute;
+pub use self::__MTLFunctionStitching::MTLFunctionStitchingAttributeAlwaysInline;
+pub use self::__MTLFunctionStitching::MTLFunctionStitchingFunctionNode;
+pub use self::__MTLFunctionStitching::MTLFunctionStitchingGraph;
+pub use self::__MTLFunctionStitching::MTLFunctionStitchingInputNode;
+pub use self::__MTLFunctionStitching::MTLFunctionStitchingNode;
+pub use self::__MTLFunctionStitching::MTLStitchedLibraryDescriptor;
+pub use self::__MTLHeap::MTLHeap;
+pub use self::__MTLHeap::MTLHeapDescriptor;
 pub use self::__MTLHeap::{
-    MTLHeap, MTLHeapDescriptor, MTLHeapType, MTLHeapTypeAutomatic, MTLHeapTypePlacement,
-    MTLHeapTypeSparse,
+    MTLHeapType, MTLHeapTypeAutomatic, MTLHeapTypePlacement, MTLHeapTypeSparse,
 };
+pub use self::__MTLIndirectCommandBuffer::MTLIndirectCommandBuffer;
+pub use self::__MTLIndirectCommandBuffer::MTLIndirectCommandBufferDescriptor;
+pub use self::__MTLIndirectCommandBuffer::MTLIndirectCommandBufferExecutionRange;
 pub use self::__MTLIndirectCommandBuffer::{
-    MTLIndirectCommandBuffer, MTLIndirectCommandBufferDescriptor,
-    MTLIndirectCommandBufferExecutionRange, MTLIndirectCommandType,
-    MTLIndirectCommandTypeConcurrentDispatch, MTLIndirectCommandTypeConcurrentDispatchThreads,
-    MTLIndirectCommandTypeDraw, MTLIndirectCommandTypeDrawIndexed,
-    MTLIndirectCommandTypeDrawIndexedPatches, MTLIndirectCommandTypeDrawPatches,
+    MTLIndirectCommandType, MTLIndirectCommandTypeConcurrentDispatch,
+    MTLIndirectCommandTypeConcurrentDispatchThreads, MTLIndirectCommandTypeDraw,
+    MTLIndirectCommandTypeDrawIndexed, MTLIndirectCommandTypeDrawIndexedPatches,
+    MTLIndirectCommandTypeDrawPatches,
 };
-pub use self::__MTLIndirectCommandEncoder::{MTLIndirectComputeCommand, MTLIndirectRenderCommand};
+pub use self::__MTLIndirectCommandEncoder::MTLIndirectComputeCommand;
+pub use self::__MTLIndirectCommandEncoder::MTLIndirectRenderCommand;
+pub use self::__MTLIntersectionFunctionTable::MTLIntersectionFunctionTable;
+pub use self::__MTLIntersectionFunctionTable::MTLIntersectionFunctionTableDescriptor;
 pub use self::__MTLIntersectionFunctionTable::{
     MTLIntersectionFunctionSignature, MTLIntersectionFunctionSignatureExtendedLimits,
     MTLIntersectionFunctionSignatureInstanceMotion, MTLIntersectionFunctionSignatureInstancing,
     MTLIntersectionFunctionSignatureNone, MTLIntersectionFunctionSignaturePrimitiveMotion,
     MTLIntersectionFunctionSignatureTriangleData, MTLIntersectionFunctionSignatureWorldSpaceData,
-    MTLIntersectionFunctionTable, MTLIntersectionFunctionTableDescriptor,
+};
+pub use self::__MTLLibrary::MTLAttribute;
+pub use self::__MTLLibrary::MTLCompileOptions;
+pub use self::__MTLLibrary::MTLFunction;
+pub use self::__MTLLibrary::MTLFunctionConstant;
+pub use self::__MTLLibrary::MTLLibrary;
+pub use self::__MTLLibrary::MTLLibraryErrorDomain;
+pub use self::__MTLLibrary::MTLVertexAttribute;
+pub use self::__MTLLibrary::{
+    MTLFunctionType, MTLFunctionTypeFragment, MTLFunctionTypeIntersection, MTLFunctionTypeKernel,
+    MTLFunctionTypeVertex, MTLFunctionTypeVisible,
 };
 pub use self::__MTLLibrary::{
-    MTLAttribute, MTLCompileOptions, MTLFunction, MTLFunctionConstant, MTLFunctionType,
-    MTLFunctionTypeFragment, MTLFunctionTypeIntersection, MTLFunctionTypeKernel,
-    MTLFunctionTypeVertex, MTLFunctionTypeVisible, MTLLanguageVersion, MTLLanguageVersion1_0,
-    MTLLanguageVersion1_1, MTLLanguageVersion1_2, MTLLanguageVersion2_0, MTLLanguageVersion2_1,
-    MTLLanguageVersion2_2, MTLLanguageVersion2_3, MTLLanguageVersion2_4, MTLLibrary,
+    MTLLanguageVersion, MTLLanguageVersion1_0, MTLLanguageVersion1_1, MTLLanguageVersion1_2,
+    MTLLanguageVersion2_0, MTLLanguageVersion2_1, MTLLanguageVersion2_2, MTLLanguageVersion2_3,
+    MTLLanguageVersion2_4,
+};
+pub use self::__MTLLibrary::{
     MTLLibraryError, MTLLibraryErrorCompileFailure, MTLLibraryErrorCompileWarning,
-    MTLLibraryErrorDomain, MTLLibraryErrorFileNotFound, MTLLibraryErrorFunctionNotFound,
-    MTLLibraryErrorInternal, MTLLibraryErrorUnsupported, MTLLibraryType, MTLLibraryTypeDynamic,
-    MTLLibraryTypeExecutable, MTLPatchType, MTLPatchTypeNone, MTLPatchTypeQuad,
-    MTLPatchTypeTriangle, MTLVertexAttribute,
+    MTLLibraryErrorFileNotFound, MTLLibraryErrorFunctionNotFound, MTLLibraryErrorInternal,
+    MTLLibraryErrorUnsupported,
+};
+pub use self::__MTLLibrary::{MTLLibraryType, MTLLibraryTypeDynamic, MTLLibraryTypeExecutable};
+pub use self::__MTLLibrary::{
+    MTLPatchType, MTLPatchTypeNone, MTLPatchTypeQuad, MTLPatchTypeTriangle,
 };
 pub use self::__MTLLinkedFunctions::MTLLinkedFunctions;
 pub use self::__MTLParallelRenderCommandEncoder::MTLParallelRenderCommandEncoder;
+pub use self::__MTLPipeline::MTLPipelineBufferDescriptor;
+pub use self::__MTLPipeline::MTLPipelineBufferDescriptorArray;
 pub use self::__MTLPipeline::{
     MTLMutability, MTLMutabilityDefault, MTLMutabilityImmutable, MTLMutabilityMutable,
-    MTLPipelineBufferDescriptor, MTLPipelineBufferDescriptorArray,
 };
 pub use self::__MTLPixelFormat::{
     MTLPixelFormat, MTLPixelFormatA1BGR5Unorm, MTLPixelFormatA8Unorm, MTLPixelFormatABGR4Unorm,
@@ -395,38 +514,80 @@ pub use self::__MTLPixelFormat::{
     MTLPixelFormatRGBA8Unorm, MTLPixelFormatRGBA8Unorm_sRGB, MTLPixelFormatStencil8,
     MTLPixelFormatX24_Stencil8, MTLPixelFormatX32_Stencil8,
 };
-pub use self::__MTLRasterizationRate::{
-    MTLRasterizationRateLayerArray, MTLRasterizationRateLayerDescriptor, MTLRasterizationRateMap,
-    MTLRasterizationRateMapDescriptor, MTLRasterizationRateSampleArray,
+pub use self::__MTLRasterizationRate::MTLRasterizationRateLayerArray;
+pub use self::__MTLRasterizationRate::MTLRasterizationRateLayerDescriptor;
+pub use self::__MTLRasterizationRate::MTLRasterizationRateMap;
+pub use self::__MTLRasterizationRate::MTLRasterizationRateMapDescriptor;
+pub use self::__MTLRasterizationRate::MTLRasterizationRateSampleArray;
+pub use self::__MTLRenderCommandEncoder::MTLDrawIndexedPrimitivesIndirectArguments;
+pub use self::__MTLRenderCommandEncoder::MTLDrawPatchIndirectArguments;
+pub use self::__MTLRenderCommandEncoder::MTLDrawPrimitivesIndirectArguments;
+pub use self::__MTLRenderCommandEncoder::MTLQuadTessellationFactorsHalf;
+pub use self::__MTLRenderCommandEncoder::MTLRenderCommandEncoder;
+pub use self::__MTLRenderCommandEncoder::MTLScissorRect;
+pub use self::__MTLRenderCommandEncoder::MTLTriangleTessellationFactorsHalf;
+pub use self::__MTLRenderCommandEncoder::MTLVertexAmplificationViewMapping;
+pub use self::__MTLRenderCommandEncoder::MTLViewport;
+pub use self::__MTLRenderCommandEncoder::{
+    MTLCullMode, MTLCullModeBack, MTLCullModeFront, MTLCullModeNone,
 };
 pub use self::__MTLRenderCommandEncoder::{
-    MTLCullMode, MTLCullModeBack, MTLCullModeFront, MTLCullModeNone, MTLDepthClipMode,
-    MTLDepthClipModeClamp, MTLDepthClipModeClip, MTLDrawIndexedPrimitivesIndirectArguments,
-    MTLDrawPatchIndirectArguments, MTLDrawPrimitivesIndirectArguments, MTLPrimitiveType,
-    MTLPrimitiveTypeLine, MTLPrimitiveTypeLineStrip, MTLPrimitiveTypePoint,
-    MTLPrimitiveTypeTriangle, MTLPrimitiveTypeTriangleStrip, MTLQuadTessellationFactorsHalf,
-    MTLRenderCommandEncoder, MTLRenderStageFragment, MTLRenderStageTile, MTLRenderStageVertex,
-    MTLRenderStages, MTLScissorRect, MTLTriangleFillMode, MTLTriangleFillModeFill,
-    MTLTriangleFillModeLines, MTLTriangleTessellationFactorsHalf,
-    MTLVertexAmplificationViewMapping, MTLViewport, MTLVisibilityResultMode,
-    MTLVisibilityResultModeBoolean, MTLVisibilityResultModeCounting,
-    MTLVisibilityResultModeDisabled, MTLWinding, MTLWindingClockwise, MTLWindingCounterClockwise,
+    MTLDepthClipMode, MTLDepthClipModeClamp, MTLDepthClipModeClip,
+};
+pub use self::__MTLRenderCommandEncoder::{
+    MTLPrimitiveType, MTLPrimitiveTypeLine, MTLPrimitiveTypeLineStrip, MTLPrimitiveTypePoint,
+    MTLPrimitiveTypeTriangle, MTLPrimitiveTypeTriangleStrip,
+};
+pub use self::__MTLRenderCommandEncoder::{
+    MTLRenderStageFragment, MTLRenderStageTile, MTLRenderStageVertex, MTLRenderStages,
+};
+pub use self::__MTLRenderCommandEncoder::{
+    MTLTriangleFillMode, MTLTriangleFillModeFill, MTLTriangleFillModeLines,
+};
+pub use self::__MTLRenderCommandEncoder::{
+    MTLVisibilityResultMode, MTLVisibilityResultModeBoolean, MTLVisibilityResultModeCounting,
+    MTLVisibilityResultModeDisabled,
+};
+pub use self::__MTLRenderCommandEncoder::{
+    MTLWinding, MTLWindingClockwise, MTLWindingCounterClockwise,
+};
+pub use self::__MTLRenderPass::MTLClearColor;
+pub use self::__MTLRenderPass::MTLRenderPassAttachmentDescriptor;
+pub use self::__MTLRenderPass::MTLRenderPassColorAttachmentDescriptor;
+pub use self::__MTLRenderPass::MTLRenderPassColorAttachmentDescriptorArray;
+pub use self::__MTLRenderPass::MTLRenderPassDepthAttachmentDescriptor;
+pub use self::__MTLRenderPass::MTLRenderPassDescriptor;
+pub use self::__MTLRenderPass::MTLRenderPassSampleBufferAttachmentDescriptor;
+pub use self::__MTLRenderPass::MTLRenderPassSampleBufferAttachmentDescriptorArray;
+pub use self::__MTLRenderPass::MTLRenderPassStencilAttachmentDescriptor;
+pub use self::__MTLRenderPass::{
+    MTLLoadAction, MTLLoadActionClear, MTLLoadActionDontCare, MTLLoadActionLoad,
 };
 pub use self::__MTLRenderPass::{
-    MTLClearColor, MTLLoadAction, MTLLoadActionClear, MTLLoadActionDontCare, MTLLoadActionLoad,
     MTLMultisampleDepthResolveFilter, MTLMultisampleDepthResolveFilterMax,
     MTLMultisampleDepthResolveFilterMin, MTLMultisampleDepthResolveFilterSample0,
+};
+pub use self::__MTLRenderPass::{
     MTLMultisampleStencilResolveFilter, MTLMultisampleStencilResolveFilterDepthResolvedSample,
-    MTLMultisampleStencilResolveFilterSample0, MTLRenderPassAttachmentDescriptor,
-    MTLRenderPassColorAttachmentDescriptor, MTLRenderPassColorAttachmentDescriptorArray,
-    MTLRenderPassDepthAttachmentDescriptor, MTLRenderPassDescriptor,
-    MTLRenderPassSampleBufferAttachmentDescriptor,
-    MTLRenderPassSampleBufferAttachmentDescriptorArray, MTLRenderPassStencilAttachmentDescriptor,
+    MTLMultisampleStencilResolveFilterSample0,
+};
+pub use self::__MTLRenderPass::{
     MTLStoreAction, MTLStoreActionCustomSampleDepthStore, MTLStoreActionDontCare,
-    MTLStoreActionMultisampleResolve, MTLStoreActionOptionCustomSamplePositions,
-    MTLStoreActionOptionNone, MTLStoreActionOptions, MTLStoreActionStore,
+    MTLStoreActionMultisampleResolve, MTLStoreActionStore,
     MTLStoreActionStoreAndMultisampleResolve, MTLStoreActionUnknown,
 };
+pub use self::__MTLRenderPass::{
+    MTLStoreActionOptionCustomSamplePositions, MTLStoreActionOptionNone, MTLStoreActionOptions,
+};
+pub use self::__MTLRenderPipeline::MTLRenderPipelineColorAttachmentDescriptor;
+pub use self::__MTLRenderPipeline::MTLRenderPipelineColorAttachmentDescriptorArray;
+pub use self::__MTLRenderPipeline::MTLRenderPipelineDescriptor;
+pub use self::__MTLRenderPipeline::MTLRenderPipelineFunctionsDescriptor;
+pub use self::__MTLRenderPipeline::MTLRenderPipelineReflection;
+pub use self::__MTLRenderPipeline::MTLRenderPipelineState;
+pub use self::__MTLRenderPipeline::MTLTileRenderPipelineColorAttachmentDescriptor;
+pub use self::__MTLRenderPipeline::MTLTileRenderPipelineColorAttachmentDescriptorArray;
+pub use self::__MTLRenderPipeline::MTLTileRenderPipelineDescriptor;
 pub use self::__MTLRenderPipeline::{
     MTLBlendFactor, MTLBlendFactorBlendAlpha, MTLBlendFactorBlendColor,
     MTLBlendFactorDestinationAlpha, MTLBlendFactorDestinationColor, MTLBlendFactorOne,
@@ -436,68 +597,99 @@ pub use self::__MTLRenderPipeline::{
     MTLBlendFactorOneMinusSourceAlpha, MTLBlendFactorOneMinusSourceColor,
     MTLBlendFactorSource1Alpha, MTLBlendFactorSource1Color, MTLBlendFactorSourceAlpha,
     MTLBlendFactorSourceAlphaSaturated, MTLBlendFactorSourceColor, MTLBlendFactorZero,
-    MTLBlendOperation, MTLBlendOperationAdd, MTLBlendOperationMax, MTLBlendOperationMin,
-    MTLBlendOperationReverseSubtract, MTLBlendOperationSubtract, MTLColorWriteMask,
-    MTLColorWriteMaskAll, MTLColorWriteMaskAlpha, MTLColorWriteMaskBlue, MTLColorWriteMaskGreen,
-    MTLColorWriteMaskNone, MTLColorWriteMaskRed, MTLPrimitiveTopologyClass,
-    MTLPrimitiveTopologyClassLine, MTLPrimitiveTopologyClassPoint,
-    MTLPrimitiveTopologyClassTriangle, MTLPrimitiveTopologyClassUnspecified,
-    MTLRenderPipelineColorAttachmentDescriptor, MTLRenderPipelineColorAttachmentDescriptorArray,
-    MTLRenderPipelineDescriptor, MTLRenderPipelineFunctionsDescriptor, MTLRenderPipelineReflection,
-    MTLRenderPipelineState, MTLTessellationControlPointIndexType,
-    MTLTessellationControlPointIndexTypeNone, MTLTessellationControlPointIndexTypeUInt16,
-    MTLTessellationControlPointIndexTypeUInt32, MTLTessellationFactorFormat,
-    MTLTessellationFactorFormatHalf, MTLTessellationFactorStepFunction,
-    MTLTessellationFactorStepFunctionConstant, MTLTessellationFactorStepFunctionPerInstance,
-    MTLTessellationFactorStepFunctionPerPatch,
-    MTLTessellationFactorStepFunctionPerPatchAndPerInstance, MTLTessellationPartitionMode,
-    MTLTessellationPartitionModeFractionalEven, MTLTessellationPartitionModeFractionalOdd,
-    MTLTessellationPartitionModeInteger, MTLTessellationPartitionModePow2,
-    MTLTileRenderPipelineColorAttachmentDescriptor,
-    MTLTileRenderPipelineColorAttachmentDescriptorArray, MTLTileRenderPipelineDescriptor,
 };
+pub use self::__MTLRenderPipeline::{
+    MTLBlendOperation, MTLBlendOperationAdd, MTLBlendOperationMax, MTLBlendOperationMin,
+    MTLBlendOperationReverseSubtract, MTLBlendOperationSubtract,
+};
+pub use self::__MTLRenderPipeline::{
+    MTLColorWriteMask, MTLColorWriteMaskAll, MTLColorWriteMaskAlpha, MTLColorWriteMaskBlue,
+    MTLColorWriteMaskGreen, MTLColorWriteMaskNone, MTLColorWriteMaskRed,
+};
+pub use self::__MTLRenderPipeline::{
+    MTLPrimitiveTopologyClass, MTLPrimitiveTopologyClassLine, MTLPrimitiveTopologyClassPoint,
+    MTLPrimitiveTopologyClassTriangle, MTLPrimitiveTopologyClassUnspecified,
+};
+pub use self::__MTLRenderPipeline::{
+    MTLTessellationControlPointIndexType, MTLTessellationControlPointIndexTypeNone,
+    MTLTessellationControlPointIndexTypeUInt16, MTLTessellationControlPointIndexTypeUInt32,
+};
+pub use self::__MTLRenderPipeline::{MTLTessellationFactorFormat, MTLTessellationFactorFormatHalf};
+pub use self::__MTLRenderPipeline::{
+    MTLTessellationFactorStepFunction, MTLTessellationFactorStepFunctionConstant,
+    MTLTessellationFactorStepFunctionPerInstance, MTLTessellationFactorStepFunctionPerPatch,
+    MTLTessellationFactorStepFunctionPerPatchAndPerInstance,
+};
+pub use self::__MTLRenderPipeline::{
+    MTLTessellationPartitionMode, MTLTessellationPartitionModeFractionalEven,
+    MTLTessellationPartitionModeFractionalOdd, MTLTessellationPartitionModeInteger,
+    MTLTessellationPartitionModePow2,
+};
+pub use self::__MTLResource::MTLResource;
 pub use self::__MTLResource::{
     MTLCPUCacheMode, MTLCPUCacheModeDefaultCache, MTLCPUCacheModeWriteCombined,
+};
+pub use self::__MTLResource::{
     MTLHazardTrackingMode, MTLHazardTrackingModeDefault, MTLHazardTrackingModeTracked,
-    MTLHazardTrackingModeUntracked, MTLPurgeableState, MTLPurgeableStateEmpty,
-    MTLPurgeableStateKeepCurrent, MTLPurgeableStateNonVolatile, MTLPurgeableStateVolatile,
-    MTLResource, MTLResourceCPUCacheModeDefaultCache, MTLResourceCPUCacheModeWriteCombined,
+    MTLHazardTrackingModeUntracked,
+};
+pub use self::__MTLResource::{
+    MTLPurgeableState, MTLPurgeableStateEmpty, MTLPurgeableStateKeepCurrent,
+    MTLPurgeableStateNonVolatile, MTLPurgeableStateVolatile,
+};
+pub use self::__MTLResource::{
+    MTLResourceCPUCacheModeDefaultCache, MTLResourceCPUCacheModeWriteCombined,
     MTLResourceHazardTrackingModeDefault, MTLResourceHazardTrackingModeTracked,
     MTLResourceHazardTrackingModeUntracked, MTLResourceOptionCPUCacheModeDefault,
     MTLResourceOptionCPUCacheModeWriteCombined, MTLResourceOptions, MTLResourceStorageModeManaged,
     MTLResourceStorageModeMemoryless, MTLResourceStorageModePrivate, MTLResourceStorageModeShared,
+};
+pub use self::__MTLResource::{
     MTLStorageMode, MTLStorageModeManaged, MTLStorageModeMemoryless, MTLStorageModePrivate,
     MTLStorageModeShared,
 };
+pub use self::__MTLResourceStateCommandEncoder::MTLMapIndirectArguments;
+pub use self::__MTLResourceStateCommandEncoder::MTLResourceStateCommandEncoder;
 pub use self::__MTLResourceStateCommandEncoder::{
-    MTLMapIndirectArguments, MTLResourceStateCommandEncoder, MTLSparseTextureMappingMode,
-    MTLSparseTextureMappingModeMap, MTLSparseTextureMappingModeUnmap,
+    MTLSparseTextureMappingMode, MTLSparseTextureMappingModeMap, MTLSparseTextureMappingModeUnmap,
 };
-pub use self::__MTLResourceStatePass::{
-    MTLResourceStatePassDescriptor, MTLResourceStatePassSampleBufferAttachmentDescriptor,
-    MTLResourceStatePassSampleBufferAttachmentDescriptorArray,
-};
+pub use self::__MTLResourceStatePass::MTLResourceStatePassDescriptor;
+pub use self::__MTLResourceStatePass::MTLResourceStatePassSampleBufferAttachmentDescriptor;
+pub use self::__MTLResourceStatePass::MTLResourceStatePassSampleBufferAttachmentDescriptorArray;
+pub use self::__MTLSampler::MTLSamplerDescriptor;
+pub use self::__MTLSampler::MTLSamplerState;
 pub use self::__MTLSampler::{
     MTLSamplerAddressMode, MTLSamplerAddressModeClampToBorderColor,
     MTLSamplerAddressModeClampToEdge, MTLSamplerAddressModeClampToZero,
     MTLSamplerAddressModeMirrorClampToEdge, MTLSamplerAddressModeMirrorRepeat,
-    MTLSamplerAddressModeRepeat, MTLSamplerBorderColor, MTLSamplerBorderColorOpaqueBlack,
-    MTLSamplerBorderColorOpaqueWhite, MTLSamplerBorderColorTransparentBlack, MTLSamplerDescriptor,
-    MTLSamplerMinMagFilter, MTLSamplerMinMagFilterLinear, MTLSamplerMinMagFilterNearest,
-    MTLSamplerMipFilter, MTLSamplerMipFilterLinear, MTLSamplerMipFilterNearest,
-    MTLSamplerMipFilterNotMipmapped, MTLSamplerState,
+    MTLSamplerAddressModeRepeat,
 };
+pub use self::__MTLSampler::{
+    MTLSamplerBorderColor, MTLSamplerBorderColorOpaqueBlack, MTLSamplerBorderColorOpaqueWhite,
+    MTLSamplerBorderColorTransparentBlack,
+};
+pub use self::__MTLSampler::{
+    MTLSamplerMinMagFilter, MTLSamplerMinMagFilterLinear, MTLSamplerMinMagFilterNearest,
+};
+pub use self::__MTLSampler::{
+    MTLSamplerMipFilter, MTLSamplerMipFilterLinear, MTLSamplerMipFilterNearest,
+    MTLSamplerMipFilterNotMipmapped,
+};
+pub use self::__MTLStageInputOutputDescriptor::MTLAttributeDescriptor;
+pub use self::__MTLStageInputOutputDescriptor::MTLAttributeDescriptorArray;
+pub use self::__MTLStageInputOutputDescriptor::MTLBufferLayoutDescriptor;
+pub use self::__MTLStageInputOutputDescriptor::MTLBufferLayoutDescriptorArray;
+pub use self::__MTLStageInputOutputDescriptor::MTLStageInputOutputDescriptor;
 pub use self::__MTLStageInputOutputDescriptor::{
-    MTLAttributeDescriptor, MTLAttributeDescriptorArray, MTLAttributeFormat,
-    MTLAttributeFormatChar, MTLAttributeFormatChar2, MTLAttributeFormatChar2Normalized,
-    MTLAttributeFormatChar3, MTLAttributeFormatChar3Normalized, MTLAttributeFormatChar4,
-    MTLAttributeFormatChar4Normalized, MTLAttributeFormatCharNormalized, MTLAttributeFormatFloat,
-    MTLAttributeFormatFloat2, MTLAttributeFormatFloat3, MTLAttributeFormatFloat4,
-    MTLAttributeFormatHalf, MTLAttributeFormatHalf2, MTLAttributeFormatHalf3,
-    MTLAttributeFormatHalf4, MTLAttributeFormatInt, MTLAttributeFormatInt1010102Normalized,
-    MTLAttributeFormatInt2, MTLAttributeFormatInt3, MTLAttributeFormatInt4,
-    MTLAttributeFormatInvalid, MTLAttributeFormatShort, MTLAttributeFormatShort2,
-    MTLAttributeFormatShort2Normalized, MTLAttributeFormatShort3,
+    MTLAttributeFormat, MTLAttributeFormatChar, MTLAttributeFormatChar2,
+    MTLAttributeFormatChar2Normalized, MTLAttributeFormatChar3, MTLAttributeFormatChar3Normalized,
+    MTLAttributeFormatChar4, MTLAttributeFormatChar4Normalized, MTLAttributeFormatCharNormalized,
+    MTLAttributeFormatFloat, MTLAttributeFormatFloat2, MTLAttributeFormatFloat3,
+    MTLAttributeFormatFloat4, MTLAttributeFormatHalf, MTLAttributeFormatHalf2,
+    MTLAttributeFormatHalf3, MTLAttributeFormatHalf4, MTLAttributeFormatInt,
+    MTLAttributeFormatInt1010102Normalized, MTLAttributeFormatInt2, MTLAttributeFormatInt3,
+    MTLAttributeFormatInt4, MTLAttributeFormatInvalid, MTLAttributeFormatShort,
+    MTLAttributeFormatShort2, MTLAttributeFormatShort2Normalized, MTLAttributeFormatShort3,
     MTLAttributeFormatShort3Normalized, MTLAttributeFormatShort4,
     MTLAttributeFormatShort4Normalized, MTLAttributeFormatShortNormalized, MTLAttributeFormatUChar,
     MTLAttributeFormatUChar2, MTLAttributeFormatUChar2Normalized, MTLAttributeFormatUChar3,
@@ -509,27 +701,44 @@ pub use self::__MTLStageInputOutputDescriptor::{
     MTLAttributeFormatUShort2Normalized, MTLAttributeFormatUShort3,
     MTLAttributeFormatUShort3Normalized, MTLAttributeFormatUShort4,
     MTLAttributeFormatUShort4Normalized, MTLAttributeFormatUShortNormalized,
-    MTLBufferLayoutDescriptor, MTLBufferLayoutDescriptorArray, MTLIndexType, MTLIndexTypeUInt16,
-    MTLIndexTypeUInt32, MTLStageInputOutputDescriptor, MTLStepFunction, MTLStepFunctionConstant,
-    MTLStepFunctionPerInstance, MTLStepFunctionPerPatch, MTLStepFunctionPerPatchControlPoint,
-    MTLStepFunctionPerVertex, MTLStepFunctionThreadPositionInGridX,
-    MTLStepFunctionThreadPositionInGridXIndexed, MTLStepFunctionThreadPositionInGridY,
-    MTLStepFunctionThreadPositionInGridYIndexed,
+};
+pub use self::__MTLStageInputOutputDescriptor::{
+    MTLIndexType, MTLIndexTypeUInt16, MTLIndexTypeUInt32,
+};
+pub use self::__MTLStageInputOutputDescriptor::{
+    MTLStepFunction, MTLStepFunctionConstant, MTLStepFunctionPerInstance, MTLStepFunctionPerPatch,
+    MTLStepFunctionPerPatchControlPoint, MTLStepFunctionPerVertex,
+    MTLStepFunctionThreadPositionInGridX, MTLStepFunctionThreadPositionInGridXIndexed,
+    MTLStepFunctionThreadPositionInGridY, MTLStepFunctionThreadPositionInGridYIndexed,
+};
+pub use self::__MTLTexture::MTLSharedTextureHandle;
+pub use self::__MTLTexture::MTLTexture;
+pub use self::__MTLTexture::MTLTextureDescriptor;
+pub use self::__MTLTexture::MTLTextureSwizzleChannels;
+pub use self::__MTLTexture::{
+    MTLTextureSwizzle, MTLTextureSwizzleAlpha, MTLTextureSwizzleBlue, MTLTextureSwizzleGreen,
+    MTLTextureSwizzleOne, MTLTextureSwizzleRed, MTLTextureSwizzleZero,
 };
 pub use self::__MTLTexture::{
-    MTLSharedTextureHandle, MTLTexture, MTLTextureDescriptor, MTLTextureSwizzle,
-    MTLTextureSwizzleAlpha, MTLTextureSwizzleBlue, MTLTextureSwizzleChannels,
-    MTLTextureSwizzleGreen, MTLTextureSwizzleOne, MTLTextureSwizzleRed, MTLTextureSwizzleZero,
     MTLTextureType, MTLTextureType1D, MTLTextureType1DArray, MTLTextureType2D,
     MTLTextureType2DArray, MTLTextureType2DMultisample, MTLTextureType2DMultisampleArray,
     MTLTextureType3D, MTLTextureTypeCube, MTLTextureTypeCubeArray, MTLTextureTypeTextureBuffer,
+};
+pub use self::__MTLTexture::{
     MTLTextureUsage, MTLTextureUsagePixelFormatView, MTLTextureUsageRenderTarget,
     MTLTextureUsageShaderRead, MTLTextureUsageShaderWrite, MTLTextureUsageUnknown,
 };
-pub use self::__MTLTypes::{MTLCoordinate2D, MTLOrigin, MTLRegion, MTLSamplePosition, MTLSize};
+pub use self::__MTLTypes::MTLCoordinate2D;
+pub use self::__MTLTypes::MTLOrigin;
+pub use self::__MTLTypes::MTLRegion;
+pub use self::__MTLTypes::MTLSamplePosition;
+pub use self::__MTLTypes::MTLSize;
+pub use self::__MTLVertexDescriptor::MTLVertexAttributeDescriptor;
+pub use self::__MTLVertexDescriptor::MTLVertexAttributeDescriptorArray;
+pub use self::__MTLVertexDescriptor::MTLVertexBufferLayoutDescriptor;
+pub use self::__MTLVertexDescriptor::MTLVertexBufferLayoutDescriptorArray;
+pub use self::__MTLVertexDescriptor::MTLVertexDescriptor;
 pub use self::__MTLVertexDescriptor::{
-    MTLVertexAttributeDescriptor, MTLVertexAttributeDescriptorArray,
-    MTLVertexBufferLayoutDescriptor, MTLVertexBufferLayoutDescriptorArray, MTLVertexDescriptor,
     MTLVertexFormat, MTLVertexFormatChar, MTLVertexFormatChar2, MTLVertexFormatChar2Normalized,
     MTLVertexFormatChar3, MTLVertexFormatChar3Normalized, MTLVertexFormatChar4,
     MTLVertexFormatChar4Normalized, MTLVertexFormatCharNormalized, MTLVertexFormatFloat,
@@ -546,10 +755,12 @@ pub use self::__MTLVertexDescriptor::{
     MTLVertexFormatUInt2, MTLVertexFormatUInt3, MTLVertexFormatUInt4, MTLVertexFormatUShort,
     MTLVertexFormatUShort2, MTLVertexFormatUShort2Normalized, MTLVertexFormatUShort3,
     MTLVertexFormatUShort3Normalized, MTLVertexFormatUShort4, MTLVertexFormatUShort4Normalized,
-    MTLVertexFormatUShortNormalized, MTLVertexStepFunction, MTLVertexStepFunctionConstant,
-    MTLVertexStepFunctionPerInstance, MTLVertexStepFunctionPerPatch,
-    MTLVertexStepFunctionPerPatchControlPoint, MTLVertexStepFunctionPerVertex,
+    MTLVertexFormatUShortNormalized,
 };
-pub use self::__MTLVisibleFunctionTable::{
-    MTLVisibleFunctionTable, MTLVisibleFunctionTableDescriptor,
+pub use self::__MTLVertexDescriptor::{
+    MTLVertexStepFunction, MTLVertexStepFunctionConstant, MTLVertexStepFunctionPerInstance,
+    MTLVertexStepFunctionPerPatch, MTLVertexStepFunctionPerPatchControlPoint,
+    MTLVertexStepFunctionPerVertex,
 };
+pub use self::__MTLVisibleFunctionTable::MTLVisibleFunctionTable;
+pub use self::__MTLVisibleFunctionTable::MTLVisibleFunctionTableDescriptor;

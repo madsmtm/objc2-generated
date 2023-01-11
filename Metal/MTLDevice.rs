@@ -9,6 +9,7 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSArray")]
     pub unsafe fn MTLCopyAllDevices() -> NonNull<NSArray<MTLDevice>>;
 );
 

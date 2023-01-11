@@ -4,13 +4,16 @@ use crate::common::*;
 use crate::Foundation::*;
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSString")]
     pub unsafe fn NSFileTypeForHFSTypeCode(hfsFileTypeCode: OSType) -> *mut NSString;
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSString")]
     pub unsafe fn NSHFSTypeCodeFromFileType(fileTypeString: Option<&NSString>) -> OSType;
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSString")]
     pub unsafe fn NSHFSTypeOfFile(fullFilePath: Option<&NSString>) -> *mut NSString;
 );

@@ -862,6 +862,7 @@ extern_static!(NSAccessibilityPriorityKey: &'static NSAccessibilityNotificationU
 extern_static!(NSAccessibilityAnnouncementKey: &'static NSAccessibilityNotificationUserInfoKey);
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSDictionary")]
     pub unsafe fn NSAccessibilityPostNotificationWithUserInfo(
         element: &Object,
         notification: &NSAccessibilityNotificationName,

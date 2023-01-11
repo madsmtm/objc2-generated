@@ -96,26 +96,32 @@ extern_methods!(
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSString")]
     pub unsafe fn NSUserName() -> NonNull<NSString>;
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSString")]
     pub unsafe fn NSFullUserName() -> NonNull<NSString>;
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSString")]
     pub unsafe fn NSHomeDirectory() -> NonNull<NSString>;
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSString")]
     pub unsafe fn NSHomeDirectoryForUser(userName: Option<&NSString>) -> *mut NSString;
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSString")]
     pub unsafe fn NSTemporaryDirectory() -> NonNull<NSString>;
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSString")]
     pub unsafe fn NSOpenStepRootDirectory() -> NonNull<NSString>;
 );
 
@@ -164,6 +170,7 @@ ns_options!(
 );
 
 extern_fn!(
+    #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
     pub unsafe fn NSSearchPathForDirectoriesInDomains(
         directory: NSSearchPathDirectory,
         domainMask: NSSearchPathDomainMask,

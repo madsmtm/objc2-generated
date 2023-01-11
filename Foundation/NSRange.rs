@@ -38,10 +38,12 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSString")]
     pub unsafe fn NSStringFromRange(range: NSRange) -> NonNull<NSString>;
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSString")]
     pub unsafe fn NSRangeFromString(aString: &NSString) -> NSRange;
 );
 

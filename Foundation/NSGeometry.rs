@@ -247,26 +247,32 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSString")]
     pub unsafe fn NSStringFromPoint(aPoint: NSPoint) -> NonNull<NSString>;
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSString")]
     pub unsafe fn NSStringFromSize(aSize: NSSize) -> NonNull<NSString>;
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSString")]
     pub unsafe fn NSStringFromRect(aRect: NSRect) -> NonNull<NSString>;
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSString")]
     pub unsafe fn NSPointFromString(aString: &NSString) -> NSPoint;
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSString")]
     pub unsafe fn NSSizeFromString(aString: &NSString) -> NSSize;
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSString")]
     pub unsafe fn NSRectFromString(aString: &NSString) -> NSRect;
 );
 

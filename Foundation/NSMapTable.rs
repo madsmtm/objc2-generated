@@ -155,18 +155,22 @@ extern_struct!(
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSMapTable")]
     pub unsafe fn NSFreeMapTable(table: &NSMapTable);
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSMapTable")]
     pub unsafe fn NSResetMapTable(table: &NSMapTable);
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSMapTable")]
     pub unsafe fn NSCompareMapTables(table1: &NSMapTable, table2: &NSMapTable) -> Bool;
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSMapTable")]
     pub unsafe fn NSCopyMapTableWithZone(
         table: &NSMapTable,
         zone: *mut NSZone,
@@ -174,6 +178,7 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSMapTable")]
     pub unsafe fn NSMapMember(
         table: &NSMapTable,
         key: NonNull<c_void>,
@@ -183,18 +188,22 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSMapTable")]
     pub unsafe fn NSMapGet(table: &NSMapTable, key: *mut c_void) -> *mut c_void;
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSMapTable")]
     pub unsafe fn NSMapInsert(table: &NSMapTable, key: *mut c_void, value: *mut c_void);
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSMapTable")]
     pub unsafe fn NSMapInsertKnownAbsent(table: &NSMapTable, key: *mut c_void, value: *mut c_void);
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSMapTable")]
     pub unsafe fn NSMapInsertIfAbsent(
         table: &NSMapTable,
         key: *mut c_void,
@@ -203,10 +212,12 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSMapTable")]
     pub unsafe fn NSMapRemove(table: &NSMapTable, key: *mut c_void);
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSMapTable")]
     pub unsafe fn NSEnumerateMapTable(table: &NSMapTable) -> NSMapEnumerator;
 );
 
@@ -223,18 +234,22 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSMapTable")]
     pub unsafe fn NSCountMapTable(table: &NSMapTable) -> NSUInteger;
 );
 
 extern_fn!(
+    #[cfg(all(feature = "Foundation_NSMapTable", feature = "Foundation_NSString"))]
     pub unsafe fn NSStringFromMapTable(table: &NSMapTable) -> NonNull<NSString>;
 );
 
 extern_fn!(
+    #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSMapTable"))]
     pub unsafe fn NSAllMapTableKeys(table: &NSMapTable) -> NonNull<NSArray>;
 );
 
 extern_fn!(
+    #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSMapTable"))]
     pub unsafe fn NSAllMapTableValues(table: &NSMapTable) -> NonNull<NSArray>;
 );
 
@@ -262,6 +277,7 @@ extern_struct!(
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSMapTable")]
     pub unsafe fn NSCreateMapTableWithZone(
         keyCallBacks: NSMapTableKeyCallBacks,
         valueCallBacks: NSMapTableValueCallBacks,
@@ -271,6 +287,7 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSMapTable")]
     pub unsafe fn NSCreateMapTable(
         keyCallBacks: NSMapTableKeyCallBacks,
         valueCallBacks: NSMapTableValueCallBacks,

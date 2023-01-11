@@ -134,18 +134,22 @@ extern_struct!(
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSHashTable")]
     pub unsafe fn NSFreeHashTable(table: &NSHashTable);
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSHashTable")]
     pub unsafe fn NSResetHashTable(table: &NSHashTable);
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSHashTable")]
     pub unsafe fn NSCompareHashTables(table1: &NSHashTable, table2: &NSHashTable) -> Bool;
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSHashTable")]
     pub unsafe fn NSCopyHashTableWithZone(
         table: &NSHashTable,
         zone: *mut NSZone,
@@ -153,26 +157,32 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSHashTable")]
     pub unsafe fn NSHashGet(table: &NSHashTable, pointer: *mut c_void) -> NonNull<c_void>;
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSHashTable")]
     pub unsafe fn NSHashInsert(table: &NSHashTable, pointer: *mut c_void);
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSHashTable")]
     pub unsafe fn NSHashInsertKnownAbsent(table: &NSHashTable, pointer: *mut c_void);
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSHashTable")]
     pub unsafe fn NSHashInsertIfAbsent(table: &NSHashTable, pointer: *mut c_void) -> *mut c_void;
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSHashTable")]
     pub unsafe fn NSHashRemove(table: &NSHashTable, pointer: *mut c_void);
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSHashTable")]
     pub unsafe fn NSEnumerateHashTable(table: &NSHashTable) -> NSHashEnumerator;
 );
 
@@ -185,14 +195,17 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSHashTable")]
     pub unsafe fn NSCountHashTable(table: &NSHashTable) -> NSUInteger;
 );
 
 extern_fn!(
+    #[cfg(all(feature = "Foundation_NSHashTable", feature = "Foundation_NSString"))]
     pub unsafe fn NSStringFromHashTable(table: &NSHashTable) -> NonNull<NSString>;
 );
 
 extern_fn!(
+    #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSHashTable"))]
     pub unsafe fn NSAllHashTableObjects(table: &NSHashTable) -> NonNull<NSArray>;
 );
 
@@ -210,6 +223,7 @@ extern_struct!(
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSHashTable")]
     pub unsafe fn NSCreateHashTableWithZone(
         callBacks: NSHashTableCallBacks,
         capacity: NSUInteger,
@@ -218,6 +232,7 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSHashTable")]
     pub unsafe fn NSCreateHashTable(
         callBacks: NSHashTableCallBacks,
         capacity: NSUInteger,

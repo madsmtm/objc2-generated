@@ -750,6 +750,7 @@ extern_methods!(
 );
 
 extern_fn!(
+    #[cfg(feature = "AppKit_NSImage")]
     pub unsafe fn NSDrawThreePartImage(
         frame: NSRect,
         startCap: Option<&NSImage>,
@@ -763,6 +764,7 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[cfg(feature = "AppKit_NSImage")]
     pub unsafe fn NSDrawNinePartImage(
         frame: NSRect,
         topLeftCorner: Option<&NSImage>,

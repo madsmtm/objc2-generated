@@ -43,10 +43,12 @@ extern_static!(
 );
 
 extern_fn!(
+    #[cfg(feature = "AppKit_NSView")]
     pub unsafe fn NSAccessibilityFrameInView(parentView: &NSView, frame: NSRect) -> NSRect;
 );
 
 extern_fn!(
+    #[cfg(feature = "AppKit_NSView")]
     pub unsafe fn NSAccessibilityPointInView(parentView: &NSView, point: NSPoint) -> NSPoint;
 );
 
@@ -55,6 +57,7 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSString")]
     pub unsafe fn NSAccessibilityRoleDescription(
         role: &NSAccessibilityRole,
         subrole: Option<&NSAccessibilitySubrole>,
@@ -62,10 +65,12 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSString")]
     pub unsafe fn NSAccessibilityRoleDescriptionForUIElement(element: &Object) -> *mut NSString;
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSString")]
     pub unsafe fn NSAccessibilityActionDescription(
         action: &NSAccessibilityActionName,
     ) -> *mut NSString;
@@ -88,10 +93,12 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSArray")]
     pub unsafe fn NSAccessibilityUnignoredChildren(originalChildren: &NSArray) -> NonNull<NSArray>;
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSArray")]
     pub unsafe fn NSAccessibilityUnignoredChildrenForOnlyChild(
         originalChild: &Object,
     ) -> NonNull<NSArray>;

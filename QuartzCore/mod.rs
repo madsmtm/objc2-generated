@@ -54,95 +54,194 @@ mod __CATransformLayer;
 #[path = "CAValueFunction.rs"]
 mod __CAValueFunction;
 
-pub use self::__CAAnimation::{
-    kCAAnimationCubic, kCAAnimationCubicPaced, kCAAnimationDiscrete, kCAAnimationLinear,
-    kCAAnimationPaced, kCAAnimationRotateAuto, kCAAnimationRotateAutoReverse, kCATransitionFade,
-    kCATransitionFromBottom, kCATransitionFromLeft, kCATransitionFromRight, kCATransitionFromTop,
-    kCATransitionMoveIn, kCATransitionPush, kCATransitionReveal, CAAnimation,
-    CAAnimationCalculationMode, CAAnimationDelegate, CAAnimationGroup, CAAnimationRotationMode,
-    CABasicAnimation, CAKeyframeAnimation, CAPropertyAnimation, CASpringAnimation, CATransition,
-    CATransitionSubtype, CATransitionType,
-};
+pub use self::__CAAnimation::kCAAnimationCubic;
+pub use self::__CAAnimation::kCAAnimationCubicPaced;
+pub use self::__CAAnimation::kCAAnimationDiscrete;
+pub use self::__CAAnimation::kCAAnimationLinear;
+pub use self::__CAAnimation::kCAAnimationPaced;
+pub use self::__CAAnimation::kCAAnimationRotateAuto;
+pub use self::__CAAnimation::kCAAnimationRotateAutoReverse;
+pub use self::__CAAnimation::kCATransitionFade;
+pub use self::__CAAnimation::kCATransitionFromBottom;
+pub use self::__CAAnimation::kCATransitionFromLeft;
+pub use self::__CAAnimation::kCATransitionFromRight;
+pub use self::__CAAnimation::kCATransitionFromTop;
+pub use self::__CAAnimation::kCATransitionMoveIn;
+pub use self::__CAAnimation::kCATransitionPush;
+pub use self::__CAAnimation::kCATransitionReveal;
+pub use self::__CAAnimation::CAAnimation;
+pub use self::__CAAnimation::CAAnimationCalculationMode;
+pub use self::__CAAnimation::CAAnimationDelegate;
+pub use self::__CAAnimation::CAAnimationGroup;
+pub use self::__CAAnimation::CAAnimationRotationMode;
+pub use self::__CAAnimation::CABasicAnimation;
+pub use self::__CAAnimation::CAKeyframeAnimation;
+pub use self::__CAAnimation::CAPropertyAnimation;
+pub use self::__CAAnimation::CASpringAnimation;
+pub use self::__CAAnimation::CATransition;
+pub use self::__CAAnimation::CATransitionSubtype;
+pub use self::__CAAnimation::CATransitionType;
 pub use self::__CABase::CACurrentMediaTime;
+pub use self::__CAConstraintLayoutManager::CAConstraint;
+pub use self::__CAConstraintLayoutManager::CAConstraintLayoutManager;
 pub use self::__CAConstraintLayoutManager::{
     kCAConstraintHeight, kCAConstraintMaxX, kCAConstraintMaxY, kCAConstraintMidX,
-    kCAConstraintMidY, kCAConstraintMinX, kCAConstraintMinY, kCAConstraintWidth, CAConstraint,
-    CAConstraintAttribute, CAConstraintLayoutManager,
+    kCAConstraintMidY, kCAConstraintMinX, kCAConstraintMinY, kCAConstraintWidth,
+    CAConstraintAttribute,
 };
 pub use self::__CADisplayLink::CADisplayLink;
 pub use self::__CAEDRMetadata::CAEDRMetadata;
 pub use self::__CAEmitterCell::CAEmitterCell;
-pub use self::__CAEmitterLayer::{
-    kCAEmitterLayerAdditive, kCAEmitterLayerBackToFront, kCAEmitterLayerCircle,
-    kCAEmitterLayerCuboid, kCAEmitterLayerLine, kCAEmitterLayerOldestFirst,
-    kCAEmitterLayerOldestLast, kCAEmitterLayerOutline, kCAEmitterLayerPoint, kCAEmitterLayerPoints,
-    kCAEmitterLayerRectangle, kCAEmitterLayerSphere, kCAEmitterLayerSurface,
-    kCAEmitterLayerUnordered, kCAEmitterLayerVolume, CAEmitterLayer, CAEmitterLayerEmitterMode,
-    CAEmitterLayerEmitterShape, CAEmitterLayerRenderMode,
-};
-pub use self::__CAFrameRateRange::{
-    CAFrameRateRange, CAFrameRateRangeDefault, CAFrameRateRangeIsEqualToRange, CAFrameRateRangeMake,
-};
-pub use self::__CAGradientLayer::{
-    kCAGradientLayerAxial, kCAGradientLayerConic, kCAGradientLayerRadial, CAGradientLayer,
-    CAGradientLayerType,
+pub use self::__CAEmitterLayer::kCAEmitterLayerAdditive;
+pub use self::__CAEmitterLayer::kCAEmitterLayerBackToFront;
+pub use self::__CAEmitterLayer::kCAEmitterLayerCircle;
+pub use self::__CAEmitterLayer::kCAEmitterLayerCuboid;
+pub use self::__CAEmitterLayer::kCAEmitterLayerLine;
+pub use self::__CAEmitterLayer::kCAEmitterLayerOldestFirst;
+pub use self::__CAEmitterLayer::kCAEmitterLayerOldestLast;
+pub use self::__CAEmitterLayer::kCAEmitterLayerOutline;
+pub use self::__CAEmitterLayer::kCAEmitterLayerPoint;
+pub use self::__CAEmitterLayer::kCAEmitterLayerPoints;
+pub use self::__CAEmitterLayer::kCAEmitterLayerRectangle;
+pub use self::__CAEmitterLayer::kCAEmitterLayerSphere;
+pub use self::__CAEmitterLayer::kCAEmitterLayerSurface;
+pub use self::__CAEmitterLayer::kCAEmitterLayerUnordered;
+pub use self::__CAEmitterLayer::kCAEmitterLayerVolume;
+pub use self::__CAEmitterLayer::CAEmitterLayer;
+pub use self::__CAEmitterLayer::CAEmitterLayerEmitterMode;
+pub use self::__CAEmitterLayer::CAEmitterLayerEmitterShape;
+pub use self::__CAEmitterLayer::CAEmitterLayerRenderMode;
+pub use self::__CAFrameRateRange::CAFrameRateRange;
+pub use self::__CAFrameRateRange::CAFrameRateRangeDefault;
+pub use self::__CAFrameRateRange::CAFrameRateRangeIsEqualToRange;
+pub use self::__CAFrameRateRange::CAFrameRateRangeMake;
+pub use self::__CAGradientLayer::kCAGradientLayerAxial;
+pub use self::__CAGradientLayer::kCAGradientLayerConic;
+pub use self::__CAGradientLayer::kCAGradientLayerRadial;
+pub use self::__CAGradientLayer::CAGradientLayer;
+pub use self::__CAGradientLayer::CAGradientLayerType;
+pub use self::__CALayer::kCAContentsFormatGray8Uint;
+pub use self::__CALayer::kCAContentsFormatRGBA16Float;
+pub use self::__CALayer::kCAContentsFormatRGBA8Uint;
+pub use self::__CALayer::kCACornerCurveCircular;
+pub use self::__CALayer::kCACornerCurveContinuous;
+pub use self::__CALayer::kCAFilterLinear;
+pub use self::__CALayer::kCAFilterNearest;
+pub use self::__CALayer::kCAFilterTrilinear;
+pub use self::__CALayer::kCAGravityBottom;
+pub use self::__CALayer::kCAGravityBottomLeft;
+pub use self::__CALayer::kCAGravityBottomRight;
+pub use self::__CALayer::kCAGravityCenter;
+pub use self::__CALayer::kCAGravityLeft;
+pub use self::__CALayer::kCAGravityResize;
+pub use self::__CALayer::kCAGravityResizeAspect;
+pub use self::__CALayer::kCAGravityResizeAspectFill;
+pub use self::__CALayer::kCAGravityRight;
+pub use self::__CALayer::kCAGravityTop;
+pub use self::__CALayer::kCAGravityTopLeft;
+pub use self::__CALayer::kCAGravityTopRight;
+pub use self::__CALayer::kCAOnOrderIn;
+pub use self::__CALayer::kCAOnOrderOut;
+pub use self::__CALayer::kCATransition;
+pub use self::__CALayer::CAAction;
+pub use self::__CALayer::CALayer;
+pub use self::__CALayer::CALayerContentsFilter;
+pub use self::__CALayer::CALayerContentsFormat;
+pub use self::__CALayer::CALayerContentsGravity;
+pub use self::__CALayer::CALayerCornerCurve;
+pub use self::__CALayer::CALayerDelegate;
+pub use self::__CALayer::CALayoutManager;
+pub use self::__CALayer::{
+    kCALayerBottomEdge, kCALayerLeftEdge, kCALayerRightEdge, kCALayerTopEdge,
+    CAEdgeAntialiasingMask,
 };
 pub use self::__CALayer::{
-    kCAContentsFormatGray8Uint, kCAContentsFormatRGBA16Float, kCAContentsFormatRGBA8Uint,
-    kCACornerCurveCircular, kCACornerCurveContinuous, kCAFilterLinear, kCAFilterNearest,
-    kCAFilterTrilinear, kCAGravityBottom, kCAGravityBottomLeft, kCAGravityBottomRight,
-    kCAGravityCenter, kCAGravityLeft, kCAGravityResize, kCAGravityResizeAspect,
-    kCAGravityResizeAspectFill, kCAGravityRight, kCAGravityTop, kCAGravityTopLeft,
-    kCAGravityTopRight, kCALayerBottomEdge, kCALayerHeightSizable, kCALayerLeftEdge,
-    kCALayerMaxXMargin, kCALayerMaxXMaxYCorner, kCALayerMaxXMinYCorner, kCALayerMaxYMargin,
-    kCALayerMinXMargin, kCALayerMinXMaxYCorner, kCALayerMinXMinYCorner, kCALayerMinYMargin,
-    kCALayerNotSizable, kCALayerRightEdge, kCALayerTopEdge, kCALayerWidthSizable, kCAOnOrderIn,
-    kCAOnOrderOut, kCATransition, CAAction, CAAutoresizingMask, CACornerMask,
-    CAEdgeAntialiasingMask, CALayer, CALayerContentsFilter, CALayerContentsFormat,
-    CALayerContentsGravity, CALayerCornerCurve, CALayerDelegate, CALayoutManager,
+    kCALayerHeightSizable, kCALayerMaxXMargin, kCALayerMaxYMargin, kCALayerMinXMargin,
+    kCALayerMinYMargin, kCALayerNotSizable, kCALayerWidthSizable, CAAutoresizingMask,
 };
-pub use self::__CAMediaTiming::{
-    kCAFillModeBackwards, kCAFillModeBoth, kCAFillModeForwards, kCAFillModeRemoved, CAMediaTiming,
-    CAMediaTimingFillMode,
+pub use self::__CALayer::{
+    kCALayerMaxXMaxYCorner, kCALayerMaxXMinYCorner, kCALayerMinXMaxYCorner, kCALayerMinXMinYCorner,
+    CACornerMask,
 };
-pub use self::__CAMediaTimingFunction::{
-    kCAMediaTimingFunctionDefault, kCAMediaTimingFunctionEaseIn,
-    kCAMediaTimingFunctionEaseInEaseOut, kCAMediaTimingFunctionEaseOut,
-    kCAMediaTimingFunctionLinear, CAMediaTimingFunction, CAMediaTimingFunctionName,
-};
+pub use self::__CAMediaTiming::kCAFillModeBackwards;
+pub use self::__CAMediaTiming::kCAFillModeBoth;
+pub use self::__CAMediaTiming::kCAFillModeForwards;
+pub use self::__CAMediaTiming::kCAFillModeRemoved;
+pub use self::__CAMediaTiming::CAMediaTiming;
+pub use self::__CAMediaTiming::CAMediaTimingFillMode;
+pub use self::__CAMediaTimingFunction::kCAMediaTimingFunctionDefault;
+pub use self::__CAMediaTimingFunction::kCAMediaTimingFunctionEaseIn;
+pub use self::__CAMediaTimingFunction::kCAMediaTimingFunctionEaseInEaseOut;
+pub use self::__CAMediaTimingFunction::kCAMediaTimingFunctionEaseOut;
+pub use self::__CAMediaTimingFunction::kCAMediaTimingFunctionLinear;
+pub use self::__CAMediaTimingFunction::CAMediaTimingFunction;
+pub use self::__CAMediaTimingFunction::CAMediaTimingFunctionName;
 pub use self::__CARemoteLayerClient::CARemoteLayerClient;
 pub use self::__CARemoteLayerServer::CARemoteLayerServer;
-pub use self::__CARenderer::{kCARendererColorSpace, kCARendererMetalCommandQueue, CARenderer};
+pub use self::__CARenderer::kCARendererColorSpace;
+pub use self::__CARenderer::kCARendererMetalCommandQueue;
+pub use self::__CARenderer::CARenderer;
 pub use self::__CAReplicatorLayer::CAReplicatorLayer;
-pub use self::__CAScrollLayer::{
-    kCAScrollBoth, kCAScrollHorizontally, kCAScrollNone, kCAScrollVertically, CAScrollLayer,
-    CAScrollLayerScrollMode,
-};
-pub use self::__CAShapeLayer::{
-    kCAFillRuleEvenOdd, kCAFillRuleNonZero, kCALineCapButt, kCALineCapRound, kCALineCapSquare,
-    kCALineJoinBevel, kCALineJoinMiter, kCALineJoinRound, CAShapeLayer, CAShapeLayerFillRule,
-    CAShapeLayerLineCap, CAShapeLayerLineJoin,
-};
-pub use self::__CATextLayer::{
-    kCAAlignmentCenter, kCAAlignmentJustified, kCAAlignmentLeft, kCAAlignmentNatural,
-    kCAAlignmentRight, kCATruncationEnd, kCATruncationMiddle, kCATruncationNone,
-    kCATruncationStart, CATextLayer, CATextLayerAlignmentMode, CATextLayerTruncationMode,
-};
+pub use self::__CAScrollLayer::kCAScrollBoth;
+pub use self::__CAScrollLayer::kCAScrollHorizontally;
+pub use self::__CAScrollLayer::kCAScrollNone;
+pub use self::__CAScrollLayer::kCAScrollVertically;
+pub use self::__CAScrollLayer::CAScrollLayer;
+pub use self::__CAScrollLayer::CAScrollLayerScrollMode;
+pub use self::__CAShapeLayer::kCAFillRuleEvenOdd;
+pub use self::__CAShapeLayer::kCAFillRuleNonZero;
+pub use self::__CAShapeLayer::kCALineCapButt;
+pub use self::__CAShapeLayer::kCALineCapRound;
+pub use self::__CAShapeLayer::kCALineCapSquare;
+pub use self::__CAShapeLayer::kCALineJoinBevel;
+pub use self::__CAShapeLayer::kCALineJoinMiter;
+pub use self::__CAShapeLayer::kCALineJoinRound;
+pub use self::__CAShapeLayer::CAShapeLayer;
+pub use self::__CAShapeLayer::CAShapeLayerFillRule;
+pub use self::__CAShapeLayer::CAShapeLayerLineCap;
+pub use self::__CAShapeLayer::CAShapeLayerLineJoin;
+pub use self::__CATextLayer::kCAAlignmentCenter;
+pub use self::__CATextLayer::kCAAlignmentJustified;
+pub use self::__CATextLayer::kCAAlignmentLeft;
+pub use self::__CATextLayer::kCAAlignmentNatural;
+pub use self::__CATextLayer::kCAAlignmentRight;
+pub use self::__CATextLayer::kCATruncationEnd;
+pub use self::__CATextLayer::kCATruncationMiddle;
+pub use self::__CATextLayer::kCATruncationNone;
+pub use self::__CATextLayer::kCATruncationStart;
+pub use self::__CATextLayer::CATextLayer;
+pub use self::__CATextLayer::CATextLayerAlignmentMode;
+pub use self::__CATextLayer::CATextLayerTruncationMode;
 pub use self::__CATiledLayer::CATiledLayer;
-pub use self::__CATransaction::{
-    kCATransactionAnimationDuration, kCATransactionAnimationTimingFunction,
-    kCATransactionCompletionBlock, kCATransactionDisableActions, CATransaction,
-};
-pub use self::__CATransform3D::{
-    CATransform3D, CATransform3DConcat, CATransform3DEqualToTransform, CATransform3DIdentity,
-    CATransform3DInvert, CATransform3DIsAffine, CATransform3DIsIdentity, CATransform3DMakeRotation,
-    CATransform3DMakeScale, CATransform3DMakeTranslation, CATransform3DRotate, CATransform3DScale,
-    CATransform3DTranslate,
-};
+pub use self::__CATransaction::kCATransactionAnimationDuration;
+pub use self::__CATransaction::kCATransactionAnimationTimingFunction;
+pub use self::__CATransaction::kCATransactionCompletionBlock;
+pub use self::__CATransaction::kCATransactionDisableActions;
+pub use self::__CATransaction::CATransaction;
+pub use self::__CATransform3D::CATransform3D;
+pub use self::__CATransform3D::CATransform3DConcat;
+pub use self::__CATransform3D::CATransform3DEqualToTransform;
+pub use self::__CATransform3D::CATransform3DIdentity;
+pub use self::__CATransform3D::CATransform3DInvert;
+pub use self::__CATransform3D::CATransform3DIsAffine;
+pub use self::__CATransform3D::CATransform3DIsIdentity;
+pub use self::__CATransform3D::CATransform3DMakeRotation;
+pub use self::__CATransform3D::CATransform3DMakeScale;
+pub use self::__CATransform3D::CATransform3DMakeTranslation;
+pub use self::__CATransform3D::CATransform3DRotate;
+pub use self::__CATransform3D::CATransform3DScale;
+pub use self::__CATransform3D::CATransform3DTranslate;
 pub use self::__CATransformLayer::CATransformLayer;
-pub use self::__CAValueFunction::{
-    kCAValueFunctionRotateX, kCAValueFunctionRotateY, kCAValueFunctionRotateZ,
-    kCAValueFunctionScale, kCAValueFunctionScaleX, kCAValueFunctionScaleY, kCAValueFunctionScaleZ,
-    kCAValueFunctionTranslate, kCAValueFunctionTranslateX, kCAValueFunctionTranslateY,
-    kCAValueFunctionTranslateZ, CAValueFunction, CAValueFunctionName,
-};
+pub use self::__CAValueFunction::kCAValueFunctionRotateX;
+pub use self::__CAValueFunction::kCAValueFunctionRotateY;
+pub use self::__CAValueFunction::kCAValueFunctionRotateZ;
+pub use self::__CAValueFunction::kCAValueFunctionScale;
+pub use self::__CAValueFunction::kCAValueFunctionScaleX;
+pub use self::__CAValueFunction::kCAValueFunctionScaleY;
+pub use self::__CAValueFunction::kCAValueFunctionScaleZ;
+pub use self::__CAValueFunction::kCAValueFunctionTranslate;
+pub use self::__CAValueFunction::kCAValueFunctionTranslateX;
+pub use self::__CAValueFunction::kCAValueFunctionTranslateY;
+pub use self::__CAValueFunction::kCAValueFunctionTranslateZ;
+pub use self::__CAValueFunction::CAValueFunction;
+pub use self::__CAValueFunction::CAValueFunctionName;

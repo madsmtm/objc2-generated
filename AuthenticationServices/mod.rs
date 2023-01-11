@@ -120,57 +120,60 @@ mod __ASWebAuthenticationSessionWebBrowserSessionHandling;
 #[path = "ASWebAuthenticationSessionWebBrowserSessionManager.rs"]
 mod __ASWebAuthenticationSessionWebBrowserSessionManager;
 
-pub use self::__ASAccountAuthenticationModificationController::{
-    ASAccountAuthenticationModificationController,
-    ASAccountAuthenticationModificationControllerDelegate,
-    ASAccountAuthenticationModificationControllerPresentationContextProviding,
-};
+pub use self::__ASAccountAuthenticationModificationController::ASAccountAuthenticationModificationController;
+pub use self::__ASAccountAuthenticationModificationController::ASAccountAuthenticationModificationControllerDelegate;
+pub use self::__ASAccountAuthenticationModificationController::ASAccountAuthenticationModificationControllerPresentationContextProviding;
 pub use self::__ASAccountAuthenticationModificationExtensionContext::ASAccountAuthenticationModificationExtensionContext;
 pub use self::__ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest::ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest;
 pub use self::__ASAccountAuthenticationModificationRequest::ASAccountAuthenticationModificationRequest;
 pub use self::__ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest::ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest;
-pub use self::__ASAuthorization::{
-    ASAuthorization, ASAuthorizationScope, ASAuthorizationScopeEmail, ASAuthorizationScopeFullName,
-};
+pub use self::__ASAuthorization::ASAuthorization;
+pub use self::__ASAuthorization::ASAuthorizationScope;
+pub use self::__ASAuthorization::ASAuthorizationScopeEmail;
+pub use self::__ASAuthorization::ASAuthorizationScopeFullName;
 pub use self::__ASAuthorizationAppleIDButton::{
     ASAuthorizationAppleIDButtonStyle, ASAuthorizationAppleIDButtonStyleBlack,
     ASAuthorizationAppleIDButtonStyleWhite, ASAuthorizationAppleIDButtonStyleWhiteOutline,
+};
+pub use self::__ASAuthorizationAppleIDButton::{
     ASAuthorizationAppleIDButtonType, ASAuthorizationAppleIDButtonTypeContinue,
     ASAuthorizationAppleIDButtonTypeDefault, ASAuthorizationAppleIDButtonTypeSignIn,
     ASAuthorizationAppleIDButtonTypeSignUp,
 };
+pub use self::__ASAuthorizationAppleIDCredential::ASAuthorizationAppleIDCredential;
 pub use self::__ASAuthorizationAppleIDCredential::{
-    ASAuthorizationAppleIDCredential, ASUserDetectionStatus, ASUserDetectionStatusLikelyReal,
-    ASUserDetectionStatusUnknown, ASUserDetectionStatusUnsupported,
+    ASUserDetectionStatus, ASUserDetectionStatusLikelyReal, ASUserDetectionStatusUnknown,
+    ASUserDetectionStatusUnsupported,
 };
+pub use self::__ASAuthorizationAppleIDProvider::ASAuthorizationAppleIDProvider;
+pub use self::__ASAuthorizationAppleIDProvider::ASAuthorizationAppleIDProviderCredentialRevokedNotification;
 pub use self::__ASAuthorizationAppleIDProvider::{
-    ASAuthorizationAppleIDProvider, ASAuthorizationAppleIDProviderCredentialAuthorized,
+    ASAuthorizationAppleIDProviderCredentialAuthorized,
     ASAuthorizationAppleIDProviderCredentialNotFound,
-    ASAuthorizationAppleIDProviderCredentialRevoked,
-    ASAuthorizationAppleIDProviderCredentialRevokedNotification,
-    ASAuthorizationAppleIDProviderCredentialState,
+    ASAuthorizationAppleIDProviderCredentialRevoked, ASAuthorizationAppleIDProviderCredentialState,
     ASAuthorizationAppleIDProviderCredentialTransferred,
 };
 pub use self::__ASAuthorizationAppleIDRequest::ASAuthorizationAppleIDRequest;
-pub use self::__ASAuthorizationController::{
-    ASAuthorizationController, ASAuthorizationControllerDelegate,
-    ASAuthorizationControllerPresentationContextProviding,
-};
+pub use self::__ASAuthorizationController::ASAuthorizationController;
+pub use self::__ASAuthorizationController::ASAuthorizationControllerDelegate;
+pub use self::__ASAuthorizationController::ASAuthorizationControllerPresentationContextProviding;
 pub use self::__ASAuthorizationCredential::ASAuthorizationCredential;
-pub use self::__ASAuthorizationCustomMethod::{
-    ASAuthorizationCustomMethod, ASAuthorizationCustomMethodOther,
-    ASAuthorizationCustomMethodRestorePurchase, ASAuthorizationCustomMethodVideoSubscriberAccount,
-};
+pub use self::__ASAuthorizationCustomMethod::ASAuthorizationCustomMethod;
+pub use self::__ASAuthorizationCustomMethod::ASAuthorizationCustomMethodOther;
+pub use self::__ASAuthorizationCustomMethod::ASAuthorizationCustomMethodRestorePurchase;
+pub use self::__ASAuthorizationCustomMethod::ASAuthorizationCustomMethodVideoSubscriberAccount;
+pub use self::__ASAuthorizationError::ASAuthorizationErrorDomain;
 pub use self::__ASAuthorizationError::{
-    ASAuthorizationError, ASAuthorizationErrorCanceled, ASAuthorizationErrorDomain,
-    ASAuthorizationErrorFailed, ASAuthorizationErrorInvalidResponse,
-    ASAuthorizationErrorNotHandled, ASAuthorizationErrorNotInteractive,
-    ASAuthorizationErrorUnknown,
+    ASAuthorizationError, ASAuthorizationErrorCanceled, ASAuthorizationErrorFailed,
+    ASAuthorizationErrorInvalidResponse, ASAuthorizationErrorNotHandled,
+    ASAuthorizationErrorNotInteractive, ASAuthorizationErrorUnknown,
 };
-pub use self::__ASAuthorizationOpenIDRequest::{
-    ASAuthorizationOpenIDOperation, ASAuthorizationOpenIDRequest, ASAuthorizationOperationImplicit,
-    ASAuthorizationOperationLogin, ASAuthorizationOperationLogout, ASAuthorizationOperationRefresh,
-};
+pub use self::__ASAuthorizationOpenIDRequest::ASAuthorizationOpenIDOperation;
+pub use self::__ASAuthorizationOpenIDRequest::ASAuthorizationOpenIDRequest;
+pub use self::__ASAuthorizationOpenIDRequest::ASAuthorizationOperationImplicit;
+pub use self::__ASAuthorizationOpenIDRequest::ASAuthorizationOperationLogin;
+pub use self::__ASAuthorizationOpenIDRequest::ASAuthorizationOperationLogout;
+pub use self::__ASAuthorizationOpenIDRequest::ASAuthorizationOperationRefresh;
 pub use self::__ASAuthorizationPasswordProvider::ASAuthorizationPasswordProvider;
 pub use self::__ASAuthorizationPasswordRequest::ASAuthorizationPasswordRequest;
 pub use self::__ASAuthorizationPlatformPublicKeyCredentialAssertion::ASAuthorizationPlatformPublicKeyCredentialAssertion;
@@ -180,30 +183,26 @@ pub use self::__ASAuthorizationPlatformPublicKeyCredentialProvider::ASAuthorizat
 pub use self::__ASAuthorizationPlatformPublicKeyCredentialRegistration::ASAuthorizationPlatformPublicKeyCredentialRegistration;
 pub use self::__ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest::ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest;
 pub use self::__ASAuthorizationProvider::ASAuthorizationProvider;
-pub use self::__ASAuthorizationProviderExtensionAuthorizationRequest::{
-    ASAuthorizationProviderAuthorizationOperation,
-    ASAuthorizationProviderAuthorizationOperationConfigurationRemoved,
-    ASAuthorizationProviderExtensionAuthorizationRequest,
-    ASAuthorizationProviderExtensionAuthorizationRequestHandler,
-};
+pub use self::__ASAuthorizationProviderExtensionAuthorizationRequest::ASAuthorizationProviderAuthorizationOperation;
+pub use self::__ASAuthorizationProviderExtensionAuthorizationRequest::ASAuthorizationProviderAuthorizationOperationConfigurationRemoved;
+pub use self::__ASAuthorizationProviderExtensionAuthorizationRequest::ASAuthorizationProviderExtensionAuthorizationRequest;
+pub use self::__ASAuthorizationProviderExtensionAuthorizationRequest::ASAuthorizationProviderExtensionAuthorizationRequestHandler;
 pub use self::__ASAuthorizationProviderExtensionAuthorizationResult::ASAuthorizationProviderExtensionAuthorizationResult;
 pub use self::__ASAuthorizationPublicKeyCredentialAssertion::ASAuthorizationPublicKeyCredentialAssertion;
 pub use self::__ASAuthorizationPublicKeyCredentialAssertionRequest::ASAuthorizationPublicKeyCredentialAssertionRequest;
-pub use self::__ASAuthorizationPublicKeyCredentialConstants::{
-    ASAuthorizationPublicKeyCredentialAttestationKind,
-    ASAuthorizationPublicKeyCredentialAttestationKindDirect,
-    ASAuthorizationPublicKeyCredentialAttestationKindEnterprise,
-    ASAuthorizationPublicKeyCredentialAttestationKindIndirect,
-    ASAuthorizationPublicKeyCredentialAttestationKindNone,
-    ASAuthorizationPublicKeyCredentialResidentKeyPreference,
-    ASAuthorizationPublicKeyCredentialResidentKeyPreferenceDiscouraged,
-    ASAuthorizationPublicKeyCredentialResidentKeyPreferencePreferred,
-    ASAuthorizationPublicKeyCredentialResidentKeyPreferenceRequired,
-    ASAuthorizationPublicKeyCredentialUserVerificationPreference,
-    ASAuthorizationPublicKeyCredentialUserVerificationPreferenceDiscouraged,
-    ASAuthorizationPublicKeyCredentialUserVerificationPreferencePreferred,
-    ASAuthorizationPublicKeyCredentialUserVerificationPreferenceRequired,
-};
+pub use self::__ASAuthorizationPublicKeyCredentialConstants::ASAuthorizationPublicKeyCredentialAttestationKind;
+pub use self::__ASAuthorizationPublicKeyCredentialConstants::ASAuthorizationPublicKeyCredentialAttestationKindDirect;
+pub use self::__ASAuthorizationPublicKeyCredentialConstants::ASAuthorizationPublicKeyCredentialAttestationKindEnterprise;
+pub use self::__ASAuthorizationPublicKeyCredentialConstants::ASAuthorizationPublicKeyCredentialAttestationKindIndirect;
+pub use self::__ASAuthorizationPublicKeyCredentialConstants::ASAuthorizationPublicKeyCredentialAttestationKindNone;
+pub use self::__ASAuthorizationPublicKeyCredentialConstants::ASAuthorizationPublicKeyCredentialResidentKeyPreference;
+pub use self::__ASAuthorizationPublicKeyCredentialConstants::ASAuthorizationPublicKeyCredentialResidentKeyPreferenceDiscouraged;
+pub use self::__ASAuthorizationPublicKeyCredentialConstants::ASAuthorizationPublicKeyCredentialResidentKeyPreferencePreferred;
+pub use self::__ASAuthorizationPublicKeyCredentialConstants::ASAuthorizationPublicKeyCredentialResidentKeyPreferenceRequired;
+pub use self::__ASAuthorizationPublicKeyCredentialConstants::ASAuthorizationPublicKeyCredentialUserVerificationPreference;
+pub use self::__ASAuthorizationPublicKeyCredentialConstants::ASAuthorizationPublicKeyCredentialUserVerificationPreferenceDiscouraged;
+pub use self::__ASAuthorizationPublicKeyCredentialConstants::ASAuthorizationPublicKeyCredentialUserVerificationPreferencePreferred;
+pub use self::__ASAuthorizationPublicKeyCredentialConstants::ASAuthorizationPublicKeyCredentialUserVerificationPreferenceRequired;
 pub use self::__ASAuthorizationPublicKeyCredentialDescriptor::ASAuthorizationPublicKeyCredentialDescriptor;
 pub use self::__ASAuthorizationPublicKeyCredentialParameters::ASAuthorizationPublicKeyCredentialParameters;
 pub use self::__ASAuthorizationPublicKeyCredentialRegistration::ASAuthorizationPublicKeyCredentialRegistration;
@@ -211,54 +210,56 @@ pub use self::__ASAuthorizationPublicKeyCredentialRegistrationRequest::ASAuthori
 pub use self::__ASAuthorizationRequest::ASAuthorizationRequest;
 pub use self::__ASAuthorizationSecurityKeyPublicKeyCredentialAssertion::ASAuthorizationSecurityKeyPublicKeyCredentialAssertion;
 pub use self::__ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest::ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest;
-pub use self::__ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor::{
-    ASAuthorizationAllSupportedPublicKeyCredentialDescriptorTransports,
-    ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor,
-    ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport,
-    ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransportBluetooth,
-    ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransportNFC,
-    ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransportUSB,
-};
+#[cfg(feature = "Foundation_NSArray")]
+pub use self::__ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor::ASAuthorizationAllSupportedPublicKeyCredentialDescriptorTransports;
+pub use self::__ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor::ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor;
+pub use self::__ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor::ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport;
+pub use self::__ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor::ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransportBluetooth;
+pub use self::__ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor::ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransportNFC;
+pub use self::__ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor::ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransportUSB;
 pub use self::__ASAuthorizationSecurityKeyPublicKeyCredentialProvider::ASAuthorizationSecurityKeyPublicKeyCredentialProvider;
 pub use self::__ASAuthorizationSecurityKeyPublicKeyCredentialRegistration::ASAuthorizationSecurityKeyPublicKeyCredentialRegistration;
 pub use self::__ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest::ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest;
 pub use self::__ASAuthorizationSingleSignOnCredential::ASAuthorizationSingleSignOnCredential;
 pub use self::__ASAuthorizationSingleSignOnProvider::ASAuthorizationSingleSignOnProvider;
 pub use self::__ASAuthorizationSingleSignOnRequest::ASAuthorizationSingleSignOnRequest;
-pub use self::__ASCOSEConstants::{
-    ASCOSEAlgorithmIdentifier, ASCOSEAlgorithmIdentifierES256, ASCOSEEllipticCurveIdentifier,
-    ASCOSEEllipticCurveIdentifierP256,
-};
+pub use self::__ASCOSEConstants::ASCOSEAlgorithmIdentifier;
+pub use self::__ASCOSEConstants::ASCOSEAlgorithmIdentifierES256;
+pub use self::__ASCOSEConstants::ASCOSEEllipticCurveIdentifier;
+pub use self::__ASCOSEConstants::ASCOSEEllipticCurveIdentifierP256;
+pub use self::__ASCredentialIdentityStore::ASCredentialIdentityStore;
+pub use self::__ASCredentialIdentityStore::ASCredentialIdentityStoreErrorDomain;
 pub use self::__ASCredentialIdentityStore::{
-    ASCredentialIdentityStore, ASCredentialIdentityStoreErrorCode,
-    ASCredentialIdentityStoreErrorCodeInternalError, ASCredentialIdentityStoreErrorCodeStoreBusy,
-    ASCredentialIdentityStoreErrorCodeStoreDisabled, ASCredentialIdentityStoreErrorDomain,
+    ASCredentialIdentityStoreErrorCode, ASCredentialIdentityStoreErrorCodeInternalError,
+    ASCredentialIdentityStoreErrorCodeStoreBusy, ASCredentialIdentityStoreErrorCodeStoreDisabled,
 };
 pub use self::__ASCredentialIdentityStoreState::ASCredentialIdentityStoreState;
 pub use self::__ASCredentialProviderExtensionContext::ASCredentialProviderExtensionContext;
+pub use self::__ASCredentialServiceIdentifier::ASCredentialServiceIdentifier;
 pub use self::__ASCredentialServiceIdentifier::{
-    ASCredentialServiceIdentifier, ASCredentialServiceIdentifierType,
-    ASCredentialServiceIdentifierTypeDomain, ASCredentialServiceIdentifierTypeURL,
+    ASCredentialServiceIdentifierType, ASCredentialServiceIdentifierTypeDomain,
+    ASCredentialServiceIdentifierTypeURL,
 };
+pub use self::__ASExtensionErrors::ASExtensionErrorDomain;
+pub use self::__ASExtensionErrors::ASExtensionLocalizedFailureReasonErrorKey;
 pub use self::__ASExtensionErrors::{
     ASExtensionErrorCode, ASExtensionErrorCodeCredentialIdentityNotFound,
     ASExtensionErrorCodeFailed, ASExtensionErrorCodeUserCanceled,
-    ASExtensionErrorCodeUserInteractionRequired, ASExtensionErrorDomain,
-    ASExtensionLocalizedFailureReasonErrorKey,
+    ASExtensionErrorCodeUserInteractionRequired,
 };
 pub use self::__ASPasswordCredential::ASPasswordCredential;
 pub use self::__ASPasswordCredentialIdentity::ASPasswordCredentialIdentity;
 pub use self::__ASPublicKeyCredential::ASPublicKeyCredential;
+pub use self::__ASWebAuthenticationSession::ASWebAuthenticationPresentationContextProviding;
+pub use self::__ASWebAuthenticationSession::ASWebAuthenticationSession;
+pub use self::__ASWebAuthenticationSession::ASWebAuthenticationSessionCompletionHandler;
+pub use self::__ASWebAuthenticationSession::ASWebAuthenticationSessionErrorDomain;
 pub use self::__ASWebAuthenticationSession::{
-    ASWebAuthenticationPresentationContextProviding, ASWebAuthenticationSession,
-    ASWebAuthenticationSessionCompletionHandler, ASWebAuthenticationSessionErrorCode,
-    ASWebAuthenticationSessionErrorCodeCanceledLogin,
+    ASWebAuthenticationSessionErrorCode, ASWebAuthenticationSessionErrorCodeCanceledLogin,
     ASWebAuthenticationSessionErrorCodePresentationContextInvalid,
     ASWebAuthenticationSessionErrorCodePresentationContextNotProvided,
-    ASWebAuthenticationSessionErrorDomain,
 };
-pub use self::__ASWebAuthenticationSessionRequest::{
-    ASWebAuthenticationSessionRequest, ASWebAuthenticationSessionRequestDelegate,
-};
+pub use self::__ASWebAuthenticationSessionRequest::ASWebAuthenticationSessionRequest;
+pub use self::__ASWebAuthenticationSessionRequest::ASWebAuthenticationSessionRequestDelegate;
 pub use self::__ASWebAuthenticationSessionWebBrowserSessionHandling::ASWebAuthenticationSessionWebBrowserSessionHandling;
 pub use self::__ASWebAuthenticationSessionWebBrowserSessionManager::ASWebAuthenticationSessionWebBrowserSessionManager;

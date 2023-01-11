@@ -327,6 +327,7 @@ extern_methods!(
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSCoder")]
     pub unsafe fn NXReadNSObjectFromCoder(decoder: &NSCoder) -> *mut NSObject;
 );
 

@@ -20,10 +20,12 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSString")]
     pub unsafe fn NSSetZoneName(zone: *mut NSZone, name: &NSString);
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSString")]
     pub unsafe fn NSZoneName(zone: *mut NSZone) -> NonNull<NSString>;
 );
 

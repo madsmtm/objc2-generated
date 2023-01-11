@@ -269,6 +269,7 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[cfg(feature = "AppKit_NSColor")]
     pub unsafe fn NSRectFillListWithColors(
         rects: NonNull<NSRect>,
         colors: NonNull<NonNull<NSColor>>,
@@ -289,6 +290,7 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[cfg(feature = "AppKit_NSColor")]
     pub unsafe fn NSRectFillListWithColorsUsingOperation(
         rects: NonNull<NSRect>,
         colors: NonNull<NonNull<NSColor>>,
@@ -352,6 +354,7 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[cfg(feature = "AppKit_NSColor")]
     pub unsafe fn NSReadPixel(passedPoint: NSPoint) -> *mut NSColor;
 );
 
@@ -364,6 +367,7 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSString")]
     pub unsafe fn NSGetWindowServerMemory(
         context: NSInteger,
         virtualMemory: NonNull<NSInteger>,
@@ -373,6 +377,7 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[cfg(feature = "AppKit_NSColor")]
     pub unsafe fn NSDrawColorTiledRects(
         boundsRect: NSRect,
         clipRect: NSRect,

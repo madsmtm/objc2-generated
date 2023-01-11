@@ -24,6 +24,7 @@ extern_static!(
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSArray")]
     pub unsafe fn ASAuthorizationAllSupportedPublicKeyCredentialDescriptorTransports(
     ) -> NonNull<NSArray<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport>>;
 );

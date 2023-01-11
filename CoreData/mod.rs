@@ -99,188 +99,263 @@ mod __NSRelationshipDescription;
 mod __NSSaveChangesRequest;
 
 pub use self::__CoreDataDefines::NSCoreDataVersionNumber;
+pub use self::__CoreDataErrors::NSAffectedObjectsErrorKey;
+pub use self::__CoreDataErrors::NSAffectedStoresErrorKey;
+pub use self::__CoreDataErrors::NSDetailedErrorsKey;
+pub use self::__CoreDataErrors::NSPersistentStoreSaveConflictsErrorKey;
+pub use self::__CoreDataErrors::NSSQLiteErrorDomain;
+pub use self::__CoreDataErrors::NSValidationKeyErrorKey;
+pub use self::__CoreDataErrors::NSValidationObjectErrorKey;
+pub use self::__CoreDataErrors::NSValidationPredicateErrorKey;
+pub use self::__CoreDataErrors::NSValidationValueErrorKey;
 pub use self::__CoreDataErrors::{
-    NSAffectedObjectsErrorKey, NSAffectedStoresErrorKey, NSCoreDataError, NSDetailedErrorsKey,
-    NSEntityMigrationPolicyError, NSExternalRecordImportError, NSInferredMappingModelError,
-    NSManagedObjectConstraintMergeError, NSManagedObjectConstraintValidationError,
-    NSManagedObjectContextLockingError, NSManagedObjectExternalRelationshipError,
-    NSManagedObjectMergeError, NSManagedObjectReferentialIntegrityError,
-    NSManagedObjectValidationError, NSMigrationCancelledError, NSMigrationConstraintViolationError,
-    NSMigrationError, NSMigrationManagerDestinationStoreError, NSMigrationManagerSourceStoreError,
+    NSCoreDataError, NSEntityMigrationPolicyError, NSExternalRecordImportError,
+    NSInferredMappingModelError, NSManagedObjectConstraintMergeError,
+    NSManagedObjectConstraintValidationError, NSManagedObjectContextLockingError,
+    NSManagedObjectExternalRelationshipError, NSManagedObjectMergeError,
+    NSManagedObjectReferentialIntegrityError, NSManagedObjectValidationError,
+    NSMigrationCancelledError, NSMigrationConstraintViolationError, NSMigrationError,
+    NSMigrationManagerDestinationStoreError, NSMigrationManagerSourceStoreError,
     NSMigrationMissingMappingModelError, NSMigrationMissingSourceModelError,
     NSPersistentHistoryTokenExpiredError, NSPersistentStoreCoordinatorLockingError,
     NSPersistentStoreIncompatibleSchemaError, NSPersistentStoreIncompatibleVersionHashError,
     NSPersistentStoreIncompleteSaveError, NSPersistentStoreInvalidTypeError,
     NSPersistentStoreOpenError, NSPersistentStoreOperationError,
-    NSPersistentStoreSaveConflictsError, NSPersistentStoreSaveConflictsErrorKey,
-    NSPersistentStoreSaveError, NSPersistentStoreTimeoutError, NSPersistentStoreTypeMismatchError,
-    NSPersistentStoreUnsupportedRequestTypeError, NSSQLiteError, NSSQLiteErrorDomain,
-    NSValidationDateTooLateError, NSValidationDateTooSoonError, NSValidationInvalidDateError,
-    NSValidationInvalidURIError, NSValidationKeyErrorKey,
+    NSPersistentStoreSaveConflictsError, NSPersistentStoreSaveError, NSPersistentStoreTimeoutError,
+    NSPersistentStoreTypeMismatchError, NSPersistentStoreUnsupportedRequestTypeError,
+    NSSQLiteError, NSValidationDateTooLateError, NSValidationDateTooSoonError,
+    NSValidationInvalidDateError, NSValidationInvalidURIError,
     NSValidationMissingMandatoryPropertyError, NSValidationMultipleErrorsError,
-    NSValidationNumberTooLargeError, NSValidationNumberTooSmallError, NSValidationObjectErrorKey,
-    NSValidationPredicateErrorKey, NSValidationRelationshipDeniedDeleteError,
-    NSValidationRelationshipExceedsMaximumCountError,
+    NSValidationNumberTooLargeError, NSValidationNumberTooSmallError,
+    NSValidationRelationshipDeniedDeleteError, NSValidationRelationshipExceedsMaximumCountError,
     NSValidationRelationshipLacksMinimumCountError, NSValidationStringPatternMatchingError,
-    NSValidationStringTooLongError, NSValidationStringTooShortError, NSValidationValueErrorKey,
+    NSValidationStringTooLongError, NSValidationStringTooShortError,
 };
 pub use self::__NSAtomicStore::NSAtomicStore;
 pub use self::__NSAtomicStoreCacheNode::NSAtomicStoreCacheNode;
+pub use self::__NSAttributeDescription::NSAttributeDescription;
 pub use self::__NSAttributeDescription::{
-    NSAttributeDescription, NSAttributeType, NSBinaryDataAttributeType, NSBooleanAttributeType,
-    NSDateAttributeType, NSDecimalAttributeType, NSDoubleAttributeType, NSFloatAttributeType,
-    NSInteger16AttributeType, NSInteger32AttributeType, NSInteger64AttributeType,
-    NSObjectIDAttributeType, NSStringAttributeType, NSTransformableAttributeType,
-    NSURIAttributeType, NSUUIDAttributeType, NSUndefinedAttributeType,
+    NSAttributeType, NSBinaryDataAttributeType, NSBooleanAttributeType, NSDateAttributeType,
+    NSDecimalAttributeType, NSDoubleAttributeType, NSFloatAttributeType, NSInteger16AttributeType,
+    NSInteger32AttributeType, NSInteger64AttributeType, NSObjectIDAttributeType,
+    NSStringAttributeType, NSTransformableAttributeType, NSURIAttributeType, NSUUIDAttributeType,
+    NSUndefinedAttributeType,
 };
 pub use self::__NSBatchDeleteRequest::NSBatchDeleteRequest;
 pub use self::__NSBatchInsertRequest::NSBatchInsertRequest;
 pub use self::__NSBatchUpdateRequest::NSBatchUpdateRequest;
-pub use self::__NSCoreDataCoreSpotlightDelegate::{
-    NSCoreDataCoreSpotlightDelegate, NSCoreDataCoreSpotlightDelegateIndexDidUpdateNotification,
-};
+pub use self::__NSCoreDataCoreSpotlightDelegate::NSCoreDataCoreSpotlightDelegate;
+pub use self::__NSCoreDataCoreSpotlightDelegate::NSCoreDataCoreSpotlightDelegateIndexDidUpdateNotification;
 pub use self::__NSDerivedAttributeDescription::NSDerivedAttributeDescription;
 pub use self::__NSEntityDescription::NSEntityDescription;
+pub use self::__NSEntityMapping::NSEntityMapping;
 pub use self::__NSEntityMapping::{
-    NSAddEntityMappingType, NSCopyEntityMappingType, NSCustomEntityMappingType, NSEntityMapping,
+    NSAddEntityMappingType, NSCopyEntityMappingType, NSCustomEntityMappingType,
     NSEntityMappingType, NSRemoveEntityMappingType, NSTransformEntityMappingType,
     NSUndefinedEntityMappingType,
 };
-pub use self::__NSEntityMigrationPolicy::{
-    NSEntityMigrationPolicy, NSMigrationDestinationObjectKey, NSMigrationEntityMappingKey,
-    NSMigrationEntityPolicyKey, NSMigrationManagerKey, NSMigrationPropertyMappingKey,
-    NSMigrationSourceObjectKey,
-};
+pub use self::__NSEntityMigrationPolicy::NSEntityMigrationPolicy;
+pub use self::__NSEntityMigrationPolicy::NSMigrationDestinationObjectKey;
+pub use self::__NSEntityMigrationPolicy::NSMigrationEntityMappingKey;
+pub use self::__NSEntityMigrationPolicy::NSMigrationEntityPolicyKey;
+pub use self::__NSEntityMigrationPolicy::NSMigrationManagerKey;
+pub use self::__NSEntityMigrationPolicy::NSMigrationPropertyMappingKey;
+pub use self::__NSEntityMigrationPolicy::NSMigrationSourceObjectKey;
 pub use self::__NSExpressionDescription::NSExpressionDescription;
 pub use self::__NSFetchIndexDescription::NSFetchIndexDescription;
+pub use self::__NSFetchIndexElementDescription::NSFetchIndexElementDescription;
 pub use self::__NSFetchIndexElementDescription::{
-    NSFetchIndexElementDescription, NSFetchIndexElementType, NSFetchIndexElementTypeBinary,
-    NSFetchIndexElementTypeRTree,
+    NSFetchIndexElementType, NSFetchIndexElementTypeBinary, NSFetchIndexElementTypeRTree,
 };
+pub use self::__NSFetchRequest::NSAsynchronousFetchRequest;
+pub use self::__NSFetchRequest::NSFetchRequest;
+pub use self::__NSFetchRequest::NSFetchRequestResult;
+pub use self::__NSFetchRequest::NSPersistentStoreAsynchronousFetchResultCompletionBlock;
 pub use self::__NSFetchRequest::{
-    NSAsynchronousFetchRequest, NSCountResultType, NSDictionaryResultType, NSFetchRequest,
-    NSFetchRequestResult, NSFetchRequestResultType, NSManagedObjectIDResultType,
-    NSManagedObjectResultType, NSPersistentStoreAsynchronousFetchResultCompletionBlock,
+    NSCountResultType, NSDictionaryResultType, NSFetchRequestResultType,
+    NSManagedObjectIDResultType, NSManagedObjectResultType,
 };
-pub use self::__NSFetchRequestExpression::{
-    NSFetchRequestExpression, NSFetchRequestExpressionType,
-};
+pub use self::__NSFetchRequestExpression::NSFetchRequestExpression;
+pub use self::__NSFetchRequestExpression::NSFetchRequestExpressionType;
 pub use self::__NSFetchedPropertyDescription::NSFetchedPropertyDescription;
+pub use self::__NSFetchedResultsController::NSFetchedResultsController;
+pub use self::__NSFetchedResultsController::NSFetchedResultsControllerDelegate;
+pub use self::__NSFetchedResultsController::NSFetchedResultsSectionInfo;
 pub use self::__NSFetchedResultsController::{
     NSFetchedResultsChangeDelete, NSFetchedResultsChangeInsert, NSFetchedResultsChangeMove,
-    NSFetchedResultsChangeType, NSFetchedResultsChangeUpdate, NSFetchedResultsController,
-    NSFetchedResultsControllerDelegate, NSFetchedResultsSectionInfo,
+    NSFetchedResultsChangeType, NSFetchedResultsChangeUpdate,
 };
 pub use self::__NSIncrementalStore::NSIncrementalStore;
 pub use self::__NSIncrementalStoreNode::NSIncrementalStoreNode;
+pub use self::__NSManagedObject::NSManagedObject;
 pub use self::__NSManagedObject::{
-    NSManagedObject, NSSnapshotEventMergePolicy, NSSnapshotEventRefresh, NSSnapshotEventRollback,
+    NSSnapshotEventMergePolicy, NSSnapshotEventRefresh, NSSnapshotEventRollback,
     NSSnapshotEventType, NSSnapshotEventUndoDeletion, NSSnapshotEventUndoInsertion,
     NSSnapshotEventUndoUpdate,
 };
+pub use self::__NSManagedObjectContext::NSDeletedObjectIDsKey;
+pub use self::__NSManagedObjectContext::NSDeletedObjectsKey;
+pub use self::__NSManagedObjectContext::NSInsertedObjectIDsKey;
+pub use self::__NSManagedObjectContext::NSInsertedObjectsKey;
+pub use self::__NSManagedObjectContext::NSInvalidatedAllObjectsKey;
+pub use self::__NSManagedObjectContext::NSInvalidatedObjectIDsKey;
+pub use self::__NSManagedObjectContext::NSInvalidatedObjectsKey;
+pub use self::__NSManagedObjectContext::NSManagedObjectContext;
+pub use self::__NSManagedObjectContext::NSManagedObjectContextDidMergeChangesObjectIDsNotification;
+pub use self::__NSManagedObjectContext::NSManagedObjectContextDidSaveNotification;
+pub use self::__NSManagedObjectContext::NSManagedObjectContextDidSaveObjectIDsNotification;
+pub use self::__NSManagedObjectContext::NSManagedObjectContextObjectsDidChangeNotification;
+pub use self::__NSManagedObjectContext::NSManagedObjectContextQueryGenerationKey;
+pub use self::__NSManagedObjectContext::NSManagedObjectContextWillSaveNotification;
+pub use self::__NSManagedObjectContext::NSRefreshedObjectIDsKey;
+pub use self::__NSManagedObjectContext::NSRefreshedObjectsKey;
+pub use self::__NSManagedObjectContext::NSUpdatedObjectIDsKey;
+pub use self::__NSManagedObjectContext::NSUpdatedObjectsKey;
 pub use self::__NSManagedObjectContext::{
-    NSConfinementConcurrencyType, NSDeletedObjectIDsKey, NSDeletedObjectsKey,
-    NSInsertedObjectIDsKey, NSInsertedObjectsKey, NSInvalidatedAllObjectsKey,
-    NSInvalidatedObjectIDsKey, NSInvalidatedObjectsKey, NSMainQueueConcurrencyType,
-    NSManagedObjectContext, NSManagedObjectContextConcurrencyType,
-    NSManagedObjectContextDidMergeChangesObjectIDsNotification,
-    NSManagedObjectContextDidSaveNotification, NSManagedObjectContextDidSaveObjectIDsNotification,
-    NSManagedObjectContextObjectsDidChangeNotification, NSManagedObjectContextQueryGenerationKey,
-    NSManagedObjectContextWillSaveNotification, NSPrivateQueueConcurrencyType,
-    NSRefreshedObjectIDsKey, NSRefreshedObjectsKey, NSUpdatedObjectIDsKey, NSUpdatedObjectsKey,
+    NSConfinementConcurrencyType, NSMainQueueConcurrencyType,
+    NSManagedObjectContextConcurrencyType, NSPrivateQueueConcurrencyType,
 };
 pub use self::__NSManagedObjectID::NSManagedObjectID;
 pub use self::__NSManagedObjectModel::NSManagedObjectModel;
 pub use self::__NSMappingModel::NSMappingModel;
+pub use self::__NSMergePolicy::NSConstraintConflict;
+pub use self::__NSMergePolicy::NSMergeConflict;
+pub use self::__NSMergePolicy::NSMergePolicy;
 pub use self::__NSMergePolicy::{
-    NSConstraintConflict, NSErrorMergePolicyType, NSMergeByPropertyObjectTrumpMergePolicyType,
-    NSMergeByPropertyStoreTrumpMergePolicyType, NSMergeConflict, NSMergePolicy, NSMergePolicyType,
-    NSOverwriteMergePolicyType, NSRollbackMergePolicyType,
+    NSErrorMergePolicyType, NSMergeByPropertyObjectTrumpMergePolicyType,
+    NSMergeByPropertyStoreTrumpMergePolicyType, NSMergePolicyType, NSOverwriteMergePolicyType,
+    NSRollbackMergePolicyType,
 };
 pub use self::__NSMigrationManager::NSMigrationManager;
+pub use self::__NSPersistentCloudKitContainer::NSPersistentCloudKitContainer;
 pub use self::__NSPersistentCloudKitContainer::{
-    NSPersistentCloudKitContainer, NSPersistentCloudKitContainerSchemaInitializationOptions,
+    NSPersistentCloudKitContainerSchemaInitializationOptions,
     NSPersistentCloudKitContainerSchemaInitializationOptionsDryRun,
     NSPersistentCloudKitContainerSchemaInitializationOptionsNone,
     NSPersistentCloudKitContainerSchemaInitializationOptionsPrintSchema,
 };
+pub use self::__NSPersistentCloudKitContainerEvent::NSPersistentCloudKitContainerEvent;
+pub use self::__NSPersistentCloudKitContainerEvent::NSPersistentCloudKitContainerEventChangedNotification;
+pub use self::__NSPersistentCloudKitContainerEvent::NSPersistentCloudKitContainerEventUserInfoKey;
 pub use self::__NSPersistentCloudKitContainerEvent::{
-    NSPersistentCloudKitContainerEvent, NSPersistentCloudKitContainerEventChangedNotification,
     NSPersistentCloudKitContainerEventType, NSPersistentCloudKitContainerEventTypeExport,
     NSPersistentCloudKitContainerEventTypeImport, NSPersistentCloudKitContainerEventTypeSetup,
-    NSPersistentCloudKitContainerEventUserInfoKey,
 };
 pub use self::__NSPersistentCloudKitContainerEventRequest::NSPersistentCloudKitContainerEventRequest;
 pub use self::__NSPersistentCloudKitContainerOptions::NSPersistentCloudKitContainerOptions;
 pub use self::__NSPersistentContainer::NSPersistentContainer;
+pub use self::__NSPersistentHistoryChange::NSPersistentHistoryChange;
 pub use self::__NSPersistentHistoryChange::{
-    NSPersistentHistoryChange, NSPersistentHistoryChangeType, NSPersistentHistoryChangeTypeDelete,
+    NSPersistentHistoryChangeType, NSPersistentHistoryChangeTypeDelete,
     NSPersistentHistoryChangeTypeInsert, NSPersistentHistoryChangeTypeUpdate,
 };
 pub use self::__NSPersistentHistoryChangeRequest::NSPersistentHistoryChangeRequest;
 pub use self::__NSPersistentHistoryToken::NSPersistentHistoryToken;
 pub use self::__NSPersistentHistoryTransaction::NSPersistentHistoryTransaction;
 pub use self::__NSPersistentStore::NSPersistentStore;
+pub use self::__NSPersistentStoreCoordinator::NSAddedPersistentStoresKey;
+pub use self::__NSPersistentStoreCoordinator::NSBinaryExternalRecordType;
+pub use self::__NSPersistentStoreCoordinator::NSBinaryStoreInsecureDecodingCompatibilityOption;
+pub use self::__NSPersistentStoreCoordinator::NSBinaryStoreSecureDecodingClasses;
+pub use self::__NSPersistentStoreCoordinator::NSBinaryStoreType;
+pub use self::__NSPersistentStoreCoordinator::NSCoreDataCoreSpotlightExporter;
+pub use self::__NSPersistentStoreCoordinator::NSEntityNameInPathKey;
+pub use self::__NSPersistentStoreCoordinator::NSExternalRecordExtensionOption;
+pub use self::__NSPersistentStoreCoordinator::NSExternalRecordsDirectoryOption;
+pub use self::__NSPersistentStoreCoordinator::NSExternalRecordsFileFormatOption;
+pub use self::__NSPersistentStoreCoordinator::NSIgnorePersistentStoreVersioningOption;
+pub use self::__NSPersistentStoreCoordinator::NSInMemoryStoreType;
+pub use self::__NSPersistentStoreCoordinator::NSInferMappingModelAutomaticallyOption;
+pub use self::__NSPersistentStoreCoordinator::NSMigratePersistentStoresAutomaticallyOption;
+pub use self::__NSPersistentStoreCoordinator::NSModelPathKey;
+pub use self::__NSPersistentStoreCoordinator::NSObjectURIKey;
+pub use self::__NSPersistentStoreCoordinator::NSPersistentHistoryTokenKey;
+pub use self::__NSPersistentStoreCoordinator::NSPersistentHistoryTrackingKey;
+pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreConnectionPoolMaxSizeKey;
+pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreCoordinator;
+pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreCoordinatorStoresDidChangeNotification;
+pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreCoordinatorStoresWillChangeNotification;
+pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreCoordinatorWillRemoveStoreNotification;
+pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreDidImportUbiquitousContentChangesNotification;
+pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreFileProtectionKey;
+pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreForceDestroyOption;
+pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreOSCompatibility;
+pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreRebuildFromUbiquitousContentOption;
+pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreRemoteChangeNotification;
+pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreRemoteChangeNotificationPostOptionKey;
+pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreRemoveUbiquitousMetadataOption;
+pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreTimeoutOption;
+pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreURLKey;
+pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreUbiquitousContainerIdentifierKey;
+pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreUbiquitousContentNameKey;
+pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreUbiquitousContentURLKey;
+pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreUbiquitousPeerTokenOption;
+pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreUbiquitousTransitionTypeKey;
+pub use self::__NSPersistentStoreCoordinator::NSReadOnlyPersistentStoreOption;
+pub use self::__NSPersistentStoreCoordinator::NSRemovedPersistentStoresKey;
+pub use self::__NSPersistentStoreCoordinator::NSSQLiteAnalyzeOption;
+pub use self::__NSPersistentStoreCoordinator::NSSQLiteManualVacuumOption;
+pub use self::__NSPersistentStoreCoordinator::NSSQLitePragmasOption;
+pub use self::__NSPersistentStoreCoordinator::NSSQLiteStoreType;
+pub use self::__NSPersistentStoreCoordinator::NSStoreModelVersionHashesKey;
+pub use self::__NSPersistentStoreCoordinator::NSStoreModelVersionIdentifiersKey;
+pub use self::__NSPersistentStoreCoordinator::NSStorePathKey;
+pub use self::__NSPersistentStoreCoordinator::NSStoreTypeKey;
+pub use self::__NSPersistentStoreCoordinator::NSStoreUUIDInPathKey;
+pub use self::__NSPersistentStoreCoordinator::NSStoreUUIDKey;
+pub use self::__NSPersistentStoreCoordinator::NSUUIDChangedPersistentStoresKey;
+pub use self::__NSPersistentStoreCoordinator::NSValidateXMLStoreOption;
+pub use self::__NSPersistentStoreCoordinator::NSXMLExternalRecordType;
+pub use self::__NSPersistentStoreCoordinator::NSXMLStoreType;
 pub use self::__NSPersistentStoreCoordinator::{
-    NSAddedPersistentStoresKey, NSBinaryExternalRecordType,
-    NSBinaryStoreInsecureDecodingCompatibilityOption, NSBinaryStoreSecureDecodingClasses,
-    NSBinaryStoreType, NSCoreDataCoreSpotlightExporter, NSEntityNameInPathKey,
-    NSExternalRecordExtensionOption, NSExternalRecordsDirectoryOption,
-    NSExternalRecordsFileFormatOption, NSIgnorePersistentStoreVersioningOption,
-    NSInMemoryStoreType, NSInferMappingModelAutomaticallyOption,
-    NSMigratePersistentStoresAutomaticallyOption, NSModelPathKey, NSObjectURIKey,
-    NSPersistentHistoryTokenKey, NSPersistentHistoryTrackingKey,
-    NSPersistentStoreConnectionPoolMaxSizeKey, NSPersistentStoreCoordinator,
-    NSPersistentStoreCoordinatorStoresDidChangeNotification,
-    NSPersistentStoreCoordinatorStoresWillChangeNotification,
-    NSPersistentStoreCoordinatorWillRemoveStoreNotification,
-    NSPersistentStoreDidImportUbiquitousContentChangesNotification,
-    NSPersistentStoreFileProtectionKey, NSPersistentStoreForceDestroyOption,
-    NSPersistentStoreOSCompatibility, NSPersistentStoreRebuildFromUbiquitousContentOption,
-    NSPersistentStoreRemoteChangeNotification,
-    NSPersistentStoreRemoteChangeNotificationPostOptionKey,
-    NSPersistentStoreRemoveUbiquitousMetadataOption, NSPersistentStoreTimeoutOption,
-    NSPersistentStoreURLKey, NSPersistentStoreUbiquitousContainerIdentifierKey,
-    NSPersistentStoreUbiquitousContentNameKey, NSPersistentStoreUbiquitousContentURLKey,
-    NSPersistentStoreUbiquitousPeerTokenOption, NSPersistentStoreUbiquitousTransitionType,
+    NSPersistentStoreUbiquitousTransitionType,
     NSPersistentStoreUbiquitousTransitionTypeAccountAdded,
     NSPersistentStoreUbiquitousTransitionTypeAccountRemoved,
     NSPersistentStoreUbiquitousTransitionTypeContentRemoved,
     NSPersistentStoreUbiquitousTransitionTypeInitialImportCompleted,
-    NSPersistentStoreUbiquitousTransitionTypeKey, NSReadOnlyPersistentStoreOption,
-    NSRemovedPersistentStoresKey, NSSQLiteAnalyzeOption, NSSQLiteManualVacuumOption,
-    NSSQLitePragmasOption, NSSQLiteStoreType, NSStoreModelVersionHashesKey,
-    NSStoreModelVersionIdentifiersKey, NSStorePathKey, NSStoreTypeKey, NSStoreUUIDInPathKey,
-    NSStoreUUIDKey, NSUUIDChangedPersistentStoresKey, NSValidateXMLStoreOption,
-    NSXMLExternalRecordType, NSXMLStoreType,
 };
 pub use self::__NSPersistentStoreDescription::NSPersistentStoreDescription;
+pub use self::__NSPersistentStoreRequest::NSPersistentStoreRequest;
 pub use self::__NSPersistentStoreRequest::{
     NSBatchDeleteRequestType, NSBatchInsertRequestType, NSBatchUpdateRequestType,
-    NSFetchRequestType, NSPersistentStoreRequest, NSPersistentStoreRequestType, NSSaveRequestType,
+    NSFetchRequestType, NSPersistentStoreRequestType, NSSaveRequestType,
+};
+pub use self::__NSPersistentStoreResult::NSAsynchronousFetchResult;
+pub use self::__NSPersistentStoreResult::NSBatchDeleteResult;
+pub use self::__NSPersistentStoreResult::NSBatchInsertResult;
+pub use self::__NSPersistentStoreResult::NSBatchUpdateResult;
+pub use self::__NSPersistentStoreResult::NSPersistentCloudKitContainerEventResult;
+pub use self::__NSPersistentStoreResult::NSPersistentHistoryResult;
+pub use self::__NSPersistentStoreResult::NSPersistentStoreAsynchronousResult;
+pub use self::__NSPersistentStoreResult::NSPersistentStoreResult;
+pub use self::__NSPersistentStoreResult::{
+    NSBatchDeleteRequestResultType, NSBatchDeleteResultTypeCount, NSBatchDeleteResultTypeObjectIDs,
+    NSBatchDeleteResultTypeStatusOnly,
 };
 pub use self::__NSPersistentStoreResult::{
-    NSAsynchronousFetchResult, NSBatchDeleteRequestResultType, NSBatchDeleteResult,
-    NSBatchDeleteResultTypeCount, NSBatchDeleteResultTypeObjectIDs,
-    NSBatchDeleteResultTypeStatusOnly, NSBatchInsertRequestResultType,
-    NSBatchInsertRequestResultTypeCount, NSBatchInsertRequestResultTypeObjectIDs,
-    NSBatchInsertRequestResultTypeStatusOnly, NSBatchInsertResult, NSBatchUpdateRequestResultType,
-    NSBatchUpdateResult, NSPersistentCloudKitContainerEventResult,
+    NSBatchInsertRequestResultType, NSBatchInsertRequestResultTypeCount,
+    NSBatchInsertRequestResultTypeObjectIDs, NSBatchInsertRequestResultTypeStatusOnly,
+};
+pub use self::__NSPersistentStoreResult::{
+    NSBatchUpdateRequestResultType, NSStatusOnlyResultType, NSUpdatedObjectIDsResultType,
+    NSUpdatedObjectsCountResultType,
+};
+pub use self::__NSPersistentStoreResult::{
     NSPersistentCloudKitContainerEventResultType,
     NSPersistentCloudKitContainerEventResultTypeCountEvents,
-    NSPersistentCloudKitContainerEventResultTypeEvents, NSPersistentHistoryResult,
+    NSPersistentCloudKitContainerEventResultTypeEvents,
+};
+pub use self::__NSPersistentStoreResult::{
     NSPersistentHistoryResultType, NSPersistentHistoryResultTypeChangesOnly,
     NSPersistentHistoryResultTypeCount, NSPersistentHistoryResultTypeObjectIDs,
     NSPersistentHistoryResultTypeStatusOnly, NSPersistentHistoryResultTypeTransactionsAndChanges,
-    NSPersistentHistoryResultTypeTransactionsOnly, NSPersistentStoreAsynchronousResult,
-    NSPersistentStoreResult, NSStatusOnlyResultType, NSUpdatedObjectIDsResultType,
-    NSUpdatedObjectsCountResultType,
+    NSPersistentHistoryResultTypeTransactionsOnly,
 };
 pub use self::__NSPropertyDescription::NSPropertyDescription;
 pub use self::__NSPropertyMapping::NSPropertyMapping;
 pub use self::__NSQueryGenerationToken::NSQueryGenerationToken;
+pub use self::__NSRelationshipDescription::NSRelationshipDescription;
 pub use self::__NSRelationshipDescription::{
     NSCascadeDeleteRule, NSDeleteRule, NSDenyDeleteRule, NSNoActionDeleteRule, NSNullifyDeleteRule,
-    NSRelationshipDescription,
 };
 pub use self::__NSSaveChangesRequest::NSSaveChangesRequest;

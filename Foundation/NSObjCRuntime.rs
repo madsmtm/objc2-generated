@@ -14,26 +14,32 @@ typed_extensible_enum!(
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSString")]
     pub unsafe fn NSStringFromSelector(aSelector: Sel) -> NonNull<NSString>;
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSString")]
     pub unsafe fn NSSelectorFromString(aSelectorName: &NSString) -> Sel;
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSString")]
     pub unsafe fn NSStringFromClass(aClass: &Class) -> NonNull<NSString>;
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSString")]
     pub unsafe fn NSClassFromString(aClassName: &NSString) -> *const Class;
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSString")]
     pub unsafe fn NSStringFromProtocol(proto: &Protocol) -> NonNull<NSString>;
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSString")]
     pub unsafe fn NSProtocolFromString(namestr: &NSString) -> *mut Protocol;
 );
 

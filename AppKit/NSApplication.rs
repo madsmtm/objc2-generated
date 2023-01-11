@@ -1002,10 +1002,12 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSString")]
     pub unsafe fn NSShowsServicesMenuItem(itemName: &NSString) -> Bool;
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSString")]
     pub unsafe fn NSSetShowsServicesMenuItem(itemName: &NSString, enabled: Bool) -> NSInteger;
 );
 
@@ -1014,6 +1016,7 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[cfg(all(feature = "AppKit_NSPasteboard", feature = "Foundation_NSString"))]
     pub unsafe fn NSPerformService(itemName: &NSString, pboard: Option<&NSPasteboard>) -> Bool;
 );
 
