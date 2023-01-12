@@ -54,8 +54,31 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other imageWithSystemSymbolName:accessibilityDescription:)]
         pub unsafe fn imageWithSystemSymbolName_accessibilityDescription(
-            symbolName: &NSString,
+            name: &NSString,
             description: Option<&NSString>,
+        ) -> Option<Id<Self, Shared>>;
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Other imageWithSystemSymbolName:variableValue:accessibilityDescription:)]
+        pub unsafe fn imageWithSystemSymbolName_variableValue_accessibilityDescription(
+            name: &NSString,
+            value: c_double,
+            description: Option<&NSString>,
+        ) -> Option<Id<Self, Shared>>;
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Other imageWithSymbolName:variableValue:)]
+        pub unsafe fn imageWithSymbolName_variableValue(
+            name: &NSString,
+            value: c_double,
+        ) -> Option<Id<Self, Shared>>;
+
+        #[cfg(all(feature = "Foundation_NSBundle", feature = "Foundation_NSString"))]
+        #[method_id(@__retain_semantics Other imageWithSymbolName:bundle:variableValue:)]
+        pub unsafe fn imageWithSymbolName_bundle_variableValue(
+            name: &NSString,
+            bundle: Option<&NSBundle>,
+            value: c_double,
         ) -> Option<Id<Self, Shared>>;
 
         #[method_id(@__retain_semantics Init initWithSize:)]
@@ -362,6 +385,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other symbolConfiguration)]
         pub unsafe fn symbolConfiguration(&self) -> Id<NSImageSymbolConfiguration, Shared>;
     }
+);
+
+extern_methods!(
+    #[cfg(feature = "AppKit_NSImage")]
+    unsafe impl NSImage {}
 );
 
 extern_methods!(
@@ -861,6 +889,12 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other configurationWithScale:)]
         pub unsafe fn configurationWithScale(scale: NSImageSymbolScale) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Other configurationPreferringMonochrome)]
+        pub unsafe fn configurationPreferringMonochrome() -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Other configurationPreferringHierarchical)]
+        pub unsafe fn configurationPreferringHierarchical() -> Id<Self, Shared>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other configurationWithHierarchicalColor:)]

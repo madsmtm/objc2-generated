@@ -182,6 +182,26 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Metal_MTLRenderPipelineReflection")]
     unsafe impl MTLRenderPipelineReflection {
+        #[cfg(feature = "Foundation_NSArray")]
+        #[method_id(@__retain_semantics Other vertexBindings)]
+        pub unsafe fn vertexBindings(&self) -> Id<NSArray<MTLBinding>, Shared>;
+
+        #[cfg(feature = "Foundation_NSArray")]
+        #[method_id(@__retain_semantics Other fragmentBindings)]
+        pub unsafe fn fragmentBindings(&self) -> Id<NSArray<MTLBinding>, Shared>;
+
+        #[cfg(feature = "Foundation_NSArray")]
+        #[method_id(@__retain_semantics Other tileBindings)]
+        pub unsafe fn tileBindings(&self) -> Id<NSArray<MTLBinding>, Shared>;
+
+        #[cfg(feature = "Foundation_NSArray")]
+        #[method_id(@__retain_semantics Other objectBindings)]
+        pub unsafe fn objectBindings(&self) -> Id<NSArray<MTLBinding>, Shared>;
+
+        #[cfg(feature = "Foundation_NSArray")]
+        #[method_id(@__retain_semantics Other meshBindings)]
+        pub unsafe fn meshBindings(&self) -> Id<NSArray<MTLBinding>, Shared>;
+
         #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLArgument"))]
         #[method_id(@__retain_semantics Other vertexArguments)]
         pub fn vertexArguments(&self) -> Option<Id<NSArray<MTLArgument>, Shared>>;
@@ -540,6 +560,24 @@ extern_protocol!(
         #[method(supportIndirectCommandBuffers)]
         pub unsafe fn supportIndirectCommandBuffers(&self) -> bool;
 
+        #[method(maxTotalThreadsPerObjectThreadgroup)]
+        pub unsafe fn maxTotalThreadsPerObjectThreadgroup(&self) -> NSUInteger;
+
+        #[method(maxTotalThreadsPerMeshThreadgroup)]
+        pub unsafe fn maxTotalThreadsPerMeshThreadgroup(&self) -> NSUInteger;
+
+        #[method(objectThreadExecutionWidth)]
+        pub unsafe fn objectThreadExecutionWidth(&self) -> NSUInteger;
+
+        #[method(meshThreadExecutionWidth)]
+        pub unsafe fn meshThreadExecutionWidth(&self) -> NSUInteger;
+
+        #[method(maxTotalThreadgroupsPerMeshGrid)]
+        pub unsafe fn maxTotalThreadgroupsPerMeshGrid(&self) -> NSUInteger;
+
+        #[method(gpuResourceID)]
+        pub unsafe fn gpuResourceID(&self) -> MTLResourceID;
+
         #[method_id(@__retain_semantics Other functionHandleWithFunction:stage:)]
         pub unsafe fn functionHandleWithFunction_stage(
             &self,
@@ -756,6 +794,171 @@ extern_methods!(
 
         #[method(setMaxCallStackDepth:)]
         pub unsafe fn setMaxCallStackDepth(&self, maxCallStackDepth: NSUInteger);
+
+        #[method(reset)]
+        pub unsafe fn reset(&self);
+    }
+);
+
+extern_class!(
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLMeshRenderPipelineDescriptor")]
+    pub struct MTLMeshRenderPipelineDescriptor;
+
+    #[cfg(feature = "Metal_MTLMeshRenderPipelineDescriptor")]
+    unsafe impl ClassType for MTLMeshRenderPipelineDescriptor {
+        type Super = NSObject;
+    }
+);
+
+extern_methods!(
+    #[cfg(feature = "Metal_MTLMeshRenderPipelineDescriptor")]
+    unsafe impl MTLMeshRenderPipelineDescriptor {
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Other label)]
+        pub unsafe fn label(&self) -> Option<Id<NSString, Shared>>;
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method(setLabel:)]
+        pub unsafe fn setLabel(&self, label: Option<&NSString>);
+
+        #[method_id(@__retain_semantics Other objectFunction)]
+        pub unsafe fn objectFunction(&self) -> Option<Id<MTLFunction, Shared>>;
+
+        #[method(setObjectFunction:)]
+        pub unsafe fn setObjectFunction(&self, objectFunction: Option<&MTLFunction>);
+
+        #[method_id(@__retain_semantics Other meshFunction)]
+        pub unsafe fn meshFunction(&self) -> Option<Id<MTLFunction, Shared>>;
+
+        #[method(setMeshFunction:)]
+        pub unsafe fn setMeshFunction(&self, meshFunction: Option<&MTLFunction>);
+
+        #[method_id(@__retain_semantics Other fragmentFunction)]
+        pub unsafe fn fragmentFunction(&self) -> Option<Id<MTLFunction, Shared>>;
+
+        #[method(setFragmentFunction:)]
+        pub unsafe fn setFragmentFunction(&self, fragmentFunction: Option<&MTLFunction>);
+
+        #[method(maxTotalThreadsPerObjectThreadgroup)]
+        pub unsafe fn maxTotalThreadsPerObjectThreadgroup(&self) -> NSUInteger;
+
+        #[method(setMaxTotalThreadsPerObjectThreadgroup:)]
+        pub unsafe fn setMaxTotalThreadsPerObjectThreadgroup(
+            &self,
+            maxTotalThreadsPerObjectThreadgroup: NSUInteger,
+        );
+
+        #[method(maxTotalThreadsPerMeshThreadgroup)]
+        pub unsafe fn maxTotalThreadsPerMeshThreadgroup(&self) -> NSUInteger;
+
+        #[method(setMaxTotalThreadsPerMeshThreadgroup:)]
+        pub unsafe fn setMaxTotalThreadsPerMeshThreadgroup(
+            &self,
+            maxTotalThreadsPerMeshThreadgroup: NSUInteger,
+        );
+
+        #[method(objectThreadgroupSizeIsMultipleOfThreadExecutionWidth)]
+        pub unsafe fn objectThreadgroupSizeIsMultipleOfThreadExecutionWidth(&self) -> bool;
+
+        #[method(setObjectThreadgroupSizeIsMultipleOfThreadExecutionWidth:)]
+        pub unsafe fn setObjectThreadgroupSizeIsMultipleOfThreadExecutionWidth(
+            &self,
+            objectThreadgroupSizeIsMultipleOfThreadExecutionWidth: bool,
+        );
+
+        #[method(meshThreadgroupSizeIsMultipleOfThreadExecutionWidth)]
+        pub unsafe fn meshThreadgroupSizeIsMultipleOfThreadExecutionWidth(&self) -> bool;
+
+        #[method(setMeshThreadgroupSizeIsMultipleOfThreadExecutionWidth:)]
+        pub unsafe fn setMeshThreadgroupSizeIsMultipleOfThreadExecutionWidth(
+            &self,
+            meshThreadgroupSizeIsMultipleOfThreadExecutionWidth: bool,
+        );
+
+        #[method(payloadMemoryLength)]
+        pub unsafe fn payloadMemoryLength(&self) -> NSUInteger;
+
+        #[method(setPayloadMemoryLength:)]
+        pub unsafe fn setPayloadMemoryLength(&self, payloadMemoryLength: NSUInteger);
+
+        #[method(maxTotalThreadgroupsPerMeshGrid)]
+        pub unsafe fn maxTotalThreadgroupsPerMeshGrid(&self) -> NSUInteger;
+
+        #[method(setMaxTotalThreadgroupsPerMeshGrid:)]
+        pub unsafe fn setMaxTotalThreadgroupsPerMeshGrid(
+            &self,
+            maxTotalThreadgroupsPerMeshGrid: NSUInteger,
+        );
+
+        #[cfg(feature = "Metal_MTLPipelineBufferDescriptorArray")]
+        #[method_id(@__retain_semantics Other objectBuffers)]
+        pub unsafe fn objectBuffers(&self) -> Id<MTLPipelineBufferDescriptorArray, Shared>;
+
+        #[cfg(feature = "Metal_MTLPipelineBufferDescriptorArray")]
+        #[method_id(@__retain_semantics Other meshBuffers)]
+        pub unsafe fn meshBuffers(&self) -> Id<MTLPipelineBufferDescriptorArray, Shared>;
+
+        #[cfg(feature = "Metal_MTLPipelineBufferDescriptorArray")]
+        #[method_id(@__retain_semantics Other fragmentBuffers)]
+        pub unsafe fn fragmentBuffers(&self) -> Id<MTLPipelineBufferDescriptorArray, Shared>;
+
+        #[method(rasterSampleCount)]
+        pub unsafe fn rasterSampleCount(&self) -> NSUInteger;
+
+        #[method(setRasterSampleCount:)]
+        pub unsafe fn setRasterSampleCount(&self, rasterSampleCount: NSUInteger);
+
+        #[method(isAlphaToCoverageEnabled)]
+        pub unsafe fn isAlphaToCoverageEnabled(&self) -> bool;
+
+        #[method(setAlphaToCoverageEnabled:)]
+        pub unsafe fn setAlphaToCoverageEnabled(&self, alphaToCoverageEnabled: bool);
+
+        #[method(isAlphaToOneEnabled)]
+        pub unsafe fn isAlphaToOneEnabled(&self) -> bool;
+
+        #[method(setAlphaToOneEnabled:)]
+        pub unsafe fn setAlphaToOneEnabled(&self, alphaToOneEnabled: bool);
+
+        #[method(isRasterizationEnabled)]
+        pub unsafe fn isRasterizationEnabled(&self) -> bool;
+
+        #[method(setRasterizationEnabled:)]
+        pub unsafe fn setRasterizationEnabled(&self, rasterizationEnabled: bool);
+
+        #[method(maxVertexAmplificationCount)]
+        pub unsafe fn maxVertexAmplificationCount(&self) -> NSUInteger;
+
+        #[method(setMaxVertexAmplificationCount:)]
+        pub unsafe fn setMaxVertexAmplificationCount(
+            &self,
+            maxVertexAmplificationCount: NSUInteger,
+        );
+
+        #[cfg(feature = "Metal_MTLRenderPipelineColorAttachmentDescriptorArray")]
+        #[method_id(@__retain_semantics Other colorAttachments)]
+        pub unsafe fn colorAttachments(
+            &self,
+        ) -> Id<MTLRenderPipelineColorAttachmentDescriptorArray, Shared>;
+
+        #[method(depthAttachmentPixelFormat)]
+        pub unsafe fn depthAttachmentPixelFormat(&self) -> MTLPixelFormat;
+
+        #[method(setDepthAttachmentPixelFormat:)]
+        pub unsafe fn setDepthAttachmentPixelFormat(
+            &self,
+            depthAttachmentPixelFormat: MTLPixelFormat,
+        );
+
+        #[method(stencilAttachmentPixelFormat)]
+        pub unsafe fn stencilAttachmentPixelFormat(&self) -> MTLPixelFormat;
+
+        #[method(setStencilAttachmentPixelFormat:)]
+        pub unsafe fn setStencilAttachmentPixelFormat(
+            &self,
+            stencilAttachmentPixelFormat: MTLPixelFormat,
+        );
 
         #[method(reset)]
         pub unsafe fn reset(&self);

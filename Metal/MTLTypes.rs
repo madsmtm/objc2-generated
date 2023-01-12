@@ -89,3 +89,9 @@ inline_fn!(
         todo!()
     }
 );
+
+extern_struct!(
+    pub struct MTLResourceID {
+        _impl: u64,
+    }
+);

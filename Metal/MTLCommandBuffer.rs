@@ -256,6 +256,13 @@ extern_protocol!(
             &self,
         ) -> Option<Id<MTLAccelerationStructureCommandEncoder, Shared>>;
 
+        #[cfg(feature = "Metal_MTLAccelerationStructurePassDescriptor")]
+        #[method_id(@__retain_semantics Other accelerationStructureCommandEncoderWithDescriptor:)]
+        pub unsafe fn accelerationStructureCommandEncoderWithDescriptor(
+            &self,
+            descriptor: &MTLAccelerationStructurePassDescriptor,
+        ) -> Id<MTLAccelerationStructureCommandEncoder, Shared>;
+
         #[cfg(feature = "Foundation_NSString")]
         #[method(pushDebugGroup:)]
         pub fn pushDebugGroup(&self, string: &NSString);

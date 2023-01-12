@@ -92,6 +92,30 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:)]
         pub unsafe fn setLabel(&self, label: Option<&NSString>);
+
+        #[method_id(@__retain_semantics Other primitiveDataBuffer)]
+        pub unsafe fn primitiveDataBuffer(&self) -> Option<Id<MTLBuffer, Shared>>;
+
+        #[method(setPrimitiveDataBuffer:)]
+        pub unsafe fn setPrimitiveDataBuffer(&self, primitiveDataBuffer: Option<&MTLBuffer>);
+
+        #[method(primitiveDataBufferOffset)]
+        pub unsafe fn primitiveDataBufferOffset(&self) -> NSUInteger;
+
+        #[method(setPrimitiveDataBufferOffset:)]
+        pub unsafe fn setPrimitiveDataBufferOffset(&self, primitiveDataBufferOffset: NSUInteger);
+
+        #[method(primitiveDataStride)]
+        pub unsafe fn primitiveDataStride(&self) -> NSUInteger;
+
+        #[method(setPrimitiveDataStride:)]
+        pub unsafe fn setPrimitiveDataStride(&self, primitiveDataStride: NSUInteger);
+
+        #[method(primitiveDataElementSize)]
+        pub unsafe fn primitiveDataElementSize(&self) -> NSUInteger;
+
+        #[method(setPrimitiveDataElementSize:)]
+        pub unsafe fn setPrimitiveDataElementSize(&self, primitiveDataElementSize: NSUInteger);
     }
 );
 
@@ -199,6 +223,12 @@ extern_methods!(
         #[method(setVertexBufferOffset:)]
         pub unsafe fn setVertexBufferOffset(&self, vertexBufferOffset: NSUInteger);
 
+        #[method(vertexFormat)]
+        pub unsafe fn vertexFormat(&self) -> MTLAttributeFormat;
+
+        #[method(setVertexFormat:)]
+        pub unsafe fn setVertexFormat(&self, vertexFormat: MTLAttributeFormat);
+
         #[method(vertexStride)]
         pub unsafe fn vertexStride(&self) -> NSUInteger;
 
@@ -228,6 +258,24 @@ extern_methods!(
 
         #[method(setTriangleCount:)]
         pub fn setTriangleCount(&self, triangleCount: NSUInteger);
+
+        #[method_id(@__retain_semantics Other transformationMatrixBuffer)]
+        pub unsafe fn transformationMatrixBuffer(&self) -> Option<Id<MTLBuffer, Shared>>;
+
+        #[method(setTransformationMatrixBuffer:)]
+        pub unsafe fn setTransformationMatrixBuffer(
+            &self,
+            transformationMatrixBuffer: Option<&MTLBuffer>,
+        );
+
+        #[method(transformationMatrixBufferOffset)]
+        pub unsafe fn transformationMatrixBufferOffset(&self) -> NSUInteger;
+
+        #[method(setTransformationMatrixBufferOffset:)]
+        pub unsafe fn setTransformationMatrixBufferOffset(
+            &self,
+            transformationMatrixBufferOffset: NSUInteger,
+        );
 
         #[method_id(@__retain_semantics Other descriptor)]
         pub fn descriptor() -> Id<Self, Shared>;
@@ -338,6 +386,12 @@ extern_methods!(
         #[method(setVertexBuffers:)]
         pub unsafe fn setVertexBuffers(&self, vertexBuffers: &NSArray<MTLMotionKeyframeData>);
 
+        #[method(vertexFormat)]
+        pub unsafe fn vertexFormat(&self) -> MTLAttributeFormat;
+
+        #[method(setVertexFormat:)]
+        pub unsafe fn setVertexFormat(&self, vertexFormat: MTLAttributeFormat);
+
         #[method(vertexStride)]
         pub unsafe fn vertexStride(&self) -> NSUInteger;
 
@@ -367,6 +421,24 @@ extern_methods!(
 
         #[method(setTriangleCount:)]
         pub unsafe fn setTriangleCount(&self, triangleCount: NSUInteger);
+
+        #[method_id(@__retain_semantics Other transformationMatrixBuffer)]
+        pub unsafe fn transformationMatrixBuffer(&self) -> Option<Id<MTLBuffer, Shared>>;
+
+        #[method(setTransformationMatrixBuffer:)]
+        pub unsafe fn setTransformationMatrixBuffer(
+            &self,
+            transformationMatrixBuffer: Option<&MTLBuffer>,
+        );
+
+        #[method(transformationMatrixBufferOffset)]
+        pub unsafe fn transformationMatrixBufferOffset(&self) -> NSUInteger;
+
+        #[method(setTransformationMatrixBufferOffset:)]
+        pub unsafe fn setTransformationMatrixBufferOffset(
+            &self,
+            transformationMatrixBufferOffset: NSUInteger,
+        );
 
         #[method_id(@__retain_semantics Other descriptor)]
         pub unsafe fn descriptor() -> Id<Self, Shared>;
@@ -566,5 +638,8 @@ extern_protocol!(
     unsafe impl ProtocolType for MTLAccelerationStructure {
         #[method(size)]
         pub unsafe fn size(&self) -> NSUInteger;
+
+        #[method(gpuResourceID)]
+        pub unsafe fn gpuResourceID(&self) -> MTLResourceID;
     }
 );

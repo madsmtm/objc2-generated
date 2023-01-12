@@ -9,6 +9,8 @@ mod __AppKitErrors;
 mod __NSATSTypesetter;
 #[path = "NSAccessibility.rs"]
 mod __NSAccessibility;
+#[path = "NSAccessibilityColor.rs"]
+mod __NSAccessibilityColor;
 #[path = "NSAccessibilityConstants.rs"]
 mod __NSAccessibilityConstants;
 #[path = "NSAccessibilityCustomAction.rs"]
@@ -105,6 +107,8 @@ mod __NSColorWell;
 mod __NSComboBox;
 #[path = "NSComboBoxCell.rs"]
 mod __NSComboBoxCell;
+#[path = "NSComboButton.rs"]
+mod __NSComboButton;
 #[path = "NSControl.rs"]
 mod __NSControl;
 #[path = "NSController.rs"]
@@ -303,6 +307,8 @@ mod __NSPredicateEditorRowTemplate;
 mod __NSPressGestureRecognizer;
 #[path = "NSPressureConfiguration.rs"]
 mod __NSPressureConfiguration;
+#[path = "NSPreviewRepresentingActivityItem.rs"]
+mod __NSPreviewRepresentingActivityItem;
 #[path = "NSPrintInfo.rs"]
 mod __NSPrintInfo;
 #[path = "NSPrintOperation.rs"]
@@ -465,6 +471,8 @@ mod __NSTextLayoutManager;
 mod __NSTextLineFragment;
 #[path = "NSTextList.rs"]
 mod __NSTextList;
+#[path = "NSTextListElement.rs"]
+mod __NSTextListElement;
 #[path = "NSTextRange.rs"]
 mod __NSTextRange;
 #[path = "NSTextSelection.rs"]
@@ -579,6 +587,7 @@ pub use self::__NSAccessibility::NSAccessibilityUnignoredChildren;
 pub use self::__NSAccessibility::NSAccessibilityUnignoredChildrenForOnlyChild;
 pub use self::__NSAccessibility::NSAccessibilityUnignoredDescendant;
 pub use self::__NSAccessibility::NSWorkspaceAccessibilityDisplayOptionsDidChangeNotification;
+pub use self::__NSAccessibilityColor::NSAccessibilityColor;
 pub use self::__NSAccessibilityConstants::NSAccessibilityActionName;
 pub use self::__NSAccessibilityConstants::NSAccessibilityActivationPointAttribute;
 pub use self::__NSAccessibilityConstants::NSAccessibilityAllowedValuesAttribute;
@@ -1119,6 +1128,15 @@ pub use self::__NSApplication::NSAppKitVersionNumber11_1;
 pub use self::__NSApplication::NSAppKitVersionNumber11_2;
 pub use self::__NSApplication::NSAppKitVersionNumber11_3;
 pub use self::__NSApplication::NSAppKitVersionNumber11_4;
+pub use self::__NSApplication::NSAppKitVersionNumber11_5;
+pub use self::__NSApplication::NSAppKitVersionNumber12_0;
+pub use self::__NSApplication::NSAppKitVersionNumber12_1;
+pub use self::__NSApplication::NSAppKitVersionNumber12_2;
+pub use self::__NSApplication::NSAppKitVersionNumber12_3;
+pub use self::__NSApplication::NSAppKitVersionNumber12_4;
+pub use self::__NSApplication::NSAppKitVersionNumber12_5;
+pub use self::__NSApplication::NSAppKitVersionNumber13_0;
+pub use self::__NSApplication::NSAppKitVersionNumber13_1;
 #[cfg(feature = "AppKit_NSApplication")]
 pub use self::__NSApplication::NSApplication;
 pub use self::__NSApplication::NSApplicationDelegate;
@@ -1721,6 +1739,9 @@ pub use self::__NSColorSpace::{
 };
 #[cfg(feature = "AppKit_NSColorWell")]
 pub use self::__NSColorWell::NSColorWell;
+pub use self::__NSColorWell::{
+    NSColorWellStyle, NSColorWellStyleDefault, NSColorWellStyleExpanded, NSColorWellStyleMinimal,
+};
 #[cfg(feature = "AppKit_NSComboBox")]
 pub use self::__NSComboBox::NSComboBox;
 pub use self::__NSComboBox::NSComboBoxDataSource;
@@ -1732,6 +1753,11 @@ pub use self::__NSComboBox::NSComboBoxWillPopUpNotification;
 #[cfg(feature = "AppKit_NSComboBoxCell")]
 pub use self::__NSComboBoxCell::NSComboBoxCell;
 pub use self::__NSComboBoxCell::NSComboBoxCellDataSource;
+#[cfg(feature = "AppKit_NSComboButton")]
+pub use self::__NSComboButton::NSComboButton;
+pub use self::__NSComboButton::{
+    NSComboButtonStyle, NSComboButtonStyleSplit, NSComboButtonStyleUnified,
+};
 #[cfg(feature = "AppKit_NSControl")]
 pub use self::__NSControl::NSControl;
 pub use self::__NSControl::NSControlTextDidBeginEditingNotification;
@@ -2155,6 +2181,11 @@ pub use self::__NSFontDescriptor::NSFontWeightSemibold;
 pub use self::__NSFontDescriptor::NSFontWeightThin;
 pub use self::__NSFontDescriptor::NSFontWeightTrait;
 pub use self::__NSFontDescriptor::NSFontWeightUltraLight;
+pub use self::__NSFontDescriptor::NSFontWidth;
+pub use self::__NSFontDescriptor::NSFontWidthCompressed;
+pub use self::__NSFontDescriptor::NSFontWidthCondensed;
+pub use self::__NSFontDescriptor::NSFontWidthExpanded;
+pub use self::__NSFontDescriptor::NSFontWidthStandard;
 pub use self::__NSFontDescriptor::NSFontWidthTrait;
 pub use self::__NSFontDescriptor::{
     NSFontBoldTrait, NSFontCondensedTrait, NSFontExpandedTrait, NSFontItalicTrait,
@@ -3132,6 +3163,9 @@ pub use self::__NSPredicateEditorRowTemplate::NSPredicateEditorRowTemplate;
 pub use self::__NSPressGestureRecognizer::NSPressGestureRecognizer;
 #[cfg(feature = "AppKit_NSPressureConfiguration")]
 pub use self::__NSPressureConfiguration::NSPressureConfiguration;
+pub use self::__NSPreviewRepresentingActivityItem::NSPreviewRepresentableActivityItem;
+#[cfg(feature = "AppKit_NSPreviewRepresentingActivityItem")]
+pub use self::__NSPreviewRepresentingActivityItem::NSPreviewRepresentingActivityItem;
 pub use self::__NSPrintInfo::NSAutoPagination;
 pub use self::__NSPrintInfo::NSClipPagination;
 pub use self::__NSPrintInfo::NSFitPagination;
@@ -3909,6 +3943,8 @@ pub use self::__NSTextList::NSTextListMarkerUppercaseHexadecimal;
 pub use self::__NSTextList::NSTextListMarkerUppercaseLatin;
 pub use self::__NSTextList::NSTextListMarkerUppercaseRoman;
 pub use self::__NSTextList::{NSTextListOptions, NSTextListPrependEnclosingMarker};
+#[cfg(feature = "AppKit_NSTextListElement")]
+pub use self::__NSTextListElement::NSTextListElement;
 pub use self::__NSTextRange::NSTextLocation;
 #[cfg(feature = "AppKit_NSTextRange")]
 pub use self::__NSTextRange::NSTextRange;
@@ -4048,6 +4084,8 @@ pub use self::__NSToolbar::NSToolbarDelegate;
 pub use self::__NSToolbar::NSToolbarDidRemoveItemNotification;
 pub use self::__NSToolbar::NSToolbarIdentifier;
 pub use self::__NSToolbar::NSToolbarItemIdentifier;
+pub use self::__NSToolbar::NSToolbarItemKey;
+pub use self::__NSToolbar::NSToolbarUserInfoKey;
 pub use self::__NSToolbar::NSToolbarWillAddItemNotification;
 pub use self::__NSToolbar::{
     NSToolbarDisplayMode, NSToolbarDisplayModeDefault, NSToolbarDisplayModeIconAndLabel,
@@ -4300,14 +4338,15 @@ pub use self::__NSWindow::{
     NSWindowZoomButton,
 };
 pub use self::__NSWindow::{
-    NSWindowCollectionBehavior, NSWindowCollectionBehaviorCanJoinAllSpaces,
+    NSWindowCollectionBehavior, NSWindowCollectionBehaviorAuxiliary,
+    NSWindowCollectionBehaviorCanJoinAllApplications, NSWindowCollectionBehaviorCanJoinAllSpaces,
     NSWindowCollectionBehaviorDefault, NSWindowCollectionBehaviorFullScreenAllowsTiling,
     NSWindowCollectionBehaviorFullScreenAuxiliary,
     NSWindowCollectionBehaviorFullScreenDisallowsTiling, NSWindowCollectionBehaviorFullScreenNone,
     NSWindowCollectionBehaviorFullScreenPrimary, NSWindowCollectionBehaviorIgnoresCycle,
     NSWindowCollectionBehaviorManaged, NSWindowCollectionBehaviorMoveToActiveSpace,
-    NSWindowCollectionBehaviorParticipatesInCycle, NSWindowCollectionBehaviorStationary,
-    NSWindowCollectionBehaviorTransient,
+    NSWindowCollectionBehaviorParticipatesInCycle, NSWindowCollectionBehaviorPrimary,
+    NSWindowCollectionBehaviorStationary, NSWindowCollectionBehaviorTransient,
 };
 pub use self::__NSWindow::{
     NSWindowNumberListAllApplications, NSWindowNumberListAllSpaces, NSWindowNumberListOptions,

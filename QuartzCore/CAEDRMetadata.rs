@@ -38,5 +38,8 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other HLGMetadata)]
         pub unsafe fn HLGMetadata() -> Id<CAEDRMetadata, Shared>;
+
+        #[method(isAvailable)]
+        pub unsafe fn isAvailable() -> bool;
     }
 );

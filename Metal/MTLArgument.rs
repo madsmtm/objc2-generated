@@ -102,6 +102,23 @@ ns_enum!(
 );
 
 ns_enum!(
+    #[underlying(NSInteger)]
+    pub enum MTLBindingType {
+        MTLBindingTypeBuffer = 0,
+        MTLBindingTypeThreadgroupMemory = 1,
+        MTLBindingTypeTexture = 2,
+        MTLBindingTypeSampler = 3,
+        MTLBindingTypeImageblockData = 16,
+        MTLBindingTypeImageblock = 17,
+        MTLBindingTypeVisibleFunctionTable = 24,
+        MTLBindingTypePrimitiveAccelerationStructure = 25,
+        MTLBindingTypeInstanceAccelerationStructure = 26,
+        MTLBindingTypeIntersectionFunctionTable = 27,
+        MTLBindingTypeObjectPayload = 34,
+    }
+);
+
+ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MTLArgumentType {
         MTLArgumentTypeBuffer = 0,
@@ -394,5 +411,95 @@ extern_methods!(
 
         #[method(arrayLength)]
         pub unsafe fn arrayLength(&self) -> NSUInteger;
+    }
+);
+
+extern_protocol!(
+    pub struct MTLBinding;
+
+    unsafe impl ProtocolType for MTLBinding {
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Other name)]
+        pub unsafe fn name(&self) -> Id<NSString, Shared>;
+
+        #[method(type)]
+        pub unsafe fn type_(&self) -> MTLBindingType;
+
+        #[method(access)]
+        pub unsafe fn access(&self) -> MTLArgumentAccess;
+
+        #[method(index)]
+        pub unsafe fn index(&self) -> NSUInteger;
+
+        #[method(isUsed)]
+        pub unsafe fn isUsed(&self) -> bool;
+
+        #[method(isArgument)]
+        pub unsafe fn isArgument(&self) -> bool;
+    }
+);
+
+extern_protocol!(
+    pub struct MTLBufferBinding;
+
+    unsafe impl ProtocolType for MTLBufferBinding {
+        #[method(bufferAlignment)]
+        pub unsafe fn bufferAlignment(&self) -> NSUInteger;
+
+        #[method(bufferDataSize)]
+        pub unsafe fn bufferDataSize(&self) -> NSUInteger;
+
+        #[method(bufferDataType)]
+        pub unsafe fn bufferDataType(&self) -> MTLDataType;
+
+        #[cfg(feature = "Metal_MTLStructType")]
+        #[method_id(@__retain_semantics Other bufferStructType)]
+        pub unsafe fn bufferStructType(&self) -> Option<Id<MTLStructType, Shared>>;
+
+        #[cfg(feature = "Metal_MTLPointerType")]
+        #[method_id(@__retain_semantics Other bufferPointerType)]
+        pub unsafe fn bufferPointerType(&self) -> Option<Id<MTLPointerType, Shared>>;
+    }
+);
+
+extern_protocol!(
+    pub struct MTLThreadgroupBinding;
+
+    unsafe impl ProtocolType for MTLThreadgroupBinding {
+        #[method(threadgroupMemoryAlignment)]
+        pub unsafe fn threadgroupMemoryAlignment(&self) -> NSUInteger;
+
+        #[method(threadgroupMemoryDataSize)]
+        pub unsafe fn threadgroupMemoryDataSize(&self) -> NSUInteger;
+    }
+);
+
+extern_protocol!(
+    pub struct MTLTextureBinding;
+
+    unsafe impl ProtocolType for MTLTextureBinding {
+        #[method(textureType)]
+        pub unsafe fn textureType(&self) -> MTLTextureType;
+
+        #[method(textureDataType)]
+        pub unsafe fn textureDataType(&self) -> MTLDataType;
+
+        #[method(isDepthTexture)]
+        pub unsafe fn isDepthTexture(&self) -> bool;
+
+        #[method(arrayLength)]
+        pub unsafe fn arrayLength(&self) -> NSUInteger;
+    }
+);
+
+extern_protocol!(
+    pub struct MTLObjectPayloadBinding;
+
+    unsafe impl ProtocolType for MTLObjectPayloadBinding {
+        #[method(objectPayloadAlignment)]
+        pub unsafe fn objectPayloadAlignment(&self) -> NSUInteger;
+
+        #[method(objectPayloadDataSize)]
+        pub unsafe fn objectPayloadDataSize(&self) -> NSUInteger;
     }
 );

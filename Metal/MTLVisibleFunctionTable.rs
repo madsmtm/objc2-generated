@@ -34,6 +34,9 @@ extern_protocol!(
     pub struct MTLVisibleFunctionTable;
 
     unsafe impl ProtocolType for MTLVisibleFunctionTable {
+        #[method(gpuResourceID)]
+        pub unsafe fn gpuResourceID(&self) -> MTLResourceID;
+
         #[method(setFunction:atIndex:)]
         pub unsafe fn setFunction_atIndex(
             &self,

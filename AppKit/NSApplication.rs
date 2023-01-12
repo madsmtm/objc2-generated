@@ -83,7 +83,7 @@ extern_static!(NSAppKitVersionNumber10_11_3: NSAppKitVersion = 1404.34);
 
 extern_static!(NSAppKitVersionNumber10_12: NSAppKitVersion = 1504);
 
-extern_static!(NSAppKitVersionNumber10_12_1: NSAppKitVersion = 1504.60);
+extern_static!(NSAppKitVersionNumber10_12_1: NSAppKitVersion = 1504.6);
 
 extern_static!(NSAppKitVersionNumber10_12_2: NSAppKitVersion = 1504.76);
 
@@ -130,6 +130,24 @@ extern_static!(NSAppKitVersionNumber11_2: NSAppKitVersion = 2022.3);
 extern_static!(NSAppKitVersionNumber11_3: NSAppKitVersion = 2022.4);
 
 extern_static!(NSAppKitVersionNumber11_4: NSAppKitVersion = 2022.5);
+
+extern_static!(NSAppKitVersionNumber11_5: NSAppKitVersion = 2022.6);
+
+extern_static!(NSAppKitVersionNumber12_0: NSAppKitVersion = 2113);
+
+extern_static!(NSAppKitVersionNumber12_1: NSAppKitVersion = 2113.2);
+
+extern_static!(NSAppKitVersionNumber12_2: NSAppKitVersion = 2113.3);
+
+extern_static!(NSAppKitVersionNumber12_3: NSAppKitVersion = 2113.4);
+
+extern_static!(NSAppKitVersionNumber12_4: NSAppKitVersion = 2113.5);
+
+extern_static!(NSAppKitVersionNumber12_5: NSAppKitVersion = 2113.6);
+
+extern_static!(NSAppKitVersionNumber13_0: NSAppKitVersion = 2299);
+
+extern_static!(NSAppKitVersionNumber13_1: NSAppKitVersion = 2299.3);
 
 extern_static!(NSModalPanelRunLoopMode: &'static NSRunLoopMode);
 

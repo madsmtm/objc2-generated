@@ -45,6 +45,12 @@ extern_methods!(
         #[method(setCpuCacheMode:)]
         pub fn setCpuCacheMode(&self, cpuCacheMode: MTLCPUCacheMode);
 
+        #[method(sparsePageSize)]
+        pub unsafe fn sparsePageSize(&self) -> MTLSparsePageSize;
+
+        #[method(setSparsePageSize:)]
+        pub unsafe fn setSparsePageSize(&self, sparsePageSize: MTLSparsePageSize);
+
         #[method(hazardTrackingMode)]
         pub fn hazardTrackingMode(&self) -> MTLHazardTrackingMode;
 
@@ -139,5 +145,33 @@ extern_protocol!(
             descriptor: &MTLTextureDescriptor,
             offset: NSUInteger,
         ) -> Option<Id<MTLTexture, Shared>>;
+
+        #[method_id(@__retain_semantics New newAccelerationStructureWithSize:)]
+        pub unsafe fn newAccelerationStructureWithSize(
+            &self,
+            size: NSUInteger,
+        ) -> Option<Id<MTLAccelerationStructure, Shared>>;
+
+        #[cfg(feature = "Metal_MTLAccelerationStructureDescriptor")]
+        #[method_id(@__retain_semantics New newAccelerationStructureWithDescriptor:)]
+        pub unsafe fn newAccelerationStructureWithDescriptor(
+            &self,
+            descriptor: &MTLAccelerationStructureDescriptor,
+        ) -> Option<Id<MTLAccelerationStructure, Shared>>;
+
+        #[method_id(@__retain_semantics New newAccelerationStructureWithSize:offset:)]
+        pub unsafe fn newAccelerationStructureWithSize_offset(
+            &self,
+            size: NSUInteger,
+            offset: NSUInteger,
+        ) -> Option<Id<MTLAccelerationStructure, Shared>>;
+
+        #[cfg(feature = "Metal_MTLAccelerationStructureDescriptor")]
+        #[method_id(@__retain_semantics New newAccelerationStructureWithDescriptor:offset:)]
+        pub unsafe fn newAccelerationStructureWithDescriptor_offset(
+            &self,
+            descriptor: &MTLAccelerationStructureDescriptor,
+            offset: NSUInteger,
+        ) -> Option<Id<MTLAccelerationStructure, Shared>>;
     }
 );

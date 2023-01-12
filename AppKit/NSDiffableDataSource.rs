@@ -152,7 +152,10 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(appendSectionsWithIdentifiers:)]
-        pub unsafe fn appendSectionsWithIdentifiers(&self, sectionIdentifiers: &NSArray);
+        pub unsafe fn appendSectionsWithIdentifiers(
+            &self,
+            sectionIdentifiers: &NSArray<SectionIdentifierType>,
+        );
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(insertSectionsWithIdentifiers:beforeSectionWithIdentifier:)]

@@ -91,6 +91,8 @@ ns_enum!(
         MTLFunctionTypeKernel = 3,
         MTLFunctionTypeVisible = 5,
         MTLFunctionTypeIntersection = 6,
+        MTLFunctionTypeMesh = 7,
+        MTLFunctionTypeObject = 8,
     }
 );
 
@@ -191,6 +193,7 @@ ns_enum!(
         MTLLanguageVersion2_2 = (2 << 16) + 2,
         MTLLanguageVersion2_3 = (2 << 16) + 3,
         MTLLanguageVersion2_4 = (2 << 16) + 4,
+        MTLLanguageVersion3_0 = (3 << 16) + 0,
     }
 );
 
@@ -199,6 +202,14 @@ ns_enum!(
     pub enum MTLLibraryType {
         MTLLibraryTypeExecutable = 0,
         MTLLibraryTypeDynamic = 1,
+    }
+);
+
+ns_enum!(
+    #[underlying(NSInteger)]
+    pub enum MTLLibraryOptimizationLevel {
+        MTLLibraryOptimizationLevelDefault = 0,
+        MTLLibraryOptimizationLevelSize = 1,
     }
 );
 
@@ -266,6 +277,12 @@ extern_methods!(
 
         #[method(setPreserveInvariance:)]
         pub fn setPreserveInvariance(&self, preserveInvariance: bool);
+
+        #[method(optimizationLevel)]
+        pub unsafe fn optimizationLevel(&self) -> MTLLibraryOptimizationLevel;
+
+        #[method(setOptimizationLevel:)]
+        pub unsafe fn setOptimizationLevel(&self, optimizationLevel: MTLLibraryOptimizationLevel);
     }
 );
 

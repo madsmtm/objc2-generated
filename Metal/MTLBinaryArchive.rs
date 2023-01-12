@@ -13,6 +13,7 @@ ns_enum!(
         MTLBinaryArchiveErrorInvalidFile = 1,
         MTLBinaryArchiveErrorUnexpectedElement = 2,
         MTLBinaryArchiveErrorCompilationFailure = 3,
+        MTLBinaryArchiveErrorInternalError = 4,
     }
 );
 

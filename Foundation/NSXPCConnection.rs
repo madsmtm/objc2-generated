@@ -138,6 +138,9 @@ extern_methods!(
         #[method(suspend)]
         pub unsafe fn suspend(&self);
 
+        #[method(activate)]
+        pub unsafe fn activate(&self);
+
         #[method(invalidate)]
         pub unsafe fn invalidate(&self);
 
@@ -146,6 +149,10 @@ extern_methods!(
 
         #[method(scheduleSendBarrierBlock:)]
         pub unsafe fn scheduleSendBarrierBlock(&self, block: &Block<(), ()>);
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method(setCodeSigningRequirement:)]
+        pub unsafe fn setCodeSigningRequirement(&self, requirement: &NSString);
     }
 );
 
@@ -192,8 +199,15 @@ extern_methods!(
         #[method(suspend)]
         pub unsafe fn suspend(&self);
 
+        #[method(activate)]
+        pub unsafe fn activate(&self);
+
         #[method(invalidate)]
         pub unsafe fn invalidate(&self);
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method(setConnectionCodeSigningRequirement:)]
+        pub unsafe fn setConnectionCodeSigningRequirement(&self, requirement: &NSString);
     }
 );
 

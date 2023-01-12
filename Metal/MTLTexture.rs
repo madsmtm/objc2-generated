@@ -86,6 +86,14 @@ ns_options!(
     }
 );
 
+ns_enum!(
+    #[underlying(NSInteger)]
+    pub enum MTLTextureCompressionType {
+        MTLTextureCompressionTypeLossless = 0,
+        MTLTextureCompressionTypeLossy = 1,
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Metal_MTLTextureDescriptor")]
@@ -207,6 +215,12 @@ extern_methods!(
         #[method(setAllowGPUOptimizedContents:)]
         pub fn setAllowGPUOptimizedContents(&self, allowGPUOptimizedContents: bool);
 
+        #[method(compressionType)]
+        pub unsafe fn compressionType(&self) -> MTLTextureCompressionType;
+
+        #[method(setCompressionType:)]
+        pub unsafe fn setCompressionType(&self, compressionType: MTLTextureCompressionType);
+
         #[method(swizzle)]
         pub fn swizzle(&self) -> MTLTextureSwizzleChannels;
 
@@ -290,6 +304,12 @@ extern_protocol!(
 
         #[method(allowGPUOptimizedContents)]
         pub fn allowGPUOptimizedContents(&self) -> bool;
+
+        #[method(compressionType)]
+        pub unsafe fn compressionType(&self) -> MTLTextureCompressionType;
+
+        #[method(gpuResourceID)]
+        pub unsafe fn gpuResourceID(&self) -> MTLResourceID;
 
         #[method(getBytes:bytesPerRow:bytesPerImage:fromRegion:mipmapLevel:slice:)]
         pub unsafe fn getBytes_bytesPerRow_bytesPerImage_fromRegion_mipmapLevel_slice(

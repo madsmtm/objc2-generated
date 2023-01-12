@@ -56,6 +56,13 @@ extern_protocol!(
     }
 );
 
+ns_options!(
+    #[underlying(NSUInteger)]
+    pub enum ASAuthorizationControllerRequestOptions {
+        ASAuthorizationControllerRequestOptionPreferImmediatelyAvailableCredentials = 1 << 0,
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AuthenticationServices_ASAuthorizationController")]
@@ -121,6 +128,18 @@ extern_methods!(
 
         #[method(performRequests)]
         pub unsafe fn performRequests(&self);
+
+        #[method(performAutoFillAssistedRequests)]
+        pub unsafe fn performAutoFillAssistedRequests(&self);
+
+        #[method(performRequestsWithOptions:)]
+        pub unsafe fn performRequestsWithOptions(
+            &self,
+            options: ASAuthorizationControllerRequestOptions,
+        );
+
+        #[method(cancel)]
+        pub unsafe fn cancel(&self);
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self, Shared>;

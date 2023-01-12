@@ -69,5 +69,20 @@ extern_protocol!(
         #[optional]
         #[method(waitForFence:)]
         pub unsafe fn waitForFence(&self, fence: &MTLFence);
+
+        #[optional]
+        #[method(moveTextureMappingsFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:)]
+        pub unsafe fn moveTextureMappingsFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin(
+            &self,
+            sourceTexture: &MTLTexture,
+            sourceSlice: NSUInteger,
+            sourceLevel: NSUInteger,
+            sourceOrigin: MTLOrigin,
+            sourceSize: MTLSize,
+            destinationTexture: &MTLTexture,
+            destinationSlice: NSUInteger,
+            destinationLevel: NSUInteger,
+            destinationOrigin: MTLOrigin,
+        );
     }
 );

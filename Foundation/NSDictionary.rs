@@ -461,7 +461,7 @@ extern_methods!(
 );
 
 extern_methods!(
-    /// NSGenericFastEnumeraiton
+    /// NSGenericFastEnumeration
     #[cfg(feature = "Foundation_NSDictionary")]
     unsafe impl<K: Message, V: Message, KOwnership: Ownership, VOwnership: Ownership>
         NSDictionary<K, V, KOwnership, VOwnership>

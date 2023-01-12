@@ -4,6 +4,26 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::Metal::*;
 
+extern_struct!(
+    pub struct MTLClearColor {
+        pub red: c_double,
+        pub green: c_double,
+        pub blue: c_double,
+        pub alpha: c_double,
+    }
+);
+
+inline_fn!(
+    pub unsafe fn MTLClearColorMake(
+        red: c_double,
+        green: c_double,
+        blue: c_double,
+        alpha: c_double,
+    ) -> MTLClearColor {
+        todo!()
+    }
+);
+
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MTLLoadAction {
@@ -30,26 +50,6 @@ ns_options!(
     pub enum MTLStoreActionOptions {
         MTLStoreActionOptionNone = 0,
         MTLStoreActionOptionCustomSamplePositions = 1 << 0,
-    }
-);
-
-extern_struct!(
-    pub struct MTLClearColor {
-        pub red: c_double,
-        pub green: c_double,
-        pub blue: c_double,
-        pub alpha: c_double,
-    }
-);
-
-inline_fn!(
-    pub unsafe fn MTLClearColorMake(
-        red: c_double,
-        green: c_double,
-        blue: c_double,
-        alpha: c_double,
-    ) -> MTLClearColor {
-        todo!()
     }
 );
 

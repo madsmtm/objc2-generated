@@ -243,6 +243,8 @@ extern_static!(NSImageURLAttributeName: &'static NSAttributedStringKey);
 
 extern_static!(NSLanguageIdentifierAttributeName: &'static NSAttributedStringKey);
 
+extern_static!(NSMarkdownSourcePositionAttributeName: &'static NSAttributedStringKey);
+
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSAttributedStringMarkdownParsingFailurePolicy {
@@ -257,6 +259,47 @@ ns_enum!(
         NSAttributedStringMarkdownInterpretedSyntaxFull = 0,
         NSAttributedStringMarkdownInterpretedSyntaxInlineOnly = 1,
         NSAttributedStringMarkdownInterpretedSyntaxInlineOnlyPreservingWhitespace = 2,
+    }
+);
+
+extern_class!(
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Foundation_NSAttributedStringMarkdownSourcePosition")]
+    pub struct NSAttributedStringMarkdownSourcePosition;
+
+    #[cfg(feature = "Foundation_NSAttributedStringMarkdownSourcePosition")]
+    unsafe impl ClassType for NSAttributedStringMarkdownSourcePosition {
+        type Super = NSObject;
+    }
+);
+
+extern_methods!(
+    #[cfg(feature = "Foundation_NSAttributedStringMarkdownSourcePosition")]
+    unsafe impl NSAttributedStringMarkdownSourcePosition {
+        #[method(startLine)]
+        pub unsafe fn startLine(&self) -> NSInteger;
+
+        #[method(startColumn)]
+        pub unsafe fn startColumn(&self) -> NSInteger;
+
+        #[method(endLine)]
+        pub unsafe fn endLine(&self) -> NSInteger;
+
+        #[method(endColumn)]
+        pub unsafe fn endColumn(&self) -> NSInteger;
+
+        #[method_id(@__retain_semantics Init initWithStartLine:startColumn:endLine:endColumn:)]
+        pub unsafe fn initWithStartLine_startColumn_endLine_endColumn(
+            this: Option<Allocated<Self>>,
+            startLine: NSInteger,
+            startColumn: NSInteger,
+            endLine: NSInteger,
+            endColumn: NSInteger,
+        ) -> Id<Self, Shared>;
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method(rangeInString:)]
+        pub unsafe fn rangeInString(&self, string: &NSString) -> NSRange;
     }
 );
 
@@ -308,6 +351,15 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLanguageCode:)]
         pub unsafe fn setLanguageCode(&self, languageCode: Option<&NSString>);
+
+        #[method(appliesSourcePositionAttributes)]
+        pub unsafe fn appliesSourcePositionAttributes(&self) -> bool;
+
+        #[method(setAppliesSourcePositionAttributes:)]
+        pub unsafe fn setAppliesSourcePositionAttributes(
+            &self,
+            appliesSourcePositionAttributes: bool,
+        );
     }
 );
 

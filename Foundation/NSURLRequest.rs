@@ -112,6 +112,9 @@ extern_methods!(
 
         #[method(attribution)]
         pub unsafe fn attribution(&self) -> NSURLRequestAttribution;
+
+        #[method(requiresDNSSECValidation)]
+        pub unsafe fn requiresDNSSECValidation(&self) -> bool;
     }
 );
 
@@ -199,6 +202,12 @@ extern_methods!(
 
         #[method(setAttribution:)]
         pub unsafe fn setAttribution(&self, attribution: NSURLRequestAttribution);
+
+        #[method(requiresDNSSECValidation)]
+        pub unsafe fn requiresDNSSECValidation(&self) -> bool;
+
+        #[method(setRequiresDNSSECValidation:)]
+        pub unsafe fn setRequiresDNSSECValidation(&self, requiresDNSSECValidation: bool);
     }
 );
 

@@ -35,8 +35,5 @@ extern_methods!(
 
         #[method(wasLaunchedByAuthenticationServices)]
         pub unsafe fn wasLaunchedByAuthenticationServices(&self) -> bool;
-
-        #[method(registerDefaultsForASWASInSetupAssistantIfNeeded)]
-        pub unsafe fn registerDefaultsForASWASInSetupAssistantIfNeeded();
     }
 );

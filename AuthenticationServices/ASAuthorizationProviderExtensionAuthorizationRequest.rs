@@ -13,6 +13,11 @@ extern_static!(
         &'static ASAuthorizationProviderAuthorizationOperation
 );
 
+extern_static!(
+    ASAuthorizationProviderAuthorizationOperationDirectRequest:
+        &'static ASAuthorizationProviderAuthorizationOperation
+);
+
 extern_protocol!(
     pub struct ASAuthorizationProviderExtensionAuthorizationRequestHandler;
 
@@ -145,5 +150,11 @@ extern_methods!(
 
         #[method(isUserInterfaceEnabled)]
         pub unsafe fn isUserInterfaceEnabled(&self) -> bool;
+
+        #[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionLoginManager")]
+        #[method_id(@__retain_semantics Other loginManager)]
+        pub unsafe fn loginManager(
+            &self,
+        ) -> Option<Id<ASAuthorizationProviderExtensionLoginManager, Shared>>;
     }
 );

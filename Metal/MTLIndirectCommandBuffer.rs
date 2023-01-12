@@ -81,6 +81,12 @@ extern_methods!(
 
         #[method(setMaxKernelBufferBindCount:)]
         pub fn setMaxKernelBufferBindCount(&self, maxKernelBufferBindCount: NSUInteger);
+
+        #[method(supportRayTracing)]
+        pub unsafe fn supportRayTracing(&self) -> bool;
+
+        #[method(setSupportRayTracing:)]
+        pub unsafe fn setSupportRayTracing(&self, supportRayTracing: bool);
     }
 );
 
@@ -90,6 +96,9 @@ extern_protocol!(
     unsafe impl ProtocolType for MTLIndirectCommandBuffer {
         #[method(size)]
         pub fn size(&self) -> NSUInteger;
+
+        #[method(gpuResourceID)]
+        pub unsafe fn gpuResourceID(&self) -> MTLResourceID;
 
         #[method(resetWithRange:)]
         pub unsafe fn resetWithRange(&self, range: NSRange);

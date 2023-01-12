@@ -963,6 +963,14 @@ extern_methods!(
         #[method(setPercentEncodedFragment:)]
         pub unsafe fn setPercentEncodedFragment(&self, percentEncodedFragment: Option<&NSString>);
 
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Other encodedHost)]
+        pub unsafe fn encodedHost(&self) -> Option<Id<NSString, Shared>>;
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method(setEncodedHost:)]
+        pub unsafe fn setEncodedHost(&self, encodedHost: Option<&NSString>);
+
         #[method(rangeOfScheme)]
         pub unsafe fn rangeOfScheme(&self) -> NSRange;
 

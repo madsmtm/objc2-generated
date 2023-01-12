@@ -736,6 +736,68 @@ extern_methods!(
 
         #[method(usesUbiquitousStorage)]
         pub unsafe fn usesUbiquitousStorage() -> bool;
+
+        #[cfg(feature = "Foundation_NSURL")]
+        #[method_id(@__retain_semantics Other presentedItemURL)]
+        pub unsafe fn presentedItemURL(&self) -> Option<Id<NSURL, Shared>>;
+
+        #[cfg(feature = "Foundation_NSSet")]
+        #[method_id(@__retain_semantics Other observedPresentedItemUbiquityAttributes)]
+        pub unsafe fn observedPresentedItemUbiquityAttributes(
+            &self,
+        ) -> Id<NSSet<NSURLResourceKey>, Shared>;
+
+        #[method(relinquishPresentedItemToReader:)]
+        pub unsafe fn relinquishPresentedItemToReader(
+            &self,
+            reader: &Block<(*mut Block<(), ()>,), ()>,
+        );
+
+        #[method(relinquishPresentedItemToWriter:)]
+        pub unsafe fn relinquishPresentedItemToWriter(
+            &self,
+            writer: &Block<(*mut Block<(), ()>,), ()>,
+        );
+
+        #[cfg(feature = "Foundation_NSError")]
+        #[method(savePresentedItemChangesWithCompletionHandler:)]
+        pub unsafe fn savePresentedItemChangesWithCompletionHandler(
+            &self,
+            completionHandler: &Block<(*mut NSError,), ()>,
+        );
+
+        #[cfg(feature = "Foundation_NSError")]
+        #[method(accommodatePresentedItemDeletionWithCompletionHandler:)]
+        pub unsafe fn accommodatePresentedItemDeletionWithCompletionHandler(
+            &self,
+            completionHandler: &Block<(*mut NSError,), ()>,
+        );
+
+        #[cfg(feature = "Foundation_NSURL")]
+        #[method(presentedItemDidMoveToURL:)]
+        pub unsafe fn presentedItemDidMoveToURL(&self, newURL: &NSURL);
+
+        #[method(presentedItemDidChange)]
+        pub unsafe fn presentedItemDidChange(&self);
+
+        #[cfg(feature = "Foundation_NSSet")]
+        #[method(presentedItemDidChangeUbiquityAttributes:)]
+        pub unsafe fn presentedItemDidChangeUbiquityAttributes(
+            &self,
+            attributes: &NSSet<NSURLResourceKey>,
+        );
+
+        #[cfg(feature = "Foundation_NSFileVersion")]
+        #[method(presentedItemDidGainVersion:)]
+        pub unsafe fn presentedItemDidGainVersion(&self, version: &NSFileVersion);
+
+        #[cfg(feature = "Foundation_NSFileVersion")]
+        #[method(presentedItemDidLoseVersion:)]
+        pub unsafe fn presentedItemDidLoseVersion(&self, version: &NSFileVersion);
+
+        #[cfg(feature = "Foundation_NSFileVersion")]
+        #[method(presentedItemDidResolveConflictVersion:)]
+        pub unsafe fn presentedItemDidResolveConflictVersion(&self, version: &NSFileVersion);
     }
 );
 

@@ -160,5 +160,8 @@ extern_protocol!(
 
         #[method_id(@__retain_semantics Other device)]
         pub fn device(&self) -> Id<MTLDevice, Shared>;
+
+        #[method(gpuResourceID)]
+        pub unsafe fn gpuResourceID(&self) -> MTLResourceID;
     }
 );

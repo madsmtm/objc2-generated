@@ -332,6 +332,13 @@ extern_methods!(
             view: &NSView,
             preferredEdge: NSRectEdge,
         );
+
+        #[method(close)]
+        pub unsafe fn close(&self);
+
+        #[cfg(feature = "AppKit_NSMenuItem")]
+        #[method_id(@__retain_semantics Other standardShareMenuItem)]
+        pub unsafe fn standardShareMenuItem(&self) -> Id<NSMenuItem, Shared>;
     }
 );
 

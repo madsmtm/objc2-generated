@@ -55,6 +55,10 @@ typed_extensible_enum!(
     pub type NSFontWeight = CGFloat;
 );
 
+typed_extensible_enum!(
+    pub type NSFontWidth = CGFloat;
+);
+
 typed_enum!(
     pub type NSFontDescriptorSystemDesign = NSString;
 );
@@ -265,6 +269,14 @@ extern_static!(NSFontWeightBold: NSFontWeight);
 extern_static!(NSFontWeightHeavy: NSFontWeight);
 
 extern_static!(NSFontWeightBlack: NSFontWeight);
+
+extern_static!(NSFontWidthCompressed: NSFontWidth);
+
+extern_static!(NSFontWidthCondensed: NSFontWidth);
+
+extern_static!(NSFontWidthStandard: NSFontWidth);
+
+extern_static!(NSFontWidthExpanded: NSFontWidth);
 
 extern_static!(NSFontDescriptorSystemDesignDefault: &'static NSFontDescriptorSystemDesign);
 

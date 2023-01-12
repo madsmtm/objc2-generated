@@ -60,6 +60,17 @@ extern_methods!(
             frameRect: NSRect,
         ) -> Id<Self, Shared>;
 
+        #[method_id(@__retain_semantics Init initUsingTextLayoutManager:)]
+        pub unsafe fn initUsingTextLayoutManager(
+            this: Option<Allocated<Self>>,
+            usingTextLayoutManager: bool,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Other textViewUsingTextLayoutManager:)]
+        pub unsafe fn textViewUsingTextLayoutManager(
+            usingTextLayoutManager: bool,
+        ) -> Id<Self, Shared>;
+
         #[cfg(feature = "AppKit_NSTextContainer")]
         #[method_id(@__retain_semantics Other textContainer)]
         pub unsafe fn textContainer(&self) -> Option<Id<NSTextContainer, Shared>>;

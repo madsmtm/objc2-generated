@@ -4,6 +4,17 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::Metal::*;
 
+ns_enum!(
+    #[underlying(NSInteger)]
+    pub enum MTLIOCompressionMethod {
+        MTLIOCompressionMethodZlib = 0,
+        MTLIOCompressionMethodLZFSE = 1,
+        MTLIOCompressionMethodLZ4 = 2,
+        MTLIOCompressionMethodLZMA = 3,
+        MTLIOCompressionMethodLZBitmap = 4,
+    }
+);
+
 extern_fn!(
     pub unsafe fn MTLCreateSystemDefaultDevice() -> *mut MTLDevice;
 );
@@ -79,6 +90,7 @@ ns_enum!(
         MTLGPUFamilyApple5 = 1005,
         MTLGPUFamilyApple6 = 1006,
         MTLGPUFamilyApple7 = 1007,
+        MTLGPUFamilyApple8 = 1008,
         MTLGPUFamilyMac1 = 2001,
         MTLGPUFamilyMac2 = 2002,
         MTLGPUFamilyCommon1 = 3001,
@@ -86,6 +98,7 @@ ns_enum!(
         MTLGPUFamilyCommon3 = 3003,
         MTLGPUFamilyMacCatalyst1 = 4001,
         MTLGPUFamilyMacCatalyst2 = 4002,
+        MTLGPUFamilyMetal3 = 5001,
     }
 );
 
@@ -131,6 +144,15 @@ ns_enum!(
     pub enum MTLSparseTextureRegionAlignmentMode {
         MTLSparseTextureRegionAlignmentModeOutward = 0,
         MTLSparseTextureRegionAlignmentModeInward = 1,
+    }
+);
+
+ns_enum!(
+    #[underlying(NSInteger)]
+    pub enum MTLSparsePageSize {
+        MTLSparsePageSize16 = 101,
+        MTLSparsePageSize64 = 102,
+        MTLSparsePageSize256 = 103,
     }
 );
 
@@ -560,6 +582,15 @@ extern_protocol!(
             completionHandler: MTLNewRenderPipelineStateWithReflectionCompletionHandler,
         );
 
+        #[cfg(feature = "Metal_MTLMeshRenderPipelineDescriptor")]
+        #[method(newRenderPipelineStateWithMeshDescriptor:options:completionHandler:)]
+        pub unsafe fn newRenderPipelineStateWithMeshDescriptor_options_completionHandler(
+            &self,
+            descriptor: &MTLMeshRenderPipelineDescriptor,
+            options: MTLPipelineOption,
+            completionHandler: MTLNewRenderPipelineStateWithReflectionCompletionHandler,
+        );
+
         #[method(maxThreadgroupMemoryLength)]
         pub fn maxThreadgroupMemoryLength(&self) -> NSUInteger;
 
@@ -630,6 +661,31 @@ extern_protocol!(
         #[method(peerCount)]
         pub unsafe fn peerCount(&self) -> u32;
 
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
+        #[method_id(@__retain_semantics New newIOHandleWithURL:error:_)]
+        pub unsafe fn newIOHandleWithURL_error(
+            &self,
+            url: &NSURL,
+        ) -> Result<Id<MTLIOFileHandle, Shared>, Id<NSError, Shared>>;
+
+        #[cfg(all(
+            feature = "Foundation_NSError",
+            feature = "Metal_MTLIOCommandQueueDescriptor"
+        ))]
+        #[method_id(@__retain_semantics New newIOCommandQueueWithDescriptor:error:_)]
+        pub unsafe fn newIOCommandQueueWithDescriptor_error(
+            &self,
+            descriptor: &MTLIOCommandQueueDescriptor,
+        ) -> Result<Id<MTLIOCommandQueue, Shared>, Id<NSError, Shared>>;
+
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
+        #[method_id(@__retain_semantics New newIOHandleWithURL:compressionMethod:error:_)]
+        pub unsafe fn newIOHandleWithURL_compressionMethod_error(
+            &self,
+            url: &NSURL,
+            compressionMethod: MTLIOCompressionMethod,
+        ) -> Result<Id<MTLIOFileHandle, Shared>, Id<NSError, Shared>>;
+
         #[method(sparseTileSizeWithTextureType:pixelFormat:sampleCount:)]
         pub unsafe fn sparseTileSizeWithTextureType_pixelFormat_sampleCount(
             &self,
@@ -662,6 +718,21 @@ extern_protocol!(
             numRegions: NSUInteger,
         );
 
+        #[method(sparseTileSizeInBytesForSparsePageSize:)]
+        pub unsafe fn sparseTileSizeInBytesForSparsePageSize(
+            &self,
+            sparsePageSize: MTLSparsePageSize,
+        ) -> NSUInteger;
+
+        #[method(sparseTileSizeWithTextureType:pixelFormat:sampleCount:sparsePageSize:)]
+        pub unsafe fn sparseTileSizeWithTextureType_pixelFormat_sampleCount_sparsePageSize(
+            &self,
+            textureType: MTLTextureType,
+            pixelFormat: MTLPixelFormat,
+            sampleCount: NSUInteger,
+            sparsePageSize: MTLSparsePageSize,
+        ) -> MTLSize;
+
         #[method(maxBufferLength)]
         pub fn maxBufferLength(&self) -> NSUInteger;
 
@@ -685,6 +756,12 @@ extern_protocol!(
             cpuTimestamp: NonNull<MTLTimestamp>,
             gpuTimestamp: NonNull<MTLTimestamp>,
         );
+
+        #[method_id(@__retain_semantics New newArgumentEncoderWithBufferBinding:)]
+        pub unsafe fn newArgumentEncoderWithBufferBinding(
+            &self,
+            bufferBinding: &MTLBufferBinding,
+        ) -> Id<MTLArgumentEncoder, Shared>;
 
         #[method(supportsCounterSampling:)]
         pub fn supportsCounterSampling(&self, samplingPoint: MTLCounterSamplingPoint) -> bool;
@@ -744,6 +821,19 @@ extern_protocol!(
             &self,
             descriptor: &MTLAccelerationStructureDescriptor,
         ) -> Option<Id<MTLAccelerationStructure, Shared>>;
+
+        #[method(heapAccelerationStructureSizeAndAlignWithSize:)]
+        pub unsafe fn heapAccelerationStructureSizeAndAlignWithSize(
+            &self,
+            size: NSUInteger,
+        ) -> MTLSizeAndAlign;
+
+        #[cfg(feature = "Metal_MTLAccelerationStructureDescriptor")]
+        #[method(heapAccelerationStructureSizeAndAlignWithDescriptor:)]
+        pub unsafe fn heapAccelerationStructureSizeAndAlignWithDescriptor(
+            &self,
+            descriptor: &MTLAccelerationStructureDescriptor,
+        ) -> MTLSizeAndAlign;
 
         #[method(supportsFunctionPointers)]
         pub fn supportsFunctionPointers(&self) -> bool;

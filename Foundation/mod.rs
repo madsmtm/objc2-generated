@@ -364,8 +364,9 @@ pub use self::__FoundationErrors::{
     NSUserActivityErrorMinimum, NSUserActivityHandoffFailedError,
     NSUserActivityHandoffUserInfoTooLargeError, NSUserActivityRemoteApplicationTimedOutError,
     NSUserCancelledError, NSValidationErrorMaximum, NSValidationErrorMinimum,
-    NSXPCConnectionErrorMaximum, NSXPCConnectionErrorMinimum, NSXPCConnectionInterrupted,
-    NSXPCConnectionInvalid, NSXPCConnectionReplyInvalid,
+    NSXPCConnectionCodeSigningRequirementFailure, NSXPCConnectionErrorMaximum,
+    NSXPCConnectionErrorMinimum, NSXPCConnectionInterrupted, NSXPCConnectionInvalid,
+    NSXPCConnectionReplyInvalid,
 };
 #[cfg(feature = "Foundation_NSAffineTransform")]
 pub use self::__NSAffineTransform::NSAffineTransform;
@@ -409,11 +410,14 @@ pub use self::__NSAttributedString::NSAttributedString;
 pub use self::__NSAttributedString::NSAttributedStringKey;
 #[cfg(feature = "Foundation_NSAttributedStringMarkdownParsingOptions")]
 pub use self::__NSAttributedString::NSAttributedStringMarkdownParsingOptions;
+#[cfg(feature = "Foundation_NSAttributedStringMarkdownSourcePosition")]
+pub use self::__NSAttributedString::NSAttributedStringMarkdownSourcePosition;
 pub use self::__NSAttributedString::NSImageURLAttributeName;
 pub use self::__NSAttributedString::NSInflectionAlternativeAttributeName;
 pub use self::__NSAttributedString::NSInflectionRuleAttributeName;
 pub use self::__NSAttributedString::NSInlinePresentationIntentAttributeName;
 pub use self::__NSAttributedString::NSLanguageIdentifierAttributeName;
+pub use self::__NSAttributedString::NSMarkdownSourcePositionAttributeName;
 pub use self::__NSAttributedString::NSMorphologyAttributeName;
 #[cfg(feature = "Foundation_NSMutableAttributedString")]
 pub use self::__NSAttributedString::NSMutableAttributedString;
@@ -1773,10 +1777,11 @@ pub use self::__NSProcessInfo::NSProcessInfo;
 pub use self::__NSProcessInfo::NSProcessInfoPowerStateDidChangeNotification;
 pub use self::__NSProcessInfo::NSProcessInfoThermalStateDidChangeNotification;
 pub use self::__NSProcessInfo::{
-    NSActivityAutomaticTerminationDisabled, NSActivityBackground,
-    NSActivityIdleDisplaySleepDisabled, NSActivityIdleSystemSleepDisabled,
+    NSActivityAnimationTrackingEnabled, NSActivityAutomaticTerminationDisabled,
+    NSActivityBackground, NSActivityIdleDisplaySleepDisabled, NSActivityIdleSystemSleepDisabled,
     NSActivityLatencyCritical, NSActivityOptions, NSActivitySuddenTerminationDisabled,
-    NSActivityUserInitiated, NSActivityUserInitiatedAllowingIdleSystemSleep,
+    NSActivityTrackingEnabled, NSActivityUserInitiated,
+    NSActivityUserInitiatedAllowingIdleSystemSleep, NSActivityUserInteractive,
 };
 pub use self::__NSProcessInfo::{
     NSHPUXOperatingSystem, NSMACHOperatingSystem, NSOSF1OperatingSystem, NSSolarisOperatingSystem,

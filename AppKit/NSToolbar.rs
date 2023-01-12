@@ -11,6 +11,12 @@ typed_extensible_enum!(
     pub type NSToolbarItemIdentifier = NSString;
 );
 
+typed_enum!(
+    pub type NSToolbarUserInfoKey = NSString;
+);
+
+extern_static!(NSToolbarItemKey: &'static NSToolbarUserInfoKey);
+
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum NSToolbarDisplayMode {
@@ -125,6 +131,17 @@ extern_methods!(
         #[method_id(@__retain_semantics Other visibleItems)]
         pub unsafe fn visibleItems(&self) -> Option<Id<NSArray<NSToolbarItem>, Shared>>;
 
+        #[cfg(feature = "Foundation_NSSet")]
+        #[method_id(@__retain_semantics Other centeredItemIdentifiers)]
+        pub unsafe fn centeredItemIdentifiers(&self) -> Id<NSSet<NSToolbarItemIdentifier>, Shared>;
+
+        #[cfg(feature = "Foundation_NSSet")]
+        #[method(setCenteredItemIdentifiers:)]
+        pub unsafe fn setCenteredItemIdentifiers(
+            &self,
+            centeredItemIdentifiers: &NSSet<NSToolbarItemIdentifier>,
+        );
+
         #[method_id(@__retain_semantics Other centeredItemIdentifier)]
         pub unsafe fn centeredItemIdentifier(&self) -> Option<Id<NSToolbarItemIdentifier, Shared>>;
 
@@ -199,6 +216,24 @@ extern_protocol!(
             &self,
             toolbar: &NSToolbar,
         ) -> Id<NSArray<NSToolbarItemIdentifier>, Shared>;
+
+        #[cfg(all(feature = "AppKit_NSToolbar", feature = "Foundation_NSSet"))]
+        #[optional]
+        #[method_id(@__retain_semantics Other toolbarImmovableItemIdentifiers:)]
+        pub unsafe fn toolbarImmovableItemIdentifiers(
+            &self,
+            toolbar: &NSToolbar,
+        ) -> Id<NSSet<NSToolbarItemIdentifier>, Shared>;
+
+        #[cfg(feature = "AppKit_NSToolbar")]
+        #[optional]
+        #[method(toolbar:itemIdentifier:canBeInsertedAtIndex:)]
+        pub unsafe fn toolbar_itemIdentifier_canBeInsertedAtIndex(
+            &self,
+            toolbar: &NSToolbar,
+            itemIdentifier: &NSToolbarItemIdentifier,
+            index: NSInteger,
+        ) -> bool;
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]

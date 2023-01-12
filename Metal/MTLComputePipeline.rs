@@ -18,6 +18,10 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Metal_MTLComputePipelineReflection")]
     unsafe impl MTLComputePipelineReflection {
+        #[cfg(feature = "Foundation_NSArray")]
+        #[method_id(@__retain_semantics Other bindings)]
+        pub unsafe fn bindings(&self) -> Id<NSArray<MTLBinding>, Shared>;
+
         #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLArgument"))]
         #[method_id(@__retain_semantics Other arguments)]
         pub fn arguments(&self) -> Id<NSArray<MTLArgument>, Shared>;
@@ -165,6 +169,9 @@ extern_protocol!(
 
         #[method(supportIndirectCommandBuffers)]
         pub fn supportIndirectCommandBuffers(&self) -> bool;
+
+        #[method(gpuResourceID)]
+        pub unsafe fn gpuResourceID(&self) -> MTLResourceID;
 
         #[method_id(@__retain_semantics Other functionHandleWithFunction:)]
         pub fn functionHandleWithFunction(

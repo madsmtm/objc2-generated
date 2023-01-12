@@ -4,6 +4,14 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::Metal::*;
 
+ns_options!(
+    #[underlying(NSUInteger)]
+    pub enum MTLAccelerationStructureRefitOptions {
+        MTLAccelerationStructureRefitOptionVertexData = 1 << 0,
+        MTLAccelerationStructureRefitOptionPerPrimitiveData = 1 << 1,
+    }
+);
+
 extern_protocol!(
     pub struct MTLAccelerationStructureCommandEncoder;
 
@@ -27,6 +35,18 @@ extern_protocol!(
             destinationAccelerationStructure: Option<&MTLAccelerationStructure>,
             scratchBuffer: &MTLBuffer,
             scratchBufferOffset: NSUInteger,
+        );
+
+        #[cfg(feature = "Metal_MTLAccelerationStructureDescriptor")]
+        #[method(refitAccelerationStructure:descriptor:destination:scratchBuffer:scratchBufferOffset:options:)]
+        pub unsafe fn refitAccelerationStructure_descriptor_destination_scratchBuffer_scratchBufferOffset_options(
+            &self,
+            sourceAccelerationStructure: &MTLAccelerationStructure,
+            descriptor: &MTLAccelerationStructureDescriptor,
+            destinationAccelerationStructure: Option<&MTLAccelerationStructure>,
+            scratchBuffer: &MTLBuffer,
+            scratchBufferOffset: NSUInteger,
+            options: MTLAccelerationStructureRefitOptions,
         );
 
         #[method(copyAccelerationStructure:toAccelerationStructure:)]
@@ -90,5 +110,96 @@ extern_protocol!(
             sampleIndex: NSUInteger,
             barrier: bool,
         );
+    }
+);
+
+extern_class!(
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLAccelerationStructurePassSampleBufferAttachmentDescriptor")]
+    pub struct MTLAccelerationStructurePassSampleBufferAttachmentDescriptor;
+
+    #[cfg(feature = "Metal_MTLAccelerationStructurePassSampleBufferAttachmentDescriptor")]
+    unsafe impl ClassType for MTLAccelerationStructurePassSampleBufferAttachmentDescriptor {
+        type Super = NSObject;
+    }
+);
+
+extern_methods!(
+    #[cfg(feature = "Metal_MTLAccelerationStructurePassSampleBufferAttachmentDescriptor")]
+    unsafe impl MTLAccelerationStructurePassSampleBufferAttachmentDescriptor {
+        #[method_id(@__retain_semantics Other sampleBuffer)]
+        pub unsafe fn sampleBuffer(&self) -> Option<Id<MTLCounterSampleBuffer, Shared>>;
+
+        #[method(setSampleBuffer:)]
+        pub unsafe fn setSampleBuffer(&self, sampleBuffer: Option<&MTLCounterSampleBuffer>);
+
+        #[method(startOfEncoderSampleIndex)]
+        pub unsafe fn startOfEncoderSampleIndex(&self) -> NSUInteger;
+
+        #[method(setStartOfEncoderSampleIndex:)]
+        pub unsafe fn setStartOfEncoderSampleIndex(&self, startOfEncoderSampleIndex: NSUInteger);
+
+        #[method(endOfEncoderSampleIndex)]
+        pub unsafe fn endOfEncoderSampleIndex(&self) -> NSUInteger;
+
+        #[method(setEndOfEncoderSampleIndex:)]
+        pub unsafe fn setEndOfEncoderSampleIndex(&self, endOfEncoderSampleIndex: NSUInteger);
+    }
+);
+
+extern_class!(
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray")]
+    pub struct MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray;
+
+    #[cfg(feature = "Metal_MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray")]
+    unsafe impl ClassType for MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray {
+        type Super = NSObject;
+    }
+);
+
+extern_methods!(
+    #[cfg(feature = "Metal_MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray")]
+    unsafe impl MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray {
+        #[cfg(feature = "Metal_MTLAccelerationStructurePassSampleBufferAttachmentDescriptor")]
+        #[method_id(@__retain_semantics Other objectAtIndexedSubscript:)]
+        pub unsafe fn objectAtIndexedSubscript(
+            &self,
+            attachmentIndex: NSUInteger,
+        ) -> Id<MTLAccelerationStructurePassSampleBufferAttachmentDescriptor, Shared>;
+
+        #[cfg(feature = "Metal_MTLAccelerationStructurePassSampleBufferAttachmentDescriptor")]
+        #[method(setObject:atIndexedSubscript:)]
+        pub unsafe fn setObject_atIndexedSubscript(
+            &self,
+            attachment: Option<&MTLAccelerationStructurePassSampleBufferAttachmentDescriptor>,
+            attachmentIndex: NSUInteger,
+        );
+    }
+);
+
+extern_class!(
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLAccelerationStructurePassDescriptor")]
+    pub struct MTLAccelerationStructurePassDescriptor;
+
+    #[cfg(feature = "Metal_MTLAccelerationStructurePassDescriptor")]
+    unsafe impl ClassType for MTLAccelerationStructurePassDescriptor {
+        type Super = NSObject;
+    }
+);
+
+extern_methods!(
+    #[cfg(feature = "Metal_MTLAccelerationStructurePassDescriptor")]
+    unsafe impl MTLAccelerationStructurePassDescriptor {
+        #[method_id(@__retain_semantics Other accelerationStructurePassDescriptor)]
+        pub unsafe fn accelerationStructurePassDescriptor(
+        ) -> Id<MTLAccelerationStructurePassDescriptor, Shared>;
+
+        #[cfg(feature = "Metal_MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray")]
+        #[method_id(@__retain_semantics Other sampleBufferAttachments)]
+        pub unsafe fn sampleBufferAttachments(
+            &self,
+        ) -> Id<MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray, Shared>;
     }
 );

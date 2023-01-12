@@ -54,6 +54,7 @@ ns_error_enum!(
         NSXPCConnectionInterrupted = 4097,
         NSXPCConnectionInvalid = 4099,
         NSXPCConnectionReplyInvalid = 4101,
+        NSXPCConnectionCodeSigningRequirementFailure = 4102,
         NSXPCConnectionErrorMinimum = 4096,
         NSXPCConnectionErrorMaximum = 4224,
         NSUbiquitousFileUnavailableError = 4353,

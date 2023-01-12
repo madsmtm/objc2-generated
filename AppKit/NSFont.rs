@@ -106,6 +106,13 @@ extern_methods!(
             weight: NSFontWeight,
         ) -> Id<NSFont, Shared>;
 
+        #[method_id(@__retain_semantics Other systemFontOfSize:weight:width:)]
+        pub unsafe fn systemFontOfSize_weight_width(
+            fontSize: CGFloat,
+            weight: NSFontWeight,
+            width: NSFontWidth,
+        ) -> Id<NSFont, Shared>;
+
         #[method_id(@__retain_semantics Other monospacedSystemFontOfSize:weight:)]
         pub unsafe fn monospacedSystemFontOfSize_weight(
             fontSize: CGFloat,

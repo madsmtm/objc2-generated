@@ -858,6 +858,12 @@ extern_methods!(
             allowsConstrainedNetworkAccess: bool,
         );
 
+        #[method(requiresDNSSECValidation)]
+        pub unsafe fn requiresDNSSECValidation(&self) -> bool;
+
+        #[method(setRequiresDNSSECValidation:)]
+        pub unsafe fn setRequiresDNSSECValidation(&self, requiresDNSSECValidation: bool);
+
         #[method(waitsForConnectivity)]
         pub unsafe fn waitsForConnectivity(&self) -> bool;
 
@@ -1070,6 +1076,18 @@ extern_protocol!(
     pub struct NSURLSessionTaskDelegate;
 
     unsafe impl ProtocolType for NSURLSessionTaskDelegate {
+        #[cfg(all(
+            feature = "Foundation_NSURLSession",
+            feature = "Foundation_NSURLSessionTask"
+        ))]
+        #[optional]
+        #[method(URLSession:didCreateTask:)]
+        pub unsafe fn URLSession_didCreateTask(
+            &self,
+            session: &NSURLSession,
+            task: &NSURLSessionTask,
+        );
+
         #[cfg(all(
             feature = "Foundation_NSURLRequest",
             feature = "Foundation_NSURLSession",

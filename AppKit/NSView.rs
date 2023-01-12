@@ -500,32 +500,6 @@ extern_methods!(
         #[method(setWantsRestingTouches:)]
         pub unsafe fn setWantsRestingTouches(&self, wantsRestingTouches: bool);
 
-        #[cfg(feature = "AppKit_NSCursor")]
-        #[method(addCursorRect:cursor:)]
-        pub unsafe fn addCursorRect_cursor(&self, rect: NSRect, object: &NSCursor);
-
-        #[cfg(feature = "AppKit_NSCursor")]
-        #[method(removeCursorRect:cursor:)]
-        pub unsafe fn removeCursorRect_cursor(&self, rect: NSRect, object: &NSCursor);
-
-        #[method(discardCursorRects)]
-        pub unsafe fn discardCursorRects(&self);
-
-        #[method(resetCursorRects)]
-        pub unsafe fn resetCursorRects(&self);
-
-        #[method(addTrackingRect:owner:userData:assumeInside:)]
-        pub unsafe fn addTrackingRect_owner_userData_assumeInside(
-            &self,
-            rect: NSRect,
-            owner: &Object,
-            data: *mut c_void,
-            flag: bool,
-        ) -> NSTrackingRectTag;
-
-        #[method(removeTrackingRect:)]
-        pub unsafe fn removeTrackingRect(&self, tag: NSTrackingRectTag);
-
         #[method(layerContentsRedrawPolicy)]
         pub unsafe fn layerContentsRedrawPolicy(&self) -> NSViewLayerContentsRedrawPolicy;
 
@@ -593,21 +567,6 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSShadow")]
         #[method(setShadow:)]
         pub unsafe fn setShadow(&self, shadow: Option<&NSShadow>);
-
-        #[cfg(feature = "AppKit_NSTrackingArea")]
-        #[method(addTrackingArea:)]
-        pub unsafe fn addTrackingArea(&self, trackingArea: &NSTrackingArea);
-
-        #[cfg(feature = "AppKit_NSTrackingArea")]
-        #[method(removeTrackingArea:)]
-        pub unsafe fn removeTrackingArea(&self, trackingArea: &NSTrackingArea);
-
-        #[cfg(all(feature = "AppKit_NSTrackingArea", feature = "Foundation_NSArray"))]
-        #[method_id(@__retain_semantics Other trackingAreas)]
-        pub unsafe fn trackingAreas(&self) -> Id<NSArray<NSTrackingArea>, Shared>;
-
-        #[method(updateTrackingAreas)]
-        pub unsafe fn updateTrackingAreas(&self);
 
         #[method(postsBoundsChangedNotifications)]
         pub unsafe fn postsBoundsChangedNotifications(&self) -> bool;
@@ -1056,6 +1015,53 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSLayoutGuide")]
         #[method_id(@__retain_semantics Other layoutMarginsGuide)]
         pub unsafe fn layoutMarginsGuide(&self) -> Id<NSLayoutGuide, Shared>;
+    }
+);
+
+extern_methods!(
+    /// NSTrackingArea
+    #[cfg(feature = "AppKit_NSView")]
+    unsafe impl NSView {
+        #[cfg(feature = "AppKit_NSTrackingArea")]
+        #[method(addTrackingArea:)]
+        pub unsafe fn addTrackingArea(&self, trackingArea: &NSTrackingArea);
+
+        #[cfg(feature = "AppKit_NSTrackingArea")]
+        #[method(removeTrackingArea:)]
+        pub unsafe fn removeTrackingArea(&self, trackingArea: &NSTrackingArea);
+
+        #[cfg(all(feature = "AppKit_NSTrackingArea", feature = "Foundation_NSArray"))]
+        #[method_id(@__retain_semantics Other trackingAreas)]
+        pub unsafe fn trackingAreas(&self) -> Id<NSArray<NSTrackingArea>, Shared>;
+
+        #[method(updateTrackingAreas)]
+        pub unsafe fn updateTrackingAreas(&self);
+
+        #[cfg(feature = "AppKit_NSCursor")]
+        #[method(addCursorRect:cursor:)]
+        pub unsafe fn addCursorRect_cursor(&self, rect: NSRect, object: &NSCursor);
+
+        #[cfg(feature = "AppKit_NSCursor")]
+        #[method(removeCursorRect:cursor:)]
+        pub unsafe fn removeCursorRect_cursor(&self, rect: NSRect, object: &NSCursor);
+
+        #[method(discardCursorRects)]
+        pub unsafe fn discardCursorRects(&self);
+
+        #[method(resetCursorRects)]
+        pub unsafe fn resetCursorRects(&self);
+
+        #[method(addTrackingRect:owner:userData:assumeInside:)]
+        pub unsafe fn addTrackingRect_owner_userData_assumeInside(
+            &self,
+            rect: NSRect,
+            owner: &Object,
+            data: *mut c_void,
+            flag: bool,
+        ) -> NSTrackingRectTag;
+
+        #[method(removeTrackingRect:)]
+        pub unsafe fn removeTrackingRect(&self, tag: NSTrackingRectTag);
     }
 );
 

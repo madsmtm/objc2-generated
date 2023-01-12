@@ -65,6 +65,9 @@ ns_options!(
         NSWindowCollectionBehaviorFullScreenNone = 1 << 9,
         NSWindowCollectionBehaviorFullScreenAllowsTiling = 1 << 11,
         NSWindowCollectionBehaviorFullScreenDisallowsTiling = 1 << 12,
+        NSWindowCollectionBehaviorPrimary = 1 << 16,
+        NSWindowCollectionBehaviorAuxiliary = 1 << 17,
+        NSWindowCollectionBehaviorCanJoinAllApplications = 1 << 18,
     }
 );
 

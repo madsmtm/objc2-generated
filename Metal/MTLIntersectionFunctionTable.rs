@@ -63,6 +63,9 @@ extern_protocol!(
             range: NSRange,
         );
 
+        #[method(gpuResourceID)]
+        pub unsafe fn gpuResourceID(&self) -> MTLResourceID;
+
         #[method(setFunction:atIndex:)]
         pub fn setFunction_atIndex(&self, function: Option<&MTLFunctionHandle>, index: NSUInteger);
 

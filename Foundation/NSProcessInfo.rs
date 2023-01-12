@@ -132,11 +132,14 @@ ns_options!(
         NSActivityIdleSystemSleepDisabled = 1 << 20,
         NSActivitySuddenTerminationDisabled = 1 << 14,
         NSActivityAutomaticTerminationDisabled = 1 << 15,
+        NSActivityAnimationTrackingEnabled = 1 << 45,
+        NSActivityTrackingEnabled = 1 << 46,
         NSActivityUserInitiated = 0x00FFFFFF | NSActivityIdleSystemSleepDisabled,
         NSActivityUserInitiatedAllowingIdleSystemSleep =
             NSActivityUserInitiated & !NSActivityIdleSystemSleepDisabled,
         NSActivityBackground = 0x000000FF,
         NSActivityLatencyCritical = 0xFF00000000,
+        NSActivityUserInteractive = NSActivityUserInitiated | NSActivityLatencyCritical,
     }
 );
 

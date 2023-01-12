@@ -55,6 +55,12 @@ mod __ASAuthorizationProvider;
 mod __ASAuthorizationProviderExtensionAuthorizationRequest;
 #[path = "ASAuthorizationProviderExtensionAuthorizationResult.rs"]
 mod __ASAuthorizationProviderExtensionAuthorizationResult;
+#[path = "ASAuthorizationProviderExtensionLoginConfiguration.rs"]
+mod __ASAuthorizationProviderExtensionLoginConfiguration;
+#[path = "ASAuthorizationProviderExtensionLoginManager.rs"]
+mod __ASAuthorizationProviderExtensionLoginManager;
+#[path = "ASAuthorizationProviderExtensionRegistrationHandler.rs"]
+mod __ASAuthorizationProviderExtensionRegistrationHandler;
 #[path = "ASAuthorizationPublicKeyCredentialAssertion.rs"]
 mod __ASAuthorizationPublicKeyCredentialAssertion;
 #[path = "ASAuthorizationPublicKeyCredentialAssertionRequest.rs"]
@@ -171,6 +177,10 @@ pub use self::__ASAuthorizationAppleIDRequest::ASAuthorizationAppleIDRequest;
 pub use self::__ASAuthorizationController::ASAuthorizationController;
 pub use self::__ASAuthorizationController::ASAuthorizationControllerDelegate;
 pub use self::__ASAuthorizationController::ASAuthorizationControllerPresentationContextProviding;
+pub use self::__ASAuthorizationController::{
+    ASAuthorizationControllerRequestOptionPreferImmediatelyAvailableCredentials,
+    ASAuthorizationControllerRequestOptions,
+};
 pub use self::__ASAuthorizationCredential::ASAuthorizationCredential;
 pub use self::__ASAuthorizationCustomMethod::ASAuthorizationCustomMethod;
 pub use self::__ASAuthorizationCustomMethod::ASAuthorizationCustomMethodOther;
@@ -214,11 +224,43 @@ pub use self::__ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest::A
 pub use self::__ASAuthorizationProvider::ASAuthorizationProvider;
 pub use self::__ASAuthorizationProviderExtensionAuthorizationRequest::ASAuthorizationProviderAuthorizationOperation;
 pub use self::__ASAuthorizationProviderExtensionAuthorizationRequest::ASAuthorizationProviderAuthorizationOperationConfigurationRemoved;
+pub use self::__ASAuthorizationProviderExtensionAuthorizationRequest::ASAuthorizationProviderAuthorizationOperationDirectRequest;
 #[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionAuthorizationRequest")]
 pub use self::__ASAuthorizationProviderExtensionAuthorizationRequest::ASAuthorizationProviderExtensionAuthorizationRequest;
 pub use self::__ASAuthorizationProviderExtensionAuthorizationRequest::ASAuthorizationProviderExtensionAuthorizationRequestHandler;
 #[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionAuthorizationResult")]
 pub use self::__ASAuthorizationProviderExtensionAuthorizationResult::ASAuthorizationProviderExtensionAuthorizationResult;
+#[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionKerberosMapping")]
+pub use self::__ASAuthorizationProviderExtensionLoginConfiguration::ASAuthorizationProviderExtensionKerberosMapping;
+#[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionLoginConfiguration")]
+pub use self::__ASAuthorizationProviderExtensionLoginConfiguration::ASAuthorizationProviderExtensionLoginConfiguration;
+#[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionLoginManager")]
+pub use self::__ASAuthorizationProviderExtensionLoginManager::ASAuthorizationProviderExtensionLoginManager;
+pub use self::__ASAuthorizationProviderExtensionLoginManager::{
+    ASAuthorizationProviderExtensionKeyType,
+    ASAuthorizationProviderExtensionKeyTypeUserDeviceEncryption,
+    ASAuthorizationProviderExtensionKeyTypeUserDeviceSigning,
+    ASAuthorizationProviderExtensionKeyTypeUserSecureEnclaveKey,
+};
+pub use self::__ASAuthorizationProviderExtensionRegistrationHandler::ASAuthorizationProviderExtensionRegistrationHandler;
+pub use self::__ASAuthorizationProviderExtensionRegistrationHandler::{
+    ASAuthorizationProviderExtensionAuthenticationMethod,
+    ASAuthorizationProviderExtensionAuthenticationMethodPassword,
+    ASAuthorizationProviderExtensionAuthenticationMethodUserSecureEnclaveKey,
+};
+pub use self::__ASAuthorizationProviderExtensionRegistrationHandler::{
+    ASAuthorizationProviderExtensionRegistrationResult,
+    ASAuthorizationProviderExtensionRegistrationResultFailed,
+    ASAuthorizationProviderExtensionRegistrationResultFailedNoRetry,
+    ASAuthorizationProviderExtensionRegistrationResultSuccess,
+    ASAuthorizationProviderExtensionRegistrationResultUserInterfaceRequired,
+};
+pub use self::__ASAuthorizationProviderExtensionRegistrationHandler::{
+    ASAuthorizationProviderExtensionRequestOptions,
+    ASAuthorizationProviderExtensionRequestOptionsNone,
+    ASAuthorizationProviderExtensionRequestOptionsRegistrationRepair,
+    ASAuthorizationProviderExtensionRequestOptionsUserInteractionEnabled,
+};
 pub use self::__ASAuthorizationPublicKeyCredentialAssertion::ASAuthorizationPublicKeyCredentialAssertion;
 pub use self::__ASAuthorizationPublicKeyCredentialAssertionRequest::ASAuthorizationPublicKeyCredentialAssertionRequest;
 pub use self::__ASAuthorizationPublicKeyCredentialConstants::ASAuthorizationPublicKeyCredentialAttestationKind;

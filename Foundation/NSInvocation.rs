@@ -62,5 +62,8 @@ extern_methods!(
 
         #[method(invokeWithTarget:)]
         pub unsafe fn invokeWithTarget(&self, target: &Object);
+
+        #[method(invokeUsingIMP:)]
+        pub unsafe fn invokeUsingIMP(&self, imp: IMP);
     }
 );

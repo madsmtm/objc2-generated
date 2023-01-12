@@ -5,6 +5,15 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+ns_enum!(
+    #[underlying(NSInteger)]
+    pub enum NSColorWellStyle {
+        NSColorWellStyleDefault = 0,
+        NSColorWellStyleMinimal = 1,
+        NSColorWellStyleExpanded = 2,
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSColorWell")]
@@ -20,6 +29,9 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSColorWell")]
     unsafe impl NSColorWell {
+        #[method_id(@__retain_semantics Other colorWellWithStyle:)]
+        pub unsafe fn colorWellWithStyle(style: NSColorWellStyle) -> Id<Self, Shared>;
+
         #[method(deactivate)]
         pub unsafe fn deactivate(&self);
 
@@ -48,6 +60,32 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setColor:)]
         pub unsafe fn setColor(&self, color: &NSColor);
+
+        #[method(colorWellStyle)]
+        pub unsafe fn colorWellStyle(&self) -> NSColorWellStyle;
+
+        #[method(setColorWellStyle:)]
+        pub unsafe fn setColorWellStyle(&self, colorWellStyle: NSColorWellStyle);
+
+        #[cfg(feature = "AppKit_NSImage")]
+        #[method_id(@__retain_semantics Other image)]
+        pub unsafe fn image(&self) -> Option<Id<NSImage, Shared>>;
+
+        #[cfg(feature = "AppKit_NSImage")]
+        #[method(setImage:)]
+        pub unsafe fn setImage(&self, image: Option<&NSImage>);
+
+        #[method_id(@__retain_semantics Other pulldownTarget)]
+        pub unsafe fn pulldownTarget(&self) -> Option<Id<Object, Shared>>;
+
+        #[method(setPulldownTarget:)]
+        pub unsafe fn setPulldownTarget(&self, pulldownTarget: Option<&Object>);
+
+        #[method(pulldownAction)]
+        pub unsafe fn pulldownAction(&self) -> Option<Sel>;
+
+        #[method(setPulldownAction:)]
+        pub unsafe fn setPulldownAction(&self, pulldownAction: Option<Sel>);
     }
 );
 

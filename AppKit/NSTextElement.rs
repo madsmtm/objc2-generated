@@ -44,6 +44,16 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSTextRange")]
         #[method(setElementRange:)]
         pub unsafe fn setElementRange(&self, elementRange: Option<&NSTextRange>);
+
+        #[cfg(feature = "Foundation_NSArray")]
+        #[method_id(@__retain_semantics Other childElements)]
+        pub unsafe fn childElements(&self) -> Id<NSArray<NSTextElement>, Shared>;
+
+        #[method_id(@__retain_semantics Other parentElement)]
+        pub unsafe fn parentElement(&self) -> Option<Id<NSTextElement, Shared>>;
+
+        #[method(isRepresentedElement)]
+        pub unsafe fn isRepresentedElement(&self) -> bool;
     }
 );
 

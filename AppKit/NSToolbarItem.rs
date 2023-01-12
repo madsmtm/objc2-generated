@@ -60,6 +60,14 @@ extern_methods!(
         #[method(setPaletteLabel:)]
         pub unsafe fn setPaletteLabel(&self, paletteLabel: &NSString);
 
+        #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
+        #[method_id(@__retain_semantics Other possibleLabels)]
+        pub unsafe fn possibleLabels(&self) -> Id<NSSet<NSString>, Shared>;
+
+        #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
+        #[method(setPossibleLabels:)]
+        pub unsafe fn setPossibleLabels(&self, possibleLabels: &NSSet<NSString>);
+
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other toolTip)]
         pub unsafe fn toolTip(&self) -> Option<Id<NSString, Shared>>;
@@ -136,6 +144,9 @@ extern_methods!(
         #[method(setView:)]
         pub unsafe fn setView(&self, view: Option<&NSView>);
 
+        #[method(isVisible)]
+        pub unsafe fn isVisible(&self) -> bool;
+
         #[method(minSize)]
         pub unsafe fn minSize(&self) -> NSSize;
 
@@ -186,8 +197,6 @@ extern_protocol!(
     }
 );
 
-extern_static!(NSToolbarSeparatorItemIdentifier: &'static NSToolbarItemIdentifier);
-
 extern_static!(NSToolbarSpaceItemIdentifier: &'static NSToolbarItemIdentifier);
 
 extern_static!(NSToolbarFlexibleSpaceItemIdentifier: &'static NSToolbarItemIdentifier);
@@ -196,8 +205,6 @@ extern_static!(NSToolbarShowColorsItemIdentifier: &'static NSToolbarItemIdentifi
 
 extern_static!(NSToolbarShowFontsItemIdentifier: &'static NSToolbarItemIdentifier);
 
-extern_static!(NSToolbarCustomizeToolbarItemIdentifier: &'static NSToolbarItemIdentifier);
-
 extern_static!(NSToolbarPrintItemIdentifier: &'static NSToolbarItemIdentifier);
 
 extern_static!(NSToolbarToggleSidebarItemIdentifier: &'static NSToolbarItemIdentifier);
@@ -205,3 +212,7 @@ extern_static!(NSToolbarToggleSidebarItemIdentifier: &'static NSToolbarItemIdent
 extern_static!(NSToolbarCloudSharingItemIdentifier: &'static NSToolbarItemIdentifier);
 
 extern_static!(NSToolbarSidebarTrackingSeparatorItemIdentifier: &'static NSToolbarItemIdentifier);
+
+extern_static!(NSToolbarSeparatorItemIdentifier: &'static NSToolbarItemIdentifier);
+
+extern_static!(NSToolbarCustomizeToolbarItemIdentifier: &'static NSToolbarItemIdentifier);
