@@ -65,7 +65,7 @@ extern_methods!(
         pub unsafe fn intersectionFunctionTableOffset(&self) -> NSUInteger;
 
         #[method(setIntersectionFunctionTableOffset:)]
-        pub unsafe fn setIntersectionFunctionTableOffset(
+        pub fn setIntersectionFunctionTableOffset(
             &self,
             intersectionFunctionTableOffset: NSUInteger,
         );
@@ -97,7 +97,7 @@ extern_methods!(
         pub unsafe fn primitiveDataBuffer(&self) -> Option<Id<MTLBuffer, Shared>>;
 
         #[method(setPrimitiveDataBuffer:)]
-        pub unsafe fn setPrimitiveDataBuffer(&self, primitiveDataBuffer: Option<&MTLBuffer>);
+        pub fn setPrimitiveDataBuffer(&self, primitiveDataBuffer: Option<&MTLBuffer>);
 
         #[method(primitiveDataBufferOffset)]
         pub unsafe fn primitiveDataBufferOffset(&self) -> NSUInteger;
@@ -109,13 +109,13 @@ extern_methods!(
         pub unsafe fn primitiveDataStride(&self) -> NSUInteger;
 
         #[method(setPrimitiveDataStride:)]
-        pub unsafe fn setPrimitiveDataStride(&self, primitiveDataStride: NSUInteger);
+        pub fn setPrimitiveDataStride(&self, primitiveDataStride: NSUInteger);
 
         #[method(primitiveDataElementSize)]
         pub unsafe fn primitiveDataElementSize(&self) -> NSUInteger;
 
         #[method(setPrimitiveDataElementSize:)]
-        pub unsafe fn setPrimitiveDataElementSize(&self, primitiveDataElementSize: NSUInteger);
+        pub fn setPrimitiveDataElementSize(&self, primitiveDataElementSize: NSUInteger);
     }
 );
 

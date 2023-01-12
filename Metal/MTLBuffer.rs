@@ -43,6 +43,6 @@ extern_protocol!(
         ) -> Option<Id<MTLBuffer, Shared>>;
 
         #[method(gpuAddress)]
-        pub unsafe fn gpuAddress(&self) -> u64;
+        pub fn gpuAddress(&self) -> u64;
     }
 );
