@@ -24,6 +24,23 @@ extern_methods!(
     unsafe impl CAMediaTimingFunction {
         #[method_id(@__retain_semantics Other functionWithName:)]
         pub unsafe fn functionWithName(name: &CAMediaTimingFunctionName) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Other functionWithControlPoints::::)]
+        pub unsafe fn functionWithControlPoints(
+            c1x: c_float,
+            c1y: c_float,
+            c2x: c_float,
+            c2y: c_float,
+        ) -> Id<Self, Shared>;
+
+        #[method_id(@__retain_semantics Init initWithControlPoints::::)]
+        pub unsafe fn initWithControlPoints(
+            this: Option<Allocated<Self>>,
+            c1x: c_float,
+            c1y: c_float,
+            c2x: c_float,
+            c2y: c_float,
+        ) -> Id<Self, Shared>;
     }
 );
 
