@@ -8,16 +8,7 @@ use crate::Foundation::*;
 extern_methods!(
     /// NSNibLoading
     #[cfg(feature = "Foundation_NSBundle")]
-    unsafe impl NSBundle {
-        #[cfg(feature = "Foundation_NSArray")]
-        #[method(loadNibNamed:owner:topLevelObjects:)]
-        pub unsafe fn loadNibNamed_owner_topLevelObjects(
-            &self,
-            nibName: &NSNibName,
-            owner: Option<&Object>,
-            topLevelObjects: *mut *mut NSArray,
-        ) -> bool;
-    }
+    unsafe impl NSBundle {}
 );
 
 extern_methods!(

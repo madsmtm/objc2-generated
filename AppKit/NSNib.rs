@@ -36,14 +36,6 @@ extern_methods!(
             nibData: &NSData,
             bundle: Option<&NSBundle>,
         ) -> Id<Self, Shared>;
-
-        #[cfg(feature = "Foundation_NSArray")]
-        #[method(instantiateWithOwner:topLevelObjects:)]
-        pub unsafe fn instantiateWithOwner_topLevelObjects(
-            &self,
-            owner: Option<&Object>,
-            topLevelObjects: *mut *mut NSArray,
-        ) -> bool;
     }
 );
 
