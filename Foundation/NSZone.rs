@@ -77,18 +77,6 @@ extern_fn!(
     ) -> NonNull<c_void>;
 );
 
-inline_fn!(
-    pub unsafe fn NSMakeCollectable(cf: CFTypeRef) -> *mut Object {
-        todo!()
-    }
-);
-
-inline_fn!(
-    pub unsafe fn NSMakeCollectable(cf: CFTypeRef) -> *mut Object {
-        todo!()
-    }
-);
-
 extern_fn!(
     pub unsafe fn NSPageSize() -> NSUInteger;
 );

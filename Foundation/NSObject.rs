@@ -85,9 +85,3 @@ inline_fn!(
         todo!()
     }
 );
-
-inline_fn!(
-    pub unsafe fn CFBridgingRelease(X: CFTypeRef) -> *mut Object {
-        todo!()
-    }
-);

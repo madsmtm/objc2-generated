@@ -158,11 +158,6 @@ extern_struct!(
 
 extern_fn!(
     #[cfg(feature = "Foundation_NSMapTable")]
-    pub unsafe fn NSFreeMapTable(table: &NSMapTable);
-);
-
-extern_fn!(
-    #[cfg(feature = "Foundation_NSMapTable")]
     pub unsafe fn NSResetMapTable(table: &NSMapTable);
 );
 

@@ -1266,8 +1266,6 @@ pub use self::__NSMapTable::NSCreateMapTableWithZone;
 pub use self::__NSMapTable::NSEndMapTableEnumeration;
 #[cfg(feature = "Foundation_NSMapTable")]
 pub use self::__NSMapTable::NSEnumerateMapTable;
-#[cfg(feature = "Foundation_NSMapTable")]
-pub use self::__NSMapTable::NSFreeMapTable;
 pub use self::__NSMapTable::NSIntMapKeyCallBacks;
 pub use self::__NSMapTable::NSIntMapValueCallBacks;
 pub use self::__NSMapTable::NSIntegerMapKeyCallBacks;
