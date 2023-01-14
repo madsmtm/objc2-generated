@@ -8,9 +8,13 @@ use crate::Foundation::*;
 extern_enum!(
     #[underlying(c_uint)]
     pub enum {
+#[deprecated]
         NSNoInterfaceStyle = 0,
+#[deprecated]
         NSNextStepInterfaceStyle = 1,
+#[deprecated]
         NSWindows95InterfaceStyle = 2,
+#[deprecated]
         NSMacintoshInterfaceStyle = 3,
     }
 );

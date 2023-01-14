@@ -43,6 +43,7 @@ extern_fn!(
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[deprecated = "Use MTLGPUFamily instead"]
     pub enum MTLFeatureSet {
         MTLFeatureSet_iOS_GPUFamily1_v1 = 0,
         MTLFeatureSet_iOS_GPUFamily2_v1 = 1,
@@ -91,12 +92,15 @@ ns_enum!(
         MTLGPUFamilyApple6 = 1006,
         MTLGPUFamilyApple7 = 1007,
         MTLGPUFamilyApple8 = 1008,
+        #[deprecated]
         MTLGPUFamilyMac1 = 2001,
         MTLGPUFamilyMac2 = 2002,
         MTLGPUFamilyCommon1 = 3001,
         MTLGPUFamilyCommon2 = 3002,
         MTLGPUFamilyCommon3 = 3003,
+        #[deprecated]
         MTLGPUFamilyMacCatalyst1 = 4001,
+        #[deprecated]
         MTLGPUFamilyMacCatalyst2 = 4002,
         MTLGPUFamilyMetal3 = 5001,
     }

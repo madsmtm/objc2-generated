@@ -1173,8 +1173,11 @@ extern_static!(NSApplicationDidChangeOcclusionStateNotification: &'static NSNoti
 extern_enum!(
     #[underlying(c_int)]
     pub enum {
+#[deprecated = "Use NSModalResponseStop instead"]
         NSRunStoppedResponse = -1000,
+#[deprecated = "Use NSModalResponseAbort instead"]
         NSRunAbortedResponse = -1001,
+#[deprecated = "Use NSModalResponseContinue instead"]
         NSRunContinuesResponse = -1002,
     }
 );

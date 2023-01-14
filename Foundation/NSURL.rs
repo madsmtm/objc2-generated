@@ -331,6 +331,7 @@ extern_static!(
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum NSURLBookmarkCreationOptions {
+        #[deprecated = "Not supported"]
         NSURLBookmarkCreationPreferFileIDResolution = 1 << 8,
         NSURLBookmarkCreationMinimalBookmark = 1 << 9,
         NSURLBookmarkCreationSuitableForBookmarkFile = 1 << 10,

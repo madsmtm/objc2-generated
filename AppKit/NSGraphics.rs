@@ -20,6 +20,7 @@ ns_enum!(
         NSCompositingOperationDestinationAtop = 9,
         NSCompositingOperationXOR = 10,
         NSCompositingOperationPlusDarker = 11,
+        #[deprecated = "Use NSCompositingOperationSourceOver instead"]
         NSCompositingOperationHighlight = 12,
         NSCompositingOperationPlusLighter = 13,
         NSCompositingOperationMultiply = 14,
@@ -109,7 +110,9 @@ extern_static!(NSCompositeLuminosity: NSCompositingOperation = NSCompositingOper
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum NSBackingStoreType {
+        #[deprecated]
         NSBackingStoreRetained = 0,
+        #[deprecated]
         NSBackingStoreNonretained = 1,
         NSBackingStoreBuffered = 2,
     }

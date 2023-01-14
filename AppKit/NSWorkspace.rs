@@ -518,17 +518,29 @@ typed_enum!(
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum NSWorkspaceLaunchOptions {
+        #[deprecated = "Use -[NSWorkspaceOpenConfiguration setForPrinting:YES] instead."]
         NSWorkspaceLaunchAndPrint = 0x00000002,
+        #[deprecated = "Use -[NSWorkspaceOpenConfiguration setPromptsUserIfNeeded:YES] instead."]
         NSWorkspaceLaunchWithErrorPresentation = 0x00000040,
+        #[deprecated = "This option does nothing."]
         NSWorkspaceLaunchInhibitingBackgroundOnly = 0x00000080,
+        #[deprecated = "Use -[NSWorkspaceOpenConfiguration setAddsToRecentItems:YES] instead."]
         NSWorkspaceLaunchWithoutAddingToRecents = 0x00000100,
+        #[deprecated = "Use -[NSWorkspaceOpenConfiguration setActivates:NO] instead."]
         NSWorkspaceLaunchWithoutActivation = 0x00000200,
+        #[deprecated = "When using NSWorkspaceOpenConfiguration, all launches are asynchronous."]
         NSWorkspaceLaunchAsync = 0x00010000,
+        #[deprecated = "Use -[NSWorkspaceOpenConfiguration setCreatesNewApplicationInstance:YES] instead."]
         NSWorkspaceLaunchNewInstance = 0x00080000,
+        #[deprecated = "Use -[NSWorkspaceOpenConfiguration setHides:YES] instead."]
         NSWorkspaceLaunchAndHide = 0x00100000,
+        #[deprecated = "Use -[NSWorkspaceOpenConfiguration setHidesOthers:YES] instead."]
         NSWorkspaceLaunchAndHideOthers = 0x00200000,
+        #[deprecated = "Use NSWorkspaceOpenConfiguration instead."]
         NSWorkspaceLaunchDefault = NSWorkspaceLaunchAsync,
+        #[deprecated = "The Classic environment is no longer supported."]
         NSWorkspaceLaunchAllowingClassicStartup = 0x00020000,
+        #[deprecated = "The Classic environment is no longer supported."]
         NSWorkspaceLaunchPreferringClassic = 0x00040000,
     }
 );

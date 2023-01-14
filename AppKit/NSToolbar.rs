@@ -29,9 +29,13 @@ ns_enum!(
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[deprecated = "NSToolbarSizeMode is no longer recommended and will be ignored in the future"]
     pub enum NSToolbarSizeMode {
+        #[deprecated = "NSToolbarSizeMode is no longer recommended and will be ignored in the future"]
         NSToolbarSizeModeDefault = 0,
+        #[deprecated = "NSToolbarSizeMode is no longer recommended and will be ignored in the future"]
         NSToolbarSizeModeRegular = 1,
+        #[deprecated = "NSToolbarSizeMode is no longer recommended and will be ignored in the future"]
         NSToolbarSizeModeSmall = 2,
     }
 );

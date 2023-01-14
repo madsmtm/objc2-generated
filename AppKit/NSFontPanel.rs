@@ -112,6 +112,7 @@ extern_enum!(
 
 extern_enum!(
     #[underlying(c_uint)]
+#[deprecated]
     pub enum {
         NSFPPreviewButton = 131,
         NSFPRevertButton = 130,

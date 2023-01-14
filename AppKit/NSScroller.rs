@@ -9,6 +9,7 @@ ns_enum!(
     #[underlying(NSUInteger)]
     pub enum NSUsableScrollerParts {
         NSNoScrollerParts = 0,
+        #[deprecated = "Scroller arrows are not used anymore."]
         NSOnlyScrollerArrows = 1,
         NSAllScrollerParts = 2,
     }
@@ -21,7 +22,9 @@ ns_enum!(
         NSScrollerDecrementPage = 1,
         NSScrollerKnob = 2,
         NSScrollerIncrementPage = 3,
+        #[deprecated = "Scroller arrows are not used anymore."]
         NSScrollerDecrementLine = 4,
+        #[deprecated = "Scroller arrows are not used anymore."]
         NSScrollerIncrementLine = 5,
         NSScrollerKnobSlot = 6,
     }
@@ -126,6 +129,7 @@ extern_static!(NSPreferredScrollerStyleDidChangeNotification: &'static NSNotific
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[deprecated = "Scroller arrows are not used anymore."]
     pub enum NSScrollArrowPosition {
         NSScrollerArrowsMaxEnd = 0,
         NSScrollerArrowsMinEnd = 1,
@@ -136,6 +140,7 @@ ns_enum!(
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[deprecated = "Scroller arrows are not used anymore."]
     pub enum NSScrollerArrow {
         NSScrollerIncrementArrow = 0,
         NSScrollerDecrementArrow = 1,

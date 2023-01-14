@@ -58,21 +58,37 @@ ns_options!(
         NSCalendarUnitNanosecond = 32768,
         NSCalendarUnitCalendar = 1048576,
         NSCalendarUnitTimeZone = 2097152,
+        #[deprecated]
         NSEraCalendarUnit = 2,
+        #[deprecated]
         NSYearCalendarUnit = 4,
+        #[deprecated]
         NSMonthCalendarUnit = 8,
+        #[deprecated]
         NSDayCalendarUnit = 16,
+        #[deprecated]
         NSHourCalendarUnit = 32,
+        #[deprecated]
         NSMinuteCalendarUnit = 64,
+        #[deprecated]
         NSSecondCalendarUnit = 128,
+        #[deprecated = "NSCalendarUnitWeekOfMonth or NSCalendarUnitWeekOfYear, depending on which you mean"]
         NSWeekCalendarUnit = 256,
+        #[deprecated]
         NSWeekdayCalendarUnit = 512,
+        #[deprecated]
         NSWeekdayOrdinalCalendarUnit = 1024,
+        #[deprecated]
         NSQuarterCalendarUnit = 2048,
+        #[deprecated]
         NSWeekOfMonthCalendarUnit = 4096,
+        #[deprecated]
         NSWeekOfYearCalendarUnit = 8192,
+        #[deprecated]
         NSYearForWeekOfYearCalendarUnit = 16384,
+        #[deprecated]
         NSCalendarCalendarUnit = 1048576,
+        #[deprecated]
         NSTimeZoneCalendarUnit = 2097152,
     }
 );
@@ -539,6 +555,7 @@ ns_enum!(
     #[underlying(NSInteger)]
     pub enum {
         NSDateComponentUndefined = NSIntegerMax as _,
+#[deprecated]
         NSUndefinedDateComponent = NSDateComponentUndefined,
     }
 );

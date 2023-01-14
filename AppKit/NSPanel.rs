@@ -48,9 +48,13 @@ extern_fn!(
 extern_enum!(
     #[underlying(c_int)]
     pub enum {
+#[deprecated = "Use NSAlertFirstButtonReturn with an NSAlert presentation instead"]
         NSAlertDefaultReturn = 1,
+#[deprecated = "Use NSAlertFirstButtonReturn and other NSModalResponses with an NSAlert presentation instead"]
         NSAlertAlternateReturn = 0,
+#[deprecated = "Use NSAlertFirstButtonReturn and other NSModalResponses with an NSAlert presentation instead"]
         NSAlertOtherReturn = -1,
+#[deprecated = "Use NSAlertFirstButtonReturn and other NSModalResponses with an NSAlert presentation instead"]
         NSAlertErrorReturn = -2,
     }
 );

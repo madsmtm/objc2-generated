@@ -16,7 +16,9 @@ ns_options!(
         NSDragOperationMove = 16,
         NSDragOperationDelete = 32,
         NSDragOperationEvery = NSUIntegerMax as _,
+        #[deprecated]
         NSDragOperationAll_Obsolete = 15,
+        #[deprecated]
         NSDragOperationAll = NSDragOperationAll_Obsolete,
     }
 );

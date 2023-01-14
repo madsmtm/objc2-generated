@@ -41,6 +41,7 @@ extern_static!(NSInvalidatedObjectIDsKey: &'static NSString);
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum NSManagedObjectContextConcurrencyType {
+        #[deprecated = "Use another NSManagedObjectContextConcurrencyType"]
         NSConfinementConcurrencyType = 0x00,
         NSPrivateQueueConcurrencyType = 0x01,
         NSMainQueueConcurrencyType = 0x02,

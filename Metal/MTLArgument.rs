@@ -120,10 +120,15 @@ ns_enum!(
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[deprecated]
     pub enum MTLArgumentType {
+        #[deprecated]
         MTLArgumentTypeBuffer = 0,
+        #[deprecated]
         MTLArgumentTypeThreadgroupMemory = 1,
+        #[deprecated]
         MTLArgumentTypeTexture = 2,
+        #[deprecated]
         MTLArgumentTypeSampler = 3,
         MTLArgumentTypeImageblockData = 16,
         MTLArgumentTypeImageblock = 17,

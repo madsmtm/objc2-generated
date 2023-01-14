@@ -22,10 +22,15 @@ ns_enum!(
         NSVisualEffectMaterialContentBackground = 18,
         NSVisualEffectMaterialUnderWindowBackground = 21,
         NSVisualEffectMaterialUnderPageBackground = 22,
+        #[deprecated = "Use a specific semantic material instead."]
         NSVisualEffectMaterialAppearanceBased = 0,
+        #[deprecated = "Use a semantic material instead.  To force the appearance of a view hierarchy, set the `appearance` property to an appropriate NSAppearance value."]
         NSVisualEffectMaterialLight = 1,
+        #[deprecated = "Use a semantic material instead.  To force the appearance of a view hierarchy, set the `appearance` property to an appropriate NSAppearance value."]
         NSVisualEffectMaterialDark = 2,
+        #[deprecated = "Use a semantic material instead.  To force the appearance of a view hierarchy, set the `appearance` property to an appropriate NSAppearance value."]
         NSVisualEffectMaterialMediumLight = 8,
+        #[deprecated = "Use a semantic material instead.  To force the appearance of a view hierarchy, set the `appearance` property to an appropriate NSAppearance value."]
         NSVisualEffectMaterialUltraDark = 9,
     }
 );

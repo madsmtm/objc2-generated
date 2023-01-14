@@ -58,7 +58,9 @@ ns_options!(
             MTLHazardTrackingModeUntracked << MTLResourceHazardTrackingModeShift,
         MTLResourceHazardTrackingModeTracked =
             MTLHazardTrackingModeTracked << MTLResourceHazardTrackingModeShift,
+        #[deprecated]
         MTLResourceOptionCPUCacheModeDefault = MTLResourceCPUCacheModeDefaultCache,
+        #[deprecated]
         MTLResourceOptionCPUCacheModeWriteCombined = MTLResourceCPUCacheModeWriteCombined,
     }
 );

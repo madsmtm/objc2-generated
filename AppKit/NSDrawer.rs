@@ -8,9 +8,13 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum NSDrawerState {
+        #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
         NSDrawerClosedState = 0,
+        #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
         NSDrawerOpeningState = 1,
+        #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
         NSDrawerOpenState = 2,
+        #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
         NSDrawerClosingState = 3,
     }
 );

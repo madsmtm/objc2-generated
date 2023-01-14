@@ -25,6 +25,7 @@ ns_enum!(
         MTLCommandBufferErrorInternal = 1,
         MTLCommandBufferErrorTimeout = 2,
         MTLCommandBufferErrorPageFault = 3,
+        #[deprecated]
         MTLCommandBufferErrorBlacklisted = 4,
         MTLCommandBufferErrorAccessRevoked = 4,
         MTLCommandBufferErrorNotPermitted = 7,

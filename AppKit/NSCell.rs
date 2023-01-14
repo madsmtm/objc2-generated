@@ -59,8 +59,11 @@ ns_enum!(
         NSImageScaleAxesIndependently = 1,
         NSImageScaleNone = 2,
         NSImageScaleProportionallyUpOrDown = 3,
+        #[deprecated = "Use NSImageScaleProportionallyDown instead"]
         NSScaleProportionally = 0,
+        #[deprecated = "Use NSImageScaleAxesIndependently instead"]
         NSScaleToFit = 1,
+        #[deprecated = "Use NSImageScaleNone instead"]
         NSScaleNone = 2,
     }
 );
@@ -861,12 +864,19 @@ extern_static!(NSControlTintDidChangeNotification: &'static NSNotificationName);
 extern_enum!(
     #[underlying(c_uint)]
     pub enum {
+#[deprecated = "Use formatters instead"]
         NSAnyType = 0,
+#[deprecated = "Use formatters instead"]
         NSIntType = 1,
+#[deprecated = "Use formatters instead"]
         NSPositiveIntType = 2,
+#[deprecated = "Use formatters instead"]
         NSFloatType = 3,
+#[deprecated = "Use formatters instead"]
         NSPositiveFloatType = 4,
+#[deprecated = "Use formatters instead"]
         NSDoubleType = 6,
+#[deprecated = "Use formatters instead"]
         NSPositiveDoubleType = 7,
     }
 );

@@ -9,8 +9,11 @@ ns_options!(
         NSDataReadingMappedIfSafe = 1 << 0,
         NSDataReadingUncached = 1 << 1,
         NSDataReadingMappedAlways = 1 << 3,
+        #[deprecated]
         NSDataReadingMapped = NSDataReadingMappedIfSafe,
+        #[deprecated]
         NSMappedRead = NSDataReadingMapped,
+        #[deprecated]
         NSUncachedRead = NSDataReadingUncached,
     }
 );
@@ -25,6 +28,7 @@ ns_options!(
         NSDataWritingFileProtectionCompleteUnlessOpen = 0x30000000,
         NSDataWritingFileProtectionCompleteUntilFirstUserAuthentication = 0x40000000,
         NSDataWritingFileProtectionMask = 0xf0000000,
+        #[deprecated]
         NSAtomicWrite = NSDataWritingAtomic,
     }
 );

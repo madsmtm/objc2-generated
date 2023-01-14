@@ -20,6 +20,7 @@ ns_enum!(
     #[underlying(NSUInteger)]
     pub enum NSURLRequestNetworkServiceType {
         NSURLNetworkServiceTypeDefault = 0,
+        #[deprecated = "Use PushKit for VoIP control purposes"]
         NSURLNetworkServiceTypeVoIP = 1,
         NSURLNetworkServiceTypeVideo = 2,
         NSURLNetworkServiceTypeBackground = 3,

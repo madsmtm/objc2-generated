@@ -27,6 +27,7 @@ ns_enum!(
         NSAutosaveInPlaceOperation = 4,
         NSAutosaveElsewhereOperation = 3,
         NSAutosaveAsOperation = 5,
+        #[deprecated = "Use NSAutosaveElsewhereOperation instead"]
         NSAutosaveOperation = 3,
     }
 );

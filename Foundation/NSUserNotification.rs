@@ -5,9 +5,13 @@ use crate::Foundation::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
     pub enum NSUserNotificationActivationType {
+        #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         NSUserNotificationActivationTypeNone = 0,
+        #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         NSUserNotificationActivationTypeContentsClicked = 1,
+        #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         NSUserNotificationActivationTypeActionButtonClicked = 2,
         NSUserNotificationActivationTypeReplied = 3,
         NSUserNotificationActivationTypeAdditionalActionClicked = 4,

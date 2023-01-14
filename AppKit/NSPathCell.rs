@@ -10,6 +10,7 @@ ns_enum!(
     pub enum NSPathStyle {
         NSPathStyleStandard = 0,
         NSPathStylePopUp = 2,
+        #[deprecated]
         NSPathStyleNavigationBar = 1,
     }
 );

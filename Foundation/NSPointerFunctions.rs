@@ -7,6 +7,7 @@ ns_options!(
     #[underlying(NSUInteger)]
     pub enum NSPointerFunctionsOptions {
         NSPointerFunctionsStrongMemory = 0 << 0,
+        #[deprecated = "GC no longer supported"]
         NSPointerFunctionsZeroingWeakMemory = 1 << 0,
         NSPointerFunctionsOpaqueMemory = 2 << 0,
         NSPointerFunctionsMallocMemory = 3 << 0,

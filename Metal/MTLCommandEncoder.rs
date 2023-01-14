@@ -9,6 +9,7 @@ ns_options!(
     pub enum MTLResourceUsage {
         MTLResourceUsageRead = 1 << 0,
         MTLResourceUsageWrite = 1 << 1,
+        #[deprecated]
         MTLResourceUsageSample = 1 << 2,
     }
 );

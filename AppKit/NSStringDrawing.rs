@@ -84,7 +84,9 @@ ns_options!(
         NSStringDrawingUsesFontLeading = 1 << 1,
         NSStringDrawingUsesDeviceMetrics = 1 << 3,
         NSStringDrawingTruncatesLastVisibleLine = 1 << 5,
+        #[deprecated]
         NSStringDrawingDisableScreenFontSubstitution = 1 << 2,
+        #[deprecated]
         NSStringDrawingOneShot = 1 << 4,
     }
 );

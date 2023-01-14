@@ -62,6 +62,7 @@ ns_enum!(
     pub enum NSTableViewSelectionHighlightStyle {
         NSTableViewSelectionHighlightStyleNone = -1,
         NSTableViewSelectionHighlightStyleRegular = 0,
+        #[deprecated = "Set the NSTableView.style property to NSTableViewStyleSourceList instead."]
         NSTableViewSelectionHighlightStyleSourceList = 1,
     }
 );

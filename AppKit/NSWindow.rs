@@ -17,6 +17,7 @@ ns_options!(
         NSWindowStyleMaskClosable = 1 << 1,
         NSWindowStyleMaskMiniaturizable = 1 << 2,
         NSWindowStyleMaskResizable = 1 << 3,
+        #[deprecated = "Textured window style should no longer be used"]
         NSWindowStyleMaskTexturedBackground = 1 << 8,
         NSWindowStyleMaskUnifiedTitleAndToolbar = 1 << 12,
         NSWindowStyleMaskFullScreen = 1 << 14,
@@ -1710,6 +1711,7 @@ extern_static!(NSWindowDidChangeOcclusionStateNotification: &'static NSNotificat
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[deprecated]
     pub enum NSWindowBackingLocation {
         NSWindowBackingLocationDefault = 0,
         NSWindowBackingLocationVideoMemory = 1,
