@@ -73,10 +73,10 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSFileCoordinator")]
     unsafe impl NSFileCoordinator {
         #[method(addFilePresenter:)]
-        pub unsafe fn addFilePresenter(filePresenter: &NSFilePresenter);
+        pub unsafe fn addFilePresenter(file_presenter: &NSFilePresenter);
 
         #[method(removeFilePresenter:)]
-        pub unsafe fn removeFilePresenter(filePresenter: &NSFilePresenter);
+        pub unsafe fn removeFilePresenter(file_presenter: &NSFilePresenter);
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other filePresenters)]
@@ -85,7 +85,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFilePresenter:)]
         pub unsafe fn initWithFilePresenter(
             this: Option<Allocated<Self>>,
-            filePresenterOrNil: Option<&NSFilePresenter>,
+            file_presenter_or_nil: Option<&NSFilePresenter>,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -94,7 +94,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setPurposeIdentifier:)]
-        pub unsafe fn setPurposeIdentifier(&self, purposeIdentifier: &NSString);
+        pub unsafe fn setPurposeIdentifier(&self, purpose_identifier: &NSString);
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -116,7 +116,7 @@ extern_methods!(
             &self,
             url: &NSURL,
             options: NSFileCoordinatorReadingOptions,
-            outError: *mut *mut NSError,
+            out_error: *mut *mut NSError,
             reader: &Block<(NonNull<NSURL>,), ()>,
         );
 
@@ -126,7 +126,7 @@ extern_methods!(
             &self,
             url: &NSURL,
             options: NSFileCoordinatorWritingOptions,
-            outError: *mut *mut NSError,
+            out_error: *mut *mut NSError,
             writer: &Block<(NonNull<NSURL>,), ()>,
         );
 
@@ -134,12 +134,12 @@ extern_methods!(
         #[method(coordinateReadingItemAtURL:options:writingItemAtURL:options:error:byAccessor:)]
         pub unsafe fn coordinateReadingItemAtURL_options_writingItemAtURL_options_error_byAccessor(
             &self,
-            readingURL: &NSURL,
-            readingOptions: NSFileCoordinatorReadingOptions,
-            writingURL: &NSURL,
-            writingOptions: NSFileCoordinatorWritingOptions,
-            outError: *mut *mut NSError,
-            readerWriter: &Block<(NonNull<NSURL>, NonNull<NSURL>), ()>,
+            reading_url: &NSURL,
+            reading_options: NSFileCoordinatorReadingOptions,
+            writing_url: &NSURL,
+            writing_options: NSFileCoordinatorWritingOptions,
+            out_error: *mut *mut NSError,
+            reader_writer: &Block<(NonNull<NSURL>, NonNull<NSURL>), ()>,
         );
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
@@ -150,7 +150,7 @@ extern_methods!(
             options1: NSFileCoordinatorWritingOptions,
             url2: &NSURL,
             options2: NSFileCoordinatorWritingOptions,
-            outError: *mut *mut NSError,
+            out_error: *mut *mut NSError,
             writer: &Block<(NonNull<NSURL>, NonNull<NSURL>), ()>,
         );
 
@@ -162,21 +162,21 @@ extern_methods!(
         #[method(prepareForReadingItemsAtURLs:options:writingItemsAtURLs:options:error:byAccessor:)]
         pub unsafe fn prepareForReadingItemsAtURLs_options_writingItemsAtURLs_options_error_byAccessor(
             &self,
-            readingURLs: &NSArray<NSURL>,
-            readingOptions: NSFileCoordinatorReadingOptions,
-            writingURLs: &NSArray<NSURL>,
-            writingOptions: NSFileCoordinatorWritingOptions,
-            outError: *mut *mut NSError,
-            batchAccessor: &Block<(NonNull<Block<(), ()>>,), ()>,
+            reading_ur_ls: &NSArray<NSURL>,
+            reading_options: NSFileCoordinatorReadingOptions,
+            writing_ur_ls: &NSArray<NSURL>,
+            writing_options: NSFileCoordinatorWritingOptions,
+            out_error: *mut *mut NSError,
+            batch_accessor: &Block<(NonNull<Block<(), ()>>,), ()>,
         );
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method(itemAtURL:willMoveToURL:)]
-        pub unsafe fn itemAtURL_willMoveToURL(&self, oldURL: &NSURL, newURL: &NSURL);
+        pub unsafe fn itemAtURL_willMoveToURL(&self, old_url: &NSURL, new_url: &NSURL);
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method(itemAtURL:didMoveToURL:)]
-        pub unsafe fn itemAtURL_didMoveToURL(&self, oldURL: &NSURL, newURL: &NSURL);
+        pub unsafe fn itemAtURL_didMoveToURL(&self, old_url: &NSURL, new_url: &NSURL);
 
         #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSURL"))]
         #[method(itemAtURL:didChangeUbiquityAttributes:)]

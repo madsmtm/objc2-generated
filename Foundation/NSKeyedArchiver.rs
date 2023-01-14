@@ -27,14 +27,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initRequiringSecureCoding:)]
         pub unsafe fn initRequiringSecureCoding(
             this: Option<Allocated<Self>>,
-            requiresSecureCoding: bool,
+            requires_secure_coding: bool,
         ) -> Id<Self, Shared>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
         #[method_id(@__retain_semantics Other archivedDataWithRootObject:requiringSecureCoding:error:_)]
         pub unsafe fn archivedDataWithRootObject_requiringSecureCoding_error(
             object: &Object,
-            requiresSecureCoding: bool,
+            requires_secure_coding: bool,
         ) -> Result<Id<NSData, Shared>, Id<NSError, Shared>>;
 
         #[method_id(@__retain_semantics Init init)]
@@ -49,11 +49,11 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other archivedDataWithRootObject:)]
-        pub unsafe fn archivedDataWithRootObject(rootObject: &Object) -> Id<NSData, Shared>;
+        pub unsafe fn archivedDataWithRootObject(root_object: &Object) -> Id<NSData, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(archiveRootObject:toFile:)]
-        pub unsafe fn archiveRootObject_toFile(rootObject: &Object, path: &NSString) -> bool;
+        pub unsafe fn archiveRootObject_toFile(root_object: &Object, path: &NSString) -> bool;
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSKeyedArchiverDelegate, Shared>>;
@@ -65,7 +65,7 @@ extern_methods!(
         pub unsafe fn outputFormat(&self) -> NSPropertyListFormat;
 
         #[method(setOutputFormat:)]
-        pub unsafe fn setOutputFormat(&self, outputFormat: NSPropertyListFormat);
+        pub unsafe fn setOutputFormat(&self, output_format: NSPropertyListFormat);
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other encodedData)]
@@ -123,7 +123,7 @@ extern_methods!(
         pub unsafe fn requiresSecureCoding(&self) -> bool;
 
         #[method(setRequiresSecureCoding:)]
-        pub unsafe fn setRequiresSecureCoding(&self, requiresSecureCoding: bool);
+        pub unsafe fn setRequiresSecureCoding(&self, requires_secure_coding: bool);
     }
 );
 
@@ -174,8 +174,8 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Other unarchivedDictionaryWithKeysOfClass:objectsOfClass:fromData:error:_)]
         pub unsafe fn unarchivedDictionaryWithKeysOfClass_objectsOfClass_fromData_error(
-            keyCls: &Class,
-            valueCls: &Class,
+            key_cls: &Class,
+            value_cls: &Class,
             data: &NSData,
         ) -> Result<Id<NSDictionary, Shared>, Id<NSError, Shared>>;
 
@@ -210,8 +210,8 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Other unarchivedDictionaryWithKeysOfClasses:objectsOfClasses:fromData:error:_)]
         pub unsafe fn unarchivedDictionaryWithKeysOfClasses_objectsOfClasses_fromData_error(
-            keyClasses: &NSSet<TodoClass>,
-            valueClasses: &NSSet<TodoClass>,
+            key_classes: &NSSet<TodoClass>,
+            value_classes: &NSSet<TodoClass>,
             data: &NSData,
         ) -> Result<Id<NSDictionary, Shared>, Id<NSError, Shared>>;
 
@@ -292,7 +292,7 @@ extern_methods!(
         pub unsafe fn requiresSecureCoding(&self) -> bool;
 
         #[method(setRequiresSecureCoding:)]
-        pub unsafe fn setRequiresSecureCoding(&self, requiresSecureCoding: bool);
+        pub unsafe fn setRequiresSecureCoding(&self, requires_secure_coding: bool);
 
         #[method(decodingFailurePolicy)]
         pub unsafe fn decodingFailurePolicy(&self) -> NSDecodingFailurePolicy;
@@ -300,7 +300,7 @@ extern_methods!(
         #[method(setDecodingFailurePolicy:)]
         pub unsafe fn setDecodingFailurePolicy(
             &self,
-            decodingFailurePolicy: NSDecodingFailurePolicy,
+            decoding_failure_policy: NSDecodingFailurePolicy,
         );
     }
 );
@@ -334,7 +334,7 @@ extern_protocol!(
             &self,
             archiver: &NSKeyedArchiver,
             object: Option<&Object>,
-            newObject: Option<&Object>,
+            new_object: Option<&Object>,
         );
 
         #[cfg(feature = "Foundation_NSKeyedArchiver")]
@@ -364,7 +364,7 @@ extern_protocol!(
             &self,
             unarchiver: &NSKeyedUnarchiver,
             name: &NSString,
-            classNames: &NSArray<NSString>,
+            class_names: &NSArray<NSString>,
         ) -> Option<&'static Class>;
 
         #[cfg(feature = "Foundation_NSKeyedUnarchiver")]
@@ -374,7 +374,7 @@ extern_protocol!(
             &self,
             unarchiver: &NSKeyedUnarchiver,
             object: &Object,
-            newObject: &Object,
+            new_object: &Object,
         );
 
         #[cfg(feature = "Foundation_NSKeyedUnarchiver")]

@@ -33,7 +33,7 @@ extern_methods!(
         pub unsafe fn initWithContentsOfURL_byReference(
             this: Option<Allocated<Self>>,
             url: &NSURL,
-            byRef: bool,
+            by_ref: bool,
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -41,7 +41,7 @@ extern_methods!(
         pub unsafe fn initWithContentsOfFile_byReference(
             this: Option<Allocated<Self>>,
             path: &NSString,
-            byRef: bool,
+            by_ref: bool,
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(feature = "Foundation_NSData")]
@@ -110,7 +110,7 @@ extern_methods!(
         pub unsafe fn currentTime(&self) -> NSTimeInterval;
 
         #[method(setCurrentTime:)]
-        pub unsafe fn setCurrentTime(&self, currentTime: NSTimeInterval);
+        pub unsafe fn setCurrentTime(&self, current_time: NSTimeInterval);
 
         #[method(loops)]
         pub unsafe fn loops(&self) -> bool;
@@ -126,12 +126,12 @@ extern_methods!(
         #[method(setPlaybackDeviceIdentifier:)]
         pub unsafe fn setPlaybackDeviceIdentifier(
             &self,
-            playbackDeviceIdentifier: Option<&NSSoundPlaybackDeviceIdentifier>,
+            playback_device_identifier: Option<&NSSoundPlaybackDeviceIdentifier>,
         );
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setChannelMapping:)]
-        pub unsafe fn setChannelMapping(&self, channelMapping: Option<&NSArray>);
+        pub unsafe fn setChannelMapping(&self, channel_mapping: Option<&NSArray>);
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other channelMapping)]

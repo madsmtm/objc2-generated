@@ -30,7 +30,7 @@ extern_methods!(
         pub unsafe fn currentAppearance() -> Option<Id<NSAppearance, Shared>>;
 
         #[method(setCurrentAppearance:)]
-        pub unsafe fn setCurrentAppearance(currentAppearance: Option<&NSAppearance>);
+        pub unsafe fn setCurrentAppearance(current_appearance: Option<&NSAppearance>);
 
         #[method_id(@__retain_semantics Other currentDrawingAppearance)]
         pub unsafe fn currentDrawingAppearance() -> Id<NSAppearance, Shared>;

@@ -119,18 +119,18 @@ extern_methods!(
         #[method(willChangeValueForKey:withSetMutation:usingObjects:)]
         pub unsafe fn willChangeValueForKey_withSetMutation_usingObjects(
             &self,
-            inKey: &NSString,
-            inMutationKind: NSKeyValueSetMutationKind,
-            inObjects: &NSSet,
+            in_key: &NSString,
+            in_mutation_kind: NSKeyValueSetMutationKind,
+            in_objects: &NSSet,
         );
 
         #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
         #[method(didChangeValueForKey:withSetMutation:usingObjects:)]
         pub unsafe fn didChangeValueForKey_withSetMutation_usingObjects(
             &self,
-            inKey: &NSString,
-            inMutationKind: NSKeyValueSetMutationKind,
-            inObjects: &NSSet,
+            in_key: &NSString,
+            in_mutation_kind: NSKeyValueSetMutationKind,
+            in_objects: &NSSet,
         );
 
         #[method(awakeFromFetch)]
@@ -215,7 +215,7 @@ extern_methods!(
         pub unsafe fn validateForUpdate(&self) -> Result<(), Id<NSError, Shared>>;
 
         #[method(setObservationInfo:)]
-        pub unsafe fn setObservationInfo(&self, inObservationInfo: *mut c_void);
+        pub unsafe fn setObservationInfo(&self, in_observation_info: *mut c_void);
 
         #[method(observationInfo)]
         pub unsafe fn observationInfo(&self) -> *mut c_void;

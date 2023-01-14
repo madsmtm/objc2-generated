@@ -57,36 +57,36 @@ extern_protocol!(
         #[method(setVisibleFunctionTable:atBufferIndex:)]
         pub unsafe fn setVisibleFunctionTable_atBufferIndex(
             &self,
-            visibleFunctionTable: Option<&MTLVisibleFunctionTable>,
-            bufferIndex: NSUInteger,
+            visible_function_table: Option<&MTLVisibleFunctionTable>,
+            buffer_index: NSUInteger,
         );
 
         #[method(setVisibleFunctionTables:withBufferRange:)]
         pub unsafe fn setVisibleFunctionTables_withBufferRange(
             &self,
-            visibleFunctionTables: NonNull<*const MTLVisibleFunctionTable>,
+            visible_function_tables: NonNull<*const MTLVisibleFunctionTable>,
             range: NSRange,
         );
 
         #[method(setIntersectionFunctionTable:atBufferIndex:)]
         pub unsafe fn setIntersectionFunctionTable_atBufferIndex(
             &self,
-            intersectionFunctionTable: Option<&MTLIntersectionFunctionTable>,
-            bufferIndex: NSUInteger,
+            intersection_function_table: Option<&MTLIntersectionFunctionTable>,
+            buffer_index: NSUInteger,
         );
 
         #[method(setIntersectionFunctionTables:withBufferRange:)]
         pub unsafe fn setIntersectionFunctionTables_withBufferRange(
             &self,
-            intersectionFunctionTables: NonNull<*const MTLIntersectionFunctionTable>,
+            intersection_function_tables: NonNull<*const MTLIntersectionFunctionTable>,
             range: NSRange,
         );
 
         #[method(setAccelerationStructure:atBufferIndex:)]
         pub unsafe fn setAccelerationStructure_atBufferIndex(
             &self,
-            accelerationStructure: Option<&MTLAccelerationStructure>,
-            bufferIndex: NSUInteger,
+            acceleration_structure: Option<&MTLAccelerationStructure>,
+            buffer_index: NSUInteger,
         );
 
         #[method(setTexture:atIndex:)]
@@ -117,8 +117,8 @@ extern_protocol!(
         pub unsafe fn setSamplerState_lodMinClamp_lodMaxClamp_atIndex(
             &self,
             sampler: Option<&MTLSamplerState>,
-            lodMinClamp: c_float,
-            lodMaxClamp: c_float,
+            lod_min_clamp: c_float,
+            lod_max_clamp: c_float,
             index: NSUInteger,
         );
 
@@ -126,8 +126,8 @@ extern_protocol!(
         pub unsafe fn setSamplerStates_lodMinClamps_lodMaxClamps_withRange(
             &self,
             samplers: NonNull<*const MTLSamplerState>,
-            lodMinClamps: NonNull<c_float>,
-            lodMaxClamps: NonNull<c_float>,
+            lod_min_clamps: NonNull<c_float>,
+            lod_max_clamps: NonNull<c_float>,
             range: NSRange,
         );
 
@@ -147,30 +147,30 @@ extern_protocol!(
         #[method(setStageInRegionWithIndirectBuffer:indirectBufferOffset:)]
         pub unsafe fn setStageInRegionWithIndirectBuffer_indirectBufferOffset(
             &self,
-            indirectBuffer: &MTLBuffer,
-            indirectBufferOffset: NSUInteger,
+            indirect_buffer: &MTLBuffer,
+            indirect_buffer_offset: NSUInteger,
         );
 
         #[method(dispatchThreadgroups:threadsPerThreadgroup:)]
         pub fn dispatchThreadgroups_threadsPerThreadgroup(
             &self,
-            threadgroupsPerGrid: MTLSize,
-            threadsPerThreadgroup: MTLSize,
+            threadgroups_per_grid: MTLSize,
+            threads_per_threadgroup: MTLSize,
         );
 
         #[method(dispatchThreadgroupsWithIndirectBuffer:indirectBufferOffset:threadsPerThreadgroup:)]
         pub unsafe fn dispatchThreadgroupsWithIndirectBuffer_indirectBufferOffset_threadsPerThreadgroup(
             &self,
-            indirectBuffer: &MTLBuffer,
-            indirectBufferOffset: NSUInteger,
-            threadsPerThreadgroup: MTLSize,
+            indirect_buffer: &MTLBuffer,
+            indirect_buffer_offset: NSUInteger,
+            threads_per_threadgroup: MTLSize,
         );
 
         #[method(dispatchThreads:threadsPerThreadgroup:)]
         pub fn dispatchThreads_threadsPerThreadgroup(
             &self,
-            threadsPerGrid: MTLSize,
-            threadsPerThreadgroup: MTLSize,
+            threads_per_grid: MTLSize,
+            threads_per_threadgroup: MTLSize,
         );
 
         #[method(updateFence:)]
@@ -199,16 +199,16 @@ extern_protocol!(
         #[method(executeCommandsInBuffer:withRange:)]
         pub unsafe fn executeCommandsInBuffer_withRange(
             &self,
-            indirectCommandBuffer: &MTLIndirectCommandBuffer,
-            executionRange: NSRange,
+            indirect_command_buffer: &MTLIndirectCommandBuffer,
+            execution_range: NSRange,
         );
 
         #[method(executeCommandsInBuffer:indirectBuffer:indirectBufferOffset:)]
         pub unsafe fn executeCommandsInBuffer_indirectBuffer_indirectBufferOffset(
             &self,
-            indirectCommandbuffer: &MTLIndirectCommandBuffer,
-            indirectRangeBuffer: &MTLBuffer,
-            indirectBufferOffset: NSUInteger,
+            indirect_commandbuffer: &MTLIndirectCommandBuffer,
+            indirect_range_buffer: &MTLBuffer,
+            indirect_buffer_offset: NSUInteger,
         );
 
         #[method(memoryBarrierWithScope:)]
@@ -224,8 +224,8 @@ extern_protocol!(
         #[method(sampleCountersInBuffer:atSampleIndex:withBarrier:)]
         pub unsafe fn sampleCountersInBuffer_atSampleIndex_withBarrier(
             &self,
-            sampleBuffer: &MTLCounterSampleBuffer,
-            sampleIndex: NSUInteger,
+            sample_buffer: &MTLCounterSampleBuffer,
+            sample_index: NSUInteger,
             barrier: bool,
         );
     }

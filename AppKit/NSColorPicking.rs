@@ -14,7 +14,7 @@ extern_protocol!(
         pub unsafe fn initWithPickerMask_colorPanel(
             this: Option<Allocated<Self>>,
             mask: NSUInteger,
-            owningColorPanel: &NSColorPanel,
+            owning_color_panel: &NSColorPanel,
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(feature = "AppKit_NSImage")]
@@ -25,8 +25,8 @@ extern_protocol!(
         #[method(insertNewButtonImage:in:)]
         pub unsafe fn insertNewButtonImage_in(
             &self,
-            newButtonImage: &NSImage,
-            buttonCell: &NSButtonCell,
+            new_button_image: &NSImage,
+            button_cell: &NSButtonCell,
         );
 
         #[method(viewSizeChanged:)]
@@ -37,11 +37,11 @@ extern_protocol!(
 
         #[cfg(feature = "AppKit_NSColorList")]
         #[method(attachColorList:)]
-        pub unsafe fn attachColorList(&self, colorList: &NSColorList);
+        pub unsafe fn attachColorList(&self, color_list: &NSColorList);
 
         #[cfg(feature = "AppKit_NSColorList")]
         #[method(detachColorList:)]
-        pub unsafe fn detachColorList(&self, colorList: &NSColorList);
+        pub unsafe fn detachColorList(&self, color_list: &NSColorList);
 
         #[method(setMode:)]
         pub unsafe fn setMode(&self, mode: NSColorPanelMode);
@@ -67,10 +67,10 @@ extern_protocol!(
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other provideNewView:)]
-        pub unsafe fn provideNewView(&self, initialRequest: bool) -> Id<NSView, Shared>;
+        pub unsafe fn provideNewView(&self, initial_request: bool) -> Id<NSView, Shared>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setColor:)]
-        pub unsafe fn setColor(&self, newColor: &NSColor);
+        pub unsafe fn setColor(&self, new_color: &NSColor);
     }
 );

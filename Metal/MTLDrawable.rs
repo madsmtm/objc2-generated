@@ -14,7 +14,7 @@ extern_protocol!(
         pub fn present(&self);
 
         #[method(presentAtTime:)]
-        pub unsafe fn presentAtTime(&self, presentationTime: CFTimeInterval);
+        pub unsafe fn presentAtTime(&self, presentation_time: CFTimeInterval);
 
         #[method(presentAfterMinimumDuration:)]
         pub unsafe fn presentAfterMinimumDuration(&self, duration: CFTimeInterval);

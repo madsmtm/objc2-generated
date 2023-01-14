@@ -15,22 +15,22 @@ typed_extensible_enum!(
 
 extern_fn!(
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSStringFromSelector(aSelector: Sel) -> NonNull<NSString>;
+    pub unsafe fn NSStringFromSelector(a_selector: Sel) -> NonNull<NSString>;
 );
 
 extern_fn!(
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSSelectorFromString(aSelectorName: &NSString) -> Sel;
+    pub unsafe fn NSSelectorFromString(a_selector_name: &NSString) -> Sel;
 );
 
 extern_fn!(
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSStringFromClass(aClass: &Class) -> NonNull<NSString>;
+    pub unsafe fn NSStringFromClass(a_class: &Class) -> NonNull<NSString>;
 );
 
 extern_fn!(
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSClassFromString(aClassName: &NSString) -> *const Class;
+    pub unsafe fn NSClassFromString(a_class_name: &NSString) -> *const Class;
 );
 
 extern_fn!(
@@ -45,7 +45,7 @@ extern_fn!(
 
 extern_fn!(
     pub unsafe fn NSGetSizeAndAlignment(
-        typePtr: NonNull<c_char>,
+        type_ptr: NonNull<c_char>,
         sizep: *mut NSUInteger,
         alignp: *mut NSUInteger,
     ) -> NonNull<c_char>;

@@ -73,8 +73,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Other constraintWithAttribute:relativeTo:attribute:scale:offset:)]
         pub unsafe fn constraintWithAttribute_relativeTo_attribute_scale_offset(
             attr: CAConstraintAttribute,
-            srcId: &NSString,
-            srcAttr: CAConstraintAttribute,
+            src_id: &NSString,
+            src_attr: CAConstraintAttribute,
             m: CGFloat,
             c: CGFloat,
         ) -> Id<Self, Shared>;
@@ -83,8 +83,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Other constraintWithAttribute:relativeTo:attribute:offset:)]
         pub unsafe fn constraintWithAttribute_relativeTo_attribute_offset(
             attr: CAConstraintAttribute,
-            srcId: &NSString,
-            srcAttr: CAConstraintAttribute,
+            src_id: &NSString,
+            src_attr: CAConstraintAttribute,
             c: CGFloat,
         ) -> Id<Self, Shared>;
 
@@ -92,8 +92,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Other constraintWithAttribute:relativeTo:attribute:)]
         pub unsafe fn constraintWithAttribute_relativeTo_attribute(
             attr: CAConstraintAttribute,
-            srcId: &NSString,
-            srcAttr: CAConstraintAttribute,
+            src_id: &NSString,
+            src_attr: CAConstraintAttribute,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -101,8 +101,8 @@ extern_methods!(
         pub unsafe fn initWithAttribute_relativeTo_attribute_scale_offset(
             this: Option<Allocated<Self>>,
             attr: CAConstraintAttribute,
-            srcId: &NSString,
-            srcAttr: CAConstraintAttribute,
+            src_id: &NSString,
+            src_attr: CAConstraintAttribute,
             m: CGFloat,
             c: CGFloat,
         ) -> Id<Self, Shared>;

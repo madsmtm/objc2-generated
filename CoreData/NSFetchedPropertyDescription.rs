@@ -25,6 +25,6 @@ extern_methods!(
 
         #[cfg(feature = "CoreData_NSFetchRequest")]
         #[method(setFetchRequest:)]
-        pub unsafe fn setFetchRequest(&self, fetchRequest: Option<&NSFetchRequest>);
+        pub unsafe fn setFetchRequest(&self, fetch_request: Option<&NSFetchRequest>);
     }
 );

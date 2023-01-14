@@ -29,7 +29,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithContainerIdentifier:)]
         pub unsafe fn initWithContainerIdentifier(
             this: Option<Allocated<Self>>,
-            containerIdentifier: &NSString,
+            container_identifier: &NSString,
         ) -> Id<Self, Shared>;
     }
 );

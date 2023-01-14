@@ -26,7 +26,7 @@ extern_methods!(
         pub unsafe fn initWithBytes_objCType(
             this: Option<Allocated<Self>>,
             value: NonNull<c_void>,
-            type_: NonNull<c_char>,
+            r#type: NonNull<c_char>,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSCoder")]
@@ -45,13 +45,13 @@ extern_methods!(
         #[method_id(@__retain_semantics Other valueWithBytes:objCType:)]
         pub unsafe fn valueWithBytes_objCType(
             value: NonNull<c_void>,
-            type_: NonNull<c_char>,
+            r#type: NonNull<c_char>,
         ) -> Id<NSValue, Shared>;
 
         #[method_id(@__retain_semantics Other value:withObjCType:)]
         pub unsafe fn value_withObjCType(
             value: NonNull<c_void>,
-            type_: NonNull<c_char>,
+            r#type: NonNull<c_char>,
         ) -> Id<NSValue, Shared>;
     }
 );
@@ -61,7 +61,8 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSValue")]
     unsafe impl NSValue {
         #[method_id(@__retain_semantics Other valueWithNonretainedObject:)]
-        pub unsafe fn valueWithNonretainedObject(anObject: Option<&Object>) -> Id<NSValue, Shared>;
+        pub unsafe fn valueWithNonretainedObject(an_object: Option<&Object>)
+            -> Id<NSValue, Shared>;
 
         #[method_id(@__retain_semantics Other nonretainedObjectValue)]
         pub unsafe fn nonretainedObjectValue(&self) -> Option<Id<Object, Shared>>;
@@ -222,7 +223,7 @@ extern_methods!(
         pub fn stringValue(&self) -> Id<NSString, Shared>;
 
         #[method(compare:)]
-        pub fn compare(&self, otherNumber: &NSNumber) -> NSComparisonResult;
+        pub fn compare(&self, other_number: &NSNumber) -> NSComparisonResult;
 
         #[method(isEqualToNumber:)]
         pub fn isEqualToNumber(&self, number: &NSNumber) -> bool;
@@ -302,7 +303,7 @@ extern_methods!(
         pub unsafe fn initWithBytes_objCType(
             this: Option<Allocated<Self>>,
             value: NonNull<c_void>,
-            type_: NonNull<c_char>,
+            r#type: NonNull<c_char>,
         ) -> Id<Self, Shared>;
     }
 );

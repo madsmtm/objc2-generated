@@ -24,15 +24,15 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other HDR10MetadataWithDisplayInfo:contentInfo:opticalOutputScale:)]
         pub unsafe fn HDR10MetadataWithDisplayInfo_contentInfo_opticalOutputScale(
-            displayData: Option<&NSData>,
-            contentData: Option<&NSData>,
+            display_data: Option<&NSData>,
+            content_data: Option<&NSData>,
             scale: c_float,
         ) -> Id<CAEDRMetadata, Shared>;
 
         #[method_id(@__retain_semantics Other HDR10MetadataWithMinLuminance:maxLuminance:opticalOutputScale:)]
         pub unsafe fn HDR10MetadataWithMinLuminance_maxLuminance_opticalOutputScale(
-            minNits: c_float,
-            maxNits: c_float,
+            min_nits: c_float,
+            max_nits: c_float,
             scale: c_float,
         ) -> Id<CAEDRMetadata, Shared>;
 

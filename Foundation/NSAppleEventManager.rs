@@ -43,23 +43,23 @@ extern_methods!(
         #[method_id(@__retain_semantics Other appleEventForSuspensionID:)]
         pub unsafe fn appleEventForSuspensionID(
             &self,
-            suspensionID: NSAppleEventManagerSuspensionID,
+            suspension_id: NSAppleEventManagerSuspensionID,
         ) -> Id<NSAppleEventDescriptor, Shared>;
 
         #[cfg(feature = "Foundation_NSAppleEventDescriptor")]
         #[method_id(@__retain_semantics Other replyAppleEventForSuspensionID:)]
         pub unsafe fn replyAppleEventForSuspensionID(
             &self,
-            suspensionID: NSAppleEventManagerSuspensionID,
+            suspension_id: NSAppleEventManagerSuspensionID,
         ) -> Id<NSAppleEventDescriptor, Shared>;
 
         #[method(setCurrentAppleEventAndReplyEventWithSuspensionID:)]
         pub unsafe fn setCurrentAppleEventAndReplyEventWithSuspensionID(
             &self,
-            suspensionID: NSAppleEventManagerSuspensionID,
+            suspension_id: NSAppleEventManagerSuspensionID,
         );
 
         #[method(resumeWithSuspensionID:)]
-        pub unsafe fn resumeWithSuspensionID(&self, suspensionID: NSAppleEventManagerSuspensionID);
+        pub unsafe fn resumeWithSuspensionID(&self, suspension_id: NSAppleEventManagerSuspensionID);
     }
 );

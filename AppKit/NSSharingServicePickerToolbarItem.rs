@@ -44,7 +44,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other itemsForSharingServicePickerToolbarItem:)]
         pub unsafe fn itemsForSharingServicePickerToolbarItem(
             &self,
-            pickerToolbarItem: &NSSharingServicePickerToolbarItem,
+            picker_toolbar_item: &NSSharingServicePickerToolbarItem,
         ) -> Id<NSArray, Shared>;
     }
 );
@@ -56,7 +56,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithItemIdentifier:)]
         pub unsafe fn initWithItemIdentifier(
             this: Option<Allocated<Self>>,
-            itemIdentifier: &NSToolbarItemIdentifier,
+            item_identifier: &NSToolbarItemIdentifier,
         ) -> Id<Self, Shared>;
     }
 );

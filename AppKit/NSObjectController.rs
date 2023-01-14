@@ -50,7 +50,7 @@ extern_methods!(
         pub unsafe fn automaticallyPreparesContent(&self) -> bool;
 
         #[method(setAutomaticallyPreparesContent:)]
-        pub unsafe fn setAutomaticallyPreparesContent(&self, automaticallyPreparesContent: bool);
+        pub unsafe fn setAutomaticallyPreparesContent(&self, automatically_prepares_content: bool);
 
         #[method(prepareContent)]
         pub unsafe fn prepareContent(&self);
@@ -59,7 +59,7 @@ extern_methods!(
         pub unsafe fn objectClass(&self) -> Option<&'static Class>;
 
         #[method(setObjectClass:)]
-        pub unsafe fn setObjectClass(&self, objectClass: Option<&Class>);
+        pub unsafe fn setObjectClass(&self, object_class: Option<&Class>);
 
         #[method_id(@__retain_semantics New newObject)]
         pub unsafe fn newObject(&self) -> Id<Object, Shared>;
@@ -106,7 +106,7 @@ extern_methods!(
         #[method(setManagedObjectContext:)]
         pub unsafe fn setManagedObjectContext(
             &self,
-            managedObjectContext: Option<&NSManagedObjectContext>,
+            managed_object_context: Option<&NSManagedObjectContext>,
         );
 
         #[cfg(feature = "Foundation_NSString")]
@@ -115,7 +115,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setEntityName:)]
-        pub unsafe fn setEntityName(&self, entityName: Option<&NSString>);
+        pub unsafe fn setEntityName(&self, entity_name: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSPredicate")]
         #[method_id(@__retain_semantics Other fetchPredicate)]
@@ -123,13 +123,13 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSPredicate")]
         #[method(setFetchPredicate:)]
-        pub unsafe fn setFetchPredicate(&self, fetchPredicate: Option<&NSPredicate>);
+        pub unsafe fn setFetchPredicate(&self, fetch_predicate: Option<&NSPredicate>);
 
         #[cfg(all(feature = "CoreData_NSFetchRequest", feature = "Foundation_NSError"))]
         #[method(fetchWithRequest:merge:error:_)]
         pub unsafe fn fetchWithRequest_merge_error(
             &self,
-            fetchRequest: Option<&NSFetchRequest>,
+            fetch_request: Option<&NSFetchRequest>,
             merge: bool,
         ) -> Result<(), Id<NSError, Shared>>;
 
@@ -140,7 +140,7 @@ extern_methods!(
         pub unsafe fn usesLazyFetching(&self) -> bool;
 
         #[method(setUsesLazyFetching:)]
-        pub unsafe fn setUsesLazyFetching(&self, usesLazyFetching: bool);
+        pub unsafe fn setUsesLazyFetching(&self, uses_lazy_fetching: bool);
 
         #[cfg(feature = "CoreData_NSFetchRequest")]
         #[method_id(@__retain_semantics Other defaultFetchRequest)]

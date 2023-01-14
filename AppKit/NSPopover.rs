@@ -61,14 +61,14 @@ extern_methods!(
         #[method(setContentViewController:)]
         pub unsafe fn setContentViewController(
             &self,
-            contentViewController: Option<&NSViewController>,
+            content_view_controller: Option<&NSViewController>,
         );
 
         #[method(contentSize)]
         pub unsafe fn contentSize(&self) -> NSSize;
 
         #[method(setContentSize:)]
-        pub unsafe fn setContentSize(&self, contentSize: NSSize);
+        pub unsafe fn setContentSize(&self, content_size: NSSize);
 
         #[method(isShown)]
         pub unsafe fn isShown(&self) -> bool;
@@ -80,15 +80,15 @@ extern_methods!(
         pub unsafe fn positioningRect(&self) -> NSRect;
 
         #[method(setPositioningRect:)]
-        pub unsafe fn setPositioningRect(&self, positioningRect: NSRect);
+        pub unsafe fn setPositioningRect(&self, positioning_rect: NSRect);
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(showRelativeToRect:ofView:preferredEdge:)]
         pub unsafe fn showRelativeToRect_ofView_preferredEdge(
             &self,
-            positioningRect: NSRect,
-            positioningView: &NSView,
-            preferredEdge: NSRectEdge,
+            positioning_rect: NSRect,
+            positioning_view: &NSView,
+            preferred_edge: NSRectEdge,
         );
 
         #[method(performClose:)]

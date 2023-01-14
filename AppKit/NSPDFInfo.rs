@@ -25,13 +25,13 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method(setURL:)]
-        pub unsafe fn setURL(&self, URL: Option<&NSURL>);
+        pub unsafe fn setURL(&self, url: Option<&NSURL>);
 
         #[method(isFileExtensionHidden)]
         pub unsafe fn isFileExtensionHidden(&self) -> bool;
 
         #[method(setFileExtensionHidden:)]
-        pub unsafe fn setFileExtensionHidden(&self, fileExtensionHidden: bool);
+        pub unsafe fn setFileExtensionHidden(&self, file_extension_hidden: bool);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other tagNames)]
@@ -39,7 +39,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setTagNames:)]
-        pub unsafe fn setTagNames(&self, tagNames: &NSArray<NSString>);
+        pub unsafe fn setTagNames(&self, tag_names: &NSArray<NSString>);
 
         #[method(orientation)]
         pub unsafe fn orientation(&self) -> NSPaperOrientation;
@@ -51,7 +51,7 @@ extern_methods!(
         pub unsafe fn paperSize(&self) -> NSSize;
 
         #[method(setPaperSize:)]
-        pub unsafe fn setPaperSize(&self, paperSize: NSSize);
+        pub unsafe fn setPaperSize(&self, paper_size: NSSize);
 
         #[cfg(feature = "Foundation_NSMutableDictionary")]
         #[method_id(@__retain_semantics Other attributes)]

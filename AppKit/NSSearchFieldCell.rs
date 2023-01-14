@@ -55,7 +55,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSButtonCell")]
         #[method(setSearchButtonCell:)]
-        pub unsafe fn setSearchButtonCell(&self, searchButtonCell: Option<&NSButtonCell>);
+        pub unsafe fn setSearchButtonCell(&self, search_button_cell: Option<&NSButtonCell>);
 
         #[cfg(feature = "AppKit_NSButtonCell")]
         #[method_id(@__retain_semantics Other cancelButtonCell)]
@@ -63,7 +63,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSButtonCell")]
         #[method(setCancelButtonCell:)]
-        pub unsafe fn setCancelButtonCell(&self, cancelButtonCell: Option<&NSButtonCell>);
+        pub unsafe fn setCancelButtonCell(&self, cancel_button_cell: Option<&NSButtonCell>);
 
         #[method(resetSearchButtonCell)]
         pub unsafe fn resetSearchButtonCell(&self);
@@ -86,19 +86,19 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSMenu")]
         #[method(setSearchMenuTemplate:)]
-        pub unsafe fn setSearchMenuTemplate(&self, searchMenuTemplate: Option<&NSMenu>);
+        pub unsafe fn setSearchMenuTemplate(&self, search_menu_template: Option<&NSMenu>);
 
         #[method(sendsWholeSearchString)]
         pub unsafe fn sendsWholeSearchString(&self) -> bool;
 
         #[method(setSendsWholeSearchString:)]
-        pub unsafe fn setSendsWholeSearchString(&self, sendsWholeSearchString: bool);
+        pub unsafe fn setSendsWholeSearchString(&self, sends_whole_search_string: bool);
 
         #[method(maximumRecents)]
         pub unsafe fn maximumRecents(&self) -> NSInteger;
 
         #[method(setMaximumRecents:)]
-        pub unsafe fn setMaximumRecents(&self, maximumRecents: NSInteger);
+        pub unsafe fn setMaximumRecents(&self, maximum_recents: NSInteger);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other recentSearches)]
@@ -106,7 +106,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setRecentSearches:)]
-        pub unsafe fn setRecentSearches(&self, recentSearches: Option<&NSArray<NSString>>);
+        pub unsafe fn setRecentSearches(&self, recent_searches: Option<&NSArray<NSString>>);
 
         #[method_id(@__retain_semantics Other recentsAutosaveName)]
         pub unsafe fn recentsAutosaveName(
@@ -116,13 +116,13 @@ extern_methods!(
         #[method(setRecentsAutosaveName:)]
         pub unsafe fn setRecentsAutosaveName(
             &self,
-            recentsAutosaveName: Option<&NSSearchFieldRecentsAutosaveName>,
+            recents_autosave_name: Option<&NSSearchFieldRecentsAutosaveName>,
         );
 
         #[method(sendsSearchStringImmediately)]
         pub unsafe fn sendsSearchStringImmediately(&self) -> bool;
 
         #[method(setSendsSearchStringImmediately:)]
-        pub unsafe fn setSendsSearchStringImmediately(&self, sendsSearchStringImmediately: bool);
+        pub unsafe fn setSendsSearchStringImmediately(&self, sends_search_string_immediately: bool);
     }
 );

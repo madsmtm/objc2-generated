@@ -34,7 +34,7 @@ extern_methods!(
         pub unsafe fn orderedIndex(&self) -> NSInteger;
 
         #[method(setOrderedIndex:)]
-        pub unsafe fn setOrderedIndex(&self, orderedIndex: NSInteger);
+        pub unsafe fn setOrderedIndex(&self, ordered_index: NSInteger);
 
         #[method(setIsMiniaturized:)]
         pub unsafe fn setIsMiniaturized(&self, flag: bool);

@@ -25,7 +25,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithPressureBehavior:)]
         pub unsafe fn initWithPressureBehavior(
             this: Option<Allocated<Self>>,
-            pressureBehavior: NSPressureBehavior,
+            pressure_behavior: NSPressureBehavior,
         ) -> Id<Self, Shared>;
 
         #[method(set)]
@@ -45,7 +45,7 @@ extern_methods!(
         #[method(setPressureConfiguration:)]
         pub unsafe fn setPressureConfiguration(
             &self,
-            pressureConfiguration: Option<&NSPressureConfiguration>,
+            pressure_configuration: Option<&NSPressureConfiguration>,
         );
     }
 );

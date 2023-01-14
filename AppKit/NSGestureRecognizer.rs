@@ -82,7 +82,7 @@ extern_methods!(
         #[method(setPressureConfiguration:)]
         pub unsafe fn setPressureConfiguration(
             &self,
-            pressureConfiguration: &NSPressureConfiguration,
+            pressure_configuration: &NSPressureConfiguration,
         );
 
         #[method(delaysPrimaryMouseButtonEvents)]
@@ -91,7 +91,7 @@ extern_methods!(
         #[method(setDelaysPrimaryMouseButtonEvents:)]
         pub unsafe fn setDelaysPrimaryMouseButtonEvents(
             &self,
-            delaysPrimaryMouseButtonEvents: bool,
+            delays_primary_mouse_button_events: bool,
         );
 
         #[method(delaysSecondaryMouseButtonEvents)]
@@ -100,32 +100,35 @@ extern_methods!(
         #[method(setDelaysSecondaryMouseButtonEvents:)]
         pub unsafe fn setDelaysSecondaryMouseButtonEvents(
             &self,
-            delaysSecondaryMouseButtonEvents: bool,
+            delays_secondary_mouse_button_events: bool,
         );
 
         #[method(delaysOtherMouseButtonEvents)]
         pub unsafe fn delaysOtherMouseButtonEvents(&self) -> bool;
 
         #[method(setDelaysOtherMouseButtonEvents:)]
-        pub unsafe fn setDelaysOtherMouseButtonEvents(&self, delaysOtherMouseButtonEvents: bool);
+        pub unsafe fn setDelaysOtherMouseButtonEvents(
+            &self,
+            delays_other_mouse_button_events: bool,
+        );
 
         #[method(delaysKeyEvents)]
         pub unsafe fn delaysKeyEvents(&self) -> bool;
 
         #[method(setDelaysKeyEvents:)]
-        pub unsafe fn setDelaysKeyEvents(&self, delaysKeyEvents: bool);
+        pub unsafe fn setDelaysKeyEvents(&self, delays_key_events: bool);
 
         #[method(delaysMagnificationEvents)]
         pub unsafe fn delaysMagnificationEvents(&self) -> bool;
 
         #[method(setDelaysMagnificationEvents:)]
-        pub unsafe fn setDelaysMagnificationEvents(&self, delaysMagnificationEvents: bool);
+        pub unsafe fn setDelaysMagnificationEvents(&self, delays_magnification_events: bool);
 
         #[method(delaysRotationEvents)]
         pub unsafe fn delaysRotationEvents(&self) -> bool;
 
         #[method(setDelaysRotationEvents:)]
-        pub unsafe fn setDelaysRotationEvents(&self, delaysRotationEvents: bool);
+        pub unsafe fn setDelaysRotationEvents(&self, delays_rotation_events: bool);
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(locationInView:)]
@@ -141,7 +144,7 @@ extern_methods!(
         pub unsafe fn allowedTouchTypes(&self) -> NSTouchTypeMask;
 
         #[method(setAllowedTouchTypes:)]
-        pub unsafe fn setAllowedTouchTypes(&self, allowedTouchTypes: NSTouchTypeMask);
+        pub unsafe fn setAllowedTouchTypes(&self, allowed_touch_types: NSTouchTypeMask);
     }
 );
 
@@ -154,7 +157,7 @@ extern_protocol!(
         #[method(gestureRecognizer:shouldAttemptToRecognizeWithEvent:)]
         pub unsafe fn gestureRecognizer_shouldAttemptToRecognizeWithEvent(
             &self,
-            gestureRecognizer: &NSGestureRecognizer,
+            gesture_recognizer: &NSGestureRecognizer,
             event: &NSEvent,
         ) -> bool;
 
@@ -163,7 +166,7 @@ extern_protocol!(
         #[method(gestureRecognizerShouldBegin:)]
         pub unsafe fn gestureRecognizerShouldBegin(
             &self,
-            gestureRecognizer: &NSGestureRecognizer,
+            gesture_recognizer: &NSGestureRecognizer,
         ) -> bool;
 
         #[cfg(feature = "AppKit_NSGestureRecognizer")]
@@ -171,8 +174,8 @@ extern_protocol!(
         #[method(gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer:)]
         pub unsafe fn gestureRecognizer_shouldRecognizeSimultaneouslyWithGestureRecognizer(
             &self,
-            gestureRecognizer: &NSGestureRecognizer,
-            otherGestureRecognizer: &NSGestureRecognizer,
+            gesture_recognizer: &NSGestureRecognizer,
+            other_gesture_recognizer: &NSGestureRecognizer,
         ) -> bool;
 
         #[cfg(feature = "AppKit_NSGestureRecognizer")]
@@ -180,8 +183,8 @@ extern_protocol!(
         #[method(gestureRecognizer:shouldRequireFailureOfGestureRecognizer:)]
         pub unsafe fn gestureRecognizer_shouldRequireFailureOfGestureRecognizer(
             &self,
-            gestureRecognizer: &NSGestureRecognizer,
-            otherGestureRecognizer: &NSGestureRecognizer,
+            gesture_recognizer: &NSGestureRecognizer,
+            other_gesture_recognizer: &NSGestureRecognizer,
         ) -> bool;
 
         #[cfg(feature = "AppKit_NSGestureRecognizer")]
@@ -189,8 +192,8 @@ extern_protocol!(
         #[method(gestureRecognizer:shouldBeRequiredToFailByGestureRecognizer:)]
         pub unsafe fn gestureRecognizer_shouldBeRequiredToFailByGestureRecognizer(
             &self,
-            gestureRecognizer: &NSGestureRecognizer,
-            otherGestureRecognizer: &NSGestureRecognizer,
+            gesture_recognizer: &NSGestureRecognizer,
+            other_gesture_recognizer: &NSGestureRecognizer,
         ) -> bool;
 
         #[cfg(all(feature = "AppKit_NSGestureRecognizer", feature = "AppKit_NSTouch"))]
@@ -198,7 +201,7 @@ extern_protocol!(
         #[method(gestureRecognizer:shouldReceiveTouch:)]
         pub unsafe fn gestureRecognizer_shouldReceiveTouch(
             &self,
-            gestureRecognizer: &NSGestureRecognizer,
+            gesture_recognizer: &NSGestureRecognizer,
             touch: &NSTouch,
         ) -> bool;
     }
@@ -217,25 +220,25 @@ extern_methods!(
         #[method(canPreventGestureRecognizer:)]
         pub unsafe fn canPreventGestureRecognizer(
             &self,
-            preventedGestureRecognizer: &NSGestureRecognizer,
+            prevented_gesture_recognizer: &NSGestureRecognizer,
         ) -> bool;
 
         #[method(canBePreventedByGestureRecognizer:)]
         pub unsafe fn canBePreventedByGestureRecognizer(
             &self,
-            preventingGestureRecognizer: &NSGestureRecognizer,
+            preventing_gesture_recognizer: &NSGestureRecognizer,
         ) -> bool;
 
         #[method(shouldRequireFailureOfGestureRecognizer:)]
         pub unsafe fn shouldRequireFailureOfGestureRecognizer(
             &self,
-            otherGestureRecognizer: &NSGestureRecognizer,
+            other_gesture_recognizer: &NSGestureRecognizer,
         ) -> bool;
 
         #[method(shouldBeRequiredToFailByGestureRecognizer:)]
         pub unsafe fn shouldBeRequiredToFailByGestureRecognizer(
             &self,
-            otherGestureRecognizer: &NSGestureRecognizer,
+            other_gesture_recognizer: &NSGestureRecognizer,
         ) -> bool;
 
         #[cfg(feature = "AppKit_NSEvent")]

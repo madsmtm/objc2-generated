@@ -55,13 +55,13 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setBackgroundColor:)]
-        pub unsafe fn setBackgroundColor(&self, backgroundColor: Option<&NSColor>);
+        pub unsafe fn setBackgroundColor(&self, background_color: Option<&NSColor>);
 
         #[method(drawsBackground)]
         pub unsafe fn drawsBackground(&self) -> bool;
 
         #[method(setDrawsBackground:)]
-        pub unsafe fn setDrawsBackground(&self, drawsBackground: bool);
+        pub unsafe fn setDrawsBackground(&self, draws_background: bool);
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other textColor)]
@@ -69,17 +69,17 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setTextColor:)]
-        pub unsafe fn setTextColor(&self, textColor: Option<&NSColor>);
+        pub unsafe fn setTextColor(&self, text_color: Option<&NSColor>);
 
         #[cfg(feature = "AppKit_NSText")]
         #[method_id(@__retain_semantics Other setUpFieldEditorAttributes:)]
-        pub unsafe fn setUpFieldEditorAttributes(&self, textObj: &NSText) -> Id<NSText, Shared>;
+        pub unsafe fn setUpFieldEditorAttributes(&self, text_obj: &NSText) -> Id<NSText, Shared>;
 
         #[method(bezelStyle)]
         pub unsafe fn bezelStyle(&self) -> NSTextFieldBezelStyle;
 
         #[method(setBezelStyle:)]
-        pub unsafe fn setBezelStyle(&self, bezelStyle: NSTextFieldBezelStyle);
+        pub unsafe fn setBezelStyle(&self, bezel_style: NSTextFieldBezelStyle);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other placeholderString)]
@@ -87,7 +87,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setPlaceholderString:)]
-        pub unsafe fn setPlaceholderString(&self, placeholderString: Option<&NSString>);
+        pub unsafe fn setPlaceholderString(&self, placeholder_string: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other placeholderAttributedString)]
@@ -97,7 +97,7 @@ extern_methods!(
         #[method(setPlaceholderAttributedString:)]
         pub unsafe fn setPlaceholderAttributedString(
             &self,
-            placeholderAttributedString: Option<&NSAttributedString>,
+            placeholder_attributed_string: Option<&NSAttributedString>,
         );
 
         #[method(setWantsNotificationForMarkedText:)]
@@ -111,7 +111,7 @@ extern_methods!(
         #[method(setAllowedInputSourceLocales:)]
         pub unsafe fn setAllowedInputSourceLocales(
             &self,
-            allowedInputSourceLocales: Option<&NSArray<NSString>>,
+            allowed_input_source_locales: Option<&NSArray<NSString>>,
         );
     }
 );

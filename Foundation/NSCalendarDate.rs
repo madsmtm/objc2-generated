@@ -45,7 +45,7 @@ extern_methods!(
             hour: NSUInteger,
             minute: NSUInteger,
             second: NSUInteger,
-            aTimeZone: Option<&NSTimeZone>,
+            a_time_zone: Option<&NSTimeZone>,
         ) -> Id<Object, Shared>;
 
         #[method_id(@__retain_semantics Other dateByAddingYears:months:days:hours:minutes:seconds:)]
@@ -148,7 +148,7 @@ extern_methods!(
             hour: NSUInteger,
             minute: NSUInteger,
             second: NSUInteger,
-            aTimeZone: Option<&NSTimeZone>,
+            a_time_zone: Option<&NSTimeZone>,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -157,7 +157,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSTimeZone")]
         #[method(setTimeZone:)]
-        pub unsafe fn setTimeZone(&self, aTimeZone: Option<&NSTimeZone>);
+        pub unsafe fn setTimeZone(&self, a_time_zone: Option<&NSTimeZone>);
 
         #[method(years:months:days:hours:minutes:seconds:sinceDate:)]
         pub unsafe fn years_months_days_hours_minutes_seconds_sinceDate(
@@ -198,7 +198,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other dateWithString:)]
-        pub unsafe fn dateWithString(aString: &NSString) -> Id<Object, Shared>;
+        pub unsafe fn dateWithString(a_string: &NSString) -> Id<Object, Shared>;
 
         #[cfg(all(
             feature = "Foundation_NSCalendarDate",
@@ -209,7 +209,7 @@ extern_methods!(
         pub unsafe fn dateWithCalendarFormat_timeZone(
             &self,
             format: Option<&NSString>,
-            aTimeZone: Option<&NSTimeZone>,
+            a_time_zone: Option<&NSTimeZone>,
         ) -> Id<NSCalendarDate, Shared>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSTimeZone"))]
@@ -217,7 +217,7 @@ extern_methods!(
         pub unsafe fn descriptionWithCalendarFormat_timeZone_locale(
             &self,
             format: Option<&NSString>,
-            aTimeZone: Option<&NSTimeZone>,
+            a_time_zone: Option<&NSTimeZone>,
             locale: Option<&Object>,
         ) -> Option<Id<NSString, Shared>>;
 
@@ -264,7 +264,7 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other dateWithTimeInterval:sinceDate:)]
         pub unsafe fn dateWithTimeInterval_sinceDate(
-            secsToBeAdded: NSTimeInterval,
+            secs_to_be_added: NSTimeInterval,
             date: &NSDate,
         ) -> Id<Self, Shared>;
 
@@ -283,7 +283,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithTimeInterval:sinceDate:)]
         pub unsafe fn initWithTimeInterval_sinceDate(
             this: Option<Allocated<Self>>,
-            secsToBeAdded: NSTimeInterval,
+            secs_to_be_added: NSTimeInterval,
             date: &NSDate,
         ) -> Id<Self, Shared>;
     }

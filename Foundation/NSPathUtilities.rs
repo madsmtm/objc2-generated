@@ -62,10 +62,10 @@ extern_methods!(
         #[method(completePathIntoString:caseSensitive:matchesIntoArray:filterTypes:)]
         pub unsafe fn completePathIntoString_caseSensitive_matchesIntoArray_filterTypes(
             &self,
-            outputName: *mut *mut NSString,
+            output_name: *mut *mut NSString,
             flag: bool,
-            outputArray: *mut *mut NSArray<NSString>,
-            filterTypes: Option<&NSArray<NSString>>,
+            output_array: *mut *mut NSArray<NSString>,
+            filter_types: Option<&NSArray<NSString>>,
         ) -> NSUInteger;
 
         #[method(fileSystemRepresentation)]
@@ -90,7 +90,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other pathsMatchingExtensions:)]
         pub unsafe fn pathsMatchingExtensions(
             &self,
-            filterTypes: &NSArray<NSString>,
+            filter_types: &NSArray<NSString>,
         ) -> Id<NSArray<NSString>, Shared>;
     }
 );
@@ -112,7 +112,7 @@ extern_fn!(
 
 extern_fn!(
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSHomeDirectoryForUser(userName: Option<&NSString>) -> *mut NSString;
+    pub unsafe fn NSHomeDirectoryForUser(user_name: Option<&NSString>) -> *mut NSString;
 );
 
 extern_fn!(
@@ -173,7 +173,7 @@ extern_fn!(
     #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
     pub unsafe fn NSSearchPathForDirectoriesInDomains(
         directory: NSSearchPathDirectory,
-        domainMask: NSSearchPathDomainMask,
-        expandTilde: Bool,
+        domain_mask: NSSearchPathDomainMask,
+        expand_tilde: Bool,
     ) -> NonNull<NSArray<NSString>>;
 );

@@ -54,7 +54,7 @@ extern_methods!(
         pub unsafe fn showsAlpha(&self) -> bool;
 
         #[method(setShowsAlpha:)]
-        pub unsafe fn setShowsAlpha(&self, showsAlpha: bool);
+        pub unsafe fn setShowsAlpha(&self, shows_alpha: bool);
 
         #[cfg(all(feature = "AppKit_NSColorSpace", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other allowedColorSpaces)]
@@ -64,7 +64,7 @@ extern_methods!(
         #[method(setAllowedColorSpaces:)]
         pub unsafe fn setAllowedColorSpaces(
             &self,
-            allowedColorSpaces: Option<&NSArray<NSColorSpace>>,
+            allowed_color_spaces: Option<&NSArray<NSColorSpace>>,
         );
 
         #[cfg(feature = "AppKit_NSColorList")]
@@ -73,7 +73,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColorList")]
         #[method(setColorList:)]
-        pub unsafe fn setColorList(&self, colorList: Option<&NSColorList>);
+        pub unsafe fn setColorList(&self, color_list: Option<&NSColorList>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other customizationLabel)]
@@ -81,7 +81,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCustomizationLabel:)]
-        pub unsafe fn setCustomizationLabel(&self, customizationLabel: Option<&NSString>);
+        pub unsafe fn setCustomizationLabel(&self, customization_label: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other target)]
         pub unsafe fn target(&self) -> Option<Id<Object, Shared>>;

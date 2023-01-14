@@ -69,7 +69,7 @@ extern_methods!(
         #[method(setPersistentStoreDescriptions:)]
         pub unsafe fn setPersistentStoreDescriptions(
             &self,
-            persistentStoreDescriptions: &NSArray<NSPersistentStoreDescription>,
+            persistent_store_descriptions: &NSArray<NSPersistentStoreDescription>,
         );
 
         #[cfg(feature = "Foundation_NSString")]

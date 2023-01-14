@@ -197,7 +197,7 @@ extern_methods!(
         pub unsafe fn dateCheckingResultWithRange_date_timeZone_duration(
             range: NSRange,
             date: &NSDate,
-            timeZone: &NSTimeZone,
+            time_zone: &NSTimeZone,
             duration: NSTimeInterval,
         ) -> Id<NSTextCheckingResult, Shared>;
 
@@ -219,36 +219,36 @@ extern_methods!(
         #[method_id(@__retain_semantics Other quoteCheckingResultWithRange:replacementString:)]
         pub unsafe fn quoteCheckingResultWithRange_replacementString(
             range: NSRange,
-            replacementString: &NSString,
+            replacement_string: &NSString,
         ) -> Id<NSTextCheckingResult, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other dashCheckingResultWithRange:replacementString:)]
         pub unsafe fn dashCheckingResultWithRange_replacementString(
             range: NSRange,
-            replacementString: &NSString,
+            replacement_string: &NSString,
         ) -> Id<NSTextCheckingResult, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other replacementCheckingResultWithRange:replacementString:)]
         pub unsafe fn replacementCheckingResultWithRange_replacementString(
             range: NSRange,
-            replacementString: &NSString,
+            replacement_string: &NSString,
         ) -> Id<NSTextCheckingResult, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other correctionCheckingResultWithRange:replacementString:)]
         pub unsafe fn correctionCheckingResultWithRange_replacementString(
             range: NSRange,
-            replacementString: &NSString,
+            replacement_string: &NSString,
         ) -> Id<NSTextCheckingResult, Shared>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other correctionCheckingResultWithRange:replacementString:alternativeStrings:)]
         pub unsafe fn correctionCheckingResultWithRange_replacementString_alternativeStrings(
             range: NSRange,
-            replacementString: &NSString,
-            alternativeStrings: &NSArray<NSString>,
+            replacement_string: &NSString,
+            alternative_strings: &NSArray<NSString>,
         ) -> Id<NSTextCheckingResult, Shared>;
 
         #[cfg(feature = "Foundation_NSRegularExpression")]
@@ -256,14 +256,14 @@ extern_methods!(
         pub unsafe fn regularExpressionCheckingResultWithRanges_count_regularExpression(
             ranges: NSRangePointer,
             count: NSUInteger,
-            regularExpression: &NSRegularExpression,
+            regular_expression: &NSRegularExpression,
         ) -> Id<NSTextCheckingResult, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other phoneNumberCheckingResultWithRange:phoneNumber:)]
         pub unsafe fn phoneNumberCheckingResultWithRange_phoneNumber(
             range: NSRange,
-            phoneNumber: &NSString,
+            phone_number: &NSString,
         ) -> Id<NSTextCheckingResult, Shared>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]

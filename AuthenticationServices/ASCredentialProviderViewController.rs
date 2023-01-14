@@ -18,21 +18,21 @@ extern_methods!(
         #[method(prepareCredentialListForServiceIdentifiers:)]
         pub unsafe fn prepareCredentialListForServiceIdentifiers(
             &self,
-            serviceIdentifiers: &NSArray<ASCredentialServiceIdentifier>,
+            service_identifiers: &NSArray<ASCredentialServiceIdentifier>,
         );
 
         #[cfg(feature = "AuthenticationServices_ASPasswordCredentialIdentity")]
         #[method(provideCredentialWithoutUserInteractionForIdentity:)]
         pub unsafe fn provideCredentialWithoutUserInteractionForIdentity(
             &self,
-            credentialIdentity: &ASPasswordCredentialIdentity,
+            credential_identity: &ASPasswordCredentialIdentity,
         );
 
         #[cfg(feature = "AuthenticationServices_ASPasswordCredentialIdentity")]
         #[method(prepareInterfaceToProvideCredentialForIdentity:)]
         pub unsafe fn prepareInterfaceToProvideCredentialForIdentity(
             &self,
-            credentialIdentity: &ASPasswordCredentialIdentity,
+            credential_identity: &ASPasswordCredentialIdentity,
         );
 
         #[method(prepareInterfaceForExtensionConfiguration)]

@@ -35,7 +35,7 @@ ns_options!(
 );
 
 inline_fn!(
-    pub unsafe fn NSTouchTypeMaskFromType(type_: NSTouchType) -> NSTouchTypeMask {
+    pub unsafe fn NSTouchTypeMaskFromType(r#type: NSTouchType) -> NSTouchTypeMask {
         todo!()
     }
 );
@@ -79,7 +79,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTouch")]
     unsafe impl NSTouch {
         #[method(type)]
-        pub unsafe fn type_(&self) -> NSTouchType;
+        pub unsafe fn r#type(&self) -> NSTouchType;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(locationInView:)]

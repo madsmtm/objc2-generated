@@ -39,7 +39,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other expressionWithFormat:argumentArray:)]
         pub unsafe fn expressionWithFormat_argumentArray(
-            expressionFormat: &NSString,
+            expression_format: &NSString,
             arguments: &NSArray,
         ) -> Id<NSExpression, Shared>;
 
@@ -55,7 +55,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other expressionForKeyPath:)]
-        pub unsafe fn expressionForKeyPath(keyPath: &NSString) -> Id<NSExpression, Shared>;
+        pub unsafe fn expressionForKeyPath(key_path: &NSString) -> Id<NSExpression, Shared>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other expressionForFunction:arguments:)]
@@ -128,14 +128,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other expressionForConditional:trueExpression:falseExpression:)]
         pub unsafe fn expressionForConditional_trueExpression_falseExpression(
             predicate: &NSPredicate,
-            trueExpression: &NSExpression,
-            falseExpression: &NSExpression,
+            true_expression: &NSExpression,
+            false_expression: &NSExpression,
         ) -> Id<NSExpression, Shared>;
 
         #[method_id(@__retain_semantics Init initWithExpressionType:)]
         pub unsafe fn initWithExpressionType(
             this: Option<Allocated<Self>>,
-            type_: NSExpressionType,
+            r#type: NSExpressionType,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSCoder")]

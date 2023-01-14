@@ -24,18 +24,18 @@ extern_methods!(
         pub unsafe fn topLevelObject(&self) -> Option<Id<Object, Shared>>;
 
         #[method(setTopLevelObject:)]
-        pub unsafe fn setTopLevelObject(&self, topLevelObject: Option<&Object>);
+        pub unsafe fn setTopLevelObject(&self, top_level_object: Option<&Object>);
 
         #[method_id(@__retain_semantics Other objectBeingTested)]
         pub unsafe fn objectBeingTested(&self) -> Option<Id<Object, Shared>>;
 
         #[method(setObjectBeingTested:)]
-        pub unsafe fn setObjectBeingTested(&self, objectBeingTested: Option<&Object>);
+        pub unsafe fn setObjectBeingTested(&self, object_being_tested: Option<&Object>);
 
         #[method_id(@__retain_semantics Other rangeContainerObject)]
         pub unsafe fn rangeContainerObject(&self) -> Option<Id<Object, Shared>>;
 
         #[method(setRangeContainerObject:)]
-        pub unsafe fn setRangeContainerObject(&self, rangeContainerObject: Option<&Object>);
+        pub unsafe fn setRangeContainerObject(&self, range_container_object: Option<&Object>);
     }
 );

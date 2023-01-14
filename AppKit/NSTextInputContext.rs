@@ -40,7 +40,7 @@ extern_methods!(
         pub unsafe fn acceptsGlyphInfo(&self) -> bool;
 
         #[method(setAcceptsGlyphInfo:)]
-        pub unsafe fn setAcceptsGlyphInfo(&self, acceptsGlyphInfo: bool);
+        pub unsafe fn setAcceptsGlyphInfo(&self, accepts_glyph_info: bool);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other allowedInputSourceLocales)]
@@ -50,7 +50,7 @@ extern_methods!(
         #[method(setAllowedInputSourceLocales:)]
         pub unsafe fn setAllowedInputSourceLocales(
             &self,
-            allowedInputSourceLocales: Option<&NSArray<NSString>>,
+            allowed_input_source_locales: Option<&NSArray<NSString>>,
         );
 
         #[method(activate)]
@@ -83,13 +83,13 @@ extern_methods!(
         #[method(setSelectedKeyboardInputSource:)]
         pub unsafe fn setSelectedKeyboardInputSource(
             &self,
-            selectedKeyboardInputSource: Option<&NSTextInputSourceIdentifier>,
+            selected_keyboard_input_source: Option<&NSTextInputSourceIdentifier>,
         );
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedNameForInputSource:)]
         pub unsafe fn localizedNameForInputSource(
-            inputSourceIdentifier: &NSTextInputSourceIdentifier,
+            input_source_identifier: &NSTextInputSourceIdentifier,
         ) -> Option<Id<NSString, Shared>>;
     }
 );

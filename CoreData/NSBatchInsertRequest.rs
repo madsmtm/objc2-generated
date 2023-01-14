@@ -45,7 +45,7 @@ extern_methods!(
         #[method(setObjectsToInsert:)]
         pub unsafe fn setObjectsToInsert(
             &self,
-            objectsToInsert: Option<&NSArray<NSDictionary<NSString, Object>>>,
+            objects_to_insert: Option<&NSArray<NSDictionary<NSString, Object>>>,
         );
 
         #[cfg(all(
@@ -64,7 +64,7 @@ extern_methods!(
         #[method(setDictionaryHandler:)]
         pub unsafe fn setDictionaryHandler(
             &self,
-            dictionaryHandler: Option<
+            dictionary_handler: Option<
                 &Block<(NonNull<NSMutableDictionary<NSString, Object>>,), Bool>,
             >,
         );
@@ -77,14 +77,14 @@ extern_methods!(
         #[method(setManagedObjectHandler:)]
         pub unsafe fn setManagedObjectHandler(
             &self,
-            managedObjectHandler: Option<&Block<(NonNull<NSManagedObject>,), Bool>>,
+            managed_object_handler: Option<&Block<(NonNull<NSManagedObject>,), Bool>>,
         );
 
         #[method(resultType)]
         pub unsafe fn resultType(&self) -> NSBatchInsertRequestResultType;
 
         #[method(setResultType:)]
-        pub unsafe fn setResultType(&self, resultType: NSBatchInsertRequestResultType);
+        pub unsafe fn setResultType(&self, result_type: NSBatchInsertRequestResultType);
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -93,7 +93,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Other batchInsertRequestWithEntityName:objects:)]
         pub unsafe fn batchInsertRequestWithEntityName_objects(
-            entityName: &NSString,
+            entity_name: &NSString,
             dictionaries: &NSArray<NSDictionary<NSString, Object>>,
         ) -> Id<Self, Shared>;
 
@@ -103,14 +103,14 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Other batchInsertRequestWithEntityName:dictionaryHandler:)]
         pub unsafe fn batchInsertRequestWithEntityName_dictionaryHandler(
-            entityName: &NSString,
+            entity_name: &NSString,
             handler: &Block<(NonNull<NSMutableDictionary<NSString, Object>>,), Bool>,
         ) -> Id<Self, Shared>;
 
         #[cfg(all(feature = "CoreData_NSManagedObject", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other batchInsertRequestWithEntityName:managedObjectHandler:)]
         pub unsafe fn batchInsertRequestWithEntityName_managedObjectHandler(
-            entityName: &NSString,
+            entity_name: &NSString,
             handler: &Block<(NonNull<NSManagedObject>,), Bool>,
         ) -> Id<Self, Shared>;
 
@@ -125,7 +125,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithEntityName:objects:)]
         pub unsafe fn initWithEntityName_objects(
             this: Option<Allocated<Self>>,
-            entityName: &NSString,
+            entity_name: &NSString,
             dictionaries: &NSArray<NSDictionary<NSString, Object>>,
         ) -> Id<Self, Shared>;
 
@@ -172,7 +172,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithEntityName:dictionaryHandler:)]
         pub unsafe fn initWithEntityName_dictionaryHandler(
             this: Option<Allocated<Self>>,
-            entityName: &NSString,
+            entity_name: &NSString,
             handler: &Block<(NonNull<NSMutableDictionary<NSString, Object>>,), Bool>,
         ) -> Id<Self, Shared>;
 
@@ -180,7 +180,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithEntityName:managedObjectHandler:)]
         pub unsafe fn initWithEntityName_managedObjectHandler(
             this: Option<Allocated<Self>>,
-            entityName: &NSString,
+            entity_name: &NSString,
             handler: &Block<(NonNull<NSManagedObject>,), Bool>,
         ) -> Id<Self, Shared>;
     }

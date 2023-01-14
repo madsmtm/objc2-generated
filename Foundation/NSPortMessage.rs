@@ -21,8 +21,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithSendPort:receivePort:components:)]
         pub unsafe fn initWithSendPort_receivePort_components(
             this: Option<Allocated<Self>>,
-            sendPort: Option<&NSPort>,
-            replyPort: Option<&NSPort>,
+            send_port: Option<&NSPort>,
+            reply_port: Option<&NSPort>,
             components: Option<&NSArray>,
         ) -> Id<Self, Shared>;
 

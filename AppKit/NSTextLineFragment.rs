@@ -23,7 +23,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithAttributedString:range:)]
         pub unsafe fn initWithAttributedString_range(
             this: Option<Allocated<Self>>,
-            attributedString: &NSAttributedString,
+            attributed_string: &NSAttributedString,
             range: NSRange,
         ) -> Id<Self, Shared>;
 
@@ -31,7 +31,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
-            aDecoder: &NSCoder,
+            a_decoder: &NSCoder,
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]

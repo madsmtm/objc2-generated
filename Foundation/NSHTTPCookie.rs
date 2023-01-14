@@ -88,8 +88,8 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Other cookiesWithResponseHeaderFields:forURL:)]
         pub unsafe fn cookiesWithResponseHeaderFields_forURL(
-            headerFields: &NSDictionary<NSString, NSString>,
-            URL: &NSURL,
+            header_fields: &NSDictionary<NSString, NSString>,
+            url: &NSURL,
         ) -> Id<NSArray<NSHTTPCookie>, Shared>;
 
         #[cfg(feature = "Foundation_NSDictionary")]

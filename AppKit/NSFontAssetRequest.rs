@@ -33,7 +33,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFontDescriptors:options:)]
         pub unsafe fn initWithFontDescriptors_options(
             this: Option<Allocated<Self>>,
-            fontDescriptors: &NSArray<NSFontDescriptor>,
+            font_descriptors: &NSArray<NSFontDescriptor>,
             options: NSFontAssetRequestOptions,
         ) -> Id<Self, Shared>;
 
@@ -49,7 +49,7 @@ extern_methods!(
         #[method(downloadFontAssetsWithCompletionHandler:)]
         pub unsafe fn downloadFontAssetsWithCompletionHandler(
             &self,
-            completionHandler: &Block<(*mut NSError,), Bool>,
+            completion_handler: &Block<(*mut NSError,), Bool>,
         );
     }
 );

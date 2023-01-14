@@ -84,7 +84,7 @@ extern_methods!(
         #[method(setFindBarContainer:)]
         pub unsafe fn setFindBarContainer(
             &self,
-            findBarContainer: Option<&NSTextFinderBarContainer>,
+            find_bar_container: Option<&NSTextFinderBarContainer>,
         );
 
         #[method(cancelFindIndicator)]
@@ -94,13 +94,13 @@ extern_methods!(
         pub unsafe fn findIndicatorNeedsUpdate(&self) -> bool;
 
         #[method(setFindIndicatorNeedsUpdate:)]
-        pub unsafe fn setFindIndicatorNeedsUpdate(&self, findIndicatorNeedsUpdate: bool);
+        pub unsafe fn setFindIndicatorNeedsUpdate(&self, find_indicator_needs_update: bool);
 
         #[method(isIncrementalSearchingEnabled)]
         pub unsafe fn isIncrementalSearchingEnabled(&self) -> bool;
 
         #[method(setIncrementalSearchingEnabled:)]
-        pub unsafe fn setIncrementalSearchingEnabled(&self, incrementalSearchingEnabled: bool);
+        pub unsafe fn setIncrementalSearchingEnabled(&self, incremental_searching_enabled: bool);
 
         #[method(incrementalSearchingShouldDimContentView)]
         pub unsafe fn incrementalSearchingShouldDimContentView(&self) -> bool;
@@ -108,7 +108,7 @@ extern_methods!(
         #[method(setIncrementalSearchingShouldDimContentView:)]
         pub unsafe fn setIncrementalSearchingShouldDimContentView(
             &self,
-            incrementalSearchingShouldDimContentView: bool,
+            incremental_searching_should_dim_content_view: bool,
         );
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
@@ -149,9 +149,9 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other stringAtIndex:effectiveRange:endsWithSearchBoundary:)]
         pub unsafe fn stringAtIndex_effectiveRange_endsWithSearchBoundary(
             &self,
-            characterIndex: NSUInteger,
-            outRange: NSRangePointer,
-            outFlag: NonNull<Bool>,
+            character_index: NSUInteger,
+            out_range: NSRangePointer,
+            out_flag: NonNull<Bool>,
         ) -> Id<NSString, Shared>;
 
         #[optional]
@@ -170,7 +170,7 @@ extern_protocol!(
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[optional]
         #[method(setSelectedRanges:)]
-        pub unsafe fn setSelectedRanges(&self, selectedRanges: &NSArray<NSValue>);
+        pub unsafe fn setSelectedRanges(&self, selected_ranges: &NSArray<NSValue>);
 
         #[optional]
         #[method(scrollRangeToVisible:)]
@@ -204,7 +204,7 @@ extern_protocol!(
         pub unsafe fn contentViewAtIndex_effectiveCharacterRange(
             &self,
             index: NSUInteger,
-            outRange: NSRangePointer,
+            out_range: NSRangePointer,
         ) -> Id<NSView, Shared>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
@@ -237,13 +237,13 @@ extern_protocol!(
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(setFindBarView:)]
-        pub unsafe fn setFindBarView(&self, findBarView: Option<&NSView>);
+        pub unsafe fn setFindBarView(&self, find_bar_view: Option<&NSView>);
 
         #[method(isFindBarVisible)]
         pub unsafe fn isFindBarVisible(&self) -> bool;
 
         #[method(setFindBarVisible:)]
-        pub unsafe fn setFindBarVisible(&self, findBarVisible: bool);
+        pub unsafe fn setFindBarVisible(&self, find_bar_visible: bool);
 
         #[method(findBarViewDidChangeHeight)]
         pub unsafe fn findBarViewDidChangeHeight(&self);

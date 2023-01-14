@@ -188,11 +188,11 @@ ns_enum!(
 
 extern_fn!(
     pub unsafe fn NSBestDepth(
-        colorSpace: &NSColorSpaceName,
+        color_space: &NSColorSpaceName,
         bps: NSInteger,
         bpp: NSInteger,
         planar: Bool,
-        exactMatch: *mut Bool,
+        exact_match: *mut Bool,
     ) -> NSWindowDepth;
 );
 
@@ -213,7 +213,7 @@ extern_fn!(
 );
 
 extern_fn!(
-    pub unsafe fn NSNumberOfColorComponents(colorSpaceName: &NSColorSpaceName) -> NSInteger;
+    pub unsafe fn NSNumberOfColorComponents(color_space_name: &NSColorSpaceName) -> NSInteger;
 );
 
 extern_fn!(
@@ -304,13 +304,13 @@ extern_fn!(
 );
 
 extern_fn!(
-    pub unsafe fn NSFrameRectWithWidth(rect: NSRect, frameWidth: CGFloat);
+    pub unsafe fn NSFrameRectWithWidth(rect: NSRect, frame_width: CGFloat);
 );
 
 extern_fn!(
     pub unsafe fn NSFrameRectWithWidthUsingOperation(
         rect: NSRect,
-        frameWidth: CGFloat,
+        frame_width: CGFloat,
         op: NSCompositingOperation,
     );
 );
@@ -325,8 +325,8 @@ extern_fn!(
 
 extern_fn!(
     pub unsafe fn NSDrawTiledRects(
-        boundsRect: NSRect,
-        clipRect: NSRect,
+        bounds_rect: NSRect,
+        clip_rect: NSRect,
         sides: NonNull<NSRectEdge>,
         grays: NonNull<CGFloat>,
         count: NSInteger,
@@ -334,19 +334,19 @@ extern_fn!(
 );
 
 extern_fn!(
-    pub unsafe fn NSDrawGrayBezel(rect: NSRect, clipRect: NSRect);
+    pub unsafe fn NSDrawGrayBezel(rect: NSRect, clip_rect: NSRect);
 );
 
 extern_fn!(
-    pub unsafe fn NSDrawGroove(rect: NSRect, clipRect: NSRect);
+    pub unsafe fn NSDrawGroove(rect: NSRect, clip_rect: NSRect);
 );
 
 extern_fn!(
-    pub unsafe fn NSDrawWhiteBezel(rect: NSRect, clipRect: NSRect);
+    pub unsafe fn NSDrawWhiteBezel(rect: NSRect, clip_rect: NSRect);
 );
 
 extern_fn!(
-    pub unsafe fn NSDrawButton(rect: NSRect, clipRect: NSRect);
+    pub unsafe fn NSDrawButton(rect: NSRect, clip_rect: NSRect);
 );
 
 extern_fn!(
@@ -355,7 +355,7 @@ extern_fn!(
 
 extern_fn!(
     #[cfg(feature = "AppKit_NSColor")]
-    pub unsafe fn NSReadPixel(passedPoint: NSPoint) -> *mut NSColor;
+    pub unsafe fn NSReadPixel(passed_point: NSPoint) -> *mut NSColor;
 );
 
 extern_fn!(
@@ -370,17 +370,17 @@ extern_fn!(
     #[cfg(feature = "Foundation_NSString")]
     pub unsafe fn NSGetWindowServerMemory(
         context: NSInteger,
-        virtualMemory: NonNull<NSInteger>,
-        windowBackingMemory: NonNull<NSInteger>,
-        windowDumpString: NonNull<NonNull<NSString>>,
+        virtual_memory: NonNull<NSInteger>,
+        window_backing_memory: NonNull<NSInteger>,
+        window_dump_string: NonNull<NonNull<NSString>>,
     ) -> NSInteger;
 );
 
 extern_fn!(
     #[cfg(feature = "AppKit_NSColor")]
     pub unsafe fn NSDrawColorTiledRects(
-        boundsRect: NSRect,
-        clipRect: NSRect,
+        bounds_rect: NSRect,
+        clip_rect: NSRect,
         sides: NonNull<NSRectEdge>,
         colors: NonNull<NonNull<NSColor>>,
         count: NSInteger,
@@ -388,11 +388,11 @@ extern_fn!(
 );
 
 extern_fn!(
-    pub unsafe fn NSDrawDarkBezel(rect: NSRect, clipRect: NSRect);
+    pub unsafe fn NSDrawDarkBezel(rect: NSRect, clip_rect: NSRect);
 );
 
 extern_fn!(
-    pub unsafe fn NSDrawLightBezel(rect: NSRect, clipRect: NSRect);
+    pub unsafe fn NSDrawLightBezel(rect: NSRect, clip_rect: NSRect);
 );
 
 extern_fn!(
@@ -425,12 +425,12 @@ ns_enum!(
 
 extern_fn!(
     pub unsafe fn NSShowAnimationEffect(
-        animationEffect: NSAnimationEffect,
-        centerLocation: NSPoint,
+        animation_effect: NSAnimationEffect,
+        center_location: NSPoint,
         size: NSSize,
-        animationDelegate: Option<&Object>,
-        didEndSelector: Option<Sel>,
-        contextInfo: *mut c_void,
+        animation_delegate: Option<&Object>,
+        did_end_selector: Option<Sel>,
+        context_info: *mut c_void,
     );
 );
 
@@ -455,5 +455,5 @@ extern_fn!(
 );
 
 extern_fn!(
-    pub unsafe fn NSCopyBits(srcGState: NSInteger, srcRect: NSRect, destPoint: NSPoint);
+    pub unsafe fn NSCopyBits(src_g_state: NSInteger, src_rect: NSRect, dest_point: NSPoint);
 );

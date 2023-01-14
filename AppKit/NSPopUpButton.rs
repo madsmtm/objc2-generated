@@ -23,7 +23,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:pullsDown:)]
         pub unsafe fn initWithFrame_pullsDown(
             this: Option<Allocated<Self>>,
-            buttonFrame: NSRect,
+            button_frame: NSRect,
             flag: bool,
         ) -> Id<Self, Shared>;
 
@@ -39,19 +39,19 @@ extern_methods!(
         pub unsafe fn pullsDown(&self) -> bool;
 
         #[method(setPullsDown:)]
-        pub unsafe fn setPullsDown(&self, pullsDown: bool);
+        pub unsafe fn setPullsDown(&self, pulls_down: bool);
 
         #[method(autoenablesItems)]
         pub unsafe fn autoenablesItems(&self) -> bool;
 
         #[method(setAutoenablesItems:)]
-        pub unsafe fn setAutoenablesItems(&self, autoenablesItems: bool);
+        pub unsafe fn setAutoenablesItems(&self, autoenables_items: bool);
 
         #[method(preferredEdge)]
         pub unsafe fn preferredEdge(&self) -> NSRectEdge;
 
         #[method(setPreferredEdge:)]
-        pub unsafe fn setPreferredEdge(&self, preferredEdge: NSRectEdge);
+        pub unsafe fn setPreferredEdge(&self, preferred_edge: NSRectEdge);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(addItemWithTitle:)]
@@ -59,7 +59,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(addItemsWithTitles:)]
-        pub unsafe fn addItemsWithTitles(&self, itemTitles: &NSArray<NSString>);
+        pub unsafe fn addItemsWithTitles(&self, item_titles: &NSArray<NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(insertItemWithTitle:atIndex:)]
@@ -100,7 +100,7 @@ extern_methods!(
         pub unsafe fn indexOfItemWithTarget_andAction(
             &self,
             target: Option<&Object>,
-            actionSelector: Option<Sel>,
+            action_selector: Option<Sel>,
         ) -> NSInteger;
 
         #[cfg(feature = "AppKit_NSMenuItem")]
@@ -216,7 +216,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frame_rect: NSRect,
         ) -> Id<Self, Shared>;
     }
 );

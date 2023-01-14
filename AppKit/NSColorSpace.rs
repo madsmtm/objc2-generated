@@ -37,7 +37,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithICCProfileData:)]
         pub unsafe fn initWithICCProfileData(
             this: Option<Allocated<Self>>,
-            iccData: &NSData,
+            icc_data: &NSData,
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(feature = "Foundation_NSData")]

@@ -44,7 +44,7 @@ extern_fn!(
 
 extern_fn!(
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSRangeFromString(aString: &NSString) -> NSRange;
+    pub unsafe fn NSRangeFromString(a_string: &NSString) -> NSRange;
 );
 
 extern_methods!(

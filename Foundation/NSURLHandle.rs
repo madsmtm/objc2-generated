@@ -44,7 +44,7 @@ extern_protocol!(
         pub unsafe fn URLHandle_resourceDataDidBecomeAvailable(
             &self,
             sender: Option<&NSURLHandle>,
-            newBytes: Option<&NSData>,
+            new_bytes: Option<&NSData>,
         );
 
         #[cfg(feature = "Foundation_NSURLHandle")]
@@ -84,11 +84,11 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSURLHandle")]
     unsafe impl NSURLHandle {
         #[method(registerURLHandleClass:)]
-        pub unsafe fn registerURLHandleClass(anURLHandleSubclass: Option<&Class>);
+        pub unsafe fn registerURLHandleClass(an_url_handle_subclass: Option<&Class>);
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method(URLHandleClassForURL:)]
-        pub unsafe fn URLHandleClassForURL(anURL: Option<&NSURL>) -> Option<&'static Class>;
+        pub unsafe fn URLHandleClassForURL(an_url: Option<&NSURL>) -> Option<&'static Class>;
 
         #[method(status)]
         pub unsafe fn status(&self) -> NSURLHandleStatus;
@@ -129,44 +129,45 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSData")]
         #[method(didLoadBytes:loadComplete:)]
-        pub unsafe fn didLoadBytes_loadComplete(&self, newBytes: Option<&NSData>, yorn: bool);
+        pub unsafe fn didLoadBytes_loadComplete(&self, new_bytes: Option<&NSData>, yorn: bool);
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method(canInitWithURL:)]
-        pub unsafe fn canInitWithURL(anURL: Option<&NSURL>) -> bool;
+        pub unsafe fn canInitWithURL(an_url: Option<&NSURL>) -> bool;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other cachedHandleForURL:)]
-        pub unsafe fn cachedHandleForURL(anURL: Option<&NSURL>) -> Option<Id<NSURLHandle, Shared>>;
+        pub unsafe fn cachedHandleForURL(an_url: Option<&NSURL>)
+            -> Option<Id<NSURLHandle, Shared>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Init initWithURL:cached:)]
         pub unsafe fn initWithURL_cached(
             this: Option<Allocated<Self>>,
-            anURL: Option<&NSURL>,
-            willCache: bool,
+            an_url: Option<&NSURL>,
+            will_cache: bool,
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other propertyForKey:)]
         pub unsafe fn propertyForKey(
             &self,
-            propertyKey: Option<&NSString>,
+            property_key: Option<&NSString>,
         ) -> Option<Id<Object, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other propertyForKeyIfAvailable:)]
         pub unsafe fn propertyForKeyIfAvailable(
             &self,
-            propertyKey: Option<&NSString>,
+            property_key: Option<&NSString>,
         ) -> Option<Id<Object, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(writeProperty:forKey:)]
         pub unsafe fn writeProperty_forKey(
             &self,
-            propertyValue: Option<&Object>,
-            propertyKey: Option<&NSString>,
+            property_value: Option<&Object>,
+            property_key: Option<&NSString>,
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSData")]

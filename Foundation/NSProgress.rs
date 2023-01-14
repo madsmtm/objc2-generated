@@ -38,33 +38,34 @@ extern_methods!(
         pub unsafe fn currentProgress() -> Option<Id<NSProgress, Shared>>;
 
         #[method_id(@__retain_semantics Other progressWithTotalUnitCount:)]
-        pub unsafe fn progressWithTotalUnitCount(unitCount: i64) -> Id<NSProgress, Shared>;
+        pub unsafe fn progressWithTotalUnitCount(unit_count: i64) -> Id<NSProgress, Shared>;
 
         #[method_id(@__retain_semantics Other discreteProgressWithTotalUnitCount:)]
-        pub unsafe fn discreteProgressWithTotalUnitCount(unitCount: i64) -> Id<NSProgress, Shared>;
+        pub unsafe fn discreteProgressWithTotalUnitCount(unit_count: i64)
+            -> Id<NSProgress, Shared>;
 
         #[method_id(@__retain_semantics Other progressWithTotalUnitCount:parent:pendingUnitCount:)]
         pub unsafe fn progressWithTotalUnitCount_parent_pendingUnitCount(
-            unitCount: i64,
+            unit_count: i64,
             parent: &NSProgress,
-            portionOfParentTotalUnitCount: i64,
+            portion_of_parent_total_unit_count: i64,
         ) -> Id<NSProgress, Shared>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Init initWithParent:userInfo:)]
         pub unsafe fn initWithParent_userInfo(
             this: Option<Allocated<Self>>,
-            parentProgressOrNil: Option<&NSProgress>,
-            userInfoOrNil: Option<&NSDictionary<NSProgressUserInfoKey, Object>>,
+            parent_progress_or_nil: Option<&NSProgress>,
+            user_info_or_nil: Option<&NSDictionary<NSProgressUserInfoKey, Object>>,
         ) -> Id<Self, Shared>;
 
         #[method(becomeCurrentWithPendingUnitCount:)]
-        pub unsafe fn becomeCurrentWithPendingUnitCount(&self, unitCount: i64);
+        pub unsafe fn becomeCurrentWithPendingUnitCount(&self, unit_count: i64);
 
         #[method(performAsCurrentWithPendingUnitCount:usingBlock:)]
         pub unsafe fn performAsCurrentWithPendingUnitCount_usingBlock(
             &self,
-            unitCount: i64,
+            unit_count: i64,
             work: &Block<(), ()>,
         );
 
@@ -72,19 +73,19 @@ extern_methods!(
         pub unsafe fn resignCurrent(&self);
 
         #[method(addChild:withPendingUnitCount:)]
-        pub unsafe fn addChild_withPendingUnitCount(&self, child: &NSProgress, inUnitCount: i64);
+        pub unsafe fn addChild_withPendingUnitCount(&self, child: &NSProgress, in_unit_count: i64);
 
         #[method(totalUnitCount)]
         pub unsafe fn totalUnitCount(&self) -> i64;
 
         #[method(setTotalUnitCount:)]
-        pub unsafe fn setTotalUnitCount(&self, totalUnitCount: i64);
+        pub unsafe fn setTotalUnitCount(&self, total_unit_count: i64);
 
         #[method(completedUnitCount)]
         pub unsafe fn completedUnitCount(&self) -> i64;
 
         #[method(setCompletedUnitCount:)]
-        pub unsafe fn setCompletedUnitCount(&self, completedUnitCount: i64);
+        pub unsafe fn setCompletedUnitCount(&self, completed_unit_count: i64);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedDescription)]
@@ -92,7 +93,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLocalizedDescription:)]
-        pub unsafe fn setLocalizedDescription(&self, localizedDescription: Option<&NSString>);
+        pub unsafe fn setLocalizedDescription(&self, localized_description: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedAdditionalDescription)]
@@ -102,7 +103,7 @@ extern_methods!(
         #[method(setLocalizedAdditionalDescription:)]
         pub unsafe fn setLocalizedAdditionalDescription(
             &self,
-            localizedAdditionalDescription: Option<&NSString>,
+            localized_additional_description: Option<&NSString>,
         );
 
         #[method(isCancellable)]
@@ -127,24 +128,24 @@ extern_methods!(
         pub unsafe fn cancellationHandler(&self) -> *mut Block<(), ()>;
 
         #[method(setCancellationHandler:)]
-        pub unsafe fn setCancellationHandler(&self, cancellationHandler: Option<&Block<(), ()>>);
+        pub unsafe fn setCancellationHandler(&self, cancellation_handler: Option<&Block<(), ()>>);
 
         #[method(pausingHandler)]
         pub unsafe fn pausingHandler(&self) -> *mut Block<(), ()>;
 
         #[method(setPausingHandler:)]
-        pub unsafe fn setPausingHandler(&self, pausingHandler: Option<&Block<(), ()>>);
+        pub unsafe fn setPausingHandler(&self, pausing_handler: Option<&Block<(), ()>>);
 
         #[method(resumingHandler)]
         pub unsafe fn resumingHandler(&self) -> *mut Block<(), ()>;
 
         #[method(setResumingHandler:)]
-        pub unsafe fn setResumingHandler(&self, resumingHandler: Option<&Block<(), ()>>);
+        pub unsafe fn setResumingHandler(&self, resuming_handler: Option<&Block<(), ()>>);
 
         #[method(setUserInfoObject:forKey:)]
         pub unsafe fn setUserInfoObject_forKey(
             &self,
-            objectOrNil: Option<&Object>,
+            object_or_nil: Option<&Object>,
             key: &NSProgressUserInfoKey,
         );
 
@@ -182,7 +183,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSNumber")]
         #[method(setEstimatedTimeRemaining:)]
-        pub unsafe fn setEstimatedTimeRemaining(&self, estimatedTimeRemaining: Option<&NSNumber>);
+        pub unsafe fn setEstimatedTimeRemaining(&self, estimated_time_remaining: Option<&NSNumber>);
 
         #[cfg(feature = "Foundation_NSNumber")]
         #[method_id(@__retain_semantics Other throughput)]
@@ -198,7 +199,7 @@ extern_methods!(
         #[method(setFileOperationKind:)]
         pub unsafe fn setFileOperationKind(
             &self,
-            fileOperationKind: Option<&NSProgressFileOperationKind>,
+            file_operation_kind: Option<&NSProgressFileOperationKind>,
         );
 
         #[cfg(feature = "Foundation_NSURL")]
@@ -207,7 +208,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method(setFileURL:)]
-        pub unsafe fn setFileURL(&self, fileURL: Option<&NSURL>);
+        pub unsafe fn setFileURL(&self, file_url: Option<&NSURL>);
 
         #[cfg(feature = "Foundation_NSNumber")]
         #[method_id(@__retain_semantics Other fileTotalCount)]
@@ -215,7 +216,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSNumber")]
         #[method(setFileTotalCount:)]
-        pub unsafe fn setFileTotalCount(&self, fileTotalCount: Option<&NSNumber>);
+        pub unsafe fn setFileTotalCount(&self, file_total_count: Option<&NSNumber>);
 
         #[cfg(feature = "Foundation_NSNumber")]
         #[method_id(@__retain_semantics Other fileCompletedCount)]
@@ -223,7 +224,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSNumber")]
         #[method(setFileCompletedCount:)]
-        pub unsafe fn setFileCompletedCount(&self, fileCompletedCount: Option<&NSNumber>);
+        pub unsafe fn setFileCompletedCount(&self, file_completed_count: Option<&NSNumber>);
 
         #[method(publish)]
         pub unsafe fn publish(&self);
@@ -235,7 +236,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other addSubscriberForFileURL:withPublishingHandler:)]
         pub unsafe fn addSubscriberForFileURL_withPublishingHandler(
             url: &NSURL,
-            publishingHandler: NSProgressPublishingHandler,
+            publishing_handler: NSProgressPublishingHandler,
         ) -> Id<Object, Shared>;
 
         #[method(removeSubscriber:)]

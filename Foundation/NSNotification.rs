@@ -37,7 +37,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             name: &NSNotificationName,
             object: Option<&Object>,
-            userInfo: Option<&NSDictionary>,
+            user_info: Option<&NSDictionary>,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSCoder")]
@@ -55,16 +55,16 @@ extern_methods!(
     unsafe impl NSNotification {
         #[method_id(@__retain_semantics Other notificationWithName:object:)]
         pub unsafe fn notificationWithName_object(
-            aName: &NSNotificationName,
-            anObject: Option<&Object>,
+            a_name: &NSNotificationName,
+            an_object: Option<&Object>,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other notificationWithName:object:userInfo:)]
         pub unsafe fn notificationWithName_object_userInfo(
-            aName: &NSNotificationName,
-            anObject: Option<&Object>,
-            aUserInfo: Option<&NSDictionary>,
+            a_name: &NSNotificationName,
+            an_object: Option<&Object>,
+            a_user_info: Option<&NSDictionary>,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Init init)]
@@ -93,9 +93,9 @@ extern_methods!(
         pub unsafe fn addObserver_selector_name_object(
             &self,
             observer: &Object,
-            aSelector: Sel,
-            aName: Option<&NSNotificationName>,
-            anObject: Option<&Object>,
+            a_selector: Sel,
+            a_name: Option<&NSNotificationName>,
+            an_object: Option<&Object>,
         );
 
         #[cfg(feature = "Foundation_NSNotification")]
@@ -105,17 +105,17 @@ extern_methods!(
         #[method(postNotificationName:object:)]
         pub unsafe fn postNotificationName_object(
             &self,
-            aName: &NSNotificationName,
-            anObject: Option<&Object>,
+            a_name: &NSNotificationName,
+            an_object: Option<&Object>,
         );
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(postNotificationName:object:userInfo:)]
         pub unsafe fn postNotificationName_object_userInfo(
             &self,
-            aName: &NSNotificationName,
-            anObject: Option<&Object>,
-            aUserInfo: Option<&NSDictionary>,
+            a_name: &NSNotificationName,
+            an_object: Option<&Object>,
+            a_user_info: Option<&NSDictionary>,
         );
 
         #[method(removeObserver:)]
@@ -125,8 +125,8 @@ extern_methods!(
         pub unsafe fn removeObserver_name_object(
             &self,
             observer: &Object,
-            aName: Option<&NSNotificationName>,
-            anObject: Option<&Object>,
+            a_name: Option<&NSNotificationName>,
+            an_object: Option<&Object>,
         );
 
         #[cfg(all(

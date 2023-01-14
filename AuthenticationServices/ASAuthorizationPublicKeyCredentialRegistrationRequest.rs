@@ -18,7 +18,7 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSData")]
         #[method(setUserID:)]
-        pub unsafe fn setUserID(&self, userID: &NSData);
+        pub unsafe fn setUserID(&self, user_id: &NSData);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
@@ -34,7 +34,7 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setDisplayName:)]
-        pub unsafe fn setDisplayName(&self, displayName: Option<&NSString>);
+        pub unsafe fn setDisplayName(&self, display_name: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other challenge)]
@@ -52,7 +52,7 @@ extern_protocol!(
         #[method(setUserVerificationPreference:)]
         pub unsafe fn setUserVerificationPreference(
             &self,
-            userVerificationPreference: &ASAuthorizationPublicKeyCredentialUserVerificationPreference,
+            user_verification_preference: &ASAuthorizationPublicKeyCredentialUserVerificationPreference,
         );
 
         #[method_id(@__retain_semantics Other attestationPreference)]
@@ -63,7 +63,7 @@ extern_protocol!(
         #[method(setAttestationPreference:)]
         pub unsafe fn setAttestationPreference(
             &self,
-            attestationPreference: &ASAuthorizationPublicKeyCredentialAttestationKind,
+            attestation_preference: &ASAuthorizationPublicKeyCredentialAttestationKind,
         );
     }
 );

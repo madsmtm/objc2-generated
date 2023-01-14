@@ -53,7 +53,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSTableView")]
         #[method(setTableView:)]
-        pub unsafe fn setTableView(&self, tableView: Option<&NSTableView>);
+        pub unsafe fn setTableView(&self, table_view: Option<&NSTableView>);
 
         #[method(width)]
         pub unsafe fn width(&self) -> CGFloat;
@@ -65,13 +65,13 @@ extern_methods!(
         pub unsafe fn minWidth(&self) -> CGFloat;
 
         #[method(setMinWidth:)]
-        pub unsafe fn setMinWidth(&self, minWidth: CGFloat);
+        pub unsafe fn setMinWidth(&self, min_width: CGFloat);
 
         #[method(maxWidth)]
         pub unsafe fn maxWidth(&self) -> CGFloat;
 
         #[method(setMaxWidth:)]
-        pub unsafe fn setMaxWidth(&self, maxWidth: CGFloat);
+        pub unsafe fn setMaxWidth(&self, max_width: CGFloat);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
@@ -87,7 +87,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSTableHeaderCell")]
         #[method(setHeaderCell:)]
-        pub unsafe fn setHeaderCell(&self, headerCell: &NSTableHeaderCell);
+        pub unsafe fn setHeaderCell(&self, header_cell: &NSTableHeaderCell);
 
         #[method(isEditable)]
         pub unsafe fn isEditable(&self) -> bool;
@@ -106,14 +106,14 @@ extern_methods!(
         #[method(setSortDescriptorPrototype:)]
         pub unsafe fn setSortDescriptorPrototype(
             &self,
-            sortDescriptorPrototype: Option<&NSSortDescriptor>,
+            sort_descriptor_prototype: Option<&NSSortDescriptor>,
         );
 
         #[method(resizingMask)]
         pub unsafe fn resizingMask(&self) -> NSTableColumnResizingOptions;
 
         #[method(setResizingMask:)]
-        pub unsafe fn setResizingMask(&self, resizingMask: NSTableColumnResizingOptions);
+        pub unsafe fn setResizingMask(&self, resizing_mask: NSTableColumnResizingOptions);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other headerToolTip)]
@@ -121,7 +121,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setHeaderToolTip:)]
-        pub unsafe fn setHeaderToolTip(&self, headerToolTip: Option<&NSString>);
+        pub unsafe fn setHeaderToolTip(&self, header_tool_tip: Option<&NSString>);
 
         #[method(isHidden)]
         pub unsafe fn isHidden(&self) -> bool;
@@ -145,7 +145,7 @@ extern_methods!(
         pub unsafe fn dataCell(&self) -> Id<Object, Shared>;
 
         #[method(setDataCell:)]
-        pub unsafe fn setDataCell(&self, dataCell: &Object);
+        pub unsafe fn setDataCell(&self, data_cell: &Object);
 
         #[method_id(@__retain_semantics Other dataCellForRow:)]
         pub unsafe fn dataCellForRow(&self, row: NSInteger) -> Id<Object, Shared>;

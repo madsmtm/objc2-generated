@@ -72,8 +72,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithTableView:cellProvider:)]
         pub unsafe fn initWithTableView_cellProvider(
             this: Option<Allocated<Self>>,
-            tableView: &NSTableView,
-            cellProvider: NSTableViewDiffableDataSourceCellProvider,
+            table_view: &NSTableView,
+            cell_provider: NSTableViewDiffableDataSourceCellProvider,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Init init)]
@@ -93,7 +93,7 @@ extern_methods!(
         pub unsafe fn applySnapshot_animatingDifferences(
             &self,
             snapshot: &NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>,
-            animatingDifferences: bool,
+            animating_differences: bool,
         );
 
         #[cfg(feature = "AppKit_NSDiffableDataSourceSnapshot")]
@@ -101,7 +101,7 @@ extern_methods!(
         pub unsafe fn applySnapshot_animatingDifferences_completion(
             &self,
             snapshot: &NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>,
-            animatingDifferences: bool,
+            animating_differences: bool,
             completion: Option<&Block<(), ()>>,
         );
 
@@ -132,7 +132,7 @@ extern_methods!(
         #[method(setRowViewProvider:)]
         pub unsafe fn setRowViewProvider(
             &self,
-            rowViewProvider: NSTableViewDiffableDataSourceRowProvider,
+            row_view_provider: NSTableViewDiffableDataSourceRowProvider,
         );
 
         #[method(sectionHeaderViewProvider)]
@@ -143,7 +143,7 @@ extern_methods!(
         #[method(setSectionHeaderViewProvider:)]
         pub unsafe fn setSectionHeaderViewProvider(
             &self,
-            sectionHeaderViewProvider: NSTableViewDiffableDataSourceSectionHeaderViewProvider,
+            section_header_view_provider: NSTableViewDiffableDataSourceSectionHeaderViewProvider,
         );
 
         #[method(defaultRowAnimation)]
@@ -152,7 +152,7 @@ extern_methods!(
         #[method(setDefaultRowAnimation:)]
         pub unsafe fn setDefaultRowAnimation(
             &self,
-            defaultRowAnimation: NSTableViewAnimationOptions,
+            default_row_animation: NSTableViewAnimationOptions,
         );
     }
 );

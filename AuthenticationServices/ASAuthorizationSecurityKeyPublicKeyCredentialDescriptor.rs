@@ -53,8 +53,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCredentialID:transports:)]
         pub unsafe fn initWithCredentialID_transports(
             this: Option<Allocated<Self>>,
-            credentialID: &NSData,
-            allowedTransports: &NSArray<
+            credential_id: &NSData,
+            allowed_transports: &NSArray<
                 ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport,
             >,
         ) -> Id<Self, Shared>;

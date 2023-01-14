@@ -48,19 +48,19 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setDisplayedCommandsTitle:)]
-        pub unsafe fn setDisplayedCommandsTitle(&self, displayedCommandsTitle: Option<&NSString>);
+        pub unsafe fn setDisplayedCommandsTitle(&self, displayed_commands_title: Option<&NSString>);
 
         #[method(listensInForegroundOnly)]
         pub unsafe fn listensInForegroundOnly(&self) -> bool;
 
         #[method(setListensInForegroundOnly:)]
-        pub unsafe fn setListensInForegroundOnly(&self, listensInForegroundOnly: bool);
+        pub unsafe fn setListensInForegroundOnly(&self, listens_in_foreground_only: bool);
 
         #[method(blocksOtherRecognizers)]
         pub unsafe fn blocksOtherRecognizers(&self) -> bool;
 
         #[method(setBlocksOtherRecognizers:)]
-        pub unsafe fn setBlocksOtherRecognizers(&self, blocksOtherRecognizers: bool);
+        pub unsafe fn setBlocksOtherRecognizers(&self, blocks_other_recognizers: bool);
     }
 );
 

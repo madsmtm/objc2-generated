@@ -14,6 +14,6 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSData")]
         #[method(setCredentialID:)]
-        pub unsafe fn setCredentialID(&self, credentialID: &NSData);
+        pub unsafe fn setCredentialID(&self, credential_id: &NSData);
     }
 );

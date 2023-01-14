@@ -39,7 +39,7 @@ extern_methods!(
         #[method(setRequestedScopes:)]
         pub unsafe fn setRequestedScopes(
             &self,
-            requestedScopes: Option<&NSArray<ASAuthorizationScope>>,
+            requested_scopes: Option<&NSArray<ASAuthorizationScope>>,
         );
 
         #[cfg(feature = "Foundation_NSString")]
@@ -64,7 +64,7 @@ extern_methods!(
         #[method(setRequestedOperation:)]
         pub unsafe fn setRequestedOperation(
             &self,
-            requestedOperation: &ASAuthorizationOpenIDOperation,
+            requested_operation: &ASAuthorizationOpenIDOperation,
         );
     }
 );

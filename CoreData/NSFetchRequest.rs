@@ -68,7 +68,7 @@ extern_methods!(
     {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fetchRequestWithEntityName:)]
-        pub unsafe fn fetchRequestWithEntityName(entityName: &NSString) -> Id<Self, Shared>;
+        pub unsafe fn fetchRequestWithEntityName(entity_name: &NSString) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
@@ -77,7 +77,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithEntityName:)]
         pub unsafe fn initWithEntityName(
             this: Option<Allocated<Self>>,
-            entityName: &NSString,
+            entity_name: &NSString,
         ) -> Id<Self, Shared>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSError"))]
@@ -120,14 +120,14 @@ extern_methods!(
         #[method(setSortDescriptors:)]
         pub unsafe fn setSortDescriptors(
             &self,
-            sortDescriptors: Option<&NSArray<NSSortDescriptor>>,
+            sort_descriptors: Option<&NSArray<NSSortDescriptor>>,
         );
 
         #[method(fetchLimit)]
         pub unsafe fn fetchLimit(&self) -> NSUInteger;
 
         #[method(setFetchLimit:)]
-        pub unsafe fn setFetchLimit(&self, fetchLimit: NSUInteger);
+        pub unsafe fn setFetchLimit(&self, fetch_limit: NSUInteger);
 
         #[cfg(all(feature = "CoreData_NSPersistentStore", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other affectedStores)]
@@ -135,31 +135,34 @@ extern_methods!(
 
         #[cfg(all(feature = "CoreData_NSPersistentStore", feature = "Foundation_NSArray"))]
         #[method(setAffectedStores:)]
-        pub unsafe fn setAffectedStores(&self, affectedStores: Option<&NSArray<NSPersistentStore>>);
+        pub unsafe fn setAffectedStores(
+            &self,
+            affected_stores: Option<&NSArray<NSPersistentStore>>,
+        );
 
         #[method(resultType)]
         pub unsafe fn resultType(&self) -> NSFetchRequestResultType;
 
         #[method(setResultType:)]
-        pub unsafe fn setResultType(&self, resultType: NSFetchRequestResultType);
+        pub unsafe fn setResultType(&self, result_type: NSFetchRequestResultType);
 
         #[method(includesSubentities)]
         pub unsafe fn includesSubentities(&self) -> bool;
 
         #[method(setIncludesSubentities:)]
-        pub unsafe fn setIncludesSubentities(&self, includesSubentities: bool);
+        pub unsafe fn setIncludesSubentities(&self, includes_subentities: bool);
 
         #[method(includesPropertyValues)]
         pub unsafe fn includesPropertyValues(&self) -> bool;
 
         #[method(setIncludesPropertyValues:)]
-        pub unsafe fn setIncludesPropertyValues(&self, includesPropertyValues: bool);
+        pub unsafe fn setIncludesPropertyValues(&self, includes_property_values: bool);
 
         #[method(returnsObjectsAsFaults)]
         pub unsafe fn returnsObjectsAsFaults(&self) -> bool;
 
         #[method(setReturnsObjectsAsFaults:)]
-        pub unsafe fn setReturnsObjectsAsFaults(&self, returnsObjectsAsFaults: bool);
+        pub unsafe fn setReturnsObjectsAsFaults(&self, returns_objects_as_faults: bool);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other relationshipKeyPathsForPrefetching)]
@@ -171,20 +174,20 @@ extern_methods!(
         #[method(setRelationshipKeyPathsForPrefetching:)]
         pub unsafe fn setRelationshipKeyPathsForPrefetching(
             &self,
-            relationshipKeyPathsForPrefetching: Option<&NSArray<NSString>>,
+            relationship_key_paths_for_prefetching: Option<&NSArray<NSString>>,
         );
 
         #[method(includesPendingChanges)]
         pub unsafe fn includesPendingChanges(&self) -> bool;
 
         #[method(setIncludesPendingChanges:)]
-        pub unsafe fn setIncludesPendingChanges(&self, includesPendingChanges: bool);
+        pub unsafe fn setIncludesPendingChanges(&self, includes_pending_changes: bool);
 
         #[method(returnsDistinctResults)]
         pub unsafe fn returnsDistinctResults(&self) -> bool;
 
         #[method(setReturnsDistinctResults:)]
-        pub unsafe fn setReturnsDistinctResults(&self, returnsDistinctResults: bool);
+        pub unsafe fn setReturnsDistinctResults(&self, returns_distinct_results: bool);
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other propertiesToFetch)]
@@ -192,25 +195,28 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setPropertiesToFetch:)]
-        pub unsafe fn setPropertiesToFetch(&self, propertiesToFetch: Option<&NSArray>);
+        pub unsafe fn setPropertiesToFetch(&self, properties_to_fetch: Option<&NSArray>);
 
         #[method(fetchOffset)]
         pub unsafe fn fetchOffset(&self) -> NSUInteger;
 
         #[method(setFetchOffset:)]
-        pub unsafe fn setFetchOffset(&self, fetchOffset: NSUInteger);
+        pub unsafe fn setFetchOffset(&self, fetch_offset: NSUInteger);
 
         #[method(fetchBatchSize)]
         pub unsafe fn fetchBatchSize(&self) -> NSUInteger;
 
         #[method(setFetchBatchSize:)]
-        pub unsafe fn setFetchBatchSize(&self, fetchBatchSize: NSUInteger);
+        pub unsafe fn setFetchBatchSize(&self, fetch_batch_size: NSUInteger);
 
         #[method(shouldRefreshRefetchedObjects)]
         pub unsafe fn shouldRefreshRefetchedObjects(&self) -> bool;
 
         #[method(setShouldRefreshRefetchedObjects:)]
-        pub unsafe fn setShouldRefreshRefetchedObjects(&self, shouldRefreshRefetchedObjects: bool);
+        pub unsafe fn setShouldRefreshRefetchedObjects(
+            &self,
+            should_refresh_refetched_objects: bool,
+        );
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other propertiesToGroupBy)]
@@ -218,7 +224,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setPropertiesToGroupBy:)]
-        pub unsafe fn setPropertiesToGroupBy(&self, propertiesToGroupBy: Option<&NSArray>);
+        pub unsafe fn setPropertiesToGroupBy(&self, properties_to_group_by: Option<&NSArray>);
 
         #[cfg(feature = "Foundation_NSPredicate")]
         #[method_id(@__retain_semantics Other havingPredicate)]
@@ -226,7 +232,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSPredicate")]
         #[method(setHavingPredicate:)]
-        pub unsafe fn setHavingPredicate(&self, havingPredicate: Option<&NSPredicate>);
+        pub unsafe fn setHavingPredicate(&self, having_predicate: Option<&NSPredicate>);
     }
 );
 
@@ -271,7 +277,7 @@ extern_methods!(
         pub unsafe fn estimatedResultCount(&self) -> NSInteger;
 
         #[method(setEstimatedResultCount:)]
-        pub unsafe fn setEstimatedResultCount(&self, estimatedResultCount: NSInteger);
+        pub unsafe fn setEstimatedResultCount(&self, estimated_result_count: NSInteger);
 
         #[cfg(all(
             feature = "CoreData_NSAsynchronousFetchResult",

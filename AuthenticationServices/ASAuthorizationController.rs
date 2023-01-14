@@ -98,7 +98,7 @@ extern_methods!(
         #[method(setPresentationContextProvider:)]
         pub unsafe fn setPresentationContextProvider(
             &self,
-            presentationContextProvider: Option<
+            presentation_context_provider: Option<
                 &ASAuthorizationControllerPresentationContextProviding,
             >,
         );
@@ -113,7 +113,7 @@ extern_methods!(
         #[method(setCustomAuthorizationMethods:)]
         pub unsafe fn setCustomAuthorizationMethods(
             &self,
-            customAuthorizationMethods: &NSArray<ASAuthorizationCustomMethod>,
+            custom_authorization_methods: &NSArray<ASAuthorizationCustomMethod>,
         );
 
         #[cfg(all(
@@ -123,7 +123,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithAuthorizationRequests:)]
         pub unsafe fn initWithAuthorizationRequests(
             this: Option<Allocated<Self>>,
-            authorizationRequests: &NSArray<ASAuthorizationRequest>,
+            authorization_requests: &NSArray<ASAuthorizationRequest>,
         ) -> Id<Self, Shared>;
 
         #[method(performRequests)]

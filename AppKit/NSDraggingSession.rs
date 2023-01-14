@@ -23,7 +23,7 @@ extern_methods!(
         pub unsafe fn draggingFormation(&self) -> NSDraggingFormation;
 
         #[method(setDraggingFormation:)]
-        pub unsafe fn setDraggingFormation(&self, draggingFormation: NSDraggingFormation);
+        pub unsafe fn setDraggingFormation(&self, dragging_formation: NSDraggingFormation);
 
         #[method(animatesToStartingPositionsOnCancelOrFail)]
         pub unsafe fn animatesToStartingPositionsOnCancelOrFail(&self) -> bool;
@@ -31,14 +31,14 @@ extern_methods!(
         #[method(setAnimatesToStartingPositionsOnCancelOrFail:)]
         pub unsafe fn setAnimatesToStartingPositionsOnCancelOrFail(
             &self,
-            animatesToStartingPositionsOnCancelOrFail: bool,
+            animates_to_starting_positions_on_cancel_or_fail: bool,
         );
 
         #[method(draggingLeaderIndex)]
         pub unsafe fn draggingLeaderIndex(&self) -> NSInteger;
 
         #[method(setDraggingLeaderIndex:)]
-        pub unsafe fn setDraggingLeaderIndex(&self, draggingLeaderIndex: NSInteger);
+        pub unsafe fn setDraggingLeaderIndex(&self, dragging_leader_index: NSInteger);
 
         #[cfg(feature = "AppKit_NSPasteboard")]
         #[method_id(@__retain_semantics Other draggingPasteboard)]
@@ -59,10 +59,10 @@ extern_methods!(
         #[method(enumerateDraggingItemsWithOptions:forView:classes:searchOptions:usingBlock:)]
         pub unsafe fn enumerateDraggingItemsWithOptions_forView_classes_searchOptions_usingBlock(
             &self,
-            enumOpts: NSDraggingItemEnumerationOptions,
+            enum_opts: NSDraggingItemEnumerationOptions,
             view: Option<&NSView>,
-            classArray: &NSArray<TodoClass>,
-            searchOptions: &NSDictionary<NSPasteboardReadingOptionKey, Object>,
+            class_array: &NSArray<TodoClass>,
+            search_options: &NSDictionary<NSPasteboardReadingOptionKey, Object>,
             block: &Block<(NonNull<NSDraggingItem>, NSInteger, NonNull<Bool>), ()>,
         );
     }

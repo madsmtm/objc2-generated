@@ -24,7 +24,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Other entityForName:inManagedObjectContext:)]
         pub unsafe fn entityForName_inManagedObjectContext(
-            entityName: &NSString,
+            entity_name: &NSString,
             context: &NSManagedObjectContext,
         ) -> Option<Id<NSEntityDescription, Shared>>;
 
@@ -35,7 +35,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Other insertNewObjectForEntityForName:inManagedObjectContext:)]
         pub unsafe fn insertNewObjectForEntityForName_inManagedObjectContext(
-            entityName: &NSString,
+            entity_name: &NSString,
             context: &NSManagedObjectContext,
         ) -> Id<NSManagedObject, Shared>;
 
@@ -49,7 +49,10 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setManagedObjectClassName:)]
-        pub unsafe fn setManagedObjectClassName(&self, managedObjectClassName: Option<&NSString>);
+        pub unsafe fn setManagedObjectClassName(
+            &self,
+            managed_object_class_name: Option<&NSString>,
+        );
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
@@ -63,7 +66,7 @@ extern_methods!(
         pub unsafe fn isAbstract(&self) -> bool;
 
         #[method(setAbstract:)]
-        pub unsafe fn setAbstract(&self, abstract_: bool);
+        pub unsafe fn setAbstract(&self, r#abstract: bool);
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other subentitiesByName)]
@@ -112,7 +115,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(setUserInfo:)]
-        pub unsafe fn setUserInfo(&self, userInfo: Option<&NSDictionary>);
+        pub unsafe fn setUserInfo(&self, user_info: Option<&NSDictionary>);
 
         #[cfg(all(
             feature = "CoreData_NSAttributeDescription",
@@ -157,7 +160,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setVersionHashModifier:)]
-        pub unsafe fn setVersionHashModifier(&self, versionHashModifier: Option<&NSString>);
+        pub unsafe fn setVersionHashModifier(&self, version_hash_modifier: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other renamingIdentifier)]
@@ -165,7 +168,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setRenamingIdentifier:)]
-        pub unsafe fn setRenamingIdentifier(&self, renamingIdentifier: Option<&NSString>);
+        pub unsafe fn setRenamingIdentifier(&self, renaming_identifier: Option<&NSString>);
 
         #[cfg(all(
             feature = "CoreData_NSFetchIndexDescription",
@@ -189,7 +192,7 @@ extern_methods!(
         #[method(setUniquenessConstraints:)]
         pub unsafe fn setUniquenessConstraints(
             &self,
-            uniquenessConstraints: &NSArray<NSArray<Object>>,
+            uniqueness_constraints: &NSArray<NSArray<Object>>,
         );
 
         #[cfg(feature = "Foundation_NSArray")]
@@ -198,7 +201,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setCompoundIndexes:)]
-        pub unsafe fn setCompoundIndexes(&self, compoundIndexes: &NSArray<NSArray<Object>>);
+        pub unsafe fn setCompoundIndexes(&self, compound_indexes: &NSArray<NSArray<Object>>);
 
         #[cfg(feature = "Foundation_NSExpression")]
         #[method_id(@__retain_semantics Other coreSpotlightDisplayNameExpression)]
@@ -208,7 +211,7 @@ extern_methods!(
         #[method(setCoreSpotlightDisplayNameExpression:)]
         pub unsafe fn setCoreSpotlightDisplayNameExpression(
             &self,
-            coreSpotlightDisplayNameExpression: &NSExpression,
+            core_spotlight_display_name_expression: &NSExpression,
         );
     }
 );

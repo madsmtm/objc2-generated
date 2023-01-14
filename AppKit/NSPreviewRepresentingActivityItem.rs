@@ -59,8 +59,8 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             item: &Object,
             title: Option<&NSString>,
-            imageProvider: Option<&NSItemProvider>,
-            iconProvider: Option<&NSItemProvider>,
+            image_provider: Option<&NSItemProvider>,
+            icon_provider: Option<&NSItemProvider>,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Init init)]

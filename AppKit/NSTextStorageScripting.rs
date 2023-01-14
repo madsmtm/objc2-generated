@@ -15,7 +15,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setAttributeRuns:)]
-        pub unsafe fn setAttributeRuns(&self, attributeRuns: &NSArray<NSTextStorage>);
+        pub unsafe fn setAttributeRuns(&self, attribute_runs: &NSArray<NSTextStorage>);
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other paragraphs)]
@@ -55,6 +55,6 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setForegroundColor:)]
-        pub unsafe fn setForegroundColor(&self, foregroundColor: Option<&NSColor>);
+        pub unsafe fn setForegroundColor(&self, foreground_color: Option<&NSColor>);
     }
 );

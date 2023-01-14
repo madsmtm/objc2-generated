@@ -37,7 +37,7 @@ extern_methods!(
         pub unsafe fn fontSize(&self) -> CGFloat;
 
         #[method(setFontSize:)]
-        pub unsafe fn setFontSize(&self, fontSize: CGFloat);
+        pub unsafe fn setFontSize(&self, font_size: CGFloat);
 
         #[method(isWrapped)]
         pub unsafe fn isWrapped(&self) -> bool;
@@ -49,13 +49,13 @@ extern_methods!(
         pub unsafe fn truncationMode(&self) -> Id<CATextLayerTruncationMode, Shared>;
 
         #[method(setTruncationMode:)]
-        pub unsafe fn setTruncationMode(&self, truncationMode: &CATextLayerTruncationMode);
+        pub unsafe fn setTruncationMode(&self, truncation_mode: &CATextLayerTruncationMode);
 
         #[method_id(@__retain_semantics Other alignmentMode)]
         pub unsafe fn alignmentMode(&self) -> Id<CATextLayerAlignmentMode, Shared>;
 
         #[method(setAlignmentMode:)]
-        pub unsafe fn setAlignmentMode(&self, alignmentMode: &CATextLayerAlignmentMode);
+        pub unsafe fn setAlignmentMode(&self, alignment_mode: &CATextLayerAlignmentMode);
 
         #[method(allowsFontSubpixelQuantization)]
         pub unsafe fn allowsFontSubpixelQuantization(&self) -> bool;
@@ -63,7 +63,7 @@ extern_methods!(
         #[method(setAllowsFontSubpixelQuantization:)]
         pub unsafe fn setAllowsFontSubpixelQuantization(
             &self,
-            allowsFontSubpixelQuantization: bool,
+            allows_font_subpixel_quantization: bool,
         );
     }
 );

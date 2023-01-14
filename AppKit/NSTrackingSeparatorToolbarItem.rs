@@ -24,8 +24,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Other trackingSeparatorToolbarItemWithIdentifier:splitView:dividerIndex:)]
         pub unsafe fn trackingSeparatorToolbarItemWithIdentifier_splitView_dividerIndex(
             identifier: &NSToolbarItemIdentifier,
-            splitView: &NSSplitView,
-            dividerIndex: NSInteger,
+            split_view: &NSSplitView,
+            divider_index: NSInteger,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "AppKit_NSSplitView")]
@@ -34,13 +34,13 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSSplitView")]
         #[method(setSplitView:)]
-        pub unsafe fn setSplitView(&self, splitView: &NSSplitView);
+        pub unsafe fn setSplitView(&self, split_view: &NSSplitView);
 
         #[method(dividerIndex)]
         pub unsafe fn dividerIndex(&self) -> NSInteger;
 
         #[method(setDividerIndex:)]
-        pub unsafe fn setDividerIndex(&self, dividerIndex: NSInteger);
+        pub unsafe fn setDividerIndex(&self, divider_index: NSInteger);
     }
 );
 
@@ -51,7 +51,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithItemIdentifier:)]
         pub unsafe fn initWithItemIdentifier(
             this: Option<Allocated<Self>>,
-            itemIdentifier: &NSToolbarItemIdentifier,
+            item_identifier: &NSToolbarItemIdentifier,
         ) -> Id<Self, Shared>;
     }
 );

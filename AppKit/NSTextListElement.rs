@@ -30,9 +30,9 @@ extern_methods!(
         pub unsafe fn initWithParentElement_textList_contents_markerAttributes_childElements(
             this: Option<Allocated<Self>>,
             parent: Option<&NSTextListElement>,
-            textList: &NSTextList,
+            text_list: &NSTextList,
             contents: Option<&NSAttributedString>,
-            markerAttributes: Option<&NSDictionary<NSAttributedStringKey, Object>>,
+            marker_attributes: Option<&NSDictionary<NSAttributedStringKey, Object>>,
             children: Option<&NSArray<NSTextListElement>>,
         ) -> Id<Self, Shared>;
 
@@ -40,7 +40,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithAttributedString:)]
         pub unsafe fn initWithAttributedString(
             this: Option<Allocated<Self>>,
-            attributedString: Option<&NSAttributedString>,
+            attributed_string: Option<&NSAttributedString>,
         ) -> Id<Self, Shared>;
 
         #[cfg(all(
@@ -52,8 +52,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Other textListElementWithContents:markerAttributes:textList:childElements:)]
         pub unsafe fn textListElementWithContents_markerAttributes_textList_childElements(
             contents: &NSAttributedString,
-            markerAttributes: Option<&NSDictionary<NSAttributedStringKey, Object>>,
-            textList: &NSTextList,
+            marker_attributes: Option<&NSDictionary<NSAttributedStringKey, Object>>,
+            text_list: &NSTextList,
             children: Option<&NSArray<NSTextListElement>>,
         ) -> Id<Self, Shared>;
 
@@ -61,8 +61,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Other textListElementWithChildElements:textList:nestingLevel:)]
         pub unsafe fn textListElementWithChildElements_textList_nestingLevel(
             children: &NSArray<NSTextListElement>,
-            textList: &NSTextList,
-            nestingLevel: NSInteger,
+            text_list: &NSTextList,
+            nesting_level: NSInteger,
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(feature = "AppKit_NSTextList")]
@@ -100,7 +100,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithTextContentManager:)]
         pub unsafe fn initWithTextContentManager(
             this: Option<Allocated<Self>>,
-            textContentManager: Option<&NSTextContentManager>,
+            text_content_manager: Option<&NSTextContentManager>,
         ) -> Id<Self, Shared>;
     }
 );

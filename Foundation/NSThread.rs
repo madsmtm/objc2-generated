@@ -51,7 +51,7 @@ extern_methods!(
         pub unsafe fn qualityOfService(&self) -> NSQualityOfService;
 
         #[method(setQualityOfService:)]
-        pub unsafe fn setQualityOfService(&self, qualityOfService: NSQualityOfService);
+        pub unsafe fn setQualityOfService(&self, quality_of_service: NSQualityOfService);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method_id(@__retain_semantics Other callStackReturnAddresses)]
@@ -73,7 +73,7 @@ extern_methods!(
         pub unsafe fn stackSize(&self) -> NSUInteger;
 
         #[method(setStackSize:)]
-        pub unsafe fn setStackSize(&self, stackSize: NSUInteger);
+        pub unsafe fn setStackSize(&self, stack_size: NSUInteger);
 
         #[method_id(@__retain_semantics Other mainThread)]
         pub fn mainThread() -> Id<NSThread, Shared>;

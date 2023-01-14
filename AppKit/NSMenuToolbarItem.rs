@@ -32,7 +32,7 @@ extern_methods!(
         pub unsafe fn showsIndicator(&self) -> bool;
 
         #[method(setShowsIndicator:)]
-        pub unsafe fn setShowsIndicator(&self, showsIndicator: bool);
+        pub unsafe fn setShowsIndicator(&self, shows_indicator: bool);
     }
 );
 
@@ -43,7 +43,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithItemIdentifier:)]
         pub unsafe fn initWithItemIdentifier(
             this: Option<Allocated<Self>>,
-            itemIdentifier: &NSToolbarItemIdentifier,
+            item_identifier: &NSToolbarItemIdentifier,
         ) -> Id<Self, Shared>;
     }
 );

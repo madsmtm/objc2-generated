@@ -93,7 +93,7 @@ extern_protocol!(
         #[method(compressWithPrioritizedCompressionOptions:)]
         pub unsafe fn compressWithPrioritizedCompressionOptions(
             &self,
-            prioritizedOptions: &NSArray<NSUserInterfaceCompressionOptions>,
+            prioritized_options: &NSArray<NSUserInterfaceCompressionOptions>,
         );
 
         #[cfg(all(
@@ -103,7 +103,7 @@ extern_protocol!(
         #[method(minimumSizeWithPrioritizedCompressionOptions:)]
         pub unsafe fn minimumSizeWithPrioritizedCompressionOptions(
             &self,
-            prioritizedOptions: &NSArray<NSUserInterfaceCompressionOptions>,
+            prioritized_options: &NSArray<NSUserInterfaceCompressionOptions>,
         ) -> NSSize;
 
         #[cfg(feature = "AppKit_NSUserInterfaceCompressionOptions")]

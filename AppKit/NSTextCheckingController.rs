@@ -51,7 +51,7 @@ extern_methods!(
         pub unsafe fn checkTextInRange_types_options(
             &self,
             range: NSRange,
-            checkingTypes: NSTextCheckingTypes,
+            checking_types: NSTextCheckingTypes,
             options: &NSDictionary<NSTextCheckingOptionKey, Object>,
         );
 
@@ -88,14 +88,14 @@ extern_methods!(
         pub unsafe fn menuAtIndex_clickedOnSelection_effectiveRange(
             &self,
             location: NSUInteger,
-            clickedOnSelection: bool,
-            effectiveRange: NSRangePointer,
+            clicked_on_selection: bool,
+            effective_range: NSRangePointer,
         ) -> Option<Id<NSMenu, Shared>>;
 
         #[method(spellCheckerDocumentTag)]
         pub unsafe fn spellCheckerDocumentTag(&self) -> NSInteger;
 
         #[method(setSpellCheckerDocumentTag:)]
-        pub unsafe fn setSpellCheckerDocumentTag(&self, spellCheckerDocumentTag: NSInteger);
+        pub unsafe fn setSpellCheckerDocumentTag(&self, spell_checker_document_tag: NSInteger);
     }
 );

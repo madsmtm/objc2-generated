@@ -24,8 +24,8 @@ extern_methods!(
         #[method(drawSortIndicatorWithFrame:inView:ascending:priority:)]
         pub unsafe fn drawSortIndicatorWithFrame_inView_ascending_priority(
             &self,
-            cellFrame: NSRect,
-            controlView: &NSView,
+            cell_frame: NSRect,
+            control_view: &NSView,
             ascending: bool,
             priority: NSInteger,
         );

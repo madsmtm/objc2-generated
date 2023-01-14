@@ -20,7 +20,7 @@ extern_methods!(
         #[method(registerClassDescription:forClass:)]
         pub unsafe fn registerClassDescription_forClass(
             description: &NSClassDescription,
-            aClass: &Class,
+            a_class: &Class,
         );
 
         #[method(invalidateClassDescriptionCache)]
@@ -28,7 +28,7 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other classDescriptionForClass:)]
         pub unsafe fn classDescriptionForClass(
-            aClass: &Class,
+            a_class: &Class,
         ) -> Option<Id<NSClassDescription, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
@@ -47,7 +47,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other inverseForRelationshipKey:)]
         pub unsafe fn inverseForRelationshipKey(
             &self,
-            relationshipKey: &NSString,
+            relationship_key: &NSString,
         ) -> Option<Id<NSString, Shared>>;
     }
 );

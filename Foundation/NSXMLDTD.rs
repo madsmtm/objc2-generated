@@ -50,7 +50,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setPublicID:)]
-        pub unsafe fn setPublicID(&self, publicID: Option<&NSString>);
+        pub unsafe fn setPublicID(&self, public_id: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other systemID)]
@@ -58,7 +58,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setSystemID:)]
-        pub unsafe fn setSystemID(&self, systemID: Option<&NSString>);
+        pub unsafe fn setSystemID(&self, system_id: Option<&NSString>);
 
         #[method(insertChild:atIndex:)]
         pub unsafe fn insertChild_atIndex(&self, child: &NSXMLNode, index: NSUInteger);
@@ -110,7 +110,7 @@ extern_methods!(
         pub unsafe fn attributeDeclarationForName_elementName(
             &self,
             name: &NSString,
-            elementName: &NSString,
+            element_name: &NSString,
         ) -> Option<Id<NSXMLDTDNode, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSXMLDTDNode"))]

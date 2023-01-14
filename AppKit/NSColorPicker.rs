@@ -24,7 +24,7 @@ extern_methods!(
         pub unsafe fn initWithPickerMask_colorPanel(
             this: Option<Allocated<Self>>,
             mask: NSUInteger,
-            owningColorPanel: &NSColorPanel,
+            owning_color_panel: &NSColorPanel,
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(feature = "AppKit_NSColorPanel")]
@@ -39,8 +39,8 @@ extern_methods!(
         #[method(insertNewButtonImage:in:)]
         pub unsafe fn insertNewButtonImage_in(
             &self,
-            newButtonImage: &NSImage,
-            buttonCell: &NSButtonCell,
+            new_button_image: &NSImage,
+            button_cell: &NSButtonCell,
         );
 
         #[method(viewSizeChanged:)]
@@ -48,11 +48,11 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColorList")]
         #[method(attachColorList:)]
-        pub unsafe fn attachColorList(&self, colorList: &NSColorList);
+        pub unsafe fn attachColorList(&self, color_list: &NSColorList);
 
         #[cfg(feature = "AppKit_NSColorList")]
         #[method(detachColorList:)]
-        pub unsafe fn detachColorList(&self, colorList: &NSColorList);
+        pub unsafe fn detachColorList(&self, color_list: &NSColorList);
 
         #[method(setMode:)]
         pub unsafe fn setMode(&self, mode: NSColorPanelMode);

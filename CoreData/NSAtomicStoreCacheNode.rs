@@ -45,7 +45,7 @@ extern_methods!(
         #[method(setPropertyCache:)]
         pub unsafe fn setPropertyCache(
             &self,
-            propertyCache: Option<&NSMutableDictionary<NSString, Object>>,
+            property_cache: Option<&NSMutableDictionary<NSString, Object>>,
         );
 
         #[cfg(feature = "Foundation_NSString")]

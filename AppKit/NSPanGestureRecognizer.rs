@@ -24,7 +24,7 @@ extern_methods!(
         pub unsafe fn buttonMask(&self) -> NSUInteger;
 
         #[method(setButtonMask:)]
-        pub unsafe fn setButtonMask(&self, buttonMask: NSUInteger);
+        pub unsafe fn setButtonMask(&self, button_mask: NSUInteger);
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(translationInView:)]
@@ -42,7 +42,7 @@ extern_methods!(
         pub unsafe fn numberOfTouchesRequired(&self) -> NSInteger;
 
         #[method(setNumberOfTouchesRequired:)]
-        pub unsafe fn setNumberOfTouchesRequired(&self, numberOfTouchesRequired: NSInteger);
+        pub unsafe fn setNumberOfTouchesRequired(&self, number_of_touches_required: NSInteger);
     }
 );
 

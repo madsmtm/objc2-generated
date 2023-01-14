@@ -28,7 +28,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSSplitView")]
         #[method(setSplitView:)]
-        pub unsafe fn setSplitView(&self, splitView: &NSSplitView);
+        pub unsafe fn setSplitView(&self, split_view: &NSSplitView);
 
         #[cfg(all(feature = "AppKit_NSSplitViewItem", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other splitViewItems)]
@@ -36,29 +36,29 @@ extern_methods!(
 
         #[cfg(all(feature = "AppKit_NSSplitViewItem", feature = "Foundation_NSArray"))]
         #[method(setSplitViewItems:)]
-        pub unsafe fn setSplitViewItems(&self, splitViewItems: &NSArray<NSSplitViewItem>);
+        pub unsafe fn setSplitViewItems(&self, split_view_items: &NSArray<NSSplitViewItem>);
 
         #[cfg(feature = "AppKit_NSSplitViewItem")]
         #[method(addSplitViewItem:)]
-        pub unsafe fn addSplitViewItem(&self, splitViewItem: &NSSplitViewItem);
+        pub unsafe fn addSplitViewItem(&self, split_view_item: &NSSplitViewItem);
 
         #[cfg(feature = "AppKit_NSSplitViewItem")]
         #[method(insertSplitViewItem:atIndex:)]
         pub unsafe fn insertSplitViewItem_atIndex(
             &self,
-            splitViewItem: &NSSplitViewItem,
+            split_view_item: &NSSplitViewItem,
             index: NSInteger,
         );
 
         #[cfg(feature = "AppKit_NSSplitViewItem")]
         #[method(removeSplitViewItem:)]
-        pub unsafe fn removeSplitViewItem(&self, splitViewItem: &NSSplitViewItem);
+        pub unsafe fn removeSplitViewItem(&self, split_view_item: &NSSplitViewItem);
 
         #[cfg(feature = "AppKit_NSSplitViewItem")]
         #[method_id(@__retain_semantics Other splitViewItemForViewController:)]
         pub unsafe fn splitViewItemForViewController(
             &self,
-            viewController: &NSViewController,
+            view_controller: &NSViewController,
         ) -> Option<Id<NSSplitViewItem, Shared>>;
 
         #[method(minimumThicknessForInlineSidebars)]
@@ -67,7 +67,7 @@ extern_methods!(
         #[method(setMinimumThicknessForInlineSidebars:)]
         pub unsafe fn setMinimumThicknessForInlineSidebars(
             &self,
-            minimumThicknessForInlineSidebars: CGFloat,
+            minimum_thickness_for_inline_sidebars: CGFloat,
         );
 
         #[method(validateUserInterfaceItem:)]
@@ -81,7 +81,7 @@ extern_methods!(
         #[method(splitView:canCollapseSubview:)]
         pub unsafe fn splitView_canCollapseSubview(
             &self,
-            splitView: &NSSplitView,
+            split_view: &NSSplitView,
             subview: &NSView,
         ) -> bool;
 
@@ -89,35 +89,35 @@ extern_methods!(
         #[method(splitView:shouldCollapseSubview:forDoubleClickOnDividerAtIndex:)]
         pub unsafe fn splitView_shouldCollapseSubview_forDoubleClickOnDividerAtIndex(
             &self,
-            splitView: &NSSplitView,
+            split_view: &NSSplitView,
             subview: &NSView,
-            dividerIndex: NSInteger,
+            divider_index: NSInteger,
         ) -> bool;
 
         #[cfg(feature = "AppKit_NSSplitView")]
         #[method(splitView:shouldHideDividerAtIndex:)]
         pub unsafe fn splitView_shouldHideDividerAtIndex(
             &self,
-            splitView: &NSSplitView,
-            dividerIndex: NSInteger,
+            split_view: &NSSplitView,
+            divider_index: NSInteger,
         ) -> bool;
 
         #[cfg(feature = "AppKit_NSSplitView")]
         #[method(splitView:effectiveRect:forDrawnRect:ofDividerAtIndex:)]
         pub unsafe fn splitView_effectiveRect_forDrawnRect_ofDividerAtIndex(
             &self,
-            splitView: &NSSplitView,
-            proposedEffectiveRect: NSRect,
-            drawnRect: NSRect,
-            dividerIndex: NSInteger,
+            split_view: &NSSplitView,
+            proposed_effective_rect: NSRect,
+            drawn_rect: NSRect,
+            divider_index: NSInteger,
         ) -> NSRect;
 
         #[cfg(feature = "AppKit_NSSplitView")]
         #[method(splitView:additionalEffectiveRectOfDividerAtIndex:)]
         pub unsafe fn splitView_additionalEffectiveRectOfDividerAtIndex(
             &self,
-            splitView: &NSSplitView,
-            dividerIndex: NSInteger,
+            split_view: &NSSplitView,
+            divider_index: NSInteger,
         ) -> NSRect;
     }
 );
@@ -139,8 +139,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Option<Allocated<Self>>,
-            nibNameOrNil: Option<&NSNibName>,
-            nibBundleOrNil: Option<&NSBundle>,
+            nib_name_or_nil: Option<&NSNibName>,
+            nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Id<Self, Shared>;
     }
 );

@@ -44,7 +44,7 @@ extern_methods!(
         pub unsafe fn transitionStyle(&self) -> NSPageControllerTransitionStyle;
 
         #[method(setTransitionStyle:)]
-        pub unsafe fn setTransitionStyle(&self, transitionStyle: NSPageControllerTransitionStyle);
+        pub unsafe fn setTransitionStyle(&self, transition_style: NSPageControllerTransitionStyle);
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other arrangedObjects)]
@@ -52,13 +52,13 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setArrangedObjects:)]
-        pub unsafe fn setArrangedObjects(&self, arrangedObjects: &NSArray);
+        pub unsafe fn setArrangedObjects(&self, arranged_objects: &NSArray);
 
         #[method(selectedIndex)]
         pub unsafe fn selectedIndex(&self) -> NSInteger;
 
         #[method(setSelectedIndex:)]
-        pub unsafe fn setSelectedIndex(&self, selectedIndex: NSInteger);
+        pub unsafe fn setSelectedIndex(&self, selected_index: NSInteger);
 
         #[method(navigateForwardToObject:)]
         pub unsafe fn navigateForwardToObject(&self, object: &Object);
@@ -86,7 +86,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other pageController:identifierForObject:)]
         pub unsafe fn pageController_identifierForObject(
             &self,
-            pageController: &NSPageController,
+            page_controller: &NSPageController,
             object: &Object,
         ) -> Id<NSPageControllerObjectIdentifier, Shared>;
 
@@ -98,7 +98,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other pageController:viewControllerForIdentifier:)]
         pub unsafe fn pageController_viewControllerForIdentifier(
             &self,
-            pageController: &NSPageController,
+            page_controller: &NSPageController,
             identifier: &NSPageControllerObjectIdentifier,
         ) -> Id<NSViewController, Shared>;
 
@@ -107,7 +107,7 @@ extern_protocol!(
         #[method(pageController:frameForObject:)]
         pub unsafe fn pageController_frameForObject(
             &self,
-            pageController: &NSPageController,
+            page_controller: &NSPageController,
             object: Option<&Object>,
         ) -> NSRect;
 
@@ -119,8 +119,8 @@ extern_protocol!(
         #[method(pageController:prepareViewController:withObject:)]
         pub unsafe fn pageController_prepareViewController_withObject(
             &self,
-            pageController: &NSPageController,
-            viewController: &NSViewController,
+            page_controller: &NSPageController,
+            view_controller: &NSViewController,
             object: Option<&Object>,
         );
 
@@ -129,7 +129,7 @@ extern_protocol!(
         #[method(pageController:didTransitionToObject:)]
         pub unsafe fn pageController_didTransitionToObject(
             &self,
-            pageController: &NSPageController,
+            page_controller: &NSPageController,
             object: &Object,
         );
 
@@ -138,13 +138,13 @@ extern_protocol!(
         #[method(pageControllerWillStartLiveTransition:)]
         pub unsafe fn pageControllerWillStartLiveTransition(
             &self,
-            pageController: &NSPageController,
+            page_controller: &NSPageController,
         );
 
         #[cfg(feature = "AppKit_NSPageController")]
         #[optional]
         #[method(pageControllerDidEndLiveTransition:)]
-        pub unsafe fn pageControllerDidEndLiveTransition(&self, pageController: &NSPageController);
+        pub unsafe fn pageControllerDidEndLiveTransition(&self, page_controller: &NSPageController);
     }
 );
 
@@ -156,8 +156,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Option<Allocated<Self>>,
-            nibNameOrNil: Option<&NSNibName>,
-            nibBundleOrNil: Option<&NSBundle>,
+            nib_name_or_nil: Option<&NSNibName>,
+            nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Id<Self, Shared>;
     }
 );

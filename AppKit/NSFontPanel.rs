@@ -34,8 +34,10 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSFontPanel")]
         #[optional]
         #[method(validModesForFontPanel:)]
-        pub unsafe fn validModesForFontPanel(&self, fontPanel: &NSFontPanel)
-            -> NSFontPanelModeMask;
+        pub unsafe fn validModesForFontPanel(
+            &self,
+            font_panel: &NSFontPanel,
+        ) -> NSFontPanelModeMask;
     }
 );
 
@@ -66,21 +68,21 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(setAccessoryView:)]
-        pub unsafe fn setAccessoryView(&self, accessoryView: Option<&NSView>);
+        pub unsafe fn setAccessoryView(&self, accessory_view: Option<&NSView>);
 
         #[cfg(feature = "AppKit_NSFont")]
         #[method(setPanelFont:isMultiple:)]
-        pub unsafe fn setPanelFont_isMultiple(&self, fontObj: &NSFont, flag: bool);
+        pub unsafe fn setPanelFont_isMultiple(&self, font_obj: &NSFont, flag: bool);
 
         #[cfg(feature = "AppKit_NSFont")]
         #[method_id(@__retain_semantics Other panelConvertFont:)]
-        pub unsafe fn panelConvertFont(&self, fontObj: &NSFont) -> Id<NSFont, Shared>;
+        pub unsafe fn panelConvertFont(&self, font_obj: &NSFont) -> Id<NSFont, Shared>;
 
         #[method(worksWhenModal)]
         pub unsafe fn worksWhenModal(&self) -> bool;
 
         #[method(setWorksWhenModal:)]
-        pub unsafe fn setWorksWhenModal(&self, worksWhenModal: bool);
+        pub unsafe fn setWorksWhenModal(&self, works_when_modal: bool);
 
         #[method(isEnabled)]
         pub unsafe fn isEnabled(&self) -> bool;
@@ -130,9 +132,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer(
             this: Option<Allocated<Self>>,
-            contentRect: NSRect,
+            content_rect: NSRect,
             style: NSWindowStyleMask,
-            backingStoreType: NSBackingStoreType,
+            backing_store_type: NSBackingStoreType,
             flag: bool,
         ) -> Id<Self, Shared>;
 
@@ -140,9 +142,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:screen:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer_screen(
             this: Option<Allocated<Self>>,
-            contentRect: NSRect,
+            content_rect: NSRect,
             style: NSWindowStyleMask,
-            backingStoreType: NSBackingStoreType,
+            backing_store_type: NSBackingStoreType,
             flag: bool,
             screen: Option<&NSScreen>,
         ) -> Id<Self, Shared>;
@@ -150,7 +152,7 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSViewController")]
         #[method_id(@__retain_semantics Other windowWithContentViewController:)]
         pub unsafe fn windowWithContentViewController(
-            contentViewController: &NSViewController,
+            content_view_controller: &NSViewController,
         ) -> Id<Self, Shared>;
     }
 );

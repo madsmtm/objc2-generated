@@ -59,7 +59,7 @@ extern_methods!(
             &self,
             observer: &NSObject,
             indexes: &NSIndexSet,
-            keyPath: &NSString,
+            key_path: &NSString,
             options: NSKeyValueObservingOptions,
             context: *mut c_void,
         );
@@ -70,7 +70,7 @@ extern_methods!(
             &self,
             observer: &NSObject,
             indexes: &NSIndexSet,
-            keyPath: &NSString,
+            key_path: &NSString,
             context: *mut c_void,
         );
 
@@ -80,7 +80,7 @@ extern_methods!(
             &self,
             observer: &NSObject,
             indexes: &NSIndexSet,
-            keyPath: &NSString,
+            key_path: &NSString,
         );
 
         #[cfg(feature = "Foundation_NSString")]
@@ -88,7 +88,7 @@ extern_methods!(
         pub unsafe fn addObserver_forKeyPath_options_context(
             &self,
             observer: &NSObject,
-            keyPath: &NSString,
+            key_path: &NSString,
             options: NSKeyValueObservingOptions,
             context: *mut c_void,
         );
@@ -98,13 +98,13 @@ extern_methods!(
         pub unsafe fn removeObserver_forKeyPath_context(
             &self,
             observer: &NSObject,
-            keyPath: &NSString,
+            key_path: &NSString,
             context: *mut c_void,
         );
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(removeObserver:forKeyPath:)]
-        pub unsafe fn removeObserver_forKeyPath(&self, observer: &NSObject, keyPath: &NSString);
+        pub unsafe fn removeObserver_forKeyPath(&self, observer: &NSObject, key_path: &NSString);
     }
 );
 
@@ -119,7 +119,7 @@ extern_methods!(
         pub unsafe fn addObserver_forKeyPath_options_context(
             &self,
             observer: &NSObject,
-            keyPath: &NSString,
+            key_path: &NSString,
             options: NSKeyValueObservingOptions,
             context: *mut c_void,
         );
@@ -129,13 +129,13 @@ extern_methods!(
         pub unsafe fn removeObserver_forKeyPath_context(
             &self,
             observer: &NSObject,
-            keyPath: &NSString,
+            key_path: &NSString,
             context: *mut c_void,
         );
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(removeObserver:forKeyPath:)]
-        pub unsafe fn removeObserver_forKeyPath(&self, observer: &NSObject, keyPath: &NSString);
+        pub unsafe fn removeObserver_forKeyPath(&self, observer: &NSObject, key_path: &NSString);
     }
 );
 
@@ -150,7 +150,7 @@ extern_methods!(
         pub unsafe fn addObserver_forKeyPath_options_context(
             &self,
             observer: &NSObject,
-            keyPath: &NSString,
+            key_path: &NSString,
             options: NSKeyValueObservingOptions,
             context: *mut c_void,
         );
@@ -160,12 +160,12 @@ extern_methods!(
         pub unsafe fn removeObserver_forKeyPath_context(
             &self,
             observer: &NSObject,
-            keyPath: &NSString,
+            key_path: &NSString,
             context: *mut c_void,
         );
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(removeObserver:forKeyPath:)]
-        pub unsafe fn removeObserver_forKeyPath(&self, observer: &NSObject, keyPath: &NSString);
+        pub unsafe fn removeObserver_forKeyPath(&self, observer: &NSObject, key_path: &NSString);
     }
 );

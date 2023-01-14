@@ -26,7 +26,7 @@ extern_methods!(
         #[method(setSelectionHighlightStyle:)]
         pub unsafe fn setSelectionHighlightStyle(
             &self,
-            selectionHighlightStyle: NSTableViewSelectionHighlightStyle,
+            selection_highlight_style: NSTableViewSelectionHighlightStyle,
         );
 
         #[method(isEmphasized)]
@@ -39,7 +39,7 @@ extern_methods!(
         pub unsafe fn isGroupRowStyle(&self) -> bool;
 
         #[method(setGroupRowStyle:)]
-        pub unsafe fn setGroupRowStyle(&self, groupRowStyle: bool);
+        pub unsafe fn setGroupRowStyle(&self, group_row_style: bool);
 
         #[method(isSelected)]
         pub unsafe fn isSelected(&self) -> bool;
@@ -51,13 +51,13 @@ extern_methods!(
         pub unsafe fn isPreviousRowSelected(&self) -> bool;
 
         #[method(setPreviousRowSelected:)]
-        pub unsafe fn setPreviousRowSelected(&self, previousRowSelected: bool);
+        pub unsafe fn setPreviousRowSelected(&self, previous_row_selected: bool);
 
         #[method(isNextRowSelected)]
         pub unsafe fn isNextRowSelected(&self) -> bool;
 
         #[method(setNextRowSelected:)]
-        pub unsafe fn setNextRowSelected(&self, nextRowSelected: bool);
+        pub unsafe fn setNextRowSelected(&self, next_row_selected: bool);
 
         #[method(isFloating)]
         pub unsafe fn isFloating(&self) -> bool;
@@ -69,7 +69,7 @@ extern_methods!(
         pub unsafe fn isTargetForDropOperation(&self) -> bool;
 
         #[method(setTargetForDropOperation:)]
-        pub unsafe fn setTargetForDropOperation(&self, targetForDropOperation: bool);
+        pub unsafe fn setTargetForDropOperation(&self, target_for_drop_operation: bool);
 
         #[method(draggingDestinationFeedbackStyle)]
         pub unsafe fn draggingDestinationFeedbackStyle(
@@ -79,14 +79,17 @@ extern_methods!(
         #[method(setDraggingDestinationFeedbackStyle:)]
         pub unsafe fn setDraggingDestinationFeedbackStyle(
             &self,
-            draggingDestinationFeedbackStyle: NSTableViewDraggingDestinationFeedbackStyle,
+            dragging_destination_feedback_style: NSTableViewDraggingDestinationFeedbackStyle,
         );
 
         #[method(indentationForDropOperation)]
         pub unsafe fn indentationForDropOperation(&self) -> CGFloat;
 
         #[method(setIndentationForDropOperation:)]
-        pub unsafe fn setIndentationForDropOperation(&self, indentationForDropOperation: CGFloat);
+        pub unsafe fn setIndentationForDropOperation(
+            &self,
+            indentation_for_drop_operation: CGFloat,
+        );
 
         #[method(interiorBackgroundStyle)]
         pub unsafe fn interiorBackgroundStyle(&self) -> NSBackgroundStyle;
@@ -97,19 +100,19 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setBackgroundColor:)]
-        pub unsafe fn setBackgroundColor(&self, backgroundColor: &NSColor);
+        pub unsafe fn setBackgroundColor(&self, background_color: &NSColor);
 
         #[method(drawBackgroundInRect:)]
-        pub unsafe fn drawBackgroundInRect(&self, dirtyRect: NSRect);
+        pub unsafe fn drawBackgroundInRect(&self, dirty_rect: NSRect);
 
         #[method(drawSelectionInRect:)]
-        pub unsafe fn drawSelectionInRect(&self, dirtyRect: NSRect);
+        pub unsafe fn drawSelectionInRect(&self, dirty_rect: NSRect);
 
         #[method(drawSeparatorInRect:)]
-        pub unsafe fn drawSeparatorInRect(&self, dirtyRect: NSRect);
+        pub unsafe fn drawSeparatorInRect(&self, dirty_rect: NSRect);
 
         #[method(drawDraggingDestinationFeedbackInRect:)]
-        pub unsafe fn drawDraggingDestinationFeedbackInRect(&self, dirtyRect: NSRect);
+        pub unsafe fn drawDraggingDestinationFeedbackInRect(&self, dirty_rect: NSRect);
 
         #[method_id(@__retain_semantics Other viewAtColumn:)]
         pub unsafe fn viewAtColumn(&self, column: NSInteger) -> Option<Id<Object, Shared>>;
@@ -126,7 +129,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frame_rect: NSRect,
         ) -> Id<Self, Shared>;
     }
 );

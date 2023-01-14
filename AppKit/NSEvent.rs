@@ -178,7 +178,7 @@ extern_static!(NSOtherMouseUpMask: NSEventMask = NSEventMaskOtherMouseUp);
 extern_static!(NSOtherMouseDraggedMask: NSEventMask = NSEventMaskOtherMouseDragged);
 
 inline_fn!(
-    pub unsafe fn NSEventMaskFromType(type_: NSEventType) -> NSEventMask {
+    pub unsafe fn NSEventMaskFromType(r#type: NSEventType) -> NSEventMask {
         todo!()
     }
 );
@@ -352,7 +352,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSEvent")]
     unsafe impl NSEvent {
         #[method(type)]
-        pub unsafe fn type_(&self) -> NSEventType;
+        pub unsafe fn r#type(&self) -> NSEventType;
 
         #[method(timestamp)]
         pub unsafe fn timestamp(&self) -> NSTimeInterval;
@@ -451,13 +451,13 @@ extern_methods!(
         pub unsafe fn eventRef(&self) -> *mut c_void;
 
         #[method_id(@__retain_semantics Other eventWithEventRef:)]
-        pub unsafe fn eventWithEventRef(eventRef: NonNull<c_void>) -> Option<Id<NSEvent, Shared>>;
+        pub unsafe fn eventWithEventRef(event_ref: NonNull<c_void>) -> Option<Id<NSEvent, Shared>>;
 
         #[method(isMouseCoalescingEnabled)]
         pub unsafe fn isMouseCoalescingEnabled() -> bool;
 
         #[method(setMouseCoalescingEnabled:)]
-        pub unsafe fn setMouseCoalescingEnabled(mouseCoalescingEnabled: bool);
+        pub unsafe fn setMouseCoalescingEnabled(mouse_coalescing_enabled: bool);
 
         #[method(magnification)]
         pub unsafe fn magnification(&self) -> CGFloat;
@@ -572,9 +572,9 @@ extern_methods!(
         pub unsafe fn trackSwipeEventWithOptions_dampenAmountThresholdMin_max_usingHandler(
             &self,
             options: NSEventSwipeTrackingOptions,
-            minDampenThreshold: CGFloat,
-            maxDampenThreshold: CGFloat,
-            trackingHandler: &Block<(CGFloat, NSEventPhase, Bool, NonNull<Bool>), ()>,
+            min_dampen_threshold: CGFloat,
+            max_dampen_threshold: CGFloat,
+            tracking_handler: &Block<(CGFloat, NSEventPhase, Bool, NonNull<Bool>), ()>,
         );
 
         #[method(startPeriodicEventsAfterDelay:withPeriod:)]
@@ -589,26 +589,26 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSGraphicsContext")]
         #[method_id(@__retain_semantics Other mouseEventWithType:location:modifierFlags:timestamp:windowNumber:context:eventNumber:clickCount:pressure:)]
         pub unsafe fn mouseEventWithType_location_modifierFlags_timestamp_windowNumber_context_eventNumber_clickCount_pressure(
-            type_: NSEventType,
+            r#type: NSEventType,
             location: NSPoint,
             flags: NSEventModifierFlags,
             time: NSTimeInterval,
-            wNum: NSInteger,
-            unusedPassNil: Option<&NSGraphicsContext>,
-            eNum: NSInteger,
-            cNum: NSInteger,
+            w_num: NSInteger,
+            unused_pass_nil: Option<&NSGraphicsContext>,
+            e_num: NSInteger,
+            c_num: NSInteger,
             pressure: c_float,
         ) -> Option<Id<NSEvent, Shared>>;
 
         #[cfg(all(feature = "AppKit_NSGraphicsContext", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other keyEventWithType:location:modifierFlags:timestamp:windowNumber:context:characters:charactersIgnoringModifiers:isARepeat:keyCode:)]
         pub unsafe fn keyEventWithType_location_modifierFlags_timestamp_windowNumber_context_characters_charactersIgnoringModifiers_isARepeat_keyCode(
-            type_: NSEventType,
+            r#type: NSEventType,
             location: NSPoint,
             flags: NSEventModifierFlags,
             time: NSTimeInterval,
-            wNum: NSInteger,
-            unusedPassNil: Option<&NSGraphicsContext>,
+            w_num: NSInteger,
+            unused_pass_nil: Option<&NSGraphicsContext>,
             keys: &NSString,
             ukeys: &NSString,
             flag: bool,
@@ -618,26 +618,26 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSGraphicsContext")]
         #[method_id(@__retain_semantics Other enterExitEventWithType:location:modifierFlags:timestamp:windowNumber:context:eventNumber:trackingNumber:userData:)]
         pub unsafe fn enterExitEventWithType_location_modifierFlags_timestamp_windowNumber_context_eventNumber_trackingNumber_userData(
-            type_: NSEventType,
+            r#type: NSEventType,
             location: NSPoint,
             flags: NSEventModifierFlags,
             time: NSTimeInterval,
-            wNum: NSInteger,
-            unusedPassNil: Option<&NSGraphicsContext>,
-            eNum: NSInteger,
-            tNum: NSInteger,
+            w_num: NSInteger,
+            unused_pass_nil: Option<&NSGraphicsContext>,
+            e_num: NSInteger,
+            t_num: NSInteger,
             data: *mut c_void,
         ) -> Option<Id<NSEvent, Shared>>;
 
         #[cfg(feature = "AppKit_NSGraphicsContext")]
         #[method_id(@__retain_semantics Other otherEventWithType:location:modifierFlags:timestamp:windowNumber:context:subtype:data1:data2:)]
         pub unsafe fn otherEventWithType_location_modifierFlags_timestamp_windowNumber_context_subtype_data1_data2(
-            type_: NSEventType,
+            r#type: NSEventType,
             location: NSPoint,
             flags: NSEventModifierFlags,
             time: NSTimeInterval,
-            wNum: NSInteger,
-            unusedPassNil: Option<&NSGraphicsContext>,
+            w_num: NSInteger,
+            unused_pass_nil: Option<&NSGraphicsContext>,
             subtype: c_short,
             d1: NSInteger,
             d2: NSInteger,
@@ -671,7 +671,7 @@ extern_methods!(
         ) -> Option<Id<Object, Shared>>;
 
         #[method(removeMonitor:)]
-        pub unsafe fn removeMonitor(eventMonitor: &Object);
+        pub unsafe fn removeMonitor(event_monitor: &Object);
     }
 );
 

@@ -41,7 +41,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
-            inCoder: &NSCoder,
+            in_coder: &NSCoder,
         ) -> Option<Id<Self, Shared>>;
     }
 );
@@ -65,20 +65,20 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initAndTestWithTests:)]
         pub unsafe fn initAndTestWithTests(
             this: Option<Allocated<Self>>,
-            subTests: &NSArray<NSSpecifierTest>,
+            sub_tests: &NSArray<NSSpecifierTest>,
         ) -> Id<Self, Shared>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSSpecifierTest"))]
         #[method_id(@__retain_semantics Init initOrTestWithTests:)]
         pub unsafe fn initOrTestWithTests(
             this: Option<Allocated<Self>>,
-            subTests: &NSArray<NSSpecifierTest>,
+            sub_tests: &NSArray<NSSpecifierTest>,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Init initNotTestWithTest:)]
         pub unsafe fn initNotTestWithTest(
             this: Option<Allocated<Self>>,
-            subTest: &NSScriptWhoseTest,
+            sub_test: &NSScriptWhoseTest,
         ) -> Id<Self, Shared>;
     }
 );
@@ -105,7 +105,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
-            inCoder: &NSCoder,
+            in_coder: &NSCoder,
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(feature = "Foundation_NSScriptObjectSpecifier")]
@@ -113,7 +113,7 @@ extern_methods!(
         pub unsafe fn initWithObjectSpecifier_comparisonOperator_testObject(
             this: Option<Allocated<Self>>,
             obj1: Option<&NSScriptObjectSpecifier>,
-            compOp: NSTestComparisonOperation,
+            comp_op: NSTestComparisonOperation,
             obj2: Option<&Object>,
         ) -> Id<Self, Shared>;
     }

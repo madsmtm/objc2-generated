@@ -71,7 +71,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCharacterEncoding:)]
-        pub unsafe fn setCharacterEncoding(&self, characterEncoding: Option<&NSString>);
+        pub unsafe fn setCharacterEncoding(&self, character_encoding: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other version)]
@@ -91,7 +91,10 @@ extern_methods!(
         pub unsafe fn documentContentKind(&self) -> NSXMLDocumentContentKind;
 
         #[method(setDocumentContentKind:)]
-        pub unsafe fn setDocumentContentKind(&self, documentContentKind: NSXMLDocumentContentKind);
+        pub unsafe fn setDocumentContentKind(
+            &self,
+            document_content_kind: NSXMLDocumentContentKind,
+        );
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other MIMEType)]
@@ -99,7 +102,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setMIMEType:)]
-        pub unsafe fn setMIMEType(&self, MIMEType: Option<&NSString>);
+        pub unsafe fn setMIMEType(&self, mime_type: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSXMLDTD")]
         #[method_id(@__retain_semantics Other DTD)]
@@ -107,7 +110,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSXMLDTD")]
         #[method(setDTD:)]
-        pub unsafe fn setDTD(&self, DTD: Option<&NSXMLDTD>);
+        pub unsafe fn setDTD(&self, dtd: Option<&NSXMLDTD>);
 
         #[cfg(feature = "Foundation_NSXMLElement")]
         #[method(setRootElement:)]
@@ -183,7 +186,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other objectByApplyingXSLTAtURL:arguments:error:_)]
         pub unsafe fn objectByApplyingXSLTAtURL_arguments_error(
             &self,
-            xsltURL: &NSURL,
+            xslt_url: &NSURL,
             argument: Option<&NSDictionary<NSString, NSString>>,
         ) -> Result<Id<Object, Shared>, Id<NSError, Shared>>;
 

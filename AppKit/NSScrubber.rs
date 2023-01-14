@@ -33,7 +33,7 @@ extern_protocol!(
         pub unsafe fn scrubber_didSelectItemAtIndex(
             &self,
             scrubber: &NSScrubber,
-            selectedIndex: NSInteger,
+            selected_index: NSInteger,
         );
 
         #[cfg(feature = "AppKit_NSScrubber")]
@@ -42,7 +42,7 @@ extern_protocol!(
         pub unsafe fn scrubber_didHighlightItemAtIndex(
             &self,
             scrubber: &NSScrubber,
-            highlightedIndex: NSInteger,
+            highlighted_index: NSInteger,
         );
 
         #[cfg(feature = "AppKit_NSScrubber")]
@@ -51,7 +51,7 @@ extern_protocol!(
         pub unsafe fn scrubber_didChangeVisibleRange(
             &self,
             scrubber: &NSScrubber,
-            visibleRange: NSRange,
+            visible_range: NSRange,
         );
 
         #[cfg(feature = "AppKit_NSScrubber")]
@@ -144,7 +144,7 @@ extern_methods!(
         pub unsafe fn dataSource(&self) -> Option<Id<NSScrubberDataSource, Shared>>;
 
         #[method(setDataSource:)]
-        pub unsafe fn setDataSource(&self, dataSource: Option<&NSScrubberDataSource>);
+        pub unsafe fn setDataSource(&self, data_source: Option<&NSScrubberDataSource>);
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSScrubberDelegate, Shared>>;
@@ -158,7 +158,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSScrubberLayout")]
         #[method(setScrubberLayout:)]
-        pub unsafe fn setScrubberLayout(&self, scrubberLayout: &NSScrubberLayout);
+        pub unsafe fn setScrubberLayout(&self, scrubber_layout: &NSScrubberLayout);
 
         #[method(numberOfItems)]
         pub unsafe fn numberOfItems(&self) -> NSInteger;
@@ -170,7 +170,7 @@ extern_methods!(
         pub unsafe fn selectedIndex(&self) -> NSInteger;
 
         #[method(setSelectedIndex:)]
-        pub unsafe fn setSelectedIndex(&self, selectedIndex: NSInteger);
+        pub unsafe fn setSelectedIndex(&self, selected_index: NSInteger);
 
         #[method(mode)]
         pub unsafe fn mode(&self) -> NSScrubberMode;
@@ -182,7 +182,7 @@ extern_methods!(
         pub unsafe fn itemAlignment(&self) -> NSScrubberAlignment;
 
         #[method(setItemAlignment:)]
-        pub unsafe fn setItemAlignment(&self, itemAlignment: NSScrubberAlignment);
+        pub unsafe fn setItemAlignment(&self, item_alignment: NSScrubberAlignment);
 
         #[method(isContinuous)]
         pub unsafe fn isContinuous(&self) -> bool;
@@ -194,7 +194,7 @@ extern_methods!(
         pub unsafe fn floatsSelectionViews(&self) -> bool;
 
         #[method(setFloatsSelectionViews:)]
-        pub unsafe fn setFloatsSelectionViews(&self, floatsSelectionViews: bool);
+        pub unsafe fn setFloatsSelectionViews(&self, floats_selection_views: bool);
 
         #[cfg(feature = "AppKit_NSScrubberSelectionStyle")]
         #[method_id(@__retain_semantics Other selectionBackgroundStyle)]
@@ -206,7 +206,7 @@ extern_methods!(
         #[method(setSelectionBackgroundStyle:)]
         pub unsafe fn setSelectionBackgroundStyle(
             &self,
-            selectionBackgroundStyle: Option<&NSScrubberSelectionStyle>,
+            selection_background_style: Option<&NSScrubberSelectionStyle>,
         );
 
         #[cfg(feature = "AppKit_NSScrubberSelectionStyle")]
@@ -217,14 +217,14 @@ extern_methods!(
         #[method(setSelectionOverlayStyle:)]
         pub unsafe fn setSelectionOverlayStyle(
             &self,
-            selectionOverlayStyle: Option<&NSScrubberSelectionStyle>,
+            selection_overlay_style: Option<&NSScrubberSelectionStyle>,
         );
 
         #[method(showsArrowButtons)]
         pub unsafe fn showsArrowButtons(&self) -> bool;
 
         #[method(setShowsArrowButtons:)]
-        pub unsafe fn setShowsArrowButtons(&self, showsArrowButtons: bool);
+        pub unsafe fn setShowsArrowButtons(&self, shows_arrow_buttons: bool);
 
         #[method(showsAdditionalContentIndicators)]
         pub unsafe fn showsAdditionalContentIndicators(&self) -> bool;
@@ -232,7 +232,7 @@ extern_methods!(
         #[method(setShowsAdditionalContentIndicators:)]
         pub unsafe fn setShowsAdditionalContentIndicators(
             &self,
-            showsAdditionalContentIndicators: bool,
+            shows_additional_content_indicators: bool,
         );
 
         #[cfg(feature = "AppKit_NSColor")]
@@ -241,18 +241,18 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setBackgroundColor:)]
-        pub unsafe fn setBackgroundColor(&self, backgroundColor: Option<&NSColor>);
+        pub unsafe fn setBackgroundColor(&self, background_color: Option<&NSColor>);
 
         #[method_id(@__retain_semantics Other backgroundView)]
         pub unsafe fn backgroundView(&self) -> Option<Id<NSView, Shared>>;
 
         #[method(setBackgroundView:)]
-        pub unsafe fn setBackgroundView(&self, backgroundView: Option<&NSView>);
+        pub unsafe fn setBackgroundView(&self, background_view: Option<&NSView>);
 
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frame_rect: NSRect,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSCoder")]
@@ -266,7 +266,7 @@ extern_methods!(
         pub unsafe fn reloadData(&self);
 
         #[method(performSequentialBatchUpdates:)]
-        pub unsafe fn performSequentialBatchUpdates(&self, updateBlock: &Block<(), ()>);
+        pub unsafe fn performSequentialBatchUpdates(&self, update_block: &Block<(), ()>);
 
         #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(insertItemsAtIndexes:)]
@@ -281,7 +281,7 @@ extern_methods!(
         pub unsafe fn reloadItemsAtIndexes(&self, indexes: &NSIndexSet);
 
         #[method(moveItemAtIndex:toIndex:)]
-        pub unsafe fn moveItemAtIndex_toIndex(&self, oldIndex: NSInteger, newIndex: NSInteger);
+        pub unsafe fn moveItemAtIndex_toIndex(&self, old_index: NSInteger, new_index: NSInteger);
 
         #[method(scrollItemAtIndex:toAlignment:)]
         pub unsafe fn scrollItemAtIndex_toAlignment(
@@ -300,8 +300,8 @@ extern_methods!(
         #[method(registerClass:forItemIdentifier:)]
         pub unsafe fn registerClass_forItemIdentifier(
             &self,
-            itemViewClass: Option<&Class>,
-            itemIdentifier: &NSUserInterfaceItemIdentifier,
+            item_view_class: Option<&Class>,
+            item_identifier: &NSUserInterfaceItemIdentifier,
         );
 
         #[cfg(feature = "AppKit_NSNib")]
@@ -309,14 +309,14 @@ extern_methods!(
         pub unsafe fn registerNib_forItemIdentifier(
             &self,
             nib: Option<&NSNib>,
-            itemIdentifier: &NSUserInterfaceItemIdentifier,
+            item_identifier: &NSUserInterfaceItemIdentifier,
         );
 
         #[cfg(feature = "AppKit_NSScrubberItemView")]
         #[method_id(@__retain_semantics Other makeItemWithIdentifier:owner:)]
         pub unsafe fn makeItemWithIdentifier_owner(
             &self,
-            itemIdentifier: &NSUserInterfaceItemIdentifier,
+            item_identifier: &NSUserInterfaceItemIdentifier,
             owner: Option<&Object>,
         ) -> Option<Id<NSScrubberItemView, Shared>>;
     }

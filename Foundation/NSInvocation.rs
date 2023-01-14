@@ -46,16 +46,24 @@ extern_methods!(
         pub unsafe fn setSelector(&self, selector: Sel);
 
         #[method(getReturnValue:)]
-        pub unsafe fn getReturnValue(&self, retLoc: NonNull<c_void>);
+        pub unsafe fn getReturnValue(&self, ret_loc: NonNull<c_void>);
 
         #[method(setReturnValue:)]
-        pub unsafe fn setReturnValue(&self, retLoc: NonNull<c_void>);
+        pub unsafe fn setReturnValue(&self, ret_loc: NonNull<c_void>);
 
         #[method(getArgument:atIndex:)]
-        pub unsafe fn getArgument_atIndex(&self, argumentLocation: NonNull<c_void>, idx: NSInteger);
+        pub unsafe fn getArgument_atIndex(
+            &self,
+            argument_location: NonNull<c_void>,
+            idx: NSInteger,
+        );
 
         #[method(setArgument:atIndex:)]
-        pub unsafe fn setArgument_atIndex(&self, argumentLocation: NonNull<c_void>, idx: NSInteger);
+        pub unsafe fn setArgument_atIndex(
+            &self,
+            argument_location: NonNull<c_void>,
+            idx: NSInteger,
+        );
 
         #[method(invoke)]
         pub unsafe fn invoke(&self);

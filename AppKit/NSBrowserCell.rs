@@ -53,7 +53,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other highlightColorInView:)]
         pub unsafe fn highlightColorInView(
             &self,
-            controlView: &NSView,
+            control_view: &NSView,
         ) -> Option<Id<NSColor, Shared>>;
 
         #[method(isLeaf)]
@@ -88,6 +88,6 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method(setAlternateImage:)]
-        pub unsafe fn setAlternateImage(&self, alternateImage: Option<&NSImage>);
+        pub unsafe fn setAlternateImage(&self, alternate_image: Option<&NSImage>);
     }
 );

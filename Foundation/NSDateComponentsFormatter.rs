@@ -67,8 +67,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Other stringFromDate:toDate:)]
         pub unsafe fn stringFromDate_toDate(
             &self,
-            startDate: &NSDate,
-            endDate: &NSDate,
+            start_date: &NSDate,
+            end_date: &NSDate,
         ) -> Option<Id<NSString, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -85,20 +85,20 @@ extern_methods!(
         #[method_id(@__retain_semantics Other localizedStringFromDateComponents:unitsStyle:)]
         pub unsafe fn localizedStringFromDateComponents_unitsStyle(
             components: &NSDateComponents,
-            unitsStyle: NSDateComponentsFormatterUnitsStyle,
+            units_style: NSDateComponentsFormatterUnitsStyle,
         ) -> Option<Id<NSString, Shared>>;
 
         #[method(unitsStyle)]
         pub unsafe fn unitsStyle(&self) -> NSDateComponentsFormatterUnitsStyle;
 
         #[method(setUnitsStyle:)]
-        pub unsafe fn setUnitsStyle(&self, unitsStyle: NSDateComponentsFormatterUnitsStyle);
+        pub unsafe fn setUnitsStyle(&self, units_style: NSDateComponentsFormatterUnitsStyle);
 
         #[method(allowedUnits)]
         pub unsafe fn allowedUnits(&self) -> NSCalendarUnit;
 
         #[method(setAllowedUnits:)]
-        pub unsafe fn setAllowedUnits(&self, allowedUnits: NSCalendarUnit);
+        pub unsafe fn setAllowedUnits(&self, allowed_units: NSCalendarUnit);
 
         #[method(zeroFormattingBehavior)]
         pub unsafe fn zeroFormattingBehavior(
@@ -108,7 +108,7 @@ extern_methods!(
         #[method(setZeroFormattingBehavior:)]
         pub unsafe fn setZeroFormattingBehavior(
             &self,
-            zeroFormattingBehavior: NSDateComponentsFormatterZeroFormattingBehavior,
+            zero_formatting_behavior: NSDateComponentsFormatterZeroFormattingBehavior,
         );
 
         #[cfg(feature = "Foundation_NSCalendar")]
@@ -125,43 +125,43 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method(setReferenceDate:)]
-        pub unsafe fn setReferenceDate(&self, referenceDate: Option<&NSDate>);
+        pub unsafe fn setReferenceDate(&self, reference_date: Option<&NSDate>);
 
         #[method(allowsFractionalUnits)]
         pub unsafe fn allowsFractionalUnits(&self) -> bool;
 
         #[method(setAllowsFractionalUnits:)]
-        pub unsafe fn setAllowsFractionalUnits(&self, allowsFractionalUnits: bool);
+        pub unsafe fn setAllowsFractionalUnits(&self, allows_fractional_units: bool);
 
         #[method(maximumUnitCount)]
         pub unsafe fn maximumUnitCount(&self) -> NSInteger;
 
         #[method(setMaximumUnitCount:)]
-        pub unsafe fn setMaximumUnitCount(&self, maximumUnitCount: NSInteger);
+        pub unsafe fn setMaximumUnitCount(&self, maximum_unit_count: NSInteger);
 
         #[method(collapsesLargestUnit)]
         pub unsafe fn collapsesLargestUnit(&self) -> bool;
 
         #[method(setCollapsesLargestUnit:)]
-        pub unsafe fn setCollapsesLargestUnit(&self, collapsesLargestUnit: bool);
+        pub unsafe fn setCollapsesLargestUnit(&self, collapses_largest_unit: bool);
 
         #[method(includesApproximationPhrase)]
         pub unsafe fn includesApproximationPhrase(&self) -> bool;
 
         #[method(setIncludesApproximationPhrase:)]
-        pub unsafe fn setIncludesApproximationPhrase(&self, includesApproximationPhrase: bool);
+        pub unsafe fn setIncludesApproximationPhrase(&self, includes_approximation_phrase: bool);
 
         #[method(includesTimeRemainingPhrase)]
         pub unsafe fn includesTimeRemainingPhrase(&self) -> bool;
 
         #[method(setIncludesTimeRemainingPhrase:)]
-        pub unsafe fn setIncludesTimeRemainingPhrase(&self, includesTimeRemainingPhrase: bool);
+        pub unsafe fn setIncludesTimeRemainingPhrase(&self, includes_time_remaining_phrase: bool);
 
         #[method(formattingContext)]
         pub unsafe fn formattingContext(&self) -> NSFormattingContext;
 
         #[method(setFormattingContext:)]
-        pub unsafe fn setFormattingContext(&self, formattingContext: NSFormattingContext);
+        pub unsafe fn setFormattingContext(&self, formatting_context: NSFormattingContext);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(getObjectValue:forString:errorDescription:)]

@@ -56,7 +56,7 @@ extern_methods!(
         pub unsafe fn visibilityPriority(&self) -> NSTouchBarItemPriority;
 
         #[method(setVisibilityPriority:)]
-        pub unsafe fn setVisibilityPriority(&self, visibilityPriority: NSTouchBarItemPriority);
+        pub unsafe fn setVisibilityPriority(&self, visibility_priority: NSTouchBarItemPriority);
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other view)]

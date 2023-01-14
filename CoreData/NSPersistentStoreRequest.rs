@@ -35,7 +35,10 @@ extern_methods!(
 
         #[cfg(all(feature = "CoreData_NSPersistentStore", feature = "Foundation_NSArray"))]
         #[method(setAffectedStores:)]
-        pub unsafe fn setAffectedStores(&self, affectedStores: Option<&NSArray<NSPersistentStore>>);
+        pub unsafe fn setAffectedStores(
+            &self,
+            affected_stores: Option<&NSArray<NSPersistentStore>>,
+        );
 
         #[method(requestType)]
         pub unsafe fn requestType(&self) -> NSPersistentStoreRequestType;

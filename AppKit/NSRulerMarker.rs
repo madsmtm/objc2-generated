@@ -26,7 +26,7 @@ extern_methods!(
             ruler: &NSRulerView,
             location: CGFloat,
             image: &NSImage,
-            imageOrigin: NSPoint,
+            image_origin: NSPoint,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSCoder")]
@@ -47,7 +47,7 @@ extern_methods!(
         pub unsafe fn markerLocation(&self) -> CGFloat;
 
         #[method(setMarkerLocation:)]
-        pub unsafe fn setMarkerLocation(&self, markerLocation: CGFloat);
+        pub unsafe fn setMarkerLocation(&self, marker_location: CGFloat);
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other image)]
@@ -61,7 +61,7 @@ extern_methods!(
         pub unsafe fn imageOrigin(&self) -> NSPoint;
 
         #[method(setImageOrigin:)]
-        pub unsafe fn setImageOrigin(&self, imageOrigin: NSPoint);
+        pub unsafe fn setImageOrigin(&self, image_origin: NSPoint);
 
         #[method(isMovable)]
         pub unsafe fn isMovable(&self) -> bool;
@@ -82,7 +82,7 @@ extern_methods!(
         pub unsafe fn representedObject(&self) -> Option<Id<Object, Shared>>;
 
         #[method(setRepresentedObject:)]
-        pub unsafe fn setRepresentedObject(&self, representedObject: Option<&Object>);
+        pub unsafe fn setRepresentedObject(&self, represented_object: Option<&Object>);
 
         #[method(imageRectInRuler)]
         pub unsafe fn imageRectInRuler(&self) -> NSRect;
@@ -95,6 +95,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSEvent")]
         #[method(trackMouse:adding:)]
-        pub unsafe fn trackMouse_adding(&self, mouseDownEvent: &NSEvent, isAdding: bool) -> bool;
+        pub unsafe fn trackMouse_adding(&self, mouse_down_event: &NSEvent, is_adding: bool)
+            -> bool;
     }
 );

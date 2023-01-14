@@ -22,19 +22,22 @@ extern_methods!(
         pub unsafe fn sampleBuffer(&self) -> Option<Id<MTLCounterSampleBuffer, Shared>>;
 
         #[method(setSampleBuffer:)]
-        pub unsafe fn setSampleBuffer(&self, sampleBuffer: Option<&MTLCounterSampleBuffer>);
+        pub unsafe fn setSampleBuffer(&self, sample_buffer: Option<&MTLCounterSampleBuffer>);
 
         #[method(startOfEncoderSampleIndex)]
         pub unsafe fn startOfEncoderSampleIndex(&self) -> NSUInteger;
 
         #[method(setStartOfEncoderSampleIndex:)]
-        pub unsafe fn setStartOfEncoderSampleIndex(&self, startOfEncoderSampleIndex: NSUInteger);
+        pub unsafe fn setStartOfEncoderSampleIndex(
+            &self,
+            start_of_encoder_sample_index: NSUInteger,
+        );
 
         #[method(endOfEncoderSampleIndex)]
         pub unsafe fn endOfEncoderSampleIndex(&self) -> NSUInteger;
 
         #[method(setEndOfEncoderSampleIndex:)]
-        pub unsafe fn setEndOfEncoderSampleIndex(&self, endOfEncoderSampleIndex: NSUInteger);
+        pub unsafe fn setEndOfEncoderSampleIndex(&self, end_of_encoder_sample_index: NSUInteger);
     }
 );
 
@@ -56,7 +59,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other objectAtIndexedSubscript:)]
         pub unsafe fn objectAtIndexedSubscript(
             &self,
-            attachmentIndex: NSUInteger,
+            attachment_index: NSUInteger,
         ) -> Id<MTLResourceStatePassSampleBufferAttachmentDescriptor, Shared>;
 
         #[cfg(feature = "Metal_MTLResourceStatePassSampleBufferAttachmentDescriptor")]
@@ -64,7 +67,7 @@ extern_methods!(
         pub unsafe fn setObject_atIndexedSubscript(
             &self,
             attachment: Option<&MTLResourceStatePassSampleBufferAttachmentDescriptor>,
-            attachmentIndex: NSUInteger,
+            attachment_index: NSUInteger,
         );
     }
 );

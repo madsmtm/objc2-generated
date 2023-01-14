@@ -24,19 +24,19 @@ extern_methods!(
         pub unsafe fn isFloatingPanel(&self) -> bool;
 
         #[method(setFloatingPanel:)]
-        pub unsafe fn setFloatingPanel(&self, floatingPanel: bool);
+        pub unsafe fn setFloatingPanel(&self, floating_panel: bool);
 
         #[method(becomesKeyOnlyIfNeeded)]
         pub unsafe fn becomesKeyOnlyIfNeeded(&self) -> bool;
 
         #[method(setBecomesKeyOnlyIfNeeded:)]
-        pub unsafe fn setBecomesKeyOnlyIfNeeded(&self, becomesKeyOnlyIfNeeded: bool);
+        pub unsafe fn setBecomesKeyOnlyIfNeeded(&self, becomes_key_only_if_needed: bool);
 
         #[method(worksWhenModal)]
         pub unsafe fn worksWhenModal(&self) -> bool;
 
         #[method(setWorksWhenModal:)]
-        pub unsafe fn setWorksWhenModal(&self, worksWhenModal: bool);
+        pub unsafe fn setWorksWhenModal(&self, works_when_modal: bool);
     }
 );
 
@@ -61,9 +61,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer(
             this: Option<Allocated<Self>>,
-            contentRect: NSRect,
+            content_rect: NSRect,
             style: NSWindowStyleMask,
-            backingStoreType: NSBackingStoreType,
+            backing_store_type: NSBackingStoreType,
             flag: bool,
         ) -> Id<Self, Shared>;
 
@@ -71,9 +71,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:screen:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer_screen(
             this: Option<Allocated<Self>>,
-            contentRect: NSRect,
+            content_rect: NSRect,
             style: NSWindowStyleMask,
-            backingStoreType: NSBackingStoreType,
+            backing_store_type: NSBackingStoreType,
             flag: bool,
             screen: Option<&NSScreen>,
         ) -> Id<Self, Shared>;
@@ -81,7 +81,7 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSViewController")]
         #[method_id(@__retain_semantics Other windowWithContentViewController:)]
         pub unsafe fn windowWithContentViewController(
-            contentViewController: &NSViewController,
+            content_view_controller: &NSViewController,
         ) -> Id<Self, Shared>;
     }
 );

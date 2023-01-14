@@ -59,7 +59,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other cookiesForURL:)]
         pub unsafe fn cookiesForURL(
             &self,
-            URL: &NSURL,
+            url: &NSURL,
         ) -> Option<Id<NSArray<NSHTTPCookie>, Shared>>;
 
         #[cfg(all(
@@ -71,15 +71,15 @@ extern_methods!(
         pub unsafe fn setCookies_forURL_mainDocumentURL(
             &self,
             cookies: &NSArray<NSHTTPCookie>,
-            URL: Option<&NSURL>,
-            mainDocumentURL: Option<&NSURL>,
+            url: Option<&NSURL>,
+            main_document_url: Option<&NSURL>,
         );
 
         #[method(cookieAcceptPolicy)]
         pub unsafe fn cookieAcceptPolicy(&self) -> NSHTTPCookieAcceptPolicy;
 
         #[method(setCookieAcceptPolicy:)]
-        pub unsafe fn setCookieAcceptPolicy(&self, cookieAcceptPolicy: NSHTTPCookieAcceptPolicy);
+        pub unsafe fn setCookieAcceptPolicy(&self, cookie_accept_policy: NSHTTPCookieAcceptPolicy);
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -89,7 +89,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other sortedCookiesUsingDescriptors:)]
         pub unsafe fn sortedCookiesUsingDescriptors(
             &self,
-            sortOrder: &NSArray<NSSortDescriptor>,
+            sort_order: &NSArray<NSSortDescriptor>,
         ) -> Id<NSArray<NSHTTPCookie>, Shared>;
     }
 );
@@ -119,7 +119,7 @@ extern_methods!(
         pub unsafe fn getCookiesForTask_completionHandler(
             &self,
             task: &NSURLSessionTask,
-            completionHandler: &Block<(*mut NSArray<NSHTTPCookie>,), ()>,
+            completion_handler: &Block<(*mut NSArray<NSHTTPCookie>,), ()>,
         );
     }
 );

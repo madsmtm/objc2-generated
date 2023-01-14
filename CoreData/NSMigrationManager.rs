@@ -22,8 +22,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithSourceModel:destinationModel:)]
         pub unsafe fn initWithSourceModel_destinationModel(
             this: Option<Allocated<Self>>,
-            sourceModel: &NSManagedObjectModel,
-            destinationModel: &NSManagedObjectModel,
+            source_model: &NSManagedObjectModel,
+            destination_model: &NSManagedObjectModel,
         ) -> Id<Self, Shared>;
 
         #[cfg(all(
@@ -36,13 +36,13 @@ extern_methods!(
         #[method(migrateStoreFromURL:type:options:withMappingModel:toDestinationURL:destinationType:destinationOptions:error:_)]
         pub unsafe fn migrateStoreFromURL_type_options_withMappingModel_toDestinationURL_destinationType_destinationOptions_error(
             &self,
-            sourceURL: &NSURL,
-            sStoreType: &NSString,
-            sOptions: Option<&NSDictionary>,
+            source_url: &NSURL,
+            s_store_type: &NSString,
+            s_options: Option<&NSDictionary>,
             mappings: Option<&NSMappingModel>,
-            dURL: &NSURL,
-            dStoreType: &NSString,
-            dOptions: Option<&NSDictionary>,
+            d_url: &NSURL,
+            d_store_type: &NSString,
+            d_options: Option<&NSDictionary>,
         ) -> Result<(), Id<NSError, Shared>>;
 
         #[method(usesStoreSpecificMigrationManager)]
@@ -51,7 +51,7 @@ extern_methods!(
         #[method(setUsesStoreSpecificMigrationManager:)]
         pub unsafe fn setUsesStoreSpecificMigrationManager(
             &self,
-            usesStoreSpecificMigrationManager: bool,
+            uses_store_specific_migration_manager: bool,
         );
 
         #[method(reset)]
@@ -84,7 +84,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other sourceEntityForEntityMapping:)]
         pub unsafe fn sourceEntityForEntityMapping(
             &self,
-            mEntity: &NSEntityMapping,
+            m_entity: &NSEntityMapping,
         ) -> Option<Id<NSEntityDescription, Shared>>;
 
         #[cfg(all(
@@ -94,7 +94,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other destinationEntityForEntityMapping:)]
         pub unsafe fn destinationEntityForEntityMapping(
             &self,
-            mEntity: &NSEntityMapping,
+            m_entity: &NSEntityMapping,
         ) -> Option<Id<NSEntityDescription, Shared>>;
 
         #[cfg(all(
@@ -104,9 +104,9 @@ extern_methods!(
         #[method(associateSourceInstance:withDestinationInstance:forEntityMapping:)]
         pub unsafe fn associateSourceInstance_withDestinationInstance_forEntityMapping(
             &self,
-            sourceInstance: &NSManagedObject,
-            destinationInstance: &NSManagedObject,
-            entityMapping: &NSEntityMapping,
+            source_instance: &NSManagedObject,
+            destination_instance: &NSManagedObject,
+            entity_mapping: &NSEntityMapping,
         );
 
         #[cfg(all(
@@ -117,8 +117,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Other destinationInstancesForEntityMappingNamed:sourceInstances:)]
         pub unsafe fn destinationInstancesForEntityMappingNamed_sourceInstances(
             &self,
-            mappingName: &NSString,
-            sourceInstances: Option<&NSArray<NSManagedObject>>,
+            mapping_name: &NSString,
+            source_instances: Option<&NSArray<NSManagedObject>>,
         ) -> Id<NSArray<NSManagedObject>, Shared>;
 
         #[cfg(all(
@@ -129,8 +129,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Other sourceInstancesForEntityMappingNamed:destinationInstances:)]
         pub unsafe fn sourceInstancesForEntityMappingNamed_destinationInstances(
             &self,
-            mappingName: &NSString,
-            destinationInstances: Option<&NSArray<NSManagedObject>>,
+            mapping_name: &NSString,
+            destination_instances: Option<&NSArray<NSManagedObject>>,
         ) -> Id<NSArray<NSManagedObject>, Shared>;
 
         #[cfg(feature = "CoreData_NSEntityMapping")]
@@ -146,7 +146,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(setUserInfo:)]
-        pub unsafe fn setUserInfo(&self, userInfo: Option<&NSDictionary>);
+        pub unsafe fn setUserInfo(&self, user_info: Option<&NSDictionary>);
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(cancelMigrationWithError:)]

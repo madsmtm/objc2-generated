@@ -35,7 +35,7 @@ extern_methods!(
         pub unsafe fn debugDescription(&self) -> Id<NSString, Shared>;
 
         #[method(respondsToSelector:)]
-        pub unsafe fn respondsToSelector(aSelector: Sel) -> bool;
+        pub unsafe fn respondsToSelector(a_selector: Sel) -> bool;
 
         #[method(allowsWeakReference)]
         pub unsafe fn allowsWeakReference(&self) -> bool;

@@ -67,7 +67,7 @@ extern_methods!(
         #[method(setIntersectionFunctionTableOffset:)]
         pub fn setIntersectionFunctionTableOffset(
             &self,
-            intersectionFunctionTableOffset: NSUInteger,
+            intersection_function_table_offset: NSUInteger,
         );
 
         #[method(opaque)]
@@ -82,7 +82,7 @@ extern_methods!(
         #[method(setAllowDuplicateIntersectionFunctionInvocation:)]
         pub unsafe fn setAllowDuplicateIntersectionFunctionInvocation(
             &self,
-            allowDuplicateIntersectionFunctionInvocation: bool,
+            allow_duplicate_intersection_function_invocation: bool,
         );
 
         #[cfg(feature = "Foundation_NSString")]
@@ -97,25 +97,25 @@ extern_methods!(
         pub unsafe fn primitiveDataBuffer(&self) -> Option<Id<MTLBuffer, Shared>>;
 
         #[method(setPrimitiveDataBuffer:)]
-        pub fn setPrimitiveDataBuffer(&self, primitiveDataBuffer: Option<&MTLBuffer>);
+        pub fn setPrimitiveDataBuffer(&self, primitive_data_buffer: Option<&MTLBuffer>);
 
         #[method(primitiveDataBufferOffset)]
         pub unsafe fn primitiveDataBufferOffset(&self) -> NSUInteger;
 
         #[method(setPrimitiveDataBufferOffset:)]
-        pub unsafe fn setPrimitiveDataBufferOffset(&self, primitiveDataBufferOffset: NSUInteger);
+        pub unsafe fn setPrimitiveDataBufferOffset(&self, primitive_data_buffer_offset: NSUInteger);
 
         #[method(primitiveDataStride)]
         pub unsafe fn primitiveDataStride(&self) -> NSUInteger;
 
         #[method(setPrimitiveDataStride:)]
-        pub fn setPrimitiveDataStride(&self, primitiveDataStride: NSUInteger);
+        pub fn setPrimitiveDataStride(&self, primitive_data_stride: NSUInteger);
 
         #[method(primitiveDataElementSize)]
         pub unsafe fn primitiveDataElementSize(&self) -> NSUInteger;
 
         #[method(setPrimitiveDataElementSize:)]
-        pub fn setPrimitiveDataElementSize(&self, primitiveDataElementSize: NSUInteger);
+        pub fn setPrimitiveDataElementSize(&self, primitive_data_element_size: NSUInteger);
     }
 );
 
@@ -158,38 +158,41 @@ extern_methods!(
         #[method(setGeometryDescriptors:)]
         pub fn setGeometryDescriptors(
             &self,
-            geometryDescriptors: Option<&NSArray<MTLAccelerationStructureGeometryDescriptor>>,
+            geometry_descriptors: Option<&NSArray<MTLAccelerationStructureGeometryDescriptor>>,
         );
 
         #[method(motionStartBorderMode)]
         pub unsafe fn motionStartBorderMode(&self) -> MTLMotionBorderMode;
 
         #[method(setMotionStartBorderMode:)]
-        pub unsafe fn setMotionStartBorderMode(&self, motionStartBorderMode: MTLMotionBorderMode);
+        pub unsafe fn setMotionStartBorderMode(
+            &self,
+            motion_start_border_mode: MTLMotionBorderMode,
+        );
 
         #[method(motionEndBorderMode)]
         pub unsafe fn motionEndBorderMode(&self) -> MTLMotionBorderMode;
 
         #[method(setMotionEndBorderMode:)]
-        pub unsafe fn setMotionEndBorderMode(&self, motionEndBorderMode: MTLMotionBorderMode);
+        pub unsafe fn setMotionEndBorderMode(&self, motion_end_border_mode: MTLMotionBorderMode);
 
         #[method(motionStartTime)]
         pub unsafe fn motionStartTime(&self) -> c_float;
 
         #[method(setMotionStartTime:)]
-        pub unsafe fn setMotionStartTime(&self, motionStartTime: c_float);
+        pub unsafe fn setMotionStartTime(&self, motion_start_time: c_float);
 
         #[method(motionEndTime)]
         pub unsafe fn motionEndTime(&self) -> c_float;
 
         #[method(setMotionEndTime:)]
-        pub unsafe fn setMotionEndTime(&self, motionEndTime: c_float);
+        pub unsafe fn setMotionEndTime(&self, motion_end_time: c_float);
 
         #[method(motionKeyframeCount)]
         pub unsafe fn motionKeyframeCount(&self) -> NSUInteger;
 
         #[method(setMotionKeyframeCount:)]
-        pub unsafe fn setMotionKeyframeCount(&self, motionKeyframeCount: NSUInteger);
+        pub unsafe fn setMotionKeyframeCount(&self, motion_keyframe_count: NSUInteger);
 
         #[method_id(@__retain_semantics Other descriptor)]
         pub fn descriptor() -> Id<Self, Shared>;
@@ -215,49 +218,49 @@ extern_methods!(
         pub unsafe fn vertexBuffer(&self) -> Option<Id<MTLBuffer, Shared>>;
 
         #[method(setVertexBuffer:)]
-        pub fn setVertexBuffer(&self, vertexBuffer: Option<&MTLBuffer>);
+        pub fn setVertexBuffer(&self, vertex_buffer: Option<&MTLBuffer>);
 
         #[method(vertexBufferOffset)]
         pub unsafe fn vertexBufferOffset(&self) -> NSUInteger;
 
         #[method(setVertexBufferOffset:)]
-        pub unsafe fn setVertexBufferOffset(&self, vertexBufferOffset: NSUInteger);
+        pub unsafe fn setVertexBufferOffset(&self, vertex_buffer_offset: NSUInteger);
 
         #[method(vertexFormat)]
         pub unsafe fn vertexFormat(&self) -> MTLAttributeFormat;
 
         #[method(setVertexFormat:)]
-        pub unsafe fn setVertexFormat(&self, vertexFormat: MTLAttributeFormat);
+        pub unsafe fn setVertexFormat(&self, vertex_format: MTLAttributeFormat);
 
         #[method(vertexStride)]
         pub unsafe fn vertexStride(&self) -> NSUInteger;
 
         #[method(setVertexStride:)]
-        pub fn setVertexStride(&self, vertexStride: NSUInteger);
+        pub fn setVertexStride(&self, vertex_stride: NSUInteger);
 
         #[method_id(@__retain_semantics Other indexBuffer)]
         pub unsafe fn indexBuffer(&self) -> Option<Id<MTLBuffer, Shared>>;
 
         #[method(setIndexBuffer:)]
-        pub fn setIndexBuffer(&self, indexBuffer: Option<&MTLBuffer>);
+        pub fn setIndexBuffer(&self, index_buffer: Option<&MTLBuffer>);
 
         #[method(indexBufferOffset)]
         pub unsafe fn indexBufferOffset(&self) -> NSUInteger;
 
         #[method(setIndexBufferOffset:)]
-        pub unsafe fn setIndexBufferOffset(&self, indexBufferOffset: NSUInteger);
+        pub unsafe fn setIndexBufferOffset(&self, index_buffer_offset: NSUInteger);
 
         #[method(indexType)]
         pub unsafe fn indexType(&self) -> MTLIndexType;
 
         #[method(setIndexType:)]
-        pub unsafe fn setIndexType(&self, indexType: MTLIndexType);
+        pub unsafe fn setIndexType(&self, index_type: MTLIndexType);
 
         #[method(triangleCount)]
         pub unsafe fn triangleCount(&self) -> NSUInteger;
 
         #[method(setTriangleCount:)]
-        pub fn setTriangleCount(&self, triangleCount: NSUInteger);
+        pub fn setTriangleCount(&self, triangle_count: NSUInteger);
 
         #[method_id(@__retain_semantics Other transformationMatrixBuffer)]
         pub unsafe fn transformationMatrixBuffer(&self) -> Option<Id<MTLBuffer, Shared>>;
@@ -265,7 +268,7 @@ extern_methods!(
         #[method(setTransformationMatrixBuffer:)]
         pub unsafe fn setTransformationMatrixBuffer(
             &self,
-            transformationMatrixBuffer: Option<&MTLBuffer>,
+            transformation_matrix_buffer: Option<&MTLBuffer>,
         );
 
         #[method(transformationMatrixBufferOffset)]
@@ -274,7 +277,7 @@ extern_methods!(
         #[method(setTransformationMatrixBufferOffset:)]
         pub unsafe fn setTransformationMatrixBufferOffset(
             &self,
-            transformationMatrixBufferOffset: NSUInteger,
+            transformation_matrix_buffer_offset: NSUInteger,
         );
 
         #[method_id(@__retain_semantics Other descriptor)]
@@ -301,25 +304,25 @@ extern_methods!(
         pub unsafe fn boundingBoxBuffer(&self) -> Option<Id<MTLBuffer, Shared>>;
 
         #[method(setBoundingBoxBuffer:)]
-        pub fn setBoundingBoxBuffer(&self, boundingBoxBuffer: Option<&MTLBuffer>);
+        pub fn setBoundingBoxBuffer(&self, bounding_box_buffer: Option<&MTLBuffer>);
 
         #[method(boundingBoxBufferOffset)]
         pub unsafe fn boundingBoxBufferOffset(&self) -> NSUInteger;
 
         #[method(setBoundingBoxBufferOffset:)]
-        pub unsafe fn setBoundingBoxBufferOffset(&self, boundingBoxBufferOffset: NSUInteger);
+        pub unsafe fn setBoundingBoxBufferOffset(&self, bounding_box_buffer_offset: NSUInteger);
 
         #[method(boundingBoxStride)]
         pub unsafe fn boundingBoxStride(&self) -> NSUInteger;
 
         #[method(setBoundingBoxStride:)]
-        pub unsafe fn setBoundingBoxStride(&self, boundingBoxStride: NSUInteger);
+        pub unsafe fn setBoundingBoxStride(&self, bounding_box_stride: NSUInteger);
 
         #[method(boundingBoxCount)]
         pub unsafe fn boundingBoxCount(&self) -> NSUInteger;
 
         #[method(setBoundingBoxCount:)]
-        pub fn setBoundingBoxCount(&self, boundingBoxCount: NSUInteger);
+        pub fn setBoundingBoxCount(&self, bounding_box_count: NSUInteger);
 
         #[method_id(@__retain_semantics Other descriptor)]
         pub fn descriptor() -> Id<Self, Shared>;
@@ -384,43 +387,43 @@ extern_methods!(
             feature = "Metal_MTLMotionKeyframeData"
         ))]
         #[method(setVertexBuffers:)]
-        pub unsafe fn setVertexBuffers(&self, vertexBuffers: &NSArray<MTLMotionKeyframeData>);
+        pub unsafe fn setVertexBuffers(&self, vertex_buffers: &NSArray<MTLMotionKeyframeData>);
 
         #[method(vertexFormat)]
         pub unsafe fn vertexFormat(&self) -> MTLAttributeFormat;
 
         #[method(setVertexFormat:)]
-        pub unsafe fn setVertexFormat(&self, vertexFormat: MTLAttributeFormat);
+        pub unsafe fn setVertexFormat(&self, vertex_format: MTLAttributeFormat);
 
         #[method(vertexStride)]
         pub unsafe fn vertexStride(&self) -> NSUInteger;
 
         #[method(setVertexStride:)]
-        pub unsafe fn setVertexStride(&self, vertexStride: NSUInteger);
+        pub unsafe fn setVertexStride(&self, vertex_stride: NSUInteger);
 
         #[method_id(@__retain_semantics Other indexBuffer)]
         pub unsafe fn indexBuffer(&self) -> Option<Id<MTLBuffer, Shared>>;
 
         #[method(setIndexBuffer:)]
-        pub unsafe fn setIndexBuffer(&self, indexBuffer: Option<&MTLBuffer>);
+        pub unsafe fn setIndexBuffer(&self, index_buffer: Option<&MTLBuffer>);
 
         #[method(indexBufferOffset)]
         pub unsafe fn indexBufferOffset(&self) -> NSUInteger;
 
         #[method(setIndexBufferOffset:)]
-        pub unsafe fn setIndexBufferOffset(&self, indexBufferOffset: NSUInteger);
+        pub unsafe fn setIndexBufferOffset(&self, index_buffer_offset: NSUInteger);
 
         #[method(indexType)]
         pub unsafe fn indexType(&self) -> MTLIndexType;
 
         #[method(setIndexType:)]
-        pub unsafe fn setIndexType(&self, indexType: MTLIndexType);
+        pub unsafe fn setIndexType(&self, index_type: MTLIndexType);
 
         #[method(triangleCount)]
         pub unsafe fn triangleCount(&self) -> NSUInteger;
 
         #[method(setTriangleCount:)]
-        pub unsafe fn setTriangleCount(&self, triangleCount: NSUInteger);
+        pub unsafe fn setTriangleCount(&self, triangle_count: NSUInteger);
 
         #[method_id(@__retain_semantics Other transformationMatrixBuffer)]
         pub unsafe fn transformationMatrixBuffer(&self) -> Option<Id<MTLBuffer, Shared>>;
@@ -428,7 +431,7 @@ extern_methods!(
         #[method(setTransformationMatrixBuffer:)]
         pub unsafe fn setTransformationMatrixBuffer(
             &self,
-            transformationMatrixBuffer: Option<&MTLBuffer>,
+            transformation_matrix_buffer: Option<&MTLBuffer>,
         );
 
         #[method(transformationMatrixBufferOffset)]
@@ -437,7 +440,7 @@ extern_methods!(
         #[method(setTransformationMatrixBufferOffset:)]
         pub unsafe fn setTransformationMatrixBufferOffset(
             &self,
-            transformationMatrixBufferOffset: NSUInteger,
+            transformation_matrix_buffer_offset: NSUInteger,
         );
 
         #[method_id(@__retain_semantics Other descriptor)]
@@ -474,20 +477,20 @@ extern_methods!(
         #[method(setBoundingBoxBuffers:)]
         pub unsafe fn setBoundingBoxBuffers(
             &self,
-            boundingBoxBuffers: &NSArray<MTLMotionKeyframeData>,
+            bounding_box_buffers: &NSArray<MTLMotionKeyframeData>,
         );
 
         #[method(boundingBoxStride)]
         pub unsafe fn boundingBoxStride(&self) -> NSUInteger;
 
         #[method(setBoundingBoxStride:)]
-        pub unsafe fn setBoundingBoxStride(&self, boundingBoxStride: NSUInteger);
+        pub unsafe fn setBoundingBoxStride(&self, bounding_box_stride: NSUInteger);
 
         #[method(boundingBoxCount)]
         pub unsafe fn boundingBoxCount(&self) -> NSUInteger;
 
         #[method(setBoundingBoxCount:)]
-        pub unsafe fn setBoundingBoxCount(&self, boundingBoxCount: NSUInteger);
+        pub unsafe fn setBoundingBoxCount(&self, bounding_box_count: NSUInteger);
 
         #[method_id(@__retain_semantics Other descriptor)]
         pub unsafe fn descriptor() -> Id<Self, Shared>;
@@ -559,7 +562,7 @@ extern_methods!(
         pub unsafe fn instanceDescriptorBuffer(&self) -> Option<Id<MTLBuffer, Shared>>;
 
         #[method(setInstanceDescriptorBuffer:)]
-        pub fn setInstanceDescriptorBuffer(&self, instanceDescriptorBuffer: Option<&MTLBuffer>);
+        pub fn setInstanceDescriptorBuffer(&self, instance_descriptor_buffer: Option<&MTLBuffer>);
 
         #[method(instanceDescriptorBufferOffset)]
         pub unsafe fn instanceDescriptorBufferOffset(&self) -> NSUInteger;
@@ -567,20 +570,20 @@ extern_methods!(
         #[method(setInstanceDescriptorBufferOffset:)]
         pub unsafe fn setInstanceDescriptorBufferOffset(
             &self,
-            instanceDescriptorBufferOffset: NSUInteger,
+            instance_descriptor_buffer_offset: NSUInteger,
         );
 
         #[method(instanceDescriptorStride)]
         pub unsafe fn instanceDescriptorStride(&self) -> NSUInteger;
 
         #[method(setInstanceDescriptorStride:)]
-        pub unsafe fn setInstanceDescriptorStride(&self, instanceDescriptorStride: NSUInteger);
+        pub unsafe fn setInstanceDescriptorStride(&self, instance_descriptor_stride: NSUInteger);
 
         #[method(instanceCount)]
         pub unsafe fn instanceCount(&self) -> NSUInteger;
 
         #[method(setInstanceCount:)]
-        pub fn setInstanceCount(&self, instanceCount: NSUInteger);
+        pub fn setInstanceCount(&self, instance_count: NSUInteger);
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other instancedAccelerationStructures)]
@@ -592,7 +595,7 @@ extern_methods!(
         #[method(setInstancedAccelerationStructures:)]
         pub fn setInstancedAccelerationStructures(
             &self,
-            instancedAccelerationStructures: Option<&NSArray<MTLAccelerationStructure>>,
+            instanced_acceleration_structures: Option<&NSArray<MTLAccelerationStructure>>,
         );
 
         #[method(instanceDescriptorType)]
@@ -603,14 +606,14 @@ extern_methods!(
         #[method(setInstanceDescriptorType:)]
         pub unsafe fn setInstanceDescriptorType(
             &self,
-            instanceDescriptorType: MTLAccelerationStructureInstanceDescriptorType,
+            instance_descriptor_type: MTLAccelerationStructureInstanceDescriptorType,
         );
 
         #[method_id(@__retain_semantics Other motionTransformBuffer)]
         pub unsafe fn motionTransformBuffer(&self) -> Option<Id<MTLBuffer, Shared>>;
 
         #[method(setMotionTransformBuffer:)]
-        pub unsafe fn setMotionTransformBuffer(&self, motionTransformBuffer: Option<&MTLBuffer>);
+        pub unsafe fn setMotionTransformBuffer(&self, motion_transform_buffer: Option<&MTLBuffer>);
 
         #[method(motionTransformBufferOffset)]
         pub unsafe fn motionTransformBufferOffset(&self) -> NSUInteger;
@@ -618,14 +621,14 @@ extern_methods!(
         #[method(setMotionTransformBufferOffset:)]
         pub unsafe fn setMotionTransformBufferOffset(
             &self,
-            motionTransformBufferOffset: NSUInteger,
+            motion_transform_buffer_offset: NSUInteger,
         );
 
         #[method(motionTransformCount)]
         pub unsafe fn motionTransformCount(&self) -> NSUInteger;
 
         #[method(setMotionTransformCount:)]
-        pub unsafe fn setMotionTransformCount(&self, motionTransformCount: NSUInteger);
+        pub unsafe fn setMotionTransformCount(&self, motion_transform_count: NSUInteger);
 
         #[method_id(@__retain_semantics Other descriptor)]
         pub fn descriptor() -> Id<Self, Shared>;

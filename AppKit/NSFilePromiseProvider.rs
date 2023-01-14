@@ -25,7 +25,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setFileType:)]
-        pub unsafe fn setFileType(&self, fileType: &NSString);
+        pub unsafe fn setFileType(&self, file_type: &NSString);
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSFilePromiseProviderDelegate, Shared>>;
@@ -37,13 +37,13 @@ extern_methods!(
         pub unsafe fn userInfo(&self) -> Option<Id<Object, Shared>>;
 
         #[method(setUserInfo:)]
-        pub unsafe fn setUserInfo(&self, userInfo: Option<&Object>);
+        pub unsafe fn setUserInfo(&self, user_info: Option<&Object>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithFileType:delegate:)]
         pub unsafe fn initWithFileType_delegate(
             this: Option<Allocated<Self>>,
-            fileType: &NSString,
+            file_type: &NSString,
             delegate: &NSFilePromiseProviderDelegate,
         ) -> Id<Self, Shared>;
 
@@ -63,8 +63,8 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other filePromiseProvider:fileNameForType:)]
         pub unsafe fn filePromiseProvider_fileNameForType(
             &self,
-            filePromiseProvider: &NSFilePromiseProvider,
-            fileType: &NSString,
+            file_promise_provider: &NSFilePromiseProvider,
+            file_type: &NSString,
         ) -> Id<NSString, Shared>;
 
         #[cfg(all(
@@ -75,9 +75,9 @@ extern_protocol!(
         #[method(filePromiseProvider:writePromiseToURL:completionHandler:)]
         pub unsafe fn filePromiseProvider_writePromiseToURL_completionHandler(
             &self,
-            filePromiseProvider: &NSFilePromiseProvider,
+            file_promise_provider: &NSFilePromiseProvider,
             url: &NSURL,
-            completionHandler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<(*mut NSError,), ()>,
         );
 
         #[cfg(all(
@@ -88,7 +88,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other operationQueueForFilePromiseProvider:)]
         pub unsafe fn operationQueueForFilePromiseProvider(
             &self,
-            filePromiseProvider: &NSFilePromiseProvider,
+            file_promise_provider: &NSFilePromiseProvider,
         ) -> Id<NSOperationQueue, Shared>;
     }
 );

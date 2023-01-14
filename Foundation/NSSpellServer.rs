@@ -60,10 +60,10 @@ extern_protocol!(
         pub unsafe fn spellServer_findMisspelledWordInString_language_wordCount_countOnly(
             &self,
             sender: &NSSpellServer,
-            stringToCheck: &NSString,
+            string_to_check: &NSString,
             language: &NSString,
-            wordCount: NonNull<NSInteger>,
-            countOnly: bool,
+            word_count: NonNull<NSInteger>,
+            count_only: bool,
         ) -> NSRange;
 
         #[cfg(all(
@@ -126,7 +126,7 @@ extern_protocol!(
         pub unsafe fn spellServer_checkGrammarInString_language_details(
             &self,
             sender: &NSSpellServer,
-            stringToCheck: &NSString,
+            string_to_check: &NSString,
             language: Option<&NSString>,
             details: *mut *mut NSArray<NSDictionary<NSString, Object>>,
         ) -> NSRange;
@@ -144,12 +144,12 @@ extern_protocol!(
         pub unsafe fn spellServer_checkString_offset_types_options_orthography_wordCount(
             &self,
             sender: &NSSpellServer,
-            stringToCheck: &NSString,
+            string_to_check: &NSString,
             offset: NSUInteger,
-            checkingTypes: NSTextCheckingTypes,
+            checking_types: NSTextCheckingTypes,
             options: Option<&NSDictionary<NSString, Object>>,
             orthography: Option<&NSOrthography>,
-            wordCount: NonNull<NSInteger>,
+            word_count: NonNull<NSInteger>,
         ) -> Option<Id<NSArray<NSTextCheckingResult>, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSSpellServer", feature = "Foundation_NSString"))]

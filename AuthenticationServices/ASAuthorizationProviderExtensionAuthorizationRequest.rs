@@ -70,7 +70,7 @@ extern_methods!(
         #[method(completeWithHTTPAuthorizationHeaders:)]
         pub unsafe fn completeWithHTTPAuthorizationHeaders(
             &self,
-            httpAuthorizationHeaders: &NSDictionary<NSString, NSString>,
+            http_authorization_headers: &NSDictionary<NSString, NSString>,
         );
 
         #[cfg(all(
@@ -80,8 +80,8 @@ extern_methods!(
         #[method(completeWithHTTPResponse:httpBody:)]
         pub unsafe fn completeWithHTTPResponse_httpBody(
             &self,
-            httpResponse: &NSHTTPURLResponse,
-            httpBody: Option<&NSData>,
+            http_response: &NSHTTPURLResponse,
+            http_body: Option<&NSData>,
         );
 
         #[cfg(
@@ -90,7 +90,7 @@ extern_methods!(
         #[method(completeWithAuthorizationResult:)]
         pub unsafe fn completeWithAuthorizationResult(
             &self,
-            authorizationResult: &ASAuthorizationProviderExtensionAuthorizationResult,
+            authorization_result: &ASAuthorizationProviderExtensionAuthorizationResult,
         );
 
         #[cfg(feature = "Foundation_NSError")]

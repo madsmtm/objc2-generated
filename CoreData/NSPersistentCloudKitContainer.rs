@@ -39,14 +39,14 @@ extern_methods!(
         #[method(canUpdateRecordForManagedObjectWithID:)]
         pub unsafe fn canUpdateRecordForManagedObjectWithID(
             &self,
-            objectID: &NSManagedObjectID,
+            object_id: &NSManagedObjectID,
         ) -> bool;
 
         #[cfg(feature = "CoreData_NSManagedObjectID")]
         #[method(canDeleteRecordForManagedObjectWithID:)]
         pub unsafe fn canDeleteRecordForManagedObjectWithID(
             &self,
-            objectID: &NSManagedObjectID,
+            object_id: &NSManagedObjectID,
         ) -> bool;
 
         #[cfg(feature = "CoreData_NSPersistentStore")]

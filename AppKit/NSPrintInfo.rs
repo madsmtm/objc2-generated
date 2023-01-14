@@ -118,7 +118,7 @@ extern_methods!(
         pub unsafe fn sharedPrintInfo() -> Id<NSPrintInfo, Shared>;
 
         #[method(setSharedPrintInfo:)]
-        pub unsafe fn setSharedPrintInfo(sharedPrintInfo: &NSPrintInfo);
+        pub unsafe fn setSharedPrintInfo(shared_print_info: &NSPrintInfo);
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Init initWithDictionary:)]
@@ -147,13 +147,13 @@ extern_methods!(
         pub unsafe fn paperName(&self) -> Option<Id<NSPrinterPaperName, Shared>>;
 
         #[method(setPaperName:)]
-        pub unsafe fn setPaperName(&self, paperName: Option<&NSPrinterPaperName>);
+        pub unsafe fn setPaperName(&self, paper_name: Option<&NSPrinterPaperName>);
 
         #[method(paperSize)]
         pub unsafe fn paperSize(&self) -> NSSize;
 
         #[method(setPaperSize:)]
-        pub unsafe fn setPaperSize(&self, paperSize: NSSize);
+        pub unsafe fn setPaperSize(&self, paper_size: NSSize);
 
         #[method(orientation)]
         pub unsafe fn orientation(&self) -> NSPaperOrientation;
@@ -165,43 +165,43 @@ extern_methods!(
         pub unsafe fn scalingFactor(&self) -> CGFloat;
 
         #[method(setScalingFactor:)]
-        pub unsafe fn setScalingFactor(&self, scalingFactor: CGFloat);
+        pub unsafe fn setScalingFactor(&self, scaling_factor: CGFloat);
 
         #[method(leftMargin)]
         pub unsafe fn leftMargin(&self) -> CGFloat;
 
         #[method(setLeftMargin:)]
-        pub unsafe fn setLeftMargin(&self, leftMargin: CGFloat);
+        pub unsafe fn setLeftMargin(&self, left_margin: CGFloat);
 
         #[method(rightMargin)]
         pub unsafe fn rightMargin(&self) -> CGFloat;
 
         #[method(setRightMargin:)]
-        pub unsafe fn setRightMargin(&self, rightMargin: CGFloat);
+        pub unsafe fn setRightMargin(&self, right_margin: CGFloat);
 
         #[method(topMargin)]
         pub unsafe fn topMargin(&self) -> CGFloat;
 
         #[method(setTopMargin:)]
-        pub unsafe fn setTopMargin(&self, topMargin: CGFloat);
+        pub unsafe fn setTopMargin(&self, top_margin: CGFloat);
 
         #[method(bottomMargin)]
         pub unsafe fn bottomMargin(&self) -> CGFloat;
 
         #[method(setBottomMargin:)]
-        pub unsafe fn setBottomMargin(&self, bottomMargin: CGFloat);
+        pub unsafe fn setBottomMargin(&self, bottom_margin: CGFloat);
 
         #[method(isHorizontallyCentered)]
         pub unsafe fn isHorizontallyCentered(&self) -> bool;
 
         #[method(setHorizontallyCentered:)]
-        pub unsafe fn setHorizontallyCentered(&self, horizontallyCentered: bool);
+        pub unsafe fn setHorizontallyCentered(&self, horizontally_centered: bool);
 
         #[method(isVerticallyCentered)]
         pub unsafe fn isVerticallyCentered(&self) -> bool;
 
         #[method(setVerticallyCentered:)]
-        pub unsafe fn setVerticallyCentered(&self, verticallyCentered: bool);
+        pub unsafe fn setVerticallyCentered(&self, vertically_centered: bool);
 
         #[method(horizontalPagination)]
         pub unsafe fn horizontalPagination(&self) -> NSPrintingPaginationMode;
@@ -209,20 +209,20 @@ extern_methods!(
         #[method(setHorizontalPagination:)]
         pub unsafe fn setHorizontalPagination(
             &self,
-            horizontalPagination: NSPrintingPaginationMode,
+            horizontal_pagination: NSPrintingPaginationMode,
         );
 
         #[method(verticalPagination)]
         pub unsafe fn verticalPagination(&self) -> NSPrintingPaginationMode;
 
         #[method(setVerticalPagination:)]
-        pub unsafe fn setVerticalPagination(&self, verticalPagination: NSPrintingPaginationMode);
+        pub unsafe fn setVerticalPagination(&self, vertical_pagination: NSPrintingPaginationMode);
 
         #[method_id(@__retain_semantics Other jobDisposition)]
         pub unsafe fn jobDisposition(&self) -> Id<NSPrintJobDispositionValue, Shared>;
 
         #[method(setJobDisposition:)]
-        pub unsafe fn setJobDisposition(&self, jobDisposition: &NSPrintJobDispositionValue);
+        pub unsafe fn setJobDisposition(&self, job_disposition: &NSPrintJobDispositionValue);
 
         #[cfg(feature = "AppKit_NSPrinter")]
         #[method_id(@__retain_semantics Other printer)]
@@ -271,11 +271,11 @@ extern_methods!(
         pub unsafe fn isSelectionOnly(&self) -> bool;
 
         #[method(setSelectionOnly:)]
-        pub unsafe fn setSelectionOnly(&self, selectionOnly: bool);
+        pub unsafe fn setSelectionOnly(&self, selection_only: bool);
 
         #[cfg(feature = "AppKit_NSPDFInfo")]
         #[method(takeSettingsFromPDFInfo:)]
-        pub unsafe fn takeSettingsFromPDFInfo(&self, inPDFInfo: &NSPDFInfo);
+        pub unsafe fn takeSettingsFromPDFInfo(&self, in_pdf_info: &NSPDFInfo);
     }
 );
 

@@ -23,6 +23,6 @@ extern_protocol!(
         pub unsafe fn contentType(&self) -> Option<Id<NSTextContentType, Shared>>;
 
         #[method(setContentType:)]
-        pub unsafe fn setContentType(&self, contentType: Option<&NSTextContentType>);
+        pub unsafe fn setContentType(&self, content_type: Option<&NSTextContentType>);
     }
 );

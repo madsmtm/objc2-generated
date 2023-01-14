@@ -67,15 +67,15 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithMarkerFormat:options:startingItemNumber:)]
         pub unsafe fn initWithMarkerFormat_options_startingItemNumber(
             this: Option<Allocated<Self>>,
-            markerFormat: &NSTextListMarkerFormat,
+            marker_format: &NSTextListMarkerFormat,
             options: NSTextListOptions,
-            startingItemNumber: NSInteger,
+            starting_item_number: NSInteger,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Init initWithMarkerFormat:options:)]
         pub unsafe fn initWithMarkerFormat_options(
             this: Option<Allocated<Self>>,
-            markerFormat: &NSTextListMarkerFormat,
+            marker_format: &NSTextListMarkerFormat,
             options: NSUInteger,
         ) -> Id<Self, Shared>;
 
@@ -96,13 +96,13 @@ extern_methods!(
         pub unsafe fn startingItemNumber(&self) -> NSInteger;
 
         #[method(setStartingItemNumber:)]
-        pub unsafe fn setStartingItemNumber(&self, startingItemNumber: NSInteger);
+        pub unsafe fn setStartingItemNumber(&self, starting_item_number: NSInteger);
 
         #[method(isOrdered)]
         pub unsafe fn isOrdered(&self) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other markerForItemNumber:)]
-        pub unsafe fn markerForItemNumber(&self, itemNumber: NSInteger) -> Id<NSString, Shared>;
+        pub unsafe fn markerForItemNumber(&self, item_number: NSInteger) -> Id<NSString, Shared>;
     }
 );

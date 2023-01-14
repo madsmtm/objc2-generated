@@ -74,13 +74,13 @@ extern_methods!(
         pub unsafe fn totalCostLimit(&self) -> NSUInteger;
 
         #[method(setTotalCostLimit:)]
-        pub unsafe fn setTotalCostLimit(&self, totalCostLimit: NSUInteger);
+        pub unsafe fn setTotalCostLimit(&self, total_cost_limit: NSUInteger);
 
         #[method(countLimit)]
         pub unsafe fn countLimit(&self) -> NSUInteger;
 
         #[method(setCountLimit:)]
-        pub unsafe fn setCountLimit(&self, countLimit: NSUInteger);
+        pub unsafe fn setCountLimit(&self, count_limit: NSUInteger);
 
         #[method(evictsObjectsWithDiscardedContent)]
         pub unsafe fn evictsObjectsWithDiscardedContent(&self) -> bool;
@@ -88,7 +88,7 @@ extern_methods!(
         #[method(setEvictsObjectsWithDiscardedContent:)]
         pub unsafe fn setEvictsObjectsWithDiscardedContent(
             &self,
-            evictsObjectsWithDiscardedContent: bool,
+            evicts_objects_with_discarded_content: bool,
         );
     }
 );

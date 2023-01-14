@@ -26,7 +26,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSSearchField")]
         #[method(setSearchField:)]
-        pub unsafe fn setSearchField(&self, searchField: &NSSearchField);
+        pub unsafe fn setSearchField(&self, search_field: &NSSearchField);
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other view)]
@@ -42,14 +42,17 @@ extern_methods!(
         #[method(setResignsFirstResponderWithCancel:)]
         pub unsafe fn setResignsFirstResponderWithCancel(
             &self,
-            resignsFirstResponderWithCancel: bool,
+            resigns_first_responder_with_cancel: bool,
         );
 
         #[method(preferredWidthForSearchField)]
         pub unsafe fn preferredWidthForSearchField(&self) -> CGFloat;
 
         #[method(setPreferredWidthForSearchField:)]
-        pub unsafe fn setPreferredWidthForSearchField(&self, preferredWidthForSearchField: CGFloat);
+        pub unsafe fn setPreferredWidthForSearchField(
+            &self,
+            preferred_width_for_search_field: CGFloat,
+        );
 
         #[method(beginSearchInteraction)]
         pub unsafe fn beginSearchInteraction(&self);
@@ -66,7 +69,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithItemIdentifier:)]
         pub unsafe fn initWithItemIdentifier(
             this: Option<Allocated<Self>>,
-            itemIdentifier: &NSToolbarItemIdentifier,
+            item_identifier: &NSToolbarItemIdentifier,
         ) -> Id<Self, Shared>;
     }
 );

@@ -60,7 +60,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other localizedStringForLocaleIdentifier:)]
         pub unsafe fn localizedStringForLocaleIdentifier(
             &self,
-            localeIdentifier: &NSString,
+            locale_identifier: &NSString,
         ) -> Id<NSString, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -71,7 +71,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other localizedStringForLanguageCode:)]
         pub unsafe fn localizedStringForLanguageCode(
             &self,
-            languageCode: &NSString,
+            language_code: &NSString,
         ) -> Option<Id<NSString, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -82,7 +82,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other localizedStringForCountryCode:)]
         pub unsafe fn localizedStringForCountryCode(
             &self,
-            countryCode: &NSString,
+            country_code: &NSString,
         ) -> Option<Id<NSString, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -93,7 +93,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other localizedStringForScriptCode:)]
         pub unsafe fn localizedStringForScriptCode(
             &self,
-            scriptCode: &NSString,
+            script_code: &NSString,
         ) -> Option<Id<NSString, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -104,7 +104,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other localizedStringForVariantCode:)]
         pub unsafe fn localizedStringForVariantCode(
             &self,
-            variantCode: &NSString,
+            variant_code: &NSString,
         ) -> Option<Id<NSString, Shared>>;
 
         #[cfg(feature = "Foundation_NSCharacterSet")]
@@ -119,7 +119,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other localizedStringForCalendarIdentifier:)]
         pub unsafe fn localizedStringForCalendarIdentifier(
             &self,
-            calendarIdentifier: &NSString,
+            calendar_identifier: &NSString,
         ) -> Option<Id<NSString, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -130,7 +130,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other localizedStringForCollationIdentifier:)]
         pub unsafe fn localizedStringForCollationIdentifier(
             &self,
-            collationIdentifier: &NSString,
+            collation_identifier: &NSString,
         ) -> Option<Id<NSString, Shared>>;
 
         #[method(usesMetricSystem)]
@@ -156,7 +156,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other localizedStringForCurrencyCode:)]
         pub unsafe fn localizedStringForCurrencyCode(
             &self,
-            currencyCode: &NSString,
+            currency_code: &NSString,
         ) -> Option<Id<NSString, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -167,7 +167,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other localizedStringForCollatorIdentifier:)]
         pub unsafe fn localizedStringForCollatorIdentifier(
             &self,
-            collatorIdentifier: &NSString,
+            collator_identifier: &NSString,
         ) -> Option<Id<NSString, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -281,18 +281,19 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(windowsLocaleCodeFromLocaleIdentifier:)]
-        pub unsafe fn windowsLocaleCodeFromLocaleIdentifier(localeIdentifier: &NSString) -> u32;
+        pub unsafe fn windowsLocaleCodeFromLocaleIdentifier(locale_identifier: &NSString) -> u32;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(characterDirectionForLanguage:)]
         pub unsafe fn characterDirectionForLanguage(
-            isoLangCode: &NSString,
+            iso_lang_code: &NSString,
         ) -> NSLocaleLanguageDirection;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(lineDirectionForLanguage:)]
-        pub unsafe fn lineDirectionForLanguage(isoLangCode: &NSString)
-            -> NSLocaleLanguageDirection;
+        pub unsafe fn lineDirectionForLanguage(
+            iso_lang_code: &NSString,
+        ) -> NSLocaleLanguageDirection;
     }
 );
 

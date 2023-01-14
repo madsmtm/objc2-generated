@@ -19,7 +19,7 @@ extern_protocol!(
             &self,
             controller: &ASAccountAuthenticationModificationController,
             request: &ASAccountAuthenticationModificationRequest,
-            userInfo: Option<&NSDictionary>,
+            user_info: Option<&NSDictionary>,
         );
 
         #[cfg(all(
@@ -88,7 +88,7 @@ extern_methods!(
         #[method(setPresentationContextProvider:)]
         pub unsafe fn setPresentationContextProvider(
             &self,
-            presentationContextProvider: Option<
+            presentation_context_provider: Option<
                 &ASAccountAuthenticationModificationControllerPresentationContextProviding,
             >,
         );

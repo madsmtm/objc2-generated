@@ -38,19 +38,19 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSNumberFormatter")]
         #[method(setNumberFormatter:)]
-        pub unsafe fn setNumberFormatter(&self, numberFormatter: Option<&NSNumberFormatter>);
+        pub unsafe fn setNumberFormatter(&self, number_formatter: Option<&NSNumberFormatter>);
 
         #[method(unitStyle)]
         pub unsafe fn unitStyle(&self) -> NSFormattingUnitStyle;
 
         #[method(setUnitStyle:)]
-        pub unsafe fn setUnitStyle(&self, unitStyle: NSFormattingUnitStyle);
+        pub unsafe fn setUnitStyle(&self, unit_style: NSFormattingUnitStyle);
 
         #[method(isForPersonHeightUse)]
         pub unsafe fn isForPersonHeightUse(&self) -> bool;
 
         #[method(setForPersonHeightUse:)]
-        pub unsafe fn setForPersonHeightUse(&self, forPersonHeightUse: bool);
+        pub unsafe fn setForPersonHeightUse(&self, for_person_height_use: bool);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringFromValue:unit:)]
@@ -62,7 +62,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringFromMeters:)]
-        pub unsafe fn stringFromMeters(&self, numberInMeters: c_double) -> Id<NSString, Shared>;
+        pub unsafe fn stringFromMeters(&self, number_in_meters: c_double) -> Id<NSString, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other unitStringFromValue:unit:)]
@@ -76,7 +76,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other unitStringFromMeters:usedUnit:)]
         pub unsafe fn unitStringFromMeters_usedUnit(
             &self,
-            numberInMeters: c_double,
+            number_in_meters: c_double,
             unitp: *mut NSLengthFormatterUnit,
         ) -> Id<NSString, Shared>;
 

@@ -89,7 +89,7 @@ extern_protocol!(
         pub unsafe fn draggingSequenceNumber(&self) -> NSInteger;
 
         #[method(slideDraggedImageTo:)]
-        pub unsafe fn slideDraggedImageTo(&self, screenPoint: NSPoint);
+        pub unsafe fn slideDraggedImageTo(&self, screen_point: NSPoint);
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -99,26 +99,29 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other namesOfPromisedFilesDroppedAtDestination:)]
         pub unsafe fn namesOfPromisedFilesDroppedAtDestination(
             &self,
-            dropDestination: &NSURL,
+            drop_destination: &NSURL,
         ) -> Option<Id<NSArray<NSString>, Shared>>;
 
         #[method(draggingFormation)]
         pub unsafe fn draggingFormation(&self) -> NSDraggingFormation;
 
         #[method(setDraggingFormation:)]
-        pub unsafe fn setDraggingFormation(&self, draggingFormation: NSDraggingFormation);
+        pub unsafe fn setDraggingFormation(&self, dragging_formation: NSDraggingFormation);
 
         #[method(animatesToDestination)]
         pub unsafe fn animatesToDestination(&self) -> bool;
 
         #[method(setAnimatesToDestination:)]
-        pub unsafe fn setAnimatesToDestination(&self, animatesToDestination: bool);
+        pub unsafe fn setAnimatesToDestination(&self, animates_to_destination: bool);
 
         #[method(numberOfValidItemsForDrop)]
         pub unsafe fn numberOfValidItemsForDrop(&self) -> NSInteger;
 
         #[method(setNumberOfValidItemsForDrop:)]
-        pub unsafe fn setNumberOfValidItemsForDrop(&self, numberOfValidItemsForDrop: NSInteger);
+        pub unsafe fn setNumberOfValidItemsForDrop(
+            &self,
+            number_of_valid_items_for_drop: NSInteger,
+        );
 
         #[cfg(all(
             feature = "AppKit_NSDraggingItem",
@@ -129,10 +132,10 @@ extern_protocol!(
         #[method(enumerateDraggingItemsWithOptions:forView:classes:searchOptions:usingBlock:)]
         pub unsafe fn enumerateDraggingItemsWithOptions_forView_classes_searchOptions_usingBlock(
             &self,
-            enumOpts: NSDraggingItemEnumerationOptions,
+            enum_opts: NSDraggingItemEnumerationOptions,
             view: Option<&NSView>,
-            classArray: &NSArray<TodoClass>,
-            searchOptions: &NSDictionary<NSPasteboardReadingOptionKey, Object>,
+            class_array: &NSArray<TodoClass>,
+            search_options: &NSDictionary<NSPasteboardReadingOptionKey, Object>,
             block: &Block<(NonNull<NSDraggingItem>, NSInteger, NonNull<Bool>), ()>,
         );
 
@@ -204,7 +207,7 @@ extern_protocol!(
         pub unsafe fn draggingSession_willBeginAtPoint(
             &self,
             session: &NSDraggingSession,
-            screenPoint: NSPoint,
+            screen_point: NSPoint,
         );
 
         #[cfg(feature = "AppKit_NSDraggingSession")]
@@ -213,7 +216,7 @@ extern_protocol!(
         pub unsafe fn draggingSession_movedToPoint(
             &self,
             session: &NSDraggingSession,
-            screenPoint: NSPoint,
+            screen_point: NSPoint,
         );
 
         #[cfg(feature = "AppKit_NSDraggingSession")]
@@ -222,7 +225,7 @@ extern_protocol!(
         pub unsafe fn draggingSession_endedAtPoint_operation(
             &self,
             session: &NSDraggingSession,
-            screenPoint: NSPoint,
+            screen_point: NSPoint,
             operation: NSDragOperation,
         );
 
@@ -254,32 +257,32 @@ extern_protocol!(
         pub unsafe fn springLoadingActivated_draggingInfo(
             &self,
             activated: bool,
-            draggingInfo: &NSDraggingInfo,
+            dragging_info: &NSDraggingInfo,
         );
 
         #[method(springLoadingHighlightChanged:)]
-        pub unsafe fn springLoadingHighlightChanged(&self, draggingInfo: &NSDraggingInfo);
+        pub unsafe fn springLoadingHighlightChanged(&self, dragging_info: &NSDraggingInfo);
 
         #[optional]
         #[method(springLoadingEntered:)]
         pub unsafe fn springLoadingEntered(
             &self,
-            draggingInfo: &NSDraggingInfo,
+            dragging_info: &NSDraggingInfo,
         ) -> NSSpringLoadingOptions;
 
         #[optional]
         #[method(springLoadingUpdated:)]
         pub unsafe fn springLoadingUpdated(
             &self,
-            draggingInfo: &NSDraggingInfo,
+            dragging_info: &NSDraggingInfo,
         ) -> NSSpringLoadingOptions;
 
         #[optional]
         #[method(springLoadingExited:)]
-        pub unsafe fn springLoadingExited(&self, draggingInfo: &NSDraggingInfo);
+        pub unsafe fn springLoadingExited(&self, dragging_info: &NSDraggingInfo);
 
         #[optional]
         #[method(draggingEnded:)]
-        pub unsafe fn draggingEnded(&self, draggingInfo: &NSDraggingInfo);
+        pub unsafe fn draggingEnded(&self, dragging_info: &NSDraggingInfo);
     }
 );

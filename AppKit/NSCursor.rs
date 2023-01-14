@@ -83,7 +83,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithImage:hotSpot:)]
         pub unsafe fn initWithImage_hotSpot(
             this: Option<Allocated<Self>>,
-            newImage: &NSImage,
+            new_image: &NSImage,
             point: NSPoint,
         ) -> Id<Self, Shared>;
 
@@ -128,10 +128,10 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithImage:foregroundColorHint:backgroundColorHint:hotSpot:)]
         pub unsafe fn initWithImage_foregroundColorHint_backgroundColorHint_hotSpot(
             this: Option<Allocated<Self>>,
-            newImage: &NSImage,
+            new_image: &NSImage,
             fg: Option<&NSColor>,
             bg: Option<&NSColor>,
-            hotSpot: NSPoint,
+            hot_spot: NSPoint,
         ) -> Id<Self, Shared>;
 
         #[method(setOnMouseExited:)]

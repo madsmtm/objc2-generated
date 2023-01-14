@@ -40,19 +40,19 @@ extern_methods!(
         pub unsafe fn dateTimeStyle(&self) -> NSRelativeDateTimeFormatterStyle;
 
         #[method(setDateTimeStyle:)]
-        pub unsafe fn setDateTimeStyle(&self, dateTimeStyle: NSRelativeDateTimeFormatterStyle);
+        pub unsafe fn setDateTimeStyle(&self, date_time_style: NSRelativeDateTimeFormatterStyle);
 
         #[method(unitsStyle)]
         pub unsafe fn unitsStyle(&self) -> NSRelativeDateTimeFormatterUnitsStyle;
 
         #[method(setUnitsStyle:)]
-        pub unsafe fn setUnitsStyle(&self, unitsStyle: NSRelativeDateTimeFormatterUnitsStyle);
+        pub unsafe fn setUnitsStyle(&self, units_style: NSRelativeDateTimeFormatterUnitsStyle);
 
         #[method(formattingContext)]
         pub unsafe fn formattingContext(&self) -> NSFormattingContext;
 
         #[method(setFormattingContext:)]
-        pub unsafe fn setFormattingContext(&self, formattingContext: NSFormattingContext);
+        pub unsafe fn setFormattingContext(&self, formatting_context: NSFormattingContext);
 
         #[cfg(feature = "Foundation_NSCalendar")]
         #[method_id(@__retain_semantics Other calendar)]
@@ -77,14 +77,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other localizedStringFromDateComponents:)]
         pub unsafe fn localizedStringFromDateComponents(
             &self,
-            dateComponents: &NSDateComponents,
+            date_components: &NSDateComponents,
         ) -> Id<NSString, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedStringFromTimeInterval:)]
         pub unsafe fn localizedStringFromTimeInterval(
             &self,
-            timeInterval: NSTimeInterval,
+            time_interval: NSTimeInterval,
         ) -> Id<NSString, Shared>;
 
         #[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSString"))]
@@ -92,7 +92,7 @@ extern_methods!(
         pub unsafe fn localizedStringForDate_relativeToDate(
             &self,
             date: &NSDate,
-            referenceDate: &NSDate,
+            reference_date: &NSDate,
         ) -> Id<NSString, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]

@@ -63,7 +63,7 @@ extern_protocol!(
         pub unsafe fn signaledValue(&self) -> u64;
 
         #[method(setSignaledValue:)]
-        pub unsafe fn setSignaledValue(&self, signaledValue: u64);
+        pub unsafe fn setSignaledValue(&self, signaled_value: u64);
     }
 );
 

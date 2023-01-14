@@ -44,19 +44,19 @@ extern_methods!(
         pub unsafe fn doubleValue(&self) -> c_double;
 
         #[method(setDoubleValue:)]
-        pub unsafe fn setDoubleValue(&self, doubleValue: c_double);
+        pub unsafe fn setDoubleValue(&self, double_value: c_double);
 
         #[method(minimumSliderWidth)]
         pub unsafe fn minimumSliderWidth(&self) -> CGFloat;
 
         #[method(setMinimumSliderWidth:)]
-        pub unsafe fn setMinimumSliderWidth(&self, minimumSliderWidth: CGFloat);
+        pub unsafe fn setMinimumSliderWidth(&self, minimum_slider_width: CGFloat);
 
         #[method(maximumSliderWidth)]
         pub unsafe fn maximumSliderWidth(&self) -> CGFloat;
 
         #[method(setMaximumSliderWidth:)]
-        pub unsafe fn setMaximumSliderWidth(&self, maximumSliderWidth: CGFloat);
+        pub unsafe fn setMaximumSliderWidth(&self, maximum_slider_width: CGFloat);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
@@ -74,7 +74,7 @@ extern_methods!(
         #[method(setMinimumValueAccessory:)]
         pub unsafe fn setMinimumValueAccessory(
             &self,
-            minimumValueAccessory: Option<&NSSliderAccessory>,
+            minimum_value_accessory: Option<&NSSliderAccessory>,
         );
 
         #[cfg(feature = "AppKit_NSSliderAccessory")]
@@ -85,14 +85,14 @@ extern_methods!(
         #[method(setMaximumValueAccessory:)]
         pub unsafe fn setMaximumValueAccessory(
             &self,
-            maximumValueAccessory: Option<&NSSliderAccessory>,
+            maximum_value_accessory: Option<&NSSliderAccessory>,
         );
 
         #[method(valueAccessoryWidth)]
         pub unsafe fn valueAccessoryWidth(&self) -> NSSliderAccessoryWidth;
 
         #[method(setValueAccessoryWidth:)]
-        pub unsafe fn setValueAccessoryWidth(&self, valueAccessoryWidth: NSSliderAccessoryWidth);
+        pub unsafe fn setValueAccessoryWidth(&self, value_accessory_width: NSSliderAccessoryWidth);
 
         #[method_id(@__retain_semantics Other target)]
         pub unsafe fn target(&self) -> Option<Id<Object, Shared>>;
@@ -112,7 +112,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCustomizationLabel:)]
-        pub unsafe fn setCustomizationLabel(&self, customizationLabel: Option<&NSString>);
+        pub unsafe fn setCustomizationLabel(&self, customization_label: Option<&NSString>);
     }
 );
 

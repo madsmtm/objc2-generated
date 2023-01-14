@@ -60,85 +60,85 @@ extern_methods!(
         pub fn minFilter(&self) -> MTLSamplerMinMagFilter;
 
         #[method(setMinFilter:)]
-        pub fn setMinFilter(&self, minFilter: MTLSamplerMinMagFilter);
+        pub fn setMinFilter(&self, min_filter: MTLSamplerMinMagFilter);
 
         #[method(magFilter)]
         pub fn magFilter(&self) -> MTLSamplerMinMagFilter;
 
         #[method(setMagFilter:)]
-        pub fn setMagFilter(&self, magFilter: MTLSamplerMinMagFilter);
+        pub fn setMagFilter(&self, mag_filter: MTLSamplerMinMagFilter);
 
         #[method(mipFilter)]
         pub fn mipFilter(&self) -> MTLSamplerMipFilter;
 
         #[method(setMipFilter:)]
-        pub fn setMipFilter(&self, mipFilter: MTLSamplerMipFilter);
+        pub fn setMipFilter(&self, mip_filter: MTLSamplerMipFilter);
 
         #[method(maxAnisotropy)]
         pub fn maxAnisotropy(&self) -> NSUInteger;
 
         #[method(setMaxAnisotropy:)]
-        pub fn setMaxAnisotropy(&self, maxAnisotropy: NSUInteger);
+        pub fn setMaxAnisotropy(&self, max_anisotropy: NSUInteger);
 
         #[method(sAddressMode)]
         pub fn sAddressMode(&self) -> MTLSamplerAddressMode;
 
         #[method(setSAddressMode:)]
-        pub fn setSAddressMode(&self, sAddressMode: MTLSamplerAddressMode);
+        pub fn setSAddressMode(&self, s_address_mode: MTLSamplerAddressMode);
 
         #[method(tAddressMode)]
         pub fn tAddressMode(&self) -> MTLSamplerAddressMode;
 
         #[method(setTAddressMode:)]
-        pub fn setTAddressMode(&self, tAddressMode: MTLSamplerAddressMode);
+        pub fn setTAddressMode(&self, t_address_mode: MTLSamplerAddressMode);
 
         #[method(rAddressMode)]
         pub fn rAddressMode(&self) -> MTLSamplerAddressMode;
 
         #[method(setRAddressMode:)]
-        pub fn setRAddressMode(&self, rAddressMode: MTLSamplerAddressMode);
+        pub fn setRAddressMode(&self, r_address_mode: MTLSamplerAddressMode);
 
         #[method(borderColor)]
         pub fn borderColor(&self) -> MTLSamplerBorderColor;
 
         #[method(setBorderColor:)]
-        pub fn setBorderColor(&self, borderColor: MTLSamplerBorderColor);
+        pub fn setBorderColor(&self, border_color: MTLSamplerBorderColor);
 
         #[method(normalizedCoordinates)]
         pub fn normalizedCoordinates(&self) -> bool;
 
         #[method(setNormalizedCoordinates:)]
-        pub fn setNormalizedCoordinates(&self, normalizedCoordinates: bool);
+        pub fn setNormalizedCoordinates(&self, normalized_coordinates: bool);
 
         #[method(lodMinClamp)]
         pub fn lodMinClamp(&self) -> c_float;
 
         #[method(setLodMinClamp:)]
-        pub fn setLodMinClamp(&self, lodMinClamp: c_float);
+        pub fn setLodMinClamp(&self, lod_min_clamp: c_float);
 
         #[method(lodMaxClamp)]
         pub fn lodMaxClamp(&self) -> c_float;
 
         #[method(setLodMaxClamp:)]
-        pub fn setLodMaxClamp(&self, lodMaxClamp: c_float);
+        pub fn setLodMaxClamp(&self, lod_max_clamp: c_float);
 
         #[method(lodAverage)]
         pub fn lodAverage(&self) -> bool;
 
         #[method(setLodAverage:)]
-        pub fn setLodAverage(&self, lodAverage: bool);
+        pub fn setLodAverage(&self, lod_average: bool);
 
         #[method(compareFunction)]
         pub fn compareFunction(&self) -> MTLCompareFunction;
 
         #[method(setCompareFunction:)]
-        pub fn setCompareFunction(&self, compareFunction: MTLCompareFunction);
+        pub fn setCompareFunction(&self, compare_function: MTLCompareFunction);
 
         #[method(supportArgumentBuffers)]
         pub fn supportArgumentBuffers(&self) -> bool;
 
         #[method(setSupportArgumentBuffers:)]
-        pub fn setSupportArgumentBuffers(&self, supportArgumentBuffers: bool);
+        pub fn setSupportArgumentBuffers(&self, support_argument_buffers: bool);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]

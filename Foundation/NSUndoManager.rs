@@ -43,13 +43,13 @@ extern_methods!(
         pub unsafe fn groupsByEvent(&self) -> bool;
 
         #[method(setGroupsByEvent:)]
-        pub unsafe fn setGroupsByEvent(&self, groupsByEvent: bool);
+        pub unsafe fn setGroupsByEvent(&self, groups_by_event: bool);
 
         #[method(levelsOfUndo)]
         pub unsafe fn levelsOfUndo(&self) -> NSUInteger;
 
         #[method(setLevelsOfUndo:)]
-        pub unsafe fn setLevelsOfUndo(&self, levelsOfUndo: NSUInteger);
+        pub unsafe fn setLevelsOfUndo(&self, levels_of_undo: NSUInteger);
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other runLoopModes)]
@@ -57,7 +57,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setRunLoopModes:)]
-        pub unsafe fn setRunLoopModes(&self, runLoopModes: &NSArray<NSRunLoopMode>);
+        pub unsafe fn setRunLoopModes(&self, run_loop_modes: &NSArray<NSRunLoopMode>);
 
         #[method(undo)]
         pub unsafe fn undo(&self);
@@ -91,7 +91,7 @@ extern_methods!(
             &self,
             target: &Object,
             selector: Sel,
-            anObject: Option<&Object>,
+            an_object: Option<&Object>,
         );
 
         #[method_id(@__retain_semantics Other prepareWithInvocationTarget:)]
@@ -101,7 +101,7 @@ extern_methods!(
         pub unsafe fn registerUndoWithTarget_handler(
             &self,
             target: &Object,
-            undoHandler: &Block<(NonNull<Object>,), ()>,
+            undo_handler: &Block<(NonNull<Object>,), ()>,
         );
 
         #[method(setActionIsDiscardable:)]
@@ -123,7 +123,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setActionName:)]
-        pub unsafe fn setActionName(&self, actionName: &NSString);
+        pub unsafe fn setActionName(&self, action_name: &NSString);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other undoMenuItemTitle)]
@@ -137,14 +137,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other undoMenuTitleForUndoActionName:)]
         pub unsafe fn undoMenuTitleForUndoActionName(
             &self,
-            actionName: &NSString,
+            action_name: &NSString,
         ) -> Id<NSString, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other redoMenuTitleForUndoActionName:)]
         pub unsafe fn redoMenuTitleForUndoActionName(
             &self,
-            actionName: &NSString,
+            action_name: &NSString,
         ) -> Id<NSString, Shared>;
     }
 );

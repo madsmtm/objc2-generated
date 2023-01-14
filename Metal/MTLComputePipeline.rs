@@ -54,7 +54,7 @@ extern_methods!(
         pub fn computeFunction(&self) -> Option<Id<MTLFunction, Shared>>;
 
         #[method(setComputeFunction:)]
-        pub fn setComputeFunction(&self, computeFunction: Option<&MTLFunction>);
+        pub fn setComputeFunction(&self, compute_function: Option<&MTLFunction>);
 
         #[method(threadGroupSizeIsMultipleOfThreadExecutionWidth)]
         pub fn threadGroupSizeIsMultipleOfThreadExecutionWidth(&self) -> bool;
@@ -62,14 +62,17 @@ extern_methods!(
         #[method(setThreadGroupSizeIsMultipleOfThreadExecutionWidth:)]
         pub unsafe fn setThreadGroupSizeIsMultipleOfThreadExecutionWidth(
             &self,
-            threadGroupSizeIsMultipleOfThreadExecutionWidth: bool,
+            thread_group_size_is_multiple_of_thread_execution_width: bool,
         );
 
         #[method(maxTotalThreadsPerThreadgroup)]
         pub fn maxTotalThreadsPerThreadgroup(&self) -> NSUInteger;
 
         #[method(setMaxTotalThreadsPerThreadgroup:)]
-        pub fn setMaxTotalThreadsPerThreadgroup(&self, maxTotalThreadsPerThreadgroup: NSUInteger);
+        pub fn setMaxTotalThreadsPerThreadgroup(
+            &self,
+            max_total_threads_per_threadgroup: NSUInteger,
+        );
 
         #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
         #[method_id(@__retain_semantics Other stageInputDescriptor)]
@@ -79,7 +82,7 @@ extern_methods!(
         #[method(setStageInputDescriptor:)]
         pub fn setStageInputDescriptor(
             &self,
-            stageInputDescriptor: Option<&MTLStageInputOutputDescriptor>,
+            stage_input_descriptor: Option<&MTLStageInputOutputDescriptor>,
         );
 
         #[cfg(feature = "Metal_MTLPipelineBufferDescriptorArray")]
@@ -90,7 +93,7 @@ extern_methods!(
         pub fn supportIndirectCommandBuffers(&self) -> bool;
 
         #[method(setSupportIndirectCommandBuffers:)]
-        pub fn setSupportIndirectCommandBuffers(&self, supportIndirectCommandBuffers: bool);
+        pub fn setSupportIndirectCommandBuffers(&self, support_indirect_command_buffers: bool);
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other insertLibraries)]
@@ -98,7 +101,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setInsertLibraries:)]
-        pub fn setInsertLibraries(&self, insertLibraries: Option<&NSArray<MTLDynamicLibrary>>);
+        pub fn setInsertLibraries(&self, insert_libraries: Option<&NSArray<MTLDynamicLibrary>>);
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other preloadedLibraries)]
@@ -106,7 +109,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setPreloadedLibraries:)]
-        pub fn setPreloadedLibraries(&self, preloadedLibraries: &NSArray<MTLDynamicLibrary>);
+        pub fn setPreloadedLibraries(&self, preloaded_libraries: &NSArray<MTLDynamicLibrary>);
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other binaryArchives)]
@@ -114,7 +117,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setBinaryArchives:)]
-        pub fn setBinaryArchives(&self, binaryArchives: Option<&NSArray<MTLBinaryArchive>>);
+        pub fn setBinaryArchives(&self, binary_archives: Option<&NSArray<MTLBinaryArchive>>);
 
         #[method(reset)]
         pub fn reset(&self);
@@ -125,19 +128,19 @@ extern_methods!(
 
         #[cfg(feature = "Metal_MTLLinkedFunctions")]
         #[method(setLinkedFunctions:)]
-        pub fn setLinkedFunctions(&self, linkedFunctions: Option<&MTLLinkedFunctions>);
+        pub fn setLinkedFunctions(&self, linked_functions: Option<&MTLLinkedFunctions>);
 
         #[method(supportAddingBinaryFunctions)]
         pub fn supportAddingBinaryFunctions(&self) -> bool;
 
         #[method(setSupportAddingBinaryFunctions:)]
-        pub fn setSupportAddingBinaryFunctions(&self, supportAddingBinaryFunctions: bool);
+        pub fn setSupportAddingBinaryFunctions(&self, support_adding_binary_functions: bool);
 
         #[method(maxCallStackDepth)]
         pub fn maxCallStackDepth(&self) -> NSUInteger;
 
         #[method(setMaxCallStackDepth:)]
-        pub fn setMaxCallStackDepth(&self, maxCallStackDepth: NSUInteger);
+        pub fn setMaxCallStackDepth(&self, max_call_stack_depth: NSUInteger);
     }
 );
 
@@ -164,7 +167,7 @@ extern_protocol!(
         #[method(imageblockMemoryLengthForDimensions:)]
         pub unsafe fn imageblockMemoryLengthForDimensions(
             &self,
-            imageblockDimensions: MTLSize,
+            imageblock_dimensions: MTLSize,
         ) -> NSUInteger;
 
         #[method(supportIndirectCommandBuffers)]

@@ -53,7 +53,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setInformativeText:)]
-        pub unsafe fn setInformativeText(&self, informativeText: Option<&NSString>);
+        pub unsafe fn setInformativeText(&self, informative_text: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other actionButtonTitle)]
@@ -61,7 +61,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setActionButtonTitle:)]
-        pub unsafe fn setActionButtonTitle(&self, actionButtonTitle: &NSString);
+        pub unsafe fn setActionButtonTitle(&self, action_button_title: &NSString);
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other userInfo)]
@@ -69,7 +69,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setUserInfo:)]
-        pub unsafe fn setUserInfo(&self, userInfo: Option<&NSDictionary<NSString, Object>>);
+        pub unsafe fn setUserInfo(&self, user_info: Option<&NSDictionary<NSString, Object>>);
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other deliveryDate)]
@@ -77,7 +77,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method(setDeliveryDate:)]
-        pub unsafe fn setDeliveryDate(&self, deliveryDate: Option<&NSDate>);
+        pub unsafe fn setDeliveryDate(&self, delivery_date: Option<&NSDate>);
 
         #[cfg(feature = "Foundation_NSTimeZone")]
         #[method_id(@__retain_semantics Other deliveryTimeZone)]
@@ -85,7 +85,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSTimeZone")]
         #[method(setDeliveryTimeZone:)]
-        pub unsafe fn setDeliveryTimeZone(&self, deliveryTimeZone: Option<&NSTimeZone>);
+        pub unsafe fn setDeliveryTimeZone(&self, delivery_time_zone: Option<&NSTimeZone>);
 
         #[cfg(feature = "Foundation_NSDateComponents")]
         #[method_id(@__retain_semantics Other deliveryRepeatInterval)]
@@ -95,7 +95,7 @@ extern_methods!(
         #[method(setDeliveryRepeatInterval:)]
         pub unsafe fn setDeliveryRepeatInterval(
             &self,
-            deliveryRepeatInterval: Option<&NSDateComponents>,
+            delivery_repeat_interval: Option<&NSDateComponents>,
         );
 
         #[cfg(feature = "Foundation_NSDate")]
@@ -114,13 +114,13 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setSoundName:)]
-        pub unsafe fn setSoundName(&self, soundName: Option<&NSString>);
+        pub unsafe fn setSoundName(&self, sound_name: Option<&NSString>);
 
         #[method(hasActionButton)]
         pub unsafe fn hasActionButton(&self) -> bool;
 
         #[method(setHasActionButton:)]
-        pub unsafe fn setHasActionButton(&self, hasActionButton: bool);
+        pub unsafe fn setHasActionButton(&self, has_action_button: bool);
 
         #[method(activationType)]
         pub unsafe fn activationType(&self) -> NSUserNotificationActivationType;
@@ -131,7 +131,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setOtherButtonTitle:)]
-        pub unsafe fn setOtherButtonTitle(&self, otherButtonTitle: &NSString);
+        pub unsafe fn setOtherButtonTitle(&self, other_button_title: &NSString);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other identifier)]
@@ -145,7 +145,7 @@ extern_methods!(
         pub unsafe fn hasReplyButton(&self) -> bool;
 
         #[method(setHasReplyButton:)]
-        pub unsafe fn setHasReplyButton(&self, hasReplyButton: bool);
+        pub unsafe fn setHasReplyButton(&self, has_reply_button: bool);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other responsePlaceholder)]
@@ -153,7 +153,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setResponsePlaceholder:)]
-        pub unsafe fn setResponsePlaceholder(&self, responsePlaceholder: Option<&NSString>);
+        pub unsafe fn setResponsePlaceholder(&self, response_placeholder: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other response)]
@@ -175,7 +175,7 @@ extern_methods!(
         #[method(setAdditionalActions:)]
         pub unsafe fn setAdditionalActions(
             &self,
-            additionalActions: Option<&NSArray<NSUserNotificationAction>>,
+            additional_actions: Option<&NSArray<NSUserNotificationAction>>,
         );
 
         #[cfg(feature = "Foundation_NSUserNotificationAction")]
@@ -256,7 +256,7 @@ extern_methods!(
         #[method(setScheduledNotifications:)]
         pub unsafe fn setScheduledNotifications(
             &self,
-            scheduledNotifications: &NSArray<NSUserNotification>,
+            scheduled_notifications: &NSArray<NSUserNotification>,
         );
 
         #[cfg(feature = "Foundation_NSUserNotification")]

@@ -28,7 +28,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(setOwningView:)]
-        pub unsafe fn setOwningView(&self, owningView: Option<&NSView>);
+        pub unsafe fn setOwningView(&self, owning_view: Option<&NSView>);
 
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Id<NSUserInterfaceItemIdentifier, Shared>;

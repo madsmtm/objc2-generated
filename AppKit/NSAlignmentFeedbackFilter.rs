@@ -34,16 +34,16 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSPanGestureRecognizer")]
         #[method(updateWithPanRecognizer:)]
-        pub unsafe fn updateWithPanRecognizer(&self, panRecognizer: &NSPanGestureRecognizer);
+        pub unsafe fn updateWithPanRecognizer(&self, pan_recognizer: &NSPanGestureRecognizer);
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other alignmentFeedbackTokenForMovementInView:previousPoint:alignedPoint:defaultPoint:)]
         pub unsafe fn alignmentFeedbackTokenForMovementInView_previousPoint_alignedPoint_defaultPoint(
             &self,
             view: Option<&NSView>,
-            previousPoint: NSPoint,
-            alignedPoint: NSPoint,
-            defaultPoint: NSPoint,
+            previous_point: NSPoint,
+            aligned_point: NSPoint,
+            default_point: NSPoint,
         ) -> Option<Id<NSAlignmentFeedbackToken, Shared>>;
 
         #[cfg(feature = "AppKit_NSView")]
@@ -51,9 +51,9 @@ extern_methods!(
         pub unsafe fn alignmentFeedbackTokenForHorizontalMovementInView_previousX_alignedX_defaultX(
             &self,
             view: Option<&NSView>,
-            previousX: CGFloat,
-            alignedX: CGFloat,
-            defaultX: CGFloat,
+            previous_x: CGFloat,
+            aligned_x: CGFloat,
+            default_x: CGFloat,
         ) -> Option<Id<NSAlignmentFeedbackToken, Shared>>;
 
         #[cfg(feature = "AppKit_NSView")]
@@ -61,17 +61,17 @@ extern_methods!(
         pub unsafe fn alignmentFeedbackTokenForVerticalMovementInView_previousY_alignedY_defaultY(
             &self,
             view: Option<&NSView>,
-            previousY: CGFloat,
-            alignedY: CGFloat,
-            defaultY: CGFloat,
+            previous_y: CGFloat,
+            aligned_y: CGFloat,
+            default_y: CGFloat,
         ) -> Option<Id<NSAlignmentFeedbackToken, Shared>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(performFeedback:performanceTime:)]
         pub unsafe fn performFeedback_performanceTime(
             &self,
-            alignmentFeedbackTokens: &NSArray<NSAlignmentFeedbackToken>,
-            performanceTime: NSHapticFeedbackPerformanceTime,
+            alignment_feedback_tokens: &NSArray<NSAlignmentFeedbackToken>,
+            performance_time: NSHapticFeedbackPerformanceTime,
         );
     }
 );

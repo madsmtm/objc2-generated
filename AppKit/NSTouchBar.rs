@@ -39,7 +39,7 @@ extern_methods!(
         #[method(setCustomizationIdentifier:)]
         pub unsafe fn setCustomizationIdentifier(
             &self,
-            customizationIdentifier: Option<&NSTouchBarCustomizationIdentifier>,
+            customization_identifier: Option<&NSTouchBarCustomizationIdentifier>,
         );
 
         #[cfg(feature = "Foundation_NSArray")]
@@ -52,7 +52,7 @@ extern_methods!(
         #[method(setCustomizationAllowedItemIdentifiers:)]
         pub unsafe fn setCustomizationAllowedItemIdentifiers(
             &self,
-            customizationAllowedItemIdentifiers: &NSArray<NSTouchBarItemIdentifier>,
+            customization_allowed_item_identifiers: &NSArray<NSTouchBarItemIdentifier>,
         );
 
         #[cfg(feature = "Foundation_NSArray")]
@@ -65,7 +65,7 @@ extern_methods!(
         #[method(setCustomizationRequiredItemIdentifiers:)]
         pub unsafe fn setCustomizationRequiredItemIdentifiers(
             &self,
-            customizationRequiredItemIdentifiers: &NSArray<NSTouchBarItemIdentifier>,
+            customization_required_item_identifiers: &NSArray<NSTouchBarItemIdentifier>,
         );
 
         #[cfg(feature = "Foundation_NSArray")]
@@ -78,7 +78,7 @@ extern_methods!(
         #[method(setDefaultItemIdentifiers:)]
         pub unsafe fn setDefaultItemIdentifiers(
             &self,
-            defaultItemIdentifiers: &NSArray<NSTouchBarItemIdentifier>,
+            default_item_identifiers: &NSArray<NSTouchBarItemIdentifier>,
         );
 
         #[cfg(feature = "Foundation_NSArray")]
@@ -93,7 +93,7 @@ extern_methods!(
         #[method(setPrincipalItemIdentifier:)]
         pub unsafe fn setPrincipalItemIdentifier(
             &self,
-            principalItemIdentifier: Option<&NSTouchBarItemIdentifier>,
+            principal_item_identifier: Option<&NSTouchBarItemIdentifier>,
         );
 
         #[method_id(@__retain_semantics Other escapeKeyReplacementItemIdentifier)]
@@ -104,7 +104,7 @@ extern_methods!(
         #[method(setEscapeKeyReplacementItemIdentifier:)]
         pub unsafe fn setEscapeKeyReplacementItemIdentifier(
             &self,
-            escapeKeyReplacementItemIdentifier: Option<&NSTouchBarItemIdentifier>,
+            escape_key_replacement_item_identifier: Option<&NSTouchBarItemIdentifier>,
         );
 
         #[cfg(all(feature = "AppKit_NSTouchBarItem", feature = "Foundation_NSSet"))]
@@ -113,7 +113,7 @@ extern_methods!(
 
         #[cfg(all(feature = "AppKit_NSTouchBarItem", feature = "Foundation_NSSet"))]
         #[method(setTemplateItems:)]
-        pub unsafe fn setTemplateItems(&self, templateItems: &NSSet<NSTouchBarItem>);
+        pub unsafe fn setTemplateItems(&self, template_items: &NSSet<NSTouchBarItem>);
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSTouchBarDelegate, Shared>>;
@@ -136,7 +136,7 @@ extern_methods!(
 
         #[method(setAutomaticCustomizeTouchBarMenuItemEnabled:)]
         pub unsafe fn setAutomaticCustomizeTouchBarMenuItemEnabled(
-            automaticCustomizeTouchBarMenuItemEnabled: bool,
+            automatic_customize_touch_bar_menu_item_enabled: bool,
         );
     }
 );
@@ -150,7 +150,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other touchBar:makeItemForIdentifier:)]
         pub unsafe fn touchBar_makeItemForIdentifier(
             &self,
-            touchBar: &NSTouchBar,
+            touch_bar: &NSTouchBar,
             identifier: &NSTouchBarItemIdentifier,
         ) -> Option<Id<NSTouchBarItem, Shared>>;
     }
@@ -176,7 +176,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSTouchBar")]
         #[method(setTouchBar:)]
-        pub unsafe fn setTouchBar(&self, touchBar: Option<&NSTouchBar>);
+        pub unsafe fn setTouchBar(&self, touch_bar: Option<&NSTouchBar>);
 
         #[cfg(feature = "AppKit_NSTouchBar")]
         #[method_id(@__retain_semantics Other makeTouchBar)]
@@ -194,7 +194,7 @@ extern_methods!(
         #[method(setAutomaticCustomizeTouchBarMenuItemEnabled:)]
         pub unsafe fn setAutomaticCustomizeTouchBarMenuItemEnabled(
             &self,
-            automaticCustomizeTouchBarMenuItemEnabled: bool,
+            automatic_customize_touch_bar_menu_item_enabled: bool,
         );
 
         #[method(toggleTouchBarCustomizationPalette:)]

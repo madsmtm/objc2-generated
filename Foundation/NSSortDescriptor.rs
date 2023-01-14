@@ -114,7 +114,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other sortedArrayUsingDescriptors:)]
         pub unsafe fn sortedArrayUsingDescriptors(
             &self,
-            sortDescriptors: &NSArray<NSSortDescriptor>,
+            sort_descriptors: &NSArray<NSSortDescriptor>,
         ) -> Id<NSArray<ObjectType>, Shared>;
     }
 );
@@ -129,7 +129,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other sortedArrayUsingDescriptors:)]
         pub unsafe fn sortedArrayUsingDescriptors(
             &self,
-            sortDescriptors: &NSArray<NSSortDescriptor>,
+            sort_descriptors: &NSArray<NSSortDescriptor>,
         ) -> Id<NSArray<ObjectType>, Shared>;
     }
 );
@@ -145,7 +145,7 @@ extern_methods!(
             feature = "Foundation_NSSortDescriptor"
         ))]
         #[method(sortUsingDescriptors:)]
-        pub unsafe fn sortUsingDescriptors(&self, sortDescriptors: &NSArray<NSSortDescriptor>);
+        pub unsafe fn sortUsingDescriptors(&self, sort_descriptors: &NSArray<NSSortDescriptor>);
     }
 );
 
@@ -162,7 +162,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other sortedArrayUsingDescriptors:)]
         pub unsafe fn sortedArrayUsingDescriptors(
             &self,
-            sortDescriptors: &NSArray<NSSortDescriptor>,
+            sort_descriptors: &NSArray<NSSortDescriptor>,
         ) -> Id<NSArray<ObjectType>, Shared>;
     }
 );
@@ -178,6 +178,6 @@ extern_methods!(
             feature = "Foundation_NSSortDescriptor"
         ))]
         #[method(sortUsingDescriptors:)]
-        pub unsafe fn sortUsingDescriptors(&self, sortDescriptors: &NSArray<NSSortDescriptor>);
+        pub unsafe fn sortUsingDescriptors(&self, sort_descriptors: &NSArray<NSSortDescriptor>);
     }
 );

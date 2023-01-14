@@ -37,37 +37,37 @@ extern_methods!(
         pub fn storageMode(&self) -> MTLStorageMode;
 
         #[method(setStorageMode:)]
-        pub fn setStorageMode(&self, storageMode: MTLStorageMode);
+        pub fn setStorageMode(&self, storage_mode: MTLStorageMode);
 
         #[method(cpuCacheMode)]
         pub fn cpuCacheMode(&self) -> MTLCPUCacheMode;
 
         #[method(setCpuCacheMode:)]
-        pub fn setCpuCacheMode(&self, cpuCacheMode: MTLCPUCacheMode);
+        pub fn setCpuCacheMode(&self, cpu_cache_mode: MTLCPUCacheMode);
 
         #[method(sparsePageSize)]
         pub unsafe fn sparsePageSize(&self) -> MTLSparsePageSize;
 
         #[method(setSparsePageSize:)]
-        pub unsafe fn setSparsePageSize(&self, sparsePageSize: MTLSparsePageSize);
+        pub unsafe fn setSparsePageSize(&self, sparse_page_size: MTLSparsePageSize);
 
         #[method(hazardTrackingMode)]
         pub fn hazardTrackingMode(&self) -> MTLHazardTrackingMode;
 
         #[method(setHazardTrackingMode:)]
-        pub fn setHazardTrackingMode(&self, hazardTrackingMode: MTLHazardTrackingMode);
+        pub fn setHazardTrackingMode(&self, hazard_tracking_mode: MTLHazardTrackingMode);
 
         #[method(resourceOptions)]
         pub fn resourceOptions(&self) -> MTLResourceOptions;
 
         #[method(setResourceOptions:)]
-        pub fn setResourceOptions(&self, resourceOptions: MTLResourceOptions);
+        pub fn setResourceOptions(&self, resource_options: MTLResourceOptions);
 
         #[method(type)]
-        pub unsafe fn type_(&self) -> MTLHeapType;
+        pub unsafe fn r#type(&self) -> MTLHeapType;
 
         #[method(setType:)]
-        pub fn setType(&self, type_: MTLHeapType);
+        pub fn setType(&self, r#type: MTLHeapType);
     }
 );
 
@@ -128,7 +128,7 @@ extern_protocol!(
         pub fn setPurgeableState(&self, state: MTLPurgeableState) -> MTLPurgeableState;
 
         #[method(type)]
-        pub unsafe fn type_(&self) -> MTLHeapType;
+        pub unsafe fn r#type(&self) -> MTLHeapType;
 
         #[method_id(@__retain_semantics New newBufferWithLength:options:offset:)]
         pub unsafe fn newBufferWithLength_options_offset(

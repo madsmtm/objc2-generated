@@ -33,8 +33,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initTextCell:pullsDown:)]
         pub unsafe fn initTextCell_pullsDown(
             this: Option<Allocated<Self>>,
-            stringValue: &NSString,
-            pullDown: bool,
+            string_value: &NSString,
+            pull_down: bool,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSCoder")]
@@ -56,31 +56,31 @@ extern_methods!(
         pub unsafe fn pullsDown(&self) -> bool;
 
         #[method(setPullsDown:)]
-        pub unsafe fn setPullsDown(&self, pullsDown: bool);
+        pub unsafe fn setPullsDown(&self, pulls_down: bool);
 
         #[method(autoenablesItems)]
         pub unsafe fn autoenablesItems(&self) -> bool;
 
         #[method(setAutoenablesItems:)]
-        pub unsafe fn setAutoenablesItems(&self, autoenablesItems: bool);
+        pub unsafe fn setAutoenablesItems(&self, autoenables_items: bool);
 
         #[method(preferredEdge)]
         pub unsafe fn preferredEdge(&self) -> NSRectEdge;
 
         #[method(setPreferredEdge:)]
-        pub unsafe fn setPreferredEdge(&self, preferredEdge: NSRectEdge);
+        pub unsafe fn setPreferredEdge(&self, preferred_edge: NSRectEdge);
 
         #[method(usesItemFromMenu)]
         pub unsafe fn usesItemFromMenu(&self) -> bool;
 
         #[method(setUsesItemFromMenu:)]
-        pub unsafe fn setUsesItemFromMenu(&self, usesItemFromMenu: bool);
+        pub unsafe fn setUsesItemFromMenu(&self, uses_item_from_menu: bool);
 
         #[method(altersStateOfSelectedItem)]
         pub unsafe fn altersStateOfSelectedItem(&self) -> bool;
 
         #[method(setAltersStateOfSelectedItem:)]
-        pub unsafe fn setAltersStateOfSelectedItem(&self, altersStateOfSelectedItem: bool);
+        pub unsafe fn setAltersStateOfSelectedItem(&self, alters_state_of_selected_item: bool);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(addItemWithTitle:)]
@@ -88,7 +88,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(addItemsWithTitles:)]
-        pub unsafe fn addItemsWithTitles(&self, itemTitles: &NSArray<NSString>);
+        pub unsafe fn addItemsWithTitles(&self, item_titles: &NSArray<NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(insertItemWithTitle:atIndex:)]
@@ -129,7 +129,7 @@ extern_methods!(
         pub unsafe fn indexOfItemWithTarget_andAction(
             &self,
             target: Option<&Object>,
-            actionSelector: Option<Sel>,
+            action_selector: Option<Sel>,
         ) -> NSInteger;
 
         #[cfg(feature = "AppKit_NSMenuItem")]
@@ -186,20 +186,20 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(attachPopUpWithFrame:inView:)]
-        pub unsafe fn attachPopUpWithFrame_inView(&self, cellFrame: NSRect, controlView: &NSView);
+        pub unsafe fn attachPopUpWithFrame_inView(&self, cell_frame: NSRect, control_view: &NSView);
 
         #[method(dismissPopUp)]
         pub unsafe fn dismissPopUp(&self);
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(performClickWithFrame:inView:)]
-        pub unsafe fn performClickWithFrame_inView(&self, frame: NSRect, controlView: &NSView);
+        pub unsafe fn performClickWithFrame_inView(&self, frame: NSRect, control_view: &NSView);
 
         #[method(arrowPosition)]
         pub unsafe fn arrowPosition(&self) -> NSPopUpArrowPosition;
 
         #[method(setArrowPosition:)]
-        pub unsafe fn setArrowPosition(&self, arrowPosition: NSPopUpArrowPosition);
+        pub unsafe fn setArrowPosition(&self, arrow_position: NSPopUpArrowPosition);
     }
 );
 

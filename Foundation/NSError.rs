@@ -111,13 +111,13 @@ extern_methods!(
 
         #[method(setUserInfoValueProviderForDomain:provider:)]
         pub unsafe fn setUserInfoValueProviderForDomain_provider(
-            errorDomain: &NSErrorDomain,
+            error_domain: &NSErrorDomain,
             provider: Option<&Block<(NonNull<NSError>, NonNull<NSErrorUserInfoKey>), *mut Object>>,
         );
 
         #[method(userInfoValueProviderForDomain:)]
         pub unsafe fn userInfoValueProviderForDomain(
-            errorDomain: &NSErrorDomain,
+            error_domain: &NSErrorDomain,
         ) -> *mut Block<(NonNull<NSError>, NonNull<NSErrorUserInfoKey>), *mut Object>;
     }
 );

@@ -30,36 +30,36 @@ extern_methods!(
         pub unsafe fn archiverData(&self) -> Id<NSMutableData, Owned>;
 
         #[method(encodeRootObject:)]
-        pub unsafe fn encodeRootObject(&self, rootObject: &Object);
+        pub unsafe fn encodeRootObject(&self, root_object: &Object);
 
         #[method(encodeConditionalObject:)]
         pub unsafe fn encodeConditionalObject(&self, object: Option<&Object>);
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other archivedDataWithRootObject:)]
-        pub unsafe fn archivedDataWithRootObject(rootObject: &Object) -> Id<NSData, Shared>;
+        pub unsafe fn archivedDataWithRootObject(root_object: &Object) -> Id<NSData, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(archiveRootObject:toFile:)]
-        pub unsafe fn archiveRootObject_toFile(rootObject: &Object, path: &NSString) -> bool;
+        pub unsafe fn archiveRootObject_toFile(root_object: &Object, path: &NSString) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(encodeClassName:intoClassName:)]
         pub unsafe fn encodeClassName_intoClassName(
             &self,
-            trueName: &NSString,
-            inArchiveName: &NSString,
+            true_name: &NSString,
+            in_archive_name: &NSString,
         );
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other classNameEncodedForTrueClassName:)]
         pub unsafe fn classNameEncodedForTrueClassName(
             &self,
-            trueName: &NSString,
+            true_name: &NSString,
         ) -> Option<Id<NSString, Shared>>;
 
         #[method(replaceObject:withObject:)]
-        pub unsafe fn replaceObject_withObject(&self, object: &Object, newObject: &Object);
+        pub unsafe fn replaceObject_withObject(&self, object: &Object, new_object: &Object);
     }
 );
 
@@ -106,6 +106,6 @@ extern_methods!(
         pub unsafe fn unarchiveObjectWithFile(path: &NSString) -> Option<Id<Object, Shared>>;
 
         #[method(replaceObject:withObject:)]
-        pub unsafe fn replaceObject_withObject(&self, object: &Object, newObject: &Object);
+        pub unsafe fn replaceObject_withObject(&self, object: &Object, new_object: &Object);
     }
 );

@@ -24,7 +24,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setTicketKeyPath:)]
-        pub unsafe fn setTicketKeyPath(&self, ticketKeyPath: Option<&NSString>);
+        pub unsafe fn setTicketKeyPath(&self, ticket_key_path: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other messageBufferKeyName)]
@@ -32,7 +32,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setMessageBufferKeyName:)]
-        pub unsafe fn setMessageBufferKeyName(&self, messageBufferKeyName: Option<&NSString>);
+        pub unsafe fn setMessageBufferKeyName(&self, message_buffer_key_name: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other realmKeyName)]
@@ -40,7 +40,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setRealmKeyName:)]
-        pub unsafe fn setRealmKeyName(&self, realmKeyName: Option<&NSString>);
+        pub unsafe fn setRealmKeyName(&self, realm_key_name: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other serviceNameKeyName)]
@@ -48,7 +48,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setServiceNameKeyName:)]
-        pub unsafe fn setServiceNameKeyName(&self, serviceNameKeyName: Option<&NSString>);
+        pub unsafe fn setServiceNameKeyName(&self, service_name_key_name: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other clientNameKeyName)]
@@ -56,7 +56,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setClientNameKeyName:)]
-        pub unsafe fn setClientNameKeyName(&self, clientNameKeyName: Option<&NSString>);
+        pub unsafe fn setClientNameKeyName(&self, client_name_key_name: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other encryptionKeyTypeKeyName)]
@@ -66,7 +66,7 @@ extern_methods!(
         #[method(setEncryptionKeyTypeKeyName:)]
         pub unsafe fn setEncryptionKeyTypeKeyName(
             &self,
-            encryptionKeyTypeKeyName: Option<&NSString>,
+            encryption_key_type_key_name: Option<&NSString>,
         );
 
         #[cfg(feature = "Foundation_NSString")]
@@ -75,7 +75,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setSessionKeyKeyName:)]
-        pub unsafe fn setSessionKeyKeyName(&self, sessionKeyKeyName: Option<&NSString>);
+        pub unsafe fn setSessionKeyKeyName(&self, session_key_key_name: Option<&NSString>);
     }
 );
 
@@ -103,10 +103,10 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithClientID:issuer:tokenEndpointURL:jwksEndpointURL:audience:)]
         pub unsafe fn initWithClientID_issuer_tokenEndpointURL_jwksEndpointURL_audience(
             this: Option<Allocated<Self>>,
-            clientID: &NSString,
+            client_id: &NSString,
             issuer: &NSString,
-            tokenEndpointURL: &NSURL,
-            jwksEndpointURL: &NSURL,
+            token_endpoint_url: &NSURL,
+            jwks_endpoint_url: &NSURL,
             audience: Option<&NSString>,
         ) -> Id<Self, Shared>;
 
@@ -117,8 +117,8 @@ extern_methods!(
         ))]
         #[method(configurationWithOpenIDConfigurationURL:clientID:issuer:completion:)]
         pub unsafe fn configurationWithOpenIDConfigurationURL_clientID_issuer_completion(
-            openIDConfigurationURL: &NSURL,
-            clientID: &NSString,
+            open_id_configuration_url: &NSURL,
+            client_id: &NSString,
             issuer: Option<&NSString>,
             completion: &Block<
                 (
@@ -137,7 +137,7 @@ extern_methods!(
         #[method(setInvalidCredentialPredicate:)]
         pub unsafe fn setInvalidCredentialPredicate(
             &self,
-            invalidCredentialPredicate: Option<&NSString>,
+            invalid_credential_predicate: Option<&NSString>,
         );
 
         #[cfg(feature = "Foundation_NSString")]
@@ -146,7 +146,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAccountDisplayName:)]
-        pub unsafe fn setAccountDisplayName(&self, accountDisplayName: Option<&NSString>);
+        pub unsafe fn setAccountDisplayName(&self, account_display_name: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other clientID)]
@@ -170,7 +170,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method(setTokenEndpointURL:)]
-        pub unsafe fn setTokenEndpointURL(&self, tokenEndpointURL: &NSURL);
+        pub unsafe fn setTokenEndpointURL(&self, token_endpoint_url: &NSURL);
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other jwksEndpointURL)]
@@ -178,7 +178,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method(setJwksEndpointURL:)]
-        pub unsafe fn setJwksEndpointURL(&self, jwksEndpointURL: &NSURL);
+        pub unsafe fn setJwksEndpointURL(&self, jwks_endpoint_url: &NSURL);
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other nonceEndpointURL)]
@@ -186,7 +186,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method(setNonceEndpointURL:)]
-        pub unsafe fn setNonceEndpointURL(&self, nonceEndpointURL: &NSURL);
+        pub unsafe fn setNonceEndpointURL(&self, nonce_endpoint_url: &NSURL);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other nonceResponseKeypath)]
@@ -194,7 +194,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setNonceResponseKeypath:)]
-        pub unsafe fn setNonceResponseKeypath(&self, nonceResponseKeypath: &NSString);
+        pub unsafe fn setNonceResponseKeypath(&self, nonce_response_keypath: &NSString);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other serverNonceClaimName)]
@@ -202,7 +202,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setServerNonceClaimName:)]
-        pub unsafe fn setServerNonceClaimName(&self, serverNonceClaimName: &NSString);
+        pub unsafe fn setServerNonceClaimName(&self, server_nonce_claim_name: &NSString);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURLQueryItem"))]
         #[method_id(@__retain_semantics Other customNonceRequestValues)]
@@ -212,7 +212,7 @@ extern_methods!(
         #[method(setCustomNonceRequestValues:)]
         pub unsafe fn setCustomNonceRequestValues(
             &self,
-            customNonceRequestValues: &NSArray<NSURLQueryItem>,
+            custom_nonce_request_values: &NSArray<NSURLQueryItem>,
         );
 
         #[cfg(all(
@@ -243,7 +243,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAdditionalScopes:)]
-        pub unsafe fn setAdditionalScopes(&self, additionalScopes: &NSString);
+        pub unsafe fn setAdditionalScopes(&self, additional_scopes: &NSString);
 
         #[method(includePreviousRefreshTokenInLoginRequest)]
         pub unsafe fn includePreviousRefreshTokenInLoginRequest(&self) -> bool;
@@ -251,7 +251,7 @@ extern_methods!(
         #[method(setIncludePreviousRefreshTokenInLoginRequest:)]
         pub unsafe fn setIncludePreviousRefreshTokenInLoginRequest(
             &self,
-            includePreviousRefreshTokenInLoginRequest: bool,
+            include_previous_refresh_token_in_login_request: bool,
         );
 
         #[cfg(feature = "Foundation_NSString")]
@@ -262,7 +262,7 @@ extern_methods!(
         #[method(setPreviousRefreshTokenClaimName:)]
         pub unsafe fn setPreviousRefreshTokenClaimName(
             &self,
-            previousRefreshTokenClaimName: &NSString,
+            previous_refresh_token_claim_name: &NSString,
         );
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURLQueryItem"))]
@@ -273,7 +273,7 @@ extern_methods!(
         #[method(setCustomLoginRequestValues:)]
         pub unsafe fn setCustomLoginRequestValues(
             &self,
-            customLoginRequestValues: &NSArray<NSURLQueryItem>,
+            custom_login_request_values: &NSArray<NSURLQueryItem>,
         );
 
         #[cfg(all(
@@ -314,7 +314,7 @@ extern_methods!(
         #[method(setKerberosTicketMappings:)]
         pub unsafe fn setKerberosTicketMappings(
             &self,
-            kerberosTicketMappings: &NSArray<ASAuthorizationProviderExtensionKerberosMapping>,
+            kerberos_ticket_mappings: &NSArray<ASAuthorizationProviderExtensionKerberosMapping>,
         );
     }
 );

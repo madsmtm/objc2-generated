@@ -59,7 +59,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setProcessName:)]
-        pub unsafe fn setProcessName(&self, processName: &NSString);
+        pub unsafe fn setProcessName(&self, process_name: &NSString);
 
         #[method(processIdentifier)]
         pub unsafe fn processIdentifier(&self) -> c_int;
@@ -120,7 +120,7 @@ extern_methods!(
         #[method(setAutomaticTerminationSupportEnabled:)]
         pub unsafe fn setAutomaticTerminationSupportEnabled(
             &self,
-            automaticTerminationSupportEnabled: bool,
+            automatic_termination_support_enabled: bool,
         );
     }
 );

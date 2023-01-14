@@ -69,13 +69,13 @@ extern_methods!(
         pub unsafe fn queuePriority(&self) -> NSOperationQueuePriority;
 
         #[method(setQueuePriority:)]
-        pub unsafe fn setQueuePriority(&self, queuePriority: NSOperationQueuePriority);
+        pub unsafe fn setQueuePriority(&self, queue_priority: NSOperationQueuePriority);
 
         #[method(completionBlock)]
         pub unsafe fn completionBlock(&self) -> *mut Block<(), ()>;
 
         #[method(setCompletionBlock:)]
-        pub unsafe fn setCompletionBlock(&self, completionBlock: Option<&Block<(), ()>>);
+        pub unsafe fn setCompletionBlock(&self, completion_block: Option<&Block<(), ()>>);
 
         #[method(waitUntilFinished)]
         pub unsafe fn waitUntilFinished(&self);
@@ -84,13 +84,13 @@ extern_methods!(
         pub unsafe fn threadPriority(&self) -> c_double;
 
         #[method(setThreadPriority:)]
-        pub unsafe fn setThreadPriority(&self, threadPriority: c_double);
+        pub unsafe fn setThreadPriority(&self, thread_priority: c_double);
 
         #[method(qualityOfService)]
         pub unsafe fn qualityOfService(&self) -> NSQualityOfService;
 
         #[method(setQualityOfService:)]
-        pub unsafe fn setQualityOfService(&self, qualityOfService: NSQualityOfService);
+        pub unsafe fn setQualityOfService(&self, quality_of_service: NSQualityOfService);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
@@ -210,7 +210,10 @@ extern_methods!(
         pub unsafe fn maxConcurrentOperationCount(&self) -> NSInteger;
 
         #[method(setMaxConcurrentOperationCount:)]
-        pub unsafe fn setMaxConcurrentOperationCount(&self, maxConcurrentOperationCount: NSInteger);
+        pub unsafe fn setMaxConcurrentOperationCount(
+            &self,
+            max_concurrent_operation_count: NSInteger,
+        );
 
         #[method(isSuspended)]
         pub unsafe fn isSuspended(&self) -> bool;
@@ -230,7 +233,7 @@ extern_methods!(
         pub unsafe fn qualityOfService(&self) -> NSQualityOfService;
 
         #[method(setQualityOfService:)]
-        pub unsafe fn setQualityOfService(&self, qualityOfService: NSQualityOfService);
+        pub unsafe fn setQualityOfService(&self, quality_of_service: NSQualityOfService);
 
         #[method(cancelAllOperations)]
         pub unsafe fn cancelAllOperations(&self);

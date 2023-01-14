@@ -30,7 +30,7 @@ extern_methods!(
         pub unsafe fn isOverviewVisible(&self) -> bool;
 
         #[method(setOverviewVisible:)]
-        pub unsafe fn setOverviewVisible(&self, overviewVisible: bool);
+        pub unsafe fn setOverviewVisible(&self, overview_visible: bool);
 
         #[method(isTabBarVisible)]
         pub unsafe fn isTabBarVisible(&self) -> bool;
@@ -41,7 +41,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[method(setSelectedWindow:)]
-        pub unsafe fn setSelectedWindow(&self, selectedWindow: Option<&NSWindow>);
+        pub unsafe fn setSelectedWindow(&self, selected_window: Option<&NSWindow>);
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[method(addWindow:)]

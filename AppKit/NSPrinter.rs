@@ -49,20 +49,20 @@ extern_methods!(
         pub unsafe fn printerWithName(name: &NSString) -> Option<Id<NSPrinter, Shared>>;
 
         #[method_id(@__retain_semantics Other printerWithType:)]
-        pub unsafe fn printerWithType(type_: &NSPrinterTypeName) -> Option<Id<NSPrinter, Shared>>;
+        pub unsafe fn printerWithType(r#type: &NSPrinterTypeName) -> Option<Id<NSPrinter, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Id<NSString, Shared>;
 
         #[method_id(@__retain_semantics Other type)]
-        pub unsafe fn type_(&self) -> Id<NSPrinterTypeName, Shared>;
+        pub unsafe fn r#type(&self) -> Id<NSPrinterTypeName, Shared>;
 
         #[method(languageLevel)]
         pub unsafe fn languageLevel(&self) -> NSInteger;
 
         #[method(pageSizeForPaper:)]
-        pub unsafe fn pageSizeForPaper(&self, paperName: &NSPrinterPaperName) -> NSSize;
+        pub unsafe fn pageSizeForPaper(&self, paper_name: &NSPrinterPaperName) -> NSSize;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other deviceDescription)]
@@ -78,7 +78,7 @@ extern_methods!(
     unsafe impl NSPrinter {
         #[cfg(feature = "Foundation_NSString")]
         #[method(statusForTable:)]
-        pub unsafe fn statusForTable(&self, tableName: &NSString) -> NSPrinterTableStatus;
+        pub unsafe fn statusForTable(&self, table_name: &NSString) -> NSPrinterTableStatus;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(isKey:inTable:)]
@@ -132,7 +132,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(imageRectForPaper:)]
-        pub unsafe fn imageRectForPaper(&self, paperName: Option<&NSString>) -> NSRect;
+        pub unsafe fn imageRectForPaper(&self, paper_name: Option<&NSString>) -> NSRect;
 
         #[method(acceptsBinary)]
         pub unsafe fn acceptsBinary(&self) -> bool;
@@ -142,7 +142,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(isFontAvailable:)]
-        pub unsafe fn isFontAvailable(&self, faceName: Option<&NSString>) -> bool;
+        pub unsafe fn isFontAvailable(&self, face_name: Option<&NSString>) -> bool;
 
         #[method(isOutputStackInReverseOrder)]
         pub unsafe fn isOutputStackInReverseOrder(&self) -> bool;

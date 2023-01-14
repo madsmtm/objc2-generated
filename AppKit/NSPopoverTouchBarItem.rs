@@ -26,7 +26,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSTouchBar")]
         #[method(setPopoverTouchBar:)]
-        pub unsafe fn setPopoverTouchBar(&self, popoverTouchBar: &NSTouchBar);
+        pub unsafe fn setPopoverTouchBar(&self, popover_touch_bar: &NSTouchBar);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other customizationLabel)]
@@ -34,7 +34,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCustomizationLabel:)]
-        pub unsafe fn setCustomizationLabel(&self, customizationLabel: Option<&NSString>);
+        pub unsafe fn setCustomizationLabel(&self, customization_label: Option<&NSString>);
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other collapsedRepresentation)]
@@ -42,7 +42,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(setCollapsedRepresentation:)]
-        pub unsafe fn setCollapsedRepresentation(&self, collapsedRepresentation: &NSView);
+        pub unsafe fn setCollapsedRepresentation(&self, collapsed_representation: &NSView);
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other collapsedRepresentationImage)]
@@ -52,7 +52,7 @@ extern_methods!(
         #[method(setCollapsedRepresentationImage:)]
         pub unsafe fn setCollapsedRepresentationImage(
             &self,
-            collapsedRepresentationImage: Option<&NSImage>,
+            collapsed_representation_image: Option<&NSImage>,
         );
 
         #[cfg(feature = "Foundation_NSString")]
@@ -63,7 +63,7 @@ extern_methods!(
         #[method(setCollapsedRepresentationLabel:)]
         pub unsafe fn setCollapsedRepresentationLabel(
             &self,
-            collapsedRepresentationLabel: &NSString,
+            collapsed_representation_label: &NSString,
         );
 
         #[cfg(feature = "AppKit_NSTouchBar")]
@@ -72,13 +72,13 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSTouchBar")]
         #[method(setPressAndHoldTouchBar:)]
-        pub unsafe fn setPressAndHoldTouchBar(&self, pressAndHoldTouchBar: Option<&NSTouchBar>);
+        pub unsafe fn setPressAndHoldTouchBar(&self, press_and_hold_touch_bar: Option<&NSTouchBar>);
 
         #[method(showsCloseButton)]
         pub unsafe fn showsCloseButton(&self) -> bool;
 
         #[method(setShowsCloseButton:)]
-        pub unsafe fn setShowsCloseButton(&self, showsCloseButton: bool);
+        pub unsafe fn setShowsCloseButton(&self, shows_close_button: bool);
 
         #[method(showPopover:)]
         pub unsafe fn showPopover(&self, sender: Option<&Object>);

@@ -26,7 +26,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSTableView")]
         #[method(setTableView:)]
-        pub unsafe fn setTableView(&self, tableView: Option<&NSTableView>);
+        pub unsafe fn setTableView(&self, table_view: Option<&NSTableView>);
 
         #[method(draggedColumn)]
         pub unsafe fn draggedColumn(&self) -> NSInteger;
@@ -52,7 +52,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frame_rect: NSRect,
         ) -> Id<Self, Shared>;
     }
 );

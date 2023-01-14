@@ -435,7 +435,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCapacity:)]
         pub unsafe fn initWithCapacity(
             this: Option<Allocated<Self>>,
-            numItems: NSUInteger,
+            num_items: NSUInteger,
         ) -> Id<Self, Owned>;
     }
 );
@@ -565,7 +565,7 @@ extern_methods!(
         NSMutableOrderedSet<ObjectType, ObjectTypeOwnership>
     {
         #[method_id(@__retain_semantics Other orderedSetWithCapacity:)]
-        pub unsafe fn orderedSetWithCapacity(numItems: NSUInteger) -> Id<Self, Owned>;
+        pub unsafe fn orderedSetWithCapacity(num_items: NSUInteger) -> Id<Self, Owned>;
     }
 );
 

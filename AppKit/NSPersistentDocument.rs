@@ -28,7 +28,7 @@ extern_methods!(
         #[method(setManagedObjectContext:)]
         pub unsafe fn setManagedObjectContext(
             &self,
-            managedObjectContext: Option<&NSManagedObjectContext>,
+            managed_object_context: Option<&NSManagedObjectContext>,
         );
 
         #[cfg(feature = "CoreData_NSManagedObjectModel")]
@@ -45,16 +45,16 @@ extern_methods!(
         pub unsafe fn configurePersistentStoreCoordinatorForURL_ofType_modelConfiguration_storeOptions_error(
             &self,
             url: &NSURL,
-            fileType: &NSString,
+            file_type: &NSString,
             configuration: Option<&NSString>,
-            storeOptions: Option<&NSDictionary<NSString, Object>>,
+            store_options: Option<&NSDictionary<NSString, Object>>,
         ) -> Result<(), Id<NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other persistentStoreTypeForFileType:)]
         pub unsafe fn persistentStoreTypeForFileType(
             &self,
-            fileType: &NSString,
+            file_type: &NSString,
         ) -> Id<NSString, Shared>;
 
         #[cfg(all(
@@ -65,10 +65,10 @@ extern_methods!(
         #[method(writeToURL:ofType:forSaveOperation:originalContentsURL:error:_)]
         pub unsafe fn writeToURL_ofType_forSaveOperation_originalContentsURL_error(
             &self,
-            absoluteURL: &NSURL,
-            typeName: &NSString,
-            saveOperation: NSSaveOperationType,
-            absoluteOriginalContentsURL: Option<&NSURL>,
+            absolute_url: &NSURL,
+            type_name: &NSString,
+            save_operation: NSSaveOperationType,
+            absolute_original_contents_url: Option<&NSURL>,
         ) -> Result<(), Id<NSError, Shared>>;
 
         #[cfg(all(
@@ -79,8 +79,8 @@ extern_methods!(
         #[method(readFromURL:ofType:error:_)]
         pub unsafe fn readFromURL_ofType_error(
             &self,
-            absoluteURL: &NSURL,
-            typeName: &NSString,
+            absolute_url: &NSURL,
+            type_name: &NSString,
         ) -> Result<(), Id<NSError, Shared>>;
 
         #[cfg(all(
@@ -91,8 +91,8 @@ extern_methods!(
         #[method(revertToContentsOfURL:ofType:error:_)]
         pub unsafe fn revertToContentsOfURL_ofType_error(
             &self,
-            inAbsoluteURL: &NSURL,
-            inTypeName: &NSString,
+            in_absolute_url: &NSURL,
+            in_type_name: &NSString,
         ) -> Result<(), Id<NSError, Shared>>;
     }
 );
@@ -110,7 +110,7 @@ extern_methods!(
         pub unsafe fn configurePersistentStoreCoordinatorForURL_ofType_error(
             &self,
             url: Option<&NSURL>,
-            fileType: Option<&NSString>,
+            file_type: Option<&NSString>,
         ) -> Result<(), Id<NSError, Shared>>;
     }
 );
@@ -123,7 +123,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithType:error:_)]
         pub unsafe fn initWithType_error(
             this: Option<Allocated<Self>>,
-            typeName: &NSString,
+            type_name: &NSString,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
         #[cfg(all(
@@ -135,7 +135,7 @@ extern_methods!(
         pub unsafe fn initWithContentsOfURL_ofType_error(
             this: Option<Allocated<Self>>,
             url: &NSURL,
-            typeName: &NSString,
+            type_name: &NSString,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
         #[cfg(all(
@@ -146,9 +146,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initForURL:withContentsOfURL:ofType:error:_)]
         pub unsafe fn initForURL_withContentsOfURL_ofType_error(
             this: Option<Allocated<Self>>,
-            urlOrNil: Option<&NSURL>,
-            contentsURL: &NSURL,
-            typeName: &NSString,
+            url_or_nil: Option<&NSURL>,
+            contents_url: &NSURL,
+            type_name: &NSString,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
     }
 );
@@ -163,8 +163,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithContentsOfFile:ofType:)]
         pub unsafe fn initWithContentsOfFile_ofType(
             this: Option<Allocated<Self>>,
-            absolutePath: &NSString,
-            typeName: &NSString,
+            absolute_path: &NSString,
+            type_name: &NSString,
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
@@ -172,7 +172,7 @@ extern_methods!(
         pub unsafe fn initWithContentsOfURL_ofType(
             this: Option<Allocated<Self>>,
             url: &NSURL,
-            typeName: &NSString,
+            type_name: &NSString,
         ) -> Option<Id<Self, Shared>>;
     }
 );

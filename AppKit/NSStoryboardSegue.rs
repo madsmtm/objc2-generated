@@ -24,17 +24,17 @@ extern_methods!(
         #[method_id(@__retain_semantics Other segueWithIdentifier:source:destination:performHandler:)]
         pub unsafe fn segueWithIdentifier_source_destination_performHandler(
             identifier: &NSStoryboardSegueIdentifier,
-            sourceController: &Object,
-            destinationController: &Object,
-            performHandler: &Block<(), ()>,
+            source_controller: &Object,
+            destination_controller: &Object,
+            perform_handler: &Block<(), ()>,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Init initWithIdentifier:source:destination:)]
         pub unsafe fn initWithIdentifier_source_destination(
             this: Option<Allocated<Self>>,
             identifier: &NSStoryboardSegueIdentifier,
-            sourceController: &Object,
-            destinationController: &Object,
+            source_controller: &Object,
+            destination_controller: &Object,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Other identifier)]

@@ -35,7 +35,7 @@ extern_methods!(
         pub unsafe fn groupItemWithIdentifier_items_allowedCompressionOptions(
             identifier: &NSTouchBarItemIdentifier,
             items: &NSArray<NSTouchBarItem>,
-            allowedCompressionOptions: &NSUserInterfaceCompressionOptions,
+            allowed_compression_options: &NSUserInterfaceCompressionOptions,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Other alertStyleGroupItemWithIdentifier:)]
@@ -49,7 +49,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSTouchBar")]
         #[method(setGroupTouchBar:)]
-        pub unsafe fn setGroupTouchBar(&self, groupTouchBar: &NSTouchBar);
+        pub unsafe fn setGroupTouchBar(&self, group_touch_bar: &NSTouchBar);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other customizationLabel)]
@@ -57,7 +57,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCustomizationLabel:)]
-        pub unsafe fn setCustomizationLabel(&self, customizationLabel: Option<&NSString>);
+        pub unsafe fn setCustomizationLabel(&self, customization_label: Option<&NSString>);
 
         #[method(groupUserInterfaceLayoutDirection)]
         pub unsafe fn groupUserInterfaceLayoutDirection(&self) -> NSUserInterfaceLayoutDirection;
@@ -65,20 +65,20 @@ extern_methods!(
         #[method(setGroupUserInterfaceLayoutDirection:)]
         pub unsafe fn setGroupUserInterfaceLayoutDirection(
             &self,
-            groupUserInterfaceLayoutDirection: NSUserInterfaceLayoutDirection,
+            group_user_interface_layout_direction: NSUserInterfaceLayoutDirection,
         );
 
         #[method(prefersEqualWidths)]
         pub unsafe fn prefersEqualWidths(&self) -> bool;
 
         #[method(setPrefersEqualWidths:)]
-        pub unsafe fn setPrefersEqualWidths(&self, prefersEqualWidths: bool);
+        pub unsafe fn setPrefersEqualWidths(&self, prefers_equal_widths: bool);
 
         #[method(preferredItemWidth)]
         pub unsafe fn preferredItemWidth(&self) -> CGFloat;
 
         #[method(setPreferredItemWidth:)]
-        pub unsafe fn setPreferredItemWidth(&self, preferredItemWidth: CGFloat);
+        pub unsafe fn setPreferredItemWidth(&self, preferred_item_width: CGFloat);
 
         #[cfg(feature = "AppKit_NSUserInterfaceCompressionOptions")]
         #[method_id(@__retain_semantics Other effectiveCompressionOptions)]
@@ -102,7 +102,7 @@ extern_methods!(
         #[method(setPrioritizedCompressionOptions:)]
         pub unsafe fn setPrioritizedCompressionOptions(
             &self,
-            prioritizedCompressionOptions: &NSArray<NSUserInterfaceCompressionOptions>,
+            prioritized_compression_options: &NSArray<NSUserInterfaceCompressionOptions>,
         );
     }
 );

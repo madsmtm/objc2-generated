@@ -36,11 +36,11 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSLayoutManager")]
         #[method(setLayoutManager:)]
-        pub unsafe fn setLayoutManager(&self, layoutManager: Option<&NSLayoutManager>);
+        pub unsafe fn setLayoutManager(&self, layout_manager: Option<&NSLayoutManager>);
 
         #[cfg(feature = "AppKit_NSLayoutManager")]
         #[method(replaceLayoutManager:)]
-        pub unsafe fn replaceLayoutManager(&self, newLayoutManager: &NSLayoutManager);
+        pub unsafe fn replaceLayoutManager(&self, new_layout_manager: &NSLayoutManager);
 
         #[cfg(feature = "AppKit_NSTextLayoutManager")]
         #[method_id(@__retain_semantics Other textLayoutManager)]
@@ -58,33 +58,33 @@ extern_methods!(
 
         #[cfg(all(feature = "AppKit_NSBezierPath", feature = "Foundation_NSArray"))]
         #[method(setExclusionPaths:)]
-        pub unsafe fn setExclusionPaths(&self, exclusionPaths: &NSArray<NSBezierPath>);
+        pub unsafe fn setExclusionPaths(&self, exclusion_paths: &NSArray<NSBezierPath>);
 
         #[method(lineBreakMode)]
         pub unsafe fn lineBreakMode(&self) -> NSLineBreakMode;
 
         #[method(setLineBreakMode:)]
-        pub unsafe fn setLineBreakMode(&self, lineBreakMode: NSLineBreakMode);
+        pub unsafe fn setLineBreakMode(&self, line_break_mode: NSLineBreakMode);
 
         #[method(lineFragmentPadding)]
         pub unsafe fn lineFragmentPadding(&self) -> CGFloat;
 
         #[method(setLineFragmentPadding:)]
-        pub unsafe fn setLineFragmentPadding(&self, lineFragmentPadding: CGFloat);
+        pub unsafe fn setLineFragmentPadding(&self, line_fragment_padding: CGFloat);
 
         #[method(maximumNumberOfLines)]
         pub unsafe fn maximumNumberOfLines(&self) -> NSUInteger;
 
         #[method(setMaximumNumberOfLines:)]
-        pub unsafe fn setMaximumNumberOfLines(&self, maximumNumberOfLines: NSUInteger);
+        pub unsafe fn setMaximumNumberOfLines(&self, maximum_number_of_lines: NSUInteger);
 
         #[method(lineFragmentRectForProposedRect:atIndex:writingDirection:remainingRect:)]
         pub unsafe fn lineFragmentRectForProposedRect_atIndex_writingDirection_remainingRect(
             &self,
-            proposedRect: NSRect,
-            characterIndex: NSUInteger,
-            baseWritingDirection: NSWritingDirection,
-            remainingRect: *mut NSRect,
+            proposed_rect: NSRect,
+            character_index: NSUInteger,
+            base_writing_direction: NSWritingDirection,
+            remaining_rect: *mut NSRect,
         ) -> NSRect;
 
         #[method(isSimpleRectangularTextContainer)]
@@ -94,13 +94,13 @@ extern_methods!(
         pub unsafe fn widthTracksTextView(&self) -> bool;
 
         #[method(setWidthTracksTextView:)]
-        pub unsafe fn setWidthTracksTextView(&self, widthTracksTextView: bool);
+        pub unsafe fn setWidthTracksTextView(&self, width_tracks_text_view: bool);
 
         #[method(heightTracksTextView)]
         pub unsafe fn heightTracksTextView(&self) -> bool;
 
         #[method(setHeightTracksTextView:)]
-        pub unsafe fn setHeightTracksTextView(&self, heightTracksTextView: bool);
+        pub unsafe fn setHeightTracksTextView(&self, height_tracks_text_view: bool);
 
         #[cfg(feature = "AppKit_NSTextView")]
         #[method_id(@__retain_semantics Other textView)]
@@ -108,7 +108,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSTextView")]
         #[method(setTextView:)]
-        pub unsafe fn setTextView(&self, textView: Option<&NSTextView>);
+        pub unsafe fn setTextView(&self, text_view: Option<&NSTextView>);
     }
 );
 
@@ -140,22 +140,22 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithContainerSize:)]
         pub unsafe fn initWithContainerSize(
             this: Option<Allocated<Self>>,
-            aContainerSize: NSSize,
+            a_container_size: NSSize,
         ) -> Id<Self, Shared>;
 
         #[method(containerSize)]
         pub unsafe fn containerSize(&self) -> NSSize;
 
         #[method(setContainerSize:)]
-        pub unsafe fn setContainerSize(&self, containerSize: NSSize);
+        pub unsafe fn setContainerSize(&self, container_size: NSSize);
 
         #[method(lineFragmentRectForProposedRect:sweepDirection:movementDirection:remainingRect:)]
         pub unsafe fn lineFragmentRectForProposedRect_sweepDirection_movementDirection_remainingRect(
             &self,
-            proposedRect: NSRect,
-            sweepDirection: NSLineSweepDirection,
-            movementDirection: NSLineMovementDirection,
-            remainingRect: NSRectPointer,
+            proposed_rect: NSRect,
+            sweep_direction: NSLineSweepDirection,
+            movement_direction: NSLineMovementDirection,
+            remaining_rect: NSRectPointer,
         ) -> NSRect;
 
         #[method(containsPoint:)]

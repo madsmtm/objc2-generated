@@ -23,7 +23,7 @@ extern_protocol!(
             &self,
             descriptor: &MTLTextureDescriptor,
             offset: NSUInteger,
-            bytesPerRow: NSUInteger,
+            bytes_per_row: NSUInteger,
         ) -> Option<Id<MTLTexture, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]

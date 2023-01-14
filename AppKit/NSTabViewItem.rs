@@ -31,7 +31,7 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSViewController")]
         #[method_id(@__retain_semantics Other tabViewItemWithViewController:)]
         pub unsafe fn tabViewItemWithViewController(
-            viewController: &NSViewController,
+            view_controller: &NSViewController,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
@@ -84,7 +84,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSViewController")]
         #[method(setViewController:)]
-        pub unsafe fn setViewController(&self, viewController: Option<&NSViewController>);
+        pub unsafe fn setViewController(&self, view_controller: Option<&NSViewController>);
 
         #[method(tabState)]
         pub unsafe fn tabState(&self) -> NSTabState;
@@ -99,7 +99,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(setInitialFirstResponder:)]
-        pub unsafe fn setInitialFirstResponder(&self, initialFirstResponder: Option<&NSView>);
+        pub unsafe fn setInitialFirstResponder(&self, initial_first_responder: Option<&NSView>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other toolTip)]
@@ -107,12 +107,12 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setToolTip:)]
-        pub unsafe fn setToolTip(&self, toolTip: Option<&NSString>);
+        pub unsafe fn setToolTip(&self, tool_tip: Option<&NSString>);
 
         #[method(drawLabel:inRect:)]
-        pub unsafe fn drawLabel_inRect(&self, shouldTruncateLabel: bool, labelRect: NSRect);
+        pub unsafe fn drawLabel_inRect(&self, should_truncate_label: bool, label_rect: NSRect);
 
         #[method(sizeOfLabel:)]
-        pub unsafe fn sizeOfLabel(&self, computeMin: bool) -> NSSize;
+        pub unsafe fn sizeOfLabel(&self, compute_min: bool) -> NSSize;
     }
 );

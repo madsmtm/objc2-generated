@@ -46,8 +46,8 @@ extern_protocol!(
 
 extern_fn!(
     pub unsafe fn NSAllocateObject(
-        aClass: &Class,
-        extraBytes: NSUInteger,
+        a_class: &Class,
+        extra_bytes: NSUInteger,
         zone: *mut NSZone,
     ) -> NonNull<Object>;
 );
@@ -59,13 +59,13 @@ extern_fn!(
 extern_fn!(
     pub unsafe fn NSCopyObject(
         object: &Object,
-        extraBytes: NSUInteger,
+        extra_bytes: NSUInteger,
         zone: *mut NSZone,
     ) -> NonNull<Object>;
 );
 
 extern_fn!(
-    pub unsafe fn NSShouldRetainWithZone(anObject: &Object, requestedZone: *mut NSZone) -> Bool;
+    pub unsafe fn NSShouldRetainWithZone(an_object: &Object, requested_zone: *mut NSZone) -> Bool;
 );
 
 extern_fn!(

@@ -29,7 +29,7 @@ extern_methods!(
         pub unsafe fn hostWithAddress(address: &NSString) -> Id<Self, Shared>;
 
         #[method(isEqualToHost:)]
-        pub unsafe fn isEqualToHost(&self, aHost: &NSHost) -> bool;
+        pub unsafe fn isEqualToHost(&self, a_host: &NSHost) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]

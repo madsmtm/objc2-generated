@@ -13,9 +13,9 @@ extern_protocol!(
         #[method(searchForItemsWithSearchString:resultLimit:matchedItemHandler:)]
         pub unsafe fn searchForItemsWithSearchString_resultLimit_matchedItemHandler(
             &self,
-            searchString: &NSString,
-            resultLimit: NSInteger,
-            handleMatchedItems: &Block<(NonNull<NSArray>,), ()>,
+            search_string: &NSString,
+            result_limit: NSInteger,
+            handle_matched_items: &Block<(NonNull<NSArray>,), ()>,
         );
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
@@ -30,7 +30,7 @@ extern_protocol!(
         #[cfg(feature = "Foundation_NSString")]
         #[optional]
         #[method(showAllHelpTopicsForSearchString:)]
-        pub unsafe fn showAllHelpTopicsForSearchString(&self, searchString: &NSString);
+        pub unsafe fn showAllHelpTopicsForSearchString(&self, search_string: &NSString);
     }
 );
 
@@ -54,10 +54,10 @@ extern_methods!(
         #[method(searchString:inUserInterfaceItemString:searchRange:foundRange:)]
         pub unsafe fn searchString_inUserInterfaceItemString_searchRange_foundRange(
             &self,
-            searchString: &NSString,
-            stringToSearch: &NSString,
-            searchRange: NSRange,
-            foundRange: *mut NSRange,
+            search_string: &NSString,
+            string_to_search: &NSString,
+            search_range: NSRange,
+            found_range: *mut NSRange,
         ) -> bool;
     }
 );

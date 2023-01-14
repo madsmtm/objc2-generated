@@ -22,13 +22,13 @@ extern_methods!(
     unsafe impl NSPDFImageRep {
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other imageRepWithData:)]
-        pub unsafe fn imageRepWithData(pdfData: &NSData) -> Option<Id<Self, Shared>>;
+        pub unsafe fn imageRepWithData(pdf_data: &NSData) -> Option<Id<Self, Shared>>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Init initWithData:)]
         pub unsafe fn initWithData(
             this: Option<Allocated<Self>>,
-            pdfData: &NSData,
+            pdf_data: &NSData,
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(feature = "Foundation_NSData")]
@@ -42,7 +42,7 @@ extern_methods!(
         pub unsafe fn currentPage(&self) -> NSInteger;
 
         #[method(setCurrentPage:)]
-        pub unsafe fn setCurrentPage(&self, currentPage: NSInteger);
+        pub unsafe fn setCurrentPage(&self, current_page: NSInteger);
 
         #[method(pageCount)]
         pub unsafe fn pageCount(&self) -> NSInteger;

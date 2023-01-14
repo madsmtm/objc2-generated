@@ -20,14 +20,14 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSComboBox")]
         #[optional]
         #[method(numberOfItemsInComboBox:)]
-        pub unsafe fn numberOfItemsInComboBox(&self, comboBox: &NSComboBox) -> NSInteger;
+        pub unsafe fn numberOfItemsInComboBox(&self, combo_box: &NSComboBox) -> NSInteger;
 
         #[cfg(feature = "AppKit_NSComboBox")]
         #[optional]
         #[method_id(@__retain_semantics Other comboBox:objectValueForItemAtIndex:)]
         pub unsafe fn comboBox_objectValueForItemAtIndex(
             &self,
-            comboBox: &NSComboBox,
+            combo_box: &NSComboBox,
             index: NSInteger,
         ) -> Option<Id<Object, Shared>>;
 
@@ -36,7 +36,7 @@ extern_protocol!(
         #[method(comboBox:indexOfItemWithStringValue:)]
         pub unsafe fn comboBox_indexOfItemWithStringValue(
             &self,
-            comboBox: &NSComboBox,
+            combo_box: &NSComboBox,
             string: &NSString,
         ) -> NSUInteger;
 
@@ -45,7 +45,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other comboBox:completedString:)]
         pub unsafe fn comboBox_completedString(
             &self,
-            comboBox: &NSComboBox,
+            combo_box: &NSComboBox,
             string: &NSString,
         ) -> Option<Id<NSString, Shared>>;
     }
@@ -96,31 +96,31 @@ extern_methods!(
         pub unsafe fn hasVerticalScroller(&self) -> bool;
 
         #[method(setHasVerticalScroller:)]
-        pub unsafe fn setHasVerticalScroller(&self, hasVerticalScroller: bool);
+        pub unsafe fn setHasVerticalScroller(&self, has_vertical_scroller: bool);
 
         #[method(intercellSpacing)]
         pub unsafe fn intercellSpacing(&self) -> NSSize;
 
         #[method(setIntercellSpacing:)]
-        pub unsafe fn setIntercellSpacing(&self, intercellSpacing: NSSize);
+        pub unsafe fn setIntercellSpacing(&self, intercell_spacing: NSSize);
 
         #[method(itemHeight)]
         pub unsafe fn itemHeight(&self) -> CGFloat;
 
         #[method(setItemHeight:)]
-        pub unsafe fn setItemHeight(&self, itemHeight: CGFloat);
+        pub unsafe fn setItemHeight(&self, item_height: CGFloat);
 
         #[method(numberOfVisibleItems)]
         pub unsafe fn numberOfVisibleItems(&self) -> NSInteger;
 
         #[method(setNumberOfVisibleItems:)]
-        pub unsafe fn setNumberOfVisibleItems(&self, numberOfVisibleItems: NSInteger);
+        pub unsafe fn setNumberOfVisibleItems(&self, number_of_visible_items: NSInteger);
 
         #[method(isButtonBordered)]
         pub unsafe fn isButtonBordered(&self) -> bool;
 
         #[method(setButtonBordered:)]
-        pub unsafe fn setButtonBordered(&self, buttonBordered: bool);
+        pub unsafe fn setButtonBordered(&self, button_bordered: bool);
 
         #[method(reloadData)]
         pub unsafe fn reloadData(&self);
@@ -132,7 +132,7 @@ extern_methods!(
         pub unsafe fn usesDataSource(&self) -> bool;
 
         #[method(setUsesDataSource:)]
-        pub unsafe fn setUsesDataSource(&self, usesDataSource: bool);
+        pub unsafe fn setUsesDataSource(&self, uses_data_source: bool);
 
         #[method(scrollItemAtIndexToTop:)]
         pub unsafe fn scrollItemAtIndexToTop(&self, index: NSInteger);
@@ -168,7 +168,7 @@ extern_methods!(
         pub unsafe fn dataSource(&self) -> Option<Id<NSComboBoxDataSource, Shared>>;
 
         #[method(setDataSource:)]
-        pub unsafe fn setDataSource(&self, dataSource: Option<&NSComboBoxDataSource>);
+        pub unsafe fn setDataSource(&self, data_source: Option<&NSComboBoxDataSource>);
 
         #[method(addItemWithObjectValue:)]
         pub unsafe fn addItemWithObjectValue(&self, object: &Object);
@@ -215,21 +215,21 @@ extern_methods!(
     unsafe impl NSComboBox {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other labelWithString:)]
-        pub unsafe fn labelWithString(stringValue: &NSString) -> Id<Self, Shared>;
+        pub unsafe fn labelWithString(string_value: &NSString) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other wrappingLabelWithString:)]
-        pub unsafe fn wrappingLabelWithString(stringValue: &NSString) -> Id<Self, Shared>;
+        pub unsafe fn wrappingLabelWithString(string_value: &NSString) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other labelWithAttributedString:)]
         pub unsafe fn labelWithAttributedString(
-            attributedStringValue: &NSAttributedString,
+            attributed_string_value: &NSAttributedString,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other textFieldWithString:)]
-        pub unsafe fn textFieldWithString(stringValue: &NSString) -> Id<Self, Shared>;
+        pub unsafe fn textFieldWithString(string_value: &NSString) -> Id<Self, Shared>;
     }
 );
 
@@ -240,7 +240,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frame_rect: NSRect,
         ) -> Id<Self, Shared>;
     }
 );

@@ -45,7 +45,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initDirectoryWithFileWrappers:)]
         pub unsafe fn initDirectoryWithFileWrappers(
             this: Option<Allocated<Self>>,
-            childrenByPreferredName: &NSDictionary<NSString, NSFileWrapper>,
+            children_by_preferred_name: &NSDictionary<NSString, NSFileWrapper>,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSData")]
@@ -66,14 +66,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithSerializedRepresentation:)]
         pub unsafe fn initWithSerializedRepresentation(
             this: Option<Allocated<Self>>,
-            serializeRepresentation: &NSData,
+            serialize_representation: &NSData,
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
-            inCoder: &NSCoder,
+            in_coder: &NSCoder,
         ) -> Option<Id<Self, Shared>>;
 
         #[method(isDirectory)]
@@ -91,7 +91,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setPreferredFilename:)]
-        pub unsafe fn setPreferredFilename(&self, preferredFilename: Option<&NSString>);
+        pub unsafe fn setPreferredFilename(&self, preferred_filename: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other filename)]
@@ -107,7 +107,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setFileAttributes:)]
-        pub unsafe fn setFileAttributes(&self, fileAttributes: &NSDictionary<NSString, Object>);
+        pub unsafe fn setFileAttributes(&self, file_attributes: &NSDictionary<NSString, Object>);
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method(matchesContentsOfURL:)]
@@ -127,7 +127,7 @@ extern_methods!(
             &self,
             url: &NSURL,
             options: NSFileWrapperWritingOptions,
-            originalContentsURL: Option<&NSURL>,
+            original_contents_url: Option<&NSURL>,
         ) -> Result<(), Id<NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSData")]
@@ -143,7 +143,7 @@ extern_methods!(
         pub unsafe fn addRegularFileWithContents_preferredFilename(
             &self,
             data: &NSData,
-            fileName: &NSString,
+            file_name: &NSString,
         ) -> Id<NSString, Shared>;
 
         #[method(removeFileWrapper:)]
@@ -203,8 +203,8 @@ extern_methods!(
         pub unsafe fn writeToFile_atomically_updateFilenames(
             &self,
             path: &NSString,
-            atomicFlag: bool,
-            updateFilenamesFlag: bool,
+            atomic_flag: bool,
+            update_filenames_flag: bool,
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]

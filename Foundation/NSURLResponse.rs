@@ -21,8 +21,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithURL:MIMEType:expectedContentLength:textEncodingName:)]
         pub unsafe fn initWithURL_MIMEType_expectedContentLength_textEncodingName(
             this: Option<Allocated<Self>>,
-            URL: &NSURL,
-            MIMEType: Option<&NSString>,
+            url: &NSURL,
+            mime_type: Option<&NSString>,
             length: NSInteger,
             name: Option<&NSString>,
         ) -> Id<Self, Shared>;
@@ -72,9 +72,9 @@ extern_methods!(
         pub unsafe fn initWithURL_statusCode_HTTPVersion_headerFields(
             this: Option<Allocated<Self>>,
             url: &NSURL,
-            statusCode: NSInteger,
-            HTTPVersion: Option<&NSString>,
-            headerFields: Option<&NSDictionary<NSString, NSString>>,
+            status_code: NSInteger,
+            http_version: Option<&NSString>,
+            header_fields: Option<&NSDictionary<NSString, NSString>>,
         ) -> Option<Id<Self, Shared>>;
 
         #[method(statusCode)]
@@ -93,7 +93,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedStringForStatusCode:)]
-        pub unsafe fn localizedStringForStatusCode(statusCode: NSInteger) -> Id<NSString, Shared>;
+        pub unsafe fn localizedStringForStatusCode(status_code: NSInteger) -> Id<NSString, Shared>;
     }
 );
 
@@ -105,8 +105,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithURL:MIMEType:expectedContentLength:textEncodingName:)]
         pub unsafe fn initWithURL_MIMEType_expectedContentLength_textEncodingName(
             this: Option<Allocated<Self>>,
-            URL: &NSURL,
-            MIMEType: Option<&NSString>,
+            url: &NSURL,
+            mime_type: Option<&NSString>,
             length: NSInteger,
             name: Option<&NSString>,
         ) -> Id<Self, Shared>;

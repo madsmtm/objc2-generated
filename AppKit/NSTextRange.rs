@@ -32,7 +32,7 @@ extern_methods!(
         pub unsafe fn initWithLocation_endLocation(
             this: Option<Allocated<Self>>,
             location: &NSTextLocation,
-            endLocation: Option<&NSTextLocation>,
+            end_location: Option<&NSTextLocation>,
         ) -> Option<Id<Self, Shared>>;
 
         #[method_id(@__retain_semantics Init initWithLocation:)]
@@ -57,27 +57,27 @@ extern_methods!(
         pub unsafe fn endLocation(&self) -> Id<NSTextLocation, Shared>;
 
         #[method(isEqualToTextRange:)]
-        pub unsafe fn isEqualToTextRange(&self, textRange: &NSTextRange) -> bool;
+        pub unsafe fn isEqualToTextRange(&self, text_range: &NSTextRange) -> bool;
 
         #[method(containsLocation:)]
         pub unsafe fn containsLocation(&self, location: &NSTextLocation) -> bool;
 
         #[method(containsRange:)]
-        pub unsafe fn containsRange(&self, textRange: &NSTextRange) -> bool;
+        pub unsafe fn containsRange(&self, text_range: &NSTextRange) -> bool;
 
         #[method(intersectsWithTextRange:)]
-        pub unsafe fn intersectsWithTextRange(&self, textRange: &NSTextRange) -> bool;
+        pub unsafe fn intersectsWithTextRange(&self, text_range: &NSTextRange) -> bool;
 
         #[method_id(@__retain_semantics Other textRangeByIntersectingWithTextRange:)]
         pub unsafe fn textRangeByIntersectingWithTextRange(
             &self,
-            textRange: &NSTextRange,
+            text_range: &NSTextRange,
         ) -> Option<Id<Self, Shared>>;
 
         #[method_id(@__retain_semantics Other textRangeByFormingUnionWithTextRange:)]
         pub unsafe fn textRangeByFormingUnionWithTextRange(
             &self,
-            textRange: &NSTextRange,
+            text_range: &NSTextRange,
         ) -> Id<Self, Shared>;
     }
 );

@@ -44,19 +44,19 @@ extern_methods!(
         pub unsafe fn controlTint(&self) -> NSControlTint;
 
         #[method(setControlTint:)]
-        pub unsafe fn setControlTint(&self, controlTint: NSControlTint);
+        pub unsafe fn setControlTint(&self, control_tint: NSControlTint);
 
         #[method(controlSize)]
         pub unsafe fn controlSize(&self) -> NSControlSize;
 
         #[method(setControlSize:)]
-        pub unsafe fn setControlSize(&self, controlSize: NSControlSize);
+        pub unsafe fn setControlSize(&self, control_size: NSControlSize);
 
         #[method(doubleValue)]
         pub unsafe fn doubleValue(&self) -> c_double;
 
         #[method(setDoubleValue:)]
-        pub unsafe fn setDoubleValue(&self, doubleValue: c_double);
+        pub unsafe fn setDoubleValue(&self, double_value: c_double);
 
         #[method(incrementBy:)]
         pub unsafe fn incrementBy(&self, delta: c_double);
@@ -65,19 +65,19 @@ extern_methods!(
         pub unsafe fn minValue(&self) -> c_double;
 
         #[method(setMinValue:)]
-        pub unsafe fn setMinValue(&self, minValue: c_double);
+        pub unsafe fn setMinValue(&self, min_value: c_double);
 
         #[method(maxValue)]
         pub unsafe fn maxValue(&self) -> c_double;
 
         #[method(setMaxValue:)]
-        pub unsafe fn setMaxValue(&self, maxValue: c_double);
+        pub unsafe fn setMaxValue(&self, max_value: c_double);
 
         #[method(usesThreadedAnimation)]
         pub unsafe fn usesThreadedAnimation(&self) -> bool;
 
         #[method(setUsesThreadedAnimation:)]
-        pub unsafe fn setUsesThreadedAnimation(&self, usesThreadedAnimation: bool);
+        pub unsafe fn setUsesThreadedAnimation(&self, uses_threaded_animation: bool);
 
         #[method(startAnimation:)]
         pub unsafe fn startAnimation(&self, sender: Option<&Object>);
@@ -98,7 +98,7 @@ extern_methods!(
         pub unsafe fn isDisplayedWhenStopped(&self) -> bool;
 
         #[method(setDisplayedWhenStopped:)]
-        pub unsafe fn setDisplayedWhenStopped(&self, displayedWhenStopped: bool);
+        pub unsafe fn setDisplayedWhenStopped(&self, displayed_when_stopped: bool);
     }
 );
 
@@ -140,7 +140,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frame_rect: NSRect,
         ) -> Id<Self, Shared>;
     }
 );

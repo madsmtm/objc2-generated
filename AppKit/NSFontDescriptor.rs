@@ -123,7 +123,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fontDescriptorWithName:size:)]
         pub unsafe fn fontDescriptorWithName_size(
-            fontName: &NSString,
+            font_name: &NSString,
             size: CGFloat,
         ) -> Id<NSFontDescriptor, Shared>;
 
@@ -133,7 +133,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Other fontDescriptorWithName:matrix:)]
         pub unsafe fn fontDescriptorWithName_matrix(
-            fontName: &NSString,
+            font_name: &NSString,
             matrix: &NSAffineTransform,
         ) -> Id<NSFontDescriptor, Shared>;
 
@@ -148,14 +148,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other matchingFontDescriptorsWithMandatoryKeys:)]
         pub unsafe fn matchingFontDescriptorsWithMandatoryKeys(
             &self,
-            mandatoryKeys: Option<&NSSet<NSFontDescriptorAttributeName>>,
+            mandatory_keys: Option<&NSSet<NSFontDescriptorAttributeName>>,
         ) -> Id<NSArray<NSFontDescriptor>, Shared>;
 
         #[cfg(feature = "Foundation_NSSet")]
         #[method_id(@__retain_semantics Other matchingFontDescriptorWithMandatoryKeys:)]
         pub unsafe fn matchingFontDescriptorWithMandatoryKeys(
             &self,
-            mandatoryKeys: Option<&NSSet<NSFontDescriptorAttributeName>>,
+            mandatory_keys: Option<&NSSet<NSFontDescriptorAttributeName>>,
         ) -> Option<Id<NSFontDescriptor, Shared>>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
@@ -168,13 +168,13 @@ extern_methods!(
         #[method_id(@__retain_semantics Other fontDescriptorWithSymbolicTraits:)]
         pub unsafe fn fontDescriptorWithSymbolicTraits(
             &self,
-            symbolicTraits: NSFontDescriptorSymbolicTraits,
+            symbolic_traits: NSFontDescriptorSymbolicTraits,
         ) -> Id<NSFontDescriptor, Shared>;
 
         #[method_id(@__retain_semantics Other fontDescriptorWithSize:)]
         pub unsafe fn fontDescriptorWithSize(
             &self,
-            newPointSize: CGFloat,
+            new_point_size: CGFloat,
         ) -> Id<NSFontDescriptor, Shared>;
 
         #[cfg(feature = "Foundation_NSAffineTransform")]
@@ -188,14 +188,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other fontDescriptorWithFace:)]
         pub unsafe fn fontDescriptorWithFace(
             &self,
-            newFace: &NSString,
+            new_face: &NSString,
         ) -> Id<NSFontDescriptor, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fontDescriptorWithFamily:)]
         pub unsafe fn fontDescriptorWithFamily(
             &self,
-            newFamily: &NSString,
+            new_family: &NSString,
         ) -> Id<NSFontDescriptor, Shared>;
 
         #[method_id(@__retain_semantics Other fontDescriptorWithDesign:)]

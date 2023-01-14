@@ -508,14 +508,14 @@ extern_methods!(
         pub unsafe fn lineBreakBeforeIndex_withinRange(
             &self,
             location: NSUInteger,
-            aRange: NSRange,
+            a_range: NSRange,
         ) -> NSUInteger;
 
         #[method(lineBreakByHyphenatingBeforeIndex:withinRange:)]
         pub unsafe fn lineBreakByHyphenatingBeforeIndex_withinRange(
             &self,
             location: NSUInteger,
-            aRange: NSRange,
+            a_range: NSRange,
         ) -> NSUInteger;
 
         #[method(doubleClickAtIndex:)]
@@ -525,7 +525,7 @@ extern_methods!(
         pub unsafe fn nextWordFromIndex_forward(
             &self,
             location: NSUInteger,
-            isForward: bool,
+            is_forward: bool,
         ) -> NSUInteger;
 
         #[cfg(feature = "AppKit_NSTextBlock")]
@@ -590,7 +590,7 @@ extern_methods!(
         pub unsafe fn unscriptRange(&self, range: NSRange);
 
         #[method(applyFontTraits:range:)]
-        pub unsafe fn applyFontTraits_range(&self, traitMask: NSFontTraitMask, range: NSRange);
+        pub unsafe fn applyFontTraits_range(&self, trait_mask: NSFontTraitMask, range: NSRange);
 
         #[method(setAlignment:range:)]
         pub unsafe fn setAlignment_range(&self, alignment: NSTextAlignment, range: NSRange);
@@ -598,7 +598,7 @@ extern_methods!(
         #[method(setBaseWritingDirection:range:)]
         pub unsafe fn setBaseWritingDirection_range(
             &self,
-            writingDirection: NSWritingDirection,
+            writing_direction: NSWritingDirection,
             range: NSRange,
         );
     }
@@ -676,7 +676,7 @@ extern_methods!(
         pub unsafe fn URLAtIndex_effectiveRange(
             &self,
             location: NSUInteger,
-            effectiveRange: NSRangePointer,
+            effective_range: NSRangePointer,
         ) -> Option<Id<NSURL, Shared>>;
     }
 );

@@ -32,7 +32,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setAllowedTypes:)]
-        pub unsafe fn setAllowedTypes(&self, allowedTypes: Option<&NSArray<NSString>>);
+        pub unsafe fn setAllowedTypes(&self, allowed_types: Option<&NSArray<NSString>>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other placeholderString)]
@@ -40,7 +40,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setPlaceholderString:)]
-        pub unsafe fn setPlaceholderString(&self, placeholderString: Option<&NSString>);
+        pub unsafe fn setPlaceholderString(&self, placeholder_string: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other placeholderAttributedString)]
@@ -50,7 +50,7 @@ extern_methods!(
         #[method(setPlaceholderAttributedString:)]
         pub unsafe fn setPlaceholderAttributedString(
             &self,
-            placeholderAttributedString: Option<&NSAttributedString>,
+            placeholder_attributed_string: Option<&NSAttributedString>,
         );
 
         #[cfg(feature = "Foundation_NSURL")]
@@ -59,19 +59,19 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method(setURL:)]
-        pub unsafe fn setURL(&self, URL: Option<&NSURL>);
+        pub unsafe fn setURL(&self, url: Option<&NSURL>);
 
         #[method(doubleAction)]
         pub unsafe fn doubleAction(&self) -> Option<Sel>;
 
         #[method(setDoubleAction:)]
-        pub unsafe fn setDoubleAction(&self, doubleAction: Option<Sel>);
+        pub unsafe fn setDoubleAction(&self, double_action: Option<Sel>);
 
         #[method(pathStyle)]
         pub unsafe fn pathStyle(&self) -> NSPathStyle;
 
         #[method(setPathStyle:)]
-        pub unsafe fn setPathStyle(&self, pathStyle: NSPathStyle);
+        pub unsafe fn setPathStyle(&self, path_style: NSPathStyle);
 
         #[cfg(feature = "AppKit_NSPathControlItem")]
         #[method_id(@__retain_semantics Other clickedPathItem)]
@@ -83,7 +83,7 @@ extern_methods!(
 
         #[cfg(all(feature = "AppKit_NSPathControlItem", feature = "Foundation_NSArray"))]
         #[method(setPathItems:)]
-        pub unsafe fn setPathItems(&self, pathItems: &NSArray<NSPathControlItem>);
+        pub unsafe fn setPathItems(&self, path_items: &NSArray<NSPathControlItem>);
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other backgroundColor)]
@@ -91,7 +91,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setBackgroundColor:)]
-        pub unsafe fn setBackgroundColor(&self, backgroundColor: Option<&NSColor>);
+        pub unsafe fn setBackgroundColor(&self, background_color: Option<&NSColor>);
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSPathControlDelegate, Shared>>;
@@ -103,7 +103,7 @@ extern_methods!(
         pub unsafe fn setDraggingSourceOperationMask_forLocal(
             &self,
             mask: NSDragOperation,
-            isLocal: bool,
+            is_local: bool,
         );
 
         #[cfg(feature = "AppKit_NSMenu")]
@@ -129,8 +129,8 @@ extern_protocol!(
         #[method(pathControl:shouldDragItem:withPasteboard:)]
         pub unsafe fn pathControl_shouldDragItem_withPasteboard(
             &self,
-            pathControl: &NSPathControl,
-            pathItem: &NSPathControlItem,
+            path_control: &NSPathControl,
+            path_item: &NSPathControlItem,
             pasteboard: &NSPasteboard,
         ) -> bool;
 
@@ -143,8 +143,8 @@ extern_protocol!(
         #[method(pathControl:shouldDragPathComponentCell:withPasteboard:)]
         pub unsafe fn pathControl_shouldDragPathComponentCell_withPasteboard(
             &self,
-            pathControl: &NSPathControl,
-            pathComponentCell: &NSPathComponentCell,
+            path_control: &NSPathControl,
+            path_component_cell: &NSPathComponentCell,
             pasteboard: &NSPasteboard,
         ) -> bool;
 
@@ -153,7 +153,7 @@ extern_protocol!(
         #[method(pathControl:validateDrop:)]
         pub unsafe fn pathControl_validateDrop(
             &self,
-            pathControl: &NSPathControl,
+            path_control: &NSPathControl,
             info: &NSDraggingInfo,
         ) -> NSDragOperation;
 
@@ -162,7 +162,7 @@ extern_protocol!(
         #[method(pathControl:acceptDrop:)]
         pub unsafe fn pathControl_acceptDrop(
             &self,
-            pathControl: &NSPathControl,
+            path_control: &NSPathControl,
             info: &NSDraggingInfo,
         ) -> bool;
 
@@ -171,14 +171,14 @@ extern_protocol!(
         #[method(pathControl:willDisplayOpenPanel:)]
         pub unsafe fn pathControl_willDisplayOpenPanel(
             &self,
-            pathControl: &NSPathControl,
-            openPanel: &NSOpenPanel,
+            path_control: &NSPathControl,
+            open_panel: &NSOpenPanel,
         );
 
         #[cfg(all(feature = "AppKit_NSMenu", feature = "AppKit_NSPathControl"))]
         #[optional]
         #[method(pathControl:willPopUpMenu:)]
-        pub unsafe fn pathControl_willPopUpMenu(&self, pathControl: &NSPathControl, menu: &NSMenu);
+        pub unsafe fn pathControl_willPopUpMenu(&self, path_control: &NSPathControl, menu: &NSMenu);
     }
 );
 
@@ -207,7 +207,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frame_rect: NSRect,
         ) -> Id<Self, Shared>;
     }
 );

@@ -36,7 +36,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other connectionWithRegisteredName:host:)]
         pub unsafe fn connectionWithRegisteredName_host(
             name: &NSString,
-            hostName: Option<&NSString>,
+            host_name: Option<&NSString>,
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(all(
@@ -46,7 +46,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other connectionWithRegisteredName:host:usingNameServer:)]
         pub unsafe fn connectionWithRegisteredName_host_usingNameServer(
             name: &NSString,
-            hostName: Option<&NSString>,
+            host_name: Option<&NSString>,
             server: &NSPortNameServer,
         ) -> Option<Id<Self, Shared>>;
 
@@ -57,7 +57,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other rootProxyForConnectionWithRegisteredName:host:)]
         pub unsafe fn rootProxyForConnectionWithRegisteredName_host(
             name: &NSString,
-            hostName: Option<&NSString>,
+            host_name: Option<&NSString>,
         ) -> Option<Id<NSDistantObject, Shared>>;
 
         #[cfg(all(
@@ -68,7 +68,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other rootProxyForConnectionWithRegisteredName:host:usingNameServer:)]
         pub unsafe fn rootProxyForConnectionWithRegisteredName_host_usingNameServer(
             name: &NSString,
-            hostName: Option<&NSString>,
+            host_name: Option<&NSString>,
             server: &NSPortNameServer,
         ) -> Option<Id<NSDistantObject, Shared>>;
 
@@ -94,19 +94,19 @@ extern_methods!(
         pub unsafe fn requestTimeout(&self) -> NSTimeInterval;
 
         #[method(setRequestTimeout:)]
-        pub unsafe fn setRequestTimeout(&self, requestTimeout: NSTimeInterval);
+        pub unsafe fn setRequestTimeout(&self, request_timeout: NSTimeInterval);
 
         #[method(replyTimeout)]
         pub unsafe fn replyTimeout(&self) -> NSTimeInterval;
 
         #[method(setReplyTimeout:)]
-        pub unsafe fn setReplyTimeout(&self, replyTimeout: NSTimeInterval);
+        pub unsafe fn setReplyTimeout(&self, reply_timeout: NSTimeInterval);
 
         #[method_id(@__retain_semantics Other rootObject)]
         pub unsafe fn rootObject(&self) -> Option<Id<Object, Shared>>;
 
         #[method(setRootObject:)]
-        pub unsafe fn setRootObject(&self, rootObject: Option<&Object>);
+        pub unsafe fn setRootObject(&self, root_object: Option<&Object>);
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSConnectionDelegate, Shared>>;
@@ -120,7 +120,7 @@ extern_methods!(
         #[method(setIndependentConversationQueueing:)]
         pub unsafe fn setIndependentConversationQueueing(
             &self,
-            independentConversationQueueing: bool,
+            independent_conversation_queueing: bool,
         );
 
         #[method(isValid)]
@@ -163,8 +163,8 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSPort")]
         #[method_id(@__retain_semantics Other connectionWithReceivePort:sendPort:)]
         pub unsafe fn connectionWithReceivePort_sendPort(
-            receivePort: Option<&NSPort>,
-            sendPort: Option<&NSPort>,
+            receive_port: Option<&NSPort>,
+            send_port: Option<&NSPort>,
         ) -> Option<Id<Self, Shared>>;
 
         #[method_id(@__retain_semantics Other currentConversation)]
@@ -174,8 +174,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithReceivePort:sendPort:)]
         pub unsafe fn initWithReceivePort_sendPort(
             this: Option<Allocated<Self>>,
-            receivePort: Option<&NSPort>,
-            sendPort: Option<&NSPort>,
+            receive_port: Option<&NSPort>,
+            send_port: Option<&NSPort>,
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(feature = "Foundation_NSPort")]

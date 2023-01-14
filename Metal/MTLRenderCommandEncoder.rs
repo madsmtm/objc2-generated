@@ -142,7 +142,7 @@ extern_protocol!(
 
     unsafe impl ProtocolType for MTLRenderCommandEncoder {
         #[method(setRenderPipelineState:)]
-        pub fn setRenderPipelineState(&self, pipelineState: &MTLRenderPipelineState);
+        pub fn setRenderPipelineState(&self, pipeline_state: &MTLRenderPipelineState);
 
         #[method(setVertexBytes:length:atIndex:)]
         pub unsafe fn setVertexBytes_length_atIndex(
@@ -203,8 +203,8 @@ extern_protocol!(
         pub unsafe fn setVertexSamplerState_lodMinClamp_lodMaxClamp_atIndex(
             &self,
             sampler: Option<&MTLSamplerState>,
-            lodMinClamp: c_float,
-            lodMaxClamp: c_float,
+            lod_min_clamp: c_float,
+            lod_max_clamp: c_float,
             index: NSUInteger,
         );
 
@@ -212,44 +212,44 @@ extern_protocol!(
         pub unsafe fn setVertexSamplerStates_lodMinClamps_lodMaxClamps_withRange(
             &self,
             samplers: NonNull<*const MTLSamplerState>,
-            lodMinClamps: NonNull<c_float>,
-            lodMaxClamps: NonNull<c_float>,
+            lod_min_clamps: NonNull<c_float>,
+            lod_max_clamps: NonNull<c_float>,
             range: NSRange,
         );
 
         #[method(setVertexVisibleFunctionTable:atBufferIndex:)]
         pub unsafe fn setVertexVisibleFunctionTable_atBufferIndex(
             &self,
-            functionTable: Option<&MTLVisibleFunctionTable>,
-            bufferIndex: NSUInteger,
+            function_table: Option<&MTLVisibleFunctionTable>,
+            buffer_index: NSUInteger,
         );
 
         #[method(setVertexVisibleFunctionTables:withBufferRange:)]
         pub unsafe fn setVertexVisibleFunctionTables_withBufferRange(
             &self,
-            functionTables: NonNull<*const MTLVisibleFunctionTable>,
+            function_tables: NonNull<*const MTLVisibleFunctionTable>,
             range: NSRange,
         );
 
         #[method(setVertexIntersectionFunctionTable:atBufferIndex:)]
         pub unsafe fn setVertexIntersectionFunctionTable_atBufferIndex(
             &self,
-            intersectionFunctionTable: Option<&MTLIntersectionFunctionTable>,
-            bufferIndex: NSUInteger,
+            intersection_function_table: Option<&MTLIntersectionFunctionTable>,
+            buffer_index: NSUInteger,
         );
 
         #[method(setVertexIntersectionFunctionTables:withBufferRange:)]
         pub unsafe fn setVertexIntersectionFunctionTables_withBufferRange(
             &self,
-            intersectionFunctionTables: NonNull<*const MTLIntersectionFunctionTable>,
+            intersection_function_tables: NonNull<*const MTLIntersectionFunctionTable>,
             range: NSRange,
         );
 
         #[method(setVertexAccelerationStructure:atBufferIndex:)]
         pub unsafe fn setVertexAccelerationStructure_atBufferIndex(
             &self,
-            accelerationStructure: Option<&MTLAccelerationStructure>,
-            bufferIndex: NSUInteger,
+            acceleration_structure: Option<&MTLAccelerationStructure>,
+            buffer_index: NSUInteger,
         );
 
         #[method(setViewport:)]
@@ -259,26 +259,26 @@ extern_protocol!(
         pub unsafe fn setViewports_count(&self, viewports: NonNull<MTLViewport>, count: NSUInteger);
 
         #[method(setFrontFacingWinding:)]
-        pub fn setFrontFacingWinding(&self, frontFacingWinding: MTLWinding);
+        pub fn setFrontFacingWinding(&self, front_facing_winding: MTLWinding);
 
         #[method(setVertexAmplificationCount:viewMappings:)]
         pub unsafe fn setVertexAmplificationCount_viewMappings(
             &self,
             count: NSUInteger,
-            viewMappings: *mut MTLVertexAmplificationViewMapping,
+            view_mappings: *mut MTLVertexAmplificationViewMapping,
         );
 
         #[method(setCullMode:)]
-        pub fn setCullMode(&self, cullMode: MTLCullMode);
+        pub fn setCullMode(&self, cull_mode: MTLCullMode);
 
         #[method(setDepthClipMode:)]
-        pub fn setDepthClipMode(&self, depthClipMode: MTLDepthClipMode);
+        pub fn setDepthClipMode(&self, depth_clip_mode: MTLDepthClipMode);
 
         #[method(setDepthBias:slopeScale:clamp:)]
         pub fn setDepthBias_slopeScale_clamp(
             &self,
-            depthBias: c_float,
-            slopeScale: c_float,
+            depth_bias: c_float,
+            slope_scale: c_float,
             clamp: c_float,
         );
 
@@ -288,12 +288,12 @@ extern_protocol!(
         #[method(setScissorRects:count:)]
         pub unsafe fn setScissorRects_count(
             &self,
-            scissorRects: NonNull<MTLScissorRect>,
+            scissor_rects: NonNull<MTLScissorRect>,
             count: NSUInteger,
         );
 
         #[method(setTriangleFillMode:)]
-        pub fn setTriangleFillMode(&self, fillMode: MTLTriangleFillMode);
+        pub fn setTriangleFillMode(&self, fill_mode: MTLTriangleFillMode);
 
         #[method(setFragmentBytes:length:atIndex:)]
         pub unsafe fn setFragmentBytes_length_atIndex(
@@ -354,8 +354,8 @@ extern_protocol!(
         pub unsafe fn setFragmentSamplerState_lodMinClamp_lodMaxClamp_atIndex(
             &self,
             sampler: Option<&MTLSamplerState>,
-            lodMinClamp: c_float,
-            lodMaxClamp: c_float,
+            lod_min_clamp: c_float,
+            lod_max_clamp: c_float,
             index: NSUInteger,
         );
 
@@ -363,44 +363,44 @@ extern_protocol!(
         pub unsafe fn setFragmentSamplerStates_lodMinClamps_lodMaxClamps_withRange(
             &self,
             samplers: NonNull<*const MTLSamplerState>,
-            lodMinClamps: NonNull<c_float>,
-            lodMaxClamps: NonNull<c_float>,
+            lod_min_clamps: NonNull<c_float>,
+            lod_max_clamps: NonNull<c_float>,
             range: NSRange,
         );
 
         #[method(setFragmentVisibleFunctionTable:atBufferIndex:)]
         pub unsafe fn setFragmentVisibleFunctionTable_atBufferIndex(
             &self,
-            functionTable: Option<&MTLVisibleFunctionTable>,
-            bufferIndex: NSUInteger,
+            function_table: Option<&MTLVisibleFunctionTable>,
+            buffer_index: NSUInteger,
         );
 
         #[method(setFragmentVisibleFunctionTables:withBufferRange:)]
         pub unsafe fn setFragmentVisibleFunctionTables_withBufferRange(
             &self,
-            functionTables: NonNull<*const MTLVisibleFunctionTable>,
+            function_tables: NonNull<*const MTLVisibleFunctionTable>,
             range: NSRange,
         );
 
         #[method(setFragmentIntersectionFunctionTable:atBufferIndex:)]
         pub unsafe fn setFragmentIntersectionFunctionTable_atBufferIndex(
             &self,
-            intersectionFunctionTable: Option<&MTLIntersectionFunctionTable>,
-            bufferIndex: NSUInteger,
+            intersection_function_table: Option<&MTLIntersectionFunctionTable>,
+            buffer_index: NSUInteger,
         );
 
         #[method(setFragmentIntersectionFunctionTables:withBufferRange:)]
         pub unsafe fn setFragmentIntersectionFunctionTables_withBufferRange(
             &self,
-            intersectionFunctionTables: NonNull<*const MTLIntersectionFunctionTable>,
+            intersection_function_tables: NonNull<*const MTLIntersectionFunctionTable>,
             range: NSRange,
         );
 
         #[method(setFragmentAccelerationStructure:atBufferIndex:)]
         pub unsafe fn setFragmentAccelerationStructure_atBufferIndex(
             &self,
-            accelerationStructure: Option<&MTLAccelerationStructure>,
-            bufferIndex: NSUInteger,
+            acceleration_structure: Option<&MTLAccelerationStructure>,
+            buffer_index: NSUInteger,
         );
 
         #[method(setBlendColorRed:green:blue:alpha:)]
@@ -413,16 +413,16 @@ extern_protocol!(
         );
 
         #[method(setDepthStencilState:)]
-        pub fn setDepthStencilState(&self, depthStencilState: Option<&MTLDepthStencilState>);
+        pub fn setDepthStencilState(&self, depth_stencil_state: Option<&MTLDepthStencilState>);
 
         #[method(setStencilReferenceValue:)]
-        pub fn setStencilReferenceValue(&self, referenceValue: u32);
+        pub fn setStencilReferenceValue(&self, reference_value: u32);
 
         #[method(setStencilFrontReferenceValue:backReferenceValue:)]
         pub fn setStencilFrontReferenceValue_backReferenceValue(
             &self,
-            frontReferenceValue: u32,
-            backReferenceValue: u32,
+            front_reference_value: u32,
+            back_reference_value: u32,
         );
 
         #[method(setVisibilityResultMode:offset:)]
@@ -435,30 +435,33 @@ extern_protocol!(
         #[method(setColorStoreAction:atIndex:)]
         pub unsafe fn setColorStoreAction_atIndex(
             &self,
-            storeAction: MTLStoreAction,
-            colorAttachmentIndex: NSUInteger,
+            store_action: MTLStoreAction,
+            color_attachment_index: NSUInteger,
         );
 
         #[method(setDepthStoreAction:)]
-        pub unsafe fn setDepthStoreAction(&self, storeAction: MTLStoreAction);
+        pub unsafe fn setDepthStoreAction(&self, store_action: MTLStoreAction);
 
         #[method(setStencilStoreAction:)]
-        pub unsafe fn setStencilStoreAction(&self, storeAction: MTLStoreAction);
+        pub unsafe fn setStencilStoreAction(&self, store_action: MTLStoreAction);
 
         #[method(setColorStoreActionOptions:atIndex:)]
         pub unsafe fn setColorStoreActionOptions_atIndex(
             &self,
-            storeActionOptions: MTLStoreActionOptions,
-            colorAttachmentIndex: NSUInteger,
+            store_action_options: MTLStoreActionOptions,
+            color_attachment_index: NSUInteger,
         );
 
         #[method(setDepthStoreActionOptions:)]
-        pub unsafe fn setDepthStoreActionOptions(&self, storeActionOptions: MTLStoreActionOptions);
+        pub unsafe fn setDepthStoreActionOptions(
+            &self,
+            store_action_options: MTLStoreActionOptions,
+        );
 
         #[method(setStencilStoreActionOptions:)]
         pub unsafe fn setStencilStoreActionOptions(
             &self,
-            storeActionOptions: MTLStoreActionOptions,
+            store_action_options: MTLStoreActionOptions,
         );
 
         #[method(setObjectBytes:length:atIndex:)]
@@ -520,8 +523,8 @@ extern_protocol!(
         pub unsafe fn setObjectSamplerState_lodMinClamp_lodMaxClamp_atIndex(
             &self,
             sampler: Option<&MTLSamplerState>,
-            lodMinClamp: c_float,
-            lodMaxClamp: c_float,
+            lod_min_clamp: c_float,
+            lod_max_clamp: c_float,
             index: NSUInteger,
         );
 
@@ -529,8 +532,8 @@ extern_protocol!(
         pub unsafe fn setObjectSamplerStates_lodMinClamps_lodMaxClamps_withRange(
             &self,
             samplers: NonNull<*const MTLSamplerState>,
-            lodMinClamps: NonNull<c_float>,
-            lodMaxClamps: NonNull<c_float>,
+            lod_min_clamps: NonNull<c_float>,
+            lod_max_clamps: NonNull<c_float>,
             range: NSRange,
         );
 
@@ -600,8 +603,8 @@ extern_protocol!(
         pub unsafe fn setMeshSamplerState_lodMinClamp_lodMaxClamp_atIndex(
             &self,
             sampler: Option<&MTLSamplerState>,
-            lodMinClamp: c_float,
-            lodMaxClamp: c_float,
+            lod_min_clamp: c_float,
+            lod_max_clamp: c_float,
             index: NSUInteger,
         );
 
@@ -609,114 +612,114 @@ extern_protocol!(
         pub unsafe fn setMeshSamplerStates_lodMinClamps_lodMaxClamps_withRange(
             &self,
             samplers: NonNull<*const MTLSamplerState>,
-            lodMinClamps: NonNull<c_float>,
-            lodMaxClamps: NonNull<c_float>,
+            lod_min_clamps: NonNull<c_float>,
+            lod_max_clamps: NonNull<c_float>,
             range: NSRange,
         );
 
         #[method(drawMeshThreadgroups:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:)]
         pub unsafe fn drawMeshThreadgroups_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup(
             &self,
-            threadgroupsPerGrid: MTLSize,
-            threadsPerObjectThreadgroup: MTLSize,
-            threadsPerMeshThreadgroup: MTLSize,
+            threadgroups_per_grid: MTLSize,
+            threads_per_object_threadgroup: MTLSize,
+            threads_per_mesh_threadgroup: MTLSize,
         );
 
         #[method(drawMeshThreads:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:)]
         pub unsafe fn drawMeshThreads_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup(
             &self,
-            threadsPerGrid: MTLSize,
-            threadsPerObjectThreadgroup: MTLSize,
-            threadsPerMeshThreadgroup: MTLSize,
+            threads_per_grid: MTLSize,
+            threads_per_object_threadgroup: MTLSize,
+            threads_per_mesh_threadgroup: MTLSize,
         );
 
         #[method(drawMeshThreadgroupsWithIndirectBuffer:indirectBufferOffset:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:)]
         pub unsafe fn drawMeshThreadgroupsWithIndirectBuffer_indirectBufferOffset_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup(
             &self,
-            indirectBuffer: &MTLBuffer,
-            indirectBufferOffset: NSUInteger,
-            threadsPerObjectThreadgroup: MTLSize,
-            threadsPerMeshThreadgroup: MTLSize,
+            indirect_buffer: &MTLBuffer,
+            indirect_buffer_offset: NSUInteger,
+            threads_per_object_threadgroup: MTLSize,
+            threads_per_mesh_threadgroup: MTLSize,
         );
 
         #[method(drawPrimitives:vertexStart:vertexCount:instanceCount:)]
         pub unsafe fn drawPrimitives_vertexStart_vertexCount_instanceCount(
             &self,
-            primitiveType: MTLPrimitiveType,
-            vertexStart: NSUInteger,
-            vertexCount: NSUInteger,
-            instanceCount: NSUInteger,
+            primitive_type: MTLPrimitiveType,
+            vertex_start: NSUInteger,
+            vertex_count: NSUInteger,
+            instance_count: NSUInteger,
         );
 
         #[method(drawPrimitives:vertexStart:vertexCount:)]
         pub unsafe fn drawPrimitives_vertexStart_vertexCount(
             &self,
-            primitiveType: MTLPrimitiveType,
-            vertexStart: NSUInteger,
-            vertexCount: NSUInteger,
+            primitive_type: MTLPrimitiveType,
+            vertex_start: NSUInteger,
+            vertex_count: NSUInteger,
         );
 
         #[method(drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:)]
         pub unsafe fn drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset_instanceCount(
             &self,
-            primitiveType: MTLPrimitiveType,
-            indexCount: NSUInteger,
-            indexType: MTLIndexType,
-            indexBuffer: &MTLBuffer,
-            indexBufferOffset: NSUInteger,
-            instanceCount: NSUInteger,
+            primitive_type: MTLPrimitiveType,
+            index_count: NSUInteger,
+            index_type: MTLIndexType,
+            index_buffer: &MTLBuffer,
+            index_buffer_offset: NSUInteger,
+            instance_count: NSUInteger,
         );
 
         #[method(drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:)]
         pub unsafe fn drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset(
             &self,
-            primitiveType: MTLPrimitiveType,
-            indexCount: NSUInteger,
-            indexType: MTLIndexType,
-            indexBuffer: &MTLBuffer,
-            indexBufferOffset: NSUInteger,
+            primitive_type: MTLPrimitiveType,
+            index_count: NSUInteger,
+            index_type: MTLIndexType,
+            index_buffer: &MTLBuffer,
+            index_buffer_offset: NSUInteger,
         );
 
         #[method(drawPrimitives:vertexStart:vertexCount:instanceCount:baseInstance:)]
         pub unsafe fn drawPrimitives_vertexStart_vertexCount_instanceCount_baseInstance(
             &self,
-            primitiveType: MTLPrimitiveType,
-            vertexStart: NSUInteger,
-            vertexCount: NSUInteger,
-            instanceCount: NSUInteger,
-            baseInstance: NSUInteger,
+            primitive_type: MTLPrimitiveType,
+            vertex_start: NSUInteger,
+            vertex_count: NSUInteger,
+            instance_count: NSUInteger,
+            base_instance: NSUInteger,
         );
 
         #[method(drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:baseVertex:baseInstance:)]
         pub unsafe fn drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset_instanceCount_baseVertex_baseInstance(
             &self,
-            primitiveType: MTLPrimitiveType,
-            indexCount: NSUInteger,
-            indexType: MTLIndexType,
-            indexBuffer: &MTLBuffer,
-            indexBufferOffset: NSUInteger,
-            instanceCount: NSUInteger,
-            baseVertex: NSInteger,
-            baseInstance: NSUInteger,
+            primitive_type: MTLPrimitiveType,
+            index_count: NSUInteger,
+            index_type: MTLIndexType,
+            index_buffer: &MTLBuffer,
+            index_buffer_offset: NSUInteger,
+            instance_count: NSUInteger,
+            base_vertex: NSInteger,
+            base_instance: NSUInteger,
         );
 
         #[method(drawPrimitives:indirectBuffer:indirectBufferOffset:)]
         pub unsafe fn drawPrimitives_indirectBuffer_indirectBufferOffset(
             &self,
-            primitiveType: MTLPrimitiveType,
-            indirectBuffer: &MTLBuffer,
-            indirectBufferOffset: NSUInteger,
+            primitive_type: MTLPrimitiveType,
+            indirect_buffer: &MTLBuffer,
+            indirect_buffer_offset: NSUInteger,
         );
 
         #[method(drawIndexedPrimitives:indexType:indexBuffer:indexBufferOffset:indirectBuffer:indirectBufferOffset:)]
         pub unsafe fn drawIndexedPrimitives_indexType_indexBuffer_indexBufferOffset_indirectBuffer_indirectBufferOffset(
             &self,
-            primitiveType: MTLPrimitiveType,
-            indexType: MTLIndexType,
-            indexBuffer: &MTLBuffer,
-            indexBufferOffset: NSUInteger,
-            indirectBuffer: &MTLBuffer,
-            indirectBufferOffset: NSUInteger,
+            primitive_type: MTLPrimitiveType,
+            index_type: MTLIndexType,
+            index_buffer: &MTLBuffer,
+            index_buffer_offset: NSUInteger,
+            indirect_buffer: &MTLBuffer,
+            indirect_buffer_offset: NSUInteger,
         );
 
         #[method(textureBarrier)]
@@ -733,7 +736,7 @@ extern_protocol!(
             &self,
             buffer: Option<&MTLBuffer>,
             offset: NSUInteger,
-            instanceStride: NSUInteger,
+            instance_stride: NSUInteger,
         );
 
         #[method(setTessellationFactorScale:)]
@@ -742,49 +745,49 @@ extern_protocol!(
         #[method(drawPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:instanceCount:baseInstance:)]
         pub unsafe fn drawPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_instanceCount_baseInstance(
             &self,
-            numberOfPatchControlPoints: NSUInteger,
-            patchStart: NSUInteger,
-            patchCount: NSUInteger,
-            patchIndexBuffer: Option<&MTLBuffer>,
-            patchIndexBufferOffset: NSUInteger,
-            instanceCount: NSUInteger,
-            baseInstance: NSUInteger,
+            number_of_patch_control_points: NSUInteger,
+            patch_start: NSUInteger,
+            patch_count: NSUInteger,
+            patch_index_buffer: Option<&MTLBuffer>,
+            patch_index_buffer_offset: NSUInteger,
+            instance_count: NSUInteger,
+            base_instance: NSUInteger,
         );
 
         #[method(drawPatches:patchIndexBuffer:patchIndexBufferOffset:indirectBuffer:indirectBufferOffset:)]
         pub unsafe fn drawPatches_patchIndexBuffer_patchIndexBufferOffset_indirectBuffer_indirectBufferOffset(
             &self,
-            numberOfPatchControlPoints: NSUInteger,
-            patchIndexBuffer: Option<&MTLBuffer>,
-            patchIndexBufferOffset: NSUInteger,
-            indirectBuffer: &MTLBuffer,
-            indirectBufferOffset: NSUInteger,
+            number_of_patch_control_points: NSUInteger,
+            patch_index_buffer: Option<&MTLBuffer>,
+            patch_index_buffer_offset: NSUInteger,
+            indirect_buffer: &MTLBuffer,
+            indirect_buffer_offset: NSUInteger,
         );
 
         #[method(drawIndexedPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:instanceCount:baseInstance:)]
         pub unsafe fn drawIndexedPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_controlPointIndexBuffer_controlPointIndexBufferOffset_instanceCount_baseInstance(
             &self,
-            numberOfPatchControlPoints: NSUInteger,
-            patchStart: NSUInteger,
-            patchCount: NSUInteger,
-            patchIndexBuffer: Option<&MTLBuffer>,
-            patchIndexBufferOffset: NSUInteger,
-            controlPointIndexBuffer: &MTLBuffer,
-            controlPointIndexBufferOffset: NSUInteger,
-            instanceCount: NSUInteger,
-            baseInstance: NSUInteger,
+            number_of_patch_control_points: NSUInteger,
+            patch_start: NSUInteger,
+            patch_count: NSUInteger,
+            patch_index_buffer: Option<&MTLBuffer>,
+            patch_index_buffer_offset: NSUInteger,
+            control_point_index_buffer: &MTLBuffer,
+            control_point_index_buffer_offset: NSUInteger,
+            instance_count: NSUInteger,
+            base_instance: NSUInteger,
         );
 
         #[method(drawIndexedPatches:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:indirectBuffer:indirectBufferOffset:)]
         pub unsafe fn drawIndexedPatches_patchIndexBuffer_patchIndexBufferOffset_controlPointIndexBuffer_controlPointIndexBufferOffset_indirectBuffer_indirectBufferOffset(
             &self,
-            numberOfPatchControlPoints: NSUInteger,
-            patchIndexBuffer: Option<&MTLBuffer>,
-            patchIndexBufferOffset: NSUInteger,
-            controlPointIndexBuffer: &MTLBuffer,
-            controlPointIndexBufferOffset: NSUInteger,
-            indirectBuffer: &MTLBuffer,
-            indirectBufferOffset: NSUInteger,
+            number_of_patch_control_points: NSUInteger,
+            patch_index_buffer: Option<&MTLBuffer>,
+            patch_index_buffer_offset: NSUInteger,
+            control_point_index_buffer: &MTLBuffer,
+            control_point_index_buffer_offset: NSUInteger,
+            indirect_buffer: &MTLBuffer,
+            indirect_buffer_offset: NSUInteger,
         );
 
         #[method(tileWidth)]
@@ -852,8 +855,8 @@ extern_protocol!(
         pub unsafe fn setTileSamplerState_lodMinClamp_lodMaxClamp_atIndex(
             &self,
             sampler: Option<&MTLSamplerState>,
-            lodMinClamp: c_float,
-            lodMaxClamp: c_float,
+            lod_min_clamp: c_float,
+            lod_max_clamp: c_float,
             index: NSUInteger,
         );
 
@@ -861,48 +864,48 @@ extern_protocol!(
         pub unsafe fn setTileSamplerStates_lodMinClamps_lodMaxClamps_withRange(
             &self,
             samplers: NonNull<*const MTLSamplerState>,
-            lodMinClamps: NonNull<c_float>,
-            lodMaxClamps: NonNull<c_float>,
+            lod_min_clamps: NonNull<c_float>,
+            lod_max_clamps: NonNull<c_float>,
             range: NSRange,
         );
 
         #[method(setTileVisibleFunctionTable:atBufferIndex:)]
         pub unsafe fn setTileVisibleFunctionTable_atBufferIndex(
             &self,
-            functionTable: Option<&MTLVisibleFunctionTable>,
-            bufferIndex: NSUInteger,
+            function_table: Option<&MTLVisibleFunctionTable>,
+            buffer_index: NSUInteger,
         );
 
         #[method(setTileVisibleFunctionTables:withBufferRange:)]
         pub unsafe fn setTileVisibleFunctionTables_withBufferRange(
             &self,
-            functionTables: NonNull<*const MTLVisibleFunctionTable>,
+            function_tables: NonNull<*const MTLVisibleFunctionTable>,
             range: NSRange,
         );
 
         #[method(setTileIntersectionFunctionTable:atBufferIndex:)]
         pub unsafe fn setTileIntersectionFunctionTable_atBufferIndex(
             &self,
-            intersectionFunctionTable: Option<&MTLIntersectionFunctionTable>,
-            bufferIndex: NSUInteger,
+            intersection_function_table: Option<&MTLIntersectionFunctionTable>,
+            buffer_index: NSUInteger,
         );
 
         #[method(setTileIntersectionFunctionTables:withBufferRange:)]
         pub unsafe fn setTileIntersectionFunctionTables_withBufferRange(
             &self,
-            intersectionFunctionTables: NonNull<*const MTLIntersectionFunctionTable>,
+            intersection_function_tables: NonNull<*const MTLIntersectionFunctionTable>,
             range: NSRange,
         );
 
         #[method(setTileAccelerationStructure:atBufferIndex:)]
         pub unsafe fn setTileAccelerationStructure_atBufferIndex(
             &self,
-            accelerationStructure: Option<&MTLAccelerationStructure>,
-            bufferIndex: NSUInteger,
+            acceleration_structure: Option<&MTLAccelerationStructure>,
+            buffer_index: NSUInteger,
         );
 
         #[method(dispatchThreadsPerTile:)]
-        pub unsafe fn dispatchThreadsPerTile(&self, threadsPerTile: MTLSize);
+        pub unsafe fn dispatchThreadsPerTile(&self, threads_per_tile: MTLSize);
 
         #[method(setThreadgroupMemoryLength:offset:atIndex:)]
         pub unsafe fn setThreadgroupMemoryLength_offset_atIndex(
@@ -960,16 +963,16 @@ extern_protocol!(
         #[method(executeCommandsInBuffer:withRange:)]
         pub unsafe fn executeCommandsInBuffer_withRange(
             &self,
-            indirectCommandBuffer: &MTLIndirectCommandBuffer,
-            executionRange: NSRange,
+            indirect_command_buffer: &MTLIndirectCommandBuffer,
+            execution_range: NSRange,
         );
 
         #[method(executeCommandsInBuffer:indirectBuffer:indirectBufferOffset:)]
         pub unsafe fn executeCommandsInBuffer_indirectBuffer_indirectBufferOffset(
             &self,
-            indirectCommandbuffer: &MTLIndirectCommandBuffer,
-            indirectRangeBuffer: &MTLBuffer,
-            indirectBufferOffset: NSUInteger,
+            indirect_commandbuffer: &MTLIndirectCommandBuffer,
+            indirect_range_buffer: &MTLBuffer,
+            indirect_buffer_offset: NSUInteger,
         );
 
         #[method(memoryBarrierWithScope:afterStages:beforeStages:)]
@@ -992,8 +995,8 @@ extern_protocol!(
         #[method(sampleCountersInBuffer:atSampleIndex:withBarrier:)]
         pub unsafe fn sampleCountersInBuffer_atSampleIndex_withBarrier(
             &self,
-            sampleBuffer: &MTLCounterSampleBuffer,
-            sampleIndex: NSUInteger,
+            sample_buffer: &MTLCounterSampleBuffer,
+            sample_index: NSUInteger,
             barrier: bool,
         );
     }

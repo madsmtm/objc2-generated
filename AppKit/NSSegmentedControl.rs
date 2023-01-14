@@ -58,13 +58,13 @@ extern_methods!(
         pub unsafe fn segmentCount(&self) -> NSInteger;
 
         #[method(setSegmentCount:)]
-        pub unsafe fn setSegmentCount(&self, segmentCount: NSInteger);
+        pub unsafe fn setSegmentCount(&self, segment_count: NSInteger);
 
         #[method(selectedSegment)]
         pub unsafe fn selectedSegment(&self) -> NSInteger;
 
         #[method(setSelectedSegment:)]
-        pub unsafe fn setSelectedSegment(&self, selectedSegment: NSInteger);
+        pub unsafe fn setSelectedSegment(&self, selected_segment: NSInteger);
 
         #[method(selectSegmentWithTag:)]
         pub unsafe fn selectSegmentWithTag(&self, tag: NSInteger) -> bool;
@@ -123,7 +123,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setToolTip:forSegment:)]
-        pub unsafe fn setToolTip_forSegment(&self, toolTip: Option<&NSString>, segment: NSInteger);
+        pub unsafe fn setToolTip_forSegment(&self, tool_tip: Option<&NSString>, segment: NSInteger);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other toolTipForSegment:)]
@@ -138,7 +138,7 @@ extern_methods!(
         #[method(setShowsMenuIndicator:forSegment:)]
         pub unsafe fn setShowsMenuIndicator_forSegment(
             &self,
-            showsMenuIndicator: bool,
+            shows_menu_indicator: bool,
             segment: NSInteger,
         );
 
@@ -149,19 +149,19 @@ extern_methods!(
         pub unsafe fn segmentStyle(&self) -> NSSegmentStyle;
 
         #[method(setSegmentStyle:)]
-        pub unsafe fn setSegmentStyle(&self, segmentStyle: NSSegmentStyle);
+        pub unsafe fn setSegmentStyle(&self, segment_style: NSSegmentStyle);
 
         #[method(isSpringLoaded)]
         pub unsafe fn isSpringLoaded(&self) -> bool;
 
         #[method(setSpringLoaded:)]
-        pub unsafe fn setSpringLoaded(&self, springLoaded: bool);
+        pub unsafe fn setSpringLoaded(&self, spring_loaded: bool);
 
         #[method(trackingMode)]
         pub unsafe fn trackingMode(&self) -> NSSegmentSwitchTracking;
 
         #[method(setTrackingMode:)]
-        pub unsafe fn setTrackingMode(&self, trackingMode: NSSegmentSwitchTracking);
+        pub unsafe fn setTrackingMode(&self, tracking_mode: NSSegmentSwitchTracking);
 
         #[method(doubleValueForSelectedSegment)]
         pub unsafe fn doubleValueForSelectedSegment(&self) -> c_double;
@@ -174,7 +174,7 @@ extern_methods!(
         #[method(setSelectedSegmentBezelColor:)]
         pub unsafe fn setSelectedSegmentBezelColor(
             &self,
-            selectedSegmentBezelColor: Option<&NSColor>,
+            selected_segment_bezel_color: Option<&NSColor>,
         );
 
         #[method(indexOfSelectedItem)]
@@ -194,7 +194,7 @@ extern_methods!(
         pub unsafe fn segmentDistribution(&self) -> NSSegmentDistribution;
 
         #[method(setSegmentDistribution:)]
-        pub unsafe fn setSegmentDistribution(&self, segmentDistribution: NSSegmentDistribution);
+        pub unsafe fn setSegmentDistribution(&self, segment_distribution: NSSegmentDistribution);
 
         #[cfg(all(
             feature = "AppKit_NSUserInterfaceCompressionOptions",
@@ -203,7 +203,7 @@ extern_methods!(
         #[method(compressWithPrioritizedCompressionOptions:)]
         pub unsafe fn compressWithPrioritizedCompressionOptions(
             &self,
-            prioritizedOptions: &NSArray<NSUserInterfaceCompressionOptions>,
+            prioritized_options: &NSArray<NSUserInterfaceCompressionOptions>,
         );
 
         #[cfg(all(
@@ -213,7 +213,7 @@ extern_methods!(
         #[method(minimumSizeWithPrioritizedCompressionOptions:)]
         pub unsafe fn minimumSizeWithPrioritizedCompressionOptions(
             &self,
-            prioritizedOptions: &NSArray<NSUserInterfaceCompressionOptions>,
+            prioritized_options: &NSArray<NSUserInterfaceCompressionOptions>,
         ) -> NSSize;
 
         #[cfg(feature = "AppKit_NSUserInterfaceCompressionOptions")]
@@ -232,7 +232,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other segmentedControlWithLabels:trackingMode:target:action:)]
         pub unsafe fn segmentedControlWithLabels_trackingMode_target_action(
             labels: &NSArray<NSString>,
-            trackingMode: NSSegmentSwitchTracking,
+            tracking_mode: NSSegmentSwitchTracking,
             target: Option<&Object>,
             action: Option<Sel>,
         ) -> Id<Self, Shared>;
@@ -241,7 +241,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other segmentedControlWithImages:trackingMode:target:action:)]
         pub unsafe fn segmentedControlWithImages_trackingMode_target_action(
             images: &NSArray<NSImage>,
-            trackingMode: NSSegmentSwitchTracking,
+            tracking_mode: NSSegmentSwitchTracking,
             target: Option<&Object>,
             action: Option<Sel>,
         ) -> Id<Self, Shared>;
@@ -255,7 +255,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frame_rect: NSRect,
         ) -> Id<Self, Shared>;
     }
 );

@@ -44,7 +44,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSDate")]
     unsafe impl NSDate {
         #[method(timeIntervalSinceDate:)]
-        pub unsafe fn timeIntervalSinceDate(&self, anotherDate: &NSDate) -> NSTimeInterval;
+        pub unsafe fn timeIntervalSinceDate(&self, another_date: &NSDate) -> NSTimeInterval;
 
         #[method(timeIntervalSinceNow)]
         pub unsafe fn timeIntervalSinceNow(&self) -> NSTimeInterval;
@@ -59,16 +59,16 @@ extern_methods!(
         pub unsafe fn dateByAddingTimeInterval(&self, ti: NSTimeInterval) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Other earlierDate:)]
-        pub unsafe fn earlierDate(&self, anotherDate: &NSDate) -> Id<NSDate, Shared>;
+        pub unsafe fn earlierDate(&self, another_date: &NSDate) -> Id<NSDate, Shared>;
 
         #[method_id(@__retain_semantics Other laterDate:)]
-        pub unsafe fn laterDate(&self, anotherDate: &NSDate) -> Id<NSDate, Shared>;
+        pub unsafe fn laterDate(&self, another_date: &NSDate) -> Id<NSDate, Shared>;
 
         #[method(compare:)]
         pub unsafe fn compare(&self, other: &NSDate) -> NSComparisonResult;
 
         #[method(isEqualToDate:)]
-        pub unsafe fn isEqualToDate(&self, otherDate: &NSDate) -> bool;
+        pub unsafe fn isEqualToDate(&self, other_date: &NSDate) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other description)]
@@ -101,7 +101,7 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other dateWithTimeInterval:sinceDate:)]
         pub unsafe fn dateWithTimeInterval_sinceDate(
-            secsToBeAdded: NSTimeInterval,
+            secs_to_be_added: NSTimeInterval,
             date: &NSDate,
         ) -> Id<Self, Shared>;
 
@@ -129,7 +129,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithTimeInterval:sinceDate:)]
         pub unsafe fn initWithTimeInterval_sinceDate(
             this: Option<Allocated<Self>>,
-            secsToBeAdded: NSTimeInterval,
+            secs_to_be_added: NSTimeInterval,
             date: &NSDate,
         ) -> Id<Self, Shared>;
     }

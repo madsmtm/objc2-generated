@@ -55,9 +55,9 @@ extern_methods!(
         pub unsafe fn initWithInsertIndexes_insertedObjects_removeIndexes_removedObjects_additionalChanges(
             this: Option<Allocated<Self>>,
             inserts: &NSIndexSet,
-            insertedObjects: Option<&NSArray<ObjectType>>,
+            inserted_objects: Option<&NSArray<ObjectType>>,
             removes: &NSIndexSet,
-            removedObjects: Option<&NSArray<ObjectType>>,
+            removed_objects: Option<&NSArray<ObjectType>>,
             changes: &NSArray<NSOrderedCollectionChange<ObjectType>>,
         ) -> Id<Self, Shared>;
 
@@ -66,9 +66,9 @@ extern_methods!(
         pub unsafe fn initWithInsertIndexes_insertedObjects_removeIndexes_removedObjects(
             this: Option<Allocated<Self>>,
             inserts: &NSIndexSet,
-            insertedObjects: Option<&NSArray<ObjectType>>,
+            inserted_objects: Option<&NSArray<ObjectType>>,
             removes: &NSIndexSet,
-            removedObjects: Option<&NSArray<ObjectType>>,
+            removed_objects: Option<&NSArray<ObjectType>>,
         ) -> Id<Self, Shared>;
 
         #[cfg(all(

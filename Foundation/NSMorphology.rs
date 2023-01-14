@@ -65,13 +65,13 @@ extern_methods!(
         pub unsafe fn grammaticalGender(&self) -> NSGrammaticalGender;
 
         #[method(setGrammaticalGender:)]
-        pub unsafe fn setGrammaticalGender(&self, grammaticalGender: NSGrammaticalGender);
+        pub unsafe fn setGrammaticalGender(&self, grammatical_gender: NSGrammaticalGender);
 
         #[method(partOfSpeech)]
         pub unsafe fn partOfSpeech(&self) -> NSGrammaticalPartOfSpeech;
 
         #[method(setPartOfSpeech:)]
-        pub unsafe fn setPartOfSpeech(&self, partOfSpeech: NSGrammaticalPartOfSpeech);
+        pub unsafe fn setPartOfSpeech(&self, part_of_speech: NSGrammaticalPartOfSpeech);
 
         #[method(number)]
         pub unsafe fn number(&self) -> NSGrammaticalNumber;
@@ -138,7 +138,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setSubjectForm:)]
-        pub unsafe fn setSubjectForm(&self, subjectForm: Option<&NSString>);
+        pub unsafe fn setSubjectForm(&self, subject_form: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other objectForm)]
@@ -146,7 +146,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setObjectForm:)]
-        pub unsafe fn setObjectForm(&self, objectForm: Option<&NSString>);
+        pub unsafe fn setObjectForm(&self, object_form: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other possessiveForm)]
@@ -154,7 +154,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setPossessiveForm:)]
-        pub unsafe fn setPossessiveForm(&self, possessiveForm: Option<&NSString>);
+        pub unsafe fn setPossessiveForm(&self, possessive_form: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other possessiveAdjectiveForm)]
@@ -162,7 +162,10 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setPossessiveAdjectiveForm:)]
-        pub unsafe fn setPossessiveAdjectiveForm(&self, possessiveAdjectiveForm: Option<&NSString>);
+        pub unsafe fn setPossessiveAdjectiveForm(
+            &self,
+            possessive_adjective_form: Option<&NSString>,
+        );
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other reflexiveForm)]
@@ -170,7 +173,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setReflexiveForm:)]
-        pub unsafe fn setReflexiveForm(&self, reflexiveForm: Option<&NSString>);
+        pub unsafe fn setReflexiveForm(&self, reflexive_form: Option<&NSString>);
     }
 );
 

@@ -22,19 +22,22 @@ extern_methods!(
         pub unsafe fn sampleBuffer(&self) -> Option<Id<MTLCounterSampleBuffer, Shared>>;
 
         #[method(setSampleBuffer:)]
-        pub unsafe fn setSampleBuffer(&self, sampleBuffer: Option<&MTLCounterSampleBuffer>);
+        pub unsafe fn setSampleBuffer(&self, sample_buffer: Option<&MTLCounterSampleBuffer>);
 
         #[method(startOfEncoderSampleIndex)]
         pub unsafe fn startOfEncoderSampleIndex(&self) -> NSUInteger;
 
         #[method(setStartOfEncoderSampleIndex:)]
-        pub unsafe fn setStartOfEncoderSampleIndex(&self, startOfEncoderSampleIndex: NSUInteger);
+        pub unsafe fn setStartOfEncoderSampleIndex(
+            &self,
+            start_of_encoder_sample_index: NSUInteger,
+        );
 
         #[method(endOfEncoderSampleIndex)]
         pub unsafe fn endOfEncoderSampleIndex(&self) -> NSUInteger;
 
         #[method(setEndOfEncoderSampleIndex:)]
-        pub unsafe fn setEndOfEncoderSampleIndex(&self, endOfEncoderSampleIndex: NSUInteger);
+        pub unsafe fn setEndOfEncoderSampleIndex(&self, end_of_encoder_sample_index: NSUInteger);
     }
 );
 
@@ -56,7 +59,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other objectAtIndexedSubscript:)]
         pub unsafe fn objectAtIndexedSubscript(
             &self,
-            attachmentIndex: NSUInteger,
+            attachment_index: NSUInteger,
         ) -> Id<MTLComputePassSampleBufferAttachmentDescriptor, Shared>;
 
         #[cfg(feature = "Metal_MTLComputePassSampleBufferAttachmentDescriptor")]
@@ -64,7 +67,7 @@ extern_methods!(
         pub unsafe fn setObject_atIndexedSubscript(
             &self,
             attachment: Option<&MTLComputePassSampleBufferAttachmentDescriptor>,
-            attachmentIndex: NSUInteger,
+            attachment_index: NSUInteger,
         );
     }
 );
@@ -90,7 +93,7 @@ extern_methods!(
         pub unsafe fn dispatchType(&self) -> MTLDispatchType;
 
         #[method(setDispatchType:)]
-        pub unsafe fn setDispatchType(&self, dispatchType: MTLDispatchType);
+        pub unsafe fn setDispatchType(&self, dispatch_type: MTLDispatchType);
 
         #[cfg(feature = "Metal_MTLComputePassSampleBufferAttachmentDescriptorArray")]
         #[method_id(@__retain_semantics Other sampleBufferAttachments)]

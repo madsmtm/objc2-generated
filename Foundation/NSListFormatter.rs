@@ -30,7 +30,7 @@ extern_methods!(
         pub unsafe fn itemFormatter(&self) -> Option<Id<NSFormatter, Shared>>;
 
         #[method(setItemFormatter:)]
-        pub unsafe fn setItemFormatter(&self, itemFormatter: Option<&NSFormatter>);
+        pub unsafe fn setItemFormatter(&self, item_formatter: Option<&NSFormatter>);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other localizedStringByJoiningStrings:)]

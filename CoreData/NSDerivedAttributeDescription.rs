@@ -25,6 +25,6 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSExpression")]
         #[method(setDerivationExpression:)]
-        pub unsafe fn setDerivationExpression(&self, derivationExpression: Option<&NSExpression>);
+        pub unsafe fn setDerivationExpression(&self, derivation_expression: Option<&NSExpression>);
     }
 );

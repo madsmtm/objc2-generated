@@ -24,16 +24,16 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithSuiteName:commandName:dictionary:)]
         pub unsafe fn initWithSuiteName_commandName_dictionary(
             this: Option<Allocated<Self>>,
-            suiteName: &NSString,
-            commandName: &NSString,
-            commandDeclaration: Option<&NSDictionary>,
+            suite_name: &NSString,
+            command_name: &NSString,
+            command_declaration: Option<&NSDictionary>,
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
-            inCoder: &NSCoder,
+            in_coder: &NSCoder,
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -69,19 +69,19 @@ extern_methods!(
         #[method_id(@__retain_semantics Other typeForArgumentWithName:)]
         pub unsafe fn typeForArgumentWithName(
             &self,
-            argumentName: &NSString,
+            argument_name: &NSString,
         ) -> Option<Id<NSString, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(appleEventCodeForArgumentWithName:)]
         pub unsafe fn appleEventCodeForArgumentWithName(
             &self,
-            argumentName: &NSString,
+            argument_name: &NSString,
         ) -> FourCharCode;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(isOptionalArgumentWithName:)]
-        pub unsafe fn isOptionalArgumentWithName(&self, argumentName: &NSString) -> bool;
+        pub unsafe fn isOptionalArgumentWithName(&self, argument_name: &NSString) -> bool;
 
         #[cfg(feature = "Foundation_NSScriptCommand")]
         #[method_id(@__retain_semantics Other createCommandInstance)]

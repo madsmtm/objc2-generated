@@ -74,13 +74,13 @@ extern_methods!(
         pub unsafe fn datePickerStyle(&self) -> NSDatePickerStyle;
 
         #[method(setDatePickerStyle:)]
-        pub unsafe fn setDatePickerStyle(&self, datePickerStyle: NSDatePickerStyle);
+        pub unsafe fn setDatePickerStyle(&self, date_picker_style: NSDatePickerStyle);
 
         #[method(drawsBackground)]
         pub unsafe fn drawsBackground(&self) -> bool;
 
         #[method(setDrawsBackground:)]
-        pub unsafe fn setDrawsBackground(&self, drawsBackground: bool);
+        pub unsafe fn setDrawsBackground(&self, draws_background: bool);
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other backgroundColor)]
@@ -88,7 +88,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setBackgroundColor:)]
-        pub unsafe fn setBackgroundColor(&self, backgroundColor: &NSColor);
+        pub unsafe fn setBackgroundColor(&self, background_color: &NSColor);
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other textColor)]
@@ -96,19 +96,19 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setTextColor:)]
-        pub unsafe fn setTextColor(&self, textColor: &NSColor);
+        pub unsafe fn setTextColor(&self, text_color: &NSColor);
 
         #[method(datePickerMode)]
         pub unsafe fn datePickerMode(&self) -> NSDatePickerMode;
 
         #[method(setDatePickerMode:)]
-        pub unsafe fn setDatePickerMode(&self, datePickerMode: NSDatePickerMode);
+        pub unsafe fn setDatePickerMode(&self, date_picker_mode: NSDatePickerMode);
 
         #[method(datePickerElements)]
         pub unsafe fn datePickerElements(&self) -> NSDatePickerElementFlags;
 
         #[method(setDatePickerElements:)]
-        pub unsafe fn setDatePickerElements(&self, datePickerElements: NSDatePickerElementFlags);
+        pub unsafe fn setDatePickerElements(&self, date_picker_elements: NSDatePickerElementFlags);
 
         #[cfg(feature = "Foundation_NSCalendar")]
         #[method_id(@__retain_semantics Other calendar)]
@@ -132,7 +132,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSTimeZone")]
         #[method(setTimeZone:)]
-        pub unsafe fn setTimeZone(&self, timeZone: Option<&NSTimeZone>);
+        pub unsafe fn setTimeZone(&self, time_zone: Option<&NSTimeZone>);
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other dateValue)]
@@ -140,13 +140,13 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method(setDateValue:)]
-        pub unsafe fn setDateValue(&self, dateValue: &NSDate);
+        pub unsafe fn setDateValue(&self, date_value: &NSDate);
 
         #[method(timeInterval)]
         pub unsafe fn timeInterval(&self) -> NSTimeInterval;
 
         #[method(setTimeInterval:)]
-        pub unsafe fn setTimeInterval(&self, timeInterval: NSTimeInterval);
+        pub unsafe fn setTimeInterval(&self, time_interval: NSTimeInterval);
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other minDate)]
@@ -154,7 +154,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method(setMinDate:)]
-        pub unsafe fn setMinDate(&self, minDate: Option<&NSDate>);
+        pub unsafe fn setMinDate(&self, min_date: Option<&NSDate>);
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other maxDate)]
@@ -162,7 +162,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method(setMaxDate:)]
-        pub unsafe fn setMaxDate(&self, maxDate: Option<&NSDate>);
+        pub unsafe fn setMaxDate(&self, max_date: Option<&NSDate>);
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSDatePickerCellDelegate, Shared>>;
@@ -181,9 +181,9 @@ extern_protocol!(
         #[method(datePickerCell:validateProposedDateValue:timeInterval:)]
         pub unsafe fn datePickerCell_validateProposedDateValue_timeInterval(
             &self,
-            datePickerCell: &NSDatePickerCell,
-            proposedDateValue: NonNull<NonNull<NSDate>>,
-            proposedTimeInterval: *mut NSTimeInterval,
+            date_picker_cell: &NSDatePickerCell,
+            proposed_date_value: NonNull<NonNull<NSDate>>,
+            proposed_time_interval: *mut NSTimeInterval,
         );
     }
 );

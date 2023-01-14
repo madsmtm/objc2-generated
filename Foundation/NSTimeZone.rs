@@ -27,25 +27,25 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method(secondsFromGMTForDate:)]
-        pub unsafe fn secondsFromGMTForDate(&self, aDate: &NSDate) -> NSInteger;
+        pub unsafe fn secondsFromGMTForDate(&self, a_date: &NSDate) -> NSInteger;
 
         #[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other abbreviationForDate:)]
-        pub unsafe fn abbreviationForDate(&self, aDate: &NSDate) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn abbreviationForDate(&self, a_date: &NSDate) -> Option<Id<NSString, Shared>>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method(isDaylightSavingTimeForDate:)]
-        pub unsafe fn isDaylightSavingTimeForDate(&self, aDate: &NSDate) -> bool;
+        pub unsafe fn isDaylightSavingTimeForDate(&self, a_date: &NSDate) -> bool;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method(daylightSavingTimeOffsetForDate:)]
-        pub unsafe fn daylightSavingTimeOffsetForDate(&self, aDate: &NSDate) -> NSTimeInterval;
+        pub unsafe fn daylightSavingTimeOffsetForDate(&self, a_date: &NSDate) -> NSTimeInterval;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other nextDaylightSavingTimeTransitionAfterDate:)]
         pub unsafe fn nextDaylightSavingTimeTransitionAfterDate(
             &self,
-            aDate: &NSDate,
+            a_date: &NSDate,
         ) -> Option<Id<NSDate, Shared>>;
     }
 );
@@ -76,7 +76,7 @@ extern_methods!(
         pub unsafe fn defaultTimeZone() -> Id<NSTimeZone, Shared>;
 
         #[method(setDefaultTimeZone:)]
-        pub unsafe fn setDefaultTimeZone(defaultTimeZone: &NSTimeZone);
+        pub unsafe fn setDefaultTimeZone(default_time_zone: &NSTimeZone);
 
         #[method_id(@__retain_semantics Other localTimeZone)]
         pub unsafe fn localTimeZone() -> Id<NSTimeZone, Shared>;
@@ -92,7 +92,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setAbbreviationDictionary:)]
         pub unsafe fn setAbbreviationDictionary(
-            abbreviationDictionary: &NSDictionary<NSString, NSString>,
+            abbreviation_dictionary: &NSDictionary<NSString, NSString>,
         );
 
         #[cfg(feature = "Foundation_NSString")]
@@ -121,7 +121,7 @@ extern_methods!(
         pub unsafe fn description(&self) -> Id<NSString, Shared>;
 
         #[method(isEqualToTimeZone:)]
-        pub unsafe fn isEqualToTimeZone(&self, aTimeZone: &NSTimeZone) -> bool;
+        pub unsafe fn isEqualToTimeZone(&self, a_time_zone: &NSTimeZone) -> bool;
 
         #[cfg(all(feature = "Foundation_NSLocale", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other localizedName:locale:)]
@@ -139,28 +139,28 @@ extern_methods!(
     unsafe impl NSTimeZone {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other timeZoneWithName:)]
-        pub unsafe fn timeZoneWithName(tzName: &NSString) -> Option<Id<Self, Shared>>;
+        pub unsafe fn timeZoneWithName(tz_name: &NSString) -> Option<Id<Self, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other timeZoneWithName:data:)]
         pub unsafe fn timeZoneWithName_data(
-            tzName: &NSString,
-            aData: Option<&NSData>,
+            tz_name: &NSString,
+            a_data: Option<&NSData>,
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithName:)]
         pub unsafe fn initWithName(
             this: Option<Allocated<Self>>,
-            tzName: &NSString,
+            tz_name: &NSString,
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithName:data:)]
         pub unsafe fn initWithName_data(
             this: Option<Allocated<Self>>,
-            tzName: &NSString,
-            aData: Option<&NSData>,
+            tz_name: &NSString,
+            a_data: Option<&NSData>,
         ) -> Option<Id<Self, Shared>>;
 
         #[method_id(@__retain_semantics Other timeZoneForSecondsFromGMT:)]

@@ -78,7 +78,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithPasteboardWriter:)]
         pub unsafe fn initWithPasteboardWriter(
             this: Option<Allocated<Self>>,
-            pasteboardWriter: &NSPasteboardWriting,
+            pasteboard_writer: &NSPasteboardWriting,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Init init)]
@@ -91,7 +91,7 @@ extern_methods!(
         pub unsafe fn draggingFrame(&self) -> NSRect;
 
         #[method(setDraggingFrame:)]
-        pub unsafe fn setDraggingFrame(&self, draggingFrame: NSRect);
+        pub unsafe fn setDraggingFrame(&self, dragging_frame: NSRect);
 
         #[cfg(all(
             feature = "AppKit_NSDraggingImageComponent",
@@ -109,7 +109,9 @@ extern_methods!(
         #[method(setImageComponentsProvider:)]
         pub unsafe fn setImageComponentsProvider(
             &self,
-            imageComponentsProvider: Option<&Block<(), NonNull<NSArray<NSDraggingImageComponent>>>>,
+            image_components_provider: Option<
+                &Block<(), NonNull<NSArray<NSDraggingImageComponent>>>,
+            >,
         );
 
         #[method(setDraggingFrame:contents:)]

@@ -50,7 +50,7 @@ extern_methods!(
         #[method(saveCredentialIdentities:completion:)]
         pub unsafe fn saveCredentialIdentities_completion(
             &self,
-            credentialIdentities: &NSArray<ASPasswordCredentialIdentity>,
+            credential_identities: &NSArray<ASPasswordCredentialIdentity>,
             completion: Option<&Block<(Bool, *mut NSError), ()>>,
         );
 
@@ -62,7 +62,7 @@ extern_methods!(
         #[method(removeCredentialIdentities:completion:)]
         pub unsafe fn removeCredentialIdentities_completion(
             &self,
-            credentialIdentities: &NSArray<ASPasswordCredentialIdentity>,
+            credential_identities: &NSArray<ASPasswordCredentialIdentity>,
             completion: Option<&Block<(Bool, *mut NSError), ()>>,
         );
 
@@ -81,7 +81,7 @@ extern_methods!(
         #[method(replaceCredentialIdentitiesWithIdentities:completion:)]
         pub unsafe fn replaceCredentialIdentitiesWithIdentities_completion(
             &self,
-            newCredentialIdentities: &NSArray<ASPasswordCredentialIdentity>,
+            new_credential_identities: &NSArray<ASPasswordCredentialIdentity>,
             completion: Option<&Block<(Bool, *mut NSError), ()>>,
         );
     }

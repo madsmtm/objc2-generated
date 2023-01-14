@@ -23,7 +23,7 @@ extern_methods!(
         pub unsafe fn itemIndex(&self) -> NSInteger;
 
         #[method(setItemIndex:)]
-        pub unsafe fn setItemIndex(&self, itemIndex: NSInteger);
+        pub unsafe fn setItemIndex(&self, item_index: NSInteger);
 
         #[method(frame)]
         pub unsafe fn frame(&self) -> NSRect;
@@ -111,8 +111,8 @@ extern_methods!(
         #[method(shouldInvalidateLayoutForChangeFromVisibleRect:toVisibleRect:)]
         pub unsafe fn shouldInvalidateLayoutForChangeFromVisibleRect_toVisibleRect(
             &self,
-            fromVisibleRect: NSRect,
-            toVisibleRect: NSRect,
+            from_visible_rect: NSRect,
+            to_visible_rect: NSRect,
         ) -> bool;
 
         #[method(automaticallyMirrorsInRightToLeftLayout)]
@@ -131,7 +131,7 @@ extern_protocol!(
             &self,
             scrubber: &NSScrubber,
             layout: &NSScrubberFlowLayout,
-            itemIndex: NSInteger,
+            item_index: NSInteger,
         ) -> NSSize;
     }
 );
@@ -155,17 +155,17 @@ extern_methods!(
         pub unsafe fn itemSpacing(&self) -> CGFloat;
 
         #[method(setItemSpacing:)]
-        pub unsafe fn setItemSpacing(&self, itemSpacing: CGFloat);
+        pub unsafe fn setItemSpacing(&self, item_spacing: CGFloat);
 
         #[method(itemSize)]
         pub unsafe fn itemSize(&self) -> NSSize;
 
         #[method(setItemSize:)]
-        pub unsafe fn setItemSize(&self, itemSize: NSSize);
+        pub unsafe fn setItemSize(&self, item_size: NSSize);
 
         #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(invalidateLayoutForItemsAtIndexes:)]
-        pub unsafe fn invalidateLayoutForItemsAtIndexes(&self, invalidItemIndexes: &NSIndexSet);
+        pub unsafe fn invalidateLayoutForItemsAtIndexes(&self, invalid_item_indexes: &NSIndexSet);
     }
 );
 
@@ -188,12 +188,12 @@ extern_methods!(
         pub unsafe fn numberOfVisibleItems(&self) -> NSInteger;
 
         #[method(setNumberOfVisibleItems:)]
-        pub unsafe fn setNumberOfVisibleItems(&self, numberOfVisibleItems: NSInteger);
+        pub unsafe fn setNumberOfVisibleItems(&self, number_of_visible_items: NSInteger);
 
         #[method_id(@__retain_semantics Init initWithNumberOfVisibleItems:)]
         pub unsafe fn initWithNumberOfVisibleItems(
             this: Option<Allocated<Self>>,
-            numberOfVisibleItems: NSInteger,
+            number_of_visible_items: NSInteger,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSCoder")]

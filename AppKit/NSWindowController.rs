@@ -37,13 +37,13 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithWindowNibName:)]
         pub unsafe fn initWithWindowNibName(
             this: Option<Allocated<Self>>,
-            windowNibName: &NSNibName,
+            window_nib_name: &NSNibName,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Init initWithWindowNibName:owner:)]
         pub unsafe fn initWithWindowNibName_owner(
             this: Option<Allocated<Self>>,
-            windowNibName: &NSNibName,
+            window_nib_name: &NSNibName,
             owner: &Object,
         ) -> Id<Self, Shared>;
 
@@ -51,7 +51,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithWindowNibPath:owner:)]
         pub unsafe fn initWithWindowNibPath_owner(
             this: Option<Allocated<Self>>,
-            windowNibPath: &NSString,
+            window_nib_path: &NSString,
             owner: &Object,
         ) -> Id<Self, Shared>;
 
@@ -71,14 +71,14 @@ extern_methods!(
         #[method(setWindowFrameAutosaveName:)]
         pub unsafe fn setWindowFrameAutosaveName(
             &self,
-            windowFrameAutosaveName: &NSWindowFrameAutosaveName,
+            window_frame_autosave_name: &NSWindowFrameAutosaveName,
         );
 
         #[method(shouldCascadeWindows)]
         pub unsafe fn shouldCascadeWindows(&self) -> bool;
 
         #[method(setShouldCascadeWindows:)]
-        pub unsafe fn setShouldCascadeWindows(&self, shouldCascadeWindows: bool);
+        pub unsafe fn setShouldCascadeWindows(&self, should_cascade_windows: bool);
 
         #[method_id(@__retain_semantics Other document)]
         pub unsafe fn document(&self) -> Option<Id<Object, Shared>>;
@@ -87,13 +87,13 @@ extern_methods!(
         pub unsafe fn setDocument(&self, document: Option<&Object>);
 
         #[method(setDocumentEdited:)]
-        pub unsafe fn setDocumentEdited(&self, dirtyFlag: bool);
+        pub unsafe fn setDocumentEdited(&self, dirty_flag: bool);
 
         #[method(shouldCloseDocument)]
         pub unsafe fn shouldCloseDocument(&self) -> bool;
 
         #[method(setShouldCloseDocument:)]
-        pub unsafe fn setShouldCloseDocument(&self, shouldCloseDocument: bool);
+        pub unsafe fn setShouldCloseDocument(&self, should_close_document: bool);
 
         #[method(synchronizeWindowTitleWithDocumentName)]
         pub unsafe fn synchronizeWindowTitleWithDocumentName(&self);
@@ -102,7 +102,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other windowTitleForDocumentDisplayName:)]
         pub unsafe fn windowTitleForDocumentDisplayName(
             &self,
-            displayName: &NSString,
+            display_name: &NSString,
         ) -> Id<NSString, Shared>;
 
         #[cfg(feature = "AppKit_NSViewController")]
@@ -113,7 +113,7 @@ extern_methods!(
         #[method(setContentViewController:)]
         pub unsafe fn setContentViewController(
             &self,
-            contentViewController: Option<&NSViewController>,
+            content_view_controller: Option<&NSViewController>,
         );
 
         #[cfg(feature = "AppKit_NSWindow")]

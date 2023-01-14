@@ -26,7 +26,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setPlaceholderString:)]
-        pub unsafe fn setPlaceholderString(&self, placeholderString: Option<&NSString>);
+        pub unsafe fn setPlaceholderString(&self, placeholder_string: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other placeholderAttributedString)]
@@ -36,7 +36,7 @@ extern_methods!(
         #[method(setPlaceholderAttributedString:)]
         pub unsafe fn setPlaceholderAttributedString(
             &self,
-            placeholderAttributedString: Option<&NSAttributedString>,
+            placeholder_attributed_string: Option<&NSAttributedString>,
         );
 
         #[cfg(feature = "AppKit_NSColor")]
@@ -45,13 +45,13 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setBackgroundColor:)]
-        pub unsafe fn setBackgroundColor(&self, backgroundColor: Option<&NSColor>);
+        pub unsafe fn setBackgroundColor(&self, background_color: Option<&NSColor>);
 
         #[method(drawsBackground)]
         pub unsafe fn drawsBackground(&self) -> bool;
 
         #[method(setDrawsBackground:)]
-        pub unsafe fn setDrawsBackground(&self, drawsBackground: bool);
+        pub unsafe fn setDrawsBackground(&self, draws_background: bool);
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other textColor)]
@@ -59,7 +59,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setTextColor:)]
-        pub unsafe fn setTextColor(&self, textColor: Option<&NSColor>);
+        pub unsafe fn setTextColor(&self, text_color: Option<&NSColor>);
 
         #[method(isBordered)]
         pub unsafe fn isBordered(&self) -> bool;
@@ -96,11 +96,11 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSText")]
         #[method(textShouldBeginEditing:)]
-        pub unsafe fn textShouldBeginEditing(&self, textObject: &NSText) -> bool;
+        pub unsafe fn textShouldBeginEditing(&self, text_object: &NSText) -> bool;
 
         #[cfg(feature = "AppKit_NSText")]
         #[method(textShouldEndEditing:)]
-        pub unsafe fn textShouldEndEditing(&self, textObject: &NSText) -> bool;
+        pub unsafe fn textShouldEndEditing(&self, text_object: &NSText) -> bool;
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[method(textDidBeginEditing:)]
@@ -121,19 +121,19 @@ extern_methods!(
         pub unsafe fn bezelStyle(&self) -> NSTextFieldBezelStyle;
 
         #[method(setBezelStyle:)]
-        pub unsafe fn setBezelStyle(&self, bezelStyle: NSTextFieldBezelStyle);
+        pub unsafe fn setBezelStyle(&self, bezel_style: NSTextFieldBezelStyle);
 
         #[method(preferredMaxLayoutWidth)]
         pub unsafe fn preferredMaxLayoutWidth(&self) -> CGFloat;
 
         #[method(setPreferredMaxLayoutWidth:)]
-        pub unsafe fn setPreferredMaxLayoutWidth(&self, preferredMaxLayoutWidth: CGFloat);
+        pub unsafe fn setPreferredMaxLayoutWidth(&self, preferred_max_layout_width: CGFloat);
 
         #[method(maximumNumberOfLines)]
         pub unsafe fn maximumNumberOfLines(&self) -> NSInteger;
 
         #[method(setMaximumNumberOfLines:)]
-        pub unsafe fn setMaximumNumberOfLines(&self, maximumNumberOfLines: NSInteger);
+        pub unsafe fn setMaximumNumberOfLines(&self, maximum_number_of_lines: NSInteger);
 
         #[method(allowsDefaultTighteningForTruncation)]
         pub unsafe fn allowsDefaultTighteningForTruncation(&self) -> bool;
@@ -141,14 +141,14 @@ extern_methods!(
         #[method(setAllowsDefaultTighteningForTruncation:)]
         pub unsafe fn setAllowsDefaultTighteningForTruncation(
             &self,
-            allowsDefaultTighteningForTruncation: bool,
+            allows_default_tightening_for_truncation: bool,
         );
 
         #[method(lineBreakStrategy)]
         pub unsafe fn lineBreakStrategy(&self) -> NSLineBreakStrategy;
 
         #[method(setLineBreakStrategy:)]
-        pub unsafe fn setLineBreakStrategy(&self, lineBreakStrategy: NSLineBreakStrategy);
+        pub unsafe fn setLineBreakStrategy(&self, line_break_strategy: NSLineBreakStrategy);
     }
 );
 
@@ -162,7 +162,7 @@ extern_methods!(
         #[method(setAutomaticTextCompletionEnabled:)]
         pub unsafe fn setAutomaticTextCompletionEnabled(
             &self,
-            automaticTextCompletionEnabled: bool,
+            automatic_text_completion_enabled: bool,
         );
 
         #[method(allowsCharacterPickerTouchBarItem)]
@@ -171,7 +171,7 @@ extern_methods!(
         #[method(setAllowsCharacterPickerTouchBarItem:)]
         pub unsafe fn setAllowsCharacterPickerTouchBarItem(
             &self,
-            allowsCharacterPickerTouchBarItem: bool,
+            allows_character_picker_touch_bar_item: bool,
         );
     }
 );
@@ -182,21 +182,21 @@ extern_methods!(
     unsafe impl NSTextField {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other labelWithString:)]
-        pub unsafe fn labelWithString(stringValue: &NSString) -> Id<Self, Shared>;
+        pub unsafe fn labelWithString(string_value: &NSString) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other wrappingLabelWithString:)]
-        pub unsafe fn wrappingLabelWithString(stringValue: &NSString) -> Id<Self, Shared>;
+        pub unsafe fn wrappingLabelWithString(string_value: &NSString) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other labelWithAttributedString:)]
         pub unsafe fn labelWithAttributedString(
-            attributedStringValue: &NSAttributedString,
+            attributed_string_value: &NSAttributedString,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other textFieldWithString:)]
-        pub unsafe fn textFieldWithString(stringValue: &NSString) -> Id<Self, Shared>;
+        pub unsafe fn textFieldWithString(string_value: &NSString) -> Id<Self, Shared>;
     }
 );
 
@@ -208,13 +208,13 @@ extern_methods!(
         pub unsafe fn allowsEditingTextAttributes(&self) -> bool;
 
         #[method(setAllowsEditingTextAttributes:)]
-        pub unsafe fn setAllowsEditingTextAttributes(&self, allowsEditingTextAttributes: bool);
+        pub unsafe fn setAllowsEditingTextAttributes(&self, allows_editing_text_attributes: bool);
 
         #[method(importsGraphics)]
         pub unsafe fn importsGraphics(&self) -> bool;
 
         #[method(setImportsGraphics:)]
-        pub unsafe fn setImportsGraphics(&self, importsGraphics: bool);
+        pub unsafe fn setImportsGraphics(&self, imports_graphics: bool);
     }
 );
 
@@ -231,9 +231,9 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other textField:textView:candidatesForSelectedRange:)]
         pub unsafe fn textField_textView_candidatesForSelectedRange(
             &self,
-            textField: &NSTextField,
-            textView: &NSTextView,
-            selectedRange: NSRange,
+            text_field: &NSTextField,
+            text_view: &NSTextView,
+            selected_range: NSRange,
         ) -> Option<Id<NSArray, Shared>>;
 
         #[cfg(all(
@@ -246,10 +246,10 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other textField:textView:candidates:forSelectedRange:)]
         pub unsafe fn textField_textView_candidates_forSelectedRange(
             &self,
-            textField: &NSTextField,
-            textView: &NSTextView,
+            text_field: &NSTextField,
+            text_view: &NSTextView,
             candidates: &NSArray<NSTextCheckingResult>,
-            selectedRange: NSRange,
+            selected_range: NSRange,
         ) -> Id<NSArray<NSTextCheckingResult>, Shared>;
 
         #[cfg(all(feature = "AppKit_NSTextField", feature = "AppKit_NSTextView"))]
@@ -257,8 +257,8 @@ extern_protocol!(
         #[method(textField:textView:shouldSelectCandidateAtIndex:)]
         pub unsafe fn textField_textView_shouldSelectCandidateAtIndex(
             &self,
-            textField: &NSTextField,
-            textView: &NSTextView,
+            text_field: &NSTextField,
+            text_view: &NSTextView,
             index: NSUInteger,
         ) -> bool;
     }
@@ -270,7 +270,7 @@ extern_methods!(
     unsafe impl NSTextField {
         #[cfg(feature = "Foundation_NSString")]
         #[method(setTitleWithMnemonic:)]
-        pub unsafe fn setTitleWithMnemonic(&self, stringWithAmpersand: Option<&NSString>);
+        pub unsafe fn setTitleWithMnemonic(&self, string_with_ampersand: Option<&NSString>);
     }
 );
 
@@ -281,7 +281,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frame_rect: NSRect,
         ) -> Id<Self, Shared>;
     }
 );

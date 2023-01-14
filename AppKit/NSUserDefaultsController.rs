@@ -32,7 +32,7 @@ extern_methods!(
         pub unsafe fn initWithDefaults_initialValues(
             this: Option<Allocated<Self>>,
             defaults: Option<&NSUserDefaults>,
-            initialValues: Option<&NSDictionary<NSString, Object>>,
+            initial_values: Option<&NSDictionary<NSString, Object>>,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSCoder")]
@@ -54,14 +54,14 @@ extern_methods!(
         #[method(setInitialValues:)]
         pub unsafe fn setInitialValues(
             &self,
-            initialValues: Option<&NSDictionary<NSString, Object>>,
+            initial_values: Option<&NSDictionary<NSString, Object>>,
         );
 
         #[method(appliesImmediately)]
         pub unsafe fn appliesImmediately(&self) -> bool;
 
         #[method(setAppliesImmediately:)]
-        pub unsafe fn setAppliesImmediately(&self, appliesImmediately: bool);
+        pub unsafe fn setAppliesImmediately(&self, applies_immediately: bool);
 
         #[method(hasUnappliedChanges)]
         pub unsafe fn hasUnappliedChanges(&self) -> bool;

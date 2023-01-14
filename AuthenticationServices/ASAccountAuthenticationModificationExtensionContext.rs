@@ -29,14 +29,14 @@ extern_methods!(
             &self,
             state: Option<&NSString>,
             nonce: Option<&NSString>,
-            completionHandler: &Block<(*mut ASAuthorizationAppleIDCredential, *mut NSError), ()>,
+            completion_handler: &Block<(*mut ASAuthorizationAppleIDCredential, *mut NSError), ()>,
         );
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(completeUpgradeToSignInWithAppleWithUserInfo:)]
         pub unsafe fn completeUpgradeToSignInWithAppleWithUserInfo(
             &self,
-            userInfo: Option<&NSDictionary>,
+            user_info: Option<&NSDictionary>,
         );
 
         #[cfg(all(
@@ -46,8 +46,8 @@ extern_methods!(
         #[method(completeChangePasswordRequestWithUpdatedCredential:userInfo:)]
         pub unsafe fn completeChangePasswordRequestWithUpdatedCredential_userInfo(
             &self,
-            updatedCredential: &ASPasswordCredential,
-            userInfo: Option<&NSDictionary>,
+            updated_credential: &ASPasswordCredential,
+            user_info: Option<&NSDictionary>,
         );
 
         #[cfg(feature = "Foundation_NSError")]

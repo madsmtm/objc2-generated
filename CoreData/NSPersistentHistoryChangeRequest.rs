@@ -38,7 +38,7 @@ extern_methods!(
         #[cfg(feature = "CoreData_NSFetchRequest")]
         #[method_id(@__retain_semantics Other fetchHistoryWithFetchRequest:)]
         pub unsafe fn fetchHistoryWithFetchRequest(
-            fetchRequest: &NSFetchRequest,
+            fetch_request: &NSFetchRequest,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSDate")]
@@ -61,7 +61,7 @@ extern_methods!(
         pub unsafe fn resultType(&self) -> NSPersistentHistoryResultType;
 
         #[method(setResultType:)]
-        pub unsafe fn setResultType(&self, resultType: NSPersistentHistoryResultType);
+        pub unsafe fn setResultType(&self, result_type: NSPersistentHistoryResultType);
 
         #[cfg(feature = "CoreData_NSPersistentHistoryToken")]
         #[method_id(@__retain_semantics Other token)]
@@ -73,6 +73,6 @@ extern_methods!(
 
         #[cfg(feature = "CoreData_NSFetchRequest")]
         #[method(setFetchRequest:)]
-        pub unsafe fn setFetchRequest(&self, fetchRequest: Option<&NSFetchRequest>);
+        pub unsafe fn setFetchRequest(&self, fetch_request: Option<&NSFetchRequest>);
     }
 );

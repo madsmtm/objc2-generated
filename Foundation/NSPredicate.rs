@@ -20,14 +20,14 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other predicateWithFormat:argumentArray:)]
         pub unsafe fn predicateWithFormat_argumentArray(
-            predicateFormat: &NSString,
+            predicate_format: &NSString,
             arguments: Option<&NSArray>,
         ) -> Id<NSPredicate, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other predicateFromMetadataQueryString:)]
         pub unsafe fn predicateFromMetadataQueryString(
-            queryString: &NSString,
+            query_string: &NSString,
         ) -> Option<Id<NSPredicate, Shared>>;
 
         #[method_id(@__retain_semantics Other predicateWithValue:)]

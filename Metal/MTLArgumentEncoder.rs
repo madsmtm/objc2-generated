@@ -28,16 +28,16 @@ extern_protocol!(
         #[method(setArgumentBuffer:offset:)]
         pub unsafe fn setArgumentBuffer_offset(
             &self,
-            argumentBuffer: Option<&MTLBuffer>,
+            argument_buffer: Option<&MTLBuffer>,
             offset: NSUInteger,
         );
 
         #[method(setArgumentBuffer:startOffset:arrayElement:)]
         pub unsafe fn setArgumentBuffer_startOffset_arrayElement(
             &self,
-            argumentBuffer: Option<&MTLBuffer>,
-            startOffset: NSUInteger,
-            arrayElement: NSUInteger,
+            argument_buffer: Option<&MTLBuffer>,
+            start_offset: NSUInteger,
+            array_element: NSUInteger,
         );
 
         #[method(setBuffer:offset:atIndex:)]
@@ -114,7 +114,7 @@ extern_protocol!(
         #[method(setIndirectCommandBuffer:atIndex:)]
         pub unsafe fn setIndirectCommandBuffer_atIndex(
             &self,
-            indirectCommandBuffer: Option<&MTLIndirectCommandBuffer>,
+            indirect_command_buffer: Option<&MTLIndirectCommandBuffer>,
             index: NSUInteger,
         );
 
@@ -128,7 +128,7 @@ extern_protocol!(
         #[method(setAccelerationStructure:atIndex:)]
         pub unsafe fn setAccelerationStructure_atIndex(
             &self,
-            accelerationStructure: Option<&MTLAccelerationStructure>,
+            acceleration_structure: Option<&MTLAccelerationStructure>,
             index: NSUInteger,
         );
 
@@ -141,28 +141,28 @@ extern_protocol!(
         #[method(setVisibleFunctionTable:atIndex:)]
         pub unsafe fn setVisibleFunctionTable_atIndex(
             &self,
-            visibleFunctionTable: Option<&MTLVisibleFunctionTable>,
+            visible_function_table: Option<&MTLVisibleFunctionTable>,
             index: NSUInteger,
         );
 
         #[method(setVisibleFunctionTables:withRange:)]
         pub unsafe fn setVisibleFunctionTables_withRange(
             &self,
-            visibleFunctionTables: NonNull<*const MTLVisibleFunctionTable>,
+            visible_function_tables: NonNull<*const MTLVisibleFunctionTable>,
             range: NSRange,
         );
 
         #[method(setIntersectionFunctionTable:atIndex:)]
         pub unsafe fn setIntersectionFunctionTable_atIndex(
             &self,
-            intersectionFunctionTable: Option<&MTLIntersectionFunctionTable>,
+            intersection_function_table: Option<&MTLIntersectionFunctionTable>,
             index: NSUInteger,
         );
 
         #[method(setIntersectionFunctionTables:withRange:)]
         pub unsafe fn setIntersectionFunctionTables_withRange(
             &self,
-            intersectionFunctionTables: NonNull<*const MTLIntersectionFunctionTable>,
+            intersection_function_tables: NonNull<*const MTLIntersectionFunctionTable>,
             range: NSRange,
         );
     }

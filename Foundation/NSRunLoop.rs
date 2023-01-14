@@ -36,11 +36,11 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSPort")]
         #[method(addPort:forMode:)]
-        pub unsafe fn addPort_forMode(&self, aPort: &NSPort, mode: &NSRunLoopMode);
+        pub unsafe fn addPort_forMode(&self, a_port: &NSPort, mode: &NSRunLoopMode);
 
         #[cfg(feature = "Foundation_NSPort")]
         #[method(removePort:forMode:)]
-        pub unsafe fn removePort_forMode(&self, aPort: &NSPort, mode: &NSRunLoopMode);
+        pub unsafe fn removePort_forMode(&self, a_port: &NSPort, mode: &NSRunLoopMode);
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other limitDateForMode:)]
@@ -51,7 +51,7 @@ extern_methods!(
         pub unsafe fn acceptInputForMode_beforeDate(
             &self,
             mode: &NSRunLoopMode,
-            limitDate: &NSDate,
+            limit_date: &NSDate,
         );
     }
 );
@@ -65,11 +65,11 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method(runUntilDate:)]
-        pub unsafe fn runUntilDate(&self, limitDate: &NSDate);
+        pub unsafe fn runUntilDate(&self, limit_date: &NSDate);
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method(runMode:beforeDate:)]
-        pub unsafe fn runMode_beforeDate(&self, mode: &NSRunLoopMode, limitDate: &NSDate) -> bool;
+        pub unsafe fn runMode_beforeDate(&self, mode: &NSRunLoopMode, limit_date: &NSDate) -> bool;
 
         #[method(configureAsServer)]
         pub unsafe fn configureAsServer(&self);
@@ -95,7 +95,7 @@ extern_methods!(
         #[method(performSelector:target:argument:order:modes:)]
         pub unsafe fn performSelector_target_argument_order_modes(
             &self,
-            aSelector: Sel,
+            a_selector: Sel,
             target: &Object,
             arg: Option<&Object>,
             order: NSUInteger,
@@ -105,7 +105,7 @@ extern_methods!(
         #[method(cancelPerformSelector:target:argument:)]
         pub unsafe fn cancelPerformSelector_target_argument(
             &self,
-            aSelector: Sel,
+            a_selector: Sel,
             target: &Object,
             arg: Option<&Object>,
         );

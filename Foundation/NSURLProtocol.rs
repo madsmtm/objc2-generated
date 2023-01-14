@@ -17,7 +17,7 @@ extern_protocol!(
             &self,
             protocol: &NSURLProtocol,
             request: &NSURLRequest,
-            redirectResponse: &NSURLResponse,
+            redirect_response: &NSURLResponse,
         );
 
         #[cfg(all(
@@ -28,7 +28,7 @@ extern_protocol!(
         pub unsafe fn URLProtocol_cachedResponseIsValid(
             &self,
             protocol: &NSURLProtocol,
-            cachedResponse: &NSCachedURLResponse,
+            cached_response: &NSCachedURLResponse,
         );
 
         #[cfg(all(
@@ -105,7 +105,7 @@ extern_methods!(
         pub unsafe fn initWithRequest_cachedResponse_client(
             this: Option<Allocated<Self>>,
             request: &NSURLRequest,
-            cachedResponse: Option<&NSCachedURLResponse>,
+            cached_response: Option<&NSCachedURLResponse>,
             client: Option<&NSURLProtocolClient>,
         ) -> Id<Self, Shared>;
 
@@ -169,10 +169,10 @@ extern_methods!(
         pub unsafe fn removePropertyForKey_inRequest(key: &NSString, request: &NSMutableURLRequest);
 
         #[method(registerClass:)]
-        pub unsafe fn registerClass(protocolClass: &Class) -> bool;
+        pub unsafe fn registerClass(protocol_class: &Class) -> bool;
 
         #[method(unregisterClass:)]
-        pub unsafe fn unregisterClass(protocolClass: &Class);
+        pub unsafe fn unregisterClass(protocol_class: &Class);
     }
 );
 
@@ -192,7 +192,7 @@ extern_methods!(
         pub unsafe fn initWithTask_cachedResponse_client(
             this: Option<Allocated<Self>>,
             task: &NSURLSessionTask,
-            cachedResponse: Option<&NSCachedURLResponse>,
+            cached_response: Option<&NSCachedURLResponse>,
             client: Option<&NSURLProtocolClient>,
         ) -> Id<Self, Shared>;
 

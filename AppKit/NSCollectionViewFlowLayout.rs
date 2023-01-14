@@ -42,7 +42,7 @@ extern_methods!(
         #[method(setInvalidateFlowLayoutDelegateMetrics:)]
         pub unsafe fn setInvalidateFlowLayoutDelegateMetrics(
             &self,
-            invalidateFlowLayoutDelegateMetrics: bool,
+            invalidate_flow_layout_delegate_metrics: bool,
         );
 
         #[method(invalidateFlowLayoutAttributes)]
@@ -51,7 +51,7 @@ extern_methods!(
         #[method(setInvalidateFlowLayoutAttributes:)]
         pub unsafe fn setInvalidateFlowLayoutAttributes(
             &self,
-            invalidateFlowLayoutAttributes: bool,
+            invalidate_flow_layout_attributes: bool,
         );
     }
 );
@@ -69,9 +69,9 @@ extern_protocol!(
         #[method(collectionView:layout:sizeForItemAtIndexPath:)]
         pub unsafe fn collectionView_layout_sizeForItemAtIndexPath(
             &self,
-            collectionView: &NSCollectionView,
-            collectionViewLayout: &NSCollectionViewLayout,
-            indexPath: &NSIndexPath,
+            collection_view: &NSCollectionView,
+            collection_view_layout: &NSCollectionViewLayout,
+            index_path: &NSIndexPath,
         ) -> NSSize;
 
         #[cfg(all(
@@ -82,8 +82,8 @@ extern_protocol!(
         #[method(collectionView:layout:insetForSectionAtIndex:)]
         pub unsafe fn collectionView_layout_insetForSectionAtIndex(
             &self,
-            collectionView: &NSCollectionView,
-            collectionViewLayout: &NSCollectionViewLayout,
+            collection_view: &NSCollectionView,
+            collection_view_layout: &NSCollectionViewLayout,
             section: NSInteger,
         ) -> NSEdgeInsets;
 
@@ -95,8 +95,8 @@ extern_protocol!(
         #[method(collectionView:layout:minimumLineSpacingForSectionAtIndex:)]
         pub unsafe fn collectionView_layout_minimumLineSpacingForSectionAtIndex(
             &self,
-            collectionView: &NSCollectionView,
-            collectionViewLayout: &NSCollectionViewLayout,
+            collection_view: &NSCollectionView,
+            collection_view_layout: &NSCollectionViewLayout,
             section: NSInteger,
         ) -> CGFloat;
 
@@ -108,8 +108,8 @@ extern_protocol!(
         #[method(collectionView:layout:minimumInteritemSpacingForSectionAtIndex:)]
         pub unsafe fn collectionView_layout_minimumInteritemSpacingForSectionAtIndex(
             &self,
-            collectionView: &NSCollectionView,
-            collectionViewLayout: &NSCollectionViewLayout,
+            collection_view: &NSCollectionView,
+            collection_view_layout: &NSCollectionViewLayout,
             section: NSInteger,
         ) -> CGFloat;
 
@@ -121,8 +121,8 @@ extern_protocol!(
         #[method(collectionView:layout:referenceSizeForHeaderInSection:)]
         pub unsafe fn collectionView_layout_referenceSizeForHeaderInSection(
             &self,
-            collectionView: &NSCollectionView,
-            collectionViewLayout: &NSCollectionViewLayout,
+            collection_view: &NSCollectionView,
+            collection_view_layout: &NSCollectionViewLayout,
             section: NSInteger,
         ) -> NSSize;
 
@@ -134,8 +134,8 @@ extern_protocol!(
         #[method(collectionView:layout:referenceSizeForFooterInSection:)]
         pub unsafe fn collectionView_layout_referenceSizeForFooterInSection(
             &self,
-            collectionView: &NSCollectionView,
-            collectionViewLayout: &NSCollectionViewLayout,
+            collection_view: &NSCollectionView,
+            collection_view_layout: &NSCollectionViewLayout,
             section: NSInteger,
         ) -> NSSize;
     }
@@ -160,49 +160,49 @@ extern_methods!(
         pub unsafe fn minimumLineSpacing(&self) -> CGFloat;
 
         #[method(setMinimumLineSpacing:)]
-        pub unsafe fn setMinimumLineSpacing(&self, minimumLineSpacing: CGFloat);
+        pub unsafe fn setMinimumLineSpacing(&self, minimum_line_spacing: CGFloat);
 
         #[method(minimumInteritemSpacing)]
         pub unsafe fn minimumInteritemSpacing(&self) -> CGFloat;
 
         #[method(setMinimumInteritemSpacing:)]
-        pub unsafe fn setMinimumInteritemSpacing(&self, minimumInteritemSpacing: CGFloat);
+        pub unsafe fn setMinimumInteritemSpacing(&self, minimum_interitem_spacing: CGFloat);
 
         #[method(itemSize)]
         pub unsafe fn itemSize(&self) -> NSSize;
 
         #[method(setItemSize:)]
-        pub unsafe fn setItemSize(&self, itemSize: NSSize);
+        pub unsafe fn setItemSize(&self, item_size: NSSize);
 
         #[method(estimatedItemSize)]
         pub unsafe fn estimatedItemSize(&self) -> NSSize;
 
         #[method(setEstimatedItemSize:)]
-        pub unsafe fn setEstimatedItemSize(&self, estimatedItemSize: NSSize);
+        pub unsafe fn setEstimatedItemSize(&self, estimated_item_size: NSSize);
 
         #[method(scrollDirection)]
         pub unsafe fn scrollDirection(&self) -> NSCollectionViewScrollDirection;
 
         #[method(setScrollDirection:)]
-        pub unsafe fn setScrollDirection(&self, scrollDirection: NSCollectionViewScrollDirection);
+        pub unsafe fn setScrollDirection(&self, scroll_direction: NSCollectionViewScrollDirection);
 
         #[method(headerReferenceSize)]
         pub unsafe fn headerReferenceSize(&self) -> NSSize;
 
         #[method(setHeaderReferenceSize:)]
-        pub unsafe fn setHeaderReferenceSize(&self, headerReferenceSize: NSSize);
+        pub unsafe fn setHeaderReferenceSize(&self, header_reference_size: NSSize);
 
         #[method(footerReferenceSize)]
         pub unsafe fn footerReferenceSize(&self) -> NSSize;
 
         #[method(setFooterReferenceSize:)]
-        pub unsafe fn setFooterReferenceSize(&self, footerReferenceSize: NSSize);
+        pub unsafe fn setFooterReferenceSize(&self, footer_reference_size: NSSize);
 
         #[method(sectionInset)]
         pub unsafe fn sectionInset(&self) -> NSEdgeInsets;
 
         #[method(setSectionInset:)]
-        pub unsafe fn setSectionInset(&self, sectionInset: NSEdgeInsets);
+        pub unsafe fn setSectionInset(&self, section_inset: NSEdgeInsets);
 
         #[method(sectionHeadersPinToVisibleBounds)]
         pub unsafe fn sectionHeadersPinToVisibleBounds(&self) -> bool;
@@ -210,7 +210,7 @@ extern_methods!(
         #[method(setSectionHeadersPinToVisibleBounds:)]
         pub unsafe fn setSectionHeadersPinToVisibleBounds(
             &self,
-            sectionHeadersPinToVisibleBounds: bool,
+            section_headers_pin_to_visible_bounds: bool,
         );
 
         #[method(sectionFootersPinToVisibleBounds)]
@@ -219,16 +219,16 @@ extern_methods!(
         #[method(setSectionFootersPinToVisibleBounds:)]
         pub unsafe fn setSectionFootersPinToVisibleBounds(
             &self,
-            sectionFootersPinToVisibleBounds: bool,
+            section_footers_pin_to_visible_bounds: bool,
         );
 
         #[method(sectionAtIndexIsCollapsed:)]
-        pub unsafe fn sectionAtIndexIsCollapsed(&self, sectionIndex: NSUInteger) -> bool;
+        pub unsafe fn sectionAtIndexIsCollapsed(&self, section_index: NSUInteger) -> bool;
 
         #[method(collapseSectionAtIndex:)]
-        pub unsafe fn collapseSectionAtIndex(&self, sectionIndex: NSUInteger);
+        pub unsafe fn collapseSectionAtIndex(&self, section_index: NSUInteger);
 
         #[method(expandSectionAtIndex:)]
-        pub unsafe fn expandSectionAtIndex(&self, sectionIndex: NSUInteger);
+        pub unsafe fn expandSectionAtIndex(&self, section_index: NSUInteger);
     }
 );

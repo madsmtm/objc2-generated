@@ -56,7 +56,7 @@ extern_methods!(
         pub unsafe fn colorWithColorSpace_components_count(
             space: &NSColorSpace,
             components: NonNull<CGFloat>,
-            numberOfComponents: NSInteger,
+            number_of_components: NSInteger,
         ) -> Id<NSColor, Shared>;
 
         #[method_id(@__retain_semantics Other colorWithSRGBRed:green:blue:alpha:)]
@@ -112,8 +112,8 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other colorWithCatalogName:colorName:)]
         pub unsafe fn colorWithCatalogName_colorName(
-            listName: &NSColorListName,
-            colorName: &NSColorName,
+            list_name: &NSColorListName,
+            color_name: &NSColorName,
         ) -> Option<Id<NSColor, Shared>>;
 
         #[cfg(feature = "Foundation_NSBundle")]
@@ -129,8 +129,8 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSAppearance")]
         #[method_id(@__retain_semantics Other colorWithName:dynamicProvider:)]
         pub unsafe fn colorWithName_dynamicProvider(
-            colorName: Option<&NSColorName>,
-            dynamicProvider: &Block<(NonNull<NSAppearance>,), NonNull<NSColor>>,
+            color_name: Option<&NSColorName>,
+            dynamic_provider: &Block<(NonNull<NSAppearance>,), NonNull<NSColor>>,
         ) -> Id<NSColor, Shared>;
 
         #[method_id(@__retain_semantics Other colorWithDeviceWhite:alpha:)]
@@ -191,10 +191,10 @@ extern_methods!(
         pub unsafe fn colorWithPatternImage(image: &NSImage) -> Id<NSColor, Shared>;
 
         #[method(type)]
-        pub unsafe fn type_(&self) -> NSColorType;
+        pub unsafe fn r#type(&self) -> NSColorType;
 
         #[method_id(@__retain_semantics Other colorUsingType:)]
-        pub unsafe fn colorUsingType(&self, type_: NSColorType) -> Option<Id<NSColor, Shared>>;
+        pub unsafe fn colorUsingType(&self, r#type: NSColorType) -> Option<Id<NSColor, Shared>>;
 
         #[cfg(feature = "AppKit_NSColorSpace")]
         #[method_id(@__retain_semantics Other colorUsingColorSpace:)]
@@ -391,7 +391,7 @@ extern_methods!(
         pub unsafe fn currentControlTint() -> NSControlTint;
 
         #[method_id(@__retain_semantics Other colorForControlTint:)]
-        pub unsafe fn colorForControlTint(controlTint: NSControlTint) -> Id<NSColor, Shared>;
+        pub unsafe fn colorForControlTint(control_tint: NSControlTint) -> Id<NSColor, Shared>;
 
         #[method_id(@__retain_semantics Other highlightColor)]
         pub unsafe fn highlightColor() -> Id<NSColor, Shared>;
@@ -408,7 +408,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other colorWithSystemEffect:)]
         pub unsafe fn colorWithSystemEffect(
             &self,
-            systemEffect: NSColorSystemEffect,
+            system_effect: NSColorSystemEffect,
         ) -> Id<NSColor, Shared>;
 
         #[method(set)]
@@ -527,12 +527,13 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSPasteboard")]
         #[method_id(@__retain_semantics Other colorFromPasteboard:)]
-        pub unsafe fn colorFromPasteboard(pasteBoard: &NSPasteboard)
-            -> Option<Id<NSColor, Shared>>;
+        pub unsafe fn colorFromPasteboard(
+            paste_board: &NSPasteboard,
+        ) -> Option<Id<NSColor, Shared>>;
 
         #[cfg(feature = "AppKit_NSPasteboard")]
         #[method(writeToPasteboard:)]
-        pub unsafe fn writeToPasteboard(&self, pasteBoard: &NSPasteboard);
+        pub unsafe fn writeToPasteboard(&self, paste_board: &NSPasteboard);
 
         #[method(drawSwatchInRect:)]
         pub unsafe fn drawSwatchInRect(&self, rect: NSRect);
@@ -541,7 +542,7 @@ extern_methods!(
         pub unsafe fn ignoresAlpha() -> bool;
 
         #[method(setIgnoresAlpha:)]
-        pub unsafe fn setIgnoresAlpha(ignoresAlpha: bool);
+        pub unsafe fn setIgnoresAlpha(ignores_alpha: bool);
     }
 );
 
@@ -597,7 +598,7 @@ extern_methods!(
         pub unsafe fn colorUsingColorSpaceName_device(
             &self,
             name: Option<&NSColorSpaceName>,
-            deviceDescription: Option<&NSDictionary<NSDeviceDescriptionKey, Object>>,
+            device_description: Option<&NSDictionary<NSDeviceDescriptionKey, Object>>,
         ) -> Option<Id<NSColor, Shared>>;
 
         #[method_id(@__retain_semantics Other colorUsingColorSpaceName:)]

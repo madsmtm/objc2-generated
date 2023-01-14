@@ -34,11 +34,11 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSLayoutManager")]
         #[method(addLayoutManager:)]
-        pub unsafe fn addLayoutManager(&self, aLayoutManager: &NSLayoutManager);
+        pub unsafe fn addLayoutManager(&self, a_layout_manager: &NSLayoutManager);
 
         #[cfg(feature = "AppKit_NSLayoutManager")]
         #[method(removeLayoutManager:)]
-        pub unsafe fn removeLayoutManager(&self, aLayoutManager: &NSLayoutManager);
+        pub unsafe fn removeLayoutManager(&self, a_layout_manager: &NSLayoutManager);
 
         #[method(editedMask)]
         pub unsafe fn editedMask(&self) -> NSTextStorageEditActions;
@@ -58,8 +58,8 @@ extern_methods!(
         #[method(edited:range:changeInLength:)]
         pub unsafe fn edited_range_changeInLength(
             &self,
-            editedMask: NSTextStorageEditActions,
-            editedRange: NSRange,
+            edited_mask: NSTextStorageEditActions,
+            edited_range: NSRange,
             delta: NSInteger,
         );
 
@@ -81,7 +81,7 @@ extern_methods!(
         #[method(setTextStorageObserver:)]
         pub unsafe fn setTextStorageObserver(
             &self,
-            textStorageObserver: Option<&NSTextStorageObserving>,
+            text_storage_observer: Option<&NSTextStorageObserving>,
         );
     }
 );
@@ -95,9 +95,9 @@ extern_protocol!(
         #[method(textStorage:willProcessEditing:range:changeInLength:)]
         pub unsafe fn textStorage_willProcessEditing_range_changeInLength(
             &self,
-            textStorage: &NSTextStorage,
-            editedMask: NSTextStorageEditActions,
-            editedRange: NSRange,
+            text_storage: &NSTextStorage,
+            edited_mask: NSTextStorageEditActions,
+            edited_range: NSRange,
             delta: NSInteger,
         );
 
@@ -106,9 +106,9 @@ extern_protocol!(
         #[method(textStorage:didProcessEditing:range:changeInLength:)]
         pub unsafe fn textStorage_didProcessEditing_range_changeInLength(
             &self,
-            textStorage: &NSTextStorage,
-            editedMask: NSTextStorageEditActions,
-            editedRange: NSRange,
+            text_storage: &NSTextStorage,
+            edited_mask: NSTextStorageEditActions,
+            edited_range: NSRange,
             delta: NSInteger,
         );
     }
@@ -128,24 +128,24 @@ extern_protocol!(
 
         #[cfg(feature = "AppKit_NSTextStorage")]
         #[method(setTextStorage:)]
-        pub unsafe fn setTextStorage(&self, textStorage: Option<&NSTextStorage>);
+        pub unsafe fn setTextStorage(&self, text_storage: Option<&NSTextStorage>);
 
         #[cfg(feature = "AppKit_NSTextStorage")]
         #[method(processEditingForTextStorage:edited:range:changeInLength:invalidatedRange:)]
         pub unsafe fn processEditingForTextStorage_edited_range_changeInLength_invalidatedRange(
             &self,
-            textStorage: &NSTextStorage,
-            editMask: NSTextStorageEditActions,
-            newCharRange: NSRange,
+            text_storage: &NSTextStorage,
+            edit_mask: NSTextStorageEditActions,
+            new_char_range: NSRange,
             delta: NSInteger,
-            invalidatedCharRange: NSRange,
+            invalidated_char_range: NSRange,
         );
 
         #[cfg(feature = "AppKit_NSTextStorage")]
         #[method(performEditingTransactionForTextStorage:usingBlock:)]
         pub unsafe fn performEditingTransactionForTextStorage_usingBlock(
             &self,
-            textStorage: &NSTextStorage,
+            text_storage: &NSTextStorage,
             transaction: &Block<(), ()>,
         );
     }
@@ -300,7 +300,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithAttributedString:)]
         pub unsafe fn initWithAttributedString(
             this: Option<Allocated<Self>>,
-            attrStr: &NSAttributedString,
+            attr_str: &NSAttributedString,
         ) -> Id<Self, Shared>;
     }
 );
@@ -319,9 +319,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithContentsOfMarkdownFileAtURL:options:baseURL:error:_)]
         pub unsafe fn initWithContentsOfMarkdownFileAtURL_options_baseURL_error(
             this: Option<Allocated<Self>>,
-            markdownFile: &NSURL,
+            markdown_file: &NSURL,
             options: Option<&NSAttributedStringMarkdownParsingOptions>,
-            baseURL: Option<&NSURL>,
+            base_url: Option<&NSURL>,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
         #[cfg(all(
@@ -335,7 +335,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             markdown: &NSData,
             options: Option<&NSAttributedStringMarkdownParsingOptions>,
-            baseURL: Option<&NSURL>,
+            base_url: Option<&NSURL>,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
         #[cfg(all(
@@ -347,9 +347,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithMarkdownString:options:baseURL:error:_)]
         pub unsafe fn initWithMarkdownString_options_baseURL_error(
             this: Option<Allocated<Self>>,
-            markdownString: &NSString,
+            markdown_string: &NSString,
             options: Option<&NSAttributedStringMarkdownParsingOptions>,
-            baseURL: Option<&NSURL>,
+            base_url: Option<&NSURL>,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
     }
 );

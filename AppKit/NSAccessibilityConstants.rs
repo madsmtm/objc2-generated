@@ -866,7 +866,7 @@ extern_fn!(
     pub unsafe fn NSAccessibilityPostNotificationWithUserInfo(
         element: &Object,
         notification: &NSAccessibilityNotificationName,
-        userInfo: Option<&NSDictionary<NSAccessibilityNotificationUserInfoKey, Object>>,
+        user_info: Option<&NSDictionary<NSAccessibilityNotificationUserInfoKey, Object>>,
     );
 );
 

@@ -34,41 +34,44 @@ extern_methods!(
         #[method(setDataProvider:forTypes:)]
         pub unsafe fn setDataProvider_forTypes(
             &self,
-            dataProvider: &NSPasteboardItemDataProvider,
+            data_provider: &NSPasteboardItemDataProvider,
             types: &NSArray<NSPasteboardType>,
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method(setData:forType:)]
-        pub unsafe fn setData_forType(&self, data: &NSData, type_: &NSPasteboardType) -> bool;
+        pub unsafe fn setData_forType(&self, data: &NSData, r#type: &NSPasteboardType) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setString:forType:)]
-        pub unsafe fn setString_forType(&self, string: &NSString, type_: &NSPasteboardType)
-            -> bool;
+        pub unsafe fn setString_forType(
+            &self,
+            string: &NSString,
+            r#type: &NSPasteboardType,
+        ) -> bool;
 
         #[method(setPropertyList:forType:)]
         pub unsafe fn setPropertyList_forType(
             &self,
-            propertyList: &Object,
-            type_: &NSPasteboardType,
+            property_list: &Object,
+            r#type: &NSPasteboardType,
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other dataForType:)]
-        pub unsafe fn dataForType(&self, type_: &NSPasteboardType) -> Option<Id<NSData, Shared>>;
+        pub unsafe fn dataForType(&self, r#type: &NSPasteboardType) -> Option<Id<NSData, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringForType:)]
         pub unsafe fn stringForType(
             &self,
-            type_: &NSPasteboardType,
+            r#type: &NSPasteboardType,
         ) -> Option<Id<NSString, Shared>>;
 
         #[method_id(@__retain_semantics Other propertyListForType:)]
         pub unsafe fn propertyListForType(
             &self,
-            type_: &NSPasteboardType,
+            r#type: &NSPasteboardType,
         ) -> Option<Id<Object, Shared>>;
     }
 );
@@ -83,7 +86,7 @@ extern_protocol!(
             &self,
             pasteboard: Option<&NSPasteboard>,
             item: &NSPasteboardItem,
-            type_: &NSPasteboardType,
+            r#type: &NSPasteboardType,
         );
 
         #[cfg(feature = "AppKit_NSPasteboard")]

@@ -47,11 +47,11 @@ extern_methods!(
         ))]
         #[method(registerUnitWithName:abbreviation:unitToPointsConversionFactor:stepUpCycle:stepDownCycle:)]
         pub unsafe fn registerUnitWithName_abbreviation_unitToPointsConversionFactor_stepUpCycle_stepDownCycle(
-            unitName: &NSRulerViewUnitName,
+            unit_name: &NSRulerViewUnitName,
             abbreviation: &NSString,
-            conversionFactor: CGFloat,
-            stepUpCycle: &NSArray<NSNumber>,
-            stepDownCycle: &NSArray<NSNumber>,
+            conversion_factor: CGFloat,
+            step_up_cycle: &NSArray<NSNumber>,
+            step_down_cycle: &NSArray<NSNumber>,
         );
 
         #[cfg(feature = "Foundation_NSCoder")]
@@ -65,7 +65,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithScrollView:orientation:)]
         pub unsafe fn initWithScrollView_orientation(
             this: Option<Allocated<Self>>,
-            scrollView: Option<&NSScrollView>,
+            scroll_view: Option<&NSScrollView>,
             orientation: NSRulerOrientation,
         ) -> Id<Self, Shared>;
 
@@ -75,7 +75,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSScrollView")]
         #[method(setScrollView:)]
-        pub unsafe fn setScrollView(&self, scrollView: Option<&NSScrollView>);
+        pub unsafe fn setScrollView(&self, scroll_view: Option<&NSScrollView>);
 
         #[method(orientation)]
         pub unsafe fn orientation(&self) -> NSRulerOrientation;
@@ -93,13 +93,16 @@ extern_methods!(
         pub unsafe fn ruleThickness(&self) -> CGFloat;
 
         #[method(setRuleThickness:)]
-        pub unsafe fn setRuleThickness(&self, ruleThickness: CGFloat);
+        pub unsafe fn setRuleThickness(&self, rule_thickness: CGFloat);
 
         #[method(reservedThicknessForMarkers)]
         pub unsafe fn reservedThicknessForMarkers(&self) -> CGFloat;
 
         #[method(setReservedThicknessForMarkers:)]
-        pub unsafe fn setReservedThicknessForMarkers(&self, reservedThicknessForMarkers: CGFloat);
+        pub unsafe fn setReservedThicknessForMarkers(
+            &self,
+            reserved_thickness_for_markers: CGFloat,
+        );
 
         #[method(reservedThicknessForAccessoryView)]
         pub unsafe fn reservedThicknessForAccessoryView(&self) -> CGFloat;
@@ -107,26 +110,26 @@ extern_methods!(
         #[method(setReservedThicknessForAccessoryView:)]
         pub unsafe fn setReservedThicknessForAccessoryView(
             &self,
-            reservedThicknessForAccessoryView: CGFloat,
+            reserved_thickness_for_accessory_view: CGFloat,
         );
 
         #[method_id(@__retain_semantics Other measurementUnits)]
         pub unsafe fn measurementUnits(&self) -> Id<NSRulerViewUnitName, Shared>;
 
         #[method(setMeasurementUnits:)]
-        pub unsafe fn setMeasurementUnits(&self, measurementUnits: &NSRulerViewUnitName);
+        pub unsafe fn setMeasurementUnits(&self, measurement_units: &NSRulerViewUnitName);
 
         #[method(originOffset)]
         pub unsafe fn originOffset(&self) -> CGFloat;
 
         #[method(setOriginOffset:)]
-        pub unsafe fn setOriginOffset(&self, originOffset: CGFloat);
+        pub unsafe fn setOriginOffset(&self, origin_offset: CGFloat);
 
         #[method_id(@__retain_semantics Other clientView)]
         pub unsafe fn clientView(&self) -> Option<Id<NSView, Shared>>;
 
         #[method(setClientView:)]
-        pub unsafe fn setClientView(&self, clientView: Option<&NSView>);
+        pub unsafe fn setClientView(&self, client_view: Option<&NSView>);
 
         #[cfg(feature = "AppKit_NSRulerMarker")]
         #[method(addMarker:)]
@@ -156,13 +159,13 @@ extern_methods!(
         pub unsafe fn accessoryView(&self) -> Option<Id<NSView, Shared>>;
 
         #[method(setAccessoryView:)]
-        pub unsafe fn setAccessoryView(&self, accessoryView: Option<&NSView>);
+        pub unsafe fn setAccessoryView(&self, accessory_view: Option<&NSView>);
 
         #[method(moveRulerlineFromLocation:toLocation:)]
         pub unsafe fn moveRulerlineFromLocation_toLocation(
             &self,
-            oldLocation: CGFloat,
-            newLocation: CGFloat,
+            old_location: CGFloat,
+            new_location: CGFloat,
         );
 
         #[method(invalidateHashMarks)]
@@ -243,7 +246,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSRulerView")]
         #[method(rulerView:willSetClientView:)]
-        pub unsafe fn rulerView_willSetClientView(&self, ruler: &NSRulerView, newClient: &NSView);
+        pub unsafe fn rulerView_willSetClientView(&self, ruler: &NSRulerView, new_client: &NSView);
 
         #[cfg(feature = "AppKit_NSRulerView")]
         #[method(rulerView:locationForPoint:)]
@@ -270,7 +273,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frame_rect: NSRect,
         ) -> Id<Self, Shared>;
     }
 );

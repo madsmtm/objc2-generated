@@ -35,7 +35,7 @@ extern_methods!(
 
         #[cfg(feature = "CoreData_NSEntityDescription")]
         #[method(setDestinationEntity:)]
-        pub unsafe fn setDestinationEntity(&self, destinationEntity: Option<&NSEntityDescription>);
+        pub unsafe fn setDestinationEntity(&self, destination_entity: Option<&NSEntityDescription>);
 
         #[method_id(@__retain_semantics Other inverseRelationship)]
         pub unsafe fn inverseRelationship(&self) -> Option<Id<NSRelationshipDescription, Shared>>;
@@ -43,26 +43,26 @@ extern_methods!(
         #[method(setInverseRelationship:)]
         pub unsafe fn setInverseRelationship(
             &self,
-            inverseRelationship: Option<&NSRelationshipDescription>,
+            inverse_relationship: Option<&NSRelationshipDescription>,
         );
 
         #[method(maxCount)]
         pub unsafe fn maxCount(&self) -> NSUInteger;
 
         #[method(setMaxCount:)]
-        pub unsafe fn setMaxCount(&self, maxCount: NSUInteger);
+        pub unsafe fn setMaxCount(&self, max_count: NSUInteger);
 
         #[method(minCount)]
         pub unsafe fn minCount(&self) -> NSUInteger;
 
         #[method(setMinCount:)]
-        pub unsafe fn setMinCount(&self, minCount: NSUInteger);
+        pub unsafe fn setMinCount(&self, min_count: NSUInteger);
 
         #[method(deleteRule)]
         pub unsafe fn deleteRule(&self) -> NSDeleteRule;
 
         #[method(setDeleteRule:)]
-        pub unsafe fn setDeleteRule(&self, deleteRule: NSDeleteRule);
+        pub unsafe fn setDeleteRule(&self, delete_rule: NSDeleteRule);
 
         #[method(isToMany)]
         pub unsafe fn isToMany(&self) -> bool;

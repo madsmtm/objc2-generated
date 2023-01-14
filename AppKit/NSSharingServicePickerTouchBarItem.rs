@@ -43,7 +43,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setButtonTitle:)]
-        pub unsafe fn setButtonTitle(&self, buttonTitle: &NSString);
+        pub unsafe fn setButtonTitle(&self, button_title: &NSString);
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other buttonImage)]
@@ -51,7 +51,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method(setButtonImage:)]
-        pub unsafe fn setButtonImage(&self, buttonImage: Option<&NSImage>);
+        pub unsafe fn setButtonImage(&self, button_image: Option<&NSImage>);
     }
 );
 
@@ -66,7 +66,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other itemsForSharingServicePickerTouchBarItem:)]
         pub unsafe fn itemsForSharingServicePickerTouchBarItem(
             &self,
-            pickerTouchBarItem: &NSSharingServicePickerTouchBarItem,
+            picker_touch_bar_item: &NSSharingServicePickerTouchBarItem,
         ) -> Id<NSArray, Shared>;
     }
 );

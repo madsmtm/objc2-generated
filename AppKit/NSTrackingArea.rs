@@ -42,7 +42,7 @@ extern_methods!(
             rect: NSRect,
             options: NSTrackingAreaOptions,
             owner: Option<&Object>,
-            userInfo: Option<&NSDictionary<Object, Object>>,
+            user_info: Option<&NSDictionary<Object, Object>>,
         ) -> Id<Self, Shared>;
 
         #[method(rect)]

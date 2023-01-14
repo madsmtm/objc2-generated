@@ -63,8 +63,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Other localizedStringFromPersonNameComponents:style:options:)]
         pub unsafe fn localizedStringFromPersonNameComponents_style_options(
             components: &NSPersonNameComponents,
-            nameFormatStyle: NSPersonNameComponentsFormatterStyle,
-            nameOptions: NSPersonNameComponentsFormatterOptions,
+            name_format_style: NSPersonNameComponentsFormatterStyle,
+            name_options: NSPersonNameComponentsFormatterOptions,
         ) -> Id<NSString, Shared>;
 
         #[cfg(all(

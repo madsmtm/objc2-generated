@@ -13,7 +13,7 @@ extern_protocol!(
         pub unsafe fn insertText_replacementRange(
             &self,
             string: &Object,
-            replacementRange: NSRange,
+            replacement_range: NSRange,
         );
 
         #[method(doCommandBySelector:)]
@@ -23,8 +23,8 @@ extern_protocol!(
         pub unsafe fn setMarkedText_selectedRange_replacementRange(
             &self,
             string: &Object,
-            selectedRange: NSRange,
-            replacementRange: NSRange,
+            selected_range: NSRange,
+            replacement_range: NSRange,
         );
 
         #[method(unmarkText)]
@@ -44,7 +44,7 @@ extern_protocol!(
         pub unsafe fn attributedSubstringForProposedRange_actualRange(
             &self,
             range: NSRange,
-            actualRange: NSRangePointer,
+            actual_range: NSRangePointer,
         ) -> Option<Id<NSAttributedString, Shared>>;
 
         #[cfg(feature = "Foundation_NSArray")]
@@ -57,7 +57,7 @@ extern_protocol!(
         pub unsafe fn firstRectForCharacterRange_actualRange(
             &self,
             range: NSRange,
-            actualRange: NSRangePointer,
+            actual_range: NSRangePointer,
         ) -> NSRect;
 
         #[method(characterIndexForPoint:)]
@@ -74,7 +74,7 @@ extern_protocol!(
 
         #[optional]
         #[method(baselineDeltaForCharacterAtIndex:)]
-        pub unsafe fn baselineDeltaForCharacterAtIndex(&self, anIndex: NSUInteger) -> CGFloat;
+        pub unsafe fn baselineDeltaForCharacterAtIndex(&self, an_index: NSUInteger) -> CGFloat;
 
         #[optional]
         #[method(windowLevel)]
@@ -82,6 +82,6 @@ extern_protocol!(
 
         #[optional]
         #[method(drawsVerticallyForCharacterAtIndex:)]
-        pub unsafe fn drawsVerticallyForCharacterAtIndex(&self, charIndex: NSUInteger) -> bool;
+        pub unsafe fn drawsVerticallyForCharacterAtIndex(&self, char_index: NSUInteger) -> bool;
     }
 );

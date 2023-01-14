@@ -9,7 +9,7 @@ extern_protocol!(
 
     unsafe impl ProtocolType for MTLIndirectRenderCommand {
         #[method(setRenderPipelineState:)]
-        pub unsafe fn setRenderPipelineState(&self, pipelineState: &MTLRenderPipelineState);
+        pub unsafe fn setRenderPipelineState(&self, pipeline_state: &MTLRenderPipelineState);
 
         #[method(setVertexBuffer:offset:atIndex:)]
         pub unsafe fn setVertexBuffer_offset_atIndex(
@@ -30,56 +30,56 @@ extern_protocol!(
         #[method(drawPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:instanceCount:baseInstance:tessellationFactorBuffer:tessellationFactorBufferOffset:tessellationFactorBufferInstanceStride:)]
         pub unsafe fn drawPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_instanceCount_baseInstance_tessellationFactorBuffer_tessellationFactorBufferOffset_tessellationFactorBufferInstanceStride(
             &self,
-            numberOfPatchControlPoints: NSUInteger,
-            patchStart: NSUInteger,
-            patchCount: NSUInteger,
-            patchIndexBuffer: Option<&MTLBuffer>,
-            patchIndexBufferOffset: NSUInteger,
-            instanceCount: NSUInteger,
-            baseInstance: NSUInteger,
+            number_of_patch_control_points: NSUInteger,
+            patch_start: NSUInteger,
+            patch_count: NSUInteger,
+            patch_index_buffer: Option<&MTLBuffer>,
+            patch_index_buffer_offset: NSUInteger,
+            instance_count: NSUInteger,
+            base_instance: NSUInteger,
             buffer: &MTLBuffer,
             offset: NSUInteger,
-            instanceStride: NSUInteger,
+            instance_stride: NSUInteger,
         );
 
         #[method(drawIndexedPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:instanceCount:baseInstance:tessellationFactorBuffer:tessellationFactorBufferOffset:tessellationFactorBufferInstanceStride:)]
         pub unsafe fn drawIndexedPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_controlPointIndexBuffer_controlPointIndexBufferOffset_instanceCount_baseInstance_tessellationFactorBuffer_tessellationFactorBufferOffset_tessellationFactorBufferInstanceStride(
             &self,
-            numberOfPatchControlPoints: NSUInteger,
-            patchStart: NSUInteger,
-            patchCount: NSUInteger,
-            patchIndexBuffer: Option<&MTLBuffer>,
-            patchIndexBufferOffset: NSUInteger,
-            controlPointIndexBuffer: &MTLBuffer,
-            controlPointIndexBufferOffset: NSUInteger,
-            instanceCount: NSUInteger,
-            baseInstance: NSUInteger,
+            number_of_patch_control_points: NSUInteger,
+            patch_start: NSUInteger,
+            patch_count: NSUInteger,
+            patch_index_buffer: Option<&MTLBuffer>,
+            patch_index_buffer_offset: NSUInteger,
+            control_point_index_buffer: &MTLBuffer,
+            control_point_index_buffer_offset: NSUInteger,
+            instance_count: NSUInteger,
+            base_instance: NSUInteger,
             buffer: &MTLBuffer,
             offset: NSUInteger,
-            instanceStride: NSUInteger,
+            instance_stride: NSUInteger,
         );
 
         #[method(drawPrimitives:vertexStart:vertexCount:instanceCount:baseInstance:)]
         pub unsafe fn drawPrimitives_vertexStart_vertexCount_instanceCount_baseInstance(
             &self,
-            primitiveType: MTLPrimitiveType,
-            vertexStart: NSUInteger,
-            vertexCount: NSUInteger,
-            instanceCount: NSUInteger,
-            baseInstance: NSUInteger,
+            primitive_type: MTLPrimitiveType,
+            vertex_start: NSUInteger,
+            vertex_count: NSUInteger,
+            instance_count: NSUInteger,
+            base_instance: NSUInteger,
         );
 
         #[method(drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:baseVertex:baseInstance:)]
         pub unsafe fn drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset_instanceCount_baseVertex_baseInstance(
             &self,
-            primitiveType: MTLPrimitiveType,
-            indexCount: NSUInteger,
-            indexType: MTLIndexType,
-            indexBuffer: &MTLBuffer,
-            indexBufferOffset: NSUInteger,
-            instanceCount: NSUInteger,
-            baseVertex: NSInteger,
-            baseInstance: NSUInteger,
+            primitive_type: MTLPrimitiveType,
+            index_count: NSUInteger,
+            index_type: MTLIndexType,
+            index_buffer: &MTLBuffer,
+            index_buffer_offset: NSUInteger,
+            instance_count: NSUInteger,
+            base_vertex: NSInteger,
+            base_instance: NSUInteger,
         );
 
         #[method(reset)]
@@ -92,7 +92,7 @@ extern_protocol!(
 
     unsafe impl ProtocolType for MTLIndirectComputeCommand {
         #[method(setComputePipelineState:)]
-        pub unsafe fn setComputePipelineState(&self, pipelineState: &MTLComputePipelineState);
+        pub unsafe fn setComputePipelineState(&self, pipeline_state: &MTLComputePipelineState);
 
         #[method(setKernelBuffer:offset:atIndex:)]
         pub unsafe fn setKernelBuffer_offset_atIndex(
@@ -105,15 +105,15 @@ extern_protocol!(
         #[method(concurrentDispatchThreadgroups:threadsPerThreadgroup:)]
         pub unsafe fn concurrentDispatchThreadgroups_threadsPerThreadgroup(
             &self,
-            threadgroupsPerGrid: MTLSize,
-            threadsPerThreadgroup: MTLSize,
+            threadgroups_per_grid: MTLSize,
+            threads_per_threadgroup: MTLSize,
         );
 
         #[method(concurrentDispatchThreads:threadsPerThreadgroup:)]
         pub unsafe fn concurrentDispatchThreads_threadsPerThreadgroup(
             &self,
-            threadsPerGrid: MTLSize,
-            threadsPerThreadgroup: MTLSize,
+            threads_per_grid: MTLSize,
+            threads_per_threadgroup: MTLSize,
         );
 
         #[method(setBarrier)]

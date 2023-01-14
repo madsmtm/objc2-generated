@@ -21,7 +21,7 @@ extern_methods!(
         pub unsafe fn baseUnitValueFromValue(&self, value: c_double) -> c_double;
 
         #[method(valueFromBaseUnitValue:)]
-        pub unsafe fn valueFromBaseUnitValue(&self, baseUnitValue: c_double) -> c_double;
+        pub unsafe fn valueFromBaseUnitValue(&self, base_unit_value: c_double) -> c_double;
     }
 );
 
@@ -269,7 +269,7 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other millimolesPerLiterWithGramsPerMole:)]
         pub unsafe fn millimolesPerLiterWithGramsPerMole(
-            gramsPerMole: c_double,
+            grams_per_mole: c_double,
         ) -> Id<NSUnitConcentrationMass, Shared>;
     }
 );

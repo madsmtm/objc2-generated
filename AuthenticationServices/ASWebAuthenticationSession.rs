@@ -35,9 +35,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithURL:callbackURLScheme:completionHandler:)]
         pub unsafe fn initWithURL_callbackURLScheme_completionHandler(
             this: Option<Allocated<Self>>,
-            URL: &NSURL,
-            callbackURLScheme: Option<&NSString>,
-            completionHandler: ASWebAuthenticationSessionCompletionHandler,
+            url: &NSURL,
+            callback_url_scheme: Option<&NSString>,
+            completion_handler: ASWebAuthenticationSessionCompletionHandler,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Other presentationContextProvider)]
@@ -48,7 +48,7 @@ extern_methods!(
         #[method(setPresentationContextProvider:)]
         pub unsafe fn setPresentationContextProvider(
             &self,
-            presentationContextProvider: Option<&ASWebAuthenticationPresentationContextProviding>,
+            presentation_context_provider: Option<&ASWebAuthenticationPresentationContextProviding>,
         );
 
         #[method(prefersEphemeralWebBrowserSession)]
@@ -57,7 +57,7 @@ extern_methods!(
         #[method(setPrefersEphemeralWebBrowserSession:)]
         pub unsafe fn setPrefersEphemeralWebBrowserSession(
             &self,
-            prefersEphemeralWebBrowserSession: bool,
+            prefers_ephemeral_web_browser_session: bool,
         );
 
         #[method(canStart)]

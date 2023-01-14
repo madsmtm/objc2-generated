@@ -20,46 +20,46 @@ extern_protocol!(
         #[method(buildAccelerationStructure:descriptor:scratchBuffer:scratchBufferOffset:)]
         pub fn buildAccelerationStructure_descriptor_scratchBuffer_scratchBufferOffset(
             &self,
-            accelerationStructure: &MTLAccelerationStructure,
+            acceleration_structure: &MTLAccelerationStructure,
             descriptor: &MTLAccelerationStructureDescriptor,
-            scratchBuffer: &MTLBuffer,
-            scratchBufferOffset: NSUInteger,
+            scratch_buffer: &MTLBuffer,
+            scratch_buffer_offset: NSUInteger,
         );
 
         #[cfg(feature = "Metal_MTLAccelerationStructureDescriptor")]
         #[method(refitAccelerationStructure:descriptor:destination:scratchBuffer:scratchBufferOffset:)]
         pub unsafe fn refitAccelerationStructure_descriptor_destination_scratchBuffer_scratchBufferOffset(
             &self,
-            sourceAccelerationStructure: &MTLAccelerationStructure,
+            source_acceleration_structure: &MTLAccelerationStructure,
             descriptor: &MTLAccelerationStructureDescriptor,
-            destinationAccelerationStructure: Option<&MTLAccelerationStructure>,
-            scratchBuffer: &MTLBuffer,
-            scratchBufferOffset: NSUInteger,
+            destination_acceleration_structure: Option<&MTLAccelerationStructure>,
+            scratch_buffer: &MTLBuffer,
+            scratch_buffer_offset: NSUInteger,
         );
 
         #[cfg(feature = "Metal_MTLAccelerationStructureDescriptor")]
         #[method(refitAccelerationStructure:descriptor:destination:scratchBuffer:scratchBufferOffset:options:)]
         pub unsafe fn refitAccelerationStructure_descriptor_destination_scratchBuffer_scratchBufferOffset_options(
             &self,
-            sourceAccelerationStructure: &MTLAccelerationStructure,
+            source_acceleration_structure: &MTLAccelerationStructure,
             descriptor: &MTLAccelerationStructureDescriptor,
-            destinationAccelerationStructure: Option<&MTLAccelerationStructure>,
-            scratchBuffer: &MTLBuffer,
-            scratchBufferOffset: NSUInteger,
+            destination_acceleration_structure: Option<&MTLAccelerationStructure>,
+            scratch_buffer: &MTLBuffer,
+            scratch_buffer_offset: NSUInteger,
             options: MTLAccelerationStructureRefitOptions,
         );
 
         #[method(copyAccelerationStructure:toAccelerationStructure:)]
         pub unsafe fn copyAccelerationStructure_toAccelerationStructure(
             &self,
-            sourceAccelerationStructure: &MTLAccelerationStructure,
-            destinationAccelerationStructure: &MTLAccelerationStructure,
+            source_acceleration_structure: &MTLAccelerationStructure,
+            destination_acceleration_structure: &MTLAccelerationStructure,
         );
 
         #[method(writeCompactedAccelerationStructureSize:toBuffer:offset:)]
         pub fn writeCompactedAccelerationStructureSize_toBuffer_offset(
             &self,
-            accelerationStructure: &MTLAccelerationStructure,
+            acceleration_structure: &MTLAccelerationStructure,
             buffer: &MTLBuffer,
             offset: NSUInteger,
         );
@@ -67,17 +67,17 @@ extern_protocol!(
         #[method(writeCompactedAccelerationStructureSize:toBuffer:offset:sizeDataType:)]
         pub unsafe fn writeCompactedAccelerationStructureSize_toBuffer_offset_sizeDataType(
             &self,
-            accelerationStructure: &MTLAccelerationStructure,
+            acceleration_structure: &MTLAccelerationStructure,
             buffer: &MTLBuffer,
             offset: NSUInteger,
-            sizeDataType: MTLDataType,
+            size_data_type: MTLDataType,
         );
 
         #[method(copyAndCompactAccelerationStructure:toAccelerationStructure:)]
         pub fn copyAndCompactAccelerationStructure_toAccelerationStructure(
             &self,
-            sourceAccelerationStructure: &MTLAccelerationStructure,
-            destinationAccelerationStructure: &MTLAccelerationStructure,
+            source_acceleration_structure: &MTLAccelerationStructure,
+            destination_acceleration_structure: &MTLAccelerationStructure,
         );
 
         #[method(updateFence:)]
@@ -106,8 +106,8 @@ extern_protocol!(
         #[method(sampleCountersInBuffer:atSampleIndex:withBarrier:)]
         pub unsafe fn sampleCountersInBuffer_atSampleIndex_withBarrier(
             &self,
-            sampleBuffer: &MTLCounterSampleBuffer,
-            sampleIndex: NSUInteger,
+            sample_buffer: &MTLCounterSampleBuffer,
+            sample_index: NSUInteger,
             barrier: bool,
         );
     }
@@ -131,19 +131,22 @@ extern_methods!(
         pub unsafe fn sampleBuffer(&self) -> Option<Id<MTLCounterSampleBuffer, Shared>>;
 
         #[method(setSampleBuffer:)]
-        pub unsafe fn setSampleBuffer(&self, sampleBuffer: Option<&MTLCounterSampleBuffer>);
+        pub unsafe fn setSampleBuffer(&self, sample_buffer: Option<&MTLCounterSampleBuffer>);
 
         #[method(startOfEncoderSampleIndex)]
         pub unsafe fn startOfEncoderSampleIndex(&self) -> NSUInteger;
 
         #[method(setStartOfEncoderSampleIndex:)]
-        pub unsafe fn setStartOfEncoderSampleIndex(&self, startOfEncoderSampleIndex: NSUInteger);
+        pub unsafe fn setStartOfEncoderSampleIndex(
+            &self,
+            start_of_encoder_sample_index: NSUInteger,
+        );
 
         #[method(endOfEncoderSampleIndex)]
         pub unsafe fn endOfEncoderSampleIndex(&self) -> NSUInteger;
 
         #[method(setEndOfEncoderSampleIndex:)]
-        pub unsafe fn setEndOfEncoderSampleIndex(&self, endOfEncoderSampleIndex: NSUInteger);
+        pub unsafe fn setEndOfEncoderSampleIndex(&self, end_of_encoder_sample_index: NSUInteger);
     }
 );
 
@@ -165,7 +168,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other objectAtIndexedSubscript:)]
         pub unsafe fn objectAtIndexedSubscript(
             &self,
-            attachmentIndex: NSUInteger,
+            attachment_index: NSUInteger,
         ) -> Id<MTLAccelerationStructurePassSampleBufferAttachmentDescriptor, Shared>;
 
         #[cfg(feature = "Metal_MTLAccelerationStructurePassSampleBufferAttachmentDescriptor")]
@@ -173,7 +176,7 @@ extern_methods!(
         pub unsafe fn setObject_atIndexedSubscript(
             &self,
             attachment: Option<&MTLAccelerationStructurePassSampleBufferAttachmentDescriptor>,
-            attachmentIndex: NSUInteger,
+            attachment_index: NSUInteger,
         );
     }
 );

@@ -30,37 +30,37 @@ extern_methods!(
         pub unsafe fn minimumInteritemSpacing(&self) -> CGFloat;
 
         #[method(setMinimumInteritemSpacing:)]
-        pub unsafe fn setMinimumInteritemSpacing(&self, minimumInteritemSpacing: CGFloat);
+        pub unsafe fn setMinimumInteritemSpacing(&self, minimum_interitem_spacing: CGFloat);
 
         #[method(minimumLineSpacing)]
         pub unsafe fn minimumLineSpacing(&self) -> CGFloat;
 
         #[method(setMinimumLineSpacing:)]
-        pub unsafe fn setMinimumLineSpacing(&self, minimumLineSpacing: CGFloat);
+        pub unsafe fn setMinimumLineSpacing(&self, minimum_line_spacing: CGFloat);
 
         #[method(maximumNumberOfRows)]
         pub unsafe fn maximumNumberOfRows(&self) -> NSUInteger;
 
         #[method(setMaximumNumberOfRows:)]
-        pub unsafe fn setMaximumNumberOfRows(&self, maximumNumberOfRows: NSUInteger);
+        pub unsafe fn setMaximumNumberOfRows(&self, maximum_number_of_rows: NSUInteger);
 
         #[method(maximumNumberOfColumns)]
         pub unsafe fn maximumNumberOfColumns(&self) -> NSUInteger;
 
         #[method(setMaximumNumberOfColumns:)]
-        pub unsafe fn setMaximumNumberOfColumns(&self, maximumNumberOfColumns: NSUInteger);
+        pub unsafe fn setMaximumNumberOfColumns(&self, maximum_number_of_columns: NSUInteger);
 
         #[method(minimumItemSize)]
         pub unsafe fn minimumItemSize(&self) -> NSSize;
 
         #[method(setMinimumItemSize:)]
-        pub unsafe fn setMinimumItemSize(&self, minimumItemSize: NSSize);
+        pub unsafe fn setMinimumItemSize(&self, minimum_item_size: NSSize);
 
         #[method(maximumItemSize)]
         pub unsafe fn maximumItemSize(&self) -> NSSize;
 
         #[method(setMaximumItemSize:)]
-        pub unsafe fn setMaximumItemSize(&self, maximumItemSize: NSSize);
+        pub unsafe fn setMaximumItemSize(&self, maximum_item_size: NSSize);
 
         #[cfg(all(feature = "AppKit_NSColor", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other backgroundColors)]
@@ -68,6 +68,6 @@ extern_methods!(
 
         #[cfg(all(feature = "AppKit_NSColor", feature = "Foundation_NSArray"))]
         #[method(setBackgroundColors:)]
-        pub unsafe fn setBackgroundColors(&self, backgroundColors: Option<&NSArray<NSColor>>);
+        pub unsafe fn setBackgroundColors(&self, background_colors: Option<&NSArray<NSColor>>);
     }
 );

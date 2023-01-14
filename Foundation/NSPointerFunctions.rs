@@ -60,7 +60,7 @@ extern_methods!(
         #[method(setHashFunction:)]
         pub unsafe fn setHashFunction(
             &self,
-            hashFunction: Option<
+            hash_function: Option<
                 unsafe extern "C" fn(
                     NonNull<c_void>,
                     Option<unsafe extern "C" fn(NonNull<c_void>) -> NSUInteger>,
@@ -82,7 +82,7 @@ extern_methods!(
         #[method(setIsEqualFunction:)]
         pub unsafe fn setIsEqualFunction(
             &self,
-            isEqualFunction: Option<
+            is_equal_function: Option<
                 unsafe extern "C" fn(
                     NonNull<c_void>,
                     NonNull<c_void>,
@@ -99,7 +99,7 @@ extern_methods!(
         #[method(setSizeFunction:)]
         pub unsafe fn setSizeFunction(
             &self,
-            sizeFunction: Option<unsafe extern "C" fn(NonNull<c_void>) -> NSUInteger>,
+            size_function: Option<unsafe extern "C" fn(NonNull<c_void>) -> NSUInteger>,
         );
 
         #[cfg(feature = "Foundation_NSString")]
@@ -112,7 +112,7 @@ extern_methods!(
         #[method(setDescriptionFunction:)]
         pub unsafe fn setDescriptionFunction(
             &self,
-            descriptionFunction: Option<unsafe extern "C" fn(NonNull<c_void>) -> *mut NSString>,
+            description_function: Option<unsafe extern "C" fn(NonNull<c_void>) -> *mut NSString>,
         );
 
         #[method(relinquishFunction)]
@@ -128,7 +128,7 @@ extern_methods!(
         #[method(setRelinquishFunction:)]
         pub unsafe fn setRelinquishFunction(
             &self,
-            relinquishFunction: Option<
+            relinquish_function: Option<
                 unsafe extern "C" fn(
                     NonNull<c_void>,
                     Option<unsafe extern "C" fn(NonNull<c_void>) -> NSUInteger>,
@@ -150,7 +150,7 @@ extern_methods!(
         #[method(setAcquireFunction:)]
         pub unsafe fn setAcquireFunction(
             &self,
-            acquireFunction: Option<
+            acquire_function: Option<
                 unsafe extern "C" fn(
                     NonNull<c_void>,
                     Option<unsafe extern "C" fn(NonNull<c_void>) -> NSUInteger>,
@@ -163,12 +163,15 @@ extern_methods!(
         pub unsafe fn usesStrongWriteBarrier(&self) -> bool;
 
         #[method(setUsesStrongWriteBarrier:)]
-        pub unsafe fn setUsesStrongWriteBarrier(&self, usesStrongWriteBarrier: bool);
+        pub unsafe fn setUsesStrongWriteBarrier(&self, uses_strong_write_barrier: bool);
 
         #[method(usesWeakReadAndWriteBarriers)]
         pub unsafe fn usesWeakReadAndWriteBarriers(&self) -> bool;
 
         #[method(setUsesWeakReadAndWriteBarriers:)]
-        pub unsafe fn setUsesWeakReadAndWriteBarriers(&self, usesWeakReadAndWriteBarriers: bool);
+        pub unsafe fn setUsesWeakReadAndWriteBarriers(
+            &self,
+            uses_weak_read_and_write_barriers: bool,
+        );
     }
 );

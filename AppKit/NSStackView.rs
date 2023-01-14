@@ -81,7 +81,7 @@ extern_methods!(
         pub unsafe fn edgeInsets(&self) -> NSEdgeInsets;
 
         #[method(setEdgeInsets:)]
-        pub unsafe fn setEdgeInsets(&self, edgeInsets: NSEdgeInsets);
+        pub unsafe fn setEdgeInsets(&self, edge_insets: NSEdgeInsets);
 
         #[method(distribution)]
         pub unsafe fn distribution(&self) -> NSStackViewDistribution;
@@ -105,7 +105,7 @@ extern_methods!(
         pub unsafe fn detachesHiddenViews(&self) -> bool;
 
         #[method(setDetachesHiddenViews:)]
-        pub unsafe fn setDetachesHiddenViews(&self, detachesHiddenViews: bool);
+        pub unsafe fn setDetachesHiddenViews(&self, detaches_hidden_views: bool);
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other arrangedSubviews)]
@@ -146,7 +146,7 @@ extern_methods!(
         #[method(setClippingResistancePriority:forOrientation:)]
         pub unsafe fn setClippingResistancePriority_forOrientation(
             &self,
-            clippingResistancePriority: NSLayoutPriority,
+            clipping_resistance_priority: NSLayoutPriority,
             orientation: NSLayoutConstraintOrientation,
         );
 
@@ -159,7 +159,7 @@ extern_methods!(
         #[method(setHuggingPriority:forOrientation:)]
         pub unsafe fn setHuggingPriority_forOrientation(
             &self,
-            huggingPriority: NSLayoutPriority,
+            hugging_priority: NSLayoutPriority,
             orientation: NSLayoutConstraintOrientation,
         );
     }
@@ -178,7 +178,7 @@ extern_protocol!(
         #[method(stackView:willDetachViews:)]
         pub unsafe fn stackView_willDetachViews(
             &self,
-            stackView: &NSStackView,
+            stack_view: &NSStackView,
             views: &NSArray<NSView>,
         );
 
@@ -191,7 +191,7 @@ extern_protocol!(
         #[method(stackView:didReattachViews:)]
         pub unsafe fn stackView_didReattachViews(
             &self,
-            stackView: &NSStackView,
+            stack_view: &NSStackView,
             views: &NSArray<NSView>,
         );
     }
@@ -247,7 +247,7 @@ extern_methods!(
         pub unsafe fn hasEqualSpacing(&self) -> bool;
 
         #[method(setHasEqualSpacing:)]
-        pub unsafe fn setHasEqualSpacing(&self, hasEqualSpacing: bool);
+        pub unsafe fn setHasEqualSpacing(&self, has_equal_spacing: bool);
     }
 );
 
@@ -258,7 +258,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frame_rect: NSRect,
         ) -> Id<Self, Shared>;
     }
 );

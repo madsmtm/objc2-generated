@@ -97,13 +97,13 @@ extern_methods!(
         pub fn stepFunction(&self) -> MTLVertexStepFunction;
 
         #[method(setStepFunction:)]
-        pub unsafe fn setStepFunction(&self, stepFunction: MTLVertexStepFunction);
+        pub unsafe fn setStepFunction(&self, step_function: MTLVertexStepFunction);
 
         #[method(stepRate)]
         pub fn stepRate(&self) -> NSUInteger;
 
         #[method(setStepRate:)]
-        pub unsafe fn setStepRate(&self, stepRate: NSUInteger);
+        pub unsafe fn setStepRate(&self, step_rate: NSUInteger);
     }
 );
 
@@ -132,7 +132,7 @@ extern_methods!(
         #[method(setObject:atIndexedSubscript:)]
         pub unsafe fn setObject_atIndexedSubscript(
             &self,
-            bufferDesc: Option<&MTLVertexBufferLayoutDescriptor>,
+            buffer_desc: Option<&MTLVertexBufferLayoutDescriptor>,
             index: NSUInteger,
         );
     }
@@ -168,7 +168,7 @@ extern_methods!(
         pub fn bufferIndex(&self) -> NSUInteger;
 
         #[method(setBufferIndex:)]
-        pub unsafe fn setBufferIndex(&self, bufferIndex: NSUInteger);
+        pub unsafe fn setBufferIndex(&self, buffer_index: NSUInteger);
     }
 );
 
@@ -197,7 +197,7 @@ extern_methods!(
         #[method(setObject:atIndexedSubscript:)]
         pub unsafe fn setObject_atIndexedSubscript(
             &self,
-            attributeDesc: Option<&MTLVertexAttributeDescriptor>,
+            attribute_desc: Option<&MTLVertexAttributeDescriptor>,
             index: NSUInteger,
         );
     }

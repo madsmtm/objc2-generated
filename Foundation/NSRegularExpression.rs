@@ -209,14 +209,14 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other dataDetectorWithTypes:error:_)]
         pub unsafe fn dataDetectorWithTypes_error(
-            checkingTypes: NSTextCheckingTypes,
+            checking_types: NSTextCheckingTypes,
         ) -> Result<Id<NSDataDetector, Shared>, Id<NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Init initWithTypes:error:_)]
         pub unsafe fn initWithTypes_error(
             this: Option<Allocated<Self>>,
-            checkingTypes: NSTextCheckingTypes,
+            checking_types: NSTextCheckingTypes,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
         #[method(checkingTypes)]

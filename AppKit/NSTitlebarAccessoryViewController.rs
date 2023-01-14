@@ -24,13 +24,13 @@ extern_methods!(
         pub unsafe fn layoutAttribute(&self) -> NSLayoutAttribute;
 
         #[method(setLayoutAttribute:)]
-        pub unsafe fn setLayoutAttribute(&self, layoutAttribute: NSLayoutAttribute);
+        pub unsafe fn setLayoutAttribute(&self, layout_attribute: NSLayoutAttribute);
 
         #[method(fullScreenMinHeight)]
         pub unsafe fn fullScreenMinHeight(&self) -> CGFloat;
 
         #[method(setFullScreenMinHeight:)]
-        pub unsafe fn setFullScreenMinHeight(&self, fullScreenMinHeight: CGFloat);
+        pub unsafe fn setFullScreenMinHeight(&self, full_screen_min_height: CGFloat);
 
         #[method(isHidden)]
         pub unsafe fn isHidden(&self) -> bool;
@@ -42,7 +42,7 @@ extern_methods!(
         pub unsafe fn automaticallyAdjustsSize(&self) -> bool;
 
         #[method(setAutomaticallyAdjustsSize:)]
-        pub unsafe fn setAutomaticallyAdjustsSize(&self, automaticallyAdjustsSize: bool);
+        pub unsafe fn setAutomaticallyAdjustsSize(&self, automatically_adjusts_size: bool);
 
         #[method(viewWillAppear)]
         pub unsafe fn viewWillAppear(&self);
@@ -63,8 +63,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Option<Allocated<Self>>,
-            nibNameOrNil: Option<&NSNibName>,
-            nibBundleOrNil: Option<&NSBundle>,
+            nib_name_or_nil: Option<&NSNibName>,
+            nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Id<Self, Shared>;
     }
 );

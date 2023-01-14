@@ -34,7 +34,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSScrubberLayoutAttributes")]
         #[method(applyLayoutAttributes:)]
-        pub unsafe fn applyLayoutAttributes(&self, layoutAttributes: &NSScrubberLayoutAttributes);
+        pub unsafe fn applyLayoutAttributes(&self, layout_attributes: &NSScrubberLayoutAttributes);
     }
 );
 
@@ -132,7 +132,7 @@ extern_methods!(
         pub unsafe fn imageAlignment(&self) -> NSImageAlignment;
 
         #[method(setImageAlignment:)]
-        pub unsafe fn setImageAlignment(&self, imageAlignment: NSImageAlignment);
+        pub unsafe fn setImageAlignment(&self, image_alignment: NSImageAlignment);
     }
 );
 
@@ -143,7 +143,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frame_rect: NSRect,
         ) -> Id<Self, Shared>;
     }
 );
@@ -155,7 +155,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frame_rect: NSRect,
         ) -> Id<Self, Shared>;
     }
 );
@@ -167,7 +167,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frame_rect: NSRect,
         ) -> Id<Self, Shared>;
     }
 );
@@ -179,7 +179,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frame_rect: NSRect,
         ) -> Id<Self, Shared>;
     }
 );
@@ -191,7 +191,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frame_rect: NSRect,
         ) -> Id<Self, Shared>;
     }
 );

@@ -56,14 +56,14 @@ extern_methods!(
         #[method(getOffset:error:_)]
         pub unsafe fn getOffset_error(
             &self,
-            offsetInFile: NonNull<c_ulonglong>,
+            offset_in_file: NonNull<c_ulonglong>,
         ) -> Result<(), Id<NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(seekToEndReturningOffset:error:_)]
         pub unsafe fn seekToEndReturningOffset_error(
             &self,
-            offsetInFile: *mut c_ulonglong,
+            offset_in_file: *mut c_ulonglong,
         ) -> Result<(), Id<NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSError")]
@@ -204,7 +204,7 @@ extern_methods!(
         #[method(setReadabilityHandler:)]
         pub unsafe fn setReadabilityHandler(
             &self,
-            readabilityHandler: Option<&Block<(NonNull<NSFileHandle>,), ()>>,
+            readability_handler: Option<&Block<(NonNull<NSFileHandle>,), ()>>,
         );
 
         #[method(writeabilityHandler)]
@@ -213,7 +213,7 @@ extern_methods!(
         #[method(setWriteabilityHandler:)]
         pub unsafe fn setWriteabilityHandler(
             &self,
-            writeabilityHandler: Option<&Block<(NonNull<NSFileHandle>,), ()>>,
+            writeability_handler: Option<&Block<(NonNull<NSFileHandle>,), ()>>,
         );
     }
 );

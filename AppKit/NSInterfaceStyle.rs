@@ -33,7 +33,7 @@ extern_methods!(
         pub unsafe fn interfaceStyle(&self) -> NSInterfaceStyle;
 
         #[method(setInterfaceStyle:)]
-        pub unsafe fn setInterfaceStyle(&self, interfaceStyle: NSInterfaceStyle);
+        pub unsafe fn setInterfaceStyle(&self, interface_style: NSInterfaceStyle);
     }
 );
 

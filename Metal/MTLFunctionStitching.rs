@@ -50,7 +50,7 @@ extern_methods!(
         pub unsafe fn argumentIndex(&self) -> NSUInteger;
 
         #[method(setArgumentIndex:)]
-        pub unsafe fn setArgumentIndex(&self, argumentIndex: NSUInteger);
+        pub unsafe fn setArgumentIndex(&self, argument_index: NSUInteger);
 
         #[method_id(@__retain_semantics Init initWithArgumentIndex:)]
         pub unsafe fn initWithArgumentIndex(
@@ -100,7 +100,7 @@ extern_methods!(
         #[method(setControlDependencies:)]
         pub unsafe fn setControlDependencies(
             &self,
-            controlDependencies: &NSArray<MTLFunctionStitchingFunctionNode>,
+            control_dependencies: &NSArray<MTLFunctionStitchingFunctionNode>,
         );
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
@@ -109,7 +109,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             name: &NSString,
             arguments: &NSArray<MTLFunctionStitchingNode>,
-            controlDependencies: &NSArray<MTLFunctionStitchingFunctionNode>,
+            control_dependencies: &NSArray<MTLFunctionStitchingFunctionNode>,
         ) -> Id<Self, Shared>;
     }
 );
@@ -134,7 +134,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setFunctionName:)]
-        pub unsafe fn setFunctionName(&self, functionName: &NSString);
+        pub unsafe fn setFunctionName(&self, function_name: &NSString);
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -156,7 +156,7 @@ extern_methods!(
 
         #[cfg(feature = "Metal_MTLFunctionStitchingFunctionNode")]
         #[method(setOutputNode:)]
-        pub unsafe fn setOutputNode(&self, outputNode: Option<&MTLFunctionStitchingFunctionNode>);
+        pub unsafe fn setOutputNode(&self, output_node: Option<&MTLFunctionStitchingFunctionNode>);
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other attributes)]
@@ -174,9 +174,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFunctionName:nodes:outputNode:attributes:)]
         pub unsafe fn initWithFunctionName_nodes_outputNode_attributes(
             this: Option<Allocated<Self>>,
-            functionName: &NSString,
+            function_name: &NSString,
             nodes: &NSArray<MTLFunctionStitchingFunctionNode>,
-            outputNode: Option<&MTLFunctionStitchingFunctionNode>,
+            output_node: Option<&MTLFunctionStitchingFunctionNode>,
             attributes: &NSArray<MTLFunctionStitchingAttribute>,
         ) -> Id<Self, Shared>;
     }
@@ -208,7 +208,10 @@ extern_methods!(
             feature = "Metal_MTLFunctionStitchingGraph"
         ))]
         #[method(setFunctionGraphs:)]
-        pub unsafe fn setFunctionGraphs(&self, functionGraphs: &NSArray<MTLFunctionStitchingGraph>);
+        pub unsafe fn setFunctionGraphs(
+            &self,
+            function_graphs: &NSArray<MTLFunctionStitchingGraph>,
+        );
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other functions)]

@@ -62,7 +62,7 @@ extern_methods!(
         #[method(insertItemWithItemIdentifier:atIndex:)]
         pub unsafe fn insertItemWithItemIdentifier_atIndex(
             &self,
-            itemIdentifier: &NSToolbarItemIdentifier,
+            item_identifier: &NSToolbarItemIdentifier,
             index: NSInteger,
         );
 
@@ -91,7 +91,7 @@ extern_methods!(
         pub unsafe fn displayMode(&self) -> NSToolbarDisplayMode;
 
         #[method(setDisplayMode:)]
-        pub unsafe fn setDisplayMode(&self, displayMode: NSToolbarDisplayMode);
+        pub unsafe fn setDisplayMode(&self, display_mode: NSToolbarDisplayMode);
 
         #[method_id(@__retain_semantics Other selectedItemIdentifier)]
         pub unsafe fn selectedItemIdentifier(&self) -> Option<Id<NSToolbarItemIdentifier, Shared>>;
@@ -99,26 +99,26 @@ extern_methods!(
         #[method(setSelectedItemIdentifier:)]
         pub unsafe fn setSelectedItemIdentifier(
             &self,
-            selectedItemIdentifier: Option<&NSToolbarItemIdentifier>,
+            selected_item_identifier: Option<&NSToolbarItemIdentifier>,
         );
 
         #[method(sizeMode)]
         pub unsafe fn sizeMode(&self) -> NSToolbarSizeMode;
 
         #[method(setSizeMode:)]
-        pub unsafe fn setSizeMode(&self, sizeMode: NSToolbarSizeMode);
+        pub unsafe fn setSizeMode(&self, size_mode: NSToolbarSizeMode);
 
         #[method(showsBaselineSeparator)]
         pub unsafe fn showsBaselineSeparator(&self) -> bool;
 
         #[method(setShowsBaselineSeparator:)]
-        pub unsafe fn setShowsBaselineSeparator(&self, showsBaselineSeparator: bool);
+        pub unsafe fn setShowsBaselineSeparator(&self, shows_baseline_separator: bool);
 
         #[method(allowsUserCustomization)]
         pub unsafe fn allowsUserCustomization(&self) -> bool;
 
         #[method(setAllowsUserCustomization:)]
-        pub unsafe fn setAllowsUserCustomization(&self, allowsUserCustomization: bool);
+        pub unsafe fn setAllowsUserCustomization(&self, allows_user_customization: bool);
 
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Id<NSToolbarIdentifier, Shared>;
@@ -139,7 +139,7 @@ extern_methods!(
         #[method(setCenteredItemIdentifiers:)]
         pub unsafe fn setCenteredItemIdentifiers(
             &self,
-            centeredItemIdentifiers: &NSSet<NSToolbarItemIdentifier>,
+            centered_item_identifiers: &NSSet<NSToolbarItemIdentifier>,
         );
 
         #[method_id(@__retain_semantics Other centeredItemIdentifier)]
@@ -148,20 +148,20 @@ extern_methods!(
         #[method(setCenteredItemIdentifier:)]
         pub unsafe fn setCenteredItemIdentifier(
             &self,
-            centeredItemIdentifier: Option<&NSToolbarItemIdentifier>,
+            centered_item_identifier: Option<&NSToolbarItemIdentifier>,
         );
 
         #[method(autosavesConfiguration)]
         pub unsafe fn autosavesConfiguration(&self) -> bool;
 
         #[method(setAutosavesConfiguration:)]
-        pub unsafe fn setAutosavesConfiguration(&self, autosavesConfiguration: bool);
+        pub unsafe fn setAutosavesConfiguration(&self, autosaves_configuration: bool);
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setConfigurationFromDictionary:)]
         pub unsafe fn setConfigurationFromDictionary(
             &self,
-            configDict: &NSDictionary<NSString, Object>,
+            config_dict: &NSDictionary<NSString, Object>,
         );
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
@@ -175,7 +175,7 @@ extern_methods!(
         pub unsafe fn allowsExtensionItems(&self) -> bool;
 
         #[method(setAllowsExtensionItems:)]
-        pub unsafe fn setAllowsExtensionItems(&self, allowsExtensionItems: bool);
+        pub unsafe fn setAllowsExtensionItems(&self, allows_extension_items: bool);
     }
 );
 
@@ -189,7 +189,7 @@ extern_protocol!(
         pub unsafe fn toolbar_itemForItemIdentifier_willBeInsertedIntoToolbar(
             &self,
             toolbar: &NSToolbar,
-            itemIdentifier: &NSToolbarItemIdentifier,
+            item_identifier: &NSToolbarItemIdentifier,
             flag: bool,
         ) -> Option<Id<NSToolbarItem, Shared>>;
 
@@ -231,7 +231,7 @@ extern_protocol!(
         pub unsafe fn toolbar_itemIdentifier_canBeInsertedAtIndex(
             &self,
             toolbar: &NSToolbar,
-            itemIdentifier: &NSToolbarItemIdentifier,
+            item_identifier: &NSToolbarItemIdentifier,
             index: NSInteger,
         ) -> bool;
 
@@ -261,7 +261,10 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(setFullScreenAccessoryView:)]
-        pub unsafe fn setFullScreenAccessoryView(&self, fullScreenAccessoryView: Option<&NSView>);
+        pub unsafe fn setFullScreenAccessoryView(
+            &self,
+            full_screen_accessory_view: Option<&NSView>,
+        );
 
         #[method(fullScreenAccessoryViewMinHeight)]
         pub unsafe fn fullScreenAccessoryViewMinHeight(&self) -> CGFloat;
@@ -269,7 +272,7 @@ extern_methods!(
         #[method(setFullScreenAccessoryViewMinHeight:)]
         pub unsafe fn setFullScreenAccessoryViewMinHeight(
             &self,
-            fullScreenAccessoryViewMinHeight: CGFloat,
+            full_screen_accessory_view_min_height: CGFloat,
         );
 
         #[method(fullScreenAccessoryViewMaxHeight)]
@@ -278,7 +281,7 @@ extern_methods!(
         #[method(setFullScreenAccessoryViewMaxHeight:)]
         pub unsafe fn setFullScreenAccessoryViewMaxHeight(
             &self,
-            fullScreenAccessoryViewMaxHeight: CGFloat,
+            full_screen_accessory_view_max_height: CGFloat,
         );
     }
 );

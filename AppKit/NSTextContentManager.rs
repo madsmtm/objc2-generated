@@ -25,7 +25,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other enumerateTextElementsFromLocation:options:usingBlock:)]
         pub unsafe fn enumerateTextElementsFromLocation_options_usingBlock(
             &self,
-            textLocation: Option<&NSTextLocation>,
+            text_location: Option<&NSTextLocation>,
             options: NSTextContentManagerEnumerationOptions,
             block: &Block<(NonNull<NSTextElement>,), Bool>,
         ) -> Option<Id<NSTextLocation, Shared>>;
@@ -39,14 +39,14 @@ extern_protocol!(
         pub unsafe fn replaceContentsInRange_withTextElements(
             &self,
             range: &NSTextRange,
-            textElements: Option<&NSArray<NSTextElement>>,
+            text_elements: Option<&NSArray<NSTextElement>>,
         );
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(synchronizeToBackingStore:)]
         pub unsafe fn synchronizeToBackingStore(
             &self,
-            completionHandler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<(*mut NSError,), ()>>,
         );
 
         #[optional]
@@ -70,8 +70,8 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other adjustedRangeFromRange:forEditingTextSelection:)]
         pub unsafe fn adjustedRangeFromRange_forEditingTextSelection(
             &self,
-            textRange: &NSTextRange,
-            forEditingTextSelection: bool,
+            text_range: &NSTextRange,
+            for_editing_text_selection: bool,
         ) -> Option<Id<NSTextRange, Shared>>;
     }
 );
@@ -112,11 +112,11 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSTextLayoutManager")]
         #[method(addTextLayoutManager:)]
-        pub unsafe fn addTextLayoutManager(&self, textLayoutManager: &NSTextLayoutManager);
+        pub unsafe fn addTextLayoutManager(&self, text_layout_manager: &NSTextLayoutManager);
 
         #[cfg(feature = "AppKit_NSTextLayoutManager")]
         #[method(removeTextLayoutManager:)]
-        pub unsafe fn removeTextLayoutManager(&self, textLayoutManager: &NSTextLayoutManager);
+        pub unsafe fn removeTextLayoutManager(&self, text_layout_manager: &NSTextLayoutManager);
 
         #[cfg(feature = "AppKit_NSTextLayoutManager")]
         #[method_id(@__retain_semantics Other primaryTextLayoutManager)]
@@ -126,14 +126,14 @@ extern_methods!(
         #[method(setPrimaryTextLayoutManager:)]
         pub unsafe fn setPrimaryTextLayoutManager(
             &self,
-            primaryTextLayoutManager: Option<&NSTextLayoutManager>,
+            primary_text_layout_manager: Option<&NSTextLayoutManager>,
         );
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(synchronizeTextLayoutManagers:)]
         pub unsafe fn synchronizeTextLayoutManagers(
             &self,
-            completionHandler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<(*mut NSError,), ()>>,
         );
 
         #[cfg(all(
@@ -157,8 +157,8 @@ extern_methods!(
         #[method(recordEditActionInRange:newTextRange:)]
         pub unsafe fn recordEditActionInRange_newTextRange(
             &self,
-            originalTextRange: &NSTextRange,
-            newTextRange: &NSTextRange,
+            original_text_range: &NSTextRange,
+            new_text_range: &NSTextRange,
         );
 
         #[method(automaticallySynchronizesTextLayoutManagers)]
@@ -167,7 +167,7 @@ extern_methods!(
         #[method(setAutomaticallySynchronizesTextLayoutManagers:)]
         pub unsafe fn setAutomaticallySynchronizesTextLayoutManagers(
             &self,
-            automaticallySynchronizesTextLayoutManagers: bool,
+            automatically_synchronizes_text_layout_managers: bool,
         );
 
         #[method(automaticallySynchronizesToBackingStore)]
@@ -176,7 +176,7 @@ extern_methods!(
         #[method(setAutomaticallySynchronizesToBackingStore:)]
         pub unsafe fn setAutomaticallySynchronizesToBackingStore(
             &self,
-            automaticallySynchronizesToBackingStore: bool,
+            automatically_synchronizes_to_backing_store: bool,
         );
     }
 );
@@ -193,7 +193,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other textContentManager:textElementAtLocation:)]
         pub unsafe fn textContentManager_textElementAtLocation(
             &self,
-            textContentManager: &NSTextContentManager,
+            text_content_manager: &NSTextContentManager,
             location: &NSTextLocation,
         ) -> Option<Id<NSTextElement, Shared>>;
 
@@ -205,8 +205,8 @@ extern_protocol!(
         #[method(textContentManager:shouldEnumerateTextElement:options:)]
         pub unsafe fn textContentManager_shouldEnumerateTextElement_options(
             &self,
-            textContentManager: &NSTextContentManager,
-            textElement: &NSTextElement,
+            text_content_manager: &NSTextContentManager,
+            text_element: &NSTextElement,
             options: NSTextContentManagerEnumerationOptions,
         ) -> bool;
     }
@@ -224,7 +224,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other textContentStorage:textParagraphWithRange:)]
         pub unsafe fn textContentStorage_textParagraphWithRange(
             &self,
-            textContentStorage: &NSTextContentStorage,
+            text_content_storage: &NSTextContentStorage,
             range: NSRange,
         ) -> Option<Id<NSTextParagraph, Shared>>;
     }
@@ -257,7 +257,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setAttributedString:)]
-        pub unsafe fn setAttributedString(&self, attributedString: Option<&NSAttributedString>);
+        pub unsafe fn setAttributedString(&self, attributed_string: Option<&NSAttributedString>);
 
         #[cfg(all(
             feature = "AppKit_NSTextElement",
@@ -266,7 +266,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other attributedStringForTextElement:)]
         pub unsafe fn attributedStringForTextElement(
             &self,
-            textElement: &NSTextElement,
+            text_element: &NSTextElement,
         ) -> Option<Id<NSAttributedString, Shared>>;
 
         #[cfg(all(
@@ -276,7 +276,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other textElementForAttributedString:)]
         pub unsafe fn textElementForAttributedString(
             &self,
-            attributedString: &NSAttributedString,
+            attributed_string: &NSAttributedString,
         ) -> Option<Id<NSTextElement, Shared>>;
 
         #[method_id(@__retain_semantics Other locationFromLocation:withOffset:)]
@@ -297,8 +297,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Other adjustedRangeFromRange:forEditingTextSelection:)]
         pub unsafe fn adjustedRangeFromRange_forEditingTextSelection(
             &self,
-            textRange: &NSTextRange,
-            forEditingTextSelection: bool,
+            text_range: &NSTextRange,
+            for_editing_text_selection: bool,
         ) -> Option<Id<NSTextRange, Shared>>;
     }
 );

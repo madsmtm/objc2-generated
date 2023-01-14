@@ -64,8 +64,8 @@ extern_methods!(
 
         #[method(scrollerWidthForControlSize:scrollerStyle:)]
         pub unsafe fn scrollerWidthForControlSize_scrollerStyle(
-            controlSize: NSControlSize,
-            scrollerStyle: NSScrollerStyle,
+            control_size: NSControlSize,
+            scroller_style: NSScrollerStyle,
         ) -> CGFloat;
 
         #[method(preferredScrollerStyle)]
@@ -75,16 +75,16 @@ extern_methods!(
         pub unsafe fn scrollerStyle(&self) -> NSScrollerStyle;
 
         #[method(setScrollerStyle:)]
-        pub unsafe fn setScrollerStyle(&self, scrollerStyle: NSScrollerStyle);
+        pub unsafe fn setScrollerStyle(&self, scroller_style: NSScrollerStyle);
 
         #[method(knobStyle)]
         pub unsafe fn knobStyle(&self) -> NSScrollerKnobStyle;
 
         #[method(setKnobStyle:)]
-        pub unsafe fn setKnobStyle(&self, knobStyle: NSScrollerKnobStyle);
+        pub unsafe fn setKnobStyle(&self, knob_style: NSScrollerKnobStyle);
 
         #[method(rectForPart:)]
-        pub unsafe fn rectForPart(&self, partCode: NSScrollerPart) -> NSRect;
+        pub unsafe fn rectForPart(&self, part_code: NSScrollerPart) -> NSRect;
 
         #[method(checkSpaceForParts)]
         pub unsafe fn checkSpaceForParts(&self);
@@ -96,13 +96,13 @@ extern_methods!(
         pub unsafe fn controlSize(&self) -> NSControlSize;
 
         #[method(setControlSize:)]
-        pub unsafe fn setControlSize(&self, controlSize: NSControlSize);
+        pub unsafe fn setControlSize(&self, control_size: NSControlSize);
 
         #[method(drawKnob)]
         pub unsafe fn drawKnob(&self);
 
         #[method(drawKnobSlotInRect:highlight:)]
-        pub unsafe fn drawKnobSlotInRect_highlight(&self, slotRect: NSRect, flag: bool);
+        pub unsafe fn drawKnobSlotInRect_highlight(&self, slot_rect: NSRect, flag: bool);
 
         #[method(testPart:)]
         pub unsafe fn testPart(&self, point: NSPoint) -> NSScrollerPart;
@@ -118,7 +118,7 @@ extern_methods!(
         pub unsafe fn knobProportion(&self) -> CGFloat;
 
         #[method(setKnobProportion:)]
-        pub unsafe fn setKnobProportion(&self, knobProportion: CGFloat);
+        pub unsafe fn setKnobProportion(&self, knob_proportion: CGFloat);
     }
 );
 
@@ -147,7 +147,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSScroller")]
     unsafe impl NSScroller {
         #[method(scrollerWidthForControlSize:)]
-        pub unsafe fn scrollerWidthForControlSize(controlSize: NSControlSize) -> CGFloat;
+        pub unsafe fn scrollerWidthForControlSize(control_size: NSControlSize) -> CGFloat;
 
         #[method(scrollerWidth)]
         pub unsafe fn scrollerWidth() -> CGFloat;
@@ -159,13 +159,13 @@ extern_methods!(
         pub unsafe fn arrowsPosition(&self) -> NSScrollArrowPosition;
 
         #[method(setArrowsPosition:)]
-        pub unsafe fn setArrowsPosition(&self, arrowsPosition: NSScrollArrowPosition);
+        pub unsafe fn setArrowsPosition(&self, arrows_position: NSScrollArrowPosition);
 
         #[method(controlTint)]
         pub unsafe fn controlTint(&self) -> NSControlTint;
 
         #[method(setControlTint:)]
-        pub unsafe fn setControlTint(&self, controlTint: NSControlTint);
+        pub unsafe fn setControlTint(&self, control_tint: NSControlTint);
 
         #[method(highlight:)]
         pub unsafe fn highlight(&self, flag: bool);
@@ -178,7 +178,7 @@ extern_methods!(
         pub unsafe fn drawParts(&self);
 
         #[method(drawArrow:highlight:)]
-        pub unsafe fn drawArrow_highlight(&self, whichArrow: NSScrollerArrow, flag: bool);
+        pub unsafe fn drawArrow_highlight(&self, which_arrow: NSScrollerArrow, flag: bool);
     }
 );
 
@@ -189,7 +189,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frame_rect: NSRect,
         ) -> Id<Self, Shared>;
     }
 );

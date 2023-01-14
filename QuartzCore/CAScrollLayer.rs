@@ -33,7 +33,7 @@ extern_methods!(
         pub unsafe fn scrollMode(&self) -> Id<CAScrollLayerScrollMode, Shared>;
 
         #[method(setScrollMode:)]
-        pub unsafe fn setScrollMode(&self, scrollMode: &CAScrollLayerScrollMode);
+        pub unsafe fn setScrollMode(&self, scroll_mode: &CAScrollLayerScrollMode);
     }
 );
 

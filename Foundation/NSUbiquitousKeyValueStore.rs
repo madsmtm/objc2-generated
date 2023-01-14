@@ -22,78 +22,78 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other objectForKey:)]
-        pub unsafe fn objectForKey(&self, aKey: &NSString) -> Option<Id<Object, Shared>>;
+        pub unsafe fn objectForKey(&self, a_key: &NSString) -> Option<Id<Object, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setObject:forKey:)]
-        pub unsafe fn setObject_forKey(&self, anObject: Option<&Object>, aKey: &NSString);
+        pub unsafe fn setObject_forKey(&self, an_object: Option<&Object>, a_key: &NSString);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(removeObjectForKey:)]
-        pub unsafe fn removeObjectForKey(&self, aKey: &NSString);
+        pub unsafe fn removeObjectForKey(&self, a_key: &NSString);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringForKey:)]
-        pub unsafe fn stringForKey(&self, aKey: &NSString) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn stringForKey(&self, a_key: &NSString) -> Option<Id<NSString, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other arrayForKey:)]
-        pub unsafe fn arrayForKey(&self, aKey: &NSString) -> Option<Id<NSArray, Shared>>;
+        pub unsafe fn arrayForKey(&self, a_key: &NSString) -> Option<Id<NSArray, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other dictionaryForKey:)]
         pub unsafe fn dictionaryForKey(
             &self,
-            aKey: &NSString,
+            a_key: &NSString,
         ) -> Option<Id<NSDictionary<NSString, Object>, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other dataForKey:)]
-        pub unsafe fn dataForKey(&self, aKey: &NSString) -> Option<Id<NSData, Shared>>;
+        pub unsafe fn dataForKey(&self, a_key: &NSString) -> Option<Id<NSData, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(longLongForKey:)]
-        pub unsafe fn longLongForKey(&self, aKey: &NSString) -> c_longlong;
+        pub unsafe fn longLongForKey(&self, a_key: &NSString) -> c_longlong;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(doubleForKey:)]
-        pub unsafe fn doubleForKey(&self, aKey: &NSString) -> c_double;
+        pub unsafe fn doubleForKey(&self, a_key: &NSString) -> c_double;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(boolForKey:)]
-        pub unsafe fn boolForKey(&self, aKey: &NSString) -> bool;
+        pub unsafe fn boolForKey(&self, a_key: &NSString) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setString:forKey:)]
-        pub unsafe fn setString_forKey(&self, aString: Option<&NSString>, aKey: &NSString);
+        pub unsafe fn setString_forKey(&self, a_string: Option<&NSString>, a_key: &NSString);
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSString"))]
         #[method(setData:forKey:)]
-        pub unsafe fn setData_forKey(&self, aData: Option<&NSData>, aKey: &NSString);
+        pub unsafe fn setData_forKey(&self, a_data: Option<&NSData>, a_key: &NSString);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setArray:forKey:)]
-        pub unsafe fn setArray_forKey(&self, anArray: Option<&NSArray>, aKey: &NSString);
+        pub unsafe fn setArray_forKey(&self, an_array: Option<&NSArray>, a_key: &NSString);
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setDictionary:forKey:)]
         pub unsafe fn setDictionary_forKey(
             &self,
-            aDictionary: Option<&NSDictionary<NSString, Object>>,
-            aKey: &NSString,
+            a_dictionary: Option<&NSDictionary<NSString, Object>>,
+            a_key: &NSString,
         );
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLongLong:forKey:)]
-        pub unsafe fn setLongLong_forKey(&self, value: c_longlong, aKey: &NSString);
+        pub unsafe fn setLongLong_forKey(&self, value: c_longlong, a_key: &NSString);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setDouble:forKey:)]
-        pub unsafe fn setDouble_forKey(&self, value: c_double, aKey: &NSString);
+        pub unsafe fn setDouble_forKey(&self, value: c_double, a_key: &NSString);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setBool:forKey:)]
-        pub unsafe fn setBool_forKey(&self, value: bool, aKey: &NSString);
+        pub unsafe fn setBool_forKey(&self, value: bool, a_key: &NSString);
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other dictionaryRepresentation)]

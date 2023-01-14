@@ -30,7 +30,7 @@ extern_methods!(
         pub unsafe fn initWithName_URI(
             this: Option<Allocated<Self>>,
             name: &NSString,
-            URI: Option<&NSString>,
+            uri: Option<&NSString>,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -63,8 +63,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Other elementsForLocalName:URI:)]
         pub unsafe fn elementsForLocalName_URI(
             &self,
-            localName: &NSString,
-            URI: Option<&NSString>,
+            local_name: &NSString,
+            uri: Option<&NSString>,
         ) -> Id<NSArray<NSXMLElement>, Shared>;
 
         #[method(addAttribute:)]
@@ -97,12 +97,12 @@ extern_methods!(
         #[method_id(@__retain_semantics Other attributeForLocalName:URI:)]
         pub unsafe fn attributeForLocalName_URI(
             &self,
-            localName: &NSString,
-            URI: Option<&NSString>,
+            local_name: &NSString,
+            uri: Option<&NSString>,
         ) -> Option<Id<NSXMLNode, Shared>>;
 
         #[method(addNamespace:)]
-        pub unsafe fn addNamespace(&self, aNamespace: &NSXMLNode);
+        pub unsafe fn addNamespace(&self, a_namespace: &NSXMLNode);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(removeNamespaceForPrefix:)]
@@ -131,7 +131,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other resolvePrefixForNamespaceURI:)]
         pub unsafe fn resolvePrefixForNamespaceURI(
             &self,
-            namespaceURI: &NSString,
+            namespace_uri: &NSString,
         ) -> Option<Id<NSString, Shared>>;
 
         #[method(insertChild:atIndex:)]

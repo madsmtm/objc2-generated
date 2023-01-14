@@ -44,7 +44,7 @@ extern_methods!(
         #[method_id(@__retain_semantics New newValuesForObjectWithID:withContext:error:_)]
         pub unsafe fn newValuesForObjectWithID_withContext_error(
             &self,
-            objectID: &NSManagedObjectID,
+            object_id: &NSManagedObjectID,
             context: &NSManagedObjectContext,
         ) -> Result<Id<NSIncrementalStoreNode, Shared>, Id<NSError, Shared>>;
 
@@ -58,13 +58,13 @@ extern_methods!(
         pub unsafe fn newValueForRelationship_forObjectWithID_withContext_error(
             &self,
             relationship: &NSRelationshipDescription,
-            objectID: &NSManagedObjectID,
+            object_id: &NSManagedObjectID,
             context: Option<&NSManagedObjectContext>,
         ) -> Result<Id<Object, Shared>, Id<NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other identifierForNewStoreAtURL:)]
-        pub unsafe fn identifierForNewStoreAtURL(storeURL: &NSURL) -> Id<Object, Shared>;
+        pub unsafe fn identifierForNewStoreAtURL(store_url: &NSURL) -> Id<Object, Shared>;
 
         #[cfg(all(
             feature = "CoreData_NSManagedObject",
@@ -82,14 +82,14 @@ extern_methods!(
         #[method(managedObjectContextDidRegisterObjectsWithIDs:)]
         pub unsafe fn managedObjectContextDidRegisterObjectsWithIDs(
             &self,
-            objectIDs: &NSArray<NSManagedObjectID>,
+            object_i_ds: &NSArray<NSManagedObjectID>,
         );
 
         #[cfg(all(feature = "CoreData_NSManagedObjectID", feature = "Foundation_NSArray"))]
         #[method(managedObjectContextDidUnregisterObjectsWithIDs:)]
         pub unsafe fn managedObjectContextDidUnregisterObjectsWithIDs(
             &self,
-            objectIDs: &NSArray<NSManagedObjectID>,
+            object_i_ds: &NSArray<NSManagedObjectID>,
         );
 
         #[cfg(all(
@@ -107,7 +107,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other referenceObjectForObjectID:)]
         pub unsafe fn referenceObjectForObjectID(
             &self,
-            objectID: &NSManagedObjectID,
+            object_id: &NSManagedObjectID,
         ) -> Id<Object, Shared>;
     }
 );

@@ -24,7 +24,7 @@ extern_methods!(
         pub unsafe fn completeRequestWithSelectedCredential_completionHandler(
             &self,
             credential: &ASPasswordCredential,
-            completionHandler: Option<&Block<(Bool,), ()>>,
+            completion_handler: Option<&Block<(Bool,), ()>>,
         );
 
         #[method(completeExtensionConfigurationRequest)]
@@ -35,7 +35,7 @@ extern_methods!(
         pub unsafe fn completeRequestReturningItems_completionHandler(
             &self,
             items: Option<&NSArray>,
-            completionHandler: Option<&Block<(Bool,), ()>>,
+            completion_handler: Option<&Block<(Bool,), ()>>,
         );
 
         #[cfg(feature = "Foundation_NSError")]

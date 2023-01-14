@@ -70,7 +70,7 @@ extern_methods!(
         pub unsafe fn anyObject(&self) -> Option<Id<ObjectType, ObjectTypeOwnership>>;
 
         #[method(containsObject:)]
-        pub unsafe fn containsObject(&self, anObject: &ObjectType) -> bool;
+        pub unsafe fn containsObject(&self, an_object: &ObjectType) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other description)]
@@ -82,28 +82,28 @@ extern_methods!(
             -> Id<NSString, Shared>;
 
         #[method(intersectsSet:)]
-        pub unsafe fn intersectsSet(&self, otherSet: &NSSet<ObjectType>) -> bool;
+        pub unsafe fn intersectsSet(&self, other_set: &NSSet<ObjectType>) -> bool;
 
         #[method(isEqualToSet:)]
-        pub unsafe fn isEqualToSet(&self, otherSet: &NSSet<ObjectType>) -> bool;
+        pub unsafe fn isEqualToSet(&self, other_set: &NSSet<ObjectType>) -> bool;
 
         #[method(isSubsetOfSet:)]
-        pub unsafe fn isSubsetOfSet(&self, otherSet: &NSSet<ObjectType>) -> bool;
+        pub unsafe fn isSubsetOfSet(&self, other_set: &NSSet<ObjectType>) -> bool;
 
         #[method(makeObjectsPerformSelector:)]
-        pub unsafe fn makeObjectsPerformSelector(&self, aSelector: Sel);
+        pub unsafe fn makeObjectsPerformSelector(&self, a_selector: Sel);
 
         #[method(makeObjectsPerformSelector:withObject:)]
         pub unsafe fn makeObjectsPerformSelector_withObject(
             &self,
-            aSelector: Sel,
+            a_selector: Sel,
             argument: Option<&Object>,
         );
 
         #[method_id(@__retain_semantics Other setByAddingObject:)]
         pub unsafe fn setByAddingObject(
             &self,
-            anObject: &ObjectType,
+            an_object: &ObjectType,
         ) -> Id<NSSet<ObjectType>, Shared>;
 
         #[method_id(@__retain_semantics Other setByAddingObjectsFromSet:)]
@@ -235,7 +235,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCapacity:)]
         pub unsafe fn initWithCapacity(
             this: Option<Allocated<Self>>,
-            numItems: NSUInteger,
+            num_items: NSUInteger,
         ) -> Id<Self, Owned>;
     }
 );
@@ -252,22 +252,22 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSSet")]
         #[method(intersectSet:)]
-        pub unsafe fn intersectSet(&self, otherSet: &NSSet<ObjectType>);
+        pub unsafe fn intersectSet(&self, other_set: &NSSet<ObjectType>);
 
         #[cfg(feature = "Foundation_NSSet")]
         #[method(minusSet:)]
-        pub unsafe fn minusSet(&self, otherSet: &NSSet<ObjectType>);
+        pub unsafe fn minusSet(&self, other_set: &NSSet<ObjectType>);
 
         #[method(removeAllObjects)]
         pub fn removeAllObjects(&mut self);
 
         #[cfg(feature = "Foundation_NSSet")]
         #[method(unionSet:)]
-        pub unsafe fn unionSet(&self, otherSet: &NSSet<ObjectType>);
+        pub unsafe fn unionSet(&self, other_set: &NSSet<ObjectType>);
 
         #[cfg(feature = "Foundation_NSSet")]
         #[method(setSet:)]
-        pub unsafe fn setSet(&self, otherSet: &NSSet<ObjectType>);
+        pub unsafe fn setSet(&self, other_set: &NSSet<ObjectType>);
     }
 );
 
@@ -278,7 +278,7 @@ extern_methods!(
         NSMutableSet<ObjectType, ObjectTypeOwnership>
     {
         #[method_id(@__retain_semantics Other setWithCapacity:)]
-        pub unsafe fn setWithCapacity(numItems: NSUInteger) -> Id<Self, Owned>;
+        pub unsafe fn setWithCapacity(num_items: NSUInteger) -> Id<Self, Owned>;
     }
 );
 
@@ -307,7 +307,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCapacity:)]
         pub unsafe fn initWithCapacity(
             this: Option<Allocated<Self>>,
-            numItems: NSUInteger,
+            num_items: NSUInteger,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSArray")]
@@ -348,12 +348,12 @@ extern_methods!(
     {
         #[cfg(feature = "Foundation_NSIndexPath")]
         #[method_id(@__retain_semantics Other setWithCollectionViewIndexPath:)]
-        pub unsafe fn setWithCollectionViewIndexPath(indexPath: &NSIndexPath) -> Id<Self, Owned>;
+        pub unsafe fn setWithCollectionViewIndexPath(index_path: &NSIndexPath) -> Id<Self, Owned>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSIndexPath"))]
         #[method_id(@__retain_semantics Other setWithCollectionViewIndexPaths:)]
         pub unsafe fn setWithCollectionViewIndexPaths(
-            indexPaths: &NSArray<NSIndexPath>,
+            index_paths: &NSArray<NSIndexPath>,
         ) -> Id<Self, Owned>;
     }
 );
@@ -431,7 +431,7 @@ extern_methods!(
         NSCountedSet<ObjectType, ObjectTypeOwnership>
     {
         #[method_id(@__retain_semantics Other setWithCapacity:)]
-        pub unsafe fn setWithCapacity(numItems: NSUInteger) -> Id<Self, Shared>;
+        pub unsafe fn setWithCapacity(num_items: NSUInteger) -> Id<Self, Shared>;
     }
 );
 
@@ -445,12 +445,12 @@ extern_methods!(
     {
         #[cfg(feature = "Foundation_NSIndexPath")]
         #[method_id(@__retain_semantics Other setWithCollectionViewIndexPath:)]
-        pub unsafe fn setWithCollectionViewIndexPath(indexPath: &NSIndexPath) -> Id<Self, Shared>;
+        pub unsafe fn setWithCollectionViewIndexPath(index_path: &NSIndexPath) -> Id<Self, Shared>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSIndexPath"))]
         #[method_id(@__retain_semantics Other setWithCollectionViewIndexPaths:)]
         pub unsafe fn setWithCollectionViewIndexPaths(
-            indexPaths: &NSArray<NSIndexPath>,
+            index_paths: &NSArray<NSIndexPath>,
         ) -> Id<Self, Shared>;
     }
 );

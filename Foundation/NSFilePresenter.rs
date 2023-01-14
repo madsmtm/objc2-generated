@@ -39,7 +39,7 @@ extern_protocol!(
         #[method(savePresentedItemChangesWithCompletionHandler:)]
         pub unsafe fn savePresentedItemChangesWithCompletionHandler(
             &self,
-            completionHandler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<(*mut NSError,), ()>,
         );
 
         #[cfg(feature = "Foundation_NSError")]
@@ -47,13 +47,13 @@ extern_protocol!(
         #[method(accommodatePresentedItemDeletionWithCompletionHandler:)]
         pub unsafe fn accommodatePresentedItemDeletionWithCompletionHandler(
             &self,
-            completionHandler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<(*mut NSError,), ()>,
         );
 
         #[cfg(feature = "Foundation_NSURL")]
         #[optional]
         #[method(presentedItemDidMoveToURL:)]
-        pub unsafe fn presentedItemDidMoveToURL(&self, newURL: &NSURL);
+        pub unsafe fn presentedItemDidMoveToURL(&self, new_url: &NSURL);
 
         #[optional]
         #[method(presentedItemDidChange)]
@@ -95,7 +95,7 @@ extern_protocol!(
         pub unsafe fn accommodatePresentedSubitemDeletionAtURL_completionHandler(
             &self,
             url: &NSURL,
-            completionHandler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<(*mut NSError,), ()>,
         );
 
         #[cfg(feature = "Foundation_NSURL")]
@@ -106,7 +106,7 @@ extern_protocol!(
         #[cfg(feature = "Foundation_NSURL")]
         #[optional]
         #[method(presentedSubitemAtURL:didMoveToURL:)]
-        pub unsafe fn presentedSubitemAtURL_didMoveToURL(&self, oldURL: &NSURL, newURL: &NSURL);
+        pub unsafe fn presentedSubitemAtURL_didMoveToURL(&self, old_url: &NSURL, new_url: &NSURL);
 
         #[cfg(feature = "Foundation_NSURL")]
         #[optional]

@@ -44,7 +44,7 @@ extern_methods!(
         #[cfg(all(feature = "AppKit_NSFont", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other glyphInfoWithGlyphName:forFont:baseString:)]
         pub unsafe fn glyphInfoWithGlyphName_forFont_baseString(
-            glyphName: &NSString,
+            glyph_name: &NSString,
             font: &NSFont,
             string: &NSString,
         ) -> Option<Id<NSGlyphInfo, Shared>>;
@@ -61,7 +61,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other glyphInfoWithCharacterIdentifier:collection:baseString:)]
         pub unsafe fn glyphInfoWithCharacterIdentifier_collection_baseString(
             cid: NSUInteger,
-            characterCollection: NSCharacterCollection,
+            character_collection: NSCharacterCollection,
             string: &NSString,
         ) -> Option<Id<NSGlyphInfo, Shared>>;
 

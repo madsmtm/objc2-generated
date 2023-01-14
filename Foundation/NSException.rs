@@ -52,16 +52,16 @@ extern_methods!(
         pub unsafe fn exceptionWithName_reason_userInfo(
             name: &NSExceptionName,
             reason: Option<&NSString>,
-            userInfo: Option<&NSDictionary>,
+            user_info: Option<&NSDictionary>,
         ) -> Id<NSException, Shared>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithName:reason:userInfo:)]
         pub unsafe fn initWithName_reason_userInfo(
             this: Option<Allocated<Self>>,
-            aName: &NSExceptionName,
-            aReason: Option<&NSString>,
-            aUserInfo: Option<&NSDictionary>,
+            a_name: &NSExceptionName,
+            a_reason: Option<&NSString>,
+            a_user_info: Option<&NSDictionary>,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Other name)]

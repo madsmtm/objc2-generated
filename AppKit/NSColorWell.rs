@@ -42,7 +42,7 @@ extern_methods!(
         pub unsafe fn isActive(&self) -> bool;
 
         #[method(drawWellInside:)]
-        pub unsafe fn drawWellInside(&self, insideRect: NSRect);
+        pub unsafe fn drawWellInside(&self, inside_rect: NSRect);
 
         #[method(isBordered)]
         pub unsafe fn isBordered(&self) -> bool;
@@ -65,7 +65,7 @@ extern_methods!(
         pub unsafe fn colorWellStyle(&self) -> NSColorWellStyle;
 
         #[method(setColorWellStyle:)]
-        pub unsafe fn setColorWellStyle(&self, colorWellStyle: NSColorWellStyle);
+        pub unsafe fn setColorWellStyle(&self, color_well_style: NSColorWellStyle);
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other image)]
@@ -79,13 +79,13 @@ extern_methods!(
         pub unsafe fn pulldownTarget(&self) -> Option<Id<Object, Shared>>;
 
         #[method(setPulldownTarget:)]
-        pub unsafe fn setPulldownTarget(&self, pulldownTarget: Option<&Object>);
+        pub unsafe fn setPulldownTarget(&self, pulldown_target: Option<&Object>);
 
         #[method(pulldownAction)]
         pub unsafe fn pulldownAction(&self) -> Option<Sel>;
 
         #[method(setPulldownAction:)]
-        pub unsafe fn setPulldownAction(&self, pulldownAction: Option<Sel>);
+        pub unsafe fn setPulldownAction(&self, pulldown_action: Option<Sel>);
     }
 );
 
@@ -96,7 +96,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frame_rect: NSRect,
         ) -> Id<Self, Shared>;
     }
 );

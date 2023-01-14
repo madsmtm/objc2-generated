@@ -75,7 +75,7 @@ extern_methods!(
         pub unsafe fn blendingMode(&self) -> NSVisualEffectBlendingMode;
 
         #[method(setBlendingMode:)]
-        pub unsafe fn setBlendingMode(&self, blendingMode: NSVisualEffectBlendingMode);
+        pub unsafe fn setBlendingMode(&self, blending_mode: NSVisualEffectBlendingMode);
 
         #[method(state)]
         pub unsafe fn state(&self) -> NSVisualEffectState;
@@ -89,7 +89,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method(setMaskImage:)]
-        pub unsafe fn setMaskImage(&self, maskImage: Option<&NSImage>);
+        pub unsafe fn setMaskImage(&self, mask_image: Option<&NSImage>);
 
         #[method(isEmphasized)]
         pub unsafe fn isEmphasized(&self) -> bool;
@@ -102,7 +102,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[method(viewWillMoveToWindow:)]
-        pub unsafe fn viewWillMoveToWindow(&self, newWindow: Option<&NSWindow>);
+        pub unsafe fn viewWillMoveToWindow(&self, new_window: Option<&NSWindow>);
     }
 );
 
@@ -113,7 +113,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frame_rect: NSRect,
         ) -> Id<Self, Shared>;
     }
 );

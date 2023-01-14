@@ -9,9 +9,9 @@ extern_fn!(
 
 extern_fn!(
     pub unsafe fn NSCreateZone(
-        startSize: NSUInteger,
+        start_size: NSUInteger,
         granularity: NSUInteger,
-        canFree: Bool,
+        can_free: Bool,
     ) -> NonNull<NSZone>;
 );
 
@@ -40,8 +40,8 @@ extern_fn!(
 extern_fn!(
     pub unsafe fn NSZoneCalloc(
         zone: *mut NSZone,
-        numElems: NSUInteger,
-        byteSize: NSUInteger,
+        num_elems: NSUInteger,
+        byte_size: NSUInteger,
     ) -> NonNull<c_void>;
 );
 

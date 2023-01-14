@@ -32,7 +32,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other storyboardWithName:bundle:)]
         pub unsafe fn storyboardWithName_bundle(
             name: &NSStoryboardName,
-            storyboardBundleOrNil: Option<&NSBundle>,
+            storyboard_bundle_or_nil: Option<&NSBundle>,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Other instantiateInitialController)]

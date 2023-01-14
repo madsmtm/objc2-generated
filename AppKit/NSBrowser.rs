@@ -56,16 +56,16 @@ extern_methods!(
         pub unsafe fn doubleAction(&self) -> Option<Sel>;
 
         #[method(setDoubleAction:)]
-        pub unsafe fn setDoubleAction(&self, doubleAction: Option<Sel>);
+        pub unsafe fn setDoubleAction(&self, double_action: Option<Sel>);
 
         #[method(setCellClass:)]
-        pub unsafe fn setCellClass(&self, factoryId: &Class);
+        pub unsafe fn setCellClass(&self, factory_id: &Class);
 
         #[method_id(@__retain_semantics Other cellPrototype)]
         pub unsafe fn cellPrototype(&self) -> Option<Id<Object, Shared>>;
 
         #[method(setCellPrototype:)]
-        pub unsafe fn setCellPrototype(&self, cellPrototype: Option<&Object>);
+        pub unsafe fn setCellPrototype(&self, cell_prototype: Option<&Object>);
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSBrowserDelegate, Shared>>;
@@ -77,25 +77,25 @@ extern_methods!(
         pub unsafe fn reusesColumns(&self) -> bool;
 
         #[method(setReusesColumns:)]
-        pub unsafe fn setReusesColumns(&self, reusesColumns: bool);
+        pub unsafe fn setReusesColumns(&self, reuses_columns: bool);
 
         #[method(hasHorizontalScroller)]
         pub unsafe fn hasHorizontalScroller(&self) -> bool;
 
         #[method(setHasHorizontalScroller:)]
-        pub unsafe fn setHasHorizontalScroller(&self, hasHorizontalScroller: bool);
+        pub unsafe fn setHasHorizontalScroller(&self, has_horizontal_scroller: bool);
 
         #[method(autohidesScroller)]
         pub unsafe fn autohidesScroller(&self) -> bool;
 
         #[method(setAutohidesScroller:)]
-        pub unsafe fn setAutohidesScroller(&self, autohidesScroller: bool);
+        pub unsafe fn setAutohidesScroller(&self, autohides_scroller: bool);
 
         #[method(separatesColumns)]
         pub unsafe fn separatesColumns(&self) -> bool;
 
         #[method(setSeparatesColumns:)]
-        pub unsafe fn setSeparatesColumns(&self, separatesColumns: bool);
+        pub unsafe fn setSeparatesColumns(&self, separates_columns: bool);
 
         #[method(isTitled)]
         pub unsafe fn isTitled(&self) -> bool;
@@ -107,48 +107,53 @@ extern_methods!(
         pub unsafe fn minColumnWidth(&self) -> CGFloat;
 
         #[method(setMinColumnWidth:)]
-        pub unsafe fn setMinColumnWidth(&self, minColumnWidth: CGFloat);
+        pub unsafe fn setMinColumnWidth(&self, min_column_width: CGFloat);
 
         #[method(maxVisibleColumns)]
         pub unsafe fn maxVisibleColumns(&self) -> NSInteger;
 
         #[method(setMaxVisibleColumns:)]
-        pub unsafe fn setMaxVisibleColumns(&self, maxVisibleColumns: NSInteger);
+        pub unsafe fn setMaxVisibleColumns(&self, max_visible_columns: NSInteger);
 
         #[method(allowsMultipleSelection)]
         pub unsafe fn allowsMultipleSelection(&self) -> bool;
 
         #[method(setAllowsMultipleSelection:)]
-        pub unsafe fn setAllowsMultipleSelection(&self, allowsMultipleSelection: bool);
+        pub unsafe fn setAllowsMultipleSelection(&self, allows_multiple_selection: bool);
 
         #[method(allowsBranchSelection)]
         pub unsafe fn allowsBranchSelection(&self) -> bool;
 
         #[method(setAllowsBranchSelection:)]
-        pub unsafe fn setAllowsBranchSelection(&self, allowsBranchSelection: bool);
+        pub unsafe fn setAllowsBranchSelection(&self, allows_branch_selection: bool);
 
         #[method(allowsEmptySelection)]
         pub unsafe fn allowsEmptySelection(&self) -> bool;
 
         #[method(setAllowsEmptySelection:)]
-        pub unsafe fn setAllowsEmptySelection(&self, allowsEmptySelection: bool);
+        pub unsafe fn setAllowsEmptySelection(&self, allows_empty_selection: bool);
 
         #[method(takesTitleFromPreviousColumn)]
         pub unsafe fn takesTitleFromPreviousColumn(&self) -> bool;
 
         #[method(setTakesTitleFromPreviousColumn:)]
-        pub unsafe fn setTakesTitleFromPreviousColumn(&self, takesTitleFromPreviousColumn: bool);
+        pub unsafe fn setTakesTitleFromPreviousColumn(
+            &self,
+            takes_title_from_previous_column: bool,
+        );
 
         #[method(sendsActionOnArrowKeys)]
         pub unsafe fn sendsActionOnArrowKeys(&self) -> bool;
 
         #[method(setSendsActionOnArrowKeys:)]
-        pub unsafe fn setSendsActionOnArrowKeys(&self, sendsActionOnArrowKeys: bool);
+        pub unsafe fn setSendsActionOnArrowKeys(&self, sends_action_on_arrow_keys: bool);
 
         #[cfg(feature = "Foundation_NSIndexPath")]
         #[method_id(@__retain_semantics Other itemAtIndexPath:)]
-        pub unsafe fn itemAtIndexPath(&self, indexPath: &NSIndexPath)
-            -> Option<Id<Object, Shared>>;
+        pub unsafe fn itemAtIndexPath(
+            &self,
+            index_path: &NSIndexPath,
+        ) -> Option<Id<Object, Shared>>;
 
         #[method_id(@__retain_semantics Other itemAtRow:inColumn:)]
         pub unsafe fn itemAtRow_inColumn(
@@ -168,7 +173,7 @@ extern_methods!(
         #[method(reloadDataForRowIndexes:inColumn:)]
         pub unsafe fn reloadDataForRowIndexes_inColumn(
             &self,
-            rowIndexes: &NSIndexSet,
+            row_indexes: &NSIndexSet,
             column: NSInteger,
         );
 
@@ -195,7 +200,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setPathSeparator:)]
-        pub unsafe fn setPathSeparator(&self, pathSeparator: &NSString);
+        pub unsafe fn setPathSeparator(&self, path_separator: &NSString);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setPath:)]
@@ -240,7 +245,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSIndexPath")]
         #[method(setSelectionIndexPath:)]
-        pub unsafe fn setSelectionIndexPath(&self, selectionIndexPath: Option<&NSIndexPath>);
+        pub unsafe fn setSelectionIndexPath(&self, selection_index_path: Option<&NSIndexPath>);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSIndexPath"))]
         #[method_id(@__retain_semantics Other selectionIndexPaths)]
@@ -248,7 +253,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSIndexPath"))]
         #[method(setSelectionIndexPaths:)]
-        pub unsafe fn setSelectionIndexPaths(&self, selectionIndexPaths: &NSArray<NSIndexPath>);
+        pub unsafe fn setSelectionIndexPaths(&self, selection_index_paths: &NSArray<NSIndexPath>);
 
         #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(selectRowIndexes:inColumn:)]
@@ -268,10 +273,10 @@ extern_methods!(
         pub unsafe fn validateVisibleColumns(&self);
 
         #[method(scrollColumnsRightBy:)]
-        pub unsafe fn scrollColumnsRightBy(&self, shiftAmount: NSInteger);
+        pub unsafe fn scrollColumnsRightBy(&self, shift_amount: NSInteger);
 
         #[method(scrollColumnsLeftBy:)]
-        pub unsafe fn scrollColumnsLeftBy(&self, shiftAmount: NSInteger);
+        pub unsafe fn scrollColumnsLeftBy(&self, shift_amount: NSInteger);
 
         #[method(scrollColumnToVisible:)]
         pub unsafe fn scrollColumnToVisible(&self, column: NSInteger);
@@ -280,7 +285,7 @@ extern_methods!(
         pub unsafe fn lastColumn(&self) -> NSInteger;
 
         #[method(setLastColumn:)]
-        pub unsafe fn setLastColumn(&self, lastColumn: NSInteger);
+        pub unsafe fn setLastColumn(&self, last_column: NSInteger);
 
         #[method(addColumn)]
         pub unsafe fn addColumn(&self);
@@ -345,26 +350,32 @@ extern_methods!(
         #[method(columnWidthForColumnContentWidth:)]
         pub unsafe fn columnWidthForColumnContentWidth(
             &self,
-            columnContentWidth: CGFloat,
+            column_content_width: CGFloat,
         ) -> CGFloat;
 
         #[method(columnContentWidthForColumnWidth:)]
-        pub unsafe fn columnContentWidthForColumnWidth(&self, columnWidth: CGFloat) -> CGFloat;
+        pub unsafe fn columnContentWidthForColumnWidth(&self, column_width: CGFloat) -> CGFloat;
 
         #[method(columnResizingType)]
         pub unsafe fn columnResizingType(&self) -> NSBrowserColumnResizingType;
 
         #[method(setColumnResizingType:)]
-        pub unsafe fn setColumnResizingType(&self, columnResizingType: NSBrowserColumnResizingType);
+        pub unsafe fn setColumnResizingType(
+            &self,
+            column_resizing_type: NSBrowserColumnResizingType,
+        );
 
         #[method(prefersAllColumnUserResizing)]
         pub unsafe fn prefersAllColumnUserResizing(&self) -> bool;
 
         #[method(setPrefersAllColumnUserResizing:)]
-        pub unsafe fn setPrefersAllColumnUserResizing(&self, prefersAllColumnUserResizing: bool);
+        pub unsafe fn setPrefersAllColumnUserResizing(
+            &self,
+            prefers_all_column_user_resizing: bool,
+        );
 
         #[method(setWidth:ofColumn:)]
-        pub unsafe fn setWidth_ofColumn(&self, columnWidth: CGFloat, columnIndex: NSInteger);
+        pub unsafe fn setWidth_ofColumn(&self, column_width: CGFloat, column_index: NSInteger);
 
         #[method(widthOfColumn:)]
         pub unsafe fn widthOfColumn(&self, column: NSInteger) -> CGFloat;
@@ -373,18 +384,18 @@ extern_methods!(
         pub unsafe fn rowHeight(&self) -> CGFloat;
 
         #[method(setRowHeight:)]
-        pub unsafe fn setRowHeight(&self, rowHeight: CGFloat);
+        pub unsafe fn setRowHeight(&self, row_height: CGFloat);
 
         #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(noteHeightOfRowsWithIndexesChanged:inColumn:)]
         pub unsafe fn noteHeightOfRowsWithIndexesChanged_inColumn(
             &self,
-            indexSet: &NSIndexSet,
-            columnIndex: NSInteger,
+            index_set: &NSIndexSet,
+            column_index: NSInteger,
         );
 
         #[method(setDefaultColumnWidth:)]
-        pub unsafe fn setDefaultColumnWidth(&self, columnWidth: CGFloat);
+        pub unsafe fn setDefaultColumnWidth(&self, column_width: CGFloat);
 
         #[method(defaultColumnWidth)]
         pub unsafe fn defaultColumnWidth(&self) -> CGFloat;
@@ -395,7 +406,7 @@ extern_methods!(
         #[method(setColumnsAutosaveName:)]
         pub unsafe fn setColumnsAutosaveName(
             &self,
-            columnsAutosaveName: &NSBrowserColumnsAutosaveName,
+            columns_autosave_name: &NSBrowserColumnsAutosaveName,
         );
 
         #[method(removeSavedColumnsWithAutosaveName:)]
@@ -405,7 +416,7 @@ extern_methods!(
         #[method(canDragRowsWithIndexes:inColumn:withEvent:)]
         pub unsafe fn canDragRowsWithIndexes_inColumn_withEvent(
             &self,
-            rowIndexes: &NSIndexSet,
+            row_indexes: &NSIndexSet,
             column: NSInteger,
             event: &NSEvent,
         ) -> bool;
@@ -418,24 +429,24 @@ extern_methods!(
         #[method_id(@__retain_semantics Other draggingImageForRowsWithIndexes:inColumn:withEvent:offset:)]
         pub unsafe fn draggingImageForRowsWithIndexes_inColumn_withEvent_offset(
             &self,
-            rowIndexes: &NSIndexSet,
+            row_indexes: &NSIndexSet,
             column: NSInteger,
             event: &NSEvent,
-            dragImageOffset: NSPointPointer,
+            drag_image_offset: NSPointPointer,
         ) -> Option<Id<NSImage, Shared>>;
 
         #[method(setDraggingSourceOperationMask:forLocal:)]
         pub unsafe fn setDraggingSourceOperationMask_forLocal(
             &self,
             mask: NSDragOperation,
-            isLocal: bool,
+            is_local: bool,
         );
 
         #[method(allowsTypeSelect)]
         pub unsafe fn allowsTypeSelect(&self) -> bool;
 
         #[method(setAllowsTypeSelect:)]
-        pub unsafe fn setAllowsTypeSelect(&self, allowsTypeSelect: bool);
+        pub unsafe fn setAllowsTypeSelect(&self, allows_type_select: bool);
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other backgroundColor)]
@@ -443,13 +454,13 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setBackgroundColor:)]
-        pub unsafe fn setBackgroundColor(&self, backgroundColor: &NSColor);
+        pub unsafe fn setBackgroundColor(&self, background_color: &NSColor);
 
         #[cfg(all(feature = "AppKit_NSEvent", feature = "Foundation_NSIndexPath"))]
         #[method(editItemAtIndexPath:withEvent:select:)]
         pub unsafe fn editItemAtIndexPath_withEvent_select(
             &self,
-            indexPath: &NSIndexPath,
+            index_path: &NSIndexPath,
             event: Option<&NSEvent>,
             select: bool,
         );
@@ -522,7 +533,7 @@ extern_protocol!(
             &self,
             browser: &NSBrowser,
             row: NSInteger,
-            columnIndex: NSInteger,
+            column_index: NSInteger,
         ) -> CGFloat;
 
         #[cfg(feature = "AppKit_NSBrowser")]
@@ -610,9 +621,9 @@ extern_protocol!(
         pub unsafe fn browser_shouldSizeColumn_forUserResize_toWidth(
             &self,
             browser: &NSBrowser,
-            columnIndex: NSInteger,
-            forUserResize: bool,
-            suggestedWidth: CGFloat,
+            column_index: NSInteger,
+            for_user_resize: bool,
+            suggested_width: CGFloat,
         ) -> CGFloat;
 
         #[cfg(feature = "AppKit_NSBrowser")]
@@ -621,7 +632,7 @@ extern_protocol!(
         pub unsafe fn browser_sizeToFitWidthOfColumn(
             &self,
             browser: &NSBrowser,
-            columnIndex: NSInteger,
+            column_index: NSInteger,
         ) -> CGFloat;
 
         #[cfg(feature = "Foundation_NSNotification")]
@@ -649,7 +660,7 @@ extern_protocol!(
         pub unsafe fn browser_writeRowsWithIndexes_inColumn_toPasteboard(
             &self,
             browser: &NSBrowser,
-            rowIndexes: &NSIndexSet,
+            row_indexes: &NSIndexSet,
             column: NSInteger,
             pasteboard: &NSPasteboard,
         ) -> bool;
@@ -666,8 +677,8 @@ extern_protocol!(
         pub unsafe fn browser_namesOfPromisedFilesDroppedAtDestination_forDraggedRowsWithIndexes_inColumn(
             &self,
             browser: &NSBrowser,
-            dropDestination: &NSURL,
-            rowIndexes: &NSIndexSet,
+            drop_destination: &NSURL,
+            row_indexes: &NSIndexSet,
             column: NSInteger,
         ) -> Id<NSArray<NSString>, Shared>;
 
@@ -681,7 +692,7 @@ extern_protocol!(
         pub unsafe fn browser_canDragRowsWithIndexes_inColumn_withEvent(
             &self,
             browser: &NSBrowser,
-            rowIndexes: &NSIndexSet,
+            row_indexes: &NSIndexSet,
             column: NSInteger,
             event: &NSEvent,
         ) -> bool;
@@ -697,10 +708,10 @@ extern_protocol!(
         pub unsafe fn browser_draggingImageForRowsWithIndexes_inColumn_withEvent_offset(
             &self,
             browser: &NSBrowser,
-            rowIndexes: &NSIndexSet,
+            row_indexes: &NSIndexSet,
             column: NSInteger,
             event: &NSEvent,
-            dragImageOffset: NSPointPointer,
+            drag_image_offset: NSPointPointer,
         ) -> Option<Id<NSImage, Shared>>;
 
         #[cfg(feature = "AppKit_NSBrowser")]
@@ -712,7 +723,7 @@ extern_protocol!(
             info: &NSDraggingInfo,
             row: NonNull<NSInteger>,
             column: NonNull<NSInteger>,
-            dropOperation: NonNull<NSBrowserDropOperation>,
+            drop_operation: NonNull<NSBrowserDropOperation>,
         ) -> NSDragOperation;
 
         #[cfg(feature = "AppKit_NSBrowser")]
@@ -724,7 +735,7 @@ extern_protocol!(
             info: &NSDraggingInfo,
             row: NSInteger,
             column: NSInteger,
-            dropOperation: NSBrowserDropOperation,
+            drop_operation: NSBrowserDropOperation,
         ) -> bool;
 
         #[cfg(all(feature = "AppKit_NSBrowser", feature = "Foundation_NSString"))]
@@ -748,7 +759,7 @@ extern_protocol!(
             &self,
             browser: &NSBrowser,
             event: &NSEvent,
-            searchString: Option<&NSString>,
+            search_string: Option<&NSString>,
         ) -> bool;
 
         #[cfg(all(feature = "AppKit_NSBrowser", feature = "Foundation_NSString"))]
@@ -757,10 +768,10 @@ extern_protocol!(
         pub unsafe fn browser_nextTypeSelectMatchFromRow_toRow_inColumn_forString(
             &self,
             browser: &NSBrowser,
-            startRow: NSInteger,
-            endRow: NSInteger,
+            start_row: NSInteger,
+            end_row: NSInteger,
             column: NSInteger,
-            searchString: Option<&NSString>,
+            search_string: Option<&NSString>,
         ) -> NSInteger;
 
         #[cfg(all(feature = "AppKit_NSBrowser", feature = "AppKit_NSViewController"))]
@@ -787,7 +798,7 @@ extern_protocol!(
         pub unsafe fn browser_didChangeLastColumn_toColumn(
             &self,
             browser: &NSBrowser,
-            oldLastColumn: NSInteger,
+            old_last_column: NSInteger,
             column: NSInteger,
         );
 
@@ -797,7 +808,7 @@ extern_protocol!(
         pub unsafe fn browser_selectionIndexesForProposedSelection_inColumn(
             &self,
             browser: &NSBrowser,
-            proposedSelectionIndexes: &NSIndexSet,
+            proposed_selection_indexes: &NSIndexSet,
             column: NSInteger,
         ) -> Id<NSIndexSet, Shared>;
     }
@@ -827,7 +838,7 @@ extern_methods!(
         pub unsafe fn updateScroller(&self);
 
         #[method(setMatrixClass:)]
-        pub unsafe fn setMatrixClass(&self, factoryId: &Class);
+        pub unsafe fn setMatrixClass(&self, factory_id: &Class);
 
         #[method(matrixClass)]
         pub unsafe fn matrixClass(&self) -> &'static Class;
@@ -849,7 +860,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frame_rect: NSRect,
         ) -> Id<Self, Shared>;
     }
 );

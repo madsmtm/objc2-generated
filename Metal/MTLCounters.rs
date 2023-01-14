@@ -120,7 +120,7 @@ extern_methods!(
         pub unsafe fn counterSet(&self) -> Option<Id<MTLCounterSet, Shared>>;
 
         #[method(setCounterSet:)]
-        pub unsafe fn setCounterSet(&self, counterSet: Option<&MTLCounterSet>);
+        pub unsafe fn setCounterSet(&self, counter_set: Option<&MTLCounterSet>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
@@ -134,13 +134,13 @@ extern_methods!(
         pub unsafe fn storageMode(&self) -> MTLStorageMode;
 
         #[method(setStorageMode:)]
-        pub unsafe fn setStorageMode(&self, storageMode: MTLStorageMode);
+        pub unsafe fn setStorageMode(&self, storage_mode: MTLStorageMode);
 
         #[method(sampleCount)]
         pub unsafe fn sampleCount(&self) -> NSUInteger;
 
         #[method(setSampleCount:)]
-        pub unsafe fn setSampleCount(&self, sampleCount: NSUInteger);
+        pub unsafe fn setSampleCount(&self, sample_count: NSUInteger);
     }
 );
 

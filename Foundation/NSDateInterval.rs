@@ -42,7 +42,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithStartDate:duration:)]
         pub unsafe fn initWithStartDate_duration(
             this: Option<Allocated<Self>>,
-            startDate: &NSDate,
+            start_date: &NSDate,
             duration: NSTimeInterval,
         ) -> Id<Self, Shared>;
 
@@ -50,23 +50,23 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithStartDate:endDate:)]
         pub unsafe fn initWithStartDate_endDate(
             this: Option<Allocated<Self>>,
-            startDate: &NSDate,
-            endDate: &NSDate,
+            start_date: &NSDate,
+            end_date: &NSDate,
         ) -> Id<Self, Shared>;
 
         #[method(compare:)]
-        pub unsafe fn compare(&self, dateInterval: &NSDateInterval) -> NSComparisonResult;
+        pub unsafe fn compare(&self, date_interval: &NSDateInterval) -> NSComparisonResult;
 
         #[method(isEqualToDateInterval:)]
-        pub unsafe fn isEqualToDateInterval(&self, dateInterval: &NSDateInterval) -> bool;
+        pub unsafe fn isEqualToDateInterval(&self, date_interval: &NSDateInterval) -> bool;
 
         #[method(intersectsDateInterval:)]
-        pub unsafe fn intersectsDateInterval(&self, dateInterval: &NSDateInterval) -> bool;
+        pub unsafe fn intersectsDateInterval(&self, date_interval: &NSDateInterval) -> bool;
 
         #[method_id(@__retain_semantics Other intersectionWithDateInterval:)]
         pub unsafe fn intersectionWithDateInterval(
             &self,
-            dateInterval: &NSDateInterval,
+            date_interval: &NSDateInterval,
         ) -> Option<Id<NSDateInterval, Shared>>;
 
         #[cfg(feature = "Foundation_NSDate")]

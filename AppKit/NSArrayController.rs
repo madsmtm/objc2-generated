@@ -29,7 +29,7 @@ extern_methods!(
         #[method(setAutomaticallyRearrangesObjects:)]
         pub unsafe fn setAutomaticallyRearrangesObjects(
             &self,
-            automaticallyRearrangesObjects: bool,
+            automatically_rearranges_objects: bool,
         );
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
@@ -53,7 +53,7 @@ extern_methods!(
             feature = "Foundation_NSSortDescriptor"
         ))]
         #[method(setSortDescriptors:)]
-        pub unsafe fn setSortDescriptors(&self, sortDescriptors: &NSArray<NSSortDescriptor>);
+        pub unsafe fn setSortDescriptors(&self, sort_descriptors: &NSArray<NSSortDescriptor>);
 
         #[cfg(feature = "Foundation_NSPredicate")]
         #[method_id(@__retain_semantics Other filterPredicate)]
@@ -61,7 +61,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSPredicate")]
         #[method(setFilterPredicate:)]
-        pub unsafe fn setFilterPredicate(&self, filterPredicate: Option<&NSPredicate>);
+        pub unsafe fn setFilterPredicate(&self, filter_predicate: Option<&NSPredicate>);
 
         #[method(clearsFilterPredicateOnInsertion)]
         pub unsafe fn clearsFilterPredicateOnInsertion(&self) -> bool;
@@ -69,7 +69,7 @@ extern_methods!(
         #[method(setClearsFilterPredicateOnInsertion:)]
         pub unsafe fn setClearsFilterPredicateOnInsertion(
             &self,
-            clearsFilterPredicateOnInsertion: bool,
+            clears_filter_predicate_on_insertion: bool,
         );
 
         #[cfg(feature = "Foundation_NSArray")]
@@ -83,19 +83,19 @@ extern_methods!(
         pub unsafe fn avoidsEmptySelection(&self) -> bool;
 
         #[method(setAvoidsEmptySelection:)]
-        pub unsafe fn setAvoidsEmptySelection(&self, avoidsEmptySelection: bool);
+        pub unsafe fn setAvoidsEmptySelection(&self, avoids_empty_selection: bool);
 
         #[method(preservesSelection)]
         pub unsafe fn preservesSelection(&self) -> bool;
 
         #[method(setPreservesSelection:)]
-        pub unsafe fn setPreservesSelection(&self, preservesSelection: bool);
+        pub unsafe fn setPreservesSelection(&self, preserves_selection: bool);
 
         #[method(selectsInsertedObjects)]
         pub unsafe fn selectsInsertedObjects(&self) -> bool;
 
         #[method(setSelectsInsertedObjects:)]
-        pub unsafe fn setSelectsInsertedObjects(&self, selectsInsertedObjects: bool);
+        pub unsafe fn setSelectsInsertedObjects(&self, selects_inserted_objects: bool);
 
         #[method(alwaysUsesMultipleValuesMarker)]
         pub unsafe fn alwaysUsesMultipleValuesMarker(&self) -> bool;
@@ -103,7 +103,7 @@ extern_methods!(
         #[method(setAlwaysUsesMultipleValuesMarker:)]
         pub unsafe fn setAlwaysUsesMultipleValuesMarker(
             &self,
-            alwaysUsesMultipleValuesMarker: bool,
+            always_uses_multiple_values_marker: bool,
         );
 
         #[cfg(feature = "Foundation_NSIndexSet")]

@@ -34,7 +34,7 @@ extern_methods!(
         pub unsafe fn tabStyle(&self) -> NSTabViewControllerTabStyle;
 
         #[method(setTabStyle:)]
-        pub unsafe fn setTabStyle(&self, tabStyle: NSTabViewControllerTabStyle);
+        pub unsafe fn setTabStyle(&self, tab_style: NSTabViewControllerTabStyle);
 
         #[cfg(feature = "AppKit_NSTabView")]
         #[method_id(@__retain_semantics Other tabView)]
@@ -42,7 +42,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSTabView")]
         #[method(setTabView:)]
-        pub unsafe fn setTabView(&self, tabView: &NSTabView);
+        pub unsafe fn setTabView(&self, tab_view: &NSTabView);
 
         #[method(transitionOptions)]
         pub unsafe fn transitionOptions(&self) -> NSViewControllerTransitionOptions;
@@ -50,7 +50,7 @@ extern_methods!(
         #[method(setTransitionOptions:)]
         pub unsafe fn setTransitionOptions(
             &self,
-            transitionOptions: NSViewControllerTransitionOptions,
+            transition_options: NSViewControllerTransitionOptions,
         );
 
         #[method(canPropagateSelectedChildViewControllerTitle)]
@@ -59,7 +59,7 @@ extern_methods!(
         #[method(setCanPropagateSelectedChildViewControllerTitle:)]
         pub unsafe fn setCanPropagateSelectedChildViewControllerTitle(
             &self,
-            canPropagateSelectedChildViewControllerTitle: bool,
+            can_propagate_selected_child_view_controller_title: bool,
         );
 
         #[cfg(all(feature = "AppKit_NSTabViewItem", feature = "Foundation_NSArray"))]
@@ -68,35 +68,35 @@ extern_methods!(
 
         #[cfg(all(feature = "AppKit_NSTabViewItem", feature = "Foundation_NSArray"))]
         #[method(setTabViewItems:)]
-        pub unsafe fn setTabViewItems(&self, tabViewItems: &NSArray<NSTabViewItem>);
+        pub unsafe fn setTabViewItems(&self, tab_view_items: &NSArray<NSTabViewItem>);
 
         #[method(selectedTabViewItemIndex)]
         pub unsafe fn selectedTabViewItemIndex(&self) -> NSInteger;
 
         #[method(setSelectedTabViewItemIndex:)]
-        pub unsafe fn setSelectedTabViewItemIndex(&self, selectedTabViewItemIndex: NSInteger);
+        pub unsafe fn setSelectedTabViewItemIndex(&self, selected_tab_view_item_index: NSInteger);
 
         #[cfg(feature = "AppKit_NSTabViewItem")]
         #[method(addTabViewItem:)]
-        pub unsafe fn addTabViewItem(&self, tabViewItem: &NSTabViewItem);
+        pub unsafe fn addTabViewItem(&self, tab_view_item: &NSTabViewItem);
 
         #[cfg(feature = "AppKit_NSTabViewItem")]
         #[method(insertTabViewItem:atIndex:)]
         pub unsafe fn insertTabViewItem_atIndex(
             &self,
-            tabViewItem: &NSTabViewItem,
+            tab_view_item: &NSTabViewItem,
             index: NSInteger,
         );
 
         #[cfg(feature = "AppKit_NSTabViewItem")]
         #[method(removeTabViewItem:)]
-        pub unsafe fn removeTabViewItem(&self, tabViewItem: &NSTabViewItem);
+        pub unsafe fn removeTabViewItem(&self, tab_view_item: &NSTabViewItem);
 
         #[cfg(feature = "AppKit_NSTabViewItem")]
         #[method_id(@__retain_semantics Other tabViewItemForViewController:)]
         pub unsafe fn tabViewItemForViewController(
             &self,
-            viewController: &NSViewController,
+            view_controller: &NSViewController,
         ) -> Option<Id<NSTabViewItem, Shared>>;
 
         #[method(viewDidLoad)]
@@ -106,24 +106,24 @@ extern_methods!(
         #[method(tabView:willSelectTabViewItem:)]
         pub unsafe fn tabView_willSelectTabViewItem(
             &self,
-            tabView: &NSTabView,
-            tabViewItem: Option<&NSTabViewItem>,
+            tab_view: &NSTabView,
+            tab_view_item: Option<&NSTabViewItem>,
         );
 
         #[cfg(all(feature = "AppKit_NSTabView", feature = "AppKit_NSTabViewItem"))]
         #[method(tabView:didSelectTabViewItem:)]
         pub unsafe fn tabView_didSelectTabViewItem(
             &self,
-            tabView: &NSTabView,
-            tabViewItem: Option<&NSTabViewItem>,
+            tab_view: &NSTabView,
+            tab_view_item: Option<&NSTabViewItem>,
         );
 
         #[cfg(all(feature = "AppKit_NSTabView", feature = "AppKit_NSTabViewItem"))]
         #[method(tabView:shouldSelectTabViewItem:)]
         pub unsafe fn tabView_shouldSelectTabViewItem(
             &self,
-            tabView: &NSTabView,
-            tabViewItem: Option<&NSTabViewItem>,
+            tab_view: &NSTabView,
+            tab_view_item: Option<&NSTabViewItem>,
         ) -> bool;
 
         #[cfg(all(feature = "AppKit_NSToolbar", feature = "AppKit_NSToolbarItem"))]
@@ -131,7 +131,7 @@ extern_methods!(
         pub unsafe fn toolbar_itemForItemIdentifier_willBeInsertedIntoToolbar(
             &self,
             toolbar: &NSToolbar,
-            itemIdentifier: &NSToolbarItemIdentifier,
+            item_identifier: &NSToolbarItemIdentifier,
             flag: bool,
         ) -> Option<Id<NSToolbarItem, Shared>>;
 
@@ -166,8 +166,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Option<Allocated<Self>>,
-            nibNameOrNil: Option<&NSNibName>,
-            nibBundleOrNil: Option<&NSBundle>,
+            nib_name_or_nil: Option<&NSNibName>,
+            nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Id<Self, Shared>;
     }
 );

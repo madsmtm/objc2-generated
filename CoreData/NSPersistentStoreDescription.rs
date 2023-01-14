@@ -20,15 +20,15 @@ extern_methods!(
     unsafe impl NSPersistentStoreDescription {
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other persistentStoreDescriptionWithURL:)]
-        pub unsafe fn persistentStoreDescriptionWithURL(URL: &NSURL) -> Id<Self, Shared>;
+        pub unsafe fn persistentStoreDescriptionWithURL(url: &NSURL) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other type)]
-        pub unsafe fn type_(&self) -> Id<NSString, Shared>;
+        pub unsafe fn r#type(&self) -> Id<NSString, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setType:)]
-        pub unsafe fn setType(&self, type_: &NSString);
+        pub unsafe fn setType(&self, r#type: &NSString);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other configuration)]
@@ -44,7 +44,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method(setURL:)]
-        pub unsafe fn setURL(&self, URL: Option<&NSURL>);
+        pub unsafe fn setURL(&self, url: Option<&NSURL>);
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other options)]
@@ -58,7 +58,7 @@ extern_methods!(
         pub unsafe fn isReadOnly(&self) -> bool;
 
         #[method(setReadOnly:)]
-        pub unsafe fn setReadOnly(&self, readOnly: bool);
+        pub unsafe fn setReadOnly(&self, read_only: bool);
 
         #[method(timeout)]
         pub unsafe fn timeout(&self) -> NSTimeInterval;
@@ -78,7 +78,7 @@ extern_methods!(
         pub unsafe fn shouldAddStoreAsynchronously(&self) -> bool;
 
         #[method(setShouldAddStoreAsynchronously:)]
-        pub unsafe fn setShouldAddStoreAsynchronously(&self, shouldAddStoreAsynchronously: bool);
+        pub unsafe fn setShouldAddStoreAsynchronously(&self, should_add_store_asynchronously: bool);
 
         #[method(shouldMigrateStoreAutomatically)]
         pub unsafe fn shouldMigrateStoreAutomatically(&self) -> bool;
@@ -86,7 +86,7 @@ extern_methods!(
         #[method(setShouldMigrateStoreAutomatically:)]
         pub unsafe fn setShouldMigrateStoreAutomatically(
             &self,
-            shouldMigrateStoreAutomatically: bool,
+            should_migrate_store_automatically: bool,
         );
 
         #[method(shouldInferMappingModelAutomatically)]
@@ -95,7 +95,7 @@ extern_methods!(
         #[method(setShouldInferMappingModelAutomatically:)]
         pub unsafe fn setShouldInferMappingModelAutomatically(
             &self,
-            shouldInferMappingModelAutomatically: bool,
+            should_infer_mapping_model_automatically: bool,
         );
 
         #[cfg(feature = "Foundation_NSURL")]
@@ -118,7 +118,7 @@ extern_methods!(
         #[method(setCloudKitContainerOptions:)]
         pub unsafe fn setCloudKitContainerOptions(
             &self,
-            cloudKitContainerOptions: Option<&NSPersistentCloudKitContainerOptions>,
+            cloud_kit_container_options: Option<&NSPersistentCloudKitContainerOptions>,
         );
     }
 );

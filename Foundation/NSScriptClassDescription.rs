@@ -20,16 +20,16 @@ extern_methods!(
     unsafe impl NSScriptClassDescription {
         #[method_id(@__retain_semantics Other classDescriptionForClass:)]
         pub unsafe fn classDescriptionForClass(
-            aClass: &Class,
+            a_class: &Class,
         ) -> Option<Id<NSScriptClassDescription, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithSuiteName:className:dictionary:)]
         pub unsafe fn initWithSuiteName_className_dictionary(
             this: Option<Allocated<Self>>,
-            suiteName: &NSString,
-            className: &NSString,
-            classDeclaration: Option<&NSDictionary>,
+            suite_name: &NSString,
+            class_name: &NSString,
+            class_declaration: Option<&NSDictionary>,
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -51,20 +51,20 @@ extern_methods!(
         pub unsafe fn appleEventCode(&self) -> FourCharCode;
 
         #[method(matchesAppleEventCode:)]
-        pub unsafe fn matchesAppleEventCode(&self, appleEventCode: FourCharCode) -> bool;
+        pub unsafe fn matchesAppleEventCode(&self, apple_event_code: FourCharCode) -> bool;
 
         #[cfg(feature = "Foundation_NSScriptCommandDescription")]
         #[method(supportsCommand:)]
         pub unsafe fn supportsCommand(
             &self,
-            commandDescription: &NSScriptCommandDescription,
+            command_description: &NSScriptCommandDescription,
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSScriptCommandDescription")]
         #[method(selectorForCommand:)]
         pub unsafe fn selectorForCommand(
             &self,
-            commandDescription: &NSScriptCommandDescription,
+            command_description: &NSScriptCommandDescription,
         ) -> Option<Sel>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -86,7 +86,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other keyWithAppleEventCode:)]
         pub unsafe fn keyWithAppleEventCode(
             &self,
-            appleEventCode: FourCharCode,
+            apple_event_code: FourCharCode,
         ) -> Option<Id<NSString, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -97,7 +97,7 @@ extern_methods!(
         #[method(isLocationRequiredToCreateForKey:)]
         pub unsafe fn isLocationRequiredToCreateForKey(
             &self,
-            toManyRelationshipKey: &NSString,
+            to_many_relationship_key: &NSString,
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]

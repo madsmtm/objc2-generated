@@ -36,8 +36,8 @@ extern_methods!(
         pub unsafe fn initWithUser_serviceIdentifier_userInfo(
             this: Option<Allocated<Self>>,
             user: &NSString,
-            serviceIdentifier: &ASCredentialServiceIdentifier,
-            userInfo: Option<&NSDictionary>,
+            service_identifier: &ASCredentialServiceIdentifier,
+            user_info: Option<&NSDictionary>,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]

@@ -53,7 +53,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other objectAtIndexedSubscript:)]
         pub unsafe fn objectAtIndexedSubscript(
             &self,
-            bufferIndex: NSUInteger,
+            buffer_index: NSUInteger,
         ) -> Id<MTLPipelineBufferDescriptor, Shared>;
 
         #[cfg(feature = "Metal_MTLPipelineBufferDescriptor")]
@@ -61,7 +61,7 @@ extern_methods!(
         pub unsafe fn setObject_atIndexedSubscript(
             &self,
             buffer: Option<&MTLPipelineBufferDescriptor>,
-            bufferIndex: NSUInteger,
+            buffer_index: NSUInteger,
         );
     }
 );

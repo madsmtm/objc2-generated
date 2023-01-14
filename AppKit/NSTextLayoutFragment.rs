@@ -44,8 +44,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithTextElement:range:)]
         pub unsafe fn initWithTextElement_range(
             this: Option<Allocated<Self>>,
-            textElement: &NSTextElement,
-            rangeInElement: Option<&NSTextRange>,
+            text_element: &NSTextElement,
+            range_in_element: Option<&NSTextRange>,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSCoder")]
@@ -80,7 +80,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSOperationQueue")]
         #[method(setLayoutQueue:)]
-        pub unsafe fn setLayoutQueue(&self, layoutQueue: Option<&NSOperationQueue>);
+        pub unsafe fn setLayoutQueue(&self, layout_queue: Option<&NSOperationQueue>);
 
         #[method(state)]
         pub unsafe fn state(&self) -> NSTextLayoutFragmentState;

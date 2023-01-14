@@ -65,7 +65,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other elementWithName:URI:)]
-        pub unsafe fn elementWithName_URI(name: &NSString, URI: &NSString) -> Id<Object, Shared>;
+        pub unsafe fn elementWithName_URI(name: &NSString, uri: &NSString) -> Id<Object, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other elementWithName:stringValue:)]
@@ -86,38 +86,38 @@ extern_methods!(
         #[method_id(@__retain_semantics Other attributeWithName:stringValue:)]
         pub unsafe fn attributeWithName_stringValue(
             name: &NSString,
-            stringValue: &NSString,
+            string_value: &NSString,
         ) -> Id<Object, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other attributeWithName:URI:stringValue:)]
         pub unsafe fn attributeWithName_URI_stringValue(
             name: &NSString,
-            URI: &NSString,
-            stringValue: &NSString,
+            uri: &NSString,
+            string_value: &NSString,
         ) -> Id<Object, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other namespaceWithName:stringValue:)]
         pub unsafe fn namespaceWithName_stringValue(
             name: &NSString,
-            stringValue: &NSString,
+            string_value: &NSString,
         ) -> Id<Object, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other processingInstructionWithName:stringValue:)]
         pub unsafe fn processingInstructionWithName_stringValue(
             name: &NSString,
-            stringValue: &NSString,
+            string_value: &NSString,
         ) -> Id<Object, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other commentWithStringValue:)]
-        pub unsafe fn commentWithStringValue(stringValue: &NSString) -> Id<Object, Shared>;
+        pub unsafe fn commentWithStringValue(string_value: &NSString) -> Id<Object, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other textWithStringValue:)]
-        pub unsafe fn textWithStringValue(stringValue: &NSString) -> Id<Object, Shared>;
+        pub unsafe fn textWithStringValue(string_value: &NSString) -> Id<Object, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other DTDNodeWithXMLString:)]
@@ -138,7 +138,7 @@ extern_methods!(
         pub unsafe fn objectValue(&self) -> Option<Id<Object, Shared>>;
 
         #[method(setObjectValue:)]
-        pub unsafe fn setObjectValue(&self, objectValue: Option<&Object>);
+        pub unsafe fn setObjectValue(&self, object_value: Option<&Object>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringValue)]
@@ -146,7 +146,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setStringValue:)]
-        pub unsafe fn setStringValue(&self, stringValue: Option<&NSString>);
+        pub unsafe fn setStringValue(&self, string_value: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setStringValue:resolvingEntities:)]
@@ -208,7 +208,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setURI:)]
-        pub unsafe fn setURI(&self, URI: Option<&NSString>);
+        pub unsafe fn setURI(&self, uri: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localNameForName:)]

@@ -43,7 +43,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other printOperationWithView:printInfo:)]
         pub unsafe fn printOperationWithView_printInfo(
             view: &NSView,
-            printInfo: &NSPrintInfo,
+            print_info: &NSPrintInfo,
         ) -> Id<NSPrintOperation, Shared>;
 
         #[cfg(all(
@@ -56,7 +56,7 @@ extern_methods!(
             view: &NSView,
             rect: NSRect,
             data: &NSMutableData,
-            printInfo: &NSPrintInfo,
+            print_info: &NSPrintInfo,
         ) -> Id<NSPrintOperation, Shared>;
 
         #[cfg(all(
@@ -69,7 +69,7 @@ extern_methods!(
             view: &NSView,
             rect: NSRect,
             path: &NSString,
-            printInfo: &NSPrintInfo,
+            print_info: &NSPrintInfo,
         ) -> Id<NSPrintOperation, Shared>;
 
         #[cfg(all(
@@ -82,7 +82,7 @@ extern_methods!(
             view: &NSView,
             rect: NSRect,
             data: &NSMutableData,
-            printInfo: &NSPrintInfo,
+            print_info: &NSPrintInfo,
         ) -> Id<NSPrintOperation, Shared>;
 
         #[cfg(all(
@@ -95,7 +95,7 @@ extern_methods!(
             view: &NSView,
             rect: NSRect,
             path: &NSString,
-            printInfo: &NSPrintInfo,
+            print_info: &NSPrintInfo,
         ) -> Id<NSPrintOperation, Shared>;
 
         #[cfg(feature = "AppKit_NSView")]
@@ -122,7 +122,7 @@ extern_methods!(
         pub unsafe fn currentOperation() -> Option<Id<NSPrintOperation, Shared>>;
 
         #[method(setCurrentOperation:)]
-        pub unsafe fn setCurrentOperation(currentOperation: Option<&NSPrintOperation>);
+        pub unsafe fn setCurrentOperation(current_operation: Option<&NSPrintOperation>);
 
         #[method(isCopyingOperation)]
         pub unsafe fn isCopyingOperation(&self) -> bool;
@@ -136,19 +136,19 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setJobTitle:)]
-        pub unsafe fn setJobTitle(&self, jobTitle: Option<&NSString>);
+        pub unsafe fn setJobTitle(&self, job_title: Option<&NSString>);
 
         #[method(showsPrintPanel)]
         pub unsafe fn showsPrintPanel(&self) -> bool;
 
         #[method(setShowsPrintPanel:)]
-        pub unsafe fn setShowsPrintPanel(&self, showsPrintPanel: bool);
+        pub unsafe fn setShowsPrintPanel(&self, shows_print_panel: bool);
 
         #[method(showsProgressPanel)]
         pub unsafe fn showsProgressPanel(&self) -> bool;
 
         #[method(setShowsProgressPanel:)]
-        pub unsafe fn setShowsProgressPanel(&self, showsProgressPanel: bool);
+        pub unsafe fn setShowsProgressPanel(&self, shows_progress_panel: bool);
 
         #[cfg(feature = "AppKit_NSPrintPanel")]
         #[method_id(@__retain_semantics Other printPanel)]
@@ -156,7 +156,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSPrintPanel")]
         #[method(setPrintPanel:)]
-        pub unsafe fn setPrintPanel(&self, printPanel: &NSPrintPanel);
+        pub unsafe fn setPrintPanel(&self, print_panel: &NSPrintPanel);
 
         #[cfg(feature = "AppKit_NSPDFPanel")]
         #[method_id(@__retain_semantics Other PDFPanel)]
@@ -164,28 +164,28 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSPDFPanel")]
         #[method(setPDFPanel:)]
-        pub unsafe fn setPDFPanel(&self, PDFPanel: &NSPDFPanel);
+        pub unsafe fn setPDFPanel(&self, pdf_panel: &NSPDFPanel);
 
         #[method(canSpawnSeparateThread)]
         pub unsafe fn canSpawnSeparateThread(&self) -> bool;
 
         #[method(setCanSpawnSeparateThread:)]
-        pub unsafe fn setCanSpawnSeparateThread(&self, canSpawnSeparateThread: bool);
+        pub unsafe fn setCanSpawnSeparateThread(&self, can_spawn_separate_thread: bool);
 
         #[method(pageOrder)]
         pub unsafe fn pageOrder(&self) -> NSPrintingPageOrder;
 
         #[method(setPageOrder:)]
-        pub unsafe fn setPageOrder(&self, pageOrder: NSPrintingPageOrder);
+        pub unsafe fn setPageOrder(&self, page_order: NSPrintingPageOrder);
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[method(runOperationModalForWindow:delegate:didRunSelector:contextInfo:)]
         pub unsafe fn runOperationModalForWindow_delegate_didRunSelector_contextInfo(
             &self,
-            docWindow: &NSWindow,
+            doc_window: &NSWindow,
             delegate: Option<&Object>,
-            didRunSelector: Option<Sel>,
-            contextInfo: *mut c_void,
+            did_run_selector: Option<Sel>,
+            context_info: *mut c_void,
         );
 
         #[method(runOperation)]
@@ -201,7 +201,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSPrintInfo")]
         #[method(setPrintInfo:)]
-        pub unsafe fn setPrintInfo(&self, printInfo: &NSPrintInfo);
+        pub unsafe fn setPrintInfo(&self, print_info: &NSPrintInfo);
 
         #[cfg(feature = "AppKit_NSGraphicsContext")]
         #[method_id(@__retain_semantics Other context)]

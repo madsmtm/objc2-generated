@@ -26,13 +26,13 @@ extern_methods!(
         pub unsafe fn shadowOffset(&self) -> NSSize;
 
         #[method(setShadowOffset:)]
-        pub unsafe fn setShadowOffset(&self, shadowOffset: NSSize);
+        pub unsafe fn setShadowOffset(&self, shadow_offset: NSSize);
 
         #[method(shadowBlurRadius)]
         pub unsafe fn shadowBlurRadius(&self) -> CGFloat;
 
         #[method(setShadowBlurRadius:)]
-        pub unsafe fn setShadowBlurRadius(&self, shadowBlurRadius: CGFloat);
+        pub unsafe fn setShadowBlurRadius(&self, shadow_blur_radius: CGFloat);
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other shadowColor)]
@@ -40,7 +40,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setShadowColor:)]
-        pub unsafe fn setShadowColor(&self, shadowColor: Option<&NSColor>);
+        pub unsafe fn setShadowColor(&self, shadow_color: Option<&NSColor>);
 
         #[method(set)]
         pub unsafe fn set(&self);

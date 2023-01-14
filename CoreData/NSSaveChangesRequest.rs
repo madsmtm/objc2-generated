@@ -23,10 +23,10 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithInsertedObjects:updatedObjects:deletedObjects:lockedObjects:)]
         pub unsafe fn initWithInsertedObjects_updatedObjects_deletedObjects_lockedObjects(
             this: Option<Allocated<Self>>,
-            insertedObjects: Option<&NSSet<NSManagedObject>>,
-            updatedObjects: Option<&NSSet<NSManagedObject>>,
-            deletedObjects: Option<&NSSet<NSManagedObject>>,
-            lockedObjects: Option<&NSSet<NSManagedObject>>,
+            inserted_objects: Option<&NSSet<NSManagedObject>>,
+            updated_objects: Option<&NSSet<NSManagedObject>>,
+            deleted_objects: Option<&NSSet<NSManagedObject>>,
+            locked_objects: Option<&NSSet<NSManagedObject>>,
         ) -> Id<Self, Shared>;
 
         #[cfg(all(feature = "CoreData_NSManagedObject", feature = "Foundation_NSSet"))]

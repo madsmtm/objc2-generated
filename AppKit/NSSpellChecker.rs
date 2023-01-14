@@ -77,27 +77,27 @@ extern_methods!(
         #[method(checkSpellingOfString:startingAt:language:wrap:inSpellDocumentWithTag:wordCount:)]
         pub unsafe fn checkSpellingOfString_startingAt_language_wrap_inSpellDocumentWithTag_wordCount(
             &self,
-            stringToCheck: &NSString,
-            startingOffset: NSInteger,
+            string_to_check: &NSString,
+            starting_offset: NSInteger,
             language: Option<&NSString>,
-            wrapFlag: bool,
+            wrap_flag: bool,
             tag: NSInteger,
-            wordCount: *mut NSInteger,
+            word_count: *mut NSInteger,
         ) -> NSRange;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(checkSpellingOfString:startingAt:)]
         pub unsafe fn checkSpellingOfString_startingAt(
             &self,
-            stringToCheck: &NSString,
-            startingOffset: NSInteger,
+            string_to_check: &NSString,
+            starting_offset: NSInteger,
         ) -> NSRange;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(countWordsInString:language:)]
         pub unsafe fn countWordsInString_language(
             &self,
-            stringToCount: &NSString,
+            string_to_count: &NSString,
             language: Option<&NSString>,
         ) -> NSInteger;
 
@@ -109,10 +109,10 @@ extern_methods!(
         #[method(checkGrammarOfString:startingAt:language:wrap:inSpellDocumentWithTag:details:)]
         pub unsafe fn checkGrammarOfString_startingAt_language_wrap_inSpellDocumentWithTag_details(
             &self,
-            stringToCheck: &NSString,
-            startingOffset: NSInteger,
+            string_to_check: &NSString,
+            starting_offset: NSInteger,
             language: Option<&NSString>,
-            wrapFlag: bool,
+            wrap_flag: bool,
             tag: NSInteger,
             details: *mut *mut NSArray<NSDictionary<NSString, Object>>,
         ) -> NSRange;
@@ -127,13 +127,13 @@ extern_methods!(
         #[method_id(@__retain_semantics Other checkString:range:types:options:inSpellDocumentWithTag:orthography:wordCount:)]
         pub unsafe fn checkString_range_types_options_inSpellDocumentWithTag_orthography_wordCount(
             &self,
-            stringToCheck: &NSString,
+            string_to_check: &NSString,
             range: NSRange,
-            checkingTypes: NSTextCheckingTypes,
+            checking_types: NSTextCheckingTypes,
             options: Option<&NSDictionary<NSTextCheckingOptionKey, Object>>,
             tag: NSInteger,
             orthography: *mut *mut NSOrthography,
-            wordCount: *mut NSInteger,
+            word_count: *mut NSInteger,
         ) -> Id<NSArray<NSTextCheckingResult>, Shared>;
 
         #[cfg(all(
@@ -146,12 +146,12 @@ extern_methods!(
         #[method(requestCheckingOfString:range:types:options:inSpellDocumentWithTag:completionHandler:)]
         pub unsafe fn requestCheckingOfString_range_types_options_inSpellDocumentWithTag_completionHandler(
             &self,
-            stringToCheck: &NSString,
+            string_to_check: &NSString,
             range: NSRange,
-            checkingTypes: NSTextCheckingTypes,
+            checking_types: NSTextCheckingTypes,
             options: Option<&NSDictionary<NSTextCheckingOptionKey, Object>>,
             tag: NSInteger,
-            completionHandler: Option<
+            completion_handler: Option<
                 &Block<
                     (
                         NSInteger,
@@ -173,12 +173,12 @@ extern_methods!(
         #[method(requestCandidatesForSelectedRange:inString:types:options:inSpellDocumentWithTag:completionHandler:)]
         pub unsafe fn requestCandidatesForSelectedRange_inString_types_options_inSpellDocumentWithTag_completionHandler(
             &self,
-            selectedRange: NSRange,
-            stringToCheck: &NSString,
-            checkingTypes: NSTextCheckingTypes,
+            selected_range: NSRange,
+            string_to_check: &NSString,
+            checking_types: NSTextCheckingTypes,
             options: Option<&NSDictionary<NSTextCheckingOptionKey, Object>>,
             tag: NSInteger,
-            completionHandler: Option<
+            completion_handler: Option<
                 &Block<(NSInteger, NonNull<NSArray<NSTextCheckingResult>>), ()>,
             >,
         ) -> NSInteger;
@@ -194,7 +194,7 @@ extern_methods!(
         pub unsafe fn menuForResult_string_options_atLocation_inView(
             &self,
             result: &NSTextCheckingResult,
-            checkedString: &NSString,
+            checked_string: &NSString,
             options: Option<&NSDictionary<NSTextCheckingOptionKey, Object>>,
             location: NSPoint,
             view: &NSView,
@@ -235,7 +235,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(setAccessoryView:)]
-        pub unsafe fn setAccessoryView(&self, accessoryView: Option<&NSView>);
+        pub unsafe fn setAccessoryView(&self, accessory_view: Option<&NSView>);
 
         #[cfg(feature = "AppKit_NSPanel")]
         #[method_id(@__retain_semantics Other substitutionsPanel)]
@@ -251,7 +251,7 @@ extern_methods!(
         #[method(setSubstitutionsPanelAccessoryViewController:)]
         pub unsafe fn setSubstitutionsPanelAccessoryViewController(
             &self,
-            substitutionsPanelAccessoryViewController: Option<&NSViewController>,
+            substitutions_panel_accessory_view_controller: Option<&NSViewController>,
         );
 
         #[method(updatePanels)]
@@ -261,7 +261,7 @@ extern_methods!(
         #[method(ignoreWord:inSpellDocumentWithTag:)]
         pub unsafe fn ignoreWord_inSpellDocumentWithTag(
             &self,
-            wordToIgnore: &NSString,
+            word_to_ignore: &NSString,
             tag: NSInteger,
         );
 
@@ -341,12 +341,12 @@ extern_methods!(
         #[method(showCorrectionIndicatorOfType:primaryString:alternativeStrings:forStringInRect:view:completionHandler:)]
         pub unsafe fn showCorrectionIndicatorOfType_primaryString_alternativeStrings_forStringInRect_view_completionHandler(
             &self,
-            type_: NSCorrectionIndicatorType,
-            primaryString: &NSString,
-            alternativeStrings: &NSArray<NSString>,
-            rectOfTypedString: NSRect,
+            r#type: NSCorrectionIndicatorType,
+            primary_string: &NSString,
+            alternative_strings: &NSArray<NSString>,
+            rect_of_typed_string: NSRect,
             view: &NSView,
-            completionBlock: Option<&Block<(*mut NSString,), ()>>,
+            completion_block: Option<&Block<(*mut NSString,), ()>>,
         );
 
         #[cfg(feature = "AppKit_NSView")]
@@ -365,8 +365,8 @@ extern_methods!(
         #[method(deletesAutospaceBetweenString:andString:language:)]
         pub unsafe fn deletesAutospaceBetweenString_andString_language(
             &self,
-            precedingString: &NSString,
-            followingString: &NSString,
+            preceding_string: &NSString,
+            following_string: &NSString,
             language: Option<&NSString>,
         ) -> bool;
 
@@ -384,7 +384,7 @@ extern_methods!(
         #[method(setAutomaticallyIdentifiesLanguages:)]
         pub unsafe fn setAutomaticallyIdentifiesLanguages(
             &self,
-            automaticallyIdentifiesLanguages: bool,
+            automatically_identifies_languages: bool,
         );
 
         #[cfg(feature = "Foundation_NSString")]

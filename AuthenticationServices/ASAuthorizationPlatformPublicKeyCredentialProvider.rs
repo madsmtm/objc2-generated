@@ -22,7 +22,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithRelyingPartyIdentifier:)]
         pub unsafe fn initWithRelyingPartyIdentifier(
             this: Option<Allocated<Self>>,
-            relyingPartyIdentifier: &NSString,
+            relying_party_identifier: &NSString,
         ) -> Id<Self, Shared>;
 
         #[cfg(all(
@@ -35,7 +35,7 @@ extern_methods!(
             &self,
             challenge: &NSData,
             name: &NSString,
-            userID: &NSData,
+            user_id: &NSData,
         ) -> Id<ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest, Shared>;
 
         #[cfg(all(
