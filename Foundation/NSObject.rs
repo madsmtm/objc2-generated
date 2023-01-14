@@ -79,9 +79,3 @@ extern_fn!(
 extern_fn!(
     pub unsafe fn NSExtraRefCount(object: &Object) -> NSUInteger;
 );
-
-inline_fn!(
-    pub unsafe fn CFBridgingRetain(X: Option<&Object>) -> CFTypeRef {
-        todo!()
-    }
-);
