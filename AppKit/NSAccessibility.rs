@@ -77,6 +77,7 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[deprecated = "Exceptions are no longer appropriate for indicating errors in accessibility API. Unexpected values should be handled through appropriate type checking."]
     pub unsafe fn NSAccessibilityRaiseBadArgumentException(
         element: Option<&Object>,
         attribute: Option<&NSAccessibilityAttributeName>,

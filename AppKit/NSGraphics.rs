@@ -355,10 +355,12 @@ extern_fn!(
 
 extern_fn!(
     #[cfg(feature = "AppKit_NSColor")]
+    #[deprecated = "Use -[NSBitmapImageRep colorAtX:y:] to interrogate pixel values.  If necessary, use -[NSView cacheDisplayInRect:toBitmapImageRep:] to snapshot a view hierarchy into an NSBitmapImageRep."]
     pub unsafe fn NSReadPixel(passedPoint: NSPoint) -> *mut NSColor;
 );
 
 extern_fn!(
+    #[deprecated]
     pub unsafe fn NSHighlightRect(rect: NSRect);
 );
 
@@ -368,6 +370,7 @@ extern_fn!(
 
 extern_fn!(
     #[cfg(feature = "Foundation_NSString")]
+    #[deprecated = "Doesn't return anything useful since 10.0"]
     pub unsafe fn NSGetWindowServerMemory(
         context: NSInteger,
         virtualMemory: NonNull<NSInteger>,
@@ -408,10 +411,12 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[deprecated = "As of 10.11 it is not generally necessary to take explicit action to achieve visual atomicity. +[NSAnimationContext runAnimationGroup:] and other similar methods can be used when a stronger than normal need for visual atomicity is required. The NSAnimationContext methods do not suffer from the same performance problems as NSDisableScreenUpdates."]
     pub unsafe fn NSDisableScreenUpdates();
 );
 
 extern_fn!(
+    #[deprecated = "As of 10.11 it is not generally necessary to take explicit action to achieve visual atomicity. +[NSAnimationContext runAnimationGroup:] and other similar methods can be used when a stronger than normal need for visual atomicity is required. The NSAnimationContext methods do not suffer from the same performance problems as NSEnableScreenUpdates."]
     pub unsafe fn NSEnableScreenUpdates();
 );
 
@@ -435,18 +440,22 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[deprecated = "Use +[NSWindow windowNumbersWithOptions:] instead"]
     pub unsafe fn NSCountWindows(count: NonNull<NSInteger>);
 );
 
 extern_fn!(
+    #[deprecated = "Use +[NSWindow windowNumbersWithOptions:] instead"]
     pub unsafe fn NSWindowList(size: NSInteger, list: NonNull<NSInteger>);
 );
 
 extern_fn!(
+    #[deprecated = "Use +[NSWindow windowNumbersWithOptions:] instead"]
     pub unsafe fn NSCountWindowsForContext(context: NSInteger, count: NonNull<NSInteger>);
 );
 
 extern_fn!(
+    #[deprecated = "Use +[NSWindow windowNumbersWithOptions:] instead"]
     pub unsafe fn NSWindowListForContext(
         context: NSInteger,
         size: NSInteger,
@@ -455,5 +464,6 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[deprecated]
     pub unsafe fn NSCopyBits(srcGState: NSInteger, srcRect: NSRect, destPoint: NSPoint);
 );

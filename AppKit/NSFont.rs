@@ -250,6 +250,7 @@ ns_enum!(
 );
 
 extern_fn!(
+    #[deprecated]
     pub unsafe fn NSConvertGlyphsToPackedGlyphs(
         glBuf: NonNull<NSGlyph>,
         count: NSInteger,

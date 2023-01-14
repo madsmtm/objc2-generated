@@ -57,6 +57,7 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[deprecated = "Not supported"]
     pub unsafe fn NSCopyObject(
         object: &Object,
         extraBytes: NSUInteger,

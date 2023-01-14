@@ -19,6 +19,7 @@ pub type NSInterfaceStyle = NSUInteger;
 
 extern_fn!(
     #[cfg(all(feature = "AppKit_NSResponder", feature = "Foundation_NSString"))]
+    #[deprecated]
     pub unsafe fn NSInterfaceStyleForKey(
         key: Option<&NSString>,
         responder: Option<&NSResponder>,

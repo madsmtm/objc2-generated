@@ -110,5 +110,6 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[deprecated = "Use NSProcessInfo instead"]
     pub unsafe fn NSRealMemoryAvailable() -> NSUInteger;
 );
