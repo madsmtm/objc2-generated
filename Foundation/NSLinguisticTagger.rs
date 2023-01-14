@@ -111,6 +111,7 @@ ns_options!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSLinguisticTagger")]
+    #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub struct NSLinguisticTagger;
 
     #[cfg(feature = "Foundation_NSLinguisticTagger")]

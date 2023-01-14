@@ -6,6 +6,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSHost")]
+    #[deprecated = "Use Network framework instead, see deprecation notice in <Foundation/NSHost.h>"]
     pub struct NSHost;
 
     #[cfg(feature = "Foundation_NSHost")]

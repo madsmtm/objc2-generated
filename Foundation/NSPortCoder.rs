@@ -6,6 +6,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSPortCoder")]
+    #[deprecated = "Use NSXPCConnection instead"]
     pub struct NSPortCoder;
 
     #[cfg(feature = "Foundation_NSPortCoder")]

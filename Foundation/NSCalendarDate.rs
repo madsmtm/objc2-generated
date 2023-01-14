@@ -6,6 +6,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSCalendarDate")]
+    #[deprecated = "Use NSCalendar and NSDateComponents and NSDateFormatter instead"]
     pub struct NSCalendarDate;
 
     #[cfg(feature = "Foundation_NSCalendarDate")]

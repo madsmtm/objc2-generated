@@ -6,6 +6,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSGarbageCollector")]
+    #[deprecated = "Building Garbage Collected apps is no longer supported."]
     pub struct NSGarbageCollector;
 
     #[cfg(feature = "Foundation_NSGarbageCollector")]

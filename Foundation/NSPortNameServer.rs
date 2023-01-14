@@ -6,6 +6,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSPortNameServer")]
+    #[deprecated = "Use NSXPCConnection instead"]
     pub struct NSPortNameServer;
 
     #[cfg(feature = "Foundation_NSPortNameServer")]
@@ -45,6 +46,7 @@ extern_methods!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSMachBootstrapServer")]
+    #[deprecated = "Use NSXPCConnection instead"]
     pub struct NSMachBootstrapServer;
 
     #[cfg(feature = "Foundation_NSMachBootstrapServer")]
@@ -85,6 +87,7 @@ extern_methods!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSMessagePortNameServer")]
+    #[deprecated = "Use NSXPCConnection instead"]
     pub struct NSMessagePortNameServer;
 
     #[cfg(feature = "Foundation_NSMessagePortNameServer")]
@@ -117,6 +120,7 @@ extern_methods!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSSocketPortNameServer")]
+    #[deprecated = "Use NSXPCConnection instead"]
     pub struct NSSocketPortNameServer;
 
     #[cfg(feature = "Foundation_NSSocketPortNameServer")]

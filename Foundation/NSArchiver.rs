@@ -6,6 +6,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSArchiver")]
+    #[deprecated = "Use NSKeyedArchiver instead"]
     pub struct NSArchiver;
 
     #[cfg(feature = "Foundation_NSArchiver")]
@@ -66,6 +67,7 @@ extern_methods!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSUnarchiver")]
+    #[deprecated = "Use NSKeyedUnarchiver instead"]
     pub struct NSUnarchiver;
 
     #[cfg(feature = "Foundation_NSUnarchiver")]

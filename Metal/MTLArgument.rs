@@ -350,6 +350,7 @@ extern_methods!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Metal_MTLArgument")]
+    #[deprecated]
     pub struct MTLArgument;
 
     #[cfg(feature = "Metal_MTLArgument")]

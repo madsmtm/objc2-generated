@@ -36,6 +36,7 @@ ns_enum!(
 );
 
 extern_protocol!(
+    #[deprecated]
     pub struct NSURLHandleClient;
 
     unsafe impl ProtocolType for NSURLHandleClient {

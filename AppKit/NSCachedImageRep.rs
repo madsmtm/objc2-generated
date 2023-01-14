@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSCachedImageRep")]
+    #[deprecated]
     pub struct NSCachedImageRep;
 
     #[cfg(feature = "AppKit_NSCachedImageRep")]

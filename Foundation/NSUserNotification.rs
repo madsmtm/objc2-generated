@@ -17,6 +17,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSUserNotification")]
+    #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
     pub struct NSUserNotification;
 
     #[cfg(feature = "Foundation_NSUserNotification")]
@@ -189,6 +190,7 @@ extern_methods!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSUserNotificationAction")]
+    #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
     pub struct NSUserNotificationAction;
 
     #[cfg(feature = "Foundation_NSUserNotificationAction")]
@@ -222,6 +224,7 @@ extern_static!(NSUserNotificationDefaultSoundName: &'static NSString);
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSUserNotificationCenter")]
+    #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
     pub struct NSUserNotificationCenter;
 
     #[cfg(feature = "Foundation_NSUserNotificationCenter")]

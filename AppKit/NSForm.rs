@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSForm")]
+    #[deprecated = "Use NSTextField directly instead, and consider NSStackView for layout assistance"]
     pub struct NSForm;
 
     #[cfg(feature = "AppKit_NSForm")]

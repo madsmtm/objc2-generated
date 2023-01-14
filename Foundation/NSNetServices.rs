@@ -33,6 +33,7 @@ ns_options!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSNetService")]
+    #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
     pub struct NSNetService;
 
     #[cfg(feature = "Foundation_NSNetService")]
@@ -161,6 +162,7 @@ extern_methods!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSNetServiceBrowser")]
+    #[deprecated = "Use nw_browser_t in Network framework instead"]
     pub struct NSNetServiceBrowser;
 
     #[cfg(feature = "Foundation_NSNetServiceBrowser")]

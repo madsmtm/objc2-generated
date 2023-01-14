@@ -6,6 +6,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSConnection")]
+    #[deprecated = "Use NSXPCConnection instead"]
     pub struct NSConnection;
 
     #[cfg(feature = "Foundation_NSConnection")]
@@ -223,6 +224,7 @@ extern_static!(NSConnectionReplyMode: &'static NSString);
 extern_static!(NSConnectionDidDieNotification: &'static NSString);
 
 extern_protocol!(
+    #[deprecated = "Use NSXPCConnection instead"]
     pub struct NSConnectionDelegate;
 
     unsafe impl ProtocolType for NSConnectionDelegate {
@@ -290,6 +292,7 @@ extern_static!(NSConnectionDidInitializeNotification: &'static NSString);
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSDistantObjectRequest")]
+    #[deprecated = "Use NSXPCConnection instead"]
     pub struct NSDistantObjectRequest;
 
     #[cfg(feature = "Foundation_NSDistantObjectRequest")]

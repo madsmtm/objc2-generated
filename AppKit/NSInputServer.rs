@@ -126,6 +126,7 @@ extern_protocol!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSInputServer")]
+    #[deprecated]
     pub struct NSInputServer;
 
     #[cfg(feature = "AppKit_NSInputServer")]
