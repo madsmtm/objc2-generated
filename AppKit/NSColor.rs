@@ -191,10 +191,10 @@ extern_methods!(
         pub unsafe fn colorWithPatternImage(image: &NSImage) -> Id<NSColor, Shared>;
 
         #[method(type)]
-        pub unsafe fn type_(&self) -> NSColorType;
+        pub unsafe fn r#type(&self) -> NSColorType;
 
         #[method_id(@__retain_semantics Other colorUsingType:)]
-        pub unsafe fn colorUsingType(&self, type_: NSColorType) -> Option<Id<NSColor, Shared>>;
+        pub unsafe fn colorUsingType(&self, r#type: NSColorType) -> Option<Id<NSColor, Shared>>;
 
         #[cfg(feature = "AppKit_NSColorSpace")]
         #[method_id(@__retain_semantics Other colorUsingColorSpace:)]

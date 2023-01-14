@@ -713,7 +713,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(isNativeType:)]
-        pub unsafe fn isNativeType(type_: &NSString) -> bool;
+        pub unsafe fn isNativeType(r#type: &NSString) -> bool;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other writableTypesForSaveOperation:)]
@@ -822,7 +822,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other dataRepresentationOfType:)]
         pub unsafe fn dataRepresentationOfType(
             &self,
-            type_: &NSString,
+            r#type: &NSString,
         ) -> Option<Id<NSData, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
@@ -842,7 +842,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other fileWrapperRepresentationOfType:)]
         pub unsafe fn fileWrapperRepresentationOfType(
             &self,
-            type_: &NSString,
+            r#type: &NSString,
         ) -> Option<Id<NSFileWrapper, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -863,15 +863,18 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSString"))]
         #[method(loadDataRepresentation:ofType:)]
-        pub unsafe fn loadDataRepresentation_ofType(&self, data: &NSData, type_: &NSString)
-            -> bool;
+        pub unsafe fn loadDataRepresentation_ofType(
+            &self,
+            data: &NSData,
+            r#type: &NSString,
+        ) -> bool;
 
         #[cfg(all(feature = "Foundation_NSFileWrapper", feature = "Foundation_NSString"))]
         #[method(loadFileWrapperRepresentation:ofType:)]
         pub unsafe fn loadFileWrapperRepresentation_ofType(
             &self,
             wrapper: &NSFileWrapper,
-            type_: &NSString,
+            r#type: &NSString,
         ) -> bool;
 
         #[method(printShowingPrintPanel:)]
@@ -879,23 +882,23 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(readFromFile:ofType:)]
-        pub unsafe fn readFromFile_ofType(&self, fileName: &NSString, type_: &NSString) -> bool;
+        pub unsafe fn readFromFile_ofType(&self, fileName: &NSString, r#type: &NSString) -> bool;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
         #[method(readFromURL:ofType:)]
-        pub unsafe fn readFromURL_ofType(&self, url: &NSURL, type_: &NSString) -> bool;
+        pub unsafe fn readFromURL_ofType(&self, url: &NSURL, r#type: &NSString) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(revertToSavedFromFile:ofType:)]
         pub unsafe fn revertToSavedFromFile_ofType(
             &self,
             fileName: &NSString,
-            type_: &NSString,
+            r#type: &NSString,
         ) -> bool;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
         #[method(revertToSavedFromURL:ofType:)]
-        pub unsafe fn revertToSavedFromURL_ofType(&self, url: &NSURL, type_: &NSString) -> bool;
+        pub unsafe fn revertToSavedFromURL_ofType(&self, url: &NSURL, r#type: &NSString) -> bool;
 
         #[cfg(feature = "AppKit_NSPrintInfo")]
         #[method(runModalPageLayoutWithPrintInfo:)]
@@ -918,7 +921,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(writeToFile:ofType:)]
-        pub unsafe fn writeToFile_ofType(&self, fileName: &NSString, type_: &NSString) -> bool;
+        pub unsafe fn writeToFile_ofType(&self, fileName: &NSString, r#type: &NSString) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(writeToFile:ofType:originalFile:saveOperation:)]
@@ -932,7 +935,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
         #[method(writeToURL:ofType:)]
-        pub unsafe fn writeToURL_ofType(&self, url: &NSURL, type_: &NSString) -> bool;
+        pub unsafe fn writeToURL_ofType(&self, url: &NSURL, r#type: &NSString) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(writeWithBackupToFile:ofType:saveOperation:)]

@@ -290,7 +290,7 @@ extern_methods!(
         pub unsafe fn initWithBytes_objCType(
             this: Option<Allocated<Self>>,
             value: NonNull<c_void>,
-            type_: NonNull<c_char>,
+            r#type: NonNull<c_char>,
         ) -> Id<Self, Shared>;
     }
 );

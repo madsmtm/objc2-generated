@@ -174,7 +174,7 @@ extern_protocol!(
             controller: &NSFetchedResultsController,
             anObject: &Object,
             indexPath: Option<&NSIndexPath>,
-            type_: NSFetchedResultsChangeType,
+            r#type: NSFetchedResultsChangeType,
             newIndexPath: Option<&NSIndexPath>,
         );
 
@@ -186,7 +186,7 @@ extern_protocol!(
             controller: &NSFetchedResultsController,
             sectionInfo: &NSFetchedResultsSectionInfo,
             sectionIndex: NSUInteger,
-            type_: NSFetchedResultsChangeType,
+            r#type: NSFetchedResultsChangeType,
         );
 
         #[cfg(feature = "CoreData_NSFetchedResultsController")]

@@ -439,7 +439,7 @@ extern_methods!(
         #[method(requestAuthorizationOfType:completionHandler:)]
         pub unsafe fn requestAuthorizationOfType_completionHandler(
             &self,
-            type_: NSWorkspaceAuthorizationType,
+            r#type: NSWorkspaceAuthorizationType,
             completionHandler: &Block<(*mut NSWorkspaceAuthorization, *mut NSError), ()>,
         );
     }
@@ -753,7 +753,7 @@ extern_methods!(
             &self,
             fullPath: &NSString,
             appName: *mut *mut NSString,
-            type_: *mut *mut NSString,
+            r#type: *mut *mut NSString,
         ) -> bool;
 
         #[cfg(all(feature = "AppKit_NSImage", feature = "Foundation_NSString"))]

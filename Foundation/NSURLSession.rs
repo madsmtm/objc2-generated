@@ -655,7 +655,7 @@ extern_methods!(
         ) -> Id<Self, Shared>;
 
         #[method(type)]
-        pub unsafe fn type_(&self) -> NSURLSessionWebSocketMessageType;
+        pub unsafe fn r#type(&self) -> NSURLSessionWebSocketMessageType;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other data)]

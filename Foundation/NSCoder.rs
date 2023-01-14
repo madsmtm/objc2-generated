@@ -28,7 +28,7 @@ extern_methods!(
         #[method(encodeValueOfObjCType:at:)]
         pub unsafe fn encodeValueOfObjCType_at(
             &self,
-            type_: NonNull<c_char>,
+            r#type: NonNull<c_char>,
             addr: NonNull<c_void>,
         );
 
@@ -43,7 +43,7 @@ extern_methods!(
         #[method(decodeValueOfObjCType:at:size:)]
         pub unsafe fn decodeValueOfObjCType_at_size(
             &self,
-            type_: NonNull<c_char>,
+            r#type: NonNull<c_char>,
             data: NonNull<c_void>,
             size: NSUInteger,
         );
@@ -76,7 +76,7 @@ extern_methods!(
         #[method(encodeArrayOfObjCType:count:at:)]
         pub unsafe fn encodeArrayOfObjCType_count_at(
             &self,
-            type_: NonNull<c_char>,
+            r#type: NonNull<c_char>,
             count: NSUInteger,
             array: NonNull<c_void>,
         );
@@ -352,7 +352,7 @@ extern_methods!(
         #[method(decodeValueOfObjCType:at:)]
         pub unsafe fn decodeValueOfObjCType_at(
             &self,
-            type_: NonNull<c_char>,
+            r#type: NonNull<c_char>,
             data: NonNull<c_void>,
         );
     }

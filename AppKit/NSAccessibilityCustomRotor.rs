@@ -71,10 +71,10 @@ extern_methods!(
         ) -> Id<Self, Shared>;
 
         #[method(type)]
-        pub unsafe fn type_(&self) -> NSAccessibilityCustomRotorType;
+        pub unsafe fn r#type(&self) -> NSAccessibilityCustomRotorType;
 
         #[method(setType:)]
-        pub unsafe fn setType(&self, type_: NSAccessibilityCustomRotorType);
+        pub unsafe fn setType(&self, r#type: NSAccessibilityCustomRotorType);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]

@@ -22,7 +22,7 @@ extern_methods!(
         pub unsafe fn setConstantValue_type_atIndex(
             &self,
             value: NonNull<c_void>,
-            type_: MTLDataType,
+            r#type: MTLDataType,
             index: NSUInteger,
         );
 
@@ -30,7 +30,7 @@ extern_methods!(
         pub unsafe fn setConstantValues_type_withRange(
             &self,
             values: NonNull<c_void>,
-            type_: MTLDataType,
+            r#type: MTLDataType,
             range: NSRange,
         );
 
@@ -39,7 +39,7 @@ extern_methods!(
         pub unsafe fn setConstantValue_type_withName(
             &self,
             value: NonNull<c_void>,
-            type_: MTLDataType,
+            r#type: MTLDataType,
             name: &NSString,
         );
 

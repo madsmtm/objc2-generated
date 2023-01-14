@@ -24,11 +24,11 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other type)]
-        pub unsafe fn type_(&self) -> Id<NSString, Shared>;
+        pub unsafe fn r#type(&self) -> Id<NSString, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setType:)]
-        pub unsafe fn setType(&self, type_: &NSString);
+        pub unsafe fn setType(&self, r#type: &NSString);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other configuration)]

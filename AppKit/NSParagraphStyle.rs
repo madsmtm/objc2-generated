@@ -357,7 +357,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithType:location:)]
         pub unsafe fn initWithType_location(
             this: Option<Allocated<Self>>,
-            type_: NSTextTabType,
+            r#type: NSTextTabType,
             loc: CGFloat,
         ) -> Id<Self, Shared>;
 

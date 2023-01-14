@@ -178,7 +178,7 @@ extern_static!(NSOtherMouseUpMask: NSEventMask = NSEventMaskOtherMouseUp);
 extern_static!(NSOtherMouseDraggedMask: NSEventMask = NSEventMaskOtherMouseDragged);
 
 inline_fn!(
-    pub unsafe fn NSEventMaskFromType(type_: NSEventType) -> NSEventMask {
+    pub unsafe fn NSEventMaskFromType(r#type: NSEventType) -> NSEventMask {
         todo!()
     }
 );
@@ -352,7 +352,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSEvent")]
     unsafe impl NSEvent {
         #[method(type)]
-        pub unsafe fn type_(&self) -> NSEventType;
+        pub unsafe fn r#type(&self) -> NSEventType;
 
         #[method(timestamp)]
         pub unsafe fn timestamp(&self) -> NSTimeInterval;
@@ -589,7 +589,7 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSGraphicsContext")]
         #[method_id(@__retain_semantics Other mouseEventWithType:location:modifierFlags:timestamp:windowNumber:context:eventNumber:clickCount:pressure:)]
         pub unsafe fn mouseEventWithType_location_modifierFlags_timestamp_windowNumber_context_eventNumber_clickCount_pressure(
-            type_: NSEventType,
+            r#type: NSEventType,
             location: NSPoint,
             flags: NSEventModifierFlags,
             time: NSTimeInterval,
@@ -603,7 +603,7 @@ extern_methods!(
         #[cfg(all(feature = "AppKit_NSGraphicsContext", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other keyEventWithType:location:modifierFlags:timestamp:windowNumber:context:characters:charactersIgnoringModifiers:isARepeat:keyCode:)]
         pub unsafe fn keyEventWithType_location_modifierFlags_timestamp_windowNumber_context_characters_charactersIgnoringModifiers_isARepeat_keyCode(
-            type_: NSEventType,
+            r#type: NSEventType,
             location: NSPoint,
             flags: NSEventModifierFlags,
             time: NSTimeInterval,
@@ -618,7 +618,7 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSGraphicsContext")]
         #[method_id(@__retain_semantics Other enterExitEventWithType:location:modifierFlags:timestamp:windowNumber:context:eventNumber:trackingNumber:userData:)]
         pub unsafe fn enterExitEventWithType_location_modifierFlags_timestamp_windowNumber_context_eventNumber_trackingNumber_userData(
-            type_: NSEventType,
+            r#type: NSEventType,
             location: NSPoint,
             flags: NSEventModifierFlags,
             time: NSTimeInterval,
@@ -632,7 +632,7 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSGraphicsContext")]
         #[method_id(@__retain_semantics Other otherEventWithType:location:modifierFlags:timestamp:windowNumber:context:subtype:data1:data2:)]
         pub unsafe fn otherEventWithType_location_modifierFlags_timestamp_windowNumber_context_subtype_data1_data2(
-            type_: NSEventType,
+            r#type: NSEventType,
             location: NSPoint,
             flags: NSEventModifierFlags,
             time: NSTimeInterval,

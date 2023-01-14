@@ -98,7 +98,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other type)]
-        pub unsafe fn type_(&self) -> Id<NSString, Shared>;
+        pub unsafe fn r#type(&self) -> Id<NSString, Shared>;
 
         #[method(isReadOnly)]
         pub unsafe fn isReadOnly(&self) -> bool;

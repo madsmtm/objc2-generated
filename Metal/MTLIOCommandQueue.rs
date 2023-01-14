@@ -104,10 +104,10 @@ extern_methods!(
         pub unsafe fn setPriority(&self, priority: MTLIOPriority);
 
         #[method(type)]
-        pub unsafe fn type_(&self) -> MTLIOCommandQueueType;
+        pub unsafe fn r#type(&self) -> MTLIOCommandQueueType;
 
         #[method(setType:)]
-        pub unsafe fn setType(&self, type_: MTLIOCommandQueueType);
+        pub unsafe fn setType(&self, r#type: MTLIOCommandQueueType);
 
         #[method(maxCommandsInFlight)]
         pub unsafe fn maxCommandsInFlight(&self) -> NSUInteger;

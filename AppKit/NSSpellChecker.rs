@@ -341,7 +341,7 @@ extern_methods!(
         #[method(showCorrectionIndicatorOfType:primaryString:alternativeStrings:forStringInRect:view:completionHandler:)]
         pub unsafe fn showCorrectionIndicatorOfType_primaryString_alternativeStrings_forStringInRect_view_completionHandler(
             &self,
-            type_: NSCorrectionIndicatorType,
+            r#type: NSCorrectionIndicatorType,
             primaryString: &NSString,
             alternativeStrings: &NSArray<NSString>,
             rectOfTypedString: NSRect,

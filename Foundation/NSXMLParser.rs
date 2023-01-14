@@ -171,7 +171,7 @@ extern_protocol!(
             parser: &NSXMLParser,
             attributeName: &NSString,
             elementName: &NSString,
-            type_: Option<&NSString>,
+            r#type: Option<&NSString>,
             defaultValue: Option<&NSString>,
         );
 

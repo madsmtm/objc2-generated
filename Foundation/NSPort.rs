@@ -220,7 +220,7 @@ extern_methods!(
         pub unsafe fn initWithProtocolFamily_socketType_protocol_address(
             this: Option<Allocated<Self>>,
             family: c_int,
-            type_: c_int,
+            r#type: c_int,
             protocol: c_int,
             address: &NSData,
         ) -> Option<Id<Self, Shared>>;
@@ -229,7 +229,7 @@ extern_methods!(
         pub unsafe fn initWithProtocolFamily_socketType_protocol_socket(
             this: Option<Allocated<Self>>,
             family: c_int,
-            type_: c_int,
+            r#type: c_int,
             protocol: c_int,
             sock: NSSocketNativeHandle,
         ) -> Option<Id<Self, Shared>>;
@@ -247,7 +247,7 @@ extern_methods!(
         pub unsafe fn initRemoteWithProtocolFamily_socketType_protocol_address(
             this: Option<Allocated<Self>>,
             family: c_int,
-            type_: c_int,
+            r#type: c_int,
             protocol: c_int,
             address: &NSData,
         ) -> Id<Self, Shared>;

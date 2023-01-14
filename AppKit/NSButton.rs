@@ -62,7 +62,7 @@ extern_methods!(
         ) -> Id<Self, Shared>;
 
         #[method(setButtonType:)]
-        pub unsafe fn setButtonType(&self, type_: NSButtonType);
+        pub unsafe fn setButtonType(&self, r#type: NSButtonType);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]

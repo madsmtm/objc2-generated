@@ -42,7 +42,7 @@ extern_protocol!(
 
     unsafe impl ProtocolType for MTLFunctionLog {
         #[method(type)]
-        pub unsafe fn type_(&self) -> MTLFunctionLogType;
+        pub unsafe fn r#type(&self) -> MTLFunctionLogType;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other encoderLabel)]

@@ -64,7 +64,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             host: &NSString,
             port: NSInteger,
-            type_: Option<&NSString>,
+            r#type: Option<&NSString>,
             realm: Option<&NSString>,
             authenticationMethod: Option<&NSString>,
         ) -> Id<Self, Shared>;

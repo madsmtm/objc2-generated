@@ -31,7 +31,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithType:subpredicates:)]
         pub unsafe fn initWithType_subpredicates(
             this: Option<Allocated<Self>>,
-            type_: NSCompoundPredicateType,
+            r#type: NSCompoundPredicateType,
             subpredicates: &NSArray<NSPredicate>,
         ) -> Id<Self, Shared>;
 

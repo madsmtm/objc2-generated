@@ -52,10 +52,10 @@ extern_methods!(
         pub unsafe fn setEndPoint(&self, endPoint: CGPoint);
 
         #[method_id(@__retain_semantics Other type)]
-        pub unsafe fn type_(&self) -> Id<CAGradientLayerType, Shared>;
+        pub unsafe fn r#type(&self) -> Id<CAGradientLayerType, Shared>;
 
         #[method(setType:)]
-        pub unsafe fn setType(&self, type_: &CAGradientLayerType);
+        pub unsafe fn setType(&self, r#type: &CAGradientLayerType);
     }
 );
 

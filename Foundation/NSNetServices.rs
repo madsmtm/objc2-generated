@@ -49,7 +49,7 @@ extern_methods!(
         pub unsafe fn initWithDomain_type_name_port(
             this: Option<Allocated<Self>>,
             domain: &NSString,
-            type_: &NSString,
+            r#type: &NSString,
             name: &NSString,
             port: c_int,
         ) -> Id<Self, Shared>;
@@ -59,7 +59,7 @@ extern_methods!(
         pub unsafe fn initWithDomain_type_name(
             this: Option<Allocated<Self>>,
             domain: &NSString,
-            type_: &NSString,
+            r#type: &NSString,
             name: &NSString,
         ) -> Id<Self, Shared>;
 
@@ -89,7 +89,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other type)]
-        pub unsafe fn type_(&self) -> Id<NSString, Shared>;
+        pub unsafe fn r#type(&self) -> Id<NSString, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other domain)]
@@ -204,7 +204,7 @@ extern_methods!(
         #[method(searchForServicesOfType:inDomain:)]
         pub unsafe fn searchForServicesOfType_inDomain(
             &self,
-            type_: &NSString,
+            r#type: &NSString,
             domainString: &NSString,
         );
 

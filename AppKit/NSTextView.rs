@@ -362,7 +362,7 @@ extern_methods!(
         pub unsafe fn writeSelectionToPasteboard_type(
             &self,
             pboard: &NSPasteboard,
-            type_: &NSPasteboardType,
+            r#type: &NSPasteboardType,
         ) -> bool;
 
         #[cfg(all(feature = "AppKit_NSPasteboard", feature = "Foundation_NSArray"))]
@@ -390,7 +390,7 @@ extern_methods!(
         pub unsafe fn readSelectionFromPasteboard_type(
             &self,
             pboard: &NSPasteboard,
-            type_: &NSPasteboardType,
+            r#type: &NSPasteboardType,
         ) -> bool;
 
         #[cfg(feature = "AppKit_NSPasteboard")]
@@ -444,7 +444,7 @@ extern_methods!(
         pub unsafe fn dragOperationForDraggingInfo_type(
             &self,
             dragInfo: &NSDraggingInfo,
-            type_: &NSPasteboardType,
+            r#type: &NSPasteboardType,
         ) -> NSDragOperation;
 
         #[method(cleanUpAfterDragOperation)]
@@ -1115,7 +1115,7 @@ extern_protocol!(
             cell: &NSTextAttachmentCell,
             charIndex: NSUInteger,
             pboard: &NSPasteboard,
-            type_: &NSPasteboardType,
+            r#type: &NSPasteboardType,
         ) -> bool;
 
         #[cfg(feature = "AppKit_NSTextView")]

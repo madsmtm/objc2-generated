@@ -83,7 +83,7 @@ extern_methods!(
         pub unsafe fn setBezelStyle(&self, bezelStyle: NSBezelStyle);
 
         #[method(setButtonType:)]
-        pub unsafe fn setButtonType(&self, type_: NSButtonType);
+        pub unsafe fn setButtonType(&self, r#type: NSButtonType);
 
         #[method(highlightsBy)]
         pub unsafe fn highlightsBy(&self) -> NSCellStyleMask;

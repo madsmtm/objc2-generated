@@ -223,7 +223,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other typesFilterableTo:)]
         pub unsafe fn typesFilterableTo(
-            type_: &NSPasteboardType,
+            r#type: &NSPasteboardType,
         ) -> Id<NSArray<NSPasteboardType>, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -234,7 +234,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other pasteboardByFilteringData:ofType:)]
         pub unsafe fn pasteboardByFilteringData_ofType(
             data: &NSData,
-            type_: &NSPasteboardType,
+            r#type: &NSPasteboardType,
         ) -> Id<NSPasteboard, Shared>;
 
         #[method_id(@__retain_semantics Other pasteboardByFilteringTypesInPasteboard:)]
@@ -253,7 +253,7 @@ extern_protocol!(
         pub unsafe fn pasteboard_provideDataForType(
             &self,
             sender: &NSPasteboard,
-            type_: &NSPasteboardType,
+            r#type: &NSPasteboardType,
         );
 
         #[cfg(feature = "AppKit_NSPasteboard")]
@@ -286,14 +286,14 @@ extern_protocol!(
         #[method(writingOptionsForType:pasteboard:)]
         pub unsafe fn writingOptionsForType_pasteboard(
             &self,
-            type_: &NSPasteboardType,
+            r#type: &NSPasteboardType,
             pasteboard: &NSPasteboard,
         ) -> NSPasteboardWritingOptions;
 
         #[method_id(@__retain_semantics Other pasteboardPropertyListForType:)]
         pub unsafe fn pasteboardPropertyListForType(
             &self,
-            type_: &NSPasteboardType,
+            r#type: &NSPasteboardType,
         ) -> Option<Id<Object, Shared>>;
     }
 );
@@ -317,7 +317,7 @@ extern_protocol!(
         pub unsafe fn initWithPasteboardPropertyList_ofType(
             this: Option<Allocated<Self>>,
             propertyList: &Object,
-            type_: &NSPasteboardType,
+            r#type: &NSPasteboardType,
         ) -> Option<Id<Self, Shared>>;
     }
 );
@@ -354,7 +354,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other readFileContentsType:toFile:)]
         pub unsafe fn readFileContentsType_toFile(
             &self,
-            type_: Option<&NSPasteboardType>,
+            r#type: Option<&NSPasteboardType>,
             filename: &NSString,
         ) -> Option<Id<NSString, Shared>>;
 

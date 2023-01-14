@@ -46,7 +46,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithExpressionType:)]
         pub unsafe fn initWithExpressionType(
             this: Option<Allocated<Self>>,
-            type_: NSExpressionType,
+            r#type: NSExpressionType,
         ) -> Id<Self, Shared>;
     }
 );

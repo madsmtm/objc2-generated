@@ -156,10 +156,10 @@ extern_methods!(
         pub unsafe fn setControlView(&self, controlView: Option<&NSView>);
 
         #[method(type)]
-        pub unsafe fn type_(&self) -> NSCellType;
+        pub unsafe fn r#type(&self) -> NSCellType;
 
         #[method(setType:)]
-        pub unsafe fn setType(&self, type_: NSCellType);
+        pub unsafe fn setType(&self, r#type: NSCellType);
 
         #[method(state)]
         pub unsafe fn state(&self) -> NSControlStateValue;
@@ -798,7 +798,7 @@ extern_methods!(
         pub unsafe fn entryType(&self) -> NSInteger;
 
         #[method(setEntryType:)]
-        pub unsafe fn setEntryType(&self, type_: NSInteger);
+        pub unsafe fn setEntryType(&self, r#type: NSInteger);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(isEntryAcceptable:)]

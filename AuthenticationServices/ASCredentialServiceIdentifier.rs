@@ -31,7 +31,7 @@ extern_methods!(
         pub unsafe fn initWithIdentifier_type(
             this: Option<Allocated<Self>>,
             identifier: &NSString,
-            type_: ASCredentialServiceIdentifierType,
+            r#type: ASCredentialServiceIdentifierType,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -39,6 +39,6 @@ extern_methods!(
         pub unsafe fn identifier(&self) -> Id<NSString, Shared>;
 
         #[method(type)]
-        pub unsafe fn type_(&self) -> ASCredentialServiceIdentifierType;
+        pub unsafe fn r#type(&self) -> ASCredentialServiceIdentifierType;
     }
 );

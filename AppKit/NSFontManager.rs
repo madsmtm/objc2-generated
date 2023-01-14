@@ -156,7 +156,7 @@ extern_methods!(
         pub unsafe fn convertFont_toHaveTrait(
             &self,
             fontObj: &NSFont,
-            trait_: NSFontTraitMask,
+            r#trait: NSFontTraitMask,
         ) -> Id<NSFont, Shared>;
 
         #[cfg(feature = "AppKit_NSFont")]
@@ -164,7 +164,7 @@ extern_methods!(
         pub unsafe fn convertFont_toNotHaveTrait(
             &self,
             fontObj: &NSFont,
-            trait_: NSFontTraitMask,
+            r#trait: NSFontTraitMask,
         ) -> Id<NSFont, Shared>;
 
         #[cfg(feature = "AppKit_NSFont")]

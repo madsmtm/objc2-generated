@@ -49,14 +49,14 @@ extern_methods!(
         pub unsafe fn printerWithName(name: &NSString) -> Option<Id<NSPrinter, Shared>>;
 
         #[method_id(@__retain_semantics Other printerWithType:)]
-        pub unsafe fn printerWithType(type_: &NSPrinterTypeName) -> Option<Id<NSPrinter, Shared>>;
+        pub unsafe fn printerWithType(r#type: &NSPrinterTypeName) -> Option<Id<NSPrinter, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Id<NSString, Shared>;
 
         #[method_id(@__retain_semantics Other type)]
-        pub unsafe fn type_(&self) -> Id<NSPrinterTypeName, Shared>;
+        pub unsafe fn r#type(&self) -> Id<NSPrinterTypeName, Shared>;
 
         #[method(languageLevel)]
         pub unsafe fn languageLevel(&self) -> NSInteger;

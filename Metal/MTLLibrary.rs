@@ -115,7 +115,7 @@ extern_methods!(
         pub fn name(&self) -> Id<NSString, Shared>;
 
         #[method(type)]
-        pub unsafe fn type_(&self) -> MTLDataType;
+        pub unsafe fn r#type(&self) -> MTLDataType;
 
         #[method(index)]
         pub fn index(&self) -> NSUInteger;
@@ -394,7 +394,7 @@ extern_protocol!(
         pub fn functionNames(&self) -> Id<NSArray<NSString>, Shared>;
 
         #[method(type)]
-        pub unsafe fn type_(&self) -> MTLLibraryType;
+        pub unsafe fn r#type(&self) -> MTLLibraryType;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other installName)]

@@ -234,7 +234,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setRequiredFileType:)]
-        pub unsafe fn setRequiredFileType(&self, type_: Option<&NSString>);
+        pub unsafe fn setRequiredFileType(&self, r#type: Option<&NSString>);
 
         #[cfg(all(feature = "AppKit_NSWindow", feature = "Foundation_NSString"))]
         #[method(beginSheetForDirectory:file:modalForWindow:modalDelegate:didEndSelector:contextInfo:)]

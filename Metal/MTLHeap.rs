@@ -64,10 +64,10 @@ extern_methods!(
         pub fn setResourceOptions(&self, resourceOptions: MTLResourceOptions);
 
         #[method(type)]
-        pub unsafe fn type_(&self) -> MTLHeapType;
+        pub unsafe fn r#type(&self) -> MTLHeapType;
 
         #[method(setType:)]
-        pub fn setType(&self, type_: MTLHeapType);
+        pub fn setType(&self, r#type: MTLHeapType);
     }
 );
 
@@ -128,7 +128,7 @@ extern_protocol!(
         pub fn setPurgeableState(&self, state: MTLPurgeableState) -> MTLPurgeableState;
 
         #[method(type)]
-        pub unsafe fn type_(&self) -> MTLHeapType;
+        pub unsafe fn r#type(&self) -> MTLHeapType;
 
         #[method_id(@__retain_semantics New newBufferWithLength:options:offset:)]
         pub unsafe fn newBufferWithLength_options_offset(

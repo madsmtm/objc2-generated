@@ -366,7 +366,7 @@ extern_methods!(
         pub fn name(&self) -> Id<NSString, Shared>;
 
         #[method(type)]
-        pub unsafe fn type_(&self) -> MTLArgumentType;
+        pub unsafe fn r#type(&self) -> MTLArgumentType;
 
         #[method(access)]
         pub fn access(&self) -> MTLArgumentAccess;
@@ -423,7 +423,7 @@ extern_protocol!(
         pub unsafe fn name(&self) -> Id<NSString, Shared>;
 
         #[method(type)]
-        pub unsafe fn type_(&self) -> MTLBindingType;
+        pub unsafe fn r#type(&self) -> MTLBindingType;
 
         #[method(access)]
         pub unsafe fn access(&self) -> MTLArgumentAccess;

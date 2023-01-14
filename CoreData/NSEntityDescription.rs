@@ -63,7 +63,7 @@ extern_methods!(
         pub unsafe fn isAbstract(&self) -> bool;
 
         #[method(setAbstract:)]
-        pub unsafe fn setAbstract(&self, abstract_: bool);
+        pub unsafe fn setAbstract(&self, r#abstract: bool);
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other subentitiesByName)]

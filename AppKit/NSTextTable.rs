@@ -73,7 +73,7 @@ extern_methods!(
         pub unsafe fn setValue_type_forDimension(
             &self,
             val: CGFloat,
-            type_: NSTextBlockValueType,
+            r#type: NSTextBlockValueType,
             dimension: NSTextBlockDimension,
         );
 
@@ -87,7 +87,7 @@ extern_methods!(
         ) -> NSTextBlockValueType;
 
         #[method(setContentWidth:type:)]
-        pub unsafe fn setContentWidth_type(&self, val: CGFloat, type_: NSTextBlockValueType);
+        pub unsafe fn setContentWidth_type(&self, val: CGFloat, r#type: NSTextBlockValueType);
 
         #[method(contentWidth)]
         pub unsafe fn contentWidth(&self) -> CGFloat;
@@ -99,7 +99,7 @@ extern_methods!(
         pub unsafe fn setWidth_type_forLayer_edge(
             &self,
             val: CGFloat,
-            type_: NSTextBlockValueType,
+            r#type: NSTextBlockValueType,
             layer: NSTextBlockLayer,
             edge: NSRectEdge,
         );
@@ -108,7 +108,7 @@ extern_methods!(
         pub unsafe fn setWidth_type_forLayer(
             &self,
             val: CGFloat,
-            type_: NSTextBlockValueType,
+            r#type: NSTextBlockValueType,
             layer: NSTextBlockLayer,
         );
 

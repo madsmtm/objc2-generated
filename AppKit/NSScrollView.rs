@@ -47,7 +47,7 @@ extern_methods!(
             cSize: NSSize,
             horizontalScrollerClass: Option<&Class>,
             verticalScrollerClass: Option<&Class>,
-            type_: NSBorderType,
+            r#type: NSBorderType,
             controlSize: NSControlSize,
             scrollerStyle: NSScrollerStyle,
         ) -> NSSize;
@@ -57,7 +57,7 @@ extern_methods!(
             fSize: NSSize,
             horizontalScrollerClass: Option<&Class>,
             verticalScrollerClass: Option<&Class>,
-            type_: NSBorderType,
+            r#type: NSBorderType,
             controlSize: NSControlSize,
             scrollerStyle: NSScrollerStyle,
         ) -> NSSize;
@@ -67,7 +67,7 @@ extern_methods!(
             cSize: NSSize,
             hFlag: bool,
             vFlag: bool,
-            type_: NSBorderType,
+            r#type: NSBorderType,
         ) -> NSSize;
 
         #[method(contentSizeForFrameSize:hasHorizontalScroller:hasVerticalScroller:borderType:)]
@@ -75,7 +75,7 @@ extern_methods!(
             fSize: NSSize,
             hFlag: bool,
             vFlag: bool,
-            type_: NSBorderType,
+            r#type: NSBorderType,
         ) -> NSSize;
 
         #[method(documentVisibleRect)]

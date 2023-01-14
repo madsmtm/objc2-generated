@@ -333,10 +333,10 @@ extern_methods!(
     #[cfg(feature = "CoreAnimation_CATransition")]
     unsafe impl CATransition {
         #[method_id(@__retain_semantics Other type)]
-        pub unsafe fn type_(&self) -> Id<CATransitionType, Shared>;
+        pub unsafe fn r#type(&self) -> Id<CATransitionType, Shared>;
 
         #[method(setType:)]
-        pub unsafe fn setType(&self, type_: &CATransitionType);
+        pub unsafe fn setType(&self, r#type: &CATransitionType);
 
         #[method_id(@__retain_semantics Other subtype)]
         pub unsafe fn subtype(&self) -> Option<Id<CATransitionSubtype, Shared>>;

@@ -130,16 +130,16 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(imageRepClassForFileType:)]
-        pub unsafe fn imageRepClassForFileType(type_: &NSString) -> Option<&'static Class>;
+        pub unsafe fn imageRepClassForFileType(r#type: &NSString) -> Option<&'static Class>;
 
         #[method(imageRepClassForPasteboardType:)]
         pub unsafe fn imageRepClassForPasteboardType(
-            type_: &NSPasteboardType,
+            r#type: &NSPasteboardType,
         ) -> Option<&'static Class>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(imageRepClassForType:)]
-        pub unsafe fn imageRepClassForType(type_: &NSString) -> Option<&'static Class>;
+        pub unsafe fn imageRepClassForType(r#type: &NSString) -> Option<&'static Class>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method(imageRepClassForData:)]

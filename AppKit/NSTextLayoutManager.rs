@@ -241,7 +241,7 @@ extern_methods!(
         pub unsafe fn enumerateTextSegmentsInRange_type_options_usingBlock(
             &self,
             textRange: &NSTextRange,
-            type_: NSTextLayoutManagerSegmentType,
+            r#type: NSTextLayoutManagerSegmentType,
             options: NSTextLayoutManagerSegmentOptions,
             block: &Block<(*mut NSTextRange, CGRect, CGFloat, NonNull<NSTextContainer>), Bool>,
         );

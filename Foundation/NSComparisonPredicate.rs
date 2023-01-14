@@ -62,7 +62,7 @@ extern_methods!(
             lhs: &NSExpression,
             rhs: &NSExpression,
             modifier: NSComparisonPredicateModifier,
-            type_: NSPredicateOperatorType,
+            r#type: NSPredicateOperatorType,
             options: NSComparisonPredicateOptions,
         ) -> Id<NSComparisonPredicate, Shared>;
 
@@ -81,7 +81,7 @@ extern_methods!(
             lhs: &NSExpression,
             rhs: &NSExpression,
             modifier: NSComparisonPredicateModifier,
-            type_: NSPredicateOperatorType,
+            r#type: NSPredicateOperatorType,
             options: NSComparisonPredicateOptions,
         ) -> Id<Self, Shared>;
 

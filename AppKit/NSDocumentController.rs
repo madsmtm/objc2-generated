@@ -348,7 +348,7 @@ extern_methods!(
         pub unsafe fn makeDocumentWithContentsOfFile_ofType(
             &self,
             fileName: &NSString,
-            type_: &NSString,
+            r#type: &NSString,
         ) -> Option<Id<Object, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
@@ -356,14 +356,14 @@ extern_methods!(
         pub unsafe fn makeDocumentWithContentsOfURL_ofType(
             &self,
             url: &NSURL,
-            type_: Option<&NSString>,
+            r#type: Option<&NSString>,
         ) -> Option<Id<Object, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other makeUntitledDocumentOfType:)]
         pub unsafe fn makeUntitledDocumentOfType(
             &self,
-            type_: &NSString,
+            r#type: &NSString,
         ) -> Option<Id<Object, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -386,7 +386,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other openUntitledDocumentOfType:display:)]
         pub unsafe fn openUntitledDocumentOfType_display(
             &self,
-            type_: &NSString,
+            r#type: &NSString,
             display: bool,
         ) -> Option<Id<Object, Shared>>;
 

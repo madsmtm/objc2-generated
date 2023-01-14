@@ -26,7 +26,7 @@ extern_methods!(
         pub unsafe fn initWithBytes_objCType(
             this: Option<Allocated<Self>>,
             value: NonNull<c_void>,
-            type_: NonNull<c_char>,
+            r#type: NonNull<c_char>,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSCoder")]
@@ -45,13 +45,13 @@ extern_methods!(
         #[method_id(@__retain_semantics Other valueWithBytes:objCType:)]
         pub unsafe fn valueWithBytes_objCType(
             value: NonNull<c_void>,
-            type_: NonNull<c_char>,
+            r#type: NonNull<c_char>,
         ) -> Id<NSValue, Shared>;
 
         #[method_id(@__retain_semantics Other value:withObjCType:)]
         pub unsafe fn value_withObjCType(
             value: NonNull<c_void>,
-            type_: NonNull<c_char>,
+            r#type: NonNull<c_char>,
         ) -> Id<NSValue, Shared>;
     }
 );
@@ -302,7 +302,7 @@ extern_methods!(
         pub unsafe fn initWithBytes_objCType(
             this: Option<Allocated<Self>>,
             value: NonNull<c_void>,
-            type_: NonNull<c_char>,
+            r#type: NonNull<c_char>,
         ) -> Id<Self, Shared>;
     }
 );
