@@ -684,7 +684,7 @@ extern_methods!(
 
 extern_enum!(
     #[underlying(c_uint)]
-    pub enum {
+    pub enum __anonymous__ {
         NSUpArrowFunctionKey = 0xF700,
         NSDownArrowFunctionKey = 0xF701,
         NSLeftArrowFunctionKey = 0xF702,

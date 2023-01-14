@@ -273,7 +273,7 @@ extern_methods!(
 
 extern_enum!(
     #[underlying(c_uint)]
-    pub enum {
+    pub enum __anonymous__ {
         NSEnterCharacter = 0x0003,
         NSBackspaceCharacter = 0x0008,
         NSTabCharacter = 0x0009,
@@ -312,7 +312,7 @@ extern_static!(NSTextMovementUserInfoKey: &'static NSString);
 
 extern_enum!(
     #[underlying(c_uint)]
-    pub enum {
+    pub enum __anonymous__ {
         NSIllegalTextMovement = 0,
         NSReturnTextMovement = 0x10,
         NSTabTextMovement = 0x11,
@@ -359,11 +359,11 @@ extern_protocol!(
 
 extern_enum!(
     #[underlying(c_uint)]
-    pub enum {
-#[deprecated = "Use NSWritingDirectionEmbedding instead"]
-        NSTextWritingDirectionEmbedding = 0<<1,
-#[deprecated = "Use NSWritingDirectionOverride instead"]
-        NSTextWritingDirectionOverride = 1<<1,
+    pub enum __anonymous__ {
+        #[deprecated = "Use NSWritingDirectionEmbedding instead"]
+        NSTextWritingDirectionEmbedding = 0 << 1,
+        #[deprecated = "Use NSWritingDirectionOverride instead"]
+        NSTextWritingDirectionOverride = 1 << 1,
     }
 );
 

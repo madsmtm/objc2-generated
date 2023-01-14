@@ -5,7 +5,7 @@ use crate::Foundation::*;
 
 extern_enum!(
     #[underlying(c_uint)]
-    pub enum {
+    pub enum __anonymous__ {
         NSOpenStepUnicodeReservedBase = 0xF400,
     }
 );

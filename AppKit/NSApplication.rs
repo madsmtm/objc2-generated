@@ -165,7 +165,7 @@ extern_static!(NSModalResponseContinue: NSModalResponse = -1002);
 
 extern_enum!(
     #[underlying(c_uint)]
-    pub enum {
+    pub enum __anonymous__ {
         NSUpdateWindowsRunLoopOrdering = 500000,
     }
 );
@@ -1172,12 +1172,12 @@ extern_static!(NSApplicationDidChangeOcclusionStateNotification: &'static NSNoti
 
 extern_enum!(
     #[underlying(c_int)]
-    pub enum {
-#[deprecated = "Use NSModalResponseStop instead"]
+    pub enum __anonymous__ {
+        #[deprecated = "Use NSModalResponseStop instead"]
         NSRunStoppedResponse = -1000,
-#[deprecated = "Use NSModalResponseAbort instead"]
+        #[deprecated = "Use NSModalResponseAbort instead"]
         NSRunAbortedResponse = -1001,
-#[deprecated = "Use NSModalResponseContinue instead"]
+        #[deprecated = "Use NSModalResponseContinue instead"]
         NSRunContinuesResponse = -1002,
     }
 );

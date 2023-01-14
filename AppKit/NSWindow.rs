@@ -35,7 +35,7 @@ extern_static!(NSModalResponseCancel: NSModalResponse = 0);
 
 extern_enum!(
     #[underlying(c_uint)]
-    pub enum {
+    pub enum __anonymous__ {
         NSDisplayWindowRunLoopOrdering = 600000,
         NSResetCursorRectsRunLoopOrdering = 700000,
     }

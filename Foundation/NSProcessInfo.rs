@@ -5,21 +5,21 @@ use crate::Foundation::*;
 
 extern_enum!(
     #[underlying(c_uint)]
-#[deprecated = "Not supported"]
-    pub enum {
-#[deprecated = "Not supported"]
+    #[deprecated = "Not supported"]
+    pub enum __anonymous__ {
+        #[deprecated = "Not supported"]
         NSWindowsNTOperatingSystem = 1,
-#[deprecated = "Not supported"]
+        #[deprecated = "Not supported"]
         NSWindows95OperatingSystem = 2,
-#[deprecated = "Not supported"]
+        #[deprecated = "Not supported"]
         NSSolarisOperatingSystem = 3,
-#[deprecated = "Not supported"]
+        #[deprecated = "Not supported"]
         NSHPUXOperatingSystem = 4,
-#[deprecated = "Not supported"]
+        #[deprecated = "Not supported"]
         NSMACHOperatingSystem = 5,
-#[deprecated = "Not supported"]
+        #[deprecated = "Not supported"]
         NSSunOSOperatingSystem = 6,
-#[deprecated = "Not supported"]
+        #[deprecated = "Not supported"]
         NSOSF1OperatingSystem = 7,
     }
 );

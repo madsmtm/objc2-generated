@@ -622,10 +622,10 @@ extern_static!(NSUsesScreenFontsDocumentAttribute: &'static NSAttributedStringKe
 
 extern_enum!(
     #[underlying(c_uint)]
-    pub enum {
-#[deprecated = "Use NSUnderlineStyleNone instead"]
+    pub enum __anonymous__ {
+        #[deprecated = "Use NSUnderlineStyleNone instead"]
         NSNoUnderlineStyle = 0,
-#[deprecated = "Use NSUnderlineStyleSingle instead"]
+        #[deprecated = "Use NSUnderlineStyleSingle instead"]
         NSSingleUnderlineStyle = 1,
     }
 );

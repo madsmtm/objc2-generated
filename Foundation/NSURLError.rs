@@ -17,7 +17,7 @@ extern_static!(NSURLErrorBackgroundTaskCancelledReasonKey: &'static NSString);
 
 ns_enum!(
     #[underlying(NSInteger)]
-    pub enum {
+    pub enum __anonymous__ {
         NSURLErrorCancelledReasonUserForceQuitApplication = 0,
         NSURLErrorCancelledReasonBackgroundUpdatesDisabled = 1,
         NSURLErrorCancelledReasonInsufficientSystemResources = 2,
@@ -37,7 +37,7 @@ ns_enum!(
 
 ns_error_enum!(
     #[underlying(NSInteger)]
-    pub enum {
+    pub enum __anonymous__ {
         NSURLErrorUnknown = -1,
         NSURLErrorCancelled = -999,
         NSURLErrorBadURL = -1000,

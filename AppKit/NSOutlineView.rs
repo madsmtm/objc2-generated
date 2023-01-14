@@ -7,7 +7,7 @@ use crate::Foundation::*;
 
 extern_enum!(
     #[underlying(c_int)]
-    pub enum {
+    pub enum __anonymous__ {
         NSOutlineViewDropOnItemIndex = -1,
     }
 );

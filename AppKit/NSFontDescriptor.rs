@@ -312,38 +312,38 @@ pub type NSFontFamilyClass = u32;
 
 extern_enum!(
     #[underlying(c_int)]
-    pub enum {
-        NSFontUnknownClass = 0<<28,
-        NSFontOldStyleSerifsClass = 1<<28,
-        NSFontTransitionalSerifsClass = 2<<28,
-        NSFontModernSerifsClass = 3<<28,
-        NSFontClarendonSerifsClass = 4<<28,
-        NSFontSlabSerifsClass = 5<<28,
-        NSFontFreeformSerifsClass = 7<<28,
-        NSFontSansSerifClass = 8<<28,
-        NSFontOrnamentalsClass = 9<<28,
-        NSFontScriptsClass = 10<<28,
-        NSFontSymbolicClass = 12<<28,
+    pub enum __anonymous__ {
+        NSFontUnknownClass = 0 << 28,
+        NSFontOldStyleSerifsClass = 1 << 28,
+        NSFontTransitionalSerifsClass = 2 << 28,
+        NSFontModernSerifsClass = 3 << 28,
+        NSFontClarendonSerifsClass = 4 << 28,
+        NSFontSlabSerifsClass = 5 << 28,
+        NSFontFreeformSerifsClass = 7 << 28,
+        NSFontSansSerifClass = 8 << 28,
+        NSFontOrnamentalsClass = 9 << 28,
+        NSFontScriptsClass = 10 << 28,
+        NSFontSymbolicClass = 12 << 28,
     }
 );
 
 extern_enum!(
     #[underlying(c_uint)]
-    pub enum {
+    pub enum __anonymous__ {
         NSFontFamilyClassMask = 0xF0000000,
     }
 );
 
 extern_enum!(
     #[underlying(c_uint)]
-    pub enum {
-        NSFontItalicTrait = 1<<0,
-        NSFontBoldTrait = 1<<1,
-        NSFontExpandedTrait = 1<<5,
-        NSFontCondensedTrait = 1<<6,
-        NSFontMonoSpaceTrait = 1<<10,
-        NSFontVerticalTrait = 1<<11,
-        NSFontUIOptimizedTrait = 1<<12,
+    pub enum __anonymous__ {
+        NSFontItalicTrait = 1 << 0,
+        NSFontBoldTrait = 1 << 1,
+        NSFontExpandedTrait = 1 << 5,
+        NSFontCondensedTrait = 1 << 6,
+        NSFontMonoSpaceTrait = 1 << 10,
+        NSFontVerticalTrait = 1 << 11,
+        NSFontUIOptimizedTrait = 1 << 12,
     }
 );
 

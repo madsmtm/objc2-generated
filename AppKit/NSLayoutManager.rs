@@ -904,15 +904,15 @@ extern_protocol!(
 
 extern_enum!(
     #[underlying(c_uint)]
-#[deprecated = "Use NSGlyphProperty instead"]
-    pub enum {
-#[deprecated]
+    #[deprecated = "Use NSGlyphProperty instead"]
+    pub enum __anonymous__ {
+        #[deprecated]
         NSGlyphAttributeSoft = 0,
-#[deprecated]
+        #[deprecated]
         NSGlyphAttributeElastic = 1,
-#[deprecated]
+        #[deprecated]
         NSGlyphAttributeBidiLevel = 2,
-#[deprecated]
+        #[deprecated]
         NSGlyphAttributeInscribe = 5,
     }
 );

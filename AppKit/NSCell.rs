@@ -863,20 +863,20 @@ extern_static!(NSControlTintDidChangeNotification: &'static NSNotificationName);
 
 extern_enum!(
     #[underlying(c_uint)]
-    pub enum {
-#[deprecated = "Use formatters instead"]
+    pub enum __anonymous__ {
+        #[deprecated = "Use formatters instead"]
         NSAnyType = 0,
-#[deprecated = "Use formatters instead"]
+        #[deprecated = "Use formatters instead"]
         NSIntType = 1,
-#[deprecated = "Use formatters instead"]
+        #[deprecated = "Use formatters instead"]
         NSPositiveIntType = 2,
-#[deprecated = "Use formatters instead"]
+        #[deprecated = "Use formatters instead"]
         NSFloatType = 3,
-#[deprecated = "Use formatters instead"]
+        #[deprecated = "Use formatters instead"]
         NSPositiveFloatType = 4,
-#[deprecated = "Use formatters instead"]
+        #[deprecated = "Use formatters instead"]
         NSDoubleType = 6,
-#[deprecated = "Use formatters instead"]
+        #[deprecated = "Use formatters instead"]
         NSPositiveDoubleType = 7,
     }
 );

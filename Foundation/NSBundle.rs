@@ -5,7 +5,7 @@ use crate::Foundation::*;
 
 extern_enum!(
     #[underlying(c_uint)]
-    pub enum {
+    pub enum __anonymous__ {
         NSBundleExecutableArchitectureI386 = 0x00000007,
         NSBundleExecutableArchitecturePPC = 0x00000012,
         NSBundleExecutableArchitectureX86_64 = 0x01000007,

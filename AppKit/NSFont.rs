@@ -226,7 +226,7 @@ pub type NSGlyph = c_uint;
 
 extern_enum!(
     #[underlying(c_uint)]
-    pub enum {
+    pub enum __anonymous__ {
         NSControlGlyph = 0x00FFFFFF,
         NSNullGlyph = 0x0,
     }

@@ -5,7 +5,7 @@ use crate::Foundation::*;
 
 ns_error_enum!(
     #[underlying(NSInteger)]
-    pub enum {
+    pub enum __anonymous__ {
         NSFileNoSuchFileError = 4,
         NSFileLockingError = 255,
         NSFileReadUnknownError = 256,

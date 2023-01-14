@@ -115,7 +115,7 @@ extern_static!(NSUbiquitousKeyValueStoreChangedKeysKey: &'static NSString);
 
 ns_enum!(
     #[underlying(NSInteger)]
-    pub enum {
+    pub enum __anonymous__ {
         NSUbiquitousKeyValueStoreServerChange = 0,
         NSUbiquitousKeyValueStoreInitialSyncChange = 1,
         NSUbiquitousKeyValueStoreQuotaViolationChange = 2,

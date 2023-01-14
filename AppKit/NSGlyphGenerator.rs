@@ -7,10 +7,10 @@ use crate::Foundation::*;
 
 extern_enum!(
     #[underlying(c_uint)]
-    pub enum {
-        NSShowControlGlyphs = 1<<0,
-        NSShowInvisibleGlyphs = 1<<1,
-        NSWantsBidiLevels = 1<<2,
+    pub enum __anonymous__ {
+        NSShowControlGlyphs = 1 << 0,
+        NSShowInvisibleGlyphs = 1 << 1,
+        NSWantsBidiLevels = 1 << 2,
     }
 );
 

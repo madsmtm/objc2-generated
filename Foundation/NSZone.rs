@@ -59,9 +59,9 @@ extern_fn!(
 
 ns_enum!(
     #[underlying(NSUInteger)]
-    pub enum {
-        NSScannedOption = 1<<0,
-        NSCollectorDisabledOption = 1<<1,
+    pub enum __anonymous__ {
+        NSScannedOption = 1 << 0,
+        NSCollectorDisabledOption = 1 << 1,
     }
 );
 

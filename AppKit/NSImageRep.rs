@@ -11,7 +11,7 @@ typed_enum!(
 
 extern_enum!(
     #[underlying(c_uint)]
-    pub enum {
+    pub enum __anonymous__ {
         NSImageRepMatchesDevice = 0,
     }
 );

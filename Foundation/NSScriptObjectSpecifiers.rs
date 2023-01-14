@@ -5,7 +5,7 @@ use crate::Foundation::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
-    pub enum {
+    pub enum __anonymous__ {
         NSNoSpecifierError = 0,
         NSNoTopLevelContainersSpecifierError = 1,
         NSContainerSpecifierError = 2,

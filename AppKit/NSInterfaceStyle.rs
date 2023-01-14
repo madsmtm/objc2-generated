@@ -7,14 +7,14 @@ use crate::Foundation::*;
 
 extern_enum!(
     #[underlying(c_uint)]
-    pub enum {
-#[deprecated]
+    pub enum __anonymous__ {
+        #[deprecated]
         NSNoInterfaceStyle = 0,
-#[deprecated]
+        #[deprecated]
         NSNextStepInterfaceStyle = 1,
-#[deprecated]
+        #[deprecated]
         NSWindows95InterfaceStyle = 2,
-#[deprecated]
+        #[deprecated]
         NSMacintoshInterfaceStyle = 3,
     }
 );

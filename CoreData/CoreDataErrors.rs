@@ -24,7 +24,7 @@ extern_static!(NSSQLiteErrorDomain: &'static NSString);
 
 extern_enum!(
     #[underlying(NSInteger)]
-    pub enum {
+    pub enum __anonymous__ {
         NSManagedObjectValidationError = 1550,
         NSManagedObjectConstraintValidationError = 1551,
         NSValidationMultipleErrorsError = 1560,
