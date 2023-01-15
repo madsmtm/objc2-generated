@@ -55,7 +55,7 @@ extern_methods!(
             port: NSInteger,
             protocol: Option<&NSString>,
             realm: Option<&NSString>,
-            authenticationMethod: Option<&NSString>,
+            authentication_method: Option<&NSString>,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -66,7 +66,7 @@ extern_methods!(
             port: NSInteger,
             r#type: Option<&NSString>,
             realm: Option<&NSString>,
-            authenticationMethod: Option<&NSString>,
+            authentication_method: Option<&NSString>,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]

@@ -24,31 +24,31 @@ extern_methods!(
         pub unsafe fn hasVerticalScroller(&self) -> bool;
 
         #[method(setHasVerticalScroller:)]
-        pub unsafe fn setHasVerticalScroller(&self, hasVerticalScroller: bool);
+        pub unsafe fn setHasVerticalScroller(&self, has_vertical_scroller: bool);
 
         #[method(intercellSpacing)]
         pub unsafe fn intercellSpacing(&self) -> NSSize;
 
         #[method(setIntercellSpacing:)]
-        pub unsafe fn setIntercellSpacing(&self, intercellSpacing: NSSize);
+        pub unsafe fn setIntercellSpacing(&self, intercell_spacing: NSSize);
 
         #[method(itemHeight)]
         pub unsafe fn itemHeight(&self) -> CGFloat;
 
         #[method(setItemHeight:)]
-        pub unsafe fn setItemHeight(&self, itemHeight: CGFloat);
+        pub unsafe fn setItemHeight(&self, item_height: CGFloat);
 
         #[method(numberOfVisibleItems)]
         pub unsafe fn numberOfVisibleItems(&self) -> NSInteger;
 
         #[method(setNumberOfVisibleItems:)]
-        pub unsafe fn setNumberOfVisibleItems(&self, numberOfVisibleItems: NSInteger);
+        pub unsafe fn setNumberOfVisibleItems(&self, number_of_visible_items: NSInteger);
 
         #[method(isButtonBordered)]
         pub unsafe fn isButtonBordered(&self) -> bool;
 
         #[method(setButtonBordered:)]
-        pub unsafe fn setButtonBordered(&self, buttonBordered: bool);
+        pub unsafe fn setButtonBordered(&self, button_bordered: bool);
 
         #[method(reloadData)]
         pub unsafe fn reloadData(&self);
@@ -60,7 +60,7 @@ extern_methods!(
         pub unsafe fn usesDataSource(&self) -> bool;
 
         #[method(setUsesDataSource:)]
-        pub unsafe fn setUsesDataSource(&self, usesDataSource: bool);
+        pub unsafe fn setUsesDataSource(&self, uses_data_source: bool);
 
         #[method(scrollItemAtIndexToTop:)]
         pub unsafe fn scrollItemAtIndexToTop(&self, index: NSInteger);
@@ -94,7 +94,7 @@ extern_methods!(
         pub unsafe fn dataSource(&self) -> Option<Id<NSComboBoxCellDataSource, Shared>>;
 
         #[method(setDataSource:)]
-        pub unsafe fn setDataSource(&self, dataSource: Option<&NSComboBoxCellDataSource>);
+        pub unsafe fn setDataSource(&self, data_source: Option<&NSComboBoxCellDataSource>);
 
         #[method(addItemWithObjectValue:)]
         pub unsafe fn addItemWithObjectValue(&self, object: &Object);
@@ -142,7 +142,7 @@ extern_protocol!(
         #[method(numberOfItemsInComboBoxCell:)]
         pub unsafe fn numberOfItemsInComboBoxCell(
             &self,
-            comboBoxCell: &NSComboBoxCell,
+            combo_box_cell: &NSComboBoxCell,
         ) -> NSInteger;
 
         #[cfg(feature = "AppKit_NSComboBoxCell")]
@@ -150,7 +150,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other comboBoxCell:objectValueForItemAtIndex:)]
         pub unsafe fn comboBoxCell_objectValueForItemAtIndex(
             &self,
-            comboBoxCell: &NSComboBoxCell,
+            combo_box_cell: &NSComboBoxCell,
             index: NSInteger,
         ) -> Id<Object, Shared>;
 
@@ -159,7 +159,7 @@ extern_protocol!(
         #[method(comboBoxCell:indexOfItemWithStringValue:)]
         pub unsafe fn comboBoxCell_indexOfItemWithStringValue(
             &self,
-            comboBoxCell: &NSComboBoxCell,
+            combo_box_cell: &NSComboBoxCell,
             string: &NSString,
         ) -> NSUInteger;
 
@@ -168,8 +168,8 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other comboBoxCell:completedString:)]
         pub unsafe fn comboBoxCell_completedString(
             &self,
-            comboBoxCell: &NSComboBoxCell,
-            uncompletedString: &NSString,
+            combo_box_cell: &NSComboBoxCell,
+            uncompleted_string: &NSString,
         ) -> Option<Id<NSString, Shared>>;
     }
 );

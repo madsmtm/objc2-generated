@@ -99,7 +99,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other runningApplicationsWithBundleIdentifier:)]
         pub unsafe fn runningApplicationsWithBundleIdentifier(
-            bundleIdentifier: &NSString,
+            bundle_identifier: &NSString,
         ) -> Id<NSArray<NSRunningApplication>, Shared>;
 
         #[method_id(@__retain_semantics Other currentApplication)]

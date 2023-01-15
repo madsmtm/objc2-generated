@@ -41,9 +41,9 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other groupWithItemIdentifier:titles:selectionMode:labels:target:action:)]
         pub unsafe fn groupWithItemIdentifier_titles_selectionMode_labels_target_action(
-            itemIdentifier: &NSToolbarItemIdentifier,
+            item_identifier: &NSToolbarItemIdentifier,
             titles: &NSArray<NSString>,
-            selectionMode: NSToolbarItemGroupSelectionMode,
+            selection_mode: NSToolbarItemGroupSelectionMode,
             labels: Option<&NSArray<NSString>>,
             target: Option<&Object>,
             action: Option<Sel>,
@@ -56,9 +56,9 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Other groupWithItemIdentifier:images:selectionMode:labels:target:action:)]
         pub unsafe fn groupWithItemIdentifier_images_selectionMode_labels_target_action(
-            itemIdentifier: &NSToolbarItemIdentifier,
+            item_identifier: &NSToolbarItemIdentifier,
             images: &NSArray<NSImage>,
-            selectionMode: NSToolbarItemGroupSelectionMode,
+            selection_mode: NSToolbarItemGroupSelectionMode,
             labels: Option<&NSArray<NSString>>,
             target: Option<&Object>,
             action: Option<Sel>,
@@ -78,20 +78,20 @@ extern_methods!(
         #[method(setControlRepresentation:)]
         pub unsafe fn setControlRepresentation(
             &self,
-            controlRepresentation: NSToolbarItemGroupControlRepresentation,
+            control_representation: NSToolbarItemGroupControlRepresentation,
         );
 
         #[method(selectionMode)]
         pub unsafe fn selectionMode(&self) -> NSToolbarItemGroupSelectionMode;
 
         #[method(setSelectionMode:)]
-        pub unsafe fn setSelectionMode(&self, selectionMode: NSToolbarItemGroupSelectionMode);
+        pub unsafe fn setSelectionMode(&self, selection_mode: NSToolbarItemGroupSelectionMode);
 
         #[method(selectedIndex)]
         pub unsafe fn selectedIndex(&self) -> NSInteger;
 
         #[method(setSelectedIndex:)]
-        pub unsafe fn setSelectedIndex(&self, selectedIndex: NSInteger);
+        pub unsafe fn setSelectedIndex(&self, selected_index: NSInteger);
 
         #[method(setSelected:atIndex:)]
         pub unsafe fn setSelected_atIndex(&self, selected: bool, index: NSInteger);
@@ -108,7 +108,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithItemIdentifier:)]
         pub unsafe fn initWithItemIdentifier(
             this: Option<Allocated<Self>>,
-            itemIdentifier: &NSToolbarItemIdentifier,
+            item_identifier: &NSToolbarItemIdentifier,
         ) -> Id<Self, Shared>;
     }
 );

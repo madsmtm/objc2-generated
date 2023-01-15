@@ -22,7 +22,7 @@ extern_methods!(
         #[method(runAnimationGroup:completionHandler:)]
         pub unsafe fn runAnimationGroup_completionHandler(
             changes: &Block<(NonNull<NSAnimationContext>,), ()>,
-            completionHandler: Option<&Block<(), ()>>,
+            completion_handler: Option<&Block<(), ()>>,
         );
 
         #[method(runAnimationGroup:)]
@@ -47,12 +47,12 @@ extern_methods!(
         pub unsafe fn completionHandler(&self) -> *mut Block<(), ()>;
 
         #[method(setCompletionHandler:)]
-        pub unsafe fn setCompletionHandler(&self, completionHandler: Option<&Block<(), ()>>);
+        pub unsafe fn setCompletionHandler(&self, completion_handler: Option<&Block<(), ()>>);
 
         #[method(allowsImplicitAnimation)]
         pub unsafe fn allowsImplicitAnimation(&self) -> bool;
 
         #[method(setAllowsImplicitAnimation:)]
-        pub unsafe fn setAllowsImplicitAnimation(&self, allowsImplicitAnimation: bool);
+        pub unsafe fn setAllowsImplicitAnimation(&self, allows_implicit_animation: bool);
     }
 );

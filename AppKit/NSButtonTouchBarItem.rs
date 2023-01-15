@@ -70,7 +70,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setBezelColor:)]
-        pub unsafe fn setBezelColor(&self, bezelColor: Option<&NSColor>);
+        pub unsafe fn setBezelColor(&self, bezel_color: Option<&NSColor>);
 
         #[method_id(@__retain_semantics Other target)]
         pub unsafe fn target(&self) -> Option<Id<Object, Shared>>;
@@ -96,7 +96,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCustomizationLabel:)]
-        pub unsafe fn setCustomizationLabel(&self, customizationLabel: Option<&NSString>);
+        pub unsafe fn setCustomizationLabel(&self, customization_label: Option<&NSString>);
     }
 );
 

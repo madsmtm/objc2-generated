@@ -51,7 +51,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSTimeZone")]
         #[method(setTimeZone:)]
-        pub unsafe fn setTimeZone(&self, timeZone: Option<&NSTimeZone>);
+        pub unsafe fn setTimeZone(&self, time_zone: Option<&NSTimeZone>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other dateTemplate)]
@@ -59,33 +59,33 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setDateTemplate:)]
-        pub unsafe fn setDateTemplate(&self, dateTemplate: Option<&NSString>);
+        pub unsafe fn setDateTemplate(&self, date_template: Option<&NSString>);
 
         #[method(dateStyle)]
         pub unsafe fn dateStyle(&self) -> NSDateIntervalFormatterStyle;
 
         #[method(setDateStyle:)]
-        pub unsafe fn setDateStyle(&self, dateStyle: NSDateIntervalFormatterStyle);
+        pub unsafe fn setDateStyle(&self, date_style: NSDateIntervalFormatterStyle);
 
         #[method(timeStyle)]
         pub unsafe fn timeStyle(&self) -> NSDateIntervalFormatterStyle;
 
         #[method(setTimeStyle:)]
-        pub unsafe fn setTimeStyle(&self, timeStyle: NSDateIntervalFormatterStyle);
+        pub unsafe fn setTimeStyle(&self, time_style: NSDateIntervalFormatterStyle);
 
         #[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other stringFromDate:toDate:)]
         pub unsafe fn stringFromDate_toDate(
             &self,
-            fromDate: &NSDate,
-            toDate: &NSDate,
+            from_date: &NSDate,
+            to_date: &NSDate,
         ) -> Id<NSString, Shared>;
 
         #[cfg(all(feature = "Foundation_NSDateInterval", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other stringFromDateInterval:)]
         pub unsafe fn stringFromDateInterval(
             &self,
-            dateInterval: &NSDateInterval,
+            date_interval: &NSDateInterval,
         ) -> Option<Id<NSString, Shared>>;
     }
 );

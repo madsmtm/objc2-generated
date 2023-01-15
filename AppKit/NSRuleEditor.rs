@@ -70,7 +70,7 @@ extern_methods!(
         #[method(setFormattingStringsFilename:)]
         pub unsafe fn setFormattingStringsFilename(
             &self,
-            formattingStringsFilename: Option<&NSString>,
+            formatting_strings_filename: Option<&NSString>,
         );
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
@@ -83,7 +83,7 @@ extern_methods!(
         #[method(setFormattingDictionary:)]
         pub unsafe fn setFormattingDictionary(
             &self,
-            formattingDictionary: Option<&NSDictionary<NSString, NSString>>,
+            formatting_dictionary: Option<&NSDictionary<NSString, NSString>>,
         );
 
         #[method(reloadCriteria)]
@@ -93,13 +93,13 @@ extern_methods!(
         pub unsafe fn nestingMode(&self) -> NSRuleEditorNestingMode;
 
         #[method(setNestingMode:)]
-        pub unsafe fn setNestingMode(&self, nestingMode: NSRuleEditorNestingMode);
+        pub unsafe fn setNestingMode(&self, nesting_mode: NSRuleEditorNestingMode);
 
         #[method(rowHeight)]
         pub unsafe fn rowHeight(&self) -> CGFloat;
 
         #[method(setRowHeight:)]
-        pub unsafe fn setRowHeight(&self, rowHeight: CGFloat);
+        pub unsafe fn setRowHeight(&self, row_height: CGFloat);
 
         #[method(isEditable)]
         pub unsafe fn isEditable(&self) -> bool;
@@ -111,7 +111,7 @@ extern_methods!(
         pub unsafe fn canRemoveAllRows(&self) -> bool;
 
         #[method(setCanRemoveAllRows:)]
-        pub unsafe fn setCanRemoveAllRows(&self, canRemoveAllRows: bool);
+        pub unsafe fn setCanRemoveAllRows(&self, can_remove_all_rows: bool);
 
         #[cfg(feature = "Foundation_NSPredicate")]
         #[method_id(@__retain_semantics Other predicate)]
@@ -129,7 +129,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSIndexSet")]
         #[method_id(@__retain_semantics Other subrowIndexesForRow:)]
-        pub unsafe fn subrowIndexesForRow(&self, rowIndex: NSInteger) -> Id<NSIndexSet, Shared>;
+        pub unsafe fn subrowIndexesForRow(&self, row_index: NSInteger) -> Id<NSIndexSet, Shared>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other criteriaForRow:)]
@@ -140,13 +140,13 @@ extern_methods!(
         pub unsafe fn displayValuesForRow(&self, row: NSInteger) -> Id<NSArray, Shared>;
 
         #[method(rowForDisplayValue:)]
-        pub unsafe fn rowForDisplayValue(&self, displayValue: &Object) -> NSInteger;
+        pub unsafe fn rowForDisplayValue(&self, display_value: &Object) -> NSInteger;
 
         #[method(rowTypeForRow:)]
-        pub unsafe fn rowTypeForRow(&self, rowIndex: NSInteger) -> NSRuleEditorRowType;
+        pub unsafe fn rowTypeForRow(&self, row_index: NSInteger) -> NSRuleEditorRowType;
 
         #[method(parentRowForRow:)]
-        pub unsafe fn parentRowForRow(&self, rowIndex: NSInteger) -> NSInteger;
+        pub unsafe fn parentRowForRow(&self, row_index: NSInteger) -> NSInteger;
 
         #[method(addRow:)]
         pub unsafe fn addRow(&self, sender: Option<&Object>);
@@ -154,10 +154,10 @@ extern_methods!(
         #[method(insertRowAtIndex:withType:asSubrowOfRow:animate:)]
         pub unsafe fn insertRowAtIndex_withType_asSubrowOfRow_animate(
             &self,
-            rowIndex: NSInteger,
-            rowType: NSRuleEditorRowType,
-            parentRow: NSInteger,
-            shouldAnimate: bool,
+            row_index: NSInteger,
+            row_type: NSRuleEditorRowType,
+            parent_row: NSInteger,
+            should_animate: bool,
         );
 
         #[cfg(feature = "Foundation_NSArray")]
@@ -166,18 +166,18 @@ extern_methods!(
             &self,
             criteria: &NSArray,
             values: &NSArray,
-            rowIndex: NSInteger,
+            row_index: NSInteger,
         );
 
         #[method(removeRowAtIndex:)]
-        pub unsafe fn removeRowAtIndex(&self, rowIndex: NSInteger);
+        pub unsafe fn removeRowAtIndex(&self, row_index: NSInteger);
 
         #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(removeRowsAtIndexes:includeSubrows:)]
         pub unsafe fn removeRowsAtIndexes_includeSubrows(
             &self,
-            rowIndexes: &NSIndexSet,
-            includeSubrows: bool,
+            row_indexes: &NSIndexSet,
+            include_subrows: bool,
         );
 
         #[cfg(feature = "Foundation_NSIndexSet")]
@@ -196,7 +196,7 @@ extern_methods!(
         pub unsafe fn rowClass(&self) -> &'static Class;
 
         #[method(setRowClass:)]
-        pub unsafe fn setRowClass(&self, rowClass: &Class);
+        pub unsafe fn setRowClass(&self, row_class: &Class);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other rowTypeKeyPath)]
@@ -204,7 +204,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setRowTypeKeyPath:)]
-        pub unsafe fn setRowTypeKeyPath(&self, rowTypeKeyPath: &NSString);
+        pub unsafe fn setRowTypeKeyPath(&self, row_type_key_path: &NSString);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other subrowsKeyPath)]
@@ -212,7 +212,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setSubrowsKeyPath:)]
-        pub unsafe fn setSubrowsKeyPath(&self, subrowsKeyPath: &NSString);
+        pub unsafe fn setSubrowsKeyPath(&self, subrows_key_path: &NSString);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other criteriaKeyPath)]
@@ -220,7 +220,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCriteriaKeyPath:)]
-        pub unsafe fn setCriteriaKeyPath(&self, criteriaKeyPath: &NSString);
+        pub unsafe fn setCriteriaKeyPath(&self, criteria_key_path: &NSString);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other displayValuesKeyPath)]
@@ -228,7 +228,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setDisplayValuesKeyPath:)]
-        pub unsafe fn setDisplayValuesKeyPath(&self, displayValuesKeyPath: &NSString);
+        pub unsafe fn setDisplayValuesKeyPath(&self, display_values_key_path: &NSString);
     }
 );
 
@@ -242,7 +242,7 @@ extern_protocol!(
             &self,
             editor: &NSRuleEditor,
             criterion: Option<&Object>,
-            rowType: NSRuleEditorRowType,
+            row_type: NSRuleEditorRowType,
         ) -> NSInteger;
 
         #[cfg(feature = "AppKit_NSRuleEditor")]
@@ -252,7 +252,7 @@ extern_protocol!(
             editor: &NSRuleEditor,
             index: NSInteger,
             criterion: Option<&Object>,
-            rowType: NSRuleEditorRowType,
+            row_type: NSRuleEditorRowType,
         ) -> Id<Object, Shared>;
 
         #[cfg(feature = "AppKit_NSRuleEditor")]
@@ -291,7 +291,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frame_rect: NSRect,
         ) -> Id<Self, Shared>;
     }
 );

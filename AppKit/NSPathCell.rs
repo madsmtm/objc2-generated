@@ -34,7 +34,7 @@ extern_methods!(
         pub unsafe fn pathStyle(&self) -> NSPathStyle;
 
         #[method(setPathStyle:)]
-        pub unsafe fn setPathStyle(&self, pathStyle: NSPathStyle);
+        pub unsafe fn setPathStyle(&self, path_style: NSPathStyle);
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other URL)]
@@ -42,7 +42,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method(setURL:)]
-        pub unsafe fn setURL(&self, URL: Option<&NSURL>);
+        pub unsafe fn setURL(&self, url: Option<&NSURL>);
 
         #[method(setObjectValue:)]
         pub unsafe fn setObjectValue(&self, obj: Option<&Object>);
@@ -53,7 +53,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setAllowedTypes:)]
-        pub unsafe fn setAllowedTypes(&self, allowedTypes: Option<&NSArray<NSString>>);
+        pub unsafe fn setAllowedTypes(&self, allowed_types: Option<&NSArray<NSString>>);
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSPathCellDelegate, Shared>>;
@@ -72,7 +72,7 @@ extern_methods!(
         #[method(setPathComponentCells:)]
         pub unsafe fn setPathComponentCells(
             &self,
-            pathComponentCells: &NSArray<NSPathComponentCell>,
+            path_component_cells: &NSArray<NSPathComponentCell>,
         );
 
         #[cfg(all(feature = "AppKit_NSPathComponentCell", feature = "AppKit_NSView"))]
@@ -119,7 +119,7 @@ extern_methods!(
         pub unsafe fn doubleAction(&self) -> Option<Sel>;
 
         #[method(setDoubleAction:)]
-        pub unsafe fn setDoubleAction(&self, doubleAction: Option<Sel>);
+        pub unsafe fn setDoubleAction(&self, double_action: Option<Sel>);
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other backgroundColor)]
@@ -127,7 +127,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setBackgroundColor:)]
-        pub unsafe fn setBackgroundColor(&self, backgroundColor: Option<&NSColor>);
+        pub unsafe fn setBackgroundColor(&self, background_color: Option<&NSColor>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other placeholderString)]
@@ -135,7 +135,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setPlaceholderString:)]
-        pub unsafe fn setPlaceholderString(&self, placeholderString: Option<&NSString>);
+        pub unsafe fn setPlaceholderString(&self, placeholder_string: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other placeholderAttributedString)]
@@ -145,7 +145,7 @@ extern_methods!(
         #[method(setPlaceholderAttributedString:)]
         pub unsafe fn setPlaceholderAttributedString(
             &self,
-            placeholderAttributedString: Option<&NSAttributedString>,
+            placeholder_attributed_string: Option<&NSAttributedString>,
         );
     }
 );
@@ -159,14 +159,14 @@ extern_protocol!(
         #[method(pathCell:willDisplayOpenPanel:)]
         pub unsafe fn pathCell_willDisplayOpenPanel(
             &self,
-            pathCell: &NSPathCell,
-            openPanel: &NSOpenPanel,
+            path_cell: &NSPathCell,
+            open_panel: &NSOpenPanel,
         );
 
         #[cfg(all(feature = "AppKit_NSMenu", feature = "AppKit_NSPathCell"))]
         #[optional]
         #[method(pathCell:willPopUpMenu:)]
-        pub unsafe fn pathCell_willPopUpMenu(&self, pathCell: &NSPathCell, menu: &NSMenu);
+        pub unsafe fn pathCell_willPopUpMenu(&self, path_cell: &NSPathCell, menu: &NSMenu);
     }
 );
 

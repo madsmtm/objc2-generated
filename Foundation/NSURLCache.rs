@@ -44,8 +44,8 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             response: &NSURLResponse,
             data: &NSData,
-            userInfo: Option<&NSDictionary>,
-            storagePolicy: NSURLCacheStoragePolicy,
+            user_info: Option<&NSDictionary>,
+            storage_policy: NSURLCacheStoragePolicy,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSURLResponse")]
@@ -83,15 +83,15 @@ extern_methods!(
         pub unsafe fn sharedURLCache() -> Id<NSURLCache, Shared>;
 
         #[method(setSharedURLCache:)]
-        pub unsafe fn setSharedURLCache(sharedURLCache: &NSURLCache);
+        pub unsafe fn setSharedURLCache(shared_url_cache: &NSURLCache);
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithMemoryCapacity:diskCapacity:diskPath:)]
         pub unsafe fn initWithMemoryCapacity_diskCapacity_diskPath(
             this: Option<Allocated<Self>>,
-            memoryCapacity: NSUInteger,
-            diskCapacity: NSUInteger,
+            memory_capacity: NSUInteger,
+            disk_capacity: NSUInteger,
             path: Option<&NSString>,
         ) -> Id<Self, Shared>;
 
@@ -99,9 +99,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithMemoryCapacity:diskCapacity:directoryURL:)]
         pub unsafe fn initWithMemoryCapacity_diskCapacity_directoryURL(
             this: Option<Allocated<Self>>,
-            memoryCapacity: NSUInteger,
-            diskCapacity: NSUInteger,
-            directoryURL: Option<&NSURL>,
+            memory_capacity: NSUInteger,
+            disk_capacity: NSUInteger,
+            directory_url: Option<&NSURL>,
         ) -> Id<Self, Shared>;
 
         #[cfg(all(
@@ -121,7 +121,7 @@ extern_methods!(
         #[method(storeCachedResponse:forRequest:)]
         pub unsafe fn storeCachedResponse_forRequest(
             &self,
-            cachedResponse: &NSCachedURLResponse,
+            cached_response: &NSCachedURLResponse,
             request: &NSURLRequest,
         );
 
@@ -140,13 +140,13 @@ extern_methods!(
         pub unsafe fn memoryCapacity(&self) -> NSUInteger;
 
         #[method(setMemoryCapacity:)]
-        pub unsafe fn setMemoryCapacity(&self, memoryCapacity: NSUInteger);
+        pub unsafe fn setMemoryCapacity(&self, memory_capacity: NSUInteger);
 
         #[method(diskCapacity)]
         pub unsafe fn diskCapacity(&self) -> NSUInteger;
 
         #[method(setDiskCapacity:)]
-        pub unsafe fn setDiskCapacity(&self, diskCapacity: NSUInteger);
+        pub unsafe fn setDiskCapacity(&self, disk_capacity: NSUInteger);
 
         #[method(currentMemoryUsage)]
         pub unsafe fn currentMemoryUsage(&self) -> NSUInteger;
@@ -167,8 +167,8 @@ extern_methods!(
         #[method(storeCachedResponse:forDataTask:)]
         pub unsafe fn storeCachedResponse_forDataTask(
             &self,
-            cachedResponse: &NSCachedURLResponse,
-            dataTask: &NSURLSessionDataTask,
+            cached_response: &NSCachedURLResponse,
+            data_task: &NSURLSessionDataTask,
         );
 
         #[cfg(all(
@@ -178,12 +178,12 @@ extern_methods!(
         #[method(getCachedResponseForDataTask:completionHandler:)]
         pub unsafe fn getCachedResponseForDataTask_completionHandler(
             &self,
-            dataTask: &NSURLSessionDataTask,
-            completionHandler: &Block<(*mut NSCachedURLResponse,), ()>,
+            data_task: &NSURLSessionDataTask,
+            completion_handler: &Block<(*mut NSCachedURLResponse,), ()>,
         );
 
         #[cfg(feature = "Foundation_NSURLSessionDataTask")]
         #[method(removeCachedResponseForDataTask:)]
-        pub unsafe fn removeCachedResponseForDataTask(&self, dataTask: &NSURLSessionDataTask);
+        pub unsafe fn removeCachedResponseForDataTask(&self, data_task: &NSURLSessionDataTask);
     }
 );

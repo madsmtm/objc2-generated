@@ -47,7 +47,7 @@ extern_methods!(
         pub unsafe fn birthRate(&self) -> c_float;
 
         #[method(setBirthRate:)]
-        pub unsafe fn setBirthRate(&self, birthRate: c_float);
+        pub unsafe fn setBirthRate(&self, birth_rate: c_float);
 
         #[method(lifetime)]
         pub unsafe fn lifetime(&self) -> c_float;
@@ -59,25 +59,25 @@ extern_methods!(
         pub unsafe fn lifetimeRange(&self) -> c_float;
 
         #[method(setLifetimeRange:)]
-        pub unsafe fn setLifetimeRange(&self, lifetimeRange: c_float);
+        pub unsafe fn setLifetimeRange(&self, lifetime_range: c_float);
 
         #[method(emissionLatitude)]
         pub unsafe fn emissionLatitude(&self) -> CGFloat;
 
         #[method(setEmissionLatitude:)]
-        pub unsafe fn setEmissionLatitude(&self, emissionLatitude: CGFloat);
+        pub unsafe fn setEmissionLatitude(&self, emission_latitude: CGFloat);
 
         #[method(emissionLongitude)]
         pub unsafe fn emissionLongitude(&self) -> CGFloat;
 
         #[method(setEmissionLongitude:)]
-        pub unsafe fn setEmissionLongitude(&self, emissionLongitude: CGFloat);
+        pub unsafe fn setEmissionLongitude(&self, emission_longitude: CGFloat);
 
         #[method(emissionRange)]
         pub unsafe fn emissionRange(&self) -> CGFloat;
 
         #[method(setEmissionRange:)]
-        pub unsafe fn setEmissionRange(&self, emissionRange: CGFloat);
+        pub unsafe fn setEmissionRange(&self, emission_range: CGFloat);
 
         #[method(velocity)]
         pub unsafe fn velocity(&self) -> CGFloat;
@@ -89,25 +89,25 @@ extern_methods!(
         pub unsafe fn velocityRange(&self) -> CGFloat;
 
         #[method(setVelocityRange:)]
-        pub unsafe fn setVelocityRange(&self, velocityRange: CGFloat);
+        pub unsafe fn setVelocityRange(&self, velocity_range: CGFloat);
 
         #[method(xAcceleration)]
         pub unsafe fn xAcceleration(&self) -> CGFloat;
 
         #[method(setXAcceleration:)]
-        pub unsafe fn setXAcceleration(&self, xAcceleration: CGFloat);
+        pub unsafe fn setXAcceleration(&self, x_acceleration: CGFloat);
 
         #[method(yAcceleration)]
         pub unsafe fn yAcceleration(&self) -> CGFloat;
 
         #[method(setYAcceleration:)]
-        pub unsafe fn setYAcceleration(&self, yAcceleration: CGFloat);
+        pub unsafe fn setYAcceleration(&self, y_acceleration: CGFloat);
 
         #[method(zAcceleration)]
         pub unsafe fn zAcceleration(&self) -> CGFloat;
 
         #[method(setZAcceleration:)]
-        pub unsafe fn setZAcceleration(&self, zAcceleration: CGFloat);
+        pub unsafe fn setZAcceleration(&self, z_acceleration: CGFloat);
 
         #[method(scale)]
         pub unsafe fn scale(&self) -> CGFloat;
@@ -119,13 +119,13 @@ extern_methods!(
         pub unsafe fn scaleRange(&self) -> CGFloat;
 
         #[method(setScaleRange:)]
-        pub unsafe fn setScaleRange(&self, scaleRange: CGFloat);
+        pub unsafe fn setScaleRange(&self, scale_range: CGFloat);
 
         #[method(scaleSpeed)]
         pub unsafe fn scaleSpeed(&self) -> CGFloat;
 
         #[method(setScaleSpeed:)]
-        pub unsafe fn setScaleSpeed(&self, scaleSpeed: CGFloat);
+        pub unsafe fn setScaleSpeed(&self, scale_speed: CGFloat);
 
         #[method(spin)]
         pub unsafe fn spin(&self) -> CGFloat;
@@ -137,55 +137,55 @@ extern_methods!(
         pub unsafe fn spinRange(&self) -> CGFloat;
 
         #[method(setSpinRange:)]
-        pub unsafe fn setSpinRange(&self, spinRange: CGFloat);
+        pub unsafe fn setSpinRange(&self, spin_range: CGFloat);
 
         #[method(redRange)]
         pub unsafe fn redRange(&self) -> c_float;
 
         #[method(setRedRange:)]
-        pub unsafe fn setRedRange(&self, redRange: c_float);
+        pub unsafe fn setRedRange(&self, red_range: c_float);
 
         #[method(greenRange)]
         pub unsafe fn greenRange(&self) -> c_float;
 
         #[method(setGreenRange:)]
-        pub unsafe fn setGreenRange(&self, greenRange: c_float);
+        pub unsafe fn setGreenRange(&self, green_range: c_float);
 
         #[method(blueRange)]
         pub unsafe fn blueRange(&self) -> c_float;
 
         #[method(setBlueRange:)]
-        pub unsafe fn setBlueRange(&self, blueRange: c_float);
+        pub unsafe fn setBlueRange(&self, blue_range: c_float);
 
         #[method(alphaRange)]
         pub unsafe fn alphaRange(&self) -> c_float;
 
         #[method(setAlphaRange:)]
-        pub unsafe fn setAlphaRange(&self, alphaRange: c_float);
+        pub unsafe fn setAlphaRange(&self, alpha_range: c_float);
 
         #[method(redSpeed)]
         pub unsafe fn redSpeed(&self) -> c_float;
 
         #[method(setRedSpeed:)]
-        pub unsafe fn setRedSpeed(&self, redSpeed: c_float);
+        pub unsafe fn setRedSpeed(&self, red_speed: c_float);
 
         #[method(greenSpeed)]
         pub unsafe fn greenSpeed(&self) -> c_float;
 
         #[method(setGreenSpeed:)]
-        pub unsafe fn setGreenSpeed(&self, greenSpeed: c_float);
+        pub unsafe fn setGreenSpeed(&self, green_speed: c_float);
 
         #[method(blueSpeed)]
         pub unsafe fn blueSpeed(&self) -> c_float;
 
         #[method(setBlueSpeed:)]
-        pub unsafe fn setBlueSpeed(&self, blueSpeed: c_float);
+        pub unsafe fn setBlueSpeed(&self, blue_speed: c_float);
 
         #[method(alphaSpeed)]
         pub unsafe fn alphaSpeed(&self) -> c_float;
 
         #[method(setAlphaSpeed:)]
-        pub unsafe fn setAlphaSpeed(&self, alphaSpeed: c_float);
+        pub unsafe fn setAlphaSpeed(&self, alpha_speed: c_float);
 
         #[method_id(@__retain_semantics Other contents)]
         pub unsafe fn contents(&self) -> Option<Id<Object, Shared>>;
@@ -197,13 +197,13 @@ extern_methods!(
         pub unsafe fn contentsRect(&self) -> CGRect;
 
         #[method(setContentsRect:)]
-        pub unsafe fn setContentsRect(&self, contentsRect: CGRect);
+        pub unsafe fn setContentsRect(&self, contents_rect: CGRect);
 
         #[method(contentsScale)]
         pub unsafe fn contentsScale(&self) -> CGFloat;
 
         #[method(setContentsScale:)]
-        pub unsafe fn setContentsScale(&self, contentsScale: CGFloat);
+        pub unsafe fn setContentsScale(&self, contents_scale: CGFloat);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other minificationFilter)]
@@ -211,7 +211,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setMinificationFilter:)]
-        pub unsafe fn setMinificationFilter(&self, minificationFilter: &NSString);
+        pub unsafe fn setMinificationFilter(&self, minification_filter: &NSString);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other magnificationFilter)]
@@ -219,13 +219,13 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setMagnificationFilter:)]
-        pub unsafe fn setMagnificationFilter(&self, magnificationFilter: &NSString);
+        pub unsafe fn setMagnificationFilter(&self, magnification_filter: &NSString);
 
         #[method(minificationFilterBias)]
         pub unsafe fn minificationFilterBias(&self) -> c_float;
 
         #[method(setMinificationFilterBias:)]
-        pub unsafe fn setMinificationFilterBias(&self, minificationFilterBias: c_float);
+        pub unsafe fn setMinificationFilterBias(&self, minification_filter_bias: c_float);
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other emitterCells)]
@@ -233,7 +233,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setEmitterCells:)]
-        pub unsafe fn setEmitterCells(&self, emitterCells: Option<&NSArray<CAEmitterCell>>);
+        pub unsafe fn setEmitterCells(&self, emitter_cells: Option<&NSArray<CAEmitterCell>>);
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other style)]

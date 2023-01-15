@@ -15,7 +15,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLastComponentOfFileName:)]
-        pub unsafe fn setLastComponentOfFileName(&self, lastComponentOfFileName: &NSString);
+        pub unsafe fn setLastComponentOfFileName(&self, last_component_of_file_name: &NSString);
 
         #[cfg(feature = "Foundation_NSScriptCommand")]
         #[method_id(@__retain_semantics Other handleSaveScriptCommand:)]

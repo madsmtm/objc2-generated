@@ -43,6 +43,6 @@ extern_methods!(
         pub unsafe fn cornerRadius(&self) -> CGFloat;
 
         #[method(setCornerRadius:)]
-        pub unsafe fn setCornerRadius(&self, cornerRadius: CGFloat);
+        pub unsafe fn setCornerRadius(&self, corner_radius: CGFloat);
     }
 );

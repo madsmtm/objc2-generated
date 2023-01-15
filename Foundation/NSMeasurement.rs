@@ -36,7 +36,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithDoubleValue:unit:)]
         pub unsafe fn initWithDoubleValue_unit(
             this: Option<Allocated<Self>>,
-            doubleValue: c_double,
+            double_value: c_double,
             unit: &UnitType,
         ) -> Id<Self, Shared>;
 

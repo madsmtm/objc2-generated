@@ -52,7 +52,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithServiceName:)]
         pub unsafe fn initWithServiceName(
             this: Option<Allocated<Self>>,
-            serviceName: &NSString,
+            service_name: &NSString,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -84,13 +84,13 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSXPCInterface")]
         #[method(setExportedInterface:)]
-        pub unsafe fn setExportedInterface(&self, exportedInterface: Option<&NSXPCInterface>);
+        pub unsafe fn setExportedInterface(&self, exported_interface: Option<&NSXPCInterface>);
 
         #[method_id(@__retain_semantics Other exportedObject)]
         pub unsafe fn exportedObject(&self) -> Option<Id<Object, Shared>>;
 
         #[method(setExportedObject:)]
-        pub unsafe fn setExportedObject(&self, exportedObject: Option<&Object>);
+        pub unsafe fn setExportedObject(&self, exported_object: Option<&Object>);
 
         #[cfg(feature = "Foundation_NSXPCInterface")]
         #[method_id(@__retain_semantics Other remoteObjectInterface)]
@@ -100,7 +100,7 @@ extern_methods!(
         #[method(setRemoteObjectInterface:)]
         pub unsafe fn setRemoteObjectInterface(
             &self,
-            remoteObjectInterface: Option<&NSXPCInterface>,
+            remote_object_interface: Option<&NSXPCInterface>,
         );
 
         #[method_id(@__retain_semantics Other remoteObjectProxy)]
@@ -124,13 +124,13 @@ extern_methods!(
         pub unsafe fn interruptionHandler(&self) -> *mut Block<(), ()>;
 
         #[method(setInterruptionHandler:)]
-        pub unsafe fn setInterruptionHandler(&self, interruptionHandler: Option<&Block<(), ()>>);
+        pub unsafe fn setInterruptionHandler(&self, interruption_handler: Option<&Block<(), ()>>);
 
         #[method(invalidationHandler)]
         pub unsafe fn invalidationHandler(&self) -> *mut Block<(), ()>;
 
         #[method(setInvalidationHandler:)]
-        pub unsafe fn setInvalidationHandler(&self, invalidationHandler: Option<&Block<(), ()>>);
+        pub unsafe fn setInvalidationHandler(&self, invalidation_handler: Option<&Block<(), ()>>);
 
         #[method(resume)]
         pub unsafe fn resume(&self);
@@ -224,7 +224,7 @@ extern_protocol!(
         pub unsafe fn listener_shouldAcceptNewConnection(
             &self,
             listener: &NSXPCListener,
-            newConnection: &NSXPCConnection,
+            new_connection: &NSXPCConnection,
         ) -> bool;
     }
 );
@@ -259,7 +259,7 @@ extern_methods!(
             classes: &NSSet<TodoClass>,
             sel: Sel,
             arg: NSUInteger,
-            ofReply: bool,
+            of_reply: bool,
         );
 
         #[cfg(feature = "Foundation_NSSet")]
@@ -268,7 +268,7 @@ extern_methods!(
             &self,
             sel: Sel,
             arg: NSUInteger,
-            ofReply: bool,
+            of_reply: bool,
         ) -> Id<NSSet<TodoClass>, Shared>;
 
         #[method(setInterface:forSelector:argumentIndex:ofReply:)]
@@ -277,7 +277,7 @@ extern_methods!(
             ifc: &NSXPCInterface,
             sel: Sel,
             arg: NSUInteger,
-            ofReply: bool,
+            of_reply: bool,
         );
 
         #[method_id(@__retain_semantics Other interfaceForSelector:argumentIndex:ofReply:)]
@@ -285,7 +285,7 @@ extern_methods!(
             &self,
             sel: Sel,
             arg: NSUInteger,
-            ofReply: bool,
+            of_reply: bool,
         ) -> Option<Id<NSXPCInterface, Shared>>;
     }
 );
@@ -325,7 +325,7 @@ extern_methods!(
         pub unsafe fn userInfo(&self) -> Option<Id<NSObject, Shared>>;
 
         #[method(setUserInfo:)]
-        pub unsafe fn setUserInfo(&self, userInfo: Option<&NSObject>);
+        pub unsafe fn setUserInfo(&self, user_info: Option<&NSObject>);
 
         #[cfg(feature = "Foundation_NSXPCConnection")]
         #[method_id(@__retain_semantics Other connection)]

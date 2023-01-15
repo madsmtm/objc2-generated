@@ -24,7 +24,7 @@ extern_methods!(
         pub unsafe fn coerceValue_toClass(
             &self,
             value: &Object,
-            toClass: &Class,
+            to_class: &Class,
         ) -> Option<Id<Object, Shared>>;
 
         #[method(registerCoercer:selector:toConvertFromClass:toClass:)]
@@ -32,8 +32,8 @@ extern_methods!(
             &self,
             coercer: &Object,
             selector: Sel,
-            fromClass: &Class,
-            toClass: &Class,
+            from_class: &Class,
+            to_class: &Class,
         );
     }
 );

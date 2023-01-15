@@ -103,7 +103,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithContentsOfFile:)]
         pub unsafe fn initWithContentsOfFile(
             this: Option<Allocated<Self>>,
-            fileName: &NSString,
+            file_name: &NSString,
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(feature = "Foundation_NSURL")]
@@ -117,7 +117,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initByReferencingFile:)]
         pub unsafe fn initByReferencingFile(
             this: Option<Allocated<Self>>,
-            fileName: &NSString,
+            file_name: &NSString,
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(feature = "Foundation_NSURL")]
@@ -144,8 +144,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Other imageWithSize:flipped:drawingHandler:)]
         pub unsafe fn imageWithSize_flipped_drawingHandler(
             size: NSSize,
-            drawingHandlerShouldBeCalledWithFlippedContext: bool,
-            drawingHandler: &Block<(NSRect,), Bool>,
+            drawing_handler_should_be_called_with_flipped_context: bool,
+            drawing_handler: &Block<(NSRect,), Bool>,
         ) -> Id<Self, Shared>;
 
         #[method(size)]
@@ -166,37 +166,40 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setBackgroundColor:)]
-        pub unsafe fn setBackgroundColor(&self, backgroundColor: &NSColor);
+        pub unsafe fn setBackgroundColor(&self, background_color: &NSColor);
 
         #[method(usesEPSOnResolutionMismatch)]
         pub unsafe fn usesEPSOnResolutionMismatch(&self) -> bool;
 
         #[method(setUsesEPSOnResolutionMismatch:)]
-        pub unsafe fn setUsesEPSOnResolutionMismatch(&self, usesEPSOnResolutionMismatch: bool);
+        pub unsafe fn setUsesEPSOnResolutionMismatch(&self, uses_eps_on_resolution_mismatch: bool);
 
         #[method(prefersColorMatch)]
         pub unsafe fn prefersColorMatch(&self) -> bool;
 
         #[method(setPrefersColorMatch:)]
-        pub unsafe fn setPrefersColorMatch(&self, prefersColorMatch: bool);
+        pub unsafe fn setPrefersColorMatch(&self, prefers_color_match: bool);
 
         #[method(matchesOnMultipleResolution)]
         pub unsafe fn matchesOnMultipleResolution(&self) -> bool;
 
         #[method(setMatchesOnMultipleResolution:)]
-        pub unsafe fn setMatchesOnMultipleResolution(&self, matchesOnMultipleResolution: bool);
+        pub unsafe fn setMatchesOnMultipleResolution(&self, matches_on_multiple_resolution: bool);
 
         #[method(matchesOnlyOnBestFittingAxis)]
         pub unsafe fn matchesOnlyOnBestFittingAxis(&self) -> bool;
 
         #[method(setMatchesOnlyOnBestFittingAxis:)]
-        pub unsafe fn setMatchesOnlyOnBestFittingAxis(&self, matchesOnlyOnBestFittingAxis: bool);
+        pub unsafe fn setMatchesOnlyOnBestFittingAxis(
+            &self,
+            matches_only_on_best_fitting_axis: bool,
+        );
 
         #[method(drawAtPoint:fromRect:operation:fraction:)]
         pub unsafe fn drawAtPoint_fromRect_operation_fraction(
             &self,
             point: NSPoint,
-            fromRect: NSRect,
+            from_rect: NSRect,
             op: NSCompositingOperation,
             delta: CGFloat,
         );
@@ -205,7 +208,7 @@ extern_methods!(
         pub unsafe fn drawInRect_fromRect_operation_fraction(
             &self,
             rect: NSRect,
-            fromRect: NSRect,
+            from_rect: NSRect,
             op: NSCompositingOperation,
             delta: CGFloat,
         );
@@ -214,18 +217,21 @@ extern_methods!(
         #[method(drawInRect:fromRect:operation:fraction:respectFlipped:hints:)]
         pub unsafe fn drawInRect_fromRect_operation_fraction_respectFlipped_hints(
             &self,
-            dstSpacePortionRect: NSRect,
-            srcSpacePortionRect: NSRect,
+            dst_space_portion_rect: NSRect,
+            src_space_portion_rect: NSRect,
             op: NSCompositingOperation,
-            requestedAlpha: CGFloat,
-            respectContextIsFlipped: bool,
+            requested_alpha: CGFloat,
+            respect_context_is_flipped: bool,
             hints: Option<&NSDictionary<NSImageHintKey, Object>>,
         );
 
         #[cfg(feature = "AppKit_NSImageRep")]
         #[method(drawRepresentation:inRect:)]
-        pub unsafe fn drawRepresentation_inRect(&self, imageRep: &NSImageRep, rect: NSRect)
-            -> bool;
+        pub unsafe fn drawRepresentation_inRect(
+            &self,
+            image_rep: &NSImageRep,
+            rect: NSRect,
+        ) -> bool;
 
         #[method(drawInRect:)]
         pub unsafe fn drawInRect(&self, rect: NSRect);
@@ -251,15 +257,15 @@ extern_methods!(
 
         #[cfg(all(feature = "AppKit_NSImageRep", feature = "Foundation_NSArray"))]
         #[method(addRepresentations:)]
-        pub unsafe fn addRepresentations(&self, imageReps: &NSArray<NSImageRep>);
+        pub unsafe fn addRepresentations(&self, image_reps: &NSArray<NSImageRep>);
 
         #[cfg(feature = "AppKit_NSImageRep")]
         #[method(addRepresentation:)]
-        pub unsafe fn addRepresentation(&self, imageRep: &NSImageRep);
+        pub unsafe fn addRepresentation(&self, image_rep: &NSImageRep);
 
         #[cfg(feature = "AppKit_NSImageRep")]
         #[method(removeRepresentation:)]
-        pub unsafe fn removeRepresentation(&self, imageRep: &NSImageRep);
+        pub unsafe fn removeRepresentation(&self, image_rep: &NSImageRep);
 
         #[method(isValid)]
         pub unsafe fn isValid(&self) -> bool;
@@ -301,13 +307,13 @@ extern_methods!(
         pub unsafe fn cacheMode(&self) -> NSImageCacheMode;
 
         #[method(setCacheMode:)]
-        pub unsafe fn setCacheMode(&self, cacheMode: NSImageCacheMode);
+        pub unsafe fn setCacheMode(&self, cache_mode: NSImageCacheMode);
 
         #[method(alignmentRect)]
         pub unsafe fn alignmentRect(&self) -> NSRect;
 
         #[method(setAlignmentRect:)]
-        pub unsafe fn setAlignmentRect(&self, alignmentRect: NSRect);
+        pub unsafe fn setAlignmentRect(&self, alignment_rect: NSRect);
 
         #[method(isTemplate)]
         pub unsafe fn isTemplate(&self) -> bool;
@@ -323,7 +329,7 @@ extern_methods!(
         #[method(setAccessibilityDescription:)]
         pub unsafe fn setAccessibilityDescription(
             &self,
-            accessibilityDescription: Option<&NSString>,
+            accessibility_description: Option<&NSString>,
         );
 
         #[cfg(all(
@@ -335,7 +341,7 @@ extern_methods!(
         pub unsafe fn bestRepresentationForRect_context_hints(
             &self,
             rect: NSRect,
-            referenceContext: Option<&NSGraphicsContext>,
+            reference_context: Option<&NSGraphicsContext>,
             hints: Option<&NSDictionary<NSImageHintKey, Object>>,
         ) -> Option<Id<NSImageRep, Shared>>;
 
@@ -346,8 +352,8 @@ extern_methods!(
         #[method(hitTestRect:withImageDestinationRect:context:hints:flipped:)]
         pub unsafe fn hitTestRect_withImageDestinationRect_context_hints_flipped(
             &self,
-            testRectDestSpace: NSRect,
-            imageRectDestSpace: NSRect,
+            test_rect_dest_space: NSRect,
+            image_rect_dest_space: NSRect,
             context: Option<&NSGraphicsContext>,
             hints: Option<&NSDictionary<NSImageHintKey, Object>>,
             flipped: bool,
@@ -356,26 +362,26 @@ extern_methods!(
         #[method(recommendedLayerContentsScale:)]
         pub unsafe fn recommendedLayerContentsScale(
             &self,
-            preferredContentsScale: CGFloat,
+            preferred_contents_scale: CGFloat,
         ) -> CGFloat;
 
         #[method_id(@__retain_semantics Other layerContentsForContentsScale:)]
         pub unsafe fn layerContentsForContentsScale(
             &self,
-            layerContentsScale: CGFloat,
+            layer_contents_scale: CGFloat,
         ) -> Id<Object, Shared>;
 
         #[method(capInsets)]
         pub unsafe fn capInsets(&self) -> NSEdgeInsets;
 
         #[method(setCapInsets:)]
-        pub unsafe fn setCapInsets(&self, capInsets: NSEdgeInsets);
+        pub unsafe fn setCapInsets(&self, cap_insets: NSEdgeInsets);
 
         #[method(resizingMode)]
         pub unsafe fn resizingMode(&self) -> NSImageResizingMode;
 
         #[method(setResizingMode:)]
-        pub unsafe fn setResizingMode(&self, resizingMode: NSImageResizingMode);
+        pub unsafe fn setResizingMode(&self, resizing_mode: NSImageResizingMode);
 
         #[cfg(feature = "AppKit_NSImageSymbolConfiguration")]
         #[method_id(@__retain_semantics Other imageWithSymbolConfiguration:)]
@@ -474,7 +480,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other bestRepresentationForDevice:)]
         pub unsafe fn bestRepresentationForDevice(
             &self,
-            deviceDescription: Option<&NSDictionary>,
+            device_description: Option<&NSDictionary>,
         ) -> Option<Id<NSImageRep, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
@@ -553,7 +559,7 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSImageRep")]
         #[deprecated = "Create an image using +[NSImage imageWithSize:flipped:drawingHandler:], and begin your custom drawing with -[NSImageRep drawInRect:] instead."]
         #[method(lockFocusOnRepresentation:)]
-        pub unsafe fn lockFocusOnRepresentation(&self, imageRepresentation: Option<&NSImageRep>);
+        pub unsafe fn lockFocusOnRepresentation(&self, image_representation: Option<&NSImageRep>);
 
         #[deprecated = "You should be able to remove use of this method without any replacement.  See 10.6 AppKit release notes for details."]
         #[method(setScalesWhenResized:)]
@@ -892,14 +898,14 @@ extern_methods!(
     unsafe impl NSImageSymbolConfiguration {
         #[method_id(@__retain_semantics Other configurationWithPointSize:weight:scale:)]
         pub unsafe fn configurationWithPointSize_weight_scale(
-            pointSize: CGFloat,
+            point_size: CGFloat,
             weight: NSFontWeight,
             scale: NSImageSymbolScale,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Other configurationWithPointSize:weight:)]
         pub unsafe fn configurationWithPointSize_weight(
-            pointSize: CGFloat,
+            point_size: CGFloat,
             weight: NSFontWeight,
         ) -> Id<Self, Shared>;
 
@@ -924,13 +930,13 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other configurationWithHierarchicalColor:)]
         pub unsafe fn configurationWithHierarchicalColor(
-            hierarchicalColor: &NSColor,
+            hierarchical_color: &NSColor,
         ) -> Id<Self, Shared>;
 
         #[cfg(all(feature = "AppKit_NSColor", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other configurationWithPaletteColors:)]
         pub unsafe fn configurationWithPaletteColors(
-            paletteColors: &NSArray<NSColor>,
+            palette_colors: &NSArray<NSColor>,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Other configurationPreferringMulticolor)]

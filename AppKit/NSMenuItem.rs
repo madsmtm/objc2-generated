@@ -23,7 +23,7 @@ extern_methods!(
         pub unsafe fn usesUserKeyEquivalents() -> bool;
 
         #[method(setUsesUserKeyEquivalents:)]
-        pub unsafe fn setUsesUserKeyEquivalents(usesUserKeyEquivalents: bool);
+        pub unsafe fn setUsesUserKeyEquivalents(uses_user_key_equivalents: bool);
 
         #[method_id(@__retain_semantics Other separatorItem)]
         pub unsafe fn separatorItem() -> Id<NSMenuItem, Shared>;
@@ -34,7 +34,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             string: &NSString,
             selector: Option<Sel>,
-            charCode: &NSString,
+            char_code: &NSString,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSCoder")]
@@ -80,7 +80,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setAttributedTitle:)]
-        pub unsafe fn setAttributedTitle(&self, attributedTitle: Option<&NSAttributedString>);
+        pub unsafe fn setAttributedTitle(&self, attributed_title: Option<&NSAttributedString>);
 
         #[method(isSeparatorItem)]
         pub unsafe fn isSeparatorItem(&self) -> bool;
@@ -91,7 +91,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setKeyEquivalent:)]
-        pub unsafe fn setKeyEquivalent(&self, keyEquivalent: &NSString);
+        pub unsafe fn setKeyEquivalent(&self, key_equivalent: &NSString);
 
         #[method(keyEquivalentModifierMask)]
         pub unsafe fn keyEquivalentModifierMask(&self) -> NSEventModifierFlags;
@@ -99,7 +99,7 @@ extern_methods!(
         #[method(setKeyEquivalentModifierMask:)]
         pub unsafe fn setKeyEquivalentModifierMask(
             &self,
-            keyEquivalentModifierMask: NSEventModifierFlags,
+            key_equivalent_modifier_mask: NSEventModifierFlags,
         );
 
         #[cfg(feature = "Foundation_NSString")]
@@ -110,7 +110,10 @@ extern_methods!(
         pub unsafe fn allowsKeyEquivalentWhenHidden(&self) -> bool;
 
         #[method(setAllowsKeyEquivalentWhenHidden:)]
-        pub unsafe fn setAllowsKeyEquivalentWhenHidden(&self, allowsKeyEquivalentWhenHidden: bool);
+        pub unsafe fn setAllowsKeyEquivalentWhenHidden(
+            &self,
+            allows_key_equivalent_when_hidden: bool,
+        );
 
         #[method(allowsAutomaticKeyEquivalentLocalization)]
         pub unsafe fn allowsAutomaticKeyEquivalentLocalization(&self) -> bool;
@@ -118,7 +121,7 @@ extern_methods!(
         #[method(setAllowsAutomaticKeyEquivalentLocalization:)]
         pub unsafe fn setAllowsAutomaticKeyEquivalentLocalization(
             &self,
-            allowsAutomaticKeyEquivalentLocalization: bool,
+            allows_automatic_key_equivalent_localization: bool,
         );
 
         #[method(allowsAutomaticKeyEquivalentMirroring)]
@@ -127,7 +130,7 @@ extern_methods!(
         #[method(setAllowsAutomaticKeyEquivalentMirroring:)]
         pub unsafe fn setAllowsAutomaticKeyEquivalentMirroring(
             &self,
-            allowsAutomaticKeyEquivalentMirroring: bool,
+            allows_automatic_key_equivalent_mirroring: bool,
         );
 
         #[cfg(feature = "AppKit_NSImage")]
@@ -150,7 +153,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method(setOnStateImage:)]
-        pub unsafe fn setOnStateImage(&self, onStateImage: Option<&NSImage>);
+        pub unsafe fn setOnStateImage(&self, on_state_image: Option<&NSImage>);
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other offStateImage)]
@@ -158,7 +161,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method(setOffStateImage:)]
-        pub unsafe fn setOffStateImage(&self, offStateImage: Option<&NSImage>);
+        pub unsafe fn setOffStateImage(&self, off_state_image: Option<&NSImage>);
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other mixedStateImage)]
@@ -166,7 +169,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method(setMixedStateImage:)]
-        pub unsafe fn setMixedStateImage(&self, mixedStateImage: Option<&NSImage>);
+        pub unsafe fn setMixedStateImage(&self, mixed_state_image: Option<&NSImage>);
 
         #[method(isEnabled)]
         pub unsafe fn isEnabled(&self) -> bool;
@@ -184,7 +187,7 @@ extern_methods!(
         pub unsafe fn indentationLevel(&self) -> NSInteger;
 
         #[method(setIndentationLevel:)]
-        pub unsafe fn setIndentationLevel(&self, indentationLevel: NSInteger);
+        pub unsafe fn setIndentationLevel(&self, indentation_level: NSInteger);
 
         #[method_id(@__retain_semantics Other target)]
         pub unsafe fn target(&self) -> Option<Id<Object, Shared>>;
@@ -208,7 +211,7 @@ extern_methods!(
         pub unsafe fn representedObject(&self) -> Option<Id<Object, Shared>>;
 
         #[method(setRepresentedObject:)]
-        pub unsafe fn setRepresentedObject(&self, representedObject: Option<&Object>);
+        pub unsafe fn setRepresentedObject(&self, represented_object: Option<&Object>);
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other view)]
@@ -236,7 +239,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setToolTip:)]
-        pub unsafe fn setToolTip(&self, toolTip: Option<&NSString>);
+        pub unsafe fn setToolTip(&self, tool_tip: Option<&NSString>);
     }
 );
 
@@ -272,6 +275,6 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
         #[method(setTitleWithMnemonic:)]
-        pub unsafe fn setTitleWithMnemonic(&self, stringWithAmpersand: &NSString);
+        pub unsafe fn setTitleWithMnemonic(&self, string_with_ampersand: &NSString);
     }
 );

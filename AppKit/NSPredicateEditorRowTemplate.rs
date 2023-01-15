@@ -53,8 +53,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithLeftExpressions:rightExpressions:modifier:operators:options:)]
         pub unsafe fn initWithLeftExpressions_rightExpressions_modifier_operators_options(
             this: Option<Allocated<Self>>,
-            leftExpressions: &NSArray<NSExpression>,
-            rightExpressions: &NSArray<NSExpression>,
+            left_expressions: &NSArray<NSExpression>,
+            right_expressions: &NSArray<NSExpression>,
             modifier: NSComparisonPredicateModifier,
             operators: &NSArray<NSNumber>,
             options: NSUInteger,
@@ -68,8 +68,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithLeftExpressions:rightExpressionAttributeType:modifier:operators:options:)]
         pub unsafe fn initWithLeftExpressions_rightExpressionAttributeType_modifier_operators_options(
             this: Option<Allocated<Self>>,
-            leftExpressions: &NSArray<NSExpression>,
-            attributeType: NSAttributeType,
+            left_expressions: &NSArray<NSExpression>,
+            attribute_type: NSAttributeType,
             modifier: NSComparisonPredicateModifier,
             operators: &NSArray<NSNumber>,
             options: NSUInteger,
@@ -79,7 +79,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCompoundTypes:)]
         pub unsafe fn initWithCompoundTypes(
             this: Option<Allocated<Self>>,
-            compoundTypes: &NSArray<NSNumber>,
+            compound_types: &NSArray<NSNumber>,
         ) -> Id<Self, Shared>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSExpression"))]
@@ -114,8 +114,8 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Other templatesWithAttributeKeyPaths:inEntityDescription:)]
         pub unsafe fn templatesWithAttributeKeyPaths_inEntityDescription(
-            keyPaths: &NSArray<NSString>,
-            entityDescription: &NSEntityDescription,
+            key_paths: &NSArray<NSString>,
+            entity_description: &NSEntityDescription,
         ) -> Id<NSArray<NSPredicateEditorRowTemplate>, Shared>;
     }
 );

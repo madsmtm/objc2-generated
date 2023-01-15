@@ -32,72 +32,72 @@ extern_protocol!(
         #[method(copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:)]
         pub unsafe fn copyFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin(
             &self,
-            sourceTexture: &MTLTexture,
-            sourceSlice: NSUInteger,
-            sourceLevel: NSUInteger,
-            sourceOrigin: MTLOrigin,
-            sourceSize: MTLSize,
-            destinationTexture: &MTLTexture,
-            destinationSlice: NSUInteger,
-            destinationLevel: NSUInteger,
-            destinationOrigin: MTLOrigin,
+            source_texture: &MTLTexture,
+            source_slice: NSUInteger,
+            source_level: NSUInteger,
+            source_origin: MTLOrigin,
+            source_size: MTLSize,
+            destination_texture: &MTLTexture,
+            destination_slice: NSUInteger,
+            destination_level: NSUInteger,
+            destination_origin: MTLOrigin,
         );
 
         #[method(copyFromBuffer:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:)]
         pub unsafe fn copyFromBuffer_sourceOffset_sourceBytesPerRow_sourceBytesPerImage_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin(
             &self,
-            sourceBuffer: &MTLBuffer,
-            sourceOffset: NSUInteger,
-            sourceBytesPerRow: NSUInteger,
-            sourceBytesPerImage: NSUInteger,
-            sourceSize: MTLSize,
-            destinationTexture: &MTLTexture,
-            destinationSlice: NSUInteger,
-            destinationLevel: NSUInteger,
-            destinationOrigin: MTLOrigin,
+            source_buffer: &MTLBuffer,
+            source_offset: NSUInteger,
+            source_bytes_per_row: NSUInteger,
+            source_bytes_per_image: NSUInteger,
+            source_size: MTLSize,
+            destination_texture: &MTLTexture,
+            destination_slice: NSUInteger,
+            destination_level: NSUInteger,
+            destination_origin: MTLOrigin,
         );
 
         #[method(copyFromBuffer:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:options:)]
         pub unsafe fn copyFromBuffer_sourceOffset_sourceBytesPerRow_sourceBytesPerImage_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin_options(
             &self,
-            sourceBuffer: &MTLBuffer,
-            sourceOffset: NSUInteger,
-            sourceBytesPerRow: NSUInteger,
-            sourceBytesPerImage: NSUInteger,
-            sourceSize: MTLSize,
-            destinationTexture: &MTLTexture,
-            destinationSlice: NSUInteger,
-            destinationLevel: NSUInteger,
-            destinationOrigin: MTLOrigin,
+            source_buffer: &MTLBuffer,
+            source_offset: NSUInteger,
+            source_bytes_per_row: NSUInteger,
+            source_bytes_per_image: NSUInteger,
+            source_size: MTLSize,
+            destination_texture: &MTLTexture,
+            destination_slice: NSUInteger,
+            destination_level: NSUInteger,
+            destination_origin: MTLOrigin,
             options: MTLBlitOption,
         );
 
         #[method(copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toBuffer:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:)]
         pub unsafe fn copyFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toBuffer_destinationOffset_destinationBytesPerRow_destinationBytesPerImage(
             &self,
-            sourceTexture: &MTLTexture,
-            sourceSlice: NSUInteger,
-            sourceLevel: NSUInteger,
-            sourceOrigin: MTLOrigin,
-            sourceSize: MTLSize,
-            destinationBuffer: &MTLBuffer,
-            destinationOffset: NSUInteger,
-            destinationBytesPerRow: NSUInteger,
-            destinationBytesPerImage: NSUInteger,
+            source_texture: &MTLTexture,
+            source_slice: NSUInteger,
+            source_level: NSUInteger,
+            source_origin: MTLOrigin,
+            source_size: MTLSize,
+            destination_buffer: &MTLBuffer,
+            destination_offset: NSUInteger,
+            destination_bytes_per_row: NSUInteger,
+            destination_bytes_per_image: NSUInteger,
         );
 
         #[method(copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toBuffer:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:options:)]
         pub unsafe fn copyFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toBuffer_destinationOffset_destinationBytesPerRow_destinationBytesPerImage_options(
             &self,
-            sourceTexture: &MTLTexture,
-            sourceSlice: NSUInteger,
-            sourceLevel: NSUInteger,
-            sourceOrigin: MTLOrigin,
-            sourceSize: MTLSize,
-            destinationBuffer: &MTLBuffer,
-            destinationOffset: NSUInteger,
-            destinationBytesPerRow: NSUInteger,
-            destinationBytesPerImage: NSUInteger,
+            source_texture: &MTLTexture,
+            source_slice: NSUInteger,
+            source_level: NSUInteger,
+            source_origin: MTLOrigin,
+            source_size: MTLSize,
+            destination_buffer: &MTLBuffer,
+            destination_offset: NSUInteger,
+            destination_bytes_per_row: NSUInteger,
+            destination_bytes_per_image: NSUInteger,
             options: MTLBlitOption,
         );
 
@@ -110,30 +110,30 @@ extern_protocol!(
         #[method(copyFromTexture:sourceSlice:sourceLevel:toTexture:destinationSlice:destinationLevel:sliceCount:levelCount:)]
         pub unsafe fn copyFromTexture_sourceSlice_sourceLevel_toTexture_destinationSlice_destinationLevel_sliceCount_levelCount(
             &self,
-            sourceTexture: &MTLTexture,
-            sourceSlice: NSUInteger,
-            sourceLevel: NSUInteger,
-            destinationTexture: &MTLTexture,
-            destinationSlice: NSUInteger,
-            destinationLevel: NSUInteger,
-            sliceCount: NSUInteger,
-            levelCount: NSUInteger,
+            source_texture: &MTLTexture,
+            source_slice: NSUInteger,
+            source_level: NSUInteger,
+            destination_texture: &MTLTexture,
+            destination_slice: NSUInteger,
+            destination_level: NSUInteger,
+            slice_count: NSUInteger,
+            level_count: NSUInteger,
         );
 
         #[method(copyFromTexture:toTexture:)]
         pub unsafe fn copyFromTexture_toTexture(
             &self,
-            sourceTexture: &MTLTexture,
-            destinationTexture: &MTLTexture,
+            source_texture: &MTLTexture,
+            destination_texture: &MTLTexture,
         );
 
         #[method(copyFromBuffer:sourceOffset:toBuffer:destinationOffset:size:)]
         pub unsafe fn copyFromBuffer_sourceOffset_toBuffer_destinationOffset_size(
             &self,
-            sourceBuffer: &MTLBuffer,
-            sourceOffset: NSUInteger,
-            destinationBuffer: &MTLBuffer,
-            destinationOffset: NSUInteger,
+            source_buffer: &MTLBuffer,
+            source_offset: NSUInteger,
+            destination_buffer: &MTLBuffer,
+            destination_offset: NSUInteger,
             size: NSUInteger,
         );
 
@@ -149,11 +149,11 @@ extern_protocol!(
             &self,
             texture: &MTLTexture,
             region: MTLRegion,
-            mipLevel: NSUInteger,
+            mip_level: NSUInteger,
             slice: NSUInteger,
-            resetCounters: bool,
-            countersBuffer: &MTLBuffer,
-            countersBufferOffset: NSUInteger,
+            reset_counters: bool,
+            counters_buffer: &MTLBuffer,
+            counters_buffer_offset: NSUInteger,
         );
 
         #[optional]
@@ -162,7 +162,7 @@ extern_protocol!(
             &self,
             texture: &MTLTexture,
             region: MTLRegion,
-            mipLevel: NSUInteger,
+            mip_level: NSUInteger,
             slice: NSUInteger,
         );
 
@@ -199,33 +199,33 @@ extern_protocol!(
         pub unsafe fn copyIndirectCommandBuffer_sourceRange_destination_destinationIndex(
             &self,
             source: &MTLIndirectCommandBuffer,
-            sourceRange: NSRange,
+            source_range: NSRange,
             destination: &MTLIndirectCommandBuffer,
-            destinationIndex: NSUInteger,
+            destination_index: NSUInteger,
         );
 
         #[method(optimizeIndirectCommandBuffer:withRange:)]
         pub unsafe fn optimizeIndirectCommandBuffer_withRange(
             &self,
-            indirectCommandBuffer: &MTLIndirectCommandBuffer,
+            indirect_command_buffer: &MTLIndirectCommandBuffer,
             range: NSRange,
         );
 
         #[method(sampleCountersInBuffer:atSampleIndex:withBarrier:)]
         pub unsafe fn sampleCountersInBuffer_atSampleIndex_withBarrier(
             &self,
-            sampleBuffer: &MTLCounterSampleBuffer,
-            sampleIndex: NSUInteger,
+            sample_buffer: &MTLCounterSampleBuffer,
+            sample_index: NSUInteger,
             barrier: bool,
         );
 
         #[method(resolveCounters:inRange:destinationBuffer:destinationOffset:)]
         pub unsafe fn resolveCounters_inRange_destinationBuffer_destinationOffset(
             &self,
-            sampleBuffer: &MTLCounterSampleBuffer,
+            sample_buffer: &MTLCounterSampleBuffer,
             range: NSRange,
-            destinationBuffer: &MTLBuffer,
-            destinationOffset: NSUInteger,
+            destination_buffer: &MTLBuffer,
+            destination_offset: NSUInteger,
         );
     }
 );

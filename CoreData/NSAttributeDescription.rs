@@ -44,7 +44,7 @@ extern_methods!(
         pub unsafe fn attributeType(&self) -> NSAttributeType;
 
         #[method(setAttributeType:)]
-        pub unsafe fn setAttributeType(&self, attributeType: NSAttributeType);
+        pub unsafe fn setAttributeType(&self, attribute_type: NSAttributeType);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other attributeValueClassName)]
@@ -52,13 +52,16 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAttributeValueClassName:)]
-        pub unsafe fn setAttributeValueClassName(&self, attributeValueClassName: Option<&NSString>);
+        pub unsafe fn setAttributeValueClassName(
+            &self,
+            attribute_value_class_name: Option<&NSString>,
+        );
 
         #[method_id(@__retain_semantics Other defaultValue)]
         pub unsafe fn defaultValue(&self) -> Option<Id<Object, Shared>>;
 
         #[method(setDefaultValue:)]
-        pub unsafe fn setDefaultValue(&self, defaultValue: Option<&Object>);
+        pub unsafe fn setDefaultValue(&self, default_value: Option<&Object>);
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other versionHash)]
@@ -70,7 +73,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setValueTransformerName:)]
-        pub unsafe fn setValueTransformerName(&self, valueTransformerName: Option<&NSString>);
+        pub unsafe fn setValueTransformerName(&self, value_transformer_name: Option<&NSString>);
 
         #[method(allowsExternalBinaryDataStorage)]
         pub unsafe fn allowsExternalBinaryDataStorage(&self) -> bool;
@@ -78,7 +81,7 @@ extern_methods!(
         #[method(setAllowsExternalBinaryDataStorage:)]
         pub unsafe fn setAllowsExternalBinaryDataStorage(
             &self,
-            allowsExternalBinaryDataStorage: bool,
+            allows_external_binary_data_storage: bool,
         );
 
         #[method(preservesValueInHistoryOnDeletion)]
@@ -87,13 +90,13 @@ extern_methods!(
         #[method(setPreservesValueInHistoryOnDeletion:)]
         pub unsafe fn setPreservesValueInHistoryOnDeletion(
             &self,
-            preservesValueInHistoryOnDeletion: bool,
+            preserves_value_in_history_on_deletion: bool,
         );
 
         #[method(allowsCloudEncryption)]
         pub unsafe fn allowsCloudEncryption(&self) -> bool;
 
         #[method(setAllowsCloudEncryption:)]
-        pub unsafe fn setAllowsCloudEncryption(&self, allowsCloudEncryption: bool);
+        pub unsafe fn setAllowsCloudEncryption(&self, allows_cloud_encryption: bool);
     }
 );

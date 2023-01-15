@@ -48,13 +48,13 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringFromByteCount:countStyle:)]
         pub unsafe fn stringFromByteCount_countStyle(
-            byteCount: c_longlong,
-            countStyle: NSByteCountFormatterCountStyle,
+            byte_count: c_longlong,
+            count_style: NSByteCountFormatterCountStyle,
         ) -> Id<NSString, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringFromByteCount:)]
-        pub unsafe fn stringFromByteCount(&self, byteCount: c_longlong) -> Id<NSString, Shared>;
+        pub unsafe fn stringFromByteCount(&self, byte_count: c_longlong) -> Id<NSString, Shared>;
 
         #[cfg(all(
             feature = "Foundation_NSMeasurement",
@@ -64,7 +64,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other stringFromMeasurement:countStyle:)]
         pub unsafe fn stringFromMeasurement_countStyle(
             measurement: &NSMeasurement<NSUnitInformationStorage>,
-            countStyle: NSByteCountFormatterCountStyle,
+            count_style: NSByteCountFormatterCountStyle,
         ) -> Id<NSString, Shared>;
 
         #[cfg(all(
@@ -89,37 +89,37 @@ extern_methods!(
         pub unsafe fn allowedUnits(&self) -> NSByteCountFormatterUnits;
 
         #[method(setAllowedUnits:)]
-        pub unsafe fn setAllowedUnits(&self, allowedUnits: NSByteCountFormatterUnits);
+        pub unsafe fn setAllowedUnits(&self, allowed_units: NSByteCountFormatterUnits);
 
         #[method(countStyle)]
         pub unsafe fn countStyle(&self) -> NSByteCountFormatterCountStyle;
 
         #[method(setCountStyle:)]
-        pub unsafe fn setCountStyle(&self, countStyle: NSByteCountFormatterCountStyle);
+        pub unsafe fn setCountStyle(&self, count_style: NSByteCountFormatterCountStyle);
 
         #[method(allowsNonnumericFormatting)]
         pub unsafe fn allowsNonnumericFormatting(&self) -> bool;
 
         #[method(setAllowsNonnumericFormatting:)]
-        pub unsafe fn setAllowsNonnumericFormatting(&self, allowsNonnumericFormatting: bool);
+        pub unsafe fn setAllowsNonnumericFormatting(&self, allows_nonnumeric_formatting: bool);
 
         #[method(includesUnit)]
         pub unsafe fn includesUnit(&self) -> bool;
 
         #[method(setIncludesUnit:)]
-        pub unsafe fn setIncludesUnit(&self, includesUnit: bool);
+        pub unsafe fn setIncludesUnit(&self, includes_unit: bool);
 
         #[method(includesCount)]
         pub unsafe fn includesCount(&self) -> bool;
 
         #[method(setIncludesCount:)]
-        pub unsafe fn setIncludesCount(&self, includesCount: bool);
+        pub unsafe fn setIncludesCount(&self, includes_count: bool);
 
         #[method(includesActualByteCount)]
         pub unsafe fn includesActualByteCount(&self) -> bool;
 
         #[method(setIncludesActualByteCount:)]
-        pub unsafe fn setIncludesActualByteCount(&self, includesActualByteCount: bool);
+        pub unsafe fn setIncludesActualByteCount(&self, includes_actual_byte_count: bool);
 
         #[method(isAdaptive)]
         pub unsafe fn isAdaptive(&self) -> bool;
@@ -131,12 +131,12 @@ extern_methods!(
         pub unsafe fn zeroPadsFractionDigits(&self) -> bool;
 
         #[method(setZeroPadsFractionDigits:)]
-        pub unsafe fn setZeroPadsFractionDigits(&self, zeroPadsFractionDigits: bool);
+        pub unsafe fn setZeroPadsFractionDigits(&self, zero_pads_fraction_digits: bool);
 
         #[method(formattingContext)]
         pub unsafe fn formattingContext(&self) -> NSFormattingContext;
 
         #[method(setFormattingContext:)]
-        pub unsafe fn setFormattingContext(&self, formattingContext: NSFormattingContext);
+        pub unsafe fn setFormattingContext(&self, formatting_context: NSFormattingContext);
     }
 );

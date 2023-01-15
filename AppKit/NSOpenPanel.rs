@@ -31,43 +31,49 @@ extern_methods!(
         pub unsafe fn resolvesAliases(&self) -> bool;
 
         #[method(setResolvesAliases:)]
-        pub unsafe fn setResolvesAliases(&self, resolvesAliases: bool);
+        pub unsafe fn setResolvesAliases(&self, resolves_aliases: bool);
 
         #[method(canChooseDirectories)]
         pub unsafe fn canChooseDirectories(&self) -> bool;
 
         #[method(setCanChooseDirectories:)]
-        pub unsafe fn setCanChooseDirectories(&self, canChooseDirectories: bool);
+        pub unsafe fn setCanChooseDirectories(&self, can_choose_directories: bool);
 
         #[method(allowsMultipleSelection)]
         pub unsafe fn allowsMultipleSelection(&self) -> bool;
 
         #[method(setAllowsMultipleSelection:)]
-        pub unsafe fn setAllowsMultipleSelection(&self, allowsMultipleSelection: bool);
+        pub unsafe fn setAllowsMultipleSelection(&self, allows_multiple_selection: bool);
 
         #[method(canChooseFiles)]
         pub unsafe fn canChooseFiles(&self) -> bool;
 
         #[method(setCanChooseFiles:)]
-        pub unsafe fn setCanChooseFiles(&self, canChooseFiles: bool);
+        pub unsafe fn setCanChooseFiles(&self, can_choose_files: bool);
 
         #[method(canResolveUbiquitousConflicts)]
         pub unsafe fn canResolveUbiquitousConflicts(&self) -> bool;
 
         #[method(setCanResolveUbiquitousConflicts:)]
-        pub unsafe fn setCanResolveUbiquitousConflicts(&self, canResolveUbiquitousConflicts: bool);
+        pub unsafe fn setCanResolveUbiquitousConflicts(
+            &self,
+            can_resolve_ubiquitous_conflicts: bool,
+        );
 
         #[method(canDownloadUbiquitousContents)]
         pub unsafe fn canDownloadUbiquitousContents(&self) -> bool;
 
         #[method(setCanDownloadUbiquitousContents:)]
-        pub unsafe fn setCanDownloadUbiquitousContents(&self, canDownloadUbiquitousContents: bool);
+        pub unsafe fn setCanDownloadUbiquitousContents(
+            &self,
+            can_download_ubiquitous_contents: bool,
+        );
 
         #[method(isAccessoryViewDisclosed)]
         pub unsafe fn isAccessoryViewDisclosed(&self) -> bool;
 
         #[method(setAccessoryViewDisclosed:)]
-        pub unsafe fn setAccessoryViewDisclosed(&self, accessoryViewDisclosed: bool);
+        pub unsafe fn setAccessoryViewDisclosed(&self, accessory_view_disclosed: bool);
     }
 );
 
@@ -91,11 +97,11 @@ extern_methods!(
             &self,
             path: Option<&NSString>,
             name: Option<&NSString>,
-            fileTypes: Option<&NSArray>,
-            docWindow: Option<&NSWindow>,
+            file_types: Option<&NSArray>,
+            doc_window: Option<&NSWindow>,
             delegate: Option<&Object>,
-            didEndSelector: Option<Sel>,
-            contextInfo: *mut c_void,
+            did_end_selector: Option<Sel>,
+            context_info: *mut c_void,
         );
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
@@ -105,10 +111,10 @@ extern_methods!(
             &self,
             path: Option<&NSString>,
             name: Option<&NSString>,
-            fileTypes: Option<&NSArray>,
+            file_types: Option<&NSArray>,
             delegate: Option<&Object>,
-            didEndSelector: Option<Sel>,
-            contextInfo: *mut c_void,
+            did_end_selector: Option<Sel>,
+            context_info: *mut c_void,
         );
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
@@ -118,13 +124,13 @@ extern_methods!(
             &self,
             path: Option<&NSString>,
             name: Option<&NSString>,
-            fileTypes: Option<&NSArray>,
+            file_types: Option<&NSArray>,
         ) -> NSInteger;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[deprecated]
         #[method(runModalForTypes:)]
-        pub unsafe fn runModalForTypes(&self, fileTypes: Option<&NSArray>) -> NSInteger;
+        pub unsafe fn runModalForTypes(&self, file_types: Option<&NSArray>) -> NSInteger;
     }
 );
 
@@ -135,9 +141,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer(
             this: Option<Allocated<Self>>,
-            contentRect: NSRect,
+            content_rect: NSRect,
             style: NSWindowStyleMask,
-            backingStoreType: NSBackingStoreType,
+            backing_store_type: NSBackingStoreType,
             flag: bool,
         ) -> Id<Self, Shared>;
 
@@ -145,9 +151,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:screen:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer_screen(
             this: Option<Allocated<Self>>,
-            contentRect: NSRect,
+            content_rect: NSRect,
             style: NSWindowStyleMask,
-            backingStoreType: NSBackingStoreType,
+            backing_store_type: NSBackingStoreType,
             flag: bool,
             screen: Option<&NSScreen>,
         ) -> Id<Self, Shared>;
@@ -155,7 +161,7 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSViewController")]
         #[method_id(@__retain_semantics Other windowWithContentViewController:)]
         pub unsafe fn windowWithContentViewController(
-            contentViewController: &NSViewController,
+            content_view_controller: &NSViewController,
         ) -> Id<Self, Shared>;
     }
 );

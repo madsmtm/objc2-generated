@@ -23,7 +23,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithTextContentManager:)]
         pub unsafe fn initWithTextContentManager(
             this: Option<Allocated<Self>>,
-            textContentManager: Option<&NSTextContentManager>,
+            text_content_manager: Option<&NSTextContentManager>,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "AppKit_NSTextContentManager")]
@@ -34,7 +34,7 @@ extern_methods!(
         #[method(setTextContentManager:)]
         pub unsafe fn setTextContentManager(
             &self,
-            textContentManager: Option<&NSTextContentManager>,
+            text_content_manager: Option<&NSTextContentManager>,
         );
 
         #[cfg(feature = "AppKit_NSTextRange")]
@@ -43,7 +43,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSTextRange")]
         #[method(setElementRange:)]
-        pub unsafe fn setElementRange(&self, elementRange: Option<&NSTextRange>);
+        pub unsafe fn setElementRange(&self, element_range: Option<&NSTextRange>);
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other childElements)]
@@ -76,7 +76,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithAttributedString:)]
         pub unsafe fn initWithAttributedString(
             this: Option<Allocated<Self>>,
-            attributedString: Option<&NSAttributedString>,
+            attributed_string: Option<&NSAttributedString>,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
@@ -101,7 +101,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithTextContentManager:)]
         pub unsafe fn initWithTextContentManager(
             this: Option<Allocated<Self>>,
-            textContentManager: Option<&NSTextContentManager>,
+            text_content_manager: Option<&NSTextContentManager>,
         ) -> Id<Self, Shared>;
     }
 );

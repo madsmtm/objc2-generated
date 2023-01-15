@@ -44,7 +44,7 @@ extern_methods!(
         pub unsafe fn mediaLibraries(&self) -> NSMediaLibrary;
 
         #[method(setMediaLibraries:)]
-        pub unsafe fn setMediaLibraries(&self, mediaLibraries: NSMediaLibrary);
+        pub unsafe fn setMediaLibraries(&self, media_libraries: NSMediaLibrary);
 
         #[method_id(@__retain_semantics Other sharedMediaLibraryBrowserController)]
         pub unsafe fn sharedMediaLibraryBrowserController(

@@ -19,7 +19,7 @@ extern_methods!(
         #[deprecated]
         #[method(loadNibFile:externalNameTable:withZone:)]
         pub unsafe fn loadNibFile_externalNameTable_withZone_class(
-            fileName: Option<&NSString>,
+            file_name: Option<&NSString>,
             context: Option<&NSDictionary>,
             zone: *mut NSZone,
         ) -> bool;
@@ -28,7 +28,7 @@ extern_methods!(
         #[deprecated]
         #[method(loadNibNamed:owner:)]
         pub unsafe fn loadNibNamed_owner(
-            nibName: Option<&NSString>,
+            nib_name: Option<&NSString>,
             owner: Option<&Object>,
         ) -> bool;
 
@@ -37,7 +37,7 @@ extern_methods!(
         #[method(loadNibFile:externalNameTable:withZone:)]
         pub unsafe fn loadNibFile_externalNameTable_withZone(
             &self,
-            fileName: Option<&NSString>,
+            file_name: Option<&NSString>,
             context: Option<&NSDictionary>,
             zone: *mut NSZone,
         ) -> bool;

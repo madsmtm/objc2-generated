@@ -75,7 +75,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             space: &NSURLProtectionSpace,
             credential: Option<&NSURLCredential>,
-            previousFailureCount: NSInteger,
+            previous_failure_count: NSInteger,
             response: Option<&NSURLResponse>,
             error: Option<&NSError>,
             sender: &NSURLAuthenticationChallengeSender,

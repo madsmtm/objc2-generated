@@ -70,13 +70,13 @@ extern_methods!(
         #[method_id(@__retain_semantics Other arrayByAddingObject:)]
         pub unsafe fn arrayByAddingObject(
             &self,
-            anObject: &ObjectType,
+            an_object: &ObjectType,
         ) -> Id<NSArray<ObjectType>, Shared>;
 
         #[method_id(@__retain_semantics Other arrayByAddingObjectsFromArray:)]
         pub unsafe fn arrayByAddingObjectsFromArray(
             &self,
-            otherArray: &NSArray<ObjectType>,
+            other_array: &NSArray<ObjectType>,
         ) -> Id<NSArray<ObjectType>, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -85,7 +85,7 @@ extern_methods!(
             -> Id<NSString, Shared>;
 
         #[method(containsObject:)]
-        pub unsafe fn containsObject(&self, anObject: &ObjectType) -> bool;
+        pub unsafe fn containsObject(&self, an_object: &ObjectType) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other description)]
@@ -107,7 +107,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other firstObjectCommonWithArray:)]
         pub unsafe fn firstObjectCommonWithArray(
             &self,
-            otherArray: &NSArray<ObjectType>,
+            other_array: &NSArray<ObjectType>,
         ) -> Option<Id<ObjectType, ObjectTypeOwnership>>;
 
         #[method(getObjects:range:)]
@@ -118,27 +118,27 @@ extern_methods!(
         );
 
         #[method(indexOfObject:)]
-        pub unsafe fn indexOfObject(&self, anObject: &ObjectType) -> NSUInteger;
+        pub unsafe fn indexOfObject(&self, an_object: &ObjectType) -> NSUInteger;
 
         #[method(indexOfObject:inRange:)]
         pub unsafe fn indexOfObject_inRange(
             &self,
-            anObject: &ObjectType,
+            an_object: &ObjectType,
             range: NSRange,
         ) -> NSUInteger;
 
         #[method(indexOfObjectIdenticalTo:)]
-        pub unsafe fn indexOfObjectIdenticalTo(&self, anObject: &ObjectType) -> NSUInteger;
+        pub unsafe fn indexOfObjectIdenticalTo(&self, an_object: &ObjectType) -> NSUInteger;
 
         #[method(indexOfObjectIdenticalTo:inRange:)]
         pub unsafe fn indexOfObjectIdenticalTo_inRange(
             &self,
-            anObject: &ObjectType,
+            an_object: &ObjectType,
             range: NSRange,
         ) -> NSUInteger;
 
         #[method(isEqualToArray:)]
-        pub unsafe fn isEqualToArray(&self, otherArray: &NSArray<ObjectType>) -> bool;
+        pub unsafe fn isEqualToArray(&self, other_array: &NSArray<ObjectType>) -> bool;
 
         #[method_id(@__retain_semantics Other firstObject)]
         pub unsafe fn firstObject(&self) -> Option<Id<ObjectType, ObjectTypeOwnership>>;
@@ -196,12 +196,12 @@ extern_methods!(
         pub unsafe fn writeToURL_error(&self, url: &NSURL) -> Result<(), Id<NSError, Shared>>;
 
         #[method(makeObjectsPerformSelector:)]
-        pub unsafe fn makeObjectsPerformSelector(&self, aSelector: Sel);
+        pub unsafe fn makeObjectsPerformSelector(&self, a_selector: Sel);
 
         #[method(makeObjectsPerformSelector:withObject:)]
         pub unsafe fn makeObjectsPerformSelector_withObject(
             &self,
-            aSelector: Sel,
+            a_selector: Sel,
             argument: Option<&Object>,
         );
 
@@ -320,7 +320,7 @@ extern_methods!(
         pub unsafe fn array() -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Other arrayWithObject:)]
-        pub unsafe fn arrayWithObject(anObject: &ObjectType) -> Id<Self, Shared>;
+        pub unsafe fn arrayWithObject(an_object: &ObjectType) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Other arrayWithObjects:count:)]
         pub unsafe fn arrayWithObjects_count(
@@ -421,7 +421,7 @@ extern_methods!(
         pub unsafe fn writeToFile_atomically(
             &self,
             path: &NSString,
-            useAuxiliaryFile: bool,
+            use_auxiliary_file: bool,
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSURL")]
@@ -454,10 +454,10 @@ extern_methods!(
         NSMutableArray<ObjectType, ObjectTypeOwnership>
     {
         #[method(addObject:)]
-        pub unsafe fn addObject(&mut self, anObject: &ObjectType);
+        pub unsafe fn addObject(&mut self, an_object: &ObjectType);
 
         #[method(insertObject:atIndex:)]
-        pub unsafe fn insertObject_atIndex(&mut self, anObject: &ObjectType, index: NSUInteger);
+        pub unsafe fn insertObject_atIndex(&mut self, an_object: &ObjectType, index: NSUInteger);
 
         #[method(removeLastObject)]
         pub unsafe fn removeLastObject(&mut self);
@@ -469,7 +469,7 @@ extern_methods!(
         pub unsafe fn replaceObjectAtIndex_withObject(
             &mut self,
             index: NSUInteger,
-            anObject: &ObjectType,
+            an_object: &ObjectType,
         );
 
         #[method_id(@__retain_semantics Init init)]
@@ -478,7 +478,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCapacity:)]
         pub unsafe fn initWithCapacity(
             this: Option<Allocated<Self>>,
-            numItems: NSUInteger,
+            num_items: NSUInteger,
         ) -> Id<Self, Owned>;
 
         #[cfg(feature = "Foundation_NSCoder")]
@@ -498,7 +498,7 @@ extern_methods!(
     {
         #[cfg(feature = "Foundation_NSArray")]
         #[method(addObjectsFromArray:)]
-        pub unsafe fn addObjectsFromArray(&self, otherArray: &NSArray<ObjectType>);
+        pub unsafe fn addObjectsFromArray(&self, other_array: &NSArray<ObjectType>);
 
         #[method(exchangeObjectAtIndex:withObjectAtIndex:)]
         pub unsafe fn exchangeObjectAtIndex_withObjectAtIndex(
@@ -511,16 +511,20 @@ extern_methods!(
         pub fn removeAllObjects(&mut self);
 
         #[method(removeObject:inRange:)]
-        pub unsafe fn removeObject_inRange(&self, anObject: &ObjectType, range: NSRange);
+        pub unsafe fn removeObject_inRange(&self, an_object: &ObjectType, range: NSRange);
 
         #[method(removeObject:)]
-        pub unsafe fn removeObject(&self, anObject: &ObjectType);
+        pub unsafe fn removeObject(&self, an_object: &ObjectType);
 
         #[method(removeObjectIdenticalTo:inRange:)]
-        pub unsafe fn removeObjectIdenticalTo_inRange(&self, anObject: &ObjectType, range: NSRange);
+        pub unsafe fn removeObjectIdenticalTo_inRange(
+            &self,
+            an_object: &ObjectType,
+            range: NSRange,
+        );
 
         #[method(removeObjectIdenticalTo:)]
-        pub unsafe fn removeObjectIdenticalTo(&self, anObject: &ObjectType);
+        pub unsafe fn removeObjectIdenticalTo(&self, an_object: &ObjectType);
 
         #[deprecated = "Not supported"]
         #[method(removeObjectsFromIndices:numIndices:)]
@@ -532,7 +536,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(removeObjectsInArray:)]
-        pub unsafe fn removeObjectsInArray(&self, otherArray: &NSArray<ObjectType>);
+        pub unsafe fn removeObjectsInArray(&self, other_array: &NSArray<ObjectType>);
 
         #[method(removeObjectsInRange:)]
         pub unsafe fn removeObjectsInRange(&self, range: NSRange);
@@ -542,8 +546,8 @@ extern_methods!(
         pub unsafe fn replaceObjectsInRange_withObjectsFromArray_range(
             &self,
             range: NSRange,
-            otherArray: &NSArray<ObjectType>,
-            otherRange: NSRange,
+            other_array: &NSArray<ObjectType>,
+            other_range: NSRange,
         );
 
         #[cfg(feature = "Foundation_NSArray")]
@@ -551,12 +555,12 @@ extern_methods!(
         pub unsafe fn replaceObjectsInRange_withObjectsFromArray(
             &self,
             range: NSRange,
-            otherArray: &NSArray<ObjectType>,
+            other_array: &NSArray<ObjectType>,
         );
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setArray:)]
-        pub unsafe fn setArray(&self, otherArray: &NSArray<ObjectType>);
+        pub unsafe fn setArray(&self, other_array: &NSArray<ObjectType>);
 
         #[method(sortUsingFunction:context:)]
         pub unsafe fn sortUsingFunction_context(
@@ -614,7 +618,7 @@ extern_methods!(
         NSMutableArray<ObjectType, ObjectTypeOwnership>
     {
         #[method_id(@__retain_semantics Other arrayWithCapacity:)]
-        pub unsafe fn arrayWithCapacity(numItems: NSUInteger) -> Id<Self, Owned>;
+        pub unsafe fn arrayWithCapacity(num_items: NSUInteger) -> Id<Self, Owned>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other arrayWithContentsOfFile:)]
@@ -672,7 +676,7 @@ extern_methods!(
         pub unsafe fn array() -> Id<Self, Owned>;
 
         #[method_id(@__retain_semantics Other arrayWithObject:)]
-        pub unsafe fn arrayWithObject(anObject: &ObjectType) -> Id<Self, Owned>;
+        pub unsafe fn arrayWithObject(an_object: &ObjectType) -> Id<Self, Owned>;
 
         #[method_id(@__retain_semantics Other arrayWithObjects:count:)]
         pub unsafe fn arrayWithObjects_count(

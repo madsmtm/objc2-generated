@@ -42,7 +42,7 @@ extern_methods!(
         pub fn count(&self) -> NSUInteger;
 
         #[method_id(@__retain_semantics Other objectForKey:)]
-        pub fn objectForKey(&self, aKey: &KeyType) -> Option<Id<ObjectType, ObjectTypeOwnership>>;
+        pub fn objectForKey(&self, a_key: &KeyType) -> Option<Id<ObjectType, ObjectTypeOwnership>>;
 
         #[cfg(feature = "Foundation_NSEnumerator")]
         #[method_id(@__retain_semantics Other keyEnumerator)]
@@ -86,7 +86,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other allKeysForObject:)]
         pub unsafe fn allKeysForObject(
             &self,
-            anObject: &ObjectType,
+            an_object: &ObjectType,
         ) -> Id<NSArray<KeyType>, Shared>;
 
         #[cfg(feature = "Foundation_NSArray")]
@@ -117,7 +117,7 @@ extern_methods!(
         #[method(isEqualToDictionary:)]
         pub unsafe fn isEqualToDictionary(
             &self,
-            otherDictionary: &NSDictionary<KeyType, ObjectType>,
+            other_dictionary: &NSDictionary<KeyType, ObjectType>,
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSEnumerator")]
@@ -240,7 +240,7 @@ extern_methods!(
         pub unsafe fn writeToFile_atomically(
             &self,
             path: &NSString,
-            useAuxiliaryFile: bool,
+            use_auxiliary_file: bool,
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSURL")]
@@ -291,13 +291,13 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithDictionary:)]
         pub unsafe fn initWithDictionary(
             this: Option<Allocated<Self>>,
-            otherDictionary: &NSDictionary<KeyType, ObjectType>,
+            other_dictionary: &NSDictionary<KeyType, ObjectType>,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Init initWithDictionary:copyItems:)]
         pub unsafe fn initWithDictionary_copyItems(
             this: Option<Allocated<Self>>,
-            otherDictionary: &NSDictionary<KeyType, ObjectType>,
+            other_dictionary: &NSDictionary<KeyType, ObjectType>,
             flag: bool,
         ) -> Id<Self, Shared>;
 
@@ -349,10 +349,10 @@ extern_methods!(
         > NSMutableDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
     {
         #[method(removeObjectForKey:)]
-        pub fn removeObjectForKey(&mut self, aKey: &KeyType);
+        pub fn removeObjectForKey(&mut self, a_key: &KeyType);
 
         #[method(setObject:forKey:)]
-        pub unsafe fn setObject_forKey(&self, anObject: &ObjectType, aKey: &Object);
+        pub unsafe fn setObject_forKey(&self, an_object: &ObjectType, a_key: &Object);
 
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Owned>;
@@ -360,7 +360,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCapacity:)]
         pub unsafe fn initWithCapacity(
             this: Option<Allocated<Self>>,
-            numItems: NSUInteger,
+            num_items: NSUInteger,
         ) -> Id<Self, Owned>;
 
         #[cfg(feature = "Foundation_NSCoder")]
@@ -386,7 +386,7 @@ extern_methods!(
         #[method(addEntriesFromDictionary:)]
         pub unsafe fn addEntriesFromDictionary(
             &self,
-            otherDictionary: &NSDictionary<KeyType, ObjectType>,
+            other_dictionary: &NSDictionary<KeyType, ObjectType>,
         );
 
         #[method(removeAllObjects)]
@@ -394,11 +394,11 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(removeObjectsForKeys:)]
-        pub unsafe fn removeObjectsForKeys(&self, keyArray: &NSArray<KeyType>);
+        pub unsafe fn removeObjectsForKeys(&self, key_array: &NSArray<KeyType>);
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(setDictionary:)]
-        pub fn setDictionary(&mut self, otherDictionary: &NSDictionary<KeyType, ObjectType>);
+        pub fn setDictionary(&mut self, other_dictionary: &NSDictionary<KeyType, ObjectType>);
 
         #[method(setObject:forKeyedSubscript:)]
         pub unsafe fn setObject_forKeyedSubscript(&self, obj: Option<&ObjectType>, key: &Object);
@@ -416,7 +416,7 @@ extern_methods!(
         > NSMutableDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
     {
         #[method_id(@__retain_semantics Other dictionaryWithCapacity:)]
-        pub unsafe fn dictionaryWithCapacity(numItems: NSUInteger) -> Id<Self, Owned>;
+        pub unsafe fn dictionaryWithCapacity(num_items: NSUInteger) -> Id<Self, Owned>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other dictionaryWithContentsOfFile:)]
@@ -544,13 +544,13 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithDictionary:)]
         pub unsafe fn initWithDictionary(
             this: Option<Allocated<Self>>,
-            otherDictionary: &NSDictionary<KeyType, ObjectType>,
+            other_dictionary: &NSDictionary<KeyType, ObjectType>,
         ) -> Id<Self, Owned>;
 
         #[method_id(@__retain_semantics Init initWithDictionary:copyItems:)]
         pub unsafe fn initWithDictionary_copyItems(
             this: Option<Allocated<Self>>,
-            otherDictionary: &NSDictionary<KeyType, ObjectType>,
+            other_dictionary: &NSDictionary<KeyType, ObjectType>,
             flag: bool,
         ) -> Id<Self, Owned>;
 

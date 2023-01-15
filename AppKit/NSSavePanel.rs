@@ -33,13 +33,13 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method(setDirectoryURL:)]
-        pub unsafe fn setDirectoryURL(&self, directoryURL: Option<&NSURL>);
+        pub unsafe fn setDirectoryURL(&self, directory_url: Option<&NSURL>);
 
         #[method(allowsOtherFileTypes)]
         pub unsafe fn allowsOtherFileTypes(&self) -> bool;
 
         #[method(setAllowsOtherFileTypes:)]
-        pub unsafe fn setAllowsOtherFileTypes(&self, allowsOtherFileTypes: bool);
+        pub unsafe fn setAllowsOtherFileTypes(&self, allows_other_file_types: bool);
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other accessoryView)]
@@ -47,7 +47,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(setAccessoryView:)]
-        pub unsafe fn setAccessoryView(&self, accessoryView: Option<&NSView>);
+        pub unsafe fn setAccessoryView(&self, accessory_view: Option<&NSView>);
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSOpenSavePanelDelegate, Shared>>;
@@ -62,19 +62,19 @@ extern_methods!(
         pub unsafe fn canCreateDirectories(&self) -> bool;
 
         #[method(setCanCreateDirectories:)]
-        pub unsafe fn setCanCreateDirectories(&self, canCreateDirectories: bool);
+        pub unsafe fn setCanCreateDirectories(&self, can_create_directories: bool);
 
         #[method(canSelectHiddenExtension)]
         pub unsafe fn canSelectHiddenExtension(&self) -> bool;
 
         #[method(setCanSelectHiddenExtension:)]
-        pub unsafe fn setCanSelectHiddenExtension(&self, canSelectHiddenExtension: bool);
+        pub unsafe fn setCanSelectHiddenExtension(&self, can_select_hidden_extension: bool);
 
         #[method(isExtensionHidden)]
         pub unsafe fn isExtensionHidden(&self) -> bool;
 
         #[method(setExtensionHidden:)]
-        pub unsafe fn setExtensionHidden(&self, extensionHidden: bool);
+        pub unsafe fn setExtensionHidden(&self, extension_hidden: bool);
 
         #[method(treatsFilePackagesAsDirectories)]
         pub unsafe fn treatsFilePackagesAsDirectories(&self) -> bool;
@@ -82,7 +82,7 @@ extern_methods!(
         #[method(setTreatsFilePackagesAsDirectories:)]
         pub unsafe fn setTreatsFilePackagesAsDirectories(
             &self,
-            treatsFilePackagesAsDirectories: bool,
+            treats_file_packages_as_directories: bool,
         );
 
         #[cfg(feature = "Foundation_NSString")]
@@ -107,7 +107,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setNameFieldLabel:)]
-        pub unsafe fn setNameFieldLabel(&self, nameFieldLabel: Option<&NSString>);
+        pub unsafe fn setNameFieldLabel(&self, name_field_label: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other nameFieldStringValue)]
@@ -115,7 +115,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setNameFieldStringValue:)]
-        pub unsafe fn setNameFieldStringValue(&self, nameFieldStringValue: &NSString);
+        pub unsafe fn setNameFieldStringValue(&self, name_field_string_value: &NSString);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other message)]
@@ -132,13 +132,13 @@ extern_methods!(
         pub unsafe fn showsHiddenFiles(&self) -> bool;
 
         #[method(setShowsHiddenFiles:)]
-        pub unsafe fn setShowsHiddenFiles(&self, showsHiddenFiles: bool);
+        pub unsafe fn setShowsHiddenFiles(&self, shows_hidden_files: bool);
 
         #[method(showsTagField)]
         pub unsafe fn showsTagField(&self) -> bool;
 
         #[method(setShowsTagField:)]
-        pub unsafe fn setShowsTagField(&self, showsTagField: bool);
+        pub unsafe fn setShowsTagField(&self, shows_tag_field: bool);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other tagNames)]
@@ -146,7 +146,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setTagNames:)]
-        pub unsafe fn setTagNames(&self, tagNames: Option<&NSArray<NSString>>);
+        pub unsafe fn setTagNames(&self, tag_names: Option<&NSArray<NSString>>);
 
         #[method(ok:)]
         pub unsafe fn ok(&self, sender: Option<&Object>);
@@ -199,7 +199,7 @@ extern_protocol!(
             &self,
             sender: &Object,
             filename: &NSString,
-            okFlag: bool,
+            ok_flag: bool,
         ) -> Option<Id<NSString, Shared>>;
 
         #[optional]
@@ -248,10 +248,10 @@ extern_methods!(
             &self,
             path: &NSString,
             name: Option<&NSString>,
-            docWindow: Option<&NSWindow>,
+            doc_window: Option<&NSWindow>,
             delegate: Option<&Object>,
-            didEndSelector: Option<Sel>,
-            contextInfo: *mut c_void,
+            did_end_selector: Option<Sel>,
+            context_info: *mut c_void,
         );
 
         #[cfg(feature = "Foundation_NSString")]
@@ -275,7 +275,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[deprecated = "Use -allowedContentTypes instead"]
         #[method(setAllowedFileTypes:)]
-        pub unsafe fn setAllowedFileTypes(&self, allowedFileTypes: Option<&NSArray<NSString>>);
+        pub unsafe fn setAllowedFileTypes(&self, allowed_file_types: Option<&NSArray<NSString>>);
     }
 );
 
@@ -286,9 +286,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer(
             this: Option<Allocated<Self>>,
-            contentRect: NSRect,
+            content_rect: NSRect,
             style: NSWindowStyleMask,
-            backingStoreType: NSBackingStoreType,
+            backing_store_type: NSBackingStoreType,
             flag: bool,
         ) -> Id<Self, Shared>;
 
@@ -296,9 +296,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:screen:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer_screen(
             this: Option<Allocated<Self>>,
-            contentRect: NSRect,
+            content_rect: NSRect,
             style: NSWindowStyleMask,
-            backingStoreType: NSBackingStoreType,
+            backing_store_type: NSBackingStoreType,
             flag: bool,
             screen: Option<&NSScreen>,
         ) -> Id<Self, Shared>;
@@ -306,7 +306,7 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSViewController")]
         #[method_id(@__retain_semantics Other windowWithContentViewController:)]
         pub unsafe fn windowWithContentViewController(
-            contentViewController: &NSViewController,
+            content_view_controller: &NSViewController,
         ) -> Id<Self, Shared>;
     }
 );

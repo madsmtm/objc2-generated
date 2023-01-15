@@ -85,11 +85,11 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSMenuItem")]
         #[method(insertItem:atIndex:)]
-        pub unsafe fn insertItem_atIndex(&self, newItem: &NSMenuItem, index: NSInteger);
+        pub unsafe fn insertItem_atIndex(&self, new_item: &NSMenuItem, index: NSInteger);
 
         #[cfg(feature = "AppKit_NSMenuItem")]
         #[method(addItem:)]
-        pub unsafe fn addItem(&self, newItem: &NSMenuItem);
+        pub unsafe fn addItem(&self, new_item: &NSMenuItem);
 
         #[cfg(all(feature = "AppKit_NSMenuItem", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other insertItemWithTitle:action:keyEquivalent:atIndex:)]
@@ -97,7 +97,7 @@ extern_methods!(
             &self,
             string: &NSString,
             selector: Option<Sel>,
-            charCode: &NSString,
+            char_code: &NSString,
             index: NSInteger,
         ) -> Id<NSMenuItem, Shared>;
 
@@ -107,7 +107,7 @@ extern_methods!(
             &self,
             string: &NSString,
             selector: Option<Sel>,
-            charCode: &NSString,
+            char_code: &NSString,
         ) -> Id<NSMenuItem, Shared>;
 
         #[method(removeItemAtIndex:)]
@@ -130,7 +130,7 @@ extern_methods!(
 
         #[cfg(all(feature = "AppKit_NSMenuItem", feature = "Foundation_NSArray"))]
         #[method(setItemArray:)]
-        pub unsafe fn setItemArray(&self, itemArray: &NSArray<NSMenuItem>);
+        pub unsafe fn setItemArray(&self, item_array: &NSArray<NSMenuItem>);
 
         #[method(numberOfItems)]
         pub unsafe fn numberOfItems(&self) -> NSInteger;
@@ -161,7 +161,7 @@ extern_methods!(
         pub unsafe fn indexOfItemWithTarget_andAction(
             &self,
             target: Option<&Object>,
-            actionSelector: Option<Sel>,
+            action_selector: Option<Sel>,
         ) -> NSInteger;
 
         #[cfg(all(feature = "AppKit_NSMenuItem", feature = "Foundation_NSString"))]
@@ -176,7 +176,7 @@ extern_methods!(
         pub unsafe fn autoenablesItems(&self) -> bool;
 
         #[method(setAutoenablesItems:)]
-        pub unsafe fn setAutoenablesItems(&self, autoenablesItems: bool);
+        pub unsafe fn setAutoenablesItems(&self, autoenables_items: bool);
 
         #[method(update)]
         pub unsafe fn update(&self);
@@ -215,7 +215,7 @@ extern_methods!(
         pub unsafe fn minimumWidth(&self) -> CGFloat;
 
         #[method(setMinimumWidth:)]
-        pub unsafe fn setMinimumWidth(&self, minimumWidth: CGFloat);
+        pub unsafe fn setMinimumWidth(&self, minimum_width: CGFloat);
 
         #[method(size)]
         pub unsafe fn size(&self) -> NSSize;
@@ -232,13 +232,13 @@ extern_methods!(
         pub unsafe fn allowsContextMenuPlugIns(&self) -> bool;
 
         #[method(setAllowsContextMenuPlugIns:)]
-        pub unsafe fn setAllowsContextMenuPlugIns(&self, allowsContextMenuPlugIns: bool);
+        pub unsafe fn setAllowsContextMenuPlugIns(&self, allows_context_menu_plug_ins: bool);
 
         #[method(showsStateColumn)]
         pub unsafe fn showsStateColumn(&self) -> bool;
 
         #[method(setShowsStateColumn:)]
-        pub unsafe fn setShowsStateColumn(&self, showsStateColumn: bool);
+        pub unsafe fn setShowsStateColumn(&self, shows_state_column: bool);
 
         #[method(userInterfaceLayoutDirection)]
         pub unsafe fn userInterfaceLayoutDirection(&self) -> NSUserInterfaceLayoutDirection;
@@ -246,7 +246,7 @@ extern_methods!(
         #[method(setUserInterfaceLayoutDirection:)]
         pub unsafe fn setUserInterfaceLayoutDirection(
             &self,
-            userInterfaceLayoutDirection: NSUserInterfaceLayoutDirection,
+            user_interface_layout_direction: NSUserInterfaceLayoutDirection,
         );
     }
 );
@@ -266,7 +266,7 @@ extern_protocol!(
     unsafe impl ProtocolType for NSMenuItemValidation {
         #[cfg(feature = "AppKit_NSMenuItem")]
         #[method(validateMenuItem:)]
-        pub unsafe fn validateMenuItem(&self, menuItem: &NSMenuItem) -> bool;
+        pub unsafe fn validateMenuItem(&self, menu_item: &NSMenuItem) -> bool;
     }
 );
 
@@ -292,7 +292,7 @@ extern_protocol!(
             menu: &NSMenu,
             item: &NSMenuItem,
             index: NSInteger,
-            shouldCancel: bool,
+            should_cancel: bool,
         ) -> bool;
 
         #[cfg(feature = "AppKit_NSMenu")]
@@ -362,7 +362,7 @@ extern_methods!(
     unsafe impl NSMenu {
         #[deprecated]
         #[method(setMenuRepresentation:)]
-        pub unsafe fn setMenuRepresentation(&self, menuRep: Option<&Object>);
+        pub unsafe fn setMenuRepresentation(&self, menu_rep: Option<&Object>);
 
         #[deprecated]
         #[method_id(@__retain_semantics Other menuRepresentation)]
@@ -370,7 +370,7 @@ extern_methods!(
 
         #[deprecated]
         #[method(setContextMenuRepresentation:)]
-        pub unsafe fn setContextMenuRepresentation(&self, menuRep: Option<&Object>);
+        pub unsafe fn setContextMenuRepresentation(&self, menu_rep: Option<&Object>);
 
         #[deprecated]
         #[method_id(@__retain_semantics Other contextMenuRepresentation)]
@@ -378,7 +378,7 @@ extern_methods!(
 
         #[deprecated]
         #[method(setTearOffMenuRepresentation:)]
-        pub unsafe fn setTearOffMenuRepresentation(&self, menuRep: Option<&Object>);
+        pub unsafe fn setTearOffMenuRepresentation(&self, menu_rep: Option<&Object>);
 
         #[deprecated]
         #[method_id(@__retain_semantics Other tearOffMenuRepresentation)]
@@ -414,12 +414,12 @@ extern_methods!(
 
         #[deprecated]
         #[method(setMenuChangedMessagesEnabled:)]
-        pub unsafe fn setMenuChangedMessagesEnabled(&self, menuChangedMessagesEnabled: bool);
+        pub unsafe fn setMenuChangedMessagesEnabled(&self, menu_changed_messages_enabled: bool);
 
         #[cfg(feature = "AppKit_NSEvent")]
         #[deprecated]
         #[method(helpRequested:)]
-        pub unsafe fn helpRequested(&self, eventPtr: &NSEvent);
+        pub unsafe fn helpRequested(&self, event_ptr: &NSEvent);
 
         #[deprecated]
         #[method(isTornOff)]

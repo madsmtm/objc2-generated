@@ -58,8 +58,8 @@ extern_methods!(
         #[method(setValidationPredicates:withValidationWarnings:)]
         pub unsafe fn setValidationPredicates_withValidationWarnings(
             &self,
-            validationPredicates: Option<&NSArray<NSPredicate>>,
-            validationWarnings: Option<&NSArray<NSString>>,
+            validation_predicates: Option<&NSArray<NSPredicate>>,
+            validation_warnings: Option<&NSArray<NSString>>,
         );
 
         #[cfg(feature = "Foundation_NSDictionary")]
@@ -68,7 +68,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(setUserInfo:)]
-        pub unsafe fn setUserInfo(&self, userInfo: Option<&NSDictionary>);
+        pub unsafe fn setUserInfo(&self, user_info: Option<&NSDictionary>);
 
         #[deprecated = "Use NSEntityDescription.indexes instead"]
         #[method(isIndexed)]
@@ -88,13 +88,13 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setVersionHashModifier:)]
-        pub unsafe fn setVersionHashModifier(&self, versionHashModifier: Option<&NSString>);
+        pub unsafe fn setVersionHashModifier(&self, version_hash_modifier: Option<&NSString>);
 
         #[method(isIndexedBySpotlight)]
         pub unsafe fn isIndexedBySpotlight(&self) -> bool;
 
         #[method(setIndexedBySpotlight:)]
-        pub unsafe fn setIndexedBySpotlight(&self, indexedBySpotlight: bool);
+        pub unsafe fn setIndexedBySpotlight(&self, indexed_by_spotlight: bool);
 
         #[deprecated = "Spotlight integration is deprecated. Use CoreSpotlight integration instead."]
         #[method(isStoredInExternalRecord)]
@@ -102,7 +102,7 @@ extern_methods!(
 
         #[deprecated = "Spotlight integration is deprecated. Use CoreSpotlight integration instead."]
         #[method(setStoredInExternalRecord:)]
-        pub unsafe fn setStoredInExternalRecord(&self, storedInExternalRecord: bool);
+        pub unsafe fn setStoredInExternalRecord(&self, stored_in_external_record: bool);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other renamingIdentifier)]
@@ -110,6 +110,6 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setRenamingIdentifier:)]
-        pub unsafe fn setRenamingIdentifier(&self, renamingIdentifier: Option<&NSString>);
+        pub unsafe fn setRenamingIdentifier(&self, renaming_identifier: Option<&NSString>);
     }
 );

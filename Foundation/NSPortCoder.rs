@@ -42,8 +42,8 @@ extern_methods!(
         #[deprecated]
         #[method_id(@__retain_semantics Other portCoderWithReceivePort:sendPort:components:)]
         pub unsafe fn portCoderWithReceivePort_sendPort_components(
-            rcvPort: Option<&NSPort>,
-            sndPort: Option<&NSPort>,
+            rcv_port: Option<&NSPort>,
+            snd_port: Option<&NSPort>,
             comps: Option<&NSArray>,
         ) -> Id<Object, Shared>;
 
@@ -52,8 +52,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithReceivePort:sendPort:components:)]
         pub unsafe fn initWithReceivePort_sendPort_components(
             this: Option<Allocated<Self>>,
-            rcvPort: Option<&NSPort>,
-            sndPort: Option<&NSPort>,
+            rcv_port: Option<&NSPort>,
+            snd_port: Option<&NSPort>,
             comps: Option<&NSArray>,
         ) -> Id<Self, Shared>;
 

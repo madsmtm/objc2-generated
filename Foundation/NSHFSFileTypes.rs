@@ -5,15 +5,15 @@ use crate::Foundation::*;
 
 extern_fn!(
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSFileTypeForHFSTypeCode(hfsFileTypeCode: OSType) -> *mut NSString;
+    pub unsafe fn NSFileTypeForHFSTypeCode(hfs_file_type_code: OSType) -> *mut NSString;
 );
 
 extern_fn!(
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSHFSTypeCodeFromFileType(fileTypeString: Option<&NSString>) -> OSType;
+    pub unsafe fn NSHFSTypeCodeFromFileType(file_type_string: Option<&NSString>) -> OSType;
 );
 
 extern_fn!(
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSHFSTypeOfFile(fullFilePath: Option<&NSString>) -> *mut NSString;
+    pub unsafe fn NSHFSTypeOfFile(full_file_path: Option<&NSString>) -> *mut NSString;
 );

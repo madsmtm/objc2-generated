@@ -32,7 +32,7 @@ extern_methods!(
 
         #[deprecated = "Use -performAsCurrentDrawingAppearance: to temporarily set the drawing appearance, or +currentDrawingAppearance to access the currently drawing appearance."]
         #[method(setCurrentAppearance:)]
-        pub unsafe fn setCurrentAppearance(currentAppearance: Option<&NSAppearance>);
+        pub unsafe fn setCurrentAppearance(current_appearance: Option<&NSAppearance>);
 
         #[method_id(@__retain_semantics Other currentDrawingAppearance)]
         pub unsafe fn currentDrawingAppearance() -> Id<NSAppearance, Shared>;

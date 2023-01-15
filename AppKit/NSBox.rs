@@ -46,13 +46,13 @@ extern_methods!(
         pub unsafe fn boxType(&self) -> NSBoxType;
 
         #[method(setBoxType:)]
-        pub unsafe fn setBoxType(&self, boxType: NSBoxType);
+        pub unsafe fn setBoxType(&self, box_type: NSBoxType);
 
         #[method(titlePosition)]
         pub unsafe fn titlePosition(&self) -> NSTitlePosition;
 
         #[method(setTitlePosition:)]
-        pub unsafe fn setTitlePosition(&self, titlePosition: NSTitlePosition);
+        pub unsafe fn setTitlePosition(&self, title_position: NSTitlePosition);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
@@ -68,7 +68,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSFont")]
         #[method(setTitleFont:)]
-        pub unsafe fn setTitleFont(&self, titleFont: &NSFont);
+        pub unsafe fn setTitleFont(&self, title_font: &NSFont);
 
         #[method(borderRect)]
         pub unsafe fn borderRect(&self) -> NSRect;
@@ -83,19 +83,19 @@ extern_methods!(
         pub unsafe fn contentViewMargins(&self) -> NSSize;
 
         #[method(setContentViewMargins:)]
-        pub unsafe fn setContentViewMargins(&self, contentViewMargins: NSSize);
+        pub unsafe fn setContentViewMargins(&self, content_view_margins: NSSize);
 
         #[method(sizeToFit)]
         pub unsafe fn sizeToFit(&self);
 
         #[method(setFrameFromContentFrame:)]
-        pub unsafe fn setFrameFromContentFrame(&self, contentFrame: NSRect);
+        pub unsafe fn setFrameFromContentFrame(&self, content_frame: NSRect);
 
         #[method_id(@__retain_semantics Other contentView)]
         pub unsafe fn contentView(&self) -> Option<Id<NSView, Shared>>;
 
         #[method(setContentView:)]
-        pub unsafe fn setContentView(&self, contentView: Option<&NSView>);
+        pub unsafe fn setContentView(&self, content_view: Option<&NSView>);
 
         #[method(isTransparent)]
         pub unsafe fn isTransparent(&self) -> bool;
@@ -107,13 +107,13 @@ extern_methods!(
         pub unsafe fn borderWidth(&self) -> CGFloat;
 
         #[method(setBorderWidth:)]
-        pub unsafe fn setBorderWidth(&self, borderWidth: CGFloat);
+        pub unsafe fn setBorderWidth(&self, border_width: CGFloat);
 
         #[method(cornerRadius)]
         pub unsafe fn cornerRadius(&self) -> CGFloat;
 
         #[method(setCornerRadius:)]
-        pub unsafe fn setCornerRadius(&self, cornerRadius: CGFloat);
+        pub unsafe fn setCornerRadius(&self, corner_radius: CGFloat);
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other borderColor)]
@@ -121,7 +121,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setBorderColor:)]
-        pub unsafe fn setBorderColor(&self, borderColor: &NSColor);
+        pub unsafe fn setBorderColor(&self, border_color: &NSColor);
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other fillColor)]
@@ -129,7 +129,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setFillColor:)]
-        pub unsafe fn setFillColor(&self, fillColor: &NSColor);
+        pub unsafe fn setFillColor(&self, fill_color: &NSColor);
     }
 );
 
@@ -143,12 +143,12 @@ extern_methods!(
 
         #[deprecated = "borderType is only applicable to NSBoxOldStyle, which is deprecated. To replace a borderType of NSNoBorder, use the `transparent` property."]
         #[method(setBorderType:)]
-        pub unsafe fn setBorderType(&self, borderType: NSBorderType);
+        pub unsafe fn setBorderType(&self, border_type: NSBorderType);
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
         #[method(setTitleWithMnemonic:)]
-        pub unsafe fn setTitleWithMnemonic(&self, stringWithAmpersand: Option<&NSString>);
+        pub unsafe fn setTitleWithMnemonic(&self, string_with_ampersand: Option<&NSString>);
     }
 );
 
@@ -163,7 +163,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frame_rect: NSRect,
         ) -> Id<Self, Shared>;
     }
 );

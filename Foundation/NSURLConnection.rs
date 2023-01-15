@@ -24,7 +24,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             request: &NSURLRequest,
             delegate: Option<&Object>,
-            startImmediately: bool,
+            start_immediately: bool,
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(feature = "Foundation_NSURLRequest")]
@@ -60,13 +60,17 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSRunLoop")]
         #[method(scheduleInRunLoop:forMode:)]
-        pub unsafe fn scheduleInRunLoop_forMode(&self, aRunLoop: &NSRunLoop, mode: &NSRunLoopMode);
+        pub unsafe fn scheduleInRunLoop_forMode(
+            &self,
+            a_run_loop: &NSRunLoop,
+            mode: &NSRunLoopMode,
+        );
 
         #[cfg(feature = "Foundation_NSRunLoop")]
         #[method(unscheduleFromRunLoop:forMode:)]
         pub unsafe fn unscheduleFromRunLoop_forMode(
             &self,
-            aRunLoop: &NSRunLoop,
+            a_run_loop: &NSRunLoop,
             mode: &NSRunLoopMode,
         );
 
@@ -123,7 +127,7 @@ extern_protocol!(
         pub unsafe fn connection_canAuthenticateAgainstProtectionSpace(
             &self,
             connection: &NSURLConnection,
-            protectionSpace: &NSURLProtectionSpace,
+            protection_space: &NSURLProtectionSpace,
         ) -> bool;
 
         #[cfg(all(
@@ -208,9 +212,9 @@ extern_protocol!(
         pub unsafe fn connection_didSendBodyData_totalBytesWritten_totalBytesExpectedToWrite(
             &self,
             connection: &NSURLConnection,
-            bytesWritten: NSInteger,
-            totalBytesWritten: NSInteger,
-            totalBytesExpectedToWrite: NSInteger,
+            bytes_written: NSInteger,
+            total_bytes_written: NSInteger,
+            total_bytes_expected_to_write: NSInteger,
         );
 
         #[cfg(all(
@@ -222,7 +226,7 @@ extern_protocol!(
         pub unsafe fn connection_willCacheResponse(
             &self,
             connection: &NSURLConnection,
-            cachedResponse: &NSCachedURLResponse,
+            cached_response: &NSCachedURLResponse,
         ) -> Option<Id<NSCachedURLResponse, Shared>>;
 
         #[cfg(feature = "Foundation_NSURLConnection")]
@@ -242,9 +246,9 @@ extern_protocol!(
         pub unsafe fn connection_didWriteData_totalBytesWritten_expectedTotalBytes(
             &self,
             connection: &NSURLConnection,
-            bytesWritten: c_longlong,
-            totalBytesWritten: c_longlong,
-            expectedTotalBytes: c_longlong,
+            bytes_written: c_longlong,
+            total_bytes_written: c_longlong,
+            expected_total_bytes: c_longlong,
         );
 
         #[cfg(feature = "Foundation_NSURLConnection")]
@@ -253,8 +257,8 @@ extern_protocol!(
         pub unsafe fn connectionDidResumeDownloading_totalBytesWritten_expectedTotalBytes(
             &self,
             connection: &NSURLConnection,
-            totalBytesWritten: c_longlong,
-            expectedTotalBytes: c_longlong,
+            total_bytes_written: c_longlong,
+            expected_total_bytes: c_longlong,
         );
 
         #[cfg(all(feature = "Foundation_NSURL", feature = "Foundation_NSURLConnection"))]
@@ -262,7 +266,7 @@ extern_protocol!(
         pub unsafe fn connectionDidFinishDownloading_destinationURL(
             &self,
             connection: &NSURLConnection,
-            destinationURL: &NSURL,
+            destination_url: &NSURL,
         );
     }
 );

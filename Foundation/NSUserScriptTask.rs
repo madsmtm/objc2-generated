@@ -61,7 +61,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSFileHandle")]
         #[method(setStandardInput:)]
-        pub unsafe fn setStandardInput(&self, standardInput: Option<&NSFileHandle>);
+        pub unsafe fn setStandardInput(&self, standard_input: Option<&NSFileHandle>);
 
         #[cfg(feature = "Foundation_NSFileHandle")]
         #[method_id(@__retain_semantics Other standardOutput)]
@@ -69,7 +69,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSFileHandle")]
         #[method(setStandardOutput:)]
-        pub unsafe fn setStandardOutput(&self, standardOutput: Option<&NSFileHandle>);
+        pub unsafe fn setStandardOutput(&self, standard_output: Option<&NSFileHandle>);
 
         #[cfg(feature = "Foundation_NSFileHandle")]
         #[method_id(@__retain_semantics Other standardError)]
@@ -77,7 +77,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSFileHandle")]
         #[method(setStandardError:)]
-        pub unsafe fn setStandardError(&self, standardError: Option<&NSFileHandle>);
+        pub unsafe fn setStandardError(&self, standard_error: Option<&NSFileHandle>);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(executeWithArguments:completionHandler:)]

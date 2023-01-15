@@ -19,7 +19,7 @@ extern_methods!(
     unsafe impl NSURLDownload {
         #[cfg(feature = "Foundation_NSString")]
         #[method(canResumeDownloadDecodedWithEncodingMIMEType:)]
-        pub unsafe fn canResumeDownloadDecodedWithEncodingMIMEType(MIMEType: &NSString) -> bool;
+        pub unsafe fn canResumeDownloadDecodedWithEncodingMIMEType(mime_type: &NSString) -> bool;
 
         #[cfg(feature = "Foundation_NSURLRequest")]
         #[deprecated = "Use NSURLSession downloadTask (see NSURLSession.h)"]
@@ -35,7 +35,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithResumeData:delegate:path:)]
         pub unsafe fn initWithResumeData_delegate_path(
             this: Option<Allocated<Self>>,
-            resumeData: &NSData,
+            resume_data: &NSData,
             delegate: Option<&NSURLDownloadDelegate>,
             path: &NSString,
         ) -> Id<Self, Shared>;
@@ -45,7 +45,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setDestination:allowOverwrite:)]
-        pub unsafe fn setDestination_allowOverwrite(&self, path: &NSString, allowOverwrite: bool);
+        pub unsafe fn setDestination_allowOverwrite(&self, path: &NSString, allow_overwrite: bool);
 
         #[cfg(feature = "Foundation_NSURLRequest")]
         #[method_id(@__retain_semantics Other request)]
@@ -59,7 +59,7 @@ extern_methods!(
         pub unsafe fn deletesFileUponFailure(&self) -> bool;
 
         #[method(setDeletesFileUponFailure:)]
-        pub unsafe fn setDeletesFileUponFailure(&self, deletesFileUponFailure: bool);
+        pub unsafe fn setDeletesFileUponFailure(&self, deletes_file_upon_failure: bool);
     }
 );
 
@@ -83,7 +83,7 @@ extern_protocol!(
             &self,
             download: &NSURLDownload,
             request: &NSURLRequest,
-            redirectResponse: Option<&NSURLResponse>,
+            redirect_response: Option<&NSURLResponse>,
         ) -> Option<Id<NSURLRequest, Shared>>;
 
         #[cfg(all(
@@ -95,7 +95,7 @@ extern_protocol!(
         pub unsafe fn download_canAuthenticateAgainstProtectionSpace(
             &self,
             connection: &NSURLDownload,
-            protectionSpace: &NSURLProtectionSpace,
+            protection_space: &NSURLProtectionSpace,
         ) -> bool;
 
         #[cfg(all(
@@ -149,7 +149,7 @@ extern_protocol!(
             &self,
             download: &NSURLDownload,
             response: &NSURLResponse,
-            startingByte: c_longlong,
+            starting_byte: c_longlong,
         );
 
         #[cfg(feature = "Foundation_NSURLDownload")]
@@ -167,7 +167,7 @@ extern_protocol!(
         pub unsafe fn download_shouldDecodeSourceDataOfMIMEType(
             &self,
             download: &NSURLDownload,
-            encodingType: &NSString,
+            encoding_type: &NSString,
         ) -> bool;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURLDownload"))]

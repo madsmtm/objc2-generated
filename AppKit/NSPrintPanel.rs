@@ -79,11 +79,11 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSViewController")]
         #[method(addAccessoryController:)]
-        pub unsafe fn addAccessoryController(&self, accessoryController: &NSViewController);
+        pub unsafe fn addAccessoryController(&self, accessory_controller: &NSViewController);
 
         #[cfg(feature = "AppKit_NSViewController")]
         #[method(removeAccessoryController:)]
-        pub unsafe fn removeAccessoryController(&self, accessoryController: &NSViewController);
+        pub unsafe fn removeAccessoryController(&self, accessory_controller: &NSViewController);
 
         #[cfg(all(feature = "AppKit_NSViewController", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other accessoryControllers)]
@@ -97,7 +97,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setDefaultButtonTitle:)]
-        pub unsafe fn setDefaultButtonTitle(&self, defaultButtonTitle: Option<&NSString>);
+        pub unsafe fn setDefaultButtonTitle(&self, default_button_title: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other defaultButtonTitle)]
@@ -107,28 +107,28 @@ extern_methods!(
         pub unsafe fn helpAnchor(&self) -> Option<Id<NSHelpAnchorName, Shared>>;
 
         #[method(setHelpAnchor:)]
-        pub unsafe fn setHelpAnchor(&self, helpAnchor: Option<&NSHelpAnchorName>);
+        pub unsafe fn setHelpAnchor(&self, help_anchor: Option<&NSHelpAnchorName>);
 
         #[method_id(@__retain_semantics Other jobStyleHint)]
         pub unsafe fn jobStyleHint(&self) -> Option<Id<NSPrintPanelJobStyleHint, Shared>>;
 
         #[method(setJobStyleHint:)]
-        pub unsafe fn setJobStyleHint(&self, jobStyleHint: Option<&NSPrintPanelJobStyleHint>);
+        pub unsafe fn setJobStyleHint(&self, job_style_hint: Option<&NSPrintPanelJobStyleHint>);
 
         #[cfg(all(feature = "AppKit_NSPrintInfo", feature = "AppKit_NSWindow"))]
         #[method(beginSheetWithPrintInfo:modalForWindow:delegate:didEndSelector:contextInfo:)]
         pub unsafe fn beginSheetWithPrintInfo_modalForWindow_delegate_didEndSelector_contextInfo(
             &self,
-            printInfo: &NSPrintInfo,
-            docWindow: &NSWindow,
+            print_info: &NSPrintInfo,
+            doc_window: &NSWindow,
             delegate: Option<&Object>,
-            didEndSelector: Option<Sel>,
-            contextInfo: *mut c_void,
+            did_end_selector: Option<Sel>,
+            context_info: *mut c_void,
         );
 
         #[cfg(feature = "AppKit_NSPrintInfo")]
         #[method(runModalWithPrintInfo:)]
-        pub unsafe fn runModalWithPrintInfo(&self, printInfo: &NSPrintInfo) -> NSInteger;
+        pub unsafe fn runModalWithPrintInfo(&self, print_info: &NSPrintInfo) -> NSInteger;
 
         #[method(runModal)]
         pub unsafe fn runModal(&self) -> NSInteger;
@@ -146,7 +146,7 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSView")]
         #[deprecated = "Use -addAccessoryController instead"]
         #[method(setAccessoryView:)]
-        pub unsafe fn setAccessoryView(&self, accessoryView: Option<&NSView>);
+        pub unsafe fn setAccessoryView(&self, accessory_view: Option<&NSView>);
 
         #[cfg(feature = "AppKit_NSView")]
         #[deprecated = "Use -accessoryControllers instead. For compatibility this returns the view of the first accessory controller, or nil"]

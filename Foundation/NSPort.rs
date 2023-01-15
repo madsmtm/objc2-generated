@@ -31,18 +31,18 @@ extern_methods!(
         pub unsafe fn isValid(&self) -> bool;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, anObject: Option<&NSPortDelegate>);
+        pub unsafe fn setDelegate(&self, an_object: Option<&NSPortDelegate>);
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSPortDelegate, Shared>>;
 
         #[cfg(feature = "Foundation_NSRunLoop")]
         #[method(scheduleInRunLoop:forMode:)]
-        pub unsafe fn scheduleInRunLoop_forMode(&self, runLoop: &NSRunLoop, mode: &NSRunLoopMode);
+        pub unsafe fn scheduleInRunLoop_forMode(&self, run_loop: &NSRunLoop, mode: &NSRunLoopMode);
 
         #[cfg(feature = "Foundation_NSRunLoop")]
         #[method(removeFromRunLoop:forMode:)]
-        pub unsafe fn removeFromRunLoop_forMode(&self, runLoop: &NSRunLoop, mode: &NSRunLoopMode);
+        pub unsafe fn removeFromRunLoop_forMode(&self, run_loop: &NSRunLoop, mode: &NSRunLoopMode);
 
         #[method(reservedSpaceLength)]
         pub unsafe fn reservedSpaceLength(&self) -> NSUInteger;
@@ -51,21 +51,21 @@ extern_methods!(
         #[method(sendBeforeDate:components:from:reserved:)]
         pub unsafe fn sendBeforeDate_components_from_reserved(
             &self,
-            limitDate: &NSDate,
+            limit_date: &NSDate,
             components: Option<&NSMutableArray>,
-            receivePort: Option<&NSPort>,
-            headerSpaceReserved: NSUInteger,
+            receive_port: Option<&NSPort>,
+            header_space_reserved: NSUInteger,
         ) -> bool;
 
         #[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSMutableArray"))]
         #[method(sendBeforeDate:msgid:components:from:reserved:)]
         pub unsafe fn sendBeforeDate_msgid_components_from_reserved(
             &self,
-            limitDate: &NSDate,
-            msgID: NSUInteger,
+            limit_date: &NSDate,
+            msg_id: NSUInteger,
             components: Option<&NSMutableArray>,
-            receivePort: Option<&NSPort>,
-            headerSpaceReserved: NSUInteger,
+            receive_port: Option<&NSPort>,
+            header_space_reserved: NSUInteger,
         ) -> bool;
 
         #[cfg(all(feature = "Foundation_NSConnection", feature = "Foundation_NSRunLoop"))]
@@ -74,7 +74,7 @@ extern_methods!(
         pub unsafe fn addConnection_toRunLoop_forMode(
             &self,
             conn: &NSConnection,
-            runLoop: &NSRunLoop,
+            run_loop: &NSRunLoop,
             mode: &NSRunLoopMode,
         );
 
@@ -84,7 +84,7 @@ extern_methods!(
         pub unsafe fn removeConnection_fromRunLoop_forMode(
             &self,
             conn: &NSConnection,
-            runLoop: &NSRunLoop,
+            run_loop: &NSRunLoop,
             mode: &NSRunLoopMode,
         );
     }
@@ -126,30 +126,30 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSMachPort")]
     unsafe impl NSMachPort {
         #[method_id(@__retain_semantics Other portWithMachPort:)]
-        pub unsafe fn portWithMachPort(machPort: u32) -> Id<NSPort, Shared>;
+        pub unsafe fn portWithMachPort(mach_port: u32) -> Id<NSPort, Shared>;
 
         #[method_id(@__retain_semantics Init initWithMachPort:)]
         pub unsafe fn initWithMachPort(
             this: Option<Allocated<Self>>,
-            machPort: u32,
+            mach_port: u32,
         ) -> Id<Self, Shared>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, anObject: Option<&NSMachPortDelegate>);
+        pub unsafe fn setDelegate(&self, an_object: Option<&NSMachPortDelegate>);
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSMachPortDelegate, Shared>>;
 
         #[method_id(@__retain_semantics Other portWithMachPort:options:)]
         pub unsafe fn portWithMachPort_options(
-            machPort: u32,
+            mach_port: u32,
             f: NSMachPortOptions,
         ) -> Id<NSPort, Shared>;
 
         #[method_id(@__retain_semantics Init initWithMachPort:options:)]
         pub unsafe fn initWithMachPort_options(
             this: Option<Allocated<Self>>,
-            machPort: u32,
+            mach_port: u32,
             f: NSMachPortOptions,
         ) -> Id<Self, Shared>;
 
@@ -158,11 +158,11 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSRunLoop")]
         #[method(scheduleInRunLoop:forMode:)]
-        pub unsafe fn scheduleInRunLoop_forMode(&self, runLoop: &NSRunLoop, mode: &NSRunLoopMode);
+        pub unsafe fn scheduleInRunLoop_forMode(&self, run_loop: &NSRunLoop, mode: &NSRunLoopMode);
 
         #[cfg(feature = "Foundation_NSRunLoop")]
         #[method(removeFromRunLoop:forMode:)]
-        pub unsafe fn removeFromRunLoop_forMode(&self, runLoop: &NSRunLoop, mode: &NSRunLoopMode);
+        pub unsafe fn removeFromRunLoop_forMode(&self, run_loop: &NSRunLoop, mode: &NSRunLoopMode);
     }
 );
 
@@ -241,7 +241,7 @@ extern_methods!(
         pub unsafe fn initRemoteWithTCPPort_host(
             this: Option<Allocated<Self>>,
             port: c_ushort,
-            hostName: Option<&NSString>,
+            host_name: Option<&NSString>,
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(feature = "Foundation_NSData")]

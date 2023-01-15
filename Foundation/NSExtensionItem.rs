@@ -23,7 +23,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setAttributedTitle:)]
-        pub unsafe fn setAttributedTitle(&self, attributedTitle: Option<&NSAttributedString>);
+        pub unsafe fn setAttributedTitle(&self, attributed_title: Option<&NSAttributedString>);
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedContentText)]
@@ -33,7 +33,7 @@ extern_methods!(
         #[method(setAttributedContentText:)]
         pub unsafe fn setAttributedContentText(
             &self,
-            attributedContentText: Option<&NSAttributedString>,
+            attributed_content_text: Option<&NSAttributedString>,
         );
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSItemProvider"))]
@@ -50,7 +50,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(setUserInfo:)]
-        pub unsafe fn setUserInfo(&self, userInfo: Option<&NSDictionary>);
+        pub unsafe fn setUserInfo(&self, user_info: Option<&NSDictionary>);
     }
 );
 

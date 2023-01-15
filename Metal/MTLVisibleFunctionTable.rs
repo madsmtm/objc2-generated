@@ -26,7 +26,7 @@ extern_methods!(
         pub unsafe fn functionCount(&self) -> NSUInteger;
 
         #[method(setFunctionCount:)]
-        pub unsafe fn setFunctionCount(&self, functionCount: NSUInteger);
+        pub unsafe fn setFunctionCount(&self, function_count: NSUInteger);
     }
 );
 

@@ -53,7 +53,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other attribute:atIndex:effectiveRange:)]
         pub unsafe fn attribute_atIndex_effectiveRange(
             &self,
-            attrName: &NSAttributedStringKey,
+            attr_name: &NSAttributedStringKey,
             location: NSUInteger,
             range: NSRangePointer,
         ) -> Option<Id<Object, Shared>>;
@@ -70,16 +70,16 @@ extern_methods!(
             &self,
             location: NSUInteger,
             range: NSRangePointer,
-            rangeLimit: NSRange,
+            range_limit: NSRange,
         ) -> Id<NSDictionary<NSAttributedStringKey, Object>, Shared>;
 
         #[method_id(@__retain_semantics Other attribute:atIndex:longestEffectiveRange:inRange:)]
         pub unsafe fn attribute_atIndex_longestEffectiveRange_inRange(
             &self,
-            attrName: &NSAttributedStringKey,
+            attr_name: &NSAttributedStringKey,
             location: NSUInteger,
             range: NSRangePointer,
-            rangeLimit: NSRange,
+            range_limit: NSRange,
         ) -> Option<Id<Object, Shared>>;
 
         #[method(isEqualToAttributedString:)]
@@ -100,14 +100,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithAttributedString:)]
         pub fn initWithAttributedString(
             this: Option<Allocated<Self>>,
-            attrStr: &NSAttributedString,
+            attr_str: &NSAttributedString,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(enumerateAttributesInRange:options:usingBlock:)]
         pub unsafe fn enumerateAttributesInRange_options_usingBlock(
             &self,
-            enumerationRange: NSRange,
+            enumeration_range: NSRange,
             opts: NSAttributedStringEnumerationOptions,
             block: &Block<
                 (
@@ -122,8 +122,8 @@ extern_methods!(
         #[method(enumerateAttribute:inRange:options:usingBlock:)]
         pub unsafe fn enumerateAttribute_inRange_options_usingBlock(
             &self,
-            attrName: &NSAttributedStringKey,
-            enumerationRange: NSRange,
+            attr_name: &NSAttributedStringKey,
+            enumeration_range: NSRange,
             opts: NSAttributedStringEnumerationOptions,
             block: &Block<(*mut Object, NSRange, NonNull<Bool>), ()>,
         );
@@ -191,27 +191,27 @@ extern_methods!(
         pub unsafe fn replaceCharactersInRange_withAttributedString(
             &self,
             range: NSRange,
-            attrString: &NSAttributedString,
+            attr_string: &NSAttributedString,
         );
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(insertAttributedString:atIndex:)]
         pub unsafe fn insertAttributedString_atIndex(
             &self,
-            attrString: &NSAttributedString,
+            attr_string: &NSAttributedString,
             loc: NSUInteger,
         );
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(appendAttributedString:)]
-        pub unsafe fn appendAttributedString(&self, attrString: &NSAttributedString);
+        pub unsafe fn appendAttributedString(&self, attr_string: &NSAttributedString);
 
         #[method(deleteCharactersInRange:)]
         pub unsafe fn deleteCharactersInRange(&self, range: NSRange);
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setAttributedString:)]
-        pub fn setAttributedString(&mut self, attrString: &NSAttributedString);
+        pub fn setAttributedString(&mut self, attr_string: &NSAttributedString);
 
         #[method(beginEditing)]
         pub unsafe fn beginEditing(&self);
@@ -291,10 +291,10 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithStartLine:startColumn:endLine:endColumn:)]
         pub unsafe fn initWithStartLine_startColumn_endLine_endColumn(
             this: Option<Allocated<Self>>,
-            startLine: NSInteger,
-            startColumn: NSInteger,
-            endLine: NSInteger,
-            endColumn: NSInteger,
+            start_line: NSInteger,
+            start_column: NSInteger,
+            end_line: NSInteger,
+            end_column: NSInteger,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -324,7 +324,7 @@ extern_methods!(
         pub unsafe fn allowsExtendedAttributes(&self) -> bool;
 
         #[method(setAllowsExtendedAttributes:)]
-        pub unsafe fn setAllowsExtendedAttributes(&self, allowsExtendedAttributes: bool);
+        pub unsafe fn setAllowsExtendedAttributes(&self, allows_extended_attributes: bool);
 
         #[method(interpretedSyntax)]
         pub unsafe fn interpretedSyntax(&self) -> NSAttributedStringMarkdownInterpretedSyntax;
@@ -332,7 +332,7 @@ extern_methods!(
         #[method(setInterpretedSyntax:)]
         pub unsafe fn setInterpretedSyntax(
             &self,
-            interpretedSyntax: NSAttributedStringMarkdownInterpretedSyntax,
+            interpreted_syntax: NSAttributedStringMarkdownInterpretedSyntax,
         );
 
         #[method(failurePolicy)]
@@ -341,7 +341,7 @@ extern_methods!(
         #[method(setFailurePolicy:)]
         pub unsafe fn setFailurePolicy(
             &self,
-            failurePolicy: NSAttributedStringMarkdownParsingFailurePolicy,
+            failure_policy: NSAttributedStringMarkdownParsingFailurePolicy,
         );
 
         #[cfg(feature = "Foundation_NSString")]
@@ -350,7 +350,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLanguageCode:)]
-        pub unsafe fn setLanguageCode(&self, languageCode: Option<&NSString>);
+        pub unsafe fn setLanguageCode(&self, language_code: Option<&NSString>);
 
         #[method(appliesSourcePositionAttributes)]
         pub unsafe fn appliesSourcePositionAttributes(&self) -> bool;
@@ -358,7 +358,7 @@ extern_methods!(
         #[method(setAppliesSourcePositionAttributes:)]
         pub unsafe fn setAppliesSourcePositionAttributes(
             &self,
-            appliesSourcePositionAttributes: bool,
+            applies_source_position_attributes: bool,
         );
     }
 );
@@ -375,9 +375,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithContentsOfMarkdownFileAtURL:options:baseURL:error:_)]
         pub unsafe fn initWithContentsOfMarkdownFileAtURL_options_baseURL_error(
             this: Option<Allocated<Self>>,
-            markdownFile: &NSURL,
+            markdown_file: &NSURL,
             options: Option<&NSAttributedStringMarkdownParsingOptions>,
-            baseURL: Option<&NSURL>,
+            base_url: Option<&NSURL>,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
         #[cfg(all(
@@ -391,7 +391,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             markdown: &NSData,
             options: Option<&NSAttributedStringMarkdownParsingOptions>,
-            baseURL: Option<&NSURL>,
+            base_url: Option<&NSURL>,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
         #[cfg(all(
@@ -403,9 +403,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithMarkdownString:options:baseURL:error:_)]
         pub unsafe fn initWithMarkdownString_options_baseURL_error(
             this: Option<Allocated<Self>>,
-            markdownString: &NSString,
+            markdown_string: &NSString,
             options: Option<&NSAttributedStringMarkdownParsingOptions>,
-            baseURL: Option<&NSURL>,
+            base_url: Option<&NSURL>,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
     }
 );
@@ -516,7 +516,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other codeBlockIntentWithIdentity:languageHint:nestedInsideIntent:)]
         pub unsafe fn codeBlockIntentWithIdentity_languageHint_nestedInsideIntent(
             identity: NSInteger,
-            languageHint: Option<&NSString>,
+            language_hint: Option<&NSString>,
             parent: Option<&NSPresentationIntent>,
         ) -> Id<NSPresentationIntent, Shared>;
 
@@ -555,7 +555,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other tableIntentWithIdentity:columnCount:alignments:nestedInsideIntent:)]
         pub unsafe fn tableIntentWithIdentity_columnCount_alignments_nestedInsideIntent(
             identity: NSInteger,
-            columnCount: NSInteger,
+            column_count: NSInteger,
             alignments: &NSArray<NSNumber>,
             parent: Option<&NSPresentationIntent>,
         ) -> Id<NSPresentationIntent, Shared>;
@@ -636,7 +636,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithAttributedString:)]
         pub fn initWithAttributedString(
             this: Option<Allocated<Self>>,
-            attrStr: &NSAttributedString,
+            attr_str: &NSAttributedString,
         ) -> Id<Self, Owned>;
     }
 );
@@ -655,9 +655,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithContentsOfMarkdownFileAtURL:options:baseURL:error:_)]
         pub unsafe fn initWithContentsOfMarkdownFileAtURL_options_baseURL_error(
             this: Option<Allocated<Self>>,
-            markdownFile: &NSURL,
+            markdown_file: &NSURL,
             options: Option<&NSAttributedStringMarkdownParsingOptions>,
-            baseURL: Option<&NSURL>,
+            base_url: Option<&NSURL>,
         ) -> Result<Id<Self, Owned>, Id<NSError, Shared>>;
 
         #[cfg(all(
@@ -671,7 +671,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             markdown: &NSData,
             options: Option<&NSAttributedStringMarkdownParsingOptions>,
-            baseURL: Option<&NSURL>,
+            base_url: Option<&NSURL>,
         ) -> Result<Id<Self, Owned>, Id<NSError, Shared>>;
 
         #[cfg(all(
@@ -683,9 +683,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithMarkdownString:options:baseURL:error:_)]
         pub unsafe fn initWithMarkdownString_options_baseURL_error(
             this: Option<Allocated<Self>>,
-            markdownString: &NSString,
+            markdown_string: &NSString,
             options: Option<&NSAttributedStringMarkdownParsingOptions>,
-            baseURL: Option<&NSURL>,
+            base_url: Option<&NSURL>,
         ) -> Result<Id<Self, Owned>, Id<NSError, Shared>>;
     }
 );

@@ -67,8 +67,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Other bezierPathWithRoundedRect:xRadius:yRadius:)]
         pub unsafe fn bezierPathWithRoundedRect_xRadius_yRadius(
             rect: NSRect,
-            xRadius: CGFloat,
-            yRadius: CGFloat,
+            x_radius: CGFloat,
+            y_radius: CGFloat,
         ) -> Id<NSBezierPath, Shared>;
 
         #[method(fillRect:)]
@@ -84,43 +84,43 @@ extern_methods!(
         pub unsafe fn strokeLineFromPoint_toPoint(point1: NSPoint, point2: NSPoint);
 
         #[method(drawPackedGlyphs:atPoint:)]
-        pub unsafe fn drawPackedGlyphs_atPoint(packedGlyphs: NonNull<c_char>, point: NSPoint);
+        pub unsafe fn drawPackedGlyphs_atPoint(packed_glyphs: NonNull<c_char>, point: NSPoint);
 
         #[method(defaultMiterLimit)]
         pub unsafe fn defaultMiterLimit() -> CGFloat;
 
         #[method(setDefaultMiterLimit:)]
-        pub unsafe fn setDefaultMiterLimit(defaultMiterLimit: CGFloat);
+        pub unsafe fn setDefaultMiterLimit(default_miter_limit: CGFloat);
 
         #[method(defaultFlatness)]
         pub unsafe fn defaultFlatness() -> CGFloat;
 
         #[method(setDefaultFlatness:)]
-        pub unsafe fn setDefaultFlatness(defaultFlatness: CGFloat);
+        pub unsafe fn setDefaultFlatness(default_flatness: CGFloat);
 
         #[method(defaultWindingRule)]
         pub unsafe fn defaultWindingRule() -> NSWindingRule;
 
         #[method(setDefaultWindingRule:)]
-        pub unsafe fn setDefaultWindingRule(defaultWindingRule: NSWindingRule);
+        pub unsafe fn setDefaultWindingRule(default_winding_rule: NSWindingRule);
 
         #[method(defaultLineCapStyle)]
         pub unsafe fn defaultLineCapStyle() -> NSLineCapStyle;
 
         #[method(setDefaultLineCapStyle:)]
-        pub unsafe fn setDefaultLineCapStyle(defaultLineCapStyle: NSLineCapStyle);
+        pub unsafe fn setDefaultLineCapStyle(default_line_cap_style: NSLineCapStyle);
 
         #[method(defaultLineJoinStyle)]
         pub unsafe fn defaultLineJoinStyle() -> NSLineJoinStyle;
 
         #[method(setDefaultLineJoinStyle:)]
-        pub unsafe fn setDefaultLineJoinStyle(defaultLineJoinStyle: NSLineJoinStyle);
+        pub unsafe fn setDefaultLineJoinStyle(default_line_join_style: NSLineJoinStyle);
 
         #[method(defaultLineWidth)]
         pub unsafe fn defaultLineWidth() -> CGFloat;
 
         #[method(setDefaultLineWidth:)]
-        pub unsafe fn setDefaultLineWidth(defaultLineWidth: CGFloat);
+        pub unsafe fn setDefaultLineWidth(default_line_width: CGFloat);
 
         #[method(moveToPoint:)]
         pub unsafe fn moveToPoint(&self, point: NSPoint);
@@ -131,9 +131,9 @@ extern_methods!(
         #[method(curveToPoint:controlPoint1:controlPoint2:)]
         pub unsafe fn curveToPoint_controlPoint1_controlPoint2(
             &self,
-            endPoint: NSPoint,
-            controlPoint1: NSPoint,
-            controlPoint2: NSPoint,
+            end_point: NSPoint,
+            control_point1: NSPoint,
+            control_point2: NSPoint,
         );
 
         #[method(closePath)]
@@ -151,40 +151,40 @@ extern_methods!(
         #[method(relativeCurveToPoint:controlPoint1:controlPoint2:)]
         pub unsafe fn relativeCurveToPoint_controlPoint1_controlPoint2(
             &self,
-            endPoint: NSPoint,
-            controlPoint1: NSPoint,
-            controlPoint2: NSPoint,
+            end_point: NSPoint,
+            control_point1: NSPoint,
+            control_point2: NSPoint,
         );
 
         #[method(lineWidth)]
         pub unsafe fn lineWidth(&self) -> CGFloat;
 
         #[method(setLineWidth:)]
-        pub unsafe fn setLineWidth(&self, lineWidth: CGFloat);
+        pub unsafe fn setLineWidth(&self, line_width: CGFloat);
 
         #[method(lineCapStyle)]
         pub unsafe fn lineCapStyle(&self) -> NSLineCapStyle;
 
         #[method(setLineCapStyle:)]
-        pub unsafe fn setLineCapStyle(&self, lineCapStyle: NSLineCapStyle);
+        pub unsafe fn setLineCapStyle(&self, line_cap_style: NSLineCapStyle);
 
         #[method(lineJoinStyle)]
         pub unsafe fn lineJoinStyle(&self) -> NSLineJoinStyle;
 
         #[method(setLineJoinStyle:)]
-        pub unsafe fn setLineJoinStyle(&self, lineJoinStyle: NSLineJoinStyle);
+        pub unsafe fn setLineJoinStyle(&self, line_join_style: NSLineJoinStyle);
 
         #[method(windingRule)]
         pub unsafe fn windingRule(&self) -> NSWindingRule;
 
         #[method(setWindingRule:)]
-        pub unsafe fn setWindingRule(&self, windingRule: NSWindingRule);
+        pub unsafe fn setWindingRule(&self, winding_rule: NSWindingRule);
 
         #[method(miterLimit)]
         pub unsafe fn miterLimit(&self) -> CGFloat;
 
         #[method(setMiterLimit:)]
-        pub unsafe fn setMiterLimit(&self, miterLimit: CGFloat);
+        pub unsafe fn setMiterLimit(&self, miter_limit: CGFloat);
 
         #[method(flatness)]
         pub unsafe fn flatness(&self) -> CGFloat;
@@ -279,8 +279,8 @@ extern_methods!(
             &self,
             center: NSPoint,
             radius: CGFloat,
-            startAngle: CGFloat,
-            endAngle: CGFloat,
+            start_angle: CGFloat,
+            end_angle: CGFloat,
             clockwise: bool,
         );
 
@@ -289,8 +289,8 @@ extern_methods!(
             &self,
             center: NSPoint,
             radius: CGFloat,
-            startAngle: CGFloat,
-            endAngle: CGFloat,
+            start_angle: CGFloat,
+            end_angle: CGFloat,
         );
 
         #[method(appendBezierPathWithArcFromPoint:toPoint:radius:)]
@@ -305,8 +305,8 @@ extern_methods!(
         pub unsafe fn appendBezierPathWithRoundedRect_xRadius_yRadius(
             &self,
             rect: NSRect,
-            xRadius: CGFloat,
-            yRadius: CGFloat,
+            x_radius: CGFloat,
+            y_radius: CGFloat,
         );
 
         #[method(containsPoint:)]
@@ -343,7 +343,7 @@ extern_methods!(
 
         #[deprecated = "Use -appendBezierPathWithCGGlyphs:count:inFont: instead"]
         #[method(appendBezierPathWithPackedGlyphs:)]
-        pub unsafe fn appendBezierPathWithPackedGlyphs(&self, packedGlyphs: NonNull<c_char>);
+        pub unsafe fn appendBezierPathWithPackedGlyphs(&self, packed_glyphs: NonNull<c_char>);
     }
 );
 

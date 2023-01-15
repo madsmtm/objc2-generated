@@ -34,7 +34,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithItemIdentifier:)]
         pub unsafe fn initWithItemIdentifier(
             this: Option<Allocated<Self>>,
-            itemIdentifier: &NSToolbarItemIdentifier,
+            item_identifier: &NSToolbarItemIdentifier,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Other itemIdentifier)]
@@ -58,7 +58,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setPaletteLabel:)]
-        pub unsafe fn setPaletteLabel(&self, paletteLabel: &NSString);
+        pub unsafe fn setPaletteLabel(&self, palette_label: &NSString);
 
         #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other possibleLabels)]
@@ -66,7 +66,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
         #[method(setPossibleLabels:)]
-        pub unsafe fn setPossibleLabels(&self, possibleLabels: &NSSet<NSString>);
+        pub unsafe fn setPossibleLabels(&self, possible_labels: &NSSet<NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other toolTip)]
@@ -74,7 +74,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setToolTip:)]
-        pub unsafe fn setToolTip(&self, toolTip: Option<&NSString>);
+        pub unsafe fn setToolTip(&self, tool_tip: Option<&NSString>);
 
         #[cfg(feature = "AppKit_NSMenuItem")]
         #[method_id(@__retain_semantics Other menuFormRepresentation)]
@@ -82,7 +82,10 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSMenuItem")]
         #[method(setMenuFormRepresentation:)]
-        pub unsafe fn setMenuFormRepresentation(&self, menuFormRepresentation: Option<&NSMenuItem>);
+        pub unsafe fn setMenuFormRepresentation(
+            &self,
+            menu_form_representation: Option<&NSMenuItem>,
+        );
 
         #[method(tag)]
         pub unsafe fn tag(&self) -> NSInteger;
@@ -153,7 +156,7 @@ extern_methods!(
 
         #[deprecated = "This property is no longer recommended. Instead, let the system automatically measure the size of the view using constraints."]
         #[method(setMinSize:)]
-        pub unsafe fn setMinSize(&self, minSize: NSSize);
+        pub unsafe fn setMinSize(&self, min_size: NSSize);
 
         #[deprecated = "This property is no longer recommended. Instead, let the system automatically measure the size of the view using constraints."]
         #[method(maxSize)]
@@ -161,7 +164,7 @@ extern_methods!(
 
         #[deprecated = "This property is no longer recommended. Instead, let the system automatically measure the size of the view using constraints."]
         #[method(setMaxSize:)]
-        pub unsafe fn setMaxSize(&self, maxSize: NSSize);
+        pub unsafe fn setMaxSize(&self, max_size: NSSize);
 
         #[method(visibilityPriority)]
         pub unsafe fn visibilityPriority(&self) -> NSToolbarItemVisibilityPriority;
@@ -169,7 +172,7 @@ extern_methods!(
         #[method(setVisibilityPriority:)]
         pub unsafe fn setVisibilityPriority(
             &self,
-            visibilityPriority: NSToolbarItemVisibilityPriority,
+            visibility_priority: NSToolbarItemVisibilityPriority,
         );
 
         #[method(validate)]

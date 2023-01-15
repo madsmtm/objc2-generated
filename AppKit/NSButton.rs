@@ -78,7 +78,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setAttributedTitle:)]
-        pub unsafe fn setAttributedTitle(&self, attributedTitle: &NSAttributedString);
+        pub unsafe fn setAttributedTitle(&self, attributed_title: &NSAttributedString);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other alternateTitle)]
@@ -86,7 +86,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAlternateTitle:)]
-        pub unsafe fn setAlternateTitle(&self, alternateTitle: &NSString);
+        pub unsafe fn setAlternateTitle(&self, alternate_title: &NSString);
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedAlternateTitle)]
@@ -96,14 +96,14 @@ extern_methods!(
         #[method(setAttributedAlternateTitle:)]
         pub unsafe fn setAttributedAlternateTitle(
             &self,
-            attributedAlternateTitle: &NSAttributedString,
+            attributed_alternate_title: &NSAttributedString,
         );
 
         #[method(hasDestructiveAction)]
         pub unsafe fn hasDestructiveAction(&self) -> bool;
 
         #[method(setHasDestructiveAction:)]
-        pub unsafe fn setHasDestructiveAction(&self, hasDestructiveAction: bool);
+        pub unsafe fn setHasDestructiveAction(&self, has_destructive_action: bool);
 
         #[cfg(feature = "AppKit_NSSound")]
         #[method_id(@__retain_semantics Other sound)]
@@ -117,13 +117,13 @@ extern_methods!(
         pub unsafe fn isSpringLoaded(&self) -> bool;
 
         #[method(setSpringLoaded:)]
-        pub unsafe fn setSpringLoaded(&self, springLoaded: bool);
+        pub unsafe fn setSpringLoaded(&self, spring_loaded: bool);
 
         #[method(maxAcceleratorLevel)]
         pub unsafe fn maxAcceleratorLevel(&self) -> NSInteger;
 
         #[method(setMaxAcceleratorLevel:)]
-        pub unsafe fn setMaxAcceleratorLevel(&self, maxAcceleratorLevel: NSInteger);
+        pub unsafe fn setMaxAcceleratorLevel(&self, max_accelerator_level: NSInteger);
 
         #[method(setPeriodicDelay:interval:)]
         pub unsafe fn setPeriodicDelay_interval(&self, delay: c_float, interval: c_float);
@@ -139,7 +139,7 @@ extern_methods!(
         pub unsafe fn bezelStyle(&self) -> NSBezelStyle;
 
         #[method(setBezelStyle:)]
-        pub unsafe fn setBezelStyle(&self, bezelStyle: NSBezelStyle);
+        pub unsafe fn setBezelStyle(&self, bezel_style: NSBezelStyle);
 
         #[method(isBordered)]
         pub unsafe fn isBordered(&self) -> bool;
@@ -159,7 +159,7 @@ extern_methods!(
         #[method(setShowsBorderOnlyWhileMouseInside:)]
         pub unsafe fn setShowsBorderOnlyWhileMouseInside(
             &self,
-            showsBorderOnlyWhileMouseInside: bool,
+            shows_border_only_while_mouse_inside: bool,
         );
 
         #[cfg(feature = "AppKit_NSImage")]
@@ -176,25 +176,25 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method(setAlternateImage:)]
-        pub unsafe fn setAlternateImage(&self, alternateImage: Option<&NSImage>);
+        pub unsafe fn setAlternateImage(&self, alternate_image: Option<&NSImage>);
 
         #[method(imagePosition)]
         pub unsafe fn imagePosition(&self) -> NSCellImagePosition;
 
         #[method(setImagePosition:)]
-        pub unsafe fn setImagePosition(&self, imagePosition: NSCellImagePosition);
+        pub unsafe fn setImagePosition(&self, image_position: NSCellImagePosition);
 
         #[method(imageScaling)]
         pub unsafe fn imageScaling(&self) -> NSImageScaling;
 
         #[method(setImageScaling:)]
-        pub unsafe fn setImageScaling(&self, imageScaling: NSImageScaling);
+        pub unsafe fn setImageScaling(&self, image_scaling: NSImageScaling);
 
         #[method(imageHugsTitle)]
         pub unsafe fn imageHugsTitle(&self) -> bool;
 
         #[method(setImageHugsTitle:)]
-        pub unsafe fn setImageHugsTitle(&self, imageHugsTitle: bool);
+        pub unsafe fn setImageHugsTitle(&self, image_hugs_title: bool);
 
         #[cfg(feature = "AppKit_NSImageSymbolConfiguration")]
         #[method_id(@__retain_semantics Other symbolConfiguration)]
@@ -204,7 +204,7 @@ extern_methods!(
         #[method(setSymbolConfiguration:)]
         pub unsafe fn setSymbolConfiguration(
             &self,
-            symbolConfiguration: Option<&NSImageSymbolConfiguration>,
+            symbol_configuration: Option<&NSImageSymbolConfiguration>,
         );
 
         #[cfg(feature = "AppKit_NSColor")]
@@ -213,7 +213,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setBezelColor:)]
-        pub unsafe fn setBezelColor(&self, bezelColor: Option<&NSColor>);
+        pub unsafe fn setBezelColor(&self, bezel_color: Option<&NSColor>);
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other contentTintColor)]
@@ -221,7 +221,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setContentTintColor:)]
-        pub unsafe fn setContentTintColor(&self, contentTintColor: Option<&NSColor>);
+        pub unsafe fn setContentTintColor(&self, content_tint_color: Option<&NSColor>);
 
         #[method(state)]
         pub unsafe fn state(&self) -> NSControlStateValue;
@@ -233,7 +233,7 @@ extern_methods!(
         pub unsafe fn allowsMixedState(&self) -> bool;
 
         #[method(setAllowsMixedState:)]
-        pub unsafe fn setAllowsMixedState(&self, allowsMixedState: bool);
+        pub unsafe fn setAllowsMixedState(&self, allows_mixed_state: bool);
 
         #[method(setNextState)]
         pub unsafe fn setNextState(&self);
@@ -247,7 +247,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setKeyEquivalent:)]
-        pub unsafe fn setKeyEquivalent(&self, keyEquivalent: &NSString);
+        pub unsafe fn setKeyEquivalent(&self, key_equivalent: &NSString);
 
         #[method(keyEquivalentModifierMask)]
         pub unsafe fn keyEquivalentModifierMask(&self) -> NSEventModifierFlags;
@@ -255,7 +255,7 @@ extern_methods!(
         #[method(setKeyEquivalentModifierMask:)]
         pub unsafe fn setKeyEquivalentModifierMask(
             &self,
-            keyEquivalentModifierMask: NSEventModifierFlags,
+            key_equivalent_modifier_mask: NSEventModifierFlags,
         );
 
         #[cfg(feature = "AppKit_NSEvent")]
@@ -269,7 +269,7 @@ extern_methods!(
         #[method(compressWithPrioritizedCompressionOptions:)]
         pub unsafe fn compressWithPrioritizedCompressionOptions(
             &self,
-            prioritizedOptions: &NSArray<NSUserInterfaceCompressionOptions>,
+            prioritized_options: &NSArray<NSUserInterfaceCompressionOptions>,
         );
 
         #[cfg(all(
@@ -279,7 +279,7 @@ extern_methods!(
         #[method(minimumSizeWithPrioritizedCompressionOptions:)]
         pub unsafe fn minimumSizeWithPrioritizedCompressionOptions(
             &self,
-            prioritizedOptions: &NSArray<NSUserInterfaceCompressionOptions>,
+            prioritized_options: &NSArray<NSUserInterfaceCompressionOptions>,
         ) -> NSSize;
 
         #[cfg(feature = "AppKit_NSUserInterfaceCompressionOptions")]
@@ -297,7 +297,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Mnemonics are not used on macOS. Set the title property directly instead."]
         #[method(setTitleWithMnemonic:)]
-        pub unsafe fn setTitleWithMnemonic(&self, stringWithAmpersand: Option<&NSString>);
+        pub unsafe fn setTitleWithMnemonic(&self, string_with_ampersand: Option<&NSString>);
     }
 );
 
@@ -308,7 +308,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frame_rect: NSRect,
         ) -> Id<Self, Shared>;
     }
 );

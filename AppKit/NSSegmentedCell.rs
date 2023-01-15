@@ -24,13 +24,13 @@ extern_methods!(
         pub unsafe fn segmentCount(&self) -> NSInteger;
 
         #[method(setSegmentCount:)]
-        pub unsafe fn setSegmentCount(&self, segmentCount: NSInteger);
+        pub unsafe fn setSegmentCount(&self, segment_count: NSInteger);
 
         #[method(selectedSegment)]
         pub unsafe fn selectedSegment(&self) -> NSInteger;
 
         #[method(setSelectedSegment:)]
-        pub unsafe fn setSelectedSegment(&self, selectedSegment: NSInteger);
+        pub unsafe fn setSelectedSegment(&self, selected_segment: NSInteger);
 
         #[method(selectSegmentWithTag:)]
         pub unsafe fn selectSegmentWithTag(&self, tag: NSInteger) -> bool;
@@ -45,7 +45,7 @@ extern_methods!(
         pub unsafe fn trackingMode(&self) -> NSSegmentSwitchTracking;
 
         #[method(setTrackingMode:)]
-        pub unsafe fn setTrackingMode(&self, trackingMode: NSSegmentSwitchTracking);
+        pub unsafe fn setTrackingMode(&self, tracking_mode: NSSegmentSwitchTracking);
 
         #[method(setWidth:forSegment:)]
         pub unsafe fn setWidth_forSegment(&self, width: CGFloat, segment: NSInteger);
@@ -101,7 +101,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setToolTip:forSegment:)]
-        pub unsafe fn setToolTip_forSegment(&self, toolTip: Option<&NSString>, segment: NSInteger);
+        pub unsafe fn setToolTip_forSegment(&self, tool_tip: Option<&NSString>, segment: NSInteger);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other toolTipForSegment:)]
@@ -117,7 +117,7 @@ extern_methods!(
         pub unsafe fn segmentStyle(&self) -> NSSegmentStyle;
 
         #[method(setSegmentStyle:)]
-        pub unsafe fn setSegmentStyle(&self, segmentStyle: NSSegmentStyle);
+        pub unsafe fn setSegmentStyle(&self, segment_style: NSSegmentStyle);
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(drawSegment:inFrame:withView:)]
@@ -125,7 +125,7 @@ extern_methods!(
             &self,
             segment: NSInteger,
             frame: NSRect,
-            controlView: &NSView,
+            control_view: &NSView,
         );
     }
 );

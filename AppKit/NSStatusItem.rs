@@ -67,7 +67,7 @@ extern_methods!(
         pub unsafe fn autosaveName(&self) -> Id<NSStatusItemAutosaveName, Shared>;
 
         #[method(setAutosaveName:)]
-        pub unsafe fn setAutosaveName(&self, autosaveName: Option<&NSStatusItemAutosaveName>);
+        pub unsafe fn setAutosaveName(&self, autosave_name: Option<&NSStatusItemAutosaveName>);
     }
 );
 
@@ -89,7 +89,7 @@ extern_methods!(
 
         #[deprecated = "Use the receiver's button.doubleAction instead"]
         #[method(setDoubleAction:)]
-        pub unsafe fn setDoubleAction(&self, doubleAction: Option<Sel>);
+        pub unsafe fn setDoubleAction(&self, double_action: Option<Sel>);
 
         #[deprecated = "Use the receiver's button.target instead"]
         #[method_id(@__retain_semantics Other target)]
@@ -117,7 +117,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[deprecated = "Use the receiver's button.attributedTitle instead"]
         #[method(setAttributedTitle:)]
-        pub unsafe fn setAttributedTitle(&self, attributedTitle: Option<&NSAttributedString>);
+        pub unsafe fn setAttributedTitle(&self, attributed_title: Option<&NSAttributedString>);
 
         #[cfg(feature = "AppKit_NSImage")]
         #[deprecated = "Use the receiver's button.image instead"]
@@ -137,7 +137,7 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSImage")]
         #[deprecated = "Use the receiver's button.alternateImage instead"]
         #[method(setAlternateImage:)]
-        pub unsafe fn setAlternateImage(&self, alternateImage: Option<&NSImage>);
+        pub unsafe fn setAlternateImage(&self, alternate_image: Option<&NSImage>);
 
         #[deprecated = "Use the receiver's button.enabled instead"]
         #[method(isEnabled)]
@@ -153,7 +153,7 @@ extern_methods!(
 
         #[deprecated = "Use the receiver's button.cell.highlightsBy instead"]
         #[method(setHighlightMode:)]
-        pub unsafe fn setHighlightMode(&self, highlightMode: bool);
+        pub unsafe fn setHighlightMode(&self, highlight_mode: bool);
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use the receiver's button.toolTip instead"]
@@ -163,7 +163,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use the receiver's button.toolTip instead"]
         #[method(setToolTip:)]
-        pub unsafe fn setToolTip(&self, toolTip: Option<&NSString>);
+        pub unsafe fn setToolTip(&self, tool_tip: Option<&NSString>);
 
         #[deprecated = "Use the receiver's button's -sendActionOn: instead"]
         #[method(sendActionOn:)]

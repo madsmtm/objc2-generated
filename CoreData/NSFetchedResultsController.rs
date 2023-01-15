@@ -36,9 +36,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFetchRequest:managedObjectContext:sectionNameKeyPath:cacheName:)]
         pub unsafe fn initWithFetchRequest_managedObjectContext_sectionNameKeyPath_cacheName(
             this: Option<Allocated<Self>>,
-            fetchRequest: &NSFetchRequest<ResultType>,
+            fetch_request: &NSFetchRequest<ResultType>,
             context: &NSManagedObjectContext,
-            sectionNameKeyPath: Option<&NSString>,
+            section_name_key_path: Option<&NSString>,
             name: Option<&NSString>,
         ) -> Id<Self, Shared>;
 
@@ -80,7 +80,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other objectAtIndexPath:)]
         pub unsafe fn objectAtIndexPath(
             &self,
-            indexPath: &NSIndexPath,
+            index_path: &NSIndexPath,
         ) -> Id<ResultType, ResultTypeOwnership>;
 
         #[cfg(feature = "Foundation_NSIndexPath")]
@@ -94,7 +94,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other sectionIndexTitleForSectionName:)]
         pub unsafe fn sectionIndexTitleForSectionName(
             &self,
-            sectionName: &NSString,
+            section_name: &NSString,
         ) -> Option<Id<NSString, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
@@ -110,7 +110,7 @@ extern_methods!(
         pub unsafe fn sectionForSectionIndexTitle_atIndex(
             &self,
             title: &NSString,
-            sectionIndex: NSInteger,
+            section_index: NSInteger,
         ) -> NSInteger;
     }
 );
@@ -172,10 +172,10 @@ extern_protocol!(
         pub unsafe fn controller_didChangeObject_atIndexPath_forChangeType_newIndexPath(
             &self,
             controller: &NSFetchedResultsController,
-            anObject: &Object,
-            indexPath: Option<&NSIndexPath>,
+            an_object: &Object,
+            index_path: Option<&NSIndexPath>,
             r#type: NSFetchedResultsChangeType,
-            newIndexPath: Option<&NSIndexPath>,
+            new_index_path: Option<&NSIndexPath>,
         );
 
         #[cfg(feature = "CoreData_NSFetchedResultsController")]
@@ -184,8 +184,8 @@ extern_protocol!(
         pub unsafe fn controller_didChangeSection_atIndex_forChangeType(
             &self,
             controller: &NSFetchedResultsController,
-            sectionInfo: &NSFetchedResultsSectionInfo,
-            sectionIndex: NSUInteger,
+            section_info: &NSFetchedResultsSectionInfo,
+            section_index: NSUInteger,
             r#type: NSFetchedResultsChangeType,
         );
 
@@ -208,7 +208,7 @@ extern_protocol!(
         pub unsafe fn controller_sectionIndexTitleForSectionName(
             &self,
             controller: &NSFetchedResultsController,
-            sectionName: &NSString,
+            section_name: &NSString,
         ) -> Option<Id<NSString, Shared>>;
     }
 );

@@ -41,7 +41,7 @@ extern_methods!(
         pub unsafe fn echosBullets(&self) -> bool;
 
         #[method(setEchosBullets:)]
-        pub unsafe fn setEchosBullets(&self, echosBullets: bool);
+        pub unsafe fn setEchosBullets(&self, echos_bullets: bool);
     }
 );
 
@@ -53,21 +53,21 @@ extern_methods!(
     unsafe impl NSSecureTextField {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other labelWithString:)]
-        pub unsafe fn labelWithString(stringValue: &NSString) -> Id<Self, Shared>;
+        pub unsafe fn labelWithString(string_value: &NSString) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other wrappingLabelWithString:)]
-        pub unsafe fn wrappingLabelWithString(stringValue: &NSString) -> Id<Self, Shared>;
+        pub unsafe fn wrappingLabelWithString(string_value: &NSString) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other labelWithAttributedString:)]
         pub unsafe fn labelWithAttributedString(
-            attributedStringValue: &NSAttributedString,
+            attributed_string_value: &NSAttributedString,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other textFieldWithString:)]
-        pub unsafe fn textFieldWithString(stringValue: &NSString) -> Id<Self, Shared>;
+        pub unsafe fn textFieldWithString(string_value: &NSString) -> Id<Self, Shared>;
     }
 );
 
@@ -78,7 +78,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frame_rect: NSRect,
         ) -> Id<Self, Shared>;
     }
 );

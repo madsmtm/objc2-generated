@@ -102,7 +102,7 @@ extern_methods!(
         pub unsafe fn writeToFile_atomically(
             &self,
             path: &NSString,
-            useAuxiliaryFile: bool,
+            use_auxiliary_file: bool,
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSURL")]
@@ -114,7 +114,7 @@ extern_methods!(
         pub unsafe fn writeToFile_options_error(
             &self,
             path: &NSString,
-            writeOptionsMask: NSDataWritingOptions,
+            write_options_mask: NSDataWritingOptions,
         ) -> Result<(), Id<NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
@@ -122,15 +122,15 @@ extern_methods!(
         pub unsafe fn writeToURL_options_error(
             &self,
             url: &NSURL,
-            writeOptionsMask: NSDataWritingOptions,
+            write_options_mask: NSDataWritingOptions,
         ) -> Result<(), Id<NSError, Shared>>;
 
         #[method(rangeOfData:options:range:)]
         pub unsafe fn rangeOfData_options_range(
             &self,
-            dataToFind: &NSData,
+            data_to_find: &NSData,
             mask: NSDataSearchOptions,
-            searchRange: NSRange,
+            search_range: NSRange,
         ) -> NSRange;
 
         #[method(enumerateByteRangesUsingBlock:)]
@@ -171,14 +171,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other dataWithContentsOfFile:options:error:_)]
         pub unsafe fn dataWithContentsOfFile_options_error(
             path: &NSString,
-            readOptionsMask: NSDataReadingOptions,
+            read_options_mask: NSDataReadingOptions,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other dataWithContentsOfURL:options:error:_)]
         pub unsafe fn dataWithContentsOfURL_options_error(
             url: &NSURL,
-            readOptionsMask: NSDataReadingOptions,
+            read_options_mask: NSDataReadingOptions,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -224,7 +224,7 @@ extern_methods!(
         pub unsafe fn initWithContentsOfFile_options_error(
             this: Option<Allocated<Self>>,
             path: &NSString,
-            readOptionsMask: NSDataReadingOptions,
+            read_options_mask: NSDataReadingOptions,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
@@ -232,7 +232,7 @@ extern_methods!(
         pub unsafe fn initWithContentsOfURL_options_error(
             this: Option<Allocated<Self>>,
             url: &NSURL,
-            readOptionsMask: NSDataReadingOptions,
+            read_options_mask: NSDataReadingOptions,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -265,7 +265,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithBase64EncodedString:options:)]
         pub unsafe fn initWithBase64EncodedString_options(
             this: Option<Allocated<Self>>,
-            base64String: &NSString,
+            base64_string: &NSString,
             options: NSDataBase64DecodingOptions,
         ) -> Option<Id<Self, Shared>>;
 
@@ -279,7 +279,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithBase64EncodedData:options:)]
         pub unsafe fn initWithBase64EncodedData_options(
             this: Option<Allocated<Self>>,
-            base64Data: &NSData,
+            base64_data: &NSData,
             options: NSDataBase64DecodingOptions,
         ) -> Option<Id<Self, Shared>>;
 
@@ -347,7 +347,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithBase64Encoding:)]
         pub unsafe fn initWithBase64Encoding(
             this: Option<Allocated<Self>>,
-            base64String: &NSString,
+            base64_string: &NSString,
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -389,7 +389,7 @@ extern_methods!(
         pub unsafe fn appendData(&self, other: &NSData);
 
         #[method(increaseLengthBy:)]
-        pub unsafe fn increaseLengthBy(&self, extraLength: NSUInteger);
+        pub unsafe fn increaseLengthBy(&self, extra_length: NSUInteger);
 
         #[method(replaceBytesInRange:withBytes:)]
         pub unsafe fn replaceBytesInRange_withBytes(&self, range: NSRange, bytes: NonNull<c_void>);
@@ -405,8 +405,8 @@ extern_methods!(
         pub unsafe fn replaceBytesInRange_withBytes_length(
             &self,
             range: NSRange,
-            replacementBytes: *mut c_void,
-            replacementLength: NSUInteger,
+            replacement_bytes: *mut c_void,
+            replacement_length: NSUInteger,
         );
     }
 );
@@ -416,7 +416,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSMutableData")]
     unsafe impl NSMutableData {
         #[method_id(@__retain_semantics Other dataWithCapacity:)]
-        pub fn dataWithCapacity(aNumItems: NSUInteger) -> Option<Id<Self, Owned>>;
+        pub fn dataWithCapacity(a_num_items: NSUInteger) -> Option<Id<Self, Owned>>;
 
         #[method_id(@__retain_semantics Other dataWithLength:)]
         pub unsafe fn dataWithLength(length: NSUInteger) -> Option<Id<Self, Owned>>;
@@ -504,14 +504,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other dataWithContentsOfFile:options:error:_)]
         pub unsafe fn dataWithContentsOfFile_options_error(
             path: &NSString,
-            readOptionsMask: NSDataReadingOptions,
+            read_options_mask: NSDataReadingOptions,
         ) -> Result<Id<Self, Owned>, Id<NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other dataWithContentsOfURL:options:error:_)]
         pub unsafe fn dataWithContentsOfURL_options_error(
             url: &NSURL,
-            readOptionsMask: NSDataReadingOptions,
+            read_options_mask: NSDataReadingOptions,
         ) -> Result<Id<Self, Owned>, Id<NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -557,7 +557,7 @@ extern_methods!(
         pub unsafe fn initWithContentsOfFile_options_error(
             this: Option<Allocated<Self>>,
             path: &NSString,
-            readOptionsMask: NSDataReadingOptions,
+            read_options_mask: NSDataReadingOptions,
         ) -> Result<Id<Self, Owned>, Id<NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
@@ -565,7 +565,7 @@ extern_methods!(
         pub unsafe fn initWithContentsOfURL_options_error(
             this: Option<Allocated<Self>>,
             url: &NSURL,
-            readOptionsMask: NSDataReadingOptions,
+            read_options_mask: NSDataReadingOptions,
         ) -> Result<Id<Self, Owned>, Id<NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -601,14 +601,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithBase64EncodedString:options:)]
         pub unsafe fn initWithBase64EncodedString_options(
             this: Option<Allocated<Self>>,
-            base64String: &NSString,
+            base64_string: &NSString,
             options: NSDataBase64DecodingOptions,
         ) -> Option<Id<Self, Owned>>;
 
         #[method_id(@__retain_semantics Init initWithBase64EncodedData:options:)]
         pub unsafe fn initWithBase64EncodedData_options(
             this: Option<Allocated<Self>>,
-            base64Data: &NSData,
+            base64_data: &NSData,
             options: NSDataBase64DecodingOptions,
         ) -> Option<Id<Self, Owned>>;
     }
@@ -633,7 +633,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithBase64Encoding:)]
         pub unsafe fn initWithBase64Encoding(
             this: Option<Allocated<Self>>,
-            base64String: &NSString,
+            base64_string: &NSString,
         ) -> Option<Id<Self, Owned>>;
     }
 );
@@ -645,7 +645,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSPurgeableData")]
     unsafe impl NSPurgeableData {
         #[method_id(@__retain_semantics Other dataWithCapacity:)]
-        pub unsafe fn dataWithCapacity(aNumItems: NSUInteger) -> Option<Id<Self, Shared>>;
+        pub unsafe fn dataWithCapacity(a_num_items: NSUInteger) -> Option<Id<Self, Shared>>;
 
         #[method_id(@__retain_semantics Other dataWithLength:)]
         pub unsafe fn dataWithLength(length: NSUInteger) -> Option<Id<Self, Shared>>;
@@ -696,14 +696,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other dataWithContentsOfFile:options:error:_)]
         pub unsafe fn dataWithContentsOfFile_options_error(
             path: &NSString,
-            readOptionsMask: NSDataReadingOptions,
+            read_options_mask: NSDataReadingOptions,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other dataWithContentsOfURL:options:error:_)]
         pub unsafe fn dataWithContentsOfURL_options_error(
             url: &NSURL,
-            readOptionsMask: NSDataReadingOptions,
+            read_options_mask: NSDataReadingOptions,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -749,7 +749,7 @@ extern_methods!(
         pub unsafe fn initWithContentsOfFile_options_error(
             this: Option<Allocated<Self>>,
             path: &NSString,
-            readOptionsMask: NSDataReadingOptions,
+            read_options_mask: NSDataReadingOptions,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
@@ -757,7 +757,7 @@ extern_methods!(
         pub unsafe fn initWithContentsOfURL_options_error(
             this: Option<Allocated<Self>>,
             url: &NSURL,
-            readOptionsMask: NSDataReadingOptions,
+            read_options_mask: NSDataReadingOptions,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -795,14 +795,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithBase64EncodedString:options:)]
         pub unsafe fn initWithBase64EncodedString_options(
             this: Option<Allocated<Self>>,
-            base64String: &NSString,
+            base64_string: &NSString,
             options: NSDataBase64DecodingOptions,
         ) -> Option<Id<Self, Shared>>;
 
         #[method_id(@__retain_semantics Init initWithBase64EncodedData:options:)]
         pub unsafe fn initWithBase64EncodedData_options(
             this: Option<Allocated<Self>>,
-            base64Data: &NSData,
+            base64_data: &NSData,
             options: NSDataBase64DecodingOptions,
         ) -> Option<Id<Self, Shared>>;
     }
@@ -827,7 +827,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithBase64Encoding:)]
         pub unsafe fn initWithBase64Encoding(
             this: Option<Allocated<Self>>,
-            base64String: &NSString,
+            base64_string: &NSString,
         ) -> Option<Id<Self, Shared>>;
     }
 );

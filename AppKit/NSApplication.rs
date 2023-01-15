@@ -262,7 +262,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other windowWithWindowNumber:)]
         pub unsafe fn windowWithWindowNumber(
             &self,
-            windowNum: NSInteger,
+            window_num: NSInteger,
         ) -> Option<Id<NSWindow, Shared>>;
 
         #[cfg(feature = "AppKit_NSWindow")]
@@ -311,7 +311,7 @@ extern_methods!(
         pub unsafe fn stopModal(&self);
 
         #[method(stopModalWithCode:)]
-        pub unsafe fn stopModalWithCode(&self, returnCode: NSModalResponse);
+        pub unsafe fn stopModalWithCode(&self, return_code: NSModalResponse);
 
         #[method(abortModal)]
         pub unsafe fn abortModal(&self);
@@ -336,7 +336,7 @@ extern_methods!(
         #[method(requestUserAttention:)]
         pub unsafe fn requestUserAttention(
             &self,
-            requestType: NSRequestUserAttentionType,
+            request_type: NSRequestUserAttentionType,
         ) -> NSInteger;
 
         #[method(cancelUserAttentionRequest:)]
@@ -358,7 +358,7 @@ extern_methods!(
         pub unsafe fn windows(&self) -> Id<NSArray<NSWindow>, Shared>;
 
         #[method(setWindowsNeedUpdate:)]
-        pub unsafe fn setWindowsNeedUpdate(&self, needUpdate: bool);
+        pub unsafe fn setWindowsNeedUpdate(&self, need_update: bool);
 
         #[method(updateWindows)]
         pub unsafe fn updateWindows(&self);
@@ -369,7 +369,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSMenu")]
         #[method(setMainMenu:)]
-        pub unsafe fn setMainMenu(&self, mainMenu: Option<&NSMenu>);
+        pub unsafe fn setMainMenu(&self, main_menu: Option<&NSMenu>);
 
         #[cfg(feature = "AppKit_NSMenu")]
         #[method_id(@__retain_semantics Other helpMenu)]
@@ -377,7 +377,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSMenu")]
         #[method(setHelpMenu:)]
-        pub unsafe fn setHelpMenu(&self, helpMenu: Option<&NSMenu>);
+        pub unsafe fn setHelpMenu(&self, help_menu: Option<&NSMenu>);
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other applicationIconImage)]
@@ -385,7 +385,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method(setApplicationIconImage:)]
-        pub unsafe fn setApplicationIconImage(&self, applicationIconImage: Option<&NSImage>);
+        pub unsafe fn setApplicationIconImage(&self, application_icon_image: Option<&NSImage>);
 
         #[method(activationPolicy)]
         pub unsafe fn activationPolicy(&self) -> NSApplicationActivationPolicy;
@@ -393,7 +393,7 @@ extern_methods!(
         #[method(setActivationPolicy:)]
         pub unsafe fn setActivationPolicy(
             &self,
-            activationPolicy: NSApplicationActivationPolicy,
+            activation_policy: NSApplicationActivationPolicy,
         ) -> bool;
 
         #[cfg(feature = "AppKit_NSDockTile")]
@@ -412,7 +412,7 @@ extern_methods!(
         );
 
         #[method(replyToApplicationShouldTerminate:)]
-        pub unsafe fn replyToApplicationShouldTerminate(&self, shouldTerminate: bool);
+        pub unsafe fn replyToApplicationShouldTerminate(&self, should_terminate: bool);
 
         #[method(replyToOpenOrPrint:)]
         pub unsafe fn replyToOpenOrPrint(&self, reply: NSApplicationDelegateReply);
@@ -426,7 +426,7 @@ extern_methods!(
         #[method(setPresentationOptions:)]
         pub unsafe fn setPresentationOptions(
             &self,
-            presentationOptions: NSApplicationPresentationOptions,
+            presentation_options: NSApplicationPresentationOptions,
         );
 
         #[method(currentSystemPresentationOptions)]
@@ -481,7 +481,7 @@ extern_methods!(
             mask: NSEventMask,
             expiration: Option<&NSDate>,
             mode: &NSRunLoopMode,
-            deqFlag: bool,
+            deq_flag: bool,
         ) -> Option<Id<NSEvent, Shared>>;
 
         #[cfg(feature = "AppKit_NSEvent")]
@@ -489,7 +489,7 @@ extern_methods!(
         pub unsafe fn discardEventsMatchingMask_beforeEvent(
             &self,
             mask: NSEventMask,
-            lastEvent: Option<&NSEvent>,
+            last_event: Option<&NSEvent>,
         );
     }
 );
@@ -523,8 +523,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Other validRequestorForSendType:returnType:)]
         pub unsafe fn validRequestorForSendType_returnType(
             &self,
-            sendType: Option<&NSPasteboardType>,
-            returnType: Option<&NSPasteboardType>,
+            send_type: Option<&NSPasteboardType>,
+            return_type: Option<&NSPasteboardType>,
         ) -> Option<Id<Object, Shared>>;
     }
 );
@@ -539,7 +539,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSMenu")]
         #[method(setWindowsMenu:)]
-        pub unsafe fn setWindowsMenu(&self, windowsMenu: Option<&NSMenu>);
+        pub unsafe fn setWindowsMenu(&self, windows_menu: Option<&NSMenu>);
 
         #[method(arrangeInFront:)]
         pub unsafe fn arrangeInFront(&self, sender: Option<&Object>);
@@ -554,7 +554,7 @@ extern_methods!(
             &self,
             win: &NSWindow,
             string: &NSString,
-            isFilename: bool,
+            is_filename: bool,
         );
 
         #[cfg(all(feature = "AppKit_NSWindow", feature = "Foundation_NSString"))]
@@ -563,7 +563,7 @@ extern_methods!(
             &self,
             win: &NSWindow,
             string: &NSString,
-            isFilename: bool,
+            is_filename: bool,
         );
 
         #[cfg(feature = "AppKit_NSWindow")]
@@ -698,9 +698,9 @@ extern_protocol!(
         pub unsafe fn application_printFiles_withSettings_showPrintPanels(
             &self,
             application: &NSApplication,
-            fileNames: &NSArray<NSString>,
-            printSettings: &NSDictionary<NSPrintInfoAttributeKey, Object>,
-            showPrintPanels: bool,
+            file_names: &NSArray<NSString>,
+            print_settings: &NSDictionary<NSPrintInfoAttributeKey, Object>,
+            show_print_panels: bool,
         ) -> NSApplicationPrintReply;
 
         #[cfg(feature = "AppKit_NSApplication")]
@@ -743,7 +743,7 @@ extern_protocol!(
         pub unsafe fn application_didRegisterForRemoteNotificationsWithDeviceToken(
             &self,
             application: &NSApplication,
-            deviceToken: &NSData,
+            device_token: &NSData,
         );
 
         #[cfg(all(feature = "AppKit_NSApplication", feature = "Foundation_NSError"))]
@@ -765,7 +765,7 @@ extern_protocol!(
         pub unsafe fn application_didReceiveRemoteNotification(
             &self,
             application: &NSApplication,
-            userInfo: &NSDictionary<NSString, Object>,
+            user_info: &NSDictionary<NSString, Object>,
         );
 
         #[cfg(feature = "AppKit_NSApplication")]
@@ -797,7 +797,7 @@ extern_protocol!(
         pub unsafe fn application_willContinueUserActivityWithType(
             &self,
             application: &NSApplication,
-            userActivityType: &NSString,
+            user_activity_type: &NSString,
         ) -> bool;
 
         #[cfg(all(
@@ -810,8 +810,8 @@ extern_protocol!(
         pub unsafe fn application_continueUserActivity_restorationHandler(
             &self,
             application: &NSApplication,
-            userActivity: &NSUserActivity,
-            restorationHandler: &Block<(NonNull<NSArray<NSUserActivityRestoring>>,), ()>,
+            user_activity: &NSUserActivity,
+            restoration_handler: &Block<(NonNull<NSArray<NSUserActivityRestoring>>,), ()>,
         ) -> bool;
 
         #[cfg(all(
@@ -824,7 +824,7 @@ extern_protocol!(
         pub unsafe fn application_didFailToContinueUserActivityWithType_error(
             &self,
             application: &NSApplication,
-            userActivityType: &NSString,
+            user_activity_type: &NSString,
             error: &NSError,
         );
 
@@ -837,7 +837,7 @@ extern_protocol!(
         pub unsafe fn application_didUpdateUserActivity(
             &self,
             application: &NSApplication,
-            userActivity: &NSUserActivity,
+            user_activity: &NSUserActivity,
         );
 
         #[cfg(all(feature = "AppKit_NSApplication", feature = "Foundation_NSString"))]
@@ -960,14 +960,14 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSMenu")]
         #[method(setServicesMenu:)]
-        pub unsafe fn setServicesMenu(&self, servicesMenu: Option<&NSMenu>);
+        pub unsafe fn setServicesMenu(&self, services_menu: Option<&NSMenu>);
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(registerServicesMenuSendTypes:returnTypes:)]
         pub unsafe fn registerServicesMenuSendTypes_returnTypes(
             &self,
-            sendTypes: &NSArray<NSPasteboardType>,
-            returnTypes: &NSArray<NSPasteboardType>,
+            send_types: &NSArray<NSPasteboardType>,
+            return_types: &NSArray<NSPasteboardType>,
         );
     }
 );
@@ -1000,7 +1000,7 @@ extern_methods!(
         pub unsafe fn servicesProvider(&self) -> Option<Id<Object, Shared>>;
 
         #[method(setServicesProvider:)]
-        pub unsafe fn setServicesProvider(&self, servicesProvider: Option<&Object>);
+        pub unsafe fn setServicesProvider(&self, services_provider: Option<&Object>);
     }
 );
 
@@ -1029,7 +1029,7 @@ extern_methods!(
         #[method(orderFrontStandardAboutPanelWithOptions:)]
         pub unsafe fn orderFrontStandardAboutPanelWithOptions(
             &self,
-            optionsDictionary: &NSDictionary<NSAboutPanelOptionKey, Object>,
+            options_dictionary: &NSDictionary<NSAboutPanelOptionKey, Object>,
         );
     }
 );
@@ -1096,12 +1096,12 @@ extern_fn!(
 
 extern_fn!(
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSShowsServicesMenuItem(itemName: &NSString) -> Bool;
+    pub unsafe fn NSShowsServicesMenuItem(item_name: &NSString) -> Bool;
 );
 
 extern_fn!(
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSSetShowsServicesMenuItem(itemName: &NSString, enabled: Bool) -> NSInteger;
+    pub unsafe fn NSSetShowsServicesMenuItem(item_name: &NSString, enabled: Bool) -> NSInteger;
 );
 
 extern_fn!(
@@ -1110,7 +1110,7 @@ extern_fn!(
 
 extern_fn!(
     #[cfg(all(feature = "AppKit_NSPasteboard", feature = "Foundation_NSString"))]
-    pub unsafe fn NSPerformService(itemName: &NSString, pboard: Option<&NSPasteboard>) -> Bool;
+    pub unsafe fn NSPerformService(item_name: &NSString, pboard: Option<&NSPasteboard>) -> Bool;
 );
 
 pub type NSServiceProviderName = NSString;
@@ -1192,7 +1192,7 @@ extern_methods!(
         pub unsafe fn runModalForWindow_relativeToWindow(
             &self,
             window: Option<&NSWindow>,
-            docWindow: Option<&NSWindow>,
+            doc_window: Option<&NSWindow>,
         ) -> NSInteger;
 
         #[cfg(feature = "AppKit_NSWindow")]
@@ -1201,7 +1201,7 @@ extern_methods!(
         pub unsafe fn beginModalSessionForWindow_relativeToWindow(
             &self,
             window: Option<&NSWindow>,
-            docWindow: Option<&NSWindow>,
+            doc_window: Option<&NSWindow>,
         ) -> NSModalSession;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
@@ -1219,10 +1219,10 @@ extern_methods!(
         pub unsafe fn beginSheet_modalForWindow_modalDelegate_didEndSelector_contextInfo(
             &self,
             sheet: &NSWindow,
-            docWindow: &NSWindow,
-            modalDelegate: Option<&Object>,
-            didEndSelector: Option<Sel>,
-            contextInfo: *mut c_void,
+            doc_window: &NSWindow,
+            modal_delegate: Option<&Object>,
+            did_end_selector: Option<Sel>,
+            context_info: *mut c_void,
         );
 
         #[cfg(feature = "AppKit_NSWindow")]
@@ -1233,7 +1233,7 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSWindow")]
         #[deprecated = "Use -[NSWindow endSheet:returnCode:] instead"]
         #[method(endSheet:returnCode:)]
-        pub unsafe fn endSheet_returnCode(&self, sheet: &NSWindow, returnCode: NSInteger);
+        pub unsafe fn endSheet_returnCode(&self, sheet: &NSWindow, return_code: NSInteger);
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[deprecated = "Use -enumerateWindowsWithOptions:usingBlock: instead"]

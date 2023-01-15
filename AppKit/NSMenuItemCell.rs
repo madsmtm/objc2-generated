@@ -40,13 +40,13 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSMenuItem")]
         #[method(setMenuItem:)]
-        pub unsafe fn setMenuItem(&self, menuItem: Option<&NSMenuItem>);
+        pub unsafe fn setMenuItem(&self, menu_item: Option<&NSMenuItem>);
 
         #[method(needsSizing)]
         pub unsafe fn needsSizing(&self) -> bool;
 
         #[method(setNeedsSizing:)]
-        pub unsafe fn setNeedsSizing(&self, needsSizing: bool);
+        pub unsafe fn setNeedsSizing(&self, needs_sizing: bool);
 
         #[method(calcSize)]
         pub unsafe fn calcSize(&self);
@@ -55,7 +55,7 @@ extern_methods!(
         pub unsafe fn needsDisplay(&self) -> bool;
 
         #[method(setNeedsDisplay:)]
-        pub unsafe fn setNeedsDisplay(&self, needsDisplay: bool);
+        pub unsafe fn setNeedsDisplay(&self, needs_display: bool);
 
         #[method(stateImageWidth)]
         pub unsafe fn stateImageWidth(&self) -> CGFloat;
@@ -70,52 +70,52 @@ extern_methods!(
         pub unsafe fn keyEquivalentWidth(&self) -> CGFloat;
 
         #[method(stateImageRectForBounds:)]
-        pub unsafe fn stateImageRectForBounds(&self, cellFrame: NSRect) -> NSRect;
+        pub unsafe fn stateImageRectForBounds(&self, cell_frame: NSRect) -> NSRect;
 
         #[method(titleRectForBounds:)]
-        pub unsafe fn titleRectForBounds(&self, cellFrame: NSRect) -> NSRect;
+        pub unsafe fn titleRectForBounds(&self, cell_frame: NSRect) -> NSRect;
 
         #[method(keyEquivalentRectForBounds:)]
-        pub unsafe fn keyEquivalentRectForBounds(&self, cellFrame: NSRect) -> NSRect;
+        pub unsafe fn keyEquivalentRectForBounds(&self, cell_frame: NSRect) -> NSRect;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(drawSeparatorItemWithFrame:inView:)]
         pub unsafe fn drawSeparatorItemWithFrame_inView(
             &self,
-            cellFrame: NSRect,
-            controlView: &NSView,
+            cell_frame: NSRect,
+            control_view: &NSView,
         );
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(drawStateImageWithFrame:inView:)]
         pub unsafe fn drawStateImageWithFrame_inView(
             &self,
-            cellFrame: NSRect,
-            controlView: &NSView,
+            cell_frame: NSRect,
+            control_view: &NSView,
         );
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(drawImageWithFrame:inView:)]
-        pub unsafe fn drawImageWithFrame_inView(&self, cellFrame: NSRect, controlView: &NSView);
+        pub unsafe fn drawImageWithFrame_inView(&self, cell_frame: NSRect, control_view: &NSView);
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(drawTitleWithFrame:inView:)]
-        pub unsafe fn drawTitleWithFrame_inView(&self, cellFrame: NSRect, controlView: &NSView);
+        pub unsafe fn drawTitleWithFrame_inView(&self, cell_frame: NSRect, control_view: &NSView);
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(drawKeyEquivalentWithFrame:inView:)]
         pub unsafe fn drawKeyEquivalentWithFrame_inView(
             &self,
-            cellFrame: NSRect,
-            controlView: &NSView,
+            cell_frame: NSRect,
+            control_view: &NSView,
         );
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(drawBorderAndBackgroundWithFrame:inView:)]
         pub unsafe fn drawBorderAndBackgroundWithFrame_inView(
             &self,
-            cellFrame: NSRect,
-            controlView: &NSView,
+            cell_frame: NSRect,
+            control_view: &NSView,
         );
 
         #[method(tag)]

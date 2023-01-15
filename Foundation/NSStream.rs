@@ -74,11 +74,19 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSRunLoop")]
         #[method(scheduleInRunLoop:forMode:)]
-        pub unsafe fn scheduleInRunLoop_forMode(&self, aRunLoop: &NSRunLoop, mode: &NSRunLoopMode);
+        pub unsafe fn scheduleInRunLoop_forMode(
+            &self,
+            a_run_loop: &NSRunLoop,
+            mode: &NSRunLoopMode,
+        );
 
         #[cfg(feature = "Foundation_NSRunLoop")]
         #[method(removeFromRunLoop:forMode:)]
-        pub unsafe fn removeFromRunLoop_forMode(&self, aRunLoop: &NSRunLoop, mode: &NSRunLoopMode);
+        pub unsafe fn removeFromRunLoop_forMode(
+            &self,
+            a_run_loop: &NSRunLoop,
+            mode: &NSRunLoopMode,
+        );
 
         #[method(streamStatus)]
         pub unsafe fn streamStatus(&self) -> NSStreamStatus;
@@ -169,7 +177,7 @@ extern_methods!(
         pub unsafe fn initWithURL_append(
             this: Option<Allocated<Self>>,
             url: &NSURL,
-            shouldAppend: bool,
+            should_append: bool,
         ) -> Option<Id<Self, Shared>>;
     }
 );
@@ -188,8 +196,8 @@ extern_methods!(
         pub unsafe fn getStreamsToHostWithName_port_inputStream_outputStream(
             hostname: &NSString,
             port: NSInteger,
-            inputStream: *mut *mut NSInputStream,
-            outputStream: *mut *mut NSOutputStream,
+            input_stream: *mut *mut NSInputStream,
+            output_stream: *mut *mut NSOutputStream,
         );
 
         #[cfg(all(
@@ -202,8 +210,8 @@ extern_methods!(
         pub unsafe fn getStreamsToHost_port_inputStream_outputStream(
             host: &NSHost,
             port: NSInteger,
-            inputStream: *mut *mut NSInputStream,
-            outputStream: *mut *mut NSOutputStream,
+            input_stream: *mut *mut NSInputStream,
+            output_stream: *mut *mut NSOutputStream,
         );
     }
 );
@@ -218,9 +226,9 @@ extern_methods!(
         ))]
         #[method(getBoundStreamsWithBufferSize:inputStream:outputStream:)]
         pub unsafe fn getBoundStreamsWithBufferSize_inputStream_outputStream(
-            bufferSize: NSUInteger,
-            inputStream: *mut *mut NSInputStream,
-            outputStream: *mut *mut NSOutputStream,
+            buffer_size: NSUInteger,
+            input_stream: *mut *mut NSInputStream,
+            output_stream: *mut *mut NSOutputStream,
         );
     }
 );
@@ -259,7 +267,7 @@ extern_methods!(
         pub unsafe fn initToFileAtPath_append(
             this: Option<Allocated<Self>>,
             path: &NSString,
-            shouldAppend: bool,
+            should_append: bool,
         ) -> Option<Id<Self, Shared>>;
 
         #[method_id(@__retain_semantics Other outputStreamToMemory)]
@@ -275,14 +283,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other outputStreamToFileAtPath:append:)]
         pub unsafe fn outputStreamToFileAtPath_append(
             path: &NSString,
-            shouldAppend: bool,
+            should_append: bool,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other outputStreamWithURL:append:)]
         pub unsafe fn outputStreamWithURL_append(
             url: &NSURL,
-            shouldAppend: bool,
+            should_append: bool,
         ) -> Option<Id<Self, Shared>>;
     }
 );
@@ -294,7 +302,7 @@ extern_protocol!(
         #[cfg(feature = "Foundation_NSStream")]
         #[optional]
         #[method(stream:handleEvent:)]
-        pub unsafe fn stream_handleEvent(&self, aStream: &NSStream, eventCode: NSStreamEvent);
+        pub unsafe fn stream_handleEvent(&self, a_stream: &NSStream, event_code: NSStreamEvent);
     }
 );
 

@@ -11,7 +11,7 @@ extern_protocol!(
     unsafe impl ProtocolType for NSUserActivityRestoring {
         #[cfg(feature = "Foundation_NSUserActivity")]
         #[method(restoreUserActivityState:)]
-        pub unsafe fn restoreUserActivityState(&self, userActivity: &NSUserActivity);
+        pub unsafe fn restoreUserActivityState(&self, user_activity: &NSUserActivity);
     }
 );
 
@@ -25,11 +25,11 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSUserActivity")]
         #[method(setUserActivity:)]
-        pub unsafe fn setUserActivity(&self, userActivity: Option<&NSUserActivity>);
+        pub unsafe fn setUserActivity(&self, user_activity: Option<&NSUserActivity>);
 
         #[cfg(feature = "Foundation_NSUserActivity")]
         #[method(updateUserActivityState:)]
-        pub unsafe fn updateUserActivityState(&self, userActivity: &NSUserActivity);
+        pub unsafe fn updateUserActivityState(&self, user_activity: &NSUserActivity);
     }
 );
 
@@ -43,7 +43,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSUserActivity")]
         #[method(setUserActivity:)]
-        pub unsafe fn setUserActivity(&self, userActivity: Option<&NSUserActivity>);
+        pub unsafe fn setUserActivity(&self, user_activity: Option<&NSUserActivity>);
 
         #[cfg(feature = "Foundation_NSUserActivity")]
         #[method(updateUserActivityState:)]

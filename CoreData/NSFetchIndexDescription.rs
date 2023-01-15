@@ -62,6 +62,9 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSPredicate")]
         #[method(setPartialIndexPredicate:)]
-        pub unsafe fn setPartialIndexPredicate(&self, partialIndexPredicate: Option<&NSPredicate>);
+        pub unsafe fn setPartialIndexPredicate(
+            &self,
+            partial_index_predicate: Option<&NSPredicate>,
+        );
     }
 );

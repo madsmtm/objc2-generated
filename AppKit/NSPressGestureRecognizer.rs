@@ -24,25 +24,25 @@ extern_methods!(
         pub unsafe fn buttonMask(&self) -> NSUInteger;
 
         #[method(setButtonMask:)]
-        pub unsafe fn setButtonMask(&self, buttonMask: NSUInteger);
+        pub unsafe fn setButtonMask(&self, button_mask: NSUInteger);
 
         #[method(minimumPressDuration)]
         pub unsafe fn minimumPressDuration(&self) -> NSTimeInterval;
 
         #[method(setMinimumPressDuration:)]
-        pub unsafe fn setMinimumPressDuration(&self, minimumPressDuration: NSTimeInterval);
+        pub unsafe fn setMinimumPressDuration(&self, minimum_press_duration: NSTimeInterval);
 
         #[method(allowableMovement)]
         pub unsafe fn allowableMovement(&self) -> CGFloat;
 
         #[method(setAllowableMovement:)]
-        pub unsafe fn setAllowableMovement(&self, allowableMovement: CGFloat);
+        pub unsafe fn setAllowableMovement(&self, allowable_movement: CGFloat);
 
         #[method(numberOfTouchesRequired)]
         pub unsafe fn numberOfTouchesRequired(&self) -> NSInteger;
 
         #[method(setNumberOfTouchesRequired:)]
-        pub unsafe fn setNumberOfTouchesRequired(&self, numberOfTouchesRequired: NSInteger);
+        pub unsafe fn setNumberOfTouchesRequired(&self, number_of_touches_required: NSInteger);
     }
 );
 

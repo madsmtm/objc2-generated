@@ -76,13 +76,13 @@ extern_methods!(
         pub unsafe fn retainedReferences(&self) -> bool;
 
         #[method(setRetainedReferences:)]
-        pub unsafe fn setRetainedReferences(&self, retainedReferences: bool);
+        pub unsafe fn setRetainedReferences(&self, retained_references: bool);
 
         #[method(errorOptions)]
         pub unsafe fn errorOptions(&self) -> MTLCommandBufferErrorOption;
 
         #[method(setErrorOptions:)]
-        pub unsafe fn setErrorOptions(&self, errorOptions: MTLCommandBufferErrorOption);
+        pub unsafe fn setErrorOptions(&self, error_options: MTLCommandBufferErrorOption);
     }
 );
 
@@ -168,7 +168,7 @@ extern_protocol!(
         pub unsafe fn presentDrawable_atTime(
             &self,
             drawable: &MTLDrawable,
-            presentationTime: CFTimeInterval,
+            presentation_time: CFTimeInterval,
         );
 
         #[method(presentDrawable:afterMinimumDuration:)]
@@ -201,21 +201,21 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other renderCommandEncoderWithDescriptor:)]
         pub fn renderCommandEncoderWithDescriptor(
             &self,
-            renderPassDescriptor: &MTLRenderPassDescriptor,
+            render_pass_descriptor: &MTLRenderPassDescriptor,
         ) -> Option<Id<MTLRenderCommandEncoder, Shared>>;
 
         #[cfg(feature = "Metal_MTLComputePassDescriptor")]
         #[method_id(@__retain_semantics Other computeCommandEncoderWithDescriptor:)]
         pub unsafe fn computeCommandEncoderWithDescriptor(
             &self,
-            computePassDescriptor: &MTLComputePassDescriptor,
+            compute_pass_descriptor: &MTLComputePassDescriptor,
         ) -> Option<Id<MTLComputeCommandEncoder, Shared>>;
 
         #[cfg(feature = "Metal_MTLBlitPassDescriptor")]
         #[method_id(@__retain_semantics Other blitCommandEncoderWithDescriptor:)]
         pub unsafe fn blitCommandEncoderWithDescriptor(
             &self,
-            blitPassDescriptor: &MTLBlitPassDescriptor,
+            blit_pass_descriptor: &MTLBlitPassDescriptor,
         ) -> Option<Id<MTLBlitCommandEncoder, Shared>>;
 
         #[method_id(@__retain_semantics Other computeCommandEncoder)]
@@ -224,7 +224,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other computeCommandEncoderWithDispatchType:)]
         pub fn computeCommandEncoderWithDispatchType(
             &self,
-            dispatchType: MTLDispatchType,
+            dispatch_type: MTLDispatchType,
         ) -> Option<Id<MTLComputeCommandEncoder, Shared>>;
 
         #[method(encodeWaitForEvent:value:)]
@@ -237,7 +237,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other parallelRenderCommandEncoderWithDescriptor:)]
         pub fn parallelRenderCommandEncoderWithDescriptor(
             &self,
-            renderPassDescriptor: &MTLRenderPassDescriptor,
+            render_pass_descriptor: &MTLRenderPassDescriptor,
         ) -> Option<Id<MTLParallelRenderCommandEncoder, Shared>>;
 
         #[method_id(@__retain_semantics Other resourceStateCommandEncoder)]
@@ -249,7 +249,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other resourceStateCommandEncoderWithDescriptor:)]
         pub unsafe fn resourceStateCommandEncoderWithDescriptor(
             &self,
-            resourceStatePassDescriptor: &MTLResourceStatePassDescriptor,
+            resource_state_pass_descriptor: &MTLResourceStatePassDescriptor,
         ) -> Option<Id<MTLResourceStateCommandEncoder, Shared>>;
 
         #[method_id(@__retain_semantics Other accelerationStructureCommandEncoder)]

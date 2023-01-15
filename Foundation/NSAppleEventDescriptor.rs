@@ -47,16 +47,16 @@ extern_methods!(
         ) -> Id<NSAppleEventDescriptor, Shared>;
 
         #[method_id(@__retain_semantics Other descriptorWithInt32:)]
-        pub unsafe fn descriptorWithInt32(signedInt: i32) -> Id<NSAppleEventDescriptor, Shared>;
+        pub unsafe fn descriptorWithInt32(signed_int: i32) -> Id<NSAppleEventDescriptor, Shared>;
 
         #[method_id(@__retain_semantics Other descriptorWithDouble:)]
         pub unsafe fn descriptorWithDouble(
-            doubleValue: c_double,
+            double_value: c_double,
         ) -> Id<NSAppleEventDescriptor, Shared>;
 
         #[method_id(@__retain_semantics Other descriptorWithTypeCode:)]
         pub unsafe fn descriptorWithTypeCode(
-            typeCode: OSType,
+            type_code: OSType,
         ) -> Id<NSAppleEventDescriptor, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -70,7 +70,8 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other descriptorWithFileURL:)]
-        pub unsafe fn descriptorWithFileURL(fileURL: &NSURL) -> Id<NSAppleEventDescriptor, Shared>;
+        pub unsafe fn descriptorWithFileURL(file_url: &NSURL)
+            -> Id<NSAppleEventDescriptor, Shared>;
 
         #[method_id(@__retain_semantics Other listDescriptor)]
         pub unsafe fn listDescriptor() -> Id<NSAppleEventDescriptor, Shared>;
@@ -84,13 +85,13 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other descriptorWithBundleIdentifier:)]
         pub unsafe fn descriptorWithBundleIdentifier(
-            bundleIdentifier: &NSString,
+            bundle_identifier: &NSString,
         ) -> Id<NSAppleEventDescriptor, Shared>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other descriptorWithApplicationURL:)]
         pub unsafe fn descriptorWithApplicationURL(
-            applicationURL: &NSURL,
+            application_url: &NSURL,
         ) -> Id<NSAppleEventDescriptor, Shared>;
 
         #[method_id(@__retain_semantics Init initListDescriptor)]

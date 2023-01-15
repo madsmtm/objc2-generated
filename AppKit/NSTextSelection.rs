@@ -42,7 +42,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithRanges:affinity:granularity:)]
         pub unsafe fn initWithRanges_affinity_granularity(
             this: Option<Allocated<Self>>,
-            textRanges: &NSArray<NSTextRange>,
+            text_ranges: &NSArray<NSTextRange>,
             affinity: NSTextSelectionAffinity,
             granularity: NSTextSelectionGranularity,
         ) -> Id<Self, Shared>;
@@ -90,7 +90,7 @@ extern_methods!(
         pub unsafe fn anchorPositionOffset(&self) -> CGFloat;
 
         #[method(setAnchorPositionOffset:)]
-        pub unsafe fn setAnchorPositionOffset(&self, anchorPositionOffset: CGFloat);
+        pub unsafe fn setAnchorPositionOffset(&self, anchor_position_offset: CGFloat);
 
         #[method(isLogical)]
         pub unsafe fn isLogical(&self) -> bool;
@@ -104,7 +104,7 @@ extern_methods!(
         #[method(setSecondarySelectionLocation:)]
         pub unsafe fn setSecondarySelectionLocation(
             &self,
-            secondarySelectionLocation: Option<&NSTextLocation>,
+            secondary_selection_location: Option<&NSTextLocation>,
         );
 
         #[cfg(feature = "Foundation_NSDictionary")]
@@ -117,14 +117,14 @@ extern_methods!(
         #[method(setTypingAttributes:)]
         pub unsafe fn setTypingAttributes(
             &self,
-            typingAttributes: &NSDictionary<NSAttributedStringKey, Object>,
+            typing_attributes: &NSDictionary<NSAttributedStringKey, Object>,
         );
 
         #[cfg(all(feature = "AppKit_NSTextRange", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other textSelectionWithTextRanges:)]
         pub unsafe fn textSelectionWithTextRanges(
             &self,
-            textRanges: &NSArray<NSTextRange>,
+            text_ranges: &NSArray<NSTextRange>,
         ) -> Id<NSTextSelection, Shared>;
     }
 );

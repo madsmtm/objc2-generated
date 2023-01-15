@@ -26,19 +26,19 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setBackgroundColor:)]
-        pub unsafe fn setBackgroundColor(&self, backgroundColor: &NSColor);
+        pub unsafe fn setBackgroundColor(&self, background_color: &NSColor);
 
         #[method(drawsBackground)]
         pub unsafe fn drawsBackground(&self) -> bool;
 
         #[method(setDrawsBackground:)]
-        pub unsafe fn setDrawsBackground(&self, drawsBackground: bool);
+        pub unsafe fn setDrawsBackground(&self, draws_background: bool);
 
         #[method_id(@__retain_semantics Other documentView)]
         pub unsafe fn documentView(&self) -> Option<Id<NSView, Shared>>;
 
         #[method(setDocumentView:)]
-        pub unsafe fn setDocumentView(&self, documentView: Option<&NSView>);
+        pub unsafe fn setDocumentView(&self, document_view: Option<&NSView>);
 
         #[method(documentRect)]
         pub unsafe fn documentRect(&self) -> NSRect;
@@ -49,7 +49,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSCursor")]
         #[method(setDocumentCursor:)]
-        pub unsafe fn setDocumentCursor(&self, documentCursor: Option<&NSCursor>);
+        pub unsafe fn setDocumentCursor(&self, document_cursor: Option<&NSCursor>);
 
         #[method(documentVisibleRect)]
         pub unsafe fn documentVisibleRect(&self) -> NSRect;
@@ -67,16 +67,16 @@ extern_methods!(
         pub unsafe fn autoscroll(&self, event: &NSEvent) -> bool;
 
         #[method(scrollToPoint:)]
-        pub unsafe fn scrollToPoint(&self, newOrigin: NSPoint);
+        pub unsafe fn scrollToPoint(&self, new_origin: NSPoint);
 
         #[method(constrainBoundsRect:)]
-        pub unsafe fn constrainBoundsRect(&self, proposedBounds: NSRect) -> NSRect;
+        pub unsafe fn constrainBoundsRect(&self, proposed_bounds: NSRect) -> NSRect;
 
         #[method(contentInsets)]
         pub unsafe fn contentInsets(&self) -> NSEdgeInsets;
 
         #[method(setContentInsets:)]
-        pub unsafe fn setContentInsets(&self, contentInsets: NSEdgeInsets);
+        pub unsafe fn setContentInsets(&self, content_insets: NSEdgeInsets);
 
         #[method(automaticallyAdjustsContentInsets)]
         pub unsafe fn automaticallyAdjustsContentInsets(&self) -> bool;
@@ -84,7 +84,7 @@ extern_methods!(
         #[method(setAutomaticallyAdjustsContentInsets:)]
         pub unsafe fn setAutomaticallyAdjustsContentInsets(
             &self,
-            automaticallyAdjustsContentInsets: bool,
+            automatically_adjusts_content_insets: bool,
         );
     }
 );
@@ -95,11 +95,11 @@ extern_methods!(
     unsafe impl NSView {
         #[cfg(feature = "AppKit_NSClipView")]
         #[method(reflectScrolledClipView:)]
-        pub unsafe fn reflectScrolledClipView(&self, clipView: &NSClipView);
+        pub unsafe fn reflectScrolledClipView(&self, clip_view: &NSClipView);
 
         #[cfg(feature = "AppKit_NSClipView")]
         #[method(scrollClipView:toPoint:)]
-        pub unsafe fn scrollClipView_toPoint(&self, clipView: &NSClipView, point: NSPoint);
+        pub unsafe fn scrollClipView_toPoint(&self, clip_view: &NSClipView, point: NSPoint);
     }
 );
 
@@ -108,7 +108,7 @@ extern_methods!(
     unsafe impl NSClipView {
         #[deprecated = "Use -constrainBoundsRect: instead."]
         #[method(constrainScrollPoint:)]
-        pub unsafe fn constrainScrollPoint(&self, newOrigin: NSPoint) -> NSPoint;
+        pub unsafe fn constrainScrollPoint(&self, new_origin: NSPoint) -> NSPoint;
 
         #[deprecated = "Setting this property has no effect.  NSClipView will always minimize the area of the document view that is invalidated.  To force invalidation of the document view, use -[NSView setNeedsDisplayInRect:]."]
         #[method(copiesOnScroll)]
@@ -116,7 +116,7 @@ extern_methods!(
 
         #[deprecated = "Setting this property has no effect.  NSClipView will always minimize the area of the document view that is invalidated.  To force invalidation of the document view, use -[NSView setNeedsDisplayInRect:]."]
         #[method(setCopiesOnScroll:)]
-        pub unsafe fn setCopiesOnScroll(&self, copiesOnScroll: bool);
+        pub unsafe fn setCopiesOnScroll(&self, copies_on_scroll: bool);
     }
 );
 
@@ -127,7 +127,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frame_rect: NSRect,
         ) -> Id<Self, Shared>;
     }
 );

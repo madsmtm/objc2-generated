@@ -13,7 +13,7 @@ extern_protocol!(
         #[method(viewportBoundsForTextViewportLayoutController:)]
         pub unsafe fn viewportBoundsForTextViewportLayoutController(
             &self,
-            textViewportLayoutController: &NSTextViewportLayoutController,
+            text_viewport_layout_controller: &NSTextViewportLayoutController,
         ) -> CGRect;
 
         #[cfg(all(
@@ -23,8 +23,8 @@ extern_protocol!(
         #[method(textViewportLayoutController:configureRenderingSurfaceForTextLayoutFragment:)]
         pub unsafe fn textViewportLayoutController_configureRenderingSurfaceForTextLayoutFragment(
             &self,
-            textViewportLayoutController: &NSTextViewportLayoutController,
-            textLayoutFragment: &NSTextLayoutFragment,
+            text_viewport_layout_controller: &NSTextViewportLayoutController,
+            text_layout_fragment: &NSTextLayoutFragment,
         );
 
         #[cfg(feature = "AppKit_NSTextViewportLayoutController")]
@@ -32,7 +32,7 @@ extern_protocol!(
         #[method(textViewportLayoutControllerWillLayout:)]
         pub unsafe fn textViewportLayoutControllerWillLayout(
             &self,
-            textViewportLayoutController: &NSTextViewportLayoutController,
+            text_viewport_layout_controller: &NSTextViewportLayoutController,
         );
 
         #[cfg(feature = "AppKit_NSTextViewportLayoutController")]
@@ -40,7 +40,7 @@ extern_protocol!(
         #[method(textViewportLayoutControllerDidLayout:)]
         pub unsafe fn textViewportLayoutControllerDidLayout(
             &self,
-            textViewportLayoutController: &NSTextViewportLayoutController,
+            text_viewport_layout_controller: &NSTextViewportLayoutController,
         );
     }
 );
@@ -63,7 +63,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithTextLayoutManager:)]
         pub unsafe fn initWithTextLayoutManager(
             this: Option<Allocated<Self>>,
-            textLayoutManager: &NSTextLayoutManager,
+            text_layout_manager: &NSTextLayoutManager,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics New new)]
@@ -96,10 +96,10 @@ extern_methods!(
         #[method(relocateViewportToTextLocation:)]
         pub unsafe fn relocateViewportToTextLocation(
             &self,
-            textLocation: &NSTextLocation,
+            text_location: &NSTextLocation,
         ) -> CGFloat;
 
         #[method(adjustViewportByVerticalOffset:)]
-        pub unsafe fn adjustViewportByVerticalOffset(&self, verticalOffset: CGFloat);
+        pub unsafe fn adjustViewportByVerticalOffset(&self, vertical_offset: CGFloat);
     }
 );

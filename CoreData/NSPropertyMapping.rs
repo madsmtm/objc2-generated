@@ -32,7 +32,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSExpression")]
         #[method(setValueExpression:)]
-        pub unsafe fn setValueExpression(&self, valueExpression: Option<&NSExpression>);
+        pub unsafe fn setValueExpression(&self, value_expression: Option<&NSExpression>);
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other userInfo)]
@@ -40,6 +40,6 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(setUserInfo:)]
-        pub unsafe fn setUserInfo(&self, userInfo: Option<&NSDictionary>);
+        pub unsafe fn setUserInfo(&self, user_info: Option<&NSDictionary>);
     }
 );

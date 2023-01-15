@@ -24,7 +24,7 @@ extern_methods!(
         pub unsafe fn objectValue(&self) -> Option<Id<Object, Shared>>;
 
         #[method(setObjectValue:)]
-        pub unsafe fn setObjectValue(&self, objectValue: Option<&Object>);
+        pub unsafe fn setObjectValue(&self, object_value: Option<&Object>);
 
         #[cfg(feature = "AppKit_NSTextField")]
         #[method_id(@__retain_semantics Other textField)]
@@ -32,7 +32,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSTextField")]
         #[method(setTextField:)]
-        pub unsafe fn setTextField(&self, textField: Option<&NSTextField>);
+        pub unsafe fn setTextField(&self, text_field: Option<&NSTextField>);
 
         #[cfg(feature = "AppKit_NSImageView")]
         #[method_id(@__retain_semantics Other imageView)]
@@ -40,19 +40,19 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSImageView")]
         #[method(setImageView:)]
-        pub unsafe fn setImageView(&self, imageView: Option<&NSImageView>);
+        pub unsafe fn setImageView(&self, image_view: Option<&NSImageView>);
 
         #[method(backgroundStyle)]
         pub unsafe fn backgroundStyle(&self) -> NSBackgroundStyle;
 
         #[method(setBackgroundStyle:)]
-        pub unsafe fn setBackgroundStyle(&self, backgroundStyle: NSBackgroundStyle);
+        pub unsafe fn setBackgroundStyle(&self, background_style: NSBackgroundStyle);
 
         #[method(rowSizeStyle)]
         pub unsafe fn rowSizeStyle(&self) -> NSTableViewRowSizeStyle;
 
         #[method(setRowSizeStyle:)]
-        pub unsafe fn setRowSizeStyle(&self, rowSizeStyle: NSTableViewRowSizeStyle);
+        pub unsafe fn setRowSizeStyle(&self, row_size_style: NSTableViewRowSizeStyle);
 
         #[cfg(all(
             feature = "AppKit_NSDraggingImageComponent",
@@ -72,7 +72,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frame_rect: NSRect,
         ) -> Id<Self, Shared>;
     }
 );

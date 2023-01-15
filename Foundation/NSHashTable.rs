@@ -45,7 +45,7 @@ extern_methods!(
         pub unsafe fn initWithOptions_capacity(
             this: Option<Allocated<Self>>,
             options: NSPointerFunctionsOptions,
-            initialCapacity: NSUInteger,
+            initial_capacity: NSUInteger,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSPointerFunctions")]
@@ -53,7 +53,7 @@ extern_methods!(
         pub unsafe fn initWithPointerFunctions_capacity(
             this: Option<Allocated<Self>>,
             functions: &NSPointerFunctions,
-            initialCapacity: NSUInteger,
+            initial_capacity: NSUInteger,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Other hashTableWithOptions:)]
@@ -102,7 +102,7 @@ extern_methods!(
         pub unsafe fn anyObject(&self) -> Option<Id<ObjectType, ObjectTypeOwnership>>;
 
         #[method(containsObject:)]
-        pub unsafe fn containsObject(&self, anObject: Option<&ObjectType>) -> bool;
+        pub unsafe fn containsObject(&self, an_object: Option<&ObjectType>) -> bool;
 
         #[method(intersectsHashTable:)]
         pub unsafe fn intersectsHashTable(&self, other: &NSHashTable<ObjectType>) -> bool;
@@ -228,7 +228,7 @@ extern_struct!(
 extern_fn!(
     #[cfg(feature = "Foundation_NSHashTable")]
     pub unsafe fn NSCreateHashTableWithZone(
-        callBacks: NSHashTableCallBacks,
+        call_backs: NSHashTableCallBacks,
         capacity: NSUInteger,
         zone: *mut NSZone,
     ) -> NonNull<NSHashTable>;
@@ -237,7 +237,7 @@ extern_fn!(
 extern_fn!(
     #[cfg(feature = "Foundation_NSHashTable")]
     pub unsafe fn NSCreateHashTable(
-        callBacks: NSHashTableCallBacks,
+        call_backs: NSHashTableCallBacks,
         capacity: NSUInteger,
     ) -> NonNull<NSHashTable>;
 );

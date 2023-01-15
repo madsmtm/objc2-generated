@@ -40,7 +40,7 @@ extern_methods!(
 
         #[deprecated]
         #[method(setInterfaceStyle:)]
-        pub unsafe fn setInterfaceStyle(&self, interfaceStyle: NSInterfaceStyle);
+        pub unsafe fn setInterfaceStyle(&self, interface_style: NSInterfaceStyle);
     }
 );
 

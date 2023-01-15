@@ -40,9 +40,9 @@ extern_methods!(
         #[method(receivePromisedFilesAtDestination:options:operationQueue:reader:)]
         pub unsafe fn receivePromisedFilesAtDestination_options_operationQueue_reader(
             &self,
-            destinationDir: &NSURL,
+            destination_dir: &NSURL,
             options: &NSDictionary,
-            operationQueue: &NSOperationQueue,
+            operation_queue: &NSOperationQueue,
             reader: &Block<(NonNull<NSURL>, *mut NSError), ()>,
         );
     }

@@ -24,7 +24,7 @@ extern_protocol!(
 
         #[optional]
         #[method(setAutocorrectionType:)]
-        pub unsafe fn setAutocorrectionType(&self, autocorrectionType: NSTextInputTraitType);
+        pub unsafe fn setAutocorrectionType(&self, autocorrection_type: NSTextInputTraitType);
 
         #[optional]
         #[method(spellCheckingType)]
@@ -32,7 +32,7 @@ extern_protocol!(
 
         #[optional]
         #[method(setSpellCheckingType:)]
-        pub unsafe fn setSpellCheckingType(&self, spellCheckingType: NSTextInputTraitType);
+        pub unsafe fn setSpellCheckingType(&self, spell_checking_type: NSTextInputTraitType);
 
         #[optional]
         #[method(grammarCheckingType)]
@@ -40,7 +40,7 @@ extern_protocol!(
 
         #[optional]
         #[method(setGrammarCheckingType:)]
-        pub unsafe fn setGrammarCheckingType(&self, grammarCheckingType: NSTextInputTraitType);
+        pub unsafe fn setGrammarCheckingType(&self, grammar_checking_type: NSTextInputTraitType);
 
         #[optional]
         #[method(smartQuotesType)]
@@ -48,7 +48,7 @@ extern_protocol!(
 
         #[optional]
         #[method(setSmartQuotesType:)]
-        pub unsafe fn setSmartQuotesType(&self, smartQuotesType: NSTextInputTraitType);
+        pub unsafe fn setSmartQuotesType(&self, smart_quotes_type: NSTextInputTraitType);
 
         #[optional]
         #[method(smartDashesType)]
@@ -56,7 +56,7 @@ extern_protocol!(
 
         #[optional]
         #[method(setSmartDashesType:)]
-        pub unsafe fn setSmartDashesType(&self, smartDashesType: NSTextInputTraitType);
+        pub unsafe fn setSmartDashesType(&self, smart_dashes_type: NSTextInputTraitType);
 
         #[optional]
         #[method(smartInsertDeleteType)]
@@ -64,7 +64,10 @@ extern_protocol!(
 
         #[optional]
         #[method(setSmartInsertDeleteType:)]
-        pub unsafe fn setSmartInsertDeleteType(&self, smartInsertDeleteType: NSTextInputTraitType);
+        pub unsafe fn setSmartInsertDeleteType(
+            &self,
+            smart_insert_delete_type: NSTextInputTraitType,
+        );
 
         #[optional]
         #[method(textReplacementType)]
@@ -72,7 +75,7 @@ extern_protocol!(
 
         #[optional]
         #[method(setTextReplacementType:)]
-        pub unsafe fn setTextReplacementType(&self, textReplacementType: NSTextInputTraitType);
+        pub unsafe fn setTextReplacementType(&self, text_replacement_type: NSTextInputTraitType);
 
         #[optional]
         #[method(dataDetectionType)]
@@ -80,7 +83,7 @@ extern_protocol!(
 
         #[optional]
         #[method(setDataDetectionType:)]
-        pub unsafe fn setDataDetectionType(&self, dataDetectionType: NSTextInputTraitType);
+        pub unsafe fn setDataDetectionType(&self, data_detection_type: NSTextInputTraitType);
 
         #[optional]
         #[method(linkDetectionType)]
@@ -88,7 +91,7 @@ extern_protocol!(
 
         #[optional]
         #[method(setLinkDetectionType:)]
-        pub unsafe fn setLinkDetectionType(&self, linkDetectionType: NSTextInputTraitType);
+        pub unsafe fn setLinkDetectionType(&self, link_detection_type: NSTextInputTraitType);
 
         #[optional]
         #[method(textCompletionType)]
@@ -96,7 +99,7 @@ extern_protocol!(
 
         #[optional]
         #[method(setTextCompletionType:)]
-        pub unsafe fn setTextCompletionType(&self, textCompletionType: NSTextInputTraitType);
+        pub unsafe fn setTextCompletionType(&self, text_completion_type: NSTextInputTraitType);
     }
 );
 
@@ -109,7 +112,7 @@ extern_protocol!(
         pub unsafe fn annotatedSubstringForProposedRange_actualRange(
             &self,
             range: NSRange,
-            actualRange: NSRangePointer,
+            actual_range: NSRangePointer,
         ) -> Option<Id<NSAttributedString, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
@@ -131,7 +134,7 @@ extern_protocol!(
         #[method(removeAnnotation:range:)]
         pub unsafe fn removeAnnotation_range(
             &self,
-            annotationName: &NSAttributedStringKey,
+            annotation_name: &NSAttributedStringKey,
             range: NSRange,
         );
 
@@ -140,7 +143,7 @@ extern_protocol!(
         pub unsafe fn replaceCharactersInRange_withAnnotatedString(
             &self,
             range: NSRange,
-            annotatedString: &NSAttributedString,
+            annotated_string: &NSAttributedString,
         );
 
         #[method(selectAndShowRange:)]
@@ -151,8 +154,8 @@ extern_protocol!(
         pub unsafe fn viewForRange_firstRect_actualRange(
             &self,
             range: NSRange,
-            firstRect: NSRectPointer,
-            actualRange: NSRangePointer,
+            first_rect: NSRectPointer,
+            actual_range: NSRangePointer,
         ) -> Option<Id<NSView, Shared>>;
 
         #[cfg(feature = "AppKit_NSCandidateListTouchBarItem")]

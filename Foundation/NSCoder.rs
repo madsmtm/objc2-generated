@@ -50,7 +50,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(versionForClassName:)]
-        pub unsafe fn versionForClassName(&self, className: &NSString) -> NSInteger;
+        pub unsafe fn versionForClassName(&self, class_name: &NSString) -> NSInteger;
     }
 );
 
@@ -62,13 +62,13 @@ extern_methods!(
         pub unsafe fn encodeObject(&self, object: Option<&Object>);
 
         #[method(encodeRootObject:)]
-        pub unsafe fn encodeRootObject(&self, rootObject: &Object);
+        pub unsafe fn encodeRootObject(&self, root_object: &Object);
 
         #[method(encodeBycopyObject:)]
-        pub unsafe fn encodeBycopyObject(&self, anObject: Option<&Object>);
+        pub unsafe fn encodeBycopyObject(&self, an_object: Option<&Object>);
 
         #[method(encodeByrefObject:)]
-        pub unsafe fn encodeByrefObject(&self, anObject: Option<&Object>);
+        pub unsafe fn encodeByrefObject(&self, an_object: Option<&Object>);
 
         #[method(encodeConditionalObject:)]
         pub unsafe fn encodeConditionalObject(&self, object: Option<&Object>);
@@ -96,7 +96,7 @@ extern_methods!(
         #[method(decodeArrayOfObjCType:count:at:)]
         pub unsafe fn decodeArrayOfObjCType_count_at(
             &self,
-            itemType: NonNull<c_char>,
+            item_type: NonNull<c_char>,
             count: NSUInteger,
             array: NonNull<c_void>,
         );
@@ -108,7 +108,7 @@ extern_methods!(
         ) -> *mut c_void;
 
         #[method(encodePropertyList:)]
-        pub unsafe fn encodePropertyList(&self, aPropertyList: &Object);
+        pub unsafe fn encodePropertyList(&self, a_property_list: &Object);
 
         #[method_id(@__retain_semantics Other decodePropertyList)]
         pub unsafe fn decodePropertyList(&self) -> Option<Id<Object, Shared>>;
@@ -232,7 +232,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other decodeObjectOfClass:forKey:)]
         pub unsafe fn decodeObjectOfClass_forKey(
             &self,
-            aClass: &Class,
+            a_class: &Class,
             key: &NSString,
         ) -> Option<Id<Object, Shared>>;
 
@@ -240,7 +240,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other decodeTopLevelObjectOfClass:forKey:error:_)]
         pub unsafe fn decodeTopLevelObjectOfClass_forKey_error(
             &self,
-            aClass: &Class,
+            a_class: &Class,
             key: &NSString,
         ) -> Result<Id<Object, Shared>, Id<NSError, Shared>>;
 
@@ -256,8 +256,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Other decodeDictionaryWithKeysOfClass:objectsOfClass:forKey:)]
         pub unsafe fn decodeDictionaryWithKeysOfClass_objectsOfClass_forKey(
             &self,
-            keyCls: &Class,
-            objectCls: &Class,
+            key_cls: &Class,
+            object_cls: &Class,
             key: &NSString,
         ) -> Option<Id<NSDictionary, Shared>>;
 
@@ -301,8 +301,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Other decodeDictionaryWithKeysOfClasses:objectsOfClasses:forKey:)]
         pub unsafe fn decodeDictionaryWithKeysOfClasses_objectsOfClasses_forKey(
             &self,
-            keyClasses: &NSSet<TodoClass>,
-            objectClasses: &NSSet<TodoClass>,
+            key_classes: &NSSet<TodoClass>,
+            object_classes: &NSSet<TodoClass>,
             key: &NSString,
         ) -> Option<Id<NSDictionary, Shared>>;
 

@@ -21,13 +21,13 @@ extern_methods!(
     unsafe impl NSBatchUpdateRequest {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other batchUpdateRequestWithEntityName:)]
-        pub unsafe fn batchUpdateRequestWithEntityName(entityName: &NSString) -> Id<Self, Shared>;
+        pub unsafe fn batchUpdateRequestWithEntityName(entity_name: &NSString) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithEntityName:)]
         pub unsafe fn initWithEntityName(
             this: Option<Allocated<Self>>,
-            entityName: &NSString,
+            entity_name: &NSString,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "CoreData_NSEntityDescription")]
@@ -57,13 +57,13 @@ extern_methods!(
         pub unsafe fn includesSubentities(&self) -> bool;
 
         #[method(setIncludesSubentities:)]
-        pub unsafe fn setIncludesSubentities(&self, includesSubentities: bool);
+        pub unsafe fn setIncludesSubentities(&self, includes_subentities: bool);
 
         #[method(resultType)]
         pub unsafe fn resultType(&self) -> NSBatchUpdateRequestResultType;
 
         #[method(setResultType:)]
-        pub unsafe fn setResultType(&self, resultType: NSBatchUpdateRequestResultType);
+        pub unsafe fn setResultType(&self, result_type: NSBatchUpdateRequestResultType);
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other propertiesToUpdate)]
@@ -71,6 +71,6 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(setPropertiesToUpdate:)]
-        pub unsafe fn setPropertiesToUpdate(&self, propertiesToUpdate: Option<&NSDictionary>);
+        pub unsafe fn setPropertiesToUpdate(&self, properties_to_update: Option<&NSDictionary>);
     }
 );

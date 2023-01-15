@@ -72,7 +72,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics New newScratchBufferWithMinimumSize:)]
         pub unsafe fn newScratchBufferWithMinimumSize(
             &self,
-            minimumSize: NSUInteger,
+            minimum_size: NSUInteger,
         ) -> Option<Id<MTLIOScratchBuffer, Shared>>;
     }
 );
@@ -95,7 +95,7 @@ extern_methods!(
         pub unsafe fn maxCommandBufferCount(&self) -> NSUInteger;
 
         #[method(setMaxCommandBufferCount:)]
-        pub unsafe fn setMaxCommandBufferCount(&self, maxCommandBufferCount: NSUInteger);
+        pub unsafe fn setMaxCommandBufferCount(&self, max_command_buffer_count: NSUInteger);
 
         #[method(priority)]
         pub unsafe fn priority(&self) -> MTLIOPriority;
@@ -113,7 +113,7 @@ extern_methods!(
         pub unsafe fn maxCommandsInFlight(&self) -> NSUInteger;
 
         #[method(setMaxCommandsInFlight:)]
-        pub unsafe fn setMaxCommandsInFlight(&self, maxCommandsInFlight: NSUInteger);
+        pub unsafe fn setMaxCommandsInFlight(&self, max_commands_in_flight: NSUInteger);
 
         #[method_id(@__retain_semantics Other scratchBufferAllocator)]
         pub unsafe fn scratchBufferAllocator(
@@ -123,7 +123,7 @@ extern_methods!(
         #[method(setScratchBufferAllocator:)]
         pub unsafe fn setScratchBufferAllocator(
             &self,
-            scratchBufferAllocator: Option<&MTLIOScratchBufferAllocator>,
+            scratch_buffer_allocator: Option<&MTLIOScratchBufferAllocator>,
         );
     }
 );

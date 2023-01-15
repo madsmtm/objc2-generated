@@ -48,7 +48,7 @@ extern_methods!(
         pub unsafe fn titleWidth(&self) -> CGFloat;
 
         #[method(setTitleWidth:)]
-        pub unsafe fn setTitleWidth(&self, titleWidth: CGFloat);
+        pub unsafe fn setTitleWidth(&self, title_width: CGFloat);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
@@ -64,7 +64,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSFont")]
         #[method(setTitleFont:)]
-        pub unsafe fn setTitleFont(&self, titleFont: &NSFont);
+        pub unsafe fn setTitleFont(&self, title_font: &NSFont);
 
         #[method(isOpaque)]
         pub unsafe fn isOpaque(&self) -> bool;
@@ -75,7 +75,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setPlaceholderString:)]
-        pub unsafe fn setPlaceholderString(&self, placeholderString: Option<&NSString>);
+        pub unsafe fn setPlaceholderString(&self, placeholder_string: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other placeholderAttributedString)]
@@ -85,14 +85,14 @@ extern_methods!(
         #[method(setPlaceholderAttributedString:)]
         pub unsafe fn setPlaceholderAttributedString(
             &self,
-            placeholderAttributedString: Option<&NSAttributedString>,
+            placeholder_attributed_string: Option<&NSAttributedString>,
         );
 
         #[method(titleAlignment)]
         pub unsafe fn titleAlignment(&self) -> NSTextAlignment;
 
         #[method(setTitleAlignment:)]
-        pub unsafe fn setTitleAlignment(&self, titleAlignment: NSTextAlignment);
+        pub unsafe fn setTitleAlignment(&self, title_alignment: NSTextAlignment);
 
         #[method(titleBaseWritingDirection)]
         pub unsafe fn titleBaseWritingDirection(&self) -> NSWritingDirection;
@@ -100,14 +100,14 @@ extern_methods!(
         #[method(setTitleBaseWritingDirection:)]
         pub unsafe fn setTitleBaseWritingDirection(
             &self,
-            titleBaseWritingDirection: NSWritingDirection,
+            title_base_writing_direction: NSWritingDirection,
         );
 
         #[method(preferredTextFieldWidth)]
         pub unsafe fn preferredTextFieldWidth(&self) -> CGFloat;
 
         #[method(setPreferredTextFieldWidth:)]
-        pub unsafe fn setPreferredTextFieldWidth(&self, preferredTextFieldWidth: CGFloat);
+        pub unsafe fn setPreferredTextFieldWidth(&self, preferred_text_field_width: CGFloat);
     }
 );
 
@@ -118,7 +118,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
         #[method(setTitleWithMnemonic:)]
-        pub unsafe fn setTitleWithMnemonic(&self, stringWithAmpersand: Option<&NSString>);
+        pub unsafe fn setTitleWithMnemonic(&self, string_with_ampersand: Option<&NSString>);
     }
 );
 
@@ -132,6 +132,6 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setAttributedTitle:)]
-        pub unsafe fn setAttributedTitle(&self, attributedTitle: &NSAttributedString);
+        pub unsafe fn setAttributedTitle(&self, attributed_title: &NSAttributedString);
     }
 );

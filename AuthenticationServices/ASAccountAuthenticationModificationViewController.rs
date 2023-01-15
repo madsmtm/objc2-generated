@@ -23,9 +23,9 @@ extern_methods!(
         #[method(convertAccountToSignInWithAppleWithoutUserInteractionForServiceIdentifier:existingCredential:userInfo:)]
         pub unsafe fn convertAccountToSignInWithAppleWithoutUserInteractionForServiceIdentifier_existingCredential_userInfo(
             &self,
-            serviceIdentifier: &ASCredentialServiceIdentifier,
-            existingCredential: &ASPasswordCredential,
-            userInfo: Option<&NSDictionary>,
+            service_identifier: &ASCredentialServiceIdentifier,
+            existing_credential: &ASPasswordCredential,
+            user_info: Option<&NSDictionary>,
         );
 
         #[cfg(all(
@@ -36,9 +36,9 @@ extern_methods!(
         #[method(prepareInterfaceToConvertAccountToSignInWithAppleForServiceIdentifier:existingCredential:userInfo:)]
         pub unsafe fn prepareInterfaceToConvertAccountToSignInWithAppleForServiceIdentifier_existingCredential_userInfo(
             &self,
-            serviceIdentifier: &ASCredentialServiceIdentifier,
-            existingCredential: &ASPasswordCredential,
-            userInfo: Option<&NSDictionary>,
+            service_identifier: &ASCredentialServiceIdentifier,
+            existing_credential: &ASPasswordCredential,
+            user_info: Option<&NSDictionary>,
         );
 
         #[cfg(all(
@@ -50,10 +50,10 @@ extern_methods!(
         #[method(changePasswordWithoutUserInteractionForServiceIdentifier:existingCredential:newPassword:userInfo:)]
         pub unsafe fn changePasswordWithoutUserInteractionForServiceIdentifier_existingCredential_newPassword_userInfo(
             &self,
-            serviceIdentifier: &ASCredentialServiceIdentifier,
-            existingCredential: &ASPasswordCredential,
-            newPassword: &NSString,
-            userInfo: Option<&NSDictionary>,
+            service_identifier: &ASCredentialServiceIdentifier,
+            existing_credential: &ASPasswordCredential,
+            new_password: &NSString,
+            user_info: Option<&NSDictionary>,
         );
 
         #[cfg(all(
@@ -65,10 +65,10 @@ extern_methods!(
         #[method(prepareInterfaceToChangePasswordForServiceIdentifier:existingCredential:newPassword:userInfo:)]
         pub unsafe fn prepareInterfaceToChangePasswordForServiceIdentifier_existingCredential_newPassword_userInfo(
             &self,
-            serviceIdentifier: &ASCredentialServiceIdentifier,
-            existingCredential: &ASPasswordCredential,
-            newPassword: &NSString,
-            userInfo: Option<&NSDictionary>,
+            service_identifier: &ASCredentialServiceIdentifier,
+            existing_credential: &ASPasswordCredential,
+            new_password: &NSString,
+            user_info: Option<&NSDictionary>,
         );
 
         #[method(cancelRequest)]

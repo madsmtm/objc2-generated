@@ -30,20 +30,20 @@ extern_methods!(
         #[method_id(@__retain_semantics Other stepperTouchBarItemWithIdentifier:drawingHandler:)]
         pub unsafe fn stepperTouchBarItemWithIdentifier_drawingHandler(
             identifier: &NSTouchBarItemIdentifier,
-            drawingHandler: &Block<(NSRect, c_double), ()>,
+            drawing_handler: &Block<(NSRect, c_double), ()>,
         ) -> Id<Self, Shared>;
 
         #[method(maxValue)]
         pub unsafe fn maxValue(&self) -> c_double;
 
         #[method(setMaxValue:)]
-        pub unsafe fn setMaxValue(&self, maxValue: c_double);
+        pub unsafe fn setMaxValue(&self, max_value: c_double);
 
         #[method(minValue)]
         pub unsafe fn minValue(&self) -> c_double;
 
         #[method(setMinValue:)]
-        pub unsafe fn setMinValue(&self, minValue: c_double);
+        pub unsafe fn setMinValue(&self, min_value: c_double);
 
         #[method(increment)]
         pub unsafe fn increment(&self) -> c_double;
@@ -75,7 +75,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCustomizationLabel:)]
-        pub unsafe fn setCustomizationLabel(&self, customizationLabel: Option<&NSString>);
+        pub unsafe fn setCustomizationLabel(&self, customization_label: Option<&NSString>);
     }
 );
 

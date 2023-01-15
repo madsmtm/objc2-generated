@@ -32,7 +32,7 @@ extern_methods!(
             feature = "Foundation_NSArray"
         ))]
         #[method(setRowTemplates:)]
-        pub unsafe fn setRowTemplates(&self, rowTemplates: &NSArray<NSPredicateEditorRowTemplate>);
+        pub unsafe fn setRowTemplates(&self, row_templates: &NSArray<NSPredicateEditorRowTemplate>);
     }
 );
 
@@ -43,7 +43,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frame_rect: NSRect,
         ) -> Id<Self, Shared>;
     }
 );

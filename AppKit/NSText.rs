@@ -32,7 +32,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frame_rect: NSRect,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSCoder")]
@@ -56,11 +56,11 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSData")]
         #[method(replaceCharactersInRange:withRTF:)]
-        pub unsafe fn replaceCharactersInRange_withRTF(&self, range: NSRange, rtfData: &NSData);
+        pub unsafe fn replaceCharactersInRange_withRTF(&self, range: NSRange, rtf_data: &NSData);
 
         #[cfg(feature = "Foundation_NSData")]
         #[method(replaceCharactersInRange:withRTFD:)]
-        pub unsafe fn replaceCharactersInRange_withRTFD(&self, range: NSRange, rtfdData: &NSData);
+        pub unsafe fn replaceCharactersInRange_withRTFD(&self, range: NSRange, rtfd_data: &NSData);
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other RTFFromRange:)]
@@ -100,31 +100,31 @@ extern_methods!(
         pub unsafe fn isRichText(&self) -> bool;
 
         #[method(setRichText:)]
-        pub unsafe fn setRichText(&self, richText: bool);
+        pub unsafe fn setRichText(&self, rich_text: bool);
 
         #[method(importsGraphics)]
         pub unsafe fn importsGraphics(&self) -> bool;
 
         #[method(setImportsGraphics:)]
-        pub unsafe fn setImportsGraphics(&self, importsGraphics: bool);
+        pub unsafe fn setImportsGraphics(&self, imports_graphics: bool);
 
         #[method(isFieldEditor)]
         pub unsafe fn isFieldEditor(&self) -> bool;
 
         #[method(setFieldEditor:)]
-        pub unsafe fn setFieldEditor(&self, fieldEditor: bool);
+        pub unsafe fn setFieldEditor(&self, field_editor: bool);
 
         #[method(usesFontPanel)]
         pub unsafe fn usesFontPanel(&self) -> bool;
 
         #[method(setUsesFontPanel:)]
-        pub unsafe fn setUsesFontPanel(&self, usesFontPanel: bool);
+        pub unsafe fn setUsesFontPanel(&self, uses_font_panel: bool);
 
         #[method(drawsBackground)]
         pub unsafe fn drawsBackground(&self) -> bool;
 
         #[method(setDrawsBackground:)]
-        pub unsafe fn setDrawsBackground(&self, drawsBackground: bool);
+        pub unsafe fn setDrawsBackground(&self, draws_background: bool);
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other backgroundColor)]
@@ -132,7 +132,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setBackgroundColor:)]
-        pub unsafe fn setBackgroundColor(&self, backgroundColor: Option<&NSColor>);
+        pub unsafe fn setBackgroundColor(&self, background_color: Option<&NSColor>);
 
         #[method(isRulerVisible)]
         pub unsafe fn isRulerVisible(&self) -> bool;
@@ -141,7 +141,7 @@ extern_methods!(
         pub unsafe fn selectedRange(&self) -> NSRange;
 
         #[method(setSelectedRange:)]
-        pub unsafe fn setSelectedRange(&self, selectedRange: NSRange);
+        pub unsafe fn setSelectedRange(&self, selected_range: NSRange);
 
         #[method(scrollRangeToVisible:)]
         pub unsafe fn scrollRangeToVisible(&self, range: NSRange);
@@ -160,7 +160,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setTextColor:)]
-        pub unsafe fn setTextColor(&self, textColor: Option<&NSColor>);
+        pub unsafe fn setTextColor(&self, text_color: Option<&NSColor>);
 
         #[method(alignment)]
         pub unsafe fn alignment(&self) -> NSTextAlignment;
@@ -172,7 +172,7 @@ extern_methods!(
         pub unsafe fn baseWritingDirection(&self) -> NSWritingDirection;
 
         #[method(setBaseWritingDirection:)]
-        pub unsafe fn setBaseWritingDirection(&self, baseWritingDirection: NSWritingDirection);
+        pub unsafe fn setBaseWritingDirection(&self, base_writing_direction: NSWritingDirection);
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setTextColor:range:)]
@@ -186,25 +186,25 @@ extern_methods!(
         pub unsafe fn maxSize(&self) -> NSSize;
 
         #[method(setMaxSize:)]
-        pub unsafe fn setMaxSize(&self, maxSize: NSSize);
+        pub unsafe fn setMaxSize(&self, max_size: NSSize);
 
         #[method(minSize)]
         pub unsafe fn minSize(&self) -> NSSize;
 
         #[method(setMinSize:)]
-        pub unsafe fn setMinSize(&self, minSize: NSSize);
+        pub unsafe fn setMinSize(&self, min_size: NSSize);
 
         #[method(isHorizontallyResizable)]
         pub unsafe fn isHorizontallyResizable(&self) -> bool;
 
         #[method(setHorizontallyResizable:)]
-        pub unsafe fn setHorizontallyResizable(&self, horizontallyResizable: bool);
+        pub unsafe fn setHorizontallyResizable(&self, horizontally_resizable: bool);
 
         #[method(isVerticallyResizable)]
         pub unsafe fn isVerticallyResizable(&self) -> bool;
 
         #[method(setVerticallyResizable:)]
-        pub unsafe fn setVerticallyResizable(&self, verticallyResizable: bool);
+        pub unsafe fn setVerticallyResizable(&self, vertically_resizable: bool);
 
         #[method(sizeToFit)]
         pub unsafe fn sizeToFit(&self);
@@ -333,12 +333,12 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSText")]
         #[optional]
         #[method(textShouldBeginEditing:)]
-        pub unsafe fn textShouldBeginEditing(&self, textObject: &NSText) -> bool;
+        pub unsafe fn textShouldBeginEditing(&self, text_object: &NSText) -> bool;
 
         #[cfg(feature = "AppKit_NSText")]
         #[optional]
         #[method(textShouldEndEditing:)]
-        pub unsafe fn textShouldEndEditing(&self, textObject: &NSText) -> bool;
+        pub unsafe fn textShouldEndEditing(&self, text_object: &NSText) -> bool;
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]

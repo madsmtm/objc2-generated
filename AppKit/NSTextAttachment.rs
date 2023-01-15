@@ -20,19 +20,19 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other imageForBounds:textContainer:characterIndex:)]
         pub unsafe fn imageForBounds_textContainer_characterIndex(
             &self,
-            imageBounds: CGRect,
-            textContainer: Option<&NSTextContainer>,
-            charIndex: NSUInteger,
+            image_bounds: CGRect,
+            text_container: Option<&NSTextContainer>,
+            char_index: NSUInteger,
         ) -> Option<Id<NSImage, Shared>>;
 
         #[cfg(feature = "AppKit_NSTextContainer")]
         #[method(attachmentBoundsForTextContainer:proposedLineFragment:glyphPosition:characterIndex:)]
         pub unsafe fn attachmentBoundsForTextContainer_proposedLineFragment_glyphPosition_characterIndex(
             &self,
-            textContainer: Option<&NSTextContainer>,
-            lineFrag: CGRect,
+            text_container: Option<&NSTextContainer>,
+            line_frag: CGRect,
             position: CGPoint,
-            charIndex: NSUInteger,
+            char_index: NSUInteger,
         ) -> CGRect;
     }
 );
@@ -52,7 +52,7 @@ extern_protocol!(
             bounds: CGRect,
             attributes: &NSDictionary<NSAttributedStringKey, Object>,
             location: &NSTextLocation,
-            textContainer: Option<&NSTextContainer>,
+            text_container: Option<&NSTextContainer>,
         ) -> Option<Id<NSImage, Shared>>;
 
         #[cfg(all(
@@ -64,8 +64,8 @@ extern_protocol!(
             &self,
             attributes: &NSDictionary<NSAttributedStringKey, Object>,
             location: &NSTextLocation,
-            textContainer: Option<&NSTextContainer>,
-            proposedLineFragment: CGRect,
+            text_container: Option<&NSTextContainer>,
+            proposed_line_fragment: CGRect,
             position: CGPoint,
         ) -> CGRect;
 
@@ -77,9 +77,9 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other viewProviderForParentView:location:textContainer:)]
         pub unsafe fn viewProviderForParentView_location_textContainer(
             &self,
-            parentView: Option<&NSView>,
+            parent_view: Option<&NSView>,
             location: &NSTextLocation,
-            textContainer: Option<&NSTextContainer>,
+            text_container: Option<&NSTextContainer>,
         ) -> Option<Id<NSTextAttachmentViewProvider, Shared>>;
     }
 );
@@ -102,7 +102,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithData:ofType:)]
         pub unsafe fn initWithData_ofType(
             this: Option<Allocated<Self>>,
-            contentData: Option<&NSData>,
+            content_data: Option<&NSData>,
             uti: Option<&NSString>,
         ) -> Id<Self, Shared>;
 
@@ -110,7 +110,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFileWrapper:)]
         pub unsafe fn initWithFileWrapper(
             this: Option<Allocated<Self>>,
-            fileWrapper: Option<&NSFileWrapper>,
+            file_wrapper: Option<&NSFileWrapper>,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSData")]
@@ -127,7 +127,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setFileType:)]
-        pub unsafe fn setFileType(&self, fileType: Option<&NSString>);
+        pub unsafe fn setFileType(&self, file_type: Option<&NSString>);
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other image)]
@@ -149,38 +149,38 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSFileWrapper")]
         #[method(setFileWrapper:)]
-        pub unsafe fn setFileWrapper(&self, fileWrapper: Option<&NSFileWrapper>);
+        pub unsafe fn setFileWrapper(&self, file_wrapper: Option<&NSFileWrapper>);
 
         #[method_id(@__retain_semantics Other attachmentCell)]
         pub unsafe fn attachmentCell(&self) -> Option<Id<NSTextAttachmentCell, Shared>>;
 
         #[method(setAttachmentCell:)]
-        pub unsafe fn setAttachmentCell(&self, attachmentCell: Option<&NSTextAttachmentCell>);
+        pub unsafe fn setAttachmentCell(&self, attachment_cell: Option<&NSTextAttachmentCell>);
 
         #[method(lineLayoutPadding)]
         pub unsafe fn lineLayoutPadding(&self) -> CGFloat;
 
         #[method(setLineLayoutPadding:)]
-        pub unsafe fn setLineLayoutPadding(&self, lineLayoutPadding: CGFloat);
+        pub unsafe fn setLineLayoutPadding(&self, line_layout_padding: CGFloat);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(textAttachmentViewProviderClassForFileType:)]
         pub unsafe fn textAttachmentViewProviderClassForFileType(
-            fileType: &NSString,
+            file_type: &NSString,
         ) -> Option<&'static Class>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(registerTextAttachmentViewProviderClass:forFileType:)]
         pub unsafe fn registerTextAttachmentViewProviderClass_forFileType(
-            textAttachmentViewProviderClass: &Class,
-            fileType: &NSString,
+            text_attachment_view_provider_class: &Class,
+            file_type: &NSString,
         );
 
         #[method(allowsTextAttachmentView)]
         pub unsafe fn allowsTextAttachmentView(&self) -> bool;
 
         #[method(setAllowsTextAttachmentView:)]
-        pub unsafe fn setAllowsTextAttachmentView(&self, allowsTextAttachmentView: bool);
+        pub unsafe fn setAllowsTextAttachmentView(&self, allows_text_attachment_view: bool);
 
         #[method(usesTextAttachmentView)]
         pub unsafe fn usesTextAttachmentView(&self) -> bool;
@@ -221,9 +221,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithTextAttachment:parentView:textLayoutManager:location:)]
         pub unsafe fn initWithTextAttachment_parentView_textLayoutManager_location(
             this: Option<Allocated<Self>>,
-            textAttachment: &NSTextAttachment,
-            parentView: Option<&NSView>,
-            textLayoutManager: Option<&NSTextLayoutManager>,
+            text_attachment: &NSTextAttachment,
+            parent_view: Option<&NSView>,
+            text_layout_manager: Option<&NSTextLayoutManager>,
             location: &NSTextLocation,
         ) -> Id<Self, Shared>;
 
@@ -261,7 +261,7 @@ extern_methods!(
         #[method(setTracksTextAttachmentViewBounds:)]
         pub unsafe fn setTracksTextAttachmentViewBounds(
             &self,
-            tracksTextAttachmentViewBounds: bool,
+            tracks_text_attachment_view_bounds: bool,
         );
 
         #[cfg(all(
@@ -273,8 +273,8 @@ extern_methods!(
             &self,
             attributes: &NSDictionary<NSAttributedStringKey, Object>,
             location: &NSTextLocation,
-            textContainer: Option<&NSTextContainer>,
-            proposedLineFragment: CGRect,
+            text_container: Option<&NSTextContainer>,
+            proposed_line_fragment: CGRect,
             position: CGPoint,
         ) -> CGRect;
     }

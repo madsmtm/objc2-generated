@@ -33,35 +33,35 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frame_rect: NSRect,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "AppKit_NSCell")]
         #[method_id(@__retain_semantics Init initWithFrame:mode:prototype:numberOfRows:numberOfColumns:)]
         pub unsafe fn initWithFrame_mode_prototype_numberOfRows_numberOfColumns(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frame_rect: NSRect,
             mode: NSMatrixMode,
             cell: &NSCell,
-            rowsHigh: NSInteger,
-            colsWide: NSInteger,
+            rows_high: NSInteger,
+            cols_wide: NSInteger,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Init initWithFrame:mode:cellClass:numberOfRows:numberOfColumns:)]
         pub unsafe fn initWithFrame_mode_cellClass_numberOfRows_numberOfColumns(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frame_rect: NSRect,
             mode: NSMatrixMode,
-            factoryId: Option<&Class>,
-            rowsHigh: NSInteger,
-            colsWide: NSInteger,
+            factory_id: Option<&Class>,
+            rows_high: NSInteger,
+            cols_wide: NSInteger,
         ) -> Id<Self, Shared>;
 
         #[method(cellClass)]
         pub unsafe fn cellClass(&self) -> &'static Class;
 
         #[method(setCellClass:)]
-        pub unsafe fn setCellClass(&self, cellClass: &Class);
+        pub unsafe fn setCellClass(&self, cell_class: &Class);
 
         #[cfg(feature = "AppKit_NSCell")]
         #[method_id(@__retain_semantics Other prototype)]
@@ -89,7 +89,7 @@ extern_methods!(
         pub unsafe fn allowsEmptySelection(&self) -> bool;
 
         #[method(setAllowsEmptySelection:)]
-        pub unsafe fn setAllowsEmptySelection(&self, allowsEmptySelection: bool);
+        pub unsafe fn setAllowsEmptySelection(&self, allows_empty_selection: bool);
 
         #[method(sendAction:to:forAllCells:)]
         pub unsafe fn sendAction_to_forAllCells(&self, selector: Sel, object: &Object, flag: bool);
@@ -130,14 +130,14 @@ extern_methods!(
         pub unsafe fn isSelectionByRect(&self) -> bool;
 
         #[method(setSelectionByRect:)]
-        pub unsafe fn setSelectionByRect(&self, selectionByRect: bool);
+        pub unsafe fn setSelectionByRect(&self, selection_by_rect: bool);
 
         #[method(setSelectionFrom:to:anchor:highlight:)]
         pub unsafe fn setSelectionFrom_to_anchor_highlight(
             &self,
-            startPos: NSInteger,
-            endPos: NSInteger,
-            anchorPos: NSInteger,
+            start_pos: NSInteger,
+            end_pos: NSInteger,
+            anchor_pos: NSInteger,
             lit: bool,
         );
 
@@ -160,13 +160,13 @@ extern_methods!(
         pub unsafe fn cellSize(&self) -> NSSize;
 
         #[method(setCellSize:)]
-        pub unsafe fn setCellSize(&self, cellSize: NSSize);
+        pub unsafe fn setCellSize(&self, cell_size: NSSize);
 
         #[method(intercellSpacing)]
         pub unsafe fn intercellSpacing(&self) -> NSSize;
 
         #[method(setIntercellSpacing:)]
-        pub unsafe fn setIntercellSpacing(&self, intercellSpacing: NSSize);
+        pub unsafe fn setIntercellSpacing(&self, intercell_spacing: NSSize);
 
         #[method(setScrollable:)]
         pub unsafe fn setScrollable(&self, flag: bool);
@@ -177,7 +177,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setBackgroundColor:)]
-        pub unsafe fn setBackgroundColor(&self, backgroundColor: &NSColor);
+        pub unsafe fn setBackgroundColor(&self, background_color: &NSColor);
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other cellBackgroundColor)]
@@ -185,19 +185,19 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setCellBackgroundColor:)]
-        pub unsafe fn setCellBackgroundColor(&self, cellBackgroundColor: Option<&NSColor>);
+        pub unsafe fn setCellBackgroundColor(&self, cell_background_color: Option<&NSColor>);
 
         #[method(drawsCellBackground)]
         pub unsafe fn drawsCellBackground(&self) -> bool;
 
         #[method(setDrawsCellBackground:)]
-        pub unsafe fn setDrawsCellBackground(&self, drawsCellBackground: bool);
+        pub unsafe fn setDrawsCellBackground(&self, draws_cell_background: bool);
 
         #[method(drawsBackground)]
         pub unsafe fn drawsBackground(&self) -> bool;
 
         #[method(setDrawsBackground:)]
-        pub unsafe fn setDrawsBackground(&self, drawsBackground: bool);
+        pub unsafe fn setDrawsBackground(&self, draws_background: bool);
 
         #[method(setState:atRow:column:)]
         pub unsafe fn setState_atRow_column(
@@ -210,8 +210,8 @@ extern_methods!(
         #[method(getNumberOfRows:columns:)]
         pub unsafe fn getNumberOfRows_columns(
             &self,
-            rowCount: *mut NSInteger,
-            colCount: *mut NSInteger,
+            row_count: *mut NSInteger,
+            col_count: *mut NSInteger,
         );
 
         #[method(numberOfRows)]
@@ -249,18 +249,23 @@ extern_methods!(
         ) -> bool;
 
         #[method(renewRows:columns:)]
-        pub unsafe fn renewRows_columns(&self, newRows: NSInteger, newCols: NSInteger);
+        pub unsafe fn renewRows_columns(&self, new_rows: NSInteger, new_cols: NSInteger);
 
         #[cfg(feature = "AppKit_NSCell")]
         #[method(putCell:atRow:column:)]
-        pub unsafe fn putCell_atRow_column(&self, newCell: &NSCell, row: NSInteger, col: NSInteger);
+        pub unsafe fn putCell_atRow_column(
+            &self,
+            new_cell: &NSCell,
+            row: NSInteger,
+            col: NSInteger,
+        );
 
         #[method(addRow)]
         pub unsafe fn addRow(&self);
 
         #[cfg(all(feature = "AppKit_NSCell", feature = "Foundation_NSArray"))]
         #[method(addRowWithCells:)]
-        pub unsafe fn addRowWithCells(&self, newCells: &NSArray<NSCell>);
+        pub unsafe fn addRowWithCells(&self, new_cells: &NSArray<NSCell>);
 
         #[method(insertRow:)]
         pub unsafe fn insertRow(&self, row: NSInteger);
@@ -270,7 +275,7 @@ extern_methods!(
         pub unsafe fn insertRow_withCells(
             &self,
             row: NSInteger,
-            newCells: Option<&NSArray<NSCell>>,
+            new_cells: Option<&NSArray<NSCell>>,
         );
 
         #[method(removeRow:)]
@@ -281,7 +286,7 @@ extern_methods!(
 
         #[cfg(all(feature = "AppKit_NSCell", feature = "Foundation_NSArray"))]
         #[method(addColumnWithCells:)]
-        pub unsafe fn addColumnWithCells(&self, newCells: &NSArray<NSCell>);
+        pub unsafe fn addColumnWithCells(&self, new_cells: &NSArray<NSCell>);
 
         #[method(insertColumn:)]
         pub unsafe fn insertColumn(&self, column: NSInteger);
@@ -291,7 +296,7 @@ extern_methods!(
         pub unsafe fn insertColumn_withCells(
             &self,
             column: NSInteger,
-            newCells: Option<&NSArray<NSCell>>,
+            new_cells: Option<&NSArray<NSCell>>,
         );
 
         #[method(removeColumn:)]
@@ -305,13 +310,13 @@ extern_methods!(
         pub unsafe fn doubleAction(&self) -> Option<Sel>;
 
         #[method(setDoubleAction:)]
-        pub unsafe fn setDoubleAction(&self, doubleAction: Option<Sel>);
+        pub unsafe fn setDoubleAction(&self, double_action: Option<Sel>);
 
         #[method(autosizesCells)]
         pub unsafe fn autosizesCells(&self) -> bool;
 
         #[method(setAutosizesCells:)]
-        pub unsafe fn setAutosizesCells(&self, autosizesCells: bool);
+        pub unsafe fn setAutosizesCells(&self, autosizes_cells: bool);
 
         #[method(sizeToCells)]
         pub unsafe fn sizeToCells(&self);
@@ -359,11 +364,11 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSText")]
         #[method(textShouldBeginEditing:)]
-        pub unsafe fn textShouldBeginEditing(&self, textObject: &NSText) -> bool;
+        pub unsafe fn textShouldBeginEditing(&self, text_object: &NSText) -> bool;
 
         #[cfg(feature = "AppKit_NSText")]
         #[method(textShouldEndEditing:)]
-        pub unsafe fn textShouldEndEditing(&self, textObject: &NSText) -> bool;
+        pub unsafe fn textShouldEndEditing(&self, text_object: &NSText) -> bool;
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[method(textDidBeginEditing:)]
@@ -397,7 +402,7 @@ extern_methods!(
 
         #[cfg(all(feature = "AppKit_NSCell", feature = "Foundation_NSString"))]
         #[method(setToolTip:forCell:)]
-        pub unsafe fn setToolTip_forCell(&self, toolTipString: Option<&NSString>, cell: &NSCell);
+        pub unsafe fn setToolTip_forCell(&self, tool_tip_string: Option<&NSString>, cell: &NSCell);
 
         #[cfg(all(feature = "AppKit_NSCell", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other toolTipForCell:)]
@@ -407,7 +412,7 @@ extern_methods!(
         pub unsafe fn autorecalculatesCellSize(&self) -> bool;
 
         #[method(setAutorecalculatesCellSize:)]
-        pub unsafe fn setAutorecalculatesCellSize(&self, autorecalculatesCellSize: bool);
+        pub unsafe fn setAutorecalculatesCellSize(&self, autorecalculates_cell_size: bool);
     }
 );
 
@@ -419,7 +424,7 @@ extern_methods!(
         pub unsafe fn tabKeyTraversesCells(&self) -> bool;
 
         #[method(setTabKeyTraversesCells:)]
-        pub unsafe fn setTabKeyTraversesCells(&self, tabKeyTraversesCells: bool);
+        pub unsafe fn setTabKeyTraversesCells(&self, tab_key_traverses_cells: bool);
 
         #[cfg(feature = "AppKit_NSCell")]
         #[method_id(@__retain_semantics Other keyCell)]
@@ -427,7 +432,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSCell")]
         #[method(setKeyCell:)]
-        pub unsafe fn setKeyCell(&self, keyCell: Option<&NSCell>);
+        pub unsafe fn setKeyCell(&self, key_cell: Option<&NSCell>);
     }
 );
 

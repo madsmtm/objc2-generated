@@ -82,49 +82,49 @@ inline_fn!(
 );
 
 inline_fn!(
-    pub unsafe fn NSMaxX(aRect: NSRect) -> CGFloat {
+    pub unsafe fn NSMaxX(a_rect: NSRect) -> CGFloat {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSMaxY(aRect: NSRect) -> CGFloat {
+    pub unsafe fn NSMaxY(a_rect: NSRect) -> CGFloat {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSMidX(aRect: NSRect) -> CGFloat {
+    pub unsafe fn NSMidX(a_rect: NSRect) -> CGFloat {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSMidY(aRect: NSRect) -> CGFloat {
+    pub unsafe fn NSMidY(a_rect: NSRect) -> CGFloat {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSMinX(aRect: NSRect) -> CGFloat {
+    pub unsafe fn NSMinX(a_rect: NSRect) -> CGFloat {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSMinY(aRect: NSRect) -> CGFloat {
+    pub unsafe fn NSMinY(a_rect: NSRect) -> CGFloat {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSWidth(aRect: NSRect) -> CGFloat {
+    pub unsafe fn NSWidth(a_rect: NSRect) -> CGFloat {
         todo!()
     }
 );
 
 inline_fn!(
-    pub unsafe fn NSHeight(aRect: NSRect) -> CGFloat {
+    pub unsafe fn NSHeight(a_rect: NSRect) -> CGFloat {
         todo!()
     }
 );
@@ -177,52 +177,52 @@ inline_fn!(
 );
 
 extern_fn!(
-    pub unsafe fn NSEqualPoints(aPoint: NSPoint, bPoint: NSPoint) -> Bool;
+    pub unsafe fn NSEqualPoints(a_point: NSPoint, b_point: NSPoint) -> Bool;
 );
 
 extern_fn!(
-    pub unsafe fn NSEqualSizes(aSize: NSSize, bSize: NSSize) -> Bool;
+    pub unsafe fn NSEqualSizes(a_size: NSSize, b_size: NSSize) -> Bool;
 );
 
 extern_fn!(
-    pub unsafe fn NSEqualRects(aRect: NSRect, bRect: NSRect) -> Bool;
+    pub unsafe fn NSEqualRects(a_rect: NSRect, b_rect: NSRect) -> Bool;
 );
 
 extern_fn!(
-    pub unsafe fn NSIsEmptyRect(aRect: NSRect) -> Bool;
+    pub unsafe fn NSIsEmptyRect(a_rect: NSRect) -> Bool;
 );
 
 extern_fn!(
-    pub unsafe fn NSEdgeInsetsEqual(aInsets: NSEdgeInsets, bInsets: NSEdgeInsets) -> Bool;
+    pub unsafe fn NSEdgeInsetsEqual(a_insets: NSEdgeInsets, b_insets: NSEdgeInsets) -> Bool;
 );
 
 extern_fn!(
-    pub unsafe fn NSInsetRect(aRect: NSRect, dX: CGFloat, dY: CGFloat) -> NSRect;
+    pub unsafe fn NSInsetRect(a_rect: NSRect, d_x: CGFloat, d_y: CGFloat) -> NSRect;
 );
 
 extern_fn!(
-    pub unsafe fn NSIntegralRect(aRect: NSRect) -> NSRect;
+    pub unsafe fn NSIntegralRect(a_rect: NSRect) -> NSRect;
 );
 
 extern_fn!(
-    pub unsafe fn NSIntegralRectWithOptions(aRect: NSRect, opts: NSAlignmentOptions) -> NSRect;
+    pub unsafe fn NSIntegralRectWithOptions(a_rect: NSRect, opts: NSAlignmentOptions) -> NSRect;
 );
 
 extern_fn!(
-    pub unsafe fn NSUnionRect(aRect: NSRect, bRect: NSRect) -> NSRect;
+    pub unsafe fn NSUnionRect(a_rect: NSRect, b_rect: NSRect) -> NSRect;
 );
 
 extern_fn!(
-    pub unsafe fn NSIntersectionRect(aRect: NSRect, bRect: NSRect) -> NSRect;
+    pub unsafe fn NSIntersectionRect(a_rect: NSRect, b_rect: NSRect) -> NSRect;
 );
 
 extern_fn!(
-    pub unsafe fn NSOffsetRect(aRect: NSRect, dX: CGFloat, dY: CGFloat) -> NSRect;
+    pub unsafe fn NSOffsetRect(a_rect: NSRect, d_x: CGFloat, d_y: CGFloat) -> NSRect;
 );
 
 extern_fn!(
     pub unsafe fn NSDivideRect(
-        inRect: NSRect,
+        in_rect: NSRect,
         slice: NonNull<NSRect>,
         rem: NonNull<NSRect>,
         amount: CGFloat,
@@ -231,49 +231,49 @@ extern_fn!(
 );
 
 extern_fn!(
-    pub unsafe fn NSPointInRect(aPoint: NSPoint, aRect: NSRect) -> Bool;
+    pub unsafe fn NSPointInRect(a_point: NSPoint, a_rect: NSRect) -> Bool;
 );
 
 extern_fn!(
-    pub unsafe fn NSMouseInRect(aPoint: NSPoint, aRect: NSRect, flipped: Bool) -> Bool;
+    pub unsafe fn NSMouseInRect(a_point: NSPoint, a_rect: NSRect, flipped: Bool) -> Bool;
 );
 
 extern_fn!(
-    pub unsafe fn NSContainsRect(aRect: NSRect, bRect: NSRect) -> Bool;
+    pub unsafe fn NSContainsRect(a_rect: NSRect, b_rect: NSRect) -> Bool;
 );
 
 extern_fn!(
-    pub unsafe fn NSIntersectsRect(aRect: NSRect, bRect: NSRect) -> Bool;
-);
-
-extern_fn!(
-    #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSStringFromPoint(aPoint: NSPoint) -> NonNull<NSString>;
+    pub unsafe fn NSIntersectsRect(a_rect: NSRect, b_rect: NSRect) -> Bool;
 );
 
 extern_fn!(
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSStringFromSize(aSize: NSSize) -> NonNull<NSString>;
+    pub unsafe fn NSStringFromPoint(a_point: NSPoint) -> NonNull<NSString>;
 );
 
 extern_fn!(
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSStringFromRect(aRect: NSRect) -> NonNull<NSString>;
+    pub unsafe fn NSStringFromSize(a_size: NSSize) -> NonNull<NSString>;
 );
 
 extern_fn!(
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSPointFromString(aString: &NSString) -> NSPoint;
+    pub unsafe fn NSStringFromRect(a_rect: NSRect) -> NonNull<NSString>;
 );
 
 extern_fn!(
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSSizeFromString(aString: &NSString) -> NSSize;
+    pub unsafe fn NSPointFromString(a_string: &NSString) -> NSPoint;
 );
 
 extern_fn!(
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSRectFromString(aString: &NSString) -> NSRect;
+    pub unsafe fn NSSizeFromString(a_string: &NSString) -> NSSize;
+);
+
+extern_fn!(
+    #[cfg(feature = "Foundation_NSString")]
+    pub unsafe fn NSRectFromString(a_string: &NSString) -> NSRect;
 );
 
 extern_methods!(

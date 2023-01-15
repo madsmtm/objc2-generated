@@ -56,7 +56,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setSessionDescription:)]
-        pub unsafe fn setSessionDescription(&self, sessionDescription: Option<&NSString>);
+        pub unsafe fn setSessionDescription(&self, session_description: Option<&NSString>);
 
         #[method(finishTasksAndInvalidate)]
         pub unsafe fn finishTasksAndInvalidate(&self);
@@ -65,10 +65,10 @@ extern_methods!(
         pub unsafe fn invalidateAndCancel(&self);
 
         #[method(resetWithCompletionHandler:)]
-        pub unsafe fn resetWithCompletionHandler(&self, completionHandler: &Block<(), ()>);
+        pub unsafe fn resetWithCompletionHandler(&self, completion_handler: &Block<(), ()>);
 
         #[method(flushWithCompletionHandler:)]
-        pub unsafe fn flushWithCompletionHandler(&self, completionHandler: &Block<(), ()>);
+        pub unsafe fn flushWithCompletionHandler(&self, completion_handler: &Block<(), ()>);
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -79,7 +79,7 @@ extern_methods!(
         #[method(getTasksWithCompletionHandler:)]
         pub unsafe fn getTasksWithCompletionHandler(
             &self,
-            completionHandler: &Block<
+            completion_handler: &Block<
                 (
                     NonNull<NSArray<NSURLSessionDataTask>>,
                     NonNull<NSArray<NSURLSessionUploadTask>>,
@@ -96,7 +96,7 @@ extern_methods!(
         #[method(getAllTasksWithCompletionHandler:)]
         pub unsafe fn getAllTasksWithCompletionHandler(
             &self,
-            completionHandler: &Block<(NonNull<NSArray<NSURLSessionTask>>,), ()>,
+            completion_handler: &Block<(NonNull<NSArray<NSURLSessionTask>>,), ()>,
         );
 
         #[cfg(all(
@@ -125,7 +125,7 @@ extern_methods!(
         pub unsafe fn uploadTaskWithRequest_fromFile(
             &self,
             request: &NSURLRequest,
-            fileURL: &NSURL,
+            file_url: &NSURL,
         ) -> Id<NSURLSessionUploadTask, Shared>;
 
         #[cfg(all(
@@ -137,7 +137,7 @@ extern_methods!(
         pub unsafe fn uploadTaskWithRequest_fromData(
             &self,
             request: &NSURLRequest,
-            bodyData: &NSData,
+            body_data: &NSData,
         ) -> Id<NSURLSessionUploadTask, Shared>;
 
         #[cfg(all(
@@ -177,7 +177,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other downloadTaskWithResumeData:)]
         pub unsafe fn downloadTaskWithResumeData(
             &self,
-            resumeData: &NSData,
+            resume_data: &NSData,
         ) -> Id<NSURLSessionDownloadTask, Shared>;
 
         #[cfg(all(
@@ -260,7 +260,7 @@ extern_methods!(
         pub unsafe fn dataTaskWithRequest_completionHandler(
             &self,
             request: &NSURLRequest,
-            completionHandler: &Block<(*mut NSData, *mut NSURLResponse, *mut NSError), ()>,
+            completion_handler: &Block<(*mut NSData, *mut NSURLResponse, *mut NSError), ()>,
         ) -> Id<NSURLSessionDataTask, Shared>;
 
         #[cfg(all(
@@ -274,7 +274,7 @@ extern_methods!(
         pub unsafe fn dataTaskWithURL_completionHandler(
             &self,
             url: &NSURL,
-            completionHandler: &Block<(*mut NSData, *mut NSURLResponse, *mut NSError), ()>,
+            completion_handler: &Block<(*mut NSData, *mut NSURLResponse, *mut NSError), ()>,
         ) -> Id<NSURLSessionDataTask, Shared>;
 
         #[cfg(all(
@@ -289,8 +289,8 @@ extern_methods!(
         pub unsafe fn uploadTaskWithRequest_fromFile_completionHandler(
             &self,
             request: &NSURLRequest,
-            fileURL: &NSURL,
-            completionHandler: &Block<(*mut NSData, *mut NSURLResponse, *mut NSError), ()>,
+            file_url: &NSURL,
+            completion_handler: &Block<(*mut NSData, *mut NSURLResponse, *mut NSError), ()>,
         ) -> Id<NSURLSessionUploadTask, Shared>;
 
         #[cfg(all(
@@ -304,8 +304,8 @@ extern_methods!(
         pub unsafe fn uploadTaskWithRequest_fromData_completionHandler(
             &self,
             request: &NSURLRequest,
-            bodyData: Option<&NSData>,
-            completionHandler: &Block<(*mut NSData, *mut NSURLResponse, *mut NSError), ()>,
+            body_data: Option<&NSData>,
+            completion_handler: &Block<(*mut NSData, *mut NSURLResponse, *mut NSError), ()>,
         ) -> Id<NSURLSessionUploadTask, Shared>;
 
         #[cfg(all(
@@ -319,7 +319,7 @@ extern_methods!(
         pub unsafe fn downloadTaskWithRequest_completionHandler(
             &self,
             request: &NSURLRequest,
-            completionHandler: &Block<(*mut NSURL, *mut NSURLResponse, *mut NSError), ()>,
+            completion_handler: &Block<(*mut NSURL, *mut NSURLResponse, *mut NSError), ()>,
         ) -> Id<NSURLSessionDownloadTask, Shared>;
 
         #[cfg(all(
@@ -332,7 +332,7 @@ extern_methods!(
         pub unsafe fn downloadTaskWithURL_completionHandler(
             &self,
             url: &NSURL,
-            completionHandler: &Block<(*mut NSURL, *mut NSURLResponse, *mut NSError), ()>,
+            completion_handler: &Block<(*mut NSURL, *mut NSURLResponse, *mut NSError), ()>,
         ) -> Id<NSURLSessionDownloadTask, Shared>;
 
         #[cfg(all(
@@ -345,8 +345,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Other downloadTaskWithResumeData:completionHandler:)]
         pub unsafe fn downloadTaskWithResumeData_completionHandler(
             &self,
-            resumeData: &NSData,
-            completionHandler: &Block<(*mut NSURL, *mut NSURLResponse, *mut NSError), ()>,
+            resume_data: &NSData,
+            completion_handler: &Block<(*mut NSURL, *mut NSURLResponse, *mut NSError), ()>,
         ) -> Id<NSURLSessionDownloadTask, Shared>;
     }
 );
@@ -406,7 +406,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method(setEarliestBeginDate:)]
-        pub unsafe fn setEarliestBeginDate(&self, earliestBeginDate: Option<&NSDate>);
+        pub unsafe fn setEarliestBeginDate(&self, earliest_begin_date: Option<&NSDate>);
 
         #[method(countOfBytesClientExpectsToSend)]
         pub unsafe fn countOfBytesClientExpectsToSend(&self) -> i64;
@@ -414,7 +414,7 @@ extern_methods!(
         #[method(setCountOfBytesClientExpectsToSend:)]
         pub unsafe fn setCountOfBytesClientExpectsToSend(
             &self,
-            countOfBytesClientExpectsToSend: i64,
+            count_of_bytes_client_expects_to_send: i64,
         );
 
         #[method(countOfBytesClientExpectsToReceive)]
@@ -423,7 +423,7 @@ extern_methods!(
         #[method(setCountOfBytesClientExpectsToReceive:)]
         pub unsafe fn setCountOfBytesClientExpectsToReceive(
             &self,
-            countOfBytesClientExpectsToReceive: i64,
+            count_of_bytes_client_expects_to_receive: i64,
         );
 
         #[method(countOfBytesSent)]
@@ -444,7 +444,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setTaskDescription:)]
-        pub unsafe fn setTaskDescription(&self, taskDescription: Option<&NSString>);
+        pub unsafe fn setTaskDescription(&self, task_description: Option<&NSString>);
 
         #[method(cancel)]
         pub unsafe fn cancel(&self);
@@ -472,7 +472,7 @@ extern_methods!(
         pub unsafe fn prefersIncrementalDelivery(&self) -> bool;
 
         #[method(setPrefersIncrementalDelivery:)]
-        pub unsafe fn setPrefersIncrementalDelivery(&self, prefersIncrementalDelivery: bool);
+        pub unsafe fn setPrefersIncrementalDelivery(&self, prefers_incremental_delivery: bool);
 
         #[deprecated = "Not supported"]
         #[method_id(@__retain_semantics Init init)]
@@ -559,7 +559,7 @@ extern_methods!(
         #[method(cancelByProducingResumeData:)]
         pub unsafe fn cancelByProducingResumeData(
             &self,
-            completionHandler: &Block<(*mut NSData,), ()>,
+            completion_handler: &Block<(*mut NSData,), ()>,
         );
 
         #[deprecated = "Please use -[NSURLSession downloadTaskWithRequest:] or other NSURLSession methods to create instances"]
@@ -591,10 +591,10 @@ extern_methods!(
         #[method(readDataOfMinLength:maxLength:timeout:completionHandler:)]
         pub unsafe fn readDataOfMinLength_maxLength_timeout_completionHandler(
             &self,
-            minBytes: NSUInteger,
-            maxBytes: NSUInteger,
+            min_bytes: NSUInteger,
+            max_bytes: NSUInteger,
             timeout: NSTimeInterval,
-            completionHandler: &Block<(*mut NSData, Bool, *mut NSError), ()>,
+            completion_handler: &Block<(*mut NSData, Bool, *mut NSError), ()>,
         );
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
@@ -603,7 +603,7 @@ extern_methods!(
             &self,
             data: &NSData,
             timeout: NSTimeInterval,
-            completionHandler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<(*mut NSError,), ()>,
         );
 
         #[method(captureStreams)]
@@ -729,7 +729,7 @@ extern_methods!(
         pub unsafe fn sendMessage_completionHandler(
             &self,
             message: &NSURLSessionWebSocketMessage,
-            completionHandler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<(*mut NSError,), ()>,
         );
 
         #[cfg(all(
@@ -739,21 +739,21 @@ extern_methods!(
         #[method(receiveMessageWithCompletionHandler:)]
         pub unsafe fn receiveMessageWithCompletionHandler(
             &self,
-            completionHandler: &Block<(*mut NSURLSessionWebSocketMessage, *mut NSError), ()>,
+            completion_handler: &Block<(*mut NSURLSessionWebSocketMessage, *mut NSError), ()>,
         );
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(sendPingWithPongReceiveHandler:)]
         pub unsafe fn sendPingWithPongReceiveHandler(
             &self,
-            pongReceiveHandler: &Block<(*mut NSError,), ()>,
+            pong_receive_handler: &Block<(*mut NSError,), ()>,
         );
 
         #[cfg(feature = "Foundation_NSData")]
         #[method(cancelWithCloseCode:reason:)]
         pub unsafe fn cancelWithCloseCode_reason(
             &self,
-            closeCode: NSURLSessionWebSocketCloseCode,
+            close_code: NSURLSessionWebSocketCloseCode,
             reason: Option<&NSData>,
         );
 
@@ -761,7 +761,7 @@ extern_methods!(
         pub unsafe fn maximumMessageSize(&self) -> NSInteger;
 
         #[method(setMaximumMessageSize:)]
-        pub unsafe fn setMaximumMessageSize(&self, maximumMessageSize: NSInteger);
+        pub unsafe fn setMaximumMessageSize(&self, maximum_message_size: NSInteger);
 
         #[method(closeCode)]
         pub unsafe fn closeCode(&self) -> NSURLSessionWebSocketCloseCode;
@@ -822,7 +822,7 @@ extern_methods!(
         pub unsafe fn requestCachePolicy(&self) -> NSURLRequestCachePolicy;
 
         #[method(setRequestCachePolicy:)]
-        pub unsafe fn setRequestCachePolicy(&self, requestCachePolicy: NSURLRequestCachePolicy);
+        pub unsafe fn setRequestCachePolicy(&self, request_cache_policy: NSURLRequestCachePolicy);
 
         #[method(timeoutIntervalForRequest)]
         pub unsafe fn timeoutIntervalForRequest(&self) -> NSTimeInterval;
@@ -830,7 +830,7 @@ extern_methods!(
         #[method(setTimeoutIntervalForRequest:)]
         pub unsafe fn setTimeoutIntervalForRequest(
             &self,
-            timeoutIntervalForRequest: NSTimeInterval,
+            timeout_interval_for_request: NSTimeInterval,
         );
 
         #[method(timeoutIntervalForResource)]
@@ -839,7 +839,7 @@ extern_methods!(
         #[method(setTimeoutIntervalForResource:)]
         pub unsafe fn setTimeoutIntervalForResource(
             &self,
-            timeoutIntervalForResource: NSTimeInterval,
+            timeout_interval_for_resource: NSTimeInterval,
         );
 
         #[method(networkServiceType)]
@@ -848,20 +848,20 @@ extern_methods!(
         #[method(setNetworkServiceType:)]
         pub unsafe fn setNetworkServiceType(
             &self,
-            networkServiceType: NSURLRequestNetworkServiceType,
+            network_service_type: NSURLRequestNetworkServiceType,
         );
 
         #[method(allowsCellularAccess)]
         pub unsafe fn allowsCellularAccess(&self) -> bool;
 
         #[method(setAllowsCellularAccess:)]
-        pub unsafe fn setAllowsCellularAccess(&self, allowsCellularAccess: bool);
+        pub unsafe fn setAllowsCellularAccess(&self, allows_cellular_access: bool);
 
         #[method(allowsExpensiveNetworkAccess)]
         pub unsafe fn allowsExpensiveNetworkAccess(&self) -> bool;
 
         #[method(setAllowsExpensiveNetworkAccess:)]
-        pub unsafe fn setAllowsExpensiveNetworkAccess(&self, allowsExpensiveNetworkAccess: bool);
+        pub unsafe fn setAllowsExpensiveNetworkAccess(&self, allows_expensive_network_access: bool);
 
         #[method(allowsConstrainedNetworkAccess)]
         pub unsafe fn allowsConstrainedNetworkAccess(&self) -> bool;
@@ -869,20 +869,20 @@ extern_methods!(
         #[method(setAllowsConstrainedNetworkAccess:)]
         pub unsafe fn setAllowsConstrainedNetworkAccess(
             &self,
-            allowsConstrainedNetworkAccess: bool,
+            allows_constrained_network_access: bool,
         );
 
         #[method(requiresDNSSECValidation)]
         pub unsafe fn requiresDNSSECValidation(&self) -> bool;
 
         #[method(setRequiresDNSSECValidation:)]
-        pub unsafe fn setRequiresDNSSECValidation(&self, requiresDNSSECValidation: bool);
+        pub unsafe fn setRequiresDNSSECValidation(&self, requires_dnssec_validation: bool);
 
         #[method(waitsForConnectivity)]
         pub unsafe fn waitsForConnectivity(&self) -> bool;
 
         #[method(setWaitsForConnectivity:)]
-        pub unsafe fn setWaitsForConnectivity(&self, waitsForConnectivity: bool);
+        pub unsafe fn setWaitsForConnectivity(&self, waits_for_connectivity: bool);
 
         #[method(isDiscretionary)]
         pub unsafe fn isDiscretionary(&self) -> bool;
@@ -898,14 +898,14 @@ extern_methods!(
         #[method(setSharedContainerIdentifier:)]
         pub unsafe fn setSharedContainerIdentifier(
             &self,
-            sharedContainerIdentifier: Option<&NSString>,
+            shared_container_identifier: Option<&NSString>,
         );
 
         #[method(sessionSendsLaunchEvents)]
         pub unsafe fn sessionSendsLaunchEvents(&self) -> bool;
 
         #[method(setSessionSendsLaunchEvents:)]
-        pub unsafe fn setSessionSendsLaunchEvents(&self, sessionSendsLaunchEvents: bool);
+        pub unsafe fn setSessionSendsLaunchEvents(&self, session_sends_launch_events: bool);
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other connectionProxyDictionary)]
@@ -915,20 +915,20 @@ extern_methods!(
         #[method(setConnectionProxyDictionary:)]
         pub unsafe fn setConnectionProxyDictionary(
             &self,
-            connectionProxyDictionary: Option<&NSDictionary>,
+            connection_proxy_dictionary: Option<&NSDictionary>,
         );
 
         #[method(HTTPShouldUsePipelining)]
         pub unsafe fn HTTPShouldUsePipelining(&self) -> bool;
 
         #[method(setHTTPShouldUsePipelining:)]
-        pub unsafe fn setHTTPShouldUsePipelining(&self, HTTPShouldUsePipelining: bool);
+        pub unsafe fn setHTTPShouldUsePipelining(&self, http_should_use_pipelining: bool);
 
         #[method(HTTPShouldSetCookies)]
         pub unsafe fn HTTPShouldSetCookies(&self) -> bool;
 
         #[method(setHTTPShouldSetCookies:)]
-        pub unsafe fn setHTTPShouldSetCookies(&self, HTTPShouldSetCookies: bool);
+        pub unsafe fn setHTTPShouldSetCookies(&self, http_should_set_cookies: bool);
 
         #[method(HTTPCookieAcceptPolicy)]
         pub unsafe fn HTTPCookieAcceptPolicy(&self) -> NSHTTPCookieAcceptPolicy;
@@ -936,7 +936,7 @@ extern_methods!(
         #[method(setHTTPCookieAcceptPolicy:)]
         pub unsafe fn setHTTPCookieAcceptPolicy(
             &self,
-            HTTPCookieAcceptPolicy: NSHTTPCookieAcceptPolicy,
+            http_cookie_accept_policy: NSHTTPCookieAcceptPolicy,
         );
 
         #[cfg(feature = "Foundation_NSDictionary")]
@@ -945,7 +945,10 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(setHTTPAdditionalHeaders:)]
-        pub unsafe fn setHTTPAdditionalHeaders(&self, HTTPAdditionalHeaders: Option<&NSDictionary>);
+        pub unsafe fn setHTTPAdditionalHeaders(
+            &self,
+            http_additional_headers: Option<&NSDictionary>,
+        );
 
         #[method(HTTPMaximumConnectionsPerHost)]
         pub unsafe fn HTTPMaximumConnectionsPerHost(&self) -> NSInteger;
@@ -953,7 +956,7 @@ extern_methods!(
         #[method(setHTTPMaximumConnectionsPerHost:)]
         pub unsafe fn setHTTPMaximumConnectionsPerHost(
             &self,
-            HTTPMaximumConnectionsPerHost: NSInteger,
+            http_maximum_connections_per_host: NSInteger,
         );
 
         #[cfg(feature = "Foundation_NSHTTPCookieStorage")]
@@ -962,7 +965,10 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSHTTPCookieStorage")]
         #[method(setHTTPCookieStorage:)]
-        pub unsafe fn setHTTPCookieStorage(&self, HTTPCookieStorage: Option<&NSHTTPCookieStorage>);
+        pub unsafe fn setHTTPCookieStorage(
+            &self,
+            http_cookie_storage: Option<&NSHTTPCookieStorage>,
+        );
 
         #[cfg(feature = "Foundation_NSURLCredentialStorage")]
         #[method_id(@__retain_semantics Other URLCredentialStorage)]
@@ -972,7 +978,7 @@ extern_methods!(
         #[method(setURLCredentialStorage:)]
         pub unsafe fn setURLCredentialStorage(
             &self,
-            URLCredentialStorage: Option<&NSURLCredentialStorage>,
+            url_credential_storage: Option<&NSURLCredentialStorage>,
         );
 
         #[cfg(feature = "Foundation_NSURLCache")]
@@ -981,7 +987,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSURLCache")]
         #[method(setURLCache:)]
-        pub unsafe fn setURLCache(&self, URLCache: Option<&NSURLCache>);
+        pub unsafe fn setURLCache(&self, url_cache: Option<&NSURLCache>);
 
         #[method(shouldUseExtendedBackgroundIdleMode)]
         pub unsafe fn shouldUseExtendedBackgroundIdleMode(&self) -> bool;
@@ -989,7 +995,7 @@ extern_methods!(
         #[method(setShouldUseExtendedBackgroundIdleMode:)]
         pub unsafe fn setShouldUseExtendedBackgroundIdleMode(
             &self,
-            shouldUseExtendedBackgroundIdleMode: bool,
+            should_use_extended_background_idle_mode: bool,
         );
 
         #[cfg(feature = "Foundation_NSArray")]
@@ -998,7 +1004,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setProtocolClasses:)]
-        pub unsafe fn setProtocolClasses(&self, protocolClasses: Option<&NSArray<TodoClass>>);
+        pub unsafe fn setProtocolClasses(&self, protocol_classes: Option<&NSArray<TodoClass>>);
 
         #[method(multipathServiceType)]
         pub unsafe fn multipathServiceType(&self) -> NSURLSessionMultipathServiceType;
@@ -1006,7 +1012,7 @@ extern_methods!(
         #[method(setMultipathServiceType:)]
         pub unsafe fn setMultipathServiceType(
             &self,
-            multipathServiceType: NSURLSessionMultipathServiceType,
+            multipath_service_type: NSURLSessionMultipathServiceType,
         );
 
         #[deprecated = "Please use NSURLSessionConfiguration.defaultSessionConfiguration or other class methods to create instances"]
@@ -1072,7 +1078,7 @@ extern_protocol!(
             &self,
             session: &NSURLSession,
             challenge: &NSURLAuthenticationChallenge,
-            completionHandler: &Block<
+            completion_handler: &Block<
                 (NSURLSessionAuthChallengeDisposition, *mut NSURLCredential),
                 (),
             >,
@@ -1116,7 +1122,7 @@ extern_protocol!(
             session: &NSURLSession,
             task: &NSURLSessionTask,
             request: &NSURLRequest,
-            completionHandler: &Block<
+            completion_handler: &Block<
                 (NSURLSessionDelayedRequestDisposition, *mut NSURLRequest),
                 (),
             >,
@@ -1148,7 +1154,7 @@ extern_protocol!(
             task: &NSURLSessionTask,
             response: &NSHTTPURLResponse,
             request: &NSURLRequest,
-            completionHandler: &Block<(*mut NSURLRequest,), ()>,
+            completion_handler: &Block<(*mut NSURLRequest,), ()>,
         );
 
         #[cfg(all(
@@ -1164,7 +1170,7 @@ extern_protocol!(
             session: &NSURLSession,
             task: &NSURLSessionTask,
             challenge: &NSURLAuthenticationChallenge,
-            completionHandler: &Block<
+            completion_handler: &Block<
                 (NSURLSessionAuthChallengeDisposition, *mut NSURLCredential),
                 (),
             >,
@@ -1181,7 +1187,7 @@ extern_protocol!(
             &self,
             session: &NSURLSession,
             task: &NSURLSessionTask,
-            completionHandler: &Block<(*mut NSInputStream,), ()>,
+            completion_handler: &Block<(*mut NSInputStream,), ()>,
         );
 
         #[cfg(all(
@@ -1194,9 +1200,9 @@ extern_protocol!(
             &self,
             session: &NSURLSession,
             task: &NSURLSessionTask,
-            bytesSent: i64,
-            totalBytesSent: i64,
-            totalBytesExpectedToSend: i64,
+            bytes_sent: i64,
+            total_bytes_sent: i64,
+            total_bytes_expected_to_send: i64,
         );
 
         #[cfg(all(
@@ -1243,9 +1249,9 @@ extern_protocol!(
         pub unsafe fn URLSession_dataTask_didReceiveResponse_completionHandler(
             &self,
             session: &NSURLSession,
-            dataTask: &NSURLSessionDataTask,
+            data_task: &NSURLSessionDataTask,
             response: &NSURLResponse,
-            completionHandler: &Block<(NSURLSessionResponseDisposition,), ()>,
+            completion_handler: &Block<(NSURLSessionResponseDisposition,), ()>,
         );
 
         #[cfg(all(
@@ -1258,8 +1264,8 @@ extern_protocol!(
         pub unsafe fn URLSession_dataTask_didBecomeDownloadTask(
             &self,
             session: &NSURLSession,
-            dataTask: &NSURLSessionDataTask,
-            downloadTask: &NSURLSessionDownloadTask,
+            data_task: &NSURLSessionDataTask,
+            download_task: &NSURLSessionDownloadTask,
         );
 
         #[cfg(all(
@@ -1272,8 +1278,8 @@ extern_protocol!(
         pub unsafe fn URLSession_dataTask_didBecomeStreamTask(
             &self,
             session: &NSURLSession,
-            dataTask: &NSURLSessionDataTask,
-            streamTask: &NSURLSessionStreamTask,
+            data_task: &NSURLSessionDataTask,
+            stream_task: &NSURLSessionStreamTask,
         );
 
         #[cfg(all(
@@ -1286,7 +1292,7 @@ extern_protocol!(
         pub unsafe fn URLSession_dataTask_didReceiveData(
             &self,
             session: &NSURLSession,
-            dataTask: &NSURLSessionDataTask,
+            data_task: &NSURLSessionDataTask,
             data: &NSData,
         );
 
@@ -1300,9 +1306,9 @@ extern_protocol!(
         pub unsafe fn URLSession_dataTask_willCacheResponse_completionHandler(
             &self,
             session: &NSURLSession,
-            dataTask: &NSURLSessionDataTask,
-            proposedResponse: &NSCachedURLResponse,
-            completionHandler: &Block<(*mut NSCachedURLResponse,), ()>,
+            data_task: &NSURLSessionDataTask,
+            proposed_response: &NSCachedURLResponse,
+            completion_handler: &Block<(*mut NSCachedURLResponse,), ()>,
         );
     }
 );
@@ -1320,7 +1326,7 @@ extern_protocol!(
         pub unsafe fn URLSession_downloadTask_didFinishDownloadingToURL(
             &self,
             session: &NSURLSession,
-            downloadTask: &NSURLSessionDownloadTask,
+            download_task: &NSURLSessionDownloadTask,
             location: &NSURL,
         );
 
@@ -1333,10 +1339,10 @@ extern_protocol!(
         pub unsafe fn URLSession_downloadTask_didWriteData_totalBytesWritten_totalBytesExpectedToWrite(
             &self,
             session: &NSURLSession,
-            downloadTask: &NSURLSessionDownloadTask,
-            bytesWritten: i64,
-            totalBytesWritten: i64,
-            totalBytesExpectedToWrite: i64,
+            download_task: &NSURLSessionDownloadTask,
+            bytes_written: i64,
+            total_bytes_written: i64,
+            total_bytes_expected_to_write: i64,
         );
 
         #[cfg(all(
@@ -1348,9 +1354,9 @@ extern_protocol!(
         pub unsafe fn URLSession_downloadTask_didResumeAtOffset_expectedTotalBytes(
             &self,
             session: &NSURLSession,
-            downloadTask: &NSURLSessionDownloadTask,
-            fileOffset: i64,
-            expectedTotalBytes: i64,
+            download_task: &NSURLSessionDownloadTask,
+            file_offset: i64,
+            expected_total_bytes: i64,
         );
     }
 );
@@ -1368,7 +1374,7 @@ extern_protocol!(
         pub unsafe fn URLSession_readClosedForStreamTask(
             &self,
             session: &NSURLSession,
-            streamTask: &NSURLSessionStreamTask,
+            stream_task: &NSURLSessionStreamTask,
         );
 
         #[cfg(all(
@@ -1380,7 +1386,7 @@ extern_protocol!(
         pub unsafe fn URLSession_writeClosedForStreamTask(
             &self,
             session: &NSURLSession,
-            streamTask: &NSURLSessionStreamTask,
+            stream_task: &NSURLSessionStreamTask,
         );
 
         #[cfg(all(
@@ -1392,7 +1398,7 @@ extern_protocol!(
         pub unsafe fn URLSession_betterRouteDiscoveredForStreamTask(
             &self,
             session: &NSURLSession,
-            streamTask: &NSURLSessionStreamTask,
+            stream_task: &NSURLSessionStreamTask,
         );
 
         #[cfg(all(
@@ -1406,9 +1412,9 @@ extern_protocol!(
         pub unsafe fn URLSession_streamTask_didBecomeInputStream_outputStream(
             &self,
             session: &NSURLSession,
-            streamTask: &NSURLSessionStreamTask,
-            inputStream: &NSInputStream,
-            outputStream: &NSOutputStream,
+            stream_task: &NSURLSessionStreamTask,
+            input_stream: &NSInputStream,
+            output_stream: &NSOutputStream,
         );
     }
 );
@@ -1427,7 +1433,7 @@ extern_protocol!(
         pub unsafe fn URLSession_webSocketTask_didOpenWithProtocol(
             &self,
             session: &NSURLSession,
-            webSocketTask: &NSURLSessionWebSocketTask,
+            web_socket_task: &NSURLSessionWebSocketTask,
             protocol: Option<&NSString>,
         );
 
@@ -1441,8 +1447,8 @@ extern_protocol!(
         pub unsafe fn URLSession_webSocketTask_didCloseWithCode_reason(
             &self,
             session: &NSURLSession,
-            webSocketTask: &NSURLSessionWebSocketTask,
-            closeCode: NSURLSessionWebSocketCloseCode,
+            web_socket_task: &NSURLSessionWebSocketTask,
+            close_code: NSURLSessionWebSocketCloseCode,
             reason: Option<&NSData>,
         );
     }

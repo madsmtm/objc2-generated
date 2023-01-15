@@ -41,7 +41,7 @@ extern_methods!(
         pub unsafe fn captureObject(&self) -> Option<Id<Object, Shared>>;
 
         #[method(setCaptureObject:)]
-        pub unsafe fn setCaptureObject(&self, captureObject: Option<&Object>);
+        pub unsafe fn setCaptureObject(&self, capture_object: Option<&Object>);
 
         #[method(destination)]
         pub fn destination(&self) -> MTLCaptureDestination;
@@ -55,7 +55,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method(setOutputURL:)]
-        pub fn setOutputURL(&self, outputURL: Option<&NSURL>);
+        pub fn setOutputURL(&self, output_url: Option<&NSURL>);
     }
 );
 
@@ -85,7 +85,7 @@ extern_methods!(
         #[method_id(@__retain_semantics New newCaptureScopeWithCommandQueue:)]
         pub fn newCaptureScopeWithCommandQueue(
             &self,
-            commandQueue: &MTLCommandQueue,
+            command_queue: &MTLCommandQueue,
         ) -> Id<MTLCaptureScope, Shared>;
 
         #[method(supportsDestination:)]
@@ -104,11 +104,11 @@ extern_methods!(
 
         #[deprecated = "Use startCaptureWithDescriptor:error: instead"]
         #[method(startCaptureWithCommandQueue:)]
-        pub fn startCaptureWithCommandQueue(&self, commandQueue: &MTLCommandQueue);
+        pub fn startCaptureWithCommandQueue(&self, command_queue: &MTLCommandQueue);
 
         #[deprecated = "Use startCaptureWithDescriptor:error: instead"]
         #[method(startCaptureWithScope:)]
-        pub fn startCaptureWithScope(&self, captureScope: &MTLCaptureScope);
+        pub fn startCaptureWithScope(&self, capture_scope: &MTLCaptureScope);
 
         #[method(stopCapture)]
         pub fn stopCapture(&self);
@@ -117,7 +117,7 @@ extern_methods!(
         pub fn defaultCaptureScope(&self) -> Option<Id<MTLCaptureScope, Shared>>;
 
         #[method(setDefaultCaptureScope:)]
-        pub fn setDefaultCaptureScope(&self, defaultCaptureScope: Option<&MTLCaptureScope>);
+        pub fn setDefaultCaptureScope(&self, default_capture_scope: Option<&MTLCaptureScope>);
 
         #[method(isCapturing)]
         pub fn isCapturing(&self) -> bool;

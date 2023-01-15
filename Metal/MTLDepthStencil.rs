@@ -50,37 +50,40 @@ extern_methods!(
         pub fn stencilCompareFunction(&self) -> MTLCompareFunction;
 
         #[method(setStencilCompareFunction:)]
-        pub fn setStencilCompareFunction(&self, stencilCompareFunction: MTLCompareFunction);
+        pub fn setStencilCompareFunction(&self, stencil_compare_function: MTLCompareFunction);
 
         #[method(stencilFailureOperation)]
         pub fn stencilFailureOperation(&self) -> MTLStencilOperation;
 
         #[method(setStencilFailureOperation:)]
-        pub fn setStencilFailureOperation(&self, stencilFailureOperation: MTLStencilOperation);
+        pub fn setStencilFailureOperation(&self, stencil_failure_operation: MTLStencilOperation);
 
         #[method(depthFailureOperation)]
         pub fn depthFailureOperation(&self) -> MTLStencilOperation;
 
         #[method(setDepthFailureOperation:)]
-        pub fn setDepthFailureOperation(&self, depthFailureOperation: MTLStencilOperation);
+        pub fn setDepthFailureOperation(&self, depth_failure_operation: MTLStencilOperation);
 
         #[method(depthStencilPassOperation)]
         pub fn depthStencilPassOperation(&self) -> MTLStencilOperation;
 
         #[method(setDepthStencilPassOperation:)]
-        pub fn setDepthStencilPassOperation(&self, depthStencilPassOperation: MTLStencilOperation);
+        pub fn setDepthStencilPassOperation(
+            &self,
+            depth_stencil_pass_operation: MTLStencilOperation,
+        );
 
         #[method(readMask)]
         pub fn readMask(&self) -> u32;
 
         #[method(setReadMask:)]
-        pub fn setReadMask(&self, readMask: u32);
+        pub fn setReadMask(&self, read_mask: u32);
 
         #[method(writeMask)]
         pub fn writeMask(&self) -> u32;
 
         #[method(setWriteMask:)]
-        pub fn setWriteMask(&self, writeMask: u32);
+        pub fn setWriteMask(&self, write_mask: u32);
     }
 );
 
@@ -102,13 +105,13 @@ extern_methods!(
         pub fn depthCompareFunction(&self) -> MTLCompareFunction;
 
         #[method(setDepthCompareFunction:)]
-        pub fn setDepthCompareFunction(&self, depthCompareFunction: MTLCompareFunction);
+        pub fn setDepthCompareFunction(&self, depth_compare_function: MTLCompareFunction);
 
         #[method(isDepthWriteEnabled)]
         pub fn isDepthWriteEnabled(&self) -> bool;
 
         #[method(setDepthWriteEnabled:)]
-        pub fn setDepthWriteEnabled(&self, depthWriteEnabled: bool);
+        pub fn setDepthWriteEnabled(&self, depth_write_enabled: bool);
 
         #[cfg(feature = "Metal_MTLStencilDescriptor")]
         #[method_id(@__retain_semantics Other frontFaceStencil)]
@@ -116,7 +119,7 @@ extern_methods!(
 
         #[cfg(feature = "Metal_MTLStencilDescriptor")]
         #[method(setFrontFaceStencil:)]
-        pub fn setFrontFaceStencil(&self, frontFaceStencil: Option<&MTLStencilDescriptor>);
+        pub fn setFrontFaceStencil(&self, front_face_stencil: Option<&MTLStencilDescriptor>);
 
         #[cfg(feature = "Metal_MTLStencilDescriptor")]
         #[method_id(@__retain_semantics Other backFaceStencil)]
@@ -124,7 +127,7 @@ extern_methods!(
 
         #[cfg(feature = "Metal_MTLStencilDescriptor")]
         #[method(setBackFaceStencil:)]
-        pub fn setBackFaceStencil(&self, backFaceStencil: Option<&MTLStencilDescriptor>);
+        pub fn setBackFaceStencil(&self, back_face_stencil: Option<&MTLStencilDescriptor>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]

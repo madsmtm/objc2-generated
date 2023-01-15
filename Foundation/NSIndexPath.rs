@@ -52,10 +52,14 @@ extern_methods!(
         pub unsafe fn length(&self) -> NSUInteger;
 
         #[method(getIndexes:range:)]
-        pub unsafe fn getIndexes_range(&self, indexes: NonNull<NSUInteger>, positionRange: NSRange);
+        pub unsafe fn getIndexes_range(
+            &self,
+            indexes: NonNull<NSUInteger>,
+            position_range: NSRange,
+        );
 
         #[method(compare:)]
-        pub unsafe fn compare(&self, otherObject: &NSIndexPath) -> NSComparisonResult;
+        pub unsafe fn compare(&self, other_object: &NSIndexPath) -> NSComparisonResult;
     }
 );
 

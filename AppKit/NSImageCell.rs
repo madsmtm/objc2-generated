@@ -50,19 +50,19 @@ extern_methods!(
         pub unsafe fn imageAlignment(&self) -> NSImageAlignment;
 
         #[method(setImageAlignment:)]
-        pub unsafe fn setImageAlignment(&self, imageAlignment: NSImageAlignment);
+        pub unsafe fn setImageAlignment(&self, image_alignment: NSImageAlignment);
 
         #[method(imageScaling)]
         pub unsafe fn imageScaling(&self) -> NSImageScaling;
 
         #[method(setImageScaling:)]
-        pub unsafe fn setImageScaling(&self, imageScaling: NSImageScaling);
+        pub unsafe fn setImageScaling(&self, image_scaling: NSImageScaling);
 
         #[method(imageFrameStyle)]
         pub unsafe fn imageFrameStyle(&self) -> NSImageFrameStyle;
 
         #[method(setImageFrameStyle:)]
-        pub unsafe fn setImageFrameStyle(&self, imageFrameStyle: NSImageFrameStyle);
+        pub unsafe fn setImageFrameStyle(&self, image_frame_style: NSImageFrameStyle);
     }
 );
 

@@ -116,9 +116,9 @@ extern_methods!(
         #[method(getCredentialsForProtectionSpace:task:completionHandler:)]
         pub unsafe fn getCredentialsForProtectionSpace_task_completionHandler(
             &self,
-            protectionSpace: &NSURLProtectionSpace,
+            protection_space: &NSURLProtectionSpace,
             task: &NSURLSessionTask,
-            completionHandler: &Block<(*mut NSDictionary<NSString, NSURLCredential>,), ()>,
+            completion_handler: &Block<(*mut NSDictionary<NSString, NSURLCredential>,), ()>,
         );
 
         #[cfg(all(
@@ -130,7 +130,7 @@ extern_methods!(
         pub unsafe fn setCredential_forProtectionSpace_task(
             &self,
             credential: &NSURLCredential,
-            protectionSpace: &NSURLProtectionSpace,
+            protection_space: &NSURLProtectionSpace,
             task: &NSURLSessionTask,
         );
 
@@ -145,7 +145,7 @@ extern_methods!(
         pub unsafe fn removeCredential_forProtectionSpace_options_task(
             &self,
             credential: &NSURLCredential,
-            protectionSpace: &NSURLProtectionSpace,
+            protection_space: &NSURLProtectionSpace,
             options: Option<&NSDictionary<NSString, Object>>,
             task: &NSURLSessionTask,
         );
@@ -160,7 +160,7 @@ extern_methods!(
             &self,
             space: &NSURLProtectionSpace,
             task: &NSURLSessionTask,
-            completionHandler: &Block<(*mut NSURLCredential,), ()>,
+            completion_handler: &Block<(*mut NSURLCredential,), ()>,
         );
 
         #[cfg(all(
@@ -172,7 +172,7 @@ extern_methods!(
         pub unsafe fn setDefaultCredential_forProtectionSpace_task(
             &self,
             credential: &NSURLCredential,
-            protectionSpace: &NSURLProtectionSpace,
+            protection_space: &NSURLProtectionSpace,
             task: &NSURLSessionTask,
         );
     }

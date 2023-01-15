@@ -62,7 +62,7 @@ extern_methods!(
         pub unsafe fn languageLevel(&self) -> NSInteger;
 
         #[method(pageSizeForPaper:)]
-        pub unsafe fn pageSizeForPaper(&self, paperName: &NSPrinterPaperName) -> NSSize;
+        pub unsafe fn pageSizeForPaper(&self, paper_name: &NSPrinterPaperName) -> NSSize;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other deviceDescription)]
@@ -79,7 +79,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
         #[method(statusForTable:)]
-        pub unsafe fn statusForTable(&self, tableName: &NSString) -> NSPrinterTableStatus;
+        pub unsafe fn statusForTable(&self, table_name: &NSString) -> NSPrinterTableStatus;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
@@ -142,7 +142,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
         #[method(imageRectForPaper:)]
-        pub unsafe fn imageRectForPaper(&self, paperName: Option<&NSString>) -> NSRect;
+        pub unsafe fn imageRectForPaper(&self, paper_name: Option<&NSString>) -> NSRect;
 
         #[deprecated]
         #[method(acceptsBinary)]
@@ -155,7 +155,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
         #[method(isFontAvailable:)]
-        pub unsafe fn isFontAvailable(&self, faceName: Option<&NSString>) -> bool;
+        pub unsafe fn isFontAvailable(&self, face_name: Option<&NSString>) -> bool;
 
         #[deprecated]
         #[method(isOutputStackInReverseOrder)]

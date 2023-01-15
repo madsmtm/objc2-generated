@@ -31,7 +31,7 @@ extern_protocol!(
         pub unsafe fn performFeedbackPattern_performanceTime(
             &self,
             pattern: NSHapticFeedbackPattern,
-            performanceTime: NSHapticFeedbackPerformanceTime,
+            performance_time: NSHapticFeedbackPerformanceTime,
         );
     }
 );

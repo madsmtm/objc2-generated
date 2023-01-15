@@ -55,21 +55,21 @@ extern_methods!(
         #[method(getNonlocalVersionsOfItemAtURL:completionHandler:)]
         pub unsafe fn getNonlocalVersionsOfItemAtURL_completionHandler(
             url: &NSURL,
-            completionHandler: &Block<(*mut NSArray<NSFileVersion>, *mut NSError), ()>,
+            completion_handler: &Block<(*mut NSArray<NSFileVersion>, *mut NSError), ()>,
         );
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other versionOfItemAtURL:forPersistentIdentifier:)]
         pub unsafe fn versionOfItemAtURL_forPersistentIdentifier(
             url: &NSURL,
-            persistentIdentifier: &Object,
+            persistent_identifier: &Object,
         ) -> Option<Id<NSFileVersion, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other addVersionOfItemAtURL:withContentsOfURL:options:error:_)]
         pub unsafe fn addVersionOfItemAtURL_withContentsOfURL_options_error(
             url: &NSURL,
-            contentsURL: &NSURL,
+            contents_url: &NSURL,
             options: NSFileVersionAddingOptions,
         ) -> Result<Id<NSFileVersion, Shared>, Id<NSError, Shared>>;
 

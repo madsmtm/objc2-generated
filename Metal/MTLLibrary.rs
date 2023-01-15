@@ -174,7 +174,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics New newArgumentEncoderWithBufferIndex:)]
         pub unsafe fn newArgumentEncoderWithBufferIndex(
             &self,
-            bufferIndex: NSUInteger,
+            buffer_index: NSUInteger,
         ) -> Id<MTLArgumentEncoder, Shared>;
 
         #[method(options)]
@@ -236,26 +236,26 @@ extern_methods!(
         #[method(setPreprocessorMacros:)]
         pub unsafe fn setPreprocessorMacros(
             &self,
-            preprocessorMacros: Option<&NSDictionary<NSString, NSObject>>,
+            preprocessor_macros: Option<&NSDictionary<NSString, NSObject>>,
         );
 
         #[method(fastMathEnabled)]
         pub fn fastMathEnabled(&self) -> bool;
 
         #[method(setFastMathEnabled:)]
-        pub fn setFastMathEnabled(&self, fastMathEnabled: bool);
+        pub fn setFastMathEnabled(&self, fast_math_enabled: bool);
 
         #[method(languageVersion)]
         pub fn languageVersion(&self) -> MTLLanguageVersion;
 
         #[method(setLanguageVersion:)]
-        pub fn setLanguageVersion(&self, languageVersion: MTLLanguageVersion);
+        pub fn setLanguageVersion(&self, language_version: MTLLanguageVersion);
 
         #[method(libraryType)]
         pub fn libraryType(&self) -> MTLLibraryType;
 
         #[method(setLibraryType:)]
-        pub fn setLibraryType(&self, libraryType: MTLLibraryType);
+        pub fn setLibraryType(&self, library_type: MTLLibraryType);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other installName)]
@@ -263,7 +263,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setInstallName:)]
-        pub unsafe fn setInstallName(&self, installName: Option<&NSString>);
+        pub unsafe fn setInstallName(&self, install_name: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other libraries)]
@@ -277,13 +277,13 @@ extern_methods!(
         pub fn preserveInvariance(&self) -> bool;
 
         #[method(setPreserveInvariance:)]
-        pub fn setPreserveInvariance(&self, preserveInvariance: bool);
+        pub fn setPreserveInvariance(&self, preserve_invariance: bool);
 
         #[method(optimizationLevel)]
         pub unsafe fn optimizationLevel(&self) -> MTLLibraryOptimizationLevel;
 
         #[method(setOptimizationLevel:)]
-        pub unsafe fn setOptimizationLevel(&self, optimizationLevel: MTLLibraryOptimizationLevel);
+        pub unsafe fn setOptimizationLevel(&self, optimization_level: MTLLibraryOptimizationLevel);
     }
 );
 
@@ -320,7 +320,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics New newFunctionWithName:)]
         pub fn newFunctionWithName(
             &self,
-            functionName: &NSString,
+            function_name: &NSString,
         ) -> Option<Id<MTLFunction, Shared>>;
 
         #[cfg(all(
@@ -332,7 +332,7 @@ extern_protocol!(
         pub fn newFunctionWithName_constantValues_error(
             &self,
             name: &NSString,
-            constantValues: &MTLFunctionConstantValues,
+            constant_values: &MTLFunctionConstantValues,
         ) -> Result<Id<MTLFunction, Shared>, Id<NSError, Shared>>;
 
         #[cfg(all(
@@ -344,8 +344,8 @@ extern_protocol!(
         pub unsafe fn newFunctionWithName_constantValues_completionHandler(
             &self,
             name: &NSString,
-            constantValues: &MTLFunctionConstantValues,
-            completionHandler: &Block<(*mut MTLFunction, *mut NSError), ()>,
+            constant_values: &MTLFunctionConstantValues,
+            completion_handler: &Block<(*mut MTLFunction, *mut NSError), ()>,
         );
 
         #[cfg(all(
@@ -356,7 +356,7 @@ extern_protocol!(
         pub unsafe fn newFunctionWithDescriptor_completionHandler(
             &self,
             descriptor: &MTLFunctionDescriptor,
-            completionHandler: &Block<(*mut MTLFunction, *mut NSError), ()>,
+            completion_handler: &Block<(*mut MTLFunction, *mut NSError), ()>,
         );
 
         #[cfg(all(
@@ -377,7 +377,7 @@ extern_protocol!(
         pub unsafe fn newIntersectionFunctionWithDescriptor_completionHandler(
             &self,
             descriptor: &MTLIntersectionFunctionDescriptor,
-            completionHandler: &Block<(*mut MTLFunction, *mut NSError), ()>,
+            completion_handler: &Block<(*mut MTLFunction, *mut NSError), ()>,
         );
 
         #[cfg(all(

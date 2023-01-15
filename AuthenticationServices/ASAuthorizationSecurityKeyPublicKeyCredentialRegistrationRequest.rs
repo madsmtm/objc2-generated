@@ -41,7 +41,7 @@ extern_methods!(
         #[method(setCredentialParameters:)]
         pub unsafe fn setCredentialParameters(
             &self,
-            credentialParameters: &NSArray<ASAuthorizationPublicKeyCredentialParameters>,
+            credential_parameters: &NSArray<ASAuthorizationPublicKeyCredentialParameters>,
         );
 
         #[cfg(all(
@@ -60,7 +60,7 @@ extern_methods!(
         #[method(setExcludedCredentials:)]
         pub unsafe fn setExcludedCredentials(
             &self,
-            excludedCredentials: &NSArray<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor>,
+            excluded_credentials: &NSArray<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor>,
         );
 
         #[method_id(@__retain_semantics Other residentKeyPreference)]
@@ -71,7 +71,7 @@ extern_methods!(
         #[method(setResidentKeyPreference:)]
         pub unsafe fn setResidentKeyPreference(
             &self,
-            residentKeyPreference: &ASAuthorizationPublicKeyCredentialResidentKeyPreference,
+            resident_key_preference: &ASAuthorizationPublicKeyCredentialResidentKeyPreference,
         );
 
         #[method_id(@__retain_semantics New new)]

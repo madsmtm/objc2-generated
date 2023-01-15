@@ -23,7 +23,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithActivityType:)]
         pub unsafe fn initWithActivityType(
             this: Option<Allocated<Self>>,
-            activityType: &NSString,
+            activity_type: &NSString,
         ) -> Id<Self, Shared>;
 
         #[deprecated = "Use initWithActivityType: with a specific activity type string"]
@@ -48,11 +48,11 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(setUserInfo:)]
-        pub unsafe fn setUserInfo(&self, userInfo: Option<&NSDictionary>);
+        pub unsafe fn setUserInfo(&self, user_info: Option<&NSDictionary>);
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(addUserInfoEntriesFromDictionary:)]
-        pub unsafe fn addUserInfoEntriesFromDictionary(&self, otherDictionary: &NSDictionary);
+        pub unsafe fn addUserInfoEntriesFromDictionary(&self, other_dictionary: &NSDictionary);
 
         #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other requiredUserInfoKeys)]
@@ -62,14 +62,14 @@ extern_methods!(
         #[method(setRequiredUserInfoKeys:)]
         pub unsafe fn setRequiredUserInfoKeys(
             &self,
-            requiredUserInfoKeys: Option<&NSSet<NSString>>,
+            required_user_info_keys: Option<&NSSet<NSString>>,
         );
 
         #[method(needsSave)]
         pub unsafe fn needsSave(&self) -> bool;
 
         #[method(setNeedsSave:)]
-        pub unsafe fn setNeedsSave(&self, needsSave: bool);
+        pub unsafe fn setNeedsSave(&self, needs_save: bool);
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other webpageURL)]
@@ -77,7 +77,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method(setWebpageURL:)]
-        pub unsafe fn setWebpageURL(&self, webpageURL: Option<&NSURL>);
+        pub unsafe fn setWebpageURL(&self, webpage_url: Option<&NSURL>);
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other referrerURL)]
@@ -85,7 +85,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method(setReferrerURL:)]
-        pub unsafe fn setReferrerURL(&self, referrerURL: Option<&NSURL>);
+        pub unsafe fn setReferrerURL(&self, referrer_url: Option<&NSURL>);
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other expirationDate)]
@@ -93,7 +93,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method(setExpirationDate:)]
-        pub unsafe fn setExpirationDate(&self, expirationDate: Option<&NSDate>);
+        pub unsafe fn setExpirationDate(&self, expiration_date: Option<&NSDate>);
 
         #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other keywords)]
@@ -107,7 +107,7 @@ extern_methods!(
         pub unsafe fn supportsContinuationStreams(&self) -> bool;
 
         #[method(setSupportsContinuationStreams:)]
-        pub unsafe fn setSupportsContinuationStreams(&self, supportsContinuationStreams: bool);
+        pub unsafe fn setSupportsContinuationStreams(&self, supports_continuation_streams: bool);
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSUserActivityDelegate, Shared>>;
@@ -121,7 +121,10 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setTargetContentIdentifier:)]
-        pub unsafe fn setTargetContentIdentifier(&self, targetContentIdentifier: Option<&NSString>);
+        pub unsafe fn setTargetContentIdentifier(
+            &self,
+            target_content_identifier: Option<&NSString>,
+        );
 
         #[method(becomeCurrent)]
         pub unsafe fn becomeCurrent(&self);
@@ -140,32 +143,32 @@ extern_methods!(
         #[method(getContinuationStreamsWithCompletionHandler:)]
         pub unsafe fn getContinuationStreamsWithCompletionHandler(
             &self,
-            completionHandler: &Block<(*mut NSInputStream, *mut NSOutputStream, *mut NSError), ()>,
+            completion_handler: &Block<(*mut NSInputStream, *mut NSOutputStream, *mut NSError), ()>,
         );
 
         #[method(isEligibleForHandoff)]
         pub unsafe fn isEligibleForHandoff(&self) -> bool;
 
         #[method(setEligibleForHandoff:)]
-        pub unsafe fn setEligibleForHandoff(&self, eligibleForHandoff: bool);
+        pub unsafe fn setEligibleForHandoff(&self, eligible_for_handoff: bool);
 
         #[method(isEligibleForSearch)]
         pub unsafe fn isEligibleForSearch(&self) -> bool;
 
         #[method(setEligibleForSearch:)]
-        pub unsafe fn setEligibleForSearch(&self, eligibleForSearch: bool);
+        pub unsafe fn setEligibleForSearch(&self, eligible_for_search: bool);
 
         #[method(isEligibleForPublicIndexing)]
         pub unsafe fn isEligibleForPublicIndexing(&self) -> bool;
 
         #[method(setEligibleForPublicIndexing:)]
-        pub unsafe fn setEligibleForPublicIndexing(&self, eligibleForPublicIndexing: bool);
+        pub unsafe fn setEligibleForPublicIndexing(&self, eligible_for_public_indexing: bool);
 
         #[method(isEligibleForPrediction)]
         pub unsafe fn isEligibleForPrediction(&self) -> bool;
 
         #[method(setEligibleForPrediction:)]
-        pub unsafe fn setEligibleForPrediction(&self, eligibleForPrediction: bool);
+        pub unsafe fn setEligibleForPrediction(&self, eligible_for_prediction: bool);
 
         #[method_id(@__retain_semantics Other persistentIdentifier)]
         pub unsafe fn persistentIdentifier(
@@ -175,13 +178,13 @@ extern_methods!(
         #[method(setPersistentIdentifier:)]
         pub unsafe fn setPersistentIdentifier(
             &self,
-            persistentIdentifier: Option<&NSUserActivityPersistentIdentifier>,
+            persistent_identifier: Option<&NSUserActivityPersistentIdentifier>,
         );
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(deleteSavedUserActivitiesWithPersistentIdentifiers:completionHandler:)]
         pub unsafe fn deleteSavedUserActivitiesWithPersistentIdentifiers_completionHandler(
-            persistentIdentifiers: &NSArray<NSUserActivityPersistentIdentifier>,
+            persistent_identifiers: &NSArray<NSUserActivityPersistentIdentifier>,
             handler: &Block<(), ()>,
         );
 
@@ -199,12 +202,12 @@ extern_protocol!(
         #[cfg(feature = "Foundation_NSUserActivity")]
         #[optional]
         #[method(userActivityWillSave:)]
-        pub unsafe fn userActivityWillSave(&self, userActivity: &NSUserActivity);
+        pub unsafe fn userActivityWillSave(&self, user_activity: &NSUserActivity);
 
         #[cfg(feature = "Foundation_NSUserActivity")]
         #[optional]
         #[method(userActivityWasContinued:)]
-        pub unsafe fn userActivityWasContinued(&self, userActivity: &NSUserActivity);
+        pub unsafe fn userActivityWasContinued(&self, user_activity: &NSUserActivity);
 
         #[cfg(all(
             feature = "Foundation_NSInputStream",
@@ -215,9 +218,9 @@ extern_protocol!(
         #[method(userActivity:didReceiveInputStream:outputStream:)]
         pub unsafe fn userActivity_didReceiveInputStream_outputStream(
             &self,
-            userActivity: &NSUserActivity,
-            inputStream: &NSInputStream,
-            outputStream: &NSOutputStream,
+            user_activity: &NSUserActivity,
+            input_stream: &NSInputStream,
+            output_stream: &NSOutputStream,
         );
     }
 );

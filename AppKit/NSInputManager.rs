@@ -22,7 +22,7 @@ extern_protocol!(
         pub unsafe fn setMarkedText_selectedRange(
             &self,
             string: Option<&Object>,
-            selRange: NSRange,
+            sel_range: NSRange,
         );
 
         #[deprecated]
@@ -100,8 +100,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithName:host:)]
         pub unsafe fn initWithName_host(
             this: Option<Allocated<Self>>,
-            inputServerName: Option<&NSString>,
-            hostName: Option<&NSString>,
+            input_server_name: Option<&NSString>,
+            host_name: Option<&NSString>,
         ) -> Option<Id<NSInputManager, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -117,7 +117,7 @@ extern_methods!(
         #[method(markedTextSelectionChanged:client:)]
         pub unsafe fn markedTextSelectionChanged_client(
             &self,
-            newSel: NSRange,
+            new_sel: NSRange,
             cli: Option<&Object>,
         );
 
@@ -147,7 +147,7 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSEvent")]
         #[deprecated]
         #[method(handleMouseEvent:)]
-        pub unsafe fn handleMouseEvent(&self, mouseEvent: Option<&NSEvent>) -> bool;
+        pub unsafe fn handleMouseEvent(&self, mouse_event: Option<&NSEvent>) -> bool;
 
         #[deprecated]
         #[method(wantsToDelayTextChangeNotifications)]

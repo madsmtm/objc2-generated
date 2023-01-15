@@ -29,7 +29,7 @@ extern_methods!(
         pub unsafe fn initWithPersistentStoreCoordinator_configurationName_URL_options(
             this: Option<Allocated<Self>>,
             coordinator: Option<&NSPersistentStoreCoordinator>,
-            configurationName: Option<&NSString>,
+            configuration_name: Option<&NSString>,
             url: &NSURL,
             options: Option<&NSDictionary>,
         ) -> Id<Self, Shared>;
@@ -49,7 +49,7 @@ extern_methods!(
         #[method_id(@__retain_semantics New newCacheNodeForManagedObject:)]
         pub unsafe fn newCacheNodeForManagedObject(
             &self,
-            managedObject: &NSManagedObject,
+            managed_object: &NSManagedObject,
         ) -> Id<NSAtomicStoreCacheNode, Shared>;
 
         #[cfg(all(
@@ -60,7 +60,7 @@ extern_methods!(
         pub unsafe fn updateCacheNode_fromManagedObject(
             &self,
             node: &NSAtomicStoreCacheNode,
-            managedObject: &NSManagedObject,
+            managed_object: &NSManagedObject,
         );
 
         #[cfg(all(
@@ -75,14 +75,14 @@ extern_methods!(
             feature = "Foundation_NSSet"
         ))]
         #[method(addCacheNodes:)]
-        pub unsafe fn addCacheNodes(&self, cacheNodes: &NSSet<NSAtomicStoreCacheNode>);
+        pub unsafe fn addCacheNodes(&self, cache_nodes: &NSSet<NSAtomicStoreCacheNode>);
 
         #[cfg(all(
             feature = "CoreData_NSAtomicStoreCacheNode",
             feature = "Foundation_NSSet"
         ))]
         #[method(willRemoveCacheNodes:)]
-        pub unsafe fn willRemoveCacheNodes(&self, cacheNodes: &NSSet<NSAtomicStoreCacheNode>);
+        pub unsafe fn willRemoveCacheNodes(&self, cache_nodes: &NSSet<NSAtomicStoreCacheNode>);
 
         #[cfg(all(
             feature = "CoreData_NSAtomicStoreCacheNode",
@@ -91,7 +91,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other cacheNodeForObjectID:)]
         pub unsafe fn cacheNodeForObjectID(
             &self,
-            objectID: &NSManagedObjectID,
+            object_id: &NSManagedObjectID,
         ) -> Option<Id<NSAtomicStoreCacheNode, Shared>>;
 
         #[cfg(all(
@@ -109,14 +109,14 @@ extern_methods!(
         #[method_id(@__retain_semantics New newReferenceObjectForManagedObject:)]
         pub unsafe fn newReferenceObjectForManagedObject(
             &self,
-            managedObject: &NSManagedObject,
+            managed_object: &NSManagedObject,
         ) -> Id<Object, Shared>;
 
         #[cfg(feature = "CoreData_NSManagedObjectID")]
         #[method_id(@__retain_semantics Other referenceObjectForObjectID:)]
         pub unsafe fn referenceObjectForObjectID(
             &self,
-            objectID: &NSManagedObjectID,
+            object_id: &NSManagedObjectID,
         ) -> Id<Object, Shared>;
     }
 );

@@ -30,7 +30,7 @@ extern_methods!(
         pub unsafe fn rotationInDegrees(&self) -> CGFloat;
 
         #[method(setRotationInDegrees:)]
-        pub unsafe fn setRotationInDegrees(&self, rotationInDegrees: CGFloat);
+        pub unsafe fn setRotationInDegrees(&self, rotation_in_degrees: CGFloat);
     }
 );
 

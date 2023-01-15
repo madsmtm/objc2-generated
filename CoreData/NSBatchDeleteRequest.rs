@@ -40,7 +40,7 @@ extern_methods!(
         pub unsafe fn resultType(&self) -> NSBatchDeleteRequestResultType;
 
         #[method(setResultType:)]
-        pub unsafe fn setResultType(&self, resultType: NSBatchDeleteRequestResultType);
+        pub unsafe fn setResultType(&self, result_type: NSBatchDeleteRequestResultType);
 
         #[cfg(feature = "CoreData_NSFetchRequest")]
         #[method_id(@__retain_semantics Other fetchRequest)]

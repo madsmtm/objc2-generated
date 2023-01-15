@@ -23,49 +23,49 @@ extern_methods!(
         pub unsafe fn instanceCount(&self) -> NSInteger;
 
         #[method(setInstanceCount:)]
-        pub unsafe fn setInstanceCount(&self, instanceCount: NSInteger);
+        pub unsafe fn setInstanceCount(&self, instance_count: NSInteger);
 
         #[method(preservesDepth)]
         pub unsafe fn preservesDepth(&self) -> bool;
 
         #[method(setPreservesDepth:)]
-        pub unsafe fn setPreservesDepth(&self, preservesDepth: bool);
+        pub unsafe fn setPreservesDepth(&self, preserves_depth: bool);
 
         #[method(instanceDelay)]
         pub unsafe fn instanceDelay(&self) -> CFTimeInterval;
 
         #[method(setInstanceDelay:)]
-        pub unsafe fn setInstanceDelay(&self, instanceDelay: CFTimeInterval);
+        pub unsafe fn setInstanceDelay(&self, instance_delay: CFTimeInterval);
 
         #[method(instanceTransform)]
         pub unsafe fn instanceTransform(&self) -> CATransform3D;
 
         #[method(setInstanceTransform:)]
-        pub unsafe fn setInstanceTransform(&self, instanceTransform: CATransform3D);
+        pub unsafe fn setInstanceTransform(&self, instance_transform: CATransform3D);
 
         #[method(instanceRedOffset)]
         pub unsafe fn instanceRedOffset(&self) -> c_float;
 
         #[method(setInstanceRedOffset:)]
-        pub unsafe fn setInstanceRedOffset(&self, instanceRedOffset: c_float);
+        pub unsafe fn setInstanceRedOffset(&self, instance_red_offset: c_float);
 
         #[method(instanceGreenOffset)]
         pub unsafe fn instanceGreenOffset(&self) -> c_float;
 
         #[method(setInstanceGreenOffset:)]
-        pub unsafe fn setInstanceGreenOffset(&self, instanceGreenOffset: c_float);
+        pub unsafe fn setInstanceGreenOffset(&self, instance_green_offset: c_float);
 
         #[method(instanceBlueOffset)]
         pub unsafe fn instanceBlueOffset(&self) -> c_float;
 
         #[method(setInstanceBlueOffset:)]
-        pub unsafe fn setInstanceBlueOffset(&self, instanceBlueOffset: c_float);
+        pub unsafe fn setInstanceBlueOffset(&self, instance_blue_offset: c_float);
 
         #[method(instanceAlphaOffset)]
         pub unsafe fn instanceAlphaOffset(&self) -> c_float;
 
         #[method(setInstanceAlphaOffset:)]
-        pub unsafe fn setInstanceAlphaOffset(&self, instanceAlphaOffset: c_float);
+        pub unsafe fn setInstanceAlphaOffset(&self, instance_alpha_offset: c_float);
     }
 );
 

@@ -27,13 +27,13 @@ extern_methods!(
         #[method(setAuthorizationOptions:)]
         pub unsafe fn setAuthorizationOptions(
             &self,
-            authorizationOptions: &NSArray<NSURLQueryItem>,
+            authorization_options: &NSArray<NSURLQueryItem>,
         );
 
         #[method(isUserInterfaceEnabled)]
         pub unsafe fn isUserInterfaceEnabled(&self) -> bool;
 
         #[method(setUserInterfaceEnabled:)]
-        pub unsafe fn setUserInterfaceEnabled(&self, userInterfaceEnabled: bool);
+        pub unsafe fn setUserInterfaceEnabled(&self, user_interface_enabled: bool);
     }
 );

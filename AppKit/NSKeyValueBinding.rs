@@ -43,14 +43,14 @@ extern_methods!(
         pub unsafe fn setDefaultPlaceholder_forMarker_onClass_withBinding(
             placeholder: Option<&Object>,
             marker: Option<&NSBindingSelectionMarker>,
-            objectClass: &Class,
+            object_class: &Class,
             binding: &NSBindingName,
         );
 
         #[method_id(@__retain_semantics Other defaultPlaceholderForMarker:onClass:withBinding:)]
         pub unsafe fn defaultPlaceholderForMarker_onClass_withBinding(
             marker: Option<&NSBindingSelectionMarker>,
-            objectClass: &Class,
+            object_class: &Class,
             binding: &NSBindingName,
         ) -> Option<Id<Object, Shared>>;
     }
@@ -90,8 +90,8 @@ extern_protocol!(
         pub unsafe fn commitEditingWithDelegate_didCommitSelector_contextInfo(
             &self,
             delegate: Option<&Object>,
-            didCommitSelector: Option<Sel>,
-            contextInfo: *mut c_void,
+            did_commit_selector: Option<Sel>,
+            context_info: *mut c_void,
         );
 
         #[cfg(feature = "Foundation_NSError")]

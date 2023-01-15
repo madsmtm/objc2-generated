@@ -53,12 +53,12 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithType:error:_)]
         pub unsafe fn initWithType_error(
             this: Option<Allocated<Self>>,
-            typeName: &NSString,
+            type_name: &NSString,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(canConcurrentlyReadDocumentsOfType:)]
-        pub unsafe fn canConcurrentlyReadDocumentsOfType(typeName: &NSString) -> bool;
+        pub unsafe fn canConcurrentlyReadDocumentsOfType(type_name: &NSString) -> bool;
 
         #[cfg(all(
             feature = "Foundation_NSError",
@@ -69,7 +69,7 @@ extern_methods!(
         pub unsafe fn initWithContentsOfURL_ofType_error(
             this: Option<Allocated<Self>>,
             url: &NSURL,
-            typeName: &NSString,
+            type_name: &NSString,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
         #[cfg(all(
@@ -80,9 +80,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initForURL:withContentsOfURL:ofType:error:_)]
         pub unsafe fn initForURL_withContentsOfURL_ofType_error(
             this: Option<Allocated<Self>>,
-            urlOrNil: Option<&NSURL>,
-            contentsURL: &NSURL,
-            typeName: &NSString,
+            url_or_nil: Option<&NSURL>,
+            contents_url: &NSURL,
+            type_name: &NSString,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -91,7 +91,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setFileType:)]
-        pub unsafe fn setFileType(&self, fileType: Option<&NSString>);
+        pub unsafe fn setFileType(&self, file_type: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other fileURL)]
@@ -99,7 +99,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method(setFileURL:)]
-        pub unsafe fn setFileURL(&self, fileURL: Option<&NSURL>);
+        pub unsafe fn setFileURL(&self, file_url: Option<&NSURL>);
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other fileModificationDate)]
@@ -107,7 +107,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method(setFileModificationDate:)]
-        pub unsafe fn setFileModificationDate(&self, fileModificationDate: Option<&NSDate>);
+        pub unsafe fn setFileModificationDate(&self, file_modification_date: Option<&NSDate>);
 
         #[method(isDraft)]
         pub unsafe fn isDraft(&self) -> bool;
@@ -118,7 +118,7 @@ extern_methods!(
         #[method(performActivityWithSynchronousWaiting:usingBlock:)]
         pub unsafe fn performActivityWithSynchronousWaiting_usingBlock(
             &self,
-            waitSynchronously: bool,
+            wait_synchronously: bool,
             block: &Block<(NonNull<Block<(), ()>>,), ()>,
         );
 
@@ -149,7 +149,7 @@ extern_methods!(
         pub unsafe fn revertToContentsOfURL_ofType_error(
             &self,
             url: &NSURL,
-            typeName: &NSString,
+            type_name: &NSString,
         ) -> Result<(), Id<NSError, Shared>>;
 
         #[cfg(all(
@@ -161,7 +161,7 @@ extern_methods!(
         pub unsafe fn readFromURL_ofType_error(
             &self,
             url: &NSURL,
-            typeName: &NSString,
+            type_name: &NSString,
         ) -> Result<(), Id<NSError, Shared>>;
 
         #[cfg(all(
@@ -172,8 +172,8 @@ extern_methods!(
         #[method(readFromFileWrapper:ofType:error:_)]
         pub unsafe fn readFromFileWrapper_ofType_error(
             &self,
-            fileWrapper: &NSFileWrapper,
-            typeName: &NSString,
+            file_wrapper: &NSFileWrapper,
+            type_name: &NSString,
         ) -> Result<(), Id<NSError, Shared>>;
 
         #[cfg(all(
@@ -185,7 +185,7 @@ extern_methods!(
         pub unsafe fn readFromData_ofType_error(
             &self,
             data: &NSData,
-            typeName: &NSString,
+            type_name: &NSString,
         ) -> Result<(), Id<NSError, Shared>>;
 
         #[method(isEntireFileLoaded)]
@@ -200,7 +200,7 @@ extern_methods!(
         pub unsafe fn writeToURL_ofType_error(
             &self,
             url: &NSURL,
-            typeName: &NSString,
+            type_name: &NSString,
         ) -> Result<(), Id<NSError, Shared>>;
 
         #[cfg(all(
@@ -211,7 +211,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other fileWrapperOfType:error:_)]
         pub unsafe fn fileWrapperOfType_error(
             &self,
-            typeName: &NSString,
+            type_name: &NSString,
         ) -> Result<Id<NSFileWrapper, Shared>, Id<NSError, Shared>>;
 
         #[cfg(all(
@@ -222,7 +222,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other dataOfType:error:_)]
         pub unsafe fn dataOfType_error(
             &self,
-            typeName: &NSString,
+            type_name: &NSString,
         ) -> Result<Id<NSData, Shared>, Id<NSError, Shared>>;
 
         #[method(unblockUserInteraction)]
@@ -240,8 +240,8 @@ extern_methods!(
         pub unsafe fn writeSafelyToURL_ofType_forSaveOperation_error(
             &self,
             url: &NSURL,
-            typeName: &NSString,
-            saveOperation: NSSaveOperationType,
+            type_name: &NSString,
+            save_operation: NSSaveOperationType,
         ) -> Result<(), Id<NSError, Shared>>;
 
         #[cfg(all(
@@ -253,9 +253,9 @@ extern_methods!(
         pub unsafe fn writeToURL_ofType_forSaveOperation_originalContentsURL_error(
             &self,
             url: &NSURL,
-            typeName: &NSString,
-            saveOperation: NSSaveOperationType,
-            absoluteOriginalContentsURL: Option<&NSURL>,
+            type_name: &NSString,
+            save_operation: NSSaveOperationType,
+            absolute_original_contents_url: Option<&NSURL>,
         ) -> Result<(), Id<NSError, Shared>>;
 
         #[cfg(all(
@@ -268,9 +268,9 @@ extern_methods!(
         pub unsafe fn fileAttributesToWriteToURL_ofType_forSaveOperation_originalContentsURL_error(
             &self,
             url: &NSURL,
-            typeName: &NSString,
-            saveOperation: NSSaveOperationType,
-            absoluteOriginalContentsURL: Option<&NSURL>,
+            type_name: &NSString,
+            save_operation: NSSaveOperationType,
+            absolute_original_contents_url: Option<&NSURL>,
         ) -> Result<Id<NSDictionary<NSString, Object>, Shared>, Id<NSError, Shared>>;
 
         #[method(keepBackupFile)]
@@ -293,17 +293,17 @@ extern_methods!(
         pub unsafe fn saveDocumentWithDelegate_didSaveSelector_contextInfo(
             &self,
             delegate: Option<&Object>,
-            didSaveSelector: Option<Sel>,
-            contextInfo: *mut c_void,
+            did_save_selector: Option<Sel>,
+            context_info: *mut c_void,
         );
 
         #[method(runModalSavePanelForSaveOperation:delegate:didSaveSelector:contextInfo:)]
         pub unsafe fn runModalSavePanelForSaveOperation_delegate_didSaveSelector_contextInfo(
             &self,
-            saveOperation: NSSaveOperationType,
+            save_operation: NSSaveOperationType,
             delegate: Option<&Object>,
-            didSaveSelector: Option<Sel>,
-            contextInfo: *mut c_void,
+            did_save_selector: Option<Sel>,
+            context_info: *mut c_void,
         );
 
         #[method(shouldRunSavePanelWithAccessoryView)]
@@ -311,7 +311,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSSavePanel")]
         #[method(prepareSavePanel:)]
-        pub unsafe fn prepareSavePanel(&self, savePanel: &NSSavePanel) -> bool;
+        pub unsafe fn prepareSavePanel(&self, save_panel: &NSSavePanel) -> bool;
 
         #[method(fileNameExtensionWasHiddenInLastRunSavePanel)]
         pub unsafe fn fileNameExtensionWasHiddenInLastRunSavePanel(&self) -> bool;
@@ -325,11 +325,11 @@ extern_methods!(
         pub unsafe fn saveToURL_ofType_forSaveOperation_delegate_didSaveSelector_contextInfo(
             &self,
             url: &NSURL,
-            typeName: &NSString,
-            saveOperation: NSSaveOperationType,
+            type_name: &NSString,
+            save_operation: NSSaveOperationType,
             delegate: Option<&Object>,
-            didSaveSelector: Option<Sel>,
-            contextInfo: *mut c_void,
+            did_save_selector: Option<Sel>,
+            context_info: *mut c_void,
         );
 
         #[cfg(all(
@@ -341,9 +341,9 @@ extern_methods!(
         pub unsafe fn saveToURL_ofType_forSaveOperation_completionHandler(
             &self,
             url: &NSURL,
-            typeName: &NSString,
-            saveOperation: NSSaveOperationType,
-            completionHandler: &Block<(*mut NSError,), ()>,
+            type_name: &NSString,
+            save_operation: NSSaveOperationType,
+            completion_handler: &Block<(*mut NSError,), ()>,
         );
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
@@ -351,8 +351,8 @@ extern_methods!(
         pub unsafe fn canAsynchronouslyWriteToURL_ofType_forSaveOperation(
             &self,
             url: &NSURL,
-            typeName: &NSString,
-            saveOperation: NSSaveOperationType,
+            type_name: &NSString,
+            save_operation: NSSaveOperationType,
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSError")]
@@ -370,16 +370,16 @@ extern_methods!(
         pub unsafe fn autosaveDocumentWithDelegate_didAutosaveSelector_contextInfo(
             &self,
             delegate: Option<&Object>,
-            didAutosaveSelector: Option<Sel>,
-            contextInfo: *mut c_void,
+            did_autosave_selector: Option<Sel>,
+            context_info: *mut c_void,
         );
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(autosaveWithImplicitCancellability:completionHandler:)]
         pub unsafe fn autosaveWithImplicitCancellability_completionHandler(
             &self,
-            autosavingIsImplicitlyCancellable: bool,
-            completionHandler: &Block<(*mut NSError,), ()>,
+            autosaving_is_implicitly_cancellable: bool,
+            completion_handler: &Block<(*mut NSError,), ()>,
         );
 
         #[method(autosavesInPlace)]
@@ -397,7 +397,7 @@ extern_methods!(
         #[method(stopBrowsingVersionsWithCompletionHandler:)]
         pub unsafe fn stopBrowsingVersionsWithCompletionHandler(
             &self,
-            completionHandler: Option<&Block<(), ()>>,
+            completion_handler: Option<&Block<(), ()>>,
         );
 
         #[method(autosavesDrafts)]
@@ -413,14 +413,17 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method(setAutosavedContentsFileURL:)]
-        pub unsafe fn setAutosavedContentsFileURL(&self, autosavedContentsFileURL: Option<&NSURL>);
+        pub unsafe fn setAutosavedContentsFileURL(
+            &self,
+            autosaved_contents_file_url: Option<&NSURL>,
+        );
 
         #[method(canCloseDocumentWithDelegate:shouldCloseSelector:contextInfo:)]
         pub unsafe fn canCloseDocumentWithDelegate_shouldCloseSelector_contextInfo(
             &self,
             delegate: &Object,
-            shouldCloseSelector: Option<Sel>,
-            contextInfo: *mut c_void,
+            should_close_selector: Option<Sel>,
+            context_info: *mut c_void,
         );
 
         #[method(close)]
@@ -433,8 +436,8 @@ extern_methods!(
         pub unsafe fn duplicateDocumentWithDelegate_didDuplicateSelector_contextInfo(
             &self,
             delegate: Option<&Object>,
-            didDuplicateSelector: Option<Sel>,
-            contextInfo: *mut c_void,
+            did_duplicate_selector: Option<Sel>,
+            context_info: *mut c_void,
         );
 
         #[cfg(feature = "Foundation_NSError")]
@@ -455,7 +458,7 @@ extern_methods!(
         #[method(moveDocumentWithCompletionHandler:)]
         pub unsafe fn moveDocumentWithCompletionHandler(
             &self,
-            completionHandler: Option<&Block<(Bool,), ()>>,
+            completion_handler: Option<&Block<(Bool,), ()>>,
         );
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
@@ -463,7 +466,7 @@ extern_methods!(
         pub unsafe fn moveToURL_completionHandler(
             &self,
             url: &NSURL,
-            completionHandler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<(*mut NSError,), ()>>,
         );
 
         #[method(lockDocument:)]
@@ -475,27 +478,27 @@ extern_methods!(
         #[method(lockDocumentWithCompletionHandler:)]
         pub unsafe fn lockDocumentWithCompletionHandler(
             &self,
-            completionHandler: Option<&Block<(Bool,), ()>>,
+            completion_handler: Option<&Block<(Bool,), ()>>,
         );
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(lockWithCompletionHandler:)]
         pub unsafe fn lockWithCompletionHandler(
             &self,
-            completionHandler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<(*mut NSError,), ()>>,
         );
 
         #[method(unlockDocumentWithCompletionHandler:)]
         pub unsafe fn unlockDocumentWithCompletionHandler(
             &self,
-            completionHandler: Option<&Block<(Bool,), ()>>,
+            completion_handler: Option<&Block<(Bool,), ()>>,
         );
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(unlockWithCompletionHandler:)]
         pub unsafe fn unlockWithCompletionHandler(
             &self,
-            completionHandler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<(*mut NSError,), ()>>,
         );
 
         #[method(isLocked)]
@@ -508,19 +511,19 @@ extern_methods!(
         #[method(runModalPageLayoutWithPrintInfo:delegate:didRunSelector:contextInfo:)]
         pub unsafe fn runModalPageLayoutWithPrintInfo_delegate_didRunSelector_contextInfo(
             &self,
-            printInfo: &NSPrintInfo,
+            print_info: &NSPrintInfo,
             delegate: Option<&Object>,
-            didRunSelector: Option<Sel>,
-            contextInfo: *mut c_void,
+            did_run_selector: Option<Sel>,
+            context_info: *mut c_void,
         );
 
         #[cfg(feature = "AppKit_NSPageLayout")]
         #[method(preparePageLayout:)]
-        pub unsafe fn preparePageLayout(&self, pageLayout: &NSPageLayout) -> bool;
+        pub unsafe fn preparePageLayout(&self, page_layout: &NSPageLayout) -> bool;
 
         #[cfg(feature = "AppKit_NSPrintInfo")]
         #[method(shouldChangePrintInfo:)]
-        pub unsafe fn shouldChangePrintInfo(&self, newPrintInfo: &NSPrintInfo) -> bool;
+        pub unsafe fn shouldChangePrintInfo(&self, new_print_info: &NSPrintInfo) -> bool;
 
         #[cfg(feature = "AppKit_NSPrintInfo")]
         #[method_id(@__retain_semantics Other printInfo)]
@@ -528,7 +531,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSPrintInfo")]
         #[method(setPrintInfo:)]
-        pub unsafe fn setPrintInfo(&self, printInfo: &NSPrintInfo);
+        pub unsafe fn setPrintInfo(&self, print_info: &NSPrintInfo);
 
         #[method(printDocument:)]
         pub unsafe fn printDocument(&self, sender: Option<&Object>);
@@ -537,11 +540,11 @@ extern_methods!(
         #[method(printDocumentWithSettings:showPrintPanel:delegate:didPrintSelector:contextInfo:)]
         pub unsafe fn printDocumentWithSettings_showPrintPanel_delegate_didPrintSelector_contextInfo(
             &self,
-            printSettings: &NSDictionary<NSPrintInfoAttributeKey, Object>,
-            showPrintPanel: bool,
+            print_settings: &NSDictionary<NSPrintInfoAttributeKey, Object>,
+            show_print_panel: bool,
             delegate: Option<&Object>,
-            didPrintSelector: Option<Sel>,
-            contextInfo: *mut c_void,
+            did_print_selector: Option<Sel>,
+            context_info: *mut c_void,
         );
 
         #[cfg(all(
@@ -552,17 +555,17 @@ extern_methods!(
         #[method_id(@__retain_semantics Other printOperationWithSettings:error:_)]
         pub unsafe fn printOperationWithSettings_error(
             &self,
-            printSettings: &NSDictionary<NSPrintInfoAttributeKey, Object>,
+            print_settings: &NSDictionary<NSPrintInfoAttributeKey, Object>,
         ) -> Result<Id<NSPrintOperation, Shared>, Id<NSError, Shared>>;
 
         #[cfg(feature = "AppKit_NSPrintOperation")]
         #[method(runModalPrintOperation:delegate:didRunSelector:contextInfo:)]
         pub unsafe fn runModalPrintOperation_delegate_didRunSelector_contextInfo(
             &self,
-            printOperation: &NSPrintOperation,
+            print_operation: &NSPrintOperation,
             delegate: Option<&Object>,
-            didRunSelector: Option<Sel>,
-            contextInfo: *mut c_void,
+            did_run_selector: Option<Sel>,
+            context_info: *mut c_void,
         );
 
         #[method(saveDocumentToPDF:)]
@@ -579,15 +582,15 @@ extern_methods!(
         #[method(shareDocumentWithSharingService:completionHandler:)]
         pub unsafe fn shareDocumentWithSharingService_completionHandler(
             &self,
-            sharingService: &NSSharingService,
-            completionHandler: Option<&Block<(Bool,), ()>>,
+            sharing_service: &NSSharingService,
+            completion_handler: Option<&Block<(Bool,), ()>>,
         );
 
         #[cfg(feature = "AppKit_NSSharingServicePicker")]
         #[method(prepareSharingServicePicker:)]
         pub unsafe fn prepareSharingServicePicker(
             &self,
-            sharingServicePicker: &NSSharingServicePicker,
+            sharing_service_picker: &NSSharingServicePicker,
         );
 
         #[method(isDocumentEdited)]
@@ -602,14 +605,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other changeCountTokenForSaveOperation:)]
         pub unsafe fn changeCountTokenForSaveOperation(
             &self,
-            saveOperation: NSSaveOperationType,
+            save_operation: NSSaveOperationType,
         ) -> Id<Object, Shared>;
 
         #[method(updateChangeCountWithToken:forSaveOperation:)]
         pub unsafe fn updateChangeCountWithToken_forSaveOperation(
             &self,
-            changeCountToken: &Object,
-            saveOperation: NSSaveOperationType,
+            change_count_token: &Object,
+            save_operation: NSSaveOperationType,
         );
 
         #[cfg(feature = "Foundation_NSUndoManager")]
@@ -618,13 +621,13 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSUndoManager")]
         #[method(setUndoManager:)]
-        pub unsafe fn setUndoManager(&self, undoManager: Option<&NSUndoManager>);
+        pub unsafe fn setUndoManager(&self, undo_manager: Option<&NSUndoManager>);
 
         #[method(hasUndoManager)]
         pub unsafe fn hasUndoManager(&self) -> bool;
 
         #[method(setHasUndoManager:)]
-        pub unsafe fn setHasUndoManager(&self, hasUndoManager: bool);
+        pub unsafe fn setHasUndoManager(&self, has_undo_manager: bool);
 
         #[cfg(all(feature = "AppKit_NSWindow", feature = "Foundation_NSError"))]
         #[method(presentError:modalForWindow:delegate:didPresentSelector:contextInfo:)]
@@ -633,8 +636,8 @@ extern_methods!(
             error: &NSError,
             window: &NSWindow,
             delegate: Option<&Object>,
-            didPresentSelector: Option<Sel>,
-            contextInfo: *mut c_void,
+            did_present_selector: Option<Sel>,
+            context_info: *mut c_void,
         );
 
         #[cfg(feature = "Foundation_NSError")]
@@ -657,11 +660,11 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSWindowController")]
         #[method(windowControllerWillLoadNib:)]
-        pub unsafe fn windowControllerWillLoadNib(&self, windowController: &NSWindowController);
+        pub unsafe fn windowControllerWillLoadNib(&self, window_controller: &NSWindowController);
 
         #[cfg(feature = "AppKit_NSWindowController")]
         #[method(windowControllerDidLoadNib:)]
-        pub unsafe fn windowControllerDidLoadNib(&self, windowController: &NSWindowController);
+        pub unsafe fn windowControllerDidLoadNib(&self, window_controller: &NSWindowController);
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[method(setWindow:)]
@@ -669,11 +672,11 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSWindowController")]
         #[method(addWindowController:)]
-        pub unsafe fn addWindowController(&self, windowController: &NSWindowController);
+        pub unsafe fn addWindowController(&self, window_controller: &NSWindowController);
 
         #[cfg(feature = "AppKit_NSWindowController")]
         #[method(removeWindowController:)]
-        pub unsafe fn removeWindowController(&self, windowController: &NSWindowController);
+        pub unsafe fn removeWindowController(&self, window_controller: &NSWindowController);
 
         #[method(showWindows)]
         pub unsafe fn showWindows(&self);
@@ -686,10 +689,10 @@ extern_methods!(
         #[method(shouldCloseWindowController:delegate:shouldCloseSelector:contextInfo:)]
         pub unsafe fn shouldCloseWindowController_delegate_shouldCloseSelector_contextInfo(
             &self,
-            windowController: &NSWindowController,
+            window_controller: &NSWindowController,
             delegate: Option<&Object>,
-            shouldCloseSelector: Option<Sel>,
-            contextInfo: *mut c_void,
+            should_close_selector: Option<Sel>,
+            context_info: *mut c_void,
         );
 
         #[cfg(feature = "Foundation_NSString")]
@@ -720,15 +723,15 @@ extern_methods!(
         #[method_id(@__retain_semantics Other writableTypesForSaveOperation:)]
         pub unsafe fn writableTypesForSaveOperation(
             &self,
-            saveOperation: NSSaveOperationType,
+            save_operation: NSSaveOperationType,
         ) -> Id<NSArray<NSString>, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fileNameExtensionForType:saveOperation:)]
         pub unsafe fn fileNameExtensionForType_saveOperation(
             &self,
-            typeName: &NSString,
-            saveOperation: NSSaveOperationType,
+            type_name: &NSString,
+            save_operation: NSSaveOperationType,
         ) -> Option<Id<NSString, Shared>>;
 
         #[method(validateUserInterfaceItem:)]
@@ -764,19 +767,19 @@ extern_methods!(
         #[method(savePresentedItemChangesWithCompletionHandler:)]
         pub unsafe fn savePresentedItemChangesWithCompletionHandler(
             &self,
-            completionHandler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<(*mut NSError,), ()>,
         );
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(accommodatePresentedItemDeletionWithCompletionHandler:)]
         pub unsafe fn accommodatePresentedItemDeletionWithCompletionHandler(
             &self,
-            completionHandler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<(*mut NSError,), ()>,
         );
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method(presentedItemDidMoveToURL:)]
-        pub unsafe fn presentedItemDidMoveToURL(&self, newURL: &NSURL);
+        pub unsafe fn presentedItemDidMoveToURL(&self, new_url: &NSURL);
 
         #[method(presentedItemDidChange)]
         pub unsafe fn presentedItemDidChange(&self);
@@ -816,8 +819,8 @@ extern_methods!(
         pub unsafe fn saveToURL_ofType_forSaveOperation_error(
             &self,
             url: &NSURL,
-            typeName: &NSString,
-            saveOperation: NSSaveOperationType,
+            type_name: &NSString,
+            save_operation: NSSaveOperationType,
         ) -> Result<(), Id<NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSString"))]
@@ -833,9 +836,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Other fileAttributesToWriteToFile:ofType:saveOperation:)]
         pub unsafe fn fileAttributesToWriteToFile_ofType_saveOperation(
             &self,
-            fullDocumentPath: &NSString,
-            documentTypeName: &NSString,
-            saveOperationType: NSSaveOperationType,
+            full_document_path: &NSString,
+            document_type_name: &NSString,
+            save_operation_type: NSSaveOperationType,
         ) -> Option<Id<NSDictionary, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -856,8 +859,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithContentsOfFile:ofType:)]
         pub unsafe fn initWithContentsOfFile_ofType(
             this: Option<Allocated<Self>>,
-            absolutePath: &NSString,
-            typeName: &NSString,
+            absolute_path: &NSString,
+            type_name: &NSString,
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
@@ -866,7 +869,7 @@ extern_methods!(
         pub unsafe fn initWithContentsOfURL_ofType(
             this: Option<Allocated<Self>>,
             url: &NSURL,
-            typeName: &NSString,
+            type_name: &NSString,
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSString"))]
@@ -894,7 +897,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
         #[method(readFromFile:ofType:)]
-        pub unsafe fn readFromFile_ofType(&self, fileName: &NSString, r#type: &NSString) -> bool;
+        pub unsafe fn readFromFile_ofType(&self, file_name: &NSString, r#type: &NSString) -> bool;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
         #[deprecated]
@@ -906,7 +909,7 @@ extern_methods!(
         #[method(revertToSavedFromFile:ofType:)]
         pub unsafe fn revertToSavedFromFile_ofType(
             &self,
-            fileName: &NSString,
+            file_name: &NSString,
             r#type: &NSString,
         ) -> bool;
 
@@ -918,39 +921,40 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSPrintInfo")]
         #[deprecated]
         #[method(runModalPageLayoutWithPrintInfo:)]
-        pub unsafe fn runModalPageLayoutWithPrintInfo(&self, printInfo: &NSPrintInfo) -> NSInteger;
+        pub unsafe fn runModalPageLayoutWithPrintInfo(&self, print_info: &NSPrintInfo)
+            -> NSInteger;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
         #[method(saveToFile:saveOperation:delegate:didSaveSelector:contextInfo:)]
         pub unsafe fn saveToFile_saveOperation_delegate_didSaveSelector_contextInfo(
             &self,
-            fileName: &NSString,
-            saveOperation: NSSaveOperationType,
+            file_name: &NSString,
+            save_operation: NSSaveOperationType,
             delegate: Option<&Object>,
-            didSaveSelector: Option<Sel>,
-            contextInfo: *mut c_void,
+            did_save_selector: Option<Sel>,
+            context_info: *mut c_void,
         );
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
         #[method(setFileName:)]
-        pub unsafe fn setFileName(&self, fileName: Option<&NSString>);
+        pub unsafe fn setFileName(&self, file_name: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
         #[method(writeToFile:ofType:)]
-        pub unsafe fn writeToFile_ofType(&self, fileName: &NSString, r#type: &NSString) -> bool;
+        pub unsafe fn writeToFile_ofType(&self, file_name: &NSString, r#type: &NSString) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
         #[method(writeToFile:ofType:originalFile:saveOperation:)]
         pub unsafe fn writeToFile_ofType_originalFile_saveOperation(
             &self,
-            fullDocumentPath: &NSString,
-            documentTypeName: &NSString,
-            fullOriginalDocumentPath: Option<&NSString>,
-            saveOperationType: NSSaveOperationType,
+            full_document_path: &NSString,
+            document_type_name: &NSString,
+            full_original_document_path: Option<&NSString>,
+            save_operation_type: NSSaveOperationType,
         ) -> bool;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
@@ -963,9 +967,9 @@ extern_methods!(
         #[method(writeWithBackupToFile:ofType:saveOperation:)]
         pub unsafe fn writeWithBackupToFile_ofType_saveOperation(
             &self,
-            fullDocumentPath: &NSString,
-            documentTypeName: &NSString,
-            saveOperationType: NSSaveOperationType,
+            full_document_path: &NSString,
+            document_type_name: &NSString,
+            save_operation_type: NSSaveOperationType,
         ) -> bool;
     }
 );

@@ -60,14 +60,14 @@ extern_methods!(
         pub unsafe fn initWithLabel_itemSearchDelegate(
             this: Option<Allocated<Self>>,
             label: &NSString,
-            itemSearchDelegate: &NSAccessibilityCustomRotorItemSearchDelegate,
+            item_search_delegate: &NSAccessibilityCustomRotorItemSearchDelegate,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Init initWithRotorType:itemSearchDelegate:)]
         pub unsafe fn initWithRotorType_itemSearchDelegate(
             this: Option<Allocated<Self>>,
-            rotorType: NSAccessibilityCustomRotorType,
-            itemSearchDelegate: &NSAccessibilityCustomRotorItemSearchDelegate,
+            rotor_type: NSAccessibilityCustomRotorType,
+            item_search_delegate: &NSAccessibilityCustomRotorItemSearchDelegate,
         ) -> Id<Self, Shared>;
 
         #[method(type)]
@@ -92,7 +92,7 @@ extern_methods!(
         #[method(setItemSearchDelegate:)]
         pub unsafe fn setItemSearchDelegate(
             &self,
-            itemSearchDelegate: Option<&NSAccessibilityCustomRotorItemSearchDelegate>,
+            item_search_delegate: Option<&NSAccessibilityCustomRotorItemSearchDelegate>,
         );
 
         #[method_id(@__retain_semantics Other itemLoadingDelegate)]
@@ -103,7 +103,7 @@ extern_methods!(
         #[method(setItemLoadingDelegate:)]
         pub unsafe fn setItemLoadingDelegate(
             &self,
-            itemLoadingDelegate: Option<&NSAccessibilityElementLoading>,
+            item_loading_delegate: Option<&NSAccessibilityElementLoading>,
         );
     }
 );
@@ -132,7 +132,7 @@ extern_methods!(
         #[method(setCurrentItem:)]
         pub unsafe fn setCurrentItem(
             &self,
-            currentItem: Option<&NSAccessibilityCustomRotorItemResult>,
+            current_item: Option<&NSAccessibilityCustomRotorItemResult>,
         );
 
         #[method(searchDirection)]
@@ -141,7 +141,7 @@ extern_methods!(
         #[method(setSearchDirection:)]
         pub unsafe fn setSearchDirection(
             &self,
-            searchDirection: NSAccessibilityCustomRotorSearchDirection,
+            search_direction: NSAccessibilityCustomRotorSearchDirection,
         );
 
         #[cfg(feature = "Foundation_NSString")]
@@ -150,7 +150,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setFilterString:)]
-        pub unsafe fn setFilterString(&self, filterString: &NSString);
+        pub unsafe fn setFilterString(&self, filter_string: &NSString);
     }
 );
 
@@ -177,15 +177,15 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithTargetElement:)]
         pub unsafe fn initWithTargetElement(
             this: Option<Allocated<Self>>,
-            targetElement: &NSAccessibilityElement,
+            target_element: &NSAccessibilityElement,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithItemLoadingToken:customLabel:)]
         pub unsafe fn initWithItemLoadingToken_customLabel(
             this: Option<Allocated<Self>>,
-            itemLoadingToken: &NSAccessibilityLoadingToken,
-            customLabel: &NSString,
+            item_loading_token: &NSAccessibilityLoadingToken,
+            custom_label: &NSString,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Other targetElement)]
@@ -198,7 +198,7 @@ extern_methods!(
         pub unsafe fn targetRange(&self) -> NSRange;
 
         #[method(setTargetRange:)]
-        pub unsafe fn setTargetRange(&self, targetRange: NSRange);
+        pub unsafe fn setTargetRange(&self, target_range: NSRange);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other customLabel)]
@@ -206,7 +206,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCustomLabel:)]
-        pub unsafe fn setCustomLabel(&self, customLabel: Option<&NSString>);
+        pub unsafe fn setCustomLabel(&self, custom_label: Option<&NSString>);
     }
 );
 
@@ -223,7 +223,7 @@ extern_protocol!(
         pub unsafe fn rotor_resultForSearchParameters(
             &self,
             rotor: &NSAccessibilityCustomRotor,
-            searchParameters: &NSAccessibilityCustomRotorSearchParameters,
+            search_parameters: &NSAccessibilityCustomRotorSearchParameters,
         ) -> Option<Id<NSAccessibilityCustomRotorItemResult, Shared>>;
     }
 );

@@ -48,7 +48,7 @@ extern_methods!(
         pub unsafe fn initWithDuration_animationCurve(
             this: Option<Allocated<Self>>,
             duration: NSTimeInterval,
-            animationCurve: NSAnimationCurve,
+            animation_curve: NSAnimationCurve,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSCoder")]
@@ -71,7 +71,7 @@ extern_methods!(
         pub unsafe fn currentProgress(&self) -> NSAnimationProgress;
 
         #[method(setCurrentProgress:)]
-        pub unsafe fn setCurrentProgress(&self, currentProgress: NSAnimationProgress);
+        pub unsafe fn setCurrentProgress(&self, current_progress: NSAnimationProgress);
 
         #[method(duration)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
@@ -85,20 +85,20 @@ extern_methods!(
         #[method(setAnimationBlockingMode:)]
         pub unsafe fn setAnimationBlockingMode(
             &self,
-            animationBlockingMode: NSAnimationBlockingMode,
+            animation_blocking_mode: NSAnimationBlockingMode,
         );
 
         #[method(frameRate)]
         pub unsafe fn frameRate(&self) -> c_float;
 
         #[method(setFrameRate:)]
-        pub unsafe fn setFrameRate(&self, frameRate: c_float);
+        pub unsafe fn setFrameRate(&self, frame_rate: c_float);
 
         #[method(animationCurve)]
         pub unsafe fn animationCurve(&self) -> NSAnimationCurve;
 
         #[method(setAnimationCurve:)]
-        pub unsafe fn setAnimationCurve(&self, animationCurve: NSAnimationCurve);
+        pub unsafe fn setAnimationCurve(&self, animation_curve: NSAnimationCurve);
 
         #[method(currentValue)]
         pub unsafe fn currentValue(&self) -> c_float;
@@ -115,26 +115,26 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method(setProgressMarks:)]
-        pub unsafe fn setProgressMarks(&self, progressMarks: &NSArray<NSNumber>);
+        pub unsafe fn setProgressMarks(&self, progress_marks: &NSArray<NSNumber>);
 
         #[method(addProgressMark:)]
-        pub unsafe fn addProgressMark(&self, progressMark: NSAnimationProgress);
+        pub unsafe fn addProgressMark(&self, progress_mark: NSAnimationProgress);
 
         #[method(removeProgressMark:)]
-        pub unsafe fn removeProgressMark(&self, progressMark: NSAnimationProgress);
+        pub unsafe fn removeProgressMark(&self, progress_mark: NSAnimationProgress);
 
         #[method(startWhenAnimation:reachesProgress:)]
         pub unsafe fn startWhenAnimation_reachesProgress(
             &self,
             animation: &NSAnimation,
-            startProgress: NSAnimationProgress,
+            start_progress: NSAnimationProgress,
         );
 
         #[method(stopWhenAnimation:reachesProgress:)]
         pub unsafe fn stopWhenAnimation_reachesProgress(
             &self,
             animation: &NSAnimation,
-            stopProgress: NSAnimationProgress,
+            stop_progress: NSAnimationProgress,
         );
 
         #[method(clearStartAnimation)]
@@ -228,7 +228,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithViewAnimations:)]
         pub unsafe fn initWithViewAnimations(
             this: Option<Allocated<Self>>,
-            viewAnimations: &NSArray<NSDictionary<NSViewAnimationKey, Object>>,
+            view_animations: &NSArray<NSDictionary<NSViewAnimationKey, Object>>,
         ) -> Id<Self, Shared>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSDictionary"))]
@@ -241,7 +241,7 @@ extern_methods!(
         #[method(setViewAnimations:)]
         pub unsafe fn setViewAnimations(
             &self,
-            viewAnimations: &NSArray<NSDictionary<NSViewAnimationKey, Object>>,
+            view_animations: &NSArray<NSDictionary<NSViewAnimationKey, Object>>,
         );
     }
 );
@@ -288,7 +288,7 @@ extern_methods!(
         pub unsafe fn initWithDuration_animationCurve(
             this: Option<Allocated<Self>>,
             duration: NSTimeInterval,
-            animationCurve: NSAnimationCurve,
+            animation_curve: NSAnimationCurve,
         ) -> Id<Self, Shared>;
     }
 );

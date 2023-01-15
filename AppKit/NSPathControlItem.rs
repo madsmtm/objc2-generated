@@ -33,7 +33,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setAttributedTitle:)]
-        pub unsafe fn setAttributedTitle(&self, attributedTitle: &NSAttributedString);
+        pub unsafe fn setAttributedTitle(&self, attributed_title: &NSAttributedString);
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other image)]

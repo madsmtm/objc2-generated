@@ -175,13 +175,13 @@ extern_methods!(
         pub unsafe fn usesFeedbackWindow(&self) -> bool;
 
         #[method(setUsesFeedbackWindow:)]
-        pub unsafe fn setUsesFeedbackWindow(&self, usesFeedbackWindow: bool);
+        pub unsafe fn setUsesFeedbackWindow(&self, uses_feedback_window: bool);
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(addSpeechDictionary:)]
         pub unsafe fn addSpeechDictionary(
             &self,
-            speechDictionary: &NSDictionary<NSSpeechDictionaryKey, Object>,
+            speech_dictionary: &NSDictionary<NSSpeechDictionaryKey, Object>,
         );
 
         #[cfg(feature = "Foundation_NSString")]
@@ -231,7 +231,7 @@ extern_protocol!(
         pub unsafe fn speechSynthesizer_didFinishSpeaking(
             &self,
             sender: &NSSpeechSynthesizer,
-            finishedSpeaking: bool,
+            finished_speaking: bool,
         );
 
         #[cfg(all(
@@ -243,7 +243,7 @@ extern_protocol!(
         pub unsafe fn speechSynthesizer_willSpeakWord_ofString(
             &self,
             sender: &NSSpeechSynthesizer,
-            characterRange: NSRange,
+            character_range: NSRange,
             string: &NSString,
         );
 
@@ -253,7 +253,7 @@ extern_protocol!(
         pub unsafe fn speechSynthesizer_willSpeakPhoneme(
             &self,
             sender: &NSSpeechSynthesizer,
-            phonemeOpcode: c_short,
+            phoneme_opcode: c_short,
         );
 
         #[cfg(all(
@@ -265,7 +265,7 @@ extern_protocol!(
         pub unsafe fn speechSynthesizer_didEncounterErrorAtIndex_ofString_message(
             &self,
             sender: &NSSpeechSynthesizer,
-            characterIndex: NSUInteger,
+            character_index: NSUInteger,
             string: &NSString,
             message: &NSString,
         );

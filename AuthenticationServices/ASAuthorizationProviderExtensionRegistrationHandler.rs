@@ -39,7 +39,7 @@ extern_protocol!(
         #[method(beginDeviceRegistrationUsingLoginManager:options:completion:)]
         pub unsafe fn beginDeviceRegistrationUsingLoginManager_options_completion(
             &self,
-            loginManager: &ASAuthorizationProviderExtensionLoginManager,
+            login_manager: &ASAuthorizationProviderExtensionLoginManager,
             options: ASAuthorizationProviderExtensionRequestOptions,
             completion: &Block<(ASAuthorizationProviderExtensionRegistrationResult,), ()>,
         );
@@ -51,9 +51,9 @@ extern_protocol!(
         #[method(beginUserRegistrationUsingLoginManager:userName:authenticationMethod:options:completion:)]
         pub unsafe fn beginUserRegistrationUsingLoginManager_userName_authenticationMethod_options_completion(
             &self,
-            loginManager: &ASAuthorizationProviderExtensionLoginManager,
-            userName: Option<&NSString>,
-            authenticationMethod: ASAuthorizationProviderExtensionAuthenticationMethod,
+            login_manager: &ASAuthorizationProviderExtensionLoginManager,
+            user_name: Option<&NSString>,
+            authentication_method: ASAuthorizationProviderExtensionAuthenticationMethod,
             options: ASAuthorizationProviderExtensionRequestOptions,
             completion: &Block<(ASAuthorizationProviderExtensionRegistrationResult,), ()>,
         );

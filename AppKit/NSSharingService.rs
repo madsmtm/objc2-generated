@@ -87,7 +87,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setMenuItemTitle:)]
-        pub unsafe fn setMenuItemTitle(&self, menuItemTitle: &NSString);
+        pub unsafe fn setMenuItemTitle(&self, menu_item_title: &NSString);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other recipients)]
@@ -130,7 +130,7 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other sharingServiceNamed:)]
         pub unsafe fn sharingServiceNamed(
-            serviceName: &NSSharingServiceName,
+            service_name: &NSSharingServiceName,
         ) -> Option<Id<NSSharingService, Shared>>;
 
         #[cfg(all(feature = "AppKit_NSImage", feature = "Foundation_NSString"))]
@@ -139,7 +139,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             title: &NSString,
             image: &NSImage,
-            alternateImage: Option<&NSImage>,
+            alternate_image: Option<&NSImage>,
             block: &Block<(), ()>,
         ) -> Id<Self, Shared>;
 
@@ -174,7 +174,7 @@ extern_protocol!(
         #[method(sharingService:willShareItems:)]
         pub unsafe fn sharingService_willShareItems(
             &self,
-            sharingService: &NSSharingService,
+            sharing_service: &NSSharingService,
             items: &NSArray,
         );
 
@@ -187,7 +187,7 @@ extern_protocol!(
         #[method(sharingService:didFailToShareItems:error:)]
         pub unsafe fn sharingService_didFailToShareItems_error(
             &self,
-            sharingService: &NSSharingService,
+            sharing_service: &NSSharingService,
             items: &NSArray,
             error: &NSError,
         );
@@ -197,7 +197,7 @@ extern_protocol!(
         #[method(sharingService:didShareItems:)]
         pub unsafe fn sharingService_didShareItems(
             &self,
-            sharingService: &NSSharingService,
+            sharing_service: &NSSharingService,
             items: &NSArray,
         );
 
@@ -206,7 +206,7 @@ extern_protocol!(
         #[method(sharingService:sourceFrameOnScreenForShareItem:)]
         pub unsafe fn sharingService_sourceFrameOnScreenForShareItem(
             &self,
-            sharingService: &NSSharingService,
+            sharing_service: &NSSharingService,
             item: &Object,
         ) -> NSRect;
 
@@ -215,9 +215,9 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other sharingService:transitionImageForShareItem:contentRect:)]
         pub unsafe fn sharingService_transitionImageForShareItem_contentRect(
             &self,
-            sharingService: &NSSharingService,
+            sharing_service: &NSSharingService,
             item: &Object,
-            contentRect: NonNull<NSRect>,
+            content_rect: NonNull<NSRect>,
         ) -> Option<Id<NSImage, Shared>>;
 
         #[cfg(all(
@@ -229,9 +229,9 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other sharingService:sourceWindowForShareItems:sharingContentScope:)]
         pub unsafe fn sharingService_sourceWindowForShareItems_sharingContentScope(
             &self,
-            sharingService: &NSSharingService,
+            sharing_service: &NSSharingService,
             items: &NSArray,
-            sharingContentScope: NonNull<NSSharingContentScope>,
+            sharing_content_scope: NonNull<NSSharingContentScope>,
         ) -> Option<Id<NSWindow, Shared>>;
 
         #[cfg(all(feature = "AppKit_NSSharingService", feature = "AppKit_NSView"))]
@@ -239,9 +239,9 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other anchoringViewForSharingService:showRelativeToRect:preferredEdge:)]
         pub unsafe fn anchoringViewForSharingService_showRelativeToRect_preferredEdge(
             &self,
-            sharingService: &NSSharingService,
-            positioningRect: NonNull<NSRect>,
-            preferredEdge: NonNull<NSRectEdge>,
+            sharing_service: &NSSharingService,
+            positioning_rect: NonNull<NSRect>,
+            preferred_edge: NonNull<NSRectEdge>,
         ) -> Option<Id<NSView, Shared>>;
     }
 );
@@ -270,7 +270,7 @@ extern_protocol!(
         #[method(sharingService:didCompleteForItems:error:)]
         pub unsafe fn sharingService_didCompleteForItems_error(
             &self,
-            sharingService: &NSSharingService,
+            sharing_service: &NSSharingService,
             items: &NSArray,
             error: Option<&NSError>,
         );
@@ -283,7 +283,7 @@ extern_protocol!(
         #[method(optionsForSharingService:shareProvider:)]
         pub unsafe fn optionsForSharingService_shareProvider(
             &self,
-            cloudKitSharingService: &NSSharingService,
+            cloud_kit_sharing_service: &NSSharingService,
             provider: &NSItemProvider,
         ) -> NSCloudKitSharingServiceOptions;
     }
@@ -331,7 +331,7 @@ extern_methods!(
             &self,
             rect: NSRect,
             view: &NSView,
-            preferredEdge: NSRectEdge,
+            preferred_edge: NSRectEdge,
         );
 
         #[method(close)]
@@ -356,9 +356,9 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other sharingServicePicker:sharingServicesForItems:proposedSharingServices:)]
         pub unsafe fn sharingServicePicker_sharingServicesForItems_proposedSharingServices(
             &self,
-            sharingServicePicker: &NSSharingServicePicker,
+            sharing_service_picker: &NSSharingServicePicker,
             items: &NSArray,
-            proposedServices: &NSArray<NSSharingService>,
+            proposed_services: &NSArray<NSSharingService>,
         ) -> Id<NSArray<NSSharingService>, Shared>;
 
         #[cfg(all(
@@ -369,8 +369,8 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other sharingServicePicker:delegateForSharingService:)]
         pub unsafe fn sharingServicePicker_delegateForSharingService(
             &self,
-            sharingServicePicker: &NSSharingServicePicker,
-            sharingService: &NSSharingService,
+            sharing_service_picker: &NSSharingServicePicker,
+            sharing_service: &NSSharingService,
         ) -> Option<Id<NSSharingServiceDelegate, Shared>>;
 
         #[cfg(all(
@@ -381,7 +381,7 @@ extern_protocol!(
         #[method(sharingServicePicker:didChooseSharingService:)]
         pub unsafe fn sharingServicePicker_didChooseSharingService(
             &self,
-            sharingServicePicker: &NSSharingServicePicker,
+            sharing_service_picker: &NSSharingServicePicker,
             service: Option<&NSSharingService>,
         );
     }

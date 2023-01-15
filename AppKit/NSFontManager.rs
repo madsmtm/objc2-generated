@@ -59,10 +59,10 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSFontManager")]
     unsafe impl NSFontManager {
         #[method(setFontPanelFactory:)]
-        pub unsafe fn setFontPanelFactory(factoryId: Option<&Class>);
+        pub unsafe fn setFontPanelFactory(factory_id: Option<&Class>);
 
         #[method(setFontManagerFactory:)]
-        pub unsafe fn setFontManagerFactory(factoryId: Option<&Class>);
+        pub unsafe fn setFontManagerFactory(factory_id: Option<&Class>);
 
         #[method_id(@__retain_semantics Other sharedFontManager)]
         pub unsafe fn sharedFontManager() -> Id<NSFontManager, Shared>;
@@ -76,11 +76,11 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSFont")]
         #[method(setSelectedFont:isMultiple:)]
-        pub unsafe fn setSelectedFont_isMultiple(&self, fontObj: &NSFont, flag: bool);
+        pub unsafe fn setSelectedFont_isMultiple(&self, font_obj: &NSFont, flag: bool);
 
         #[cfg(feature = "AppKit_NSMenu")]
         #[method(setFontMenu:)]
-        pub unsafe fn setFontMenu(&self, newMenu: &NSMenu);
+        pub unsafe fn setFontMenu(&self, new_menu: &NSMenu);
 
         #[cfg(feature = "AppKit_NSMenu")]
         #[method_id(@__retain_semantics Other fontMenu:)]
@@ -102,11 +102,11 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSFont")]
         #[method(traitsOfFont:)]
-        pub unsafe fn traitsOfFont(&self, fontObj: &NSFont) -> NSFontTraitMask;
+        pub unsafe fn traitsOfFont(&self, font_obj: &NSFont) -> NSFontTraitMask;
 
         #[cfg(feature = "AppKit_NSFont")]
         #[method(weightOfFont:)]
-        pub unsafe fn weightOfFont(&self, fontObj: &NSFont) -> NSInteger;
+        pub unsafe fn weightOfFont(&self, font_obj: &NSFont) -> NSInteger;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other availableFonts)]
@@ -125,13 +125,13 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSFont")]
         #[method_id(@__retain_semantics Other convertFont:)]
-        pub unsafe fn convertFont(&self, fontObj: &NSFont) -> Id<NSFont, Shared>;
+        pub unsafe fn convertFont(&self, font_obj: &NSFont) -> Id<NSFont, Shared>;
 
         #[cfg(feature = "AppKit_NSFont")]
         #[method_id(@__retain_semantics Other convertFont:toSize:)]
         pub unsafe fn convertFont_toSize(
             &self,
-            fontObj: &NSFont,
+            font_obj: &NSFont,
             size: CGFloat,
         ) -> Id<NSFont, Shared>;
 
@@ -139,7 +139,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other convertFont:toFace:)]
         pub unsafe fn convertFont_toFace(
             &self,
-            fontObj: &NSFont,
+            font_obj: &NSFont,
             typeface: &NSString,
         ) -> Option<Id<NSFont, Shared>>;
 
@@ -147,7 +147,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other convertFont:toFamily:)]
         pub unsafe fn convertFont_toFamily(
             &self,
-            fontObj: &NSFont,
+            font_obj: &NSFont,
             family: &NSString,
         ) -> Id<NSFont, Shared>;
 
@@ -155,7 +155,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other convertFont:toHaveTrait:)]
         pub unsafe fn convertFont_toHaveTrait(
             &self,
-            fontObj: &NSFont,
+            font_obj: &NSFont,
             r#trait: NSFontTraitMask,
         ) -> Id<NSFont, Shared>;
 
@@ -163,7 +163,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other convertFont:toNotHaveTrait:)]
         pub unsafe fn convertFont_toNotHaveTrait(
             &self,
-            fontObj: &NSFont,
+            font_obj: &NSFont,
             r#trait: NSFontTraitMask,
         ) -> Id<NSFont, Shared>;
 
@@ -171,8 +171,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Other convertWeight:ofFont:)]
         pub unsafe fn convertWeight_ofFont(
             &self,
-            upFlag: bool,
-            fontObj: &NSFont,
+            up_flag: bool,
+            font_obj: &NSFont,
         ) -> Id<NSFont, Shared>;
 
         #[method(isEnabled)]
@@ -203,7 +203,7 @@ extern_methods!(
         pub unsafe fn localizedNameForFamily_face(
             &self,
             family: &NSString,
-            faceKey: Option<&NSString>,
+            face_key: Option<&NSString>,
         ) -> Id<NSString, Shared>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
@@ -239,7 +239,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other fontDescriptorsInCollection:)]
         pub unsafe fn fontDescriptorsInCollection(
             &self,
-            collectionNames: &NSString,
+            collection_names: &NSString,
         ) -> Option<Id<NSArray, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -247,14 +247,14 @@ extern_methods!(
         #[method(addCollection:options:)]
         pub unsafe fn addCollection_options(
             &self,
-            collectionName: &NSString,
-            collectionOptions: NSFontCollectionOptions,
+            collection_name: &NSString,
+            collection_options: NSFontCollectionOptions,
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use +[NSFontCollection hideFontCollectionWithName:visibility:error:] instead"]
         #[method(removeCollection:)]
-        pub unsafe fn removeCollection(&self, collectionName: &NSString) -> bool;
+        pub unsafe fn removeCollection(&self, collection_name: &NSString) -> bool;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[deprecated = "Use -[NSMutableFontCollection addQueryForDescriptors:] instead"]
@@ -262,7 +262,7 @@ extern_methods!(
         pub unsafe fn addFontDescriptors_toCollection(
             &self,
             descriptors: &NSArray,
-            collectionName: &NSString,
+            collection_name: &NSString,
         );
 
         #[cfg(all(feature = "AppKit_NSFontDescriptor", feature = "Foundation_NSString"))]
@@ -296,15 +296,15 @@ extern_methods!(
         #[method(fontNamed:hasTraits:)]
         pub unsafe fn fontNamed_hasTraits(
             &self,
-            fName: &NSString,
-            someTraits: NSFontTraitMask,
+            f_name: &NSString,
+            some_traits: NSFontTraitMask,
         ) -> bool;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other availableFontNamesWithTraits:)]
         pub unsafe fn availableFontNamesWithTraits(
             &self,
-            someTraits: NSFontTraitMask,
+            some_traits: NSFontTraitMask,
         ) -> Option<Id<NSArray<NSString>, Shared>>;
 
         #[method(addFontTrait:)]

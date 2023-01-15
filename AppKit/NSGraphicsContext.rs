@@ -62,14 +62,14 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSBitmapImageRep")]
         #[method_id(@__retain_semantics Other graphicsContextWithBitmapImageRep:)]
         pub unsafe fn graphicsContextWithBitmapImageRep(
-            bitmapRep: &NSBitmapImageRep,
+            bitmap_rep: &NSBitmapImageRep,
         ) -> Option<Id<NSGraphicsContext, Shared>>;
 
         #[method_id(@__retain_semantics Other currentContext)]
         pub unsafe fn currentContext() -> Option<Id<NSGraphicsContext, Shared>>;
 
         #[method(setCurrentContext:)]
-        pub unsafe fn setCurrentContext(currentContext: Option<&NSGraphicsContext>);
+        pub unsafe fn setCurrentContext(current_context: Option<&NSGraphicsContext>);
 
         #[method(currentContextDrawingToScreen)]
         pub unsafe fn currentContextDrawingToScreen() -> bool;
@@ -111,31 +111,34 @@ extern_methods!(
         pub unsafe fn shouldAntialias(&self) -> bool;
 
         #[method(setShouldAntialias:)]
-        pub unsafe fn setShouldAntialias(&self, shouldAntialias: bool);
+        pub unsafe fn setShouldAntialias(&self, should_antialias: bool);
 
         #[method(imageInterpolation)]
         pub unsafe fn imageInterpolation(&self) -> NSImageInterpolation;
 
         #[method(setImageInterpolation:)]
-        pub unsafe fn setImageInterpolation(&self, imageInterpolation: NSImageInterpolation);
+        pub unsafe fn setImageInterpolation(&self, image_interpolation: NSImageInterpolation);
 
         #[method(patternPhase)]
         pub unsafe fn patternPhase(&self) -> NSPoint;
 
         #[method(setPatternPhase:)]
-        pub unsafe fn setPatternPhase(&self, patternPhase: NSPoint);
+        pub unsafe fn setPatternPhase(&self, pattern_phase: NSPoint);
 
         #[method(compositingOperation)]
         pub unsafe fn compositingOperation(&self) -> NSCompositingOperation;
 
         #[method(setCompositingOperation:)]
-        pub unsafe fn setCompositingOperation(&self, compositingOperation: NSCompositingOperation);
+        pub unsafe fn setCompositingOperation(&self, compositing_operation: NSCompositingOperation);
 
         #[method(colorRenderingIntent)]
         pub unsafe fn colorRenderingIntent(&self) -> NSColorRenderingIntent;
 
         #[method(setColorRenderingIntent:)]
-        pub unsafe fn setColorRenderingIntent(&self, colorRenderingIntent: NSColorRenderingIntent);
+        pub unsafe fn setColorRenderingIntent(
+            &self,
+            color_rendering_intent: NSColorRenderingIntent,
+        );
     }
 );
 
@@ -151,7 +154,7 @@ extern_methods!(
     unsafe impl NSGraphicsContext {
         #[deprecated = "This method has no effect"]
         #[method(setGraphicsState:)]
-        pub unsafe fn setGraphicsState(gState: NSInteger);
+        pub unsafe fn setGraphicsState(g_state: NSInteger);
 
         #[deprecated]
         #[method_id(@__retain_semantics Other focusStack)]
@@ -164,8 +167,8 @@ extern_methods!(
         #[deprecated]
         #[method_id(@__retain_semantics Other graphicsContextWithGraphicsPort:flipped:)]
         pub unsafe fn graphicsContextWithGraphicsPort_flipped(
-            graphicsPort: NonNull<c_void>,
-            initialFlippedState: bool,
+            graphics_port: NonNull<c_void>,
+            initial_flipped_state: bool,
         ) -> Id<NSGraphicsContext, Shared>;
 
         #[deprecated]

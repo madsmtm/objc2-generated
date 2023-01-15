@@ -113,19 +113,19 @@ extern_methods!(
         pub fn zPosition(&self) -> CGFloat;
 
         #[method(setZPosition:)]
-        pub fn setZPosition(&self, zPosition: CGFloat);
+        pub fn setZPosition(&self, z_position: CGFloat);
 
         #[method(anchorPoint)]
         pub fn anchorPoint(&self) -> CGPoint;
 
         #[method(setAnchorPoint:)]
-        pub fn setAnchorPoint(&self, anchorPoint: CGPoint);
+        pub fn setAnchorPoint(&self, anchor_point: CGPoint);
 
         #[method(anchorPointZ)]
         pub fn anchorPointZ(&self) -> CGFloat;
 
         #[method(setAnchorPointZ:)]
-        pub fn setAnchorPointZ(&self, anchorPointZ: CGFloat);
+        pub fn setAnchorPointZ(&self, anchor_point_z: CGFloat);
 
         #[method(transform)]
         pub fn transform(&self) -> CATransform3D;
@@ -149,13 +149,13 @@ extern_methods!(
         pub fn isDoubleSided(&self) -> bool;
 
         #[method(setDoubleSided:)]
-        pub fn setDoubleSided(&self, doubleSided: bool);
+        pub fn setDoubleSided(&self, double_sided: bool);
 
         #[method(isGeometryFlipped)]
         pub fn isGeometryFlipped(&self) -> bool;
 
         #[method(setGeometryFlipped:)]
-        pub fn setGeometryFlipped(&self, geometryFlipped: bool);
+        pub fn setGeometryFlipped(&self, geometry_flipped: bool);
 
         #[method(contentsAreFlipped)]
         pub fn contentsAreFlipped(&self) -> bool;
@@ -187,13 +187,13 @@ extern_methods!(
         pub fn insertSublayer_above(&self, layer: &CALayer, sibling: Option<&CALayer>);
 
         #[method(replaceSublayer:with:)]
-        pub unsafe fn replaceSublayer_with(&self, oldLayer: &CALayer, newLayer: &CALayer);
+        pub unsafe fn replaceSublayer_with(&self, old_layer: &CALayer, new_layer: &CALayer);
 
         #[method(sublayerTransform)]
         pub fn sublayerTransform(&self) -> CATransform3D;
 
         #[method(setSublayerTransform:)]
-        pub fn setSublayerTransform(&self, sublayerTransform: CATransform3D);
+        pub fn setSublayerTransform(&self, sublayer_transform: CATransform3D);
 
         #[method_id(@__retain_semantics Other mask)]
         pub fn mask(&self) -> Option<Id<CALayer, Shared>>;
@@ -205,7 +205,7 @@ extern_methods!(
         pub fn masksToBounds(&self) -> bool;
 
         #[method(setMasksToBounds:)]
-        pub fn setMasksToBounds(&self, masksToBounds: bool);
+        pub fn setMasksToBounds(&self, masks_to_bounds: bool);
 
         #[method(convertPoint:fromLayer:)]
         pub fn convertPoint_fromLayer(&self, p: CGPoint, l: Option<&CALayer>) -> CGPoint;
@@ -246,49 +246,49 @@ extern_methods!(
         pub fn contentsRect(&self) -> CGRect;
 
         #[method(setContentsRect:)]
-        pub fn setContentsRect(&self, contentsRect: CGRect);
+        pub fn setContentsRect(&self, contents_rect: CGRect);
 
         #[method_id(@__retain_semantics Other contentsGravity)]
         pub fn contentsGravity(&self) -> Id<CALayerContentsGravity, Shared>;
 
         #[method(setContentsGravity:)]
-        pub fn setContentsGravity(&self, contentsGravity: &CALayerContentsGravity);
+        pub fn setContentsGravity(&self, contents_gravity: &CALayerContentsGravity);
 
         #[method(contentsScale)]
         pub fn contentsScale(&self) -> CGFloat;
 
         #[method(setContentsScale:)]
-        pub fn setContentsScale(&self, contentsScale: CGFloat);
+        pub fn setContentsScale(&self, contents_scale: CGFloat);
 
         #[method(contentsCenter)]
         pub fn contentsCenter(&self) -> CGRect;
 
         #[method(setContentsCenter:)]
-        pub fn setContentsCenter(&self, contentsCenter: CGRect);
+        pub fn setContentsCenter(&self, contents_center: CGRect);
 
         #[method_id(@__retain_semantics Other contentsFormat)]
         pub fn contentsFormat(&self) -> Id<CALayerContentsFormat, Shared>;
 
         #[method(setContentsFormat:)]
-        pub fn setContentsFormat(&self, contentsFormat: &CALayerContentsFormat);
+        pub fn setContentsFormat(&self, contents_format: &CALayerContentsFormat);
 
         #[method_id(@__retain_semantics Other minificationFilter)]
         pub fn minificationFilter(&self) -> Id<CALayerContentsFilter, Shared>;
 
         #[method(setMinificationFilter:)]
-        pub fn setMinificationFilter(&self, minificationFilter: &CALayerContentsFilter);
+        pub fn setMinificationFilter(&self, minification_filter: &CALayerContentsFilter);
 
         #[method_id(@__retain_semantics Other magnificationFilter)]
         pub fn magnificationFilter(&self) -> Id<CALayerContentsFilter, Shared>;
 
         #[method(setMagnificationFilter:)]
-        pub fn setMagnificationFilter(&self, magnificationFilter: &CALayerContentsFilter);
+        pub fn setMagnificationFilter(&self, magnification_filter: &CALayerContentsFilter);
 
         #[method(minificationFilterBias)]
         pub fn minificationFilterBias(&self) -> c_float;
 
         #[method(setMinificationFilterBias:)]
-        pub fn setMinificationFilterBias(&self, minificationFilterBias: c_float);
+        pub fn setMinificationFilterBias(&self, minification_filter_bias: c_float);
 
         #[method(isOpaque)]
         pub fn isOpaque(&self) -> bool;
@@ -315,43 +315,43 @@ extern_methods!(
         pub fn needsDisplayOnBoundsChange(&self) -> bool;
 
         #[method(setNeedsDisplayOnBoundsChange:)]
-        pub fn setNeedsDisplayOnBoundsChange(&self, needsDisplayOnBoundsChange: bool);
+        pub fn setNeedsDisplayOnBoundsChange(&self, needs_display_on_bounds_change: bool);
 
         #[method(drawsAsynchronously)]
         pub fn drawsAsynchronously(&self) -> bool;
 
         #[method(setDrawsAsynchronously:)]
-        pub fn setDrawsAsynchronously(&self, drawsAsynchronously: bool);
+        pub fn setDrawsAsynchronously(&self, draws_asynchronously: bool);
 
         #[method(edgeAntialiasingMask)]
         pub fn edgeAntialiasingMask(&self) -> CAEdgeAntialiasingMask;
 
         #[method(setEdgeAntialiasingMask:)]
-        pub fn setEdgeAntialiasingMask(&self, edgeAntialiasingMask: CAEdgeAntialiasingMask);
+        pub fn setEdgeAntialiasingMask(&self, edge_antialiasing_mask: CAEdgeAntialiasingMask);
 
         #[method(allowsEdgeAntialiasing)]
         pub fn allowsEdgeAntialiasing(&self) -> bool;
 
         #[method(setAllowsEdgeAntialiasing:)]
-        pub fn setAllowsEdgeAntialiasing(&self, allowsEdgeAntialiasing: bool);
+        pub fn setAllowsEdgeAntialiasing(&self, allows_edge_antialiasing: bool);
 
         #[method(cornerRadius)]
         pub fn cornerRadius(&self) -> CGFloat;
 
         #[method(setCornerRadius:)]
-        pub fn setCornerRadius(&self, cornerRadius: CGFloat);
+        pub fn setCornerRadius(&self, corner_radius: CGFloat);
 
         #[method(maskedCorners)]
         pub fn maskedCorners(&self) -> CACornerMask;
 
         #[method(setMaskedCorners:)]
-        pub fn setMaskedCorners(&self, maskedCorners: CACornerMask);
+        pub fn setMaskedCorners(&self, masked_corners: CACornerMask);
 
         #[method_id(@__retain_semantics Other cornerCurve)]
         pub fn cornerCurve(&self) -> Id<CALayerCornerCurve, Shared>;
 
         #[method(setCornerCurve:)]
-        pub fn setCornerCurve(&self, cornerCurve: &CALayerCornerCurve);
+        pub fn setCornerCurve(&self, corner_curve: &CALayerCornerCurve);
 
         #[method(cornerCurveExpansionFactor:)]
         pub fn cornerCurveExpansionFactor(curve: &CALayerCornerCurve) -> CGFloat;
@@ -360,7 +360,7 @@ extern_methods!(
         pub fn borderWidth(&self) -> CGFloat;
 
         #[method(setBorderWidth:)]
-        pub fn setBorderWidth(&self, borderWidth: CGFloat);
+        pub fn setBorderWidth(&self, border_width: CGFloat);
 
         #[method(opacity)]
         pub fn opacity(&self) -> c_float;
@@ -372,13 +372,13 @@ extern_methods!(
         pub fn allowsGroupOpacity(&self) -> bool;
 
         #[method(setAllowsGroupOpacity:)]
-        pub fn setAllowsGroupOpacity(&self, allowsGroupOpacity: bool);
+        pub fn setAllowsGroupOpacity(&self, allows_group_opacity: bool);
 
         #[method_id(@__retain_semantics Other compositingFilter)]
         pub unsafe fn compositingFilter(&self) -> Option<Id<Object, Shared>>;
 
         #[method(setCompositingFilter:)]
-        pub unsafe fn setCompositingFilter(&self, compositingFilter: Option<&Object>);
+        pub unsafe fn setCompositingFilter(&self, compositing_filter: Option<&Object>);
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other filters)]
@@ -394,49 +394,49 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setBackgroundFilters:)]
-        pub unsafe fn setBackgroundFilters(&self, backgroundFilters: Option<&NSArray>);
+        pub unsafe fn setBackgroundFilters(&self, background_filters: Option<&NSArray>);
 
         #[method(shouldRasterize)]
         pub fn shouldRasterize(&self) -> bool;
 
         #[method(setShouldRasterize:)]
-        pub fn setShouldRasterize(&self, shouldRasterize: bool);
+        pub fn setShouldRasterize(&self, should_rasterize: bool);
 
         #[method(rasterizationScale)]
         pub fn rasterizationScale(&self) -> CGFloat;
 
         #[method(setRasterizationScale:)]
-        pub fn setRasterizationScale(&self, rasterizationScale: CGFloat);
+        pub fn setRasterizationScale(&self, rasterization_scale: CGFloat);
 
         #[method(shadowOpacity)]
         pub fn shadowOpacity(&self) -> c_float;
 
         #[method(setShadowOpacity:)]
-        pub fn setShadowOpacity(&self, shadowOpacity: c_float);
+        pub fn setShadowOpacity(&self, shadow_opacity: c_float);
 
         #[method(shadowOffset)]
         pub fn shadowOffset(&self) -> CGSize;
 
         #[method(setShadowOffset:)]
-        pub fn setShadowOffset(&self, shadowOffset: CGSize);
+        pub fn setShadowOffset(&self, shadow_offset: CGSize);
 
         #[method(shadowRadius)]
         pub fn shadowRadius(&self) -> CGFloat;
 
         #[method(setShadowRadius:)]
-        pub fn setShadowRadius(&self, shadowRadius: CGFloat);
+        pub fn setShadowRadius(&self, shadow_radius: CGFloat);
 
         #[method(autoresizingMask)]
         pub fn autoresizingMask(&self) -> CAAutoresizingMask;
 
         #[method(setAutoresizingMask:)]
-        pub fn setAutoresizingMask(&self, autoresizingMask: CAAutoresizingMask);
+        pub fn setAutoresizingMask(&self, autoresizing_mask: CAAutoresizingMask);
 
         #[method_id(@__retain_semantics Other layoutManager)]
         pub fn layoutManager(&self) -> Option<Id<CALayoutManager, Shared>>;
 
         #[method(setLayoutManager:)]
-        pub fn setLayoutManager(&self, layoutManager: Option<&CALayoutManager>);
+        pub fn setLayoutManager(&self, layout_manager: Option<&CALayoutManager>);
 
         #[method(preferredFrameSize)]
         pub fn preferredFrameSize(&self) -> CGSize;
@@ -548,7 +548,7 @@ extern_protocol!(
         pub unsafe fn runActionForKey_object_arguments(
             &self,
             event: &NSString,
-            anObject: &Object,
+            an_object: &Object,
             dict: Option<&NSDictionary>,
         );
     }

@@ -23,7 +23,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frame_rect: NSRect,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSCoder")]
@@ -55,7 +55,7 @@ extern_methods!(
         pub unsafe fn ignoresMultiClick(&self) -> bool;
 
         #[method(setIgnoresMultiClick:)]
-        pub unsafe fn setIgnoresMultiClick(&self, ignoresMultiClick: bool);
+        pub unsafe fn setIgnoresMultiClick(&self, ignores_multi_click: bool);
 
         #[method(isContinuous)]
         pub unsafe fn isContinuous(&self) -> bool;
@@ -73,7 +73,7 @@ extern_methods!(
         pub unsafe fn refusesFirstResponder(&self) -> bool;
 
         #[method(setRefusesFirstResponder:)]
-        pub unsafe fn setRefusesFirstResponder(&self, refusesFirstResponder: bool);
+        pub unsafe fn setRefusesFirstResponder(&self, refuses_first_responder: bool);
 
         #[method(isHighlighted)]
         pub unsafe fn isHighlighted(&self) -> bool;
@@ -85,7 +85,7 @@ extern_methods!(
         pub unsafe fn controlSize(&self) -> NSControlSize;
 
         #[method(setControlSize:)]
-        pub unsafe fn setControlSize(&self, controlSize: NSControlSize);
+        pub unsafe fn setControlSize(&self, control_size: NSControlSize);
 
         #[cfg(feature = "Foundation_NSFormatter")]
         #[method_id(@__retain_semantics Other formatter)]
@@ -99,7 +99,7 @@ extern_methods!(
         pub unsafe fn objectValue(&self) -> Option<Id<Object, Shared>>;
 
         #[method(setObjectValue:)]
-        pub unsafe fn setObjectValue(&self, objectValue: Option<&Object>);
+        pub unsafe fn setObjectValue(&self, object_value: Option<&Object>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringValue)]
@@ -107,7 +107,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setStringValue:)]
-        pub unsafe fn setStringValue(&self, stringValue: &NSString);
+        pub unsafe fn setStringValue(&self, string_value: &NSString);
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedStringValue)]
@@ -115,31 +115,31 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setAttributedStringValue:)]
-        pub unsafe fn setAttributedStringValue(&self, attributedStringValue: &NSAttributedString);
+        pub unsafe fn setAttributedStringValue(&self, attributed_string_value: &NSAttributedString);
 
         #[method(intValue)]
         pub unsafe fn intValue(&self) -> c_int;
 
         #[method(setIntValue:)]
-        pub unsafe fn setIntValue(&self, intValue: c_int);
+        pub unsafe fn setIntValue(&self, int_value: c_int);
 
         #[method(integerValue)]
         pub unsafe fn integerValue(&self) -> NSInteger;
 
         #[method(setIntegerValue:)]
-        pub unsafe fn setIntegerValue(&self, integerValue: NSInteger);
+        pub unsafe fn setIntegerValue(&self, integer_value: NSInteger);
 
         #[method(floatValue)]
         pub unsafe fn floatValue(&self) -> c_float;
 
         #[method(setFloatValue:)]
-        pub unsafe fn setFloatValue(&self, floatValue: c_float);
+        pub unsafe fn setFloatValue(&self, float_value: c_float);
 
         #[method(doubleValue)]
         pub unsafe fn doubleValue(&self) -> c_double;
 
         #[method(setDoubleValue:)]
-        pub unsafe fn setDoubleValue(&self, doubleValue: c_double);
+        pub unsafe fn setDoubleValue(&self, double_value: c_double);
 
         #[method(sizeThatFits:)]
         pub unsafe fn sizeThatFits(&self, size: NSSize) -> NSSize;
@@ -190,13 +190,13 @@ extern_methods!(
         pub unsafe fn usesSingleLineMode(&self) -> bool;
 
         #[method(setUsesSingleLineMode:)]
-        pub unsafe fn setUsesSingleLineMode(&self, usesSingleLineMode: bool);
+        pub unsafe fn setUsesSingleLineMode(&self, uses_single_line_mode: bool);
 
         #[method(lineBreakMode)]
         pub unsafe fn lineBreakMode(&self) -> NSLineBreakMode;
 
         #[method(setLineBreakMode:)]
-        pub unsafe fn setLineBreakMode(&self, lineBreakMode: NSLineBreakMode);
+        pub unsafe fn setLineBreakMode(&self, line_break_mode: NSLineBreakMode);
 
         #[method(alignment)]
         pub unsafe fn alignment(&self) -> NSTextAlignment;
@@ -208,19 +208,19 @@ extern_methods!(
         pub unsafe fn baseWritingDirection(&self) -> NSWritingDirection;
 
         #[method(setBaseWritingDirection:)]
-        pub unsafe fn setBaseWritingDirection(&self, baseWritingDirection: NSWritingDirection);
+        pub unsafe fn setBaseWritingDirection(&self, base_writing_direction: NSWritingDirection);
 
         #[method(allowsExpansionToolTips)]
         pub unsafe fn allowsExpansionToolTips(&self) -> bool;
 
         #[method(setAllowsExpansionToolTips:)]
-        pub unsafe fn setAllowsExpansionToolTips(&self, allowsExpansionToolTips: bool);
+        pub unsafe fn setAllowsExpansionToolTips(&self, allows_expansion_tool_tips: bool);
 
         #[method(expansionFrameWithFrame:)]
-        pub unsafe fn expansionFrameWithFrame(&self, contentFrame: NSRect) -> NSRect;
+        pub unsafe fn expansionFrameWithFrame(&self, content_frame: NSRect) -> NSRect;
 
         #[method(drawWithExpansionFrame:inView:)]
-        pub unsafe fn drawWithExpansionFrame_inView(&self, contentFrame: NSRect, view: &NSView);
+        pub unsafe fn drawWithExpansionFrame_inView(&self, content_frame: NSRect, view: &NSView);
     }
 );
 
@@ -243,7 +243,7 @@ extern_methods!(
         pub unsafe fn editWithFrame_editor_delegate_event(
             &self,
             rect: NSRect,
-            textObj: &NSText,
+            text_obj: &NSText,
             delegate: Option<&Object>,
             event: &NSEvent,
         );
@@ -253,15 +253,15 @@ extern_methods!(
         pub unsafe fn selectWithFrame_editor_delegate_start_length(
             &self,
             rect: NSRect,
-            textObj: &NSText,
+            text_obj: &NSText,
             delegate: Option<&Object>,
-            selStart: NSInteger,
-            selLength: NSInteger,
+            sel_start: NSInteger,
+            sel_length: NSInteger,
         );
 
         #[cfg(feature = "AppKit_NSText")]
         #[method(endEditing:)]
-        pub unsafe fn endEditing(&self, textObj: &NSText);
+        pub unsafe fn endEditing(&self, text_obj: &NSText);
     }
 );
 
@@ -290,7 +290,7 @@ extern_protocol!(
         pub unsafe fn control_textShouldBeginEditing(
             &self,
             control: &NSControl,
-            fieldEditor: &NSText,
+            field_editor: &NSText,
         ) -> bool;
 
         #[cfg(all(feature = "AppKit_NSControl", feature = "AppKit_NSText"))]
@@ -299,7 +299,7 @@ extern_protocol!(
         pub unsafe fn control_textShouldEndEditing(
             &self,
             control: &NSControl,
-            fieldEditor: &NSText,
+            field_editor: &NSText,
         ) -> bool;
 
         #[cfg(all(feature = "AppKit_NSControl", feature = "Foundation_NSString"))]
@@ -337,8 +337,8 @@ extern_protocol!(
         pub unsafe fn control_textView_doCommandBySelector(
             &self,
             control: &NSControl,
-            textView: &NSTextView,
-            commandSelector: Sel,
+            text_view: &NSTextView,
+            command_selector: Sel,
         ) -> bool;
 
         #[cfg(all(
@@ -352,9 +352,9 @@ extern_protocol!(
         pub unsafe fn control_textView_completions_forPartialWordRange_indexOfSelectedItem(
             &self,
             control: &NSControl,
-            textView: &NSTextView,
+            text_view: &NSTextView,
             words: &NSArray<NSString>,
-            charRange: NSRange,
+            char_range: NSRange,
             index: NonNull<NSInteger>,
         ) -> Id<NSArray<NSString>, Shared>;
     }
@@ -374,16 +374,16 @@ extern_methods!(
         #[method(setFloatingPointFormat:left:right:)]
         pub unsafe fn setFloatingPointFormat_left_right(
             &self,
-            autoRange: bool,
-            leftDigits: NSUInteger,
-            rightDigits: NSUInteger,
+            auto_range: bool,
+            left_digits: NSUInteger,
+            right_digits: NSUInteger,
         );
 
         #[method(cellClass)]
         pub unsafe fn cellClass() -> Option<&'static Class>;
 
         #[method(setCellClass:)]
-        pub unsafe fn setCellClass(cellClass: Option<&Class>);
+        pub unsafe fn setCellClass(cell_class: Option<&Class>);
 
         #[cfg(feature = "AppKit_NSCell")]
         #[method_id(@__retain_semantics Other cell)]

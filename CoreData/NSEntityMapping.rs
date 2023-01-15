@@ -42,7 +42,7 @@ extern_methods!(
         pub unsafe fn mappingType(&self) -> NSEntityMappingType;
 
         #[method(setMappingType:)]
-        pub unsafe fn setMappingType(&self, mappingType: NSEntityMappingType);
+        pub unsafe fn setMappingType(&self, mapping_type: NSEntityMappingType);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other sourceEntityName)]
@@ -50,7 +50,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setSourceEntityName:)]
-        pub unsafe fn setSourceEntityName(&self, sourceEntityName: Option<&NSString>);
+        pub unsafe fn setSourceEntityName(&self, source_entity_name: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other sourceEntityVersionHash)]
@@ -58,7 +58,10 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSData")]
         #[method(setSourceEntityVersionHash:)]
-        pub unsafe fn setSourceEntityVersionHash(&self, sourceEntityVersionHash: Option<&NSData>);
+        pub unsafe fn setSourceEntityVersionHash(
+            &self,
+            source_entity_version_hash: Option<&NSData>,
+        );
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other destinationEntityName)]
@@ -66,7 +69,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setDestinationEntityName:)]
-        pub unsafe fn setDestinationEntityName(&self, destinationEntityName: Option<&NSString>);
+        pub unsafe fn setDestinationEntityName(&self, destination_entity_name: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other destinationEntityVersionHash)]
@@ -76,7 +79,7 @@ extern_methods!(
         #[method(setDestinationEntityVersionHash:)]
         pub unsafe fn setDestinationEntityVersionHash(
             &self,
-            destinationEntityVersionHash: Option<&NSData>,
+            destination_entity_version_hash: Option<&NSData>,
         );
 
         #[cfg(all(feature = "CoreData_NSPropertyMapping", feature = "Foundation_NSArray"))]
@@ -87,7 +90,7 @@ extern_methods!(
         #[method(setAttributeMappings:)]
         pub unsafe fn setAttributeMappings(
             &self,
-            attributeMappings: Option<&NSArray<NSPropertyMapping>>,
+            attribute_mappings: Option<&NSArray<NSPropertyMapping>>,
         );
 
         #[cfg(all(feature = "CoreData_NSPropertyMapping", feature = "Foundation_NSArray"))]
@@ -99,7 +102,7 @@ extern_methods!(
         #[method(setRelationshipMappings:)]
         pub unsafe fn setRelationshipMappings(
             &self,
-            relationshipMappings: Option<&NSArray<NSPropertyMapping>>,
+            relationship_mappings: Option<&NSArray<NSPropertyMapping>>,
         );
 
         #[cfg(feature = "Foundation_NSExpression")]
@@ -108,7 +111,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSExpression")]
         #[method(setSourceExpression:)]
-        pub unsafe fn setSourceExpression(&self, sourceExpression: Option<&NSExpression>);
+        pub unsafe fn setSourceExpression(&self, source_expression: Option<&NSExpression>);
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other userInfo)]
@@ -116,7 +119,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(setUserInfo:)]
-        pub unsafe fn setUserInfo(&self, userInfo: Option<&NSDictionary>);
+        pub unsafe fn setUserInfo(&self, user_info: Option<&NSDictionary>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other entityMigrationPolicyClassName)]
@@ -126,7 +129,7 @@ extern_methods!(
         #[method(setEntityMigrationPolicyClassName:)]
         pub unsafe fn setEntityMigrationPolicyClassName(
             &self,
-            entityMigrationPolicyClassName: Option<&NSString>,
+            entity_migration_policy_class_name: Option<&NSString>,
         );
     }
 );

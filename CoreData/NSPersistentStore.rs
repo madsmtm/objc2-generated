@@ -86,7 +86,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method(setURL:)]
-        pub unsafe fn setURL(&self, URL: Option<&NSURL>);
+        pub unsafe fn setURL(&self, url: Option<&NSURL>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other identifier)]
@@ -104,7 +104,7 @@ extern_methods!(
         pub unsafe fn isReadOnly(&self) -> bool;
 
         #[method(setReadOnly:)]
-        pub unsafe fn setReadOnly(&self, readOnly: bool);
+        pub unsafe fn setReadOnly(&self, read_only: bool);
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other metadata)]

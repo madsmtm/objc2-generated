@@ -24,8 +24,8 @@ extern_methods!(
         pub unsafe fn initWithSize_flipped_drawingHandler(
             this: Option<Allocated<Self>>,
             size: NSSize,
-            drawingHandlerShouldBeCalledWithFlippedContext: bool,
-            drawingHandler: &Block<(NSRect,), Bool>,
+            drawing_handler_should_be_called_with_flipped_context: bool,
+            drawing_handler: &Block<(NSRect,), Bool>,
         ) -> Id<Self, Shared>;
 
         #[method(drawingHandler)]

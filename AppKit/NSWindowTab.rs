@@ -33,7 +33,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setAttributedTitle:)]
-        pub unsafe fn setAttributedTitle(&self, attributedTitle: Option<&NSAttributedString>);
+        pub unsafe fn setAttributedTitle(&self, attributed_title: Option<&NSAttributedString>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other toolTip)]
@@ -41,7 +41,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setToolTip:)]
-        pub unsafe fn setToolTip(&self, toolTip: Option<&NSString>);
+        pub unsafe fn setToolTip(&self, tool_tip: Option<&NSString>);
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other accessoryView)]
@@ -49,6 +49,6 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(setAccessoryView:)]
-        pub unsafe fn setAccessoryView(&self, accessoryView: Option<&NSView>);
+        pub unsafe fn setAccessoryView(&self, accessory_view: Option<&NSView>);
     }
 );

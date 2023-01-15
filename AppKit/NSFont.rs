@@ -24,22 +24,22 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fontWithName:size:)]
         pub unsafe fn fontWithName_size(
-            fontName: &NSString,
-            fontSize: CGFloat,
+            font_name: &NSString,
+            font_size: CGFloat,
         ) -> Option<Id<NSFont, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fontWithName:matrix:)]
         pub unsafe fn fontWithName_matrix(
-            fontName: &NSString,
-            fontMatrix: NonNull<CGFloat>,
+            font_name: &NSString,
+            font_matrix: NonNull<CGFloat>,
         ) -> Option<Id<NSFont, Shared>>;
 
         #[cfg(feature = "AppKit_NSFontDescriptor")]
         #[method_id(@__retain_semantics Other fontWithDescriptor:size:)]
         pub unsafe fn fontWithDescriptor_size(
-            fontDescriptor: &NSFontDescriptor,
-            fontSize: CGFloat,
+            font_descriptor: &NSFontDescriptor,
+            font_size: CGFloat,
         ) -> Option<Id<NSFont, Shared>>;
 
         #[cfg(all(
@@ -48,15 +48,15 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Other fontWithDescriptor:textTransform:)]
         pub unsafe fn fontWithDescriptor_textTransform(
-            fontDescriptor: &NSFontDescriptor,
-            textTransform: Option<&NSAffineTransform>,
+            font_descriptor: &NSFontDescriptor,
+            text_transform: Option<&NSAffineTransform>,
         ) -> Option<Id<NSFont, Shared>>;
 
         #[method_id(@__retain_semantics Other userFontOfSize:)]
-        pub unsafe fn userFontOfSize(fontSize: CGFloat) -> Option<Id<NSFont, Shared>>;
+        pub unsafe fn userFontOfSize(font_size: CGFloat) -> Option<Id<NSFont, Shared>>;
 
         #[method_id(@__retain_semantics Other userFixedPitchFontOfSize:)]
-        pub unsafe fn userFixedPitchFontOfSize(fontSize: CGFloat) -> Option<Id<NSFont, Shared>>;
+        pub unsafe fn userFixedPitchFontOfSize(font_size: CGFloat) -> Option<Id<NSFont, Shared>>;
 
         #[method(setUserFont:)]
         pub unsafe fn setUserFont(font: Option<&NSFont>);
@@ -65,62 +65,62 @@ extern_methods!(
         pub unsafe fn setUserFixedPitchFont(font: Option<&NSFont>);
 
         #[method_id(@__retain_semantics Other systemFontOfSize:)]
-        pub unsafe fn systemFontOfSize(fontSize: CGFloat) -> Id<NSFont, Shared>;
+        pub unsafe fn systemFontOfSize(font_size: CGFloat) -> Id<NSFont, Shared>;
 
         #[method_id(@__retain_semantics Other boldSystemFontOfSize:)]
-        pub unsafe fn boldSystemFontOfSize(fontSize: CGFloat) -> Id<NSFont, Shared>;
+        pub unsafe fn boldSystemFontOfSize(font_size: CGFloat) -> Id<NSFont, Shared>;
 
         #[method_id(@__retain_semantics Other labelFontOfSize:)]
-        pub unsafe fn labelFontOfSize(fontSize: CGFloat) -> Id<NSFont, Shared>;
+        pub unsafe fn labelFontOfSize(font_size: CGFloat) -> Id<NSFont, Shared>;
 
         #[method_id(@__retain_semantics Other titleBarFontOfSize:)]
-        pub unsafe fn titleBarFontOfSize(fontSize: CGFloat) -> Id<NSFont, Shared>;
+        pub unsafe fn titleBarFontOfSize(font_size: CGFloat) -> Id<NSFont, Shared>;
 
         #[method_id(@__retain_semantics Other menuFontOfSize:)]
-        pub unsafe fn menuFontOfSize(fontSize: CGFloat) -> Id<NSFont, Shared>;
+        pub unsafe fn menuFontOfSize(font_size: CGFloat) -> Id<NSFont, Shared>;
 
         #[method_id(@__retain_semantics Other menuBarFontOfSize:)]
-        pub unsafe fn menuBarFontOfSize(fontSize: CGFloat) -> Id<NSFont, Shared>;
+        pub unsafe fn menuBarFontOfSize(font_size: CGFloat) -> Id<NSFont, Shared>;
 
         #[method_id(@__retain_semantics Other messageFontOfSize:)]
-        pub unsafe fn messageFontOfSize(fontSize: CGFloat) -> Id<NSFont, Shared>;
+        pub unsafe fn messageFontOfSize(font_size: CGFloat) -> Id<NSFont, Shared>;
 
         #[method_id(@__retain_semantics Other paletteFontOfSize:)]
-        pub unsafe fn paletteFontOfSize(fontSize: CGFloat) -> Id<NSFont, Shared>;
+        pub unsafe fn paletteFontOfSize(font_size: CGFloat) -> Id<NSFont, Shared>;
 
         #[method_id(@__retain_semantics Other toolTipsFontOfSize:)]
-        pub unsafe fn toolTipsFontOfSize(fontSize: CGFloat) -> Id<NSFont, Shared>;
+        pub unsafe fn toolTipsFontOfSize(font_size: CGFloat) -> Id<NSFont, Shared>;
 
         #[method_id(@__retain_semantics Other controlContentFontOfSize:)]
-        pub unsafe fn controlContentFontOfSize(fontSize: CGFloat) -> Id<NSFont, Shared>;
+        pub unsafe fn controlContentFontOfSize(font_size: CGFloat) -> Id<NSFont, Shared>;
 
         #[method_id(@__retain_semantics Other systemFontOfSize:weight:)]
         pub unsafe fn systemFontOfSize_weight(
-            fontSize: CGFloat,
+            font_size: CGFloat,
             weight: NSFontWeight,
         ) -> Id<NSFont, Shared>;
 
         #[method_id(@__retain_semantics Other monospacedDigitSystemFontOfSize:weight:)]
         pub unsafe fn monospacedDigitSystemFontOfSize_weight(
-            fontSize: CGFloat,
+            font_size: CGFloat,
             weight: NSFontWeight,
         ) -> Id<NSFont, Shared>;
 
         #[method_id(@__retain_semantics Other systemFontOfSize:weight:width:)]
         pub unsafe fn systemFontOfSize_weight_width(
-            fontSize: CGFloat,
+            font_size: CGFloat,
             weight: NSFontWeight,
             width: NSFontWidth,
         ) -> Id<NSFont, Shared>;
 
         #[method_id(@__retain_semantics Other monospacedSystemFontOfSize:weight:)]
         pub unsafe fn monospacedSystemFontOfSize_weight(
-            fontSize: CGFloat,
+            font_size: CGFloat,
             weight: NSFontWeight,
         ) -> Id<NSFont, Shared>;
 
         #[method_id(@__retain_semantics Other fontWithSize:)]
-        pub unsafe fn fontWithSize(&self, fontSize: CGFloat) -> Id<NSFont, Shared>;
+        pub unsafe fn fontWithSize(&self, font_size: CGFloat) -> Id<NSFont, Shared>;
 
         #[method(systemFontSize)]
         pub unsafe fn systemFontSize() -> CGFloat;
@@ -132,7 +132,7 @@ extern_methods!(
         pub unsafe fn labelFontSize() -> CGFloat;
 
         #[method(systemFontSizeForControlSize:)]
-        pub unsafe fn systemFontSizeForControlSize(controlSize: NSControlSize) -> CGFloat;
+        pub unsafe fn systemFontSizeForControlSize(control_size: NSControlSize) -> CGFloat;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fontName)]
@@ -208,7 +208,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSGraphicsContext")]
         #[method(setInContext:)]
-        pub unsafe fn setInContext(&self, graphicsContext: &NSGraphicsContext);
+        pub unsafe fn setInContext(&self, graphics_context: &NSGraphicsContext);
 
         #[method_id(@__retain_semantics Other verticalFont)]
         pub unsafe fn verticalFont(&self) -> Id<NSFont, Shared>;
@@ -254,10 +254,10 @@ ns_enum!(
 extern_fn!(
     #[deprecated]
     pub unsafe fn NSConvertGlyphsToPackedGlyphs(
-        glBuf: NonNull<NSGlyph>,
+        gl_buf: NonNull<NSGlyph>,
         count: NSInteger,
         packing: NSMultibyteGlyphPacking,
-        packedGlyphs: NonNull<c_char>,
+        packed_glyphs: NonNull<c_char>,
     ) -> NSInteger;
 );
 
@@ -280,7 +280,7 @@ extern_methods!(
             &self,
             bounds: NSRectArray,
             glyphs: NonNull<NSGlyph>,
-            glyphCount: NSUInteger,
+            glyph_count: NSUInteger,
         );
 
         #[method(getAdvancements:forGlyphs:count:)]
@@ -288,14 +288,14 @@ extern_methods!(
             &self,
             advancements: NSSizeArray,
             glyphs: NonNull<NSGlyph>,
-            glyphCount: NSUInteger,
+            glyph_count: NSUInteger,
         );
 
         #[method(getAdvancements:forPackedGlyphs:length:)]
         pub unsafe fn getAdvancements_forPackedGlyphs_length(
             &self,
             advancements: NSSizeArray,
-            packedGlyphs: NonNull<c_void>,
+            packed_glyphs: NonNull<c_void>,
             length: NSUInteger,
         );
 
@@ -308,7 +308,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other screenFontWithRenderingMode:)]
         pub unsafe fn screenFontWithRenderingMode(
             &self,
-            renderingMode: NSFontRenderingMode,
+            rendering_mode: NSFontRenderingMode,
         ) -> Id<NSFont, Shared>;
 
         #[method(renderingMode)]

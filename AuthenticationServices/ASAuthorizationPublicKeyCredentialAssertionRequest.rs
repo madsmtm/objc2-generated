@@ -22,7 +22,7 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setRelyingPartyIdentifier:)]
-        pub unsafe fn setRelyingPartyIdentifier(&self, relyingPartyIdentifier: &NSString);
+        pub unsafe fn setRelyingPartyIdentifier(&self, relying_party_identifier: &NSString);
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other allowedCredentials)]
@@ -34,7 +34,7 @@ extern_protocol!(
         #[method(setAllowedCredentials:)]
         pub unsafe fn setAllowedCredentials(
             &self,
-            allowedCredentials: &NSArray<ASAuthorizationPublicKeyCredentialDescriptor>,
+            allowed_credentials: &NSArray<ASAuthorizationPublicKeyCredentialDescriptor>,
         );
 
         #[method_id(@__retain_semantics Other userVerificationPreference)]
@@ -45,7 +45,7 @@ extern_protocol!(
         #[method(setUserVerificationPreference:)]
         pub unsafe fn setUserVerificationPreference(
             &self,
-            userVerificationPreference: &ASAuthorizationPublicKeyCredentialUserVerificationPreference,
+            user_verification_preference: &ASAuthorizationPublicKeyCredentialUserVerificationPreference,
         );
     }
 );

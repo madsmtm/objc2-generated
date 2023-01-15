@@ -43,19 +43,19 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSViewController")]
         #[method_id(@__retain_semantics Other splitViewItemWithViewController:)]
         pub unsafe fn splitViewItemWithViewController(
-            viewController: &NSViewController,
+            view_controller: &NSViewController,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "AppKit_NSViewController")]
         #[method_id(@__retain_semantics Other sidebarWithViewController:)]
         pub unsafe fn sidebarWithViewController(
-            viewController: &NSViewController,
+            view_controller: &NSViewController,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "AppKit_NSViewController")]
         #[method_id(@__retain_semantics Other contentListWithViewController:)]
         pub unsafe fn contentListWithViewController(
-            viewController: &NSViewController,
+            view_controller: &NSViewController,
         ) -> Id<Self, Shared>;
 
         #[method(behavior)]
@@ -67,7 +67,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSViewController")]
         #[method(setViewController:)]
-        pub unsafe fn setViewController(&self, viewController: &NSViewController);
+        pub unsafe fn setViewController(&self, view_controller: &NSViewController);
 
         #[method(isCollapsed)]
         pub unsafe fn isCollapsed(&self) -> bool;
@@ -79,55 +79,58 @@ extern_methods!(
         pub unsafe fn canCollapse(&self) -> bool;
 
         #[method(setCanCollapse:)]
-        pub unsafe fn setCanCollapse(&self, canCollapse: bool);
+        pub unsafe fn setCanCollapse(&self, can_collapse: bool);
 
         #[method(collapseBehavior)]
         pub unsafe fn collapseBehavior(&self) -> NSSplitViewItemCollapseBehavior;
 
         #[method(setCollapseBehavior:)]
-        pub unsafe fn setCollapseBehavior(&self, collapseBehavior: NSSplitViewItemCollapseBehavior);
+        pub unsafe fn setCollapseBehavior(
+            &self,
+            collapse_behavior: NSSplitViewItemCollapseBehavior,
+        );
 
         #[method(minimumThickness)]
         pub unsafe fn minimumThickness(&self) -> CGFloat;
 
         #[method(setMinimumThickness:)]
-        pub unsafe fn setMinimumThickness(&self, minimumThickness: CGFloat);
+        pub unsafe fn setMinimumThickness(&self, minimum_thickness: CGFloat);
 
         #[method(maximumThickness)]
         pub unsafe fn maximumThickness(&self) -> CGFloat;
 
         #[method(setMaximumThickness:)]
-        pub unsafe fn setMaximumThickness(&self, maximumThickness: CGFloat);
+        pub unsafe fn setMaximumThickness(&self, maximum_thickness: CGFloat);
 
         #[method(preferredThicknessFraction)]
         pub unsafe fn preferredThicknessFraction(&self) -> CGFloat;
 
         #[method(setPreferredThicknessFraction:)]
-        pub unsafe fn setPreferredThicknessFraction(&self, preferredThicknessFraction: CGFloat);
+        pub unsafe fn setPreferredThicknessFraction(&self, preferred_thickness_fraction: CGFloat);
 
         #[method(holdingPriority)]
         pub unsafe fn holdingPriority(&self) -> NSLayoutPriority;
 
         #[method(setHoldingPriority:)]
-        pub unsafe fn setHoldingPriority(&self, holdingPriority: NSLayoutPriority);
+        pub unsafe fn setHoldingPriority(&self, holding_priority: NSLayoutPriority);
 
         #[method(automaticMaximumThickness)]
         pub unsafe fn automaticMaximumThickness(&self) -> CGFloat;
 
         #[method(setAutomaticMaximumThickness:)]
-        pub unsafe fn setAutomaticMaximumThickness(&self, automaticMaximumThickness: CGFloat);
+        pub unsafe fn setAutomaticMaximumThickness(&self, automatic_maximum_thickness: CGFloat);
 
         #[method(isSpringLoaded)]
         pub unsafe fn isSpringLoaded(&self) -> bool;
 
         #[method(setSpringLoaded:)]
-        pub unsafe fn setSpringLoaded(&self, springLoaded: bool);
+        pub unsafe fn setSpringLoaded(&self, spring_loaded: bool);
 
         #[method(allowsFullHeightLayout)]
         pub unsafe fn allowsFullHeightLayout(&self) -> bool;
 
         #[method(setAllowsFullHeightLayout:)]
-        pub unsafe fn setAllowsFullHeightLayout(&self, allowsFullHeightLayout: bool);
+        pub unsafe fn setAllowsFullHeightLayout(&self, allows_full_height_layout: bool);
 
         #[method(titlebarSeparatorStyle)]
         pub unsafe fn titlebarSeparatorStyle(&self) -> NSTitlebarSeparatorStyle;
@@ -135,7 +138,7 @@ extern_methods!(
         #[method(setTitlebarSeparatorStyle:)]
         pub unsafe fn setTitlebarSeparatorStyle(
             &self,
-            titlebarSeparatorStyle: NSTitlebarSeparatorStyle,
+            titlebar_separator_style: NSTitlebarSeparatorStyle,
         );
     }
 );

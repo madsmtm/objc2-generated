@@ -34,7 +34,7 @@ extern_methods!(
         #[method(setDataProvider:forTypes:)]
         pub unsafe fn setDataProvider_forTypes(
             &self,
-            dataProvider: &NSPasteboardItemDataProvider,
+            data_provider: &NSPasteboardItemDataProvider,
             types: &NSArray<NSPasteboardType>,
         ) -> bool;
 
@@ -53,7 +53,7 @@ extern_methods!(
         #[method(setPropertyList:forType:)]
         pub unsafe fn setPropertyList_forType(
             &self,
-            propertyList: &Object,
+            property_list: &Object,
             r#type: &NSPasteboardType,
         ) -> bool;
 

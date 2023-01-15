@@ -42,7 +42,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithNotificationCenter:)]
         pub unsafe fn initWithNotificationCenter(
             this: Option<Allocated<Self>>,
-            notificationCenter: &NSNotificationCenter,
+            notification_center: &NSNotificationCenter,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSNotification")]
@@ -50,7 +50,7 @@ extern_methods!(
         pub unsafe fn enqueueNotification_postingStyle(
             &self,
             notification: &NSNotification,
-            postingStyle: NSPostingStyle,
+            posting_style: NSPostingStyle,
         );
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNotification"))]
@@ -58,8 +58,8 @@ extern_methods!(
         pub unsafe fn enqueueNotification_postingStyle_coalesceMask_forModes(
             &self,
             notification: &NSNotification,
-            postingStyle: NSPostingStyle,
-            coalesceMask: NSNotificationCoalescing,
+            posting_style: NSPostingStyle,
+            coalesce_mask: NSNotificationCoalescing,
             modes: Option<&NSArray<NSRunLoopMode>>,
         );
 
@@ -68,7 +68,7 @@ extern_methods!(
         pub unsafe fn dequeueNotificationsMatching_coalesceMask(
             &self,
             notification: &NSNotification,
-            coalesceMask: NSUInteger,
+            coalesce_mask: NSUInteger,
         );
     }
 );

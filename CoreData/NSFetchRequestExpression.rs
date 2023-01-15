@@ -25,7 +25,7 @@ extern_methods!(
         pub unsafe fn expressionForFetch_context_countOnly(
             fetch: &NSExpression,
             context: &NSExpression,
-            countFlag: bool,
+            count_flag: bool,
         ) -> Id<NSExpression, Shared>;
 
         #[method_id(@__retain_semantics Other requestExpression)]

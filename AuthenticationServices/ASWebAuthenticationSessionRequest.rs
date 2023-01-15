@@ -16,8 +16,8 @@ extern_protocol!(
         #[method(authenticationSessionRequest:didCompleteWithCallbackURL:)]
         pub unsafe fn authenticationSessionRequest_didCompleteWithCallbackURL(
             &self,
-            authenticationSessionRequest: &ASWebAuthenticationSessionRequest,
-            callbackURL: &NSURL,
+            authentication_session_request: &ASWebAuthenticationSessionRequest,
+            callback_url: &NSURL,
         );
 
         #[cfg(all(
@@ -28,7 +28,7 @@ extern_protocol!(
         #[method(authenticationSessionRequest:didCancelWithError:)]
         pub unsafe fn authenticationSessionRequest_didCancelWithError(
             &self,
-            authenticationSessionRequest: &ASWebAuthenticationSessionRequest,
+            authentication_session_request: &ASWebAuthenticationSessionRequest,
             error: &NSError,
         );
     }

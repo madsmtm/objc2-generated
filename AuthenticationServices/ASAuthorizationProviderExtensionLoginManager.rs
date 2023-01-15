@@ -49,7 +49,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLoginUserName:)]
-        pub unsafe fn setLoginUserName(&self, loginUserName: Option<&NSString>);
+        pub unsafe fn setLoginUserName(&self, login_user_name: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other ssoTokens)]
@@ -57,7 +57,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(setSsoTokens:)]
-        pub unsafe fn setSsoTokens(&self, ssoTokens: Option<&NSDictionary>);
+        pub unsafe fn setSsoTokens(&self, sso_tokens: Option<&NSDictionary>);
 
         #[cfg(
             feature = "AuthenticationServices_ASAuthorizationProviderExtensionLoginConfiguration"
@@ -74,7 +74,7 @@ extern_methods!(
         #[method(saveLoginConfiguration:error:_)]
         pub unsafe fn saveLoginConfiguration_error(
             &self,
-            loginConfiguration: &ASAuthorizationProviderExtensionLoginConfiguration,
+            login_configuration: &ASAuthorizationProviderExtensionLoginConfiguration,
         ) -> Result<(), Id<NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSError")]

@@ -55,7 +55,7 @@ extern_methods!(
         pub unsafe fn supportedWindowDepths(&self) -> NonNull<NSWindowDepth>;
 
         #[method(canRepresentDisplayGamut:)]
-        pub unsafe fn canRepresentDisplayGamut(&self, displayGamut: NSDisplayGamut) -> bool;
+        pub unsafe fn canRepresentDisplayGamut(&self, display_gamut: NSDisplayGamut) -> bool;
 
         #[method(convertRectToBacking:)]
         pub unsafe fn convertRectToBacking(&self, rect: NSRect) -> NSRect;

@@ -45,25 +45,25 @@ extern_methods!(
         pub unsafe fn minValue(&self) -> c_double;
 
         #[method(setMinValue:)]
-        pub unsafe fn setMinValue(&self, minValue: c_double);
+        pub unsafe fn setMinValue(&self, min_value: c_double);
 
         #[method(maxValue)]
         pub unsafe fn maxValue(&self) -> c_double;
 
         #[method(setMaxValue:)]
-        pub unsafe fn setMaxValue(&self, maxValue: c_double);
+        pub unsafe fn setMaxValue(&self, max_value: c_double);
 
         #[method(altIncrementValue)]
         pub unsafe fn altIncrementValue(&self) -> c_double;
 
         #[method(setAltIncrementValue:)]
-        pub unsafe fn setAltIncrementValue(&self, altIncrementValue: c_double);
+        pub unsafe fn setAltIncrementValue(&self, alt_increment_value: c_double);
 
         #[method(sliderType)]
         pub unsafe fn sliderType(&self) -> NSSliderType;
 
         #[method(setSliderType:)]
-        pub unsafe fn setSliderType(&self, sliderType: NSSliderType);
+        pub unsafe fn setSliderType(&self, slider_type: NSSliderType);
 
         #[method(setVertical:)]
         pub unsafe fn setVertical(&self, vertical: bool);
@@ -81,7 +81,7 @@ extern_methods!(
         pub unsafe fn barRectFlipped(&self, flipped: bool) -> NSRect;
 
         #[method(drawKnob:)]
-        pub unsafe fn drawKnob_(&self, knobRect: NSRect);
+        pub unsafe fn drawKnob_(&self, knob_rect: NSRect);
 
         #[method(drawKnob)]
         pub unsafe fn drawKnob(&self);
@@ -105,19 +105,19 @@ extern_methods!(
         pub unsafe fn numberOfTickMarks(&self) -> NSInteger;
 
         #[method(setNumberOfTickMarks:)]
-        pub unsafe fn setNumberOfTickMarks(&self, numberOfTickMarks: NSInteger);
+        pub unsafe fn setNumberOfTickMarks(&self, number_of_tick_marks: NSInteger);
 
         #[method(tickMarkPosition)]
         pub unsafe fn tickMarkPosition(&self) -> NSTickMarkPosition;
 
         #[method(setTickMarkPosition:)]
-        pub unsafe fn setTickMarkPosition(&self, tickMarkPosition: NSTickMarkPosition);
+        pub unsafe fn setTickMarkPosition(&self, tick_mark_position: NSTickMarkPosition);
 
         #[method(allowsTickMarkValuesOnly)]
         pub unsafe fn allowsTickMarkValuesOnly(&self) -> bool;
 
         #[method(setAllowsTickMarkValuesOnly:)]
-        pub unsafe fn setAllowsTickMarkValuesOnly(&self, allowsTickMarkValuesOnly: bool);
+        pub unsafe fn setAllowsTickMarkValuesOnly(&self, allows_tick_mark_values_only: bool);
 
         #[method(tickMarkValueAtIndex:)]
         pub unsafe fn tickMarkValueAtIndex(&self, index: NSInteger) -> c_double;
@@ -152,7 +152,7 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSColor")]
         #[deprecated = "-setTitleColor: had no effect since 10.0"]
         #[method(setTitleColor:)]
-        pub unsafe fn setTitleColor(&self, newColor: Option<&NSColor>);
+        pub unsafe fn setTitleColor(&self, new_color: Option<&NSColor>);
 
         #[cfg(feature = "AppKit_NSColor")]
         #[deprecated = "-titleColor has returned nil since 10.0"]
@@ -162,7 +162,7 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSFont")]
         #[deprecated = "-setTitleFont: had no effect since 10.0"]
         #[method(setTitleFont:)]
-        pub unsafe fn setTitleFont(&self, fontObj: Option<&NSFont>);
+        pub unsafe fn setTitleFont(&self, font_obj: Option<&NSFont>);
 
         #[cfg(feature = "AppKit_NSFont")]
         #[deprecated = "-titleFont has returned nil since 10.0"]
@@ -186,7 +186,7 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSImage")]
         #[deprecated = "-setImage: had no effect since 10.0"]
         #[method(setImage:)]
-        pub unsafe fn setImage(&self, backgroundImage: Option<&NSImage>);
+        pub unsafe fn setImage(&self, background_image: Option<&NSImage>);
 
         #[cfg(feature = "AppKit_NSImage")]
         #[deprecated = "-image has returned nil since 10.0"]

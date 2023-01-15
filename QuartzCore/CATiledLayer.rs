@@ -26,19 +26,19 @@ extern_methods!(
         pub unsafe fn levelsOfDetail(&self) -> usize;
 
         #[method(setLevelsOfDetail:)]
-        pub unsafe fn setLevelsOfDetail(&self, levelsOfDetail: usize);
+        pub unsafe fn setLevelsOfDetail(&self, levels_of_detail: usize);
 
         #[method(levelsOfDetailBias)]
         pub unsafe fn levelsOfDetailBias(&self) -> usize;
 
         #[method(setLevelsOfDetailBias:)]
-        pub unsafe fn setLevelsOfDetailBias(&self, levelsOfDetailBias: usize);
+        pub unsafe fn setLevelsOfDetailBias(&self, levels_of_detail_bias: usize);
 
         #[method(tileSize)]
         pub unsafe fn tileSize(&self) -> CGSize;
 
         #[method(setTileSize:)]
-        pub unsafe fn setTileSize(&self, tileSize: CGSize);
+        pub unsafe fn setTileSize(&self, tile_size: CGSize);
     }
 );
 

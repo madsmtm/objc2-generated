@@ -44,7 +44,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setMessageText:)]
-        pub unsafe fn setMessageText(&self, messageText: &NSString);
+        pub unsafe fn setMessageText(&self, message_text: &NSString);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other informativeText)]
@@ -52,7 +52,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setInformativeText:)]
-        pub unsafe fn setInformativeText(&self, informativeText: &NSString);
+        pub unsafe fn setInformativeText(&self, informative_text: &NSString);
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other icon)]
@@ -74,19 +74,19 @@ extern_methods!(
         pub unsafe fn showsHelp(&self) -> bool;
 
         #[method(setShowsHelp:)]
-        pub unsafe fn setShowsHelp(&self, showsHelp: bool);
+        pub unsafe fn setShowsHelp(&self, shows_help: bool);
 
         #[method_id(@__retain_semantics Other helpAnchor)]
         pub unsafe fn helpAnchor(&self) -> Option<Id<NSHelpAnchorName, Shared>>;
 
         #[method(setHelpAnchor:)]
-        pub unsafe fn setHelpAnchor(&self, helpAnchor: Option<&NSHelpAnchorName>);
+        pub unsafe fn setHelpAnchor(&self, help_anchor: Option<&NSHelpAnchorName>);
 
         #[method(alertStyle)]
         pub unsafe fn alertStyle(&self) -> NSAlertStyle;
 
         #[method(setAlertStyle:)]
-        pub unsafe fn setAlertStyle(&self, alertStyle: NSAlertStyle);
+        pub unsafe fn setAlertStyle(&self, alert_style: NSAlertStyle);
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSAlertDelegate, Shared>>;
@@ -98,7 +98,7 @@ extern_methods!(
         pub unsafe fn showsSuppressionButton(&self) -> bool;
 
         #[method(setShowsSuppressionButton:)]
-        pub unsafe fn setShowsSuppressionButton(&self, showsSuppressionButton: bool);
+        pub unsafe fn setShowsSuppressionButton(&self, shows_suppression_button: bool);
 
         #[cfg(feature = "AppKit_NSButton")]
         #[method_id(@__retain_semantics Other suppressionButton)]
@@ -110,7 +110,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(setAccessoryView:)]
-        pub unsafe fn setAccessoryView(&self, accessoryView: Option<&NSView>);
+        pub unsafe fn setAccessoryView(&self, accessory_view: Option<&NSView>);
 
         #[method(layout)]
         pub unsafe fn layout(&self);
@@ -122,7 +122,7 @@ extern_methods!(
         #[method(beginSheetModalForWindow:completionHandler:)]
         pub unsafe fn beginSheetModalForWindow_completionHandler(
             &self,
-            sheetWindow: &NSWindow,
+            sheet_window: &NSWindow,
             handler: Option<&Block<(NSModalResponse,), ()>>,
         );
 
@@ -154,8 +154,8 @@ extern_methods!(
             &self,
             window: &NSWindow,
             delegate: Option<&Object>,
-            didEndSelector: Option<Sel>,
-            contextInfo: *mut c_void,
+            did_end_selector: Option<Sel>,
+            context_info: *mut c_void,
         );
     }
 );

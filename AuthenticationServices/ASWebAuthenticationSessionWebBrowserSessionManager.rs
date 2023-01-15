@@ -30,7 +30,7 @@ extern_methods!(
         #[method(setSessionHandler:)]
         pub unsafe fn setSessionHandler(
             &self,
-            sessionHandler: &ASWebAuthenticationSessionWebBrowserSessionHandling,
+            session_handler: &ASWebAuthenticationSessionWebBrowserSessionHandling,
         );
 
         #[method(wasLaunchedByAuthenticationServices)]

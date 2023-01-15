@@ -37,17 +37,17 @@ extern_methods!(
     {
         #[method_id(@__retain_semantics Other changeWithObject:type:index:)]
         pub unsafe fn changeWithObject_type_index(
-            anObject: Option<&ObjectType>,
+            an_object: Option<&ObjectType>,
             r#type: NSCollectionChangeType,
             index: NSUInteger,
         ) -> Id<NSOrderedCollectionChange<ObjectType>, Shared>;
 
         #[method_id(@__retain_semantics Other changeWithObject:type:index:associatedIndex:)]
         pub unsafe fn changeWithObject_type_index_associatedIndex(
-            anObject: Option<&ObjectType>,
+            an_object: Option<&ObjectType>,
             r#type: NSCollectionChangeType,
             index: NSUInteger,
-            associatedIndex: NSUInteger,
+            associated_index: NSUInteger,
         ) -> Id<NSOrderedCollectionChange<ObjectType>, Shared>;
 
         #[method_id(@__retain_semantics Other object)]
@@ -68,7 +68,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithObject:type:index:)]
         pub unsafe fn initWithObject_type_index(
             this: Option<Allocated<Self>>,
-            anObject: Option<&ObjectType>,
+            an_object: Option<&ObjectType>,
             r#type: NSCollectionChangeType,
             index: NSUInteger,
         ) -> Id<Self, Shared>;
@@ -76,10 +76,10 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithObject:type:index:associatedIndex:)]
         pub unsafe fn initWithObject_type_index_associatedIndex(
             this: Option<Allocated<Self>>,
-            anObject: Option<&ObjectType>,
+            an_object: Option<&ObjectType>,
             r#type: NSCollectionChangeType,
             index: NSUInteger,
-            associatedIndex: NSUInteger,
+            associated_index: NSUInteger,
         ) -> Id<Self, Shared>;
     }
 );

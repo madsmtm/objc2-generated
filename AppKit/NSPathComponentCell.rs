@@ -34,7 +34,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method(setURL:)]
-        pub unsafe fn setURL(&self, URL: Option<&NSURL>);
+        pub unsafe fn setURL(&self, url: Option<&NSURL>);
     }
 );
 

@@ -28,8 +28,8 @@ extern_protocol!(
             &self,
             pointer: NonNull<c_void>,
             size: NSUInteger,
-            sourceHandle: &MTLIOFileHandle,
-            sourceHandleOffset: NSUInteger,
+            source_handle: &MTLIOFileHandle,
+            source_handle_offset: NSUInteger,
         );
 
         #[method(loadBuffer:offset:size:sourceHandle:sourceHandleOffset:)]
@@ -38,8 +38,8 @@ extern_protocol!(
             buffer: &MTLBuffer,
             offset: NSUInteger,
             size: NSUInteger,
-            sourceHandle: &MTLIOFileHandle,
-            sourceHandleOffset: NSUInteger,
+            source_handle: &MTLIOFileHandle,
+            source_handle_offset: NSUInteger,
         );
 
         #[method(loadTexture:slice:level:size:sourceBytesPerRow:sourceBytesPerImage:destinationOrigin:sourceHandle:sourceHandleOffset:)]
@@ -49,11 +49,11 @@ extern_protocol!(
             slice: NSUInteger,
             level: NSUInteger,
             size: MTLSize,
-            sourceBytesPerRow: NSUInteger,
-            sourceBytesPerImage: NSUInteger,
-            destinationOrigin: MTLOrigin,
-            sourceHandle: &MTLIOFileHandle,
-            sourceHandleOffset: NSUInteger,
+            source_bytes_per_row: NSUInteger,
+            source_bytes_per_image: NSUInteger,
+            destination_origin: MTLOrigin,
+            source_handle: &MTLIOFileHandle,
+            source_handle_offset: NSUInteger,
         );
 
         #[method(copyStatusToBuffer:offset:)]

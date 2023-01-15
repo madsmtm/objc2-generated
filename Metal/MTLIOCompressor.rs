@@ -22,7 +22,7 @@ extern_fn!(
     pub unsafe fn MTLIOCreateCompressionContext(
         path: NonNull<c_char>,
         r#type: MTLIOCompressionMethod,
-        chunkSize: usize,
+        chunk_size: usize,
     ) -> MTLIOCompressionContext;
 );
 

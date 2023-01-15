@@ -65,7 +65,7 @@ extern_methods!(
         pub unsafe fn dragColor_withEvent_fromView(
             color: &NSColor,
             event: &NSEvent,
-            sourceView: &NSView,
+            source_view: &NSView,
         ) -> bool;
 
         #[method(setPickerMask:)]
@@ -80,7 +80,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(setAccessoryView:)]
-        pub unsafe fn setAccessoryView(&self, accessoryView: Option<&NSView>);
+        pub unsafe fn setAccessoryView(&self, accessory_view: Option<&NSView>);
 
         #[method(isContinuous)]
         pub unsafe fn isContinuous(&self) -> bool;
@@ -92,7 +92,7 @@ extern_methods!(
         pub unsafe fn showsAlpha(&self) -> bool;
 
         #[method(setShowsAlpha:)]
-        pub unsafe fn setShowsAlpha(&self, showsAlpha: bool);
+        pub unsafe fn setShowsAlpha(&self, shows_alpha: bool);
 
         #[method(mode)]
         pub unsafe fn mode(&self) -> NSColorPanelMode;
@@ -119,11 +119,11 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColorList")]
         #[method(attachColorList:)]
-        pub unsafe fn attachColorList(&self, colorList: &NSColorList);
+        pub unsafe fn attachColorList(&self, color_list: &NSColorList);
 
         #[cfg(feature = "AppKit_NSColorList")]
         #[method(detachColorList:)]
-        pub unsafe fn detachColorList(&self, colorList: &NSColorList);
+        pub unsafe fn detachColorList(&self, color_list: &NSColorList);
     }
 );
 
@@ -173,9 +173,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer(
             this: Option<Allocated<Self>>,
-            contentRect: NSRect,
+            content_rect: NSRect,
             style: NSWindowStyleMask,
-            backingStoreType: NSBackingStoreType,
+            backing_store_type: NSBackingStoreType,
             flag: bool,
         ) -> Id<Self, Shared>;
 
@@ -183,9 +183,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:screen:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer_screen(
             this: Option<Allocated<Self>>,
-            contentRect: NSRect,
+            content_rect: NSRect,
             style: NSWindowStyleMask,
-            backingStoreType: NSBackingStoreType,
+            backing_store_type: NSBackingStoreType,
             flag: bool,
             screen: Option<&NSScreen>,
         ) -> Id<Self, Shared>;
@@ -193,7 +193,7 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSViewController")]
         #[method_id(@__retain_semantics Other windowWithContentViewController:)]
         pub unsafe fn windowWithContentViewController(
-            contentViewController: &NSViewController,
+            content_view_controller: &NSViewController,
         ) -> Id<Self, Shared>;
     }
 );

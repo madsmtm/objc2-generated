@@ -22,7 +22,7 @@ extern_methods!(
         pub unsafe fn timerWithTimeInterval_invocation_repeats(
             ti: NSTimeInterval,
             invocation: &NSInvocation,
-            yesOrNo: bool,
+            yes_or_no: bool,
         ) -> Id<NSTimer, Shared>;
 
         #[cfg(feature = "Foundation_NSInvocation")]
@@ -30,25 +30,25 @@ extern_methods!(
         pub unsafe fn scheduledTimerWithTimeInterval_invocation_repeats(
             ti: NSTimeInterval,
             invocation: &NSInvocation,
-            yesOrNo: bool,
+            yes_or_no: bool,
         ) -> Id<NSTimer, Shared>;
 
         #[method_id(@__retain_semantics Other timerWithTimeInterval:target:selector:userInfo:repeats:)]
         pub unsafe fn timerWithTimeInterval_target_selector_userInfo_repeats(
             ti: NSTimeInterval,
-            aTarget: &Object,
-            aSelector: Sel,
-            userInfo: Option<&Object>,
-            yesOrNo: bool,
+            a_target: &Object,
+            a_selector: Sel,
+            user_info: Option<&Object>,
+            yes_or_no: bool,
         ) -> Id<NSTimer, Shared>;
 
         #[method_id(@__retain_semantics Other scheduledTimerWithTimeInterval:target:selector:userInfo:repeats:)]
         pub unsafe fn scheduledTimerWithTimeInterval_target_selector_userInfo_repeats(
             ti: NSTimeInterval,
-            aTarget: &Object,
-            aSelector: Sel,
-            userInfo: Option<&Object>,
-            yesOrNo: bool,
+            a_target: &Object,
+            a_selector: Sel,
+            user_info: Option<&Object>,
+            yes_or_no: bool,
         ) -> Id<NSTimer, Shared>;
 
         #[method_id(@__retain_semantics Other timerWithTimeInterval:repeats:block:)]
@@ -96,7 +96,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method(setFireDate:)]
-        pub unsafe fn setFireDate(&self, fireDate: &NSDate);
+        pub unsafe fn setFireDate(&self, fire_date: &NSDate);
 
         #[method(timeInterval)]
         pub unsafe fn timeInterval(&self) -> NSTimeInterval;

@@ -48,13 +48,13 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithSampleCount:)]
         pub unsafe fn initWithSampleCount(
             this: Option<Allocated<Self>>,
-            sampleCount: MTLSize,
+            sample_count: MTLSize,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Init initWithSampleCount:horizontal:vertical:)]
         pub unsafe fn initWithSampleCount_horizontal_vertical(
             this: Option<Allocated<Self>>,
-            sampleCount: MTLSize,
+            sample_count: MTLSize,
             horizontal: NonNull<c_float>,
             vertical: NonNull<c_float>,
         ) -> Id<Self, Shared>;
@@ -101,7 +101,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other objectAtIndexedSubscript:)]
         pub unsafe fn objectAtIndexedSubscript(
             &self,
-            layerIndex: NSUInteger,
+            layer_index: NSUInteger,
         ) -> Option<Id<MTLRasterizationRateLayerDescriptor, Shared>>;
 
         #[cfg(feature = "Metal_MTLRasterizationRateLayerDescriptor")]
@@ -109,7 +109,7 @@ extern_methods!(
         pub unsafe fn setObject_atIndexedSubscript(
             &self,
             layer: Option<&MTLRasterizationRateLayerDescriptor>,
-            layerIndex: NSUInteger,
+            layer_index: NSUInteger,
         );
     }
 );
@@ -130,21 +130,21 @@ extern_methods!(
     unsafe impl MTLRasterizationRateMapDescriptor {
         #[method_id(@__retain_semantics Other rasterizationRateMapDescriptorWithScreenSize:)]
         pub unsafe fn rasterizationRateMapDescriptorWithScreenSize(
-            screenSize: MTLSize,
+            screen_size: MTLSize,
         ) -> Id<MTLRasterizationRateMapDescriptor, Shared>;
 
         #[cfg(feature = "Metal_MTLRasterizationRateLayerDescriptor")]
         #[method_id(@__retain_semantics Other rasterizationRateMapDescriptorWithScreenSize:layer:)]
         pub unsafe fn rasterizationRateMapDescriptorWithScreenSize_layer(
-            screenSize: MTLSize,
+            screen_size: MTLSize,
             layer: &MTLRasterizationRateLayerDescriptor,
         ) -> Id<MTLRasterizationRateMapDescriptor, Shared>;
 
         #[cfg(feature = "Metal_MTLRasterizationRateLayerDescriptor")]
         #[method_id(@__retain_semantics Other rasterizationRateMapDescriptorWithScreenSize:layerCount:layers:)]
         pub unsafe fn rasterizationRateMapDescriptorWithScreenSize_layerCount_layers(
-            screenSize: MTLSize,
-            layerCount: NSUInteger,
+            screen_size: MTLSize,
+            layer_count: NSUInteger,
             layers: NonNull<NonNull<MTLRasterizationRateLayerDescriptor>>,
         ) -> Id<MTLRasterizationRateMapDescriptor, Shared>;
 
@@ -152,7 +152,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other layerAtIndex:)]
         pub unsafe fn layerAtIndex(
             &self,
-            layerIndex: NSUInteger,
+            layer_index: NSUInteger,
         ) -> Option<Id<MTLRasterizationRateLayerDescriptor, Shared>>;
 
         #[cfg(feature = "Metal_MTLRasterizationRateLayerDescriptor")]
@@ -160,7 +160,7 @@ extern_methods!(
         pub unsafe fn setLayer_atIndex(
             &self,
             layer: Option<&MTLRasterizationRateLayerDescriptor>,
-            layerIndex: NSUInteger,
+            layer_index: NSUInteger,
         );
 
         #[cfg(feature = "Metal_MTLRasterizationRateLayerArray")]
@@ -171,7 +171,7 @@ extern_methods!(
         pub unsafe fn screenSize(&self) -> MTLSize;
 
         #[method(setScreenSize:)]
-        pub unsafe fn setScreenSize(&self, screenSize: MTLSize);
+        pub unsafe fn setScreenSize(&self, screen_size: MTLSize);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
@@ -217,20 +217,20 @@ extern_protocol!(
         );
 
         #[method(physicalSizeForLayer:)]
-        pub unsafe fn physicalSizeForLayer(&self, layerIndex: NSUInteger) -> MTLSize;
+        pub unsafe fn physicalSizeForLayer(&self, layer_index: NSUInteger) -> MTLSize;
 
         #[method(mapScreenToPhysicalCoordinates:forLayer:)]
         pub unsafe fn mapScreenToPhysicalCoordinates_forLayer(
             &self,
-            screenCoordinates: MTLCoordinate2D,
-            layerIndex: NSUInteger,
+            screen_coordinates: MTLCoordinate2D,
+            layer_index: NSUInteger,
         ) -> MTLCoordinate2D;
 
         #[method(mapPhysicalToScreenCoordinates:forLayer:)]
         pub unsafe fn mapPhysicalToScreenCoordinates_forLayer(
             &self,
-            physicalCoordinates: MTLCoordinate2D,
-            layerIndex: NSUInteger,
+            physical_coordinates: MTLCoordinate2D,
+            layer_index: NSUInteger,
         ) -> MTLCoordinate2D;
     }
 );

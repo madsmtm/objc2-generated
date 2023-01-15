@@ -50,43 +50,43 @@ extern_methods!(
         pub fn commandTypes(&self) -> MTLIndirectCommandType;
 
         #[method(setCommandTypes:)]
-        pub fn setCommandTypes(&self, commandTypes: MTLIndirectCommandType);
+        pub fn setCommandTypes(&self, command_types: MTLIndirectCommandType);
 
         #[method(inheritPipelineState)]
         pub fn inheritPipelineState(&self) -> bool;
 
         #[method(setInheritPipelineState:)]
-        pub fn setInheritPipelineState(&self, inheritPipelineState: bool);
+        pub fn setInheritPipelineState(&self, inherit_pipeline_state: bool);
 
         #[method(inheritBuffers)]
         pub fn inheritBuffers(&self) -> bool;
 
         #[method(setInheritBuffers:)]
-        pub fn setInheritBuffers(&self, inheritBuffers: bool);
+        pub fn setInheritBuffers(&self, inherit_buffers: bool);
 
         #[method(maxVertexBufferBindCount)]
         pub fn maxVertexBufferBindCount(&self) -> NSUInteger;
 
         #[method(setMaxVertexBufferBindCount:)]
-        pub fn setMaxVertexBufferBindCount(&self, maxVertexBufferBindCount: NSUInteger);
+        pub fn setMaxVertexBufferBindCount(&self, max_vertex_buffer_bind_count: NSUInteger);
 
         #[method(maxFragmentBufferBindCount)]
         pub fn maxFragmentBufferBindCount(&self) -> NSUInteger;
 
         #[method(setMaxFragmentBufferBindCount:)]
-        pub fn setMaxFragmentBufferBindCount(&self, maxFragmentBufferBindCount: NSUInteger);
+        pub fn setMaxFragmentBufferBindCount(&self, max_fragment_buffer_bind_count: NSUInteger);
 
         #[method(maxKernelBufferBindCount)]
         pub fn maxKernelBufferBindCount(&self) -> NSUInteger;
 
         #[method(setMaxKernelBufferBindCount:)]
-        pub fn setMaxKernelBufferBindCount(&self, maxKernelBufferBindCount: NSUInteger);
+        pub fn setMaxKernelBufferBindCount(&self, max_kernel_buffer_bind_count: NSUInteger);
 
         #[method(supportRayTracing)]
         pub unsafe fn supportRayTracing(&self) -> bool;
 
         #[method(setSupportRayTracing:)]
-        pub unsafe fn setSupportRayTracing(&self, supportRayTracing: bool);
+        pub unsafe fn setSupportRayTracing(&self, support_ray_tracing: bool);
     }
 );
 
@@ -106,13 +106,13 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other indirectRenderCommandAtIndex:)]
         pub unsafe fn indirectRenderCommandAtIndex(
             &self,
-            commandIndex: NSUInteger,
+            command_index: NSUInteger,
         ) -> Id<MTLIndirectRenderCommand, Shared>;
 
         #[method_id(@__retain_semantics Other indirectComputeCommandAtIndex:)]
         pub unsafe fn indirectComputeCommandAtIndex(
             &self,
-            commandIndex: NSUInteger,
+            command_index: NSUInteger,
         ) -> Id<MTLIndirectComputeCommand, Shared>;
     }
 );

@@ -61,7 +61,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithSource:newVersion:oldVersion:cachedSnapshot:persistedSnapshot:)]
         pub unsafe fn initWithSource_newVersion_oldVersion_cachedSnapshot_persistedSnapshot(
             this: Option<Allocated<Self>>,
-            srcObject: &NSManagedObject,
+            src_object: &NSManagedObject,
             newvers: NSUInteger,
             oldvers: NSUInteger,
             cachesnap: Option<&NSDictionary<NSString, Object>>,
@@ -122,10 +122,10 @@ extern_methods!(
         pub unsafe fn initWithConstraint_databaseObject_databaseSnapshot_conflictingObjects_conflictingSnapshots(
             this: Option<Allocated<Self>>,
             contraint: &NSArray<NSString>,
-            databaseObject: Option<&NSManagedObject>,
-            databaseSnapshot: Option<&NSDictionary>,
-            conflictingObjects: &NSArray<NSManagedObject>,
-            conflictingSnapshots: &NSArray,
+            database_object: Option<&NSManagedObject>,
+            database_snapshot: Option<&NSDictionary>,
+            conflicting_objects: &NSArray<NSManagedObject>,
+            conflicting_snapshots: &NSArray,
         ) -> Id<Self, Shared>;
     }
 );

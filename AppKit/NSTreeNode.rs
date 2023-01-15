@@ -21,13 +21,13 @@ extern_methods!(
     unsafe impl NSTreeNode {
         #[method_id(@__retain_semantics Other treeNodeWithRepresentedObject:)]
         pub unsafe fn treeNodeWithRepresentedObject(
-            modelObject: Option<&Object>,
+            model_object: Option<&Object>,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Init initWithRepresentedObject:)]
         pub unsafe fn initWithRepresentedObject(
             this: Option<Allocated<Self>>,
-            modelObject: Option<&Object>,
+            model_object: Option<&Object>,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Other representedObject)]
@@ -52,7 +52,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other descendantNodeAtIndexPath:)]
         pub unsafe fn descendantNodeAtIndexPath(
             &self,
-            indexPath: &NSIndexPath,
+            index_path: &NSIndexPath,
         ) -> Option<Id<NSTreeNode, Shared>>;
 
         #[method_id(@__retain_semantics Other parentNode)]
@@ -65,7 +65,7 @@ extern_methods!(
         #[method(sortWithSortDescriptors:recursively:)]
         pub unsafe fn sortWithSortDescriptors_recursively(
             &self,
-            sortDescriptors: &NSArray<NSSortDescriptor>,
+            sort_descriptors: &NSArray<NSSortDescriptor>,
             recursively: bool,
         );
     }

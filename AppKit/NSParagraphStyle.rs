@@ -50,7 +50,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSCharacterSet", feature = "Foundation_NSLocale"))]
         #[method_id(@__retain_semantics Other columnTerminatorsForLocale:)]
         pub unsafe fn columnTerminatorsForLocale(
-            aLocale: Option<&NSLocale>,
+            a_locale: Option<&NSLocale>,
         ) -> Id<NSCharacterSet, Shared>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
@@ -94,7 +94,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method(defaultWritingDirectionForLanguage:)]
         pub unsafe fn defaultWritingDirectionForLanguage(
-            languageName: Option<&NSString>,
+            language_name: Option<&NSString>,
         ) -> NSWritingDirection;
 
         #[method(lineSpacing)]
@@ -187,13 +187,13 @@ extern_methods!(
         pub unsafe fn lineSpacing(&self) -> CGFloat;
 
         #[method(setLineSpacing:)]
-        pub unsafe fn setLineSpacing(&self, lineSpacing: CGFloat);
+        pub unsafe fn setLineSpacing(&self, line_spacing: CGFloat);
 
         #[method(paragraphSpacing)]
         pub unsafe fn paragraphSpacing(&self) -> CGFloat;
 
         #[method(setParagraphSpacing:)]
-        pub unsafe fn setParagraphSpacing(&self, paragraphSpacing: CGFloat);
+        pub unsafe fn setParagraphSpacing(&self, paragraph_spacing: CGFloat);
 
         #[method(alignment)]
         pub unsafe fn alignment(&self) -> NSTextAlignment;
@@ -205,67 +205,67 @@ extern_methods!(
         pub unsafe fn firstLineHeadIndent(&self) -> CGFloat;
 
         #[method(setFirstLineHeadIndent:)]
-        pub unsafe fn setFirstLineHeadIndent(&self, firstLineHeadIndent: CGFloat);
+        pub unsafe fn setFirstLineHeadIndent(&self, first_line_head_indent: CGFloat);
 
         #[method(headIndent)]
         pub unsafe fn headIndent(&self) -> CGFloat;
 
         #[method(setHeadIndent:)]
-        pub unsafe fn setHeadIndent(&self, headIndent: CGFloat);
+        pub unsafe fn setHeadIndent(&self, head_indent: CGFloat);
 
         #[method(tailIndent)]
         pub unsafe fn tailIndent(&self) -> CGFloat;
 
         #[method(setTailIndent:)]
-        pub unsafe fn setTailIndent(&self, tailIndent: CGFloat);
+        pub unsafe fn setTailIndent(&self, tail_indent: CGFloat);
 
         #[method(lineBreakMode)]
         pub unsafe fn lineBreakMode(&self) -> NSLineBreakMode;
 
         #[method(setLineBreakMode:)]
-        pub unsafe fn setLineBreakMode(&self, lineBreakMode: NSLineBreakMode);
+        pub unsafe fn setLineBreakMode(&self, line_break_mode: NSLineBreakMode);
 
         #[method(minimumLineHeight)]
         pub unsafe fn minimumLineHeight(&self) -> CGFloat;
 
         #[method(setMinimumLineHeight:)]
-        pub unsafe fn setMinimumLineHeight(&self, minimumLineHeight: CGFloat);
+        pub unsafe fn setMinimumLineHeight(&self, minimum_line_height: CGFloat);
 
         #[method(maximumLineHeight)]
         pub unsafe fn maximumLineHeight(&self) -> CGFloat;
 
         #[method(setMaximumLineHeight:)]
-        pub unsafe fn setMaximumLineHeight(&self, maximumLineHeight: CGFloat);
+        pub unsafe fn setMaximumLineHeight(&self, maximum_line_height: CGFloat);
 
         #[method(baseWritingDirection)]
         pub unsafe fn baseWritingDirection(&self) -> NSWritingDirection;
 
         #[method(setBaseWritingDirection:)]
-        pub unsafe fn setBaseWritingDirection(&self, baseWritingDirection: NSWritingDirection);
+        pub unsafe fn setBaseWritingDirection(&self, base_writing_direction: NSWritingDirection);
 
         #[method(lineHeightMultiple)]
         pub unsafe fn lineHeightMultiple(&self) -> CGFloat;
 
         #[method(setLineHeightMultiple:)]
-        pub unsafe fn setLineHeightMultiple(&self, lineHeightMultiple: CGFloat);
+        pub unsafe fn setLineHeightMultiple(&self, line_height_multiple: CGFloat);
 
         #[method(paragraphSpacingBefore)]
         pub unsafe fn paragraphSpacingBefore(&self) -> CGFloat;
 
         #[method(setParagraphSpacingBefore:)]
-        pub unsafe fn setParagraphSpacingBefore(&self, paragraphSpacingBefore: CGFloat);
+        pub unsafe fn setParagraphSpacingBefore(&self, paragraph_spacing_before: CGFloat);
 
         #[method(hyphenationFactor)]
         pub unsafe fn hyphenationFactor(&self) -> c_float;
 
         #[method(setHyphenationFactor:)]
-        pub unsafe fn setHyphenationFactor(&self, hyphenationFactor: c_float);
+        pub unsafe fn setHyphenationFactor(&self, hyphenation_factor: c_float);
 
         #[method(usesDefaultHyphenation)]
         pub unsafe fn usesDefaultHyphenation(&self) -> bool;
 
         #[method(setUsesDefaultHyphenation:)]
-        pub unsafe fn setUsesDefaultHyphenation(&self, usesDefaultHyphenation: bool);
+        pub unsafe fn setUsesDefaultHyphenation(&self, uses_default_hyphenation: bool);
 
         #[cfg(all(feature = "AppKit_NSTextTab", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other tabStops)]
@@ -273,13 +273,13 @@ extern_methods!(
 
         #[cfg(all(feature = "AppKit_NSTextTab", feature = "Foundation_NSArray"))]
         #[method(setTabStops:)]
-        pub unsafe fn setTabStops(&self, tabStops: Option<&NSArray<NSTextTab>>);
+        pub unsafe fn setTabStops(&self, tab_stops: Option<&NSArray<NSTextTab>>);
 
         #[method(defaultTabInterval)]
         pub unsafe fn defaultTabInterval(&self) -> CGFloat;
 
         #[method(setDefaultTabInterval:)]
-        pub unsafe fn setDefaultTabInterval(&self, defaultTabInterval: CGFloat);
+        pub unsafe fn setDefaultTabInterval(&self, default_tab_interval: CGFloat);
 
         #[method(allowsDefaultTighteningForTruncation)]
         pub unsafe fn allowsDefaultTighteningForTruncation(&self) -> bool;
@@ -287,16 +287,16 @@ extern_methods!(
         #[method(setAllowsDefaultTighteningForTruncation:)]
         pub unsafe fn setAllowsDefaultTighteningForTruncation(
             &self,
-            allowsDefaultTighteningForTruncation: bool,
+            allows_default_tightening_for_truncation: bool,
         );
 
         #[cfg(feature = "AppKit_NSTextTab")]
         #[method(addTabStop:)]
-        pub unsafe fn addTabStop(&self, anObject: &NSTextTab);
+        pub unsafe fn addTabStop(&self, an_object: &NSTextTab);
 
         #[cfg(feature = "AppKit_NSTextTab")]
         #[method(removeTabStop:)]
-        pub unsafe fn removeTabStop(&self, anObject: &NSTextTab);
+        pub unsafe fn removeTabStop(&self, an_object: &NSTextTab);
 
         #[method(setParagraphStyle:)]
         pub unsafe fn setParagraphStyle(&self, obj: &NSParagraphStyle);
@@ -307,7 +307,7 @@ extern_methods!(
         #[method(setTighteningFactorForTruncation:)]
         pub unsafe fn setTighteningFactorForTruncation(
             &self,
-            tighteningFactorForTruncation: c_float,
+            tightening_factor_for_truncation: c_float,
         );
 
         #[cfg(all(feature = "AppKit_NSTextBlock", feature = "Foundation_NSArray"))]
@@ -316,7 +316,7 @@ extern_methods!(
 
         #[cfg(all(feature = "AppKit_NSTextBlock", feature = "Foundation_NSArray"))]
         #[method(setTextBlocks:)]
-        pub unsafe fn setTextBlocks(&self, textBlocks: &NSArray<NSTextBlock>);
+        pub unsafe fn setTextBlocks(&self, text_blocks: &NSArray<NSTextBlock>);
 
         #[cfg(all(feature = "AppKit_NSTextList", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other textLists)]
@@ -324,19 +324,19 @@ extern_methods!(
 
         #[cfg(all(feature = "AppKit_NSTextList", feature = "Foundation_NSArray"))]
         #[method(setTextLists:)]
-        pub unsafe fn setTextLists(&self, textLists: &NSArray<NSTextList>);
+        pub unsafe fn setTextLists(&self, text_lists: &NSArray<NSTextList>);
 
         #[method(headerLevel)]
         pub unsafe fn headerLevel(&self) -> NSInteger;
 
         #[method(setHeaderLevel:)]
-        pub unsafe fn setHeaderLevel(&self, headerLevel: NSInteger);
+        pub unsafe fn setHeaderLevel(&self, header_level: NSInteger);
 
         #[method(lineBreakStrategy)]
         pub unsafe fn lineBreakStrategy(&self) -> NSLineBreakStrategy;
 
         #[method(setLineBreakStrategy:)]
-        pub unsafe fn setLineBreakStrategy(&self, lineBreakStrategy: NSLineBreakStrategy);
+        pub unsafe fn setLineBreakStrategy(&self, line_break_strategy: NSLineBreakStrategy);
     }
 );
 

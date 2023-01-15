@@ -16,7 +16,7 @@ extern_protocol!(
         pub unsafe fn beginTime(&self) -> CFTimeInterval;
 
         #[method(setBeginTime:)]
-        pub unsafe fn setBeginTime(&self, beginTime: CFTimeInterval);
+        pub unsafe fn setBeginTime(&self, begin_time: CFTimeInterval);
 
         #[method(duration)]
         pub unsafe fn duration(&self) -> CFTimeInterval;
@@ -34,19 +34,19 @@ extern_protocol!(
         pub unsafe fn timeOffset(&self) -> CFTimeInterval;
 
         #[method(setTimeOffset:)]
-        pub unsafe fn setTimeOffset(&self, timeOffset: CFTimeInterval);
+        pub unsafe fn setTimeOffset(&self, time_offset: CFTimeInterval);
 
         #[method(repeatCount)]
         pub unsafe fn repeatCount(&self) -> c_float;
 
         #[method(setRepeatCount:)]
-        pub unsafe fn setRepeatCount(&self, repeatCount: c_float);
+        pub unsafe fn setRepeatCount(&self, repeat_count: c_float);
 
         #[method(repeatDuration)]
         pub unsafe fn repeatDuration(&self) -> CFTimeInterval;
 
         #[method(setRepeatDuration:)]
-        pub unsafe fn setRepeatDuration(&self, repeatDuration: CFTimeInterval);
+        pub unsafe fn setRepeatDuration(&self, repeat_duration: CFTimeInterval);
 
         #[method(autoreverses)]
         pub unsafe fn autoreverses(&self) -> bool;
@@ -58,7 +58,7 @@ extern_protocol!(
         pub unsafe fn fillMode(&self) -> Id<CAMediaTimingFillMode, Shared>;
 
         #[method(setFillMode:)]
-        pub unsafe fn setFillMode(&self, fillMode: &CAMediaTimingFillMode);
+        pub unsafe fn setFillMode(&self, fill_mode: &CAMediaTimingFillMode);
     }
 );
 

@@ -44,11 +44,11 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSFont")]
         #[method(setTitleFont:)]
-        pub unsafe fn setTitleFont(&self, fontObj: &NSFont);
+        pub unsafe fn setTitleFont(&self, font_obj: &NSFont);
 
         #[cfg(feature = "AppKit_NSFont")]
         #[method(setTextFont:)]
-        pub unsafe fn setTextFont(&self, fontObj: &NSFont);
+        pub unsafe fn setTextFont(&self, font_obj: &NSFont);
 
         #[method_id(@__retain_semantics Other cellAtIndex:)]
         pub unsafe fn cellAtIndex(&self, index: NSInteger) -> Option<Id<Object, Shared>>;
@@ -78,16 +78,16 @@ extern_methods!(
         pub unsafe fn selectTextAtIndex(&self, index: NSInteger);
 
         #[method(setFrameSize:)]
-        pub unsafe fn setFrameSize(&self, newSize: NSSize);
+        pub unsafe fn setFrameSize(&self, new_size: NSSize);
 
         #[method(setTitleBaseWritingDirection:)]
-        pub unsafe fn setTitleBaseWritingDirection(&self, writingDirection: NSWritingDirection);
+        pub unsafe fn setTitleBaseWritingDirection(&self, writing_direction: NSWritingDirection);
 
         #[method(setTextBaseWritingDirection:)]
-        pub unsafe fn setTextBaseWritingDirection(&self, writingDirection: NSWritingDirection);
+        pub unsafe fn setTextBaseWritingDirection(&self, writing_direction: NSWritingDirection);
 
         #[method(setPreferredTextFieldWidth:)]
-        pub unsafe fn setPreferredTextFieldWidth(&self, preferredWidth: CGFloat);
+        pub unsafe fn setPreferredTextFieldWidth(&self, preferred_width: CGFloat);
 
         #[method(preferredTextFieldWidth)]
         pub unsafe fn preferredTextFieldWidth(&self) -> CGFloat;
@@ -101,28 +101,28 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frame_rect: NSRect,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "AppKit_NSCell")]
         #[method_id(@__retain_semantics Init initWithFrame:mode:prototype:numberOfRows:numberOfColumns:)]
         pub unsafe fn initWithFrame_mode_prototype_numberOfRows_numberOfColumns(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frame_rect: NSRect,
             mode: NSMatrixMode,
             cell: &NSCell,
-            rowsHigh: NSInteger,
-            colsWide: NSInteger,
+            rows_high: NSInteger,
+            cols_wide: NSInteger,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Init initWithFrame:mode:cellClass:numberOfRows:numberOfColumns:)]
         pub unsafe fn initWithFrame_mode_cellClass_numberOfRows_numberOfColumns(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frame_rect: NSRect,
             mode: NSMatrixMode,
-            factoryId: Option<&Class>,
-            rowsHigh: NSInteger,
-            colsWide: NSInteger,
+            factory_id: Option<&Class>,
+            rows_high: NSInteger,
+            cols_wide: NSInteger,
         ) -> Id<Self, Shared>;
     }
 );

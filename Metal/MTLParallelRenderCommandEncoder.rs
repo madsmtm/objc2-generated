@@ -14,30 +14,33 @@ extern_protocol!(
         #[method(setColorStoreAction:atIndex:)]
         pub unsafe fn setColorStoreAction_atIndex(
             &self,
-            storeAction: MTLStoreAction,
-            colorAttachmentIndex: NSUInteger,
+            store_action: MTLStoreAction,
+            color_attachment_index: NSUInteger,
         );
 
         #[method(setDepthStoreAction:)]
-        pub unsafe fn setDepthStoreAction(&self, storeAction: MTLStoreAction);
+        pub unsafe fn setDepthStoreAction(&self, store_action: MTLStoreAction);
 
         #[method(setStencilStoreAction:)]
-        pub unsafe fn setStencilStoreAction(&self, storeAction: MTLStoreAction);
+        pub unsafe fn setStencilStoreAction(&self, store_action: MTLStoreAction);
 
         #[method(setColorStoreActionOptions:atIndex:)]
         pub unsafe fn setColorStoreActionOptions_atIndex(
             &self,
-            storeActionOptions: MTLStoreActionOptions,
-            colorAttachmentIndex: NSUInteger,
+            store_action_options: MTLStoreActionOptions,
+            color_attachment_index: NSUInteger,
         );
 
         #[method(setDepthStoreActionOptions:)]
-        pub unsafe fn setDepthStoreActionOptions(&self, storeActionOptions: MTLStoreActionOptions);
+        pub unsafe fn setDepthStoreActionOptions(
+            &self,
+            store_action_options: MTLStoreActionOptions,
+        );
 
         #[method(setStencilStoreActionOptions:)]
         pub unsafe fn setStencilStoreActionOptions(
             &self,
-            storeActionOptions: MTLStoreActionOptions,
+            store_action_options: MTLStoreActionOptions,
         );
     }
 );

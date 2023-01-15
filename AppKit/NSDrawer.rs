@@ -38,7 +38,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithContentSize:preferredEdge:)]
         pub unsafe fn initWithContentSize_preferredEdge(
             this: Option<Allocated<Self>>,
-            contentSize: NSSize,
+            content_size: NSSize,
             edge: NSRectEdge,
         ) -> Id<Self, Shared>;
 
@@ -48,7 +48,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[method(setParentWindow:)]
-        pub unsafe fn setParentWindow(&self, parentWindow: Option<&NSWindow>);
+        pub unsafe fn setParentWindow(&self, parent_window: Option<&NSWindow>);
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other contentView)]
@@ -56,13 +56,13 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(setContentView:)]
-        pub unsafe fn setContentView(&self, contentView: Option<&NSView>);
+        pub unsafe fn setContentView(&self, content_view: Option<&NSView>);
 
         #[method(preferredEdge)]
         pub unsafe fn preferredEdge(&self) -> NSRectEdge;
 
         #[method(setPreferredEdge:)]
-        pub unsafe fn setPreferredEdge(&self, preferredEdge: NSRectEdge);
+        pub unsafe fn setPreferredEdge(&self, preferred_edge: NSRectEdge);
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSDrawerDelegate, Shared>>;
@@ -98,31 +98,31 @@ extern_methods!(
         pub unsafe fn contentSize(&self) -> NSSize;
 
         #[method(setContentSize:)]
-        pub unsafe fn setContentSize(&self, contentSize: NSSize);
+        pub unsafe fn setContentSize(&self, content_size: NSSize);
 
         #[method(minContentSize)]
         pub unsafe fn minContentSize(&self) -> NSSize;
 
         #[method(setMinContentSize:)]
-        pub unsafe fn setMinContentSize(&self, minContentSize: NSSize);
+        pub unsafe fn setMinContentSize(&self, min_content_size: NSSize);
 
         #[method(maxContentSize)]
         pub unsafe fn maxContentSize(&self) -> NSSize;
 
         #[method(setMaxContentSize:)]
-        pub unsafe fn setMaxContentSize(&self, maxContentSize: NSSize);
+        pub unsafe fn setMaxContentSize(&self, max_content_size: NSSize);
 
         #[method(leadingOffset)]
         pub unsafe fn leadingOffset(&self) -> CGFloat;
 
         #[method(setLeadingOffset:)]
-        pub unsafe fn setLeadingOffset(&self, leadingOffset: CGFloat);
+        pub unsafe fn setLeadingOffset(&self, leading_offset: CGFloat);
 
         #[method(trailingOffset)]
         pub unsafe fn trailingOffset(&self) -> CGFloat;
 
         #[method(setTrailingOffset:)]
-        pub unsafe fn setTrailingOffset(&self, trailingOffset: CGFloat);
+        pub unsafe fn setTrailingOffset(&self, trailing_offset: CGFloat);
     }
 );
 
@@ -160,7 +160,7 @@ extern_protocol!(
         pub unsafe fn drawerWillResizeContents_toSize(
             &self,
             sender: &NSDrawer,
-            contentSize: NSSize,
+            content_size: NSSize,
         ) -> NSSize;
 
         #[cfg(feature = "Foundation_NSNotification")]

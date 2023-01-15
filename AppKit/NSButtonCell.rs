@@ -80,7 +80,7 @@ extern_methods!(
         pub unsafe fn bezelStyle(&self) -> NSBezelStyle;
 
         #[method(setBezelStyle:)]
-        pub unsafe fn setBezelStyle(&self, bezelStyle: NSBezelStyle);
+        pub unsafe fn setBezelStyle(&self, bezel_style: NSBezelStyle);
 
         #[method(setButtonType:)]
         pub unsafe fn setButtonType(&self, r#type: NSButtonType);
@@ -89,13 +89,13 @@ extern_methods!(
         pub unsafe fn highlightsBy(&self) -> NSCellStyleMask;
 
         #[method(setHighlightsBy:)]
-        pub unsafe fn setHighlightsBy(&self, highlightsBy: NSCellStyleMask);
+        pub unsafe fn setHighlightsBy(&self, highlights_by: NSCellStyleMask);
 
         #[method(showsStateBy)]
         pub unsafe fn showsStateBy(&self) -> NSCellStyleMask;
 
         #[method(setShowsStateBy:)]
-        pub unsafe fn setShowsStateBy(&self, showsStateBy: NSCellStyleMask);
+        pub unsafe fn setShowsStateBy(&self, shows_state_by: NSCellStyleMask);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
@@ -111,7 +111,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setAttributedTitle:)]
-        pub unsafe fn setAttributedTitle(&self, attributedTitle: &NSAttributedString);
+        pub unsafe fn setAttributedTitle(&self, attributed_title: &NSAttributedString);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other alternateTitle)]
@@ -119,7 +119,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAlternateTitle:)]
-        pub unsafe fn setAlternateTitle(&self, alternateTitle: &NSString);
+        pub unsafe fn setAlternateTitle(&self, alternate_title: &NSString);
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedAlternateTitle)]
@@ -129,7 +129,7 @@ extern_methods!(
         #[method(setAttributedAlternateTitle:)]
         pub unsafe fn setAttributedAlternateTitle(
             &self,
-            attributedAlternateTitle: &NSAttributedString,
+            attributed_alternate_title: &NSAttributedString,
         );
 
         #[cfg(feature = "AppKit_NSImage")]
@@ -138,19 +138,19 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method(setAlternateImage:)]
-        pub unsafe fn setAlternateImage(&self, alternateImage: Option<&NSImage>);
+        pub unsafe fn setAlternateImage(&self, alternate_image: Option<&NSImage>);
 
         #[method(imagePosition)]
         pub unsafe fn imagePosition(&self) -> NSCellImagePosition;
 
         #[method(setImagePosition:)]
-        pub unsafe fn setImagePosition(&self, imagePosition: NSCellImagePosition);
+        pub unsafe fn setImagePosition(&self, image_position: NSCellImagePosition);
 
         #[method(imageScaling)]
         pub unsafe fn imageScaling(&self) -> NSImageScaling;
 
         #[method(setImageScaling:)]
-        pub unsafe fn setImageScaling(&self, imageScaling: NSImageScaling);
+        pub unsafe fn setImageScaling(&self, image_scaling: NSImageScaling);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other keyEquivalent)]
@@ -158,7 +158,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setKeyEquivalent:)]
-        pub unsafe fn setKeyEquivalent(&self, keyEquivalent: &NSString);
+        pub unsafe fn setKeyEquivalent(&self, key_equivalent: &NSString);
 
         #[method(keyEquivalentModifierMask)]
         pub unsafe fn keyEquivalentModifierMask(&self) -> NSEventModifierFlags;
@@ -166,7 +166,7 @@ extern_methods!(
         #[method(setKeyEquivalentModifierMask:)]
         pub unsafe fn setKeyEquivalentModifierMask(
             &self,
-            keyEquivalentModifierMask: NSEventModifierFlags,
+            key_equivalent_modifier_mask: NSEventModifierFlags,
         );
 
         #[method(isTransparent)]
@@ -182,7 +182,7 @@ extern_methods!(
         pub unsafe fn imageDimsWhenDisabled(&self) -> bool;
 
         #[method(setImageDimsWhenDisabled:)]
-        pub unsafe fn setImageDimsWhenDisabled(&self, imageDimsWhenDisabled: bool);
+        pub unsafe fn setImageDimsWhenDisabled(&self, image_dims_when_disabled: bool);
 
         #[method(showsBorderOnlyWhileMouseInside)]
         pub unsafe fn showsBorderOnlyWhileMouseInside(&self) -> bool;
@@ -190,7 +190,7 @@ extern_methods!(
         #[method(setShowsBorderOnlyWhileMouseInside:)]
         pub unsafe fn setShowsBorderOnlyWhileMouseInside(
             &self,
-            showsBorderOnlyWhileMouseInside: bool,
+            shows_border_only_while_mouse_inside: bool,
         );
 
         #[cfg(feature = "AppKit_NSSound")]
@@ -207,7 +207,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setBackgroundColor:)]
-        pub unsafe fn setBackgroundColor(&self, backgroundColor: Option<&NSColor>);
+        pub unsafe fn setBackgroundColor(&self, background_color: Option<&NSColor>);
 
         #[method(setPeriodicDelay:interval:)]
         pub unsafe fn setPeriodicDelay_interval(&self, delay: c_float, interval: c_float);
@@ -232,7 +232,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(drawBezelWithFrame:inView:)]
-        pub unsafe fn drawBezelWithFrame_inView(&self, frame: NSRect, controlView: &NSView);
+        pub unsafe fn drawBezelWithFrame_inView(&self, frame: NSRect, control_view: &NSView);
 
         #[cfg(all(feature = "AppKit_NSImage", feature = "AppKit_NSView"))]
         #[method(drawImage:withFrame:inView:)]
@@ -240,7 +240,7 @@ extern_methods!(
             &self,
             image: &NSImage,
             frame: NSRect,
-            controlView: &NSView,
+            control_view: &NSView,
         );
 
         #[cfg(all(feature = "AppKit_NSView", feature = "Foundation_NSAttributedString"))]
@@ -249,7 +249,7 @@ extern_methods!(
             &self,
             title: &NSAttributedString,
             frame: NSRect,
-            controlView: &NSView,
+            control_view: &NSView,
         ) -> NSRect;
     }
 );
@@ -332,17 +332,20 @@ extern_methods!(
 
         #[deprecated = "The gradientType property is unused, and setting it has no effect."]
         #[method(setGradientType:)]
-        pub unsafe fn setGradientType(&self, gradientType: NSGradientType);
+        pub unsafe fn setGradientType(&self, gradient_type: NSGradientType);
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Mnemonics are not used on macOS. Set the title property directly instead."]
         #[method(setTitleWithMnemonic:)]
-        pub unsafe fn setTitleWithMnemonic(&self, stringWithAmpersand: Option<&NSString>);
+        pub unsafe fn setTitleWithMnemonic(&self, string_with_ampersand: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Mnemonics are not used on macOS. Set the alternateTitle property directly instead."]
         #[method(setAlternateTitleWithMnemonic:)]
-        pub unsafe fn setAlternateTitleWithMnemonic(&self, stringWithAmpersand: Option<&NSString>);
+        pub unsafe fn setAlternateTitleWithMnemonic(
+            &self,
+            string_with_ampersand: Option<&NSString>,
+        );
 
         #[deprecated = "Mnemonics are not used on macOS. Calling this method has no effect."]
         #[method(setAlternateMnemonicLocation:)]
@@ -365,11 +368,11 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSFont")]
         #[deprecated = "The keyEquivalentFont property is no longer used. It always returns the NSButtonCell's font, and setting it has no effect."]
         #[method(setKeyEquivalentFont:)]
-        pub unsafe fn setKeyEquivalentFont(&self, keyEquivalentFont: Option<&NSFont>);
+        pub unsafe fn setKeyEquivalentFont(&self, key_equivalent_font: Option<&NSFont>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "The keyEquivalentFont property is no longer used. Setting it has no effect."]
         #[method(setKeyEquivalentFont:size:)]
-        pub unsafe fn setKeyEquivalentFont_size(&self, fontName: &NSString, fontSize: CGFloat);
+        pub unsafe fn setKeyEquivalentFont_size(&self, font_name: &NSString, font_size: CGFloat);
     }
 );

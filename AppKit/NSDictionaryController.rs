@@ -42,7 +42,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLocalizedKey:)]
-        pub unsafe fn setLocalizedKey(&self, localizedKey: Option<&NSString>);
+        pub unsafe fn setLocalizedKey(&self, localized_key: Option<&NSString>);
 
         #[method(isExplicitlyIncluded)]
         pub unsafe fn isExplicitlyIncluded(&self) -> bool;
@@ -74,13 +74,13 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setInitialKey:)]
-        pub unsafe fn setInitialKey(&self, initialKey: &NSString);
+        pub unsafe fn setInitialKey(&self, initial_key: &NSString);
 
         #[method_id(@__retain_semantics Other initialValue)]
         pub unsafe fn initialValue(&self) -> Id<Object, Shared>;
 
         #[method(setInitialValue:)]
-        pub unsafe fn setInitialValue(&self, initialValue: &Object);
+        pub unsafe fn setInitialValue(&self, initial_value: &Object);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other includedKeys)]
@@ -88,7 +88,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setIncludedKeys:)]
-        pub unsafe fn setIncludedKeys(&self, includedKeys: &NSArray<NSString>);
+        pub unsafe fn setIncludedKeys(&self, included_keys: &NSArray<NSString>);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other excludedKeys)]
@@ -96,7 +96,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setExcludedKeys:)]
-        pub unsafe fn setExcludedKeys(&self, excludedKeys: &NSArray<NSString>);
+        pub unsafe fn setExcludedKeys(&self, excluded_keys: &NSArray<NSString>);
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other localizedKeyDictionary)]
@@ -107,7 +107,7 @@ extern_methods!(
         #[method(setLocalizedKeyDictionary:)]
         pub unsafe fn setLocalizedKeyDictionary(
             &self,
-            localizedKeyDictionary: &NSDictionary<NSString, NSString>,
+            localized_key_dictionary: &NSDictionary<NSString, NSString>,
         );
 
         #[cfg(feature = "Foundation_NSString")]
@@ -116,7 +116,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLocalizedKeyTable:)]
-        pub unsafe fn setLocalizedKeyTable(&self, localizedKeyTable: Option<&NSString>);
+        pub unsafe fn setLocalizedKeyTable(&self, localized_key_table: Option<&NSString>);
     }
 );
 

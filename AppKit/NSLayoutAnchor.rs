@@ -90,7 +90,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other anchorWithOffsetToAnchor:)]
         pub unsafe fn anchorWithOffsetToAnchor(
             &self,
-            otherAnchor: &NSLayoutXAxisAnchor,
+            other_anchor: &NSLayoutXAxisAnchor,
         ) -> Id<NSLayoutDimension, Shared>;
 
         #[cfg(feature = "AppKit_NSLayoutConstraint")]
@@ -138,7 +138,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other anchorWithOffsetToAnchor:)]
         pub unsafe fn anchorWithOffsetToAnchor(
             &self,
-            otherAnchor: &NSLayoutYAxisAnchor,
+            other_anchor: &NSLayoutYAxisAnchor,
         ) -> Id<NSLayoutDimension, Shared>;
 
         #[cfg(feature = "AppKit_NSLayoutConstraint")]

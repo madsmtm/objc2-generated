@@ -30,7 +30,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(setContentView:)]
-        pub unsafe fn setContentView(&self, contentView: Option<&NSView>);
+        pub unsafe fn setContentView(&self, content_view: Option<&NSView>);
 
         #[method(display)]
         pub unsafe fn display(&self);
@@ -39,7 +39,7 @@ extern_methods!(
         pub unsafe fn showsApplicationBadge(&self) -> bool;
 
         #[method(setShowsApplicationBadge:)]
-        pub unsafe fn setShowsApplicationBadge(&self, showsApplicationBadge: bool);
+        pub unsafe fn setShowsApplicationBadge(&self, shows_application_badge: bool);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other badgeLabel)]
@@ -47,7 +47,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setBadgeLabel:)]
-        pub unsafe fn setBadgeLabel(&self, badgeLabel: Option<&NSString>);
+        pub unsafe fn setBadgeLabel(&self, badge_label: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other owner)]
         pub unsafe fn owner(&self) -> Option<Id<Object, Shared>>;
@@ -60,7 +60,7 @@ extern_protocol!(
     unsafe impl ProtocolType for NSDockTilePlugIn {
         #[cfg(feature = "AppKit_NSDockTile")]
         #[method(setDockTile:)]
-        pub unsafe fn setDockTile(&self, dockTile: Option<&NSDockTile>);
+        pub unsafe fn setDockTile(&self, dock_tile: Option<&NSDockTile>);
 
         #[cfg(feature = "AppKit_NSMenu")]
         #[optional]

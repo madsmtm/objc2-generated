@@ -41,7 +41,7 @@ extern_methods!(
         #[method(setAllowedCredentials:)]
         pub unsafe fn setAllowedCredentials(
             &self,
-            allowedCredentials: &NSArray<ASAuthorizationPlatformPublicKeyCredentialDescriptor>,
+            allowed_credentials: &NSArray<ASAuthorizationPlatformPublicKeyCredentialDescriptor>,
         );
 
         #[method_id(@__retain_semantics New new)]

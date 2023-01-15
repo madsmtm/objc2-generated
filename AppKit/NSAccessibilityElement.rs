@@ -29,7 +29,7 @@ extern_methods!(
         ) -> Id<Object, Shared>;
 
         #[method(accessibilityAddChildElement:)]
-        pub unsafe fn accessibilityAddChildElement(&self, childElement: &NSAccessibilityElement);
+        pub unsafe fn accessibilityAddChildElement(&self, child_element: &NSAccessibilityElement);
 
         #[method(accessibilityFrameInParentSpace)]
         pub unsafe fn accessibilityFrameInParentSpace(&self) -> NSRect;
@@ -37,7 +37,7 @@ extern_methods!(
         #[method(setAccessibilityFrameInParentSpace:)]
         pub unsafe fn setAccessibilityFrameInParentSpace(
             &self,
-            accessibilityFrameInParentSpace: NSRect,
+            accessibility_frame_in_parent_space: NSRect,
         );
     }
 );

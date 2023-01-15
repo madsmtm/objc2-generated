@@ -130,7 +130,7 @@ extern_methods!(
         pub unsafe fn shouldBeArchived(&self) -> bool;
 
         #[method(setShouldBeArchived:)]
-        pub unsafe fn setShouldBeArchived(&self, shouldBeArchived: bool);
+        pub unsafe fn setShouldBeArchived(&self, should_be_archived: bool);
 
         #[method_id(@__retain_semantics Other firstItem)]
         pub unsafe fn firstItem(&self) -> Option<Id<Object, Shared>>;
@@ -299,7 +299,7 @@ extern_methods!(
         pub unsafe fn needsUpdateConstraints(&self) -> bool;
 
         #[method(setNeedsUpdateConstraints:)]
-        pub unsafe fn setNeedsUpdateConstraints(&self, needsUpdateConstraints: bool);
+        pub unsafe fn setNeedsUpdateConstraints(&self, needs_update_constraints: bool);
     }
 );
 
@@ -313,7 +313,7 @@ extern_methods!(
         #[method(setTranslatesAutoresizingMaskIntoConstraints:)]
         pub unsafe fn setTranslatesAutoresizingMaskIntoConstraints(
             &self,
-            translatesAutoresizingMaskIntoConstraints: bool,
+            translates_autoresizing_mask_into_constraints: bool,
         );
 
         #[method(requiresConstraintBasedLayout)]
@@ -333,7 +333,7 @@ extern_methods!(
         pub unsafe fn alignmentRectForFrame(&self, frame: NSRect) -> NSRect;
 
         #[method(frameForAlignmentRect:)]
-        pub unsafe fn frameForAlignmentRect(&self, alignmentRect: NSRect) -> NSRect;
+        pub unsafe fn frameForAlignmentRect(&self, alignment_rect: NSRect) -> NSRect;
 
         #[method(alignmentRectInsets)]
         pub unsafe fn alignmentRectInsets(&self) -> NSEdgeInsets;
@@ -385,7 +385,7 @@ extern_methods!(
         #[method(setHorizontalContentSizeConstraintActive:)]
         pub unsafe fn setHorizontalContentSizeConstraintActive(
             &self,
-            horizontalContentSizeConstraintActive: bool,
+            horizontal_content_size_constraint_active: bool,
         );
 
         #[method(isVerticalContentSizeConstraintActive)]
@@ -394,7 +394,7 @@ extern_methods!(
         #[method(setVerticalContentSizeConstraintActive:)]
         pub unsafe fn setVerticalContentSizeConstraintActive(
             &self,
-            verticalContentSizeConstraintActive: bool,
+            vertical_content_size_constraint_active: bool,
         );
     }
 );

@@ -89,49 +89,49 @@ extern_methods!(
         pub fn depthPlane(&self) -> NSUInteger;
 
         #[method(setDepthPlane:)]
-        pub fn setDepthPlane(&self, depthPlane: NSUInteger);
+        pub fn setDepthPlane(&self, depth_plane: NSUInteger);
 
         #[method_id(@__retain_semantics Other resolveTexture)]
         pub fn resolveTexture(&self) -> Option<Id<MTLTexture, Shared>>;
 
         #[method(setResolveTexture:)]
-        pub fn setResolveTexture(&self, resolveTexture: Option<&MTLTexture>);
+        pub fn setResolveTexture(&self, resolve_texture: Option<&MTLTexture>);
 
         #[method(resolveLevel)]
         pub fn resolveLevel(&self) -> NSUInteger;
 
         #[method(setResolveLevel:)]
-        pub fn setResolveLevel(&self, resolveLevel: NSUInteger);
+        pub fn setResolveLevel(&self, resolve_level: NSUInteger);
 
         #[method(resolveSlice)]
         pub fn resolveSlice(&self) -> NSUInteger;
 
         #[method(setResolveSlice:)]
-        pub fn setResolveSlice(&self, resolveSlice: NSUInteger);
+        pub fn setResolveSlice(&self, resolve_slice: NSUInteger);
 
         #[method(resolveDepthPlane)]
         pub fn resolveDepthPlane(&self) -> NSUInteger;
 
         #[method(setResolveDepthPlane:)]
-        pub fn setResolveDepthPlane(&self, resolveDepthPlane: NSUInteger);
+        pub fn setResolveDepthPlane(&self, resolve_depth_plane: NSUInteger);
 
         #[method(loadAction)]
         pub fn loadAction(&self) -> MTLLoadAction;
 
         #[method(setLoadAction:)]
-        pub fn setLoadAction(&self, loadAction: MTLLoadAction);
+        pub fn setLoadAction(&self, load_action: MTLLoadAction);
 
         #[method(storeAction)]
         pub fn storeAction(&self) -> MTLStoreAction;
 
         #[method(setStoreAction:)]
-        pub fn setStoreAction(&self, storeAction: MTLStoreAction);
+        pub fn setStoreAction(&self, store_action: MTLStoreAction);
 
         #[method(storeActionOptions)]
         pub fn storeActionOptions(&self) -> MTLStoreActionOptions;
 
         #[method(setStoreActionOptions:)]
-        pub fn setStoreActionOptions(&self, storeActionOptions: MTLStoreActionOptions);
+        pub fn setStoreActionOptions(&self, store_action_options: MTLStoreActionOptions);
     }
 );
 
@@ -154,7 +154,7 @@ extern_methods!(
         pub fn clearColor(&self) -> MTLClearColor;
 
         #[method(setClearColor:)]
-        pub fn setClearColor(&self, clearColor: MTLClearColor);
+        pub fn setClearColor(&self, clear_color: MTLClearColor);
     }
 );
 
@@ -186,13 +186,13 @@ extern_methods!(
         pub fn clearDepth(&self) -> c_double;
 
         #[method(setClearDepth:)]
-        pub fn setClearDepth(&self, clearDepth: c_double);
+        pub fn setClearDepth(&self, clear_depth: c_double);
 
         #[method(depthResolveFilter)]
         pub fn depthResolveFilter(&self) -> MTLMultisampleDepthResolveFilter;
 
         #[method(setDepthResolveFilter:)]
-        pub fn setDepthResolveFilter(&self, depthResolveFilter: MTLMultisampleDepthResolveFilter);
+        pub fn setDepthResolveFilter(&self, depth_resolve_filter: MTLMultisampleDepthResolveFilter);
     }
 );
 
@@ -223,7 +223,7 @@ extern_methods!(
         pub fn clearStencil(&self) -> u32;
 
         #[method(setClearStencil:)]
-        pub fn setClearStencil(&self, clearStencil: u32);
+        pub fn setClearStencil(&self, clear_stencil: u32);
 
         #[method(stencilResolveFilter)]
         pub fn stencilResolveFilter(&self) -> MTLMultisampleStencilResolveFilter;
@@ -231,7 +231,7 @@ extern_methods!(
         #[method(setStencilResolveFilter:)]
         pub fn setStencilResolveFilter(
             &self,
-            stencilResolveFilter: MTLMultisampleStencilResolveFilter,
+            stencil_resolve_filter: MTLMultisampleStencilResolveFilter,
         );
     }
 );
@@ -254,7 +254,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other objectAtIndexedSubscript:)]
         pub unsafe fn objectAtIndexedSubscript(
             &self,
-            attachmentIndex: NSUInteger,
+            attachment_index: NSUInteger,
         ) -> Id<MTLRenderPassColorAttachmentDescriptor, Shared>;
 
         #[cfg(feature = "Metal_MTLRenderPassColorAttachmentDescriptor")]
@@ -262,7 +262,7 @@ extern_methods!(
         pub unsafe fn setObject_atIndexedSubscript(
             &self,
             attachment: Option<&MTLRenderPassColorAttachmentDescriptor>,
-            attachmentIndex: NSUInteger,
+            attachment_index: NSUInteger,
         );
     }
 );
@@ -285,31 +285,34 @@ extern_methods!(
         pub fn sampleBuffer(&self) -> Option<Id<MTLCounterSampleBuffer, Shared>>;
 
         #[method(setSampleBuffer:)]
-        pub fn setSampleBuffer(&self, sampleBuffer: Option<&MTLCounterSampleBuffer>);
+        pub fn setSampleBuffer(&self, sample_buffer: Option<&MTLCounterSampleBuffer>);
 
         #[method(startOfVertexSampleIndex)]
         pub fn startOfVertexSampleIndex(&self) -> NSUInteger;
 
         #[method(setStartOfVertexSampleIndex:)]
-        pub unsafe fn setStartOfVertexSampleIndex(&self, startOfVertexSampleIndex: NSUInteger);
+        pub unsafe fn setStartOfVertexSampleIndex(&self, start_of_vertex_sample_index: NSUInteger);
 
         #[method(endOfVertexSampleIndex)]
         pub fn endOfVertexSampleIndex(&self) -> NSUInteger;
 
         #[method(setEndOfVertexSampleIndex:)]
-        pub unsafe fn setEndOfVertexSampleIndex(&self, endOfVertexSampleIndex: NSUInteger);
+        pub unsafe fn setEndOfVertexSampleIndex(&self, end_of_vertex_sample_index: NSUInteger);
 
         #[method(startOfFragmentSampleIndex)]
         pub fn startOfFragmentSampleIndex(&self) -> NSUInteger;
 
         #[method(setStartOfFragmentSampleIndex:)]
-        pub unsafe fn setStartOfFragmentSampleIndex(&self, startOfFragmentSampleIndex: NSUInteger);
+        pub unsafe fn setStartOfFragmentSampleIndex(
+            &self,
+            start_of_fragment_sample_index: NSUInteger,
+        );
 
         #[method(endOfFragmentSampleIndex)]
         pub fn endOfFragmentSampleIndex(&self) -> NSUInteger;
 
         #[method(setEndOfFragmentSampleIndex:)]
-        pub unsafe fn setEndOfFragmentSampleIndex(&self, endOfFragmentSampleIndex: NSUInteger);
+        pub unsafe fn setEndOfFragmentSampleIndex(&self, end_of_fragment_sample_index: NSUInteger);
     }
 );
 
@@ -331,7 +334,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other objectAtIndexedSubscript:)]
         pub unsafe fn objectAtIndexedSubscript(
             &self,
-            attachmentIndex: NSUInteger,
+            attachment_index: NSUInteger,
         ) -> Id<MTLRenderPassSampleBufferAttachmentDescriptor, Shared>;
 
         #[cfg(feature = "Metal_MTLRenderPassSampleBufferAttachmentDescriptor")]
@@ -339,7 +342,7 @@ extern_methods!(
         pub unsafe fn setObject_atIndexedSubscript(
             &self,
             attachment: Option<&MTLRenderPassSampleBufferAttachmentDescriptor>,
-            attachmentIndex: NSUInteger,
+            attachment_index: NSUInteger,
         );
     }
 );
@@ -373,7 +376,7 @@ extern_methods!(
         #[method(setDepthAttachment:)]
         pub fn setDepthAttachment(
             &self,
-            depthAttachment: Option<&MTLRenderPassDepthAttachmentDescriptor>,
+            depth_attachment: Option<&MTLRenderPassDepthAttachmentDescriptor>,
         );
 
         #[cfg(feature = "Metal_MTLRenderPassStencilAttachmentDescriptor")]
@@ -384,62 +387,62 @@ extern_methods!(
         #[method(setStencilAttachment:)]
         pub fn setStencilAttachment(
             &self,
-            stencilAttachment: Option<&MTLRenderPassStencilAttachmentDescriptor>,
+            stencil_attachment: Option<&MTLRenderPassStencilAttachmentDescriptor>,
         );
 
         #[method_id(@__retain_semantics Other visibilityResultBuffer)]
         pub fn visibilityResultBuffer(&self) -> Option<Id<MTLBuffer, Shared>>;
 
         #[method(setVisibilityResultBuffer:)]
-        pub fn setVisibilityResultBuffer(&self, visibilityResultBuffer: Option<&MTLBuffer>);
+        pub fn setVisibilityResultBuffer(&self, visibility_result_buffer: Option<&MTLBuffer>);
 
         #[method(renderTargetArrayLength)]
         pub fn renderTargetArrayLength(&self) -> NSUInteger;
 
         #[method(setRenderTargetArrayLength:)]
-        pub unsafe fn setRenderTargetArrayLength(&self, renderTargetArrayLength: NSUInteger);
+        pub unsafe fn setRenderTargetArrayLength(&self, render_target_array_length: NSUInteger);
 
         #[method(imageblockSampleLength)]
         pub fn imageblockSampleLength(&self) -> NSUInteger;
 
         #[method(setImageblockSampleLength:)]
-        pub unsafe fn setImageblockSampleLength(&self, imageblockSampleLength: NSUInteger);
+        pub unsafe fn setImageblockSampleLength(&self, imageblock_sample_length: NSUInteger);
 
         #[method(threadgroupMemoryLength)]
         pub fn threadgroupMemoryLength(&self) -> NSUInteger;
 
         #[method(setThreadgroupMemoryLength:)]
-        pub unsafe fn setThreadgroupMemoryLength(&self, threadgroupMemoryLength: NSUInteger);
+        pub unsafe fn setThreadgroupMemoryLength(&self, threadgroup_memory_length: NSUInteger);
 
         #[method(tileWidth)]
         pub fn tileWidth(&self) -> NSUInteger;
 
         #[method(setTileWidth:)]
-        pub fn setTileWidth(&self, tileWidth: NSUInteger);
+        pub fn setTileWidth(&self, tile_width: NSUInteger);
 
         #[method(tileHeight)]
         pub fn tileHeight(&self) -> NSUInteger;
 
         #[method(setTileHeight:)]
-        pub fn setTileHeight(&self, tileHeight: NSUInteger);
+        pub fn setTileHeight(&self, tile_height: NSUInteger);
 
         #[method(defaultRasterSampleCount)]
         pub fn defaultRasterSampleCount(&self) -> NSUInteger;
 
         #[method(setDefaultRasterSampleCount:)]
-        pub fn setDefaultRasterSampleCount(&self, defaultRasterSampleCount: NSUInteger);
+        pub fn setDefaultRasterSampleCount(&self, default_raster_sample_count: NSUInteger);
 
         #[method(renderTargetWidth)]
         pub fn renderTargetWidth(&self) -> NSUInteger;
 
         #[method(setRenderTargetWidth:)]
-        pub fn setRenderTargetWidth(&self, renderTargetWidth: NSUInteger);
+        pub fn setRenderTargetWidth(&self, render_target_width: NSUInteger);
 
         #[method(renderTargetHeight)]
         pub fn renderTargetHeight(&self) -> NSUInteger;
 
         #[method(setRenderTargetHeight:)]
-        pub fn setRenderTargetHeight(&self, renderTargetHeight: NSUInteger);
+        pub fn setRenderTargetHeight(&self, render_target_height: NSUInteger);
 
         #[method(setSamplePositions:count:)]
         pub unsafe fn setSamplePositions_count(
@@ -461,7 +464,7 @@ extern_methods!(
         #[method(setRasterizationRateMap:)]
         pub fn setRasterizationRateMap(
             &self,
-            rasterizationRateMap: Option<&MTLRasterizationRateMap>,
+            rasterization_rate_map: Option<&MTLRasterizationRateMap>,
         );
 
         #[cfg(feature = "Metal_MTLRenderPassSampleBufferAttachmentDescriptorArray")]

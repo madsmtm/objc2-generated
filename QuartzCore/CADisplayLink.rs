@@ -56,7 +56,7 @@ extern_methods!(
 
         #[deprecated = "preferredFramesPerSecond"]
         #[method(setFrameInterval:)]
-        pub unsafe fn setFrameInterval(&self, frameInterval: NSInteger);
+        pub unsafe fn setFrameInterval(&self, frame_interval: NSInteger);
 
         #[deprecated]
         #[method(preferredFramesPerSecond)]
@@ -64,12 +64,15 @@ extern_methods!(
 
         #[deprecated]
         #[method(setPreferredFramesPerSecond:)]
-        pub unsafe fn setPreferredFramesPerSecond(&self, preferredFramesPerSecond: NSInteger);
+        pub unsafe fn setPreferredFramesPerSecond(&self, preferred_frames_per_second: NSInteger);
 
         #[method(preferredFrameRateRange)]
         pub unsafe fn preferredFrameRateRange(&self) -> CAFrameRateRange;
 
         #[method(setPreferredFrameRateRange:)]
-        pub unsafe fn setPreferredFrameRateRange(&self, preferredFrameRateRange: CAFrameRateRange);
+        pub unsafe fn setPreferredFrameRateRange(
+            &self,
+            preferred_frame_rate_range: CAFrameRateRange,
+        );
     }
 );

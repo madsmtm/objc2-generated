@@ -43,13 +43,13 @@ extern_methods!(
         pub unsafe fn startPoint(&self) -> CGPoint;
 
         #[method(setStartPoint:)]
-        pub unsafe fn setStartPoint(&self, startPoint: CGPoint);
+        pub unsafe fn setStartPoint(&self, start_point: CGPoint);
 
         #[method(endPoint)]
         pub unsafe fn endPoint(&self) -> CGPoint;
 
         #[method(setEndPoint:)]
-        pub unsafe fn setEndPoint(&self, endPoint: CGPoint);
+        pub unsafe fn setEndPoint(&self, end_point: CGPoint);
 
         #[method_id(@__retain_semantics Other type)]
         pub unsafe fn r#type(&self) -> Id<CAGradientLayerType, Shared>;

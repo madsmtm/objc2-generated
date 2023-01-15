@@ -24,11 +24,11 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSViewController")]
         #[method(addAccessoryController:)]
-        pub unsafe fn addAccessoryController(&self, accessoryController: &NSViewController);
+        pub unsafe fn addAccessoryController(&self, accessory_controller: &NSViewController);
 
         #[cfg(feature = "AppKit_NSViewController")]
         #[method(removeAccessoryController:)]
-        pub unsafe fn removeAccessoryController(&self, accessoryController: &NSViewController);
+        pub unsafe fn removeAccessoryController(&self, accessory_controller: &NSViewController);
 
         #[cfg(all(feature = "AppKit_NSViewController", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other accessoryControllers)]
@@ -38,16 +38,16 @@ extern_methods!(
         #[method(beginSheetWithPrintInfo:modalForWindow:delegate:didEndSelector:contextInfo:)]
         pub unsafe fn beginSheetWithPrintInfo_modalForWindow_delegate_didEndSelector_contextInfo(
             &self,
-            printInfo: &NSPrintInfo,
-            docWindow: &NSWindow,
+            print_info: &NSPrintInfo,
+            doc_window: &NSWindow,
             delegate: Option<&Object>,
-            didEndSelector: Option<Sel>,
-            contextInfo: *mut c_void,
+            did_end_selector: Option<Sel>,
+            context_info: *mut c_void,
         );
 
         #[cfg(feature = "AppKit_NSPrintInfo")]
         #[method(runModalWithPrintInfo:)]
-        pub unsafe fn runModalWithPrintInfo(&self, printInfo: &NSPrintInfo) -> NSInteger;
+        pub unsafe fn runModalWithPrintInfo(&self, print_info: &NSPrintInfo) -> NSInteger;
 
         #[method(runModal)]
         pub unsafe fn runModal(&self) -> NSInteger;
@@ -65,7 +65,7 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSView")]
         #[deprecated]
         #[method(setAccessoryView:)]
-        pub unsafe fn setAccessoryView(&self, accessoryView: Option<&NSView>);
+        pub unsafe fn setAccessoryView(&self, accessory_view: Option<&NSView>);
 
         #[cfg(feature = "AppKit_NSView")]
         #[deprecated]

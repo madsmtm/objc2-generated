@@ -92,14 +92,14 @@ extern_methods!(
         #[method(setPersistentStoreCoordinator:)]
         pub unsafe fn setPersistentStoreCoordinator(
             &self,
-            persistentStoreCoordinator: Option<&NSPersistentStoreCoordinator>,
+            persistent_store_coordinator: Option<&NSPersistentStoreCoordinator>,
         );
 
         #[method_id(@__retain_semantics Other parentContext)]
         pub unsafe fn parentContext(&self) -> Option<Id<NSManagedObjectContext, Shared>>;
 
         #[method(setParentContext:)]
-        pub unsafe fn setParentContext(&self, parentContext: Option<&NSManagedObjectContext>);
+        pub unsafe fn setParentContext(&self, parent_context: Option<&NSManagedObjectContext>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
@@ -115,7 +115,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSUndoManager")]
         #[method(setUndoManager:)]
-        pub unsafe fn setUndoManager(&self, undoManager: Option<&NSUndoManager>);
+        pub unsafe fn setUndoManager(&self, undo_manager: Option<&NSUndoManager>);
 
         #[method(hasChanges)]
         pub unsafe fn hasChanges(&self) -> bool;
@@ -134,7 +134,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other objectRegisteredForID:)]
         pub unsafe fn objectRegisteredForID(
             &self,
-            objectID: &NSManagedObjectID,
+            object_id: &NSManagedObjectID,
         ) -> Option<Id<NSManagedObject, Shared>>;
 
         #[cfg(all(
@@ -144,7 +144,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other objectWithID:)]
         pub unsafe fn objectWithID(
             &self,
-            objectID: &NSManagedObjectID,
+            object_id: &NSManagedObjectID,
         ) -> Id<NSManagedObject, Shared>;
 
         #[cfg(all(
@@ -155,7 +155,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other existingObjectWithID:error:_)]
         pub unsafe fn existingObjectWithID_error(
             &self,
-            objectID: &NSManagedObjectID,
+            object_id: &NSManagedObjectID,
         ) -> Result<Id<NSManagedObject, Shared>, Id<NSError, Shared>>;
 
         #[cfg(all(
@@ -200,7 +200,7 @@ extern_methods!(
         #[method(observeValueForKeyPath:ofObject:change:context:)]
         pub unsafe fn observeValueForKeyPath_ofObject_change_context(
             &self,
-            keyPath: Option<&NSString>,
+            key_path: Option<&NSString>,
             object: Option<&Object>,
             change: Option<&NSDictionary<NSString, Object>>,
             context: *mut c_void,
@@ -268,13 +268,16 @@ extern_methods!(
         pub unsafe fn propagatesDeletesAtEndOfEvent(&self) -> bool;
 
         #[method(setPropagatesDeletesAtEndOfEvent:)]
-        pub unsafe fn setPropagatesDeletesAtEndOfEvent(&self, propagatesDeletesAtEndOfEvent: bool);
+        pub unsafe fn setPropagatesDeletesAtEndOfEvent(
+            &self,
+            propagates_deletes_at_end_of_event: bool,
+        );
 
         #[method(retainsRegisteredObjects)]
         pub unsafe fn retainsRegisteredObjects(&self) -> bool;
 
         #[method(setRetainsRegisteredObjects:)]
-        pub unsafe fn setRetainsRegisteredObjects(&self, retainsRegisteredObjects: bool);
+        pub unsafe fn setRetainsRegisteredObjects(&self, retains_registered_objects: bool);
 
         #[method(shouldDeleteInaccessibleFaults)]
         pub unsafe fn shouldDeleteInaccessibleFaults(&self) -> bool;
@@ -282,7 +285,7 @@ extern_methods!(
         #[method(setShouldDeleteInaccessibleFaults:)]
         pub unsafe fn setShouldDeleteInaccessibleFaults(
             &self,
-            shouldDeleteInaccessibleFaults: bool,
+            should_delete_inaccessible_faults: bool,
         );
 
         #[cfg(all(
@@ -302,13 +305,13 @@ extern_methods!(
         pub unsafe fn stalenessInterval(&self) -> NSTimeInterval;
 
         #[method(setStalenessInterval:)]
-        pub unsafe fn setStalenessInterval(&self, stalenessInterval: NSTimeInterval);
+        pub unsafe fn setStalenessInterval(&self, staleness_interval: NSTimeInterval);
 
         #[method_id(@__retain_semantics Other mergePolicy)]
         pub unsafe fn mergePolicy(&self) -> Id<Object, Shared>;
 
         #[method(setMergePolicy:)]
-        pub unsafe fn setMergePolicy(&self, mergePolicy: &Object);
+        pub unsafe fn setMergePolicy(&self, merge_policy: &Object);
 
         #[cfg(all(
             feature = "CoreData_NSManagedObject",
@@ -331,7 +334,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSDictionary"))]
         #[method(mergeChangesFromRemoteContextSave:intoContexts:)]
         pub unsafe fn mergeChangesFromRemoteContextSave_intoContexts(
-            changeNotificationData: &NSDictionary,
+            change_notification_data: &NSDictionary,
             contexts: &NSArray<NSManagedObjectContext>,
         );
 
@@ -355,7 +358,7 @@ extern_methods!(
         #[method(setAutomaticallyMergesChangesFromParent:)]
         pub unsafe fn setAutomaticallyMergesChangesFromParent(
             &self,
-            automaticallyMergesChangesFromParent: bool,
+            automatically_merges_changes_from_parent: bool,
         );
 
         #[cfg(feature = "Foundation_NSString")]
@@ -364,6 +367,6 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setTransactionAuthor:)]
-        pub unsafe fn setTransactionAuthor(&self, transactionAuthor: Option<&NSString>);
+        pub unsafe fn setTransactionAuthor(&self, transaction_author: Option<&NSString>);
     }
 );

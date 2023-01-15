@@ -121,10 +121,10 @@ extern_methods!(
             bps: NSInteger,
             spp: NSInteger,
             alpha: bool,
-            isPlanar: bool,
-            colorSpaceName: &NSColorSpaceName,
-            rBytes: NSInteger,
-            pBits: NSInteger,
+            is_planar: bool,
+            color_space_name: &NSColorSpaceName,
+            r_bytes: NSInteger,
+            p_bits: NSInteger,
         ) -> Option<Id<Self, Shared>>;
 
         #[method_id(@__retain_semantics Init initWithBitmapDataPlanes:pixelsWide:pixelsHigh:bitsPerSample:samplesPerPixel:hasAlpha:isPlanar:colorSpaceName:bitmapFormat:bytesPerRow:bitsPerPixel:)]
@@ -136,11 +136,11 @@ extern_methods!(
             bps: NSInteger,
             spp: NSInteger,
             alpha: bool,
-            isPlanar: bool,
-            colorSpaceName: &NSColorSpaceName,
-            bitmapFormat: NSBitmapFormat,
-            rBytes: NSInteger,
-            pBits: NSInteger,
+            is_planar: bool,
+            color_space_name: &NSColorSpaceName,
+            bitmap_format: NSBitmapFormat,
+            r_bytes: NSInteger,
+            p_bits: NSInteger,
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSData"))]
@@ -224,7 +224,7 @@ extern_methods!(
         #[method(getTIFFCompressionTypes:count:)]
         pub unsafe fn getTIFFCompressionTypes_count(
             list: NonNull<*mut NSTIFFCompression>,
-            numTypes: NonNull<NSInteger>,
+            num_types: NonNull<NSInteger>,
         );
 
         #[cfg(feature = "Foundation_NSString")]
@@ -240,10 +240,10 @@ extern_methods!(
         #[method(colorizeByMappingGray:toColor:blackMapping:whiteMapping:)]
         pub unsafe fn colorizeByMappingGray_toColor_blackMapping_whiteMapping(
             &self,
-            midPoint: CGFloat,
-            midPointColor: Option<&NSColor>,
-            shadowColor: Option<&NSColor>,
-            lightColor: Option<&NSColor>,
+            mid_point: CGFloat,
+            mid_point_color: Option<&NSColor>,
+            shadow_color: Option<&NSColor>,
+            light_color: Option<&NSColor>,
         );
 
         #[method_id(@__retain_semantics Init initForIncrementalLoad)]
@@ -279,15 +279,15 @@ extern_methods!(
         #[method_id(@__retain_semantics Other bitmapImageRepByConvertingToColorSpace:renderingIntent:)]
         pub unsafe fn bitmapImageRepByConvertingToColorSpace_renderingIntent(
             &self,
-            targetSpace: &NSColorSpace,
-            renderingIntent: NSColorRenderingIntent,
+            target_space: &NSColorSpace,
+            rendering_intent: NSColorRenderingIntent,
         ) -> Option<Id<NSBitmapImageRep, Shared>>;
 
         #[cfg(feature = "AppKit_NSColorSpace")]
         #[method_id(@__retain_semantics Other bitmapImageRepByRetaggingWithColorSpace:)]
         pub unsafe fn bitmapImageRepByRetaggingWithColorSpace(
             &self,
-            newSpace: &NSColorSpace,
+            new_space: &NSColorSpace,
         ) -> Option<Id<NSBitmapImageRep, Shared>>;
     }
 );
@@ -304,8 +304,8 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Other representationOfImageRepsInArray:usingType:properties:)]
         pub unsafe fn representationOfImageRepsInArray_usingType_properties(
-            imageReps: &NSArray<NSImageRep>,
-            storageType: NSBitmapImageFileType,
+            image_reps: &NSArray<NSImageRep>,
+            storage_type: NSBitmapImageFileType,
             properties: &NSDictionary<NSBitmapImageRepPropertyKey, Object>,
         ) -> Option<Id<NSData, Shared>>;
 
@@ -313,7 +313,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other representationUsingType:properties:)]
         pub unsafe fn representationUsingType_properties(
             &self,
-            storageType: NSBitmapImageFileType,
+            storage_type: NSBitmapImageFileType,
             properties: &NSDictionary<NSBitmapImageRepPropertyKey, Object>,
         ) -> Option<Id<NSData, Shared>>;
 

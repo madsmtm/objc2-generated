@@ -39,8 +39,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Option<Allocated<Self>>,
-            nibNameOrNil: Option<&NSNibName>,
-            nibBundleOrNil: Option<&NSBundle>,
+            nib_name_or_nil: Option<&NSNibName>,
+            nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSCoder")]
@@ -61,7 +61,7 @@ extern_methods!(
         pub unsafe fn representedObject(&self) -> Option<Id<Object, Shared>>;
 
         #[method(setRepresentedObject:)]
-        pub unsafe fn setRepresentedObject(&self, representedObject: Option<&Object>);
+        pub unsafe fn setRepresentedObject(&self, represented_object: Option<&Object>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
@@ -86,8 +86,8 @@ extern_methods!(
         pub unsafe fn commitEditingWithDelegate_didCommitSelector_contextInfo(
             &self,
             delegate: Option<&Object>,
-            didCommitSelector: Option<Sel>,
-            contextInfo: *mut c_void,
+            did_commit_selector: Option<Sel>,
+            context_info: *mut c_void,
         );
 
         #[method(commitEditing)]
@@ -118,7 +118,7 @@ extern_methods!(
         pub unsafe fn preferredContentSize(&self) -> NSSize;
 
         #[method(setPreferredContentSize:)]
-        pub unsafe fn setPreferredContentSize(&self, preferredContentSize: NSSize);
+        pub unsafe fn setPreferredContentSize(&self, preferred_content_size: NSSize);
 
         #[method(updateViewConstraints)]
         pub unsafe fn updateViewConstraints(&self);
@@ -138,12 +138,12 @@ extern_methods!(
         #[method(presentViewController:animator:)]
         pub unsafe fn presentViewController_animator(
             &self,
-            viewController: &NSViewController,
+            view_controller: &NSViewController,
             animator: &NSViewControllerPresentationAnimator,
         );
 
         #[method(dismissViewController:)]
-        pub unsafe fn dismissViewController(&self, viewController: &NSViewController);
+        pub unsafe fn dismissViewController(&self, view_controller: &NSViewController);
 
         #[method(dismissController:)]
         pub unsafe fn dismissController(&self, sender: Option<&Object>);
@@ -164,27 +164,27 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSViewController")]
     unsafe impl NSViewController {
         #[method(presentViewControllerAsSheet:)]
-        pub unsafe fn presentViewControllerAsSheet(&self, viewController: &NSViewController);
+        pub unsafe fn presentViewControllerAsSheet(&self, view_controller: &NSViewController);
 
         #[method(presentViewControllerAsModalWindow:)]
-        pub unsafe fn presentViewControllerAsModalWindow(&self, viewController: &NSViewController);
+        pub unsafe fn presentViewControllerAsModalWindow(&self, view_controller: &NSViewController);
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(presentViewController:asPopoverRelativeToRect:ofView:preferredEdge:behavior:)]
         pub unsafe fn presentViewController_asPopoverRelativeToRect_ofView_preferredEdge_behavior(
             &self,
-            viewController: &NSViewController,
-            positioningRect: NSRect,
-            positioningView: &NSView,
-            preferredEdge: NSRectEdge,
+            view_controller: &NSViewController,
+            positioning_rect: NSRect,
+            positioning_view: &NSView,
+            preferred_edge: NSRectEdge,
             behavior: NSPopoverBehavior,
         );
 
         #[method(transitionFromViewController:toViewController:options:completionHandler:)]
         pub unsafe fn transitionFromViewController_toViewController_options_completionHandler(
             &self,
-            fromViewController: &NSViewController,
-            toViewController: &NSViewController,
+            from_view_controller: &NSViewController,
+            to_view_controller: &NSViewController,
             options: NSViewControllerTransitionOptions,
             completion: Option<&Block<(), ()>>,
         );
@@ -206,11 +206,11 @@ extern_methods!(
         #[method(setChildViewControllers:)]
         pub unsafe fn setChildViewControllers(
             &self,
-            childViewControllers: &NSArray<NSViewController>,
+            child_view_controllers: &NSArray<NSViewController>,
         );
 
         #[method(addChildViewController:)]
-        pub unsafe fn addChildViewController(&self, childViewController: &NSViewController);
+        pub unsafe fn addChildViewController(&self, child_view_controller: &NSViewController);
 
         #[method(removeFromParentViewController)]
         pub unsafe fn removeFromParentViewController(&self);
@@ -218,7 +218,7 @@ extern_methods!(
         #[method(insertChildViewController:atIndex:)]
         pub unsafe fn insertChildViewController_atIndex(
             &self,
-            childViewController: &NSViewController,
+            child_view_controller: &NSViewController,
             index: NSInteger,
         );
 
@@ -228,11 +228,11 @@ extern_methods!(
         #[method(preferredContentSizeDidChangeForViewController:)]
         pub unsafe fn preferredContentSizeDidChangeForViewController(
             &self,
-            viewController: &NSViewController,
+            view_controller: &NSViewController,
         );
 
         #[method(viewWillTransitionToSize:)]
-        pub unsafe fn viewWillTransitionToSize(&self, newSize: NSSize);
+        pub unsafe fn viewWillTransitionToSize(&self, new_size: NSSize);
     }
 );
 
@@ -244,16 +244,16 @@ extern_protocol!(
         #[method(animatePresentationOfViewController:fromViewController:)]
         pub unsafe fn animatePresentationOfViewController_fromViewController(
             &self,
-            viewController: &NSViewController,
-            fromViewController: &NSViewController,
+            view_controller: &NSViewController,
+            from_view_controller: &NSViewController,
         );
 
         #[cfg(feature = "AppKit_NSViewController")]
         #[method(animateDismissalOfViewController:fromViewController:)]
         pub unsafe fn animateDismissalOfViewController_fromViewController(
             &self,
-            viewController: &NSViewController,
-            fromViewController: &NSViewController,
+            view_controller: &NSViewController,
+            from_view_controller: &NSViewController,
         );
     }
 );
@@ -282,13 +282,13 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(setSourceItemView:)]
-        pub unsafe fn setSourceItemView(&self, sourceItemView: Option<&NSView>);
+        pub unsafe fn setSourceItemView(&self, source_item_view: Option<&NSView>);
 
         #[method(preferredScreenOrigin)]
         pub unsafe fn preferredScreenOrigin(&self) -> NSPoint;
 
         #[method(setPreferredScreenOrigin:)]
-        pub unsafe fn setPreferredScreenOrigin(&self, preferredScreenOrigin: NSPoint);
+        pub unsafe fn setPreferredScreenOrigin(&self, preferred_screen_origin: NSPoint);
 
         #[method(preferredMinimumSize)]
         pub unsafe fn preferredMinimumSize(&self) -> NSSize;

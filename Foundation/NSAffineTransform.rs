@@ -41,7 +41,7 @@ extern_methods!(
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
         #[method(translateXBy:yBy:)]
-        pub unsafe fn translateXBy_yBy(&self, deltaX: CGFloat, deltaY: CGFloat);
+        pub unsafe fn translateXBy_yBy(&self, delta_x: CGFloat, delta_y: CGFloat);
 
         #[method(rotateByDegrees:)]
         pub unsafe fn rotateByDegrees(&self, angle: CGFloat);
@@ -53,7 +53,7 @@ extern_methods!(
         pub unsafe fn scaleBy(&self, scale: CGFloat);
 
         #[method(scaleXBy:yBy:)]
-        pub unsafe fn scaleXBy_yBy(&self, scaleX: CGFloat, scaleY: CGFloat);
+        pub unsafe fn scaleXBy_yBy(&self, scale_x: CGFloat, scale_y: CGFloat);
 
         #[method(invert)]
         pub unsafe fn invert(&self);
@@ -65,15 +65,15 @@ extern_methods!(
         pub unsafe fn prependTransform(&self, transform: &NSAffineTransform);
 
         #[method(transformPoint:)]
-        pub unsafe fn transformPoint(&self, aPoint: NSPoint) -> NSPoint;
+        pub unsafe fn transformPoint(&self, a_point: NSPoint) -> NSPoint;
 
         #[method(transformSize:)]
-        pub unsafe fn transformSize(&self, aSize: NSSize) -> NSSize;
+        pub unsafe fn transformSize(&self, a_size: NSSize) -> NSSize;
 
         #[method(transformStruct)]
         pub unsafe fn transformStruct(&self) -> NSAffineTransformStruct;
 
         #[method(setTransformStruct:)]
-        pub unsafe fn setTransformStruct(&self, transformStruct: NSAffineTransformStruct);
+        pub unsafe fn setTransformStruct(&self, transform_struct: NSAffineTransformStruct);
     }
 );

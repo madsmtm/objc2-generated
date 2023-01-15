@@ -29,7 +29,7 @@ extern_protocol!(
         #[method(markedTextSelectionChanged:client:)]
         pub unsafe fn markedTextSelectionChanged_client(
             &self,
-            newSel: NSRange,
+            new_sel: NSRange,
             sender: Option<&Object>,
         );
 
@@ -74,7 +74,7 @@ extern_protocol!(
         pub unsafe fn activeConversationWillChange_fromOldConversation(
             &self,
             sender: Option<&Object>,
-            oldConversation: NSInteger,
+            old_conversation: NSInteger,
         );
 
         #[deprecated]
@@ -82,7 +82,7 @@ extern_protocol!(
         pub unsafe fn activeConversationChanged_toNewConversation(
             &self,
             sender: Option<&Object>,
-            newConversation: NSInteger,
+            new_conversation: NSInteger,
         );
     }
 );

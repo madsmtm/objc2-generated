@@ -65,7 +65,7 @@ extern_methods!(
         pub unsafe fn DTDKind(&self) -> NSXMLDTDNodeKind;
 
         #[method(setDTDKind:)]
-        pub unsafe fn setDTDKind(&self, DTDKind: NSXMLDTDNodeKind);
+        pub unsafe fn setDTDKind(&self, dtd_kind: NSXMLDTDNodeKind);
 
         #[method(isExternal)]
         pub unsafe fn isExternal(&self) -> bool;
@@ -76,7 +76,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setPublicID:)]
-        pub unsafe fn setPublicID(&self, publicID: Option<&NSString>);
+        pub unsafe fn setPublicID(&self, public_id: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other systemID)]
@@ -84,7 +84,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setSystemID:)]
-        pub unsafe fn setSystemID(&self, systemID: Option<&NSString>);
+        pub unsafe fn setSystemID(&self, system_id: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other notationName)]
@@ -92,7 +92,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setNotationName:)]
-        pub unsafe fn setNotationName(&self, notationName: Option<&NSString>);
+        pub unsafe fn setNotationName(&self, notation_name: Option<&NSString>);
     }
 );
 

@@ -233,7 +233,7 @@ extern_methods!(
         pub unsafe fn dataType(&self) -> MTLDataType;
 
         #[method(setDataType:)]
-        pub fn setDataType(&self, dataType: MTLDataType);
+        pub fn setDataType(&self, data_type: MTLDataType);
 
         #[method(index)]
         pub unsafe fn index(&self) -> NSUInteger;
@@ -245,7 +245,7 @@ extern_methods!(
         pub unsafe fn arrayLength(&self) -> NSUInteger;
 
         #[method(setArrayLength:)]
-        pub unsafe fn setArrayLength(&self, arrayLength: NSUInteger);
+        pub unsafe fn setArrayLength(&self, array_length: NSUInteger);
 
         #[method(access)]
         pub unsafe fn access(&self) -> MTLArgumentAccess;
@@ -257,13 +257,13 @@ extern_methods!(
         pub unsafe fn textureType(&self) -> MTLTextureType;
 
         #[method(setTextureType:)]
-        pub fn setTextureType(&self, textureType: MTLTextureType);
+        pub fn setTextureType(&self, texture_type: MTLTextureType);
 
         #[method(constantBlockAlignment)]
         pub unsafe fn constantBlockAlignment(&self) -> NSUInteger;
 
         #[method(setConstantBlockAlignment:)]
-        pub unsafe fn setConstantBlockAlignment(&self, constantBlockAlignment: NSUInteger);
+        pub unsafe fn setConstantBlockAlignment(&self, constant_block_alignment: NSUInteger);
     }
 );
 
@@ -350,7 +350,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics New newCommandQueueWithMaxCommandBufferCount:)]
         pub fn newCommandQueueWithMaxCommandBufferCount(
             &self,
-            maxCommandBufferCount: NSUInteger,
+            max_command_buffer_count: NSUInteger,
         ) -> Option<Id<MTLCommandQueue, Shared>>;
 
         #[cfg(feature = "Metal_MTLTextureDescriptor")]
@@ -423,7 +423,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics New newSharedTextureWithHandle:)]
         pub unsafe fn newSharedTextureWithHandle(
             &self,
-            sharedHandle: &MTLSharedTextureHandle,
+            shared_handle: &MTLSharedTextureHandle,
         ) -> Option<Id<MTLTexture, Shared>>;
 
         #[cfg(feature = "Metal_MTLSamplerDescriptor")]
@@ -476,7 +476,7 @@ extern_protocol!(
             &self,
             source: &NSString,
             options: Option<&MTLCompileOptions>,
-            completionHandler: MTLNewLibraryCompletionHandler,
+            completion_handler: MTLNewLibraryCompletionHandler,
         );
 
         #[cfg(all(
@@ -494,7 +494,7 @@ extern_protocol!(
         pub unsafe fn newLibraryWithStitchedDescriptor_completionHandler(
             &self,
             descriptor: &MTLStitchedLibraryDescriptor,
-            completionHandler: MTLNewLibraryCompletionHandler,
+            completion_handler: MTLNewLibraryCompletionHandler,
         );
 
         #[cfg(all(
@@ -512,7 +512,7 @@ extern_protocol!(
         pub unsafe fn newRenderPipelineStateWithDescriptor_completionHandler(
             &self,
             descriptor: &MTLRenderPipelineDescriptor,
-            completionHandler: MTLNewRenderPipelineStateCompletionHandler,
+            completion_handler: MTLNewRenderPipelineStateCompletionHandler,
         );
 
         #[cfg(feature = "Metal_MTLRenderPipelineDescriptor")]
@@ -521,29 +521,29 @@ extern_protocol!(
             &self,
             descriptor: &MTLRenderPipelineDescriptor,
             options: MTLPipelineOption,
-            completionHandler: MTLNewRenderPipelineStateWithReflectionCompletionHandler,
+            completion_handler: MTLNewRenderPipelineStateWithReflectionCompletionHandler,
         );
 
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics New newComputePipelineStateWithFunction:error:_)]
         pub fn newComputePipelineStateWithFunction_error(
             &self,
-            computeFunction: &MTLFunction,
+            compute_function: &MTLFunction,
         ) -> Result<Id<MTLComputePipelineState, Shared>, Id<NSError, Shared>>;
 
         #[method(newComputePipelineStateWithFunction:completionHandler:)]
         pub unsafe fn newComputePipelineStateWithFunction_completionHandler(
             &self,
-            computeFunction: &MTLFunction,
-            completionHandler: MTLNewComputePipelineStateCompletionHandler,
+            compute_function: &MTLFunction,
+            completion_handler: MTLNewComputePipelineStateCompletionHandler,
         );
 
         #[method(newComputePipelineStateWithFunction:options:completionHandler:)]
         pub unsafe fn newComputePipelineStateWithFunction_options_completionHandler(
             &self,
-            computeFunction: &MTLFunction,
+            compute_function: &MTLFunction,
             options: MTLPipelineOption,
-            completionHandler: MTLNewComputePipelineStateWithReflectionCompletionHandler,
+            completion_handler: MTLNewComputePipelineStateWithReflectionCompletionHandler,
         );
 
         #[cfg(feature = "Metal_MTLComputePipelineDescriptor")]
@@ -552,7 +552,7 @@ extern_protocol!(
             &self,
             descriptor: &MTLComputePipelineDescriptor,
             options: MTLPipelineOption,
-            completionHandler: MTLNewComputePipelineStateWithReflectionCompletionHandler,
+            completion_handler: MTLNewComputePipelineStateWithReflectionCompletionHandler,
         );
 
         #[method_id(@__retain_semantics New newFence)]
@@ -560,13 +560,13 @@ extern_protocol!(
 
         #[deprecated = "Use supportsFamily instead"]
         #[method(supportsFeatureSet:)]
-        pub fn supportsFeatureSet(&self, featureSet: MTLFeatureSet) -> bool;
+        pub fn supportsFeatureSet(&self, feature_set: MTLFeatureSet) -> bool;
 
         #[method(supportsFamily:)]
-        pub fn supportsFamily(&self, gpuFamily: MTLGPUFamily) -> bool;
+        pub fn supportsFamily(&self, gpu_family: MTLGPUFamily) -> bool;
 
         #[method(supportsTextureSampleCount:)]
-        pub fn supportsTextureSampleCount(&self, sampleCount: NSUInteger) -> bool;
+        pub fn supportsTextureSampleCount(&self, sample_count: NSUInteger) -> bool;
 
         #[method(minimumLinearTextureAlignmentForPixelFormat:)]
         pub fn minimumLinearTextureAlignmentForPixelFormat(
@@ -586,7 +586,7 @@ extern_protocol!(
             &self,
             descriptor: &MTLTileRenderPipelineDescriptor,
             options: MTLPipelineOption,
-            completionHandler: MTLNewRenderPipelineStateWithReflectionCompletionHandler,
+            completion_handler: MTLNewRenderPipelineStateWithReflectionCompletionHandler,
         );
 
         #[cfg(feature = "Metal_MTLMeshRenderPipelineDescriptor")]
@@ -595,7 +595,7 @@ extern_protocol!(
             &self,
             descriptor: &MTLMeshRenderPipelineDescriptor,
             options: MTLPipelineOption,
-            completionHandler: MTLNewRenderPipelineStateWithReflectionCompletionHandler,
+            completion_handler: MTLNewRenderPipelineStateWithReflectionCompletionHandler,
         );
 
         #[method(maxThreadgroupMemoryLength)]
@@ -627,7 +627,7 @@ extern_protocol!(
         #[method(supportsRasterizationRateMapWithLayerCount:)]
         pub unsafe fn supportsRasterizationRateMapWithLayerCount(
             &self,
-            layerCount: NSUInteger,
+            layer_count: NSUInteger,
         ) -> bool;
 
         #[cfg(feature = "Metal_MTLRasterizationRateMapDescriptor")]
@@ -642,7 +642,7 @@ extern_protocol!(
         pub unsafe fn newIndirectCommandBufferWithDescriptor_maxCommandCount_options(
             &self,
             descriptor: &MTLIndirectCommandBufferDescriptor,
-            maxCount: NSUInteger,
+            max_count: NSUInteger,
             options: MTLResourceOptions,
         ) -> Option<Id<MTLIndirectCommandBuffer, Shared>>;
 
@@ -656,7 +656,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics New newSharedEventWithHandle:)]
         pub unsafe fn newSharedEventWithHandle(
             &self,
-            sharedEventHandle: &MTLSharedEventHandle,
+            shared_event_handle: &MTLSharedEventHandle,
         ) -> Option<Id<MTLSharedEvent, Shared>>;
 
         #[method(peerGroupID)]
@@ -690,15 +690,15 @@ extern_protocol!(
         pub unsafe fn newIOHandleWithURL_compressionMethod_error(
             &self,
             url: &NSURL,
-            compressionMethod: MTLIOCompressionMethod,
+            compression_method: MTLIOCompressionMethod,
         ) -> Result<Id<MTLIOFileHandle, Shared>, Id<NSError, Shared>>;
 
         #[method(sparseTileSizeWithTextureType:pixelFormat:sampleCount:)]
         pub unsafe fn sparseTileSizeWithTextureType_pixelFormat_sampleCount(
             &self,
-            textureType: MTLTextureType,
-            pixelFormat: MTLPixelFormat,
-            sampleCount: NSUInteger,
+            texture_type: MTLTextureType,
+            pixel_format: MTLPixelFormat,
+            sample_count: NSUInteger,
         ) -> MTLSize;
 
         #[method(sparseTileSizeInBytes)]
@@ -708,36 +708,36 @@ extern_protocol!(
         #[method(convertSparsePixelRegions:toTileRegions:withTileSize:alignmentMode:numRegions:)]
         pub unsafe fn convertSparsePixelRegions_toTileRegions_withTileSize_alignmentMode_numRegions(
             &self,
-            pixelRegions: NonNull<MTLRegion>,
-            tileRegions: NonNull<MTLRegion>,
-            tileSize: MTLSize,
+            pixel_regions: NonNull<MTLRegion>,
+            tile_regions: NonNull<MTLRegion>,
+            tile_size: MTLSize,
             mode: MTLSparseTextureRegionAlignmentMode,
-            numRegions: NSUInteger,
+            num_regions: NSUInteger,
         );
 
         #[optional]
         #[method(convertSparseTileRegions:toPixelRegions:withTileSize:numRegions:)]
         pub unsafe fn convertSparseTileRegions_toPixelRegions_withTileSize_numRegions(
             &self,
-            tileRegions: NonNull<MTLRegion>,
-            pixelRegions: NonNull<MTLRegion>,
-            tileSize: MTLSize,
-            numRegions: NSUInteger,
+            tile_regions: NonNull<MTLRegion>,
+            pixel_regions: NonNull<MTLRegion>,
+            tile_size: MTLSize,
+            num_regions: NSUInteger,
         );
 
         #[method(sparseTileSizeInBytesForSparsePageSize:)]
         pub unsafe fn sparseTileSizeInBytesForSparsePageSize(
             &self,
-            sparsePageSize: MTLSparsePageSize,
+            sparse_page_size: MTLSparsePageSize,
         ) -> NSUInteger;
 
         #[method(sparseTileSizeWithTextureType:pixelFormat:sampleCount:sparsePageSize:)]
         pub unsafe fn sparseTileSizeWithTextureType_pixelFormat_sampleCount_sparsePageSize(
             &self,
-            textureType: MTLTextureType,
-            pixelFormat: MTLPixelFormat,
-            sampleCount: NSUInteger,
-            sparsePageSize: MTLSparsePageSize,
+            texture_type: MTLTextureType,
+            pixel_format: MTLPixelFormat,
+            sample_count: NSUInteger,
+            sparse_page_size: MTLSparsePageSize,
         ) -> MTLSize;
 
         #[method(maxBufferLength)]
@@ -760,18 +760,18 @@ extern_protocol!(
         #[method(sampleTimestamps:gpuTimestamp:)]
         pub unsafe fn sampleTimestamps_gpuTimestamp(
             &self,
-            cpuTimestamp: NonNull<MTLTimestamp>,
-            gpuTimestamp: NonNull<MTLTimestamp>,
+            cpu_timestamp: NonNull<MTLTimestamp>,
+            gpu_timestamp: NonNull<MTLTimestamp>,
         );
 
         #[method_id(@__retain_semantics New newArgumentEncoderWithBufferBinding:)]
         pub unsafe fn newArgumentEncoderWithBufferBinding(
             &self,
-            bufferBinding: &MTLBufferBinding,
+            buffer_binding: &MTLBufferBinding,
         ) -> Id<MTLArgumentEncoder, Shared>;
 
         #[method(supportsCounterSampling:)]
-        pub fn supportsCounterSampling(&self, samplingPoint: MTLCounterSamplingPoint) -> bool;
+        pub fn supportsCounterSampling(&self, sampling_point: MTLCounterSamplingPoint) -> bool;
 
         #[method(supportsVertexAmplificationCount:)]
         pub fn supportsVertexAmplificationCount(&self, count: NSUInteger) -> bool;

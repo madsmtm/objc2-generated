@@ -23,7 +23,7 @@ extern_methods!(
         pub unsafe fn minimumScaleFactor(&self) -> CGFloat;
 
         #[method(setMinimumScaleFactor:)]
-        pub unsafe fn setMinimumScaleFactor(&self, minimumScaleFactor: CGFloat);
+        pub unsafe fn setMinimumScaleFactor(&self, minimum_scale_factor: CGFloat);
 
         #[method(actualScaleFactor)]
         pub unsafe fn actualScaleFactor(&self) -> CGFloat;

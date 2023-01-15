@@ -43,7 +43,7 @@ extern_methods!(
             feature = "Foundation_NSSortDescriptor"
         ))]
         #[method(setSortDescriptors:)]
-        pub unsafe fn setSortDescriptors(&self, sortDescriptors: &NSArray<NSSortDescriptor>);
+        pub unsafe fn setSortDescriptors(&self, sort_descriptors: &NSArray<NSSortDescriptor>);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other valueListAttributes)]
@@ -51,7 +51,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setValueListAttributes:)]
-        pub unsafe fn setValueListAttributes(&self, valueListAttributes: &NSArray<NSString>);
+        pub unsafe fn setValueListAttributes(&self, value_list_attributes: &NSArray<NSString>);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other groupingAttributes)]
@@ -59,7 +59,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setGroupingAttributes:)]
-        pub unsafe fn setGroupingAttributes(&self, groupingAttributes: Option<&NSArray<NSString>>);
+        pub unsafe fn setGroupingAttributes(&self, grouping_attributes: Option<&NSArray<NSString>>);
 
         #[method(notificationBatchingInterval)]
         pub unsafe fn notificationBatchingInterval(&self) -> NSTimeInterval;
@@ -67,7 +67,7 @@ extern_methods!(
         #[method(setNotificationBatchingInterval:)]
         pub unsafe fn setNotificationBatchingInterval(
             &self,
-            notificationBatchingInterval: NSTimeInterval,
+            notification_batching_interval: NSTimeInterval,
         );
 
         #[cfg(feature = "Foundation_NSArray")]
@@ -76,7 +76,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setSearchScopes:)]
-        pub unsafe fn setSearchScopes(&self, searchScopes: &NSArray);
+        pub unsafe fn setSearchScopes(&self, search_scopes: &NSArray);
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other searchItems)]
@@ -84,7 +84,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setSearchItems:)]
-        pub unsafe fn setSearchItems(&self, searchItems: Option<&NSArray>);
+        pub unsafe fn setSearchItems(&self, search_items: Option<&NSArray>);
 
         #[cfg(feature = "Foundation_NSOperationQueue")]
         #[method_id(@__retain_semantics Other operationQueue)]
@@ -92,7 +92,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSOperationQueue")]
         #[method(setOperationQueue:)]
-        pub unsafe fn setOperationQueue(&self, operationQueue: Option<&NSOperationQueue>);
+        pub unsafe fn setOperationQueue(&self, operation_queue: Option<&NSOperationQueue>);
 
         #[method(startQuery)]
         pub unsafe fn startQuery(&self) -> bool;
@@ -163,7 +163,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other valueOfAttribute:forResultAtIndex:)]
         pub unsafe fn valueOfAttribute_forResultAtIndex(
             &self,
-            attrName: &NSString,
+            attr_name: &NSString,
             idx: NSUInteger,
         ) -> Option<Id<Object, Shared>>;
     }
@@ -194,8 +194,8 @@ extern_protocol!(
         pub unsafe fn metadataQuery_replacementValueForAttribute_value(
             &self,
             query: &NSMetadataQuery,
-            attrName: &NSString,
-            attrValue: &Object,
+            attr_name: &NSString,
+            attr_value: &Object,
         ) -> Id<Object, Shared>;
     }
 );

@@ -43,7 +43,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setSpecializedName:)]
-        pub fn setSpecializedName(&self, specializedName: Option<&NSString>);
+        pub fn setSpecializedName(&self, specialized_name: Option<&NSString>);
 
         #[cfg(feature = "Metal_MTLFunctionConstantValues")]
         #[method_id(@__retain_semantics Other constantValues)]
@@ -51,7 +51,7 @@ extern_methods!(
 
         #[cfg(feature = "Metal_MTLFunctionConstantValues")]
         #[method(setConstantValues:)]
-        pub fn setConstantValues(&self, constantValues: Option<&MTLFunctionConstantValues>);
+        pub fn setConstantValues(&self, constant_values: Option<&MTLFunctionConstantValues>);
 
         #[method(options)]
         pub fn options(&self) -> MTLFunctionOptions;
@@ -65,7 +65,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setBinaryArchives:)]
-        pub unsafe fn setBinaryArchives(&self, binaryArchives: Option<&NSArray<MTLBinaryArchive>>);
+        pub unsafe fn setBinaryArchives(&self, binary_archives: Option<&NSArray<MTLBinaryArchive>>);
     }
 );
 

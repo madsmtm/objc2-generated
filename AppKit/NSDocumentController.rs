@@ -68,7 +68,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other openUntitledDocumentAndDisplay:error:_)]
         pub unsafe fn openUntitledDocumentAndDisplay_error(
             &self,
-            displayDocument: bool,
+            display_document: bool,
         ) -> Result<Id<NSDocument, Shared>, Id<NSError, Shared>>;
 
         #[cfg(all(
@@ -79,7 +79,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other makeUntitledDocumentOfType:error:_)]
         pub unsafe fn makeUntitledDocumentOfType_error(
             &self,
-            typeName: &NSString,
+            type_name: &NSString,
         ) -> Result<Id<NSDocument, Shared>, Id<NSError, Shared>>;
 
         #[method(openDocument:)]
@@ -97,7 +97,7 @@ extern_methods!(
         #[method(runModalOpenPanel:forTypes:)]
         pub unsafe fn runModalOpenPanel_forTypes(
             &self,
-            openPanel: &NSOpenPanel,
+            open_panel: &NSOpenPanel,
             types: Option<&NSArray<NSString>>,
         ) -> NSInteger;
 
@@ -105,7 +105,7 @@ extern_methods!(
         #[method(beginOpenPanelWithCompletionHandler:)]
         pub unsafe fn beginOpenPanelWithCompletionHandler(
             &self,
-            completionHandler: &Block<(*mut NSArray<NSURL>,), ()>,
+            completion_handler: &Block<(*mut NSArray<NSURL>,), ()>,
         );
 
         #[cfg(all(
@@ -116,9 +116,9 @@ extern_methods!(
         #[method(beginOpenPanel:forTypes:completionHandler:)]
         pub unsafe fn beginOpenPanel_forTypes_completionHandler(
             &self,
-            openPanel: &NSOpenPanel,
-            inTypes: Option<&NSArray<NSString>>,
-            completionHandler: &Block<(NSInteger,), ()>,
+            open_panel: &NSOpenPanel,
+            in_types: Option<&NSArray<NSString>>,
+            completion_handler: &Block<(NSInteger,), ()>,
         );
 
         #[cfg(all(
@@ -130,8 +130,8 @@ extern_methods!(
         pub unsafe fn openDocumentWithContentsOfURL_display_completionHandler(
             &self,
             url: &NSURL,
-            displayDocument: bool,
-            completionHandler: &Block<(*mut NSDocument, Bool, *mut NSError), ()>,
+            display_document: bool,
+            completion_handler: &Block<(*mut NSDocument, Bool, *mut NSError), ()>,
         );
 
         #[cfg(all(
@@ -144,7 +144,7 @@ extern_methods!(
         pub unsafe fn makeDocumentWithContentsOfURL_ofType_error(
             &self,
             url: &NSURL,
-            typeName: &NSString,
+            type_name: &NSString,
         ) -> Result<Id<NSDocument, Shared>, Id<NSError, Shared>>;
 
         #[cfg(all(
@@ -155,10 +155,10 @@ extern_methods!(
         #[method(reopenDocumentForURL:withContentsOfURL:display:completionHandler:)]
         pub unsafe fn reopenDocumentForURL_withContentsOfURL_display_completionHandler(
             &self,
-            urlOrNil: Option<&NSURL>,
-            contentsURL: &NSURL,
-            displayDocument: bool,
-            completionHandler: &Block<(*mut NSDocument, Bool, *mut NSError), ()>,
+            url_or_nil: Option<&NSURL>,
+            contents_url: &NSURL,
+            display_document: bool,
+            completion_handler: &Block<(*mut NSDocument, Bool, *mut NSError), ()>,
         );
 
         #[cfg(all(
@@ -170,16 +170,16 @@ extern_methods!(
         #[method_id(@__retain_semantics Other makeDocumentForURL:withContentsOfURL:ofType:error:_)]
         pub unsafe fn makeDocumentForURL_withContentsOfURL_ofType_error(
             &self,
-            urlOrNil: Option<&NSURL>,
-            contentsURL: &NSURL,
-            typeName: &NSString,
+            url_or_nil: Option<&NSURL>,
+            contents_url: &NSURL,
+            type_name: &NSString,
         ) -> Result<Id<NSDocument, Shared>, Id<NSError, Shared>>;
 
         #[method(autosavingDelay)]
         pub unsafe fn autosavingDelay(&self) -> NSTimeInterval;
 
         #[method(setAutosavingDelay:)]
-        pub unsafe fn setAutosavingDelay(&self, autosavingDelay: NSTimeInterval);
+        pub unsafe fn setAutosavingDelay(&self, autosaving_delay: NSTimeInterval);
 
         #[method(saveAllDocuments:)]
         pub unsafe fn saveAllDocuments(&self, sender: Option<&Object>);
@@ -194,16 +194,16 @@ extern_methods!(
             title: Option<&NSString>,
             cancellable: bool,
             delegate: Option<&Object>,
-            didReviewAllSelector: Option<Sel>,
-            contextInfo: *mut c_void,
+            did_review_all_selector: Option<Sel>,
+            context_info: *mut c_void,
         );
 
         #[method(closeAllDocumentsWithDelegate:didCloseAllSelector:contextInfo:)]
         pub unsafe fn closeAllDocumentsWithDelegate_didCloseAllSelector_contextInfo(
             &self,
             delegate: Option<&Object>,
-            didCloseAllSelector: Option<Sel>,
-            contextInfo: *mut c_void,
+            did_close_all_selector: Option<Sel>,
+            context_info: *mut c_void,
         );
 
         #[cfg(all(
@@ -216,8 +216,8 @@ extern_methods!(
         pub unsafe fn duplicateDocumentWithContentsOfURL_copying_displayName_error(
             &self,
             url: &NSURL,
-            duplicateByCopying: bool,
-            displayNameOrNil: Option<&NSString>,
+            duplicate_by_copying: bool,
+            display_name_or_nil: Option<&NSString>,
         ) -> Result<Id<NSDocument, Shared>, Id<NSError, Shared>>;
 
         #[method(allowsAutomaticShareMenu)]
@@ -234,8 +234,8 @@ extern_methods!(
             error: &NSError,
             window: &NSWindow,
             delegate: Option<&Object>,
-            didPresentSelector: Option<Sel>,
-            contextInfo: *mut c_void,
+            did_present_selector: Option<Sel>,
+            context_info: *mut c_void,
         );
 
         #[cfg(feature = "Foundation_NSError")]
@@ -285,13 +285,13 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(documentClassForType:)]
-        pub unsafe fn documentClassForType(&self, typeName: &NSString) -> Option<&'static Class>;
+        pub unsafe fn documentClassForType(&self, type_name: &NSString) -> Option<&'static Class>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other displayNameForType:)]
         pub unsafe fn displayNameForType(
             &self,
-            typeName: &NSString,
+            type_name: &NSString,
         ) -> Option<Id<NSString, Shared>>;
 
         #[method(validateUserInterfaceItem:)]
@@ -310,7 +310,7 @@ extern_methods!(
         pub unsafe fn openDocumentWithContentsOfURL_display_error(
             &self,
             url: &NSURL,
-            displayDocument: bool,
+            display_document: bool,
         ) -> Result<Id<Object, Shared>, Id<NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
@@ -319,7 +319,7 @@ extern_methods!(
         pub unsafe fn reopenDocumentForURL_withContentsOfURL_error(
             &self,
             url: Option<&NSURL>,
-            contentsURL: &NSURL,
+            contents_url: &NSURL,
         ) -> Result<(), Id<NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
@@ -327,7 +327,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other fileExtensionsFromType:)]
         pub unsafe fn fileExtensionsFromType(
             &self,
-            typeName: &NSString,
+            type_name: &NSString,
         ) -> Option<Id<NSArray, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -335,14 +335,16 @@ extern_methods!(
         #[method_id(@__retain_semantics Other typeFromFileExtension:)]
         pub unsafe fn typeFromFileExtension(
             &self,
-            fileNameExtensionOrHFSFileType: &NSString,
+            file_name_extension_or_hfs_file_type: &NSString,
         ) -> Option<Id<NSString, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
         #[method_id(@__retain_semantics Other documentForFileName:)]
-        pub unsafe fn documentForFileName(&self, fileName: &NSString)
-            -> Option<Id<Object, Shared>>;
+        pub unsafe fn documentForFileName(
+            &self,
+            file_name: &NSString,
+        ) -> Option<Id<Object, Shared>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[deprecated]
@@ -354,7 +356,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other makeDocumentWithContentsOfFile:ofType:)]
         pub unsafe fn makeDocumentWithContentsOfFile_ofType(
             &self,
-            fileName: &NSString,
+            file_name: &NSString,
             r#type: &NSString,
         ) -> Option<Id<Object, Shared>>;
 
@@ -380,7 +382,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other openDocumentWithContentsOfFile:display:)]
         pub unsafe fn openDocumentWithContentsOfFile_display(
             &self,
-            fileName: &NSString,
+            file_name: &NSString,
             display: bool,
         ) -> Option<Id<Object, Shared>>;
 

@@ -118,7 +118,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other readObjectsForClasses:options:)]
         pub unsafe fn readObjectsForClasses_options(
             &self,
-            classArray: &NSArray<TodoClass>,
+            class_array: &NSArray<TodoClass>,
             options: Option<&NSDictionary<NSPasteboardReadingOptionKey, Object>>,
         ) -> Option<Id<NSArray, Shared>>;
 
@@ -128,8 +128,10 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSPasteboardItem")]
         #[method(indexOfPasteboardItem:)]
-        pub unsafe fn indexOfPasteboardItem(&self, pasteboardItem: &NSPasteboardItem)
-            -> NSUInteger;
+        pub unsafe fn indexOfPasteboardItem(
+            &self,
+            pasteboard_item: &NSPasteboardItem,
+        ) -> NSUInteger;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(canReadItemWithDataConformingToTypes:)]
@@ -142,7 +144,7 @@ extern_methods!(
         #[method(canReadObjectForClasses:options:)]
         pub unsafe fn canReadObjectForClasses_options(
             &self,
-            classArray: &NSArray<TodoClass>,
+            class_array: &NSArray<TodoClass>,
             options: Option<&NSDictionary<NSPasteboardReadingOptionKey, Object>>,
         ) -> bool;
 
@@ -150,16 +152,16 @@ extern_methods!(
         #[method(declareTypes:owner:)]
         pub unsafe fn declareTypes_owner(
             &self,
-            newTypes: &NSArray<NSPasteboardType>,
-            newOwner: Option<&Object>,
+            new_types: &NSArray<NSPasteboardType>,
+            new_owner: Option<&Object>,
         ) -> NSInteger;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(addTypes:owner:)]
         pub unsafe fn addTypes_owner(
             &self,
-            newTypes: &NSArray<NSPasteboardType>,
-            newOwner: Option<&Object>,
+            new_types: &NSArray<NSPasteboardType>,
+            new_owner: Option<&Object>,
         ) -> NSInteger;
 
         #[cfg(feature = "Foundation_NSArray")]
@@ -178,14 +180,14 @@ extern_methods!(
         pub unsafe fn setData_forType(
             &self,
             data: Option<&NSData>,
-            dataType: &NSPasteboardType,
+            data_type: &NSPasteboardType,
         ) -> bool;
 
         #[method(setPropertyList:forType:)]
         pub unsafe fn setPropertyList_forType(
             &self,
             plist: &Object,
-            dataType: &NSPasteboardType,
+            data_type: &NSPasteboardType,
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -193,25 +195,27 @@ extern_methods!(
         pub unsafe fn setString_forType(
             &self,
             string: &NSString,
-            dataType: &NSPasteboardType,
+            data_type: &NSPasteboardType,
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other dataForType:)]
-        pub unsafe fn dataForType(&self, dataType: &NSPasteboardType)
-            -> Option<Id<NSData, Shared>>;
+        pub unsafe fn dataForType(
+            &self,
+            data_type: &NSPasteboardType,
+        ) -> Option<Id<NSData, Shared>>;
 
         #[method_id(@__retain_semantics Other propertyListForType:)]
         pub unsafe fn propertyListForType(
             &self,
-            dataType: &NSPasteboardType,
+            data_type: &NSPasteboardType,
         ) -> Option<Id<Object, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringForType:)]
         pub unsafe fn stringForType(
             &self,
-            dataType: &NSPasteboardType,
+            data_type: &NSPasteboardType,
         ) -> Option<Id<NSString, Shared>>;
     }
 );
@@ -316,7 +320,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Init initWithPasteboardPropertyList:ofType:)]
         pub unsafe fn initWithPasteboardPropertyList_ofType(
             this: Option<Allocated<Self>>,
-            propertyList: &Object,
+            property_list: &Object,
             r#type: &NSPasteboardType,
         ) -> Option<Id<Self, Shared>>;
     }
@@ -328,11 +332,11 @@ extern_methods!(
     unsafe impl NSURL {
         #[cfg(feature = "AppKit_NSPasteboard")]
         #[method_id(@__retain_semantics Other URLFromPasteboard:)]
-        pub unsafe fn URLFromPasteboard(pasteBoard: &NSPasteboard) -> Option<Id<NSURL, Shared>>;
+        pub unsafe fn URLFromPasteboard(paste_board: &NSPasteboard) -> Option<Id<NSURL, Shared>>;
 
         #[cfg(feature = "AppKit_NSPasteboard")]
         #[method(writeToPasteboard:)]
-        pub unsafe fn writeToPasteboard(&self, pasteBoard: &NSPasteboard);
+        pub unsafe fn writeToPasteboard(&self, paste_board: &NSPasteboard);
     }
 );
 
@@ -372,23 +376,24 @@ extern_static!(NSFileContentsPboardType: &'static NSPasteboardType);
 
 extern_fn!(
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSCreateFilenamePboardType(fileType: &NSString) -> *mut NSPasteboardType;
+    pub unsafe fn NSCreateFilenamePboardType(file_type: &NSString) -> *mut NSPasteboardType;
 );
 
 extern_fn!(
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSCreateFileContentsPboardType(fileType: &NSString) -> *mut NSPasteboardType;
+    pub unsafe fn NSCreateFileContentsPboardType(file_type: &NSString) -> *mut NSPasteboardType;
 );
 
 extern_fn!(
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSGetFileType(pboardType: &NSPasteboardType) -> *mut NSString;
+    pub unsafe fn NSGetFileType(pboard_type: &NSPasteboardType) -> *mut NSString;
 );
 
 extern_fn!(
     #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
-    pub unsafe fn NSGetFileTypes(pboardTypes: &NSArray<NSPasteboardType>)
-        -> *mut NSArray<NSString>;
+    pub unsafe fn NSGetFileTypes(
+        pboard_types: &NSArray<NSPasteboardType>,
+    ) -> *mut NSArray<NSString>;
 );
 
 extern_static!(NSStringPboardType: &'static NSPasteboardType);

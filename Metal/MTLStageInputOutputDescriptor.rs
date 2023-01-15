@@ -109,13 +109,13 @@ extern_methods!(
         pub fn stepFunction(&self) -> MTLStepFunction;
 
         #[method(setStepFunction:)]
-        pub fn setStepFunction(&self, stepFunction: MTLStepFunction);
+        pub fn setStepFunction(&self, step_function: MTLStepFunction);
 
         #[method(stepRate)]
         pub fn stepRate(&self) -> NSUInteger;
 
         #[method(setStepRate:)]
-        pub fn setStepRate(&self, stepRate: NSUInteger);
+        pub fn setStepRate(&self, step_rate: NSUInteger);
     }
 );
 
@@ -144,7 +144,7 @@ extern_methods!(
         #[method(setObject:atIndexedSubscript:)]
         pub unsafe fn setObject_atIndexedSubscript(
             &self,
-            bufferDesc: Option<&MTLBufferLayoutDescriptor>,
+            buffer_desc: Option<&MTLBufferLayoutDescriptor>,
             index: NSUInteger,
         );
     }
@@ -180,7 +180,7 @@ extern_methods!(
         pub fn bufferIndex(&self) -> NSUInteger;
 
         #[method(setBufferIndex:)]
-        pub unsafe fn setBufferIndex(&self, bufferIndex: NSUInteger);
+        pub unsafe fn setBufferIndex(&self, buffer_index: NSUInteger);
     }
 );
 
@@ -209,7 +209,7 @@ extern_methods!(
         #[method(setObject:atIndexedSubscript:)]
         pub unsafe fn setObject_atIndexedSubscript(
             &self,
-            attributeDesc: Option<&MTLAttributeDescriptor>,
+            attribute_desc: Option<&MTLAttributeDescriptor>,
             index: NSUInteger,
         );
     }
@@ -244,13 +244,13 @@ extern_methods!(
         pub fn indexType(&self) -> MTLIndexType;
 
         #[method(setIndexType:)]
-        pub unsafe fn setIndexType(&self, indexType: MTLIndexType);
+        pub unsafe fn setIndexType(&self, index_type: MTLIndexType);
 
         #[method(indexBufferIndex)]
         pub fn indexBufferIndex(&self) -> NSUInteger;
 
         #[method(setIndexBufferIndex:)]
-        pub unsafe fn setIndexBufferIndex(&self, indexBufferIndex: NSUInteger);
+        pub unsafe fn setIndexBufferIndex(&self, index_buffer_index: NSUInteger);
 
         #[method(reset)]
         pub fn reset(&self);

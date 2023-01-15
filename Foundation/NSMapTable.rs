@@ -58,24 +58,24 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithKeyOptions:valueOptions:capacity:)]
         pub unsafe fn initWithKeyOptions_valueOptions_capacity(
             this: Option<Allocated<Self>>,
-            keyOptions: NSPointerFunctionsOptions,
-            valueOptions: NSPointerFunctionsOptions,
-            initialCapacity: NSUInteger,
+            key_options: NSPointerFunctionsOptions,
+            value_options: NSPointerFunctionsOptions,
+            initial_capacity: NSUInteger,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSPointerFunctions")]
         #[method_id(@__retain_semantics Init initWithKeyPointerFunctions:valuePointerFunctions:capacity:)]
         pub unsafe fn initWithKeyPointerFunctions_valuePointerFunctions_capacity(
             this: Option<Allocated<Self>>,
-            keyFunctions: &NSPointerFunctions,
-            valueFunctions: &NSPointerFunctions,
-            initialCapacity: NSUInteger,
+            key_functions: &NSPointerFunctions,
+            value_functions: &NSPointerFunctions,
+            initial_capacity: NSUInteger,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Other mapTableWithKeyOptions:valueOptions:)]
         pub unsafe fn mapTableWithKeyOptions_valueOptions(
-            keyOptions: NSPointerFunctionsOptions,
-            valueOptions: NSPointerFunctionsOptions,
+            key_options: NSPointerFunctionsOptions,
+            value_options: NSPointerFunctionsOptions,
         ) -> Id<NSMapTable<KeyType, ObjectType>, Shared>;
 
         #[deprecated = "GC no longer supported"]
@@ -117,17 +117,17 @@ extern_methods!(
         #[method_id(@__retain_semantics Other objectForKey:)]
         pub unsafe fn objectForKey(
             &self,
-            aKey: Option<&KeyType>,
+            a_key: Option<&KeyType>,
         ) -> Option<Id<ObjectType, ObjectTypeOwnership>>;
 
         #[method(removeObjectForKey:)]
-        pub unsafe fn removeObjectForKey(&self, aKey: Option<&KeyType>);
+        pub unsafe fn removeObjectForKey(&self, a_key: Option<&KeyType>);
 
         #[method(setObject:forKey:)]
         pub unsafe fn setObject_forKey(
             &self,
-            anObject: Option<&ObjectType>,
-            aKey: Option<&KeyType>,
+            an_object: Option<&ObjectType>,
+            a_key: Option<&KeyType>,
         );
 
         #[method(count)]
@@ -183,7 +183,7 @@ extern_fn!(
     pub unsafe fn NSMapMember(
         table: &NSMapTable,
         key: NonNull<c_void>,
-        originalKey: *mut *mut c_void,
+        original_key: *mut *mut c_void,
         value: *mut *mut c_void,
     ) -> Bool;
 );
@@ -280,8 +280,8 @@ extern_struct!(
 extern_fn!(
     #[cfg(feature = "Foundation_NSMapTable")]
     pub unsafe fn NSCreateMapTableWithZone(
-        keyCallBacks: NSMapTableKeyCallBacks,
-        valueCallBacks: NSMapTableValueCallBacks,
+        key_call_backs: NSMapTableKeyCallBacks,
+        value_call_backs: NSMapTableValueCallBacks,
         capacity: NSUInteger,
         zone: *mut NSZone,
     ) -> NonNull<NSMapTable>;
@@ -290,8 +290,8 @@ extern_fn!(
 extern_fn!(
     #[cfg(feature = "Foundation_NSMapTable")]
     pub unsafe fn NSCreateMapTable(
-        keyCallBacks: NSMapTableKeyCallBacks,
-        valueCallBacks: NSMapTableValueCallBacks,
+        key_call_backs: NSMapTableKeyCallBacks,
+        value_call_backs: NSMapTableValueCallBacks,
         capacity: NSUInteger,
     ) -> NonNull<NSMapTable>;
 );

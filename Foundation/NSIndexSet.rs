@@ -35,7 +35,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithIndexSet:)]
         pub unsafe fn initWithIndexSet(
             this: Option<Allocated<Self>>,
-            indexSet: &NSIndexSet,
+            index_set: &NSIndexSet,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Init initWithIndex:)]
@@ -45,7 +45,7 @@ extern_methods!(
         ) -> Id<Self, Shared>;
 
         #[method(isEqualToIndexSet:)]
-        pub unsafe fn isEqualToIndexSet(&self, indexSet: &NSIndexSet) -> bool;
+        pub unsafe fn isEqualToIndexSet(&self, index_set: &NSIndexSet) -> bool;
 
         #[method(count)]
         pub unsafe fn count(&self) -> NSUInteger;
@@ -71,8 +71,8 @@ extern_methods!(
         #[method(getIndexes:maxCount:inIndexRange:)]
         pub unsafe fn getIndexes_maxCount_inIndexRange(
             &self,
-            indexBuffer: NonNull<NSUInteger>,
-            bufferSize: NSUInteger,
+            index_buffer: NonNull<NSUInteger>,
+            buffer_size: NSUInteger,
             range: NSRangePointer,
         ) -> NSUInteger;
 
@@ -86,7 +86,7 @@ extern_methods!(
         pub unsafe fn containsIndexesInRange(&self, range: NSRange) -> bool;
 
         #[method(containsIndexes:)]
-        pub unsafe fn containsIndexes(&self, indexSet: &NSIndexSet) -> bool;
+        pub unsafe fn containsIndexes(&self, index_set: &NSIndexSet) -> bool;
 
         #[method(intersectsIndexesInRange:)]
         pub unsafe fn intersectsIndexesInRange(&self, range: NSRange) -> bool;
@@ -190,10 +190,10 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSMutableIndexSet")]
     unsafe impl NSMutableIndexSet {
         #[method(addIndexes:)]
-        pub unsafe fn addIndexes(&self, indexSet: &NSIndexSet);
+        pub unsafe fn addIndexes(&self, index_set: &NSIndexSet);
 
         #[method(removeIndexes:)]
-        pub unsafe fn removeIndexes(&self, indexSet: &NSIndexSet);
+        pub unsafe fn removeIndexes(&self, index_set: &NSIndexSet);
 
         #[method(removeAllIndexes)]
         pub unsafe fn removeAllIndexes(&self);
@@ -237,7 +237,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithIndexSet:)]
         pub unsafe fn initWithIndexSet(
             this: Option<Allocated<Self>>,
-            indexSet: &NSIndexSet,
+            index_set: &NSIndexSet,
         ) -> Id<Self, Owned>;
 
         #[method_id(@__retain_semantics Init initWithIndex:)]

@@ -44,13 +44,13 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSTimeZone")]
         #[method(setTimeZone:)]
-        pub unsafe fn setTimeZone(&self, timeZone: Option<&NSTimeZone>);
+        pub unsafe fn setTimeZone(&self, time_zone: Option<&NSTimeZone>);
 
         #[method(formatOptions)]
         pub unsafe fn formatOptions(&self) -> NSISO8601DateFormatOptions;
 
         #[method(setFormatOptions:)]
-        pub unsafe fn setFormatOptions(&self, formatOptions: NSISO8601DateFormatOptions);
+        pub unsafe fn setFormatOptions(&self, format_options: NSISO8601DateFormatOptions);
 
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
@@ -71,8 +71,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Other stringFromDate:timeZone:formatOptions:)]
         pub unsafe fn stringFromDate_timeZone_formatOptions(
             date: &NSDate,
-            timeZone: &NSTimeZone,
-            formatOptions: NSISO8601DateFormatOptions,
+            time_zone: &NSTimeZone,
+            format_options: NSISO8601DateFormatOptions,
         ) -> Id<NSString, Shared>;
     }
 );

@@ -34,7 +34,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method(setExecutableURL:)]
-        pub unsafe fn setExecutableURL(&self, executableURL: Option<&NSURL>);
+        pub unsafe fn setExecutableURL(&self, executable_url: Option<&NSURL>);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other arguments)]
@@ -58,25 +58,25 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method(setCurrentDirectoryURL:)]
-        pub unsafe fn setCurrentDirectoryURL(&self, currentDirectoryURL: Option<&NSURL>);
+        pub unsafe fn setCurrentDirectoryURL(&self, current_directory_url: Option<&NSURL>);
 
         #[method_id(@__retain_semantics Other standardInput)]
         pub unsafe fn standardInput(&self) -> Option<Id<Object, Shared>>;
 
         #[method(setStandardInput:)]
-        pub unsafe fn setStandardInput(&self, standardInput: Option<&Object>);
+        pub unsafe fn setStandardInput(&self, standard_input: Option<&Object>);
 
         #[method_id(@__retain_semantics Other standardOutput)]
         pub unsafe fn standardOutput(&self) -> Option<Id<Object, Shared>>;
 
         #[method(setStandardOutput:)]
-        pub unsafe fn setStandardOutput(&self, standardOutput: Option<&Object>);
+        pub unsafe fn setStandardOutput(&self, standard_output: Option<&Object>);
 
         #[method_id(@__retain_semantics Other standardError)]
         pub unsafe fn standardError(&self) -> Option<Id<Object, Shared>>;
 
         #[method(setStandardError:)]
-        pub unsafe fn setStandardError(&self, standardError: Option<&Object>);
+        pub unsafe fn setStandardError(&self, standard_error: Option<&Object>);
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(launchAndReturnError:_)]
@@ -112,14 +112,14 @@ extern_methods!(
         #[method(setTerminationHandler:)]
         pub unsafe fn setTerminationHandler(
             &self,
-            terminationHandler: Option<&Block<(NonNull<NSTask>,), ()>>,
+            termination_handler: Option<&Block<(NonNull<NSTask>,), ()>>,
         );
 
         #[method(qualityOfService)]
         pub unsafe fn qualityOfService(&self) -> NSQualityOfService;
 
         #[method(setQualityOfService:)]
-        pub unsafe fn setQualityOfService(&self, qualityOfService: NSQualityOfService);
+        pub unsafe fn setQualityOfService(&self, quality_of_service: NSQualityOfService);
     }
 );
 
@@ -138,7 +138,7 @@ extern_methods!(
             url: &NSURL,
             arguments: &NSArray<NSString>,
             error: *mut *mut NSError,
-            terminationHandler: Option<&Block<(NonNull<NSTask>,), ()>>,
+            termination_handler: Option<&Block<(NonNull<NSTask>,), ()>>,
         ) -> Option<Id<NSTask, Shared>>;
 
         #[method(waitUntilExit)]
@@ -158,7 +158,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
         #[method(setLaunchPath:)]
-        pub unsafe fn setLaunchPath(&self, launchPath: Option<&NSString>);
+        pub unsafe fn setLaunchPath(&self, launch_path: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
@@ -168,7 +168,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
         #[method(setCurrentDirectoryPath:)]
-        pub unsafe fn setCurrentDirectoryPath(&self, currentDirectoryPath: &NSString);
+        pub unsafe fn setCurrentDirectoryPath(&self, current_directory_path: &NSString);
 
         #[deprecated]
         #[method(launch)]

@@ -17,7 +17,7 @@ extern_methods!(
         #[method(setWantsBestResolutionOpenGLSurface:)]
         pub unsafe fn setWantsBestResolutionOpenGLSurface(
             &self,
-            wantsBestResolutionOpenGLSurface: bool,
+            wants_best_resolution_open_gl_surface: bool,
         );
     }
 );
@@ -34,7 +34,7 @@ extern_methods!(
         #[method(setWantsExtendedDynamicRangeOpenGLSurface:)]
         pub unsafe fn setWantsExtendedDynamicRangeOpenGLSurface(
             &self,
-            wantsExtendedDynamicRangeOpenGLSurface: bool,
+            wants_extended_dynamic_range_open_gl_surface: bool,
         );
     }
 );

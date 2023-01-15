@@ -33,7 +33,7 @@ extern_methods!(
         pub unsafe fn nextResponder(&self) -> Option<Id<NSResponder, Shared>>;
 
         #[method(setNextResponder:)]
-        pub unsafe fn setNextResponder(&self, nextResponder: Option<&NSResponder>);
+        pub unsafe fn setNextResponder(&self, next_responder: Option<&NSResponder>);
 
         #[method(tryToPerform:with:)]
         pub unsafe fn tryToPerform_with(&self, action: Sel, object: Option<&Object>) -> bool;
@@ -45,8 +45,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Other validRequestorForSendType:returnType:)]
         pub unsafe fn validRequestorForSendType_returnType(
             &self,
-            sendType: Option<&NSPasteboardType>,
-            returnType: Option<&NSPasteboardType>,
+            send_type: Option<&NSPasteboardType>,
+            return_type: Option<&NSPasteboardType>,
         ) -> Option<Id<Object, Shared>>;
 
         #[cfg(feature = "AppKit_NSEvent")]
@@ -178,7 +178,7 @@ extern_methods!(
         pub unsafe fn pressureChangeWithEvent(&self, event: &NSEvent);
 
         #[method(noResponderFor:)]
-        pub unsafe fn noResponderFor(&self, eventSelector: Sel);
+        pub unsafe fn noResponderFor(&self, event_selector: Sel);
 
         #[method(acceptsFirstResponder)]
         pub unsafe fn acceptsFirstResponder(&self) -> bool;
@@ -191,7 +191,7 @@ extern_methods!(
 
         #[cfg(all(feature = "AppKit_NSEvent", feature = "Foundation_NSArray"))]
         #[method(interpretKeyEvents:)]
-        pub unsafe fn interpretKeyEvents(&self, eventArray: &NSArray<NSEvent>);
+        pub unsafe fn interpretKeyEvents(&self, event_array: &NSArray<NSEvent>);
 
         #[method(flushBufferedKeyEvents)]
         pub unsafe fn flushBufferedKeyEvents(&self);
@@ -209,7 +209,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSEvent")]
         #[method(helpRequested:)]
-        pub unsafe fn helpRequested(&self, eventPtr: &NSEvent);
+        pub unsafe fn helpRequested(&self, event_ptr: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
         #[method(shouldBeTreatedAsInkEvent:)]
@@ -239,7 +239,7 @@ extern_protocol!(
     unsafe impl ProtocolType for NSStandardKeyBindingResponding {
         #[optional]
         #[method(insertText:)]
-        pub unsafe fn insertText(&self, insertString: &Object);
+        pub unsafe fn insertText(&self, insert_string: &Object);
 
         #[optional]
         #[method(doCommandBySelector:)]
@@ -660,8 +660,8 @@ extern_methods!(
             error: &NSError,
             window: &NSWindow,
             delegate: Option<&Object>,
-            didPresentSelector: Option<Sel>,
-            contextInfo: *mut c_void,
+            did_present_selector: Option<Sel>,
+            context_info: *mut c_void,
         );
 
         #[cfg(feature = "Foundation_NSError")]

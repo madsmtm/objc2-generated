@@ -34,7 +34,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSViewController")]
         #[method(setViewController:)]
-        pub unsafe fn setViewController(&self, viewController: Option<&NSViewController>);
+        pub unsafe fn setViewController(&self, view_controller: Option<&NSViewController>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other customizationLabel)]
@@ -42,7 +42,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCustomizationLabel:)]
-        pub unsafe fn setCustomizationLabel(&self, customizationLabel: Option<&NSString>);
+        pub unsafe fn setCustomizationLabel(&self, customization_label: Option<&NSString>);
     }
 );
 

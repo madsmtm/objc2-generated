@@ -22,7 +22,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCredentialID:)]
         pub unsafe fn initWithCredentialID(
             this: Option<Allocated<Self>>,
-            credentialID: &NSData,
+            credential_id: &NSData,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics New new)]

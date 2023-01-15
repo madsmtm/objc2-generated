@@ -51,7 +51,7 @@ extern_methods!(
         #[method(createDestinationInstancesForSourceInstance:entityMapping:manager:error:_)]
         pub unsafe fn createDestinationInstancesForSourceInstance_entityMapping_manager_error(
             &self,
-            sInstance: &NSManagedObject,
+            s_instance: &NSManagedObject,
             mapping: &NSEntityMapping,
             manager: &NSMigrationManager,
         ) -> Result<(), Id<NSError, Shared>>;
@@ -77,7 +77,7 @@ extern_methods!(
         #[method(createRelationshipsForDestinationInstance:entityMapping:manager:error:_)]
         pub unsafe fn createRelationshipsForDestinationInstance_entityMapping_manager_error(
             &self,
-            dInstance: &NSManagedObject,
+            d_instance: &NSManagedObject,
             mapping: &NSEntityMapping,
             manager: &NSMigrationManager,
         ) -> Result<(), Id<NSError, Shared>>;

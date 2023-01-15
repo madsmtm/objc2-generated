@@ -31,7 +31,7 @@ extern_methods!(
             &self,
             identifier: &NSUserInterfaceItemIdentifier,
             state: &NSCoder,
-            completionHandler: &Block<(*mut NSWindow, *mut NSError), ()>,
+            completion_handler: &Block<(*mut NSWindow, *mut NSError), ()>,
         ) -> bool;
     }
 );
@@ -52,7 +52,7 @@ extern_methods!(
         pub unsafe fn restorationClass(&self) -> Option<Id<TodoClass, Shared>>;
 
         #[method(setRestorationClass:)]
-        pub unsafe fn setRestorationClass(&self, restorationClass: Option<&TodoClass>);
+        pub unsafe fn setRestorationClass(&self, restoration_class: Option<&TodoClass>);
 
         #[method(disableSnapshotRestoration)]
         pub unsafe fn disableSnapshotRestoration(&self);
@@ -95,7 +95,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other allowedClassesForRestorableStateKeyPath:)]
         pub unsafe fn allowedClassesForRestorableStateKeyPath(
-            keyPath: &NSString,
+            key_path: &NSString,
         ) -> Id<NSArray<TodoClass>, Shared>;
     }
 );
@@ -126,7 +126,7 @@ extern_methods!(
             &self,
             identifier: &NSUserInterfaceItemIdentifier,
             state: &NSCoder,
-            completionHandler: &Block<(*mut NSWindow, *mut NSError), ()>,
+            completion_handler: &Block<(*mut NSWindow, *mut NSError), ()>,
         );
 
         #[cfg(feature = "Foundation_NSCoder")]
@@ -158,7 +158,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other allowedClassesForRestorableStateKeyPath:)]
         pub unsafe fn allowedClassesForRestorableStateKeyPath(
-            keyPath: &NSString,
+            key_path: &NSString,
         ) -> Id<NSArray<TodoClass>, Shared>;
     }
 );

@@ -26,7 +26,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithObjectID:withValues:version:)]
         pub unsafe fn initWithObjectID_withValues_version(
             this: Option<Allocated<Self>>,
-            objectID: &NSManagedObjectID,
+            object_id: &NSManagedObjectID,
             values: &NSDictionary<NSString, Object>,
             version: u64,
         ) -> Id<Self, Shared>;

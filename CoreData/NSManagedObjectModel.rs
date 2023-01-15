@@ -95,7 +95,7 @@ extern_methods!(
         #[method(setFetchRequestTemplate:forName:)]
         pub unsafe fn setFetchRequestTemplate_forName(
             &self,
-            fetchRequestTemplate: Option<&NSFetchRequest>,
+            fetch_request_template: Option<&NSFetchRequest>,
             name: &NSString,
         );
 
@@ -128,7 +128,7 @@ extern_methods!(
         #[method(setLocalizationDictionary:)]
         pub unsafe fn setLocalizationDictionary(
             &self,
-            localizationDictionary: Option<&NSDictionary<NSString, NSString>>,
+            localization_dictionary: Option<&NSDictionary<NSString, NSString>>,
         );
 
         #[cfg(all(
@@ -170,7 +170,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSSet")]
         #[method(setVersionIdentifiers:)]
-        pub unsafe fn setVersionIdentifiers(&self, versionIdentifiers: &NSSet);
+        pub unsafe fn setVersionIdentifiers(&self, version_identifiers: &NSSet);
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(isConfiguration:compatibleWithStoreMetadata:)]

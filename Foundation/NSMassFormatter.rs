@@ -35,19 +35,19 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSNumberFormatter")]
         #[method(setNumberFormatter:)]
-        pub unsafe fn setNumberFormatter(&self, numberFormatter: Option<&NSNumberFormatter>);
+        pub unsafe fn setNumberFormatter(&self, number_formatter: Option<&NSNumberFormatter>);
 
         #[method(unitStyle)]
         pub unsafe fn unitStyle(&self) -> NSFormattingUnitStyle;
 
         #[method(setUnitStyle:)]
-        pub unsafe fn setUnitStyle(&self, unitStyle: NSFormattingUnitStyle);
+        pub unsafe fn setUnitStyle(&self, unit_style: NSFormattingUnitStyle);
 
         #[method(isForPersonMassUse)]
         pub unsafe fn isForPersonMassUse(&self) -> bool;
 
         #[method(setForPersonMassUse:)]
-        pub unsafe fn setForPersonMassUse(&self, forPersonMassUse: bool);
+        pub unsafe fn setForPersonMassUse(&self, for_person_mass_use: bool);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringFromValue:unit:)]
@@ -61,7 +61,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other stringFromKilograms:)]
         pub unsafe fn stringFromKilograms(
             &self,
-            numberInKilograms: c_double,
+            number_in_kilograms: c_double,
         ) -> Id<NSString, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -76,7 +76,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other unitStringFromKilograms:usedUnit:)]
         pub unsafe fn unitStringFromKilograms_usedUnit(
             &self,
-            numberInKilograms: c_double,
+            number_in_kilograms: c_double,
             unitp: *mut NSMassFormatterUnit,
         ) -> Id<NSString, Shared>;
 

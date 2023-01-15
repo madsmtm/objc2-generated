@@ -29,7 +29,7 @@ extern_methods!(
     unsafe impl NSCloneCommand {
         #[cfg(feature = "Foundation_NSScriptObjectSpecifier")]
         #[method(setReceiversSpecifier:)]
-        pub unsafe fn setReceiversSpecifier(&self, receiversRef: Option<&NSScriptObjectSpecifier>);
+        pub unsafe fn setReceiversSpecifier(&self, receivers_ref: Option<&NSScriptObjectSpecifier>);
 
         #[cfg(feature = "Foundation_NSScriptObjectSpecifier")]
         #[method_id(@__retain_semantics Other keySpecifier)]
@@ -116,7 +116,7 @@ extern_methods!(
     unsafe impl NSDeleteCommand {
         #[cfg(feature = "Foundation_NSScriptObjectSpecifier")]
         #[method(setReceiversSpecifier:)]
-        pub unsafe fn setReceiversSpecifier(&self, receiversRef: Option<&NSScriptObjectSpecifier>);
+        pub unsafe fn setReceiversSpecifier(&self, receivers_ref: Option<&NSScriptObjectSpecifier>);
 
         #[cfg(feature = "Foundation_NSScriptObjectSpecifier")]
         #[method_id(@__retain_semantics Other keySpecifier)]
@@ -175,7 +175,7 @@ extern_methods!(
     unsafe impl NSMoveCommand {
         #[cfg(feature = "Foundation_NSScriptObjectSpecifier")]
         #[method(setReceiversSpecifier:)]
-        pub unsafe fn setReceiversSpecifier(&self, receiversRef: Option<&NSScriptObjectSpecifier>);
+        pub unsafe fn setReceiversSpecifier(&self, receivers_ref: Option<&NSScriptObjectSpecifier>);
 
         #[cfg(feature = "Foundation_NSScriptObjectSpecifier")]
         #[method_id(@__retain_semantics Other keySpecifier)]
@@ -220,7 +220,7 @@ extern_methods!(
     unsafe impl NSSetCommand {
         #[cfg(feature = "Foundation_NSScriptObjectSpecifier")]
         #[method(setReceiversSpecifier:)]
-        pub unsafe fn setReceiversSpecifier(&self, receiversRef: Option<&NSScriptObjectSpecifier>);
+        pub unsafe fn setReceiversSpecifier(&self, receivers_ref: Option<&NSScriptObjectSpecifier>);
 
         #[cfg(feature = "Foundation_NSScriptObjectSpecifier")]
         #[method_id(@__retain_semantics Other keySpecifier)]
@@ -236,7 +236,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCommandDescription:)]
         pub unsafe fn initWithCommandDescription(
             this: Option<Allocated<Self>>,
-            commandDef: &NSScriptCommandDescription,
+            command_def: &NSScriptCommandDescription,
         ) -> Id<Self, Shared>;
     }
 );
@@ -249,7 +249,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCommandDescription:)]
         pub unsafe fn initWithCommandDescription(
             this: Option<Allocated<Self>>,
-            commandDef: &NSScriptCommandDescription,
+            command_def: &NSScriptCommandDescription,
         ) -> Id<Self, Shared>;
     }
 );
@@ -262,7 +262,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCommandDescription:)]
         pub unsafe fn initWithCommandDescription(
             this: Option<Allocated<Self>>,
-            commandDef: &NSScriptCommandDescription,
+            command_def: &NSScriptCommandDescription,
         ) -> Id<Self, Shared>;
     }
 );
@@ -275,7 +275,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCommandDescription:)]
         pub unsafe fn initWithCommandDescription(
             this: Option<Allocated<Self>>,
-            commandDef: &NSScriptCommandDescription,
+            command_def: &NSScriptCommandDescription,
         ) -> Id<Self, Shared>;
     }
 );
@@ -288,7 +288,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCommandDescription:)]
         pub unsafe fn initWithCommandDescription(
             this: Option<Allocated<Self>>,
-            commandDef: &NSScriptCommandDescription,
+            command_def: &NSScriptCommandDescription,
         ) -> Id<Self, Shared>;
     }
 );
@@ -301,7 +301,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCommandDescription:)]
         pub unsafe fn initWithCommandDescription(
             this: Option<Allocated<Self>>,
-            commandDef: &NSScriptCommandDescription,
+            command_def: &NSScriptCommandDescription,
         ) -> Id<Self, Shared>;
     }
 );
@@ -314,7 +314,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCommandDescription:)]
         pub unsafe fn initWithCommandDescription(
             this: Option<Allocated<Self>>,
-            commandDef: &NSScriptCommandDescription,
+            command_def: &NSScriptCommandDescription,
         ) -> Id<Self, Shared>;
     }
 );
@@ -327,7 +327,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCommandDescription:)]
         pub unsafe fn initWithCommandDescription(
             this: Option<Allocated<Self>>,
-            commandDef: &NSScriptCommandDescription,
+            command_def: &NSScriptCommandDescription,
         ) -> Id<Self, Shared>;
     }
 );
@@ -340,7 +340,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCommandDescription:)]
         pub unsafe fn initWithCommandDescription(
             this: Option<Allocated<Self>>,
-            commandDef: &NSScriptCommandDescription,
+            command_def: &NSScriptCommandDescription,
         ) -> Id<Self, Shared>;
     }
 );
@@ -353,7 +353,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCommandDescription:)]
         pub unsafe fn initWithCommandDescription(
             this: Option<Allocated<Self>>,
-            commandDef: &NSScriptCommandDescription,
+            command_def: &NSScriptCommandDescription,
         ) -> Id<Self, Shared>;
     }
 );

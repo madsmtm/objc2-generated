@@ -62,11 +62,11 @@ extern_methods!(
         #[method(drawInRect:fromRect:operation:fraction:respectFlipped:hints:)]
         pub unsafe fn drawInRect_fromRect_operation_fraction_respectFlipped_hints(
             &self,
-            dstSpacePortionRect: NSRect,
-            srcSpacePortionRect: NSRect,
+            dst_space_portion_rect: NSRect,
+            src_space_portion_rect: NSRect,
             op: NSCompositingOperation,
-            requestedAlpha: CGFloat,
-            respectContextIsFlipped: bool,
+            requested_alpha: CGFloat,
+            respect_context_is_flipped: bool,
             hints: Option<&NSDictionary<NSImageHintKey, Object>>,
         ) -> bool;
 
@@ -92,37 +92,37 @@ extern_methods!(
         pub unsafe fn colorSpaceName(&self) -> Id<NSColorSpaceName, Shared>;
 
         #[method(setColorSpaceName:)]
-        pub unsafe fn setColorSpaceName(&self, colorSpaceName: &NSColorSpaceName);
+        pub unsafe fn setColorSpaceName(&self, color_space_name: &NSColorSpaceName);
 
         #[method(bitsPerSample)]
         pub unsafe fn bitsPerSample(&self) -> NSInteger;
 
         #[method(setBitsPerSample:)]
-        pub unsafe fn setBitsPerSample(&self, bitsPerSample: NSInteger);
+        pub unsafe fn setBitsPerSample(&self, bits_per_sample: NSInteger);
 
         #[method(pixelsWide)]
         pub unsafe fn pixelsWide(&self) -> NSInteger;
 
         #[method(setPixelsWide:)]
-        pub unsafe fn setPixelsWide(&self, pixelsWide: NSInteger);
+        pub unsafe fn setPixelsWide(&self, pixels_wide: NSInteger);
 
         #[method(pixelsHigh)]
         pub unsafe fn pixelsHigh(&self) -> NSInteger;
 
         #[method(setPixelsHigh:)]
-        pub unsafe fn setPixelsHigh(&self, pixelsHigh: NSInteger);
+        pub unsafe fn setPixelsHigh(&self, pixels_high: NSInteger);
 
         #[method(layoutDirection)]
         pub unsafe fn layoutDirection(&self) -> NSImageLayoutDirection;
 
         #[method(setLayoutDirection:)]
-        pub unsafe fn setLayoutDirection(&self, layoutDirection: NSImageLayoutDirection);
+        pub unsafe fn setLayoutDirection(&self, layout_direction: NSImageLayoutDirection);
 
         #[method(registerImageRepClass:)]
-        pub unsafe fn registerImageRepClass(imageRepClass: &Class);
+        pub unsafe fn registerImageRepClass(image_rep_class: &Class);
 
         #[method(unregisterImageRepClass:)]
-        pub unsafe fn unregisterImageRepClass(imageRepClass: &Class);
+        pub unsafe fn unregisterImageRepClass(image_rep_class: &Class);
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other registeredImageRepClasses)]

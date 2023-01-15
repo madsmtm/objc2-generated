@@ -53,7 +53,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setRecentSearches:)]
-        pub unsafe fn setRecentSearches(&self, recentSearches: &NSArray<NSString>);
+        pub unsafe fn setRecentSearches(&self, recent_searches: &NSArray<NSString>);
 
         #[method_id(@__retain_semantics Other recentsAutosaveName)]
         pub unsafe fn recentsAutosaveName(
@@ -63,7 +63,7 @@ extern_methods!(
         #[method(setRecentsAutosaveName:)]
         pub unsafe fn setRecentsAutosaveName(
             &self,
-            recentsAutosaveName: Option<&NSSearchFieldRecentsAutosaveName>,
+            recents_autosave_name: Option<&NSSearchFieldRecentsAutosaveName>,
         );
 
         #[cfg(feature = "AppKit_NSMenu")]
@@ -72,25 +72,25 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSMenu")]
         #[method(setSearchMenuTemplate:)]
-        pub unsafe fn setSearchMenuTemplate(&self, searchMenuTemplate: Option<&NSMenu>);
+        pub unsafe fn setSearchMenuTemplate(&self, search_menu_template: Option<&NSMenu>);
 
         #[method(sendsWholeSearchString)]
         pub unsafe fn sendsWholeSearchString(&self) -> bool;
 
         #[method(setSendsWholeSearchString:)]
-        pub unsafe fn setSendsWholeSearchString(&self, sendsWholeSearchString: bool);
+        pub unsafe fn setSendsWholeSearchString(&self, sends_whole_search_string: bool);
 
         #[method(maximumRecents)]
         pub unsafe fn maximumRecents(&self) -> NSInteger;
 
         #[method(setMaximumRecents:)]
-        pub unsafe fn setMaximumRecents(&self, maximumRecents: NSInteger);
+        pub unsafe fn setMaximumRecents(&self, maximum_recents: NSInteger);
 
         #[method(sendsSearchStringImmediately)]
         pub unsafe fn sendsSearchStringImmediately(&self) -> bool;
 
         #[method(setSendsSearchStringImmediately:)]
-        pub unsafe fn setSendsSearchStringImmediately(&self, sendsSearchStringImmediately: bool);
+        pub unsafe fn setSendsSearchStringImmediately(&self, sends_search_string_immediately: bool);
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSSearchFieldDelegate, Shared>>;
@@ -106,15 +106,15 @@ extern_methods!(
     unsafe impl NSSearchField {
         #[deprecated]
         #[method(rectForSearchTextWhenCentered:)]
-        pub unsafe fn rectForSearchTextWhenCentered(&self, isCentered: bool) -> NSRect;
+        pub unsafe fn rectForSearchTextWhenCentered(&self, is_centered: bool) -> NSRect;
 
         #[deprecated]
         #[method(rectForSearchButtonWhenCentered:)]
-        pub unsafe fn rectForSearchButtonWhenCentered(&self, isCentered: bool) -> NSRect;
+        pub unsafe fn rectForSearchButtonWhenCentered(&self, is_centered: bool) -> NSRect;
 
         #[deprecated]
         #[method(rectForCancelButtonWhenCentered:)]
-        pub unsafe fn rectForCancelButtonWhenCentered(&self, isCentered: bool) -> NSRect;
+        pub unsafe fn rectForCancelButtonWhenCentered(&self, is_centered: bool) -> NSRect;
 
         #[deprecated = "The placeholder centering UI design is no longer available. Setting this property is no-op."]
         #[method(centersPlaceholder)]
@@ -122,7 +122,7 @@ extern_methods!(
 
         #[deprecated = "The placeholder centering UI design is no longer available. Setting this property is no-op."]
         #[method(setCentersPlaceholder:)]
-        pub unsafe fn setCentersPlaceholder(&self, centersPlaceholder: bool);
+        pub unsafe fn setCentersPlaceholder(&self, centers_placeholder: bool);
     }
 );
 
@@ -134,21 +134,21 @@ extern_methods!(
     unsafe impl NSSearchField {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other labelWithString:)]
-        pub unsafe fn labelWithString(stringValue: &NSString) -> Id<Self, Shared>;
+        pub unsafe fn labelWithString(string_value: &NSString) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other wrappingLabelWithString:)]
-        pub unsafe fn wrappingLabelWithString(stringValue: &NSString) -> Id<Self, Shared>;
+        pub unsafe fn wrappingLabelWithString(string_value: &NSString) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other labelWithAttributedString:)]
         pub unsafe fn labelWithAttributedString(
-            attributedStringValue: &NSAttributedString,
+            attributed_string_value: &NSAttributedString,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other textFieldWithString:)]
-        pub unsafe fn textFieldWithString(stringValue: &NSString) -> Id<Self, Shared>;
+        pub unsafe fn textFieldWithString(string_value: &NSString) -> Id<Self, Shared>;
     }
 );
 
@@ -159,7 +159,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frame_rect: NSRect,
         ) -> Id<Self, Shared>;
     }
 );

@@ -39,7 +39,7 @@ extern_methods!(
         pub unsafe fn functionCount(&self) -> NSUInteger;
 
         #[method(setFunctionCount:)]
-        pub fn setFunctionCount(&self, functionCount: NSUInteger);
+        pub fn setFunctionCount(&self, function_count: NSUInteger);
     }
 );
 
@@ -93,15 +93,15 @@ extern_protocol!(
         #[method(setVisibleFunctionTable:atBufferIndex:)]
         pub unsafe fn setVisibleFunctionTable_atBufferIndex(
             &self,
-            functionTable: Option<&MTLVisibleFunctionTable>,
-            bufferIndex: NSUInteger,
+            function_table: Option<&MTLVisibleFunctionTable>,
+            buffer_index: NSUInteger,
         );
 
         #[method(setVisibleFunctionTables:withBufferRange:)]
         pub unsafe fn setVisibleFunctionTables_withBufferRange(
             &self,
-            functionTables: NonNull<*const MTLVisibleFunctionTable>,
-            bufferRange: NSRange,
+            function_tables: NonNull<*const MTLVisibleFunctionTable>,
+            buffer_range: NSRange,
         );
     }
 );

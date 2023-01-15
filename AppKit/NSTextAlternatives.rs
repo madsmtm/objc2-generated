@@ -23,8 +23,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithPrimaryString:alternativeStrings:)]
         pub unsafe fn initWithPrimaryString_alternativeStrings(
             this: Option<Allocated<Self>>,
-            primaryString: &NSString,
-            alternativeStrings: &NSArray<NSString>,
+            primary_string: &NSString,
+            alternative_strings: &NSArray<NSString>,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -37,7 +37,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(noteSelectedAlternativeString:)]
-        pub unsafe fn noteSelectedAlternativeString(&self, alternativeString: &NSString);
+        pub unsafe fn noteSelectedAlternativeString(&self, alternative_string: &NSString);
     }
 );
 

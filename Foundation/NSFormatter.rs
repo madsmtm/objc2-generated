@@ -76,8 +76,8 @@ extern_methods!(
         #[method(isPartialStringValid:newEditingString:errorDescription:)]
         pub unsafe fn isPartialStringValid_newEditingString_errorDescription(
             &self,
-            partialString: &NSString,
-            newString: *mut *mut NSString,
+            partial_string: &NSString,
+            new_string: *mut *mut NSString,
             error: *mut *mut NSString,
         ) -> bool;
 
@@ -85,10 +85,10 @@ extern_methods!(
         #[method(isPartialStringValid:proposedSelectedRange:originalString:originalSelectedRange:errorDescription:)]
         pub unsafe fn isPartialStringValid_proposedSelectedRange_originalString_originalSelectedRange_errorDescription(
             &self,
-            partialStringPtr: NonNull<NonNull<NSString>>,
-            proposedSelRangePtr: NSRangePointer,
-            origString: &NSString,
-            origSelRange: NSRange,
+            partial_string_ptr: NonNull<NonNull<NSString>>,
+            proposed_sel_range_ptr: NSRangePointer,
+            orig_string: &NSString,
+            orig_sel_range: NSRange,
             error: *mut *mut NSString,
         ) -> bool;
     }

@@ -23,7 +23,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setNamePrefix:)]
-        pub unsafe fn setNamePrefix(&self, namePrefix: Option<&NSString>);
+        pub unsafe fn setNamePrefix(&self, name_prefix: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other givenName)]
@@ -31,7 +31,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setGivenName:)]
-        pub unsafe fn setGivenName(&self, givenName: Option<&NSString>);
+        pub unsafe fn setGivenName(&self, given_name: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other middleName)]
@@ -39,7 +39,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setMiddleName:)]
-        pub unsafe fn setMiddleName(&self, middleName: Option<&NSString>);
+        pub unsafe fn setMiddleName(&self, middle_name: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other familyName)]
@@ -47,7 +47,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setFamilyName:)]
-        pub unsafe fn setFamilyName(&self, familyName: Option<&NSString>);
+        pub unsafe fn setFamilyName(&self, family_name: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other nameSuffix)]
@@ -55,7 +55,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setNameSuffix:)]
-        pub unsafe fn setNameSuffix(&self, nameSuffix: Option<&NSString>);
+        pub unsafe fn setNameSuffix(&self, name_suffix: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other nickname)]
@@ -71,7 +71,7 @@ extern_methods!(
         #[method(setPhoneticRepresentation:)]
         pub unsafe fn setPhoneticRepresentation(
             &self,
-            phoneticRepresentation: Option<&NSPersonNameComponents>,
+            phonetic_representation: Option<&NSPersonNameComponents>,
         );
     }
 );

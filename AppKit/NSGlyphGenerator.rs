@@ -23,16 +23,16 @@ extern_protocol!(
             &self,
             glyphs: NonNull<NSGlyph>,
             length: NSUInteger,
-            glyphIndex: NSUInteger,
-            charIndex: NSUInteger,
+            glyph_index: NSUInteger,
+            char_index: NSUInteger,
         );
 
         #[method(setIntAttribute:value:forGlyphAtIndex:)]
         pub unsafe fn setIntAttribute_value_forGlyphAtIndex(
             &self,
-            attributeTag: NSInteger,
+            attribute_tag: NSInteger,
             val: NSInteger,
-            glyphIndex: NSUInteger,
+            glyph_index: NSUInteger,
         );
 
         #[cfg(feature = "Foundation_NSAttributedString")]
@@ -61,10 +61,10 @@ extern_methods!(
         #[method(generateGlyphsForGlyphStorage:desiredNumberOfCharacters:glyphIndex:characterIndex:)]
         pub unsafe fn generateGlyphsForGlyphStorage_desiredNumberOfCharacters_glyphIndex_characterIndex(
             &self,
-            glyphStorage: &NSGlyphStorage,
-            nChars: NSUInteger,
-            glyphIndex: *mut NSUInteger,
-            charIndex: *mut NSUInteger,
+            glyph_storage: &NSGlyphStorage,
+            n_chars: NSUInteger,
+            glyph_index: *mut NSUInteger,
+            char_index: *mut NSUInteger,
         );
 
         #[method_id(@__retain_semantics Other sharedGlyphGenerator)]

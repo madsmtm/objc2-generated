@@ -57,7 +57,7 @@ extern_methods!(
     unsafe impl NSTabView {
         #[cfg(feature = "AppKit_NSTabViewItem")]
         #[method(selectTabViewItem:)]
-        pub unsafe fn selectTabViewItem(&self, tabViewItem: Option<&NSTabViewItem>);
+        pub unsafe fn selectTabViewItem(&self, tab_view_item: Option<&NSTabViewItem>);
 
         #[method(selectTabViewItemAtIndex:)]
         pub unsafe fn selectTabViewItemAtIndex(&self, index: NSInteger);
@@ -96,19 +96,19 @@ extern_methods!(
         pub unsafe fn tabViewType(&self) -> NSTabViewType;
 
         #[method(setTabViewType:)]
-        pub unsafe fn setTabViewType(&self, tabViewType: NSTabViewType);
+        pub unsafe fn setTabViewType(&self, tab_view_type: NSTabViewType);
 
         #[method(tabPosition)]
         pub unsafe fn tabPosition(&self) -> NSTabPosition;
 
         #[method(setTabPosition:)]
-        pub unsafe fn setTabPosition(&self, tabPosition: NSTabPosition);
+        pub unsafe fn setTabPosition(&self, tab_position: NSTabPosition);
 
         #[method(tabViewBorderType)]
         pub unsafe fn tabViewBorderType(&self) -> NSTabViewBorderType;
 
         #[method(setTabViewBorderType:)]
-        pub unsafe fn setTabViewBorderType(&self, tabViewBorderType: NSTabViewBorderType);
+        pub unsafe fn setTabViewBorderType(&self, tab_view_border_type: NSTabViewBorderType);
 
         #[cfg(all(feature = "AppKit_NSTabViewItem", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other tabViewItems)]
@@ -116,13 +116,13 @@ extern_methods!(
 
         #[cfg(all(feature = "AppKit_NSTabViewItem", feature = "Foundation_NSArray"))]
         #[method(setTabViewItems:)]
-        pub unsafe fn setTabViewItems(&self, tabViewItems: &NSArray<NSTabViewItem>);
+        pub unsafe fn setTabViewItems(&self, tab_view_items: &NSArray<NSTabViewItem>);
 
         #[method(allowsTruncatedLabels)]
         pub unsafe fn allowsTruncatedLabels(&self) -> bool;
 
         #[method(setAllowsTruncatedLabels:)]
-        pub unsafe fn setAllowsTruncatedLabels(&self, allowsTruncatedLabels: bool);
+        pub unsafe fn setAllowsTruncatedLabels(&self, allows_truncated_labels: bool);
 
         #[method(minimumSize)]
         pub unsafe fn minimumSize(&self) -> NSSize;
@@ -131,29 +131,29 @@ extern_methods!(
         pub unsafe fn drawsBackground(&self) -> bool;
 
         #[method(setDrawsBackground:)]
-        pub unsafe fn setDrawsBackground(&self, drawsBackground: bool);
+        pub unsafe fn setDrawsBackground(&self, draws_background: bool);
 
         #[method(controlSize)]
         pub unsafe fn controlSize(&self) -> NSControlSize;
 
         #[method(setControlSize:)]
-        pub unsafe fn setControlSize(&self, controlSize: NSControlSize);
+        pub unsafe fn setControlSize(&self, control_size: NSControlSize);
 
         #[cfg(feature = "AppKit_NSTabViewItem")]
         #[method(addTabViewItem:)]
-        pub unsafe fn addTabViewItem(&self, tabViewItem: &NSTabViewItem);
+        pub unsafe fn addTabViewItem(&self, tab_view_item: &NSTabViewItem);
 
         #[cfg(feature = "AppKit_NSTabViewItem")]
         #[method(insertTabViewItem:atIndex:)]
         pub unsafe fn insertTabViewItem_atIndex(
             &self,
-            tabViewItem: &NSTabViewItem,
+            tab_view_item: &NSTabViewItem,
             index: NSInteger,
         );
 
         #[cfg(feature = "AppKit_NSTabViewItem")]
         #[method(removeTabViewItem:)]
-        pub unsafe fn removeTabViewItem(&self, tabViewItem: &NSTabViewItem);
+        pub unsafe fn removeTabViewItem(&self, tab_view_item: &NSTabViewItem);
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSTabViewDelegate, Shared>>;
@@ -176,7 +176,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSTabViewItem")]
         #[method(indexOfTabViewItem:)]
-        pub unsafe fn indexOfTabViewItem(&self, tabViewItem: &NSTabViewItem) -> NSInteger;
+        pub unsafe fn indexOfTabViewItem(&self, tab_view_item: &NSTabViewItem) -> NSInteger;
 
         #[cfg(feature = "AppKit_NSTabViewItem")]
         #[method_id(@__retain_semantics Other tabViewItemAtIndex:)]
@@ -191,7 +191,7 @@ extern_methods!(
 
         #[deprecated = "The controlTint property is not respected on 10.14 and later."]
         #[method(setControlTint:)]
-        pub unsafe fn setControlTint(&self, controlTint: NSControlTint);
+        pub unsafe fn setControlTint(&self, control_tint: NSControlTint);
     }
 );
 
@@ -204,8 +204,8 @@ extern_protocol!(
         #[method(tabView:shouldSelectTabViewItem:)]
         pub unsafe fn tabView_shouldSelectTabViewItem(
             &self,
-            tabView: &NSTabView,
-            tabViewItem: Option<&NSTabViewItem>,
+            tab_view: &NSTabView,
+            tab_view_item: Option<&NSTabViewItem>,
         ) -> bool;
 
         #[cfg(all(feature = "AppKit_NSTabView", feature = "AppKit_NSTabViewItem"))]
@@ -213,8 +213,8 @@ extern_protocol!(
         #[method(tabView:willSelectTabViewItem:)]
         pub unsafe fn tabView_willSelectTabViewItem(
             &self,
-            tabView: &NSTabView,
-            tabViewItem: Option<&NSTabViewItem>,
+            tab_view: &NSTabView,
+            tab_view_item: Option<&NSTabViewItem>,
         );
 
         #[cfg(all(feature = "AppKit_NSTabView", feature = "AppKit_NSTabViewItem"))]
@@ -222,14 +222,14 @@ extern_protocol!(
         #[method(tabView:didSelectTabViewItem:)]
         pub unsafe fn tabView_didSelectTabViewItem(
             &self,
-            tabView: &NSTabView,
-            tabViewItem: Option<&NSTabViewItem>,
+            tab_view: &NSTabView,
+            tab_view_item: Option<&NSTabViewItem>,
         );
 
         #[cfg(feature = "AppKit_NSTabView")]
         #[optional]
         #[method(tabViewDidChangeNumberOfTabViewItems:)]
-        pub unsafe fn tabViewDidChangeNumberOfTabViewItems(&self, tabView: &NSTabView);
+        pub unsafe fn tabViewDidChangeNumberOfTabViewItems(&self, tab_view: &NSTabView);
     }
 );
 
@@ -240,7 +240,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frame_rect: NSRect,
         ) -> Id<Self, Shared>;
     }
 );

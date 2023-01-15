@@ -32,13 +32,13 @@ extern_methods!(
         pub unsafe fn isContextHelpModeActive() -> bool;
 
         #[method(setContextHelpModeActive:)]
-        pub unsafe fn setContextHelpModeActive(contextHelpModeActive: bool);
+        pub unsafe fn setContextHelpModeActive(context_help_mode_active: bool);
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setContextHelp:forObject:)]
         pub unsafe fn setContextHelp_forObject(
             &self,
-            attrString: &NSAttributedString,
+            attr_string: &NSAttributedString,
             object: &Object,
         );
 

@@ -35,7 +35,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setBinaryFunctions:)]
-        pub fn setBinaryFunctions(&self, binaryFunctions: Option<&NSArray<MTLFunction>>);
+        pub fn setBinaryFunctions(&self, binary_functions: Option<&NSArray<MTLFunction>>);
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -59,6 +59,6 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setPrivateFunctions:)]
-        pub fn setPrivateFunctions(&self, privateFunctions: Option<&NSArray<MTLFunction>>);
+        pub fn setPrivateFunctions(&self, private_functions: Option<&NSArray<MTLFunction>>);
     }
 );

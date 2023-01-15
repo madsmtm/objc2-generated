@@ -43,7 +43,7 @@ extern_methods!(
         pub unsafe fn pickerTouchBarItemWithIdentifier_labels_selectionMode_target_action(
             identifier: &NSTouchBarItemIdentifier,
             labels: &NSArray<NSString>,
-            selectionMode: NSPickerTouchBarItemSelectionMode,
+            selection_mode: NSPickerTouchBarItemSelectionMode,
             target: Option<&Object>,
             action: Option<Sel>,
         ) -> Id<Self, Shared>;
@@ -53,7 +53,7 @@ extern_methods!(
         pub unsafe fn pickerTouchBarItemWithIdentifier_images_selectionMode_target_action(
             identifier: &NSTouchBarItemIdentifier,
             images: &NSArray<NSImage>,
-            selectionMode: NSPickerTouchBarItemSelectionMode,
+            selection_mode: NSPickerTouchBarItemSelectionMode,
             target: Option<&Object>,
             action: Option<Sel>,
         ) -> Id<Self, Shared>;
@@ -64,7 +64,7 @@ extern_methods!(
         #[method(setControlRepresentation:)]
         pub unsafe fn setControlRepresentation(
             &self,
-            controlRepresentation: NSPickerTouchBarItemControlRepresentation,
+            control_representation: NSPickerTouchBarItemControlRepresentation,
         );
 
         #[cfg(feature = "Foundation_NSString")]
@@ -75,7 +75,7 @@ extern_methods!(
         #[method(setCollapsedRepresentationLabel:)]
         pub unsafe fn setCollapsedRepresentationLabel(
             &self,
-            collapsedRepresentationLabel: &NSString,
+            collapsed_representation_label: &NSString,
         );
 
         #[cfg(feature = "AppKit_NSImage")]
@@ -86,14 +86,14 @@ extern_methods!(
         #[method(setCollapsedRepresentationImage:)]
         pub unsafe fn setCollapsedRepresentationImage(
             &self,
-            collapsedRepresentationImage: Option<&NSImage>,
+            collapsed_representation_image: Option<&NSImage>,
         );
 
         #[method(selectedIndex)]
         pub unsafe fn selectedIndex(&self) -> NSInteger;
 
         #[method(setSelectedIndex:)]
-        pub unsafe fn setSelectedIndex(&self, selectedIndex: NSInteger);
+        pub unsafe fn setSelectedIndex(&self, selected_index: NSInteger);
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other selectionColor)]
@@ -101,19 +101,19 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setSelectionColor:)]
-        pub unsafe fn setSelectionColor(&self, selectionColor: Option<&NSColor>);
+        pub unsafe fn setSelectionColor(&self, selection_color: Option<&NSColor>);
 
         #[method(selectionMode)]
         pub unsafe fn selectionMode(&self) -> NSPickerTouchBarItemSelectionMode;
 
         #[method(setSelectionMode:)]
-        pub unsafe fn setSelectionMode(&self, selectionMode: NSPickerTouchBarItemSelectionMode);
+        pub unsafe fn setSelectionMode(&self, selection_mode: NSPickerTouchBarItemSelectionMode);
 
         #[method(numberOfOptions)]
         pub unsafe fn numberOfOptions(&self) -> NSInteger;
 
         #[method(setNumberOfOptions:)]
-        pub unsafe fn setNumberOfOptions(&self, numberOfOptions: NSInteger);
+        pub unsafe fn setNumberOfOptions(&self, number_of_options: NSInteger);
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method(setImage:atIndex:)]
@@ -161,7 +161,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCustomizationLabel:)]
-        pub unsafe fn setCustomizationLabel(&self, customizationLabel: Option<&NSString>);
+        pub unsafe fn setCustomizationLabel(&self, customization_label: Option<&NSString>);
     }
 );
 

@@ -162,7 +162,7 @@ extern_methods!(
             &self,
             name: &NSString,
             host: Option<&NSString>,
-            portNumber: u16,
+            port_number: u16,
         ) -> Option<Id<NSPort, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSPort", feature = "Foundation_NSString"))]
@@ -171,13 +171,13 @@ extern_methods!(
             &self,
             port: &NSPort,
             name: &NSString,
-            portNumber: u16,
+            port_number: u16,
         ) -> bool;
 
         #[method(defaultNameServerPortNumber)]
         pub unsafe fn defaultNameServerPortNumber(&self) -> u16;
 
         #[method(setDefaultNameServerPortNumber:)]
-        pub unsafe fn setDefaultNameServerPortNumber(&self, defaultNameServerPortNumber: u16);
+        pub unsafe fn setDefaultNameServerPortNumber(&self, default_name_server_port_number: u16);
     }
 );

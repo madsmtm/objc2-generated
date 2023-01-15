@@ -52,7 +52,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
-            inCoder: &NSCoder,
+            in_coder: &NSCoder,
         ) -> Option<Id<Self, Shared>>;
 
         #[method(setProtocolForProxy:)]

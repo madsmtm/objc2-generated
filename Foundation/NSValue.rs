@@ -61,7 +61,8 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSValue")]
     unsafe impl NSValue {
         #[method_id(@__retain_semantics Other valueWithNonretainedObject:)]
-        pub unsafe fn valueWithNonretainedObject(anObject: Option<&Object>) -> Id<NSValue, Shared>;
+        pub unsafe fn valueWithNonretainedObject(an_object: Option<&Object>)
+            -> Id<NSValue, Shared>;
 
         #[method_id(@__retain_semantics Other nonretainedObjectValue)]
         pub unsafe fn nonretainedObjectValue(&self) -> Option<Id<Object, Shared>>;
@@ -222,7 +223,7 @@ extern_methods!(
         pub fn stringValue(&self) -> Id<NSString, Shared>;
 
         #[method(compare:)]
-        pub fn compare(&self, otherNumber: &NSNumber) -> NSComparisonResult;
+        pub fn compare(&self, other_number: &NSNumber) -> NSComparisonResult;
 
         #[method(isEqualToNumber:)]
         pub fn isEqualToNumber(&self, number: &NSNumber) -> bool;

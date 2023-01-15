@@ -35,49 +35,49 @@ extern_methods!(
         pub unsafe fn fillRule(&self) -> Id<CAShapeLayerFillRule, Shared>;
 
         #[method(setFillRule:)]
-        pub unsafe fn setFillRule(&self, fillRule: &CAShapeLayerFillRule);
+        pub unsafe fn setFillRule(&self, fill_rule: &CAShapeLayerFillRule);
 
         #[method(strokeStart)]
         pub unsafe fn strokeStart(&self) -> CGFloat;
 
         #[method(setStrokeStart:)]
-        pub unsafe fn setStrokeStart(&self, strokeStart: CGFloat);
+        pub unsafe fn setStrokeStart(&self, stroke_start: CGFloat);
 
         #[method(strokeEnd)]
         pub unsafe fn strokeEnd(&self) -> CGFloat;
 
         #[method(setStrokeEnd:)]
-        pub unsafe fn setStrokeEnd(&self, strokeEnd: CGFloat);
+        pub unsafe fn setStrokeEnd(&self, stroke_end: CGFloat);
 
         #[method(lineWidth)]
         pub unsafe fn lineWidth(&self) -> CGFloat;
 
         #[method(setLineWidth:)]
-        pub unsafe fn setLineWidth(&self, lineWidth: CGFloat);
+        pub unsafe fn setLineWidth(&self, line_width: CGFloat);
 
         #[method(miterLimit)]
         pub unsafe fn miterLimit(&self) -> CGFloat;
 
         #[method(setMiterLimit:)]
-        pub unsafe fn setMiterLimit(&self, miterLimit: CGFloat);
+        pub unsafe fn setMiterLimit(&self, miter_limit: CGFloat);
 
         #[method_id(@__retain_semantics Other lineCap)]
         pub unsafe fn lineCap(&self) -> Id<CAShapeLayerLineCap, Shared>;
 
         #[method(setLineCap:)]
-        pub unsafe fn setLineCap(&self, lineCap: &CAShapeLayerLineCap);
+        pub unsafe fn setLineCap(&self, line_cap: &CAShapeLayerLineCap);
 
         #[method_id(@__retain_semantics Other lineJoin)]
         pub unsafe fn lineJoin(&self) -> Id<CAShapeLayerLineJoin, Shared>;
 
         #[method(setLineJoin:)]
-        pub unsafe fn setLineJoin(&self, lineJoin: &CAShapeLayerLineJoin);
+        pub unsafe fn setLineJoin(&self, line_join: &CAShapeLayerLineJoin);
 
         #[method(lineDashPhase)]
         pub unsafe fn lineDashPhase(&self) -> CGFloat;
 
         #[method(setLineDashPhase:)]
-        pub unsafe fn setLineDashPhase(&self, lineDashPhase: CGFloat);
+        pub unsafe fn setLineDashPhase(&self, line_dash_phase: CGFloat);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method_id(@__retain_semantics Other lineDashPattern)]
@@ -85,7 +85,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method(setLineDashPattern:)]
-        pub unsafe fn setLineDashPattern(&self, lineDashPattern: Option<&NSArray<NSNumber>>);
+        pub unsafe fn setLineDashPattern(&self, line_dash_pattern: Option<&NSArray<NSNumber>>);
     }
 );
 

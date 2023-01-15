@@ -24,13 +24,13 @@ extern_methods!(
         pub unsafe fn minValue(&self) -> c_double;
 
         #[method(setMinValue:)]
-        pub unsafe fn setMinValue(&self, minValue: c_double);
+        pub unsafe fn setMinValue(&self, min_value: c_double);
 
         #[method(maxValue)]
         pub unsafe fn maxValue(&self) -> c_double;
 
         #[method(setMaxValue:)]
-        pub unsafe fn setMaxValue(&self, maxValue: c_double);
+        pub unsafe fn setMaxValue(&self, max_value: c_double);
 
         #[method(increment)]
         pub unsafe fn increment(&self) -> c_double;
@@ -42,7 +42,7 @@ extern_methods!(
         pub unsafe fn valueWraps(&self) -> bool;
 
         #[method(setValueWraps:)]
-        pub unsafe fn setValueWraps(&self, valueWraps: bool);
+        pub unsafe fn setValueWraps(&self, value_wraps: bool);
 
         #[method(autorepeat)]
         pub unsafe fn autorepeat(&self) -> bool;
@@ -59,7 +59,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(
             this: Option<Allocated<Self>>,
-            frameRect: NSRect,
+            frame_rect: NSRect,
         ) -> Id<Self, Shared>;
     }
 );

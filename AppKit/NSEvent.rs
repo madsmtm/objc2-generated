@@ -455,13 +455,13 @@ extern_methods!(
         pub unsafe fn eventRef(&self) -> *mut c_void;
 
         #[method_id(@__retain_semantics Other eventWithEventRef:)]
-        pub unsafe fn eventWithEventRef(eventRef: NonNull<c_void>) -> Option<Id<NSEvent, Shared>>;
+        pub unsafe fn eventWithEventRef(event_ref: NonNull<c_void>) -> Option<Id<NSEvent, Shared>>;
 
         #[method(isMouseCoalescingEnabled)]
         pub unsafe fn isMouseCoalescingEnabled() -> bool;
 
         #[method(setMouseCoalescingEnabled:)]
-        pub unsafe fn setMouseCoalescingEnabled(mouseCoalescingEnabled: bool);
+        pub unsafe fn setMouseCoalescingEnabled(mouse_coalescing_enabled: bool);
 
         #[method(magnification)]
         pub unsafe fn magnification(&self) -> CGFloat;
@@ -576,9 +576,9 @@ extern_methods!(
         pub unsafe fn trackSwipeEventWithOptions_dampenAmountThresholdMin_max_usingHandler(
             &self,
             options: NSEventSwipeTrackingOptions,
-            minDampenThreshold: CGFloat,
-            maxDampenThreshold: CGFloat,
-            trackingHandler: &Block<(CGFloat, NSEventPhase, Bool, NonNull<Bool>), ()>,
+            min_dampen_threshold: CGFloat,
+            max_dampen_threshold: CGFloat,
+            tracking_handler: &Block<(CGFloat, NSEventPhase, Bool, NonNull<Bool>), ()>,
         );
 
         #[method(startPeriodicEventsAfterDelay:withPeriod:)]
@@ -597,10 +597,10 @@ extern_methods!(
             location: NSPoint,
             flags: NSEventModifierFlags,
             time: NSTimeInterval,
-            wNum: NSInteger,
-            unusedPassNil: Option<&NSGraphicsContext>,
-            eNum: NSInteger,
-            cNum: NSInteger,
+            w_num: NSInteger,
+            unused_pass_nil: Option<&NSGraphicsContext>,
+            e_num: NSInteger,
+            c_num: NSInteger,
             pressure: c_float,
         ) -> Option<Id<NSEvent, Shared>>;
 
@@ -611,8 +611,8 @@ extern_methods!(
             location: NSPoint,
             flags: NSEventModifierFlags,
             time: NSTimeInterval,
-            wNum: NSInteger,
-            unusedPassNil: Option<&NSGraphicsContext>,
+            w_num: NSInteger,
+            unused_pass_nil: Option<&NSGraphicsContext>,
             keys: &NSString,
             ukeys: &NSString,
             flag: bool,
@@ -626,10 +626,10 @@ extern_methods!(
             location: NSPoint,
             flags: NSEventModifierFlags,
             time: NSTimeInterval,
-            wNum: NSInteger,
-            unusedPassNil: Option<&NSGraphicsContext>,
-            eNum: NSInteger,
-            tNum: NSInteger,
+            w_num: NSInteger,
+            unused_pass_nil: Option<&NSGraphicsContext>,
+            e_num: NSInteger,
+            t_num: NSInteger,
             data: *mut c_void,
         ) -> Option<Id<NSEvent, Shared>>;
 
@@ -640,8 +640,8 @@ extern_methods!(
             location: NSPoint,
             flags: NSEventModifierFlags,
             time: NSTimeInterval,
-            wNum: NSInteger,
-            unusedPassNil: Option<&NSGraphicsContext>,
+            w_num: NSInteger,
+            unused_pass_nil: Option<&NSGraphicsContext>,
             subtype: c_short,
             d1: NSInteger,
             d2: NSInteger,
@@ -678,7 +678,7 @@ extern_methods!(
         ) -> Option<Id<Object, Shared>>;
 
         #[method(removeMonitor:)]
-        pub unsafe fn removeMonitor(eventMonitor: &Object);
+        pub unsafe fn removeMonitor(event_monitor: &Object);
     }
 );
 

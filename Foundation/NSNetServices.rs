@@ -66,11 +66,19 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSRunLoop")]
         #[method(scheduleInRunLoop:forMode:)]
-        pub unsafe fn scheduleInRunLoop_forMode(&self, aRunLoop: &NSRunLoop, mode: &NSRunLoopMode);
+        pub unsafe fn scheduleInRunLoop_forMode(
+            &self,
+            a_run_loop: &NSRunLoop,
+            mode: &NSRunLoopMode,
+        );
 
         #[cfg(feature = "Foundation_NSRunLoop")]
         #[method(removeFromRunLoop:forMode:)]
-        pub unsafe fn removeFromRunLoop_forMode(&self, aRunLoop: &NSRunLoop, mode: &NSRunLoopMode);
+        pub unsafe fn removeFromRunLoop_forMode(
+            &self,
+            a_run_loop: &NSRunLoop,
+            mode: &NSRunLoopMode,
+        );
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<NSNetServiceDelegate, Shared>>;
@@ -82,7 +90,7 @@ extern_methods!(
         pub unsafe fn includesPeerToPeer(&self) -> bool;
 
         #[method(setIncludesPeerToPeer:)]
-        pub unsafe fn setIncludesPeerToPeer(&self, includesPeerToPeer: bool);
+        pub unsafe fn setIncludesPeerToPeer(&self, includes_peer_to_peer: bool);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
@@ -127,7 +135,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Other dictionaryFromTXTRecordData:)]
         pub unsafe fn dictionaryFromTXTRecordData(
-            txtData: &NSData,
+            txt_data: &NSData,
         ) -> Id<NSDictionary<NSString, NSData>, Shared>;
 
         #[cfg(all(
@@ -137,7 +145,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Other dataFromTXTRecordDictionary:)]
         pub unsafe fn dataFromTXTRecordDictionary(
-            txtDictionary: &NSDictionary<NSString, NSData>,
+            txt_dictionary: &NSDictionary<NSString, NSData>,
         ) -> Id<NSData, Shared>;
 
         #[method(resolveWithTimeout:)]
@@ -145,7 +153,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSData")]
         #[method(setTXTRecordData:)]
-        pub unsafe fn setTXTRecordData(&self, recordData: Option<&NSData>) -> bool;
+        pub unsafe fn setTXTRecordData(&self, record_data: Option<&NSData>) -> bool;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other TXTRecordData)]
@@ -187,15 +195,23 @@ extern_methods!(
         pub unsafe fn includesPeerToPeer(&self) -> bool;
 
         #[method(setIncludesPeerToPeer:)]
-        pub unsafe fn setIncludesPeerToPeer(&self, includesPeerToPeer: bool);
+        pub unsafe fn setIncludesPeerToPeer(&self, includes_peer_to_peer: bool);
 
         #[cfg(feature = "Foundation_NSRunLoop")]
         #[method(scheduleInRunLoop:forMode:)]
-        pub unsafe fn scheduleInRunLoop_forMode(&self, aRunLoop: &NSRunLoop, mode: &NSRunLoopMode);
+        pub unsafe fn scheduleInRunLoop_forMode(
+            &self,
+            a_run_loop: &NSRunLoop,
+            mode: &NSRunLoopMode,
+        );
 
         #[cfg(feature = "Foundation_NSRunLoop")]
         #[method(removeFromRunLoop:forMode:)]
-        pub unsafe fn removeFromRunLoop_forMode(&self, aRunLoop: &NSRunLoop, mode: &NSRunLoopMode);
+        pub unsafe fn removeFromRunLoop_forMode(
+            &self,
+            a_run_loop: &NSRunLoop,
+            mode: &NSRunLoopMode,
+        );
 
         #[method(searchForBrowsableDomains)]
         pub unsafe fn searchForBrowsableDomains(&self);
@@ -208,7 +224,7 @@ extern_methods!(
         pub unsafe fn searchForServicesOfType_inDomain(
             &self,
             r#type: &NSString,
-            domainString: &NSString,
+            domain_string: &NSString,
         );
 
         #[method(stop)]
@@ -241,7 +257,7 @@ extern_protocol!(
         pub unsafe fn netService_didNotPublish(
             &self,
             sender: &NSNetService,
-            errorDict: &NSDictionary<NSString, NSNumber>,
+            error_dict: &NSDictionary<NSString, NSNumber>,
         );
 
         #[cfg(feature = "Foundation_NSNetService")]
@@ -265,7 +281,7 @@ extern_protocol!(
         pub unsafe fn netService_didNotResolve(
             &self,
             sender: &NSNetService,
-            errorDict: &NSDictionary<NSString, NSNumber>,
+            error_dict: &NSDictionary<NSString, NSNumber>,
         );
 
         #[cfg(feature = "Foundation_NSNetService")]
@@ -292,8 +308,8 @@ extern_protocol!(
         pub unsafe fn netService_didAcceptConnectionWithInputStream_outputStream(
             &self,
             sender: &NSNetService,
-            inputStream: &NSInputStream,
-            outputStream: &NSOutputStream,
+            input_stream: &NSInputStream,
+            output_stream: &NSOutputStream,
         );
     }
 );
@@ -323,7 +339,7 @@ extern_protocol!(
         pub unsafe fn netServiceBrowser_didNotSearch(
             &self,
             browser: &NSNetServiceBrowser,
-            errorDict: &NSDictionary<NSString, NSNumber>,
+            error_dict: &NSDictionary<NSString, NSNumber>,
         );
 
         #[cfg(all(
@@ -335,8 +351,8 @@ extern_protocol!(
         pub unsafe fn netServiceBrowser_didFindDomain_moreComing(
             &self,
             browser: &NSNetServiceBrowser,
-            domainString: &NSString,
-            moreComing: bool,
+            domain_string: &NSString,
+            more_coming: bool,
         );
 
         #[cfg(all(
@@ -349,7 +365,7 @@ extern_protocol!(
             &self,
             browser: &NSNetServiceBrowser,
             service: &NSNetService,
-            moreComing: bool,
+            more_coming: bool,
         );
 
         #[cfg(all(
@@ -361,8 +377,8 @@ extern_protocol!(
         pub unsafe fn netServiceBrowser_didRemoveDomain_moreComing(
             &self,
             browser: &NSNetServiceBrowser,
-            domainString: &NSString,
-            moreComing: bool,
+            domain_string: &NSString,
+            more_coming: bool,
         );
 
         #[cfg(all(
@@ -375,7 +391,7 @@ extern_protocol!(
             &self,
             browser: &NSNetServiceBrowser,
             service: &NSNetService,
-            moreComing: bool,
+            more_coming: bool,
         );
     }
 );

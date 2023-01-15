@@ -36,9 +36,9 @@ extern_protocol!(
             texture: &MTLTexture,
             mode: MTLSparseTextureMappingMode,
             regions: NonNull<MTLRegion>,
-            mipLevels: NonNull<NSUInteger>,
+            mip_levels: NonNull<NSUInteger>,
             slices: NonNull<NSUInteger>,
-            numRegions: NSUInteger,
+            num_regions: NSUInteger,
         );
 
         #[optional]
@@ -48,7 +48,7 @@ extern_protocol!(
             texture: &MTLTexture,
             mode: MTLSparseTextureMappingMode,
             region: MTLRegion,
-            mipLevel: NSUInteger,
+            mip_level: NSUInteger,
             slice: NSUInteger,
         );
 
@@ -58,8 +58,8 @@ extern_protocol!(
             &self,
             texture: &MTLTexture,
             mode: MTLSparseTextureMappingMode,
-            indirectBuffer: &MTLBuffer,
-            indirectBufferOffset: NSUInteger,
+            indirect_buffer: &MTLBuffer,
+            indirect_buffer_offset: NSUInteger,
         );
 
         #[optional]
@@ -74,15 +74,15 @@ extern_protocol!(
         #[method(moveTextureMappingsFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:)]
         pub unsafe fn moveTextureMappingsFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin(
             &self,
-            sourceTexture: &MTLTexture,
-            sourceSlice: NSUInteger,
-            sourceLevel: NSUInteger,
-            sourceOrigin: MTLOrigin,
-            sourceSize: MTLSize,
-            destinationTexture: &MTLTexture,
-            destinationSlice: NSUInteger,
-            destinationLevel: NSUInteger,
-            destinationOrigin: MTLOrigin,
+            source_texture: &MTLTexture,
+            source_slice: NSUInteger,
+            source_level: NSUInteger,
+            source_origin: MTLOrigin,
+            source_size: MTLSize,
+            destination_texture: &MTLTexture,
+            destination_slice: NSUInteger,
+            destination_level: NSUInteger,
+            destination_origin: MTLOrigin,
         );
     }
 );

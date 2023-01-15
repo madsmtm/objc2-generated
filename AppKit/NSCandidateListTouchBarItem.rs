@@ -54,13 +54,13 @@ extern_methods!(
         pub unsafe fn allowsCollapsing(&self) -> bool;
 
         #[method(setAllowsCollapsing:)]
-        pub unsafe fn setAllowsCollapsing(&self, allowsCollapsing: bool);
+        pub unsafe fn setAllowsCollapsing(&self, allows_collapsing: bool);
 
         #[method(isCandidateListVisible)]
         pub unsafe fn isCandidateListVisible(&self) -> bool;
 
         #[method(updateWithInsertionPointVisibility:)]
-        pub unsafe fn updateWithInsertionPointVisibility(&self, isVisible: bool);
+        pub unsafe fn updateWithInsertionPointVisibility(&self, is_visible: bool);
 
         #[method(allowsTextInputContextCandidates)]
         pub unsafe fn allowsTextInputContextCandidates(&self) -> bool;
@@ -68,7 +68,7 @@ extern_methods!(
         #[method(setAllowsTextInputContextCandidates:)]
         pub unsafe fn setAllowsTextInputContextCandidates(
             &self,
-            allowsTextInputContextCandidates: bool,
+            allows_text_input_context_candidates: bool,
         );
 
         #[cfg(feature = "Foundation_NSAttributedString")]
@@ -81,7 +81,7 @@ extern_methods!(
         #[method(setAttributedStringForCandidate:)]
         pub unsafe fn setAttributedStringForCandidate(
             &self,
-            attributedStringForCandidate: Option<
+            attributed_string_for_candidate: Option<
                 &Block<(NonNull<CandidateType>, NSInteger), NonNull<NSAttributedString>>,
             >,
         );
@@ -95,8 +95,8 @@ extern_methods!(
         pub unsafe fn setCandidates_forSelectedRange_inString(
             &self,
             candidates: &NSArray<CandidateType>,
-            selectedRange: NSRange,
-            originalString: Option<&NSString>,
+            selected_range: NSRange,
+            original_string: Option<&NSString>,
         );
 
         #[cfg(feature = "Foundation_NSString")]
@@ -105,7 +105,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCustomizationLabel:)]
-        pub unsafe fn setCustomizationLabel(&self, customizationLabel: Option<&NSString>);
+        pub unsafe fn setCustomizationLabel(&self, customization_label: Option<&NSString>);
     }
 );
 
@@ -118,7 +118,7 @@ extern_protocol!(
         #[method(candidateListTouchBarItem:beginSelectingCandidateAtIndex:)]
         pub unsafe fn candidateListTouchBarItem_beginSelectingCandidateAtIndex(
             &self,
-            anItem: &NSCandidateListTouchBarItem,
+            an_item: &NSCandidateListTouchBarItem,
             index: NSInteger,
         );
 
@@ -127,8 +127,8 @@ extern_protocol!(
         #[method(candidateListTouchBarItem:changeSelectionFromCandidateAtIndex:toIndex:)]
         pub unsafe fn candidateListTouchBarItem_changeSelectionFromCandidateAtIndex_toIndex(
             &self,
-            anItem: &NSCandidateListTouchBarItem,
-            previousIndex: NSInteger,
+            an_item: &NSCandidateListTouchBarItem,
+            previous_index: NSInteger,
             index: NSInteger,
         );
 
@@ -137,7 +137,7 @@ extern_protocol!(
         #[method(candidateListTouchBarItem:endSelectingCandidateAtIndex:)]
         pub unsafe fn candidateListTouchBarItem_endSelectingCandidateAtIndex(
             &self,
-            anItem: &NSCandidateListTouchBarItem,
+            an_item: &NSCandidateListTouchBarItem,
             index: NSInteger,
         );
 
@@ -146,8 +146,8 @@ extern_protocol!(
         #[method(candidateListTouchBarItem:changedCandidateListVisibility:)]
         pub unsafe fn candidateListTouchBarItem_changedCandidateListVisibility(
             &self,
-            anItem: &NSCandidateListTouchBarItem,
-            isVisible: bool,
+            an_item: &NSCandidateListTouchBarItem,
+            is_visible: bool,
         );
     }
 );

@@ -33,7 +33,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setChildrenKeyPath:)]
-        pub unsafe fn setChildrenKeyPath(&self, childrenKeyPath: Option<&NSString>);
+        pub unsafe fn setChildrenKeyPath(&self, children_key_path: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other countKeyPath)]
@@ -41,7 +41,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCountKeyPath:)]
-        pub unsafe fn setCountKeyPath(&self, countKeyPath: Option<&NSString>);
+        pub unsafe fn setCountKeyPath(&self, count_key_path: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other leafKeyPath)]
@@ -49,7 +49,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLeafKeyPath:)]
-        pub unsafe fn setLeafKeyPath(&self, leafKeyPath: Option<&NSString>);
+        pub unsafe fn setLeafKeyPath(&self, leaf_key_path: Option<&NSString>);
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -63,7 +63,7 @@ extern_methods!(
             feature = "Foundation_NSSortDescriptor"
         ))]
         #[method(setSortDescriptors:)]
-        pub unsafe fn setSortDescriptors(&self, sortDescriptors: &NSArray<NSSortDescriptor>);
+        pub unsafe fn setSortDescriptors(&self, sort_descriptors: &NSArray<NSSortDescriptor>);
 
         #[method_id(@__retain_semantics Other content)]
         pub unsafe fn content(&self) -> Option<Id<Object, Shared>>;
@@ -100,7 +100,7 @@ extern_methods!(
         pub unsafe fn insertObject_atArrangedObjectIndexPath(
             &self,
             object: Option<&Object>,
-            indexPath: &NSIndexPath,
+            index_path: &NSIndexPath,
         );
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSIndexPath"))]
@@ -108,37 +108,37 @@ extern_methods!(
         pub unsafe fn insertObjects_atArrangedObjectIndexPaths(
             &self,
             objects: &NSArray,
-            indexPaths: &NSArray<NSIndexPath>,
+            index_paths: &NSArray<NSIndexPath>,
         );
 
         #[cfg(feature = "Foundation_NSIndexPath")]
         #[method(removeObjectAtArrangedObjectIndexPath:)]
-        pub unsafe fn removeObjectAtArrangedObjectIndexPath(&self, indexPath: &NSIndexPath);
+        pub unsafe fn removeObjectAtArrangedObjectIndexPath(&self, index_path: &NSIndexPath);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSIndexPath"))]
         #[method(removeObjectsAtArrangedObjectIndexPaths:)]
         pub unsafe fn removeObjectsAtArrangedObjectIndexPaths(
             &self,
-            indexPaths: &NSArray<NSIndexPath>,
+            index_paths: &NSArray<NSIndexPath>,
         );
 
         #[method(avoidsEmptySelection)]
         pub unsafe fn avoidsEmptySelection(&self) -> bool;
 
         #[method(setAvoidsEmptySelection:)]
-        pub unsafe fn setAvoidsEmptySelection(&self, avoidsEmptySelection: bool);
+        pub unsafe fn setAvoidsEmptySelection(&self, avoids_empty_selection: bool);
 
         #[method(preservesSelection)]
         pub unsafe fn preservesSelection(&self) -> bool;
 
         #[method(setPreservesSelection:)]
-        pub unsafe fn setPreservesSelection(&self, preservesSelection: bool);
+        pub unsafe fn setPreservesSelection(&self, preserves_selection: bool);
 
         #[method(selectsInsertedObjects)]
         pub unsafe fn selectsInsertedObjects(&self) -> bool;
 
         #[method(setSelectsInsertedObjects:)]
-        pub unsafe fn setSelectsInsertedObjects(&self, selectsInsertedObjects: bool);
+        pub unsafe fn setSelectsInsertedObjects(&self, selects_inserted_objects: bool);
 
         #[method(alwaysUsesMultipleValuesMarker)]
         pub unsafe fn alwaysUsesMultipleValuesMarker(&self) -> bool;
@@ -146,7 +146,7 @@ extern_methods!(
         #[method(setAlwaysUsesMultipleValuesMarker:)]
         pub unsafe fn setAlwaysUsesMultipleValuesMarker(
             &self,
-            alwaysUsesMultipleValuesMarker: bool,
+            always_uses_multiple_values_marker: bool,
         );
 
         #[cfg(feature = "Foundation_NSArray")]
@@ -155,7 +155,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSIndexPath"))]
         #[method(setSelectionIndexPaths:)]
-        pub unsafe fn setSelectionIndexPaths(&self, indexPaths: &NSArray<NSIndexPath>) -> bool;
+        pub unsafe fn setSelectionIndexPaths(&self, index_paths: &NSArray<NSIndexPath>) -> bool;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSIndexPath"))]
         #[method_id(@__retain_semantics Other selectionIndexPaths)]
@@ -163,7 +163,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSIndexPath")]
         #[method(setSelectionIndexPath:)]
-        pub unsafe fn setSelectionIndexPath(&self, indexPath: Option<&NSIndexPath>) -> bool;
+        pub unsafe fn setSelectionIndexPath(&self, index_path: Option<&NSIndexPath>) -> bool;
 
         #[cfg(feature = "Foundation_NSIndexPath")]
         #[method_id(@__retain_semantics Other selectionIndexPath)]
@@ -171,11 +171,11 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSIndexPath"))]
         #[method(addSelectionIndexPaths:)]
-        pub unsafe fn addSelectionIndexPaths(&self, indexPaths: &NSArray<NSIndexPath>) -> bool;
+        pub unsafe fn addSelectionIndexPaths(&self, index_paths: &NSArray<NSIndexPath>) -> bool;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSIndexPath"))]
         #[method(removeSelectionIndexPaths:)]
-        pub unsafe fn removeSelectionIndexPaths(&self, indexPaths: &NSArray<NSIndexPath>) -> bool;
+        pub unsafe fn removeSelectionIndexPaths(&self, index_paths: &NSArray<NSIndexPath>) -> bool;
 
         #[cfg(all(feature = "AppKit_NSTreeNode", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other selectedNodes)]
@@ -183,7 +183,7 @@ extern_methods!(
 
         #[cfg(all(feature = "AppKit_NSTreeNode", feature = "Foundation_NSIndexPath"))]
         #[method(moveNode:toIndexPath:)]
-        pub unsafe fn moveNode_toIndexPath(&self, node: &NSTreeNode, indexPath: &NSIndexPath);
+        pub unsafe fn moveNode_toIndexPath(&self, node: &NSTreeNode, index_path: &NSIndexPath);
 
         #[cfg(all(
             feature = "AppKit_NSTreeNode",
@@ -194,7 +194,7 @@ extern_methods!(
         pub unsafe fn moveNodes_toIndexPath(
             &self,
             nodes: &NSArray<NSTreeNode>,
-            startingIndexPath: &NSIndexPath,
+            starting_index_path: &NSIndexPath,
         );
 
         #[cfg(all(feature = "AppKit_NSTreeNode", feature = "Foundation_NSString"))]
