@@ -80,9 +80,11 @@ extern_methods!(
         #[method(waitUntilFinished)]
         pub unsafe fn waitUntilFinished(&self);
 
+        #[deprecated = "Not supported"]
         #[method(threadPriority)]
         pub unsafe fn threadPriority(&self) -> c_double;
 
+        #[deprecated = "Not supported"]
         #[method(setThreadPriority:)]
         pub unsafe fn setThreadPriority(&self, threadPriority: c_double);
 
@@ -251,9 +253,11 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSOperationQueue")]
     unsafe impl NSOperationQueue {
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSOperation"))]
+        #[deprecated = "access to operations is inherently a race condition, it should not be used. For barrier style behaviors please use addBarrierBlock: instead"]
         #[method_id(@__retain_semantics Other operations)]
         pub unsafe fn operations(&self) -> Id<NSArray<NSOperation>, Shared>;
 
+        #[deprecated]
         #[method(operationCount)]
         pub unsafe fn operationCount(&self) -> NSUInteger;
     }

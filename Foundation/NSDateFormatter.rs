@@ -384,6 +384,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSDateFormatter")]
     unsafe impl NSDateFormatter {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Create an NSDateFormatter with `init` and set the dateFormat property instead."]
         #[method_id(@__retain_semantics Init initWithDateFormat:allowNaturalLanguage:)]
         pub unsafe fn initWithDateFormat_allowNaturalLanguage(
             this: Option<Allocated<Self>>,
@@ -391,6 +392,7 @@ extern_methods!(
             flag: bool,
         ) -> Id<Self, Shared>;
 
+        #[deprecated = "There is no replacement"]
         #[method(allowsNaturalLanguage)]
         pub unsafe fn allowsNaturalLanguage(&self) -> bool;
     }

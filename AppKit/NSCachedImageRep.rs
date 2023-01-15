@@ -21,6 +21,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSCachedImageRep")]
     unsafe impl NSCachedImageRep {
         #[cfg(feature = "AppKit_NSWindow")]
+        #[deprecated]
         #[method_id(@__retain_semantics Init initWithWindow:rect:)]
         pub unsafe fn initWithWindow_rect(
             this: Option<Allocated<Self>>,
@@ -28,6 +29,7 @@ extern_methods!(
             rect: NSRect,
         ) -> Option<Id<Self, Shared>>;
 
+        #[deprecated]
         #[method_id(@__retain_semantics Init initWithSize:depth:separate:alpha:)]
         pub unsafe fn initWithSize_depth_separate_alpha(
             this: Option<Allocated<Self>>,
@@ -38,9 +40,11 @@ extern_methods!(
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(feature = "AppKit_NSWindow")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other window)]
         pub unsafe fn window(&self) -> Option<Id<NSWindow, Shared>>;
 
+        #[deprecated]
         #[method(rect)]
         pub unsafe fn rect(&self) -> NSRect;
     }

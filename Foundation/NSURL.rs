@@ -367,6 +367,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSURL")]
     unsafe impl NSURL {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use NSURLComponents instead, which lets you create a valid URL with any valid combination of URL components and subcomponents (not just scheme, host and path), and lets you set components and subcomponents with either percent-encoded or un-percent-encoded strings."]
         #[method_id(@__retain_semantics Init initWithScheme:host:path:)]
         pub unsafe fn initWithScheme_host_path(
             this: Option<Allocated<Self>>,
@@ -555,6 +556,7 @@ extern_methods!(
         pub unsafe fn fragment(&self) -> Option<Id<NSString, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "The parameterString method is deprecated. Post deprecation for applications linked with or after the macOS 10.15, and for all iOS, watchOS, and tvOS applications, parameterString will always return nil, and the path method will return the complete path including the semicolon separator and params component if the URL string contains them."]
         #[method_id(@__retain_semantics Other parameterString)]
         pub unsafe fn parameterString(&self) -> Option<Id<NSString, Shared>>;
 
@@ -932,10 +934,12 @@ extern_methods!(
         pub unsafe fn setPercentEncodedPassword(&self, percentEncodedPassword: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use encodedHost instead"]
         #[method_id(@__retain_semantics Other percentEncodedHost)]
         pub unsafe fn percentEncodedHost(&self) -> Option<Id<NSString, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use encodedHost instead"]
         #[method(setPercentEncodedHost:)]
         pub unsafe fn setPercentEncodedHost(&self, percentEncodedHost: Option<&NSString>);
 
@@ -1056,12 +1060,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other stringByRemovingPercentEncoding)]
         pub unsafe fn stringByRemovingPercentEncoding(&self) -> Option<Id<NSString, Shared>>;
 
+        #[deprecated = "Use -stringByAddingPercentEncodingWithAllowedCharacters: instead, which always uses the recommended UTF-8 encoding, and which encodes for a specific URL component or subcomponent since each URL component or subcomponent has different rules for what characters are valid."]
         #[method_id(@__retain_semantics Other stringByAddingPercentEscapesUsingEncoding:)]
         pub unsafe fn stringByAddingPercentEscapesUsingEncoding(
             &self,
             enc: NSStringEncoding,
         ) -> Option<Id<NSString, Shared>>;
 
+        #[deprecated = "Use -stringByRemovingPercentEncoding instead, which always uses the recommended UTF-8 encoding."]
         #[method_id(@__retain_semantics Other stringByReplacingPercentEscapesUsingEncoding:)]
         pub unsafe fn stringByReplacingPercentEscapesUsingEncoding(
             &self,
@@ -1156,12 +1162,14 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSURL")]
     unsafe impl NSURL {
         #[cfg(feature = "Foundation_NSData")]
+        #[deprecated = "Use NSURLConnection instead"]
         #[method_id(@__retain_semantics Other resourceDataUsingCache:)]
         pub unsafe fn resourceDataUsingCache(
             &self,
             shouldUseCache: bool,
         ) -> Option<Id<NSData, Shared>>;
 
+        #[deprecated = "Use NSURLConnection instead"]
         #[method(loadResourceDataNotifyingClient:usingCache:)]
         pub unsafe fn loadResourceDataNotifyingClient_usingCache(
             &self,
@@ -1170,18 +1178,22 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use NSURLConnection instead"]
         #[method_id(@__retain_semantics Other propertyForKey:)]
         pub unsafe fn propertyForKey(&self, propertyKey: &NSString) -> Option<Id<Object, Shared>>;
 
         #[cfg(feature = "Foundation_NSData")]
+        #[deprecated = "Use NSURLConnection instead"]
         #[method(setResourceData:)]
         pub unsafe fn setResourceData(&self, data: &NSData) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use NSURLConnection instead"]
         #[method(setProperty:forKey:)]
         pub unsafe fn setProperty_forKey(&self, property: &Object, propertyKey: &NSString) -> bool;
 
         #[cfg(feature = "Foundation_NSURLHandle")]
+        #[deprecated = "Use NSURLConnection instead"]
         #[method_id(@__retain_semantics Other URLHandleUsingCache:)]
         pub unsafe fn URLHandleUsingCache(
             &self,

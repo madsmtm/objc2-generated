@@ -20,6 +20,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other defaultCollector)]
         pub unsafe fn defaultCollector() -> Id<Object, Shared>;
 
+        #[deprecated]
         #[method(isCollecting)]
         pub unsafe fn isCollecting(&self) -> bool;
 

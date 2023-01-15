@@ -640,22 +640,27 @@ extern_methods!(
         pub unsafe fn containsAttachments(&self) -> bool;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other textFileTypes)]
         pub unsafe fn textFileTypes() -> Id<NSArray, Shared>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other textPasteboardTypes)]
         pub unsafe fn textPasteboardTypes() -> Id<NSArray, Shared>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other textUnfilteredFileTypes)]
         pub unsafe fn textUnfilteredFileTypes() -> Id<NSArray, Shared>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other textUnfilteredPasteboardTypes)]
         pub unsafe fn textUnfilteredPasteboardTypes() -> Id<NSArray, Shared>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSURL"))]
+        #[deprecated = "Use -initWithURL:options:documentAttributes:error: instead"]
         #[method_id(@__retain_semantics Init initWithURL:documentAttributes:)]
         pub unsafe fn initWithURL_documentAttributes(
             this: Option<Allocated<Self>>,
@@ -664,6 +669,7 @@ extern_methods!(
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[deprecated = "Use -initWithURL:options:documentAttributes:error: instead"]
         #[method_id(@__retain_semantics Init initWithPath:documentAttributes:)]
         pub unsafe fn initWithPath_documentAttributes(
             this: Option<Allocated<Self>>,
@@ -672,6 +678,7 @@ extern_methods!(
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[deprecated = "Use NSDataDetector instead"]
         #[method_id(@__retain_semantics Other URLAtIndex:effectiveRange:)]
         pub unsafe fn URLAtIndex_effectiveRange(
             &self,
@@ -686,6 +693,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSMutableAttributedString")]
     unsafe impl NSMutableAttributedString {
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSURL"))]
+        #[deprecated = "Use -readFromURL:options:documentAttributes:error: instead"]
         #[method(readFromURL:options:documentAttributes:)]
         pub unsafe fn readFromURL_options_documentAttributes(
             &self,
@@ -695,6 +703,7 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSDictionary"))]
+        #[deprecated = "Use -readFromData:options:documentAttributes:error: instead"]
         #[method(readFromData:options:documentAttributes:)]
         pub unsafe fn readFromData_options_documentAttributes(
             &self,

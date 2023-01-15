@@ -159,15 +159,19 @@ extern_methods!(
             >,
         );
 
+        #[deprecated = "Garbage collection no longer supported"]
         #[method(usesStrongWriteBarrier)]
         pub unsafe fn usesStrongWriteBarrier(&self) -> bool;
 
+        #[deprecated = "Garbage collection no longer supported"]
         #[method(setUsesStrongWriteBarrier:)]
         pub unsafe fn setUsesStrongWriteBarrier(&self, usesStrongWriteBarrier: bool);
 
+        #[deprecated = "Garbage collection no longer supported"]
         #[method(usesWeakReadAndWriteBarriers)]
         pub unsafe fn usesWeakReadAndWriteBarriers(&self) -> bool;
 
+        #[deprecated = "Garbage collection no longer supported"]
         #[method(setUsesWeakReadAndWriteBarriers:)]
         pub unsafe fn setUsesWeakReadAndWriteBarriers(&self, usesWeakReadAndWriteBarriers: bool);
     }

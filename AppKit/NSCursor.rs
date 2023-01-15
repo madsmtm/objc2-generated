@@ -131,6 +131,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSCursor")]
     unsafe impl NSCursor {
         #[cfg(all(feature = "AppKit_NSColor", feature = "AppKit_NSImage"))]
+        #[deprecated = "Color hints are ignored. Use -initWithImage:hotSpot: instead"]
         #[method_id(@__retain_semantics Init initWithImage:foregroundColorHint:backgroundColorHint:hotSpot:)]
         pub unsafe fn initWithImage_foregroundColorHint_backgroundColorHint_hotSpot(
             this: Option<Allocated<Self>>,
@@ -140,23 +141,29 @@ extern_methods!(
             hotSpot: NSPoint,
         ) -> Id<Self, Shared>;
 
+        #[deprecated = "setOnMouseExited is unused and should not be called"]
         #[method(setOnMouseExited:)]
         pub unsafe fn setOnMouseExited(&self, flag: bool);
 
+        #[deprecated = "setOnMouseEntered is unused and should not be called"]
         #[method(setOnMouseEntered:)]
         pub unsafe fn setOnMouseEntered(&self, flag: bool);
 
+        #[deprecated = "isSetOnMouseExited is unused"]
         #[method(isSetOnMouseExited)]
         pub unsafe fn isSetOnMouseExited(&self) -> bool;
 
+        #[deprecated = "isSetOnMouseEntered is unused"]
         #[method(isSetOnMouseEntered)]
         pub unsafe fn isSetOnMouseEntered(&self) -> bool;
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[deprecated = "mouseEntered: is unused and should not be called"]
         #[method(mouseEntered:)]
         pub unsafe fn mouseEntered(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[deprecated = "mouseExited: is unused and should not be called"]
         #[method(mouseExited:)]
         pub unsafe fn mouseExited(&self, event: &NSEvent);
     }

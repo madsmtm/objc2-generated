@@ -22,6 +22,7 @@ extern_methods!(
         pub unsafe fn canResumeDownloadDecodedWithEncodingMIMEType(MIMEType: &NSString) -> bool;
 
         #[cfg(feature = "Foundation_NSURLRequest")]
+        #[deprecated = "Use NSURLSession downloadTask (see NSURLSession.h)"]
         #[method_id(@__retain_semantics Init initWithRequest:delegate:)]
         pub unsafe fn initWithRequest_delegate(
             this: Option<Allocated<Self>>,
@@ -30,6 +31,7 @@ extern_methods!(
         ) -> Id<Self, Shared>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSString"))]
+        #[deprecated = "Use NSURLSession downloadTask (see NSURLSession.h)"]
         #[method_id(@__retain_semantics Init initWithResumeData:delegate:path:)]
         pub unsafe fn initWithResumeData_delegate_path(
             this: Option<Allocated<Self>>,

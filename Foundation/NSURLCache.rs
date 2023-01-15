@@ -86,6 +86,7 @@ extern_methods!(
         pub unsafe fn setSharedURLCache(sharedURLCache: &NSURLCache);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Init initWithMemoryCapacity:diskCapacity:diskPath:)]
         pub unsafe fn initWithMemoryCapacity_diskCapacity_diskPath(
             this: Option<Allocated<Self>>,

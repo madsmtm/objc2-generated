@@ -26,6 +26,7 @@ extern_methods!(
             coder: &NSCoder,
         ) -> Option<Id<Self, Shared>>;
 
+        #[deprecated = "As of macOS 10.15 this method always returns nil."]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Option<Id<Self, Shared>>;
     }

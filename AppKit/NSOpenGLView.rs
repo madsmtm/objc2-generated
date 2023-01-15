@@ -9,9 +9,11 @@ extern_methods!(
     /// NSOpenGLSurfaceResolution
     #[cfg(feature = "AppKit_NSView")]
     unsafe impl NSView {
+        #[deprecated = "Use NSOpenGLView instead."]
         #[method(wantsBestResolutionOpenGLSurface)]
         pub unsafe fn wantsBestResolutionOpenGLSurface(&self) -> bool;
 
+        #[deprecated = "Use NSOpenGLView instead."]
         #[method(setWantsBestResolutionOpenGLSurface:)]
         pub unsafe fn setWantsBestResolutionOpenGLSurface(
             &self,
@@ -24,9 +26,11 @@ extern_methods!(
     /// NSExtendedDynamicRange
     #[cfg(feature = "AppKit_NSView")]
     unsafe impl NSView {
+        #[deprecated = "Use NSOpenGLView instead."]
         #[method(wantsExtendedDynamicRangeOpenGLSurface)]
         pub unsafe fn wantsExtendedDynamicRangeOpenGLSurface(&self) -> bool;
 
+        #[deprecated = "Use NSOpenGLView instead."]
         #[method(setWantsExtendedDynamicRangeOpenGLSurface:)]
         pub unsafe fn setWantsExtendedDynamicRangeOpenGLSurface(
             &self,

@@ -269,6 +269,7 @@ extern_methods!(
         ) -> Result<(), Id<NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSURL"))]
+        #[deprecated = "Spotlight integration is deprecated. Use CoreSpotlight integration instead."]
         #[method_id(@__retain_semantics Other elementsDerivedFromExternalRecordURL:)]
         pub unsafe fn elementsDerivedFromExternalRecordURL(
             fileURL: &NSURL,
@@ -281,6 +282,7 @@ extern_methods!(
             feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
         ))]
+        #[deprecated = "Spotlight integration is deprecated. Use CoreSpotlight integration instead."]
         #[method_id(@__retain_semantics Other importStoreWithIdentifier:fromExternalRecordsDirectory:toURL:options:withType:error:_)]
         pub unsafe fn importStoreWithIdentifier_fromExternalRecordsDirectory_toURL_options_withType_error(
             &self,
@@ -358,17 +360,21 @@ extern_methods!(
             feature = "Foundation_NSError",
             feature = "Foundation_NSURL"
         ))]
+        #[deprecated = "Use -metadataForPersistentStoreOfType:URL:options:error: and pass in an options dictionary matching addPersistentStoreWithType"]
         #[method_id(@__retain_semantics Other metadataForPersistentStoreWithURL:error:_)]
         pub unsafe fn metadataForPersistentStoreWithURL_error(
             url: &NSURL,
         ) -> Result<Id<NSDictionary, Shared>, Id<NSError, Shared>>;
 
+        #[deprecated = "Use -performBlockAndWait: instead"]
         #[method(lock)]
         pub unsafe fn lock(&self);
 
+        #[deprecated = "Use -performBlockAndWait: instead"]
         #[method(unlock)]
         pub unsafe fn unlock(&self);
 
+        #[deprecated = "Use -performBlock: instead"]
         #[method(tryLock)]
         pub unsafe fn tryLock(&self) -> bool;
 
@@ -378,6 +384,7 @@ extern_methods!(
             feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
         ))]
+        #[deprecated = "Use -metadataForPersistentStoreOfType:URL:options:error: and pass in an options dictionary matching addPersistentStoreWithType"]
         #[method_id(@__retain_semantics Other metadataForPersistentStoreOfType:URL:error:_)]
         pub unsafe fn metadataForPersistentStoreOfType_URL_error(
             storeType: Option<&NSString>,
@@ -390,6 +397,7 @@ extern_methods!(
             feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
         ))]
+        #[deprecated = "Use  -setMetadata:forPersistentStoreOfType:URL:options:error: and pass in an options dictionary matching addPersistentStoreWithType"]
         #[method(setMetadata:forPersistentStoreOfType:URL:error:_)]
         pub unsafe fn setMetadata_forPersistentStoreOfType_URL_error(
             metadata: Option<&NSDictionary<NSString, Object>>,
@@ -402,6 +410,7 @@ extern_methods!(
             feature = "Foundation_NSError",
             feature = "Foundation_NSURL"
         ))]
+        #[deprecated = "Please see the release notes and Core Data documentation."]
         #[method(removeUbiquitousContentAndPersistentStoreAtURL:options:error:_)]
         pub unsafe fn removeUbiquitousContentAndPersistentStoreAtURL_options_error(
             storeURL: &NSURL,

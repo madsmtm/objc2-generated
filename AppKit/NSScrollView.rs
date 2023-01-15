@@ -62,6 +62,7 @@ extern_methods!(
             scrollerStyle: NSScrollerStyle,
         ) -> NSSize;
 
+        #[deprecated = "Use +frameSizeForContentSize:horizontalScrollerClass:verticalScrollerClass:borderType:controlSize:scrollerStyle: instead"]
         #[method(frameSizeForContentSize:hasHorizontalScroller:hasVerticalScroller:borderType:)]
         pub unsafe fn frameSizeForContentSize_hasHorizontalScroller_hasVerticalScroller_borderType(
             cSize: NSSize,
@@ -70,6 +71,7 @@ extern_methods!(
             r#type: NSBorderType,
         ) -> NSSize;
 
+        #[deprecated = "+contentSizeForFrameSize:horizontalScrollerClass:verticalScrollerClass:borderType:controlSize:scrollerStyle: instead"]
         #[method(contentSizeForFrameSize:hasHorizontalScroller:hasVerticalScroller:borderType:)]
         pub unsafe fn contentSizeForFrameSize_hasHorizontalScroller_hasVerticalScroller_borderType(
             fSize: NSSize,

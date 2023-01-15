@@ -146,37 +146,48 @@ extern_methods!(
     /// NSDeprecated
     #[cfg(feature = "AppKit_NSScroller")]
     unsafe impl NSScroller {
+        #[deprecated = "Use +scrollerWidthForControlSize:scrollerStyle: instead"]
         #[method(scrollerWidthForControlSize:)]
         pub unsafe fn scrollerWidthForControlSize(controlSize: NSControlSize) -> CGFloat;
 
+        #[deprecated = "Use +scrollerWidthForControlSize:scrollerStyle: instead"]
         #[method(scrollerWidth)]
         pub unsafe fn scrollerWidth() -> CGFloat;
 
+        #[deprecated]
         #[method(setFloatValue:knobProportion:)]
         pub unsafe fn setFloatValue_knobProportion(&self, value: c_float, proportion: CGFloat);
 
+        #[deprecated = "Has had no effect since 10.7"]
         #[method(arrowsPosition)]
         pub unsafe fn arrowsPosition(&self) -> NSScrollArrowPosition;
 
+        #[deprecated = "Has had no effect since 10.7"]
         #[method(setArrowsPosition:)]
         pub unsafe fn setArrowsPosition(&self, arrowsPosition: NSScrollArrowPosition);
 
+        #[deprecated = "Has had no effect since 10.7"]
         #[method(controlTint)]
         pub unsafe fn controlTint(&self) -> NSControlTint;
 
+        #[deprecated = "Has had no effect since 10.7"]
         #[method(setControlTint:)]
         pub unsafe fn setControlTint(&self, controlTint: NSControlTint);
 
+        #[deprecated = "Has had no effect since 10.7"]
         #[method(highlight:)]
         pub unsafe fn highlight(&self, flag: bool);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[deprecated = "Not invoked since 10.7"]
         #[method(trackScrollButtons:)]
         pub unsafe fn trackScrollButtons(&self, event: &NSEvent);
 
+        #[deprecated = "Not invoked on any macOS version"]
         #[method(drawParts)]
         pub unsafe fn drawParts(&self);
 
+        #[deprecated = "Scrollers don't have arrows as of 10.7"]
         #[method(drawArrow:highlight:)]
         pub unsafe fn drawArrow_highlight(&self, whichArrow: NSScrollerArrow, flag: bool);
     }

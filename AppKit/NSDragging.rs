@@ -75,6 +75,7 @@ extern_protocol!(
         pub unsafe fn draggedImageLocation(&self) -> NSPoint;
 
         #[cfg(feature = "AppKit_NSImage")]
+        #[deprecated = "Use NSDraggingItem objects instead"]
         #[method_id(@__retain_semantics Other draggedImage)]
         pub unsafe fn draggedImage(&self) -> Option<Id<NSImage, Shared>>;
 
@@ -96,6 +97,7 @@ extern_protocol!(
             feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
         ))]
+        #[deprecated = "Use NSFilePromiseReceiver objects instead"]
         #[method_id(@__retain_semantics Other namesOfPromisedFilesDroppedAtDestination:)]
         pub unsafe fn namesOfPromisedFilesDroppedAtDestination(
             &self,

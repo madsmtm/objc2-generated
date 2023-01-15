@@ -129,9 +129,11 @@ extern_methods!(
         pub unsafe fn registeredImageRepClasses() -> Id<NSArray<TodoClass>, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use +imageRepClassForType: instead"]
         #[method(imageRepClassForFileType:)]
         pub unsafe fn imageRepClassForFileType(r#type: &NSString) -> Option<&'static Class>;
 
+        #[deprecated = "Use +imageRepClassForType: instead"]
         #[method(imageRepClassForPasteboardType:)]
         pub unsafe fn imageRepClassForPasteboardType(
             r#type: &NSPasteboardType,
@@ -150,18 +152,22 @@ extern_methods!(
         pub unsafe fn canInitWithData(data: &NSData) -> bool;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[deprecated = "Use +imageUnfilteredTypes instead"]
         #[method_id(@__retain_semantics Other imageUnfilteredFileTypes)]
         pub unsafe fn imageUnfilteredFileTypes() -> Id<NSArray<NSString>, Shared>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[deprecated = "Use +imageUnfilteredTypes instead"]
         #[method_id(@__retain_semantics Other imageUnfilteredPasteboardTypes)]
         pub unsafe fn imageUnfilteredPasteboardTypes() -> Id<NSArray<NSPasteboardType>, Shared>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[deprecated = "Use +imageTypes instead"]
         #[method_id(@__retain_semantics Other imageFileTypes)]
         pub unsafe fn imageFileTypes() -> Id<NSArray<NSString>, Shared>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[deprecated = "Use +imageTypes instead"]
         #[method_id(@__retain_semantics Other imagePasteboardTypes)]
         pub unsafe fn imagePasteboardTypes() -> Id<NSArray<NSPasteboardType>, Shared>;
 

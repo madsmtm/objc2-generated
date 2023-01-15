@@ -187,9 +187,11 @@ extern_methods!(
         #[method(setAction:)]
         pub unsafe fn setAction(&self, action: Sel);
 
+        #[deprecated = "NSFontManager doesn't have any delegate method. This property should not be used."]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<Object, Shared>>;
 
+        #[deprecated = "NSFontManager doesn't have any delegate method. This property should not be used."]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&Object>);
 
@@ -220,6 +222,7 @@ extern_methods!(
         ) -> Id<NSDictionary<NSString, Object>, Shared>;
 
         #[cfg(all(feature = "AppKit_NSFontDescriptor", feature = "Foundation_NSArray"))]
+        #[deprecated = "Use -[NSFontDescriptor matchingFontDescriptorsWithMandatoryKeys:] instead"]
         #[method_id(@__retain_semantics Other availableFontNamesMatchingFontDescriptor:)]
         pub unsafe fn availableFontNamesMatchingFontDescriptor(
             &self,
@@ -227,10 +230,12 @@ extern_methods!(
         ) -> Option<Id<NSArray, Shared>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[deprecated = "Use +[NSFontCollection allFontCollectionNames] instead"]
         #[method_id(@__retain_semantics Other collectionNames)]
         pub unsafe fn collectionNames(&self) -> Id<NSArray, Shared>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[deprecated = "Use -[NSFontCollection matchingDescriptors] instead"]
         #[method_id(@__retain_semantics Other fontDescriptorsInCollection:)]
         pub unsafe fn fontDescriptorsInCollection(
             &self,
@@ -238,6 +243,7 @@ extern_methods!(
         ) -> Option<Id<NSArray, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use +[NSFontCollection showFontCollection:withName:visibility:name:] instead"]
         #[method(addCollection:options:)]
         pub unsafe fn addCollection_options(
             &self,
@@ -246,10 +252,12 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use +[NSFontCollection hideFontCollectionWithName:visibility:error:] instead"]
         #[method(removeCollection:)]
         pub unsafe fn removeCollection(&self, collectionName: &NSString) -> bool;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[deprecated = "Use -[NSMutableFontCollection addQueryForDescriptors:] instead"]
         #[method(addFontDescriptors:toCollection:)]
         pub unsafe fn addFontDescriptors_toCollection(
             &self,
@@ -258,6 +266,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "AppKit_NSFontDescriptor", feature = "Foundation_NSString"))]
+        #[deprecated = "Use -[NSMutableFontCollection removeQueryForDescriptors:] instead"]
         #[method(removeFontDescriptor:fromCollection:)]
         pub unsafe fn removeFontDescriptor_fromCollection(
             &self,

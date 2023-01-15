@@ -55,6 +55,7 @@ extern_methods!(
         #[method(timeIntervalSince1970)]
         pub unsafe fn timeIntervalSince1970(&self) -> NSTimeInterval;
 
+        #[deprecated = "Use dateByAddingTimeInterval instead"]
         #[method_id(@__retain_semantics Other addTimeInterval:)]
         pub unsafe fn addTimeInterval(&self, seconds: NSTimeInterval) -> Id<Object, Shared>;
 

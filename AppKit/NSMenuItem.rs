@@ -256,17 +256,21 @@ extern_methods!(
     /// NSDeprecated
     #[cfg(feature = "AppKit_NSMenuItem")]
     unsafe impl NSMenuItem {
+        #[deprecated]
         #[method(setMnemonicLocation:)]
         pub unsafe fn setMnemonicLocation(&self, location: NSUInteger);
 
+        #[deprecated]
         #[method(mnemonicLocation)]
         pub unsafe fn mnemonicLocation(&self) -> NSUInteger;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other mnemonic)]
         pub unsafe fn mnemonic(&self) -> Option<Id<NSString, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setTitleWithMnemonic:)]
         pub unsafe fn setTitleWithMnemonic(&self, stringWithAmpersand: &NSString);
     }

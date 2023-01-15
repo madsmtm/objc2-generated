@@ -128,6 +128,7 @@ extern_methods!(
     /// NSDeprecated
     #[cfg(feature = "AppKit_NSScreen")]
     unsafe impl NSScreen {
+        #[deprecated = "Use -convertRectToBacking: or -backingScaleFactor instead"]
         #[method(userSpaceScaleFactor)]
         pub unsafe fn userSpaceScaleFactor(&self) -> CGFloat;
     }

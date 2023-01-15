@@ -144,16 +144,20 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSPrintPanel")]
     unsafe impl NSPrintPanel {
         #[cfg(feature = "AppKit_NSView")]
+        #[deprecated = "Use -addAccessoryController instead"]
         #[method(setAccessoryView:)]
         pub unsafe fn setAccessoryView(&self, accessoryView: Option<&NSView>);
 
         #[cfg(feature = "AppKit_NSView")]
+        #[deprecated = "Use -accessoryControllers instead. For compatibility this returns the view of the first accessory controller, or nil"]
         #[method_id(@__retain_semantics Other accessoryView)]
         pub unsafe fn accessoryView(&self) -> Option<Id<NSView, Shared>>;
 
+        #[deprecated]
         #[method(updateFromPrintInfo)]
         pub unsafe fn updateFromPrintInfo(&self);
 
+        #[deprecated]
         #[method(finalWritePrintInfo)]
         pub unsafe fn finalWritePrintInfo(&self);
     }

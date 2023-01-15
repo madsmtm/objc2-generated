@@ -112,6 +112,7 @@ extern_methods!(
         #[method(publishWithOptions:)]
         pub unsafe fn publishWithOptions(&self, options: NSNetServiceOptions);
 
+        #[deprecated = "Not supported"]
         #[method(resolve)]
         pub unsafe fn resolve(&self);
 

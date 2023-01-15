@@ -158,6 +158,7 @@ extern_methods!(
             remainingRect: NSRectPointer,
         ) -> NSRect;
 
+        #[deprecated]
         #[method(containsPoint:)]
         pub unsafe fn containsPoint(&self, point: NSPoint) -> bool;
     }

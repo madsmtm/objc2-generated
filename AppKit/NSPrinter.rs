@@ -77,14 +77,17 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSPrinter")]
     unsafe impl NSPrinter {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(statusForTable:)]
         pub unsafe fn statusForTable(&self, tableName: &NSString) -> NSPrinterTableStatus;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(isKey:inTable:)]
         pub unsafe fn isKey_inTable(&self, key: Option<&NSString>, table: &NSString) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(booleanForKey:inTable:)]
         pub unsafe fn booleanForKey_inTable(
             &self,
@@ -93,6 +96,7 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(floatForKey:inTable:)]
         pub unsafe fn floatForKey_inTable(
             &self,
@@ -101,20 +105,24 @@ extern_methods!(
         ) -> c_float;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(intForKey:inTable:)]
         pub unsafe fn intForKey_inTable(&self, key: Option<&NSString>, table: &NSString) -> c_int;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(rectForKey:inTable:)]
         pub unsafe fn rectForKey_inTable(&self, key: Option<&NSString>, table: &NSString)
             -> NSRect;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(sizeForKey:inTable:)]
         pub unsafe fn sizeForKey_inTable(&self, key: Option<&NSString>, table: &NSString)
             -> NSSize;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other stringForKey:inTable:)]
         pub unsafe fn stringForKey_inTable(
             &self,
@@ -123,6 +131,7 @@ extern_methods!(
         ) -> Option<Id<NSString, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[deprecated]
         #[method_id(@__retain_semantics Other stringListForKey:inTable:)]
         pub unsafe fn stringListForKey_inTable(
             &self,
@@ -131,23 +140,29 @@ extern_methods!(
         ) -> Option<Id<NSArray, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(imageRectForPaper:)]
         pub unsafe fn imageRectForPaper(&self, paperName: Option<&NSString>) -> NSRect;
 
+        #[deprecated]
         #[method(acceptsBinary)]
         pub unsafe fn acceptsBinary(&self) -> bool;
 
+        #[deprecated]
         #[method(isColor)]
         pub unsafe fn isColor(&self) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(isFontAvailable:)]
         pub unsafe fn isFontAvailable(&self, faceName: Option<&NSString>) -> bool;
 
+        #[deprecated]
         #[method(isOutputStackInReverseOrder)]
         pub unsafe fn isOutputStackInReverseOrder(&self) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other printerWithName:domain:includeUnavailable:)]
         pub unsafe fn printerWithName_domain_includeUnavailable(
             name: &NSString,
@@ -156,14 +171,17 @@ extern_methods!(
         ) -> Option<Id<NSPrinter, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other domain)]
         pub unsafe fn domain(&self) -> Id<NSString, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other host)]
         pub unsafe fn host(&self) -> Id<NSString, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other note)]
         pub unsafe fn note(&self) -> Id<NSString, Shared>;
     }

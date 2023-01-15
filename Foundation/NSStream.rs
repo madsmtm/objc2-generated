@@ -183,6 +183,7 @@ extern_methods!(
             feature = "Foundation_NSOutputStream",
             feature = "Foundation_NSString"
         ))]
+        #[deprecated = "Use nw_connection_t in Network framework instead"]
         #[method(getStreamsToHostWithName:port:inputStream:outputStream:)]
         pub unsafe fn getStreamsToHostWithName_port_inputStream_outputStream(
             hostname: &NSString,
@@ -196,6 +197,7 @@ extern_methods!(
             feature = "Foundation_NSInputStream",
             feature = "Foundation_NSOutputStream"
         ))]
+        #[deprecated = "Use nw_connection_t in Network framework instead"]
         #[method(getStreamsToHost:port:inputStream:outputStream:)]
         pub unsafe fn getStreamsToHost_port_inputStream_outputStream(
             host: &NSHost,

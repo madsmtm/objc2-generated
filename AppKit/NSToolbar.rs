@@ -102,9 +102,11 @@ extern_methods!(
             selectedItemIdentifier: Option<&NSToolbarItemIdentifier>,
         );
 
+        #[deprecated = "NSToolbarSizeMode is no longer recommended and will be ignored in the future"]
         #[method(sizeMode)]
         pub unsafe fn sizeMode(&self) -> NSToolbarSizeMode;
 
+        #[deprecated = "NSToolbarSizeMode is no longer recommended and will be ignored in the future"]
         #[method(setSizeMode:)]
         pub unsafe fn setSizeMode(&self, sizeMode: NSToolbarSizeMode);
 
@@ -142,9 +144,11 @@ extern_methods!(
             centeredItemIdentifiers: &NSSet<NSToolbarItemIdentifier>,
         );
 
+        #[deprecated = "Use the centeredItemIdentifiers property instead"]
         #[method_id(@__retain_semantics Other centeredItemIdentifier)]
         pub unsafe fn centeredItemIdentifier(&self) -> Option<Id<NSToolbarItemIdentifier, Shared>>;
 
+        #[deprecated = "Use the centeredItemIdentifiers property instead"]
         #[method(setCenteredItemIdentifier:)]
         pub unsafe fn setCenteredItemIdentifier(
             &self,
@@ -256,25 +260,31 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSToolbar")]
     unsafe impl NSToolbar {
         #[cfg(feature = "AppKit_NSView")]
+        #[deprecated = "Use NSTitlebarAccessoryViewController with NSWindow instead"]
         #[method_id(@__retain_semantics Other fullScreenAccessoryView)]
         pub unsafe fn fullScreenAccessoryView(&self) -> Option<Id<NSView, Shared>>;
 
         #[cfg(feature = "AppKit_NSView")]
+        #[deprecated = "Use NSTitlebarAccessoryViewController with NSWindow instead"]
         #[method(setFullScreenAccessoryView:)]
         pub unsafe fn setFullScreenAccessoryView(&self, fullScreenAccessoryView: Option<&NSView>);
 
+        #[deprecated = "Use NSTitlebarAccessoryViewController and its fullScreenMinHeight property with NSWindow instead."]
         #[method(fullScreenAccessoryViewMinHeight)]
         pub unsafe fn fullScreenAccessoryViewMinHeight(&self) -> CGFloat;
 
+        #[deprecated = "Use NSTitlebarAccessoryViewController and its fullScreenMinHeight property with NSWindow instead."]
         #[method(setFullScreenAccessoryViewMinHeight:)]
         pub unsafe fn setFullScreenAccessoryViewMinHeight(
             &self,
             fullScreenAccessoryViewMinHeight: CGFloat,
         );
 
+        #[deprecated = "Use NSTitlebarAccessoryViewController with NSWindow instead. The max height of a titlebar accessory is implied by its view's height."]
         #[method(fullScreenAccessoryViewMaxHeight)]
         pub unsafe fn fullScreenAccessoryViewMaxHeight(&self) -> CGFloat;
 
+        #[deprecated = "Use NSTitlebarAccessoryViewController with NSWindow instead. The max height of a titlebar accessory is implied by its view's height."]
         #[method(setFullScreenAccessoryViewMaxHeight:)]
         pub unsafe fn setFullScreenAccessoryViewMaxHeight(
             &self,

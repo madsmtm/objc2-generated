@@ -203,14 +203,17 @@ extern_methods!(
         pub unsafe fn meshBindings(&self) -> Id<NSArray<MTLBinding>, Shared>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLArgument"))]
+        #[deprecated]
         #[method_id(@__retain_semantics Other vertexArguments)]
         pub fn vertexArguments(&self) -> Option<Id<NSArray<MTLArgument>, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLArgument"))]
+        #[deprecated]
         #[method_id(@__retain_semantics Other fragmentArguments)]
         pub fn fragmentArguments(&self) -> Option<Id<NSArray<MTLArgument>, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLArgument"))]
+        #[deprecated]
         #[method_id(@__retain_semantics Other tileArguments)]
         pub fn tileArguments(&self) -> Option<Id<NSArray<MTLArgument>, Shared>>;
     }
@@ -258,9 +261,11 @@ extern_methods!(
         #[method(setVertexDescriptor:)]
         pub fn setVertexDescriptor(&self, vertexDescriptor: Option<&MTLVertexDescriptor>);
 
+        #[deprecated]
         #[method(sampleCount)]
         pub fn sampleCount(&self) -> NSUInteger;
 
+        #[deprecated]
         #[method(setSampleCount:)]
         pub fn setSampleCount(&self, sampleCount: NSUInteger);
 

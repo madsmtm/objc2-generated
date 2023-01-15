@@ -810,6 +810,7 @@ extern_methods!(
             feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
         ))]
+        #[deprecated = "Use -saveToURL:ofType:forSaveOperation:completionHandler: instead"]
         #[method(saveToURL:ofType:forSaveOperation:error:_)]
         pub unsafe fn saveToURL_ofType_forSaveOperation_error(
             &self,
@@ -819,6 +820,7 @@ extern_methods!(
         ) -> Result<(), Id<NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSString"))]
+        #[deprecated]
         #[method_id(@__retain_semantics Other dataRepresentationOfType:)]
         pub unsafe fn dataRepresentationOfType(
             &self,
@@ -826,6 +828,7 @@ extern_methods!(
         ) -> Option<Id<NSData, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[deprecated]
         #[method_id(@__retain_semantics Other fileAttributesToWriteToFile:ofType:saveOperation:)]
         pub unsafe fn fileAttributesToWriteToFile_ofType_saveOperation(
             &self,
@@ -835,10 +838,12 @@ extern_methods!(
         ) -> Option<Id<NSDictionary, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other fileName)]
         pub unsafe fn fileName(&self) -> Option<Id<NSString, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSFileWrapper", feature = "Foundation_NSString"))]
+        #[deprecated]
         #[method_id(@__retain_semantics Other fileWrapperRepresentationOfType:)]
         pub unsafe fn fileWrapperRepresentationOfType(
             &self,
@@ -846,6 +851,7 @@ extern_methods!(
         ) -> Option<Id<NSFileWrapper, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Init initWithContentsOfFile:ofType:)]
         pub unsafe fn initWithContentsOfFile_ofType(
             this: Option<Allocated<Self>>,
@@ -854,6 +860,7 @@ extern_methods!(
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+        #[deprecated]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:ofType:)]
         pub unsafe fn initWithContentsOfURL_ofType(
             this: Option<Allocated<Self>>,
@@ -862,6 +869,7 @@ extern_methods!(
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSString"))]
+        #[deprecated]
         #[method(loadDataRepresentation:ofType:)]
         pub unsafe fn loadDataRepresentation_ofType(
             &self,
@@ -870,6 +878,7 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(all(feature = "Foundation_NSFileWrapper", feature = "Foundation_NSString"))]
+        #[deprecated]
         #[method(loadFileWrapperRepresentation:ofType:)]
         pub unsafe fn loadFileWrapperRepresentation_ofType(
             &self,
@@ -877,18 +886,22 @@ extern_methods!(
             r#type: &NSString,
         ) -> bool;
 
+        #[deprecated]
         #[method(printShowingPrintPanel:)]
         pub unsafe fn printShowingPrintPanel(&self, flag: bool);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(readFromFile:ofType:)]
         pub unsafe fn readFromFile_ofType(&self, fileName: &NSString, r#type: &NSString) -> bool;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+        #[deprecated]
         #[method(readFromURL:ofType:)]
         pub unsafe fn readFromURL_ofType(&self, url: &NSURL, r#type: &NSString) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(revertToSavedFromFile:ofType:)]
         pub unsafe fn revertToSavedFromFile_ofType(
             &self,
@@ -897,14 +910,17 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+        #[deprecated]
         #[method(revertToSavedFromURL:ofType:)]
         pub unsafe fn revertToSavedFromURL_ofType(&self, url: &NSURL, r#type: &NSString) -> bool;
 
         #[cfg(feature = "AppKit_NSPrintInfo")]
+        #[deprecated]
         #[method(runModalPageLayoutWithPrintInfo:)]
         pub unsafe fn runModalPageLayoutWithPrintInfo(&self, printInfo: &NSPrintInfo) -> NSInteger;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(saveToFile:saveOperation:delegate:didSaveSelector:contextInfo:)]
         pub unsafe fn saveToFile_saveOperation_delegate_didSaveSelector_contextInfo(
             &self,
@@ -916,14 +932,17 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setFileName:)]
         pub unsafe fn setFileName(&self, fileName: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(writeToFile:ofType:)]
         pub unsafe fn writeToFile_ofType(&self, fileName: &NSString, r#type: &NSString) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(writeToFile:ofType:originalFile:saveOperation:)]
         pub unsafe fn writeToFile_ofType_originalFile_saveOperation(
             &self,
@@ -934,10 +953,12 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+        #[deprecated]
         #[method(writeToURL:ofType:)]
         pub unsafe fn writeToURL_ofType(&self, url: &NSURL, r#type: &NSString) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(writeWithBackupToFile:ofType:saveOperation:)]
         pub unsafe fn writeWithBackupToFile_ofType_saveOperation(
             &self,

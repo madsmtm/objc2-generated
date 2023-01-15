@@ -63,16 +63,20 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSPageLayout")]
     unsafe impl NSPageLayout {
         #[cfg(feature = "AppKit_NSView")]
+        #[deprecated]
         #[method(setAccessoryView:)]
         pub unsafe fn setAccessoryView(&self, accessoryView: Option<&NSView>);
 
         #[cfg(feature = "AppKit_NSView")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other accessoryView)]
         pub unsafe fn accessoryView(&self) -> Option<Id<NSView, Shared>>;
 
+        #[deprecated]
         #[method(readPrintInfo)]
         pub unsafe fn readPrintInfo(&self);
 
+        #[deprecated]
         #[method(writePrintInfo)]
         pub unsafe fn writePrintInfo(&self);
     }

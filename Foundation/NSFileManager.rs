@@ -330,6 +330,7 @@ extern_methods!(
         ) -> Result<(), Id<NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[deprecated = "Use -attributesOfItemAtPath:error: instead"]
         #[method_id(@__retain_semantics Other fileAttributesAtPath:traverseLink:)]
         pub unsafe fn fileAttributesAtPath_traverseLink(
             &self,
@@ -338,6 +339,7 @@ extern_methods!(
         ) -> Option<Id<NSDictionary, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[deprecated = "Use -setAttributes:ofItemAtPath:error: instead"]
         #[method(changeFileAttributes:atPath:)]
         pub unsafe fn changeFileAttributes_atPath(
             &self,
@@ -346,6 +348,7 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[deprecated = "Use -contentsOfDirectoryAtPath:error: instead"]
         #[method_id(@__retain_semantics Other directoryContentsAtPath:)]
         pub unsafe fn directoryContentsAtPath(
             &self,
@@ -353,6 +356,7 @@ extern_methods!(
         ) -> Option<Id<NSArray, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[deprecated = "Use -attributesOfFileSystemForPath:error: instead"]
         #[method_id(@__retain_semantics Other fileSystemAttributesAtPath:)]
         pub unsafe fn fileSystemAttributesAtPath(
             &self,
@@ -360,6 +364,7 @@ extern_methods!(
         ) -> Option<Id<NSDictionary, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use -destinationOfSymbolicLinkAtPath:error:"]
         #[method_id(@__retain_semantics Other pathContentOfSymbolicLinkAtPath:)]
         pub unsafe fn pathContentOfSymbolicLinkAtPath(
             &self,
@@ -367,6 +372,7 @@ extern_methods!(
         ) -> Option<Id<NSString, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use -createSymbolicLinkAtPath:error: instead"]
         #[method(createSymbolicLinkAtPath:pathContent:)]
         pub unsafe fn createSymbolicLinkAtPath_pathContent(
             &self,
@@ -375,6 +381,7 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[deprecated = "Use -createDirectoryAtPath:withIntermediateDirectories:attributes:error: instead"]
         #[method(createDirectoryAtPath:attributes:)]
         pub unsafe fn createDirectoryAtPath_attributes(
             &self,
@@ -383,6 +390,7 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Not supported"]
         #[method(linkPath:toPath:handler:)]
         pub unsafe fn linkPath_toPath_handler(
             &self,
@@ -392,6 +400,7 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Not supported"]
         #[method(copyPath:toPath:handler:)]
         pub unsafe fn copyPath_toPath_handler(
             &self,
@@ -401,6 +410,7 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Not supported"]
         #[method(movePath:toPath:handler:)]
         pub unsafe fn movePath_toPath_handler(
             &self,
@@ -410,6 +420,7 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Not supported"]
         #[method(removeFileAtPath:handler:)]
         pub unsafe fn removeFileAtPath_handler(
             &self,

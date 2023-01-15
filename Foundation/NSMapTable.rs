@@ -78,15 +78,19 @@ extern_methods!(
             valueOptions: NSPointerFunctionsOptions,
         ) -> Id<NSMapTable<KeyType, ObjectType>, Shared>;
 
+        #[deprecated = "GC no longer supported"]
         #[method_id(@__retain_semantics Other mapTableWithStrongToStrongObjects)]
         pub unsafe fn mapTableWithStrongToStrongObjects() -> Id<Object, Shared>;
 
+        #[deprecated = "GC no longer supported"]
         #[method_id(@__retain_semantics Other mapTableWithWeakToStrongObjects)]
         pub unsafe fn mapTableWithWeakToStrongObjects() -> Id<Object, Shared>;
 
+        #[deprecated = "GC no longer supported"]
         #[method_id(@__retain_semantics Other mapTableWithStrongToWeakObjects)]
         pub unsafe fn mapTableWithStrongToWeakObjects() -> Id<Object, Shared>;
 
+        #[deprecated = "GC no longer supported"]
         #[method_id(@__retain_semantics Other mapTableWithWeakToWeakObjects)]
         pub unsafe fn mapTableWithWeakToWeakObjects() -> Id<Object, Shared>;
 

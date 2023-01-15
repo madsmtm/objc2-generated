@@ -1090,6 +1090,7 @@ extern_protocol!(
             feature = "AppKit_NSTableView",
             feature = "Foundation_NSIndexSet"
         ))]
+        #[deprecated = "Use -tableView:pasteboardWriterForRow: instead"]
         #[optional]
         #[method(tableView:writeRowsWithIndexes:toPasteboard:)]
         pub unsafe fn tableView_writeRowsWithIndexes_toPasteboard(
@@ -1128,6 +1129,7 @@ extern_protocol!(
             feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
         ))]
+        #[deprecated = "Use NSFilePromiseReceiver objects instead"]
         #[optional]
         #[method_id(@__retain_semantics Other tableView:namesOfPromisedFilesDroppedAtDestination:forDraggedRowsWithIndexes:)]
         pub unsafe fn tableView_namesOfPromisedFilesDroppedAtDestination_forDraggedRowsWithIndexes(
@@ -1143,23 +1145,29 @@ extern_methods!(
     /// NSDeprecated
     #[cfg(feature = "AppKit_NSTableView")]
     unsafe impl NSTableView {
+        #[deprecated]
         #[method(setDrawsGrid:)]
         pub unsafe fn setDrawsGrid(&self, flag: bool);
 
+        #[deprecated]
         #[method(drawsGrid)]
         pub unsafe fn drawsGrid(&self) -> bool;
 
+        #[deprecated]
         #[method(selectColumn:byExtendingSelection:)]
         pub unsafe fn selectColumn_byExtendingSelection(&self, column: NSInteger, extend: bool);
 
+        #[deprecated]
         #[method(selectRow:byExtendingSelection:)]
         pub unsafe fn selectRow_byExtendingSelection(&self, row: NSInteger, extend: bool);
 
         #[cfg(feature = "Foundation_NSEnumerator")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other selectedColumnEnumerator)]
         pub unsafe fn selectedColumnEnumerator(&self) -> Id<NSEnumerator, Shared>;
 
         #[cfg(feature = "Foundation_NSEnumerator")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other selectedRowEnumerator)]
         pub unsafe fn selectedRowEnumerator(&self) -> Id<NSEnumerator, Shared>;
 
@@ -1168,6 +1176,7 @@ extern_methods!(
             feature = "AppKit_NSImage",
             feature = "Foundation_NSArray"
         ))]
+        #[deprecated]
         #[method_id(@__retain_semantics Other dragImageForRows:event:dragImageOffset:)]
         pub unsafe fn dragImageForRows_event_dragImageOffset(
             &self,
@@ -1176,16 +1185,20 @@ extern_methods!(
             dragImageOffset: NSPointPointer,
         ) -> Option<Id<NSImage, Shared>>;
 
+        #[deprecated]
         #[method(setAutoresizesAllColumnsToFit:)]
         pub unsafe fn setAutoresizesAllColumnsToFit(&self, flag: bool);
 
+        #[deprecated]
         #[method(autoresizesAllColumnsToFit)]
         pub unsafe fn autoresizesAllColumnsToFit(&self) -> bool;
 
+        #[deprecated]
         #[method(columnsInRect:)]
         pub unsafe fn columnsInRect(&self, rect: NSRect) -> NSRange;
 
         #[cfg(feature = "AppKit_NSCell")]
+        #[deprecated = "Use View Based TableView and -viewAtColumn:row:"]
         #[method_id(@__retain_semantics Other preparedCellAtColumn:row:)]
         pub unsafe fn preparedCellAtColumn_row(
             &self,
@@ -1194,26 +1207,32 @@ extern_methods!(
         ) -> Option<Id<NSCell, Shared>>;
 
         #[cfg(feature = "AppKit_NSText")]
+        #[deprecated = "Use a View Based TableView with an NSTextField"]
         #[method(textShouldBeginEditing:)]
         pub unsafe fn textShouldBeginEditing(&self, textObject: &NSText) -> bool;
 
         #[cfg(feature = "AppKit_NSText")]
+        #[deprecated = "Use a View Based TableView with an NSTextField"]
         #[method(textShouldEndEditing:)]
         pub unsafe fn textShouldEndEditing(&self, textObject: &NSText) -> bool;
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[deprecated = "Use a View Based TableView with an NSTextField"]
         #[method(textDidBeginEditing:)]
         pub unsafe fn textDidBeginEditing(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[deprecated = "Use a View Based TableView with an NSTextField"]
         #[method(textDidEndEditing:)]
         pub unsafe fn textDidEndEditing(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[deprecated = "Use a View Based TableView with an NSTextField"]
         #[method(textDidChange:)]
         pub unsafe fn textDidChange(&self, notification: &NSNotification);
 
         #[cfg(feature = "AppKit_NSCell")]
+        #[deprecated = "Use a View Based TableView; observe the window’s firstResponder for focus change notifications"]
         #[method(shouldFocusCell:atColumn:row:)]
         pub unsafe fn shouldFocusCell_atColumn_row(
             &self,
@@ -1222,12 +1241,15 @@ extern_methods!(
             row: NSInteger,
         ) -> bool;
 
+        #[deprecated = "Use a View Based TableView and observe the window.firstResponder"]
         #[method(focusedColumn)]
         pub unsafe fn focusedColumn(&self) -> NSInteger;
 
+        #[deprecated = "Use a View Based TableView; make a particular view the first responder with [window makeFirstResponder:view] to focus it."]
         #[method(setFocusedColumn:)]
         pub unsafe fn setFocusedColumn(&self, focusedColumn: NSInteger);
 
+        #[deprecated = "Use a View Based TableView; directly interact with a particular view as required and call -performClick: on it, if necessary"]
         #[method(performClickOnCellAtColumn:row:)]
         pub unsafe fn performClickOnCellAtColumn_row(&self, column: NSInteger, row: NSInteger);
     }

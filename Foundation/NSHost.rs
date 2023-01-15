@@ -51,12 +51,15 @@ extern_methods!(
         #[method_id(@__retain_semantics Other localizedName)]
         pub unsafe fn localizedName(&self) -> Option<Id<NSString, Shared>>;
 
+        #[deprecated = "Caching no longer supported"]
         #[method(setHostCacheEnabled:)]
         pub unsafe fn setHostCacheEnabled(flag: bool);
 
+        #[deprecated = "Caching no longer supported"]
         #[method(isHostCacheEnabled)]
         pub unsafe fn isHostCacheEnabled() -> bool;
 
+        #[deprecated = "Caching no longer supported"]
         #[method(flushHostCache)]
         pub unsafe fn flushHostCache();
     }

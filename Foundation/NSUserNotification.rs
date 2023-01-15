@@ -295,6 +295,7 @@ extern_protocol!(
             feature = "Foundation_NSUserNotification",
             feature = "Foundation_NSUserNotificationCenter"
         ))]
+        #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[optional]
         #[method(userNotificationCenter:didDeliverNotification:)]
         pub unsafe fn userNotificationCenter_didDeliverNotification(
@@ -307,6 +308,7 @@ extern_protocol!(
             feature = "Foundation_NSUserNotification",
             feature = "Foundation_NSUserNotificationCenter"
         ))]
+        #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[optional]
         #[method(userNotificationCenter:didActivateNotification:)]
         pub unsafe fn userNotificationCenter_didActivateNotification(
@@ -319,6 +321,7 @@ extern_protocol!(
             feature = "Foundation_NSUserNotification",
             feature = "Foundation_NSUserNotificationCenter"
         ))]
+        #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[optional]
         #[method(userNotificationCenter:shouldPresentNotification:)]
         pub unsafe fn userNotificationCenter_shouldPresentNotification(

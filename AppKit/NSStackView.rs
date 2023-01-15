@@ -243,9 +243,11 @@ extern_methods!(
     /// NSStackViewDeprecated
     #[cfg(feature = "AppKit_NSStackView")]
     unsafe impl NSStackView {
+        #[deprecated = "Set -distribution to NSStackViewDistributionEqualSpacing instead."]
         #[method(hasEqualSpacing)]
         pub unsafe fn hasEqualSpacing(&self) -> bool;
 
+        #[deprecated = "Set -distribution to NSStackViewDistributionEqualSpacing instead."]
         #[method(setHasEqualSpacing:)]
         pub unsafe fn setHasEqualSpacing(&self, hasEqualSpacing: bool);
     }

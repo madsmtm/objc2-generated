@@ -123,6 +123,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSScriptClassDescription")]
     unsafe impl NSScriptClassDescription {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(isReadOnlyKey:)]
         pub unsafe fn isReadOnlyKey(&self, key: &NSString) -> bool;
     }

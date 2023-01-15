@@ -61,9 +61,11 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "CoreData_NSManagedObjectContext")]
     unsafe impl NSManagedObjectContext {
+        #[deprecated = "Use -initWithConcurrencyType: instead"]
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self, Shared>;
 
+        #[deprecated = "Use -initWithConcurrencyType: instead"]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
@@ -249,12 +251,15 @@ extern_methods!(
         #[method(refreshAllObjects)]
         pub unsafe fn refreshAllObjects(&self);
 
+        #[deprecated = "Use a queue style context and -performBlockAndWait: instead"]
         #[method(lock)]
         pub unsafe fn lock(&self);
 
+        #[deprecated = "Use a queue style context and -performBlockAndWait: instead"]
         #[method(unlock)]
         pub unsafe fn unlock(&self);
 
+        #[deprecated = "Use a queue style context and -performBlock: instead"]
         #[method(tryLock)]
         pub unsafe fn tryLock(&self) -> bool;
 

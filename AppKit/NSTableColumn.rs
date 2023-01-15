@@ -135,9 +135,11 @@ extern_methods!(
     /// NSDeprecated
     #[cfg(feature = "AppKit_NSTableColumn")]
     unsafe impl NSTableColumn {
+        #[deprecated]
         #[method(setResizable:)]
         pub unsafe fn setResizable(&self, flag: bool);
 
+        #[deprecated]
         #[method(isResizable)]
         pub unsafe fn isResizable(&self) -> bool;
 

@@ -957,16 +957,20 @@ extern_methods!(
             rectCount: NonNull<NSUInteger>,
         ) -> NSRectArray;
 
+        #[deprecated]
         #[method(usesScreenFonts)]
         pub unsafe fn usesScreenFonts(&self) -> bool;
 
+        #[deprecated]
         #[method(setUsesScreenFonts:)]
         pub unsafe fn setUsesScreenFonts(&self, usesScreenFonts: bool);
 
         #[cfg(feature = "AppKit_NSFont")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other substituteFontForFont:)]
         pub unsafe fn substituteFontForFont(&self, originalFont: &NSFont) -> Id<NSFont, Shared>;
 
+        #[deprecated = "Use -setGlyphs:properties:characterIndexes:font:forGlyphRange instead"]
         #[method(insertGlyphs:length:forStartingGlyphAtIndex:characterIndex:)]
         pub unsafe fn insertGlyphs_length_forStartingGlyphAtIndex_characterIndex(
             &self,
@@ -976,6 +980,7 @@ extern_methods!(
             charIndex: NSUInteger,
         );
 
+        #[deprecated = "Use -setGlyphs:properties:characterIndexes:font:forGlyphRange instead"]
         #[method(insertGlyph:atGlyphIndex:characterIndex:)]
         pub unsafe fn insertGlyph_atGlyphIndex_characterIndex(
             &self,
@@ -984,6 +989,7 @@ extern_methods!(
             charIndex: NSUInteger,
         );
 
+        #[deprecated = "Use -setGlyphs:properties:characterIndexes:font:forGlyphRange instead"]
         #[method(replaceGlyphAtIndex:withGlyph:)]
         pub unsafe fn replaceGlyphAtIndex_withGlyph(
             &self,
@@ -991,9 +997,11 @@ extern_methods!(
             newGlyph: NSGlyph,
         );
 
+        #[deprecated = "Use -setGlyphs:properties:characterIndexes:font:forGlyphRange instead"]
         #[method(deleteGlyphsInRange:)]
         pub unsafe fn deleteGlyphsInRange(&self, glyphRange: NSRange);
 
+        #[deprecated = "Use -setGlyphs:properties:characterIndexes:font:forGlyphRange instead"]
         #[method(setCharacterIndex:forGlyphAtIndex:)]
         pub unsafe fn setCharacterIndex_forGlyphAtIndex(
             &self,
@@ -1001,6 +1009,7 @@ extern_methods!(
             glyphIndex: NSUInteger,
         );
 
+        #[deprecated = "Use -setGlyphs:properties:characterIndexes:font:forGlyphRange instead"]
         #[method(setIntAttribute:value:forGlyphAtIndex:)]
         pub unsafe fn setIntAttribute_value_forGlyphAtIndex(
             &self,
@@ -1009,9 +1018,11 @@ extern_methods!(
             glyphIndex: NSUInteger,
         );
 
+        #[deprecated = "Use -setGlyphs:properties:characterIndexes:font:forGlyphRange instead"]
         #[method(invalidateGlyphsOnLayoutInvalidationForGlyphRange:)]
         pub unsafe fn invalidateGlyphsOnLayoutInvalidationForGlyphRange(&self, glyphRange: NSRange);
 
+        #[deprecated = "Use -getGlyphsInRange:glyphs:properties:characterIndexes:bidiLevels: instead"]
         #[method(intAttribute:forGlyphAtIndex:)]
         pub unsafe fn intAttribute_forGlyphAtIndex(
             &self,
@@ -1019,6 +1030,7 @@ extern_methods!(
             glyphIndex: NSUInteger,
         ) -> NSInteger;
 
+        #[deprecated = "Use -getGlyphsInRange:glyphs:properties:characterIndexes:bidiLevels: instead"]
         #[method(getGlyphsInRange:glyphs:characterIndexes:glyphInscriptions:elasticBits:)]
         pub unsafe fn getGlyphsInRange_glyphs_characterIndexes_glyphInscriptions_elasticBits(
             &self,
@@ -1029,6 +1041,7 @@ extern_methods!(
             elasticBuffer: *mut Bool,
         ) -> NSUInteger;
 
+        #[deprecated = "Use -getGlyphsInRange:glyphs:properties:characterIndexes:bidiLevels: instead"]
         #[method(getGlyphsInRange:glyphs:characterIndexes:glyphInscriptions:elasticBits:bidiLevels:)]
         pub unsafe fn getGlyphsInRange_glyphs_characterIndexes_glyphInscriptions_elasticBits_bidiLevels(
             &self,
@@ -1040,6 +1053,7 @@ extern_methods!(
             bidiLevelBuffer: *mut c_uchar,
         ) -> NSUInteger;
 
+        #[deprecated = "Use -getGlyphsInRange:glyphs:properties:characterIndexes:bidiLevels: instead"]
         #[method(getGlyphs:range:)]
         pub unsafe fn getGlyphs_range(
             &self,
@@ -1047,6 +1061,7 @@ extern_methods!(
             glyphRange: NSRange,
         ) -> NSUInteger;
 
+        #[deprecated = "Use -invalidateLayoutForCharacterRange:actualCharacterRange: instead"]
         #[method(invalidateLayoutForCharacterRange:isSoft:actualCharacterRange:)]
         pub unsafe fn invalidateLayoutForCharacterRange_isSoft_actualCharacterRange(
             &self,
@@ -1056,6 +1071,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "AppKit_NSTextStorage")]
+        #[deprecated = "Use -processEditingForTextStorage:edited:range:changeInLength:invalidatedRange: instead"]
         #[method(textStorage:edited:range:changeInLength:invalidatedRange:)]
         pub unsafe fn textStorage_edited_range_changeInLength_invalidatedRange(
             &self,
@@ -1066,6 +1082,7 @@ extern_methods!(
             invalidatedCharRange: NSRange,
         );
 
+        #[deprecated = "Use -setLocation:forStartOfGlyphRange: instead"]
         #[method(setLocations:startingGlyphIndexes:count:forGlyphRange:)]
         pub unsafe fn setLocations_startingGlyphIndexes_count_forGlyphRange(
             &self,
@@ -1076,6 +1093,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "AppKit_NSColor", feature = "AppKit_NSFont"))]
+        #[deprecated = "Use -showCGGlyphs:positions:count:font:matrix:attributes:inContext: instead"]
         #[method(showPackedGlyphs:length:glyphRange:atPoint:font:color:printingAdjustment:)]
         pub unsafe fn showPackedGlyphs_length_glyphRange_atPoint_font_color_printingAdjustment(
             &self,
@@ -1088,9 +1106,11 @@ extern_methods!(
             printingAdjustment: NSSize,
         );
 
+        #[deprecated = "Please use usesDefaultHyphenation or -[NSParagraphStyle hyphenationFactor] instead."]
         #[method(hyphenationFactor)]
         pub unsafe fn hyphenationFactor(&self) -> c_float;
 
+        #[deprecated = "Please use usesDefaultHyphenation or -[NSParagraphStyle hyphenationFactor] instead."]
         #[method(setHyphenationFactor:)]
         pub unsafe fn setHyphenationFactor(&self, hyphenationFactor: c_float);
     }

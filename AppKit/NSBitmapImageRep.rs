@@ -105,6 +105,7 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSBitmapImageRep")]
     unsafe impl NSBitmapImageRep {
+        #[deprecated = "Use -[NSView cacheDisplayInRect:toBitmapImageRep:] to snapshot a view."]
         #[method_id(@__retain_semantics Init initWithFocusedViewRect:)]
         pub unsafe fn initWithFocusedViewRect(
             this: Option<Allocated<Self>>,

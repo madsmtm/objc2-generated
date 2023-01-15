@@ -18,6 +18,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSURLConnection")]
     unsafe impl NSURLConnection {
         #[cfg(feature = "Foundation_NSURLRequest")]
+        #[deprecated = "Use NSURLSession (see NSURLSession.h)"]
         #[method_id(@__retain_semantics Init initWithRequest:delegate:startImmediately:)]
         pub unsafe fn initWithRequest_delegate_startImmediately(
             this: Option<Allocated<Self>>,
@@ -27,6 +28,7 @@ extern_methods!(
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(feature = "Foundation_NSURLRequest")]
+        #[deprecated = "Use NSURLSession (see NSURLSession.h)"]
         #[method_id(@__retain_semantics Init initWithRequest:delegate:)]
         pub unsafe fn initWithRequest_delegate(
             this: Option<Allocated<Self>>,
@@ -35,6 +37,7 @@ extern_methods!(
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(feature = "Foundation_NSURLRequest")]
+        #[deprecated = "Use NSURLSession (see NSURLSession.h)"]
         #[method_id(@__retain_semantics Other connectionWithRequest:delegate:)]
         pub unsafe fn connectionWithRequest_delegate(
             request: &NSURLRequest,
@@ -114,6 +117,7 @@ extern_protocol!(
             feature = "Foundation_NSURLConnection",
             feature = "Foundation_NSURLProtectionSpace"
         ))]
+        #[deprecated = "Use -connection:willSendRequestForAuthenticationChallenge: instead."]
         #[optional]
         #[method(connection:canAuthenticateAgainstProtectionSpace:)]
         pub unsafe fn connection_canAuthenticateAgainstProtectionSpace(
@@ -126,6 +130,7 @@ extern_protocol!(
             feature = "Foundation_NSURLAuthenticationChallenge",
             feature = "Foundation_NSURLConnection"
         ))]
+        #[deprecated = "Use -connection:willSendRequestForAuthenticationChallenge: instead."]
         #[optional]
         #[method(connection:didReceiveAuthenticationChallenge:)]
         pub unsafe fn connection_didReceiveAuthenticationChallenge(
@@ -138,6 +143,7 @@ extern_protocol!(
             feature = "Foundation_NSURLAuthenticationChallenge",
             feature = "Foundation_NSURLConnection"
         ))]
+        #[deprecated = "Use -connection:willSendRequestForAuthenticationChallenge: instead."]
         #[optional]
         #[method(connection:didCancelAuthenticationChallenge:)]
         pub unsafe fn connection_didCancelAuthenticationChallenge(
@@ -271,6 +277,7 @@ extern_methods!(
             feature = "Foundation_NSURLRequest",
             feature = "Foundation_NSURLResponse"
         ))]
+        #[deprecated = "Use [NSURLSession dataTaskWithRequest:completionHandler:] (see NSURLSession.h"]
         #[method_id(@__retain_semantics Other sendSynchronousRequest:returningResponse:error:_)]
         pub unsafe fn sendSynchronousRequest_returningResponse_error(
             request: &NSURLRequest,
@@ -290,6 +297,7 @@ extern_methods!(
             feature = "Foundation_NSURLRequest",
             feature = "Foundation_NSURLResponse"
         ))]
+        #[deprecated = "Use [NSURLSession dataTaskWithRequest:completionHandler:] (see NSURLSession.h"]
         #[method(sendAsynchronousRequest:queue:completionHandler:)]
         pub unsafe fn sendAsynchronousRequest_queue_completionHandler(
             request: &NSURLRequest,

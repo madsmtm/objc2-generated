@@ -68,10 +68,12 @@ extern_methods!(
         #[method_id(@__retain_semantics Other globallyUniqueString)]
         pub unsafe fn globallyUniqueString(&self) -> Id<NSString, Shared>;
 
+        #[deprecated = "-operatingSystem always returns NSMACHOperatingSystem, use -operatingSystemVersion or -isOperatingSystemAtLeastVersion: instead"]
         #[method(operatingSystem)]
         pub unsafe fn operatingSystem(&self) -> NSUInteger;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "-operatingSystemName always returns NSMACHOperatingSystem, use -operatingSystemVersionString instead"]
         #[method_id(@__retain_semantics Other operatingSystemName)]
         pub unsafe fn operatingSystemName(&self) -> Id<NSString, Shared>;
 

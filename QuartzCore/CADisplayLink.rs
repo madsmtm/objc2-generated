@@ -50,15 +50,19 @@ extern_methods!(
         #[method(setPaused:)]
         pub unsafe fn setPaused(&self, paused: bool);
 
+        #[deprecated = "preferredFramesPerSecond"]
         #[method(frameInterval)]
         pub unsafe fn frameInterval(&self) -> NSInteger;
 
+        #[deprecated = "preferredFramesPerSecond"]
         #[method(setFrameInterval:)]
         pub unsafe fn setFrameInterval(&self, frameInterval: NSInteger);
 
+        #[deprecated]
         #[method(preferredFramesPerSecond)]
         pub unsafe fn preferredFramesPerSecond(&self) -> NSInteger;
 
+        #[deprecated]
         #[method(setPreferredFramesPerSecond:)]
         pub unsafe fn setPreferredFramesPerSecond(&self, preferredFramesPerSecond: NSInteger);
 

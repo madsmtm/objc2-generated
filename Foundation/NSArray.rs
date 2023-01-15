@@ -397,22 +397,26 @@ extern_methods!(
     unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
         NSArray<ObjectType, ObjectTypeOwnership>
     {
+        #[deprecated = "Use -getObjects:range: instead"]
         #[method(getObjects:)]
         pub unsafe fn getObjects(&self, objects: NonNull<NonNull<ObjectType>>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other arrayWithContentsOfFile:)]
         pub unsafe fn arrayWithContentsOfFile(
             path: &NSString,
         ) -> Option<Id<NSArray<ObjectType>, Shared>>;
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other arrayWithContentsOfURL:)]
         pub unsafe fn arrayWithContentsOfURL(
             url: &NSURL,
         ) -> Option<Id<NSArray<ObjectType>, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(writeToFile:atomically:)]
         pub unsafe fn writeToFile_atomically(
             &self,
@@ -421,6 +425,7 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[deprecated]
         #[method(writeToURL:atomically:)]
         pub unsafe fn writeToURL_atomically(&self, url: &NSURL, atomically: bool) -> bool;
     }
@@ -517,6 +522,7 @@ extern_methods!(
         #[method(removeObjectIdenticalTo:)]
         pub unsafe fn removeObjectIdenticalTo(&self, anObject: &ObjectType);
 
+        #[deprecated = "Not supported"]
         #[method(removeObjectsFromIndices:numIndices:)]
         pub unsafe fn removeObjectsFromIndices_numIndices(
             &self,

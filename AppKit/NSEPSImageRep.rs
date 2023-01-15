@@ -31,6 +31,7 @@ extern_methods!(
             epsData: &NSData,
         ) -> Option<Id<Self, Shared>>;
 
+        #[deprecated]
         #[method(prepareGState)]
         pub unsafe fn prepareGState(&self);
 

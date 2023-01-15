@@ -26,6 +26,7 @@ extern_methods!(
             activityType: &NSString,
         ) -> Id<Self, Shared>;
 
+        #[deprecated = "Use initWithActivityType: with a specific activity type string"]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 

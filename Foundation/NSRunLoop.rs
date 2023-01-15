@@ -71,6 +71,7 @@ extern_methods!(
         #[method(runMode:beforeDate:)]
         pub unsafe fn runMode_beforeDate(&self, mode: &NSRunLoopMode, limitDate: &NSDate) -> bool;
 
+        #[deprecated = "Not supported"]
         #[method(configureAsServer)]
         pub unsafe fn configureAsServer(&self);
 

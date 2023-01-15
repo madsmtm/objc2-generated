@@ -323,6 +323,7 @@ extern_protocol!(
             feature = "AppKit_NSPasteboard",
             feature = "Foundation_NSArray"
         ))]
+        #[deprecated = "Use -outlineView:pasteboardWriterForItem: instead"]
         #[optional]
         #[method(outlineView:writeItems:toPasteboard:)]
         pub unsafe fn outlineView_writeItems_toPasteboard(
@@ -369,6 +370,7 @@ extern_protocol!(
             feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
         ))]
+        #[deprecated = "Use NSFilePromiseReceiver objects instead"]
         #[optional]
         #[method_id(@__retain_semantics Other outlineView:namesOfPromisedFilesDroppedAtDestination:forDraggedItems:)]
         pub unsafe fn outlineView_namesOfPromisedFilesDroppedAtDestination_forDraggedItems(

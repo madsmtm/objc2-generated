@@ -556,10 +556,12 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSWorkspace")]
     unsafe impl NSWorkspace {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use -[NSWorkspace openURL:] instead."]
         #[method(openFile:)]
         pub unsafe fn openFile(&self, fullPath: &NSString) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use -[NSWorkspace openURLs:withApplicationAtURL:configuration:completionHandler:] instead."]
         #[method(openFile:withApplication:)]
         pub unsafe fn openFile_withApplication(
             &self,
@@ -568,6 +570,7 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use -[NSWorkspace openURLs:withApplicationAtURL:configuration:completionHandler:] instead."]
         #[method(openFile:withApplication:andDeactivate:)]
         pub unsafe fn openFile_withApplication_andDeactivate(
             &self,
@@ -577,6 +580,7 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use -[NSWorkspace openApplicationAtURL:configuration:completionHandler:] instead."]
         #[method(launchApplication:)]
         pub unsafe fn launchApplication(&self, appName: &NSString) -> bool;
 
@@ -586,6 +590,7 @@ extern_methods!(
             feature = "Foundation_NSError",
             feature = "Foundation_NSURL"
         ))]
+        #[deprecated = "Use -[NSWorkspace openApplicationAtURL:configuration:completionHandler:] instead."]
         #[method_id(@__retain_semantics Other launchApplicationAtURL:options:configuration:error:_)]
         pub unsafe fn launchApplicationAtURL_options_configuration_error(
             &self,
@@ -600,6 +605,7 @@ extern_methods!(
             feature = "Foundation_NSError",
             feature = "Foundation_NSURL"
         ))]
+        #[deprecated = "Use -[NSWorkspace openURL:configuration:completionHandler:] instead."]
         #[method_id(@__retain_semantics Other openURL:options:configuration:error:_)]
         pub unsafe fn openURL_options_configuration_error(
             &self,
@@ -615,6 +621,7 @@ extern_methods!(
             feature = "Foundation_NSError",
             feature = "Foundation_NSURL"
         ))]
+        #[deprecated = "Use -[NSWorkspace openURLs:withApplicationAtURL:configuration:completionHandler:] instead."]
         #[method_id(@__retain_semantics Other openURLs:withApplicationAtURL:options:configuration:error:_)]
         pub unsafe fn openURLs_withApplicationAtURL_options_configuration_error(
             &self,
@@ -625,6 +632,7 @@ extern_methods!(
         ) -> Result<Id<NSRunningApplication, Shared>, Id<NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use -[NSWorkspace openApplicationAtURL:configuration:completionHandler:] instead."]
         #[method(launchApplication:showIcon:autolaunch:)]
         pub unsafe fn launchApplication_showIcon_autolaunch(
             &self,
@@ -634,6 +642,7 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use -[NSWorkspace URLForApplicationWithBundleIdentifier:] instead."]
         #[method_id(@__retain_semantics Other fullPathForApplication:)]
         pub unsafe fn fullPathForApplication(
             &self,
@@ -641,6 +650,7 @@ extern_methods!(
         ) -> Option<Id<NSString, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use -[NSWorkspace URLForApplicationWithBundleIdentifier:] instead."]
         #[method_id(@__retain_semantics Other absolutePathForAppBundleWithIdentifier:)]
         pub unsafe fn absolutePathForAppBundleWithIdentifier(
             &self,
@@ -652,6 +662,7 @@ extern_methods!(
             feature = "Foundation_NSNumber",
             feature = "Foundation_NSString"
         ))]
+        #[deprecated = "Use -[NSWorkspace openApplicationAtURL:configuration:completionHandler:] instead."]
         #[method(launchAppWithBundleIdentifier:options:additionalEventParamDescriptor:launchIdentifier:)]
         pub unsafe fn launchAppWithBundleIdentifier_options_additionalEventParamDescriptor_launchIdentifier(
             &self,
@@ -668,6 +679,7 @@ extern_methods!(
             feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
         ))]
+        #[deprecated = "Use -[NSWorkspace openURLs:withApplicationAtURL:configuration:completionHandler:] instead."]
         #[method(openURLs:withAppBundleIdentifier:options:additionalEventParamDescriptor:launchIdentifiers:)]
         pub unsafe fn openURLs_withAppBundleIdentifier_options_additionalEventParamDescriptor_launchIdentifiers(
             &self,
@@ -679,16 +691,20 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(openTempFile:)]
         pub unsafe fn openTempFile(&self, fullPath: &NSString) -> bool;
 
+        #[deprecated]
         #[method(findApplications)]
         pub unsafe fn findApplications(&self);
 
+        #[deprecated]
         #[method(noteUserDefaultsChanged)]
         pub unsafe fn noteUserDefaultsChanged(&self);
 
         #[cfg(feature = "AppKit_NSImage")]
+        #[deprecated]
         #[method(slideImage:from:to:)]
         pub unsafe fn slideImage_from_to(
             &self,
@@ -697,35 +713,44 @@ extern_methods!(
             toPoint: NSPoint,
         );
 
+        #[deprecated]
         #[method(checkForRemovableMedia)]
         pub unsafe fn checkForRemovableMedia(&self);
 
+        #[deprecated]
         #[method(noteFileSystemChanged)]
         pub unsafe fn noteFileSystemChanged(&self);
 
+        #[deprecated]
         #[method(fileSystemChanged)]
         pub unsafe fn fileSystemChanged(&self) -> bool;
 
+        #[deprecated]
         #[method(userDefaultsChanged)]
         pub unsafe fn userDefaultsChanged(&self) -> bool;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other mountNewRemovableMedia)]
         pub unsafe fn mountNewRemovableMedia(&self) -> Option<Id<NSArray, Shared>>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
+        #[deprecated = "Use -[NSWorkspace frontmostApplication] instead."]
         #[method_id(@__retain_semantics Other activeApplication)]
         pub unsafe fn activeApplication(&self) -> Option<Id<NSDictionary, Shared>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[deprecated = "Use -[NSFileManager mountedVolumeURLsIncludingResourceValuesForKeys:options:] instead."]
         #[method_id(@__retain_semantics Other mountedLocalVolumePaths)]
         pub unsafe fn mountedLocalVolumePaths(&self) -> Option<Id<NSArray, Shared>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[deprecated = "Use -[NSFileManager mountedVolumeURLsIncludingResourceValuesForKeys:options:] instead."]
         #[method_id(@__retain_semantics Other mountedRemovableMedia)]
         pub unsafe fn mountedRemovableMedia(&self) -> Option<Id<NSArray, Shared>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[deprecated = "Use -[NSWorkspace runningApplications] instead."]
         #[method_id(@__retain_semantics Other launchedApplications)]
         pub unsafe fn launchedApplications(&self) -> Option<Id<NSArray, Shared>>;
 
@@ -734,6 +759,7 @@ extern_methods!(
             feature = "AppKit_NSView",
             feature = "Foundation_NSString"
         ))]
+        #[deprecated = "Use -[NSWorkspace openURL:] instead."]
         #[method(openFile:fromImage:at:inView:)]
         pub unsafe fn openFile_fromImage_at_inView(
             &self,
@@ -744,6 +770,7 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[deprecated]
         #[method(performFileOperation:source:destination:files:tag:)]
         pub unsafe fn performFileOperation_source_destination_files_tag(
             &self,
@@ -755,6 +782,7 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use -[NSWorkspace URLForApplicationToOpenURL:] to get the URL of an application that will open a given item, or -[NSURL getResourceValue:forKey:error:] with NSURLContentTypeKey to get the type of the given item."]
         #[method(getInfoForFile:application:type:)]
         pub unsafe fn getInfoForFile_application_type(
             &self,
@@ -764,10 +792,12 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(all(feature = "AppKit_NSImage", feature = "Foundation_NSString"))]
+        #[deprecated = "Use -[NSWorkspace iconForContentType:] instead."]
         #[method_id(@__retain_semantics Other iconForFileType:)]
         pub unsafe fn iconForFileType(&self, fileType: &NSString) -> Id<NSImage, Shared>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+        #[deprecated = "Use -[NSURL getResourceValue:forKey:error:] with NSURLContentTypeKey instead."]
         #[method_id(@__retain_semantics Other typeOfFile:error:_)]
         pub unsafe fn typeOfFile_error(
             &self,
@@ -775,6 +805,7 @@ extern_methods!(
         ) -> Result<Id<NSString, Shared>, Id<NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use UTType.localizedDescription instead."]
         #[method_id(@__retain_semantics Other localizedDescriptionForType:)]
         pub unsafe fn localizedDescriptionForType(
             &self,
@@ -782,6 +813,7 @@ extern_methods!(
         ) -> Option<Id<NSString, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use UTType.preferredFilenameExtension instead."]
         #[method_id(@__retain_semantics Other preferredFilenameExtensionForType:)]
         pub unsafe fn preferredFilenameExtensionForType(
             &self,
@@ -789,6 +821,7 @@ extern_methods!(
         ) -> Option<Id<NSString, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use +[UTType typesWithTag:tagClass:conformingToType:] to get a list of candidate types, then check if the input type conforms to any of them."]
         #[method(filenameExtension:isValidForType:)]
         pub unsafe fn filenameExtension_isValidForType(
             &self,
@@ -797,6 +830,7 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use -[UTType conformsToType:] instead."]
         #[method(type:conformsToType:)]
         pub unsafe fn type_conformsToType(
             &self,

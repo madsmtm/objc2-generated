@@ -187,14 +187,17 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSPathControl")]
     unsafe impl NSPathControl {
         #[cfg(feature = "AppKit_NSPathComponentCell")]
+        #[deprecated = "Use the clickedPathItem property instead"]
         #[method_id(@__retain_semantics Other clickedPathComponentCell)]
         pub unsafe fn clickedPathComponentCell(&self) -> Option<Id<NSPathComponentCell, Shared>>;
 
         #[cfg(all(feature = "AppKit_NSPathComponentCell", feature = "Foundation_NSArray"))]
+        #[deprecated = "Use the pathItems property instead"]
         #[method_id(@__retain_semantics Other pathComponentCells)]
         pub unsafe fn pathComponentCells(&self) -> Id<NSArray<NSPathComponentCell>, Shared>;
 
         #[cfg(all(feature = "AppKit_NSPathComponentCell", feature = "Foundation_NSArray"))]
+        #[deprecated = "Use the pathItems property instead"]
         #[method(setPathComponentCells:)]
         pub unsafe fn setPathComponentCells(&self, cells: &NSArray<NSPathComponentCell>);
     }

@@ -788,22 +788,28 @@ extern_methods!(
     /// NSDeprecated
     #[cfg(feature = "AppKit_NSCell")]
     unsafe impl NSCell {
+        #[deprecated = "The controlTint property is not respected on 10.14 and later. For custom cells, use +[NSColor controlAccentColor] to respect the user's preferred accent color when drawing."]
         #[method(controlTint)]
         pub unsafe fn controlTint(&self) -> NSControlTint;
 
+        #[deprecated = "The controlTint property is not respected on 10.14 and later. For custom cells, use +[NSColor controlAccentColor] to respect the user's preferred accent color when drawing."]
         #[method(setControlTint:)]
         pub unsafe fn setControlTint(&self, controlTint: NSControlTint);
 
+        #[deprecated]
         #[method(entryType)]
         pub unsafe fn entryType(&self) -> NSInteger;
 
+        #[deprecated]
         #[method(setEntryType:)]
         pub unsafe fn setEntryType(&self, r#type: NSInteger);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(isEntryAcceptable:)]
         pub unsafe fn isEntryAcceptable(&self, string: &NSString) -> bool;
 
+        #[deprecated]
         #[method(setFloatingPointFormat:left:right:)]
         pub unsafe fn setFloatingPointFormat_left_right(
             &self,
@@ -812,17 +818,21 @@ extern_methods!(
             rightDigits: NSUInteger,
         );
 
+        #[deprecated]
         #[method(setMnemonicLocation:)]
         pub unsafe fn setMnemonicLocation(&self, location: NSUInteger);
 
+        #[deprecated]
         #[method(mnemonicLocation)]
         pub unsafe fn mnemonicLocation(&self) -> NSUInteger;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other mnemonic)]
         pub unsafe fn mnemonic(&self) -> Id<NSString, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setTitleWithMnemonic:)]
         pub unsafe fn setTitleWithMnemonic(&self, stringWithAmpersand: &NSString);
     }

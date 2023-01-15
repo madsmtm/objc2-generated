@@ -70,9 +70,11 @@ extern_methods!(
         #[method(setUserInfo:)]
         pub unsafe fn setUserInfo(&self, userInfo: Option<&NSDictionary>);
 
+        #[deprecated = "Use NSEntityDescription.indexes instead"]
         #[method(isIndexed)]
         pub unsafe fn isIndexed(&self) -> bool;
 
+        #[deprecated = "Use NSEntityDescription.indexes instead"]
         #[method(setIndexed:)]
         pub unsafe fn setIndexed(&self, indexed: bool);
 
@@ -94,9 +96,11 @@ extern_methods!(
         #[method(setIndexedBySpotlight:)]
         pub unsafe fn setIndexedBySpotlight(&self, indexedBySpotlight: bool);
 
+        #[deprecated = "Spotlight integration is deprecated. Use CoreSpotlight integration instead."]
         #[method(isStoredInExternalRecord)]
         pub unsafe fn isStoredInExternalRecord(&self) -> bool;
 
+        #[deprecated = "Spotlight integration is deprecated. Use CoreSpotlight integration instead."]
         #[method(setStoredInExternalRecord:)]
         pub unsafe fn setStoredInExternalRecord(&self, storedInExternalRecord: bool);
 

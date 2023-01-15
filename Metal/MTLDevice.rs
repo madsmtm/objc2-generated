@@ -330,6 +330,7 @@ extern_protocol!(
         #[method(supportsPullModelInterpolation)]
         pub fn supportsPullModelInterpolation(&self) -> bool;
 
+        #[deprecated]
         #[method(areBarycentricCoordsSupported)]
         pub unsafe fn areBarycentricCoordsSupported(&self) -> bool;
 
@@ -439,6 +440,7 @@ extern_protocol!(
         ) -> Result<Id<MTLLibrary, Shared>, Id<NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+        #[deprecated = "Use -newLibraryWithURL:error: instead"]
         #[method_id(@__retain_semantics New newLibraryWithFile:error:_)]
         pub fn newLibraryWithFile_error(
             &self,
@@ -552,6 +554,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics New newFence)]
         pub fn newFence(&self) -> Option<Id<MTLFence, Shared>>;
 
+        #[deprecated = "Use supportsFamily instead"]
         #[method(supportsFeatureSet:)]
         pub fn supportsFeatureSet(&self, featureSet: MTLFeatureSet) -> bool;
 

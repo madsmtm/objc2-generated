@@ -1102,9 +1102,11 @@ extern_methods!(
         #[method(runToolbarCustomizationPalette:)]
         pub unsafe fn runToolbarCustomizationPalette(&self, sender: Option<&Object>);
 
+        #[deprecated = "This property has no effect"]
         #[method(showsToolbarButton)]
         pub unsafe fn showsToolbarButton(&self) -> bool;
 
+        #[deprecated = "This property has no effect"]
         #[method(setShowsToolbarButton:)]
         pub unsafe fn setShowsToolbarButton(&self, showsToolbarButton: bool);
 
@@ -1719,77 +1721,100 @@ extern_methods!(
     /// NSDeprecated
     #[cfg(feature = "AppKit_NSWindow")]
     unsafe impl NSWindow {
+        #[deprecated = "This method shouldn’t be used as it doesn’t work in all drawing situations; instead, a subview should be used that implements the desired drawing behavior"]
         #[method(cacheImageInRect:)]
         pub unsafe fn cacheImageInRect(&self, rect: NSRect);
 
+        #[deprecated = "This method shouldn’t be used as it doesn’t work in all drawing situations; instead, a subview should be used that implements the desired drawing behavior"]
         #[method(restoreCachedImage)]
         pub unsafe fn restoreCachedImage(&self);
 
+        #[deprecated = "This method shouldn’t be used as it doesn’t work in all drawing situations; instead, a subview should be used that implements the desired drawing behavior"]
         #[method(discardCachedImage)]
         pub unsafe fn discardCachedImage(&self);
 
         #[cfg(feature = "AppKit_NSMenu")]
+        #[deprecated = "This method does not do anything and should not be called."]
         #[method(menuChanged:)]
         pub unsafe fn menuChanged(menu: &NSMenu);
 
+        #[deprecated = "This method is unused and should not be called."]
         #[method(gState)]
         pub unsafe fn gState(&self) -> NSInteger;
 
+        #[deprecated = "Use -convertRectToScreen: or -convertPointToScreen: instead"]
         #[method(convertBaseToScreen:)]
         pub unsafe fn convertBaseToScreen(&self, point: NSPoint) -> NSPoint;
 
+        #[deprecated = "Use -convertRectFromScreen or -convertPointFromScreen: instead"]
         #[method(convertScreenToBase:)]
         pub unsafe fn convertScreenToBase(&self, point: NSPoint) -> NSPoint;
 
+        #[deprecated = "Use -convertRectToBacking: and -backingScaleFactor instead"]
         #[method(userSpaceScaleFactor)]
         pub unsafe fn userSpaceScaleFactor(&self) -> CGFloat;
 
+        #[deprecated = "This method does not do anything and should not be called."]
         #[method(useOptimizedDrawing:)]
         pub unsafe fn useOptimizedDrawing(&self, flag: bool);
 
+        #[deprecated = "This method does not do anything and should not be called."]
         #[method(canStoreColor)]
         pub unsafe fn canStoreColor(&self) -> bool;
 
+        #[deprecated = "Use +[NSAnimationContext runAnimationGroup:completionHandler:] to perform atomic updates across runloop invocations."]
         #[method(disableFlushWindow)]
         pub unsafe fn disableFlushWindow(&self);
 
+        #[deprecated = "Use +[NSAnimationContext runAnimationGroup:completionHandler:] to perform atomic updates across runloop invocations."]
         #[method(enableFlushWindow)]
         pub unsafe fn enableFlushWindow(&self);
 
+        #[deprecated = "Use +[NSAnimationContext runAnimationGroup:completionHandler:] to perform atomic updates across runloop invocations."]
         #[method(isFlushWindowDisabled)]
         pub unsafe fn isFlushWindowDisabled(&self) -> bool;
 
+        #[deprecated = "Allow AppKit's automatic deferred display mechanism to take care of flushing any graphics contexts as needed."]
         #[method(flushWindow)]
         pub unsafe fn flushWindow(&self);
 
+        #[deprecated = "Allow AppKit's automatic deferred display mechanism to take care of flushing any graphics contexts as needed."]
         #[method(flushWindowIfNeeded)]
         pub unsafe fn flushWindowIfNeeded(&self);
 
+        #[deprecated = "Use +[NSAnimationContext runAnimationGroup:completionHandler:] to temporarily prevent AppKit's automatic deferred display mechanism from drawing."]
         #[method(isAutodisplay)]
         pub unsafe fn isAutodisplay(&self) -> bool;
 
+        #[deprecated = "Use +[NSAnimationContext runAnimationGroup:completionHandler:] to temporarily prevent AppKit's automatic deferred display mechanism from drawing."]
         #[method(setAutodisplay:)]
         pub unsafe fn setAutodisplay(&self, autodisplay: bool);
 
         #[cfg(feature = "AppKit_NSGraphicsContext")]
+        #[deprecated = "Add instances of NSView to display content in a window."]
         #[method_id(@__retain_semantics Other graphicsContext)]
         pub unsafe fn graphicsContext(&self) -> Option<Id<NSGraphicsContext, Shared>>;
 
+        #[deprecated = "This property does not do anything and should not be used"]
         #[method(isOneShot)]
         pub unsafe fn isOneShot(&self) -> bool;
 
+        #[deprecated = "This property does not do anything and should not be used"]
         #[method(setOneShot:)]
         pub unsafe fn setOneShot(&self, oneShot: bool);
 
+        #[deprecated = "This property does not do anything and should not be used"]
         #[method(preferredBackingLocation)]
         pub unsafe fn preferredBackingLocation(&self) -> NSWindowBackingLocation;
 
+        #[deprecated = "This property does not do anything and should not be used"]
         #[method(setPreferredBackingLocation:)]
         pub unsafe fn setPreferredBackingLocation(
             &self,
             preferredBackingLocation: NSWindowBackingLocation,
         );
 
+        #[deprecated = "This property does not do anything and should not be used"]
         #[method(backingLocation)]
         pub unsafe fn backingLocation(&self) -> NSWindowBackingLocation;
 

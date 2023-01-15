@@ -151,25 +151,31 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSTask")]
     unsafe impl NSTask {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other launchPath)]
         pub unsafe fn launchPath(&self) -> Option<Id<NSString, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setLaunchPath:)]
         pub unsafe fn setLaunchPath(&self, launchPath: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other currentDirectoryPath)]
         pub unsafe fn currentDirectoryPath(&self) -> Id<NSString, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setCurrentDirectoryPath:)]
         pub unsafe fn setCurrentDirectoryPath(&self, currentDirectoryPath: &NSString);
 
+        #[deprecated]
         #[method(launch)]
         pub unsafe fn launch(&self);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[deprecated]
         #[method_id(@__retain_semantics Other launchedTaskWithLaunchPath:arguments:)]
         pub unsafe fn launchedTaskWithLaunchPath_arguments(
             path: &NSString,

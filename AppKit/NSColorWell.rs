@@ -44,9 +44,11 @@ extern_methods!(
         #[method(drawWellInside:)]
         pub unsafe fn drawWellInside(&self, insideRect: NSRect);
 
+        #[deprecated = "This property will be deprecated in a future release."]
         #[method(isBordered)]
         pub unsafe fn isBordered(&self) -> bool;
 
+        #[deprecated = "This property will be deprecated in a future release."]
         #[method(setBordered:)]
         pub unsafe fn setBordered(&self, bordered: bool);
 

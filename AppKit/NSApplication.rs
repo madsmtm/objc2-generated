@@ -1184,6 +1184,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSApplication")]
     unsafe impl NSApplication {
         #[cfg(feature = "AppKit_NSWindow")]
+        #[deprecated = "Use -[NSWindow beginSheet:completionHandler:] instead"]
         #[method(runModalForWindow:relativeToWindow:)]
         pub unsafe fn runModalForWindow_relativeToWindow(
             &self,
@@ -1192,6 +1193,7 @@ extern_methods!(
         ) -> NSInteger;
 
         #[cfg(feature = "AppKit_NSWindow")]
+        #[deprecated = "Use -[NSWindow beginSheet:completionHandler:] instead"]
         #[method(beginModalSessionForWindow:relativeToWindow:)]
         pub unsafe fn beginModalSessionForWindow_relativeToWindow(
             &self,
@@ -1200,6 +1202,7 @@ extern_methods!(
         ) -> NSModalSession;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[deprecated]
         #[method(application:printFiles:)]
         pub unsafe fn application_printFiles(
             &self,
@@ -1208,6 +1211,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "AppKit_NSWindow")]
+        #[deprecated = "Use -[NSWindow beginSheet:completionHandler:] instead"]
         #[method(beginSheet:modalForWindow:modalDelegate:didEndSelector:contextInfo:)]
         pub unsafe fn beginSheet_modalForWindow_modalDelegate_didEndSelector_contextInfo(
             &self,
@@ -1219,14 +1223,17 @@ extern_methods!(
         );
 
         #[cfg(feature = "AppKit_NSWindow")]
+        #[deprecated = "Use -[NSWindow endSheet:] instead"]
         #[method(endSheet:)]
         pub unsafe fn endSheet(&self, sheet: &NSWindow);
 
         #[cfg(feature = "AppKit_NSWindow")]
+        #[deprecated = "Use -[NSWindow endSheet:returnCode:] instead"]
         #[method(endSheet:returnCode:)]
         pub unsafe fn endSheet_returnCode(&self, sheet: &NSWindow, returnCode: NSInteger);
 
         #[cfg(feature = "AppKit_NSWindow")]
+        #[deprecated = "Use -enumerateWindowsWithOptions:usingBlock: instead"]
         #[method_id(@__retain_semantics Other makeWindowsPerform:inOrder:)]
         pub unsafe fn makeWindowsPerform_inOrder(
             &self,
@@ -1235,6 +1242,7 @@ extern_methods!(
         ) -> Option<Id<NSWindow, Shared>>;
 
         #[cfg(feature = "AppKit_NSGraphicsContext")]
+        #[deprecated = "This method always returns nil. If you need access to the current drawing context, use [NSGraphicsContext currentContext] inside of a draw operation."]
         #[method_id(@__retain_semantics Other context)]
         pub unsafe fn context(&self) -> Option<Id<NSGraphicsContext, Shared>>;
     }

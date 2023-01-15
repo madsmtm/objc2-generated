@@ -237,32 +237,41 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSFileHandle")]
     unsafe impl NSFileHandle {
         #[cfg(feature = "Foundation_NSData")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other readDataToEndOfFile)]
         pub unsafe fn readDataToEndOfFile(&self) -> Id<NSData, Shared>;
 
         #[cfg(feature = "Foundation_NSData")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other readDataOfLength:)]
         pub unsafe fn readDataOfLength(&self, length: NSUInteger) -> Id<NSData, Shared>;
 
         #[cfg(feature = "Foundation_NSData")]
+        #[deprecated]
         #[method(writeData:)]
         pub unsafe fn writeData(&self, data: &NSData);
 
+        #[deprecated]
         #[method(offsetInFile)]
         pub unsafe fn offsetInFile(&self) -> c_ulonglong;
 
+        #[deprecated]
         #[method(seekToEndOfFile)]
         pub unsafe fn seekToEndOfFile(&self) -> c_ulonglong;
 
+        #[deprecated]
         #[method(seekToFileOffset:)]
         pub unsafe fn seekToFileOffset(&self, offset: c_ulonglong);
 
+        #[deprecated]
         #[method(truncateFileAtOffset:)]
         pub unsafe fn truncateFileAtOffset(&self, offset: c_ulonglong);
 
+        #[deprecated]
         #[method(synchronizeFile)]
         pub unsafe fn synchronizeFile(&self);
 
+        #[deprecated]
         #[method(closeFile)]
         pub unsafe fn closeFile(&self);
     }

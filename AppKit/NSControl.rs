@@ -370,6 +370,7 @@ extern_methods!(
     /// NSDeprecated
     #[cfg(feature = "AppKit_NSControl")]
     unsafe impl NSControl {
+        #[deprecated]
         #[method(setFloatingPointFormat:left:right:)]
         pub unsafe fn setFloatingPointFormat_left_right(
             &self,
@@ -399,9 +400,11 @@ extern_methods!(
         #[method(selectedTag)]
         pub unsafe fn selectedTag(&self) -> NSInteger;
 
+        #[deprecated = "Set the needsDisplay property to YES instead"]
         #[method(setNeedsDisplay)]
         pub unsafe fn setNeedsDisplay(&self);
 
+        #[deprecated = "Override -layout instead. This method should never be called"]
         #[method(calcSize)]
         pub unsafe fn calcSize(&self);
 

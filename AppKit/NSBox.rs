@@ -137,13 +137,16 @@ extern_methods!(
     /// NSDeprecated
     #[cfg(feature = "AppKit_NSBox")]
     unsafe impl NSBox {
+        #[deprecated = "borderType is only applicable to NSBoxOldStyle, which is deprecated. To replace a borderType of NSNoBorder, use the `transparent` property."]
         #[method(borderType)]
         pub unsafe fn borderType(&self) -> NSBorderType;
 
+        #[deprecated = "borderType is only applicable to NSBoxOldStyle, which is deprecated. To replace a borderType of NSNoBorder, use the `transparent` property."]
         #[method(setBorderType:)]
         pub unsafe fn setBorderType(&self, borderType: NSBorderType);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setTitleWithMnemonic:)]
         pub unsafe fn setTitleWithMnemonic(&self, stringWithAmpersand: Option<&NSString>);
     }

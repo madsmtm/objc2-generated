@@ -212,6 +212,7 @@ extern_methods!(
             ObjectTypeOwnership: Ownership,
         > NSDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
     {
+        #[deprecated = "Use -getObjects:andKeys:count: instead"]
         #[method(getObjects:andKeys:)]
         pub unsafe fn getObjects_andKeys(
             &self,
@@ -220,18 +221,21 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other dictionaryWithContentsOfFile:)]
         pub unsafe fn dictionaryWithContentsOfFile(
             path: &NSString,
         ) -> Option<Id<NSDictionary<KeyType, ObjectType>, Shared>>;
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other dictionaryWithContentsOfURL:)]
         pub unsafe fn dictionaryWithContentsOfURL(
             url: &NSURL,
         ) -> Option<Id<NSDictionary<KeyType, ObjectType>, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(writeToFile:atomically:)]
         pub unsafe fn writeToFile_atomically(
             &self,
@@ -240,6 +244,7 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[deprecated]
         #[method(writeToURL:atomically:)]
         pub unsafe fn writeToURL_atomically(&self, url: &NSURL, atomically: bool) -> bool;
     }

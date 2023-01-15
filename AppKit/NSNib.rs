@@ -44,6 +44,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSNib")]
     unsafe impl NSNib {
         #[cfg(feature = "Foundation_NSURL")]
+        #[deprecated]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
         pub unsafe fn initWithContentsOfURL(
             this: Option<Allocated<Self>>,
@@ -51,6 +52,7 @@ extern_methods!(
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
+        #[deprecated]
         #[method(instantiateNibWithExternalNameTable:)]
         pub unsafe fn instantiateNibWithExternalNameTable(
             &self,
@@ -58,6 +60,7 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[deprecated]
         #[method(instantiateNibWithOwner:topLevelObjects:)]
         pub unsafe fn instantiateNibWithOwner_topLevelObjects(
             &self,

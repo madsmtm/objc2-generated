@@ -29,6 +29,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other allConnections)]
         pub unsafe fn allConnections() -> Id<NSArray<NSConnection>, Shared>;
 
+        #[deprecated]
         #[method_id(@__retain_semantics Other defaultConnection)]
         pub unsafe fn defaultConnection() -> Id<NSConnection, Shared>;
 

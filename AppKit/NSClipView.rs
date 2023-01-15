@@ -106,12 +106,15 @@ extern_methods!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSClipView")]
     unsafe impl NSClipView {
+        #[deprecated = "Use -constrainBoundsRect: instead."]
         #[method(constrainScrollPoint:)]
         pub unsafe fn constrainScrollPoint(&self, newOrigin: NSPoint) -> NSPoint;
 
+        #[deprecated = "Setting this property has no effect.  NSClipView will always minimize the area of the document view that is invalidated.  To force invalidation of the document view, use -[NSView setNeedsDisplayInRect:]."]
         #[method(copiesOnScroll)]
         pub unsafe fn copiesOnScroll(&self) -> bool;
 
+        #[deprecated = "Setting this property has no effect.  NSClipView will always minimize the area of the document view that is invalidated.  To force invalidation of the document view, use -[NSView setNeedsDisplayInRect:]."]
         #[method(setCopiesOnScroll:)]
         pub unsafe fn setCopiesOnScroll(&self, copiesOnScroll: bool);
     }

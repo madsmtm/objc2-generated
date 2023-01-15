@@ -289,6 +289,7 @@ extern_methods!(
     /// NSDeprecated
     #[cfg(feature = "Foundation_NSValue")]
     unsafe impl NSValue {
+        #[deprecated]
         #[method(getValue:)]
         pub unsafe fn getValue(&self, value: NonNull<c_void>);
     }

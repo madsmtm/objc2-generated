@@ -390,6 +390,7 @@ extern_methods!(
         #[method(currentControlTint)]
         pub unsafe fn currentControlTint() -> NSControlTint;
 
+        #[deprecated = "NSControlTint does not describe the full range of available control accent colors. Use +[NSColor controlAccentColor] instead."]
         #[method_id(@__retain_semantics Other colorForControlTint:)]
         pub unsafe fn colorForControlTint(controlTint: NSControlTint) -> Id<NSColor, Shared>;
 
@@ -549,50 +550,65 @@ extern_methods!(
     /// NSDeprecated
     #[cfg(feature = "AppKit_NSColor")]
     unsafe impl NSColor {
+        #[deprecated = "Use a color that matches the semantics being used, such as `separatorColor`"]
         #[method_id(@__retain_semantics Other controlHighlightColor)]
         pub unsafe fn controlHighlightColor() -> Id<NSColor, Shared>;
 
+        #[deprecated = "Use a color that matches the semantics being used, such as `separatorColor`"]
         #[method_id(@__retain_semantics Other controlLightHighlightColor)]
         pub unsafe fn controlLightHighlightColor() -> Id<NSColor, Shared>;
 
+        #[deprecated = "Use a color that matches the semantics being used, such as `separatorColor`"]
         #[method_id(@__retain_semantics Other controlShadowColor)]
         pub unsafe fn controlShadowColor() -> Id<NSColor, Shared>;
 
+        #[deprecated = "Use a color that matches the semantics being used, such as `separatorColor`"]
         #[method_id(@__retain_semantics Other controlDarkShadowColor)]
         pub unsafe fn controlDarkShadowColor() -> Id<NSColor, Shared>;
 
+        #[deprecated = "Use NSScroller instead"]
         #[method_id(@__retain_semantics Other scrollBarColor)]
         pub unsafe fn scrollBarColor() -> Id<NSColor, Shared>;
 
+        #[deprecated = "Use NSScroller instead"]
         #[method_id(@__retain_semantics Other knobColor)]
         pub unsafe fn knobColor() -> Id<NSColor, Shared>;
 
+        #[deprecated = "Use NSScroller instead"]
         #[method_id(@__retain_semantics Other selectedKnobColor)]
         pub unsafe fn selectedKnobColor() -> Id<NSColor, Shared>;
 
+        #[deprecated = "Use NSVisualEffectMaterialTitlebar"]
         #[method_id(@__retain_semantics Other windowFrameColor)]
         pub unsafe fn windowFrameColor() -> Id<NSColor, Shared>;
 
+        #[deprecated = "Use NSVisualEffectMaterialSelection"]
         #[method_id(@__retain_semantics Other selectedMenuItemColor)]
         pub unsafe fn selectedMenuItemColor() -> Id<NSColor, Shared>;
 
+        #[deprecated = "Use NSVisualEffectMaterialHeaderView"]
         #[method_id(@__retain_semantics Other headerColor)]
         pub unsafe fn headerColor() -> Id<NSColor, Shared>;
 
+        #[deprecated]
         #[method_id(@__retain_semantics Other secondarySelectedControlColor)]
         pub unsafe fn secondarySelectedControlColor() -> Id<NSColor, Shared>;
 
+        #[deprecated]
         #[method_id(@__retain_semantics Other alternateSelectedControlColor)]
         pub unsafe fn alternateSelectedControlColor() -> Id<NSColor, Shared>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other controlAlternatingRowBackgroundColors)]
         pub unsafe fn controlAlternatingRowBackgroundColors() -> Id<NSArray<NSColor>, Shared>;
 
+        #[deprecated = "Use -type and NSColorType instead"]
         #[method_id(@__retain_semantics Other colorSpaceName)]
         pub unsafe fn colorSpaceName(&self) -> Id<NSColorSpaceName, Shared>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
+        #[deprecated = "Use -colorUsingType: or -colorUsingColorSpace: instead"]
         #[method_id(@__retain_semantics Other colorUsingColorSpaceName:device:)]
         pub unsafe fn colorUsingColorSpaceName_device(
             &self,
@@ -600,6 +616,7 @@ extern_methods!(
             deviceDescription: Option<&NSDictionary<NSDeviceDescriptionKey, Object>>,
         ) -> Option<Id<NSColor, Shared>>;
 
+        #[deprecated = "Use -colorUsingType: or -colorUsingColorSpace: instead"]
         #[method_id(@__retain_semantics Other colorUsingColorSpaceName:)]
         pub unsafe fn colorUsingColorSpaceName(
             &self,
@@ -619,6 +636,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSCoder")]
     unsafe impl NSCoder {
         #[cfg(feature = "AppKit_NSColor")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other decodeNXColor)]
         pub unsafe fn decodeNXColor(&self) -> Option<Id<NSColor, Shared>>;
     }

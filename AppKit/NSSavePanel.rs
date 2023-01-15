@@ -217,26 +217,32 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSSavePanel")]
     unsafe impl NSSavePanel {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use -URL instead"]
         #[method_id(@__retain_semantics Other filename)]
         pub unsafe fn filename(&self) -> Id<NSString, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use -directoryURL instead"]
         #[method_id(@__retain_semantics Other directory)]
         pub unsafe fn directory(&self) -> Id<NSString, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use -setDirectoryURL: instead"]
         #[method(setDirectory:)]
         pub unsafe fn setDirectory(&self, path: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use -allowedFileTypes instead"]
         #[method_id(@__retain_semantics Other requiredFileType)]
         pub unsafe fn requiredFileType(&self) -> Option<Id<NSString, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use -setAllowedFileTypes: instead"]
         #[method(setRequiredFileType:)]
         pub unsafe fn setRequiredFileType(&self, r#type: Option<&NSString>);
 
         #[cfg(all(feature = "AppKit_NSWindow", feature = "Foundation_NSString"))]
+        #[deprecated = "Use beginSheetModalForWindow:completionHandler: instead. The following parameters are replaced by properties: 'path' is replaced by 'directoryURL' and 'name' by 'nameFieldStringValue'."]
         #[method(beginSheetForDirectory:file:modalForWindow:modalDelegate:didEndSelector:contextInfo:)]
         pub unsafe fn beginSheetForDirectory_file_modalForWindow_modalDelegate_didEndSelector_contextInfo(
             &self,
@@ -249,6 +255,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use -runModal instead. The following parameters are replaced by properties: 'path' is replaced by 'directoryURL' and 'name' by 'nameFieldStringValue'."]
         #[method(runModalForDirectory:file:)]
         pub unsafe fn runModalForDirectory_file(
             &self,
@@ -256,14 +263,17 @@ extern_methods!(
             name: Option<&NSString>,
         ) -> NSInteger;
 
+        #[deprecated = "Default implementation does nothing."]
         #[method(selectText:)]
         pub unsafe fn selectText(&self, sender: Option<&Object>);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[deprecated = "Use -allowedContentTypes instead"]
         #[method_id(@__retain_semantics Other allowedFileTypes)]
         pub unsafe fn allowedFileTypes(&self) -> Option<Id<NSArray<NSString>, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[deprecated = "Use -allowedContentTypes instead"]
         #[method(setAllowedFileTypes:)]
         pub unsafe fn setAllowedFileTypes(&self, allowedFileTypes: Option<&NSArray<NSString>>);
     }

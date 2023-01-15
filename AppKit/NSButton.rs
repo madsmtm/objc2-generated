@@ -295,6 +295,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSButton")]
     unsafe impl NSButton {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Mnemonics are not used on macOS. Set the title property directly instead."]
         #[method(setTitleWithMnemonic:)]
         pub unsafe fn setTitleWithMnemonic(&self, stringWithAmpersand: Option<&NSString>);
     }

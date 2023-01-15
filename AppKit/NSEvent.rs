@@ -368,6 +368,7 @@ extern_methods!(
         pub unsafe fn windowNumber(&self) -> NSInteger;
 
         #[cfg(feature = "AppKit_NSGraphicsContext")]
+        #[deprecated = "This method always returns nil. If you need access to the current drawing context, use [NSGraphicsContext currentContext] inside of a draw operation."]
         #[method_id(@__retain_semantics Other context)]
         pub unsafe fn context(&self) -> Option<Id<NSGraphicsContext, Shared>>;
 

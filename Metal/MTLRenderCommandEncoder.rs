@@ -719,6 +719,7 @@ extern_protocol!(
             indirectBufferOffset: NSUInteger,
         );
 
+        #[deprecated]
         #[method(textureBarrier)]
         pub unsafe fn textureBarrier(&self);
 
@@ -912,9 +913,11 @@ extern_protocol!(
             index: NSUInteger,
         );
 
+        #[deprecated]
         #[method(useResource:usage:)]
         pub fn useResource_usage(&self, resource: &MTLResource, usage: MTLResourceUsage);
 
+        #[deprecated]
         #[method(useResources:count:usage:)]
         pub unsafe fn useResources_count_usage(
             &self,
@@ -940,9 +943,11 @@ extern_protocol!(
             stages: MTLRenderStages,
         );
 
+        #[deprecated]
         #[method(useHeap:)]
         pub fn useHeap(&self, heap: &MTLHeap);
 
+        #[deprecated]
         #[method(useHeaps:count:)]
         pub unsafe fn useHeaps_count(&self, heaps: NonNull<NonNull<MTLHeap>>, count: NSUInteger);
 

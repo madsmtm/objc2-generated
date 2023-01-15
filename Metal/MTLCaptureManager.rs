@@ -98,12 +98,15 @@ extern_methods!(
             descriptor: &MTLCaptureDescriptor,
         ) -> Result<(), Id<NSError, Shared>>;
 
+        #[deprecated = "Use startCaptureWithDescriptor:error: instead"]
         #[method(startCaptureWithDevice:)]
         pub fn startCaptureWithDevice(&self, device: &MTLDevice);
 
+        #[deprecated = "Use startCaptureWithDescriptor:error: instead"]
         #[method(startCaptureWithCommandQueue:)]
         pub fn startCaptureWithCommandQueue(&self, commandQueue: &MTLCommandQueue);
 
+        #[deprecated = "Use startCaptureWithDescriptor:error: instead"]
         #[method(startCaptureWithScope:)]
         pub fn startCaptureWithScope(&self, captureScope: &MTLCaptureScope);
 

@@ -104,18 +104,23 @@ extern_methods!(
     /// NSSearchField_Deprecated
     #[cfg(feature = "AppKit_NSSearchField")]
     unsafe impl NSSearchField {
+        #[deprecated]
         #[method(rectForSearchTextWhenCentered:)]
         pub unsafe fn rectForSearchTextWhenCentered(&self, isCentered: bool) -> NSRect;
 
+        #[deprecated]
         #[method(rectForSearchButtonWhenCentered:)]
         pub unsafe fn rectForSearchButtonWhenCentered(&self, isCentered: bool) -> NSRect;
 
+        #[deprecated]
         #[method(rectForCancelButtonWhenCentered:)]
         pub unsafe fn rectForCancelButtonWhenCentered(&self, isCentered: bool) -> NSRect;
 
+        #[deprecated = "The placeholder centering UI design is no longer available. Setting this property is no-op."]
         #[method(centersPlaceholder)]
         pub unsafe fn centersPlaceholder(&self) -> bool;
 
+        #[deprecated = "The placeholder centering UI design is no longer available. Setting this property is no-op."]
         #[method(setCentersPlaceholder:)]
         pub unsafe fn setCentersPlaceholder(&self, centersPlaceholder: bool);
     }

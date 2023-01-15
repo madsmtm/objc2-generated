@@ -360,52 +360,68 @@ extern_methods!(
     /// NSDeprecated
     #[cfg(feature = "AppKit_NSMenu")]
     unsafe impl NSMenu {
+        #[deprecated]
         #[method(setMenuRepresentation:)]
         pub unsafe fn setMenuRepresentation(&self, menuRep: Option<&Object>);
 
+        #[deprecated]
         #[method_id(@__retain_semantics Other menuRepresentation)]
         pub unsafe fn menuRepresentation(&self) -> Option<Id<Object, Shared>>;
 
+        #[deprecated]
         #[method(setContextMenuRepresentation:)]
         pub unsafe fn setContextMenuRepresentation(&self, menuRep: Option<&Object>);
 
+        #[deprecated]
         #[method_id(@__retain_semantics Other contextMenuRepresentation)]
         pub unsafe fn contextMenuRepresentation(&self) -> Option<Id<Object, Shared>>;
 
+        #[deprecated]
         #[method(setTearOffMenuRepresentation:)]
         pub unsafe fn setTearOffMenuRepresentation(&self, menuRep: Option<&Object>);
 
+        #[deprecated]
         #[method_id(@__retain_semantics Other tearOffMenuRepresentation)]
         pub unsafe fn tearOffMenuRepresentation(&self) -> Option<Id<Object, Shared>>;
 
+        #[deprecated]
         #[method(menuZone)]
         pub unsafe fn menuZone() -> *mut NSZone;
 
+        #[deprecated]
         #[method(setMenuZone:)]
         pub unsafe fn setMenuZone(zone: *mut NSZone);
 
+        #[deprecated]
         #[method_id(@__retain_semantics Other attachedMenu)]
         pub unsafe fn attachedMenu(&self) -> Option<Id<NSMenu, Shared>>;
 
+        #[deprecated]
         #[method(isAttached)]
         pub unsafe fn isAttached(&self) -> bool;
 
+        #[deprecated]
         #[method(sizeToFit)]
         pub unsafe fn sizeToFit(&self);
 
+        #[deprecated]
         #[method(locationForSubmenu:)]
         pub unsafe fn locationForSubmenu(&self, submenu: Option<&NSMenu>) -> NSPoint;
 
+        #[deprecated]
         #[method(menuChangedMessagesEnabled)]
         pub unsafe fn menuChangedMessagesEnabled(&self) -> bool;
 
+        #[deprecated]
         #[method(setMenuChangedMessagesEnabled:)]
         pub unsafe fn setMenuChangedMessagesEnabled(&self, menuChangedMessagesEnabled: bool);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[deprecated]
         #[method(helpRequested:)]
         pub unsafe fn helpRequested(&self, eventPtr: &NSEvent);
 
+        #[deprecated]
         #[method(isTornOff)]
         pub unsafe fn isTornOff(&self) -> bool;
     }

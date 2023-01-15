@@ -358,6 +358,7 @@ extern_methods!(
         #[method(setCanDrawConcurrently:)]
         pub unsafe fn setCanDrawConcurrently(&self, canDrawConcurrently: bool);
 
+        #[deprecated = "If a view needs display, -drawRect: or -updateLayer will be called automatically when the view is able to draw.  To check whether a view is in a window, call -window.  To check whether a view is hidden, call -isHiddenOrHasHiddenAncestor."]
         #[method(canDraw)]
         pub unsafe fn canDraw(&self) -> bool;
 
@@ -370,16 +371,20 @@ extern_methods!(
         #[method(setNeedsDisplay:)]
         pub unsafe fn setNeedsDisplay(&self, needsDisplay: bool);
 
+        #[deprecated = "To draw, subclass NSView and implement -drawRect:; AppKit's automatic deferred display mechanism will call -drawRect: as necessary to display the view."]
         #[method(lockFocus)]
         pub unsafe fn lockFocus(&self);
 
+        #[deprecated = "To draw, subclass NSView and implement -drawRect:; AppKit's automatic deferred display mechanism will call -drawRect: as necessary to display the view."]
         #[method(unlockFocus)]
         pub unsafe fn unlockFocus(&self);
 
+        #[deprecated = "To draw, subclass NSView and implement -drawRect:; AppKit's automatic deferred display mechanism will call -drawRect: as necessary to display the view."]
         #[method(lockFocusIfCanDraw)]
         pub unsafe fn lockFocusIfCanDraw(&self) -> bool;
 
         #[cfg(feature = "AppKit_NSGraphicsContext")]
+        #[deprecated = "Use -[NSView displayRectIgnoringOpacity:inContext:] to draw a view subtree into a graphics context."]
         #[method(lockFocusIfCanDrawInContext:)]
         pub unsafe fn lockFocusIfCanDrawInContext(&self, context: &NSGraphicsContext) -> bool;
 
@@ -452,6 +457,7 @@ extern_methods!(
         #[method(adjustScroll:)]
         pub unsafe fn adjustScroll(&self, newVisible: NSRect) -> NSRect;
 
+        #[deprecated = "Use NSScrollView to achieve scrolling views."]
         #[method(scrollRect:by:)]
         pub unsafe fn scrollRect_by(&self, rect: NSRect, delta: NSSize);
 
@@ -488,9 +494,11 @@ extern_methods!(
         #[method(mouseDownCanMoveWindow)]
         pub unsafe fn mouseDownCanMoveWindow(&self) -> bool;
 
+        #[deprecated = "Use allowedTouchTypes instead"]
         #[method(acceptsTouchEvents)]
         pub unsafe fn acceptsTouchEvents(&self) -> bool;
 
+        #[deprecated = "Use allowedTouchTypes instead"]
         #[method(setAcceptsTouchEvents:)]
         pub unsafe fn setAcceptsTouchEvents(&self, acceptsTouchEvents: bool);
 
@@ -813,6 +821,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other pageFooter)]
         pub unsafe fn pageFooter(&self) -> Id<NSAttributedString, Shared>;
 
+        #[deprecated = "This is never invoked and the NSView implementation does nothing"]
         #[method(drawSheetBorderWithSize:)]
         pub unsafe fn drawSheetBorderWithSize(&self, borderSize: NSSize);
 
@@ -1074,6 +1083,7 @@ extern_methods!(
             feature = "AppKit_NSImage",
             feature = "AppKit_NSPasteboard"
         ))]
+        #[deprecated = "Use -beginDraggingSessionWithItems:event:source: instead"]
         #[method(dragImage:at:offset:event:pasteboard:source:slideBack:)]
         pub unsafe fn dragImage_at_offset_event_pasteboard_source_slideBack(
             &self,
@@ -1087,6 +1097,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "AppKit_NSEvent", feature = "Foundation_NSString"))]
+        #[deprecated = "Use -beginDraggingSessionWithItems:event:source: instead"]
         #[method(dragFile:fromRect:slideBack:event:)]
         pub unsafe fn dragFile_fromRect_slideBack_event(
             &self,
@@ -1101,6 +1112,7 @@ extern_methods!(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSString"
         ))]
+        #[deprecated = "Use -beginDraggingSessionWithItems:event:source: with an NSFilePromiseProvider instead"]
         #[method(dragPromisedFilesOfTypes:fromRect:source:slideBack:event:)]
         pub unsafe fn dragPromisedFilesOfTypes_fromRect_source_slideBack_event(
             &self,
@@ -1111,40 +1123,52 @@ extern_methods!(
             event: &NSEvent,
         ) -> bool;
 
+        #[deprecated]
         #[method(convertPointToBase:)]
         pub unsafe fn convertPointToBase(&self, point: NSPoint) -> NSPoint;
 
+        #[deprecated]
         #[method(convertPointFromBase:)]
         pub unsafe fn convertPointFromBase(&self, point: NSPoint) -> NSPoint;
 
+        #[deprecated]
         #[method(convertSizeToBase:)]
         pub unsafe fn convertSizeToBase(&self, size: NSSize) -> NSSize;
 
+        #[deprecated]
         #[method(convertSizeFromBase:)]
         pub unsafe fn convertSizeFromBase(&self, size: NSSize) -> NSSize;
 
+        #[deprecated]
         #[method(convertRectToBase:)]
         pub unsafe fn convertRectToBase(&self, rect: NSRect) -> NSRect;
 
+        #[deprecated]
         #[method(convertRectFromBase:)]
         pub unsafe fn convertRectFromBase(&self, rect: NSRect) -> NSRect;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "This has always returned NO and had no effect on macOS"]
         #[method(performMnemonic:)]
         pub unsafe fn performMnemonic(&self, string: &NSString) -> bool;
 
+        #[deprecated = "This method no longer does anything"]
         #[method(shouldDrawColor)]
         pub unsafe fn shouldDrawColor(&self) -> bool;
 
+        #[deprecated]
         #[method(gState)]
         pub unsafe fn gState(&self) -> NSInteger;
 
+        #[deprecated]
         #[method(allocateGState)]
         pub unsafe fn allocateGState(&self);
 
+        #[deprecated]
         #[method(setUpGState)]
         pub unsafe fn setUpGState(&self);
 
+        #[deprecated]
         #[method(renewGState)]
         pub unsafe fn renewGState(&self);
     }

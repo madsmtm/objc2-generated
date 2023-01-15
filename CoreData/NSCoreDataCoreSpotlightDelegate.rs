@@ -51,6 +51,7 @@ extern_methods!(
             feature = "CoreData_NSManagedObjectModel",
             feature = "CoreData_NSPersistentStoreDescription"
         ))]
+        #[deprecated]
         #[method_id(@__retain_semantics Init initForStoreWithDescription:model:)]
         pub unsafe fn initForStoreWithDescription_model(
             this: Option<Allocated<Self>>,

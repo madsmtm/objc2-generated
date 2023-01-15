@@ -147,6 +147,7 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(feature = "AppKit_NSSplitView", feature = "AppKit_NSView"))]
+        #[deprecated = "NSSplitView no longer supports collapsing sections via double-click. This delegate method is never called."]
         #[optional]
         #[method(splitView:shouldCollapseSubview:forDoubleClickOnDividerAtIndex:)]
         pub unsafe fn splitView_shouldCollapseSubview_forDoubleClickOnDividerAtIndex(
@@ -253,9 +254,11 @@ extern_methods!(
     /// NSDeprecated
     #[cfg(feature = "AppKit_NSSplitView")]
     unsafe impl NSSplitView {
+        #[deprecated]
         #[method(setIsPaneSplitter:)]
         pub unsafe fn setIsPaneSplitter(&self, flag: bool);
 
+        #[deprecated]
         #[method(isPaneSplitter)]
         pub unsafe fn isPaneSplitter(&self) -> bool;
     }

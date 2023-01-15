@@ -126,6 +126,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSWindow")]
     unsafe impl NSWindow {
         #[cfg(all(feature = "AppKit_NSDrawer", feature = "Foundation_NSArray"))]
+        #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
         #[method_id(@__retain_semantics Other drawers)]
         pub unsafe fn drawers(&self) -> Option<Id<NSArray<NSDrawer>, Shared>>;
     }
@@ -136,16 +137,19 @@ extern_protocol!(
 
     unsafe impl ProtocolType for NSDrawerDelegate {
         #[cfg(feature = "AppKit_NSDrawer")]
+        #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
         #[optional]
         #[method(drawerShouldOpen:)]
         pub unsafe fn drawerShouldOpen(&self, sender: &NSDrawer) -> bool;
 
         #[cfg(feature = "AppKit_NSDrawer")]
+        #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
         #[optional]
         #[method(drawerShouldClose:)]
         pub unsafe fn drawerShouldClose(&self, sender: &NSDrawer) -> bool;
 
         #[cfg(feature = "AppKit_NSDrawer")]
+        #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
         #[optional]
         #[method(drawerWillResizeContents:toSize:)]
         pub unsafe fn drawerWillResizeContents_toSize(
@@ -155,21 +159,25 @@ extern_protocol!(
         ) -> NSSize;
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
         #[optional]
         #[method(drawerWillOpen:)]
         pub unsafe fn drawerWillOpen(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
         #[optional]
         #[method(drawerDidOpen:)]
         pub unsafe fn drawerDidOpen(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
         #[optional]
         #[method(drawerWillClose:)]
         pub unsafe fn drawerWillClose(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
         #[optional]
         #[method(drawerDidClose:)]
         pub unsafe fn drawerDidClose(&self, notification: &NSNotification);

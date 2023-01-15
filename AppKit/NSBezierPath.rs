@@ -318,17 +318,21 @@ extern_methods!(
     /// NSBezierPathDeprecated
     #[cfg(feature = "AppKit_NSBezierPath")]
     unsafe impl NSBezierPath {
+        #[deprecated]
         #[method(cachesBezierPath)]
         pub unsafe fn cachesBezierPath(&self) -> bool;
 
+        #[deprecated]
         #[method(setCachesBezierPath:)]
         pub unsafe fn setCachesBezierPath(&self, flag: bool);
 
         #[cfg(feature = "AppKit_NSFont")]
+        #[deprecated = "Use -appendBezierPathWithCGGlyph:inFont: instead"]
         #[method(appendBezierPathWithGlyph:inFont:)]
         pub unsafe fn appendBezierPathWithGlyph_inFont(&self, glyph: NSGlyph, font: &NSFont);
 
         #[cfg(feature = "AppKit_NSFont")]
+        #[deprecated = "Use -appendBezierPathWithCGGlyphs:count:inFont: instead"]
         #[method(appendBezierPathWithGlyphs:count:inFont:)]
         pub unsafe fn appendBezierPathWithGlyphs_count_inFont(
             &self,
@@ -337,6 +341,7 @@ extern_methods!(
             font: &NSFont,
         );
 
+        #[deprecated = "Use -appendBezierPathWithCGGlyphs:count:inFont: instead"]
         #[method(appendBezierPathWithPackedGlyphs:)]
         pub unsafe fn appendBezierPathWithPackedGlyphs(&self, packedGlyphs: NonNull<c_char>);
     }

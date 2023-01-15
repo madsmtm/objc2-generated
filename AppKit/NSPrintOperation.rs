@@ -233,24 +233,30 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSPrintOperation")]
     unsafe impl NSPrintOperation {
         #[cfg(feature = "AppKit_NSView")]
+        #[deprecated = "Use -[NSPrintPanel addAccessoryController:] and -[NSPrintPanel removeAccessoryController:] instead"]
         #[method(setAccessoryView:)]
         pub unsafe fn setAccessoryView(&self, view: Option<&NSView>);
 
         #[cfg(feature = "AppKit_NSView")]
+        #[deprecated = "Use -[NSPrintPanel accessoryControllers] instead"]
         #[method_id(@__retain_semantics Other accessoryView)]
         pub unsafe fn accessoryView(&self) -> Option<Id<NSView, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setJobStyleHint:)]
         pub unsafe fn setJobStyleHint(&self, hint: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other jobStyleHint)]
         pub unsafe fn jobStyleHint(&self) -> Option<Id<NSString, Shared>>;
 
+        #[deprecated = "Use -setShowsPrintPanel: and -setShowsProgressPanel: instead"]
         #[method(setShowPanels:)]
         pub unsafe fn setShowPanels(&self, flag: bool);
 
+        #[deprecated = "Use -showsPrintPanel and -showsProgressPanel instead"]
         #[method(showPanels)]
         pub unsafe fn showPanels(&self) -> bool;
     }

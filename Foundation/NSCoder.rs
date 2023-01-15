@@ -337,9 +337,11 @@ extern_methods!(
     /// NSTypedstreamCompatibility
     #[cfg(feature = "Foundation_NSCoder")]
     unsafe impl NSCoder {
+        #[deprecated = "Not supported"]
         #[method(encodeNXObject:)]
         pub unsafe fn encodeNXObject(&self, object: &Object);
 
+        #[deprecated = "Not supported"]
         #[method_id(@__retain_semantics Other decodeNXObject)]
         pub unsafe fn decodeNXObject(&self) -> Option<Id<Object, Shared>>;
     }
@@ -349,6 +351,7 @@ extern_methods!(
     /// NSDeprecated
     #[cfg(feature = "Foundation_NSCoder")]
     unsafe impl NSCoder {
+        #[deprecated]
         #[method(decodeValueOfObjCType:at:)]
         pub unsafe fn decodeValueOfObjCType_at(
             &self,

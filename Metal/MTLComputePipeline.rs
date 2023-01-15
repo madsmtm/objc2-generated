@@ -23,6 +23,7 @@ extern_methods!(
         pub unsafe fn bindings(&self) -> Id<NSArray<MTLBinding>, Shared>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLArgument"))]
+        #[deprecated]
         #[method_id(@__retain_semantics Other arguments)]
         pub fn arguments(&self) -> Id<NSArray<MTLArgument>, Shared>;
     }
@@ -93,10 +94,12 @@ extern_methods!(
         pub fn setSupportIndirectCommandBuffers(&self, supportIndirectCommandBuffers: bool);
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other insertLibraries)]
         pub fn insertLibraries(&self) -> Option<Id<NSArray<MTLDynamicLibrary>, Shared>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[deprecated]
         #[method(setInsertLibraries:)]
         pub fn setInsertLibraries(&self, insertLibraries: Option<&NSArray<MTLDynamicLibrary>>);
 

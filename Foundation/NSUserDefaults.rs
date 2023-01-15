@@ -40,6 +40,7 @@ extern_methods!(
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use -init instead"]
         #[method_id(@__retain_semantics Init initWithUser:)]
         pub unsafe fn initWithUser(
             this: Option<Allocated<Self>>,
@@ -168,6 +169,7 @@ extern_methods!(
         pub unsafe fn removeVolatileDomainForName(&self, domainName: &NSString);
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[deprecated = "Not recommended"]
         #[method_id(@__retain_semantics Other persistentDomainNames)]
         pub unsafe fn persistentDomainNames(&self) -> Id<NSArray, Shared>;
 

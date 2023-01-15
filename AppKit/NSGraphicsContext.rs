@@ -149,21 +149,26 @@ extern_methods!(
     /// NSGraphicsContextDeprecated
     #[cfg(feature = "AppKit_NSGraphicsContext")]
     unsafe impl NSGraphicsContext {
+        #[deprecated = "This method has no effect"]
         #[method(setGraphicsState:)]
         pub unsafe fn setGraphicsState(gState: NSInteger);
 
+        #[deprecated]
         #[method_id(@__retain_semantics Other focusStack)]
         pub unsafe fn focusStack(&self) -> Option<Id<Object, Shared>>;
 
+        #[deprecated]
         #[method(setFocusStack:)]
         pub unsafe fn setFocusStack(&self, stack: Option<&Object>);
 
+        #[deprecated]
         #[method_id(@__retain_semantics Other graphicsContextWithGraphicsPort:flipped:)]
         pub unsafe fn graphicsContextWithGraphicsPort_flipped(
             graphicsPort: NonNull<c_void>,
             initialFlippedState: bool,
         ) -> Id<NSGraphicsContext, Shared>;
 
+        #[deprecated]
         #[method(graphicsPort)]
         pub unsafe fn graphicsPort(&self) -> NonNull<c_void>;
     }

@@ -116,6 +116,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSFormCell")]
     unsafe impl NSFormCell {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setTitleWithMnemonic:)]
         pub unsafe fn setTitleWithMnemonic(&self, stringWithAmpersand: Option<&NSString>);
     }

@@ -147,15 +147,19 @@ extern_methods!(
         #[method(isVisible)]
         pub unsafe fn isVisible(&self) -> bool;
 
+        #[deprecated = "This property is no longer recommended. Instead, let the system automatically measure the size of the view using constraints."]
         #[method(minSize)]
         pub unsafe fn minSize(&self) -> NSSize;
 
+        #[deprecated = "This property is no longer recommended. Instead, let the system automatically measure the size of the view using constraints."]
         #[method(setMinSize:)]
         pub unsafe fn setMinSize(&self, minSize: NSSize);
 
+        #[deprecated = "This property is no longer recommended. Instead, let the system automatically measure the size of the view using constraints."]
         #[method(maxSize)]
         pub unsafe fn maxSize(&self) -> NSSize;
 
+        #[deprecated = "This property is no longer recommended. Instead, let the system automatically measure the size of the view using constraints."]
         #[method(setMaxSize:)]
         pub unsafe fn setMaxSize(&self, maxSize: NSSize);
 

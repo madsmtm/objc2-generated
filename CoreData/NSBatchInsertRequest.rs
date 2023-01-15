@@ -114,6 +114,7 @@ extern_methods!(
             handler: &Block<(NonNull<NSManagedObject>,), Bool>,
         ) -> Id<Self, Shared>;
 
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 

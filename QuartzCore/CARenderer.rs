@@ -19,6 +19,7 @@ extern_methods!(
     #[cfg(feature = "CoreAnimation_CARenderer")]
     unsafe impl CARenderer {
         #[cfg(feature = "Foundation_NSDictionary")]
+        #[deprecated = "+rendererWithMTLTexture"]
         #[method_id(@__retain_semantics Other rendererWithCGLContext:options:)]
         pub unsafe fn rendererWithCGLContext_options(
             ctx: NonNull<c_void>,

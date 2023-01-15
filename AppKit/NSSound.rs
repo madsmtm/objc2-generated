@@ -130,10 +130,12 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[deprecated]
         #[method(setChannelMapping:)]
         pub unsafe fn setChannelMapping(&self, channelMapping: Option<&NSArray>);
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other channelMapping)]
         pub unsafe fn channelMapping(&self) -> Option<Id<NSArray, Shared>>;
     }
@@ -144,10 +146,12 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSSound")]
     unsafe impl NSSound {
         #[cfg(feature = "Foundation_NSArray")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other soundUnfilteredFileTypes)]
         pub unsafe fn soundUnfilteredFileTypes() -> Option<Id<NSArray, Shared>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other soundUnfilteredPasteboardTypes)]
         pub unsafe fn soundUnfilteredPasteboardTypes() -> Option<Id<NSArray, Shared>>;
     }

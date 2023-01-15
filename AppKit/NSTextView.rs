@@ -111,6 +111,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other textContentStorage)]
         pub unsafe fn textContentStorage(&self) -> Option<Id<NSTextContentStorage, Shared>>;
 
+        #[deprecated = "Use -insertText:replacementRange: from NSTextInputClient instead. Since the method is designed to be used solely by the input system, the message should never be sent to a text view from applications. Any content modifications should be via either NSTextStorage or NSText methods."]
         #[method(insertText:)]
         pub unsafe fn insertText(&self, insertString: &Object);
 
@@ -154,6 +155,7 @@ extern_methods!(
         #[method(lowerBaseline:)]
         pub unsafe fn lowerBaseline(&self, sender: Option<&Object>);
 
+        #[deprecated = "Use the traditional shaped characters encoded in the Unicode standard. Access the characters via the character palette."]
         #[method(toggleTraditionalCharacterShape:)]
         pub unsafe fn toggleTraditionalCharacterShape(&self, sender: Option<&Object>);
 
@@ -1043,6 +1045,7 @@ extern_methods!(
     /// NSDeprecated
     #[cfg(feature = "AppKit_NSTextView")]
     unsafe impl NSTextView {
+        #[deprecated = "Use NSResponder's makeBaseWritingDirectionNatural:, makeBaseWritingDirectionLeftToRight:, and makeBaseWritingDirectionRightToLeft: instead"]
         #[method(toggleBaseWritingDirection:)]
         pub unsafe fn toggleBaseWritingDirection(&self, sender: Option<&Object>);
     }
@@ -1359,6 +1362,7 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "AppKit_NSTextView")]
+        #[deprecated = "Use -textView:clickedOnLink:atIndex: instead"]
         #[optional]
         #[method(textView:clickedOnLink:)]
         pub unsafe fn textView_clickedOnLink(
@@ -1368,6 +1372,7 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "AppKit_NSTextView")]
+        #[deprecated = "Use -textView:clickedOnCell:inRect:atIndex: instead"]
         #[optional]
         #[method(textView:clickedOnCell:inRect:)]
         pub unsafe fn textView_clickedOnCell_inRect(
@@ -1378,6 +1383,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "AppKit_NSTextView")]
+        #[deprecated = "Use -textView:doubleClickedOnCell:inRect:atIndex: instead"]
         #[optional]
         #[method(textView:doubleClickedOnCell:inRect:)]
         pub unsafe fn textView_doubleClickedOnCell_inRect(
@@ -1388,6 +1394,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "AppKit_NSEvent", feature = "AppKit_NSTextView"))]
+        #[deprecated = "Use -textView:draggedCell:inRect:event:atIndex: instead"]
         #[optional]
         #[method(textView:draggedCell:inRect:event:)]
         pub unsafe fn textView_draggedCell_inRect_event(

@@ -29,6 +29,7 @@ extern_methods!(
     /// NSPantherCompatibility
     #[cfg(feature = "AppKit_NSATSTypesetter")]
     unsafe impl NSATSTypesetter {
+        #[deprecated]
         #[method(lineFragmentRectForProposedRect:remainingRect:)]
         pub unsafe fn lineFragmentRectForProposedRect_remainingRect(
             &self,
@@ -203,6 +204,7 @@ extern_methods!(
     /// NSGlyphStorageInterface
     #[cfg(feature = "AppKit_NSATSTypesetter")]
     unsafe impl NSATSTypesetter {
+        #[deprecated]
         #[method(getGlyphsInRange:glyphs:characterIndexes:glyphInscriptions:elasticBits:)]
         pub unsafe fn getGlyphsInRange_glyphs_characterIndexes_glyphInscriptions_elasticBits(
             &self,

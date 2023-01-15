@@ -34,6 +34,7 @@ extern_protocol!(
             &self,
         ) -> Option<Id<MTLCommandBuffer, Shared>>;
 
+        #[deprecated = "Use MTLCaptureScope instead"]
         #[method(insertDebugCaptureBoundary)]
         pub unsafe fn insertDebugCaptureBoundary(&self);
     }

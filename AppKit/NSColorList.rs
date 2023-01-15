@@ -82,6 +82,7 @@ extern_methods!(
         ) -> Result<(), Id<NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use -writeToURL:error: instead"]
         #[method(writeToFile:)]
         pub unsafe fn writeToFile(&self, path: Option<&NSString>) -> bool;
 

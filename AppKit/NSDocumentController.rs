@@ -305,6 +305,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSDocumentController")]
     unsafe impl NSDocumentController {
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
+        #[deprecated = "Use -openDocumentWithContentsOfURL:display:completionHandler: instead"]
         #[method_id(@__retain_semantics Other openDocumentWithContentsOfURL:display:error:_)]
         pub unsafe fn openDocumentWithContentsOfURL_display_error(
             &self,
@@ -313,6 +314,7 @@ extern_methods!(
         ) -> Result<Id<Object, Shared>, Id<NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
+        #[deprecated = "Use -reopenDocumentForURL:withContentsOfURL:display:completionHandler: instead"]
         #[method(reopenDocumentForURL:withContentsOfURL:error:_)]
         pub unsafe fn reopenDocumentForURL_withContentsOfURL_error(
             &self,
@@ -321,6 +323,7 @@ extern_methods!(
         ) -> Result<(), Id<NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[deprecated]
         #[method_id(@__retain_semantics Other fileExtensionsFromType:)]
         pub unsafe fn fileExtensionsFromType(
             &self,
@@ -328,6 +331,7 @@ extern_methods!(
         ) -> Option<Id<NSArray, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other typeFromFileExtension:)]
         pub unsafe fn typeFromFileExtension(
             &self,
@@ -335,15 +339,18 @@ extern_methods!(
         ) -> Option<Id<NSString, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other documentForFileName:)]
         pub unsafe fn documentForFileName(&self, fileName: &NSString)
             -> Option<Id<Object, Shared>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other fileNamesFromRunningOpenPanel)]
         pub unsafe fn fileNamesFromRunningOpenPanel(&self) -> Option<Id<NSArray, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other makeDocumentWithContentsOfFile:ofType:)]
         pub unsafe fn makeDocumentWithContentsOfFile_ofType(
             &self,
@@ -352,6 +359,7 @@ extern_methods!(
         ) -> Option<Id<Object, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+        #[deprecated]
         #[method_id(@__retain_semantics Other makeDocumentWithContentsOfURL:ofType:)]
         pub unsafe fn makeDocumentWithContentsOfURL_ofType(
             &self,
@@ -360,6 +368,7 @@ extern_methods!(
         ) -> Option<Id<Object, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other makeUntitledDocumentOfType:)]
         pub unsafe fn makeUntitledDocumentOfType(
             &self,
@@ -367,6 +376,7 @@ extern_methods!(
         ) -> Option<Id<Object, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other openDocumentWithContentsOfFile:display:)]
         pub unsafe fn openDocumentWithContentsOfFile_display(
             &self,
@@ -375,6 +385,7 @@ extern_methods!(
         ) -> Option<Id<Object, Shared>>;
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other openDocumentWithContentsOfURL:display:)]
         pub unsafe fn openDocumentWithContentsOfURL_display(
             &self,
@@ -383,6 +394,7 @@ extern_methods!(
         ) -> Option<Id<Object, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other openUntitledDocumentOfType:display:)]
         pub unsafe fn openUntitledDocumentOfType_display(
             &self,
@@ -390,9 +402,11 @@ extern_methods!(
             display: bool,
         ) -> Option<Id<Object, Shared>>;
 
+        #[deprecated]
         #[method(setShouldCreateUI:)]
         pub unsafe fn setShouldCreateUI(&self, flag: bool);
 
+        #[deprecated]
         #[method(shouldCreateUI)]
         pub unsafe fn shouldCreateUI(&self) -> bool;
     }

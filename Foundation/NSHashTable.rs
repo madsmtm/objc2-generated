@@ -61,6 +61,7 @@ extern_methods!(
             options: NSPointerFunctionsOptions,
         ) -> Id<NSHashTable<ObjectType>, Shared>;
 
+        #[deprecated = "GC no longer supported"]
         #[method_id(@__retain_semantics Other hashTableWithWeakObjects)]
         pub unsafe fn hashTableWithWeakObjects() -> Id<Object, Shared>;
 

@@ -168,6 +168,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSXMLElement")]
     unsafe impl NSXMLElement {
         #[cfg(feature = "Foundation_NSDictionary")]
+        #[deprecated]
         #[method(setAttributesAsDictionary:)]
         pub unsafe fn setAttributesAsDictionary(&self, attributes: &NSDictionary);
     }

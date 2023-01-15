@@ -193,10 +193,12 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[deprecated = "Use NSEntityDescription.indexes instead"]
         #[method_id(@__retain_semantics Other compoundIndexes)]
         pub unsafe fn compoundIndexes(&self) -> Id<NSArray<NSArray<Object>>, Shared>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[deprecated = "Use NSEntityDescription.indexes instead"]
         #[method(setCompoundIndexes:)]
         pub unsafe fn setCompoundIndexes(&self, compoundIndexes: &NSArray<NSArray<Object>>);
 

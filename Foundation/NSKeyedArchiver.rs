@@ -37,10 +37,12 @@ extern_methods!(
             requiresSecureCoding: bool,
         ) -> Result<Id<NSData, Shared>, Id<NSError, Shared>>;
 
+        #[deprecated = "Use -initRequiringSecureCoding: instead"]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSMutableData")]
+        #[deprecated = "Use -initRequiringSecureCoding: instead"]
         #[method_id(@__retain_semantics Init initForWritingWithMutableData:)]
         pub unsafe fn initForWritingWithMutableData(
             this: Option<Allocated<Self>>,
@@ -48,10 +50,12 @@ extern_methods!(
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSData")]
+        #[deprecated = "Use +archivedDataWithRootObject:requiringSecureCoding:error: instead"]
         #[method_id(@__retain_semantics Other archivedDataWithRootObject:)]
         pub unsafe fn archivedDataWithRootObject(rootObject: &Object) -> Id<NSData, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use +archivedDataWithRootObject:requiringSecureCoding:error: and -writeToURL:options:error: instead"]
         #[method(archiveRootObject:toFile:)]
         pub unsafe fn archiveRootObject_toFile(rootObject: &Object, path: &NSString) -> bool;
 
@@ -231,10 +235,12 @@ extern_methods!(
             data: &NSData,
         ) -> Result<Id<NSDictionary, Shared>, Id<NSError, Shared>>;
 
+        #[deprecated = "Use -initForReadingFromData:error: instead"]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSData")]
+        #[deprecated = "Use -initForReadingFromData:error: instead"]
         #[method_id(@__retain_semantics Init initForReadingWithData:)]
         pub unsafe fn initForReadingWithData(
             this: Option<Allocated<Self>>,
@@ -242,16 +248,19 @@ extern_methods!(
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSData")]
+        #[deprecated = "Use +unarchivedObjectOfClass:fromData:error: instead"]
         #[method_id(@__retain_semantics Other unarchiveObjectWithData:)]
         pub unsafe fn unarchiveObjectWithData(data: &NSData) -> Option<Id<Object, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
+        #[deprecated = "Use +unarchivedObjectOfClass:fromData:error: instead"]
         #[method_id(@__retain_semantics Other unarchiveTopLevelObjectWithData:error:_)]
         pub unsafe fn unarchiveTopLevelObjectWithData_error(
             data: &NSData,
         ) -> Result<Id<Object, Shared>, Id<NSError, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use +unarchivedObjectOfClass:fromData:error: instead"]
         #[method_id(@__retain_semantics Other unarchiveObjectWithFile:)]
         pub unsafe fn unarchiveObjectWithFile(path: &NSString) -> Option<Id<Object, Shared>>;
 

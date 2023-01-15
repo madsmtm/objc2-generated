@@ -63,6 +63,7 @@ extern_methods!(
     /// NSDeprecated
     #[cfg(feature = "Foundation_NSIndexPath")]
     unsafe impl NSIndexPath {
+        #[deprecated]
         #[method(getIndexes:)]
         pub unsafe fn getIndexes(&self, indexes: NonNull<NSUInteger>);
     }

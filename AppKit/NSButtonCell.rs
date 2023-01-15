@@ -325,39 +325,49 @@ extern_methods!(
     /// NSDeprecated
     #[cfg(feature = "AppKit_NSButtonCell")]
     unsafe impl NSButtonCell {
+        #[deprecated = "The gradientType property is unused, and setting it has no effect."]
         #[method(gradientType)]
         pub unsafe fn gradientType(&self) -> NSGradientType;
 
+        #[deprecated = "The gradientType property is unused, and setting it has no effect."]
         #[method(setGradientType:)]
         pub unsafe fn setGradientType(&self, gradientType: NSGradientType);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Mnemonics are not used on macOS. Set the title property directly instead."]
         #[method(setTitleWithMnemonic:)]
         pub unsafe fn setTitleWithMnemonic(&self, stringWithAmpersand: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Mnemonics are not used on macOS. Set the alternateTitle property directly instead."]
         #[method(setAlternateTitleWithMnemonic:)]
         pub unsafe fn setAlternateTitleWithMnemonic(&self, stringWithAmpersand: Option<&NSString>);
 
+        #[deprecated = "Mnemonics are not used on macOS. Calling this method has no effect."]
         #[method(setAlternateMnemonicLocation:)]
         pub unsafe fn setAlternateMnemonicLocation(&self, location: NSUInteger);
 
+        #[deprecated = "Mnemonics are not used on macOS. This property always returns NSNotFound."]
         #[method(alternateMnemonicLocation)]
         pub unsafe fn alternateMnemonicLocation(&self) -> NSUInteger;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Mnemonics are not used on macOS. This property always returns an empty string."]
         #[method_id(@__retain_semantics Other alternateMnemonic)]
         pub unsafe fn alternateMnemonic(&self) -> Option<Id<NSString, Shared>>;
 
         #[cfg(feature = "AppKit_NSFont")]
+        #[deprecated = "The keyEquivalentFont property is no longer used. It always returns the NSButtonCell's font, and setting it has no effect."]
         #[method_id(@__retain_semantics Other keyEquivalentFont)]
         pub unsafe fn keyEquivalentFont(&self) -> Option<Id<NSFont, Shared>>;
 
         #[cfg(feature = "AppKit_NSFont")]
+        #[deprecated = "The keyEquivalentFont property is no longer used. It always returns the NSButtonCell's font, and setting it has no effect."]
         #[method(setKeyEquivalentFont:)]
         pub unsafe fn setKeyEquivalentFont(&self, keyEquivalentFont: Option<&NSFont>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "The keyEquivalentFont property is no longer used. Setting it has no effect."]
         #[method(setKeyEquivalentFont:size:)]
         pub unsafe fn setKeyEquivalentFont_size(&self, fontName: &NSString, fontSize: CGFloat);
     }

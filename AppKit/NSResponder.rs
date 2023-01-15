@@ -697,6 +697,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSResponder {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "This has always returned NO and had no effect on macOS"]
         #[method(performMnemonic:)]
         pub unsafe fn performMnemonic(&self, string: &NSString) -> bool;
     }

@@ -230,6 +230,7 @@ extern_protocol!(
         pub unsafe fn accessibilitySelectedColumns(&self) -> Option<Id<NSArray, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[optional]
         #[method_id(@__retain_semantics Other accessibilityHeaderGroup)]
         pub unsafe fn accessibilityHeaderGroup(&self) -> Option<Id<NSString, Shared>>;

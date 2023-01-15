@@ -79,9 +79,11 @@ extern_methods!(
     /// NSPointerArrayConveniences
     #[cfg(feature = "Foundation_NSPointerArray")]
     unsafe impl NSPointerArray {
+        #[deprecated = "GC no longer supported"]
         #[method_id(@__retain_semantics Other pointerArrayWithStrongObjects)]
         pub unsafe fn pointerArrayWithStrongObjects() -> Id<Object, Shared>;
 
+        #[deprecated = "GC no longer supported"]
         #[method_id(@__retain_semantics Other pointerArrayWithWeakObjects)]
         pub unsafe fn pointerArrayWithWeakObjects() -> Id<Object, Shared>;
 

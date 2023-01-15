@@ -860,21 +860,27 @@ extern_methods!(
     /// NSStringDeprecated
     #[cfg(feature = "Foundation_NSString")]
     unsafe impl NSString {
+        #[deprecated = "Use -cStringUsingEncoding: instead"]
         #[method(cString)]
         pub unsafe fn cString(&self) -> *mut c_char;
 
+        #[deprecated = "Use -cStringUsingEncoding: instead"]
         #[method(lossyCString)]
         pub unsafe fn lossyCString(&self) -> *mut c_char;
 
+        #[deprecated = "Use -lengthOfBytesUsingEncoding: instead"]
         #[method(cStringLength)]
         pub unsafe fn cStringLength(&self) -> NSUInteger;
 
+        #[deprecated = "Use -getCString:maxLength:encoding: instead"]
         #[method(getCString:)]
         pub unsafe fn getCString(&self, bytes: NonNull<c_char>);
 
+        #[deprecated = "Use -getCString:maxLength:encoding: instead"]
         #[method(getCString:maxLength:)]
         pub unsafe fn getCString_maxLength(&self, bytes: NonNull<c_char>, maxLength: NSUInteger);
 
+        #[deprecated = "Use -getCString:maxLength:encoding: instead"]
         #[method(getCString:maxLength:range:remainingRange:)]
         pub unsafe fn getCString_maxLength_range_remainingRange(
             &self,
@@ -884,6 +890,7 @@ extern_methods!(
             leftoverRange: NSRangePointer,
         );
 
+        #[deprecated = "Use -writeToFile:atomically:error: instead"]
         #[method(writeToFile:atomically:)]
         pub unsafe fn writeToFile_atomically(
             &self,
@@ -892,9 +899,11 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[deprecated = "Use -writeToURL:atomically:error: instead"]
         #[method(writeToURL:atomically:)]
         pub unsafe fn writeToURL_atomically(&self, url: &NSURL, atomically: bool) -> bool;
 
+        #[deprecated = "Use -initWithContentsOfFile:encoding:error: instead"]
         #[method_id(@__retain_semantics Init initWithContentsOfFile:)]
         pub unsafe fn initWithContentsOfFile(
             this: Option<Allocated<Self>>,
@@ -902,19 +911,23 @@ extern_methods!(
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[deprecated = "Use -initWithContentsOfURL:encoding:error: instead"]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
         pub unsafe fn initWithContentsOfURL(
             this: Option<Allocated<Self>>,
             url: &NSURL,
         ) -> Option<Id<Self, Shared>>;
 
+        #[deprecated = "Use +stringWithContentsOfFile:encoding:error: instead"]
         #[method_id(@__retain_semantics Other stringWithContentsOfFile:)]
         pub unsafe fn stringWithContentsOfFile(path: &NSString) -> Option<Id<Object, Shared>>;
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[deprecated = "Use +stringWithContentsOfURL:encoding:error: instead"]
         #[method_id(@__retain_semantics Other stringWithContentsOfURL:)]
         pub unsafe fn stringWithContentsOfURL(url: &NSURL) -> Option<Id<Object, Shared>>;
 
+        #[deprecated = "Use -initWithCString:encoding: instead"]
         #[method_id(@__retain_semantics Init initWithCStringNoCopy:length:freeWhenDone:)]
         pub unsafe fn initWithCStringNoCopy_length_freeWhenDone(
             this: Option<Allocated<Self>>,
@@ -923,6 +936,7 @@ extern_methods!(
             freeBuffer: bool,
         ) -> Option<Id<Self, Shared>>;
 
+        #[deprecated = "Use -initWithCString:encoding: instead"]
         #[method_id(@__retain_semantics Init initWithCString:length:)]
         pub unsafe fn initWithCString_length(
             this: Option<Allocated<Self>>,
@@ -930,18 +944,21 @@ extern_methods!(
             length: NSUInteger,
         ) -> Option<Id<Self, Shared>>;
 
+        #[deprecated = "Use -initWithCString:encoding: instead"]
         #[method_id(@__retain_semantics Init initWithCString:)]
         pub unsafe fn initWithCString(
             this: Option<Allocated<Self>>,
             bytes: NonNull<c_char>,
         ) -> Option<Id<Self, Shared>>;
 
+        #[deprecated = "Use +stringWithCString:encoding:"]
         #[method_id(@__retain_semantics Other stringWithCString:length:)]
         pub unsafe fn stringWithCString_length(
             bytes: NonNull<c_char>,
             length: NSUInteger,
         ) -> Option<Id<Object, Shared>>;
 
+        #[deprecated = "Use +stringWithCString:encoding: instead"]
         #[method_id(@__retain_semantics Other stringWithCString:)]
         pub unsafe fn stringWithCString(bytes: NonNull<c_char>) -> Option<Id<Object, Shared>>;
 
@@ -1155,6 +1172,7 @@ extern_methods!(
     /// NSStringDeprecated
     #[cfg(feature = "Foundation_NSMutableString")]
     unsafe impl NSMutableString {
+        #[deprecated = "Use -initWithContentsOfFile:encoding:error: instead"]
         #[method_id(@__retain_semantics Init initWithContentsOfFile:)]
         pub unsafe fn initWithContentsOfFile(
             this: Option<Allocated<Self>>,
@@ -1162,12 +1180,14 @@ extern_methods!(
         ) -> Option<Id<Self, Owned>>;
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[deprecated = "Use -initWithContentsOfURL:encoding:error: instead"]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
         pub unsafe fn initWithContentsOfURL(
             this: Option<Allocated<Self>>,
             url: &NSURL,
         ) -> Option<Id<Self, Owned>>;
 
+        #[deprecated = "Use -initWithCString:encoding: instead"]
         #[method_id(@__retain_semantics Init initWithCStringNoCopy:length:freeWhenDone:)]
         pub unsafe fn initWithCStringNoCopy_length_freeWhenDone(
             this: Option<Allocated<Self>>,
@@ -1176,6 +1196,7 @@ extern_methods!(
             freeBuffer: bool,
         ) -> Option<Id<Self, Owned>>;
 
+        #[deprecated = "Use -initWithCString:encoding: instead"]
         #[method_id(@__retain_semantics Init initWithCString:length:)]
         pub unsafe fn initWithCString_length(
             this: Option<Allocated<Self>>,
@@ -1183,6 +1204,7 @@ extern_methods!(
             length: NSUInteger,
         ) -> Option<Id<Self, Owned>>;
 
+        #[deprecated = "Use -initWithCString:encoding: instead"]
         #[method_id(@__retain_semantics Init initWithCString:)]
         pub unsafe fn initWithCString(
             this: Option<Allocated<Self>>,
@@ -1364,6 +1386,7 @@ extern_methods!(
     /// NSStringDeprecated
     #[cfg(feature = "Foundation_NSSimpleCString")]
     unsafe impl NSSimpleCString {
+        #[deprecated = "Use -initWithContentsOfFile:encoding:error: instead"]
         #[method_id(@__retain_semantics Init initWithContentsOfFile:)]
         pub unsafe fn initWithContentsOfFile(
             this: Option<Allocated<Self>>,
@@ -1371,12 +1394,14 @@ extern_methods!(
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[deprecated = "Use -initWithContentsOfURL:encoding:error: instead"]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
         pub unsafe fn initWithContentsOfURL(
             this: Option<Allocated<Self>>,
             url: &NSURL,
         ) -> Option<Id<Self, Shared>>;
 
+        #[deprecated = "Use -initWithCString:encoding: instead"]
         #[method_id(@__retain_semantics Init initWithCStringNoCopy:length:freeWhenDone:)]
         pub unsafe fn initWithCStringNoCopy_length_freeWhenDone(
             this: Option<Allocated<Self>>,
@@ -1385,6 +1410,7 @@ extern_methods!(
             freeBuffer: bool,
         ) -> Option<Id<Self, Shared>>;
 
+        #[deprecated = "Use -initWithCString:encoding: instead"]
         #[method_id(@__retain_semantics Init initWithCString:length:)]
         pub unsafe fn initWithCString_length(
             this: Option<Allocated<Self>>,
@@ -1392,6 +1418,7 @@ extern_methods!(
             length: NSUInteger,
         ) -> Option<Id<Self, Shared>>;
 
+        #[deprecated = "Use -initWithCString:encoding: instead"]
         #[method_id(@__retain_semantics Init initWithCString:)]
         pub unsafe fn initWithCString(
             this: Option<Allocated<Self>>,
@@ -1573,6 +1600,7 @@ extern_methods!(
     /// NSStringDeprecated
     #[cfg(feature = "Foundation_NSConstantString")]
     unsafe impl NSConstantString {
+        #[deprecated = "Use -initWithContentsOfFile:encoding:error: instead"]
         #[method_id(@__retain_semantics Init initWithContentsOfFile:)]
         pub unsafe fn initWithContentsOfFile(
             this: Option<Allocated<Self>>,
@@ -1580,12 +1608,14 @@ extern_methods!(
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[deprecated = "Use -initWithContentsOfURL:encoding:error: instead"]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
         pub unsafe fn initWithContentsOfURL(
             this: Option<Allocated<Self>>,
             url: &NSURL,
         ) -> Option<Id<Self, Shared>>;
 
+        #[deprecated = "Use -initWithCString:encoding: instead"]
         #[method_id(@__retain_semantics Init initWithCStringNoCopy:length:freeWhenDone:)]
         pub unsafe fn initWithCStringNoCopy_length_freeWhenDone(
             this: Option<Allocated<Self>>,
@@ -1594,6 +1624,7 @@ extern_methods!(
             freeBuffer: bool,
         ) -> Option<Id<Self, Shared>>;
 
+        #[deprecated = "Use -initWithCString:encoding: instead"]
         #[method_id(@__retain_semantics Init initWithCString:length:)]
         pub unsafe fn initWithCString_length(
             this: Option<Allocated<Self>>,
@@ -1601,6 +1632,7 @@ extern_methods!(
             length: NSUInteger,
         ) -> Option<Id<Self, Shared>>;
 
+        #[deprecated = "Use -initWithCString:encoding: instead"]
         #[method_id(@__retain_semantics Init initWithCString:)]
         pub unsafe fn initWithCString(
             this: Option<Allocated<Self>>,

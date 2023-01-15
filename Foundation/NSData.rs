@@ -321,14 +321,17 @@ extern_methods!(
     /// NSDeprecated
     #[cfg(feature = "Foundation_NSData")]
     unsafe impl NSData {
+        #[deprecated = "This method is unsafe because it could potentially cause buffer overruns. Use -getBytes:length: instead."]
         #[method(getBytes:)]
         pub unsafe fn getBytes(&self, buffer: NonNull<c_void>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use +dataWithContentsOfURL:options:error: and NSDataReadingMappedIfSafe or NSDataReadingMappedAlways instead."]
         #[method_id(@__retain_semantics Other dataWithContentsOfMappedFile:)]
         pub unsafe fn dataWithContentsOfMappedFile(path: &NSString) -> Option<Id<Object, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use -initWithContentsOfURL:options:error: and NSDataReadingMappedIfSafe or NSDataReadingMappedAlways instead."]
         #[method_id(@__retain_semantics Init initWithContentsOfMappedFile:)]
         pub unsafe fn initWithContentsOfMappedFile(
             this: Option<Allocated<Self>>,
@@ -336,6 +339,7 @@ extern_methods!(
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use initWithBase64EncodedString:options: instead"]
         #[method_id(@__retain_semantics Init initWithBase64Encoding:)]
         pub unsafe fn initWithBase64Encoding(
             this: Option<Allocated<Self>>,
@@ -343,6 +347,7 @@ extern_methods!(
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use base64EncodedStringWithOptions: instead"]
         #[method_id(@__retain_semantics Other base64Encoding)]
         pub unsafe fn base64Encoding(&self) -> Id<NSString, Shared>;
     }
@@ -612,6 +617,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSMutableData")]
     unsafe impl NSMutableData {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use -initWithContentsOfURL:options:error: and NSDataReadingMappedIfSafe or NSDataReadingMappedAlways instead."]
         #[method_id(@__retain_semantics Init initWithContentsOfMappedFile:)]
         pub unsafe fn initWithContentsOfMappedFile(
             this: Option<Allocated<Self>>,
@@ -619,6 +625,7 @@ extern_methods!(
         ) -> Option<Id<Self, Owned>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use initWithBase64EncodedString:options: instead"]
         #[method_id(@__retain_semantics Init initWithBase64Encoding:)]
         pub unsafe fn initWithBase64Encoding(
             this: Option<Allocated<Self>>,
@@ -804,6 +811,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSPurgeableData")]
     unsafe impl NSPurgeableData {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use -initWithContentsOfURL:options:error: and NSDataReadingMappedIfSafe or NSDataReadingMappedAlways instead."]
         #[method_id(@__retain_semantics Init initWithContentsOfMappedFile:)]
         pub unsafe fn initWithContentsOfMappedFile(
             this: Option<Allocated<Self>>,
@@ -811,6 +819,7 @@ extern_methods!(
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use initWithBase64EncodedString:options: instead"]
         #[method_id(@__retain_semantics Init initWithBase64Encoding:)]
         pub unsafe fn initWithBase64Encoding(
             this: Option<Allocated<Self>>,

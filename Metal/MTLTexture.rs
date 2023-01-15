@@ -233,6 +233,7 @@ extern_protocol!(
     pub struct MTLTexture;
 
     unsafe impl ProtocolType for MTLTexture {
+        #[deprecated = "Use parentTexture or buffer instead"]
         #[method_id(@__retain_semantics Other rootResource)]
         pub fn rootResource(&self) -> Option<Id<MTLResource, Shared>>;
 

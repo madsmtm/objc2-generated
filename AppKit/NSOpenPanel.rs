@@ -76,6 +76,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSOpenPanel")]
     unsafe impl NSOpenPanel {
         #[cfg(feature = "Foundation_NSArray")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other filenames)]
         pub unsafe fn filenames(&self) -> Id<NSArray, Shared>;
 
@@ -84,6 +85,7 @@ extern_methods!(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSString"
         ))]
+        #[deprecated]
         #[method(beginSheetForDirectory:file:types:modalForWindow:modalDelegate:didEndSelector:contextInfo:)]
         pub unsafe fn beginSheetForDirectory_file_types_modalForWindow_modalDelegate_didEndSelector_contextInfo(
             &self,
@@ -97,6 +99,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[deprecated]
         #[method(beginForDirectory:file:types:modelessDelegate:didEndSelector:contextInfo:)]
         pub unsafe fn beginForDirectory_file_types_modelessDelegate_didEndSelector_contextInfo(
             &self,
@@ -109,6 +112,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[deprecated]
         #[method(runModalForDirectory:file:types:)]
         pub unsafe fn runModalForDirectory_file_types(
             &self,
@@ -118,6 +122,7 @@ extern_methods!(
         ) -> NSInteger;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[deprecated]
         #[method(runModalForTypes:)]
         pub unsafe fn runModalForTypes(&self, fileTypes: Option<&NSArray>) -> NSInteger;
     }

@@ -132,44 +132,55 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSSlider")]
     unsafe impl NSSlider {
         #[cfg(feature = "AppKit_NSCell")]
+        #[deprecated = "-setTitleCell: had no effect since 10.0"]
         #[method(setTitleCell:)]
         pub unsafe fn setTitleCell(&self, cell: Option<&NSCell>);
 
+        #[deprecated = "-titleCell has returned nil since 10.0"]
         #[method_id(@__retain_semantics Other titleCell)]
         pub unsafe fn titleCell(&self) -> Option<Id<Object, Shared>>;
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[deprecated = "-setTitleColor: had no effect since 10.0"]
         #[method(setTitleColor:)]
         pub unsafe fn setTitleColor(&self, newColor: Option<&NSColor>);
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[deprecated = "-titleColor has returned nil since 10.0"]
         #[method_id(@__retain_semantics Other titleColor)]
         pub unsafe fn titleColor(&self) -> Option<Id<NSColor, Shared>>;
 
         #[cfg(feature = "AppKit_NSFont")]
+        #[deprecated = "-setTitleFont: had no effect since 10.0"]
         #[method(setTitleFont:)]
         pub unsafe fn setTitleFont(&self, fontObj: Option<&NSFont>);
 
         #[cfg(feature = "AppKit_NSFont")]
+        #[deprecated = "-titleFont has returned nil since 10.0"]
         #[method_id(@__retain_semantics Other titleFont)]
         pub unsafe fn titleFont(&self) -> Option<Id<NSFont, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "-title has returned nil since 10.0"]
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Option<Id<NSString, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "-setTitle: had no effect since 10.0"]
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, string: Option<&NSString>);
 
+        #[deprecated = "-knobThickness has returned 0 since 10.0"]
         #[method(setKnobThickness:)]
         pub unsafe fn setKnobThickness(&self, thickness: CGFloat);
 
         #[cfg(feature = "AppKit_NSImage")]
+        #[deprecated = "-setImage: had no effect since 10.0"]
         #[method(setImage:)]
         pub unsafe fn setImage(&self, backgroundImage: Option<&NSImage>);
 
         #[cfg(feature = "AppKit_NSImage")]
+        #[deprecated = "-image has returned nil since 10.0"]
         #[method_id(@__retain_semantics Other image)]
         pub unsafe fn image(&self) -> Option<Id<NSImage, Shared>>;
     }

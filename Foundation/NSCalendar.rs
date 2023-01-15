@@ -667,9 +667,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other date)]
         pub unsafe fn date(&self) -> Option<Id<NSDate, Shared>>;
 
+        #[deprecated = "Use -weekOfMonth or -weekOfYear, depending on which you mean"]
         #[method(week)]
         pub unsafe fn week(&self) -> NSInteger;
 
+        #[deprecated = "Use -setWeekOfMonth: or -setWeekOfYear:, depending on which you mean"]
         #[method(setWeek:)]
         pub unsafe fn setWeek(&self, v: NSInteger);
 

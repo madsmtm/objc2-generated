@@ -122,12 +122,15 @@ extern_methods!(
     /// NSProgressIndicatorDeprecated
     #[cfg(feature = "AppKit_NSProgressIndicator")]
     unsafe impl NSProgressIndicator {
+        #[deprecated = "The animationDelay property does nothing."]
         #[method(animationDelay)]
         pub unsafe fn animationDelay(&self) -> NSTimeInterval;
 
+        #[deprecated = "The animationDelay property does nothing."]
         #[method(setAnimationDelay:)]
         pub unsafe fn setAnimationDelay(&self, delay: NSTimeInterval);
 
+        #[deprecated = "Use -startAnimation and -stopAnimation instead."]
         #[method(animate:)]
         pub unsafe fn animate(&self, sender: Option<&Object>);
     }

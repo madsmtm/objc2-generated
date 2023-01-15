@@ -177,6 +177,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSFileWrapper")]
     unsafe impl NSFileWrapper {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use -initWithURL:options:error: instead."]
         #[method_id(@__retain_semantics Init initWithPath:)]
         pub unsafe fn initWithPath(
             this: Option<Allocated<Self>>,
@@ -184,6 +185,7 @@ extern_methods!(
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use -initSymbolicLinkWithDestinationURL: and -setPreferredFileName:, if necessary, instead."]
         #[method_id(@__retain_semantics Init initSymbolicLinkWithDestination:)]
         pub unsafe fn initSymbolicLinkWithDestination(
             this: Option<Allocated<Self>>,
@@ -191,14 +193,17 @@ extern_methods!(
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use -matchesContentsOfURL: instead."]
         #[method(needsToBeUpdatedFromPath:)]
         pub unsafe fn needsToBeUpdatedFromPath(&self, path: &NSString) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use -readFromURL:options:error: instead."]
         #[method(updateFromPath:)]
         pub unsafe fn updateFromPath(&self, path: &NSString) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use -writeToURL:options:originalContentsURL:error: instead."]
         #[method(writeToFile:atomically:updateFilenames:)]
         pub unsafe fn writeToFile_atomically_updateFilenames(
             &self,
@@ -208,10 +213,12 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Instantiate a new NSFileWrapper with -initWithURL:options:error:, send it -setPreferredFileName: if necessary, then use -addFileWrapper: instead."]
         #[method_id(@__retain_semantics Other addFileWithPath:)]
         pub unsafe fn addFileWithPath(&self, path: &NSString) -> Id<NSString, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Instantiate a new NSFileWrapper with -initWithSymbolicLinkDestinationURL:, send it -setPreferredFileName: if necessary, then use -addFileWrapper: instead."]
         #[method_id(@__retain_semantics Other addSymbolicLinkWithDestination:preferredFilename:)]
         pub unsafe fn addSymbolicLinkWithDestination_preferredFilename(
             &self,
@@ -220,6 +227,7 @@ extern_methods!(
         ) -> Id<NSString, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use -symbolicLinkDestinationURL instead."]
         #[method_id(@__retain_semantics Other symbolicLinkDestination)]
         pub unsafe fn symbolicLinkDestination(&self) -> Id<NSString, Shared>;
     }

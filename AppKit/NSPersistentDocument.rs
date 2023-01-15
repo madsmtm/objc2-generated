@@ -106,6 +106,7 @@ extern_methods!(
             feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
         ))]
+        #[deprecated]
         #[method(configurePersistentStoreCoordinatorForURL:ofType:error:_)]
         pub unsafe fn configurePersistentStoreCoordinatorForURL_ofType_error(
             &self,
@@ -160,6 +161,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSPersistentDocument")]
     unsafe impl NSPersistentDocument {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Init initWithContentsOfFile:ofType:)]
         pub unsafe fn initWithContentsOfFile_ofType(
             this: Option<Allocated<Self>>,
@@ -168,6 +170,7 @@ extern_methods!(
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+        #[deprecated]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:ofType:)]
         pub unsafe fn initWithContentsOfURL_ofType(
             this: Option<Allocated<Self>>,

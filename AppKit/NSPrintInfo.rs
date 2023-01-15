@@ -284,9 +284,11 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSPrintInfo")]
     unsafe impl NSPrintInfo {
         #[cfg(feature = "AppKit_NSPrinter")]
+        #[deprecated = "NSPrintInfo's implementation has no effect"]
         #[method(setDefaultPrinter:)]
         pub unsafe fn setDefaultPrinter(printer: Option<&NSPrinter>);
 
+        #[deprecated = "Use -[NSPrinter pageSizeForPaper:] instead"]
         #[method(sizeForPaperName:)]
         pub unsafe fn sizeForPaperName(name: Option<&NSPrinterPaperName>) -> NSSize;
     }

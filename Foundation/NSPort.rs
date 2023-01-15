@@ -69,6 +69,7 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(all(feature = "Foundation_NSConnection", feature = "Foundation_NSRunLoop"))]
+        #[deprecated = "Use NSXPCConnection instead"]
         #[method(addConnection:toRunLoop:forMode:)]
         pub unsafe fn addConnection_toRunLoop_forMode(
             &self,
@@ -78,6 +79,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "Foundation_NSConnection", feature = "Foundation_NSRunLoop"))]
+        #[deprecated = "Use NSXPCConnection instead"]
         #[method(removeConnection:fromRunLoop:forMode:)]
         pub unsafe fn removeConnection_fromRunLoop_forMode(
             &self,

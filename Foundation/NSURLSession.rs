@@ -195,6 +195,7 @@ extern_methods!(
             feature = "Foundation_NSNetService",
             feature = "Foundation_NSURLSessionStreamTask"
         ))]
+        #[deprecated = "Use nw_connection_t in Network framework instead"]
         #[method_id(@__retain_semantics Other streamTaskWithNetService:)]
         pub unsafe fn streamTaskWithNetService(
             &self,
@@ -234,9 +235,11 @@ extern_methods!(
             request: &NSURLRequest,
         ) -> Id<NSURLSessionWebSocketTask, Shared>;
 
+        #[deprecated = "Please use +[NSURLSession sessionWithConfiguration:] or other class methods to create instances"]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
+        #[deprecated = "Please use +[NSURLSession sessionWithConfiguration:] or other class methods to create instances"]
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self, Shared>;
     }
@@ -471,9 +474,11 @@ extern_methods!(
         #[method(setPrefersIncrementalDelivery:)]
         pub unsafe fn setPrefersIncrementalDelivery(&self, prefersIncrementalDelivery: bool);
 
+        #[deprecated = "Not supported"]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
+        #[deprecated = "Not supported"]
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self, Shared>;
     }
@@ -500,9 +505,11 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Foundation_NSURLSessionDataTask")]
     unsafe impl NSURLSessionDataTask {
+        #[deprecated = "Please use -[NSURLSession dataTaskWithRequest:] or other NSURLSession methods to create instances"]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
+        #[deprecated = "Please use -[NSURLSession dataTaskWithRequest:] or other NSURLSession methods to create instances"]
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self, Shared>;
     }
@@ -523,9 +530,11 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Foundation_NSURLSessionUploadTask")]
     unsafe impl NSURLSessionUploadTask {
+        #[deprecated = "Please use -[NSURLSession uploadTaskWithStreamedRequest:] or other NSURLSession methods to create instances"]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
+        #[deprecated = "Please use -[NSURLSession uploadTaskWithStreamedRequest:] or other NSURLSession methods to create instances"]
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self, Shared>;
     }
@@ -553,9 +562,11 @@ extern_methods!(
             completionHandler: &Block<(*mut NSData,), ()>,
         );
 
+        #[deprecated = "Please use -[NSURLSession downloadTaskWithRequest:] or other NSURLSession methods to create instances"]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
+        #[deprecated = "Please use -[NSURLSession downloadTaskWithRequest:] or other NSURLSession methods to create instances"]
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self, Shared>;
     }
@@ -607,12 +618,15 @@ extern_methods!(
         #[method(startSecureConnection)]
         pub unsafe fn startSecureConnection(&self);
 
+        #[deprecated = "TLS cannot be disabled once it is enabled"]
         #[method(stopSecureConnection)]
         pub unsafe fn stopSecureConnection(&self);
 
+        #[deprecated = "Please use -[NSURLSession streamTaskWithHostName:port:] or other NSURLSession methods to create instances"]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
+        #[deprecated = "Please use -[NSURLSession streamTaskWithHostName:port:] or other NSURLSession methods to create instances"]
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self, Shared>;
     }
@@ -995,9 +1009,11 @@ extern_methods!(
             multipathServiceType: NSURLSessionMultipathServiceType,
         );
 
+        #[deprecated = "Please use NSURLSessionConfiguration.defaultSessionConfiguration or other class methods to create instances"]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
+        #[deprecated = "Please use NSURLSessionConfiguration.defaultSessionConfiguration or other class methods to create instances"]
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self, Shared>;
     }
@@ -1439,6 +1455,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSURLSessionConfiguration")]
     unsafe impl NSURLSessionConfiguration {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other backgroundSessionConfiguration:)]
         pub unsafe fn backgroundSessionConfiguration(
             identifier: &NSString,
@@ -1605,9 +1622,11 @@ extern_methods!(
             &self,
         ) -> NSURLSessionTaskMetricsDomainResolutionProtocol;
 
+        #[deprecated = "Not supported"]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
+        #[deprecated = "Not supported"]
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self, Shared>;
     }
@@ -1643,9 +1662,11 @@ extern_methods!(
         #[method(redirectCount)]
         pub unsafe fn redirectCount(&self) -> NSUInteger;
 
+        #[deprecated = "Not supported"]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
+        #[deprecated = "Not supported"]
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self, Shared>;
     }

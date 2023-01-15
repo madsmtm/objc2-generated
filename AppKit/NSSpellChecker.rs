@@ -467,11 +467,13 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSSpellChecker")]
     unsafe impl NSSpellChecker {
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[deprecated = "Use -guessesForWordRange:inString:language:inSpellDocumentWithTag instead"]
         #[method_id(@__retain_semantics Other guessesForWord:)]
         pub unsafe fn guessesForWord(&self, word: Option<&NSString>)
             -> Option<Id<NSArray, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(forgetWord:)]
         pub unsafe fn forgetWord(&self, word: Option<&NSString>);
     }

@@ -259,6 +259,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTextStorage")]
     unsafe impl NSTextStorage {
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSURL"))]
+        #[deprecated = "Use -initWithURL:options:documentAttributes:error: instead"]
         #[method_id(@__retain_semantics Init initWithURL:documentAttributes:)]
         pub unsafe fn initWithURL_documentAttributes(
             this: Option<Allocated<Self>>,
@@ -267,6 +268,7 @@ extern_methods!(
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[deprecated = "Use -initWithURL:options:documentAttributes:error: instead"]
         #[method_id(@__retain_semantics Init initWithPath:documentAttributes:)]
         pub unsafe fn initWithPath_documentAttributes(
             this: Option<Allocated<Self>>,

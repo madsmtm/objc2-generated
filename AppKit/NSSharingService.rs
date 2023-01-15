@@ -122,6 +122,7 @@ extern_methods!(
         pub unsafe fn attachmentFileURLs(&self) -> Option<Id<NSArray<NSURL>, Shared>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[deprecated = "Use -[NSSharingServicePicker standardShareMenuItem] instead."]
         #[method_id(@__retain_semantics Other sharingServicesForItems:)]
         pub unsafe fn sharingServicesForItems(
             items: &NSArray,

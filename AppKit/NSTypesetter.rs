@@ -347,6 +347,7 @@ extern_methods!(
             charIndex: NSUInteger,
         ) -> NSTypesetterControlCharacterAction;
 
+        #[deprecated]
         #[method(getGlyphsInRange:glyphs:characterIndexes:glyphInscriptions:elasticBits:bidiLevels:)]
         pub unsafe fn getGlyphsInRange_glyphs_characterIndexes_glyphInscriptions_elasticBits_bidiLevels(
             &self,
@@ -358,6 +359,7 @@ extern_methods!(
             bidiLevelBuffer: *mut c_uchar,
         ) -> NSUInteger;
 
+        #[deprecated]
         #[method(substituteGlyphsInRange:withGlyphs:)]
         pub unsafe fn substituteGlyphsInRange_withGlyphs(
             &self,
@@ -365,6 +367,7 @@ extern_methods!(
             glyphs: *mut NSGlyph,
         );
 
+        #[deprecated]
         #[method(insertGlyph:atGlyphIndex:characterIndex:)]
         pub unsafe fn insertGlyph_atGlyphIndex_characterIndex(
             &self,
@@ -373,6 +376,7 @@ extern_methods!(
             characterIndex: NSUInteger,
         );
 
+        #[deprecated]
         #[method(deleteGlyphsInRange:)]
         pub unsafe fn deleteGlyphsInRange(&self, glyphRange: NSRange);
     }

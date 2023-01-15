@@ -148,6 +148,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSAlert")]
     unsafe impl NSAlert {
         #[cfg(feature = "AppKit_NSWindow")]
+        #[deprecated = "Use -beginSheetModalForWindow:completionHandler: instead"]
         #[method(beginSheetModalForWindow:modalDelegate:didEndSelector:contextInfo:)]
         pub unsafe fn beginSheetModalForWindow_modalDelegate_didEndSelector_contextInfo(
             &self,

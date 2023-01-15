@@ -33,10 +33,12 @@ extern_methods!(
         pub unsafe fn decodePortObject(&self) -> Option<Id<NSPort, Shared>>;
 
         #[cfg(feature = "Foundation_NSConnection")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other connection)]
         pub unsafe fn connection(&self) -> Option<Id<NSConnection, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSPort"))]
+        #[deprecated]
         #[method_id(@__retain_semantics Other portCoderWithReceivePort:sendPort:components:)]
         pub unsafe fn portCoderWithReceivePort_sendPort_components(
             rcvPort: Option<&NSPort>,
@@ -45,6 +47,7 @@ extern_methods!(
         ) -> Id<Object, Shared>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSPort"))]
+        #[deprecated]
         #[method_id(@__retain_semantics Init initWithReceivePort:sendPort:components:)]
         pub unsafe fn initWithReceivePort_sendPort_components(
             this: Option<Allocated<Self>>,
@@ -53,6 +56,7 @@ extern_methods!(
             comps: Option<&NSArray>,
         ) -> Id<Self, Shared>;
 
+        #[deprecated]
         #[method(dispatch)]
         pub unsafe fn dispatch(&self);
     }

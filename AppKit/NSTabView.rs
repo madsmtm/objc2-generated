@@ -185,9 +185,11 @@ extern_methods!(
         #[method(indexOfTabViewItemWithIdentifier:)]
         pub unsafe fn indexOfTabViewItemWithIdentifier(&self, identifier: &Object) -> NSInteger;
 
+        #[deprecated = "The controlTint property is not respected on 10.14 and later."]
         #[method(controlTint)]
         pub unsafe fn controlTint(&self) -> NSControlTint;
 
+        #[deprecated = "The controlTint property is not respected on 10.14 and later."]
         #[method(setControlTint:)]
         pub unsafe fn setControlTint(&self, controlTint: NSControlTint);
     }

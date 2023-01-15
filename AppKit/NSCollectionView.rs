@@ -659,6 +659,7 @@ extern_protocol!(
             feature = "Foundation_NSIndexPath",
             feature = "Foundation_NSSet"
         ))]
+        #[deprecated = "Use -collectionView:pasteboardWriterForItemAtIndexPath: instead"]
         #[optional]
         #[method(collectionView:writeItemsAtIndexPaths:toPasteboard:)]
         pub unsafe fn collectionView_writeItemsAtIndexPaths_toPasteboard(
@@ -673,6 +674,7 @@ extern_protocol!(
             feature = "AppKit_NSPasteboard",
             feature = "Foundation_NSIndexSet"
         ))]
+        #[deprecated = "Use -collectionView:pasteboardWriterForItemAtIndexPath: instead"]
         #[optional]
         #[method(collectionView:writeItemsAtIndexes:toPasteboard:)]
         pub unsafe fn collectionView_writeItemsAtIndexes_toPasteboard(
@@ -690,6 +692,7 @@ extern_protocol!(
             feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
         ))]
+        #[deprecated = "Use NSFilePromiseReceiver objects instead"]
         #[optional]
         #[method_id(@__retain_semantics Other collectionView:namesOfPromisedFilesDroppedAtDestination:forDraggedItemsAtIndexPaths:)]
         pub unsafe fn collectionView_namesOfPromisedFilesDroppedAtDestination_forDraggedItemsAtIndexPaths(
@@ -706,6 +709,7 @@ extern_protocol!(
             feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
         ))]
+        #[deprecated = "Use NSFilePromiseReceiver objects instead"]
         #[optional]
         #[method_id(@__retain_semantics Other collectionView:namesOfPromisedFilesDroppedAtDestination:forDraggedItemsAtIndexes:)]
         pub unsafe fn collectionView_namesOfPromisedFilesDroppedAtDestination_forDraggedItemsAtIndexes(
@@ -1074,6 +1078,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSCollectionView")]
     unsafe impl NSCollectionView {
         #[cfg(feature = "AppKit_NSCollectionViewItem")]
+        #[deprecated = "Use -[NSCollectionViewDataSource collectionView:itemForRepresentedObjectAtIndexPath:] instead"]
         #[method_id(@__retain_semantics New newItemForRepresentedObject:)]
         pub unsafe fn newItemForRepresentedObject(
             &self,
@@ -1081,34 +1086,44 @@ extern_methods!(
         ) -> Id<NSCollectionViewItem, Shared>;
 
         #[cfg(feature = "AppKit_NSCollectionViewItem")]
+        #[deprecated = "Use -registerNib:forItemWithIdentifier: or -registerClass:forItemWithIdentifier: instead."]
         #[method_id(@__retain_semantics Other itemPrototype)]
         pub unsafe fn itemPrototype(&self) -> Option<Id<NSCollectionViewItem, Shared>>;
 
         #[cfg(feature = "AppKit_NSCollectionViewItem")]
+        #[deprecated = "Use -registerNib:forItemWithIdentifier: or -registerClass:forItemWithIdentifier: instead."]
         #[method(setItemPrototype:)]
         pub unsafe fn setItemPrototype(&self, itemPrototype: Option<&NSCollectionViewItem>);
 
+        #[deprecated = "Use NSCollectionViewGridLayout as the receiver's collectionViewLayout, setting its maximumNumberOfRows instead"]
         #[method(maxNumberOfRows)]
         pub unsafe fn maxNumberOfRows(&self) -> NSUInteger;
 
+        #[deprecated = "Use NSCollectionViewGridLayout as the receiver's collectionViewLayout, setting its maximumNumberOfRows instead"]
         #[method(setMaxNumberOfRows:)]
         pub unsafe fn setMaxNumberOfRows(&self, maxNumberOfRows: NSUInteger);
 
+        #[deprecated = "Use NSCollectionViewGridLayout as the receiver's collectionViewLayout, setting its maximumNumberOfColumns instead"]
         #[method(maxNumberOfColumns)]
         pub unsafe fn maxNumberOfColumns(&self) -> NSUInteger;
 
+        #[deprecated = "Use NSCollectionViewGridLayout as the receiver's collectionViewLayout, setting its maximumNumberOfColumns instead"]
         #[method(setMaxNumberOfColumns:)]
         pub unsafe fn setMaxNumberOfColumns(&self, maxNumberOfColumns: NSUInteger);
 
+        #[deprecated = "Use NSCollectionViewGridLayout as the receiver's collectionViewLayout, setting its minimumItemSize instead"]
         #[method(minItemSize)]
         pub unsafe fn minItemSize(&self) -> NSSize;
 
+        #[deprecated = "Use NSCollectionViewGridLayout as the receiver's collectionViewLayout, setting its minimumItemSize instead"]
         #[method(setMinItemSize:)]
         pub unsafe fn setMinItemSize(&self, minItemSize: NSSize);
 
+        #[deprecated = "Use NSCollectionViewGridLayout as the receiver's collectionViewLayout, setting its maximumItemSize instead"]
         #[method(maxItemSize)]
         pub unsafe fn maxItemSize(&self) -> NSSize;
 
+        #[deprecated = "Use NSCollectionViewGridLayout as the receiver's collectionViewLayout, setting its maximumItemSize instead"]
         #[method(setMaxItemSize:)]
         pub unsafe fn setMaxItemSize(&self, maxItemSize: NSSize);
     }

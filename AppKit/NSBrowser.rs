@@ -661,6 +661,7 @@ extern_protocol!(
             feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
         ))]
+        #[deprecated = "Use NSFilePromiseReceiver objects instead"]
         #[optional]
         #[method_id(@__retain_semantics Other browser:namesOfPromisedFilesDroppedAtDestination:forDraggedRowsWithIndexes:inColumn:)]
         pub unsafe fn browser_namesOfPromisedFilesDroppedAtDestination_forDraggedRowsWithIndexes_inColumn(
@@ -807,36 +808,46 @@ extern_methods!(
     /// NSDeprecated
     #[cfg(feature = "AppKit_NSBrowser")]
     unsafe impl NSBrowser {
+        #[deprecated]
         #[method(setAcceptsArrowKeys:)]
         pub unsafe fn setAcceptsArrowKeys(&self, flag: bool);
 
+        #[deprecated]
         #[method(acceptsArrowKeys)]
         pub unsafe fn acceptsArrowKeys(&self) -> bool;
 
+        #[deprecated]
         #[method(displayColumn:)]
         pub unsafe fn displayColumn(&self, column: NSInteger);
 
+        #[deprecated]
         #[method(displayAllColumns)]
         pub unsafe fn displayAllColumns(&self);
 
         #[cfg(feature = "AppKit_NSScroller")]
+        #[deprecated]
         #[method(scrollViaScroller:)]
         pub unsafe fn scrollViaScroller(&self, sender: Option<&NSScroller>);
 
+        #[deprecated]
         #[method(updateScroller)]
         pub unsafe fn updateScroller(&self);
 
+        #[deprecated = "Use the item based NSBrowser instead"]
         #[method(setMatrixClass:)]
         pub unsafe fn setMatrixClass(&self, factoryId: &Class);
 
+        #[deprecated = "Use the item based NSBrowser instead"]
         #[method(matrixClass)]
         pub unsafe fn matrixClass(&self) -> &'static Class;
 
         #[cfg(feature = "AppKit_NSMatrix")]
+        #[deprecated = "Use the item based NSBrowser instead"]
         #[method(columnOfMatrix:)]
         pub unsafe fn columnOfMatrix(&self, matrix: &NSMatrix) -> NSInteger;
 
         #[cfg(feature = "AppKit_NSMatrix")]
+        #[deprecated = "Use the item based NSBrowser instead"]
         #[method_id(@__retain_semantics Other matrixInColumn:)]
         pub unsafe fn matrixInColumn(&self, column: NSInteger) -> Option<Id<NSMatrix, Shared>>;
     }
