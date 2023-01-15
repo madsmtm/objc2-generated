@@ -80,6 +80,12 @@ extern_methods!(
         #[method(barRectFlipped:)]
         pub unsafe fn barRectFlipped(&self, flipped: bool) -> NSRect;
 
+        #[method(drawKnob:)]
+        pub unsafe fn drawKnob_(&self, knobRect: NSRect);
+
+        #[method(drawKnob)]
+        pub unsafe fn drawKnob(&self);
+
         #[method(drawBarInside:flipped:)]
         pub unsafe fn drawBarInside_flipped(&self, rect: NSRect, flipped: bool);
     }

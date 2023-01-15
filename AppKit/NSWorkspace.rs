@@ -99,6 +99,10 @@ extern_methods!(
         pub unsafe fn showSearchResultsForQueryString(&self, queryString: &NSString) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[method(noteFileSystemChanged:)]
+        pub unsafe fn noteFileSystemChanged_(&self, path: &NSString);
+
+        #[cfg(feature = "Foundation_NSString")]
         #[method(isFilePackageAtPath:)]
         pub unsafe fn isFilePackageAtPath(&self, fullPath: &NSString) -> bool;
 
@@ -695,6 +699,9 @@ extern_methods!(
 
         #[method(checkForRemovableMedia)]
         pub unsafe fn checkForRemovableMedia(&self);
+
+        #[method(noteFileSystemChanged)]
+        pub unsafe fn noteFileSystemChanged(&self);
 
         #[method(fileSystemChanged)]
         pub unsafe fn fileSystemChanged(&self) -> bool;
