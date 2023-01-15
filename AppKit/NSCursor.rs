@@ -103,6 +103,9 @@ extern_methods!(
         #[method(setHiddenUntilMouseMoves:)]
         pub unsafe fn setHiddenUntilMouseMoves(flag: bool);
 
+        #[method(pop)]
+        pub unsafe fn pop_class();
+
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other image)]
         pub unsafe fn image(&self) -> Id<NSImage, Shared>;
@@ -112,6 +115,9 @@ extern_methods!(
 
         #[method(push)]
         pub unsafe fn push(&self);
+
+        #[method(pop)]
+        pub unsafe fn pop(&self);
 
         #[method(set)]
         pub unsafe fn set(&self);

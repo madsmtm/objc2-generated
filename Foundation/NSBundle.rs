@@ -233,11 +233,35 @@ extern_methods!(
         ) -> Option<Id<NSArray<NSURL>, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Other pathForResource:ofType:inDirectory:)]
+        pub unsafe fn pathForResource_ofType_inDirectory_class(
+            name: Option<&NSString>,
+            ext: Option<&NSString>,
+            bundlePath: &NSString,
+        ) -> Option<Id<NSString, Shared>>;
+
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[method_id(@__retain_semantics Other pathsForResourcesOfType:inDirectory:)]
+        pub unsafe fn pathsForResourcesOfType_inDirectory_class(
+            ext: Option<&NSString>,
+            bundlePath: &NSString,
+        ) -> Id<NSArray<NSString>, Shared>;
+
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other pathForResource:ofType:)]
         pub unsafe fn pathForResource_ofType(
             &self,
             name: Option<&NSString>,
             ext: Option<&NSString>,
+        ) -> Option<Id<NSString, Shared>>;
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Other pathForResource:ofType:inDirectory:)]
+        pub unsafe fn pathForResource_ofType_inDirectory(
+            &self,
+            name: Option<&NSString>,
+            ext: Option<&NSString>,
+            subpath: Option<&NSString>,
         ) -> Option<Id<NSString, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -249,6 +273,14 @@ extern_methods!(
             subpath: Option<&NSString>,
             localizationName: Option<&NSString>,
         ) -> Option<Id<NSString, Shared>>;
+
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[method_id(@__retain_semantics Other pathsForResourcesOfType:inDirectory:)]
+        pub unsafe fn pathsForResourcesOfType_inDirectory(
+            &self,
+            ext: Option<&NSString>,
+            subpath: Option<&NSString>,
+        ) -> Id<NSArray<NSString>, Shared>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other pathsForResourcesOfType:inDirectory:forLocalization:)]

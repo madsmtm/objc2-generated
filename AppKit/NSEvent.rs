@@ -354,6 +354,9 @@ extern_methods!(
         #[method(type)]
         pub unsafe fn r#type(&self) -> NSEventType;
 
+        #[method(modifierFlags)]
+        pub unsafe fn modifierFlags(&self) -> NSEventModifierFlags;
+
         #[method(timestamp)]
         pub unsafe fn timestamp(&self) -> NSTimeInterval;
 
@@ -645,6 +648,9 @@ extern_methods!(
 
         #[method(mouseLocation)]
         pub unsafe fn mouseLocation() -> NSPoint;
+
+        #[method(modifierFlags)]
+        pub unsafe fn modifierFlags_class() -> NSEventModifierFlags;
 
         #[method(pressedMouseButtons)]
         pub unsafe fn pressedMouseButtons() -> NSUInteger;

@@ -17,6 +17,12 @@ extern_class!(
 extern_methods!(
     #[cfg(feature = "Foundation_NSAutoreleasePool")]
     unsafe impl NSAutoreleasePool {
+        #[method(addObject:)]
+        pub unsafe fn addObject_class(anObject: &Object);
+
+        #[method(addObject:)]
+        pub unsafe fn addObject(&self, anObject: &Object);
+
         #[method(drain)]
         pub unsafe fn drain(&self);
     }

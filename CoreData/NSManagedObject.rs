@@ -33,6 +33,10 @@ extern_methods!(
         #[method(contextShouldIgnoreUnmodeledPropertyChanges)]
         pub unsafe fn contextShouldIgnoreUnmodeledPropertyChanges() -> bool;
 
+        #[cfg(feature = "CoreData_NSEntityDescription")]
+        #[method_id(@__retain_semantics Other entity)]
+        pub unsafe fn entity_class() -> Id<NSEntityDescription, Shared>;
+
         #[cfg(feature = "CoreData_NSFetchRequest")]
         #[method_id(@__retain_semantics Other fetchRequest)]
         pub unsafe fn fetchRequest() -> Id<NSFetchRequest, Shared>;
@@ -58,6 +62,10 @@ extern_methods!(
         #[cfg(feature = "CoreData_NSManagedObjectContext")]
         #[method_id(@__retain_semantics Other managedObjectContext)]
         pub unsafe fn managedObjectContext(&self) -> Option<Id<NSManagedObjectContext, Shared>>;
+
+        #[cfg(feature = "CoreData_NSEntityDescription")]
+        #[method_id(@__retain_semantics Other entity)]
+        pub unsafe fn entity(&self) -> Id<NSEntityDescription, Shared>;
 
         #[cfg(feature = "CoreData_NSManagedObjectID")]
         #[method_id(@__retain_semantics Other objectID)]

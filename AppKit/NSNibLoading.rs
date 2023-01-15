@@ -15,11 +15,28 @@ extern_methods!(
     /// NSNibLoadingDeprecated
     #[cfg(feature = "Foundation_NSBundle")]
     unsafe impl NSBundle {
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[method(loadNibFile:externalNameTable:withZone:)]
+        pub unsafe fn loadNibFile_externalNameTable_withZone_class(
+            fileName: Option<&NSString>,
+            context: Option<&NSDictionary>,
+            zone: *mut NSZone,
+        ) -> bool;
+
         #[cfg(feature = "Foundation_NSString")]
         #[method(loadNibNamed:owner:)]
         pub unsafe fn loadNibNamed_owner(
             nibName: Option<&NSString>,
             owner: Option<&Object>,
+        ) -> bool;
+
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[method(loadNibFile:externalNameTable:withZone:)]
+        pub unsafe fn loadNibFile_externalNameTable_withZone(
+            &self,
+            fileName: Option<&NSString>,
+            context: Option<&NSDictionary>,
+            zone: *mut NSZone,
         ) -> bool;
     }
 );

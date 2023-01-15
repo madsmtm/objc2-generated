@@ -75,6 +75,22 @@ extern_methods!(
         pub unsafe fn finishEncoding(&self);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[method(setClassName:forClass:)]
+        pub unsafe fn setClassName_forClass_class(codedName: Option<&NSString>, cls: &Class);
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method(setClassName:forClass:)]
+        pub unsafe fn setClassName_forClass(&self, codedName: Option<&NSString>, cls: &Class);
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Other classNameForClass:)]
+        pub unsafe fn classNameForClass_class(cls: &Class) -> Option<Id<NSString, Shared>>;
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Other classNameForClass:)]
+        pub unsafe fn classNameForClass(&self, cls: &Class) -> Option<Id<NSString, Shared>>;
+
+        #[cfg(feature = "Foundation_NSString")]
         #[method(encodeObject:forKey:)]
         pub unsafe fn encodeObject_forKey(&self, object: Option<&Object>, key: &NSString);
 
@@ -247,6 +263,22 @@ extern_methods!(
 
         #[method(finishDecoding)]
         pub unsafe fn finishDecoding(&self);
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method(setClass:forClassName:)]
+        pub unsafe fn setClass_forClassName_class(cls: Option<&Class>, codedName: &NSString);
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method(setClass:forClassName:)]
+        pub unsafe fn setClass_forClassName(&self, cls: Option<&Class>, codedName: &NSString);
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method(classForClassName:)]
+        pub unsafe fn classForClassName_class(codedName: &NSString) -> Option<&'static Class>;
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method(classForClassName:)]
+        pub unsafe fn classForClassName(&self, codedName: &NSString) -> Option<&'static Class>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(containsValueForKey:)]
