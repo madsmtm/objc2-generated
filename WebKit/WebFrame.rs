@@ -122,9 +122,5 @@ extern_methods!(
         #[cfg(feature = "WebKit_WebScriptObject")]
         #[method_id(@__retain_semantics Other windowObject)]
         pub unsafe fn windowObject(&self) -> Option<Id<WebScriptObject, Shared>>;
-
-        #[cfg(feature = "WebKit_JSContext")]
-        #[method_id(@__retain_semantics Other javaScriptContext)]
-        pub unsafe fn javaScriptContext(&self) -> Option<Id<JSContext, Shared>>;
     }
 );

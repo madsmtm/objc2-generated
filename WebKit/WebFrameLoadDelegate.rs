@@ -169,19 +169,5 @@ extern_protocol!(
             web_view: Option<&WebView>,
             window_script_object: Option<&WebScriptObject>,
         );
-
-        #[cfg(all(
-            feature = "WebKit_JSContext",
-            feature = "WebKit_WebFrame",
-            feature = "WebKit_WebView"
-        ))]
-        #[optional]
-        #[method(webView:didCreateJavaScriptContext:forFrame:)]
-        pub unsafe fn webView_didCreateJavaScriptContext_forFrame(
-            &self,
-            web_view: Option<&WebView>,
-            context: Option<&JSContext>,
-            frame: Option<&WebFrame>,
-        );
     }
 );

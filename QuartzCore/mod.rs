@@ -54,6 +54,12 @@ mod __CATransform3D;
 mod __CATransformLayer;
 #[path = "CAValueFunction.rs"]
 mod __CAValueFunction;
+#[path = "CoreAnimation.rs"]
+mod __CoreAnimation;
+#[path = "CoreImage.rs"]
+mod __CoreImage;
+#[path = "CoreVideo.rs"]
+mod __CoreVideo;
 
 pub use self::__CAAnimation::kCAAnimationCubic;
 pub use self::__CAAnimation::kCAAnimationCubicPaced;
