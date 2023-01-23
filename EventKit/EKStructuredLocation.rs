@@ -5,6 +5,7 @@ use crate::AppKit::*;
 use crate::CoreLocation::*;
 use crate::EventKit::*;
 use crate::Foundation::*;
+use crate::MapKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -25,7 +26,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other locationWithTitle:)]
         pub unsafe fn locationWithTitle(title: &NSString) -> Id<Self, Shared>;
 
-        #[cfg(feature = "EventKit_MKMapItem")]
+        #[cfg(feature = "MapKit_MKMapItem")]
         #[method_id(@__retain_semantics Other locationWithMapItem:)]
         pub unsafe fn locationWithMapItem(map_item: &MKMapItem) -> Id<Self, Shared>;
 

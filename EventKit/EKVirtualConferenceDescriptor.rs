@@ -5,6 +5,7 @@ use crate::AppKit::*;
 use crate::CoreLocation::*;
 use crate::EventKit::*;
 use crate::Foundation::*;
+use crate::MapKit::*;
 
 pub type EKVirtualConferenceRoomTypeIdentifier = NSString;
 
