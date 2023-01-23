@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use crate::common::*;
 use crate::CloudKit::*;
+use crate::CoreLocation::*;
 use crate::Foundation::*;
 
 extern_static!(CKRecordTypeShare: &'static CKRecordType);

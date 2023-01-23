@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use crate::common::*;
 use crate::AppKit::*;
+use crate::CoreLocation::*;
 use crate::EventKit::*;
 use crate::Foundation::*;
 
