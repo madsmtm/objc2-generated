@@ -21,7 +21,7 @@ extern_class!(
 unsafe impl NSAccessibility for OSAScriptView {}
 
 #[cfg(feature = "OSAKit_OSAScriptView")]
-unsafe impl NSAccessibilityElement for OSAScriptView {}
+unsafe impl NSAccessibilityElementProtocol for OSAScriptView {}
 
 #[cfg(feature = "OSAKit_OSAScriptView")]
 unsafe impl NSAccessibilityNavigableStaticText for OSAScriptView {}

@@ -21,7 +21,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSMenuItemCell {}
 
 #[cfg(feature = "AppKit_NSMenuItemCell")]
-unsafe impl NSAccessibilityElement for NSMenuItemCell {}
+unsafe impl NSAccessibilityElementProtocol for NSMenuItemCell {}
 
 #[cfg(feature = "AppKit_NSMenuItemCell")]
 unsafe impl NSCoding for NSMenuItemCell {}

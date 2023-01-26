@@ -116,7 +116,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSTableView {}
 
 #[cfg(feature = "AppKit_NSTableView")]
-unsafe impl NSAccessibilityElement for NSTableView {}
+unsafe impl NSAccessibilityElementProtocol for NSTableView {}
 
 #[cfg(feature = "AppKit_NSTableView")]
 unsafe impl NSAccessibilityGroup for NSTableView {}

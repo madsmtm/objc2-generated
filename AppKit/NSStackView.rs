@@ -56,7 +56,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSStackView {}
 
 #[cfg(feature = "AppKit_NSStackView")]
-unsafe impl NSAccessibilityElement for NSStackView {}
+unsafe impl NSAccessibilityElementProtocol for NSStackView {}
 
 #[cfg(feature = "AppKit_NSStackView")]
 unsafe impl NSAnimatablePropertyContainer for NSStackView {}

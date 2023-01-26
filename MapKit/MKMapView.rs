@@ -36,7 +36,7 @@ extern_class!(
 unsafe impl NSAccessibility for MKMapView {}
 
 #[cfg(feature = "MapKit_MKMapView")]
-unsafe impl NSAccessibilityElement for MKMapView {}
+unsafe impl NSAccessibilityElementProtocol for MKMapView {}
 
 #[cfg(feature = "MapKit_MKMapView")]
 unsafe impl NSAnimatablePropertyContainer for MKMapView {}

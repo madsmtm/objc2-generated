@@ -22,7 +22,7 @@ extern_class!(
 unsafe impl NSAccessibility for WebFrameView {}
 
 #[cfg(feature = "WebKit_WebFrameView")]
-unsafe impl NSAccessibilityElement for WebFrameView {}
+unsafe impl NSAccessibilityElementProtocol for WebFrameView {}
 
 #[cfg(feature = "WebKit_WebFrameView")]
 unsafe impl NSAnimatablePropertyContainer for WebFrameView {}

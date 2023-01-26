@@ -56,7 +56,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSButtonCell {}
 
 #[cfg(feature = "AppKit_NSButtonCell")]
-unsafe impl NSAccessibilityElement for NSButtonCell {}
+unsafe impl NSAccessibilityElementProtocol for NSButtonCell {}
 
 #[cfg(feature = "AppKit_NSButtonCell")]
 unsafe impl NSCoding for NSButtonCell {}

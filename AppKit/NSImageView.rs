@@ -21,7 +21,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSImageView {}
 
 #[cfg(feature = "AppKit_NSImageView")]
-unsafe impl NSAccessibilityElement for NSImageView {}
+unsafe impl NSAccessibilityElementProtocol for NSImageView {}
 
 #[cfg(feature = "AppKit_NSImageView")]
 unsafe impl NSAccessibilityImage for NSImageView {}

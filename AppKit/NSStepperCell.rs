@@ -21,7 +21,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSStepperCell {}
 
 #[cfg(feature = "AppKit_NSStepperCell")]
-unsafe impl NSAccessibilityElement for NSStepperCell {}
+unsafe impl NSAccessibilityElementProtocol for NSStepperCell {}
 
 #[cfg(feature = "AppKit_NSStepperCell")]
 unsafe impl NSCoding for NSStepperCell {}

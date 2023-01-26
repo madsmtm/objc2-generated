@@ -21,7 +21,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSSecureTextField {}
 
 #[cfg(feature = "AppKit_NSSecureTextField")]
-unsafe impl NSAccessibilityElement for NSSecureTextField {}
+unsafe impl NSAccessibilityElementProtocol for NSSecureTextField {}
 
 #[cfg(feature = "AppKit_NSSecureTextField")]
 unsafe impl NSAccessibilityNavigableStaticText for NSSecureTextField {}
@@ -74,7 +74,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSSecureTextFieldCell {}
 
 #[cfg(feature = "AppKit_NSSecureTextFieldCell")]
-unsafe impl NSAccessibilityElement for NSSecureTextFieldCell {}
+unsafe impl NSAccessibilityElementProtocol for NSSecureTextFieldCell {}
 
 #[cfg(feature = "AppKit_NSSecureTextFieldCell")]
 unsafe impl NSCoding for NSSecureTextFieldCell {}

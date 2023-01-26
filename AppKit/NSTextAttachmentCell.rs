@@ -5,6 +5,102 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+extern_protocol!(
+    pub unsafe trait NSTextAttachmentCellProtocol: NSObjectProtocol {
+        #[cfg(feature = "AppKit_NSView")]
+        #[method(drawWithFrame:inView:)]
+        unsafe fn drawWithFrame_inView(&self, cell_frame: NSRect, control_view: Option<&NSView>);
+
+        #[method(wantsToTrackMouse)]
+        unsafe fn wantsToTrackMouse(&self) -> bool;
+
+        #[cfg(feature = "AppKit_NSView")]
+        #[method(highlight:withFrame:inView:)]
+        unsafe fn highlight_withFrame_inView(
+            &self,
+            flag: bool,
+            cell_frame: NSRect,
+            control_view: Option<&NSView>,
+        );
+
+        #[cfg(all(feature = "AppKit_NSEvent", feature = "AppKit_NSView"))]
+        #[method(trackMouse:inRect:ofView:untilMouseUp:)]
+        unsafe fn trackMouse_inRect_ofView_untilMouseUp(
+            &self,
+            the_event: &NSEvent,
+            cell_frame: NSRect,
+            control_view: Option<&NSView>,
+            flag: bool,
+        ) -> bool;
+
+        #[method(cellSize)]
+        unsafe fn cellSize(&self) -> NSSize;
+
+        #[method(cellBaselineOffset)]
+        unsafe fn cellBaselineOffset(&self) -> NSPoint;
+
+        #[cfg(feature = "AppKit_NSTextAttachment")]
+        #[method_id(@__retain_semantics Other attachment)]
+        unsafe fn attachment(&self) -> Option<Id<NSTextAttachment, Shared>>;
+
+        #[cfg(feature = "AppKit_NSTextAttachment")]
+        #[method(setAttachment:)]
+        unsafe fn setAttachment(&self, attachment: Option<&NSTextAttachment>);
+
+        #[cfg(feature = "AppKit_NSView")]
+        #[method(drawWithFrame:inView:characterIndex:)]
+        unsafe fn drawWithFrame_inView_characterIndex(
+            &self,
+            cell_frame: NSRect,
+            control_view: Option<&NSView>,
+            char_index: NSUInteger,
+        );
+
+        #[cfg(all(feature = "AppKit_NSLayoutManager", feature = "AppKit_NSView"))]
+        #[method(drawWithFrame:inView:characterIndex:layoutManager:)]
+        unsafe fn drawWithFrame_inView_characterIndex_layoutManager(
+            &self,
+            cell_frame: NSRect,
+            control_view: Option<&NSView>,
+            char_index: NSUInteger,
+            layout_manager: &NSLayoutManager,
+        );
+
+        #[cfg(all(feature = "AppKit_NSEvent", feature = "AppKit_NSView"))]
+        #[method(wantsToTrackMouseForEvent:inRect:ofView:atCharacterIndex:)]
+        unsafe fn wantsToTrackMouseForEvent_inRect_ofView_atCharacterIndex(
+            &self,
+            the_event: &NSEvent,
+            cell_frame: NSRect,
+            control_view: Option<&NSView>,
+            char_index: NSUInteger,
+        ) -> bool;
+
+        #[cfg(all(feature = "AppKit_NSEvent", feature = "AppKit_NSView"))]
+        #[method(trackMouse:inRect:ofView:atCharacterIndex:untilMouseUp:)]
+        unsafe fn trackMouse_inRect_ofView_atCharacterIndex_untilMouseUp(
+            &self,
+            the_event: &NSEvent,
+            cell_frame: NSRect,
+            control_view: Option<&NSView>,
+            char_index: NSUInteger,
+            flag: bool,
+        ) -> bool;
+
+        #[cfg(feature = "AppKit_NSTextContainer")]
+        #[method(cellFrameForTextContainer:proposedLineFragment:glyphPosition:characterIndex:)]
+        unsafe fn cellFrameForTextContainer_proposedLineFragment_glyphPosition_characterIndex(
+            &self,
+            text_container: &NSTextContainer,
+            line_frag: NSRect,
+            position: NSPoint,
+            char_index: NSUInteger,
+        ) -> NSRect;
+    }
+
+    unsafe impl ProtocolType for dyn NSTextAttachmentCellProtocol {}
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSTextAttachmentCell")]
@@ -21,7 +117,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSTextAttachmentCell {}
 
 #[cfg(feature = "AppKit_NSTextAttachmentCell")]
-unsafe impl NSAccessibilityElement for NSTextAttachmentCell {}
+unsafe impl NSAccessibilityElementProtocol for NSTextAttachmentCell {}
 
 #[cfg(feature = "AppKit_NSTextAttachmentCell")]
 unsafe impl NSCoding for NSTextAttachmentCell {}
@@ -30,7 +126,7 @@ unsafe impl NSCoding for NSTextAttachmentCell {}
 unsafe impl NSObjectProtocol for NSTextAttachmentCell {}
 
 #[cfg(feature = "AppKit_NSTextAttachmentCell")]
-unsafe impl NSTextAttachmentCell for NSTextAttachmentCell {}
+unsafe impl NSTextAttachmentCellProtocol for NSTextAttachmentCell {}
 
 #[cfg(feature = "AppKit_NSTextAttachmentCell")]
 unsafe impl NSUserInterfaceItemIdentification for NSTextAttachmentCell {}

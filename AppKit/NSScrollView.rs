@@ -30,7 +30,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSScrollView {}
 
 #[cfg(feature = "AppKit_NSScrollView")]
-unsafe impl NSAccessibilityElement for NSScrollView {}
+unsafe impl NSAccessibilityElementProtocol for NSScrollView {}
 
 #[cfg(feature = "AppKit_NSScrollView")]
 unsafe impl NSAnimatablePropertyContainer for NSScrollView {}

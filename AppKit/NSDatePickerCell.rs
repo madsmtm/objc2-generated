@@ -50,7 +50,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSDatePickerCell {}
 
 #[cfg(feature = "AppKit_NSDatePickerCell")]
-unsafe impl NSAccessibilityElement for NSDatePickerCell {}
+unsafe impl NSAccessibilityElementProtocol for NSDatePickerCell {}
 
 #[cfg(feature = "AppKit_NSDatePickerCell")]
 unsafe impl NSCoding for NSDatePickerCell {}

@@ -21,7 +21,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSTableCellView {}
 
 #[cfg(feature = "AppKit_NSTableCellView")]
-unsafe impl NSAccessibilityElement for NSTableCellView {}
+unsafe impl NSAccessibilityElementProtocol for NSTableCellView {}
 
 #[cfg(feature = "AppKit_NSTableCellView")]
 unsafe impl NSAnimatablePropertyContainer for NSTableCellView {}

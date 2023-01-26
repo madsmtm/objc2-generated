@@ -30,7 +30,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSPopUpButtonCell {}
 
 #[cfg(feature = "AppKit_NSPopUpButtonCell")]
-unsafe impl NSAccessibilityElement for NSPopUpButtonCell {}
+unsafe impl NSAccessibilityElementProtocol for NSPopUpButtonCell {}
 
 #[cfg(feature = "AppKit_NSPopUpButtonCell")]
 unsafe impl NSCoding for NSPopUpButtonCell {}

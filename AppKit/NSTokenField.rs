@@ -133,7 +133,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSTokenField {}
 
 #[cfg(feature = "AppKit_NSTokenField")]
-unsafe impl NSAccessibilityElement for NSTokenField {}
+unsafe impl NSAccessibilityElementProtocol for NSTokenField {}
 
 #[cfg(feature = "AppKit_NSTokenField")]
 unsafe impl NSAccessibilityNavigableStaticText for NSTokenField {}

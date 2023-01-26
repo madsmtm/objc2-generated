@@ -21,7 +21,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSClipView {}
 
 #[cfg(feature = "AppKit_NSClipView")]
-unsafe impl NSAccessibilityElement for NSClipView {}
+unsafe impl NSAccessibilityElementProtocol for NSClipView {}
 
 #[cfg(feature = "AppKit_NSClipView")]
 unsafe impl NSAnimatablePropertyContainer for NSClipView {}

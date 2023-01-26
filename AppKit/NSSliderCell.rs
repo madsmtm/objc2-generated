@@ -39,7 +39,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSSliderCell {}
 
 #[cfg(feature = "AppKit_NSSliderCell")]
-unsafe impl NSAccessibilityElement for NSSliderCell {}
+unsafe impl NSAccessibilityElementProtocol for NSSliderCell {}
 
 #[cfg(feature = "AppKit_NSSliderCell")]
 unsafe impl NSCoding for NSSliderCell {}

@@ -23,7 +23,7 @@ extern_class!(
 unsafe impl NSAccessibility for MKMarkerAnnotationView {}
 
 #[cfg(feature = "MapKit_MKMarkerAnnotationView")]
-unsafe impl NSAccessibilityElement for MKMarkerAnnotationView {}
+unsafe impl NSAccessibilityElementProtocol for MKMarkerAnnotationView {}
 
 #[cfg(feature = "MapKit_MKMarkerAnnotationView")]
 unsafe impl NSAnimatablePropertyContainer for MKMarkerAnnotationView {}

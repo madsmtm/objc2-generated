@@ -31,7 +31,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSMatrix {}
 
 #[cfg(feature = "AppKit_NSMatrix")]
-unsafe impl NSAccessibilityElement for NSMatrix {}
+unsafe impl NSAccessibilityElementProtocol for NSMatrix {}
 
 #[cfg(feature = "AppKit_NSMatrix")]
 unsafe impl NSAnimatablePropertyContainer for NSMatrix {}

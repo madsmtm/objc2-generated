@@ -21,7 +21,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSActionCell {}
 
 #[cfg(feature = "AppKit_NSActionCell")]
-unsafe impl NSAccessibilityElement for NSActionCell {}
+unsafe impl NSAccessibilityElementProtocol for NSActionCell {}
 
 #[cfg(feature = "AppKit_NSActionCell")]
 unsafe impl NSCoding for NSActionCell {}

@@ -33,7 +33,7 @@ extern_class!(
 unsafe impl NSAccessibility for BCChatButton {}
 
 #[cfg(feature = "BusinessChat_BCChatButton")]
-unsafe impl NSAccessibilityElement for BCChatButton {}
+unsafe impl NSAccessibilityElementProtocol for BCChatButton {}
 
 #[cfg(feature = "BusinessChat_BCChatButton")]
 unsafe impl NSAnimatablePropertyContainer for BCChatButton {}

@@ -23,7 +23,7 @@ extern_class!(
 unsafe impl NSAccessibility for MKZoomControl {}
 
 #[cfg(feature = "MapKit_MKZoomControl")]
-unsafe impl NSAccessibilityElement for MKZoomControl {}
+unsafe impl NSAccessibilityElementProtocol for MKZoomControl {}
 
 #[cfg(feature = "MapKit_MKZoomControl")]
 unsafe impl NSAnimatablePropertyContainer for MKZoomControl {}

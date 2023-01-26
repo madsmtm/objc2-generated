@@ -54,7 +54,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSFontPanel {}
 
 #[cfg(feature = "AppKit_NSFontPanel")]
-unsafe impl NSAccessibilityElement for NSFontPanel {}
+unsafe impl NSAccessibilityElementProtocol for NSFontPanel {}
 
 #[cfg(feature = "AppKit_NSFontPanel")]
 unsafe impl NSAnimatablePropertyContainer for NSFontPanel {}

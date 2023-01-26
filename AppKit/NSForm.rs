@@ -22,7 +22,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSForm {}
 
 #[cfg(feature = "AppKit_NSForm")]
-unsafe impl NSAccessibilityElement for NSForm {}
+unsafe impl NSAccessibilityElementProtocol for NSForm {}
 
 #[cfg(feature = "AppKit_NSForm")]
 unsafe impl NSAnimatablePropertyContainer for NSForm {}

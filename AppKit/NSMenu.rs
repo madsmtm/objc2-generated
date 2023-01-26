@@ -20,7 +20,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSMenu {}
 
 #[cfg(feature = "AppKit_NSMenu")]
-unsafe impl NSAccessibilityElement for NSMenu {}
+unsafe impl NSAccessibilityElementProtocol for NSMenu {}
 
 #[cfg(feature = "AppKit_NSMenu")]
 unsafe impl NSAppearanceCustomization for NSMenu {}

@@ -55,7 +55,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSSegmentedControl {}
 
 #[cfg(feature = "AppKit_NSSegmentedControl")]
-unsafe impl NSAccessibilityElement for NSSegmentedControl {}
+unsafe impl NSAccessibilityElementProtocol for NSSegmentedControl {}
 
 #[cfg(feature = "AppKit_NSSegmentedControl")]
 unsafe impl NSAnimatablePropertyContainer for NSSegmentedControl {}

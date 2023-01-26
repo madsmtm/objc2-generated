@@ -31,7 +31,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSLevelIndicatorCell {}
 
 #[cfg(feature = "AppKit_NSLevelIndicatorCell")]
-unsafe impl NSAccessibilityElement for NSLevelIndicatorCell {}
+unsafe impl NSAccessibilityElementProtocol for NSLevelIndicatorCell {}
 
 #[cfg(feature = "AppKit_NSLevelIndicatorCell")]
 unsafe impl NSCoding for NSLevelIndicatorCell {}

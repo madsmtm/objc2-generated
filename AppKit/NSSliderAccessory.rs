@@ -54,7 +54,7 @@ extern_methods!(
 unsafe impl NSAccessibility for NSSliderAccessory {}
 
 #[cfg(feature = "AppKit_NSSliderAccessory")]
-unsafe impl NSAccessibilityElement for NSSliderAccessory {}
+unsafe impl NSAccessibilityElementProtocol for NSSliderAccessory {}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

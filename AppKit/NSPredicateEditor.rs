@@ -21,7 +21,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSPredicateEditor {}
 
 #[cfg(feature = "AppKit_NSPredicateEditor")]
-unsafe impl NSAccessibilityElement for NSPredicateEditor {}
+unsafe impl NSAccessibilityElementProtocol for NSPredicateEditor {}
 
 #[cfg(feature = "AppKit_NSPredicateEditor")]
 unsafe impl NSAnimatablePropertyContainer for NSPredicateEditor {}

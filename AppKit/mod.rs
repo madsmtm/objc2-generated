@@ -985,6 +985,7 @@ pub use self::__NSAccessibilityProtocols::NSAccessibilityButton;
 pub use self::__NSAccessibilityProtocols::NSAccessibilityCheckBox;
 pub use self::__NSAccessibilityProtocols::NSAccessibilityContainsTransientUI;
 pub use self::__NSAccessibilityProtocols::NSAccessibilityElementLoading;
+pub use self::__NSAccessibilityProtocols::NSAccessibilityElementProtocol;
 pub use self::__NSAccessibilityProtocols::NSAccessibilityGroup;
 pub use self::__NSAccessibilityProtocols::NSAccessibilityImage;
 pub use self::__NSAccessibilityProtocols::NSAccessibilityLayoutArea;
@@ -3822,6 +3823,7 @@ pub use self::__NSTextAttachment::NSTextAttachmentLayout;
 pub use self::__NSTextAttachment::NSTextAttachmentViewProvider;
 #[cfg(feature = "AppKit_NSTextAttachmentCell")]
 pub use self::__NSTextAttachmentCell::NSTextAttachmentCell;
+pub use self::__NSTextAttachmentCell::NSTextAttachmentCellProtocol;
 pub use self::__NSTextCheckingClient::NSTextCheckingClient;
 pub use self::__NSTextCheckingClient::NSTextInputTraits;
 pub use self::__NSTextCheckingClient::{

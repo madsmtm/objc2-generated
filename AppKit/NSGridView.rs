@@ -47,7 +47,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSGridView {}
 
 #[cfg(feature = "AppKit_NSGridView")]
-unsafe impl NSAccessibilityElement for NSGridView {}
+unsafe impl NSAccessibilityElementProtocol for NSGridView {}
 
 #[cfg(feature = "AppKit_NSGridView")]
 unsafe impl NSAnimatablePropertyContainer for NSGridView {}

@@ -169,12 +169,12 @@ extern_methods!(
         #[method_id(@__retain_semantics Other attachmentCell)]
         pub unsafe fn attachmentCell(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn NSTextAttachmentCell>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn NSTextAttachmentCellProtocol>, Shared>>;
 
         #[method(setAttachmentCell:)]
         pub unsafe fn setAttachmentCell(
             &self,
-            attachment_cell: Option<&ProtocolObject<dyn NSTextAttachmentCell>>,
+            attachment_cell: Option<&ProtocolObject<dyn NSTextAttachmentCellProtocol>>,
         );
 
         #[method(lineLayoutPadding)]

@@ -22,7 +22,7 @@ extern_class!(
 unsafe impl NSAccessibility for AMWorkflowView {}
 
 #[cfg(feature = "Automator_AMWorkflowView")]
-unsafe impl NSAccessibilityElement for AMWorkflowView {}
+unsafe impl NSAccessibilityElementProtocol for AMWorkflowView {}
 
 #[cfg(feature = "Automator_AMWorkflowView")]
 unsafe impl NSAnimatablePropertyContainer for AMWorkflowView {}

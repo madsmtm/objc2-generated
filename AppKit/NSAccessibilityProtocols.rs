@@ -6,13 +6,34 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 extern_protocol!(
-    pub unsafe trait NSAccessibilityGroup: NSAccessibilityElement {}
+    pub unsafe trait NSAccessibilityElementProtocol: NSObjectProtocol {
+        #[method(accessibilityFrame)]
+        unsafe fn accessibilityFrame(&self) -> NSRect;
+
+        #[method_id(@__retain_semantics Other accessibilityParent)]
+        unsafe fn accessibilityParent(&self) -> Option<Id<Object, Shared>>;
+
+        #[optional]
+        #[method(isAccessibilityFocused)]
+        unsafe fn isAccessibilityFocused(&self) -> bool;
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[optional]
+        #[method_id(@__retain_semantics Other accessibilityIdentifier)]
+        unsafe fn accessibilityIdentifier(&self) -> Id<NSString, Shared>;
+    }
+
+    unsafe impl ProtocolType for dyn NSAccessibilityElementProtocol {}
+);
+
+extern_protocol!(
+    pub unsafe trait NSAccessibilityGroup: NSAccessibilityElementProtocol {}
 
     unsafe impl ProtocolType for dyn NSAccessibilityGroup {}
 );
 
 extern_protocol!(
-    pub unsafe trait NSAccessibilityButton: NSAccessibilityElement {
+    pub unsafe trait NSAccessibilityButton: NSAccessibilityElementProtocol {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other accessibilityLabel)]
         unsafe fn accessibilityLabel(&self) -> Option<Id<NSString, Shared>>;
@@ -63,7 +84,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSAccessibilityStaticText: NSAccessibilityElement {
+    pub unsafe trait NSAccessibilityStaticText: NSAccessibilityElementProtocol {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other accessibilityValue)]
         unsafe fn accessibilityValue(&self) -> Option<Id<NSString, Shared>>;
@@ -117,7 +138,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSAccessibilityStepper: NSAccessibilityElement {
+    pub unsafe trait NSAccessibilityStepper: NSAccessibilityElementProtocol {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other accessibilityLabel)]
         unsafe fn accessibilityLabel(&self) -> Option<Id<NSString, Shared>>;
@@ -137,7 +158,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSAccessibilitySlider: NSAccessibilityElement {
+    pub unsafe trait NSAccessibilitySlider: NSAccessibilityElementProtocol {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other accessibilityLabel)]
         unsafe fn accessibilityLabel(&self) -> Option<Id<NSString, Shared>>;
@@ -156,7 +177,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSAccessibilityImage: NSAccessibilityElement {
+    pub unsafe trait NSAccessibilityImage: NSAccessibilityElementProtocol {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other accessibilityLabel)]
         unsafe fn accessibilityLabel(&self) -> Option<Id<NSString, Shared>>;
@@ -166,7 +187,9 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSAccessibilityContainsTransientUI: NSAccessibilityElement {
+    pub unsafe trait NSAccessibilityContainsTransientUI:
+        NSAccessibilityElementProtocol
+    {
         #[method(accessibilityPerformShowAlternateUI)]
         unsafe fn accessibilityPerformShowAlternateUI(&self) -> bool;
 
@@ -317,6 +340,12 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait NSAccessibilityElementLoading: NSObjectProtocol {
+        #[method_id(@__retain_semantics Other accessibilityElementWithToken:)]
+        unsafe fn accessibilityElementWithToken(
+            &self,
+            token: &NSAccessibilityLoadingToken,
+        ) -> Option<Id<ProtocolObject<dyn NSAccessibilityElementProtocol>, Shared>>;
+
         #[optional]
         #[method(accessibilityRangeInTargetElementWithToken:)]
         unsafe fn accessibilityRangeInTargetElementWithToken(
@@ -623,6 +652,21 @@ extern_protocol!(
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setAccessibilityChildren:)]
         unsafe fn setAccessibilityChildren(&self, accessibility_children: Option<&NSArray>);
+
+        #[cfg(feature = "Foundation_NSArray")]
+        #[method_id(@__retain_semantics Other accessibilityChildrenInNavigationOrder)]
+        unsafe fn accessibilityChildrenInNavigationOrder(
+            &self,
+        ) -> Option<Id<NSArray<ProtocolObject<dyn NSAccessibilityElementProtocol>>, Shared>>;
+
+        #[cfg(feature = "Foundation_NSArray")]
+        #[method(setAccessibilityChildrenInNavigationOrder:)]
+        unsafe fn setAccessibilityChildrenInNavigationOrder(
+            &self,
+            accessibility_children_in_navigation_order: Option<
+                &NSArray<ProtocolObject<dyn NSAccessibilityElementProtocol>>,
+            >,
+        );
 
         #[method_id(@__retain_semantics Other accessibilityClearButton)]
         unsafe fn accessibilityClearButton(&self) -> Option<Id<Object, Shared>>;

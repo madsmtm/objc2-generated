@@ -23,7 +23,7 @@ extern_class!(
 unsafe impl NSAccessibility for MKPitchControl {}
 
 #[cfg(feature = "MapKit_MKPitchControl")]
-unsafe impl NSAccessibilityElement for MKPitchControl {}
+unsafe impl NSAccessibilityElementProtocol for MKPitchControl {}
 
 #[cfg(feature = "MapKit_MKPitchControl")]
 unsafe impl NSAnimatablePropertyContainer for MKPitchControl {}

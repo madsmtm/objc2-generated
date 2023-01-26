@@ -37,7 +37,7 @@ extern_class!(
 unsafe impl NSAccessibility for MKPinAnnotationView {}
 
 #[cfg(feature = "MapKit_MKPinAnnotationView")]
-unsafe impl NSAccessibilityElement for MKPinAnnotationView {}
+unsafe impl NSAccessibilityElementProtocol for MKPinAnnotationView {}
 
 #[cfg(feature = "MapKit_MKPinAnnotationView")]
 unsafe impl NSAnimatablePropertyContainer for MKPinAnnotationView {}

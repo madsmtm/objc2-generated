@@ -28,7 +28,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSOutlineView {}
 
 #[cfg(feature = "AppKit_NSOutlineView")]
-unsafe impl NSAccessibilityElement for NSOutlineView {}
+unsafe impl NSAccessibilityElementProtocol for NSOutlineView {}
 
 #[cfg(feature = "AppKit_NSOutlineView")]
 unsafe impl NSAccessibilityGroup for NSOutlineView {}

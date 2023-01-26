@@ -32,7 +32,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSSplitView {}
 
 #[cfg(feature = "AppKit_NSSplitView")]
-unsafe impl NSAccessibilityElement for NSSplitView {}
+unsafe impl NSAccessibilityElementProtocol for NSSplitView {}
 
 #[cfg(feature = "AppKit_NSSplitView")]
 unsafe impl NSAnimatablePropertyContainer for NSSplitView {}

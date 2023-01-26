@@ -29,7 +29,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSSearchFieldCell {}
 
 #[cfg(feature = "AppKit_NSSearchFieldCell")]
-unsafe impl NSAccessibilityElement for NSSearchFieldCell {}
+unsafe impl NSAccessibilityElementProtocol for NSSearchFieldCell {}
 
 #[cfg(feature = "AppKit_NSSearchFieldCell")]
 unsafe impl NSCoding for NSSearchFieldCell {}

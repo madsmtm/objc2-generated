@@ -21,7 +21,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSPathControl {}
 
 #[cfg(feature = "AppKit_NSPathControl")]
-unsafe impl NSAccessibilityElement for NSPathControl {}
+unsafe impl NSAccessibilityElementProtocol for NSPathControl {}
 
 #[cfg(feature = "AppKit_NSPathControl")]
 unsafe impl NSAnimatablePropertyContainer for NSPathControl {}

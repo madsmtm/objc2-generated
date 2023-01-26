@@ -68,7 +68,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSVisualEffectView {}
 
 #[cfg(feature = "AppKit_NSVisualEffectView")]
-unsafe impl NSAccessibilityElement for NSVisualEffectView {}
+unsafe impl NSAccessibilityElementProtocol for NSVisualEffectView {}
 
 #[cfg(feature = "AppKit_NSVisualEffectView")]
 unsafe impl NSAnimatablePropertyContainer for NSVisualEffectView {}

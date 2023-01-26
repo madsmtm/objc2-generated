@@ -196,7 +196,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSCollectionView {}
 
 #[cfg(feature = "AppKit_NSCollectionView")]
-unsafe impl NSAccessibilityElement for NSCollectionView {}
+unsafe impl NSAccessibilityElementProtocol for NSCollectionView {}
 
 #[cfg(feature = "AppKit_NSCollectionView")]
 unsafe impl NSAnimatablePropertyContainer for NSCollectionView {}

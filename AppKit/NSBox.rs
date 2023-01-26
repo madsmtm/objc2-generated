@@ -43,7 +43,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSBox {}
 
 #[cfg(feature = "AppKit_NSBox")]
-unsafe impl NSAccessibilityElement for NSBox {}
+unsafe impl NSAccessibilityElementProtocol for NSBox {}
 
 #[cfg(feature = "AppKit_NSBox")]
 unsafe impl NSAnimatablePropertyContainer for NSBox {}

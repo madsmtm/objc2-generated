@@ -21,7 +21,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSDatePicker {}
 
 #[cfg(feature = "AppKit_NSDatePicker")]
-unsafe impl NSAccessibilityElement for NSDatePicker {}
+unsafe impl NSAccessibilityElementProtocol for NSDatePicker {}
 
 #[cfg(feature = "AppKit_NSDatePicker")]
 unsafe impl NSAnimatablePropertyContainer for NSDatePicker {}

@@ -30,7 +30,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSText {}
 
 #[cfg(feature = "AppKit_NSText")]
-unsafe impl NSAccessibilityElement for NSText {}
+unsafe impl NSAccessibilityElementProtocol for NSText {}
 
 #[cfg(feature = "AppKit_NSText")]
 unsafe impl NSAnimatablePropertyContainer for NSText {}

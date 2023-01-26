@@ -23,7 +23,7 @@ extern_class!(
 unsafe impl NSAccessibility for MKCompassButton {}
 
 #[cfg(feature = "MapKit_MKCompassButton")]
-unsafe impl NSAccessibilityElement for MKCompassButton {}
+unsafe impl NSAccessibilityElementProtocol for MKCompassButton {}
 
 #[cfg(feature = "MapKit_MKCompassButton")]
 unsafe impl NSAnimatablePropertyContainer for MKCompassButton {}

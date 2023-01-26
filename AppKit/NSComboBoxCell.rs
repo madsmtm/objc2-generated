@@ -21,7 +21,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSComboBoxCell {}
 
 #[cfg(feature = "AppKit_NSComboBoxCell")]
-unsafe impl NSAccessibilityElement for NSComboBoxCell {}
+unsafe impl NSAccessibilityElementProtocol for NSComboBoxCell {}
 
 #[cfg(feature = "AppKit_NSComboBoxCell")]
 unsafe impl NSCoding for NSComboBoxCell {}

@@ -36,7 +36,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSDrawer {}
 
 #[cfg(feature = "AppKit_NSDrawer")]
-unsafe impl NSAccessibilityElement for NSDrawer {}
+unsafe impl NSAccessibilityElementProtocol for NSDrawer {}
 
 #[cfg(feature = "AppKit_NSDrawer")]
 unsafe impl NSCoding for NSDrawer {}

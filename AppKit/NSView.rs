@@ -77,7 +77,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSView {}
 
 #[cfg(feature = "AppKit_NSView")]
-unsafe impl NSAccessibilityElement for NSView {}
+unsafe impl NSAccessibilityElementProtocol for NSView {}
 
 #[cfg(feature = "AppKit_NSView")]
 unsafe impl NSAnimatablePropertyContainer for NSView {}

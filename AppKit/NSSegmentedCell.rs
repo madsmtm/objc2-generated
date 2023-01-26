@@ -21,7 +21,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSSegmentedCell {}
 
 #[cfg(feature = "AppKit_NSSegmentedCell")]
-unsafe impl NSAccessibilityElement for NSSegmentedCell {}
+unsafe impl NSAccessibilityElementProtocol for NSSegmentedCell {}
 
 #[cfg(feature = "AppKit_NSSegmentedCell")]
 unsafe impl NSCoding for NSSegmentedCell {}

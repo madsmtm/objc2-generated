@@ -51,7 +51,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSColorPanel {}
 
 #[cfg(feature = "AppKit_NSColorPanel")]
-unsafe impl NSAccessibilityElement for NSColorPanel {}
+unsafe impl NSAccessibilityElementProtocol for NSColorPanel {}
 
 #[cfg(feature = "AppKit_NSColorPanel")]
 unsafe impl NSAnimatablePropertyContainer for NSColorPanel {}

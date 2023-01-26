@@ -23,7 +23,7 @@ extern_class!(
 unsafe impl NSAccessibility for MKUserLocationView {}
 
 #[cfg(feature = "MapKit_MKUserLocationView")]
-unsafe impl NSAccessibilityElement for MKUserLocationView {}
+unsafe impl NSAccessibilityElementProtocol for MKUserLocationView {}
 
 #[cfg(feature = "MapKit_MKUserLocationView")]
 unsafe impl NSAnimatablePropertyContainer for MKUserLocationView {}

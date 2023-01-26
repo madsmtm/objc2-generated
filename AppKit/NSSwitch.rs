@@ -24,7 +24,7 @@ unsafe impl NSAccessibility for NSSwitch {}
 unsafe impl NSAccessibilityButton for NSSwitch {}
 
 #[cfg(feature = "AppKit_NSSwitch")]
-unsafe impl NSAccessibilityElement for NSSwitch {}
+unsafe impl NSAccessibilityElementProtocol for NSSwitch {}
 
 #[cfg(feature = "AppKit_NSSwitch")]
 unsafe impl NSAccessibilitySwitch for NSSwitch {}

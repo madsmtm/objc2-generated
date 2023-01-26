@@ -24,7 +24,7 @@ unsafe impl NSAccessibility for NSStatusBarButton {}
 unsafe impl NSAccessibilityButton for NSStatusBarButton {}
 
 #[cfg(feature = "AppKit_NSStatusBarButton")]
-unsafe impl NSAccessibilityElement for NSStatusBarButton {}
+unsafe impl NSAccessibilityElementProtocol for NSStatusBarButton {}
 
 #[cfg(feature = "AppKit_NSStatusBarButton")]
 unsafe impl NSAnimatablePropertyContainer for NSStatusBarButton {}

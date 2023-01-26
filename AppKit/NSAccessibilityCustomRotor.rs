@@ -188,7 +188,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithTargetElement:)]
         pub unsafe fn initWithTargetElement(
             this: Option<Allocated<Self>>,
-            target_element: &ProtocolObject<dyn NSAccessibilityElement>,
+            target_element: &ProtocolObject<dyn NSAccessibilityElementProtocol>,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -202,7 +202,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other targetElement)]
         pub unsafe fn targetElement(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn NSAccessibilityElement>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn NSAccessibilityElementProtocol>, Shared>>;
 
         #[method_id(@__retain_semantics Other itemLoadingToken)]
         pub unsafe fn itemLoadingToken(&self) -> Option<Id<NSAccessibilityLoadingToken, Shared>>;

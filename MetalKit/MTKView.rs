@@ -25,7 +25,7 @@ unsafe impl CALayerDelegate for MTKView {}
 unsafe impl NSAccessibility for MTKView {}
 
 #[cfg(feature = "MetalKit_MTKView")]
-unsafe impl NSAccessibilityElement for MTKView {}
+unsafe impl NSAccessibilityElementProtocol for MTKView {}
 
 #[cfg(feature = "MetalKit_MTKView")]
 unsafe impl NSAnimatablePropertyContainer for MTKView {}

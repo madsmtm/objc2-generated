@@ -21,7 +21,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSSavePanel {}
 
 #[cfg(feature = "AppKit_NSSavePanel")]
-unsafe impl NSAccessibilityElement for NSSavePanel {}
+unsafe impl NSAccessibilityElementProtocol for NSSavePanel {}
 
 #[cfg(feature = "AppKit_NSSavePanel")]
 unsafe impl NSAnimatablePropertyContainer for NSSavePanel {}

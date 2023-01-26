@@ -40,7 +40,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSTextView {}
 
 #[cfg(feature = "AppKit_NSTextView")]
-unsafe impl NSAccessibilityElement for NSTextView {}
+unsafe impl NSAccessibilityElementProtocol for NSTextView {}
 
 #[cfg(feature = "AppKit_NSTextView")]
 unsafe impl NSAccessibilityNavigableStaticText for NSTextView {}
@@ -1145,7 +1145,7 @@ extern_protocol!(
         unsafe fn textView_clickedOnCell_inRect_atIndex(
             &self,
             text_view: &NSTextView,
-            cell: &ProtocolObject<dyn NSTextAttachmentCell>,
+            cell: &ProtocolObject<dyn NSTextAttachmentCellProtocol>,
             cell_frame: NSRect,
             char_index: NSUInteger,
         );
@@ -1156,7 +1156,7 @@ extern_protocol!(
         unsafe fn textView_doubleClickedOnCell_inRect_atIndex(
             &self,
             text_view: &NSTextView,
-            cell: &ProtocolObject<dyn NSTextAttachmentCell>,
+            cell: &ProtocolObject<dyn NSTextAttachmentCellProtocol>,
             cell_frame: NSRect,
             char_index: NSUInteger,
         );
@@ -1167,7 +1167,7 @@ extern_protocol!(
         unsafe fn textView_draggedCell_inRect_event_atIndex(
             &self,
             view: &NSTextView,
-            cell: &ProtocolObject<dyn NSTextAttachmentCell>,
+            cell: &ProtocolObject<dyn NSTextAttachmentCellProtocol>,
             rect: NSRect,
             event: &NSEvent,
             char_index: NSUInteger,
@@ -1179,7 +1179,7 @@ extern_protocol!(
         unsafe fn textView_writablePasteboardTypesForCell_atIndex(
             &self,
             view: &NSTextView,
-            cell: &ProtocolObject<dyn NSTextAttachmentCell>,
+            cell: &ProtocolObject<dyn NSTextAttachmentCellProtocol>,
             char_index: NSUInteger,
         ) -> Id<NSArray<NSPasteboardType>, Shared>;
 
@@ -1189,7 +1189,7 @@ extern_protocol!(
         unsafe fn textView_writeCell_atIndex_toPasteboard_type(
             &self,
             view: &NSTextView,
-            cell: &ProtocolObject<dyn NSTextAttachmentCell>,
+            cell: &ProtocolObject<dyn NSTextAttachmentCellProtocol>,
             char_index: NSUInteger,
             pboard: &NSPasteboard,
             r#type: &NSPasteboardType,
@@ -1452,7 +1452,7 @@ extern_protocol!(
         unsafe fn textView_clickedOnCell_inRect(
             &self,
             text_view: &NSTextView,
-            cell: Option<&ProtocolObject<dyn NSTextAttachmentCell>>,
+            cell: Option<&ProtocolObject<dyn NSTextAttachmentCellProtocol>>,
             cell_frame: NSRect,
         );
 
@@ -1463,7 +1463,7 @@ extern_protocol!(
         unsafe fn textView_doubleClickedOnCell_inRect(
             &self,
             text_view: &NSTextView,
-            cell: Option<&ProtocolObject<dyn NSTextAttachmentCell>>,
+            cell: Option<&ProtocolObject<dyn NSTextAttachmentCellProtocol>>,
             cell_frame: NSRect,
         );
 
@@ -1474,7 +1474,7 @@ extern_protocol!(
         unsafe fn textView_draggedCell_inRect_event(
             &self,
             view: &NSTextView,
-            cell: Option<&ProtocolObject<dyn NSTextAttachmentCell>>,
+            cell: Option<&ProtocolObject<dyn NSTextAttachmentCellProtocol>>,
             rect: NSRect,
             event: Option<&NSEvent>,
         );

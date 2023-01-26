@@ -50,7 +50,7 @@ extern_class!(
 unsafe impl NSAccessibility for WebView {}
 
 #[cfg(feature = "WebKit_WebView")]
-unsafe impl NSAccessibilityElement for WebView {}
+unsafe impl NSAccessibilityElementProtocol for WebView {}
 
 #[cfg(feature = "WebKit_WebView")]
 unsafe impl NSAnimatablePropertyContainer for WebView {}

@@ -44,7 +44,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSBrowser {}
 
 #[cfg(feature = "AppKit_NSBrowser")]
-unsafe impl NSAccessibilityElement for NSBrowser {}
+unsafe impl NSAccessibilityElementProtocol for NSBrowser {}
 
 #[cfg(feature = "AppKit_NSBrowser")]
 unsafe impl NSAnimatablePropertyContainer for NSBrowser {}

@@ -147,7 +147,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSScrubber {}
 
 #[cfg(feature = "AppKit_NSScrubber")]
-unsafe impl NSAccessibilityElement for NSScrubber {}
+unsafe impl NSAccessibilityElementProtocol for NSScrubber {}
 
 #[cfg(feature = "AppKit_NSScrubber")]
 unsafe impl NSAnimatablePropertyContainer for NSScrubber {}

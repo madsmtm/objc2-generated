@@ -31,7 +31,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSPathCell {}
 
 #[cfg(feature = "AppKit_NSPathCell")]
-unsafe impl NSAccessibilityElement for NSPathCell {}
+unsafe impl NSAccessibilityElementProtocol for NSPathCell {}
 
 #[cfg(feature = "AppKit_NSPathCell")]
 unsafe impl NSCoding for NSPathCell {}

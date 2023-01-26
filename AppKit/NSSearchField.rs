@@ -39,7 +39,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSSearchField {}
 
 #[cfg(feature = "AppKit_NSSearchField")]
-unsafe impl NSAccessibilityElement for NSSearchField {}
+unsafe impl NSAccessibilityElementProtocol for NSSearchField {}
 
 #[cfg(feature = "AppKit_NSSearchField")]
 unsafe impl NSAccessibilityNavigableStaticText for NSSearchField {}

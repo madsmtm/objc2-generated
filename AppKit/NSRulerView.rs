@@ -41,7 +41,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSRulerView {}
 
 #[cfg(feature = "AppKit_NSRulerView")]
-unsafe impl NSAccessibilityElement for NSRulerView {}
+unsafe impl NSAccessibilityElementProtocol for NSRulerView {}
 
 #[cfg(feature = "AppKit_NSRulerView")]
 unsafe impl NSAnimatablePropertyContainer for NSRulerView {}

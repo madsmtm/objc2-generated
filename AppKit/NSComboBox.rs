@@ -93,7 +93,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSComboBox {}
 
 #[cfg(feature = "AppKit_NSComboBox")]
-unsafe impl NSAccessibilityElement for NSComboBox {}
+unsafe impl NSAccessibilityElementProtocol for NSComboBox {}
 
 #[cfg(feature = "AppKit_NSComboBox")]
 unsafe impl NSAccessibilityNavigableStaticText for NSComboBox {}

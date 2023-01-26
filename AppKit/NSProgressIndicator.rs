@@ -29,7 +29,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSProgressIndicator {}
 
 #[cfg(feature = "AppKit_NSProgressIndicator")]
-unsafe impl NSAccessibilityElement for NSProgressIndicator {}
+unsafe impl NSAccessibilityElementProtocol for NSProgressIndicator {}
 
 #[cfg(feature = "AppKit_NSProgressIndicator")]
 unsafe impl NSAccessibilityGroup for NSProgressIndicator {}

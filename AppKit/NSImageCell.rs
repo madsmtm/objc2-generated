@@ -47,7 +47,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSImageCell {}
 
 #[cfg(feature = "AppKit_NSImageCell")]
-unsafe impl NSAccessibilityElement for NSImageCell {}
+unsafe impl NSAccessibilityElementProtocol for NSImageCell {}
 
 #[cfg(feature = "AppKit_NSImageCell")]
 unsafe impl NSCoding for NSImageCell {}

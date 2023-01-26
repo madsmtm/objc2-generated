@@ -29,7 +29,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSTextFieldCell {}
 
 #[cfg(feature = "AppKit_NSTextFieldCell")]
-unsafe impl NSAccessibilityElement for NSTextFieldCell {}
+unsafe impl NSAccessibilityElementProtocol for NSTextFieldCell {}
 
 #[cfg(feature = "AppKit_NSTextFieldCell")]
 unsafe impl NSCoding for NSTextFieldCell {}

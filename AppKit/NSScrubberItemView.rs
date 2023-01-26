@@ -21,7 +21,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSScrubberArrangedView {}
 
 #[cfg(feature = "AppKit_NSScrubberArrangedView")]
-unsafe impl NSAccessibilityElement for NSScrubberArrangedView {}
+unsafe impl NSAccessibilityElementProtocol for NSScrubberArrangedView {}
 
 #[cfg(feature = "AppKit_NSScrubberArrangedView")]
 unsafe impl NSAnimatablePropertyContainer for NSScrubberArrangedView {}
@@ -78,7 +78,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSScrubberSelectionView {}
 
 #[cfg(feature = "AppKit_NSScrubberSelectionView")]
-unsafe impl NSAccessibilityElement for NSScrubberSelectionView {}
+unsafe impl NSAccessibilityElementProtocol for NSScrubberSelectionView {}
 
 #[cfg(feature = "AppKit_NSScrubberSelectionView")]
 unsafe impl NSAnimatablePropertyContainer for NSScrubberSelectionView {}
@@ -119,7 +119,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSScrubberItemView {}
 
 #[cfg(feature = "AppKit_NSScrubberItemView")]
-unsafe impl NSAccessibilityElement for NSScrubberItemView {}
+unsafe impl NSAccessibilityElementProtocol for NSScrubberItemView {}
 
 #[cfg(feature = "AppKit_NSScrubberItemView")]
 unsafe impl NSAnimatablePropertyContainer for NSScrubberItemView {}
@@ -160,7 +160,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSScrubberTextItemView {}
 
 #[cfg(feature = "AppKit_NSScrubberTextItemView")]
-unsafe impl NSAccessibilityElement for NSScrubberTextItemView {}
+unsafe impl NSAccessibilityElementProtocol for NSScrubberTextItemView {}
 
 #[cfg(feature = "AppKit_NSScrubberTextItemView")]
 unsafe impl NSAnimatablePropertyContainer for NSScrubberTextItemView {}
@@ -213,7 +213,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSScrubberImageItemView {}
 
 #[cfg(feature = "AppKit_NSScrubberImageItemView")]
-unsafe impl NSAccessibilityElement for NSScrubberImageItemView {}
+unsafe impl NSAccessibilityElementProtocol for NSScrubberImageItemView {}
 
 #[cfg(feature = "AppKit_NSScrubberImageItemView")]
 unsafe impl NSAnimatablePropertyContainer for NSScrubberImageItemView {}

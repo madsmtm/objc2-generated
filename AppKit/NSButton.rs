@@ -24,7 +24,7 @@ unsafe impl NSAccessibility for NSButton {}
 unsafe impl NSAccessibilityButton for NSButton {}
 
 #[cfg(feature = "AppKit_NSButton")]
-unsafe impl NSAccessibilityElement for NSButton {}
+unsafe impl NSAccessibilityElementProtocol for NSButton {}
 
 #[cfg(feature = "AppKit_NSButton")]
 unsafe impl NSAnimatablePropertyContainer for NSButton {}

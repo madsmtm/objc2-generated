@@ -21,7 +21,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSTableHeaderCell {}
 
 #[cfg(feature = "AppKit_NSTableHeaderCell")]
-unsafe impl NSAccessibilityElement for NSTableHeaderCell {}
+unsafe impl NSAccessibilityElementProtocol for NSTableHeaderCell {}
 
 #[cfg(feature = "AppKit_NSTableHeaderCell")]
 unsafe impl NSCoding for NSTableHeaderCell {}

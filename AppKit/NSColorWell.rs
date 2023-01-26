@@ -30,7 +30,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSColorWell {}
 
 #[cfg(feature = "AppKit_NSColorWell")]
-unsafe impl NSAccessibilityElement for NSColorWell {}
+unsafe impl NSAccessibilityElementProtocol for NSColorWell {}
 
 #[cfg(feature = "AppKit_NSColorWell")]
 unsafe impl NSAnimatablePropertyContainer for NSColorWell {}

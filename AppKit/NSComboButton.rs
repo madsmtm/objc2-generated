@@ -29,7 +29,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSComboButton {}
 
 #[cfg(feature = "AppKit_NSComboButton")]
-unsafe impl NSAccessibilityElement for NSComboButton {}
+unsafe impl NSAccessibilityElementProtocol for NSComboButton {}
 
 #[cfg(feature = "AppKit_NSComboButton")]
 unsafe impl NSAnimatablePropertyContainer for NSComboButton {}

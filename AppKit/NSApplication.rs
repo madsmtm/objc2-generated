@@ -241,7 +241,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSApplication {}
 
 #[cfg(feature = "AppKit_NSApplication")]
-unsafe impl NSAccessibilityElement for NSApplication {}
+unsafe impl NSAccessibilityElementProtocol for NSApplication {}
 
 #[cfg(feature = "AppKit_NSApplication")]
 unsafe impl NSCoding for NSApplication {}

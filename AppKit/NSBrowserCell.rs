@@ -21,7 +21,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSBrowserCell {}
 
 #[cfg(feature = "AppKit_NSBrowserCell")]
-unsafe impl NSAccessibilityElement for NSBrowserCell {}
+unsafe impl NSAccessibilityElementProtocol for NSBrowserCell {}
 
 #[cfg(feature = "AppKit_NSBrowserCell")]
 unsafe impl NSCoding for NSBrowserCell {}

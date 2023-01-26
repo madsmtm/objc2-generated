@@ -56,7 +56,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSTabView {}
 
 #[cfg(feature = "AppKit_NSTabView")]
-unsafe impl NSAccessibilityElement for NSTabView {}
+unsafe impl NSAccessibilityElementProtocol for NSTabView {}
 
 #[cfg(feature = "AppKit_NSTabView")]
 unsafe impl NSAnimatablePropertyContainer for NSTabView {}

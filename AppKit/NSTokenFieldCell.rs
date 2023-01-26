@@ -32,7 +32,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSTokenFieldCell {}
 
 #[cfg(feature = "AppKit_NSTokenFieldCell")]
-unsafe impl NSAccessibilityElement for NSTokenFieldCell {}
+unsafe impl NSAccessibilityElementProtocol for NSTokenFieldCell {}
 
 #[cfg(feature = "AppKit_NSTokenFieldCell")]
 unsafe impl NSCoding for NSTokenFieldCell {}

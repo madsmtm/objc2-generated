@@ -57,7 +57,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSRuleEditor {}
 
 #[cfg(feature = "AppKit_NSRuleEditor")]
-unsafe impl NSAccessibilityElement for NSRuleEditor {}
+unsafe impl NSAccessibilityElementProtocol for NSRuleEditor {}
 
 #[cfg(feature = "AppKit_NSRuleEditor")]
 unsafe impl NSAnimatablePropertyContainer for NSRuleEditor {}

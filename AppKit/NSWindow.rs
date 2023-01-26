@@ -192,7 +192,7 @@ extern_class!(
 unsafe impl NSAccessibility for NSWindow {}
 
 #[cfg(feature = "AppKit_NSWindow")]
-unsafe impl NSAccessibilityElement for NSWindow {}
+unsafe impl NSAccessibilityElementProtocol for NSWindow {}
 
 #[cfg(feature = "AppKit_NSWindow")]
 unsafe impl NSAnimatablePropertyContainer for NSWindow {}
