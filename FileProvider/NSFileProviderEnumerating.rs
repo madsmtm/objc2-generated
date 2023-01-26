@@ -23,7 +23,7 @@ extern_protocol!(
         #[method(didEnumerateItems:)]
         unsafe fn didEnumerateItems(
             &self,
-            updated_items: &NSArray<ProtocolObject<dyn NSFileProviderItem>>,
+            updated_items: &NSArray<ProtocolObject<dyn NSFileProviderItemProtocol>>,
         );
 
         #[method(finishEnumeratingUpToPage:)]
@@ -47,7 +47,7 @@ extern_protocol!(
         #[method(didUpdateItems:)]
         unsafe fn didUpdateItems(
             &self,
-            updated_items: &NSArray<ProtocolObject<dyn NSFileProviderItem>>,
+            updated_items: &NSArray<ProtocolObject<dyn NSFileProviderItemProtocol>>,
         );
 
         #[cfg(feature = "Foundation_NSArray")]

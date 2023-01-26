@@ -128,7 +128,7 @@ ns_enum!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSFileProviderItem: NSObjectProtocol {
+    pub unsafe trait NSFileProviderItemProtocol: NSObjectProtocol {
         #[method_id(@__retain_semantics Other itemIdentifier)]
         unsafe fn itemIdentifier(&self) -> Id<NSFileProviderItemIdentifier, Shared>;
 
@@ -285,5 +285,7 @@ extern_protocol!(
         unsafe fn contentPolicy(&self) -> NSFileProviderContentPolicy;
     }
 
-    unsafe impl ProtocolType for dyn NSFileProviderItem {}
+    unsafe impl ProtocolType for dyn NSFileProviderItemProtocol {}
 );
+
+pub type NSFileProviderItem = ProtocolObject<dyn NSFileProviderItemProtocol>;

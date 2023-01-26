@@ -73,6 +73,7 @@ pub use self::__NSFileProviderExtension::NSFileProviderExtension;
 pub use self::__NSFileProviderItem::NSFileProviderFavoriteRankUnranked;
 pub use self::__NSFileProviderItem::NSFileProviderItem;
 pub use self::__NSFileProviderItem::NSFileProviderItemIdentifier;
+pub use self::__NSFileProviderItem::NSFileProviderItemProtocol;
 #[cfg(feature = "FileProvider_NSFileProviderItemVersion")]
 pub use self::__NSFileProviderItem::NSFileProviderItemVersion;
 pub use self::__NSFileProviderItem::NSFileProviderRootContainerItemIdentifier;

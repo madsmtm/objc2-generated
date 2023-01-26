@@ -10,7 +10,7 @@ typed_extensible_enum!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSFileProviderItemDecorating: NSFileProviderItem {
+    pub unsafe trait NSFileProviderItemDecorating: NSFileProviderItemProtocol {
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other decorations)]
         unsafe fn decorations(
