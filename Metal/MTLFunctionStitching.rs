@@ -33,7 +33,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait MTLFunctionStitchingNode: NSCopying + NSObjectProtocol {}
+    pub unsafe trait MTLFunctionStitchingNode: NSObjectProtocol {}
 
     unsafe impl ProtocolType for dyn MTLFunctionStitchingNode {}
 );

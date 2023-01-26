@@ -23,7 +23,7 @@ ns_enum!(
 );
 
 extern_protocol!(
-    pub unsafe trait CNKeyDescriptor: NSCopying + NSObjectProtocol + NSSecureCoding {}
+    pub unsafe trait CNKeyDescriptor: NSObjectProtocol + NSSecureCoding {}
 
     unsafe impl ProtocolType for dyn CNKeyDescriptor {}
 );

@@ -7,7 +7,7 @@ use crate::WebKit::*;
 
 extern_protocol!(
     #[deprecated]
-    pub unsafe trait DOMEventTarget: NSCopying + NSObjectProtocol {
+    pub unsafe trait DOMEventTarget: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSString")]
         #[method(addEventListener:listener:useCapture:)]
         unsafe fn addEventListener_listener_useCapture(
