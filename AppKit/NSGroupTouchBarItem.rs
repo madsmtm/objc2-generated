@@ -17,6 +17,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSGroupTouchBarItem")]
+unsafe impl NSCoding for NSGroupTouchBarItem {}
+
+#[cfg(feature = "AppKit_NSGroupTouchBarItem")]
+unsafe impl NSObjectProtocol for NSGroupTouchBarItem {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSGroupTouchBarItem")]
     unsafe impl NSGroupTouchBarItem {

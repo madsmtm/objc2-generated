@@ -17,6 +17,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSPICTImageRep")]
+unsafe impl NSCoding for NSPICTImageRep {}
+
+#[cfg(feature = "AppKit_NSPICTImageRep")]
+unsafe impl NSObjectProtocol for NSPICTImageRep {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSPICTImageRep")]
     unsafe impl NSPICTImageRep {

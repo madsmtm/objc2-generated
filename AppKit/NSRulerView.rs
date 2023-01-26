@@ -37,6 +37,30 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSRulerView")]
+unsafe impl NSAccessibility for NSRulerView {}
+
+#[cfg(feature = "AppKit_NSRulerView")]
+unsafe impl NSAccessibilityElement for NSRulerView {}
+
+#[cfg(feature = "AppKit_NSRulerView")]
+unsafe impl NSAnimatablePropertyContainer for NSRulerView {}
+
+#[cfg(feature = "AppKit_NSRulerView")]
+unsafe impl NSAppearanceCustomization for NSRulerView {}
+
+#[cfg(feature = "AppKit_NSRulerView")]
+unsafe impl NSCoding for NSRulerView {}
+
+#[cfg(feature = "AppKit_NSRulerView")]
+unsafe impl NSDraggingDestination for NSRulerView {}
+
+#[cfg(feature = "AppKit_NSRulerView")]
+unsafe impl NSObjectProtocol for NSRulerView {}
+
+#[cfg(feature = "AppKit_NSRulerView")]
+unsafe impl NSUserInterfaceItemIdentification for NSRulerView {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSRulerView")]
     unsafe impl NSRulerView {

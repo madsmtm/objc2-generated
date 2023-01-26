@@ -18,6 +18,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_DOMHTMLMapElement")]
+unsafe impl DOMEventTarget for DOMHTMLMapElement {}
+
+#[cfg(feature = "WebKit_DOMHTMLMapElement")]
+unsafe impl NSObjectProtocol for DOMHTMLMapElement {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_DOMHTMLMapElement")]
     unsafe impl DOMHTMLMapElement {

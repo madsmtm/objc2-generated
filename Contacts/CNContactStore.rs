@@ -32,6 +32,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Contacts_CNContactStore")]
+unsafe impl NSObjectProtocol for CNContactStore {}
+
 extern_methods!(
     #[cfg(feature = "Contacts_CNContactStore")]
     unsafe impl CNContactStore {

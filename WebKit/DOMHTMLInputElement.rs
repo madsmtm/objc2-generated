@@ -18,6 +18,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_DOMHTMLInputElement")]
+unsafe impl DOMEventTarget for DOMHTMLInputElement {}
+
+#[cfg(feature = "WebKit_DOMHTMLInputElement")]
+unsafe impl NSObjectProtocol for DOMHTMLInputElement {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_DOMHTMLInputElement")]
     unsafe impl DOMHTMLInputElement {

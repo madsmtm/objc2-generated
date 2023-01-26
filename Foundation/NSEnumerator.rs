@@ -48,6 +48,12 @@ unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSFastEnumerati
 {
 }
 
+#[cfg(feature = "Foundation_NSEnumerator")]
+unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSObjectProtocol
+    for NSEnumerator<ObjectType, ObjectTypeOwnership>
+{
+}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSEnumerator")]
     unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>

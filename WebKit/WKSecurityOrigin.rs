@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_WKSecurityOrigin")]
+unsafe impl NSObjectProtocol for WKSecurityOrigin {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_WKSecurityOrigin")]
     unsafe impl WKSecurityOrigin {

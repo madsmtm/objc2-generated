@@ -18,6 +18,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_DOMHTMLMarqueeElement")]
+unsafe impl DOMEventTarget for DOMHTMLMarqueeElement {}
+
+#[cfg(feature = "WebKit_DOMHTMLMarqueeElement")]
+unsafe impl NSObjectProtocol for DOMHTMLMarqueeElement {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_DOMHTMLMarqueeElement")]
     unsafe impl DOMHTMLMarqueeElement {

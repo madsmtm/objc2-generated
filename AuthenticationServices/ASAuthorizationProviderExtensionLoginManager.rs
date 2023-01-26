@@ -24,6 +24,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionLoginManager")]
+unsafe impl NSObjectProtocol for ASAuthorizationProviderExtensionLoginManager {}
+
 extern_methods!(
     #[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionLoginManager")]
     unsafe impl ASAuthorizationProviderExtensionLoginManager {

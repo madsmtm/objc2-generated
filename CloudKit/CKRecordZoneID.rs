@@ -17,6 +17,12 @@ extern_class!(
 );
 
 #[cfg(feature = "CloudKit_CKRecordZoneID")]
+unsafe impl NSCoding for CKRecordZoneID {}
+
+#[cfg(feature = "CloudKit_CKRecordZoneID")]
+unsafe impl NSObjectProtocol for CKRecordZoneID {}
+
+#[cfg(feature = "CloudKit_CKRecordZoneID")]
 unsafe impl NSSecureCoding for CKRecordZoneID {}
 
 extern_methods!(

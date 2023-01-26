@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreData_NSAtomicStore")]
+unsafe impl NSObjectProtocol for NSAtomicStore {}
+
 extern_methods!(
     #[cfg(feature = "CoreData_NSAtomicStore")]
     unsafe impl NSAtomicStore {

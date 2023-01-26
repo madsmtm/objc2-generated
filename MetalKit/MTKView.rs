@@ -19,10 +19,31 @@ extern_class!(
 );
 
 #[cfg(feature = "MetalKit_MTKView")]
+unsafe impl CALayerDelegate for MTKView {}
+
+#[cfg(feature = "MetalKit_MTKView")]
+unsafe impl NSAccessibility for MTKView {}
+
+#[cfg(feature = "MetalKit_MTKView")]
+unsafe impl NSAccessibilityElement for MTKView {}
+
+#[cfg(feature = "MetalKit_MTKView")]
+unsafe impl NSAnimatablePropertyContainer for MTKView {}
+
+#[cfg(feature = "MetalKit_MTKView")]
+unsafe impl NSAppearanceCustomization for MTKView {}
+
+#[cfg(feature = "MetalKit_MTKView")]
 unsafe impl NSCoding for MTKView {}
 
 #[cfg(feature = "MetalKit_MTKView")]
-unsafe impl CALayerDelegate for MTKView {}
+unsafe impl NSDraggingDestination for MTKView {}
+
+#[cfg(feature = "MetalKit_MTKView")]
+unsafe impl NSObjectProtocol for MTKView {}
+
+#[cfg(feature = "MetalKit_MTKView")]
+unsafe impl NSUserInterfaceItemIdentification for MTKView {}
 
 extern_methods!(
     #[cfg(feature = "MetalKit_MTKView")]

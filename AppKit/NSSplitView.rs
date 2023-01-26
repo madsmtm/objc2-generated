@@ -28,6 +28,30 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSSplitView")]
+unsafe impl NSAccessibility for NSSplitView {}
+
+#[cfg(feature = "AppKit_NSSplitView")]
+unsafe impl NSAccessibilityElement for NSSplitView {}
+
+#[cfg(feature = "AppKit_NSSplitView")]
+unsafe impl NSAnimatablePropertyContainer for NSSplitView {}
+
+#[cfg(feature = "AppKit_NSSplitView")]
+unsafe impl NSAppearanceCustomization for NSSplitView {}
+
+#[cfg(feature = "AppKit_NSSplitView")]
+unsafe impl NSCoding for NSSplitView {}
+
+#[cfg(feature = "AppKit_NSSplitView")]
+unsafe impl NSDraggingDestination for NSSplitView {}
+
+#[cfg(feature = "AppKit_NSSplitView")]
+unsafe impl NSObjectProtocol for NSSplitView {}
+
+#[cfg(feature = "AppKit_NSSplitView")]
+unsafe impl NSUserInterfaceItemIdentification for NSSplitView {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSSplitView")]
     unsafe impl NSSplitView {

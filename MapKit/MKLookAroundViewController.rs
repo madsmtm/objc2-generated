@@ -29,10 +29,22 @@ extern_class!(
 );
 
 #[cfg(feature = "MapKit_MKLookAroundViewController")]
+unsafe impl NSCoding for MKLookAroundViewController {}
+
+#[cfg(feature = "MapKit_MKLookAroundViewController")]
+unsafe impl NSEditor for MKLookAroundViewController {}
+
+#[cfg(feature = "MapKit_MKLookAroundViewController")]
+unsafe impl NSObjectProtocol for MKLookAroundViewController {}
+
+#[cfg(feature = "MapKit_MKLookAroundViewController")]
 unsafe impl NSSecureCoding for MKLookAroundViewController {}
 
 #[cfg(feature = "MapKit_MKLookAroundViewController")]
-unsafe impl NSCoding for MKLookAroundViewController {}
+unsafe impl NSSeguePerforming for MKLookAroundViewController {}
+
+#[cfg(feature = "MapKit_MKLookAroundViewController")]
+unsafe impl NSUserInterfaceItemIdentification for MKLookAroundViewController {}
 
 extern_methods!(
     #[cfg(feature = "MapKit_MKLookAroundViewController")]

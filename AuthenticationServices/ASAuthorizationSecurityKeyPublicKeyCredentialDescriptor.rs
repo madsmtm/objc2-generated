@@ -50,6 +50,15 @@ unsafe impl ASAuthorizationPublicKeyCredentialDescriptor
 {
 }
 
+#[cfg(feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor")]
+unsafe impl NSCoding for ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor {}
+
+#[cfg(feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor")]
+unsafe impl NSObjectProtocol for ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor {}
+
+#[cfg(feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor")]
+unsafe impl NSSecureCoding for ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor {}
+
 extern_methods!(
     #[cfg(
         feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor"

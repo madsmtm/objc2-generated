@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSScreen")]
+unsafe impl NSObjectProtocol for NSScreen {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSScreen")]
     unsafe impl NSScreen {

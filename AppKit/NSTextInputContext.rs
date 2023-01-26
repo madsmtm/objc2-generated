@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSTextInputContext")]
+unsafe impl NSObjectProtocol for NSTextInputContext {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSTextInputContext")]
     unsafe impl NSTextInputContext {

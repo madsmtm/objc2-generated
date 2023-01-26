@@ -17,6 +17,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CloudKit_CKFetchRecordZoneChangesOperation")]
+unsafe impl NSObjectProtocol for CKFetchRecordZoneChangesOperation {}
+
 extern_methods!(
     #[cfg(feature = "CloudKit_CKFetchRecordZoneChangesOperation")]
     unsafe impl CKFetchRecordZoneChangesOperation {
@@ -280,6 +283,12 @@ extern_class!(
 );
 
 #[cfg(feature = "CloudKit_CKFetchRecordZoneChangesConfiguration")]
+unsafe impl NSCoding for CKFetchRecordZoneChangesConfiguration {}
+
+#[cfg(feature = "CloudKit_CKFetchRecordZoneChangesConfiguration")]
+unsafe impl NSObjectProtocol for CKFetchRecordZoneChangesConfiguration {}
+
+#[cfg(feature = "CloudKit_CKFetchRecordZoneChangesConfiguration")]
 unsafe impl NSSecureCoding for CKFetchRecordZoneChangesConfiguration {}
 
 extern_methods!(
@@ -323,6 +332,12 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "CloudKit_CKFetchRecordZoneChangesOptions")]
+unsafe impl NSCoding for CKFetchRecordZoneChangesOptions {}
+
+#[cfg(feature = "CloudKit_CKFetchRecordZoneChangesOptions")]
+unsafe impl NSObjectProtocol for CKFetchRecordZoneChangesOptions {}
 
 #[cfg(feature = "CloudKit_CKFetchRecordZoneChangesOptions")]
 unsafe impl NSSecureCoding for CKFetchRecordZoneChangesOptions {}

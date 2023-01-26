@@ -17,6 +17,15 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreLocation_CLCircularRegion")]
+unsafe impl NSCoding for CLCircularRegion {}
+
+#[cfg(feature = "CoreLocation_CLCircularRegion")]
+unsafe impl NSObjectProtocol for CLCircularRegion {}
+
+#[cfg(feature = "CoreLocation_CLCircularRegion")]
+unsafe impl NSSecureCoding for CLCircularRegion {}
+
 extern_methods!(
     #[cfg(feature = "CoreLocation_CLCircularRegion")]
     unsafe impl CLCircularRegion {

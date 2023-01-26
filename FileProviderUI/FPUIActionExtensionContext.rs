@@ -30,6 +30,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "FileProviderUI_FPUIActionExtensionContext")]
+unsafe impl NSObjectProtocol for FPUIActionExtensionContext {}
+
 extern_methods!(
     #[cfg(feature = "FileProviderUI_FPUIActionExtensionContext")]
     unsafe impl FPUIActionExtensionContext {

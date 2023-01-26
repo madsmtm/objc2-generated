@@ -19,6 +19,12 @@ extern_class!(
 );
 
 #[cfg(feature = "MapKit_MKMapCameraBoundary")]
+unsafe impl NSCoding for MKMapCameraBoundary {}
+
+#[cfg(feature = "MapKit_MKMapCameraBoundary")]
+unsafe impl NSObjectProtocol for MKMapCameraBoundary {}
+
+#[cfg(feature = "MapKit_MKMapCameraBoundary")]
 unsafe impl NSSecureCoding for MKMapCameraBoundary {}
 
 extern_methods!(

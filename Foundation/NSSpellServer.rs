@@ -14,6 +14,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSSpellServer")]
+unsafe impl NSObjectProtocol for NSSpellServer {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSSpellServer")]
     unsafe impl NSSpellServer {

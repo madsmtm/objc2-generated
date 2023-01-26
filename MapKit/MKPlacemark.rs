@@ -22,6 +22,15 @@ extern_class!(
 #[cfg(feature = "MapKit_MKPlacemark")]
 unsafe impl MKAnnotation for MKPlacemark {}
 
+#[cfg(feature = "MapKit_MKPlacemark")]
+unsafe impl NSCoding for MKPlacemark {}
+
+#[cfg(feature = "MapKit_MKPlacemark")]
+unsafe impl NSObjectProtocol for MKPlacemark {}
+
+#[cfg(feature = "MapKit_MKPlacemark")]
+unsafe impl NSSecureCoding for MKPlacemark {}
+
 extern_methods!(
     #[cfg(feature = "MapKit_MKPlacemark")]
     unsafe impl MKPlacemark {

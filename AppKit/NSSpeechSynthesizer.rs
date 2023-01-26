@@ -115,6 +115,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+unsafe impl NSObjectProtocol for NSSpeechSynthesizer {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSSpeechSynthesizer")]
     unsafe impl NSSpeechSynthesizer {

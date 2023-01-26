@@ -53,6 +53,30 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSRuleEditor")]
+unsafe impl NSAccessibility for NSRuleEditor {}
+
+#[cfg(feature = "AppKit_NSRuleEditor")]
+unsafe impl NSAccessibilityElement for NSRuleEditor {}
+
+#[cfg(feature = "AppKit_NSRuleEditor")]
+unsafe impl NSAnimatablePropertyContainer for NSRuleEditor {}
+
+#[cfg(feature = "AppKit_NSRuleEditor")]
+unsafe impl NSAppearanceCustomization for NSRuleEditor {}
+
+#[cfg(feature = "AppKit_NSRuleEditor")]
+unsafe impl NSCoding for NSRuleEditor {}
+
+#[cfg(feature = "AppKit_NSRuleEditor")]
+unsafe impl NSDraggingDestination for NSRuleEditor {}
+
+#[cfg(feature = "AppKit_NSRuleEditor")]
+unsafe impl NSObjectProtocol for NSRuleEditor {}
+
+#[cfg(feature = "AppKit_NSRuleEditor")]
+unsafe impl NSUserInterfaceItemIdentification for NSRuleEditor {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSRuleEditor")]
     unsafe impl NSRuleEditor {

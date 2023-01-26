@@ -25,6 +25,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSPDFPanel")]
+unsafe impl NSObjectProtocol for NSPDFPanel {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSPDFPanel")]
     unsafe impl NSPDFPanel {

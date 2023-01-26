@@ -26,6 +26,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "MapKit_MKDirectionsRequest")]
+unsafe impl NSObjectProtocol for MKDirectionsRequest {}
+
 extern_methods!(
     #[cfg(feature = "MapKit_MKDirectionsRequest")]
     unsafe impl MKDirectionsRequest {

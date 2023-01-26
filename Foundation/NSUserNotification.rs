@@ -30,6 +30,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSUserNotification")]
+unsafe impl NSObjectProtocol for NSUserNotification {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSUserNotification")]
     unsafe impl NSUserNotification {
@@ -203,6 +206,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSUserNotificationAction")]
+unsafe impl NSObjectProtocol for NSUserNotificationAction {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSUserNotificationAction")]
     unsafe impl NSUserNotificationAction {
@@ -236,6 +242,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Foundation_NSUserNotificationCenter")]
+unsafe impl NSObjectProtocol for NSUserNotificationCenter {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSUserNotificationCenter")]

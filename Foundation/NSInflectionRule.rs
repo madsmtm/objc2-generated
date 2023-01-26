@@ -15,6 +15,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSInflectionRule")]
+unsafe impl NSCoding for NSInflectionRule {}
+
+#[cfg(feature = "Foundation_NSInflectionRule")]
+unsafe impl NSObjectProtocol for NSInflectionRule {}
+
+#[cfg(feature = "Foundation_NSInflectionRule")]
 unsafe impl NSSecureCoding for NSInflectionRule {}
 
 extern_methods!(
@@ -39,6 +45,15 @@ extern_class!(
         type Super = NSInflectionRule;
     }
 );
+
+#[cfg(feature = "Foundation_NSInflectionRuleExplicit")]
+unsafe impl NSCoding for NSInflectionRuleExplicit {}
+
+#[cfg(feature = "Foundation_NSInflectionRuleExplicit")]
+unsafe impl NSObjectProtocol for NSInflectionRuleExplicit {}
+
+#[cfg(feature = "Foundation_NSInflectionRuleExplicit")]
+unsafe impl NSSecureCoding for NSInflectionRuleExplicit {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSInflectionRuleExplicit")]

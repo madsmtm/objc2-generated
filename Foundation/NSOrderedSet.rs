@@ -20,13 +20,25 @@ __inner_extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSOrderedSet")]
-unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSSecureCoding
+unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSCoding
     for NSOrderedSet<ObjectType, ObjectTypeOwnership>
 {
 }
 
 #[cfg(feature = "Foundation_NSOrderedSet")]
 unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSFastEnumeration
+    for NSOrderedSet<ObjectType, ObjectTypeOwnership>
+{
+}
+
+#[cfg(feature = "Foundation_NSOrderedSet")]
+unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSObjectProtocol
+    for NSOrderedSet<ObjectType, ObjectTypeOwnership>
+{
+}
+
+#[cfg(feature = "Foundation_NSOrderedSet")]
+unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSSecureCoding
     for NSOrderedSet<ObjectType, ObjectTypeOwnership>
 {
 }
@@ -419,6 +431,30 @@ __inner_extern_class!(
         type Super = NSOrderedSet<ObjectType, ObjectTypeOwnership>;
     }
 );
+
+#[cfg(feature = "Foundation_NSMutableOrderedSet")]
+unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSCoding
+    for NSMutableOrderedSet<ObjectType, ObjectTypeOwnership>
+{
+}
+
+#[cfg(feature = "Foundation_NSMutableOrderedSet")]
+unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSFastEnumeration
+    for NSMutableOrderedSet<ObjectType, ObjectTypeOwnership>
+{
+}
+
+#[cfg(feature = "Foundation_NSMutableOrderedSet")]
+unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSObjectProtocol
+    for NSMutableOrderedSet<ObjectType, ObjectTypeOwnership>
+{
+}
+
+#[cfg(feature = "Foundation_NSMutableOrderedSet")]
+unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSSecureCoding
+    for NSMutableOrderedSet<ObjectType, ObjectTypeOwnership>
+{
+}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSMutableOrderedSet")]

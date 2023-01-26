@@ -16,6 +16,18 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreAnimation_CATiledLayer")]
+unsafe impl CAMediaTiming for CATiledLayer {}
+
+#[cfg(feature = "CoreAnimation_CATiledLayer")]
+unsafe impl NSCoding for CATiledLayer {}
+
+#[cfg(feature = "CoreAnimation_CATiledLayer")]
+unsafe impl NSObjectProtocol for CATiledLayer {}
+
+#[cfg(feature = "CoreAnimation_CATiledLayer")]
+unsafe impl NSSecureCoding for CATiledLayer {}
+
 extern_methods!(
     #[cfg(feature = "CoreAnimation_CATiledLayer")]
     unsafe impl CATiledLayer {

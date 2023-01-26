@@ -15,6 +15,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationRequest")]
+unsafe impl NSObjectProtocol for ASAccountAuthenticationModificationRequest {}
+
 extern_methods!(
     #[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationRequest")]
     unsafe impl ASAccountAuthenticationModificationRequest {}

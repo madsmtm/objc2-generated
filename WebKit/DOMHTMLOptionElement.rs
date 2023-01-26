@@ -18,6 +18,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_DOMHTMLOptionElement")]
+unsafe impl DOMEventTarget for DOMHTMLOptionElement {}
+
+#[cfg(feature = "WebKit_DOMHTMLOptionElement")]
+unsafe impl NSObjectProtocol for DOMHTMLOptionElement {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_DOMHTMLOptionElement")]
     unsafe impl DOMHTMLOptionElement {

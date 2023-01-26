@@ -117,7 +117,22 @@ extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSCollectionViewItem")]
+unsafe impl NSCoding for NSCollectionViewItem {}
+
+#[cfg(feature = "AppKit_NSCollectionViewItem")]
 unsafe impl NSCollectionViewElement for NSCollectionViewItem {}
+
+#[cfg(feature = "AppKit_NSCollectionViewItem")]
+unsafe impl NSEditor for NSCollectionViewItem {}
+
+#[cfg(feature = "AppKit_NSCollectionViewItem")]
+unsafe impl NSObjectProtocol for NSCollectionViewItem {}
+
+#[cfg(feature = "AppKit_NSCollectionViewItem")]
+unsafe impl NSSeguePerforming for NSCollectionViewItem {}
+
+#[cfg(feature = "AppKit_NSCollectionViewItem")]
+unsafe impl NSUserInterfaceItemIdentification for NSCollectionViewItem {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSCollectionViewItem")]
@@ -178,10 +193,31 @@ extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSCollectionView")]
-unsafe impl NSDraggingSource for NSCollectionView {}
+unsafe impl NSAccessibility for NSCollectionView {}
+
+#[cfg(feature = "AppKit_NSCollectionView")]
+unsafe impl NSAccessibilityElement for NSCollectionView {}
+
+#[cfg(feature = "AppKit_NSCollectionView")]
+unsafe impl NSAnimatablePropertyContainer for NSCollectionView {}
+
+#[cfg(feature = "AppKit_NSCollectionView")]
+unsafe impl NSAppearanceCustomization for NSCollectionView {}
+
+#[cfg(feature = "AppKit_NSCollectionView")]
+unsafe impl NSCoding for NSCollectionView {}
 
 #[cfg(feature = "AppKit_NSCollectionView")]
 unsafe impl NSDraggingDestination for NSCollectionView {}
+
+#[cfg(feature = "AppKit_NSCollectionView")]
+unsafe impl NSDraggingSource for NSCollectionView {}
+
+#[cfg(feature = "AppKit_NSCollectionView")]
+unsafe impl NSObjectProtocol for NSCollectionView {}
+
+#[cfg(feature = "AppKit_NSCollectionView")]
+unsafe impl NSUserInterfaceItemIdentification for NSCollectionView {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSCollectionView")]

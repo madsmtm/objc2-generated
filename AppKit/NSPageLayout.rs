@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSPageLayout")]
+unsafe impl NSObjectProtocol for NSPageLayout {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSPageLayout")]
     unsafe impl NSPageLayout {

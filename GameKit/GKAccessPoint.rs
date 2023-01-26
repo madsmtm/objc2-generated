@@ -26,6 +26,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "GameKit_GKAccessPoint")]
+unsafe impl NSObjectProtocol for GKAccessPoint {}
+
 extern_methods!(
     #[cfg(feature = "GameKit_GKAccessPoint")]
     unsafe impl GKAccessPoint {

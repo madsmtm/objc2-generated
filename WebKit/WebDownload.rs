@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_WebDownload")]
+unsafe impl NSObjectProtocol for WebDownload {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_WebDownload")]
     unsafe impl WebDownload {}

@@ -17,6 +17,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "GameKit_GKLocalPlayer")]
+unsafe impl NSObjectProtocol for GKLocalPlayer {}
+
 extern_methods!(
     #[cfg(feature = "GameKit_GKLocalPlayer")]
     unsafe impl GKLocalPlayer {
@@ -84,7 +87,7 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait GKLocalPlayerListener:
-        GKChallengeListener + GKInviteEventListener + GKTurnBasedEventListener + GKSavedGameListener
+        GKChallengeListener + GKInviteEventListener + GKSavedGameListener + GKTurnBasedEventListener
     {
     }
 

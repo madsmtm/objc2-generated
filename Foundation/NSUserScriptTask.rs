@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSUserScriptTask")]
+unsafe impl NSObjectProtocol for NSUserScriptTask {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSUserScriptTask")]
     unsafe impl NSUserScriptTask {
@@ -51,6 +54,9 @@ extern_class!(
         type Super = NSUserScriptTask;
     }
 );
+
+#[cfg(feature = "Foundation_NSUserUnixTask")]
+unsafe impl NSObjectProtocol for NSUserUnixTask {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSUserUnixTask")]
@@ -104,6 +110,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSUserAppleScriptTask")]
+unsafe impl NSObjectProtocol for NSUserAppleScriptTask {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSUserAppleScriptTask")]
     unsafe impl NSUserAppleScriptTask {
@@ -130,6 +139,9 @@ extern_class!(
         type Super = NSUserScriptTask;
     }
 );
+
+#[cfg(feature = "Foundation_NSUserAutomatorTask")]
+unsafe impl NSObjectProtocol for NSUserAutomatorTask {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSUserAutomatorTask")]

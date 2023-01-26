@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreData_NSSaveChangesRequest")]
+unsafe impl NSObjectProtocol for NSSaveChangesRequest {}
+
 extern_methods!(
     #[cfg(feature = "CoreData_NSSaveChangesRequest")]
     unsafe impl NSSaveChangesRequest {

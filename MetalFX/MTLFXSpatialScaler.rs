@@ -24,6 +24,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "MetalFX_MTLFXSpatialScalerDescriptor")]
+unsafe impl NSObjectProtocol for MTLFXSpatialScalerDescriptor {}
+
 extern_methods!(
     #[cfg(feature = "MetalFX_MTLFXSpatialScalerDescriptor")]
     unsafe impl MTLFXSpatialScalerDescriptor {

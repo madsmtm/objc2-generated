@@ -36,6 +36,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSPrintOperation")]
+unsafe impl NSObjectProtocol for NSPrintOperation {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSPrintOperation")]
     unsafe impl NSPrintOperation {

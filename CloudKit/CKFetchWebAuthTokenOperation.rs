@@ -17,6 +17,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CloudKit_CKFetchWebAuthTokenOperation")]
+unsafe impl NSObjectProtocol for CKFetchWebAuthTokenOperation {}
+
 extern_methods!(
     #[cfg(feature = "CloudKit_CKFetchWebAuthTokenOperation")]
     unsafe impl CKFetchWebAuthTokenOperation {

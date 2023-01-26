@@ -25,6 +25,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSXMLDocument")]
+unsafe impl NSObjectProtocol for NSXMLDocument {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSXMLDocument")]
     unsafe impl NSXMLDocument {

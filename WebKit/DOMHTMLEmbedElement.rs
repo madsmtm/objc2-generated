@@ -18,6 +18,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_DOMHTMLEmbedElement")]
+unsafe impl DOMEventTarget for DOMHTMLEmbedElement {}
+
+#[cfg(feature = "WebKit_DOMHTMLEmbedElement")]
+unsafe impl NSObjectProtocol for DOMHTMLEmbedElement {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_DOMHTMLEmbedElement")]
     unsafe impl DOMHTMLEmbedElement {

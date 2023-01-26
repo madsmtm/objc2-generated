@@ -48,6 +48,9 @@ extern_class!(
 unsafe impl NSCoding for NSTextTab {}
 
 #[cfg(feature = "AppKit_NSTextTab")]
+unsafe impl NSObjectProtocol for NSTextTab {}
+
+#[cfg(feature = "AppKit_NSTextTab")]
 unsafe impl NSSecureCoding for NSTextTab {}
 
 extern_methods!(
@@ -90,6 +93,12 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "AppKit_NSParagraphStyle")]
+unsafe impl NSCoding for NSParagraphStyle {}
+
+#[cfg(feature = "AppKit_NSParagraphStyle")]
+unsafe impl NSObjectProtocol for NSParagraphStyle {}
 
 #[cfg(feature = "AppKit_NSParagraphStyle")]
 unsafe impl NSSecureCoding for NSParagraphStyle {}
@@ -188,6 +197,15 @@ extern_class!(
         type Super = NSParagraphStyle;
     }
 );
+
+#[cfg(feature = "AppKit_NSMutableParagraphStyle")]
+unsafe impl NSCoding for NSMutableParagraphStyle {}
+
+#[cfg(feature = "AppKit_NSMutableParagraphStyle")]
+unsafe impl NSObjectProtocol for NSMutableParagraphStyle {}
+
+#[cfg(feature = "AppKit_NSMutableParagraphStyle")]
+unsafe impl NSSecureCoding for NSMutableParagraphStyle {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSMutableParagraphStyle")]

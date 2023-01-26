@@ -16,6 +16,15 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CallKit_CXSetMutedCallAction")]
+unsafe impl NSCoding for CXSetMutedCallAction {}
+
+#[cfg(feature = "CallKit_CXSetMutedCallAction")]
+unsafe impl NSObjectProtocol for CXSetMutedCallAction {}
+
+#[cfg(feature = "CallKit_CXSetMutedCallAction")]
+unsafe impl NSSecureCoding for CXSetMutedCallAction {}
+
 extern_methods!(
     #[cfg(feature = "CallKit_CXSetMutedCallAction")]
     unsafe impl CXSetMutedCallAction {

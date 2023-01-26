@@ -18,6 +18,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSCachedImageRep")]
+unsafe impl NSCoding for NSCachedImageRep {}
+
+#[cfg(feature = "AppKit_NSCachedImageRep")]
+unsafe impl NSObjectProtocol for NSCachedImageRep {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSCachedImageRep")]
     unsafe impl NSCachedImageRep {

@@ -18,6 +18,9 @@ extern_class!(
 #[cfg(feature = "Foundation_NSDistantObject")]
 unsafe impl NSCoding for NSDistantObject {}
 
+#[cfg(feature = "Foundation_NSDistantObject")]
+unsafe impl NSObjectProtocol for NSDistantObject {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSDistantObject")]
     unsafe impl NSDistantObject {

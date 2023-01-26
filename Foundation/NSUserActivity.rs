@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSUserActivity")]
+unsafe impl NSObjectProtocol for NSUserActivity {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSUserActivity")]
     unsafe impl NSUserActivity {

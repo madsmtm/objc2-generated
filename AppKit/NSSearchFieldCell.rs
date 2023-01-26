@@ -25,6 +25,21 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSSearchFieldCell")]
+unsafe impl NSAccessibility for NSSearchFieldCell {}
+
+#[cfg(feature = "AppKit_NSSearchFieldCell")]
+unsafe impl NSAccessibilityElement for NSSearchFieldCell {}
+
+#[cfg(feature = "AppKit_NSSearchFieldCell")]
+unsafe impl NSCoding for NSSearchFieldCell {}
+
+#[cfg(feature = "AppKit_NSSearchFieldCell")]
+unsafe impl NSObjectProtocol for NSSearchFieldCell {}
+
+#[cfg(feature = "AppKit_NSSearchFieldCell")]
+unsafe impl NSUserInterfaceItemIdentification for NSSearchFieldCell {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSSearchFieldCell")]
     unsafe impl NSSearchFieldCell {

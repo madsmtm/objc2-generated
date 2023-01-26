@@ -17,6 +17,30 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSPathControl")]
+unsafe impl NSAccessibility for NSPathControl {}
+
+#[cfg(feature = "AppKit_NSPathControl")]
+unsafe impl NSAccessibilityElement for NSPathControl {}
+
+#[cfg(feature = "AppKit_NSPathControl")]
+unsafe impl NSAnimatablePropertyContainer for NSPathControl {}
+
+#[cfg(feature = "AppKit_NSPathControl")]
+unsafe impl NSAppearanceCustomization for NSPathControl {}
+
+#[cfg(feature = "AppKit_NSPathControl")]
+unsafe impl NSCoding for NSPathControl {}
+
+#[cfg(feature = "AppKit_NSPathControl")]
+unsafe impl NSDraggingDestination for NSPathControl {}
+
+#[cfg(feature = "AppKit_NSPathControl")]
+unsafe impl NSObjectProtocol for NSPathControl {}
+
+#[cfg(feature = "AppKit_NSPathControl")]
+unsafe impl NSUserInterfaceItemIdentification for NSPathControl {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSPathControl")]
     unsafe impl NSPathControl {

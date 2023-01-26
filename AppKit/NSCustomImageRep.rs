@@ -17,6 +17,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSCustomImageRep")]
+unsafe impl NSCoding for NSCustomImageRep {}
+
+#[cfg(feature = "AppKit_NSCustomImageRep")]
+unsafe impl NSObjectProtocol for NSCustomImageRep {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSCustomImageRep")]
     unsafe impl NSCustomImageRep {

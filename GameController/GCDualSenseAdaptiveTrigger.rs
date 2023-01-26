@@ -64,6 +64,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "GameController_GCDualSenseAdaptiveTrigger")]
+unsafe impl NSObjectProtocol for GCDualSenseAdaptiveTrigger {}
+
 extern_methods!(
     #[cfg(feature = "GameController_GCDualSenseAdaptiveTrigger")]
     unsafe impl GCDualSenseAdaptiveTrigger {

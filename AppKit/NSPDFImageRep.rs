@@ -17,6 +17,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSPDFImageRep")]
+unsafe impl NSCoding for NSPDFImageRep {}
+
+#[cfg(feature = "AppKit_NSPDFImageRep")]
+unsafe impl NSObjectProtocol for NSPDFImageRep {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSPDFImageRep")]
     unsafe impl NSPDFImageRep {

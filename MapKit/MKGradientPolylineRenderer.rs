@@ -19,6 +19,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "MapKit_MKGradientPolylineRenderer")]
+unsafe impl NSObjectProtocol for MKGradientPolylineRenderer {}
+
 extern_methods!(
     #[cfg(feature = "MapKit_MKGradientPolylineRenderer")]
     unsafe impl MKGradientPolylineRenderer {

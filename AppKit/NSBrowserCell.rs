@@ -17,6 +17,21 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSBrowserCell")]
+unsafe impl NSAccessibility for NSBrowserCell {}
+
+#[cfg(feature = "AppKit_NSBrowserCell")]
+unsafe impl NSAccessibilityElement for NSBrowserCell {}
+
+#[cfg(feature = "AppKit_NSBrowserCell")]
+unsafe impl NSCoding for NSBrowserCell {}
+
+#[cfg(feature = "AppKit_NSBrowserCell")]
+unsafe impl NSObjectProtocol for NSBrowserCell {}
+
+#[cfg(feature = "AppKit_NSBrowserCell")]
+unsafe impl NSUserInterfaceItemIdentification for NSBrowserCell {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSBrowserCell")]
     unsafe impl NSBrowserCell {

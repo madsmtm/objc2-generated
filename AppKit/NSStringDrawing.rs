@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSStringDrawingContext")]
+unsafe impl NSObjectProtocol for NSStringDrawingContext {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSStringDrawingContext")]
     unsafe impl NSStringDrawingContext {

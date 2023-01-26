@@ -36,6 +36,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLAccelerationStructureDescriptor")]
+unsafe impl NSObjectProtocol for MTLAccelerationStructureDescriptor {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLAccelerationStructureDescriptor")]
     unsafe impl MTLAccelerationStructureDescriptor {
@@ -57,6 +60,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Metal_MTLAccelerationStructureGeometryDescriptor")]
+unsafe impl NSObjectProtocol for MTLAccelerationStructureGeometryDescriptor {}
 
 extern_methods!(
     #[cfg(feature = "Metal_MTLAccelerationStructureGeometryDescriptor")]
@@ -144,6 +150,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLPrimitiveAccelerationStructureDescriptor")]
+unsafe impl NSObjectProtocol for MTLPrimitiveAccelerationStructureDescriptor {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLPrimitiveAccelerationStructureDescriptor")]
     unsafe impl MTLPrimitiveAccelerationStructureDescriptor {
@@ -215,6 +224,9 @@ extern_class!(
         type Super = MTLAccelerationStructureGeometryDescriptor;
     }
 );
+
+#[cfg(feature = "Metal_MTLAccelerationStructureTriangleGeometryDescriptor")]
+unsafe impl NSObjectProtocol for MTLAccelerationStructureTriangleGeometryDescriptor {}
 
 extern_methods!(
     #[cfg(feature = "Metal_MTLAccelerationStructureTriangleGeometryDescriptor")]
@@ -304,6 +316,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLAccelerationStructureBoundingBoxGeometryDescriptor")]
+unsafe impl NSObjectProtocol for MTLAccelerationStructureBoundingBoxGeometryDescriptor {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLAccelerationStructureBoundingBoxGeometryDescriptor")]
     unsafe impl MTLAccelerationStructureBoundingBoxGeometryDescriptor {
@@ -351,6 +366,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLMotionKeyframeData")]
+unsafe impl NSObjectProtocol for MTLMotionKeyframeData {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLMotionKeyframeData")]
     unsafe impl MTLMotionKeyframeData {
@@ -382,6 +400,9 @@ extern_class!(
         type Super = MTLAccelerationStructureGeometryDescriptor;
     }
 );
+
+#[cfg(feature = "Metal_MTLAccelerationStructureMotionTriangleGeometryDescriptor")]
+unsafe impl NSObjectProtocol for MTLAccelerationStructureMotionTriangleGeometryDescriptor {}
 
 extern_methods!(
     #[cfg(feature = "Metal_MTLAccelerationStructureMotionTriangleGeometryDescriptor")]
@@ -472,6 +493,9 @@ extern_class!(
         type Super = MTLAccelerationStructureGeometryDescriptor;
     }
 );
+
+#[cfg(feature = "Metal_MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor")]
+unsafe impl NSObjectProtocol for MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor {}
 
 extern_methods!(
     #[cfg(feature = "Metal_MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor")]
@@ -567,6 +591,9 @@ extern_class!(
         type Super = MTLAccelerationStructureDescriptor;
     }
 );
+
+#[cfg(feature = "Metal_MTLInstanceAccelerationStructureDescriptor")]
+unsafe impl NSObjectProtocol for MTLInstanceAccelerationStructureDescriptor {}
 
 extern_methods!(
     #[cfg(feature = "Metal_MTLInstanceAccelerationStructureDescriptor")]

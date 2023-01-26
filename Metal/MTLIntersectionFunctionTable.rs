@@ -28,6 +28,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLIntersectionFunctionTableDescriptor")]
+unsafe impl NSObjectProtocol for MTLIntersectionFunctionTableDescriptor {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLIntersectionFunctionTableDescriptor")]
     unsafe impl MTLIntersectionFunctionTableDescriptor {

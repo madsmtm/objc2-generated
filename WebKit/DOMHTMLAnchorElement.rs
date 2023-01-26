@@ -18,6 +18,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_DOMHTMLAnchorElement")]
+unsafe impl DOMEventTarget for DOMHTMLAnchorElement {}
+
+#[cfg(feature = "WebKit_DOMHTMLAnchorElement")]
+unsafe impl NSObjectProtocol for DOMHTMLAnchorElement {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_DOMHTMLAnchorElement")]
     unsafe impl DOMHTMLAnchorElement {

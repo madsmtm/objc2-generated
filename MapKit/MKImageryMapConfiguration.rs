@@ -19,6 +19,15 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "MapKit_MKImageryMapConfiguration")]
+unsafe impl NSCoding for MKImageryMapConfiguration {}
+
+#[cfg(feature = "MapKit_MKImageryMapConfiguration")]
+unsafe impl NSObjectProtocol for MKImageryMapConfiguration {}
+
+#[cfg(feature = "MapKit_MKImageryMapConfiguration")]
+unsafe impl NSSecureCoding for MKImageryMapConfiguration {}
+
 extern_methods!(
     #[cfg(feature = "MapKit_MKImageryMapConfiguration")]
     unsafe impl MKImageryMapConfiguration {

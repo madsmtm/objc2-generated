@@ -27,6 +27,21 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSLevelIndicatorCell")]
+unsafe impl NSAccessibility for NSLevelIndicatorCell {}
+
+#[cfg(feature = "AppKit_NSLevelIndicatorCell")]
+unsafe impl NSAccessibilityElement for NSLevelIndicatorCell {}
+
+#[cfg(feature = "AppKit_NSLevelIndicatorCell")]
+unsafe impl NSCoding for NSLevelIndicatorCell {}
+
+#[cfg(feature = "AppKit_NSLevelIndicatorCell")]
+unsafe impl NSObjectProtocol for NSLevelIndicatorCell {}
+
+#[cfg(feature = "AppKit_NSLevelIndicatorCell")]
+unsafe impl NSUserInterfaceItemIdentification for NSLevelIndicatorCell {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSLevelIndicatorCell")]
     unsafe impl NSLevelIndicatorCell {

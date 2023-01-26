@@ -16,6 +16,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreData_NSFetchedPropertyDescription")]
+unsafe impl NSCoding for NSFetchedPropertyDescription {}
+
+#[cfg(feature = "CoreData_NSFetchedPropertyDescription")]
+unsafe impl NSObjectProtocol for NSFetchedPropertyDescription {}
+
 extern_methods!(
     #[cfg(feature = "CoreData_NSFetchedPropertyDescription")]
     unsafe impl NSFetchedPropertyDescription {

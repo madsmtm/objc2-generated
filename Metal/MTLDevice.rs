@@ -239,6 +239,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLArgumentDescriptor")]
+unsafe impl NSObjectProtocol for MTLArgumentDescriptor {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLArgumentDescriptor")]
     unsafe impl MTLArgumentDescriptor {

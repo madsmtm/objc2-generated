@@ -17,6 +17,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSSearchToolbarItem")]
+unsafe impl NSObjectProtocol for NSSearchToolbarItem {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSSearchToolbarItem")]
     unsafe impl NSSearchToolbarItem {

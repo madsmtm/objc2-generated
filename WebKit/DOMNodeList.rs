@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_DOMNodeList")]
+unsafe impl NSObjectProtocol for DOMNodeList {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_DOMNodeList")]
     unsafe impl DOMNodeList {

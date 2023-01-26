@@ -16,6 +16,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Accessibility_AXBrailleMap")]
+unsafe impl NSCoding for AXBrailleMap {}
+
+#[cfg(feature = "Accessibility_AXBrailleMap")]
+unsafe impl NSObjectProtocol for AXBrailleMap {}
+
+#[cfg(feature = "Accessibility_AXBrailleMap")]
 unsafe impl NSSecureCoding for AXBrailleMap {}
 
 extern_methods!(

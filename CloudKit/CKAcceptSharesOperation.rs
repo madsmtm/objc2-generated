@@ -17,6 +17,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CloudKit_CKAcceptSharesOperation")]
+unsafe impl NSObjectProtocol for CKAcceptSharesOperation {}
+
 extern_methods!(
     #[cfg(feature = "CloudKit_CKAcceptSharesOperation")]
     unsafe impl CKAcceptSharesOperation {

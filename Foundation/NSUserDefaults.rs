@@ -20,6 +20,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSUserDefaults")]
+unsafe impl NSObjectProtocol for NSUserDefaults {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSUserDefaults")]
     unsafe impl NSUserDefaults {

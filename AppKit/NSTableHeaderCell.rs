@@ -17,6 +17,21 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSTableHeaderCell")]
+unsafe impl NSAccessibility for NSTableHeaderCell {}
+
+#[cfg(feature = "AppKit_NSTableHeaderCell")]
+unsafe impl NSAccessibilityElement for NSTableHeaderCell {}
+
+#[cfg(feature = "AppKit_NSTableHeaderCell")]
+unsafe impl NSCoding for NSTableHeaderCell {}
+
+#[cfg(feature = "AppKit_NSTableHeaderCell")]
+unsafe impl NSObjectProtocol for NSTableHeaderCell {}
+
+#[cfg(feature = "AppKit_NSTableHeaderCell")]
+unsafe impl NSUserInterfaceItemIdentification for NSTableHeaderCell {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSTableHeaderCell")]
     unsafe impl NSTableHeaderCell {

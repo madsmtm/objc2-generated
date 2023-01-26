@@ -28,6 +28,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSRegularExpression")]
+unsafe impl NSCoding for NSRegularExpression {}
+
+#[cfg(feature = "Foundation_NSRegularExpression")]
+unsafe impl NSObjectProtocol for NSRegularExpression {}
+
+#[cfg(feature = "Foundation_NSRegularExpression")]
 unsafe impl NSSecureCoding for NSRegularExpression {}
 
 extern_methods!(
@@ -205,6 +211,15 @@ extern_class!(
         type Super = NSRegularExpression;
     }
 );
+
+#[cfg(feature = "Foundation_NSDataDetector")]
+unsafe impl NSCoding for NSDataDetector {}
+
+#[cfg(feature = "Foundation_NSDataDetector")]
+unsafe impl NSObjectProtocol for NSDataDetector {}
+
+#[cfg(feature = "Foundation_NSDataDetector")]
+unsafe impl NSSecureCoding for NSDataDetector {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSDataDetector")]

@@ -25,6 +25,18 @@ __inner_extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSCandidateListTouchBarItem")]
+unsafe impl<CandidateType: Message, CandidateTypeOwnership: Ownership> NSCoding
+    for NSCandidateListTouchBarItem<CandidateType, CandidateTypeOwnership>
+{
+}
+
+#[cfg(feature = "AppKit_NSCandidateListTouchBarItem")]
+unsafe impl<CandidateType: Message, CandidateTypeOwnership: Ownership> NSObjectProtocol
+    for NSCandidateListTouchBarItem<CandidateType, CandidateTypeOwnership>
+{
+}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSCandidateListTouchBarItem")]
     unsafe impl<CandidateType: Message, CandidateTypeOwnership: Ownership>

@@ -15,6 +15,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "DeviceCheck_DCDevice")]
+unsafe impl NSObjectProtocol for DCDevice {}
+
 extern_methods!(
     #[cfg(feature = "DeviceCheck_DCDevice")]
     unsafe impl DCDevice {

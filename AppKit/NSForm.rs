@@ -18,6 +18,36 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSForm")]
+unsafe impl NSAccessibility for NSForm {}
+
+#[cfg(feature = "AppKit_NSForm")]
+unsafe impl NSAccessibilityElement for NSForm {}
+
+#[cfg(feature = "AppKit_NSForm")]
+unsafe impl NSAnimatablePropertyContainer for NSForm {}
+
+#[cfg(feature = "AppKit_NSForm")]
+unsafe impl NSAppearanceCustomization for NSForm {}
+
+#[cfg(feature = "AppKit_NSForm")]
+unsafe impl NSCoding for NSForm {}
+
+#[cfg(feature = "AppKit_NSForm")]
+unsafe impl NSDraggingDestination for NSForm {}
+
+#[cfg(feature = "AppKit_NSForm")]
+unsafe impl NSObjectProtocol for NSForm {}
+
+#[cfg(feature = "AppKit_NSForm")]
+unsafe impl NSUserInterfaceItemIdentification for NSForm {}
+
+#[cfg(feature = "AppKit_NSForm")]
+unsafe impl NSUserInterfaceValidations for NSForm {}
+
+#[cfg(feature = "AppKit_NSForm")]
+unsafe impl NSViewToolTipOwner for NSForm {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSForm")]
     unsafe impl NSForm {

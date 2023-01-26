@@ -15,6 +15,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CallKit_CXProviderConfiguration")]
+unsafe impl NSObjectProtocol for CXProviderConfiguration {}
+
 extern_methods!(
     #[cfg(feature = "CallKit_CXProviderConfiguration")]
     unsafe impl CXProviderConfiguration {

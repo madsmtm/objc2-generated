@@ -17,6 +17,21 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "ExtensionKit_EXAppExtensionBrowserViewController")]
+unsafe impl NSCoding for EXAppExtensionBrowserViewController {}
+
+#[cfg(feature = "ExtensionKit_EXAppExtensionBrowserViewController")]
+unsafe impl NSEditor for EXAppExtensionBrowserViewController {}
+
+#[cfg(feature = "ExtensionKit_EXAppExtensionBrowserViewController")]
+unsafe impl NSObjectProtocol for EXAppExtensionBrowserViewController {}
+
+#[cfg(feature = "ExtensionKit_EXAppExtensionBrowserViewController")]
+unsafe impl NSSeguePerforming for EXAppExtensionBrowserViewController {}
+
+#[cfg(feature = "ExtensionKit_EXAppExtensionBrowserViewController")]
+unsafe impl NSUserInterfaceItemIdentification for EXAppExtensionBrowserViewController {}
+
 extern_methods!(
     #[cfg(feature = "ExtensionKit_EXAppExtensionBrowserViewController")]
     unsafe impl EXAppExtensionBrowserViewController {}

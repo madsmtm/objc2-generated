@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_WKSnapshotConfiguration")]
+unsafe impl NSObjectProtocol for WKSnapshotConfiguration {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_WKSnapshotConfiguration")]
     unsafe impl WKSnapshotConfiguration {

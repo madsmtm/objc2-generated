@@ -18,6 +18,9 @@ extern_class!(
 #[cfg(feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialProvider")]
 unsafe impl ASAuthorizationProvider for ASAuthorizationPlatformPublicKeyCredentialProvider {}
 
+#[cfg(feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialProvider")]
+unsafe impl NSObjectProtocol for ASAuthorizationPlatformPublicKeyCredentialProvider {}
+
 extern_methods!(
     #[cfg(feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialProvider")]
     unsafe impl ASAuthorizationPlatformPublicKeyCredentialProvider {

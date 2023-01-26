@@ -33,6 +33,21 @@ extern_class!(
 #[cfg(feature = "GameKit_GKGameCenterViewController")]
 unsafe impl GKViewController for GKGameCenterViewController {}
 
+#[cfg(feature = "GameKit_GKGameCenterViewController")]
+unsafe impl NSCoding for GKGameCenterViewController {}
+
+#[cfg(feature = "GameKit_GKGameCenterViewController")]
+unsafe impl NSEditor for GKGameCenterViewController {}
+
+#[cfg(feature = "GameKit_GKGameCenterViewController")]
+unsafe impl NSObjectProtocol for GKGameCenterViewController {}
+
+#[cfg(feature = "GameKit_GKGameCenterViewController")]
+unsafe impl NSSeguePerforming for GKGameCenterViewController {}
+
+#[cfg(feature = "GameKit_GKGameCenterViewController")]
+unsafe impl NSUserInterfaceItemIdentification for GKGameCenterViewController {}
+
 extern_methods!(
     #[cfg(feature = "GameKit_GKGameCenterViewController")]
     unsafe impl GKGameCenterViewController {}

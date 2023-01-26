@@ -34,6 +34,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Contacts_CNContactFormatter")]
+unsafe impl NSCoding for CNContactFormatter {}
+
+#[cfg(feature = "Contacts_CNContactFormatter")]
+unsafe impl NSObjectProtocol for CNContactFormatter {}
+
+#[cfg(feature = "Contacts_CNContactFormatter")]
 unsafe impl NSSecureCoding for CNContactFormatter {}
 
 extern_methods!(

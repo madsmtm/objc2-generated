@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "GameKit_GKNotificationBanner")]
+unsafe impl NSObjectProtocol for GKNotificationBanner {}
+
 extern_methods!(
     #[cfg(feature = "GameKit_GKNotificationBanner")]
     unsafe impl GKNotificationBanner {

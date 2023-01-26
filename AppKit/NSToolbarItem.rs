@@ -28,6 +28,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSToolbarItem")]
+unsafe impl NSObjectProtocol for NSToolbarItem {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSToolbarItem")]
     unsafe impl NSToolbarItem {

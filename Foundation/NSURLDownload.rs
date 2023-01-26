@@ -14,6 +14,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSURLDownload")]
+unsafe impl NSObjectProtocol for NSURLDownload {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSURLDownload")]
     unsafe impl NSURLDownload {

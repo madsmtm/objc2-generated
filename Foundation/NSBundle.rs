@@ -25,6 +25,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSBundle")]
+unsafe impl NSObjectProtocol for NSBundle {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSBundle")]
     unsafe impl NSBundle {
@@ -385,6 +388,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Foundation_NSBundleResourceRequest")]
+unsafe impl NSObjectProtocol for NSBundleResourceRequest {}
 
 #[cfg(feature = "Foundation_NSBundleResourceRequest")]
 unsafe impl NSProgressReporting for NSBundleResourceRequest {}

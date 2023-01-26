@@ -18,6 +18,9 @@ extern_class!(
 #[cfg(feature = "CallKit_CXCallDirectoryProvider")]
 unsafe impl NSExtensionRequestHandling for CXCallDirectoryProvider {}
 
+#[cfg(feature = "CallKit_CXCallDirectoryProvider")]
+unsafe impl NSObjectProtocol for CXCallDirectoryProvider {}
+
 extern_methods!(
     #[cfg(feature = "CallKit_CXCallDirectoryProvider")]
     unsafe impl CXCallDirectoryProvider {

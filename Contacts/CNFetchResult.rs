@@ -20,6 +20,12 @@ __inner_extern_class!(
     }
 );
 
+#[cfg(feature = "Contacts_CNFetchResult")]
+unsafe impl<ValueType: Message, ValueTypeOwnership: Ownership> NSObjectProtocol
+    for CNFetchResult<ValueType, ValueTypeOwnership>
+{
+}
+
 extern_methods!(
     #[cfg(feature = "Contacts_CNFetchResult")]
     unsafe impl<ValueType: Message, ValueTypeOwnership: Ownership>

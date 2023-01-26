@@ -16,6 +16,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreData_NSExpressionDescription")]
+unsafe impl NSCoding for NSExpressionDescription {}
+
+#[cfg(feature = "CoreData_NSExpressionDescription")]
+unsafe impl NSObjectProtocol for NSExpressionDescription {}
+
 extern_methods!(
     #[cfg(feature = "CoreData_NSExpressionDescription")]
     unsafe impl NSExpressionDescription {

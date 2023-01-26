@@ -29,6 +29,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_WebHistory")]
+unsafe impl NSObjectProtocol for WebHistory {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_WebHistory")]
     unsafe impl WebHistory {

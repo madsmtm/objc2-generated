@@ -17,6 +17,9 @@ extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSFilePromiseProvider")]
+unsafe impl NSObjectProtocol for NSFilePromiseProvider {}
+
+#[cfg(feature = "AppKit_NSFilePromiseProvider")]
 unsafe impl NSPasteboardWriting for NSFilePromiseProvider {}
 
 extern_methods!(

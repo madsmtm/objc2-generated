@@ -15,6 +15,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSPersonNameComponents")]
+unsafe impl NSCoding for NSPersonNameComponents {}
+
+#[cfg(feature = "Foundation_NSPersonNameComponents")]
+unsafe impl NSObjectProtocol for NSPersonNameComponents {}
+
+#[cfg(feature = "Foundation_NSPersonNameComponents")]
 unsafe impl NSSecureCoding for NSPersonNameComponents {}
 
 extern_methods!(

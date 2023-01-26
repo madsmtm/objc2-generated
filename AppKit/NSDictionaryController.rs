@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSDictionaryControllerKeyValuePair")]
+unsafe impl NSObjectProtocol for NSDictionaryControllerKeyValuePair {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSDictionaryControllerKeyValuePair")]
     unsafe impl NSDictionaryControllerKeyValuePair {
@@ -60,6 +63,18 @@ extern_class!(
         type Super = NSArrayController;
     }
 );
+
+#[cfg(feature = "AppKit_NSDictionaryController")]
+unsafe impl NSCoding for NSDictionaryController {}
+
+#[cfg(feature = "AppKit_NSDictionaryController")]
+unsafe impl NSEditor for NSDictionaryController {}
+
+#[cfg(feature = "AppKit_NSDictionaryController")]
+unsafe impl NSEditorRegistration for NSDictionaryController {}
+
+#[cfg(feature = "AppKit_NSDictionaryController")]
+unsafe impl NSObjectProtocol for NSDictionaryController {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSDictionaryController")]

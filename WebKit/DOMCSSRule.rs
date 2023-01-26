@@ -53,6 +53,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_DOMCSSRule")]
+unsafe impl NSObjectProtocol for DOMCSSRule {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_DOMCSSRule")]
     unsafe impl DOMCSSRule {

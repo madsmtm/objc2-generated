@@ -55,6 +55,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSGlyphGenerator")]
+unsafe impl NSObjectProtocol for NSGlyphGenerator {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSGlyphGenerator")]
     unsafe impl NSGlyphGenerator {

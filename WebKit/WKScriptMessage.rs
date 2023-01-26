@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_WKScriptMessage")]
+unsafe impl NSObjectProtocol for WKScriptMessage {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_WKScriptMessage")]
     unsafe impl WKScriptMessage {

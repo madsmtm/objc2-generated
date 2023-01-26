@@ -28,6 +28,18 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreAnimation_CAEmitterLayer")]
+unsafe impl CAMediaTiming for CAEmitterLayer {}
+
+#[cfg(feature = "CoreAnimation_CAEmitterLayer")]
+unsafe impl NSCoding for CAEmitterLayer {}
+
+#[cfg(feature = "CoreAnimation_CAEmitterLayer")]
+unsafe impl NSObjectProtocol for CAEmitterLayer {}
+
+#[cfg(feature = "CoreAnimation_CAEmitterLayer")]
+unsafe impl NSSecureCoding for CAEmitterLayer {}
+
 extern_methods!(
     #[cfg(feature = "CoreAnimation_CAEmitterLayer")]
     unsafe impl CAEmitterLayer {

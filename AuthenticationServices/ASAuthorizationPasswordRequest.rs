@@ -16,6 +16,15 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AuthenticationServices_ASAuthorizationPasswordRequest")]
+unsafe impl NSCoding for ASAuthorizationPasswordRequest {}
+
+#[cfg(feature = "AuthenticationServices_ASAuthorizationPasswordRequest")]
+unsafe impl NSObjectProtocol for ASAuthorizationPasswordRequest {}
+
+#[cfg(feature = "AuthenticationServices_ASAuthorizationPasswordRequest")]
+unsafe impl NSSecureCoding for ASAuthorizationPasswordRequest {}
+
 extern_methods!(
     #[cfg(feature = "AuthenticationServices_ASAuthorizationPasswordRequest")]
     unsafe impl ASAuthorizationPasswordRequest {}

@@ -27,6 +27,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_WKHTTPCookieStore")]
+unsafe impl NSObjectProtocol for WKHTTPCookieStore {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_WKHTTPCookieStore")]
     unsafe impl WKHTTPCookieStore {

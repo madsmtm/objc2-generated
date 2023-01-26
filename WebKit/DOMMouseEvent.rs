@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_DOMMouseEvent")]
+unsafe impl NSObjectProtocol for DOMMouseEvent {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_DOMMouseEvent")]
     unsafe impl DOMMouseEvent {

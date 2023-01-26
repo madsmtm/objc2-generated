@@ -49,6 +49,30 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "MapKit_MKAnnotationView")]
+unsafe impl NSAccessibility for MKAnnotationView {}
+
+#[cfg(feature = "MapKit_MKAnnotationView")]
+unsafe impl NSAccessibilityElement for MKAnnotationView {}
+
+#[cfg(feature = "MapKit_MKAnnotationView")]
+unsafe impl NSAnimatablePropertyContainer for MKAnnotationView {}
+
+#[cfg(feature = "MapKit_MKAnnotationView")]
+unsafe impl NSAppearanceCustomization for MKAnnotationView {}
+
+#[cfg(feature = "MapKit_MKAnnotationView")]
+unsafe impl NSCoding for MKAnnotationView {}
+
+#[cfg(feature = "MapKit_MKAnnotationView")]
+unsafe impl NSDraggingDestination for MKAnnotationView {}
+
+#[cfg(feature = "MapKit_MKAnnotationView")]
+unsafe impl NSObjectProtocol for MKAnnotationView {}
+
+#[cfg(feature = "MapKit_MKAnnotationView")]
+unsafe impl NSUserInterfaceItemIdentification for MKAnnotationView {}
+
 extern_methods!(
     #[cfg(feature = "MapKit_MKAnnotationView")]
     unsafe impl MKAnnotationView {

@@ -16,6 +16,18 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreAnimation_CATransformLayer")]
+unsafe impl CAMediaTiming for CATransformLayer {}
+
+#[cfg(feature = "CoreAnimation_CATransformLayer")]
+unsafe impl NSCoding for CATransformLayer {}
+
+#[cfg(feature = "CoreAnimation_CATransformLayer")]
+unsafe impl NSObjectProtocol for CATransformLayer {}
+
+#[cfg(feature = "CoreAnimation_CATransformLayer")]
+unsafe impl NSSecureCoding for CATransformLayer {}
+
 extern_methods!(
     #[cfg(feature = "CoreAnimation_CATransformLayer")]
     unsafe impl CATransformLayer {}

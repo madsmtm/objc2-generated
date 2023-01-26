@@ -15,6 +15,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSListFormatter")]
+unsafe impl NSCoding for NSListFormatter {}
+
+#[cfg(feature = "Foundation_NSListFormatter")]
+unsafe impl NSObjectProtocol for NSListFormatter {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSListFormatter")]
     unsafe impl NSListFormatter {

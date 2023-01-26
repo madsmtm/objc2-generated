@@ -17,6 +17,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSSharingServicePickerToolbarItem")]
+unsafe impl NSObjectProtocol for NSSharingServicePickerToolbarItem {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSSharingServicePickerToolbarItem")]
     unsafe impl NSSharingServicePickerToolbarItem {

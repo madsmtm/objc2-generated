@@ -17,6 +17,21 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSFormCell")]
+unsafe impl NSAccessibility for NSFormCell {}
+
+#[cfg(feature = "AppKit_NSFormCell")]
+unsafe impl NSAccessibilityElement for NSFormCell {}
+
+#[cfg(feature = "AppKit_NSFormCell")]
+unsafe impl NSCoding for NSFormCell {}
+
+#[cfg(feature = "AppKit_NSFormCell")]
+unsafe impl NSObjectProtocol for NSFormCell {}
+
+#[cfg(feature = "AppKit_NSFormCell")]
+unsafe impl NSUserInterfaceItemIdentification for NSFormCell {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSFormCell")]
     unsafe impl NSFormCell {

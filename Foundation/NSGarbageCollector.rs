@@ -15,6 +15,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSGarbageCollector")]
+unsafe impl NSObjectProtocol for NSGarbageCollector {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSGarbageCollector")]
     unsafe impl NSGarbageCollector {

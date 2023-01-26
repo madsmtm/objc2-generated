@@ -107,6 +107,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSItemProvider")]
+unsafe impl NSObjectProtocol for NSItemProvider {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSItemProvider")]
     unsafe impl NSItemProvider {

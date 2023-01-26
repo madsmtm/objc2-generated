@@ -93,6 +93,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSLayoutConstraint")]
+unsafe impl NSObjectProtocol for NSLayoutConstraint {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSLayoutConstraint")]
     unsafe impl NSLayoutConstraint {

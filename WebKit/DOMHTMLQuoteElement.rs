@@ -18,6 +18,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_DOMHTMLQuoteElement")]
+unsafe impl DOMEventTarget for DOMHTMLQuoteElement {}
+
+#[cfg(feature = "WebKit_DOMHTMLQuoteElement")]
+unsafe impl NSObjectProtocol for DOMHTMLQuoteElement {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_DOMHTMLQuoteElement")]
     unsafe impl DOMHTMLQuoteElement {

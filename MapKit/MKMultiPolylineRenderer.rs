@@ -19,6 +19,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "MapKit_MKMultiPolylineRenderer")]
+unsafe impl NSObjectProtocol for MKMultiPolylineRenderer {}
+
 extern_methods!(
     #[cfg(feature = "MapKit_MKMultiPolylineRenderer")]
     unsafe impl MKMultiPolylineRenderer {

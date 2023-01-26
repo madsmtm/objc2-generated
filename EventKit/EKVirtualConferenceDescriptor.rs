@@ -20,6 +20,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "EventKit_EKVirtualConferenceRoomTypeDescriptor")]
+unsafe impl NSObjectProtocol for EKVirtualConferenceRoomTypeDescriptor {}
+
 extern_methods!(
     #[cfg(feature = "EventKit_EKVirtualConferenceRoomTypeDescriptor")]
     unsafe impl EKVirtualConferenceRoomTypeDescriptor {
@@ -56,6 +59,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "EventKit_EKVirtualConferenceURLDescriptor")]
+unsafe impl NSObjectProtocol for EKVirtualConferenceURLDescriptor {}
 
 extern_methods!(
     #[cfg(feature = "EventKit_EKVirtualConferenceURLDescriptor")]
@@ -94,6 +100,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "EventKit_EKVirtualConferenceDescriptor")]
+unsafe impl NSObjectProtocol for EKVirtualConferenceDescriptor {}
 
 extern_methods!(
     #[cfg(feature = "EventKit_EKVirtualConferenceDescriptor")]

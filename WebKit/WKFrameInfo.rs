@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_WKFrameInfo")]
+unsafe impl NSObjectProtocol for WKFrameInfo {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_WKFrameInfo")]
     unsafe impl WKFrameInfo {

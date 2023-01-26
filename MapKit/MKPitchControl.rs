@@ -19,6 +19,30 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "MapKit_MKPitchControl")]
+unsafe impl NSAccessibility for MKPitchControl {}
+
+#[cfg(feature = "MapKit_MKPitchControl")]
+unsafe impl NSAccessibilityElement for MKPitchControl {}
+
+#[cfg(feature = "MapKit_MKPitchControl")]
+unsafe impl NSAnimatablePropertyContainer for MKPitchControl {}
+
+#[cfg(feature = "MapKit_MKPitchControl")]
+unsafe impl NSAppearanceCustomization for MKPitchControl {}
+
+#[cfg(feature = "MapKit_MKPitchControl")]
+unsafe impl NSCoding for MKPitchControl {}
+
+#[cfg(feature = "MapKit_MKPitchControl")]
+unsafe impl NSDraggingDestination for MKPitchControl {}
+
+#[cfg(feature = "MapKit_MKPitchControl")]
+unsafe impl NSObjectProtocol for MKPitchControl {}
+
+#[cfg(feature = "MapKit_MKPitchControl")]
+unsafe impl NSUserInterfaceItemIdentification for MKPitchControl {}
+
 extern_methods!(
     #[cfg(feature = "MapKit_MKPitchControl")]
     unsafe impl MKPitchControl {

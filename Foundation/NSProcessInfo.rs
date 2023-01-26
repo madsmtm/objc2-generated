@@ -43,6 +43,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSProcessInfo")]
+unsafe impl NSObjectProtocol for NSProcessInfo {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSProcessInfo")]
     unsafe impl NSProcessInfo {

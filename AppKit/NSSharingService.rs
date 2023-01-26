@@ -60,6 +60,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSSharingService")]
+unsafe impl NSObjectProtocol for NSSharingService {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSSharingService")]
     unsafe impl NSSharingService {
@@ -310,6 +313,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "AppKit_NSSharingServicePicker")]
+unsafe impl NSObjectProtocol for NSSharingServicePicker {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSSharingServicePicker")]

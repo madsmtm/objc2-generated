@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AuthenticationServices_ASCredentialProviderExtensionContext")]
+unsafe impl NSObjectProtocol for ASCredentialProviderExtensionContext {}
+
 extern_methods!(
     #[cfg(feature = "AuthenticationServices_ASCredentialProviderExtensionContext")]
     unsafe impl ASCredentialProviderExtensionContext {

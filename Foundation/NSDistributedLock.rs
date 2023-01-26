@@ -14,6 +14,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSDistributedLock")]
+unsafe impl NSObjectProtocol for NSDistributedLock {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSDistributedLock")]
     unsafe impl NSDistributedLock {

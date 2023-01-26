@@ -19,6 +19,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSAttributedString")]
+unsafe impl NSCoding for NSAttributedString {}
+
+#[cfg(feature = "Foundation_NSAttributedString")]
+unsafe impl NSObjectProtocol for NSAttributedString {}
+
+#[cfg(feature = "Foundation_NSAttributedString")]
 unsafe impl NSSecureCoding for NSAttributedString {}
 
 extern_methods!(
@@ -144,6 +150,15 @@ extern_class!(
         type Super = NSAttributedString;
     }
 );
+
+#[cfg(feature = "Foundation_NSMutableAttributedString")]
+unsafe impl NSCoding for NSMutableAttributedString {}
+
+#[cfg(feature = "Foundation_NSMutableAttributedString")]
+unsafe impl NSObjectProtocol for NSMutableAttributedString {}
+
+#[cfg(feature = "Foundation_NSMutableAttributedString")]
+unsafe impl NSSecureCoding for NSMutableAttributedString {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSMutableAttributedString")]
@@ -277,6 +292,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSAttributedStringMarkdownSourcePosition")]
+unsafe impl NSCoding for NSAttributedStringMarkdownSourcePosition {}
+
+#[cfg(feature = "Foundation_NSAttributedStringMarkdownSourcePosition")]
+unsafe impl NSObjectProtocol for NSAttributedStringMarkdownSourcePosition {}
+
+#[cfg(feature = "Foundation_NSAttributedStringMarkdownSourcePosition")]
 unsafe impl NSSecureCoding for NSAttributedStringMarkdownSourcePosition {}
 
 extern_methods!(
@@ -319,6 +340,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Foundation_NSAttributedStringMarkdownParsingOptions")]
+unsafe impl NSObjectProtocol for NSAttributedStringMarkdownParsingOptions {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSAttributedStringMarkdownParsingOptions")]
@@ -492,6 +516,12 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Foundation_NSPresentationIntent")]
+unsafe impl NSCoding for NSPresentationIntent {}
+
+#[cfg(feature = "Foundation_NSPresentationIntent")]
+unsafe impl NSObjectProtocol for NSPresentationIntent {}
 
 #[cfg(feature = "Foundation_NSPresentationIntent")]
 unsafe impl NSSecureCoding for NSPresentationIntent {}

@@ -30,6 +30,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSValueTransformer")]
+unsafe impl NSObjectProtocol for NSValueTransformer {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSValueTransformer")]
     unsafe impl NSValueTransformer {
@@ -77,6 +80,9 @@ extern_class!(
         type Super = NSValueTransformer;
     }
 );
+
+#[cfg(feature = "Foundation_NSSecureUnarchiveFromDataTransformer")]
+unsafe impl NSObjectProtocol for NSSecureUnarchiveFromDataTransformer {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSSecureUnarchiveFromDataTransformer")]

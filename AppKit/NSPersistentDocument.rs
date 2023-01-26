@@ -17,6 +17,21 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSPersistentDocument")]
+unsafe impl NSEditorRegistration for NSPersistentDocument {}
+
+#[cfg(feature = "AppKit_NSPersistentDocument")]
+unsafe impl NSFilePresenter for NSPersistentDocument {}
+
+#[cfg(feature = "AppKit_NSPersistentDocument")]
+unsafe impl NSMenuItemValidation for NSPersistentDocument {}
+
+#[cfg(feature = "AppKit_NSPersistentDocument")]
+unsafe impl NSObjectProtocol for NSPersistentDocument {}
+
+#[cfg(feature = "AppKit_NSPersistentDocument")]
+unsafe impl NSUserInterfaceValidations for NSPersistentDocument {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSPersistentDocument")]
     unsafe impl NSPersistentDocument {

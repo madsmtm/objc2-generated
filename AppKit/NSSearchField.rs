@@ -35,6 +35,42 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSSearchField")]
+unsafe impl NSAccessibility for NSSearchField {}
+
+#[cfg(feature = "AppKit_NSSearchField")]
+unsafe impl NSAccessibilityElement for NSSearchField {}
+
+#[cfg(feature = "AppKit_NSSearchField")]
+unsafe impl NSAccessibilityNavigableStaticText for NSSearchField {}
+
+#[cfg(feature = "AppKit_NSSearchField")]
+unsafe impl NSAccessibilityStaticText for NSSearchField {}
+
+#[cfg(feature = "AppKit_NSSearchField")]
+unsafe impl NSAnimatablePropertyContainer for NSSearchField {}
+
+#[cfg(feature = "AppKit_NSSearchField")]
+unsafe impl NSAppearanceCustomization for NSSearchField {}
+
+#[cfg(feature = "AppKit_NSSearchField")]
+unsafe impl NSCoding for NSSearchField {}
+
+#[cfg(feature = "AppKit_NSSearchField")]
+unsafe impl NSDraggingDestination for NSSearchField {}
+
+#[cfg(feature = "AppKit_NSSearchField")]
+unsafe impl NSObjectProtocol for NSSearchField {}
+
+#[cfg(feature = "AppKit_NSSearchField")]
+unsafe impl NSTextContent for NSSearchField {}
+
+#[cfg(feature = "AppKit_NSSearchField")]
+unsafe impl NSUserInterfaceItemIdentification for NSSearchField {}
+
+#[cfg(feature = "AppKit_NSSearchField")]
+unsafe impl NSUserInterfaceValidations for NSSearchField {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSSearchField")]
     unsafe impl NSSearchField {

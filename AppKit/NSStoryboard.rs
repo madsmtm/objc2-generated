@@ -22,6 +22,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSStoryboard")]
+unsafe impl NSObjectProtocol for NSStoryboard {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSStoryboard")]
     unsafe impl NSStoryboard {

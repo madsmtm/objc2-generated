@@ -17,6 +17,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSPopoverTouchBarItem")]
+unsafe impl NSCoding for NSPopoverTouchBarItem {}
+
+#[cfg(feature = "AppKit_NSPopoverTouchBarItem")]
+unsafe impl NSObjectProtocol for NSPopoverTouchBarItem {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSPopoverTouchBarItem")]
     unsafe impl NSPopoverTouchBarItem {

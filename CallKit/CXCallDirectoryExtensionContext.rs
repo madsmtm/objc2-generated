@@ -33,6 +33,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CallKit_CXCallDirectoryExtensionContext")]
+unsafe impl NSObjectProtocol for CXCallDirectoryExtensionContext {}
+
 extern_methods!(
     #[cfg(feature = "CallKit_CXCallDirectoryExtensionContext")]
     unsafe impl CXCallDirectoryExtensionContext {

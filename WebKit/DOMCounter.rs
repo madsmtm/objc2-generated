@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_DOMCounter")]
+unsafe impl NSObjectProtocol for DOMCounter {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_DOMCounter")]
     unsafe impl DOMCounter {

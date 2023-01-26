@@ -27,7 +27,22 @@ extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSPopUpButtonCell")]
+unsafe impl NSAccessibility for NSPopUpButtonCell {}
+
+#[cfg(feature = "AppKit_NSPopUpButtonCell")]
+unsafe impl NSAccessibilityElement for NSPopUpButtonCell {}
+
+#[cfg(feature = "AppKit_NSPopUpButtonCell")]
+unsafe impl NSCoding for NSPopUpButtonCell {}
+
+#[cfg(feature = "AppKit_NSPopUpButtonCell")]
 unsafe impl NSMenuItemValidation for NSPopUpButtonCell {}
+
+#[cfg(feature = "AppKit_NSPopUpButtonCell")]
+unsafe impl NSObjectProtocol for NSPopUpButtonCell {}
+
+#[cfg(feature = "AppKit_NSPopUpButtonCell")]
+unsafe impl NSUserInterfaceItemIdentification for NSPopUpButtonCell {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSPopUpButtonCell")]

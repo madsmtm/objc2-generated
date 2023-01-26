@@ -15,6 +15,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionKerberosMapping")]
+unsafe impl NSObjectProtocol for ASAuthorizationProviderExtensionKerberosMapping {}
+
 extern_methods!(
     #[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionKerberosMapping")]
     unsafe impl ASAuthorizationProviderExtensionKerberosMapping {
@@ -89,6 +92,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionLoginConfiguration")]
+unsafe impl NSObjectProtocol for ASAuthorizationProviderExtensionLoginConfiguration {}
 
 extern_methods!(
     #[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionLoginConfiguration")]

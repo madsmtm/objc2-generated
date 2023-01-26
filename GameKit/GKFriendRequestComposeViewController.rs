@@ -21,6 +21,21 @@ extern_class!(
 #[cfg(feature = "GameKit_GKFriendRequestComposeViewController")]
 unsafe impl GKViewController for GKFriendRequestComposeViewController {}
 
+#[cfg(feature = "GameKit_GKFriendRequestComposeViewController")]
+unsafe impl NSCoding for GKFriendRequestComposeViewController {}
+
+#[cfg(feature = "GameKit_GKFriendRequestComposeViewController")]
+unsafe impl NSEditor for GKFriendRequestComposeViewController {}
+
+#[cfg(feature = "GameKit_GKFriendRequestComposeViewController")]
+unsafe impl NSObjectProtocol for GKFriendRequestComposeViewController {}
+
+#[cfg(feature = "GameKit_GKFriendRequestComposeViewController")]
+unsafe impl NSSeguePerforming for GKFriendRequestComposeViewController {}
+
+#[cfg(feature = "GameKit_GKFriendRequestComposeViewController")]
+unsafe impl NSUserInterfaceItemIdentification for GKFriendRequestComposeViewController {}
+
 extern_methods!(
     #[cfg(feature = "GameKit_GKFriendRequestComposeViewController")]
     unsafe impl GKFriendRequestComposeViewController {}

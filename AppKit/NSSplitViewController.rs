@@ -20,7 +20,22 @@ extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSSplitViewController")]
+unsafe impl NSCoding for NSSplitViewController {}
+
+#[cfg(feature = "AppKit_NSSplitViewController")]
+unsafe impl NSEditor for NSSplitViewController {}
+
+#[cfg(feature = "AppKit_NSSplitViewController")]
+unsafe impl NSObjectProtocol for NSSplitViewController {}
+
+#[cfg(feature = "AppKit_NSSplitViewController")]
+unsafe impl NSSeguePerforming for NSSplitViewController {}
+
+#[cfg(feature = "AppKit_NSSplitViewController")]
 unsafe impl NSSplitViewDelegate for NSSplitViewController {}
+
+#[cfg(feature = "AppKit_NSSplitViewController")]
+unsafe impl NSUserInterfaceItemIdentification for NSSplitViewController {}
 
 #[cfg(feature = "AppKit_NSSplitViewController")]
 unsafe impl NSUserInterfaceValidations for NSSplitViewController {}

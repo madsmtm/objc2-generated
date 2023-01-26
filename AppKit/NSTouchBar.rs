@@ -21,6 +21,9 @@ extern_class!(
 #[cfg(feature = "AppKit_NSTouchBar")]
 unsafe impl NSCoding for NSTouchBar {}
 
+#[cfg(feature = "AppKit_NSTouchBar")]
+unsafe impl NSObjectProtocol for NSTouchBar {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSTouchBar")]
     unsafe impl NSTouchBar {

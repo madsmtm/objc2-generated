@@ -19,6 +19,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "EventKit_EKReminder")]
+unsafe impl NSObjectProtocol for EKReminder {}
+
 extern_methods!(
     #[cfg(feature = "EventKit_EKReminder")]
     unsafe impl EKReminder {

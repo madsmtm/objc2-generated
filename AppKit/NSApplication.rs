@@ -238,16 +238,22 @@ extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSApplication")]
-unsafe impl NSUserInterfaceValidations for NSApplication {}
-
-#[cfg(feature = "AppKit_NSApplication")]
-unsafe impl NSMenuItemValidation for NSApplication {}
+unsafe impl NSAccessibility for NSApplication {}
 
 #[cfg(feature = "AppKit_NSApplication")]
 unsafe impl NSAccessibilityElement for NSApplication {}
 
 #[cfg(feature = "AppKit_NSApplication")]
-unsafe impl NSAccessibility for NSApplication {}
+unsafe impl NSCoding for NSApplication {}
+
+#[cfg(feature = "AppKit_NSApplication")]
+unsafe impl NSMenuItemValidation for NSApplication {}
+
+#[cfg(feature = "AppKit_NSApplication")]
+unsafe impl NSObjectProtocol for NSApplication {}
+
+#[cfg(feature = "AppKit_NSApplication")]
+unsafe impl NSUserInterfaceValidations for NSApplication {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSApplication")]

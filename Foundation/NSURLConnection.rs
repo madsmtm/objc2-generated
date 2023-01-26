@@ -14,6 +14,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSURLConnection")]
+unsafe impl NSObjectProtocol for NSURLConnection {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSURLConnection")]
     unsafe impl NSURLConnection {

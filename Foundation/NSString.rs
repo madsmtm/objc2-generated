@@ -69,6 +69,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSString")]
+unsafe impl NSCoding for NSString {}
+
+#[cfg(feature = "Foundation_NSString")]
+unsafe impl NSObjectProtocol for NSString {}
+
+#[cfg(feature = "Foundation_NSString")]
 unsafe impl NSSecureCoding for NSString {}
 
 extern_methods!(
@@ -787,6 +793,15 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSMutableString")]
+unsafe impl NSCoding for NSMutableString {}
+
+#[cfg(feature = "Foundation_NSMutableString")]
+unsafe impl NSObjectProtocol for NSMutableString {}
+
+#[cfg(feature = "Foundation_NSMutableString")]
+unsafe impl NSSecureCoding for NSMutableString {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSMutableString")]
     unsafe impl NSMutableString {
@@ -988,6 +1003,15 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSSimpleCString")]
+unsafe impl NSCoding for NSSimpleCString {}
+
+#[cfg(feature = "Foundation_NSSimpleCString")]
+unsafe impl NSObjectProtocol for NSSimpleCString {}
+
+#[cfg(feature = "Foundation_NSSimpleCString")]
+unsafe impl NSSecureCoding for NSSimpleCString {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSSimpleCString")]
     unsafe impl NSSimpleCString {}
@@ -1004,6 +1028,15 @@ extern_class!(
         type Super = NSSimpleCString;
     }
 );
+
+#[cfg(feature = "Foundation_NSConstantString")]
+unsafe impl NSCoding for NSConstantString {}
+
+#[cfg(feature = "Foundation_NSConstantString")]
+unsafe impl NSObjectProtocol for NSConstantString {}
+
+#[cfg(feature = "Foundation_NSConstantString")]
+unsafe impl NSSecureCoding for NSConstantString {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSConstantString")]

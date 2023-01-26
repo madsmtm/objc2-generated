@@ -37,6 +37,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "ExternalAccessory_EAAccessoryManager")]
+unsafe impl NSObjectProtocol for EAAccessoryManager {}
+
 extern_methods!(
     #[cfg(feature = "ExternalAccessory_EAAccessoryManager")]
     unsafe impl EAAccessoryManager {

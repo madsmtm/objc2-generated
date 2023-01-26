@@ -17,6 +17,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_WebScriptObject")]
+unsafe impl NSObjectProtocol for WebScriptObject {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_WebScriptObject")]
     unsafe impl WebScriptObject {
@@ -77,6 +80,9 @@ extern_class!(
 
 #[cfg(feature = "WebKit_WebUndefined")]
 unsafe impl NSCoding for WebUndefined {}
+
+#[cfg(feature = "WebKit_WebUndefined")]
+unsafe impl NSObjectProtocol for WebUndefined {}
 
 extern_methods!(
     #[cfg(feature = "WebKit_WebUndefined")]

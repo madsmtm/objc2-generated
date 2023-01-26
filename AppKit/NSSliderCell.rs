@@ -35,6 +35,21 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSSliderCell")]
+unsafe impl NSAccessibility for NSSliderCell {}
+
+#[cfg(feature = "AppKit_NSSliderCell")]
+unsafe impl NSAccessibilityElement for NSSliderCell {}
+
+#[cfg(feature = "AppKit_NSSliderCell")]
+unsafe impl NSCoding for NSSliderCell {}
+
+#[cfg(feature = "AppKit_NSSliderCell")]
+unsafe impl NSObjectProtocol for NSSliderCell {}
+
+#[cfg(feature = "AppKit_NSSliderCell")]
+unsafe impl NSUserInterfaceItemIdentification for NSSliderCell {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSSliderCell")]
     unsafe impl NSSliderCell {

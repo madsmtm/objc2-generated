@@ -21,6 +21,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSKeyedArchiver")]
+unsafe impl NSObjectProtocol for NSKeyedArchiver {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSKeyedArchiver")]
     unsafe impl NSKeyedArchiver {
@@ -163,6 +166,9 @@ extern_class!(
         type Super = NSCoder;
     }
 );
+
+#[cfg(feature = "Foundation_NSKeyedUnarchiver")]
+unsafe impl NSObjectProtocol for NSKeyedUnarchiver {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSKeyedUnarchiver")]

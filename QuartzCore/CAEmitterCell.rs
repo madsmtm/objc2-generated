@@ -16,10 +16,16 @@ extern_class!(
 );
 
 #[cfg(feature = "CoreAnimation_CAEmitterCell")]
-unsafe impl NSSecureCoding for CAEmitterCell {}
+unsafe impl CAMediaTiming for CAEmitterCell {}
 
 #[cfg(feature = "CoreAnimation_CAEmitterCell")]
-unsafe impl CAMediaTiming for CAEmitterCell {}
+unsafe impl NSCoding for CAEmitterCell {}
+
+#[cfg(feature = "CoreAnimation_CAEmitterCell")]
+unsafe impl NSObjectProtocol for CAEmitterCell {}
+
+#[cfg(feature = "CoreAnimation_CAEmitterCell")]
+unsafe impl NSSecureCoding for CAEmitterCell {}
 
 extern_methods!(
     #[cfg(feature = "CoreAnimation_CAEmitterCell")]

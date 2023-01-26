@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "MapKit_MKLookAroundSnapshot")]
+unsafe impl NSObjectProtocol for MKLookAroundSnapshot {}
+
 extern_methods!(
     #[cfg(feature = "MapKit_MKLookAroundSnapshot")]
     unsafe impl MKLookAroundSnapshot {

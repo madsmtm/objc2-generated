@@ -35,6 +35,12 @@ extern_class!(
 );
 
 #[cfg(feature = "WebKit_WKWebViewConfiguration")]
+unsafe impl NSCoding for WKWebViewConfiguration {}
+
+#[cfg(feature = "WebKit_WKWebViewConfiguration")]
+unsafe impl NSObjectProtocol for WKWebViewConfiguration {}
+
+#[cfg(feature = "WebKit_WKWebViewConfiguration")]
 unsafe impl NSSecureCoding for WKWebViewConfiguration {}
 
 extern_methods!(

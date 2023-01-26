@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSDataAsset")]
+unsafe impl NSObjectProtocol for NSDataAsset {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSDataAsset")]
     unsafe impl NSDataAsset {

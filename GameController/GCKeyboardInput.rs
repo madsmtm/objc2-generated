@@ -27,6 +27,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "GameController_GCKeyboardInput")]
+unsafe impl NSObjectProtocol for GCKeyboardInput {}
+
 extern_methods!(
     #[cfg(feature = "GameController_GCKeyboardInput")]
     unsafe impl GCKeyboardInput {

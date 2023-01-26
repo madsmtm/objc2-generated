@@ -351,6 +351,9 @@ extern_class!(
 #[cfg(feature = "AppKit_NSEvent")]
 unsafe impl NSCoding for NSEvent {}
 
+#[cfg(feature = "AppKit_NSEvent")]
+unsafe impl NSObjectProtocol for NSEvent {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSEvent")]
     unsafe impl NSEvent {

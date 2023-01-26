@@ -26,6 +26,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSDateIntervalFormatter")]
+unsafe impl NSCoding for NSDateIntervalFormatter {}
+
+#[cfg(feature = "Foundation_NSDateIntervalFormatter")]
+unsafe impl NSObjectProtocol for NSDateIntervalFormatter {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSDateIntervalFormatter")]
     unsafe impl NSDateIntervalFormatter {

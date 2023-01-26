@@ -23,6 +23,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSHTTPCookieStorage")]
+unsafe impl NSObjectProtocol for NSHTTPCookieStorage {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSHTTPCookieStorage")]
     unsafe impl NSHTTPCookieStorage {

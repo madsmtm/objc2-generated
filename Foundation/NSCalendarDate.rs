@@ -16,6 +16,15 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSCalendarDate")]
+unsafe impl NSCoding for NSCalendarDate {}
+
+#[cfg(feature = "Foundation_NSCalendarDate")]
+unsafe impl NSObjectProtocol for NSCalendarDate {}
+
+#[cfg(feature = "Foundation_NSCalendarDate")]
+unsafe impl NSSecureCoding for NSCalendarDate {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSCalendarDate")]
     unsafe impl NSCalendarDate {

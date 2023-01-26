@@ -20,6 +20,9 @@ extern_class!(
 unsafe impl NSCoding for GKAchievementDescription {}
 
 #[cfg(feature = "GameKit_GKAchievementDescription")]
+unsafe impl NSObjectProtocol for GKAchievementDescription {}
+
+#[cfg(feature = "GameKit_GKAchievementDescription")]
 unsafe impl NSSecureCoding for GKAchievementDescription {}
 
 extern_methods!(

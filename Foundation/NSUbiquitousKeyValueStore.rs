@@ -14,6 +14,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSUbiquitousKeyValueStore")]
+unsafe impl NSObjectProtocol for NSUbiquitousKeyValueStore {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSUbiquitousKeyValueStore")]
     unsafe impl NSUbiquitousKeyValueStore {

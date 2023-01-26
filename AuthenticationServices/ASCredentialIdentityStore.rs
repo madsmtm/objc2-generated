@@ -26,6 +26,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AuthenticationServices_ASCredentialIdentityStore")]
+unsafe impl NSObjectProtocol for ASCredentialIdentityStore {}
+
 extern_methods!(
     #[cfg(feature = "AuthenticationServices_ASCredentialIdentityStore")]
     unsafe impl ASCredentialIdentityStore {

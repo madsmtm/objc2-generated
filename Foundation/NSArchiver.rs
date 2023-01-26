@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSArchiver")]
+unsafe impl NSObjectProtocol for NSArchiver {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSArchiver")]
     unsafe impl NSArchiver {
@@ -76,6 +79,9 @@ extern_class!(
         type Super = NSCoder;
     }
 );
+
+#[cfg(feature = "Foundation_NSUnarchiver")]
+unsafe impl NSObjectProtocol for NSUnarchiver {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSUnarchiver")]

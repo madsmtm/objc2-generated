@@ -96,13 +96,19 @@ extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSTextAttachment")]
-unsafe impl NSTextAttachmentLayout for NSTextAttachment {}
+unsafe impl NSCoding for NSTextAttachment {}
+
+#[cfg(feature = "AppKit_NSTextAttachment")]
+unsafe impl NSObjectProtocol for NSTextAttachment {}
+
+#[cfg(feature = "AppKit_NSTextAttachment")]
+unsafe impl NSSecureCoding for NSTextAttachment {}
 
 #[cfg(feature = "AppKit_NSTextAttachment")]
 unsafe impl NSTextAttachmentContainer for NSTextAttachment {}
 
 #[cfg(feature = "AppKit_NSTextAttachment")]
-unsafe impl NSSecureCoding for NSTextAttachment {}
+unsafe impl NSTextAttachmentLayout for NSTextAttachment {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSTextAttachment")]
@@ -223,6 +229,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "AppKit_NSTextAttachmentViewProvider")]
+unsafe impl NSObjectProtocol for NSTextAttachmentViewProvider {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSTextAttachmentViewProvider")]

@@ -33,6 +33,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_DOMEvent")]
+unsafe impl NSObjectProtocol for DOMEvent {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_DOMEvent")]
     unsafe impl DOMEvent {

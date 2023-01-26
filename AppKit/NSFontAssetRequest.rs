@@ -24,6 +24,9 @@ extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSFontAssetRequest")]
+unsafe impl NSObjectProtocol for NSFontAssetRequest {}
+
+#[cfg(feature = "AppKit_NSFontAssetRequest")]
 unsafe impl NSProgressReporting for NSFontAssetRequest {}
 
 extern_methods!(

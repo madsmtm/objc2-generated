@@ -14,6 +14,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSTimer")]
+unsafe impl NSObjectProtocol for NSTimer {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSTimer")]
     unsafe impl NSTimer {

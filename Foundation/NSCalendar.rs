@@ -119,6 +119,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSCalendar")]
+unsafe impl NSCoding for NSCalendar {}
+
+#[cfg(feature = "Foundation_NSCalendar")]
+unsafe impl NSObjectProtocol for NSCalendar {}
+
+#[cfg(feature = "Foundation_NSCalendar")]
 unsafe impl NSSecureCoding for NSCalendar {}
 
 extern_methods!(
@@ -573,6 +579,12 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Foundation_NSDateComponents")]
+unsafe impl NSCoding for NSDateComponents {}
+
+#[cfg(feature = "Foundation_NSDateComponents")]
+unsafe impl NSObjectProtocol for NSDateComponents {}
 
 #[cfg(feature = "Foundation_NSDateComponents")]
 unsafe impl NSSecureCoding for NSDateComponents {}

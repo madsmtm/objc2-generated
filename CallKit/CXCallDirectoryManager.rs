@@ -24,6 +24,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CallKit_CXCallDirectoryManager")]
+unsafe impl NSObjectProtocol for CXCallDirectoryManager {}
+
 extern_methods!(
     #[cfg(feature = "CallKit_CXCallDirectoryManager")]
     unsafe impl CXCallDirectoryManager {

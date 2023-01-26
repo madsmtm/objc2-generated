@@ -22,6 +22,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSCoder")]
+unsafe impl NSObjectProtocol for NSCoder {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSCoder")]
     unsafe impl NSCoder {

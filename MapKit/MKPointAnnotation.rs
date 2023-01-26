@@ -19,6 +19,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "MapKit_MKPointAnnotation")]
+unsafe impl MKAnnotation for MKPointAnnotation {}
+
+#[cfg(feature = "MapKit_MKPointAnnotation")]
+unsafe impl NSObjectProtocol for MKPointAnnotation {}
+
 extern_methods!(
     #[cfg(feature = "MapKit_MKPointAnnotation")]
     unsafe impl MKPointAnnotation {

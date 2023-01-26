@@ -20,6 +20,12 @@ extern_class!(
 );
 
 #[cfg(feature = "CoreAnimation_CAMediaTimingFunction")]
+unsafe impl NSCoding for CAMediaTimingFunction {}
+
+#[cfg(feature = "CoreAnimation_CAMediaTimingFunction")]
+unsafe impl NSObjectProtocol for CAMediaTimingFunction {}
+
+#[cfg(feature = "CoreAnimation_CAMediaTimingFunction")]
 unsafe impl NSSecureCoding for CAMediaTimingFunction {}
 
 extern_methods!(

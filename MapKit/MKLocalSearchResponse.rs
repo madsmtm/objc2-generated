@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "MapKit_MKLocalSearchResponse")]
+unsafe impl NSObjectProtocol for MKLocalSearchResponse {}
+
 extern_methods!(
     #[cfg(feature = "MapKit_MKLocalSearchResponse")]
     unsafe impl MKLocalSearchResponse {

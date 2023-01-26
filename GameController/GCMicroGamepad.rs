@@ -28,6 +28,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "GameController_GCMicroGamepad")]
+unsafe impl NSObjectProtocol for GCMicroGamepad {}
+
 extern_methods!(
     #[cfg(feature = "GameController_GCMicroGamepad")]
     unsafe impl GCMicroGamepad {

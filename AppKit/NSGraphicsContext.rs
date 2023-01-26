@@ -45,6 +45,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSGraphicsContext")]
+unsafe impl NSObjectProtocol for NSGraphicsContext {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSGraphicsContext")]
     unsafe impl NSGraphicsContext {

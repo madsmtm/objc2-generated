@@ -28,6 +28,18 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreAnimation_CAShapeLayer")]
+unsafe impl CAMediaTiming for CAShapeLayer {}
+
+#[cfg(feature = "CoreAnimation_CAShapeLayer")]
+unsafe impl NSCoding for CAShapeLayer {}
+
+#[cfg(feature = "CoreAnimation_CAShapeLayer")]
+unsafe impl NSObjectProtocol for CAShapeLayer {}
+
+#[cfg(feature = "CoreAnimation_CAShapeLayer")]
+unsafe impl NSSecureCoding for CAShapeLayer {}
+
 extern_methods!(
     #[cfg(feature = "CoreAnimation_CAShapeLayer")]
     unsafe impl CAShapeLayer {

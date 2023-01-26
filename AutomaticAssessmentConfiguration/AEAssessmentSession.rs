@@ -15,6 +15,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentSession")]
+unsafe impl NSObjectProtocol for AEAssessmentSession {}
+
 extern_methods!(
     #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentSession")]
     unsafe impl AEAssessmentSession {

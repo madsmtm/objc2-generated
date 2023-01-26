@@ -24,6 +24,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSCachedURLResponse")]
+unsafe impl NSCoding for NSCachedURLResponse {}
+
+#[cfg(feature = "Foundation_NSCachedURLResponse")]
+unsafe impl NSObjectProtocol for NSCachedURLResponse {}
+
+#[cfg(feature = "Foundation_NSCachedURLResponse")]
 unsafe impl NSSecureCoding for NSCachedURLResponse {}
 
 extern_methods!(
@@ -78,6 +84,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Foundation_NSURLCache")]
+unsafe impl NSObjectProtocol for NSURLCache {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSURLCache")]

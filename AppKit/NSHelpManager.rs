@@ -22,6 +22,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSHelpManager")]
+unsafe impl NSObjectProtocol for NSHelpManager {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSHelpManager")]
     unsafe impl NSHelpManager {

@@ -31,6 +31,9 @@ extern_class!(
 #[cfg(feature = "Foundation_NSScriptWhoseTest")]
 unsafe impl NSCoding for NSScriptWhoseTest {}
 
+#[cfg(feature = "Foundation_NSScriptWhoseTest")]
+unsafe impl NSObjectProtocol for NSScriptWhoseTest {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSScriptWhoseTest")]
     unsafe impl NSScriptWhoseTest {
@@ -60,6 +63,12 @@ extern_class!(
         type Super = NSScriptWhoseTest;
     }
 );
+
+#[cfg(feature = "Foundation_NSLogicalTest")]
+unsafe impl NSCoding for NSLogicalTest {}
+
+#[cfg(feature = "Foundation_NSLogicalTest")]
+unsafe impl NSObjectProtocol for NSLogicalTest {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSLogicalTest")]
@@ -97,6 +106,12 @@ extern_class!(
         type Super = NSScriptWhoseTest;
     }
 );
+
+#[cfg(feature = "Foundation_NSSpecifierTest")]
+unsafe impl NSCoding for NSSpecifierTest {}
+
+#[cfg(feature = "Foundation_NSSpecifierTest")]
+unsafe impl NSObjectProtocol for NSSpecifierTest {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSSpecifierTest")]

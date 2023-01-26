@@ -18,10 +18,25 @@ extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSTitlebarAccessoryViewController")]
+unsafe impl NSAnimatablePropertyContainer for NSTitlebarAccessoryViewController {}
+
+#[cfg(feature = "AppKit_NSTitlebarAccessoryViewController")]
 unsafe impl NSAnimationDelegate for NSTitlebarAccessoryViewController {}
 
 #[cfg(feature = "AppKit_NSTitlebarAccessoryViewController")]
-unsafe impl NSAnimatablePropertyContainer for NSTitlebarAccessoryViewController {}
+unsafe impl NSCoding for NSTitlebarAccessoryViewController {}
+
+#[cfg(feature = "AppKit_NSTitlebarAccessoryViewController")]
+unsafe impl NSEditor for NSTitlebarAccessoryViewController {}
+
+#[cfg(feature = "AppKit_NSTitlebarAccessoryViewController")]
+unsafe impl NSObjectProtocol for NSTitlebarAccessoryViewController {}
+
+#[cfg(feature = "AppKit_NSTitlebarAccessoryViewController")]
+unsafe impl NSSeguePerforming for NSTitlebarAccessoryViewController {}
+
+#[cfg(feature = "AppKit_NSTitlebarAccessoryViewController")]
+unsafe impl NSUserInterfaceItemIdentification for NSTitlebarAccessoryViewController {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSTitlebarAccessoryViewController")]

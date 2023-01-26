@@ -15,6 +15,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Contacts_CNContactVCardSerialization")]
+unsafe impl NSObjectProtocol for CNContactVCardSerialization {}
+
 extern_methods!(
     #[cfg(feature = "Contacts_CNContactVCardSerialization")]
     unsafe impl CNContactVCardSerialization {

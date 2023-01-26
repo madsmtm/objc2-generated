@@ -15,6 +15,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreData_NSIncrementalStoreNode")]
+unsafe impl NSObjectProtocol for NSIncrementalStoreNode {}
+
 extern_methods!(
     #[cfg(feature = "CoreData_NSIncrementalStoreNode")]
     unsafe impl NSIncrementalStoreNode {

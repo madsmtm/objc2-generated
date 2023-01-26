@@ -37,6 +37,12 @@ extern_class!(
 );
 
 #[cfg(feature = "CloudKit_CKAllowedSharingOptions")]
+unsafe impl NSCoding for CKAllowedSharingOptions {}
+
+#[cfg(feature = "CloudKit_CKAllowedSharingOptions")]
+unsafe impl NSObjectProtocol for CKAllowedSharingOptions {}
+
+#[cfg(feature = "CloudKit_CKAllowedSharingOptions")]
 unsafe impl NSSecureCoding for CKAllowedSharingOptions {}
 
 extern_methods!(

@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CloudKit_CKAsset")]
+unsafe impl NSObjectProtocol for CKAsset {}
+
 extern_methods!(
     #[cfg(feature = "CloudKit_CKAsset")]
     unsafe impl CKAsset {

@@ -25,7 +25,49 @@ extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSOutlineView")]
+unsafe impl NSAccessibility for NSOutlineView {}
+
+#[cfg(feature = "AppKit_NSOutlineView")]
+unsafe impl NSAccessibilityElement for NSOutlineView {}
+
+#[cfg(feature = "AppKit_NSOutlineView")]
+unsafe impl NSAccessibilityGroup for NSOutlineView {}
+
+#[cfg(feature = "AppKit_NSOutlineView")]
 unsafe impl NSAccessibilityOutline for NSOutlineView {}
+
+#[cfg(feature = "AppKit_NSOutlineView")]
+unsafe impl NSAccessibilityTable for NSOutlineView {}
+
+#[cfg(feature = "AppKit_NSOutlineView")]
+unsafe impl NSAnimatablePropertyContainer for NSOutlineView {}
+
+#[cfg(feature = "AppKit_NSOutlineView")]
+unsafe impl NSAppearanceCustomization for NSOutlineView {}
+
+#[cfg(feature = "AppKit_NSOutlineView")]
+unsafe impl NSCoding for NSOutlineView {}
+
+#[cfg(feature = "AppKit_NSOutlineView")]
+unsafe impl NSDraggingDestination for NSOutlineView {}
+
+#[cfg(feature = "AppKit_NSOutlineView")]
+unsafe impl NSDraggingSource for NSOutlineView {}
+
+#[cfg(feature = "AppKit_NSOutlineView")]
+unsafe impl NSObjectProtocol for NSOutlineView {}
+
+#[cfg(feature = "AppKit_NSOutlineView")]
+unsafe impl NSTextDelegate for NSOutlineView {}
+
+#[cfg(feature = "AppKit_NSOutlineView")]
+unsafe impl NSTextViewDelegate for NSOutlineView {}
+
+#[cfg(feature = "AppKit_NSOutlineView")]
+unsafe impl NSUserInterfaceItemIdentification for NSOutlineView {}
+
+#[cfg(feature = "AppKit_NSOutlineView")]
+unsafe impl NSUserInterfaceValidations for NSOutlineView {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSOutlineView")]

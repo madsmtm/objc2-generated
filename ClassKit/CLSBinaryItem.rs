@@ -26,6 +26,15 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "ClassKit_CLSBinaryItem")]
+unsafe impl NSCoding for CLSBinaryItem {}
+
+#[cfg(feature = "ClassKit_CLSBinaryItem")]
+unsafe impl NSObjectProtocol for CLSBinaryItem {}
+
+#[cfg(feature = "ClassKit_CLSBinaryItem")]
+unsafe impl NSSecureCoding for CLSBinaryItem {}
+
 extern_methods!(
     #[cfg(feature = "ClassKit_CLSBinaryItem")]
     unsafe impl CLSBinaryItem {

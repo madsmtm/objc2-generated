@@ -15,6 +15,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLRasterizationRateSampleArray")]
+unsafe impl NSObjectProtocol for MTLRasterizationRateSampleArray {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLRasterizationRateSampleArray")]
     unsafe impl MTLRasterizationRateSampleArray {
@@ -38,6 +41,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Metal_MTLRasterizationRateLayerDescriptor")]
+unsafe impl NSObjectProtocol for MTLRasterizationRateLayerDescriptor {}
 
 extern_methods!(
     #[cfg(feature = "Metal_MTLRasterizationRateLayerDescriptor")]
@@ -94,6 +100,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLRasterizationRateLayerArray")]
+unsafe impl NSObjectProtocol for MTLRasterizationRateLayerArray {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLRasterizationRateLayerArray")]
     unsafe impl MTLRasterizationRateLayerArray {
@@ -124,6 +133,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Metal_MTLRasterizationRateMapDescriptor")]
+unsafe impl NSObjectProtocol for MTLRasterizationRateMapDescriptor {}
 
 extern_methods!(
     #[cfg(feature = "Metal_MTLRasterizationRateMapDescriptor")]

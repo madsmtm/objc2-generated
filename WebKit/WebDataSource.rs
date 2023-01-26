@@ -17,6 +17,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_WebDataSource")]
+unsafe impl NSObjectProtocol for WebDataSource {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_WebDataSource")]
     unsafe impl WebDataSource {

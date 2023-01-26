@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_WKNavigationResponse")]
+unsafe impl NSObjectProtocol for WKNavigationResponse {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_WKNavigationResponse")]
     unsafe impl WKNavigationResponse {

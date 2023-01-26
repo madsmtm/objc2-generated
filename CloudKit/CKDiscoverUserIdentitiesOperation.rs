@@ -17,6 +17,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CloudKit_CKDiscoverUserIdentitiesOperation")]
+unsafe impl NSObjectProtocol for CKDiscoverUserIdentitiesOperation {}
+
 extern_methods!(
     #[cfg(feature = "CloudKit_CKDiscoverUserIdentitiesOperation")]
     unsafe impl CKDiscoverUserIdentitiesOperation {

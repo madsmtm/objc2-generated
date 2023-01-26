@@ -18,6 +18,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_DOMCDATASection")]
+unsafe impl DOMEventTarget for DOMCDATASection {}
+
+#[cfg(feature = "WebKit_DOMCDATASection")]
+unsafe impl NSObjectProtocol for DOMCDATASection {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_DOMCDATASection")]
     unsafe impl DOMCDATASection {}

@@ -29,6 +29,9 @@ extern_class!(
 unsafe impl NSCoding for NSTableColumn {}
 
 #[cfg(feature = "AppKit_NSTableColumn")]
+unsafe impl NSObjectProtocol for NSTableColumn {}
+
+#[cfg(feature = "AppKit_NSTableColumn")]
 unsafe impl NSUserInterfaceItemIdentification for NSTableColumn {}
 
 extern_methods!(

@@ -17,6 +17,69 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "OSAKit_OSAScriptView")]
+unsafe impl NSAccessibility for OSAScriptView {}
+
+#[cfg(feature = "OSAKit_OSAScriptView")]
+unsafe impl NSAccessibilityElement for OSAScriptView {}
+
+#[cfg(feature = "OSAKit_OSAScriptView")]
+unsafe impl NSAccessibilityNavigableStaticText for OSAScriptView {}
+
+#[cfg(feature = "OSAKit_OSAScriptView")]
+unsafe impl NSAccessibilityStaticText for OSAScriptView {}
+
+#[cfg(feature = "OSAKit_OSAScriptView")]
+unsafe impl NSAnimatablePropertyContainer for OSAScriptView {}
+
+#[cfg(feature = "OSAKit_OSAScriptView")]
+unsafe impl NSAppearanceCustomization for OSAScriptView {}
+
+#[cfg(feature = "OSAKit_OSAScriptView")]
+unsafe impl NSChangeSpelling for OSAScriptView {}
+
+#[cfg(feature = "OSAKit_OSAScriptView")]
+unsafe impl NSCoding for OSAScriptView {}
+
+#[cfg(feature = "OSAKit_OSAScriptView")]
+unsafe impl NSColorChanging for OSAScriptView {}
+
+#[cfg(feature = "OSAKit_OSAScriptView")]
+unsafe impl NSDraggingDestination for OSAScriptView {}
+
+#[cfg(feature = "OSAKit_OSAScriptView")]
+unsafe impl NSDraggingSource for OSAScriptView {}
+
+#[cfg(feature = "OSAKit_OSAScriptView")]
+unsafe impl NSIgnoreMisspelledWords for OSAScriptView {}
+
+#[cfg(feature = "OSAKit_OSAScriptView")]
+unsafe impl NSMenuItemValidation for OSAScriptView {}
+
+#[cfg(feature = "OSAKit_OSAScriptView")]
+unsafe impl NSObjectProtocol for OSAScriptView {}
+
+#[cfg(feature = "OSAKit_OSAScriptView")]
+unsafe impl NSStandardKeyBindingResponding for OSAScriptView {}
+
+#[cfg(feature = "OSAKit_OSAScriptView")]
+unsafe impl NSTextContent for OSAScriptView {}
+
+#[cfg(feature = "OSAKit_OSAScriptView")]
+unsafe impl NSTextInput for OSAScriptView {}
+
+#[cfg(feature = "OSAKit_OSAScriptView")]
+unsafe impl NSTextInputClient for OSAScriptView {}
+
+#[cfg(feature = "OSAKit_OSAScriptView")]
+unsafe impl NSTextLayoutOrientationProvider for OSAScriptView {}
+
+#[cfg(feature = "OSAKit_OSAScriptView")]
+unsafe impl NSUserInterfaceItemIdentification for OSAScriptView {}
+
+#[cfg(feature = "OSAKit_OSAScriptView")]
+unsafe impl NSUserInterfaceValidations for OSAScriptView {}
+
 extern_methods!(
     #[cfg(feature = "OSAKit_OSAScriptView")]
     unsafe impl OSAScriptView {

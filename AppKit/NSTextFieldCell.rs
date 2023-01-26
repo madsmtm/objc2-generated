@@ -25,6 +25,21 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSTextFieldCell")]
+unsafe impl NSAccessibility for NSTextFieldCell {}
+
+#[cfg(feature = "AppKit_NSTextFieldCell")]
+unsafe impl NSAccessibilityElement for NSTextFieldCell {}
+
+#[cfg(feature = "AppKit_NSTextFieldCell")]
+unsafe impl NSCoding for NSTextFieldCell {}
+
+#[cfg(feature = "AppKit_NSTextFieldCell")]
+unsafe impl NSObjectProtocol for NSTextFieldCell {}
+
+#[cfg(feature = "AppKit_NSTextFieldCell")]
+unsafe impl NSUserInterfaceItemIdentification for NSTextFieldCell {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSTextFieldCell")]
     unsafe impl NSTextFieldCell {

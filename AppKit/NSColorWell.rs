@@ -26,6 +26,30 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSColorWell")]
+unsafe impl NSAccessibility for NSColorWell {}
+
+#[cfg(feature = "AppKit_NSColorWell")]
+unsafe impl NSAccessibilityElement for NSColorWell {}
+
+#[cfg(feature = "AppKit_NSColorWell")]
+unsafe impl NSAnimatablePropertyContainer for NSColorWell {}
+
+#[cfg(feature = "AppKit_NSColorWell")]
+unsafe impl NSAppearanceCustomization for NSColorWell {}
+
+#[cfg(feature = "AppKit_NSColorWell")]
+unsafe impl NSCoding for NSColorWell {}
+
+#[cfg(feature = "AppKit_NSColorWell")]
+unsafe impl NSDraggingDestination for NSColorWell {}
+
+#[cfg(feature = "AppKit_NSColorWell")]
+unsafe impl NSObjectProtocol for NSColorWell {}
+
+#[cfg(feature = "AppKit_NSColorWell")]
+unsafe impl NSUserInterfaceItemIdentification for NSColorWell {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSColorWell")]
     unsafe impl NSColorWell {

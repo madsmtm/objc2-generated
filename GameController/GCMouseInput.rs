@@ -19,6 +19,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "GameController_GCMouseInput")]
+unsafe impl NSObjectProtocol for GCMouseInput {}
+
 extern_methods!(
     #[cfg(feature = "GameController_GCMouseInput")]
     unsafe impl GCMouseInput {

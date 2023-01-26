@@ -26,6 +26,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSMassFormatter")]
+unsafe impl NSCoding for NSMassFormatter {}
+
+#[cfg(feature = "Foundation_NSMassFormatter")]
+unsafe impl NSObjectProtocol for NSMassFormatter {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSMassFormatter")]
     unsafe impl NSMassFormatter {

@@ -18,6 +18,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_DOMAttr")]
+unsafe impl DOMEventTarget for DOMAttr {}
+
+#[cfg(feature = "WebKit_DOMAttr")]
+unsafe impl NSObjectProtocol for DOMAttr {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_DOMAttr")]
     unsafe impl DOMAttr {

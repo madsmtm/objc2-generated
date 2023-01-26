@@ -18,6 +18,30 @@ extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSTableHeaderView")]
+unsafe impl NSAccessibility for NSTableHeaderView {}
+
+#[cfg(feature = "AppKit_NSTableHeaderView")]
+unsafe impl NSAccessibilityElement for NSTableHeaderView {}
+
+#[cfg(feature = "AppKit_NSTableHeaderView")]
+unsafe impl NSAnimatablePropertyContainer for NSTableHeaderView {}
+
+#[cfg(feature = "AppKit_NSTableHeaderView")]
+unsafe impl NSAppearanceCustomization for NSTableHeaderView {}
+
+#[cfg(feature = "AppKit_NSTableHeaderView")]
+unsafe impl NSCoding for NSTableHeaderView {}
+
+#[cfg(feature = "AppKit_NSTableHeaderView")]
+unsafe impl NSDraggingDestination for NSTableHeaderView {}
+
+#[cfg(feature = "AppKit_NSTableHeaderView")]
+unsafe impl NSObjectProtocol for NSTableHeaderView {}
+
+#[cfg(feature = "AppKit_NSTableHeaderView")]
+unsafe impl NSUserInterfaceItemIdentification for NSTableHeaderView {}
+
+#[cfg(feature = "AppKit_NSTableHeaderView")]
 unsafe impl NSViewToolTipOwner for NSTableHeaderView {}
 
 extern_methods!(

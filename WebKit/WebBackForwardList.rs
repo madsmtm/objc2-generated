@@ -17,6 +17,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_WebBackForwardList")]
+unsafe impl NSObjectProtocol for WebBackForwardList {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_WebBackForwardList")]
     unsafe impl WebBackForwardList {

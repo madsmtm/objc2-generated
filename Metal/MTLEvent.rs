@@ -32,6 +32,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLSharedEventListener")]
+unsafe impl NSObjectProtocol for MTLSharedEventListener {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLSharedEventListener")]
     unsafe impl MTLSharedEventListener {
@@ -78,6 +81,12 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Metal_MTLSharedEventHandle")]
+unsafe impl NSCoding for MTLSharedEventHandle {}
+
+#[cfg(feature = "Metal_MTLSharedEventHandle")]
+unsafe impl NSObjectProtocol for MTLSharedEventHandle {}
 
 #[cfg(feature = "Metal_MTLSharedEventHandle")]
 unsafe impl NSSecureCoding for MTLSharedEventHandle {}

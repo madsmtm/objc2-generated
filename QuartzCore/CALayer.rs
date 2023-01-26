@@ -65,10 +65,16 @@ extern_class!(
 );
 
 #[cfg(feature = "CoreAnimation_CALayer")]
-unsafe impl NSSecureCoding for CALayer {}
+unsafe impl CAMediaTiming for CALayer {}
 
 #[cfg(feature = "CoreAnimation_CALayer")]
-unsafe impl CAMediaTiming for CALayer {}
+unsafe impl NSCoding for CALayer {}
+
+#[cfg(feature = "CoreAnimation_CALayer")]
+unsafe impl NSObjectProtocol for CALayer {}
+
+#[cfg(feature = "CoreAnimation_CALayer")]
+unsafe impl NSSecureCoding for CALayer {}
 
 extern_methods!(
     #[cfg(feature = "CoreAnimation_CALayer")]

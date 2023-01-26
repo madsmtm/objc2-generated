@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_WKOpenPanelParameters")]
+unsafe impl NSObjectProtocol for WKOpenPanelParameters {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_WKOpenPanelParameters")]
     unsafe impl WKOpenPanelParameters {

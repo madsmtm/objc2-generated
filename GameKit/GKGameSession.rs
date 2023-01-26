@@ -33,6 +33,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "GameKit_GKGameSession")]
+unsafe impl NSObjectProtocol for GKGameSession {}
+
 extern_methods!(
     #[cfg(feature = "GameKit_GKGameSession")]
     unsafe impl GKGameSession {

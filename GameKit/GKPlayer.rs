@@ -19,6 +19,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "GameKit_GKPlayer")]
+unsafe impl NSObjectProtocol for GKPlayer {}
+
 extern_methods!(
     #[cfg(feature = "GameKit_GKPlayer")]
     unsafe impl GKPlayer {

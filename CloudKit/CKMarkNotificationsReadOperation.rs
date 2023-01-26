@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CloudKit_CKMarkNotificationsReadOperation")]
+unsafe impl NSObjectProtocol for CKMarkNotificationsReadOperation {}
+
 extern_methods!(
     #[cfg(feature = "CloudKit_CKMarkNotificationsReadOperation")]
     unsafe impl CKMarkNotificationsReadOperation {

@@ -20,10 +20,25 @@ extern_class!(
 );
 
 #[cfg(feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialAssertion")]
+unsafe impl ASAuthorizationCredential for ASAuthorizationSecurityKeyPublicKeyCredentialAssertion {}
+
+#[cfg(feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialAssertion")]
 unsafe impl ASAuthorizationPublicKeyCredentialAssertion
     for ASAuthorizationSecurityKeyPublicKeyCredentialAssertion
 {
 }
+
+#[cfg(feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialAssertion")]
+unsafe impl ASPublicKeyCredential for ASAuthorizationSecurityKeyPublicKeyCredentialAssertion {}
+
+#[cfg(feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialAssertion")]
+unsafe impl NSCoding for ASAuthorizationSecurityKeyPublicKeyCredentialAssertion {}
+
+#[cfg(feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialAssertion")]
+unsafe impl NSObjectProtocol for ASAuthorizationSecurityKeyPublicKeyCredentialAssertion {}
+
+#[cfg(feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialAssertion")]
+unsafe impl NSSecureCoding for ASAuthorizationSecurityKeyPublicKeyCredentialAssertion {}
 
 extern_methods!(
     #[cfg(

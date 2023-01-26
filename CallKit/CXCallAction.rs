@@ -16,6 +16,15 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CallKit_CXCallAction")]
+unsafe impl NSCoding for CXCallAction {}
+
+#[cfg(feature = "CallKit_CXCallAction")]
+unsafe impl NSObjectProtocol for CXCallAction {}
+
+#[cfg(feature = "CallKit_CXCallAction")]
+unsafe impl NSSecureCoding for CXCallAction {}
+
 extern_methods!(
     #[cfg(feature = "CallKit_CXCallAction")]
     unsafe impl CXCallAction {

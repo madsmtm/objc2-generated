@@ -17,6 +17,12 @@ extern_class!(
 );
 
 #[cfg(feature = "CloudKit_CKServerChangeToken")]
+unsafe impl NSCoding for CKServerChangeToken {}
+
+#[cfg(feature = "CloudKit_CKServerChangeToken")]
+unsafe impl NSObjectProtocol for CKServerChangeToken {}
+
+#[cfg(feature = "CloudKit_CKServerChangeToken")]
 unsafe impl NSSecureCoding for CKServerChangeToken {}
 
 extern_methods!(

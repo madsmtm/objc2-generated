@@ -25,6 +25,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_WKWebpagePreferences")]
+unsafe impl NSObjectProtocol for WKWebpagePreferences {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_WKWebpagePreferences")]
     unsafe impl WKWebpagePreferences {

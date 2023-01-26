@@ -26,6 +26,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreData_NSRelationshipDescription")]
+unsafe impl NSCoding for NSRelationshipDescription {}
+
+#[cfg(feature = "CoreData_NSRelationshipDescription")]
+unsafe impl NSObjectProtocol for NSRelationshipDescription {}
+
 extern_methods!(
     #[cfg(feature = "CoreData_NSRelationshipDescription")]
     unsafe impl NSRelationshipDescription {

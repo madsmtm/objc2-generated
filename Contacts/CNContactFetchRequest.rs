@@ -17,6 +17,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Contacts_CNContactFetchRequest")]
+unsafe impl NSCoding for CNContactFetchRequest {}
+
+#[cfg(feature = "Contacts_CNContactFetchRequest")]
+unsafe impl NSObjectProtocol for CNContactFetchRequest {}
+
+#[cfg(feature = "Contacts_CNContactFetchRequest")]
 unsafe impl NSSecureCoding for CNContactFetchRequest {}
 
 extern_methods!(

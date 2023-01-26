@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_WKWindowFeatures")]
+unsafe impl NSObjectProtocol for WKWindowFeatures {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_WKWindowFeatures")]
     unsafe impl WKWindowFeatures {

@@ -27,6 +27,15 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "MapKit_MKStandardMapConfiguration")]
+unsafe impl NSCoding for MKStandardMapConfiguration {}
+
+#[cfg(feature = "MapKit_MKStandardMapConfiguration")]
+unsafe impl NSObjectProtocol for MKStandardMapConfiguration {}
+
+#[cfg(feature = "MapKit_MKStandardMapConfiguration")]
+unsafe impl NSSecureCoding for MKStandardMapConfiguration {}
+
 extern_methods!(
     #[cfg(feature = "MapKit_MKStandardMapConfiguration")]
     unsafe impl MKStandardMapConfiguration {

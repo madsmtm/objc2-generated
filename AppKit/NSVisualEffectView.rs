@@ -64,6 +64,30 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSVisualEffectView")]
+unsafe impl NSAccessibility for NSVisualEffectView {}
+
+#[cfg(feature = "AppKit_NSVisualEffectView")]
+unsafe impl NSAccessibilityElement for NSVisualEffectView {}
+
+#[cfg(feature = "AppKit_NSVisualEffectView")]
+unsafe impl NSAnimatablePropertyContainer for NSVisualEffectView {}
+
+#[cfg(feature = "AppKit_NSVisualEffectView")]
+unsafe impl NSAppearanceCustomization for NSVisualEffectView {}
+
+#[cfg(feature = "AppKit_NSVisualEffectView")]
+unsafe impl NSCoding for NSVisualEffectView {}
+
+#[cfg(feature = "AppKit_NSVisualEffectView")]
+unsafe impl NSDraggingDestination for NSVisualEffectView {}
+
+#[cfg(feature = "AppKit_NSVisualEffectView")]
+unsafe impl NSObjectProtocol for NSVisualEffectView {}
+
+#[cfg(feature = "AppKit_NSVisualEffectView")]
+unsafe impl NSUserInterfaceItemIdentification for NSVisualEffectView {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSVisualEffectView")]
     unsafe impl NSVisualEffectView {

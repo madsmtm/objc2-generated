@@ -29,6 +29,9 @@ extern_class!(
 #[cfg(feature = "Foundation_NSLock")]
 unsafe impl NSLocking for NSLock {}
 
+#[cfg(feature = "Foundation_NSLock")]
+unsafe impl NSObjectProtocol for NSLock {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSLock")]
     unsafe impl NSLock {
@@ -62,6 +65,9 @@ extern_class!(
 
 #[cfg(feature = "Foundation_NSConditionLock")]
 unsafe impl NSLocking for NSConditionLock {}
+
+#[cfg(feature = "Foundation_NSConditionLock")]
+unsafe impl NSObjectProtocol for NSConditionLock {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSConditionLock")]
@@ -123,6 +129,9 @@ extern_class!(
 #[cfg(feature = "Foundation_NSRecursiveLock")]
 unsafe impl NSLocking for NSRecursiveLock {}
 
+#[cfg(feature = "Foundation_NSRecursiveLock")]
+unsafe impl NSObjectProtocol for NSRecursiveLock {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSRecursiveLock")]
     unsafe impl NSRecursiveLock {
@@ -156,6 +165,9 @@ extern_class!(
 
 #[cfg(feature = "Foundation_NSCondition")]
 unsafe impl NSLocking for NSCondition {}
+
+#[cfg(feature = "Foundation_NSCondition")]
+unsafe impl NSObjectProtocol for NSCondition {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSCondition")]

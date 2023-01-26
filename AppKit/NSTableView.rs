@@ -113,16 +113,46 @@ extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSTableView")]
-unsafe impl NSUserInterfaceValidations for NSTableView {}
+unsafe impl NSAccessibility for NSTableView {}
 
 #[cfg(feature = "AppKit_NSTableView")]
-unsafe impl NSTextViewDelegate for NSTableView {}
+unsafe impl NSAccessibilityElement for NSTableView {}
+
+#[cfg(feature = "AppKit_NSTableView")]
+unsafe impl NSAccessibilityGroup for NSTableView {}
+
+#[cfg(feature = "AppKit_NSTableView")]
+unsafe impl NSAccessibilityTable for NSTableView {}
+
+#[cfg(feature = "AppKit_NSTableView")]
+unsafe impl NSAnimatablePropertyContainer for NSTableView {}
+
+#[cfg(feature = "AppKit_NSTableView")]
+unsafe impl NSAppearanceCustomization for NSTableView {}
+
+#[cfg(feature = "AppKit_NSTableView")]
+unsafe impl NSCoding for NSTableView {}
+
+#[cfg(feature = "AppKit_NSTableView")]
+unsafe impl NSDraggingDestination for NSTableView {}
 
 #[cfg(feature = "AppKit_NSTableView")]
 unsafe impl NSDraggingSource for NSTableView {}
 
 #[cfg(feature = "AppKit_NSTableView")]
-unsafe impl NSAccessibilityTable for NSTableView {}
+unsafe impl NSObjectProtocol for NSTableView {}
+
+#[cfg(feature = "AppKit_NSTableView")]
+unsafe impl NSTextDelegate for NSTableView {}
+
+#[cfg(feature = "AppKit_NSTableView")]
+unsafe impl NSTextViewDelegate for NSTableView {}
+
+#[cfg(feature = "AppKit_NSTableView")]
+unsafe impl NSUserInterfaceItemIdentification for NSTableView {}
+
+#[cfg(feature = "AppKit_NSTableView")]
+unsafe impl NSUserInterfaceValidations for NSTableView {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSTableView")]

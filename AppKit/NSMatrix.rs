@@ -28,6 +28,30 @@ extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSMatrix")]
+unsafe impl NSAccessibility for NSMatrix {}
+
+#[cfg(feature = "AppKit_NSMatrix")]
+unsafe impl NSAccessibilityElement for NSMatrix {}
+
+#[cfg(feature = "AppKit_NSMatrix")]
+unsafe impl NSAnimatablePropertyContainer for NSMatrix {}
+
+#[cfg(feature = "AppKit_NSMatrix")]
+unsafe impl NSAppearanceCustomization for NSMatrix {}
+
+#[cfg(feature = "AppKit_NSMatrix")]
+unsafe impl NSCoding for NSMatrix {}
+
+#[cfg(feature = "AppKit_NSMatrix")]
+unsafe impl NSDraggingDestination for NSMatrix {}
+
+#[cfg(feature = "AppKit_NSMatrix")]
+unsafe impl NSObjectProtocol for NSMatrix {}
+
+#[cfg(feature = "AppKit_NSMatrix")]
+unsafe impl NSUserInterfaceItemIdentification for NSMatrix {}
+
+#[cfg(feature = "AppKit_NSMatrix")]
 unsafe impl NSUserInterfaceValidations for NSMatrix {}
 
 #[cfg(feature = "AppKit_NSMatrix")]

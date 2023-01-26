@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_DOMNamedNodeMap")]
+unsafe impl NSObjectProtocol for DOMNamedNodeMap {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_DOMNamedNodeMap")]
     unsafe impl DOMNamedNodeMap {

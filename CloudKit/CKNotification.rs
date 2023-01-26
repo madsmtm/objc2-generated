@@ -17,6 +17,12 @@ extern_class!(
 );
 
 #[cfg(feature = "CloudKit_CKNotificationID")]
+unsafe impl NSCoding for CKNotificationID {}
+
+#[cfg(feature = "CloudKit_CKNotificationID")]
+unsafe impl NSObjectProtocol for CKNotificationID {}
+
+#[cfg(feature = "CloudKit_CKNotificationID")]
 unsafe impl NSSecureCoding for CKNotificationID {}
 
 extern_methods!(
@@ -44,6 +50,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "CloudKit_CKNotification")]
+unsafe impl NSObjectProtocol for CKNotification {}
 
 extern_methods!(
     #[cfg(feature = "CloudKit_CKNotification")]
@@ -160,6 +169,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CloudKit_CKQueryNotification")]
+unsafe impl NSObjectProtocol for CKQueryNotification {}
+
 extern_methods!(
     #[cfg(feature = "CloudKit_CKQueryNotification")]
     unsafe impl CKQueryNotification {
@@ -191,6 +203,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CloudKit_CKRecordZoneNotification")]
+unsafe impl NSObjectProtocol for CKRecordZoneNotification {}
+
 extern_methods!(
     #[cfg(feature = "CloudKit_CKRecordZoneNotification")]
     unsafe impl CKRecordZoneNotification {
@@ -214,6 +229,9 @@ extern_class!(
         type Super = CKNotification;
     }
 );
+
+#[cfg(feature = "CloudKit_CKDatabaseNotification")]
+unsafe impl NSObjectProtocol for CKDatabaseNotification {}
 
 extern_methods!(
     #[cfg(feature = "CloudKit_CKDatabaseNotification")]

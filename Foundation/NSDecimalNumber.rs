@@ -45,6 +45,15 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSDecimalNumber")]
+unsafe impl NSCoding for NSDecimalNumber {}
+
+#[cfg(feature = "Foundation_NSDecimalNumber")]
+unsafe impl NSObjectProtocol for NSDecimalNumber {}
+
+#[cfg(feature = "Foundation_NSDecimalNumber")]
+unsafe impl NSSecureCoding for NSDecimalNumber {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSDecimalNumber")]
     unsafe impl NSDecimalNumber {
@@ -238,10 +247,13 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSDecimalNumberHandler")]
+unsafe impl NSCoding for NSDecimalNumberHandler {}
+
+#[cfg(feature = "Foundation_NSDecimalNumberHandler")]
 unsafe impl NSDecimalNumberBehaviors for NSDecimalNumberHandler {}
 
 #[cfg(feature = "Foundation_NSDecimalNumberHandler")]
-unsafe impl NSCoding for NSDecimalNumberHandler {}
+unsafe impl NSObjectProtocol for NSDecimalNumberHandler {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSDecimalNumberHandler")]

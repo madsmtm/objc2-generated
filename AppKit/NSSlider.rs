@@ -18,7 +18,31 @@ extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSSlider")]
+unsafe impl NSAccessibility for NSSlider {}
+
+#[cfg(feature = "AppKit_NSSlider")]
+unsafe impl NSAccessibilityElement for NSSlider {}
+
+#[cfg(feature = "AppKit_NSSlider")]
 unsafe impl NSAccessibilitySlider for NSSlider {}
+
+#[cfg(feature = "AppKit_NSSlider")]
+unsafe impl NSAnimatablePropertyContainer for NSSlider {}
+
+#[cfg(feature = "AppKit_NSSlider")]
+unsafe impl NSAppearanceCustomization for NSSlider {}
+
+#[cfg(feature = "AppKit_NSSlider")]
+unsafe impl NSCoding for NSSlider {}
+
+#[cfg(feature = "AppKit_NSSlider")]
+unsafe impl NSDraggingDestination for NSSlider {}
+
+#[cfg(feature = "AppKit_NSSlider")]
+unsafe impl NSObjectProtocol for NSSlider {}
+
+#[cfg(feature = "AppKit_NSSlider")]
+unsafe impl NSUserInterfaceItemIdentification for NSSlider {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSSlider")]

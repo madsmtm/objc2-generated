@@ -15,6 +15,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLComputePipelineReflection")]
+unsafe impl NSObjectProtocol for MTLComputePipelineReflection {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLComputePipelineReflection")]
     unsafe impl MTLComputePipelineReflection {
@@ -39,6 +42,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Metal_MTLComputePipelineDescriptor")]
+unsafe impl NSObjectProtocol for MTLComputePipelineDescriptor {}
 
 extern_methods!(
     #[cfg(feature = "Metal_MTLComputePipelineDescriptor")]

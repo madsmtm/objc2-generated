@@ -18,6 +18,9 @@ extern_class!(
 #[cfg(feature = "AuthenticationServices_ASAuthorizationPasswordProvider")]
 unsafe impl ASAuthorizationProvider for ASAuthorizationPasswordProvider {}
 
+#[cfg(feature = "AuthenticationServices_ASAuthorizationPasswordProvider")]
+unsafe impl NSObjectProtocol for ASAuthorizationPasswordProvider {}
+
 extern_methods!(
     #[cfg(feature = "AuthenticationServices_ASAuthorizationPasswordProvider")]
     unsafe impl ASAuthorizationPasswordProvider {

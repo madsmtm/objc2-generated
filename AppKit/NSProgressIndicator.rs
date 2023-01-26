@@ -26,7 +26,34 @@ extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSProgressIndicator")]
+unsafe impl NSAccessibility for NSProgressIndicator {}
+
+#[cfg(feature = "AppKit_NSProgressIndicator")]
+unsafe impl NSAccessibilityElement for NSProgressIndicator {}
+
+#[cfg(feature = "AppKit_NSProgressIndicator")]
+unsafe impl NSAccessibilityGroup for NSProgressIndicator {}
+
+#[cfg(feature = "AppKit_NSProgressIndicator")]
 unsafe impl NSAccessibilityProgressIndicator for NSProgressIndicator {}
+
+#[cfg(feature = "AppKit_NSProgressIndicator")]
+unsafe impl NSAnimatablePropertyContainer for NSProgressIndicator {}
+
+#[cfg(feature = "AppKit_NSProgressIndicator")]
+unsafe impl NSAppearanceCustomization for NSProgressIndicator {}
+
+#[cfg(feature = "AppKit_NSProgressIndicator")]
+unsafe impl NSCoding for NSProgressIndicator {}
+
+#[cfg(feature = "AppKit_NSProgressIndicator")]
+unsafe impl NSDraggingDestination for NSProgressIndicator {}
+
+#[cfg(feature = "AppKit_NSProgressIndicator")]
+unsafe impl NSObjectProtocol for NSProgressIndicator {}
+
+#[cfg(feature = "AppKit_NSProgressIndicator")]
+unsafe impl NSUserInterfaceItemIdentification for NSProgressIndicator {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSProgressIndicator")]

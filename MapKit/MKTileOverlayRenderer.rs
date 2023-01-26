@@ -19,6 +19,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "MapKit_MKTileOverlayRenderer")]
+unsafe impl NSObjectProtocol for MKTileOverlayRenderer {}
+
 extern_methods!(
     #[cfg(feature = "MapKit_MKTileOverlayRenderer")]
     unsafe impl MKTileOverlayRenderer {

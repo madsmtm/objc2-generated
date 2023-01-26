@@ -28,10 +28,25 @@ extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSTabViewController")]
+unsafe impl NSCoding for NSTabViewController {}
+
+#[cfg(feature = "AppKit_NSTabViewController")]
+unsafe impl NSEditor for NSTabViewController {}
+
+#[cfg(feature = "AppKit_NSTabViewController")]
+unsafe impl NSObjectProtocol for NSTabViewController {}
+
+#[cfg(feature = "AppKit_NSTabViewController")]
+unsafe impl NSSeguePerforming for NSTabViewController {}
+
+#[cfg(feature = "AppKit_NSTabViewController")]
 unsafe impl NSTabViewDelegate for NSTabViewController {}
 
 #[cfg(feature = "AppKit_NSTabViewController")]
 unsafe impl NSToolbarDelegate for NSTabViewController {}
+
+#[cfg(feature = "AppKit_NSTabViewController")]
+unsafe impl NSUserInterfaceItemIdentification for NSTabViewController {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSTabViewController")]

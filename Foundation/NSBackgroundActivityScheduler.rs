@@ -24,6 +24,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSBackgroundActivityScheduler")]
+unsafe impl NSObjectProtocol for NSBackgroundActivityScheduler {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSBackgroundActivityScheduler")]
     unsafe impl NSBackgroundActivityScheduler {

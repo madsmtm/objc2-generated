@@ -61,6 +61,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreLocation_CLLocationManager")]
+unsafe impl NSObjectProtocol for CLLocationManager {}
+
 extern_methods!(
     #[cfg(feature = "CoreLocation_CLLocationManager")]
     unsafe impl CLLocationManager {

@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSStoryboardSegue")]
+unsafe impl NSObjectProtocol for NSStoryboardSegue {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSStoryboardSegue")]
     unsafe impl NSStoryboardSegue {

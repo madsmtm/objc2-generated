@@ -34,6 +34,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSPointerFunctions")]
+unsafe impl NSObjectProtocol for NSPointerFunctions {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSPointerFunctions")]
     unsafe impl NSPointerFunctions {

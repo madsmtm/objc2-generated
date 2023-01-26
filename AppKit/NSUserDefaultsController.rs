@@ -17,6 +17,18 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSUserDefaultsController")]
+unsafe impl NSCoding for NSUserDefaultsController {}
+
+#[cfg(feature = "AppKit_NSUserDefaultsController")]
+unsafe impl NSEditor for NSUserDefaultsController {}
+
+#[cfg(feature = "AppKit_NSUserDefaultsController")]
+unsafe impl NSEditorRegistration for NSUserDefaultsController {}
+
+#[cfg(feature = "AppKit_NSUserDefaultsController")]
+unsafe impl NSObjectProtocol for NSUserDefaultsController {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSUserDefaultsController")]
     unsafe impl NSUserDefaultsController {

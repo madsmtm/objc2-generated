@@ -19,6 +19,9 @@ extern_class!(
 #[cfg(feature = "GameController_GCRacingWheelInputState")]
 unsafe impl GCDevicePhysicalInputState for GCRacingWheelInputState {}
 
+#[cfg(feature = "GameController_GCRacingWheelInputState")]
+unsafe impl NSObjectProtocol for GCRacingWheelInputState {}
+
 extern_methods!(
     #[cfg(feature = "GameController_GCRacingWheelInputState")]
     unsafe impl GCRacingWheelInputState {
@@ -58,6 +61,12 @@ extern_class!(
 
 #[cfg(feature = "GameController_GCRacingWheelInput")]
 unsafe impl GCDevicePhysicalInput for GCRacingWheelInput {}
+
+#[cfg(feature = "GameController_GCRacingWheelInput")]
+unsafe impl GCDevicePhysicalInputState for GCRacingWheelInput {}
+
+#[cfg(feature = "GameController_GCRacingWheelInput")]
+unsafe impl NSObjectProtocol for GCRacingWheelInput {}
 
 extern_methods!(
     #[cfg(feature = "GameController_GCRacingWheelInput")]

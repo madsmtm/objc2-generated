@@ -19,6 +19,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Automator_AMBundleAction")]
+unsafe impl NSCoding for AMBundleAction {}
+
+#[cfg(feature = "Automator_AMBundleAction")]
+unsafe impl NSObjectProtocol for AMBundleAction {}
+
+#[cfg(feature = "Automator_AMBundleAction")]
 unsafe impl NSSecureCoding for AMBundleAction {}
 
 extern_methods!(

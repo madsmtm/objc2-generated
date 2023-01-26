@@ -34,6 +34,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "ClassKit_CLSDataStore")]
+unsafe impl NSObjectProtocol for CLSDataStore {}
+
 extern_methods!(
     #[cfg(feature = "ClassKit_CLSDataStore")]
     unsafe impl CLSDataStore {

@@ -25,6 +25,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CloudKit_CKDatabase")]
+unsafe impl NSObjectProtocol for CKDatabase {}
+
 extern_methods!(
     #[cfg(feature = "CloudKit_CKDatabase")]
     unsafe impl CKDatabase {

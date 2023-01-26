@@ -22,6 +22,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSAlignmentFeedbackFilter")]
+unsafe impl NSObjectProtocol for NSAlignmentFeedbackFilter {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSAlignmentFeedbackFilter")]
     unsafe impl NSAlignmentFeedbackFilter {

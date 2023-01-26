@@ -120,6 +120,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSLinguisticTagger")]
+unsafe impl NSObjectProtocol for NSLinguisticTagger {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSLinguisticTagger")]
     unsafe impl NSLinguisticTagger {

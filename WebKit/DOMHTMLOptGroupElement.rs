@@ -18,6 +18,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_DOMHTMLOptGroupElement")]
+unsafe impl DOMEventTarget for DOMHTMLOptGroupElement {}
+
+#[cfg(feature = "WebKit_DOMHTMLOptGroupElement")]
+unsafe impl NSObjectProtocol for DOMHTMLOptGroupElement {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_DOMHTMLOptGroupElement")]
     unsafe impl DOMHTMLOptGroupElement {

@@ -83,6 +83,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSPasteboard")]
+unsafe impl NSObjectProtocol for NSPasteboard {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSPasteboard")]
     unsafe impl NSPasteboard {
@@ -358,10 +361,10 @@ extern_methods!(
 );
 
 #[cfg(feature = "Foundation_NSURL")]
-unsafe impl NSPasteboardWriting for NSURL {}
+unsafe impl NSPasteboardReading for NSURL {}
 
 #[cfg(feature = "Foundation_NSURL")]
-unsafe impl NSPasteboardReading for NSURL {}
+unsafe impl NSPasteboardWriting for NSURL {}
 
 extern_methods!(
     /// NSPasteboardSupport
@@ -370,10 +373,10 @@ extern_methods!(
 );
 
 #[cfg(feature = "Foundation_NSString")]
-unsafe impl NSPasteboardWriting for NSString {}
+unsafe impl NSPasteboardReading for NSString {}
 
 #[cfg(feature = "Foundation_NSString")]
-unsafe impl NSPasteboardReading for NSString {}
+unsafe impl NSPasteboardWriting for NSString {}
 
 extern_methods!(
     /// NSFileContents

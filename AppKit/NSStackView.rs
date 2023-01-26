@@ -52,6 +52,30 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSStackView")]
+unsafe impl NSAccessibility for NSStackView {}
+
+#[cfg(feature = "AppKit_NSStackView")]
+unsafe impl NSAccessibilityElement for NSStackView {}
+
+#[cfg(feature = "AppKit_NSStackView")]
+unsafe impl NSAnimatablePropertyContainer for NSStackView {}
+
+#[cfg(feature = "AppKit_NSStackView")]
+unsafe impl NSAppearanceCustomization for NSStackView {}
+
+#[cfg(feature = "AppKit_NSStackView")]
+unsafe impl NSCoding for NSStackView {}
+
+#[cfg(feature = "AppKit_NSStackView")]
+unsafe impl NSDraggingDestination for NSStackView {}
+
+#[cfg(feature = "AppKit_NSStackView")]
+unsafe impl NSObjectProtocol for NSStackView {}
+
+#[cfg(feature = "AppKit_NSStackView")]
+unsafe impl NSUserInterfaceItemIdentification for NSStackView {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSStackView")]
     unsafe impl NSStackView {

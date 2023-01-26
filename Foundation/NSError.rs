@@ -53,6 +53,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSError")]
+unsafe impl NSCoding for NSError {}
+
+#[cfg(feature = "Foundation_NSError")]
+unsafe impl NSObjectProtocol for NSError {}
+
+#[cfg(feature = "Foundation_NSError")]
 unsafe impl NSSecureCoding for NSError {}
 
 extern_methods!(

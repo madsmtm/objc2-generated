@@ -27,6 +27,9 @@ extern_class!(
 #[cfg(feature = "GameController_GCMouse")]
 unsafe impl GCDevice for GCMouse {}
 
+#[cfg(feature = "GameController_GCMouse")]
+unsafe impl NSObjectProtocol for GCMouse {}
+
 extern_methods!(
     #[cfg(feature = "GameController_GCMouse")]
     unsafe impl GCMouse {

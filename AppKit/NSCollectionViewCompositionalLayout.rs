@@ -68,6 +68,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSCollectionViewCompositionalLayoutConfiguration")]
+unsafe impl NSObjectProtocol for NSCollectionViewCompositionalLayoutConfiguration {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSCollectionViewCompositionalLayoutConfiguration")]
     unsafe impl NSCollectionViewCompositionalLayoutConfiguration {
@@ -123,6 +126,12 @@ extern_class!(
         type Super = NSCollectionViewLayout;
     }
 );
+
+#[cfg(feature = "AppKit_NSCollectionViewCompositionalLayout")]
+unsafe impl NSCoding for NSCollectionViewCompositionalLayout {}
+
+#[cfg(feature = "AppKit_NSCollectionViewCompositionalLayout")]
+unsafe impl NSObjectProtocol for NSCollectionViewCompositionalLayout {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSCollectionViewCompositionalLayout")]
@@ -211,6 +220,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "AppKit_NSCollectionLayoutSection")]
+unsafe impl NSObjectProtocol for NSCollectionLayoutSection {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSCollectionLayoutSection")]
@@ -319,6 +331,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSCollectionLayoutItem")]
+unsafe impl NSObjectProtocol for NSCollectionLayoutItem {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSCollectionLayoutItem")]
     unsafe impl NSCollectionLayoutItem {
@@ -383,6 +398,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSCollectionLayoutGroupCustomItem")]
+unsafe impl NSObjectProtocol for NSCollectionLayoutGroupCustomItem {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSCollectionLayoutGroupCustomItem")]
     unsafe impl NSCollectionLayoutGroupCustomItem {
@@ -425,6 +443,9 @@ extern_class!(
         type Super = NSCollectionLayoutItem;
     }
 );
+
+#[cfg(feature = "AppKit_NSCollectionLayoutGroup")]
+unsafe impl NSObjectProtocol for NSCollectionLayoutGroup {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSCollectionLayoutGroup")]
@@ -529,6 +550,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSCollectionLayoutDimension")]
+unsafe impl NSObjectProtocol for NSCollectionLayoutDimension {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSCollectionLayoutDimension")]
     unsafe impl NSCollectionLayoutDimension {
@@ -578,6 +602,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSCollectionLayoutSize")]
+unsafe impl NSObjectProtocol for NSCollectionLayoutSize {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSCollectionLayoutSize")]
     unsafe impl NSCollectionLayoutSize {
@@ -615,6 +642,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSCollectionLayoutSpacing")]
+unsafe impl NSObjectProtocol for NSCollectionLayoutSpacing {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSCollectionLayoutSpacing")]
     unsafe impl NSCollectionLayoutSpacing {
@@ -651,6 +681,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "AppKit_NSCollectionLayoutEdgeSpacing")]
+unsafe impl NSObjectProtocol for NSCollectionLayoutEdgeSpacing {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSCollectionLayoutEdgeSpacing")]
@@ -699,6 +732,9 @@ extern_class!(
         type Super = NSCollectionLayoutItem;
     }
 );
+
+#[cfg(feature = "AppKit_NSCollectionLayoutSupplementaryItem")]
+unsafe impl NSObjectProtocol for NSCollectionLayoutSupplementaryItem {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSCollectionLayoutSupplementaryItem")]
@@ -766,6 +802,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSCollectionLayoutBoundarySupplementaryItem")]
+unsafe impl NSObjectProtocol for NSCollectionLayoutBoundarySupplementaryItem {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSCollectionLayoutBoundarySupplementaryItem")]
     unsafe impl NSCollectionLayoutBoundarySupplementaryItem {
@@ -830,6 +869,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSCollectionLayoutDecorationItem")]
+unsafe impl NSObjectProtocol for NSCollectionLayoutDecorationItem {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSCollectionLayoutDecorationItem")]
     unsafe impl NSCollectionLayoutDecorationItem {
@@ -867,6 +909,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "AppKit_NSCollectionLayoutAnchor")]
+unsafe impl NSObjectProtocol for NSCollectionLayoutAnchor {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSCollectionLayoutAnchor")]

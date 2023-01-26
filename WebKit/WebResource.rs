@@ -19,6 +19,9 @@ extern_class!(
 #[cfg(feature = "WebKit_WebResource")]
 unsafe impl NSCoding for WebResource {}
 
+#[cfg(feature = "WebKit_WebResource")]
+unsafe impl NSObjectProtocol for WebResource {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_WebResource")]
     unsafe impl WebResource {

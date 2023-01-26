@@ -21,6 +21,9 @@ extern_class!(
 unsafe impl NSCoding for GKScore {}
 
 #[cfg(feature = "GameKit_GKScore")]
+unsafe impl NSObjectProtocol for GKScore {}
+
+#[cfg(feature = "GameKit_GKScore")]
 unsafe impl NSSecureCoding for GKScore {}
 
 extern_methods!(

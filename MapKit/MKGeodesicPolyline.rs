@@ -19,6 +19,15 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "MapKit_MKGeodesicPolyline")]
+unsafe impl MKAnnotation for MKGeodesicPolyline {}
+
+#[cfg(feature = "MapKit_MKGeodesicPolyline")]
+unsafe impl MKOverlay for MKGeodesicPolyline {}
+
+#[cfg(feature = "MapKit_MKGeodesicPolyline")]
+unsafe impl NSObjectProtocol for MKGeodesicPolyline {}
+
 extern_methods!(
     #[cfg(feature = "MapKit_MKGeodesicPolyline")]
     unsafe impl MKGeodesicPolyline {

@@ -18,7 +18,31 @@ extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSStepper")]
+unsafe impl NSAccessibility for NSStepper {}
+
+#[cfg(feature = "AppKit_NSStepper")]
+unsafe impl NSAccessibilityElement for NSStepper {}
+
+#[cfg(feature = "AppKit_NSStepper")]
 unsafe impl NSAccessibilityStepper for NSStepper {}
+
+#[cfg(feature = "AppKit_NSStepper")]
+unsafe impl NSAnimatablePropertyContainer for NSStepper {}
+
+#[cfg(feature = "AppKit_NSStepper")]
+unsafe impl NSAppearanceCustomization for NSStepper {}
+
+#[cfg(feature = "AppKit_NSStepper")]
+unsafe impl NSCoding for NSStepper {}
+
+#[cfg(feature = "AppKit_NSStepper")]
+unsafe impl NSDraggingDestination for NSStepper {}
+
+#[cfg(feature = "AppKit_NSStepper")]
+unsafe impl NSObjectProtocol for NSStepper {}
+
+#[cfg(feature = "AppKit_NSStepper")]
+unsafe impl NSUserInterfaceItemIdentification for NSStepper {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSStepper")]

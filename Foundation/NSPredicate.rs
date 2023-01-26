@@ -15,6 +15,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSPredicate")]
+unsafe impl NSCoding for NSPredicate {}
+
+#[cfg(feature = "Foundation_NSPredicate")]
+unsafe impl NSObjectProtocol for NSPredicate {}
+
+#[cfg(feature = "Foundation_NSPredicate")]
 unsafe impl NSSecureCoding for NSPredicate {}
 
 extern_methods!(

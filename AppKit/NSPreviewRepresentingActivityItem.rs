@@ -41,6 +41,9 @@ extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSPreviewRepresentingActivityItem")]
+unsafe impl NSObjectProtocol for NSPreviewRepresentingActivityItem {}
+
+#[cfg(feature = "AppKit_NSPreviewRepresentingActivityItem")]
 unsafe impl NSPreviewRepresentableActivityItem for NSPreviewRepresentingActivityItem {}
 
 extern_methods!(

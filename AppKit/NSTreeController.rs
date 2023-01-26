@@ -17,6 +17,18 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSTreeController")]
+unsafe impl NSCoding for NSTreeController {}
+
+#[cfg(feature = "AppKit_NSTreeController")]
+unsafe impl NSEditor for NSTreeController {}
+
+#[cfg(feature = "AppKit_NSTreeController")]
+unsafe impl NSEditorRegistration for NSTreeController {}
+
+#[cfg(feature = "AppKit_NSTreeController")]
+unsafe impl NSObjectProtocol for NSTreeController {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSTreeController")]
     unsafe impl NSTreeController {

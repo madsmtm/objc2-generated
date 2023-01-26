@@ -40,6 +40,30 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSBrowser")]
+unsafe impl NSAccessibility for NSBrowser {}
+
+#[cfg(feature = "AppKit_NSBrowser")]
+unsafe impl NSAccessibilityElement for NSBrowser {}
+
+#[cfg(feature = "AppKit_NSBrowser")]
+unsafe impl NSAnimatablePropertyContainer for NSBrowser {}
+
+#[cfg(feature = "AppKit_NSBrowser")]
+unsafe impl NSAppearanceCustomization for NSBrowser {}
+
+#[cfg(feature = "AppKit_NSBrowser")]
+unsafe impl NSCoding for NSBrowser {}
+
+#[cfg(feature = "AppKit_NSBrowser")]
+unsafe impl NSDraggingDestination for NSBrowser {}
+
+#[cfg(feature = "AppKit_NSBrowser")]
+unsafe impl NSObjectProtocol for NSBrowser {}
+
+#[cfg(feature = "AppKit_NSBrowser")]
+unsafe impl NSUserInterfaceItemIdentification for NSBrowser {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSBrowser")]
     unsafe impl NSBrowser {

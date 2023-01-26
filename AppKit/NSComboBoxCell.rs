@@ -17,6 +17,21 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSComboBoxCell")]
+unsafe impl NSAccessibility for NSComboBoxCell {}
+
+#[cfg(feature = "AppKit_NSComboBoxCell")]
+unsafe impl NSAccessibilityElement for NSComboBoxCell {}
+
+#[cfg(feature = "AppKit_NSComboBoxCell")]
+unsafe impl NSCoding for NSComboBoxCell {}
+
+#[cfg(feature = "AppKit_NSComboBoxCell")]
+unsafe impl NSObjectProtocol for NSComboBoxCell {}
+
+#[cfg(feature = "AppKit_NSComboBoxCell")]
+unsafe impl NSUserInterfaceItemIdentification for NSComboBoxCell {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSComboBoxCell")]
     unsafe impl NSComboBoxCell {

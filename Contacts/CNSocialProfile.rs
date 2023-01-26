@@ -16,6 +16,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Contacts_CNSocialProfile")]
+unsafe impl NSCoding for CNSocialProfile {}
+
+#[cfg(feature = "Contacts_CNSocialProfile")]
+unsafe impl NSObjectProtocol for CNSocialProfile {}
+
+#[cfg(feature = "Contacts_CNSocialProfile")]
 unsafe impl NSSecureCoding for CNSocialProfile {}
 
 extern_methods!(

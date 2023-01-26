@@ -17,6 +17,15 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreLocation_CLBeaconRegion")]
+unsafe impl NSCoding for CLBeaconRegion {}
+
+#[cfg(feature = "CoreLocation_CLBeaconRegion")]
+unsafe impl NSObjectProtocol for CLBeaconRegion {}
+
+#[cfg(feature = "CoreLocation_CLBeaconRegion")]
+unsafe impl NSSecureCoding for CLBeaconRegion {}
+
 extern_methods!(
     #[cfg(feature = "CoreLocation_CLBeaconRegion")]
     unsafe impl CLBeaconRegion {
@@ -138,6 +147,12 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "CoreLocation_CLBeacon")]
+unsafe impl NSCoding for CLBeacon {}
+
+#[cfg(feature = "CoreLocation_CLBeacon")]
+unsafe impl NSObjectProtocol for CLBeacon {}
 
 #[cfg(feature = "CoreLocation_CLBeacon")]
 unsafe impl NSSecureCoding for CLBeacon {}

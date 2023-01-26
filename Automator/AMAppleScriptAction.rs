@@ -18,6 +18,15 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Automator_AMAppleScriptAction")]
+unsafe impl NSCoding for AMAppleScriptAction {}
+
+#[cfg(feature = "Automator_AMAppleScriptAction")]
+unsafe impl NSObjectProtocol for AMAppleScriptAction {}
+
+#[cfg(feature = "Automator_AMAppleScriptAction")]
+unsafe impl NSSecureCoding for AMAppleScriptAction {}
+
 extern_methods!(
     #[cfg(feature = "Automator_AMAppleScriptAction")]
     unsafe impl AMAppleScriptAction {

@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSDockTile")]
+unsafe impl NSObjectProtocol for NSDockTile {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSDockTile")]
     unsafe impl NSDockTile {

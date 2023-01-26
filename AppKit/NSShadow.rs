@@ -17,6 +17,12 @@ extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSShadow")]
+unsafe impl NSCoding for NSShadow {}
+
+#[cfg(feature = "AppKit_NSShadow")]
+unsafe impl NSObjectProtocol for NSShadow {}
+
+#[cfg(feature = "AppKit_NSShadow")]
 unsafe impl NSSecureCoding for NSShadow {}
 
 extern_methods!(

@@ -71,6 +71,12 @@ extern_class!(
 );
 
 #[cfg(feature = "CoreLocation_CLFloor")]
+unsafe impl NSCoding for CLFloor {}
+
+#[cfg(feature = "CoreLocation_CLFloor")]
+unsafe impl NSObjectProtocol for CLFloor {}
+
+#[cfg(feature = "CoreLocation_CLFloor")]
 unsafe impl NSSecureCoding for CLFloor {}
 
 extern_methods!(
@@ -91,6 +97,12 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "CoreLocation_CLLocationSourceInformation")]
+unsafe impl NSCoding for CLLocationSourceInformation {}
+
+#[cfg(feature = "CoreLocation_CLLocationSourceInformation")]
+unsafe impl NSObjectProtocol for CLLocationSourceInformation {}
 
 #[cfg(feature = "CoreLocation_CLLocationSourceInformation")]
 unsafe impl NSSecureCoding for CLLocationSourceInformation {}
@@ -123,6 +135,12 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "CoreLocation_CLLocation")]
+unsafe impl NSCoding for CLLocation {}
+
+#[cfg(feature = "CoreLocation_CLLocation")]
+unsafe impl NSObjectProtocol for CLLocation {}
 
 #[cfg(feature = "CoreLocation_CLLocation")]
 unsafe impl NSSecureCoding for CLLocation {}

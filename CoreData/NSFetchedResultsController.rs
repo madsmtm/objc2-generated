@@ -23,6 +23,12 @@ __inner_extern_class!(
     }
 );
 
+#[cfg(feature = "CoreData_NSFetchedResultsController")]
+unsafe impl<ResultType: Message, ResultTypeOwnership: Ownership> NSObjectProtocol
+    for NSFetchedResultsController<ResultType, ResultTypeOwnership>
+{
+}
+
 extern_methods!(
     #[cfg(feature = "CoreData_NSFetchedResultsController")]
     unsafe impl<ResultType: Message, ResultTypeOwnership: Ownership>

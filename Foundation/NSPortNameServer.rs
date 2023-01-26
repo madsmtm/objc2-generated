@@ -15,6 +15,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSPortNameServer")]
+unsafe impl NSObjectProtocol for NSPortNameServer {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSPortNameServer")]
     unsafe impl NSPortNameServer {
@@ -55,6 +58,9 @@ extern_class!(
         type Super = NSPortNameServer;
     }
 );
+
+#[cfg(feature = "Foundation_NSMachBootstrapServer")]
+unsafe impl NSObjectProtocol for NSMachBootstrapServer {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSMachBootstrapServer")]
@@ -97,6 +103,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSMessagePortNameServer")]
+unsafe impl NSObjectProtocol for NSMessagePortNameServer {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSMessagePortNameServer")]
     unsafe impl NSMessagePortNameServer {
@@ -129,6 +138,9 @@ extern_class!(
         type Super = NSPortNameServer;
     }
 );
+
+#[cfg(feature = "Foundation_NSSocketPortNameServer")]
+unsafe impl NSObjectProtocol for NSSocketPortNameServer {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSSocketPortNameServer")]

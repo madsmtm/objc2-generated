@@ -20,6 +20,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "GameController_GCControllerAxisInput")]
+unsafe impl NSObjectProtocol for GCControllerAxisInput {}
+
 extern_methods!(
     #[cfg(feature = "GameController_GCControllerAxisInput")]
     unsafe impl GCControllerAxisInput {

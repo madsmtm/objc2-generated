@@ -14,6 +14,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSScanner")]
+unsafe impl NSObjectProtocol for NSScanner {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSScanner")]
     unsafe impl NSScanner {

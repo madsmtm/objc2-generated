@@ -19,6 +19,12 @@ extern_class!(
 );
 
 #[cfg(feature = "FileProvider_NSFileProviderDomainVersion")]
+unsafe impl NSCoding for NSFileProviderDomainVersion {}
+
+#[cfg(feature = "FileProvider_NSFileProviderDomainVersion")]
+unsafe impl NSObjectProtocol for NSFileProviderDomainVersion {}
+
+#[cfg(feature = "FileProvider_NSFileProviderDomainVersion")]
 unsafe impl NSSecureCoding for NSFileProviderDomainVersion {}
 
 extern_methods!(
@@ -53,6 +59,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "FileProvider_NSFileProviderDomain")]
+unsafe impl NSObjectProtocol for NSFileProviderDomain {}
 
 extern_methods!(
     #[cfg(feature = "FileProvider_NSFileProviderDomain")]

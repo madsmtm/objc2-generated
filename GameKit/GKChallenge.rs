@@ -30,6 +30,9 @@ extern_class!(
 unsafe impl NSCoding for GKChallenge {}
 
 #[cfg(feature = "GameKit_GKChallenge")]
+unsafe impl NSObjectProtocol for GKChallenge {}
+
+#[cfg(feature = "GameKit_GKChallenge")]
 unsafe impl NSSecureCoding for GKChallenge {}
 
 extern_methods!(
@@ -97,6 +100,15 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "GameKit_GKScoreChallenge")]
+unsafe impl NSCoding for GKScoreChallenge {}
+
+#[cfg(feature = "GameKit_GKScoreChallenge")]
+unsafe impl NSObjectProtocol for GKScoreChallenge {}
+
+#[cfg(feature = "GameKit_GKScoreChallenge")]
+unsafe impl NSSecureCoding for GKScoreChallenge {}
+
 extern_methods!(
     #[cfg(feature = "GameKit_GKScoreChallenge")]
     unsafe impl GKScoreChallenge {
@@ -117,6 +129,15 @@ extern_class!(
         type Super = GKChallenge;
     }
 );
+
+#[cfg(feature = "GameKit_GKAchievementChallenge")]
+unsafe impl NSCoding for GKAchievementChallenge {}
+
+#[cfg(feature = "GameKit_GKAchievementChallenge")]
+unsafe impl NSObjectProtocol for GKAchievementChallenge {}
+
+#[cfg(feature = "GameKit_GKAchievementChallenge")]
+unsafe impl NSSecureCoding for GKAchievementChallenge {}
 
 extern_methods!(
     #[cfg(feature = "GameKit_GKAchievementChallenge")]

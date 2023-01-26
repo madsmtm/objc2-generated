@@ -15,6 +15,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "MetalFX_MTLFXTemporalScalerDescriptor")]
+unsafe impl NSObjectProtocol for MTLFXTemporalScalerDescriptor {}
+
 extern_methods!(
     #[cfg(feature = "MetalFX_MTLFXTemporalScalerDescriptor")]
     unsafe impl MTLFXTemporalScalerDescriptor {

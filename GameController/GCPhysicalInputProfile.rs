@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "GameController_GCPhysicalInputProfile")]
+unsafe impl NSObjectProtocol for GCPhysicalInputProfile {}
+
 extern_methods!(
     #[cfg(feature = "GameController_GCPhysicalInputProfile")]
     unsafe impl GCPhysicalInputProfile {

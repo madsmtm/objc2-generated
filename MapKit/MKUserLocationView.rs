@@ -19,6 +19,30 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "MapKit_MKUserLocationView")]
+unsafe impl NSAccessibility for MKUserLocationView {}
+
+#[cfg(feature = "MapKit_MKUserLocationView")]
+unsafe impl NSAccessibilityElement for MKUserLocationView {}
+
+#[cfg(feature = "MapKit_MKUserLocationView")]
+unsafe impl NSAnimatablePropertyContainer for MKUserLocationView {}
+
+#[cfg(feature = "MapKit_MKUserLocationView")]
+unsafe impl NSAppearanceCustomization for MKUserLocationView {}
+
+#[cfg(feature = "MapKit_MKUserLocationView")]
+unsafe impl NSCoding for MKUserLocationView {}
+
+#[cfg(feature = "MapKit_MKUserLocationView")]
+unsafe impl NSDraggingDestination for MKUserLocationView {}
+
+#[cfg(feature = "MapKit_MKUserLocationView")]
+unsafe impl NSObjectProtocol for MKUserLocationView {}
+
+#[cfg(feature = "MapKit_MKUserLocationView")]
+unsafe impl NSUserInterfaceItemIdentification for MKUserLocationView {}
+
 extern_methods!(
     #[cfg(feature = "MapKit_MKUserLocationView")]
     unsafe impl MKUserLocationView {}

@@ -24,6 +24,18 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreAnimation_CATextLayer")]
+unsafe impl CAMediaTiming for CATextLayer {}
+
+#[cfg(feature = "CoreAnimation_CATextLayer")]
+unsafe impl NSCoding for CATextLayer {}
+
+#[cfg(feature = "CoreAnimation_CATextLayer")]
+unsafe impl NSObjectProtocol for CATextLayer {}
+
+#[cfg(feature = "CoreAnimation_CATextLayer")]
+unsafe impl NSSecureCoding for CATextLayer {}
+
 extern_methods!(
     #[cfg(feature = "CoreAnimation_CATextLayer")]
     unsafe impl CATextLayer {

@@ -21,6 +21,9 @@ extern_class!(
 #[cfg(feature = "MapKit_MKClusterAnnotation")]
 unsafe impl MKAnnotation for MKClusterAnnotation {}
 
+#[cfg(feature = "MapKit_MKClusterAnnotation")]
+unsafe impl NSObjectProtocol for MKClusterAnnotation {}
+
 extern_methods!(
     #[cfg(feature = "MapKit_MKClusterAnnotation")]
     unsafe impl MKClusterAnnotation {

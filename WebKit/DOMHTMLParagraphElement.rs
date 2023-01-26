@@ -18,6 +18,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_DOMHTMLParagraphElement")]
+unsafe impl DOMEventTarget for DOMHTMLParagraphElement {}
+
+#[cfg(feature = "WebKit_DOMHTMLParagraphElement")]
+unsafe impl NSObjectProtocol for DOMHTMLParagraphElement {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_DOMHTMLParagraphElement")]
     unsafe impl DOMHTMLParagraphElement {

@@ -15,6 +15,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSFileHandle")]
+unsafe impl NSCoding for NSFileHandle {}
+
+#[cfg(feature = "Foundation_NSFileHandle")]
+unsafe impl NSObjectProtocol for NSFileHandle {}
+
+#[cfg(feature = "Foundation_NSFileHandle")]
 unsafe impl NSSecureCoding for NSFileHandle {}
 
 extern_methods!(
@@ -290,6 +296,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Foundation_NSPipe")]
+unsafe impl NSObjectProtocol for NSPipe {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSPipe")]

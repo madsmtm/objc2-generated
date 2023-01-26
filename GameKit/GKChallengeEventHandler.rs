@@ -68,6 +68,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "GameKit_GKChallengeEventHandler")]
+unsafe impl NSObjectProtocol for GKChallengeEventHandler {}
+
 extern_methods!(
     #[cfg(feature = "GameKit_GKChallengeEventHandler")]
     unsafe impl GKChallengeEventHandler {

@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "GameController_GCDeviceLight")]
+unsafe impl NSObjectProtocol for GCDeviceLight {}
+
 extern_methods!(
     #[cfg(feature = "GameController_GCDeviceLight")]
     unsafe impl GCDeviceLight {

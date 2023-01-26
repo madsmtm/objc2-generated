@@ -27,7 +27,31 @@ extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSScrollView")]
+unsafe impl NSAccessibility for NSScrollView {}
+
+#[cfg(feature = "AppKit_NSScrollView")]
+unsafe impl NSAccessibilityElement for NSScrollView {}
+
+#[cfg(feature = "AppKit_NSScrollView")]
+unsafe impl NSAnimatablePropertyContainer for NSScrollView {}
+
+#[cfg(feature = "AppKit_NSScrollView")]
+unsafe impl NSAppearanceCustomization for NSScrollView {}
+
+#[cfg(feature = "AppKit_NSScrollView")]
+unsafe impl NSCoding for NSScrollView {}
+
+#[cfg(feature = "AppKit_NSScrollView")]
+unsafe impl NSDraggingDestination for NSScrollView {}
+
+#[cfg(feature = "AppKit_NSScrollView")]
+unsafe impl NSObjectProtocol for NSScrollView {}
+
+#[cfg(feature = "AppKit_NSScrollView")]
 unsafe impl NSTextFinderBarContainer for NSScrollView {}
+
+#[cfg(feature = "AppKit_NSScrollView")]
+unsafe impl NSUserInterfaceItemIdentification for NSScrollView {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSScrollView")]

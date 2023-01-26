@@ -70,6 +70,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSData")]
+unsafe impl NSCoding for NSData {}
+
+#[cfg(feature = "Foundation_NSData")]
+unsafe impl NSObjectProtocol for NSData {}
+
+#[cfg(feature = "Foundation_NSData")]
 unsafe impl NSSecureCoding for NSData {}
 
 extern_methods!(
@@ -372,6 +378,15 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSMutableData")]
+unsafe impl NSCoding for NSMutableData {}
+
+#[cfg(feature = "Foundation_NSMutableData")]
+unsafe impl NSObjectProtocol for NSMutableData {}
+
+#[cfg(feature = "Foundation_NSMutableData")]
+unsafe impl NSSecureCoding for NSMutableData {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSMutableData")]
     unsafe impl NSMutableData {
@@ -471,7 +486,16 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSPurgeableData")]
+unsafe impl NSCoding for NSPurgeableData {}
+
+#[cfg(feature = "Foundation_NSPurgeableData")]
 unsafe impl NSDiscardableContent for NSPurgeableData {}
+
+#[cfg(feature = "Foundation_NSPurgeableData")]
+unsafe impl NSObjectProtocol for NSPurgeableData {}
+
+#[cfg(feature = "Foundation_NSPurgeableData")]
+unsafe impl NSSecureCoding for NSPurgeableData {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSPurgeableData")]

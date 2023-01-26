@@ -28,6 +28,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreData_NSPersistentCloudKitContainerEvent")]
+unsafe impl NSObjectProtocol for NSPersistentCloudKitContainerEvent {}
+
 extern_methods!(
     #[cfg(feature = "CoreData_NSPersistentCloudKitContainerEvent")]
     unsafe impl NSPersistentCloudKitContainerEvent {

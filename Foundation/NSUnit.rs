@@ -14,6 +14,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSUnitConverter")]
+unsafe impl NSObjectProtocol for NSUnitConverter {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSUnitConverter")]
     unsafe impl NSUnitConverter {
@@ -36,6 +39,12 @@ extern_class!(
         type Super = NSUnitConverter;
     }
 );
+
+#[cfg(feature = "Foundation_NSUnitConverterLinear")]
+unsafe impl NSCoding for NSUnitConverterLinear {}
+
+#[cfg(feature = "Foundation_NSUnitConverterLinear")]
+unsafe impl NSObjectProtocol for NSUnitConverterLinear {}
 
 #[cfg(feature = "Foundation_NSUnitConverterLinear")]
 unsafe impl NSSecureCoding for NSUnitConverterLinear {}
@@ -76,6 +85,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSUnit")]
+unsafe impl NSCoding for NSUnit {}
+
+#[cfg(feature = "Foundation_NSUnit")]
+unsafe impl NSObjectProtocol for NSUnit {}
+
+#[cfg(feature = "Foundation_NSUnit")]
 unsafe impl NSSecureCoding for NSUnit {}
 
 extern_methods!(
@@ -111,6 +126,12 @@ extern_class!(
         type Super = NSUnit;
     }
 );
+
+#[cfg(feature = "Foundation_NSDimension")]
+unsafe impl NSCoding for NSDimension {}
+
+#[cfg(feature = "Foundation_NSDimension")]
+unsafe impl NSObjectProtocol for NSDimension {}
 
 #[cfg(feature = "Foundation_NSDimension")]
 unsafe impl NSSecureCoding for NSDimension {}
@@ -151,6 +172,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSUnitAcceleration")]
+unsafe impl NSCoding for NSUnitAcceleration {}
+
+#[cfg(feature = "Foundation_NSUnitAcceleration")]
+unsafe impl NSObjectProtocol for NSUnitAcceleration {}
+
+#[cfg(feature = "Foundation_NSUnitAcceleration")]
 unsafe impl NSSecureCoding for NSUnitAcceleration {}
 
 extern_methods!(
@@ -175,6 +202,12 @@ extern_class!(
         type Super = NSDimension;
     }
 );
+
+#[cfg(feature = "Foundation_NSUnitAngle")]
+unsafe impl NSCoding for NSUnitAngle {}
+
+#[cfg(feature = "Foundation_NSUnitAngle")]
+unsafe impl NSObjectProtocol for NSUnitAngle {}
 
 #[cfg(feature = "Foundation_NSUnitAngle")]
 unsafe impl NSSecureCoding for NSUnitAngle {}
@@ -213,6 +246,12 @@ extern_class!(
         type Super = NSDimension;
     }
 );
+
+#[cfg(feature = "Foundation_NSUnitArea")]
+unsafe impl NSCoding for NSUnitArea {}
+
+#[cfg(feature = "Foundation_NSUnitArea")]
+unsafe impl NSObjectProtocol for NSUnitArea {}
 
 #[cfg(feature = "Foundation_NSUnitArea")]
 unsafe impl NSSecureCoding for NSUnitArea {}
@@ -277,6 +316,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSUnitConcentrationMass")]
+unsafe impl NSCoding for NSUnitConcentrationMass {}
+
+#[cfg(feature = "Foundation_NSUnitConcentrationMass")]
+unsafe impl NSObjectProtocol for NSUnitConcentrationMass {}
+
+#[cfg(feature = "Foundation_NSUnitConcentrationMass")]
 unsafe impl NSSecureCoding for NSUnitConcentrationMass {}
 
 extern_methods!(
@@ -308,6 +353,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSUnitDispersion")]
+unsafe impl NSCoding for NSUnitDispersion {}
+
+#[cfg(feature = "Foundation_NSUnitDispersion")]
+unsafe impl NSObjectProtocol for NSUnitDispersion {}
+
+#[cfg(feature = "Foundation_NSUnitDispersion")]
 unsafe impl NSSecureCoding for NSUnitDispersion {}
 
 extern_methods!(
@@ -329,6 +380,12 @@ extern_class!(
         type Super = NSDimension;
     }
 );
+
+#[cfg(feature = "Foundation_NSUnitDuration")]
+unsafe impl NSCoding for NSUnitDuration {}
+
+#[cfg(feature = "Foundation_NSUnitDuration")]
+unsafe impl NSObjectProtocol for NSUnitDuration {}
 
 #[cfg(feature = "Foundation_NSUnitDuration")]
 unsafe impl NSSecureCoding for NSUnitDuration {}
@@ -372,6 +429,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSUnitElectricCharge")]
+unsafe impl NSCoding for NSUnitElectricCharge {}
+
+#[cfg(feature = "Foundation_NSUnitElectricCharge")]
+unsafe impl NSObjectProtocol for NSUnitElectricCharge {}
+
+#[cfg(feature = "Foundation_NSUnitElectricCharge")]
 unsafe impl NSSecureCoding for NSUnitElectricCharge {}
 
 extern_methods!(
@@ -410,6 +473,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSUnitElectricCurrent")]
+unsafe impl NSCoding for NSUnitElectricCurrent {}
+
+#[cfg(feature = "Foundation_NSUnitElectricCurrent")]
+unsafe impl NSObjectProtocol for NSUnitElectricCurrent {}
+
+#[cfg(feature = "Foundation_NSUnitElectricCurrent")]
 unsafe impl NSSecureCoding for NSUnitElectricCurrent {}
 
 extern_methods!(
@@ -443,6 +512,12 @@ extern_class!(
         type Super = NSDimension;
     }
 );
+
+#[cfg(feature = "Foundation_NSUnitElectricPotentialDifference")]
+unsafe impl NSCoding for NSUnitElectricPotentialDifference {}
+
+#[cfg(feature = "Foundation_NSUnitElectricPotentialDifference")]
+unsafe impl NSObjectProtocol for NSUnitElectricPotentialDifference {}
 
 #[cfg(feature = "Foundation_NSUnitElectricPotentialDifference")]
 unsafe impl NSSecureCoding for NSUnitElectricPotentialDifference {}
@@ -480,6 +555,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSUnitElectricResistance")]
+unsafe impl NSCoding for NSUnitElectricResistance {}
+
+#[cfg(feature = "Foundation_NSUnitElectricResistance")]
+unsafe impl NSObjectProtocol for NSUnitElectricResistance {}
+
+#[cfg(feature = "Foundation_NSUnitElectricResistance")]
 unsafe impl NSSecureCoding for NSUnitElectricResistance {}
 
 extern_methods!(
@@ -515,6 +596,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSUnitEnergy")]
+unsafe impl NSCoding for NSUnitEnergy {}
+
+#[cfg(feature = "Foundation_NSUnitEnergy")]
+unsafe impl NSObjectProtocol for NSUnitEnergy {}
+
+#[cfg(feature = "Foundation_NSUnitEnergy")]
 unsafe impl NSSecureCoding for NSUnitEnergy {}
 
 extern_methods!(
@@ -548,6 +635,12 @@ extern_class!(
         type Super = NSDimension;
     }
 );
+
+#[cfg(feature = "Foundation_NSUnitFrequency")]
+unsafe impl NSCoding for NSUnitFrequency {}
+
+#[cfg(feature = "Foundation_NSUnitFrequency")]
+unsafe impl NSObjectProtocol for NSUnitFrequency {}
 
 #[cfg(feature = "Foundation_NSUnitFrequency")]
 unsafe impl NSSecureCoding for NSUnitFrequency {}
@@ -597,6 +690,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSUnitFuelEfficiency")]
+unsafe impl NSCoding for NSUnitFuelEfficiency {}
+
+#[cfg(feature = "Foundation_NSUnitFuelEfficiency")]
+unsafe impl NSObjectProtocol for NSUnitFuelEfficiency {}
+
+#[cfg(feature = "Foundation_NSUnitFuelEfficiency")]
 unsafe impl NSSecureCoding for NSUnitFuelEfficiency {}
 
 extern_methods!(
@@ -624,6 +723,12 @@ extern_class!(
         type Super = NSDimension;
     }
 );
+
+#[cfg(feature = "Foundation_NSUnitInformationStorage")]
+unsafe impl NSCoding for NSUnitInformationStorage {}
+
+#[cfg(feature = "Foundation_NSUnitInformationStorage")]
+unsafe impl NSObjectProtocol for NSUnitInformationStorage {}
 
 #[cfg(feature = "Foundation_NSUnitInformationStorage")]
 unsafe impl NSSecureCoding for NSUnitInformationStorage {}
@@ -751,6 +856,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSUnitLength")]
+unsafe impl NSCoding for NSUnitLength {}
+
+#[cfg(feature = "Foundation_NSUnitLength")]
+unsafe impl NSObjectProtocol for NSUnitLength {}
+
+#[cfg(feature = "Foundation_NSUnitLength")]
 unsafe impl NSSecureCoding for NSUnitLength {}
 
 extern_methods!(
@@ -837,6 +948,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSUnitIlluminance")]
+unsafe impl NSCoding for NSUnitIlluminance {}
+
+#[cfg(feature = "Foundation_NSUnitIlluminance")]
+unsafe impl NSObjectProtocol for NSUnitIlluminance {}
+
+#[cfg(feature = "Foundation_NSUnitIlluminance")]
 unsafe impl NSSecureCoding for NSUnitIlluminance {}
 
 extern_methods!(
@@ -858,6 +975,12 @@ extern_class!(
         type Super = NSDimension;
     }
 );
+
+#[cfg(feature = "Foundation_NSUnitMass")]
+unsafe impl NSCoding for NSUnitMass {}
+
+#[cfg(feature = "Foundation_NSUnitMass")]
+unsafe impl NSObjectProtocol for NSUnitMass {}
 
 #[cfg(feature = "Foundation_NSUnitMass")]
 unsafe impl NSSecureCoding for NSUnitMass {}
@@ -928,6 +1051,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSUnitPower")]
+unsafe impl NSCoding for NSUnitPower {}
+
+#[cfg(feature = "Foundation_NSUnitPower")]
+unsafe impl NSObjectProtocol for NSUnitPower {}
+
+#[cfg(feature = "Foundation_NSUnitPower")]
 unsafe impl NSSecureCoding for NSUnitPower {}
 
 extern_methods!(
@@ -981,6 +1110,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSUnitPressure")]
+unsafe impl NSCoding for NSUnitPressure {}
+
+#[cfg(feature = "Foundation_NSUnitPressure")]
+unsafe impl NSObjectProtocol for NSUnitPressure {}
+
+#[cfg(feature = "Foundation_NSUnitPressure")]
 unsafe impl NSSecureCoding for NSUnitPressure {}
 
 extern_methods!(
@@ -1031,6 +1166,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSUnitSpeed")]
+unsafe impl NSCoding for NSUnitSpeed {}
+
+#[cfg(feature = "Foundation_NSUnitSpeed")]
+unsafe impl NSObjectProtocol for NSUnitSpeed {}
+
+#[cfg(feature = "Foundation_NSUnitSpeed")]
 unsafe impl NSSecureCoding for NSUnitSpeed {}
 
 extern_methods!(
@@ -1063,6 +1204,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSUnitTemperature")]
+unsafe impl NSCoding for NSUnitTemperature {}
+
+#[cfg(feature = "Foundation_NSUnitTemperature")]
+unsafe impl NSObjectProtocol for NSUnitTemperature {}
+
+#[cfg(feature = "Foundation_NSUnitTemperature")]
 unsafe impl NSSecureCoding for NSUnitTemperature {}
 
 extern_methods!(
@@ -1090,6 +1237,12 @@ extern_class!(
         type Super = NSDimension;
     }
 );
+
+#[cfg(feature = "Foundation_NSUnitVolume")]
+unsafe impl NSCoding for NSUnitVolume {}
+
+#[cfg(feature = "Foundation_NSUnitVolume")]
+unsafe impl NSObjectProtocol for NSUnitVolume {}
 
 #[cfg(feature = "Foundation_NSUnitVolume")]
 unsafe impl NSSecureCoding for NSUnitVolume {}

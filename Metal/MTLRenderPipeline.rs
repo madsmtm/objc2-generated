@@ -109,6 +109,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLRenderPipelineColorAttachmentDescriptor")]
+unsafe impl NSObjectProtocol for MTLRenderPipelineColorAttachmentDescriptor {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLRenderPipelineColorAttachmentDescriptor")]
     unsafe impl MTLRenderPipelineColorAttachmentDescriptor {
@@ -182,6 +185,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLRenderPipelineReflection")]
+unsafe impl NSObjectProtocol for MTLRenderPipelineReflection {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLRenderPipelineReflection")]
     unsafe impl MTLRenderPipelineReflection {
@@ -234,6 +240,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Metal_MTLRenderPipelineDescriptor")]
+unsafe impl NSObjectProtocol for MTLRenderPipelineDescriptor {}
 
 extern_methods!(
     #[cfg(feature = "Metal_MTLRenderPipelineDescriptor")]
@@ -518,6 +527,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLRenderPipelineFunctionsDescriptor")]
+unsafe impl NSObjectProtocol for MTLRenderPipelineFunctionsDescriptor {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLRenderPipelineFunctionsDescriptor")]
     unsafe impl MTLRenderPipelineFunctionsDescriptor {
@@ -655,6 +667,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLRenderPipelineColorAttachmentDescriptorArray")]
+unsafe impl NSObjectProtocol for MTLRenderPipelineColorAttachmentDescriptorArray {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLRenderPipelineColorAttachmentDescriptorArray")]
     unsafe impl MTLRenderPipelineColorAttachmentDescriptorArray {
@@ -686,6 +701,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLTileRenderPipelineColorAttachmentDescriptor")]
+unsafe impl NSObjectProtocol for MTLTileRenderPipelineColorAttachmentDescriptor {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLTileRenderPipelineColorAttachmentDescriptor")]
     unsafe impl MTLTileRenderPipelineColorAttachmentDescriptor {
@@ -707,6 +725,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Metal_MTLTileRenderPipelineColorAttachmentDescriptorArray")]
+unsafe impl NSObjectProtocol for MTLTileRenderPipelineColorAttachmentDescriptorArray {}
 
 extern_methods!(
     #[cfg(feature = "Metal_MTLTileRenderPipelineColorAttachmentDescriptorArray")]
@@ -738,6 +759,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Metal_MTLTileRenderPipelineDescriptor")]
+unsafe impl NSObjectProtocol for MTLTileRenderPipelineDescriptor {}
 
 extern_methods!(
     #[cfg(feature = "Metal_MTLTileRenderPipelineDescriptor")]
@@ -851,6 +875,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Metal_MTLMeshRenderPipelineDescriptor")]
+unsafe impl NSObjectProtocol for MTLMeshRenderPipelineDescriptor {}
 
 extern_methods!(
     #[cfg(feature = "Metal_MTLMeshRenderPipelineDescriptor")]

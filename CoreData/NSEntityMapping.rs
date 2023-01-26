@@ -27,6 +27,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreData_NSEntityMapping")]
+unsafe impl NSObjectProtocol for NSEntityMapping {}
+
 extern_methods!(
     #[cfg(feature = "CoreData_NSEntityMapping")]
     unsafe impl NSEntityMapping {

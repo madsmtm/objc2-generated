@@ -19,6 +19,9 @@ extern_class!(
 #[cfg(feature = "AppKit_NSCursor")]
 unsafe impl NSCoding for NSCursor {}
 
+#[cfg(feature = "AppKit_NSCursor")]
+unsafe impl NSObjectProtocol for NSCursor {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSCursor")]
     unsafe impl NSCursor {

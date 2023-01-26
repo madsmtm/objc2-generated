@@ -15,6 +15,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CallKit_CXCallUpdate")]
+unsafe impl NSObjectProtocol for CXCallUpdate {}
+
 extern_methods!(
     #[cfg(feature = "CallKit_CXCallUpdate")]
     unsafe impl CXCallUpdate {

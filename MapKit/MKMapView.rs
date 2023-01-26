@@ -33,7 +33,28 @@ extern_class!(
 );
 
 #[cfg(feature = "MapKit_MKMapView")]
+unsafe impl NSAccessibility for MKMapView {}
+
+#[cfg(feature = "MapKit_MKMapView")]
+unsafe impl NSAccessibilityElement for MKMapView {}
+
+#[cfg(feature = "MapKit_MKMapView")]
+unsafe impl NSAnimatablePropertyContainer for MKMapView {}
+
+#[cfg(feature = "MapKit_MKMapView")]
+unsafe impl NSAppearanceCustomization for MKMapView {}
+
+#[cfg(feature = "MapKit_MKMapView")]
 unsafe impl NSCoding for MKMapView {}
+
+#[cfg(feature = "MapKit_MKMapView")]
+unsafe impl NSDraggingDestination for MKMapView {}
+
+#[cfg(feature = "MapKit_MKMapView")]
+unsafe impl NSObjectProtocol for MKMapView {}
+
+#[cfg(feature = "MapKit_MKMapView")]
+unsafe impl NSUserInterfaceItemIdentification for MKMapView {}
 
 extern_methods!(
     #[cfg(feature = "MapKit_MKMapView")]

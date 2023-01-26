@@ -17,6 +17,12 @@ extern_class!(
 );
 
 #[cfg(feature = "CoreLocation_CLPlacemark")]
+unsafe impl NSCoding for CLPlacemark {}
+
+#[cfg(feature = "CoreLocation_CLPlacemark")]
+unsafe impl NSObjectProtocol for CLPlacemark {}
+
+#[cfg(feature = "CoreLocation_CLPlacemark")]
 unsafe impl NSSecureCoding for CLPlacemark {}
 
 extern_methods!(

@@ -22,6 +22,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSTask")]
+unsafe impl NSObjectProtocol for NSTask {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSTask")]
     unsafe impl NSTask {

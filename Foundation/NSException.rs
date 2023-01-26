@@ -45,6 +45,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSException")]
+unsafe impl NSCoding for NSException {}
+
+#[cfg(feature = "Foundation_NSException")]
+unsafe impl NSObjectProtocol for NSException {}
+
+#[cfg(feature = "Foundation_NSException")]
 unsafe impl NSSecureCoding for NSException {}
 
 extern_methods!(
@@ -116,6 +122,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Foundation_NSAssertionHandler")]
+unsafe impl NSObjectProtocol for NSAssertionHandler {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSAssertionHandler")]

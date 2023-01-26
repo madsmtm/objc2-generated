@@ -17,6 +17,21 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSActionCell")]
+unsafe impl NSAccessibility for NSActionCell {}
+
+#[cfg(feature = "AppKit_NSActionCell")]
+unsafe impl NSAccessibilityElement for NSActionCell {}
+
+#[cfg(feature = "AppKit_NSActionCell")]
+unsafe impl NSCoding for NSActionCell {}
+
+#[cfg(feature = "AppKit_NSActionCell")]
+unsafe impl NSObjectProtocol for NSActionCell {}
+
+#[cfg(feature = "AppKit_NSActionCell")]
+unsafe impl NSUserInterfaceItemIdentification for NSActionCell {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSActionCell")]
     unsafe impl NSActionCell {

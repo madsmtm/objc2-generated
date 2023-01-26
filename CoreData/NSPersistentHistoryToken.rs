@@ -16,6 +16,12 @@ extern_class!(
 );
 
 #[cfg(feature = "CoreData_NSPersistentHistoryToken")]
+unsafe impl NSCoding for NSPersistentHistoryToken {}
+
+#[cfg(feature = "CoreData_NSPersistentHistoryToken")]
+unsafe impl NSObjectProtocol for NSPersistentHistoryToken {}
+
+#[cfg(feature = "CoreData_NSPersistentHistoryToken")]
 unsafe impl NSSecureCoding for NSPersistentHistoryToken {}
 
 extern_methods!(

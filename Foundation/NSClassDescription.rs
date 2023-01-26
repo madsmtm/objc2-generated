@@ -14,6 +14,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSClassDescription")]
+unsafe impl NSObjectProtocol for NSClassDescription {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSClassDescription")]
     unsafe impl NSClassDescription {

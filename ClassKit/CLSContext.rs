@@ -60,6 +60,15 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "ClassKit_CLSContext")]
+unsafe impl NSCoding for CLSContext {}
+
+#[cfg(feature = "ClassKit_CLSContext")]
+unsafe impl NSObjectProtocol for CLSContext {}
+
+#[cfg(feature = "ClassKit_CLSContext")]
+unsafe impl NSSecureCoding for CLSContext {}
+
 extern_methods!(
     #[cfg(feature = "ClassKit_CLSContext")]
     unsafe impl CLSContext {

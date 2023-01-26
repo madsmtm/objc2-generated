@@ -18,6 +18,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_DOMHTMLTableCellElement")]
+unsafe impl DOMEventTarget for DOMHTMLTableCellElement {}
+
+#[cfg(feature = "WebKit_DOMHTMLTableCellElement")]
+unsafe impl NSObjectProtocol for DOMHTMLTableCellElement {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_DOMHTMLTableCellElement")]
     unsafe impl DOMHTMLTableCellElement {

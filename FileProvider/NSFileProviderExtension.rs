@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "FileProvider_NSFileProviderExtension")]
+unsafe impl NSObjectProtocol for NSFileProviderExtension {}
+
 extern_methods!(
     #[cfg(feature = "FileProvider_NSFileProviderExtension")]
     unsafe impl NSFileProviderExtension {

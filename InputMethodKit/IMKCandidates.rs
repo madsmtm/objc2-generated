@@ -51,6 +51,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "InputMethodKit_IMKCandidates")]
+unsafe impl NSCoding for IMKCandidates {}
+
+#[cfg(feature = "InputMethodKit_IMKCandidates")]
+unsafe impl NSObjectProtocol for IMKCandidates {}
+
 extern_methods!(
     #[cfg(feature = "InputMethodKit_IMKCandidates")]
     unsafe impl IMKCandidates {

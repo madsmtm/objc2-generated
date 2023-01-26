@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreData_NSPersistentHistoryChangeRequest")]
+unsafe impl NSObjectProtocol for NSPersistentHistoryChangeRequest {}
+
 extern_methods!(
     #[cfg(feature = "CoreData_NSPersistentHistoryChangeRequest")]
     unsafe impl NSPersistentHistoryChangeRequest {

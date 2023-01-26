@@ -42,6 +42,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSNetService")]
+unsafe impl NSObjectProtocol for NSNetService {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSNetService")]
     unsafe impl NSNetService {
@@ -183,6 +186,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Foundation_NSNetServiceBrowser")]
+unsafe impl NSObjectProtocol for NSNetServiceBrowser {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSNetServiceBrowser")]

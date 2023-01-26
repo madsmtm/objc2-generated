@@ -53,6 +53,12 @@ extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSBezierPath")]
+unsafe impl NSCoding for NSBezierPath {}
+
+#[cfg(feature = "AppKit_NSBezierPath")]
+unsafe impl NSObjectProtocol for NSBezierPath {}
+
+#[cfg(feature = "AppKit_NSBezierPath")]
 unsafe impl NSSecureCoding for NSBezierPath {}
 
 extern_methods!(

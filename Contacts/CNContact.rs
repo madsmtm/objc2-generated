@@ -23,7 +23,7 @@ ns_enum!(
 );
 
 extern_protocol!(
-    pub unsafe trait CNKeyDescriptor: NSObjectProtocol + NSSecureCoding + NSCopying {}
+    pub unsafe trait CNKeyDescriptor: NSCopying + NSObjectProtocol + NSSecureCoding {}
 
     unsafe impl ProtocolType for dyn CNKeyDescriptor {}
 );
@@ -47,6 +47,12 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Contacts_CNContact")]
+unsafe impl NSCoding for CNContact {}
+
+#[cfg(feature = "Contacts_CNContact")]
+unsafe impl NSObjectProtocol for CNContact {}
 
 #[cfg(feature = "Contacts_CNContact")]
 unsafe impl NSSecureCoding for CNContact {}

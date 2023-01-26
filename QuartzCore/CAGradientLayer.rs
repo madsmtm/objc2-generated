@@ -20,6 +20,18 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreAnimation_CAGradientLayer")]
+unsafe impl CAMediaTiming for CAGradientLayer {}
+
+#[cfg(feature = "CoreAnimation_CAGradientLayer")]
+unsafe impl NSCoding for CAGradientLayer {}
+
+#[cfg(feature = "CoreAnimation_CAGradientLayer")]
+unsafe impl NSObjectProtocol for CAGradientLayer {}
+
+#[cfg(feature = "CoreAnimation_CAGradientLayer")]
+unsafe impl NSSecureCoding for CAGradientLayer {}
+
 extern_methods!(
     #[cfg(feature = "CoreAnimation_CAGradientLayer")]
     unsafe impl CAGradientLayer {

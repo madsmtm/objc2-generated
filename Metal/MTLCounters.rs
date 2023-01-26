@@ -113,6 +113,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLCounterSampleBufferDescriptor")]
+unsafe impl NSObjectProtocol for MTLCounterSampleBufferDescriptor {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLCounterSampleBufferDescriptor")]
     unsafe impl MTLCounterSampleBufferDescriptor {

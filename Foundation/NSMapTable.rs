@@ -52,7 +52,7 @@ unsafe impl<
         ObjectType: Message,
         KeyTypeOwnership: Ownership,
         ObjectTypeOwnership: Ownership,
-    > NSSecureCoding for NSMapTable<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
+    > NSCoding for NSMapTable<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
 {
 }
 
@@ -63,6 +63,26 @@ unsafe impl<
         KeyTypeOwnership: Ownership,
         ObjectTypeOwnership: Ownership,
     > NSFastEnumeration for NSMapTable<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
+{
+}
+
+#[cfg(feature = "Foundation_NSMapTable")]
+unsafe impl<
+        KeyType: Message,
+        ObjectType: Message,
+        KeyTypeOwnership: Ownership,
+        ObjectTypeOwnership: Ownership,
+    > NSObjectProtocol for NSMapTable<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
+{
+}
+
+#[cfg(feature = "Foundation_NSMapTable")]
+unsafe impl<
+        KeyType: Message,
+        ObjectType: Message,
+        KeyTypeOwnership: Ownership,
+        ObjectTypeOwnership: Ownership,
+    > NSSecureCoding for NSMapTable<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
 {
 }
 

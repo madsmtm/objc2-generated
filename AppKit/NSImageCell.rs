@@ -44,7 +44,19 @@ extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSImageCell")]
+unsafe impl NSAccessibility for NSImageCell {}
+
+#[cfg(feature = "AppKit_NSImageCell")]
+unsafe impl NSAccessibilityElement for NSImageCell {}
+
+#[cfg(feature = "AppKit_NSImageCell")]
 unsafe impl NSCoding for NSImageCell {}
+
+#[cfg(feature = "AppKit_NSImageCell")]
+unsafe impl NSObjectProtocol for NSImageCell {}
+
+#[cfg(feature = "AppKit_NSImageCell")]
+unsafe impl NSUserInterfaceItemIdentification for NSImageCell {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSImageCell")]

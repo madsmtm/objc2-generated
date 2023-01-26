@@ -17,6 +17,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CloudKit_CKModifySubscriptionsOperation")]
+unsafe impl NSObjectProtocol for CKModifySubscriptionsOperation {}
+
 extern_methods!(
     #[cfg(feature = "CloudKit_CKModifySubscriptionsOperation")]
     unsafe impl CKModifySubscriptionsOperation {

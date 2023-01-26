@@ -55,6 +55,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "GameKit_GKTurnBasedParticipant")]
+unsafe impl NSObjectProtocol for GKTurnBasedParticipant {}
+
 extern_methods!(
     #[cfg(feature = "GameKit_GKTurnBasedParticipant")]
     unsafe impl GKTurnBasedParticipant {
@@ -199,6 +202,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "GameKit_GKTurnBasedMatch")]
+unsafe impl NSObjectProtocol for GKTurnBasedMatch {}
 
 extern_methods!(
     #[cfg(feature = "GameKit_GKTurnBasedMatch")]
@@ -523,6 +529,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "GameKit_GKTurnBasedExchange")]
+unsafe impl NSObjectProtocol for GKTurnBasedExchange {}
+
 extern_methods!(
     #[cfg(feature = "GameKit_GKTurnBasedExchange")]
     unsafe impl GKTurnBasedExchange {
@@ -612,6 +621,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "GameKit_GKTurnBasedExchangeReply")]
+unsafe impl NSObjectProtocol for GKTurnBasedExchangeReply {}
+
 extern_methods!(
     #[cfg(feature = "GameKit_GKTurnBasedExchangeReply")]
     unsafe impl GKTurnBasedExchangeReply {
@@ -677,6 +689,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "GameKit_GKTurnBasedEventHandler")]
+unsafe impl NSObjectProtocol for GKTurnBasedEventHandler {}
 
 extern_methods!(
     #[cfg(feature = "GameKit_GKTurnBasedEventHandler")]

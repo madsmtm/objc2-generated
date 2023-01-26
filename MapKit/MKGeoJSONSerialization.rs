@@ -24,6 +24,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "MapKit_MKGeoJSONDecoder")]
+unsafe impl NSObjectProtocol for MKGeoJSONDecoder {}
+
 extern_methods!(
     #[cfg(feature = "MapKit_MKGeoJSONDecoder")]
     unsafe impl MKGeoJSONDecoder {
@@ -53,6 +56,9 @@ extern_class!(
 
 #[cfg(feature = "MapKit_MKGeoJSONFeature")]
 unsafe impl MKGeoJSONObject for MKGeoJSONFeature {}
+
+#[cfg(feature = "MapKit_MKGeoJSONFeature")]
+unsafe impl NSObjectProtocol for MKGeoJSONFeature {}
 
 extern_methods!(
     #[cfg(feature = "MapKit_MKGeoJSONFeature")]

@@ -20,13 +20,25 @@ __inner_extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSSet")]
-unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSSecureCoding
+unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSCoding
     for NSSet<ObjectType, ObjectTypeOwnership>
 {
 }
 
 #[cfg(feature = "Foundation_NSSet")]
 unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSFastEnumeration
+    for NSSet<ObjectType, ObjectTypeOwnership>
+{
+}
+
+#[cfg(feature = "Foundation_NSSet")]
+unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSObjectProtocol
+    for NSSet<ObjectType, ObjectTypeOwnership>
+{
+}
+
+#[cfg(feature = "Foundation_NSSet")]
+unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSSecureCoding
     for NSSet<ObjectType, ObjectTypeOwnership>
 {
 }
@@ -223,6 +235,30 @@ __inner_extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSMutableSet")]
+unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSCoding
+    for NSMutableSet<ObjectType, ObjectTypeOwnership>
+{
+}
+
+#[cfg(feature = "Foundation_NSMutableSet")]
+unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSFastEnumeration
+    for NSMutableSet<ObjectType, ObjectTypeOwnership>
+{
+}
+
+#[cfg(feature = "Foundation_NSMutableSet")]
+unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSObjectProtocol
+    for NSMutableSet<ObjectType, ObjectTypeOwnership>
+{
+}
+
+#[cfg(feature = "Foundation_NSMutableSet")]
+unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSSecureCoding
+    for NSMutableSet<ObjectType, ObjectTypeOwnership>
+{
+}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSMutableSet")]
     unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
@@ -310,6 +346,30 @@ __inner_extern_class!(
         type Super = NSMutableSet<ObjectType, ObjectTypeOwnership>;
     }
 );
+
+#[cfg(feature = "Foundation_NSCountedSet")]
+unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSCoding
+    for NSCountedSet<ObjectType, ObjectTypeOwnership>
+{
+}
+
+#[cfg(feature = "Foundation_NSCountedSet")]
+unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSFastEnumeration
+    for NSCountedSet<ObjectType, ObjectTypeOwnership>
+{
+}
+
+#[cfg(feature = "Foundation_NSCountedSet")]
+unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSObjectProtocol
+    for NSCountedSet<ObjectType, ObjectTypeOwnership>
+{
+}
+
+#[cfg(feature = "Foundation_NSCountedSet")]
+unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSSecureCoding
+    for NSCountedSet<ObjectType, ObjectTypeOwnership>
+{
+}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSCountedSet")]

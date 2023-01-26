@@ -89,6 +89,42 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSComboBox")]
+unsafe impl NSAccessibility for NSComboBox {}
+
+#[cfg(feature = "AppKit_NSComboBox")]
+unsafe impl NSAccessibilityElement for NSComboBox {}
+
+#[cfg(feature = "AppKit_NSComboBox")]
+unsafe impl NSAccessibilityNavigableStaticText for NSComboBox {}
+
+#[cfg(feature = "AppKit_NSComboBox")]
+unsafe impl NSAccessibilityStaticText for NSComboBox {}
+
+#[cfg(feature = "AppKit_NSComboBox")]
+unsafe impl NSAnimatablePropertyContainer for NSComboBox {}
+
+#[cfg(feature = "AppKit_NSComboBox")]
+unsafe impl NSAppearanceCustomization for NSComboBox {}
+
+#[cfg(feature = "AppKit_NSComboBox")]
+unsafe impl NSCoding for NSComboBox {}
+
+#[cfg(feature = "AppKit_NSComboBox")]
+unsafe impl NSDraggingDestination for NSComboBox {}
+
+#[cfg(feature = "AppKit_NSComboBox")]
+unsafe impl NSObjectProtocol for NSComboBox {}
+
+#[cfg(feature = "AppKit_NSComboBox")]
+unsafe impl NSTextContent for NSComboBox {}
+
+#[cfg(feature = "AppKit_NSComboBox")]
+unsafe impl NSUserInterfaceItemIdentification for NSComboBox {}
+
+#[cfg(feature = "AppKit_NSComboBox")]
+unsafe impl NSUserInterfaceValidations for NSComboBox {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSComboBox")]
     unsafe impl NSComboBox {

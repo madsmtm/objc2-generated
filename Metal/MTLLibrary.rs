@@ -24,6 +24,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLVertexAttribute")]
+unsafe impl NSObjectProtocol for MTLVertexAttribute {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLVertexAttribute")]
     unsafe impl MTLVertexAttribute {
@@ -58,6 +61,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Metal_MTLAttribute")]
+unsafe impl NSObjectProtocol for MTLAttribute {}
 
 extern_methods!(
     #[cfg(feature = "Metal_MTLAttribute")]
@@ -106,6 +112,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Metal_MTLFunctionConstant")]
+unsafe impl NSObjectProtocol for MTLFunctionConstant {}
 
 extern_methods!(
     #[cfg(feature = "Metal_MTLFunctionConstant")]
@@ -224,6 +233,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Metal_MTLCompileOptions")]
+unsafe impl NSObjectProtocol for MTLCompileOptions {}
 
 extern_methods!(
     #[cfg(feature = "Metal_MTLCompileOptions")]

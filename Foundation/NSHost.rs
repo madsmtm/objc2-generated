@@ -15,6 +15,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSHost")]
+unsafe impl NSObjectProtocol for NSHost {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSHost")]
     unsafe impl NSHost {

@@ -24,6 +24,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_WKUserScript")]
+unsafe impl NSObjectProtocol for WKUserScript {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_WKUserScript")]
     unsafe impl WKUserScript {

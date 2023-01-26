@@ -47,6 +47,33 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSColorPanel")]
+unsafe impl NSAccessibility for NSColorPanel {}
+
+#[cfg(feature = "AppKit_NSColorPanel")]
+unsafe impl NSAccessibilityElement for NSColorPanel {}
+
+#[cfg(feature = "AppKit_NSColorPanel")]
+unsafe impl NSAnimatablePropertyContainer for NSColorPanel {}
+
+#[cfg(feature = "AppKit_NSColorPanel")]
+unsafe impl NSAppearanceCustomization for NSColorPanel {}
+
+#[cfg(feature = "AppKit_NSColorPanel")]
+unsafe impl NSCoding for NSColorPanel {}
+
+#[cfg(feature = "AppKit_NSColorPanel")]
+unsafe impl NSMenuItemValidation for NSColorPanel {}
+
+#[cfg(feature = "AppKit_NSColorPanel")]
+unsafe impl NSObjectProtocol for NSColorPanel {}
+
+#[cfg(feature = "AppKit_NSColorPanel")]
+unsafe impl NSUserInterfaceItemIdentification for NSColorPanel {}
+
+#[cfg(feature = "AppKit_NSColorPanel")]
+unsafe impl NSUserInterfaceValidations for NSColorPanel {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSColorPanel")]
     unsafe impl NSColorPanel {

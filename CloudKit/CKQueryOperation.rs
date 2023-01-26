@@ -17,6 +17,12 @@ extern_class!(
 );
 
 #[cfg(feature = "CloudKit_CKQueryCursor")]
+unsafe impl NSCoding for CKQueryCursor {}
+
+#[cfg(feature = "CloudKit_CKQueryCursor")]
+unsafe impl NSObjectProtocol for CKQueryCursor {}
+
+#[cfg(feature = "CloudKit_CKQueryCursor")]
 unsafe impl NSSecureCoding for CKQueryCursor {}
 
 extern_methods!(
@@ -43,6 +49,9 @@ extern_class!(
         type Super = CKDatabaseOperation;
     }
 );
+
+#[cfg(feature = "CloudKit_CKQueryOperation")]
+unsafe impl NSObjectProtocol for CKQueryOperation {}
 
 extern_methods!(
     #[cfg(feature = "CloudKit_CKQueryOperation")]

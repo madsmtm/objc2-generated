@@ -53,6 +53,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLSamplerDescriptor")]
+unsafe impl NSObjectProtocol for MTLSamplerDescriptor {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLSamplerDescriptor")]
     unsafe impl MTLSamplerDescriptor {

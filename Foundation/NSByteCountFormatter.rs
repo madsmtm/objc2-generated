@@ -42,6 +42,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSByteCountFormatter")]
+unsafe impl NSCoding for NSByteCountFormatter {}
+
+#[cfg(feature = "Foundation_NSByteCountFormatter")]
+unsafe impl NSObjectProtocol for NSByteCountFormatter {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSByteCountFormatter")]
     unsafe impl NSByteCountFormatter {

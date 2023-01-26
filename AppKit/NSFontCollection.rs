@@ -46,6 +46,9 @@ extern_class!(
 #[cfg(feature = "AppKit_NSFontCollection")]
 unsafe impl NSCoding for NSFontCollection {}
 
+#[cfg(feature = "AppKit_NSFontCollection")]
+unsafe impl NSObjectProtocol for NSFontCollection {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSFontCollection")]
     unsafe impl NSFontCollection {
@@ -164,6 +167,12 @@ extern_class!(
         type Super = NSFontCollection;
     }
 );
+
+#[cfg(feature = "AppKit_NSMutableFontCollection")]
+unsafe impl NSCoding for NSMutableFontCollection {}
+
+#[cfg(feature = "AppKit_NSMutableFontCollection")]
+unsafe impl NSObjectProtocol for NSMutableFontCollection {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSMutableFontCollection")]

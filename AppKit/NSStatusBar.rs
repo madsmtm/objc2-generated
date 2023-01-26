@@ -20,6 +20,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSStatusBar")]
+unsafe impl NSObjectProtocol for NSStatusBar {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSStatusBar")]
     unsafe impl NSStatusBar {

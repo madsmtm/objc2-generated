@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSWindowTab")]
+unsafe impl NSObjectProtocol for NSWindowTab {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSWindowTab")]
     unsafe impl NSWindowTab {

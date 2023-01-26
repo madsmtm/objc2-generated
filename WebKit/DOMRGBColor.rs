@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_DOMRGBColor")]
+unsafe impl NSObjectProtocol for DOMRGBColor {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_DOMRGBColor")]
     unsafe impl DOMRGBColor {

@@ -43,6 +43,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLIndirectCommandBufferDescriptor")]
+unsafe impl NSObjectProtocol for MTLIndirectCommandBufferDescriptor {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLIndirectCommandBufferDescriptor")]
     unsafe impl MTLIndirectCommandBufferDescriptor {

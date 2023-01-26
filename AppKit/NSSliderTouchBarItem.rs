@@ -25,6 +25,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSSliderTouchBarItem")]
+unsafe impl NSCoding for NSSliderTouchBarItem {}
+
+#[cfg(feature = "AppKit_NSSliderTouchBarItem")]
+unsafe impl NSObjectProtocol for NSSliderTouchBarItem {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSSliderTouchBarItem")]
     unsafe impl NSSliderTouchBarItem {

@@ -23,6 +23,9 @@ extern_class!(
 #[cfg(feature = "GameController_GCRacingWheel")]
 unsafe impl GCDevice for GCRacingWheel {}
 
+#[cfg(feature = "GameController_GCRacingWheel")]
+unsafe impl NSObjectProtocol for GCRacingWheel {}
+
 extern_methods!(
     #[cfg(feature = "GameController_GCRacingWheel")]
     unsafe impl GCRacingWheel {

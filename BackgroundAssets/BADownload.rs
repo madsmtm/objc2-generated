@@ -19,6 +19,9 @@ extern_class!(
 unsafe impl NSCoding for BADownload {}
 
 #[cfg(feature = "BackgroundAssets_BADownload")]
+unsafe impl NSObjectProtocol for BADownload {}
+
+#[cfg(feature = "BackgroundAssets_BADownload")]
 unsafe impl NSSecureCoding for BADownload {}
 
 extern_methods!(

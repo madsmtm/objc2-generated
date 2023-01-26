@@ -108,6 +108,9 @@ extern_class!(
 #[cfg(feature = "CoreData_NSPersistentStoreCoordinator")]
 unsafe impl NSLocking for NSPersistentStoreCoordinator {}
 
+#[cfg(feature = "CoreData_NSPersistentStoreCoordinator")]
+unsafe impl NSObjectProtocol for NSPersistentStoreCoordinator {}
+
 extern_methods!(
     #[cfg(feature = "CoreData_NSPersistentStoreCoordinator")]
     unsafe impl NSPersistentStoreCoordinator {

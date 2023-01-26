@@ -15,6 +15,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSIndexSet")]
+unsafe impl NSCoding for NSIndexSet {}
+
+#[cfg(feature = "Foundation_NSIndexSet")]
+unsafe impl NSObjectProtocol for NSIndexSet {}
+
+#[cfg(feature = "Foundation_NSIndexSet")]
 unsafe impl NSSecureCoding for NSIndexSet {}
 
 extern_methods!(
@@ -188,6 +194,15 @@ extern_class!(
         type Super = NSIndexSet;
     }
 );
+
+#[cfg(feature = "Foundation_NSMutableIndexSet")]
+unsafe impl NSCoding for NSMutableIndexSet {}
+
+#[cfg(feature = "Foundation_NSMutableIndexSet")]
+unsafe impl NSObjectProtocol for NSMutableIndexSet {}
+
+#[cfg(feature = "Foundation_NSMutableIndexSet")]
+unsafe impl NSSecureCoding for NSMutableIndexSet {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSMutableIndexSet")]

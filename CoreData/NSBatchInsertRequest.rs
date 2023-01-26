@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreData_NSBatchInsertRequest")]
+unsafe impl NSObjectProtocol for NSBatchInsertRequest {}
+
 extern_methods!(
     #[cfg(feature = "CoreData_NSBatchInsertRequest")]
     unsafe impl NSBatchInsertRequest {

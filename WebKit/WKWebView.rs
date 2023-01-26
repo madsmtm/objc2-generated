@@ -46,6 +46,30 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_WKWebView")]
+unsafe impl NSAccessibility for WKWebView {}
+
+#[cfg(feature = "WebKit_WKWebView")]
+unsafe impl NSAccessibilityElement for WKWebView {}
+
+#[cfg(feature = "WebKit_WKWebView")]
+unsafe impl NSAnimatablePropertyContainer for WKWebView {}
+
+#[cfg(feature = "WebKit_WKWebView")]
+unsafe impl NSAppearanceCustomization for WKWebView {}
+
+#[cfg(feature = "WebKit_WKWebView")]
+unsafe impl NSCoding for WKWebView {}
+
+#[cfg(feature = "WebKit_WKWebView")]
+unsafe impl NSDraggingDestination for WKWebView {}
+
+#[cfg(feature = "WebKit_WKWebView")]
+unsafe impl NSObjectProtocol for WKWebView {}
+
+#[cfg(feature = "WebKit_WKWebView")]
+unsafe impl NSUserInterfaceItemIdentification for WKWebView {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_WKWebView")]
     unsafe impl WKWebView {

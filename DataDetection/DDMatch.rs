@@ -15,6 +15,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "DataDetection_DDMatch")]
+unsafe impl NSObjectProtocol for DDMatch {}
+
 extern_methods!(
     #[cfg(feature = "DataDetection_DDMatch")]
     unsafe impl DDMatch {
@@ -39,6 +42,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "DataDetection_DDMatchLink")]
+unsafe impl NSObjectProtocol for DDMatchLink {}
+
 extern_methods!(
     #[cfg(feature = "DataDetection_DDMatchLink")]
     unsafe impl DDMatchLink {
@@ -59,6 +65,9 @@ extern_class!(
         type Super = DDMatch;
     }
 );
+
+#[cfg(feature = "DataDetection_DDMatchPhoneNumber")]
+unsafe impl NSObjectProtocol for DDMatchPhoneNumber {}
 
 extern_methods!(
     #[cfg(feature = "DataDetection_DDMatchPhoneNumber")]
@@ -85,6 +94,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "DataDetection_DDMatchEmailAddress")]
+unsafe impl NSObjectProtocol for DDMatchEmailAddress {}
+
 extern_methods!(
     #[cfg(feature = "DataDetection_DDMatchEmailAddress")]
     unsafe impl DDMatchEmailAddress {
@@ -109,6 +121,9 @@ extern_class!(
         type Super = DDMatch;
     }
 );
+
+#[cfg(feature = "DataDetection_DDMatchPostalAddress")]
+unsafe impl NSObjectProtocol for DDMatchPostalAddress {}
 
 extern_methods!(
     #[cfg(feature = "DataDetection_DDMatchPostalAddress")]
@@ -147,6 +162,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "DataDetection_DDMatchCalendarEvent")]
+unsafe impl NSObjectProtocol for DDMatchCalendarEvent {}
+
 extern_methods!(
     #[cfg(feature = "DataDetection_DDMatchCalendarEvent")]
     unsafe impl DDMatchCalendarEvent {
@@ -183,6 +201,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "DataDetection_DDMatchShipmentTrackingNumber")]
+unsafe impl NSObjectProtocol for DDMatchShipmentTrackingNumber {}
+
 extern_methods!(
     #[cfg(feature = "DataDetection_DDMatchShipmentTrackingNumber")]
     unsafe impl DDMatchShipmentTrackingNumber {
@@ -208,6 +229,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "DataDetection_DDMatchFlightNumber")]
+unsafe impl NSObjectProtocol for DDMatchFlightNumber {}
+
 extern_methods!(
     #[cfg(feature = "DataDetection_DDMatchFlightNumber")]
     unsafe impl DDMatchFlightNumber {
@@ -232,6 +256,9 @@ extern_class!(
         type Super = DDMatch;
     }
 );
+
+#[cfg(feature = "DataDetection_DDMatchMoneyAmount")]
+unsafe impl NSObjectProtocol for DDMatchMoneyAmount {}
 
 extern_methods!(
     #[cfg(feature = "DataDetection_DDMatchMoneyAmount")]

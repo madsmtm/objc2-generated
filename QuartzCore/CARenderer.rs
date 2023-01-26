@@ -15,6 +15,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreAnimation_CARenderer")]
+unsafe impl NSObjectProtocol for CARenderer {}
+
 extern_methods!(
     #[cfg(feature = "CoreAnimation_CARenderer")]
     unsafe impl CARenderer {

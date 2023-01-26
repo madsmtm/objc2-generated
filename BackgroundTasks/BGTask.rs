@@ -15,6 +15,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "BackgroundTasks_BGTask")]
+unsafe impl NSObjectProtocol for BGTask {}
+
 extern_methods!(
     #[cfg(feature = "BackgroundTasks_BGTask")]
     unsafe impl BGTask {
@@ -51,6 +54,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "BackgroundTasks_BGProcessingTask")]
+unsafe impl NSObjectProtocol for BGProcessingTask {}
+
 extern_methods!(
     #[cfg(feature = "BackgroundTasks_BGProcessingTask")]
     unsafe impl BGProcessingTask {}
@@ -67,6 +73,9 @@ extern_class!(
         type Super = BGTask;
     }
 );
+
+#[cfg(feature = "BackgroundTasks_BGAppRefreshTask")]
+unsafe impl NSObjectProtocol for BGAppRefreshTask {}
 
 extern_methods!(
     #[cfg(feature = "BackgroundTasks_BGAppRefreshTask")]

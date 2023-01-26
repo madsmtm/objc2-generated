@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_WKPDFConfiguration")]
+unsafe impl NSObjectProtocol for WKPDFConfiguration {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_WKPDFConfiguration")]
     unsafe impl WKPDFConfiguration {

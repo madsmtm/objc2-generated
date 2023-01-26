@@ -15,6 +15,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSDateInterval")]
+unsafe impl NSCoding for NSDateInterval {}
+
+#[cfg(feature = "Foundation_NSDateInterval")]
+unsafe impl NSObjectProtocol for NSDateInterval {}
+
+#[cfg(feature = "Foundation_NSDateInterval")]
 unsafe impl NSSecureCoding for NSDateInterval {}
 
 extern_methods!(

@@ -53,7 +53,7 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait NSFileProviderReplicatedExtension:
-        NSObjectProtocol + NSFileProviderEnumerating
+        NSFileProviderEnumerating + NSObjectProtocol
     {
         #[cfg(feature = "FileProvider_NSFileProviderDomain")]
         #[method_id(@__retain_semantics Init initWithDomain:)]

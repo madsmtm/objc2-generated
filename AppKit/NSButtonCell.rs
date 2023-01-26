@@ -52,6 +52,21 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSButtonCell")]
+unsafe impl NSAccessibility for NSButtonCell {}
+
+#[cfg(feature = "AppKit_NSButtonCell")]
+unsafe impl NSAccessibilityElement for NSButtonCell {}
+
+#[cfg(feature = "AppKit_NSButtonCell")]
+unsafe impl NSCoding for NSButtonCell {}
+
+#[cfg(feature = "AppKit_NSButtonCell")]
+unsafe impl NSObjectProtocol for NSButtonCell {}
+
+#[cfg(feature = "AppKit_NSButtonCell")]
+unsafe impl NSUserInterfaceItemIdentification for NSButtonCell {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSButtonCell")]
     unsafe impl NSButtonCell {

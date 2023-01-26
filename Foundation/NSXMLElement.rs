@@ -15,6 +15,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSXMLElement")]
+unsafe impl NSObjectProtocol for NSXMLElement {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSXMLElement")]
     unsafe impl NSXMLElement {

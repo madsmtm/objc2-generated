@@ -78,6 +78,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSFileManager")]
+unsafe impl NSObjectProtocol for NSFileManager {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSFileManager")]
     unsafe impl NSFileManager {
@@ -884,6 +887,18 @@ __inner_extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSDirectoryEnumerator")]
+unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSFastEnumeration
+    for NSDirectoryEnumerator<ObjectType, ObjectTypeOwnership>
+{
+}
+
+#[cfg(feature = "Foundation_NSDirectoryEnumerator")]
+unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSObjectProtocol
+    for NSDirectoryEnumerator<ObjectType, ObjectTypeOwnership>
+{
+}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSDirectoryEnumerator")]
     unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
@@ -925,6 +940,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Foundation_NSFileProviderService")]
+unsafe impl NSObjectProtocol for NSFileProviderService {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSFileProviderService")]

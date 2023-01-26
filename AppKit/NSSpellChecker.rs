@@ -61,6 +61,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSSpellChecker")]
+unsafe impl NSObjectProtocol for NSSpellChecker {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSSpellChecker")]
     unsafe impl NSSpellChecker {

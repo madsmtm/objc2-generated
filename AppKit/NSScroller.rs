@@ -59,6 +59,30 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSScroller")]
+unsafe impl NSAccessibility for NSScroller {}
+
+#[cfg(feature = "AppKit_NSScroller")]
+unsafe impl NSAccessibilityElement for NSScroller {}
+
+#[cfg(feature = "AppKit_NSScroller")]
+unsafe impl NSAnimatablePropertyContainer for NSScroller {}
+
+#[cfg(feature = "AppKit_NSScroller")]
+unsafe impl NSAppearanceCustomization for NSScroller {}
+
+#[cfg(feature = "AppKit_NSScroller")]
+unsafe impl NSCoding for NSScroller {}
+
+#[cfg(feature = "AppKit_NSScroller")]
+unsafe impl NSDraggingDestination for NSScroller {}
+
+#[cfg(feature = "AppKit_NSScroller")]
+unsafe impl NSObjectProtocol for NSScroller {}
+
+#[cfg(feature = "AppKit_NSScroller")]
+unsafe impl NSUserInterfaceItemIdentification for NSScroller {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSScroller")]
     unsafe impl NSScroller {

@@ -28,6 +28,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLBinaryArchiveDescriptor")]
+unsafe impl NSObjectProtocol for MTLBinaryArchiveDescriptor {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLBinaryArchiveDescriptor")]
     unsafe impl MTLBinaryArchiveDescriptor {

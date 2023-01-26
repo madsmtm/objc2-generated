@@ -52,6 +52,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSAccessibilityCustomRotor")]
+unsafe impl NSObjectProtocol for NSAccessibilityCustomRotor {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSAccessibilityCustomRotor")]
     unsafe impl NSAccessibilityCustomRotor {
@@ -121,6 +124,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSAccessibilityCustomRotorSearchParameters")]
+unsafe impl NSObjectProtocol for NSAccessibilityCustomRotorSearchParameters {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSAccessibilityCustomRotorSearchParameters")]
     unsafe impl NSAccessibilityCustomRotorSearchParameters {
@@ -166,6 +172,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "AppKit_NSAccessibilityCustomRotorItemResult")]
+unsafe impl NSObjectProtocol for NSAccessibilityCustomRotorItemResult {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSAccessibilityCustomRotorItemResult")]

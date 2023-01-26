@@ -28,6 +28,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AuthenticationServices_ASWebAuthenticationSession")]
+unsafe impl NSObjectProtocol for ASWebAuthenticationSession {}
+
 extern_methods!(
     #[cfg(feature = "AuthenticationServices_ASWebAuthenticationSession")]
     unsafe impl ASWebAuthenticationSession {

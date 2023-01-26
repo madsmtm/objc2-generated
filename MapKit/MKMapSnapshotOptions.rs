@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "MapKit_MKMapSnapshotOptions")]
+unsafe impl NSObjectProtocol for MKMapSnapshotOptions {}
+
 extern_methods!(
     #[cfg(feature = "MapKit_MKMapSnapshotOptions")]
     unsafe impl MKMapSnapshotOptions {

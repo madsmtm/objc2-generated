@@ -88,6 +88,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLIOCommandQueueDescriptor")]
+unsafe impl NSObjectProtocol for MTLIOCommandQueueDescriptor {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLIOCommandQueueDescriptor")]
     unsafe impl MTLIOCommandQueueDescriptor {

@@ -25,6 +25,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSEnergyFormatter")]
+unsafe impl NSCoding for NSEnergyFormatter {}
+
+#[cfg(feature = "Foundation_NSEnergyFormatter")]
+unsafe impl NSObjectProtocol for NSEnergyFormatter {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSEnergyFormatter")]
     unsafe impl NSEnergyFormatter {

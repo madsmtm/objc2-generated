@@ -39,6 +39,30 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSBox")]
+unsafe impl NSAccessibility for NSBox {}
+
+#[cfg(feature = "AppKit_NSBox")]
+unsafe impl NSAccessibilityElement for NSBox {}
+
+#[cfg(feature = "AppKit_NSBox")]
+unsafe impl NSAnimatablePropertyContainer for NSBox {}
+
+#[cfg(feature = "AppKit_NSBox")]
+unsafe impl NSAppearanceCustomization for NSBox {}
+
+#[cfg(feature = "AppKit_NSBox")]
+unsafe impl NSCoding for NSBox {}
+
+#[cfg(feature = "AppKit_NSBox")]
+unsafe impl NSDraggingDestination for NSBox {}
+
+#[cfg(feature = "AppKit_NSBox")]
+unsafe impl NSObjectProtocol for NSBox {}
+
+#[cfg(feature = "AppKit_NSBox")]
+unsafe impl NSUserInterfaceItemIdentification for NSBox {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSBox")]
     unsafe impl NSBox {

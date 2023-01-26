@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSUndoManager")]
+unsafe impl NSObjectProtocol for NSUndoManager {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSUndoManager")]
     unsafe impl NSUndoManager {

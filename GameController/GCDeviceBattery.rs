@@ -26,6 +26,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "GameController_GCDeviceBattery")]
+unsafe impl NSObjectProtocol for GCDeviceBattery {}
+
 extern_methods!(
     #[cfg(feature = "GameController_GCDeviceBattery")]
     unsafe impl GCDeviceBattery {

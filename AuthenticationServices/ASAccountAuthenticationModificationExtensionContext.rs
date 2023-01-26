@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationExtensionContext")]
+unsafe impl NSObjectProtocol for ASAccountAuthenticationModificationExtensionContext {}
+
 extern_methods!(
     #[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationExtensionContext")]
     unsafe impl ASAccountAuthenticationModificationExtensionContext {

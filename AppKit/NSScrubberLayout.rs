@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSScrubberLayoutAttributes")]
+unsafe impl NSObjectProtocol for NSScrubberLayoutAttributes {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSScrubberLayoutAttributes")]
     unsafe impl NSScrubberLayoutAttributes {
@@ -55,6 +58,9 @@ extern_class!(
 
 #[cfg(feature = "AppKit_NSScrubberLayout")]
 unsafe impl NSCoding for NSScrubberLayout {}
+
+#[cfg(feature = "AppKit_NSScrubberLayout")]
+unsafe impl NSObjectProtocol for NSScrubberLayout {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSScrubberLayout")]
@@ -151,6 +157,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSScrubberFlowLayout")]
+unsafe impl NSCoding for NSScrubberFlowLayout {}
+
+#[cfg(feature = "AppKit_NSScrubberFlowLayout")]
+unsafe impl NSObjectProtocol for NSScrubberFlowLayout {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSScrubberFlowLayout")]
     unsafe impl NSScrubberFlowLayout {
@@ -183,6 +195,12 @@ extern_class!(
         type Super = NSScrubberLayout;
     }
 );
+
+#[cfg(feature = "AppKit_NSScrubberProportionalLayout")]
+unsafe impl NSCoding for NSScrubberProportionalLayout {}
+
+#[cfg(feature = "AppKit_NSScrubberProportionalLayout")]
+unsafe impl NSObjectProtocol for NSScrubberProportionalLayout {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSScrubberProportionalLayout")]

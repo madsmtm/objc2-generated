@@ -46,6 +46,21 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSDatePickerCell")]
+unsafe impl NSAccessibility for NSDatePickerCell {}
+
+#[cfg(feature = "AppKit_NSDatePickerCell")]
+unsafe impl NSAccessibilityElement for NSDatePickerCell {}
+
+#[cfg(feature = "AppKit_NSDatePickerCell")]
+unsafe impl NSCoding for NSDatePickerCell {}
+
+#[cfg(feature = "AppKit_NSDatePickerCell")]
+unsafe impl NSObjectProtocol for NSDatePickerCell {}
+
+#[cfg(feature = "AppKit_NSDatePickerCell")]
+unsafe impl NSUserInterfaceItemIdentification for NSDatePickerCell {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSDatePickerCell")]
     unsafe impl NSDatePickerCell {

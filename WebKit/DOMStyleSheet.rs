@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_DOMStyleSheet")]
+unsafe impl NSObjectProtocol for DOMStyleSheet {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_DOMStyleSheet")]
     unsafe impl DOMStyleSheet {

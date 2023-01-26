@@ -33,6 +33,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSCollectionViewFlowLayoutInvalidationContext")]
+unsafe impl NSObjectProtocol for NSCollectionViewFlowLayoutInvalidationContext {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSCollectionViewFlowLayoutInvalidationContext")]
     unsafe impl NSCollectionViewFlowLayoutInvalidationContext {
@@ -152,6 +155,12 @@ extern_class!(
         type Super = NSCollectionViewLayout;
     }
 );
+
+#[cfg(feature = "AppKit_NSCollectionViewFlowLayout")]
+unsafe impl NSCoding for NSCollectionViewFlowLayout {}
+
+#[cfg(feature = "AppKit_NSCollectionViewFlowLayout")]
+unsafe impl NSObjectProtocol for NSCollectionViewFlowLayout {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSCollectionViewFlowLayout")]

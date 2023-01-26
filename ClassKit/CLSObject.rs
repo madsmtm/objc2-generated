@@ -16,6 +16,12 @@ extern_class!(
 );
 
 #[cfg(feature = "ClassKit_CLSObject")]
+unsafe impl NSCoding for CLSObject {}
+
+#[cfg(feature = "ClassKit_CLSObject")]
+unsafe impl NSObjectProtocol for CLSObject {}
+
+#[cfg(feature = "ClassKit_CLSObject")]
 unsafe impl NSSecureCoding for CLSObject {}
 
 extern_methods!(

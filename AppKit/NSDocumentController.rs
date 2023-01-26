@@ -23,6 +23,9 @@ unsafe impl NSCoding for NSDocumentController {}
 unsafe impl NSMenuItemValidation for NSDocumentController {}
 
 #[cfg(feature = "AppKit_NSDocumentController")]
+unsafe impl NSObjectProtocol for NSDocumentController {}
+
+#[cfg(feature = "AppKit_NSDocumentController")]
 unsafe impl NSUserInterfaceValidations for NSDocumentController {}
 
 extern_methods!(

@@ -15,6 +15,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSSortDescriptor")]
+unsafe impl NSCoding for NSSortDescriptor {}
+
+#[cfg(feature = "Foundation_NSSortDescriptor")]
+unsafe impl NSObjectProtocol for NSSortDescriptor {}
+
+#[cfg(feature = "Foundation_NSSortDescriptor")]
 unsafe impl NSSecureCoding for NSSortDescriptor {}
 
 extern_methods!(

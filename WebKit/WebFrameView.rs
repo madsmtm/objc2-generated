@@ -18,6 +18,30 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_WebFrameView")]
+unsafe impl NSAccessibility for WebFrameView {}
+
+#[cfg(feature = "WebKit_WebFrameView")]
+unsafe impl NSAccessibilityElement for WebFrameView {}
+
+#[cfg(feature = "WebKit_WebFrameView")]
+unsafe impl NSAnimatablePropertyContainer for WebFrameView {}
+
+#[cfg(feature = "WebKit_WebFrameView")]
+unsafe impl NSAppearanceCustomization for WebFrameView {}
+
+#[cfg(feature = "WebKit_WebFrameView")]
+unsafe impl NSCoding for WebFrameView {}
+
+#[cfg(feature = "WebKit_WebFrameView")]
+unsafe impl NSDraggingDestination for WebFrameView {}
+
+#[cfg(feature = "WebKit_WebFrameView")]
+unsafe impl NSObjectProtocol for WebFrameView {}
+
+#[cfg(feature = "WebKit_WebFrameView")]
+unsafe impl NSUserInterfaceItemIdentification for WebFrameView {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_WebFrameView")]
     unsafe impl WebFrameView {

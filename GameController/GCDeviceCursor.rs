@@ -17,6 +17,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "GameController_GCDeviceCursor")]
+unsafe impl NSObjectProtocol for GCDeviceCursor {}
+
 extern_methods!(
     #[cfg(feature = "GameController_GCDeviceCursor")]
     unsafe impl GCDeviceCursor {}

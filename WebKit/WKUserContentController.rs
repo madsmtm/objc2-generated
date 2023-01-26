@@ -17,6 +17,12 @@ extern_class!(
 );
 
 #[cfg(feature = "WebKit_WKUserContentController")]
+unsafe impl NSCoding for WKUserContentController {}
+
+#[cfg(feature = "WebKit_WKUserContentController")]
+unsafe impl NSObjectProtocol for WKUserContentController {}
+
+#[cfg(feature = "WebKit_WKUserContentController")]
 unsafe impl NSSecureCoding for WKUserContentController {}
 
 extern_methods!(

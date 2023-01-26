@@ -28,6 +28,9 @@ extern_class!(
 #[cfg(feature = "AppKit_NSTabViewItem")]
 unsafe impl NSCoding for NSTabViewItem {}
 
+#[cfg(feature = "AppKit_NSTabViewItem")]
+unsafe impl NSObjectProtocol for NSTabViewItem {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSTabViewItem")]
     unsafe impl NSTabViewItem {

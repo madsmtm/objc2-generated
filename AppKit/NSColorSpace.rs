@@ -31,6 +31,12 @@ extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSColorSpace")]
+unsafe impl NSCoding for NSColorSpace {}
+
+#[cfg(feature = "AppKit_NSColorSpace")]
+unsafe impl NSObjectProtocol for NSColorSpace {}
+
+#[cfg(feature = "AppKit_NSColorSpace")]
 unsafe impl NSSecureCoding for NSColorSpace {}
 
 extern_methods!(

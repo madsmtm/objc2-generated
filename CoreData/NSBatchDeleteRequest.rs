@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreData_NSBatchDeleteRequest")]
+unsafe impl NSObjectProtocol for NSBatchDeleteRequest {}
+
 extern_methods!(
     #[cfg(feature = "CoreData_NSBatchDeleteRequest")]
     unsafe impl NSBatchDeleteRequest {

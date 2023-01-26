@@ -15,6 +15,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreData_NSMappingModel")]
+unsafe impl NSObjectProtocol for NSMappingModel {}
+
 extern_methods!(
     #[cfg(feature = "CoreData_NSMappingModel")]
     unsafe impl NSMappingModel {

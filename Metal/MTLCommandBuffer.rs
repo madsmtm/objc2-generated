@@ -69,6 +69,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLCommandBufferDescriptor")]
+unsafe impl NSObjectProtocol for MTLCommandBufferDescriptor {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLCommandBufferDescriptor")]
     unsafe impl MTLCommandBufferDescriptor {

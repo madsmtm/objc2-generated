@@ -56,6 +56,9 @@ extern_class!(
 #[cfg(feature = "AppKit_NSTextFinder")]
 unsafe impl NSCoding for NSTextFinder {}
 
+#[cfg(feature = "AppKit_NSTextFinder")]
+unsafe impl NSObjectProtocol for NSTextFinder {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSTextFinder")]
     unsafe impl NSTextFinder {

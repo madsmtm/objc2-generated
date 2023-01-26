@@ -41,6 +41,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "GameKit_GKLeaderboard")]
+unsafe impl NSObjectProtocol for GKLeaderboard {}
+
 extern_methods!(
     #[cfg(feature = "GameKit_GKLeaderboard")]
     unsafe impl GKLeaderboard {

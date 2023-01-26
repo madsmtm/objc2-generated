@@ -32,6 +32,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSNotificationQueue")]
+unsafe impl NSObjectProtocol for NSNotificationQueue {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSNotificationQueue")]
     unsafe impl NSNotificationQueue {

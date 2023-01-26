@@ -21,6 +21,18 @@ __inner_extern_class!(
 );
 
 #[cfg(feature = "Contacts_CNLabeledValue")]
+unsafe impl<ValueType: Message, ValueTypeOwnership: Ownership> NSCoding
+    for CNLabeledValue<ValueType, ValueTypeOwnership>
+{
+}
+
+#[cfg(feature = "Contacts_CNLabeledValue")]
+unsafe impl<ValueType: Message, ValueTypeOwnership: Ownership> NSObjectProtocol
+    for CNLabeledValue<ValueType, ValueTypeOwnership>
+{
+}
+
+#[cfg(feature = "Contacts_CNLabeledValue")]
 unsafe impl<ValueType: Message, ValueTypeOwnership: Ownership> NSSecureCoding
     for CNLabeledValue<ValueType, ValueTypeOwnership>
 {

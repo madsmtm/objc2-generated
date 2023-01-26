@@ -18,6 +18,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_DOMHTMLLegendElement")]
+unsafe impl DOMEventTarget for DOMHTMLLegendElement {}
+
+#[cfg(feature = "WebKit_DOMHTMLLegendElement")]
+unsafe impl NSObjectProtocol for DOMHTMLLegendElement {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_DOMHTMLLegendElement")]
     unsafe impl DOMHTMLLegendElement {

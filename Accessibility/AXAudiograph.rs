@@ -66,6 +66,9 @@ extern_class!(
 #[cfg(feature = "Accessibility_AXNumericDataAxisDescriptor")]
 unsafe impl AXDataAxisDescriptor for AXNumericDataAxisDescriptor {}
 
+#[cfg(feature = "Accessibility_AXNumericDataAxisDescriptor")]
+unsafe impl NSObjectProtocol for AXNumericDataAxisDescriptor {}
+
 extern_methods!(
     #[cfg(feature = "Accessibility_AXNumericDataAxisDescriptor")]
     unsafe impl AXNumericDataAxisDescriptor {
@@ -161,6 +164,9 @@ extern_class!(
 #[cfg(feature = "Accessibility_AXCategoricalDataAxisDescriptor")]
 unsafe impl AXDataAxisDescriptor for AXCategoricalDataAxisDescriptor {}
 
+#[cfg(feature = "Accessibility_AXCategoricalDataAxisDescriptor")]
+unsafe impl NSObjectProtocol for AXCategoricalDataAxisDescriptor {}
+
 extern_methods!(
     #[cfg(feature = "Accessibility_AXCategoricalDataAxisDescriptor")]
     unsafe impl AXCategoricalDataAxisDescriptor {
@@ -211,6 +217,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Accessibility_AXDataPointValue")]
+unsafe impl NSObjectProtocol for AXDataPointValue {}
+
 extern_methods!(
     #[cfg(feature = "Accessibility_AXDataPointValue")]
     unsafe impl AXDataPointValue {
@@ -253,6 +262,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Accessibility_AXDataPoint")]
+unsafe impl NSObjectProtocol for AXDataPoint {}
 
 extern_methods!(
     #[cfg(feature = "Accessibility_AXDataPoint")]
@@ -356,6 +368,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Accessibility_AXDataSeriesDescriptor")]
+unsafe impl NSObjectProtocol for AXDataSeriesDescriptor {}
+
 extern_methods!(
     #[cfg(feature = "Accessibility_AXDataSeriesDescriptor")]
     unsafe impl AXDataSeriesDescriptor {
@@ -445,6 +460,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Accessibility_AXChartDescriptor")]
+unsafe impl NSObjectProtocol for AXChartDescriptor {}
 
 extern_methods!(
     #[cfg(feature = "Accessibility_AXChartDescriptor")]
@@ -615,6 +633,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Accessibility_AXLiveAudioGraph")]
+unsafe impl NSObjectProtocol for AXLiveAudioGraph {}
 
 extern_methods!(
     #[cfg(feature = "Accessibility_AXLiveAudioGraph")]

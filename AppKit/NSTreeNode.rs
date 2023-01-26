@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSTreeNode")]
+unsafe impl NSObjectProtocol for NSTreeNode {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSTreeNode")]
     unsafe impl NSTreeNode {

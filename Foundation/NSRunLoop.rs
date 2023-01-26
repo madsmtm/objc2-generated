@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSRunLoop")]
+unsafe impl NSObjectProtocol for NSRunLoop {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSRunLoop")]
     unsafe impl NSRunLoop {

@@ -17,6 +17,21 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "GameController_GCEventViewController")]
+unsafe impl NSCoding for GCEventViewController {}
+
+#[cfg(feature = "GameController_GCEventViewController")]
+unsafe impl NSEditor for GCEventViewController {}
+
+#[cfg(feature = "GameController_GCEventViewController")]
+unsafe impl NSObjectProtocol for GCEventViewController {}
+
+#[cfg(feature = "GameController_GCEventViewController")]
+unsafe impl NSSeguePerforming for GCEventViewController {}
+
+#[cfg(feature = "GameController_GCEventViewController")]
+unsafe impl NSUserInterfaceItemIdentification for GCEventViewController {}
+
 extern_methods!(
     #[cfg(feature = "GameController_GCEventViewController")]
     unsafe impl GCEventViewController {

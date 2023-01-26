@@ -40,6 +40,9 @@ extern_class!(
 #[cfg(feature = "GameController_GCController")]
 unsafe impl GCDevice for GCController {}
 
+#[cfg(feature = "GameController_GCController")]
+unsafe impl NSObjectProtocol for GCController {}
+
 extern_methods!(
     #[cfg(feature = "GameController_GCController")]
     unsafe impl GCController {

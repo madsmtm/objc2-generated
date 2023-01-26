@@ -40,6 +40,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "EventKit_EKEvent")]
+unsafe impl NSObjectProtocol for EKEvent {}
+
 extern_methods!(
     #[cfg(feature = "EventKit_EKEvent")]
     unsafe impl EKEvent {

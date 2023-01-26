@@ -26,6 +26,12 @@ extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSTextStorage")]
+unsafe impl NSCoding for NSTextStorage {}
+
+#[cfg(feature = "AppKit_NSTextStorage")]
+unsafe impl NSObjectProtocol for NSTextStorage {}
+
+#[cfg(feature = "AppKit_NSTextStorage")]
 unsafe impl NSSecureCoding for NSTextStorage {}
 
 extern_methods!(

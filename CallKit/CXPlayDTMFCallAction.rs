@@ -25,6 +25,15 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CallKit_CXPlayDTMFCallAction")]
+unsafe impl NSCoding for CXPlayDTMFCallAction {}
+
+#[cfg(feature = "CallKit_CXPlayDTMFCallAction")]
+unsafe impl NSObjectProtocol for CXPlayDTMFCallAction {}
+
+#[cfg(feature = "CallKit_CXPlayDTMFCallAction")]
+unsafe impl NSSecureCoding for CXPlayDTMFCallAction {}
+
 extern_methods!(
     #[cfg(feature = "CallKit_CXPlayDTMFCallAction")]
     unsafe impl CXPlayDTMFCallAction {

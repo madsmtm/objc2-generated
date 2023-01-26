@@ -65,6 +65,9 @@ unsafe impl NSCoding for NSManagedObjectContext {}
 #[cfg(feature = "CoreData_NSManagedObjectContext")]
 unsafe impl NSLocking for NSManagedObjectContext {}
 
+#[cfg(feature = "CoreData_NSManagedObjectContext")]
+unsafe impl NSObjectProtocol for NSManagedObjectContext {}
+
 extern_methods!(
     #[cfg(feature = "CoreData_NSManagedObjectContext")]
     unsafe impl NSManagedObjectContext {

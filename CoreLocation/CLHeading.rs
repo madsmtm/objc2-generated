@@ -21,6 +21,12 @@ extern_class!(
 );
 
 #[cfg(feature = "CoreLocation_CLHeading")]
+unsafe impl NSCoding for CLHeading {}
+
+#[cfg(feature = "CoreLocation_CLHeading")]
+unsafe impl NSObjectProtocol for CLHeading {}
+
+#[cfg(feature = "CoreLocation_CLHeading")]
 unsafe impl NSSecureCoding for CLHeading {}
 
 extern_methods!(

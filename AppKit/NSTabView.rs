@@ -52,6 +52,30 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSTabView")]
+unsafe impl NSAccessibility for NSTabView {}
+
+#[cfg(feature = "AppKit_NSTabView")]
+unsafe impl NSAccessibilityElement for NSTabView {}
+
+#[cfg(feature = "AppKit_NSTabView")]
+unsafe impl NSAnimatablePropertyContainer for NSTabView {}
+
+#[cfg(feature = "AppKit_NSTabView")]
+unsafe impl NSAppearanceCustomization for NSTabView {}
+
+#[cfg(feature = "AppKit_NSTabView")]
+unsafe impl NSCoding for NSTabView {}
+
+#[cfg(feature = "AppKit_NSTabView")]
+unsafe impl NSDraggingDestination for NSTabView {}
+
+#[cfg(feature = "AppKit_NSTabView")]
+unsafe impl NSObjectProtocol for NSTabView {}
+
+#[cfg(feature = "AppKit_NSTabView")]
+unsafe impl NSUserInterfaceItemIdentification for NSTabView {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSTabView")]
     unsafe impl NSTabView {

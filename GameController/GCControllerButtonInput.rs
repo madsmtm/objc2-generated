@@ -23,6 +23,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "GameController_GCControllerButtonInput")]
+unsafe impl NSObjectProtocol for GCControllerButtonInput {}
+
 extern_methods!(
     #[cfg(feature = "GameController_GCControllerButtonInput")]
     unsafe impl GCControllerButtonInput {

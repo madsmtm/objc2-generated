@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_WKFindConfiguration")]
+unsafe impl NSObjectProtocol for WKFindConfiguration {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_WKFindConfiguration")]
     unsafe impl WKFindConfiguration {

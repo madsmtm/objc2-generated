@@ -41,6 +41,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSXMLDTDNode")]
+unsafe impl NSObjectProtocol for NSXMLDTDNode {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSXMLDTDNode")]
     unsafe impl NSXMLDTDNode {

@@ -43,6 +43,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLStencilDescriptor")]
+unsafe impl NSObjectProtocol for MTLStencilDescriptor {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLStencilDescriptor")]
     unsafe impl MTLStencilDescriptor {
@@ -97,6 +100,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Metal_MTLDepthStencilDescriptor")]
+unsafe impl NSObjectProtocol for MTLDepthStencilDescriptor {}
 
 extern_methods!(
     #[cfg(feature = "Metal_MTLDepthStencilDescriptor")]

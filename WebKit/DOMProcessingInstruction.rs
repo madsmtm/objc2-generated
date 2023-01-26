@@ -18,6 +18,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_DOMProcessingInstruction")]
+unsafe impl DOMEventTarget for DOMProcessingInstruction {}
+
+#[cfg(feature = "WebKit_DOMProcessingInstruction")]
+unsafe impl NSObjectProtocol for DOMProcessingInstruction {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_DOMProcessingInstruction")]
     unsafe impl DOMProcessingInstruction {

@@ -15,6 +15,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLFunctionConstantValues")]
+unsafe impl NSObjectProtocol for MTLFunctionConstantValues {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLFunctionConstantValues")]
     unsafe impl MTLFunctionConstantValues {

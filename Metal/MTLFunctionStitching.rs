@@ -24,13 +24,16 @@ extern_class!(
 #[cfg(feature = "Metal_MTLFunctionStitchingAttributeAlwaysInline")]
 unsafe impl MTLFunctionStitchingAttribute for MTLFunctionStitchingAttributeAlwaysInline {}
 
+#[cfg(feature = "Metal_MTLFunctionStitchingAttributeAlwaysInline")]
+unsafe impl NSObjectProtocol for MTLFunctionStitchingAttributeAlwaysInline {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLFunctionStitchingAttributeAlwaysInline")]
     unsafe impl MTLFunctionStitchingAttributeAlwaysInline {}
 );
 
 extern_protocol!(
-    pub unsafe trait MTLFunctionStitchingNode: NSObjectProtocol + NSCopying {}
+    pub unsafe trait MTLFunctionStitchingNode: NSCopying + NSObjectProtocol {}
 
     unsafe impl ProtocolType for dyn MTLFunctionStitchingNode {}
 );
@@ -48,6 +51,9 @@ extern_class!(
 
 #[cfg(feature = "Metal_MTLFunctionStitchingInputNode")]
 unsafe impl MTLFunctionStitchingNode for MTLFunctionStitchingInputNode {}
+
+#[cfg(feature = "Metal_MTLFunctionStitchingInputNode")]
+unsafe impl NSObjectProtocol for MTLFunctionStitchingInputNode {}
 
 extern_methods!(
     #[cfg(feature = "Metal_MTLFunctionStitchingInputNode")]
@@ -79,6 +85,9 @@ extern_class!(
 
 #[cfg(feature = "Metal_MTLFunctionStitchingFunctionNode")]
 unsafe impl MTLFunctionStitchingNode for MTLFunctionStitchingFunctionNode {}
+
+#[cfg(feature = "Metal_MTLFunctionStitchingFunctionNode")]
+unsafe impl NSObjectProtocol for MTLFunctionStitchingFunctionNode {}
 
 extern_methods!(
     #[cfg(feature = "Metal_MTLFunctionStitchingFunctionNode")]
@@ -138,6 +147,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Metal_MTLFunctionStitchingGraph")]
+unsafe impl NSObjectProtocol for MTLFunctionStitchingGraph {}
 
 extern_methods!(
     #[cfg(feature = "Metal_MTLFunctionStitchingGraph")]
@@ -211,6 +223,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Metal_MTLStitchedLibraryDescriptor")]
+unsafe impl NSObjectProtocol for MTLStitchedLibraryDescriptor {}
 
 extern_methods!(
     #[cfg(feature = "Metal_MTLStitchedLibraryDescriptor")]

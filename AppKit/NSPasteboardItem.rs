@@ -17,10 +17,13 @@ extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSPasteboardItem")]
-unsafe impl NSPasteboardWriting for NSPasteboardItem {}
+unsafe impl NSObjectProtocol for NSPasteboardItem {}
 
 #[cfg(feature = "AppKit_NSPasteboardItem")]
 unsafe impl NSPasteboardReading for NSPasteboardItem {}
+
+#[cfg(feature = "AppKit_NSPasteboardItem")]
+unsafe impl NSPasteboardWriting for NSPasteboardItem {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSPasteboardItem")]

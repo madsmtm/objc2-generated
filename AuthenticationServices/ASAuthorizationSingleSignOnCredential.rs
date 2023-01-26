@@ -18,6 +18,15 @@ extern_class!(
 #[cfg(feature = "AuthenticationServices_ASAuthorizationSingleSignOnCredential")]
 unsafe impl ASAuthorizationCredential for ASAuthorizationSingleSignOnCredential {}
 
+#[cfg(feature = "AuthenticationServices_ASAuthorizationSingleSignOnCredential")]
+unsafe impl NSCoding for ASAuthorizationSingleSignOnCredential {}
+
+#[cfg(feature = "AuthenticationServices_ASAuthorizationSingleSignOnCredential")]
+unsafe impl NSObjectProtocol for ASAuthorizationSingleSignOnCredential {}
+
+#[cfg(feature = "AuthenticationServices_ASAuthorizationSingleSignOnCredential")]
+unsafe impl NSSecureCoding for ASAuthorizationSingleSignOnCredential {}
+
 extern_methods!(
     #[cfg(feature = "AuthenticationServices_ASAuthorizationSingleSignOnCredential")]
     unsafe impl ASAuthorizationSingleSignOnCredential {

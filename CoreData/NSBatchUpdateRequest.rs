@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreData_NSBatchUpdateRequest")]
+unsafe impl NSObjectProtocol for NSBatchUpdateRequest {}
+
 extern_methods!(
     #[cfg(feature = "CoreData_NSBatchUpdateRequest")]
     unsafe impl NSBatchUpdateRequest {

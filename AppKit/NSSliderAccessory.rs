@@ -19,6 +19,9 @@ extern_class!(
 #[cfg(feature = "AppKit_NSSliderAccessory")]
 unsafe impl NSCoding for NSSliderAccessory {}
 
+#[cfg(feature = "AppKit_NSSliderAccessory")]
+unsafe impl NSObjectProtocol for NSSliderAccessory {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSSliderAccessory")]
     unsafe impl NSSliderAccessory {
@@ -66,6 +69,9 @@ extern_class!(
 
 #[cfg(feature = "AppKit_NSSliderAccessoryBehavior")]
 unsafe impl NSCoding for NSSliderAccessoryBehavior {}
+
+#[cfg(feature = "AppKit_NSSliderAccessoryBehavior")]
+unsafe impl NSObjectProtocol for NSSliderAccessoryBehavior {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSSliderAccessoryBehavior")]

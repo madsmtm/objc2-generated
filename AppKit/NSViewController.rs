@@ -33,7 +33,13 @@ extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSViewController")]
+unsafe impl NSCoding for NSViewController {}
+
+#[cfg(feature = "AppKit_NSViewController")]
 unsafe impl NSEditor for NSViewController {}
+
+#[cfg(feature = "AppKit_NSViewController")]
+unsafe impl NSObjectProtocol for NSViewController {}
 
 #[cfg(feature = "AppKit_NSViewController")]
 unsafe impl NSSeguePerforming for NSViewController {}

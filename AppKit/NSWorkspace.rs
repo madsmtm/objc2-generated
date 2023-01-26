@@ -24,6 +24,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSWorkspace")]
+unsafe impl NSObjectProtocol for NSWorkspace {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSWorkspace")]
     unsafe impl NSWorkspace {
@@ -274,6 +277,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSWorkspaceOpenConfiguration")]
+unsafe impl NSObjectProtocol for NSWorkspaceOpenConfiguration {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSWorkspaceOpenConfiguration")]
     unsafe impl NSWorkspaceOpenConfiguration {
@@ -429,6 +435,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "AppKit_NSWorkspaceAuthorization")]
+unsafe impl NSObjectProtocol for NSWorkspaceAuthorization {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSWorkspaceAuthorization")]

@@ -27,6 +27,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreData_NSEntityMigrationPolicy")]
+unsafe impl NSObjectProtocol for NSEntityMigrationPolicy {}
+
 extern_methods!(
     #[cfg(feature = "CoreData_NSEntityMigrationPolicy")]
     unsafe impl NSEntityMigrationPolicy {

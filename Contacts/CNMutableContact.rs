@@ -16,6 +16,15 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Contacts_CNMutableContact")]
+unsafe impl NSCoding for CNMutableContact {}
+
+#[cfg(feature = "Contacts_CNMutableContact")]
+unsafe impl NSObjectProtocol for CNMutableContact {}
+
+#[cfg(feature = "Contacts_CNMutableContact")]
+unsafe impl NSSecureCoding for CNMutableContact {}
+
 extern_methods!(
     #[cfg(feature = "Contacts_CNMutableContact")]
     unsafe impl CNMutableContact {

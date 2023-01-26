@@ -15,6 +15,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreAnimation_CAEDRMetadata")]
+unsafe impl NSObjectProtocol for CAEDRMetadata {}
+
 extern_methods!(
     #[cfg(feature = "CoreAnimation_CAEDRMetadata")]
     unsafe impl CAEDRMetadata {

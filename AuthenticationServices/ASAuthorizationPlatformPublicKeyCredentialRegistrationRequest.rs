@@ -28,6 +28,21 @@ unsafe impl ASAuthorizationPublicKeyCredentialRegistrationRequest
 {
 }
 
+#[cfg(
+    feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest"
+)]
+unsafe impl NSCoding for ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest {}
+
+#[cfg(
+    feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest"
+)]
+unsafe impl NSObjectProtocol for ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest {}
+
+#[cfg(
+    feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest"
+)]
+unsafe impl NSSecureCoding for ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest {}
+
 extern_methods!(
     #[cfg(
         feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest"

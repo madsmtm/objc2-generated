@@ -19,6 +19,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "MapKit_MKCircleRenderer")]
+unsafe impl NSObjectProtocol for MKCircleRenderer {}
+
 extern_methods!(
     #[cfg(feature = "MapKit_MKCircleRenderer")]
     unsafe impl MKCircleRenderer {

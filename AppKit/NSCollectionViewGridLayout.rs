@@ -17,6 +17,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSCollectionViewGridLayout")]
+unsafe impl NSCoding for NSCollectionViewGridLayout {}
+
+#[cfg(feature = "AppKit_NSCollectionViewGridLayout")]
+unsafe impl NSObjectProtocol for NSCollectionViewGridLayout {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSCollectionViewGridLayout")]
     unsafe impl NSCollectionViewGridLayout {

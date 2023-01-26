@@ -15,6 +15,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreData_NSPersistentStoreDescription")]
+unsafe impl NSObjectProtocol for NSPersistentStoreDescription {}
+
 extern_methods!(
     #[cfg(feature = "CoreData_NSPersistentStoreDescription")]
     unsafe impl NSPersistentStoreDescription {

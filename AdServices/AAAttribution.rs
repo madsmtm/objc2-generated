@@ -26,6 +26,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AdServices_AAAttribution")]
+unsafe impl NSObjectProtocol for AAAttribution {}
+
 extern_methods!(
     #[cfg(feature = "AdServices_AAAttribution")]
     unsafe impl AAAttribution {

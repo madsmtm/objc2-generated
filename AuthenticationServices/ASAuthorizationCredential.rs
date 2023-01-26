@@ -6,7 +6,7 @@ use crate::Foundation::*;
 
 extern_protocol!(
     pub unsafe trait ASAuthorizationCredential:
-        NSObjectProtocol + NSCopying + NSSecureCoding
+        NSCopying + NSObjectProtocol + NSSecureCoding
     {
     }
 

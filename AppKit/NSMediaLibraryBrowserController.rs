@@ -25,6 +25,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSMediaLibraryBrowserController")]
+unsafe impl NSObjectProtocol for NSMediaLibraryBrowserController {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSMediaLibraryBrowserController")]
     unsafe impl NSMediaLibraryBrowserController {

@@ -16,6 +16,18 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreAnimation_CAReplicatorLayer")]
+unsafe impl CAMediaTiming for CAReplicatorLayer {}
+
+#[cfg(feature = "CoreAnimation_CAReplicatorLayer")]
+unsafe impl NSCoding for CAReplicatorLayer {}
+
+#[cfg(feature = "CoreAnimation_CAReplicatorLayer")]
+unsafe impl NSObjectProtocol for CAReplicatorLayer {}
+
+#[cfg(feature = "CoreAnimation_CAReplicatorLayer")]
+unsafe impl NSSecureCoding for CAReplicatorLayer {}
+
 extern_methods!(
     #[cfg(feature = "CoreAnimation_CAReplicatorLayer")]
     unsafe impl CAReplicatorLayer {

@@ -64,6 +64,9 @@ extern_class!(
 #[cfg(feature = "WebKit_DOMNode")]
 unsafe impl DOMEventTarget for DOMNode {}
 
+#[cfg(feature = "WebKit_DOMNode")]
+unsafe impl NSObjectProtocol for DOMNode {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_DOMNode")]
     unsafe impl DOMNode {

@@ -17,6 +17,39 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSPopUpButton")]
+unsafe impl NSAccessibility for NSPopUpButton {}
+
+#[cfg(feature = "AppKit_NSPopUpButton")]
+unsafe impl NSAccessibilityButton for NSPopUpButton {}
+
+#[cfg(feature = "AppKit_NSPopUpButton")]
+unsafe impl NSAccessibilityElement for NSPopUpButton {}
+
+#[cfg(feature = "AppKit_NSPopUpButton")]
+unsafe impl NSAnimatablePropertyContainer for NSPopUpButton {}
+
+#[cfg(feature = "AppKit_NSPopUpButton")]
+unsafe impl NSAppearanceCustomization for NSPopUpButton {}
+
+#[cfg(feature = "AppKit_NSPopUpButton")]
+unsafe impl NSCoding for NSPopUpButton {}
+
+#[cfg(feature = "AppKit_NSPopUpButton")]
+unsafe impl NSDraggingDestination for NSPopUpButton {}
+
+#[cfg(feature = "AppKit_NSPopUpButton")]
+unsafe impl NSObjectProtocol for NSPopUpButton {}
+
+#[cfg(feature = "AppKit_NSPopUpButton")]
+unsafe impl NSUserInterfaceCompression for NSPopUpButton {}
+
+#[cfg(feature = "AppKit_NSPopUpButton")]
+unsafe impl NSUserInterfaceItemIdentification for NSPopUpButton {}
+
+#[cfg(feature = "AppKit_NSPopUpButton")]
+unsafe impl NSUserInterfaceValidations for NSPopUpButton {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSPopUpButton")]
     unsafe impl NSPopUpButton {

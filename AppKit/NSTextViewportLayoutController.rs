@@ -56,6 +56,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSTextViewportLayoutController")]
+unsafe impl NSObjectProtocol for NSTextViewportLayoutController {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSTextViewportLayoutController")]
     unsafe impl NSTextViewportLayoutController {

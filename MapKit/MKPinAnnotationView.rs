@@ -33,6 +33,30 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "MapKit_MKPinAnnotationView")]
+unsafe impl NSAccessibility for MKPinAnnotationView {}
+
+#[cfg(feature = "MapKit_MKPinAnnotationView")]
+unsafe impl NSAccessibilityElement for MKPinAnnotationView {}
+
+#[cfg(feature = "MapKit_MKPinAnnotationView")]
+unsafe impl NSAnimatablePropertyContainer for MKPinAnnotationView {}
+
+#[cfg(feature = "MapKit_MKPinAnnotationView")]
+unsafe impl NSAppearanceCustomization for MKPinAnnotationView {}
+
+#[cfg(feature = "MapKit_MKPinAnnotationView")]
+unsafe impl NSCoding for MKPinAnnotationView {}
+
+#[cfg(feature = "MapKit_MKPinAnnotationView")]
+unsafe impl NSDraggingDestination for MKPinAnnotationView {}
+
+#[cfg(feature = "MapKit_MKPinAnnotationView")]
+unsafe impl NSObjectProtocol for MKPinAnnotationView {}
+
+#[cfg(feature = "MapKit_MKPinAnnotationView")]
+unsafe impl NSUserInterfaceItemIdentification for MKPinAnnotationView {}
+
 extern_methods!(
     #[cfg(feature = "MapKit_MKPinAnnotationView")]
     unsafe impl MKPinAnnotationView {

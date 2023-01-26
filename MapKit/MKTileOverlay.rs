@@ -19,7 +19,13 @@ extern_class!(
 );
 
 #[cfg(feature = "MapKit_MKTileOverlay")]
+unsafe impl MKAnnotation for MKTileOverlay {}
+
+#[cfg(feature = "MapKit_MKTileOverlay")]
 unsafe impl MKOverlay for MKTileOverlay {}
+
+#[cfg(feature = "MapKit_MKTileOverlay")]
+unsafe impl NSObjectProtocol for MKTileOverlay {}
 
 extern_methods!(
     #[cfg(feature = "MapKit_MKTileOverlay")]

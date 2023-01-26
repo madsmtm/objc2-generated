@@ -43,6 +43,9 @@ unsafe impl NSAnimatablePropertyContainer for NSSplitViewItem {}
 #[cfg(feature = "AppKit_NSSplitViewItem")]
 unsafe impl NSCoding for NSSplitViewItem {}
 
+#[cfg(feature = "AppKit_NSSplitViewItem")]
+unsafe impl NSObjectProtocol for NSSplitViewItem {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSSplitViewItem")]
     unsafe impl NSSplitViewItem {

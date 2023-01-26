@@ -38,6 +38,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "MapKit_MKLocalSearchCompleter")]
+unsafe impl NSObjectProtocol for MKLocalSearchCompleter {}
+
 extern_methods!(
     #[cfg(feature = "MapKit_MKLocalSearchCompleter")]
     unsafe impl MKLocalSearchCompleter {
@@ -139,6 +142,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "MapKit_MKLocalSearchCompletion")]
+unsafe impl NSObjectProtocol for MKLocalSearchCompletion {}
 
 extern_methods!(
     #[cfg(feature = "MapKit_MKLocalSearchCompletion")]

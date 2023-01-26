@@ -27,10 +27,34 @@ extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSText")]
+unsafe impl NSAccessibility for NSText {}
+
+#[cfg(feature = "AppKit_NSText")]
+unsafe impl NSAccessibilityElement for NSText {}
+
+#[cfg(feature = "AppKit_NSText")]
+unsafe impl NSAnimatablePropertyContainer for NSText {}
+
+#[cfg(feature = "AppKit_NSText")]
+unsafe impl NSAppearanceCustomization for NSText {}
+
+#[cfg(feature = "AppKit_NSText")]
 unsafe impl NSChangeSpelling for NSText {}
 
 #[cfg(feature = "AppKit_NSText")]
+unsafe impl NSCoding for NSText {}
+
+#[cfg(feature = "AppKit_NSText")]
+unsafe impl NSDraggingDestination for NSText {}
+
+#[cfg(feature = "AppKit_NSText")]
 unsafe impl NSIgnoreMisspelledWords for NSText {}
+
+#[cfg(feature = "AppKit_NSText")]
+unsafe impl NSObjectProtocol for NSText {}
+
+#[cfg(feature = "AppKit_NSText")]
+unsafe impl NSUserInterfaceItemIdentification for NSText {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSText")]

@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_DOMBlob")]
+unsafe impl NSObjectProtocol for DOMBlob {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_DOMBlob")]
     unsafe impl DOMBlob {

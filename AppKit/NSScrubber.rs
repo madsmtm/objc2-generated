@@ -103,6 +103,9 @@ extern_class!(
 #[cfg(feature = "AppKit_NSScrubberSelectionStyle")]
 unsafe impl NSCoding for NSScrubberSelectionStyle {}
 
+#[cfg(feature = "AppKit_NSScrubberSelectionStyle")]
+unsafe impl NSObjectProtocol for NSScrubberSelectionStyle {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSScrubberSelectionStyle")]
     unsafe impl NSScrubberSelectionStyle {
@@ -139,6 +142,30 @@ extern_class!(
         type Super = NSView;
     }
 );
+
+#[cfg(feature = "AppKit_NSScrubber")]
+unsafe impl NSAccessibility for NSScrubber {}
+
+#[cfg(feature = "AppKit_NSScrubber")]
+unsafe impl NSAccessibilityElement for NSScrubber {}
+
+#[cfg(feature = "AppKit_NSScrubber")]
+unsafe impl NSAnimatablePropertyContainer for NSScrubber {}
+
+#[cfg(feature = "AppKit_NSScrubber")]
+unsafe impl NSAppearanceCustomization for NSScrubber {}
+
+#[cfg(feature = "AppKit_NSScrubber")]
+unsafe impl NSCoding for NSScrubber {}
+
+#[cfg(feature = "AppKit_NSScrubber")]
+unsafe impl NSDraggingDestination for NSScrubber {}
+
+#[cfg(feature = "AppKit_NSScrubber")]
+unsafe impl NSObjectProtocol for NSScrubber {}
+
+#[cfg(feature = "AppKit_NSScrubber")]
+unsafe impl NSUserInterfaceItemIdentification for NSScrubber {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSScrubber")]

@@ -20,6 +20,21 @@ extern_class!(
 #[cfg(feature = "GameKit_GKTurnBasedMatchmakerViewController")]
 unsafe impl GKViewController for GKTurnBasedMatchmakerViewController {}
 
+#[cfg(feature = "GameKit_GKTurnBasedMatchmakerViewController")]
+unsafe impl NSCoding for GKTurnBasedMatchmakerViewController {}
+
+#[cfg(feature = "GameKit_GKTurnBasedMatchmakerViewController")]
+unsafe impl NSEditor for GKTurnBasedMatchmakerViewController {}
+
+#[cfg(feature = "GameKit_GKTurnBasedMatchmakerViewController")]
+unsafe impl NSObjectProtocol for GKTurnBasedMatchmakerViewController {}
+
+#[cfg(feature = "GameKit_GKTurnBasedMatchmakerViewController")]
+unsafe impl NSSeguePerforming for GKTurnBasedMatchmakerViewController {}
+
+#[cfg(feature = "GameKit_GKTurnBasedMatchmakerViewController")]
+unsafe impl NSUserInterfaceItemIdentification for GKTurnBasedMatchmakerViewController {}
+
 extern_methods!(
     #[cfg(feature = "GameKit_GKTurnBasedMatchmakerViewController")]
     unsafe impl GKTurnBasedMatchmakerViewController {}

@@ -15,6 +15,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Contacts_CNContactsUserDefaults")]
+unsafe impl NSObjectProtocol for CNContactsUserDefaults {}
+
 extern_methods!(
     #[cfg(feature = "Contacts_CNContactsUserDefaults")]
     unsafe impl CNContactsUserDefaults {

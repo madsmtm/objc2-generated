@@ -24,6 +24,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLHeapDescriptor")]
+unsafe impl NSObjectProtocol for MTLHeapDescriptor {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLHeapDescriptor")]
     unsafe impl MTLHeapDescriptor {

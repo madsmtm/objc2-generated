@@ -17,6 +17,30 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSDatePicker")]
+unsafe impl NSAccessibility for NSDatePicker {}
+
+#[cfg(feature = "AppKit_NSDatePicker")]
+unsafe impl NSAccessibilityElement for NSDatePicker {}
+
+#[cfg(feature = "AppKit_NSDatePicker")]
+unsafe impl NSAnimatablePropertyContainer for NSDatePicker {}
+
+#[cfg(feature = "AppKit_NSDatePicker")]
+unsafe impl NSAppearanceCustomization for NSDatePicker {}
+
+#[cfg(feature = "AppKit_NSDatePicker")]
+unsafe impl NSCoding for NSDatePicker {}
+
+#[cfg(feature = "AppKit_NSDatePicker")]
+unsafe impl NSDraggingDestination for NSDatePicker {}
+
+#[cfg(feature = "AppKit_NSDatePicker")]
+unsafe impl NSObjectProtocol for NSDatePicker {}
+
+#[cfg(feature = "AppKit_NSDatePicker")]
+unsafe impl NSUserInterfaceItemIdentification for NSDatePicker {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSDatePicker")]
     unsafe impl NSDatePicker {

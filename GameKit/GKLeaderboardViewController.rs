@@ -18,6 +18,24 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "GameKit_GKLeaderboardViewController")]
+unsafe impl GKViewController for GKLeaderboardViewController {}
+
+#[cfg(feature = "GameKit_GKLeaderboardViewController")]
+unsafe impl NSCoding for GKLeaderboardViewController {}
+
+#[cfg(feature = "GameKit_GKLeaderboardViewController")]
+unsafe impl NSEditor for GKLeaderboardViewController {}
+
+#[cfg(feature = "GameKit_GKLeaderboardViewController")]
+unsafe impl NSObjectProtocol for GKLeaderboardViewController {}
+
+#[cfg(feature = "GameKit_GKLeaderboardViewController")]
+unsafe impl NSSeguePerforming for GKLeaderboardViewController {}
+
+#[cfg(feature = "GameKit_GKLeaderboardViewController")]
+unsafe impl NSUserInterfaceItemIdentification for GKLeaderboardViewController {}
+
 extern_methods!(
     #[cfg(feature = "GameKit_GKLeaderboardViewController")]
     unsafe impl GKLeaderboardViewController {}

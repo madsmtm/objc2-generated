@@ -18,10 +18,34 @@ extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSImageView")]
+unsafe impl NSAccessibility for NSImageView {}
+
+#[cfg(feature = "AppKit_NSImageView")]
+unsafe impl NSAccessibilityElement for NSImageView {}
+
+#[cfg(feature = "AppKit_NSImageView")]
 unsafe impl NSAccessibilityImage for NSImageView {}
 
 #[cfg(feature = "AppKit_NSImageView")]
+unsafe impl NSAnimatablePropertyContainer for NSImageView {}
+
+#[cfg(feature = "AppKit_NSImageView")]
+unsafe impl NSAppearanceCustomization for NSImageView {}
+
+#[cfg(feature = "AppKit_NSImageView")]
+unsafe impl NSCoding for NSImageView {}
+
+#[cfg(feature = "AppKit_NSImageView")]
+unsafe impl NSDraggingDestination for NSImageView {}
+
+#[cfg(feature = "AppKit_NSImageView")]
 unsafe impl NSMenuItemValidation for NSImageView {}
+
+#[cfg(feature = "AppKit_NSImageView")]
+unsafe impl NSObjectProtocol for NSImageView {}
+
+#[cfg(feature = "AppKit_NSImageView")]
+unsafe impl NSUserInterfaceItemIdentification for NSImageView {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSImageView")]

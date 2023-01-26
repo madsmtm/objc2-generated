@@ -28,6 +28,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSFileVersion")]
+unsafe impl NSObjectProtocol for NSFileVersion {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSFileVersion")]
     unsafe impl NSFileVersion {

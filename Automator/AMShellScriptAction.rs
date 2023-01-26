@@ -18,6 +18,15 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Automator_AMShellScriptAction")]
+unsafe impl NSCoding for AMShellScriptAction {}
+
+#[cfg(feature = "Automator_AMShellScriptAction")]
+unsafe impl NSObjectProtocol for AMShellScriptAction {}
+
+#[cfg(feature = "Automator_AMShellScriptAction")]
+unsafe impl NSSecureCoding for AMShellScriptAction {}
+
 extern_methods!(
     #[cfg(feature = "Automator_AMShellScriptAction")]
     unsafe impl AMShellScriptAction {

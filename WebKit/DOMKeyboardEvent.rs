@@ -33,6 +33,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_DOMKeyboardEvent")]
+unsafe impl NSObjectProtocol for DOMKeyboardEvent {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_DOMKeyboardEvent")]
     unsafe impl DOMKeyboardEvent {

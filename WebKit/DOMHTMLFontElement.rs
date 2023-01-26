@@ -18,6 +18,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_DOMHTMLFontElement")]
+unsafe impl DOMEventTarget for DOMHTMLFontElement {}
+
+#[cfg(feature = "WebKit_DOMHTMLFontElement")]
+unsafe impl NSObjectProtocol for DOMHTMLFontElement {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_DOMHTMLFontElement")]
     unsafe impl DOMHTMLFontElement {

@@ -17,6 +17,12 @@ extern_class!(
 );
 
 #[cfg(feature = "GameController_GCColor")]
+unsafe impl NSCoding for GCColor {}
+
+#[cfg(feature = "GameController_GCColor")]
+unsafe impl NSObjectProtocol for GCColor {}
+
+#[cfg(feature = "GameController_GCColor")]
 unsafe impl NSSecureCoding for GCColor {}
 
 extern_methods!(

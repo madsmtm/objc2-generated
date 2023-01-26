@@ -25,6 +25,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "BusinessChat_BCChatAction")]
+unsafe impl NSObjectProtocol for BCChatAction {}
+
 extern_methods!(
     #[cfg(feature = "BusinessChat_BCChatAction")]
     unsafe impl BCChatAction {

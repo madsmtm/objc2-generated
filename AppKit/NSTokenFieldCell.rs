@@ -28,6 +28,21 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSTokenFieldCell")]
+unsafe impl NSAccessibility for NSTokenFieldCell {}
+
+#[cfg(feature = "AppKit_NSTokenFieldCell")]
+unsafe impl NSAccessibilityElement for NSTokenFieldCell {}
+
+#[cfg(feature = "AppKit_NSTokenFieldCell")]
+unsafe impl NSCoding for NSTokenFieldCell {}
+
+#[cfg(feature = "AppKit_NSTokenFieldCell")]
+unsafe impl NSObjectProtocol for NSTokenFieldCell {}
+
+#[cfg(feature = "AppKit_NSTokenFieldCell")]
+unsafe impl NSUserInterfaceItemIdentification for NSTokenFieldCell {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSTokenFieldCell")]
     unsafe impl NSTokenFieldCell {

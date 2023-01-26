@@ -17,6 +17,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSTrackingSeparatorToolbarItem")]
+unsafe impl NSObjectProtocol for NSTrackingSeparatorToolbarItem {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSTrackingSeparatorToolbarItem")]
     unsafe impl NSTrackingSeparatorToolbarItem {

@@ -88,10 +88,13 @@ extern_class!(
 );
 
 #[cfg(feature = "InputMethodKit_IMKInputController")]
+unsafe impl IMKMouseHandling for IMKInputController {}
+
+#[cfg(feature = "InputMethodKit_IMKInputController")]
 unsafe impl IMKStateSetting for IMKInputController {}
 
 #[cfg(feature = "InputMethodKit_IMKInputController")]
-unsafe impl IMKMouseHandling for IMKInputController {}
+unsafe impl NSObjectProtocol for IMKInputController {}
 
 extern_methods!(
     #[cfg(feature = "InputMethodKit_IMKInputController")]

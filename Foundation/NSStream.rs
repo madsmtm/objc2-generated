@@ -44,6 +44,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSStream")]
+unsafe impl NSObjectProtocol for NSStream {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSStream")]
     unsafe impl NSStream {
@@ -109,6 +112,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSInputStream")]
+unsafe impl NSObjectProtocol for NSInputStream {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSInputStream")]
     unsafe impl NSInputStream {
@@ -152,6 +158,9 @@ extern_class!(
         type Super = NSStream;
     }
 );
+
+#[cfg(feature = "Foundation_NSOutputStream")]
+unsafe impl NSObjectProtocol for NSOutputStream {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSOutputStream")]

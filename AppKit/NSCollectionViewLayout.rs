@@ -32,6 +32,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSCollectionViewLayoutAttributes")]
+unsafe impl NSObjectProtocol for NSCollectionViewLayoutAttributes {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSCollectionViewLayoutAttributes")]
     unsafe impl NSCollectionViewLayoutAttributes {
@@ -130,6 +133,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSCollectionViewUpdateItem")]
+unsafe impl NSObjectProtocol for NSCollectionViewUpdateItem {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSCollectionViewUpdateItem")]
     unsafe impl NSCollectionViewUpdateItem {
@@ -156,6 +162,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "AppKit_NSCollectionViewLayoutInvalidationContext")]
+unsafe impl NSObjectProtocol for NSCollectionViewLayoutInvalidationContext {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSCollectionViewLayoutInvalidationContext")]
@@ -241,6 +250,9 @@ extern_class!(
 
 #[cfg(feature = "AppKit_NSCollectionViewLayout")]
 unsafe impl NSCoding for NSCollectionViewLayout {}
+
+#[cfg(feature = "AppKit_NSCollectionViewLayout")]
+unsafe impl NSObjectProtocol for NSCollectionViewLayout {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSCollectionViewLayout")]

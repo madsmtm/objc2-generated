@@ -17,6 +17,30 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSControl")]
+unsafe impl NSAccessibility for NSControl {}
+
+#[cfg(feature = "AppKit_NSControl")]
+unsafe impl NSAccessibilityElement for NSControl {}
+
+#[cfg(feature = "AppKit_NSControl")]
+unsafe impl NSAnimatablePropertyContainer for NSControl {}
+
+#[cfg(feature = "AppKit_NSControl")]
+unsafe impl NSAppearanceCustomization for NSControl {}
+
+#[cfg(feature = "AppKit_NSControl")]
+unsafe impl NSCoding for NSControl {}
+
+#[cfg(feature = "AppKit_NSControl")]
+unsafe impl NSDraggingDestination for NSControl {}
+
+#[cfg(feature = "AppKit_NSControl")]
+unsafe impl NSObjectProtocol for NSControl {}
+
+#[cfg(feature = "AppKit_NSControl")]
+unsafe impl NSUserInterfaceItemIdentification for NSControl {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSControl")]
     unsafe impl NSControl {

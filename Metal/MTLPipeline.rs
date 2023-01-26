@@ -24,6 +24,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLPipelineBufferDescriptor")]
+unsafe impl NSObjectProtocol for MTLPipelineBufferDescriptor {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLPipelineBufferDescriptor")]
     unsafe impl MTLPipelineBufferDescriptor {
@@ -45,6 +48,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Metal_MTLPipelineBufferDescriptorArray")]
+unsafe impl NSObjectProtocol for MTLPipelineBufferDescriptorArray {}
 
 extern_methods!(
     #[cfg(feature = "Metal_MTLPipelineBufferDescriptorArray")]

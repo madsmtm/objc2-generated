@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_DOMMediaList")]
+unsafe impl NSObjectProtocol for DOMMediaList {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_DOMMediaList")]
     unsafe impl DOMMediaList {

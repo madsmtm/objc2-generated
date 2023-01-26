@@ -20,13 +20,25 @@ __inner_extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSArray")]
-unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSSecureCoding
+unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSCoding
     for NSArray<ObjectType, ObjectTypeOwnership>
 {
 }
 
 #[cfg(feature = "Foundation_NSArray")]
 unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSFastEnumeration
+    for NSArray<ObjectType, ObjectTypeOwnership>
+{
+}
+
+#[cfg(feature = "Foundation_NSArray")]
+unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSObjectProtocol
+    for NSArray<ObjectType, ObjectTypeOwnership>
+{
+}
+
+#[cfg(feature = "Foundation_NSArray")]
+unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSSecureCoding
     for NSArray<ObjectType, ObjectTypeOwnership>
 {
 }
@@ -459,6 +471,30 @@ __inner_extern_class!(
         type Super = NSArray<ObjectType, ObjectTypeOwnership>;
     }
 );
+
+#[cfg(feature = "Foundation_NSMutableArray")]
+unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSCoding
+    for NSMutableArray<ObjectType, ObjectTypeOwnership>
+{
+}
+
+#[cfg(feature = "Foundation_NSMutableArray")]
+unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSFastEnumeration
+    for NSMutableArray<ObjectType, ObjectTypeOwnership>
+{
+}
+
+#[cfg(feature = "Foundation_NSMutableArray")]
+unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSObjectProtocol
+    for NSMutableArray<ObjectType, ObjectTypeOwnership>
+{
+}
+
+#[cfg(feature = "Foundation_NSMutableArray")]
+unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSSecureCoding
+    for NSMutableArray<ObjectType, ObjectTypeOwnership>
+{
+}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSMutableArray")]

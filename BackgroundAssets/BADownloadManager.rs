@@ -72,6 +72,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "BackgroundAssets_BADownloadManager")]
+unsafe impl NSObjectProtocol for BADownloadManager {}
+
 extern_methods!(
     #[cfg(feature = "BackgroundAssets_BADownloadManager")]
     unsafe impl BADownloadManager {

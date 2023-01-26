@@ -18,6 +18,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_DOMHTMLTableCaptionElement")]
+unsafe impl DOMEventTarget for DOMHTMLTableCaptionElement {}
+
+#[cfg(feature = "WebKit_DOMHTMLTableCaptionElement")]
+unsafe impl NSObjectProtocol for DOMHTMLTableCaptionElement {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_DOMHTMLTableCaptionElement")]
     unsafe impl DOMHTMLTableCaptionElement {

@@ -36,6 +36,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSPropertyListSerialization")]
+unsafe impl NSObjectProtocol for NSPropertyListSerialization {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSPropertyListSerialization")]
     unsafe impl NSPropertyListSerialization {

@@ -35,7 +35,7 @@ unsafe impl<
         ObjectType: Message,
         KeyTypeOwnership: Ownership,
         ObjectTypeOwnership: Ownership,
-    > NSSecureCoding for NSDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
+    > NSCoding for NSDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
 {
 }
 
@@ -47,6 +47,27 @@ unsafe impl<
         ObjectTypeOwnership: Ownership,
     > NSFastEnumeration
     for NSDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
+{
+}
+
+#[cfg(feature = "Foundation_NSDictionary")]
+unsafe impl<
+        KeyType: Message,
+        ObjectType: Message,
+        KeyTypeOwnership: Ownership,
+        ObjectTypeOwnership: Ownership,
+    > NSObjectProtocol
+    for NSDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
+{
+}
+
+#[cfg(feature = "Foundation_NSDictionary")]
+unsafe impl<
+        KeyType: Message,
+        ObjectType: Message,
+        KeyTypeOwnership: Ownership,
+        ObjectTypeOwnership: Ownership,
+    > NSSecureCoding for NSDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
 {
 }
 
@@ -359,6 +380,49 @@ __inner_extern_class!(
         type Super = NSDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>;
     }
 );
+
+#[cfg(feature = "Foundation_NSMutableDictionary")]
+unsafe impl<
+        KeyType: Message,
+        ObjectType: Message,
+        KeyTypeOwnership: Ownership,
+        ObjectTypeOwnership: Ownership,
+    > NSCoding for NSMutableDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
+{
+}
+
+#[cfg(feature = "Foundation_NSMutableDictionary")]
+unsafe impl<
+        KeyType: Message,
+        ObjectType: Message,
+        KeyTypeOwnership: Ownership,
+        ObjectTypeOwnership: Ownership,
+    > NSFastEnumeration
+    for NSMutableDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
+{
+}
+
+#[cfg(feature = "Foundation_NSMutableDictionary")]
+unsafe impl<
+        KeyType: Message,
+        ObjectType: Message,
+        KeyTypeOwnership: Ownership,
+        ObjectTypeOwnership: Ownership,
+    > NSObjectProtocol
+    for NSMutableDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
+{
+}
+
+#[cfg(feature = "Foundation_NSMutableDictionary")]
+unsafe impl<
+        KeyType: Message,
+        ObjectType: Message,
+        KeyTypeOwnership: Ownership,
+        ObjectTypeOwnership: Ownership,
+    > NSSecureCoding
+    for NSMutableDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
+{
+}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSMutableDictionary")]

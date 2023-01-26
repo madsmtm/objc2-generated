@@ -17,6 +17,33 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSSavePanel")]
+unsafe impl NSAccessibility for NSSavePanel {}
+
+#[cfg(feature = "AppKit_NSSavePanel")]
+unsafe impl NSAccessibilityElement for NSSavePanel {}
+
+#[cfg(feature = "AppKit_NSSavePanel")]
+unsafe impl NSAnimatablePropertyContainer for NSSavePanel {}
+
+#[cfg(feature = "AppKit_NSSavePanel")]
+unsafe impl NSAppearanceCustomization for NSSavePanel {}
+
+#[cfg(feature = "AppKit_NSSavePanel")]
+unsafe impl NSCoding for NSSavePanel {}
+
+#[cfg(feature = "AppKit_NSSavePanel")]
+unsafe impl NSMenuItemValidation for NSSavePanel {}
+
+#[cfg(feature = "AppKit_NSSavePanel")]
+unsafe impl NSObjectProtocol for NSSavePanel {}
+
+#[cfg(feature = "AppKit_NSSavePanel")]
+unsafe impl NSUserInterfaceItemIdentification for NSSavePanel {}
+
+#[cfg(feature = "AppKit_NSSavePanel")]
+unsafe impl NSUserInterfaceValidations for NSSavePanel {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSSavePanel")]
     unsafe impl NSSavePanel {

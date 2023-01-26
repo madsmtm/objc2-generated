@@ -18,6 +18,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_DOMHTMLHRElement")]
+unsafe impl DOMEventTarget for DOMHTMLHRElement {}
+
+#[cfg(feature = "WebKit_DOMHTMLHRElement")]
+unsafe impl NSObjectProtocol for DOMHTMLHRElement {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_DOMHTMLHRElement")]
     unsafe impl DOMHTMLHRElement {

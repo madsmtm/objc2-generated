@@ -16,6 +16,15 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Contacts_CNMutablePostalAddress")]
+unsafe impl NSCoding for CNMutablePostalAddress {}
+
+#[cfg(feature = "Contacts_CNMutablePostalAddress")]
+unsafe impl NSObjectProtocol for CNMutablePostalAddress {}
+
+#[cfg(feature = "Contacts_CNMutablePostalAddress")]
+unsafe impl NSSecureCoding for CNMutablePostalAddress {}
+
 extern_methods!(
     #[cfg(feature = "Contacts_CNMutablePostalAddress")]
     unsafe impl CNMutablePostalAddress {

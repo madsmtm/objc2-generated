@@ -17,6 +17,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_WebFrame")]
+unsafe impl NSObjectProtocol for WebFrame {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_WebFrame")]
     unsafe impl WebFrame {

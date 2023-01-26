@@ -18,6 +18,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_DOMHTMLFieldSetElement")]
+unsafe impl DOMEventTarget for DOMHTMLFieldSetElement {}
+
+#[cfg(feature = "WebKit_DOMHTMLFieldSetElement")]
+unsafe impl NSObjectProtocol for DOMHTMLFieldSetElement {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_DOMHTMLFieldSetElement")]
     unsafe impl DOMHTMLFieldSetElement {

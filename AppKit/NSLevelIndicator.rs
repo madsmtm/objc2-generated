@@ -26,6 +26,30 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSLevelIndicator")]
+unsafe impl NSAccessibility for NSLevelIndicator {}
+
+#[cfg(feature = "AppKit_NSLevelIndicator")]
+unsafe impl NSAccessibilityElement for NSLevelIndicator {}
+
+#[cfg(feature = "AppKit_NSLevelIndicator")]
+unsafe impl NSAnimatablePropertyContainer for NSLevelIndicator {}
+
+#[cfg(feature = "AppKit_NSLevelIndicator")]
+unsafe impl NSAppearanceCustomization for NSLevelIndicator {}
+
+#[cfg(feature = "AppKit_NSLevelIndicator")]
+unsafe impl NSCoding for NSLevelIndicator {}
+
+#[cfg(feature = "AppKit_NSLevelIndicator")]
+unsafe impl NSDraggingDestination for NSLevelIndicator {}
+
+#[cfg(feature = "AppKit_NSLevelIndicator")]
+unsafe impl NSObjectProtocol for NSLevelIndicator {}
+
+#[cfg(feature = "AppKit_NSLevelIndicator")]
+unsafe impl NSUserInterfaceItemIdentification for NSLevelIndicator {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSLevelIndicator")]
     unsafe impl NSLevelIndicator {

@@ -45,6 +45,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_DOMXPathResult")]
+unsafe impl NSObjectProtocol for DOMXPathResult {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_DOMXPathResult")]
     unsafe impl DOMXPathResult {

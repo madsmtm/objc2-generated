@@ -17,6 +17,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSRotationGestureRecognizer")]
+unsafe impl NSCoding for NSRotationGestureRecognizer {}
+
+#[cfg(feature = "AppKit_NSRotationGestureRecognizer")]
+unsafe impl NSObjectProtocol for NSRotationGestureRecognizer {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSRotationGestureRecognizer")]
     unsafe impl NSRotationGestureRecognizer {

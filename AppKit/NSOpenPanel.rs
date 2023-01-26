@@ -17,6 +17,33 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSOpenPanel")]
+unsafe impl NSAccessibility for NSOpenPanel {}
+
+#[cfg(feature = "AppKit_NSOpenPanel")]
+unsafe impl NSAccessibilityElement for NSOpenPanel {}
+
+#[cfg(feature = "AppKit_NSOpenPanel")]
+unsafe impl NSAnimatablePropertyContainer for NSOpenPanel {}
+
+#[cfg(feature = "AppKit_NSOpenPanel")]
+unsafe impl NSAppearanceCustomization for NSOpenPanel {}
+
+#[cfg(feature = "AppKit_NSOpenPanel")]
+unsafe impl NSCoding for NSOpenPanel {}
+
+#[cfg(feature = "AppKit_NSOpenPanel")]
+unsafe impl NSMenuItemValidation for NSOpenPanel {}
+
+#[cfg(feature = "AppKit_NSOpenPanel")]
+unsafe impl NSObjectProtocol for NSOpenPanel {}
+
+#[cfg(feature = "AppKit_NSOpenPanel")]
+unsafe impl NSUserInterfaceItemIdentification for NSOpenPanel {}
+
+#[cfg(feature = "AppKit_NSOpenPanel")]
+unsafe impl NSUserInterfaceValidations for NSOpenPanel {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSOpenPanel")]
     unsafe impl NSOpenPanel {

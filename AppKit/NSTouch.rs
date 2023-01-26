@@ -51,6 +51,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSTouch")]
+unsafe impl NSObjectProtocol for NSTouch {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSTouch")]
     unsafe impl NSTouch {

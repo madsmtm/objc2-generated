@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSPressureConfiguration")]
+unsafe impl NSObjectProtocol for NSPressureConfiguration {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSPressureConfiguration")]
     unsafe impl NSPressureConfiguration {

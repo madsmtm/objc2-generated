@@ -14,6 +14,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSExtensionContext")]
+unsafe impl NSObjectProtocol for NSExtensionContext {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSExtensionContext")]
     unsafe impl NSExtensionContext {

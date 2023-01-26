@@ -25,6 +25,9 @@ unsafe impl NSEditor for NSController {}
 #[cfg(feature = "AppKit_NSController")]
 unsafe impl NSEditorRegistration for NSController {}
 
+#[cfg(feature = "AppKit_NSController")]
+unsafe impl NSObjectProtocol for NSController {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSController")]
     unsafe impl NSController {

@@ -24,6 +24,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSAppleScript")]
+unsafe impl NSObjectProtocol for NSAppleScript {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSAppleScript")]
     unsafe impl NSAppleScript {

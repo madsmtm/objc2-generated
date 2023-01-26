@@ -19,6 +19,12 @@ extern_class!(
 #[cfg(feature = "GameController_GCSteeringWheelElement")]
 unsafe impl GCAxisElement for GCSteeringWheelElement {}
 
+#[cfg(feature = "GameController_GCSteeringWheelElement")]
+unsafe impl GCPhysicalInputElement for GCSteeringWheelElement {}
+
+#[cfg(feature = "GameController_GCSteeringWheelElement")]
+unsafe impl NSObjectProtocol for GCSteeringWheelElement {}
+
 extern_methods!(
     #[cfg(feature = "GameController_GCSteeringWheelElement")]
     unsafe impl GCSteeringWheelElement {

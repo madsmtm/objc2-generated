@@ -21,6 +21,9 @@ extern_class!(
 #[cfg(feature = "MapKit_MKShape")]
 unsafe impl MKAnnotation for MKShape {}
 
+#[cfg(feature = "MapKit_MKShape")]
+unsafe impl NSObjectProtocol for MKShape {}
+
 extern_methods!(
     #[cfg(feature = "MapKit_MKShape")]
     unsafe impl MKShape {

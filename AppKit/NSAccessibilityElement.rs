@@ -19,6 +19,9 @@ extern_class!(
 #[cfg(feature = "AppKit_NSAccessibilityElement")]
 unsafe impl NSAccessibility for NSAccessibilityElement {}
 
+#[cfg(feature = "AppKit_NSAccessibilityElement")]
+unsafe impl NSObjectProtocol for NSAccessibilityElement {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSAccessibilityElement")]
     unsafe impl NSAccessibilityElement {

@@ -19,6 +19,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSCollectionViewTransitionLayout")]
+unsafe impl NSCoding for NSCollectionViewTransitionLayout {}
+
+#[cfg(feature = "AppKit_NSCollectionViewTransitionLayout")]
+unsafe impl NSObjectProtocol for NSCollectionViewTransitionLayout {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSCollectionViewTransitionLayout")]
     unsafe impl NSCollectionViewTransitionLayout {

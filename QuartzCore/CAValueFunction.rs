@@ -20,6 +20,12 @@ extern_class!(
 );
 
 #[cfg(feature = "CoreAnimation_CAValueFunction")]
+unsafe impl NSCoding for CAValueFunction {}
+
+#[cfg(feature = "CoreAnimation_CAValueFunction")]
+unsafe impl NSObjectProtocol for CAValueFunction {}
+
+#[cfg(feature = "CoreAnimation_CAValueFunction")]
 unsafe impl NSSecureCoding for CAValueFunction {}
 
 extern_methods!(

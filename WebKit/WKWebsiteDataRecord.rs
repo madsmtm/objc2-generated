@@ -38,6 +38,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_WKWebsiteDataRecord")]
+unsafe impl NSObjectProtocol for WKWebsiteDataRecord {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_WKWebsiteDataRecord")]
     unsafe impl WKWebsiteDataRecord {

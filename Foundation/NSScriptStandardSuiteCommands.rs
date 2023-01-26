@@ -24,6 +24,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSCloneCommand")]
+unsafe impl NSCoding for NSCloneCommand {}
+
+#[cfg(feature = "Foundation_NSCloneCommand")]
+unsafe impl NSObjectProtocol for NSCloneCommand {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSCloneCommand")]
     unsafe impl NSCloneCommand {
@@ -49,6 +55,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSCloseCommand")]
+unsafe impl NSCoding for NSCloseCommand {}
+
+#[cfg(feature = "Foundation_NSCloseCommand")]
+unsafe impl NSObjectProtocol for NSCloseCommand {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSCloseCommand")]
     unsafe impl NSCloseCommand {
@@ -69,6 +81,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSCountCommand")]
+unsafe impl NSCoding for NSCountCommand {}
+
+#[cfg(feature = "Foundation_NSCountCommand")]
+unsafe impl NSObjectProtocol for NSCountCommand {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSCountCommand")]
     unsafe impl NSCountCommand {}
@@ -85,6 +103,12 @@ extern_class!(
         type Super = NSScriptCommand;
     }
 );
+
+#[cfg(feature = "Foundation_NSCreateCommand")]
+unsafe impl NSCoding for NSCreateCommand {}
+
+#[cfg(feature = "Foundation_NSCreateCommand")]
+unsafe impl NSObjectProtocol for NSCreateCommand {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSCreateCommand")]
@@ -111,6 +135,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSDeleteCommand")]
+unsafe impl NSCoding for NSDeleteCommand {}
+
+#[cfg(feature = "Foundation_NSDeleteCommand")]
+unsafe impl NSObjectProtocol for NSDeleteCommand {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSDeleteCommand")]
     unsafe impl NSDeleteCommand {
@@ -136,6 +166,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSExistsCommand")]
+unsafe impl NSCoding for NSExistsCommand {}
+
+#[cfg(feature = "Foundation_NSExistsCommand")]
+unsafe impl NSObjectProtocol for NSExistsCommand {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSExistsCommand")]
     unsafe impl NSExistsCommand {}
@@ -153,6 +189,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSGetCommand")]
+unsafe impl NSCoding for NSGetCommand {}
+
+#[cfg(feature = "Foundation_NSGetCommand")]
+unsafe impl NSObjectProtocol for NSGetCommand {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSGetCommand")]
     unsafe impl NSGetCommand {}
@@ -169,6 +211,12 @@ extern_class!(
         type Super = NSScriptCommand;
     }
 );
+
+#[cfg(feature = "Foundation_NSMoveCommand")]
+unsafe impl NSCoding for NSMoveCommand {}
+
+#[cfg(feature = "Foundation_NSMoveCommand")]
+unsafe impl NSObjectProtocol for NSMoveCommand {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSMoveCommand")]
@@ -195,6 +243,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSQuitCommand")]
+unsafe impl NSCoding for NSQuitCommand {}
+
+#[cfg(feature = "Foundation_NSQuitCommand")]
+unsafe impl NSObjectProtocol for NSQuitCommand {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSQuitCommand")]
     unsafe impl NSQuitCommand {
@@ -214,6 +268,12 @@ extern_class!(
         type Super = NSScriptCommand;
     }
 );
+
+#[cfg(feature = "Foundation_NSSetCommand")]
+unsafe impl NSCoding for NSSetCommand {}
+
+#[cfg(feature = "Foundation_NSSetCommand")]
+unsafe impl NSObjectProtocol for NSSetCommand {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSSetCommand")]

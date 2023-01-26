@@ -17,6 +17,42 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSSecureTextField")]
+unsafe impl NSAccessibility for NSSecureTextField {}
+
+#[cfg(feature = "AppKit_NSSecureTextField")]
+unsafe impl NSAccessibilityElement for NSSecureTextField {}
+
+#[cfg(feature = "AppKit_NSSecureTextField")]
+unsafe impl NSAccessibilityNavigableStaticText for NSSecureTextField {}
+
+#[cfg(feature = "AppKit_NSSecureTextField")]
+unsafe impl NSAccessibilityStaticText for NSSecureTextField {}
+
+#[cfg(feature = "AppKit_NSSecureTextField")]
+unsafe impl NSAnimatablePropertyContainer for NSSecureTextField {}
+
+#[cfg(feature = "AppKit_NSSecureTextField")]
+unsafe impl NSAppearanceCustomization for NSSecureTextField {}
+
+#[cfg(feature = "AppKit_NSSecureTextField")]
+unsafe impl NSCoding for NSSecureTextField {}
+
+#[cfg(feature = "AppKit_NSSecureTextField")]
+unsafe impl NSDraggingDestination for NSSecureTextField {}
+
+#[cfg(feature = "AppKit_NSSecureTextField")]
+unsafe impl NSObjectProtocol for NSSecureTextField {}
+
+#[cfg(feature = "AppKit_NSSecureTextField")]
+unsafe impl NSTextContent for NSSecureTextField {}
+
+#[cfg(feature = "AppKit_NSSecureTextField")]
+unsafe impl NSUserInterfaceItemIdentification for NSSecureTextField {}
+
+#[cfg(feature = "AppKit_NSSecureTextField")]
+unsafe impl NSUserInterfaceValidations for NSSecureTextField {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSSecureTextField")]
     unsafe impl NSSecureTextField {}
@@ -33,6 +69,21 @@ extern_class!(
         type Super = NSTextFieldCell;
     }
 );
+
+#[cfg(feature = "AppKit_NSSecureTextFieldCell")]
+unsafe impl NSAccessibility for NSSecureTextFieldCell {}
+
+#[cfg(feature = "AppKit_NSSecureTextFieldCell")]
+unsafe impl NSAccessibilityElement for NSSecureTextFieldCell {}
+
+#[cfg(feature = "AppKit_NSSecureTextFieldCell")]
+unsafe impl NSCoding for NSSecureTextFieldCell {}
+
+#[cfg(feature = "AppKit_NSSecureTextFieldCell")]
+unsafe impl NSObjectProtocol for NSSecureTextFieldCell {}
+
+#[cfg(feature = "AppKit_NSSecureTextFieldCell")]
+unsafe impl NSUserInterfaceItemIdentification for NSSecureTextFieldCell {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSSecureTextFieldCell")]

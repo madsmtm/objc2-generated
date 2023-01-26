@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSAnimationContext")]
+unsafe impl NSObjectProtocol for NSAnimationContext {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSAnimationContext")]
     unsafe impl NSAnimationContext {

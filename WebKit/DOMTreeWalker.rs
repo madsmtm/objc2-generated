@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_DOMTreeWalker")]
+unsafe impl NSObjectProtocol for DOMTreeWalker {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_DOMTreeWalker")]
     unsafe impl DOMTreeWalker {

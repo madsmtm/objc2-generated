@@ -15,6 +15,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "ExternalAccessory_EASession")]
+unsafe impl NSObjectProtocol for EASession {}
+
 extern_methods!(
     #[cfg(feature = "ExternalAccessory_EASession")]
     unsafe impl EASession {

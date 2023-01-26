@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSTextElement")]
+unsafe impl NSObjectProtocol for NSTextElement {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSTextElement")]
     unsafe impl NSTextElement {
@@ -68,6 +71,9 @@ extern_class!(
         type Super = NSTextElement;
     }
 );
+
+#[cfg(feature = "AppKit_NSTextParagraph")]
+unsafe impl NSObjectProtocol for NSTextParagraph {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSTextParagraph")]

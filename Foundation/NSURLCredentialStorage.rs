@@ -14,6 +14,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSURLCredentialStorage")]
+unsafe impl NSObjectProtocol for NSURLCredentialStorage {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSURLCredentialStorage")]
     unsafe impl NSURLCredentialStorage {

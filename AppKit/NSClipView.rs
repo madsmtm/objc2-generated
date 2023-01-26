@@ -17,6 +17,30 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSClipView")]
+unsafe impl NSAccessibility for NSClipView {}
+
+#[cfg(feature = "AppKit_NSClipView")]
+unsafe impl NSAccessibilityElement for NSClipView {}
+
+#[cfg(feature = "AppKit_NSClipView")]
+unsafe impl NSAnimatablePropertyContainer for NSClipView {}
+
+#[cfg(feature = "AppKit_NSClipView")]
+unsafe impl NSAppearanceCustomization for NSClipView {}
+
+#[cfg(feature = "AppKit_NSClipView")]
+unsafe impl NSCoding for NSClipView {}
+
+#[cfg(feature = "AppKit_NSClipView")]
+unsafe impl NSDraggingDestination for NSClipView {}
+
+#[cfg(feature = "AppKit_NSClipView")]
+unsafe impl NSObjectProtocol for NSClipView {}
+
+#[cfg(feature = "AppKit_NSClipView")]
+unsafe impl NSUserInterfaceItemIdentification for NSClipView {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSClipView")]
     unsafe impl NSClipView {

@@ -17,6 +17,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CloudKit_CKFetchShareMetadataOperation")]
+unsafe impl NSObjectProtocol for CKFetchShareMetadataOperation {}
+
 extern_methods!(
     #[cfg(feature = "CloudKit_CKFetchShareMetadataOperation")]
     unsafe impl CKFetchShareMetadataOperation {

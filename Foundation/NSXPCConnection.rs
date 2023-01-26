@@ -46,6 +46,9 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSXPCConnection")]
+unsafe impl NSObjectProtocol for NSXPCConnection {}
+
+#[cfg(feature = "Foundation_NSXPCConnection")]
 unsafe impl NSXPCProxyCreating for NSXPCConnection {}
 
 extern_methods!(
@@ -170,6 +173,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSXPCListener")]
+unsafe impl NSObjectProtocol for NSXPCListener {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSXPCListener")]
     unsafe impl NSXPCListener {
@@ -248,6 +254,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSXPCInterface")]
+unsafe impl NSObjectProtocol for NSXPCInterface {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSXPCInterface")]
     unsafe impl NSXPCInterface {
@@ -310,6 +319,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSXPCListenerEndpoint")]
+unsafe impl NSCoding for NSXPCListenerEndpoint {}
+
+#[cfg(feature = "Foundation_NSXPCListenerEndpoint")]
+unsafe impl NSObjectProtocol for NSXPCListenerEndpoint {}
+
+#[cfg(feature = "Foundation_NSXPCListenerEndpoint")]
 unsafe impl NSSecureCoding for NSXPCListenerEndpoint {}
 
 extern_methods!(
@@ -328,6 +343,9 @@ extern_class!(
         type Super = NSCoder;
     }
 );
+
+#[cfg(feature = "Foundation_NSXPCCoder")]
+unsafe impl NSObjectProtocol for NSXPCCoder {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSXPCCoder")]

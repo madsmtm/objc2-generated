@@ -43,6 +43,30 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSGridView")]
+unsafe impl NSAccessibility for NSGridView {}
+
+#[cfg(feature = "AppKit_NSGridView")]
+unsafe impl NSAccessibilityElement for NSGridView {}
+
+#[cfg(feature = "AppKit_NSGridView")]
+unsafe impl NSAnimatablePropertyContainer for NSGridView {}
+
+#[cfg(feature = "AppKit_NSGridView")]
+unsafe impl NSAppearanceCustomization for NSGridView {}
+
+#[cfg(feature = "AppKit_NSGridView")]
+unsafe impl NSCoding for NSGridView {}
+
+#[cfg(feature = "AppKit_NSGridView")]
+unsafe impl NSDraggingDestination for NSGridView {}
+
+#[cfg(feature = "AppKit_NSGridView")]
+unsafe impl NSObjectProtocol for NSGridView {}
+
+#[cfg(feature = "AppKit_NSGridView")]
+unsafe impl NSUserInterfaceItemIdentification for NSGridView {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSGridView")]
     unsafe impl NSGridView {
@@ -195,6 +219,9 @@ extern_class!(
 #[cfg(feature = "AppKit_NSGridRow")]
 unsafe impl NSCoding for NSGridRow {}
 
+#[cfg(feature = "AppKit_NSGridRow")]
+unsafe impl NSObjectProtocol for NSGridRow {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSGridRow")]
     unsafe impl NSGridRow {
@@ -264,6 +291,9 @@ extern_class!(
 #[cfg(feature = "AppKit_NSGridColumn")]
 unsafe impl NSCoding for NSGridColumn {}
 
+#[cfg(feature = "AppKit_NSGridColumn")]
+unsafe impl NSObjectProtocol for NSGridColumn {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSGridColumn")]
     unsafe impl NSGridColumn {
@@ -326,6 +356,9 @@ extern_class!(
 
 #[cfg(feature = "AppKit_NSGridCell")]
 unsafe impl NSCoding for NSGridCell {}
+
+#[cfg(feature = "AppKit_NSGridCell")]
+unsafe impl NSObjectProtocol for NSGridCell {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSGridCell")]

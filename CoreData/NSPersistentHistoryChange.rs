@@ -24,6 +24,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreData_NSPersistentHistoryChange")]
+unsafe impl NSObjectProtocol for NSPersistentHistoryChange {}
+
 extern_methods!(
     #[cfg(feature = "CoreData_NSPersistentHistoryChange")]
     unsafe impl NSPersistentHistoryChange {

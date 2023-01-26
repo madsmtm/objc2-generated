@@ -14,6 +14,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSValue")]
+unsafe impl NSCoding for NSValue {}
+
+#[cfg(feature = "Foundation_NSValue")]
+unsafe impl NSObjectProtocol for NSValue {}
+
+#[cfg(feature = "Foundation_NSValue")]
 unsafe impl NSSecureCoding for NSValue {}
 
 extern_methods!(
@@ -91,6 +97,15 @@ extern_class!(
         type Super = NSValue;
     }
 );
+
+#[cfg(feature = "Foundation_NSNumber")]
+unsafe impl NSCoding for NSNumber {}
+
+#[cfg(feature = "Foundation_NSNumber")]
+unsafe impl NSObjectProtocol for NSNumber {}
+
+#[cfg(feature = "Foundation_NSNumber")]
+unsafe impl NSSecureCoding for NSNumber {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSNumber")]

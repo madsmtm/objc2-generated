@@ -365,6 +365,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSURL")]
+unsafe impl NSCoding for NSURL {}
+
+#[cfg(feature = "Foundation_NSURL")]
+unsafe impl NSObjectProtocol for NSURL {}
+
+#[cfg(feature = "Foundation_NSURL")]
 unsafe impl NSSecureCoding for NSURL {}
 
 extern_methods!(
@@ -780,6 +786,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSURLQueryItem")]
+unsafe impl NSCoding for NSURLQueryItem {}
+
+#[cfg(feature = "Foundation_NSURLQueryItem")]
+unsafe impl NSObjectProtocol for NSURLQueryItem {}
+
+#[cfg(feature = "Foundation_NSURLQueryItem")]
 unsafe impl NSSecureCoding for NSURLQueryItem {}
 
 extern_methods!(
@@ -820,6 +832,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Foundation_NSURLComponents")]
+unsafe impl NSObjectProtocol for NSURLComponents {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSURLComponents")]
@@ -1159,6 +1174,12 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Foundation_NSFileSecurity")]
+unsafe impl NSCoding for NSFileSecurity {}
+
+#[cfg(feature = "Foundation_NSFileSecurity")]
+unsafe impl NSObjectProtocol for NSFileSecurity {}
 
 #[cfg(feature = "Foundation_NSFileSecurity")]
 unsafe impl NSSecureCoding for NSFileSecurity {}

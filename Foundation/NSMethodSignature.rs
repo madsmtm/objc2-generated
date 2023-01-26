@@ -14,6 +14,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSMethodSignature")]
+unsafe impl NSObjectProtocol for NSMethodSignature {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSMethodSignature")]
     unsafe impl NSMethodSignature {

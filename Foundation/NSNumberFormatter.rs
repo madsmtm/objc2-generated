@@ -63,6 +63,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSNumberFormatter")]
+unsafe impl NSCoding for NSNumberFormatter {}
+
+#[cfg(feature = "Foundation_NSNumberFormatter")]
+unsafe impl NSObjectProtocol for NSNumberFormatter {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSNumberFormatter")]
     unsafe impl NSNumberFormatter {

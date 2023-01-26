@@ -36,6 +36,12 @@ extern_class!(
 );
 
 #[cfg(feature = "CoreLocation_CLRegion")]
+unsafe impl NSCoding for CLRegion {}
+
+#[cfg(feature = "CoreLocation_CLRegion")]
+unsafe impl NSObjectProtocol for CLRegion {}
+
+#[cfg(feature = "CoreLocation_CLRegion")]
 unsafe impl NSSecureCoding for CLRegion {}
 
 extern_methods!(

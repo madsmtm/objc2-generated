@@ -18,7 +18,22 @@ extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSTextAttachmentCell")]
+unsafe impl NSAccessibility for NSTextAttachmentCell {}
+
+#[cfg(feature = "AppKit_NSTextAttachmentCell")]
+unsafe impl NSAccessibilityElement for NSTextAttachmentCell {}
+
+#[cfg(feature = "AppKit_NSTextAttachmentCell")]
+unsafe impl NSCoding for NSTextAttachmentCell {}
+
+#[cfg(feature = "AppKit_NSTextAttachmentCell")]
+unsafe impl NSObjectProtocol for NSTextAttachmentCell {}
+
+#[cfg(feature = "AppKit_NSTextAttachmentCell")]
 unsafe impl NSTextAttachmentCell for NSTextAttachmentCell {}
+
+#[cfg(feature = "AppKit_NSTextAttachmentCell")]
+unsafe impl NSUserInterfaceItemIdentification for NSTextAttachmentCell {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSTextAttachmentCell")]

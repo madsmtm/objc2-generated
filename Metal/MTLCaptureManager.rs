@@ -34,6 +34,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLCaptureDescriptor")]
+unsafe impl NSObjectProtocol for MTLCaptureDescriptor {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLCaptureDescriptor")]
     unsafe impl MTLCaptureDescriptor {
@@ -69,6 +72,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Metal_MTLCaptureManager")]
+unsafe impl NSObjectProtocol for MTLCaptureManager {}
 
 extern_methods!(
     #[cfg(feature = "Metal_MTLCaptureManager")]

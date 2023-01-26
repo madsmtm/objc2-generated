@@ -84,6 +84,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLVertexBufferLayoutDescriptor")]
+unsafe impl NSObjectProtocol for MTLVertexBufferLayoutDescriptor {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLVertexBufferLayoutDescriptor")]
     unsafe impl MTLVertexBufferLayoutDescriptor {
@@ -118,6 +121,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLVertexBufferLayoutDescriptorArray")]
+unsafe impl NSObjectProtocol for MTLVertexBufferLayoutDescriptorArray {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLVertexBufferLayoutDescriptorArray")]
     unsafe impl MTLVertexBufferLayoutDescriptorArray {
@@ -148,6 +154,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Metal_MTLVertexAttributeDescriptor")]
+unsafe impl NSObjectProtocol for MTLVertexAttributeDescriptor {}
 
 extern_methods!(
     #[cfg(feature = "Metal_MTLVertexAttributeDescriptor")]
@@ -183,6 +192,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLVertexAttributeDescriptorArray")]
+unsafe impl NSObjectProtocol for MTLVertexAttributeDescriptorArray {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLVertexAttributeDescriptorArray")]
     unsafe impl MTLVertexAttributeDescriptorArray {
@@ -213,6 +225,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Metal_MTLVertexDescriptor")]
+unsafe impl NSObjectProtocol for MTLVertexDescriptor {}
 
 extern_methods!(
     #[cfg(feature = "Metal_MTLVertexDescriptor")]

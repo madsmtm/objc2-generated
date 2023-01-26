@@ -20,6 +20,18 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreAnimation_CAScrollLayer")]
+unsafe impl CAMediaTiming for CAScrollLayer {}
+
+#[cfg(feature = "CoreAnimation_CAScrollLayer")]
+unsafe impl NSCoding for CAScrollLayer {}
+
+#[cfg(feature = "CoreAnimation_CAScrollLayer")]
+unsafe impl NSObjectProtocol for CAScrollLayer {}
+
+#[cfg(feature = "CoreAnimation_CAScrollLayer")]
+unsafe impl NSSecureCoding for CAScrollLayer {}
+
 extern_methods!(
     #[cfg(feature = "CoreAnimation_CAScrollLayer")]
     unsafe impl CAScrollLayer {

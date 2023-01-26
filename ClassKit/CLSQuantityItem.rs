@@ -16,6 +16,15 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "ClassKit_CLSQuantityItem")]
+unsafe impl NSCoding for CLSQuantityItem {}
+
+#[cfg(feature = "ClassKit_CLSQuantityItem")]
+unsafe impl NSObjectProtocol for CLSQuantityItem {}
+
+#[cfg(feature = "ClassKit_CLSQuantityItem")]
+unsafe impl NSSecureCoding for CLSQuantityItem {}
+
 extern_methods!(
     #[cfg(feature = "ClassKit_CLSQuantityItem")]
     unsafe impl CLSQuantityItem {

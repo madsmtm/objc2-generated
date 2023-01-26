@@ -17,6 +17,9 @@ extern_class!(
 #[cfg(feature = "Foundation_NSScriptCommandDescription")]
 unsafe impl NSCoding for NSScriptCommandDescription {}
 
+#[cfg(feature = "Foundation_NSScriptCommandDescription")]
+unsafe impl NSObjectProtocol for NSScriptCommandDescription {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSScriptCommandDescription")]
     unsafe impl NSScriptCommandDescription {

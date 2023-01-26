@@ -53,6 +53,9 @@ unsafe impl NSFilePresenter for NSDocument {}
 unsafe impl NSMenuItemValidation for NSDocument {}
 
 #[cfg(feature = "AppKit_NSDocument")]
+unsafe impl NSObjectProtocol for NSDocument {}
+
+#[cfg(feature = "AppKit_NSDocument")]
 unsafe impl NSUserInterfaceValidations for NSDocument {}
 
 extern_methods!(

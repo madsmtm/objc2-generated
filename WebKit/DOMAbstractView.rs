@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_DOMAbstractView")]
+unsafe impl NSObjectProtocol for DOMAbstractView {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_DOMAbstractView")]
     unsafe impl DOMAbstractView {

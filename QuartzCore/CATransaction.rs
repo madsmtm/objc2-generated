@@ -15,6 +15,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreAnimation_CATransaction")]
+unsafe impl NSObjectProtocol for CATransaction {}
+
 extern_methods!(
     #[cfg(feature = "CoreAnimation_CATransaction")]
     unsafe impl CATransaction {

@@ -20,7 +20,13 @@ extern_class!(
 );
 
 #[cfg(feature = "MapKit_MKPolygon")]
+unsafe impl MKAnnotation for MKPolygon {}
+
+#[cfg(feature = "MapKit_MKPolygon")]
 unsafe impl MKOverlay for MKPolygon {}
+
+#[cfg(feature = "MapKit_MKPolygon")]
+unsafe impl NSObjectProtocol for MKPolygon {}
 
 extern_methods!(
     #[cfg(feature = "MapKit_MKPolygon")]

@@ -6,7 +6,7 @@ use crate::Foundation::*;
 
 extern_protocol!(
     pub unsafe trait ASAuthorizationPublicKeyCredentialAssertionRequest:
-        NSObjectProtocol + NSSecureCoding + NSCopying
+        NSCopying + NSObjectProtocol + NSSecureCoding
     {
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other challenge)]

@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_DOMNodeIterator")]
+unsafe impl NSObjectProtocol for DOMNodeIterator {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_DOMNodeIterator")]
     unsafe impl DOMNodeIterator {

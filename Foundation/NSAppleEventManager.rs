@@ -22,6 +22,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSAppleEventManager")]
+unsafe impl NSObjectProtocol for NSAppleEventManager {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSAppleEventManager")]
     unsafe impl NSAppleEventManager {

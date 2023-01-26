@@ -17,6 +17,21 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSSegmentedCell")]
+unsafe impl NSAccessibility for NSSegmentedCell {}
+
+#[cfg(feature = "AppKit_NSSegmentedCell")]
+unsafe impl NSAccessibilityElement for NSSegmentedCell {}
+
+#[cfg(feature = "AppKit_NSSegmentedCell")]
+unsafe impl NSCoding for NSSegmentedCell {}
+
+#[cfg(feature = "AppKit_NSSegmentedCell")]
+unsafe impl NSObjectProtocol for NSSegmentedCell {}
+
+#[cfg(feature = "AppKit_NSSegmentedCell")]
+unsafe impl NSUserInterfaceItemIdentification for NSSegmentedCell {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSSegmentedCell")]
     unsafe impl NSSegmentedCell {

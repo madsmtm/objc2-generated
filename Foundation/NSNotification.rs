@@ -21,6 +21,9 @@ extern_class!(
 #[cfg(feature = "Foundation_NSNotification")]
 unsafe impl NSCoding for NSNotification {}
 
+#[cfg(feature = "Foundation_NSNotification")]
+unsafe impl NSObjectProtocol for NSNotification {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSNotification")]
     unsafe impl NSNotification {
@@ -85,6 +88,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Foundation_NSNotificationCenter")]
+unsafe impl NSObjectProtocol for NSNotificationCenter {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSNotificationCenter")]

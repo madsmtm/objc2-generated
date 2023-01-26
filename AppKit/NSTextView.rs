@@ -37,13 +37,55 @@ extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSTextView")]
+unsafe impl NSAccessibility for NSTextView {}
+
+#[cfg(feature = "AppKit_NSTextView")]
+unsafe impl NSAccessibilityElement for NSTextView {}
+
+#[cfg(feature = "AppKit_NSTextView")]
+unsafe impl NSAccessibilityNavigableStaticText for NSTextView {}
+
+#[cfg(feature = "AppKit_NSTextView")]
+unsafe impl NSAccessibilityStaticText for NSTextView {}
+
+#[cfg(feature = "AppKit_NSTextView")]
+unsafe impl NSAnimatablePropertyContainer for NSTextView {}
+
+#[cfg(feature = "AppKit_NSTextView")]
+unsafe impl NSAppearanceCustomization for NSTextView {}
+
+#[cfg(feature = "AppKit_NSTextView")]
+unsafe impl NSChangeSpelling for NSTextView {}
+
+#[cfg(feature = "AppKit_NSTextView")]
+unsafe impl NSCoding for NSTextView {}
+
+#[cfg(feature = "AppKit_NSTextView")]
 unsafe impl NSColorChanging for NSTextView {}
+
+#[cfg(feature = "AppKit_NSTextView")]
+unsafe impl NSDraggingDestination for NSTextView {}
+
+#[cfg(feature = "AppKit_NSTextView")]
+unsafe impl NSDraggingSource for NSTextView {}
+
+#[cfg(feature = "AppKit_NSTextView")]
+unsafe impl NSIgnoreMisspelledWords for NSTextView {}
 
 #[cfg(feature = "AppKit_NSTextView")]
 unsafe impl NSMenuItemValidation for NSTextView {}
 
 #[cfg(feature = "AppKit_NSTextView")]
-unsafe impl NSUserInterfaceValidations for NSTextView {}
+unsafe impl NSObjectProtocol for NSTextView {}
+
+#[cfg(feature = "AppKit_NSTextView")]
+unsafe impl NSStandardKeyBindingResponding for NSTextView {}
+
+#[cfg(feature = "AppKit_NSTextView")]
+unsafe impl NSTextContent for NSTextView {}
+
+#[cfg(feature = "AppKit_NSTextView")]
+unsafe impl NSTextInput for NSTextView {}
 
 #[cfg(feature = "AppKit_NSTextView")]
 unsafe impl NSTextInputClient for NSTextView {}
@@ -52,19 +94,10 @@ unsafe impl NSTextInputClient for NSTextView {}
 unsafe impl NSTextLayoutOrientationProvider for NSTextView {}
 
 #[cfg(feature = "AppKit_NSTextView")]
-unsafe impl NSDraggingSource for NSTextView {}
+unsafe impl NSUserInterfaceItemIdentification for NSTextView {}
 
 #[cfg(feature = "AppKit_NSTextView")]
-unsafe impl NSStandardKeyBindingResponding for NSTextView {}
-
-#[cfg(feature = "AppKit_NSTextView")]
-unsafe impl NSTextInput for NSTextView {}
-
-#[cfg(feature = "AppKit_NSTextView")]
-unsafe impl NSAccessibilityNavigableStaticText for NSTextView {}
-
-#[cfg(feature = "AppKit_NSTextView")]
-unsafe impl NSTextContent for NSTextView {}
+unsafe impl NSUserInterfaceValidations for NSTextView {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSTextView")]

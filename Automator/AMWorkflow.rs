@@ -17,6 +17,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Automator_AMWorkflow")]
+unsafe impl NSObjectProtocol for AMWorkflow {}
+
 extern_methods!(
     #[cfg(feature = "Automator_AMWorkflow")]
     unsafe impl AMWorkflow {

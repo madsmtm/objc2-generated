@@ -15,6 +15,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreData_NSPropertyMapping")]
+unsafe impl NSObjectProtocol for NSPropertyMapping {}
+
 extern_methods!(
     #[cfg(feature = "CoreData_NSPropertyMapping")]
     unsafe impl NSPropertyMapping {

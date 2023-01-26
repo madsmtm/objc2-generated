@@ -27,6 +27,15 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "ClassKit_CLSProgressReportingCapability")]
+unsafe impl NSCoding for CLSProgressReportingCapability {}
+
+#[cfg(feature = "ClassKit_CLSProgressReportingCapability")]
+unsafe impl NSObjectProtocol for CLSProgressReportingCapability {}
+
+#[cfg(feature = "ClassKit_CLSProgressReportingCapability")]
+unsafe impl NSSecureCoding for CLSProgressReportingCapability {}
+
 extern_methods!(
     #[cfg(feature = "ClassKit_CLSProgressReportingCapability")]
     unsafe impl CLSProgressReportingCapability {

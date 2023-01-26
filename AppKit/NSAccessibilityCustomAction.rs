@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSAccessibilityCustomAction")]
+unsafe impl NSObjectProtocol for NSAccessibilityCustomAction {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSAccessibilityCustomAction")]
     unsafe impl NSAccessibilityCustomAction {

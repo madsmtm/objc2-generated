@@ -37,6 +37,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSJSONSerialization")]
+unsafe impl NSObjectProtocol for NSJSONSerialization {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSJSONSerialization")]
     unsafe impl NSJSONSerialization {

@@ -17,6 +17,18 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSArrayController")]
+unsafe impl NSCoding for NSArrayController {}
+
+#[cfg(feature = "AppKit_NSArrayController")]
+unsafe impl NSEditor for NSArrayController {}
+
+#[cfg(feature = "AppKit_NSArrayController")]
+unsafe impl NSEditorRegistration for NSArrayController {}
+
+#[cfg(feature = "AppKit_NSArrayController")]
+unsafe impl NSObjectProtocol for NSArrayController {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSArrayController")]
     unsafe impl NSArrayController {

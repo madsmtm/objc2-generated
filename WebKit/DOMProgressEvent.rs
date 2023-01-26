@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_DOMProgressEvent")]
+unsafe impl NSObjectProtocol for DOMProgressEvent {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_DOMProgressEvent")]
     unsafe impl DOMProgressEvent {

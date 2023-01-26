@@ -17,6 +17,21 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "ExtensionKit_EXHostViewController")]
+unsafe impl NSCoding for EXHostViewController {}
+
+#[cfg(feature = "ExtensionKit_EXHostViewController")]
+unsafe impl NSEditor for EXHostViewController {}
+
+#[cfg(feature = "ExtensionKit_EXHostViewController")]
+unsafe impl NSObjectProtocol for EXHostViewController {}
+
+#[cfg(feature = "ExtensionKit_EXHostViewController")]
+unsafe impl NSSeguePerforming for EXHostViewController {}
+
+#[cfg(feature = "ExtensionKit_EXHostViewController")]
+unsafe impl NSUserInterfaceItemIdentification for EXHostViewController {}
+
 extern_methods!(
     #[cfg(feature = "ExtensionKit_EXHostViewController")]
     unsafe impl EXHostViewController {

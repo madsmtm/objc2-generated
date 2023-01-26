@@ -30,6 +30,12 @@ __inner_extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSOrderedCollectionChange")]
+unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSObjectProtocol
+    for NSOrderedCollectionChange<ObjectType, ObjectTypeOwnership>
+{
+}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSOrderedCollectionChange")]
     unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>

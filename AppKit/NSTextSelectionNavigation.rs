@@ -66,6 +66,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSTextSelectionNavigation")]
+unsafe impl NSObjectProtocol for NSTextSelectionNavigation {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSTextSelectionNavigation")]
     unsafe impl NSTextSelectionNavigation {

@@ -18,6 +18,24 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "GameKit_GKAchievementViewController")]
+unsafe impl GKViewController for GKAchievementViewController {}
+
+#[cfg(feature = "GameKit_GKAchievementViewController")]
+unsafe impl NSCoding for GKAchievementViewController {}
+
+#[cfg(feature = "GameKit_GKAchievementViewController")]
+unsafe impl NSEditor for GKAchievementViewController {}
+
+#[cfg(feature = "GameKit_GKAchievementViewController")]
+unsafe impl NSObjectProtocol for GKAchievementViewController {}
+
+#[cfg(feature = "GameKit_GKAchievementViewController")]
+unsafe impl NSSeguePerforming for GKAchievementViewController {}
+
+#[cfg(feature = "GameKit_GKAchievementViewController")]
+unsafe impl NSUserInterfaceItemIdentification for GKAchievementViewController {}
+
 extern_methods!(
     #[cfg(feature = "GameKit_GKAchievementViewController")]
     unsafe impl GKAchievementViewController {

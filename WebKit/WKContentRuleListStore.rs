@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_WKContentRuleListStore")]
+unsafe impl NSObjectProtocol for WKContentRuleListStore {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_WKContentRuleListStore")]
     unsafe impl WKContentRuleListStore {

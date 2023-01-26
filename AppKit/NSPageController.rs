@@ -34,6 +34,18 @@ unsafe impl NSAnimatablePropertyContainer for NSPageController {}
 #[cfg(feature = "AppKit_NSPageController")]
 unsafe impl NSCoding for NSPageController {}
 
+#[cfg(feature = "AppKit_NSPageController")]
+unsafe impl NSEditor for NSPageController {}
+
+#[cfg(feature = "AppKit_NSPageController")]
+unsafe impl NSObjectProtocol for NSPageController {}
+
+#[cfg(feature = "AppKit_NSPageController")]
+unsafe impl NSSeguePerforming for NSPageController {}
+
+#[cfg(feature = "AppKit_NSPageController")]
+unsafe impl NSUserInterfaceItemIdentification for NSPageController {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSPageController")]
     unsafe impl NSPageController {

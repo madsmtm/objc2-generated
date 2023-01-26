@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSURLSession")]
+unsafe impl NSObjectProtocol for NSURLSession {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSURLSession")]
     unsafe impl NSURLSession {
@@ -375,6 +378,9 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSURLSessionTask")]
+unsafe impl NSObjectProtocol for NSURLSessionTask {}
+
+#[cfg(feature = "Foundation_NSURLSessionTask")]
 unsafe impl NSProgressReporting for NSURLSessionTask {}
 
 extern_methods!(
@@ -512,6 +518,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSURLSessionDataTask")]
+unsafe impl NSObjectProtocol for NSURLSessionDataTask {}
+
+#[cfg(feature = "Foundation_NSURLSessionDataTask")]
+unsafe impl NSProgressReporting for NSURLSessionDataTask {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSURLSessionDataTask")]
     unsafe impl NSURLSessionDataTask {
@@ -537,6 +549,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSURLSessionUploadTask")]
+unsafe impl NSObjectProtocol for NSURLSessionUploadTask {}
+
+#[cfg(feature = "Foundation_NSURLSessionUploadTask")]
+unsafe impl NSProgressReporting for NSURLSessionUploadTask {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSURLSessionUploadTask")]
     unsafe impl NSURLSessionUploadTask {
@@ -561,6 +579,12 @@ extern_class!(
         type Super = NSURLSessionTask;
     }
 );
+
+#[cfg(feature = "Foundation_NSURLSessionDownloadTask")]
+unsafe impl NSObjectProtocol for NSURLSessionDownloadTask {}
+
+#[cfg(feature = "Foundation_NSURLSessionDownloadTask")]
+unsafe impl NSProgressReporting for NSURLSessionDownloadTask {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSURLSessionDownloadTask")]
@@ -593,6 +617,12 @@ extern_class!(
         type Super = NSURLSessionTask;
     }
 );
+
+#[cfg(feature = "Foundation_NSURLSessionStreamTask")]
+unsafe impl NSObjectProtocol for NSURLSessionStreamTask {}
+
+#[cfg(feature = "Foundation_NSURLSessionStreamTask")]
+unsafe impl NSProgressReporting for NSURLSessionStreamTask {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSURLSessionStreamTask")]
@@ -661,6 +691,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSURLSessionWebSocketMessage")]
+unsafe impl NSObjectProtocol for NSURLSessionWebSocketMessage {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSURLSessionWebSocketMessage")]
     unsafe impl NSURLSessionWebSocketMessage {
@@ -727,6 +760,12 @@ extern_class!(
         type Super = NSURLSessionTask;
     }
 );
+
+#[cfg(feature = "Foundation_NSURLSessionWebSocketTask")]
+unsafe impl NSObjectProtocol for NSURLSessionWebSocketTask {}
+
+#[cfg(feature = "Foundation_NSURLSessionWebSocketTask")]
+unsafe impl NSProgressReporting for NSURLSessionWebSocketTask {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSURLSessionWebSocketTask")]
@@ -808,6 +847,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Foundation_NSURLSessionConfiguration")]
+unsafe impl NSObjectProtocol for NSURLSessionConfiguration {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSURLSessionConfiguration")]
@@ -1504,6 +1546,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSURLSessionTaskTransactionMetrics")]
+unsafe impl NSObjectProtocol for NSURLSessionTaskTransactionMetrics {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSURLSessionTaskTransactionMetrics")]
     unsafe impl NSURLSessionTaskTransactionMetrics {
@@ -1651,6 +1696,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Foundation_NSURLSessionTaskMetrics")]
+unsafe impl NSObjectProtocol for NSURLSessionTaskMetrics {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSURLSessionTaskMetrics")]

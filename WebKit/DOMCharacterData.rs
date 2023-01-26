@@ -18,6 +18,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_DOMCharacterData")]
+unsafe impl DOMEventTarget for DOMCharacterData {}
+
+#[cfg(feature = "WebKit_DOMCharacterData")]
+unsafe impl NSObjectProtocol for DOMCharacterData {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_DOMCharacterData")]
     unsafe impl DOMCharacterData {

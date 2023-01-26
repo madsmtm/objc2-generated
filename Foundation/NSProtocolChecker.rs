@@ -14,6 +14,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSProtocolChecker")]
+unsafe impl NSObjectProtocol for NSProtocolChecker {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSProtocolChecker")]
     unsafe impl NSProtocolChecker {

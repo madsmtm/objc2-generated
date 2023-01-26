@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSPathControlItem")]
+unsafe impl NSObjectProtocol for NSPathControlItem {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSPathControlItem")]
     unsafe impl NSPathControlItem {

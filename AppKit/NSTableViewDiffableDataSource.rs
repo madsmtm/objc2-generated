@@ -59,6 +59,22 @@ unsafe impl<
         ItemIdentifierType: Message,
         SectionIdentifierTypeOwnership: Ownership,
         ItemIdentifierTypeOwnership: Ownership,
+    > NSObjectProtocol
+    for NSTableViewDiffableDataSource<
+        SectionIdentifierType,
+        ItemIdentifierType,
+        SectionIdentifierTypeOwnership,
+        ItemIdentifierTypeOwnership,
+    >
+{
+}
+
+#[cfg(feature = "AppKit_NSTableViewDiffableDataSource")]
+unsafe impl<
+        SectionIdentifierType: Message,
+        ItemIdentifierType: Message,
+        SectionIdentifierTypeOwnership: Ownership,
+        ItemIdentifierTypeOwnership: Ownership,
     > NSTableViewDataSource
     for NSTableViewDiffableDataSource<
         SectionIdentifierType,

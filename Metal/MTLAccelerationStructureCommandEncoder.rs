@@ -136,6 +136,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLAccelerationStructurePassSampleBufferAttachmentDescriptor")]
+unsafe impl NSObjectProtocol for MTLAccelerationStructurePassSampleBufferAttachmentDescriptor {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLAccelerationStructurePassSampleBufferAttachmentDescriptor")]
     unsafe impl MTLAccelerationStructurePassSampleBufferAttachmentDescriptor {
@@ -178,6 +181,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray")]
+unsafe impl NSObjectProtocol for MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray")]
     unsafe impl MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray {
@@ -208,6 +214,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Metal_MTLAccelerationStructurePassDescriptor")]
+unsafe impl NSObjectProtocol for MTLAccelerationStructurePassDescriptor {}
 
 extern_methods!(
     #[cfg(feature = "Metal_MTLAccelerationStructurePassDescriptor")]

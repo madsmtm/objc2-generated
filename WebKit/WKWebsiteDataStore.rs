@@ -17,6 +17,12 @@ extern_class!(
 );
 
 #[cfg(feature = "WebKit_WKWebsiteDataStore")]
+unsafe impl NSCoding for WKWebsiteDataStore {}
+
+#[cfg(feature = "WebKit_WKWebsiteDataStore")]
+unsafe impl NSObjectProtocol for WKWebsiteDataStore {}
+
+#[cfg(feature = "WebKit_WKWebsiteDataStore")]
 unsafe impl NSSecureCoding for WKWebsiteDataStore {}
 
 extern_methods!(

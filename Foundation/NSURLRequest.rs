@@ -52,6 +52,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSURLRequest")]
+unsafe impl NSCoding for NSURLRequest {}
+
+#[cfg(feature = "Foundation_NSURLRequest")]
+unsafe impl NSObjectProtocol for NSURLRequest {}
+
+#[cfg(feature = "Foundation_NSURLRequest")]
 unsafe impl NSSecureCoding for NSURLRequest {}
 
 extern_methods!(
@@ -133,6 +139,15 @@ extern_class!(
         type Super = NSURLRequest;
     }
 );
+
+#[cfg(feature = "Foundation_NSMutableURLRequest")]
+unsafe impl NSCoding for NSMutableURLRequest {}
+
+#[cfg(feature = "Foundation_NSMutableURLRequest")]
+unsafe impl NSObjectProtocol for NSMutableURLRequest {}
+
+#[cfg(feature = "Foundation_NSMutableURLRequest")]
+unsafe impl NSSecureCoding for NSMutableURLRequest {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSMutableURLRequest")]

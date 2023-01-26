@@ -18,6 +18,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_DOMHTMLBaseFontElement")]
+unsafe impl DOMEventTarget for DOMHTMLBaseFontElement {}
+
+#[cfg(feature = "WebKit_DOMHTMLBaseFontElement")]
+unsafe impl NSObjectProtocol for DOMHTMLBaseFontElement {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_DOMHTMLBaseFontElement")]
     unsafe impl DOMHTMLBaseFontElement {

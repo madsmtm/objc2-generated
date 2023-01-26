@@ -25,6 +25,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSOperation")]
+unsafe impl NSObjectProtocol for NSOperation {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSOperation")]
     unsafe impl NSOperation {
@@ -116,6 +119,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSBlockOperation")]
+unsafe impl NSObjectProtocol for NSBlockOperation {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSBlockOperation")]
     unsafe impl NSBlockOperation {
@@ -138,6 +144,9 @@ extern_class!(
         type Super = NSOperation;
     }
 );
+
+#[cfg(feature = "Foundation_NSInvocationOperation")]
+unsafe impl NSObjectProtocol for NSInvocationOperation {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSInvocationOperation")]
@@ -182,6 +191,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Foundation_NSOperationQueue")]
+unsafe impl NSObjectProtocol for NSOperationQueue {}
 
 #[cfg(feature = "Foundation_NSOperationQueue")]
 unsafe impl NSProgressReporting for NSOperationQueue {}

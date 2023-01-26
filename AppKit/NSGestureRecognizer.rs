@@ -32,6 +32,9 @@ extern_class!(
 #[cfg(feature = "AppKit_NSGestureRecognizer")]
 unsafe impl NSCoding for NSGestureRecognizer {}
 
+#[cfg(feature = "AppKit_NSGestureRecognizer")]
+unsafe impl NSObjectProtocol for NSGestureRecognizer {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSGestureRecognizer")]
     unsafe impl NSGestureRecognizer {

@@ -35,6 +35,9 @@ extern_class!(
 #[cfg(feature = "WebKit_WebPreferences")]
 unsafe impl NSCoding for WebPreferences {}
 
+#[cfg(feature = "WebKit_WebPreferences")]
+unsafe impl NSObjectProtocol for WebPreferences {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_WebPreferences")]
     unsafe impl WebPreferences {

@@ -15,6 +15,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreAnimation_CADisplayLink")]
+unsafe impl NSObjectProtocol for CADisplayLink {}
+
 extern_methods!(
     #[cfg(feature = "CoreAnimation_CADisplayLink")]
     unsafe impl CADisplayLink {

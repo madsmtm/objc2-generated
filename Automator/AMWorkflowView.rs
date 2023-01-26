@@ -18,6 +18,30 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Automator_AMWorkflowView")]
+unsafe impl NSAccessibility for AMWorkflowView {}
+
+#[cfg(feature = "Automator_AMWorkflowView")]
+unsafe impl NSAccessibilityElement for AMWorkflowView {}
+
+#[cfg(feature = "Automator_AMWorkflowView")]
+unsafe impl NSAnimatablePropertyContainer for AMWorkflowView {}
+
+#[cfg(feature = "Automator_AMWorkflowView")]
+unsafe impl NSAppearanceCustomization for AMWorkflowView {}
+
+#[cfg(feature = "Automator_AMWorkflowView")]
+unsafe impl NSCoding for AMWorkflowView {}
+
+#[cfg(feature = "Automator_AMWorkflowView")]
+unsafe impl NSDraggingDestination for AMWorkflowView {}
+
+#[cfg(feature = "Automator_AMWorkflowView")]
+unsafe impl NSObjectProtocol for AMWorkflowView {}
+
+#[cfg(feature = "Automator_AMWorkflowView")]
+unsafe impl NSUserInterfaceItemIdentification for AMWorkflowView {}
+
 extern_methods!(
     #[cfg(feature = "Automator_AMWorkflowView")]
     unsafe impl AMWorkflowView {

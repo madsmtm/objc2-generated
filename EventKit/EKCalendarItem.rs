@@ -19,6 +19,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "EventKit_EKCalendarItem")]
+unsafe impl NSObjectProtocol for EKCalendarItem {}
+
 extern_methods!(
     #[cfg(feature = "EventKit_EKCalendarItem")]
     unsafe impl EKCalendarItem {

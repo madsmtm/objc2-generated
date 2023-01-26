@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_DOMCSSRuleList")]
+unsafe impl NSObjectProtocol for DOMCSSRuleList {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_DOMCSSRuleList")]
     unsafe impl DOMCSSRuleList {

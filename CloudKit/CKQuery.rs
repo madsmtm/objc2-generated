@@ -17,6 +17,12 @@ extern_class!(
 );
 
 #[cfg(feature = "CloudKit_CKQuery")]
+unsafe impl NSCoding for CKQuery {}
+
+#[cfg(feature = "CloudKit_CKQuery")]
+unsafe impl NSObjectProtocol for CKQuery {}
+
+#[cfg(feature = "CloudKit_CKQuery")]
 unsafe impl NSSecureCoding for CKQuery {}
 
 extern_methods!(

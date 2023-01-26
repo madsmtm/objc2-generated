@@ -29,6 +29,16 @@ __inner_extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSCache")]
+unsafe impl<
+        KeyType: Message,
+        ObjectType: Message,
+        KeyTypeOwnership: Ownership,
+        ObjectTypeOwnership: Ownership,
+    > NSObjectProtocol for NSCache<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
+{
+}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSCache")]
     unsafe impl<

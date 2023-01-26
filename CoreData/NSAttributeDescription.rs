@@ -37,6 +37,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreData_NSAttributeDescription")]
+unsafe impl NSCoding for NSAttributeDescription {}
+
+#[cfg(feature = "CoreData_NSAttributeDescription")]
+unsafe impl NSObjectProtocol for NSAttributeDescription {}
+
 extern_methods!(
     #[cfg(feature = "CoreData_NSAttributeDescription")]
     unsafe impl NSAttributeDescription {

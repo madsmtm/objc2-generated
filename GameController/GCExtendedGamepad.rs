@@ -20,6 +20,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "GameController_GCExtendedGamepad")]
+unsafe impl NSObjectProtocol for GCExtendedGamepad {}
+
 extern_methods!(
     #[cfg(feature = "GameController_GCExtendedGamepad")]
     unsafe impl GCExtendedGamepad {

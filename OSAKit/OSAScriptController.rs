@@ -26,6 +26,18 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "OSAKit_OSAScriptController")]
+unsafe impl NSCoding for OSAScriptController {}
+
+#[cfg(feature = "OSAKit_OSAScriptController")]
+unsafe impl NSEditor for OSAScriptController {}
+
+#[cfg(feature = "OSAKit_OSAScriptController")]
+unsafe impl NSEditorRegistration for OSAScriptController {}
+
+#[cfg(feature = "OSAKit_OSAScriptController")]
+unsafe impl NSObjectProtocol for OSAScriptController {}
+
 extern_methods!(
     #[cfg(feature = "OSAKit_OSAScriptController")]
     unsafe impl OSAScriptController {

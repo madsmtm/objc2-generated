@@ -129,6 +129,42 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSTokenField")]
+unsafe impl NSAccessibility for NSTokenField {}
+
+#[cfg(feature = "AppKit_NSTokenField")]
+unsafe impl NSAccessibilityElement for NSTokenField {}
+
+#[cfg(feature = "AppKit_NSTokenField")]
+unsafe impl NSAccessibilityNavigableStaticText for NSTokenField {}
+
+#[cfg(feature = "AppKit_NSTokenField")]
+unsafe impl NSAccessibilityStaticText for NSTokenField {}
+
+#[cfg(feature = "AppKit_NSTokenField")]
+unsafe impl NSAnimatablePropertyContainer for NSTokenField {}
+
+#[cfg(feature = "AppKit_NSTokenField")]
+unsafe impl NSAppearanceCustomization for NSTokenField {}
+
+#[cfg(feature = "AppKit_NSTokenField")]
+unsafe impl NSCoding for NSTokenField {}
+
+#[cfg(feature = "AppKit_NSTokenField")]
+unsafe impl NSDraggingDestination for NSTokenField {}
+
+#[cfg(feature = "AppKit_NSTokenField")]
+unsafe impl NSObjectProtocol for NSTokenField {}
+
+#[cfg(feature = "AppKit_NSTokenField")]
+unsafe impl NSTextContent for NSTokenField {}
+
+#[cfg(feature = "AppKit_NSTokenField")]
+unsafe impl NSUserInterfaceItemIdentification for NSTokenField {}
+
+#[cfg(feature = "AppKit_NSTokenField")]
+unsafe impl NSUserInterfaceValidations for NSTokenField {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSTokenField")]
     unsafe impl NSTokenField {

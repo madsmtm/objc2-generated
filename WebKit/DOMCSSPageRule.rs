@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_DOMCSSPageRule")]
+unsafe impl NSObjectProtocol for DOMCSSPageRule {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_DOMCSSPageRule")]
     unsafe impl DOMCSSPageRule {

@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "MapKit_MKLookAroundSceneRequest")]
+unsafe impl NSObjectProtocol for MKLookAroundSceneRequest {}
+
 extern_methods!(
     #[cfg(feature = "MapKit_MKLookAroundSceneRequest")]
     unsafe impl MKLookAroundSceneRequest {

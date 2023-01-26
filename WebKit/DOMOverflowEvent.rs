@@ -31,6 +31,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_DOMOverflowEvent")]
+unsafe impl NSObjectProtocol for DOMOverflowEvent {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_DOMOverflowEvent")]
     unsafe impl DOMOverflowEvent {

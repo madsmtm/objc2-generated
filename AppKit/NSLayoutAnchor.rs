@@ -83,6 +83,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSLayoutXAxisAnchor")]
+unsafe impl NSObjectProtocol for NSLayoutXAxisAnchor {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSLayoutXAxisAnchor")]
     unsafe impl NSLayoutXAxisAnchor {
@@ -131,6 +134,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSLayoutYAxisAnchor")]
+unsafe impl NSObjectProtocol for NSLayoutYAxisAnchor {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSLayoutYAxisAnchor")]
     unsafe impl NSLayoutYAxisAnchor {
@@ -178,6 +184,9 @@ extern_class!(
         type Super = NSLayoutAnchor;
     }
 );
+
+#[cfg(feature = "AppKit_NSLayoutDimension")]
+unsafe impl NSObjectProtocol for NSLayoutDimension {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSLayoutDimension")]

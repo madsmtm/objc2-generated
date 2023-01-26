@@ -19,6 +19,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "EventKit_EKStructuredLocation")]
+unsafe impl NSObjectProtocol for EKStructuredLocation {}
+
 extern_methods!(
     #[cfg(feature = "EventKit_EKStructuredLocation")]
     unsafe impl EKStructuredLocation {

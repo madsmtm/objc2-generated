@@ -19,6 +19,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "EventKit_EKAlarm")]
+unsafe impl NSObjectProtocol for EKAlarm {}
+
 extern_methods!(
     #[cfg(feature = "EventKit_EKAlarm")]
     unsafe impl EKAlarm {

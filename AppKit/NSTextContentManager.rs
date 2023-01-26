@@ -88,10 +88,16 @@ extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSTextContentManager")]
-unsafe impl NSTextElementProvider for NSTextContentManager {}
+unsafe impl NSCoding for NSTextContentManager {}
+
+#[cfg(feature = "AppKit_NSTextContentManager")]
+unsafe impl NSObjectProtocol for NSTextContentManager {}
 
 #[cfg(feature = "AppKit_NSTextContentManager")]
 unsafe impl NSSecureCoding for NSTextContentManager {}
+
+#[cfg(feature = "AppKit_NSTextContentManager")]
+unsafe impl NSTextElementProvider for NSTextContentManager {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSTextContentManager")]
@@ -252,6 +258,18 @@ extern_class!(
         type Super = NSTextContentManager;
     }
 );
+
+#[cfg(feature = "AppKit_NSTextContentStorage")]
+unsafe impl NSCoding for NSTextContentStorage {}
+
+#[cfg(feature = "AppKit_NSTextContentStorage")]
+unsafe impl NSObjectProtocol for NSTextContentStorage {}
+
+#[cfg(feature = "AppKit_NSTextContentStorage")]
+unsafe impl NSSecureCoding for NSTextContentStorage {}
+
+#[cfg(feature = "AppKit_NSTextContentStorage")]
+unsafe impl NSTextElementProvider for NSTextContentStorage {}
 
 #[cfg(feature = "AppKit_NSTextContentStorage")]
 unsafe impl NSTextStorageObserving for NSTextContentStorage {}

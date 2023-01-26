@@ -20,7 +20,13 @@ extern_class!(
 );
 
 #[cfg(feature = "MapKit_MKCircle")]
+unsafe impl MKAnnotation for MKCircle {}
+
+#[cfg(feature = "MapKit_MKCircle")]
 unsafe impl MKOverlay for MKCircle {}
+
+#[cfg(feature = "MapKit_MKCircle")]
+unsafe impl NSObjectProtocol for MKCircle {}
 
 extern_methods!(
     #[cfg(feature = "MapKit_MKCircle")]

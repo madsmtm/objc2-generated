@@ -15,6 +15,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSTimeZone")]
+unsafe impl NSCoding for NSTimeZone {}
+
+#[cfg(feature = "Foundation_NSTimeZone")]
+unsafe impl NSObjectProtocol for NSTimeZone {}
+
+#[cfg(feature = "Foundation_NSTimeZone")]
 unsafe impl NSSecureCoding for NSTimeZone {}
 
 extern_methods!(

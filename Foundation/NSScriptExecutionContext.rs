@@ -14,6 +14,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSScriptExecutionContext")]
+unsafe impl NSObjectProtocol for NSScriptExecutionContext {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSScriptExecutionContext")]
     unsafe impl NSScriptExecutionContext {

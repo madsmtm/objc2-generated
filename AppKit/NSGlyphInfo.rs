@@ -17,6 +17,12 @@ extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSGlyphInfo")]
+unsafe impl NSCoding for NSGlyphInfo {}
+
+#[cfg(feature = "AppKit_NSGlyphInfo")]
+unsafe impl NSObjectProtocol for NSGlyphInfo {}
+
+#[cfg(feature = "AppKit_NSGlyphInfo")]
 unsafe impl NSSecureCoding for NSGlyphInfo {}
 
 extern_methods!(

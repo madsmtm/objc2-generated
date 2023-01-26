@@ -53,6 +53,15 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSComparisonPredicate")]
+unsafe impl NSCoding for NSComparisonPredicate {}
+
+#[cfg(feature = "Foundation_NSComparisonPredicate")]
+unsafe impl NSObjectProtocol for NSComparisonPredicate {}
+
+#[cfg(feature = "Foundation_NSComparisonPredicate")]
+unsafe impl NSSecureCoding for NSComparisonPredicate {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSComparisonPredicate")]
     unsafe impl NSComparisonPredicate {

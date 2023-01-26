@@ -72,6 +72,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "MetalKit_MTKTextureLoader")]
+unsafe impl NSObjectProtocol for MTKTextureLoader {}
+
 extern_methods!(
     #[cfg(feature = "MetalKit_MTKTextureLoader")]
     unsafe impl MTKTextureLoader {

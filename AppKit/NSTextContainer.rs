@@ -17,6 +17,12 @@ extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSTextContainer")]
+unsafe impl NSCoding for NSTextContainer {}
+
+#[cfg(feature = "AppKit_NSTextContainer")]
+unsafe impl NSObjectProtocol for NSTextContainer {}
+
+#[cfg(feature = "AppKit_NSTextContainer")]
 unsafe impl NSSecureCoding for NSTextContainer {}
 
 #[cfg(feature = "AppKit_NSTextContainer")]

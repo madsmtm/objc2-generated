@@ -18,6 +18,21 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "FileProviderUI_FPUIActionExtensionViewController")]
+unsafe impl NSCoding for FPUIActionExtensionViewController {}
+
+#[cfg(feature = "FileProviderUI_FPUIActionExtensionViewController")]
+unsafe impl NSEditor for FPUIActionExtensionViewController {}
+
+#[cfg(feature = "FileProviderUI_FPUIActionExtensionViewController")]
+unsafe impl NSObjectProtocol for FPUIActionExtensionViewController {}
+
+#[cfg(feature = "FileProviderUI_FPUIActionExtensionViewController")]
+unsafe impl NSSeguePerforming for FPUIActionExtensionViewController {}
+
+#[cfg(feature = "FileProviderUI_FPUIActionExtensionViewController")]
+unsafe impl NSUserInterfaceItemIdentification for FPUIActionExtensionViewController {}
+
 extern_methods!(
     #[cfg(feature = "FileProviderUI_FPUIActionExtensionViewController")]
     unsafe impl FPUIActionExtensionViewController {

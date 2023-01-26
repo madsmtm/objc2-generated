@@ -32,13 +32,19 @@ extern_class!(
 );
 
 #[cfg(feature = "CoreAnimation_CAAnimation")]
-unsafe impl NSSecureCoding for CAAnimation {}
+unsafe impl CAAction for CAAnimation {}
 
 #[cfg(feature = "CoreAnimation_CAAnimation")]
 unsafe impl CAMediaTiming for CAAnimation {}
 
 #[cfg(feature = "CoreAnimation_CAAnimation")]
-unsafe impl CAAction for CAAnimation {}
+unsafe impl NSCoding for CAAnimation {}
+
+#[cfg(feature = "CoreAnimation_CAAnimation")]
+unsafe impl NSObjectProtocol for CAAnimation {}
+
+#[cfg(feature = "CoreAnimation_CAAnimation")]
+unsafe impl NSSecureCoding for CAAnimation {}
 
 extern_methods!(
     #[cfg(feature = "CoreAnimation_CAAnimation")]
@@ -118,6 +124,21 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreAnimation_CAPropertyAnimation")]
+unsafe impl CAAction for CAPropertyAnimation {}
+
+#[cfg(feature = "CoreAnimation_CAPropertyAnimation")]
+unsafe impl CAMediaTiming for CAPropertyAnimation {}
+
+#[cfg(feature = "CoreAnimation_CAPropertyAnimation")]
+unsafe impl NSCoding for CAPropertyAnimation {}
+
+#[cfg(feature = "CoreAnimation_CAPropertyAnimation")]
+unsafe impl NSObjectProtocol for CAPropertyAnimation {}
+
+#[cfg(feature = "CoreAnimation_CAPropertyAnimation")]
+unsafe impl NSSecureCoding for CAPropertyAnimation {}
+
 extern_methods!(
     #[cfg(feature = "CoreAnimation_CAPropertyAnimation")]
     unsafe impl CAPropertyAnimation {
@@ -167,6 +188,21 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreAnimation_CABasicAnimation")]
+unsafe impl CAAction for CABasicAnimation {}
+
+#[cfg(feature = "CoreAnimation_CABasicAnimation")]
+unsafe impl CAMediaTiming for CABasicAnimation {}
+
+#[cfg(feature = "CoreAnimation_CABasicAnimation")]
+unsafe impl NSCoding for CABasicAnimation {}
+
+#[cfg(feature = "CoreAnimation_CABasicAnimation")]
+unsafe impl NSObjectProtocol for CABasicAnimation {}
+
+#[cfg(feature = "CoreAnimation_CABasicAnimation")]
+unsafe impl NSSecureCoding for CABasicAnimation {}
+
 extern_methods!(
     #[cfg(feature = "CoreAnimation_CABasicAnimation")]
     unsafe impl CABasicAnimation {
@@ -201,6 +237,21 @@ extern_class!(
         type Super = CAPropertyAnimation;
     }
 );
+
+#[cfg(feature = "CoreAnimation_CAKeyframeAnimation")]
+unsafe impl CAAction for CAKeyframeAnimation {}
+
+#[cfg(feature = "CoreAnimation_CAKeyframeAnimation")]
+unsafe impl CAMediaTiming for CAKeyframeAnimation {}
+
+#[cfg(feature = "CoreAnimation_CAKeyframeAnimation")]
+unsafe impl NSCoding for CAKeyframeAnimation {}
+
+#[cfg(feature = "CoreAnimation_CAKeyframeAnimation")]
+unsafe impl NSObjectProtocol for CAKeyframeAnimation {}
+
+#[cfg(feature = "CoreAnimation_CAKeyframeAnimation")]
+unsafe impl NSSecureCoding for CAKeyframeAnimation {}
 
 extern_methods!(
     #[cfg(feature = "CoreAnimation_CAKeyframeAnimation")]
@@ -302,6 +353,21 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreAnimation_CASpringAnimation")]
+unsafe impl CAAction for CASpringAnimation {}
+
+#[cfg(feature = "CoreAnimation_CASpringAnimation")]
+unsafe impl CAMediaTiming for CASpringAnimation {}
+
+#[cfg(feature = "CoreAnimation_CASpringAnimation")]
+unsafe impl NSCoding for CASpringAnimation {}
+
+#[cfg(feature = "CoreAnimation_CASpringAnimation")]
+unsafe impl NSObjectProtocol for CASpringAnimation {}
+
+#[cfg(feature = "CoreAnimation_CASpringAnimation")]
+unsafe impl NSSecureCoding for CASpringAnimation {}
+
 extern_methods!(
     #[cfg(feature = "CoreAnimation_CASpringAnimation")]
     unsafe impl CASpringAnimation {
@@ -345,6 +411,21 @@ extern_class!(
         type Super = CAAnimation;
     }
 );
+
+#[cfg(feature = "CoreAnimation_CATransition")]
+unsafe impl CAAction for CATransition {}
+
+#[cfg(feature = "CoreAnimation_CATransition")]
+unsafe impl CAMediaTiming for CATransition {}
+
+#[cfg(feature = "CoreAnimation_CATransition")]
+unsafe impl NSCoding for CATransition {}
+
+#[cfg(feature = "CoreAnimation_CATransition")]
+unsafe impl NSObjectProtocol for CATransition {}
+
+#[cfg(feature = "CoreAnimation_CATransition")]
+unsafe impl NSSecureCoding for CATransition {}
 
 extern_methods!(
     #[cfg(feature = "CoreAnimation_CATransition")]
@@ -408,6 +489,21 @@ extern_class!(
         type Super = CAAnimation;
     }
 );
+
+#[cfg(feature = "CoreAnimation_CAAnimationGroup")]
+unsafe impl CAAction for CAAnimationGroup {}
+
+#[cfg(feature = "CoreAnimation_CAAnimationGroup")]
+unsafe impl CAMediaTiming for CAAnimationGroup {}
+
+#[cfg(feature = "CoreAnimation_CAAnimationGroup")]
+unsafe impl NSCoding for CAAnimationGroup {}
+
+#[cfg(feature = "CoreAnimation_CAAnimationGroup")]
+unsafe impl NSObjectProtocol for CAAnimationGroup {}
+
+#[cfg(feature = "CoreAnimation_CAAnimationGroup")]
+unsafe impl NSSecureCoding for CAAnimationGroup {}
 
 extern_methods!(
     #[cfg(feature = "CoreAnimation_CAAnimationGroup")]

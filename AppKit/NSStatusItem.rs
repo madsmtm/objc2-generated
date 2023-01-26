@@ -26,6 +26,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSStatusItem")]
+unsafe impl NSObjectProtocol for NSStatusItem {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSStatusItem")]
     unsafe impl NSStatusItem {

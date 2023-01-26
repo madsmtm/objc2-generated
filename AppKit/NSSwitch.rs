@@ -18,7 +18,34 @@ extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSSwitch")]
+unsafe impl NSAccessibility for NSSwitch {}
+
+#[cfg(feature = "AppKit_NSSwitch")]
+unsafe impl NSAccessibilityButton for NSSwitch {}
+
+#[cfg(feature = "AppKit_NSSwitch")]
+unsafe impl NSAccessibilityElement for NSSwitch {}
+
+#[cfg(feature = "AppKit_NSSwitch")]
 unsafe impl NSAccessibilitySwitch for NSSwitch {}
+
+#[cfg(feature = "AppKit_NSSwitch")]
+unsafe impl NSAnimatablePropertyContainer for NSSwitch {}
+
+#[cfg(feature = "AppKit_NSSwitch")]
+unsafe impl NSAppearanceCustomization for NSSwitch {}
+
+#[cfg(feature = "AppKit_NSSwitch")]
+unsafe impl NSCoding for NSSwitch {}
+
+#[cfg(feature = "AppKit_NSSwitch")]
+unsafe impl NSDraggingDestination for NSSwitch {}
+
+#[cfg(feature = "AppKit_NSSwitch")]
+unsafe impl NSObjectProtocol for NSSwitch {}
+
+#[cfg(feature = "AppKit_NSSwitch")]
+unsafe impl NSUserInterfaceItemIdentification for NSSwitch {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSSwitch")]

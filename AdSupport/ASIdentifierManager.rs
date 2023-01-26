@@ -15,6 +15,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AdSupport_ASIdentifierManager")]
+unsafe impl NSObjectProtocol for ASIdentifierManager {}
+
 extern_methods!(
     #[cfg(feature = "AdSupport_ASIdentifierManager")]
     unsafe impl ASIdentifierManager {

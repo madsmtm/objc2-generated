@@ -64,6 +64,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLRenderPassAttachmentDescriptor")]
+unsafe impl NSObjectProtocol for MTLRenderPassAttachmentDescriptor {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLRenderPassAttachmentDescriptor")]
     unsafe impl MTLRenderPassAttachmentDescriptor {
@@ -147,6 +150,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLRenderPassColorAttachmentDescriptor")]
+unsafe impl NSObjectProtocol for MTLRenderPassColorAttachmentDescriptor {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLRenderPassColorAttachmentDescriptor")]
     unsafe impl MTLRenderPassColorAttachmentDescriptor {
@@ -178,6 +184,9 @@ extern_class!(
         type Super = MTLRenderPassAttachmentDescriptor;
     }
 );
+
+#[cfg(feature = "Metal_MTLRenderPassDepthAttachmentDescriptor")]
+unsafe impl NSObjectProtocol for MTLRenderPassDepthAttachmentDescriptor {}
 
 extern_methods!(
     #[cfg(feature = "Metal_MTLRenderPassDepthAttachmentDescriptor")]
@@ -216,6 +225,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLRenderPassStencilAttachmentDescriptor")]
+unsafe impl NSObjectProtocol for MTLRenderPassStencilAttachmentDescriptor {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLRenderPassStencilAttachmentDescriptor")]
     unsafe impl MTLRenderPassStencilAttachmentDescriptor {
@@ -247,6 +259,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLRenderPassColorAttachmentDescriptorArray")]
+unsafe impl NSObjectProtocol for MTLRenderPassColorAttachmentDescriptorArray {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLRenderPassColorAttachmentDescriptorArray")]
     unsafe impl MTLRenderPassColorAttachmentDescriptorArray {
@@ -277,6 +292,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Metal_MTLRenderPassSampleBufferAttachmentDescriptor")]
+unsafe impl NSObjectProtocol for MTLRenderPassSampleBufferAttachmentDescriptor {}
 
 extern_methods!(
     #[cfg(feature = "Metal_MTLRenderPassSampleBufferAttachmentDescriptor")]
@@ -332,6 +350,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLRenderPassSampleBufferAttachmentDescriptorArray")]
+unsafe impl NSObjectProtocol for MTLRenderPassSampleBufferAttachmentDescriptorArray {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLRenderPassSampleBufferAttachmentDescriptorArray")]
     unsafe impl MTLRenderPassSampleBufferAttachmentDescriptorArray {
@@ -362,6 +383,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Metal_MTLRenderPassDescriptor")]
+unsafe impl NSObjectProtocol for MTLRenderPassDescriptor {}
 
 extern_methods!(
     #[cfg(feature = "Metal_MTLRenderPassDescriptor")]

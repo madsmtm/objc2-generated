@@ -35,6 +35,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSFileAccessIntent")]
+unsafe impl NSObjectProtocol for NSFileAccessIntent {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSFileAccessIntent")]
     unsafe impl NSFileAccessIntent {
@@ -68,6 +71,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Foundation_NSFileCoordinator")]
+unsafe impl NSObjectProtocol for NSFileCoordinator {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSFileCoordinator")]

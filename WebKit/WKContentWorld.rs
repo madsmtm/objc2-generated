@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_WKContentWorld")]
+unsafe impl NSObjectProtocol for WKContentWorld {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_WKContentWorld")]
     unsafe impl WKContentWorld {

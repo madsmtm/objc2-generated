@@ -53,6 +53,13 @@ unsafe impl<Key: Message, Element: Message, KeyOwnership: Ownership, ElementOwne
 {
 }
 
+#[cfg(feature = "GameController_GCPhysicalInputElementCollection")]
+unsafe impl<Key: Message, Element: Message, KeyOwnership: Ownership, ElementOwnership: Ownership>
+    NSObjectProtocol
+    for GCPhysicalInputElementCollection<Key, Element, KeyOwnership, ElementOwnership>
+{
+}
+
 extern_methods!(
     #[cfg(feature = "GameController_GCPhysicalInputElementCollection")]
     unsafe impl<Key: Message, Element: Message, KeyOwnership: Ownership, ElementOwnership: Ownership>

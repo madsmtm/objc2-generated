@@ -17,6 +17,33 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSPanel")]
+unsafe impl NSAccessibility for NSPanel {}
+
+#[cfg(feature = "AppKit_NSPanel")]
+unsafe impl NSAccessibilityElement for NSPanel {}
+
+#[cfg(feature = "AppKit_NSPanel")]
+unsafe impl NSAnimatablePropertyContainer for NSPanel {}
+
+#[cfg(feature = "AppKit_NSPanel")]
+unsafe impl NSAppearanceCustomization for NSPanel {}
+
+#[cfg(feature = "AppKit_NSPanel")]
+unsafe impl NSCoding for NSPanel {}
+
+#[cfg(feature = "AppKit_NSPanel")]
+unsafe impl NSMenuItemValidation for NSPanel {}
+
+#[cfg(feature = "AppKit_NSPanel")]
+unsafe impl NSObjectProtocol for NSPanel {}
+
+#[cfg(feature = "AppKit_NSPanel")]
+unsafe impl NSUserInterfaceItemIdentification for NSPanel {}
+
+#[cfg(feature = "AppKit_NSPanel")]
+unsafe impl NSUserInterfaceValidations for NSPanel {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSPanel")]
     unsafe impl NSPanel {

@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_DOMCSSFontFaceRule")]
+unsafe impl NSObjectProtocol for DOMCSSFontFaceRule {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_DOMCSSFontFaceRule")]
     unsafe impl DOMCSSFontFaceRule {

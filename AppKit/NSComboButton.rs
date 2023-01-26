@@ -25,6 +25,30 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSComboButton")]
+unsafe impl NSAccessibility for NSComboButton {}
+
+#[cfg(feature = "AppKit_NSComboButton")]
+unsafe impl NSAccessibilityElement for NSComboButton {}
+
+#[cfg(feature = "AppKit_NSComboButton")]
+unsafe impl NSAnimatablePropertyContainer for NSComboButton {}
+
+#[cfg(feature = "AppKit_NSComboButton")]
+unsafe impl NSAppearanceCustomization for NSComboButton {}
+
+#[cfg(feature = "AppKit_NSComboButton")]
+unsafe impl NSCoding for NSComboButton {}
+
+#[cfg(feature = "AppKit_NSComboButton")]
+unsafe impl NSDraggingDestination for NSComboButton {}
+
+#[cfg(feature = "AppKit_NSComboButton")]
+unsafe impl NSObjectProtocol for NSComboButton {}
+
+#[cfg(feature = "AppKit_NSComboButton")]
+unsafe impl NSUserInterfaceItemIdentification for NSComboButton {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSComboButton")]
     unsafe impl NSComboButton {

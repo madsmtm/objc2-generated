@@ -17,6 +17,30 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSPredicateEditor")]
+unsafe impl NSAccessibility for NSPredicateEditor {}
+
+#[cfg(feature = "AppKit_NSPredicateEditor")]
+unsafe impl NSAccessibilityElement for NSPredicateEditor {}
+
+#[cfg(feature = "AppKit_NSPredicateEditor")]
+unsafe impl NSAnimatablePropertyContainer for NSPredicateEditor {}
+
+#[cfg(feature = "AppKit_NSPredicateEditor")]
+unsafe impl NSAppearanceCustomization for NSPredicateEditor {}
+
+#[cfg(feature = "AppKit_NSPredicateEditor")]
+unsafe impl NSCoding for NSPredicateEditor {}
+
+#[cfg(feature = "AppKit_NSPredicateEditor")]
+unsafe impl NSDraggingDestination for NSPredicateEditor {}
+
+#[cfg(feature = "AppKit_NSPredicateEditor")]
+unsafe impl NSObjectProtocol for NSPredicateEditor {}
+
+#[cfg(feature = "AppKit_NSPredicateEditor")]
+unsafe impl NSUserInterfaceItemIdentification for NSPredicateEditor {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSPredicateEditor")]
     unsafe impl NSPredicateEditor {

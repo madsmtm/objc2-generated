@@ -31,6 +31,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSFileWrapper")]
+unsafe impl NSCoding for NSFileWrapper {}
+
+#[cfg(feature = "Foundation_NSFileWrapper")]
+unsafe impl NSObjectProtocol for NSFileWrapper {}
+
+#[cfg(feature = "Foundation_NSFileWrapper")]
 unsafe impl NSSecureCoding for NSFileWrapper {}
 
 extern_methods!(

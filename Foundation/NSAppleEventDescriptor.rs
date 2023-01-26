@@ -32,6 +32,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSAppleEventDescriptor")]
+unsafe impl NSCoding for NSAppleEventDescriptor {}
+
+#[cfg(feature = "Foundation_NSAppleEventDescriptor")]
+unsafe impl NSObjectProtocol for NSAppleEventDescriptor {}
+
+#[cfg(feature = "Foundation_NSAppleEventDescriptor")]
 unsafe impl NSSecureCoding for NSAppleEventDescriptor {}
 
 extern_methods!(

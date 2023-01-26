@@ -41,6 +41,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_DOMRange")]
+unsafe impl NSObjectProtocol for DOMRange {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_DOMRange")]
     unsafe impl DOMRange {

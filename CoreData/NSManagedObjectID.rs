@@ -15,6 +15,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreData_NSManagedObjectID")]
+unsafe impl NSObjectProtocol for NSManagedObjectID {}
+
 extern_methods!(
     #[cfg(feature = "CoreData_NSManagedObjectID")]
     unsafe impl NSManagedObjectID {

@@ -38,6 +38,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "MapKit_MKDistanceFormatter")]
+unsafe impl NSCoding for MKDistanceFormatter {}
+
+#[cfg(feature = "MapKit_MKDistanceFormatter")]
+unsafe impl NSObjectProtocol for MKDistanceFormatter {}
+
 extern_methods!(
     #[cfg(feature = "MapKit_MKDistanceFormatter")]
     unsafe impl MKDistanceFormatter {

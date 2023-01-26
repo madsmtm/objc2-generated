@@ -15,6 +15,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSURLResponse")]
+unsafe impl NSCoding for NSURLResponse {}
+
+#[cfg(feature = "Foundation_NSURLResponse")]
+unsafe impl NSObjectProtocol for NSURLResponse {}
+
+#[cfg(feature = "Foundation_NSURLResponse")]
 unsafe impl NSSecureCoding for NSURLResponse {}
 
 extern_methods!(
@@ -62,6 +68,15 @@ extern_class!(
         type Super = NSURLResponse;
     }
 );
+
+#[cfg(feature = "Foundation_NSHTTPURLResponse")]
+unsafe impl NSCoding for NSHTTPURLResponse {}
+
+#[cfg(feature = "Foundation_NSHTTPURLResponse")]
+unsafe impl NSObjectProtocol for NSHTTPURLResponse {}
+
+#[cfg(feature = "Foundation_NSHTTPURLResponse")]
+unsafe impl NSSecureCoding for NSHTTPURLResponse {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSHTTPURLResponse")]

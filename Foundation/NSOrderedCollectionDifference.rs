@@ -37,6 +37,12 @@ unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSFastEnumerati
 {
 }
 
+#[cfg(feature = "Foundation_NSOrderedCollectionDifference")]
+unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSObjectProtocol
+    for NSOrderedCollectionDifference<ObjectType, ObjectTypeOwnership>
+{
+}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSOrderedCollectionDifference")]
     unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>

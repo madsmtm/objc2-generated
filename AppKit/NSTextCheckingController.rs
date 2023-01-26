@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSTextCheckingController")]
+unsafe impl NSObjectProtocol for NSTextCheckingController {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSTextCheckingController")]
     unsafe impl NSTextCheckingController {

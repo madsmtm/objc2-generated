@@ -49,6 +49,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSDistributedNotificationCenter")]
+unsafe impl NSObjectProtocol for NSDistributedNotificationCenter {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSDistributedNotificationCenter")]
     unsafe impl NSDistributedNotificationCenter {

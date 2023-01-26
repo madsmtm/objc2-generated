@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CloudKit_CKFetchRecordChangesOperation")]
+unsafe impl NSObjectProtocol for CKFetchRecordChangesOperation {}
+
 extern_methods!(
     #[cfg(feature = "CloudKit_CKFetchRecordChangesOperation")]
     unsafe impl CKFetchRecordChangesOperation {

@@ -14,6 +14,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSThread")]
+unsafe impl NSObjectProtocol for NSThread {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSThread")]
     unsafe impl NSThread {

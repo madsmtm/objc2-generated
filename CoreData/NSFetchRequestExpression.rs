@@ -18,6 +18,15 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreData_NSFetchRequestExpression")]
+unsafe impl NSCoding for NSFetchRequestExpression {}
+
+#[cfg(feature = "CoreData_NSFetchRequestExpression")]
+unsafe impl NSObjectProtocol for NSFetchRequestExpression {}
+
+#[cfg(feature = "CoreData_NSFetchRequestExpression")]
+unsafe impl NSSecureCoding for NSFetchRequestExpression {}
+
 extern_methods!(
     #[cfg(feature = "CoreData_NSFetchRequestExpression")]
     unsafe impl NSFetchRequestExpression {

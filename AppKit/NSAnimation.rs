@@ -44,6 +44,9 @@ extern_class!(
 #[cfg(feature = "AppKit_NSAnimation")]
 unsafe impl NSCoding for NSAnimation {}
 
+#[cfg(feature = "AppKit_NSAnimation")]
+unsafe impl NSObjectProtocol for NSAnimation {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSAnimation")]
     unsafe impl NSAnimation {
@@ -228,6 +231,12 @@ extern_class!(
         type Super = NSAnimation;
     }
 );
+
+#[cfg(feature = "AppKit_NSViewAnimation")]
+unsafe impl NSCoding for NSViewAnimation {}
+
+#[cfg(feature = "AppKit_NSViewAnimation")]
+unsafe impl NSObjectProtocol for NSViewAnimation {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSViewAnimation")]

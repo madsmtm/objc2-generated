@@ -22,6 +22,14 @@ extern_class!(
     }
 );
 
+#[cfg(
+    feature = "AuthenticationServices_ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest"
+)]
+unsafe impl NSObjectProtocol
+    for ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest
+{
+}
+
 extern_methods!(
     #[cfg(
         feature = "AuthenticationServices_ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest"

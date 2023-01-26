@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_DOMRect")]
+unsafe impl NSObjectProtocol for DOMRect {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_DOMRect")]
     unsafe impl DOMRect {

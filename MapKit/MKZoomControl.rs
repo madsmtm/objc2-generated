@@ -19,6 +19,30 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "MapKit_MKZoomControl")]
+unsafe impl NSAccessibility for MKZoomControl {}
+
+#[cfg(feature = "MapKit_MKZoomControl")]
+unsafe impl NSAccessibilityElement for MKZoomControl {}
+
+#[cfg(feature = "MapKit_MKZoomControl")]
+unsafe impl NSAnimatablePropertyContainer for MKZoomControl {}
+
+#[cfg(feature = "MapKit_MKZoomControl")]
+unsafe impl NSAppearanceCustomization for MKZoomControl {}
+
+#[cfg(feature = "MapKit_MKZoomControl")]
+unsafe impl NSCoding for MKZoomControl {}
+
+#[cfg(feature = "MapKit_MKZoomControl")]
+unsafe impl NSDraggingDestination for MKZoomControl {}
+
+#[cfg(feature = "MapKit_MKZoomControl")]
+unsafe impl NSObjectProtocol for MKZoomControl {}
+
+#[cfg(feature = "MapKit_MKZoomControl")]
+unsafe impl NSUserInterfaceItemIdentification for MKZoomControl {}
+
 extern_methods!(
     #[cfg(feature = "MapKit_MKZoomControl")]
     unsafe impl MKZoomControl {

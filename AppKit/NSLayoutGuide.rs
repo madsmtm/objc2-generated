@@ -20,6 +20,9 @@ extern_class!(
 unsafe impl NSCoding for NSLayoutGuide {}
 
 #[cfg(feature = "AppKit_NSLayoutGuide")]
+unsafe impl NSObjectProtocol for NSLayoutGuide {}
+
+#[cfg(feature = "AppKit_NSLayoutGuide")]
 unsafe impl NSUserInterfaceItemIdentification for NSLayoutGuide {}
 
 extern_methods!(

@@ -15,6 +15,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "DeviceCheck_DCAppAttestService")]
+unsafe impl NSObjectProtocol for DCAppAttestService {}
+
 extern_methods!(
     #[cfg(feature = "DeviceCheck_DCAppAttestService")]
     unsafe impl DCAppAttestService {

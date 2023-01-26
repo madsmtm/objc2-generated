@@ -79,6 +79,12 @@ unsafe impl<ResultType: Message, ResultTypeOwnership: Ownership> NSCoding
 {
 }
 
+#[cfg(feature = "CoreData_NSFetchRequest")]
+unsafe impl<ResultType: Message, ResultTypeOwnership: Ownership> NSObjectProtocol
+    for NSFetchRequest<ResultType, ResultTypeOwnership>
+{
+}
+
 extern_methods!(
     #[cfg(feature = "CoreData_NSFetchRequest")]
     unsafe impl<ResultType: Message, ResultTypeOwnership: Ownership>
@@ -276,6 +282,12 @@ __inner_extern_class!(
         type Super = NSPersistentStoreRequest;
     }
 );
+
+#[cfg(feature = "CoreData_NSAsynchronousFetchRequest")]
+unsafe impl<ResultType: Message, ResultTypeOwnership: Ownership> NSObjectProtocol
+    for NSAsynchronousFetchRequest<ResultType, ResultTypeOwnership>
+{
+}
 
 extern_methods!(
     #[cfg(feature = "CoreData_NSAsynchronousFetchRequest")]

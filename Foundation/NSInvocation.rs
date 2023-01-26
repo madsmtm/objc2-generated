@@ -14,6 +14,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSInvocation")]
+unsafe impl NSObjectProtocol for NSInvocation {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSInvocation")]
     unsafe impl NSInvocation {

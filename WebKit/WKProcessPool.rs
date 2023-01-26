@@ -17,6 +17,12 @@ extern_class!(
 );
 
 #[cfg(feature = "WebKit_WKProcessPool")]
+unsafe impl NSCoding for WKProcessPool {}
+
+#[cfg(feature = "WebKit_WKProcessPool")]
+unsafe impl NSObjectProtocol for WKProcessPool {}
+
+#[cfg(feature = "WebKit_WKProcessPool")]
 unsafe impl NSSecureCoding for WKProcessPool {}
 
 extern_methods!(

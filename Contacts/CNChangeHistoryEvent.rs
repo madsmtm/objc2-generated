@@ -16,6 +16,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Contacts_CNChangeHistoryEvent")]
+unsafe impl NSCoding for CNChangeHistoryEvent {}
+
+#[cfg(feature = "Contacts_CNChangeHistoryEvent")]
+unsafe impl NSObjectProtocol for CNChangeHistoryEvent {}
+
+#[cfg(feature = "Contacts_CNChangeHistoryEvent")]
 unsafe impl NSSecureCoding for CNChangeHistoryEvent {}
 
 extern_methods!(
@@ -41,6 +47,15 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Contacts_CNChangeHistoryDropEverythingEvent")]
+unsafe impl NSCoding for CNChangeHistoryDropEverythingEvent {}
+
+#[cfg(feature = "Contacts_CNChangeHistoryDropEverythingEvent")]
+unsafe impl NSObjectProtocol for CNChangeHistoryDropEverythingEvent {}
+
+#[cfg(feature = "Contacts_CNChangeHistoryDropEverythingEvent")]
+unsafe impl NSSecureCoding for CNChangeHistoryDropEverythingEvent {}
+
 extern_methods!(
     #[cfg(feature = "Contacts_CNChangeHistoryDropEverythingEvent")]
     unsafe impl CNChangeHistoryDropEverythingEvent {}
@@ -57,6 +72,15 @@ extern_class!(
         type Super = CNChangeHistoryEvent;
     }
 );
+
+#[cfg(feature = "Contacts_CNChangeHistoryAddContactEvent")]
+unsafe impl NSCoding for CNChangeHistoryAddContactEvent {}
+
+#[cfg(feature = "Contacts_CNChangeHistoryAddContactEvent")]
+unsafe impl NSObjectProtocol for CNChangeHistoryAddContactEvent {}
+
+#[cfg(feature = "Contacts_CNChangeHistoryAddContactEvent")]
+unsafe impl NSSecureCoding for CNChangeHistoryAddContactEvent {}
 
 extern_methods!(
     #[cfg(feature = "Contacts_CNChangeHistoryAddContactEvent")]
@@ -83,6 +107,15 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Contacts_CNChangeHistoryUpdateContactEvent")]
+unsafe impl NSCoding for CNChangeHistoryUpdateContactEvent {}
+
+#[cfg(feature = "Contacts_CNChangeHistoryUpdateContactEvent")]
+unsafe impl NSObjectProtocol for CNChangeHistoryUpdateContactEvent {}
+
+#[cfg(feature = "Contacts_CNChangeHistoryUpdateContactEvent")]
+unsafe impl NSSecureCoding for CNChangeHistoryUpdateContactEvent {}
+
 extern_methods!(
     #[cfg(feature = "Contacts_CNChangeHistoryUpdateContactEvent")]
     unsafe impl CNChangeHistoryUpdateContactEvent {
@@ -104,6 +137,15 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Contacts_CNChangeHistoryDeleteContactEvent")]
+unsafe impl NSCoding for CNChangeHistoryDeleteContactEvent {}
+
+#[cfg(feature = "Contacts_CNChangeHistoryDeleteContactEvent")]
+unsafe impl NSObjectProtocol for CNChangeHistoryDeleteContactEvent {}
+
+#[cfg(feature = "Contacts_CNChangeHistoryDeleteContactEvent")]
+unsafe impl NSSecureCoding for CNChangeHistoryDeleteContactEvent {}
+
 extern_methods!(
     #[cfg(feature = "Contacts_CNChangeHistoryDeleteContactEvent")]
     unsafe impl CNChangeHistoryDeleteContactEvent {
@@ -124,6 +166,15 @@ extern_class!(
         type Super = CNChangeHistoryEvent;
     }
 );
+
+#[cfg(feature = "Contacts_CNChangeHistoryAddGroupEvent")]
+unsafe impl NSCoding for CNChangeHistoryAddGroupEvent {}
+
+#[cfg(feature = "Contacts_CNChangeHistoryAddGroupEvent")]
+unsafe impl NSObjectProtocol for CNChangeHistoryAddGroupEvent {}
+
+#[cfg(feature = "Contacts_CNChangeHistoryAddGroupEvent")]
+unsafe impl NSSecureCoding for CNChangeHistoryAddGroupEvent {}
 
 extern_methods!(
     #[cfg(feature = "Contacts_CNChangeHistoryAddGroupEvent")]
@@ -150,6 +201,15 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Contacts_CNChangeHistoryUpdateGroupEvent")]
+unsafe impl NSCoding for CNChangeHistoryUpdateGroupEvent {}
+
+#[cfg(feature = "Contacts_CNChangeHistoryUpdateGroupEvent")]
+unsafe impl NSObjectProtocol for CNChangeHistoryUpdateGroupEvent {}
+
+#[cfg(feature = "Contacts_CNChangeHistoryUpdateGroupEvent")]
+unsafe impl NSSecureCoding for CNChangeHistoryUpdateGroupEvent {}
+
 extern_methods!(
     #[cfg(feature = "Contacts_CNChangeHistoryUpdateGroupEvent")]
     unsafe impl CNChangeHistoryUpdateGroupEvent {
@@ -171,6 +231,15 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Contacts_CNChangeHistoryDeleteGroupEvent")]
+unsafe impl NSCoding for CNChangeHistoryDeleteGroupEvent {}
+
+#[cfg(feature = "Contacts_CNChangeHistoryDeleteGroupEvent")]
+unsafe impl NSObjectProtocol for CNChangeHistoryDeleteGroupEvent {}
+
+#[cfg(feature = "Contacts_CNChangeHistoryDeleteGroupEvent")]
+unsafe impl NSSecureCoding for CNChangeHistoryDeleteGroupEvent {}
+
 extern_methods!(
     #[cfg(feature = "Contacts_CNChangeHistoryDeleteGroupEvent")]
     unsafe impl CNChangeHistoryDeleteGroupEvent {
@@ -191,6 +260,15 @@ extern_class!(
         type Super = CNChangeHistoryEvent;
     }
 );
+
+#[cfg(feature = "Contacts_CNChangeHistoryAddMemberToGroupEvent")]
+unsafe impl NSCoding for CNChangeHistoryAddMemberToGroupEvent {}
+
+#[cfg(feature = "Contacts_CNChangeHistoryAddMemberToGroupEvent")]
+unsafe impl NSObjectProtocol for CNChangeHistoryAddMemberToGroupEvent {}
+
+#[cfg(feature = "Contacts_CNChangeHistoryAddMemberToGroupEvent")]
+unsafe impl NSSecureCoding for CNChangeHistoryAddMemberToGroupEvent {}
 
 extern_methods!(
     #[cfg(feature = "Contacts_CNChangeHistoryAddMemberToGroupEvent")]
@@ -217,6 +295,15 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Contacts_CNChangeHistoryRemoveMemberFromGroupEvent")]
+unsafe impl NSCoding for CNChangeHistoryRemoveMemberFromGroupEvent {}
+
+#[cfg(feature = "Contacts_CNChangeHistoryRemoveMemberFromGroupEvent")]
+unsafe impl NSObjectProtocol for CNChangeHistoryRemoveMemberFromGroupEvent {}
+
+#[cfg(feature = "Contacts_CNChangeHistoryRemoveMemberFromGroupEvent")]
+unsafe impl NSSecureCoding for CNChangeHistoryRemoveMemberFromGroupEvent {}
+
 extern_methods!(
     #[cfg(feature = "Contacts_CNChangeHistoryRemoveMemberFromGroupEvent")]
     unsafe impl CNChangeHistoryRemoveMemberFromGroupEvent {
@@ -242,6 +329,15 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Contacts_CNChangeHistoryAddSubgroupToGroupEvent")]
+unsafe impl NSCoding for CNChangeHistoryAddSubgroupToGroupEvent {}
+
+#[cfg(feature = "Contacts_CNChangeHistoryAddSubgroupToGroupEvent")]
+unsafe impl NSObjectProtocol for CNChangeHistoryAddSubgroupToGroupEvent {}
+
+#[cfg(feature = "Contacts_CNChangeHistoryAddSubgroupToGroupEvent")]
+unsafe impl NSSecureCoding for CNChangeHistoryAddSubgroupToGroupEvent {}
+
 extern_methods!(
     #[cfg(feature = "Contacts_CNChangeHistoryAddSubgroupToGroupEvent")]
     unsafe impl CNChangeHistoryAddSubgroupToGroupEvent {
@@ -266,6 +362,15 @@ extern_class!(
         type Super = CNChangeHistoryEvent;
     }
 );
+
+#[cfg(feature = "Contacts_CNChangeHistoryRemoveSubgroupFromGroupEvent")]
+unsafe impl NSCoding for CNChangeHistoryRemoveSubgroupFromGroupEvent {}
+
+#[cfg(feature = "Contacts_CNChangeHistoryRemoveSubgroupFromGroupEvent")]
+unsafe impl NSObjectProtocol for CNChangeHistoryRemoveSubgroupFromGroupEvent {}
+
+#[cfg(feature = "Contacts_CNChangeHistoryRemoveSubgroupFromGroupEvent")]
+unsafe impl NSSecureCoding for CNChangeHistoryRemoveSubgroupFromGroupEvent {}
 
 extern_methods!(
     #[cfg(feature = "Contacts_CNChangeHistoryRemoveSubgroupFromGroupEvent")]

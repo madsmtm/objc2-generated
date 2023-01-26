@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_DOMCSSMediaRule")]
+unsafe impl NSObjectProtocol for DOMCSSMediaRule {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_DOMCSSMediaRule")]
     unsafe impl DOMCSSMediaRule {

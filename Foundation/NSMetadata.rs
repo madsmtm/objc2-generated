@@ -14,6 +14,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSMetadataQuery")]
+unsafe impl NSObjectProtocol for NSMetadataQuery {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSMetadataQuery")]
     unsafe impl NSMetadataQuery {
@@ -248,6 +251,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSMetadataItem")]
+unsafe impl NSObjectProtocol for NSMetadataItem {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSMetadataItem")]
     unsafe impl NSMetadataItem {
@@ -290,6 +296,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSMetadataQueryAttributeValueTuple")]
+unsafe impl NSObjectProtocol for NSMetadataQueryAttributeValueTuple {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSMetadataQueryAttributeValueTuple")]
     unsafe impl NSMetadataQueryAttributeValueTuple {
@@ -315,6 +324,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Foundation_NSMetadataQueryResultGroup")]
+unsafe impl NSObjectProtocol for NSMetadataQueryResultGroup {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSMetadataQueryResultGroup")]

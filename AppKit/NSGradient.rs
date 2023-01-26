@@ -25,6 +25,12 @@ extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSGradient")]
+unsafe impl NSCoding for NSGradient {}
+
+#[cfg(feature = "AppKit_NSGradient")]
+unsafe impl NSObjectProtocol for NSGradient {}
+
+#[cfg(feature = "AppKit_NSGradient")]
 unsafe impl NSSecureCoding for NSGradient {}
 
 extern_methods!(

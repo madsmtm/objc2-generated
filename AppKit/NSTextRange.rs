@@ -28,6 +28,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSTextRange")]
+unsafe impl NSObjectProtocol for NSTextRange {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSTextRange")]
     unsafe impl NSTextRange {

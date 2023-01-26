@@ -50,6 +50,33 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSFontPanel")]
+unsafe impl NSAccessibility for NSFontPanel {}
+
+#[cfg(feature = "AppKit_NSFontPanel")]
+unsafe impl NSAccessibilityElement for NSFontPanel {}
+
+#[cfg(feature = "AppKit_NSFontPanel")]
+unsafe impl NSAnimatablePropertyContainer for NSFontPanel {}
+
+#[cfg(feature = "AppKit_NSFontPanel")]
+unsafe impl NSAppearanceCustomization for NSFontPanel {}
+
+#[cfg(feature = "AppKit_NSFontPanel")]
+unsafe impl NSCoding for NSFontPanel {}
+
+#[cfg(feature = "AppKit_NSFontPanel")]
+unsafe impl NSMenuItemValidation for NSFontPanel {}
+
+#[cfg(feature = "AppKit_NSFontPanel")]
+unsafe impl NSObjectProtocol for NSFontPanel {}
+
+#[cfg(feature = "AppKit_NSFontPanel")]
+unsafe impl NSUserInterfaceItemIdentification for NSFontPanel {}
+
+#[cfg(feature = "AppKit_NSFontPanel")]
+unsafe impl NSUserInterfaceValidations for NSFontPanel {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSFontPanel")]
     unsafe impl NSFontPanel {

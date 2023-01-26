@@ -96,6 +96,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLBufferLayoutDescriptor")]
+unsafe impl NSObjectProtocol for MTLBufferLayoutDescriptor {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLBufferLayoutDescriptor")]
     unsafe impl MTLBufferLayoutDescriptor {
@@ -130,6 +133,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLBufferLayoutDescriptorArray")]
+unsafe impl NSObjectProtocol for MTLBufferLayoutDescriptorArray {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLBufferLayoutDescriptorArray")]
     unsafe impl MTLBufferLayoutDescriptorArray {
@@ -160,6 +166,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Metal_MTLAttributeDescriptor")]
+unsafe impl NSObjectProtocol for MTLAttributeDescriptor {}
 
 extern_methods!(
     #[cfg(feature = "Metal_MTLAttributeDescriptor")]
@@ -195,6 +204,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLAttributeDescriptorArray")]
+unsafe impl NSObjectProtocol for MTLAttributeDescriptorArray {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLAttributeDescriptorArray")]
     unsafe impl MTLAttributeDescriptorArray {
@@ -225,6 +237,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
+unsafe impl NSObjectProtocol for MTLStageInputOutputDescriptor {}
 
 extern_methods!(
     #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]

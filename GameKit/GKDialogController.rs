@@ -23,6 +23,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "GameKit_GKDialogController")]
+unsafe impl NSCoding for GKDialogController {}
+
+#[cfg(feature = "GameKit_GKDialogController")]
+unsafe impl NSObjectProtocol for GKDialogController {}
+
 extern_methods!(
     #[cfg(feature = "GameKit_GKDialogController")]
     unsafe impl GKDialogController {

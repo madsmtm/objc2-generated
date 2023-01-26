@@ -24,6 +24,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "ExternalAccessory_EAWiFiUnconfiguredAccessory")]
+unsafe impl NSObjectProtocol for EAWiFiUnconfiguredAccessory {}
+
 extern_methods!(
     #[cfg(feature = "ExternalAccessory_EAWiFiUnconfiguredAccessory")]
     unsafe impl EAWiFiUnconfiguredAccessory {

@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSDraggingSession")]
+unsafe impl NSObjectProtocol for NSDraggingSession {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSDraggingSession")]
     unsafe impl NSDraggingSession {

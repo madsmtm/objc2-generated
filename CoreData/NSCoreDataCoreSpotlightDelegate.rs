@@ -19,6 +19,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreData_NSCoreDataCoreSpotlightDelegate")]
+unsafe impl NSObjectProtocol for NSCoreDataCoreSpotlightDelegate {}
+
 extern_methods!(
     #[cfg(feature = "CoreData_NSCoreDataCoreSpotlightDelegate")]
     unsafe impl NSCoreDataCoreSpotlightDelegate {

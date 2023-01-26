@@ -17,6 +17,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSATSTypesetter")]
+unsafe impl NSObjectProtocol for NSATSTypesetter {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSATSTypesetter")]
     unsafe impl NSATSTypesetter {

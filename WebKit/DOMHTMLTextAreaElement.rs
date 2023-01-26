@@ -18,6 +18,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_DOMHTMLTextAreaElement")]
+unsafe impl DOMEventTarget for DOMHTMLTextAreaElement {}
+
+#[cfg(feature = "WebKit_DOMHTMLTextAreaElement")]
+unsafe impl NSObjectProtocol for DOMHTMLTextAreaElement {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_DOMHTMLTextAreaElement")]
     unsafe impl DOMHTMLTextAreaElement {

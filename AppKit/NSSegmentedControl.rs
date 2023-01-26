@@ -52,7 +52,31 @@ extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSSegmentedControl")]
+unsafe impl NSAccessibility for NSSegmentedControl {}
+
+#[cfg(feature = "AppKit_NSSegmentedControl")]
+unsafe impl NSAccessibilityElement for NSSegmentedControl {}
+
+#[cfg(feature = "AppKit_NSSegmentedControl")]
+unsafe impl NSAnimatablePropertyContainer for NSSegmentedControl {}
+
+#[cfg(feature = "AppKit_NSSegmentedControl")]
+unsafe impl NSAppearanceCustomization for NSSegmentedControl {}
+
+#[cfg(feature = "AppKit_NSSegmentedControl")]
+unsafe impl NSCoding for NSSegmentedControl {}
+
+#[cfg(feature = "AppKit_NSSegmentedControl")]
+unsafe impl NSDraggingDestination for NSSegmentedControl {}
+
+#[cfg(feature = "AppKit_NSSegmentedControl")]
+unsafe impl NSObjectProtocol for NSSegmentedControl {}
+
+#[cfg(feature = "AppKit_NSSegmentedControl")]
 unsafe impl NSUserInterfaceCompression for NSSegmentedControl {}
+
+#[cfg(feature = "AppKit_NSSegmentedControl")]
+unsafe impl NSUserInterfaceItemIdentification for NSSegmentedControl {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSSegmentedControl")]

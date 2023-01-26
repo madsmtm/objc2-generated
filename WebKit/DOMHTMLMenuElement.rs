@@ -18,6 +18,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_DOMHTMLMenuElement")]
+unsafe impl DOMEventTarget for DOMHTMLMenuElement {}
+
+#[cfg(feature = "WebKit_DOMHTMLMenuElement")]
+unsafe impl NSObjectProtocol for DOMHTMLMenuElement {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_DOMHTMLMenuElement")]
     unsafe impl DOMHTMLMenuElement {

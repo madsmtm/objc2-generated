@@ -18,6 +18,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_DOMComment")]
+unsafe impl DOMEventTarget for DOMComment {}
+
+#[cfg(feature = "WebKit_DOMComment")]
+unsafe impl NSObjectProtocol for DOMComment {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_DOMComment")]
     unsafe impl DOMComment {}

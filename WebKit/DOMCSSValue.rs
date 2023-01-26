@@ -33,6 +33,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_DOMCSSValue")]
+unsafe impl NSObjectProtocol for DOMCSSValue {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_DOMCSSValue")]
     unsafe impl DOMCSSValue {

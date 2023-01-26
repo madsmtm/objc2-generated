@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "MapKit_MKDirectionsResponse")]
+unsafe impl NSObjectProtocol for MKDirectionsResponse {}
+
 extern_methods!(
     #[cfg(feature = "MapKit_MKDirectionsResponse")]
     unsafe impl MKDirectionsResponse {
@@ -45,6 +48,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "MapKit_MKRoute")]
+unsafe impl NSObjectProtocol for MKRoute {}
 
 extern_methods!(
     #[cfg(feature = "MapKit_MKRoute")]
@@ -93,6 +99,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "MapKit_MKRouteStep")]
+unsafe impl NSObjectProtocol for MKRouteStep {}
+
 extern_methods!(
     #[cfg(feature = "MapKit_MKRouteStep")]
     unsafe impl MKRouteStep {
@@ -126,6 +135,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "MapKit_MKETAResponse")]
+unsafe impl NSObjectProtocol for MKETAResponse {}
 
 extern_methods!(
     #[cfg(feature = "MapKit_MKETAResponse")]

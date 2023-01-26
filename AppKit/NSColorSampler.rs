@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSColorSampler")]
+unsafe impl NSObjectProtocol for NSColorSampler {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSColorSampler")]
     unsafe impl NSColorSampler {

@@ -26,6 +26,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreData_NSMergeConflict")]
+unsafe impl NSObjectProtocol for NSMergeConflict {}
+
 extern_methods!(
     #[cfg(feature = "CoreData_NSMergeConflict")]
     unsafe impl NSMergeConflict {
@@ -84,6 +87,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreData_NSConstraintConflict")]
+unsafe impl NSObjectProtocol for NSConstraintConflict {}
+
 extern_methods!(
     #[cfg(feature = "CoreData_NSConstraintConflict")]
     unsafe impl NSConstraintConflict {
@@ -140,6 +146,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "CoreData_NSMergePolicy")]
+unsafe impl NSObjectProtocol for NSMergePolicy {}
 
 extern_methods!(
     #[cfg(feature = "CoreData_NSMergePolicy")]

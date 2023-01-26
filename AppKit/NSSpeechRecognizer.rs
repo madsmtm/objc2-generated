@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSSpeechRecognizer")]
+unsafe impl NSObjectProtocol for NSSpeechRecognizer {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSSpeechRecognizer")]
     unsafe impl NSSpeechRecognizer {

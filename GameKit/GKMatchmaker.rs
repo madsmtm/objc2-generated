@@ -45,6 +45,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "GameKit_GKMatchRequest")]
+unsafe impl NSObjectProtocol for GKMatchRequest {}
+
 extern_methods!(
     #[cfg(feature = "GameKit_GKMatchRequest")]
     unsafe impl GKMatchRequest {
@@ -158,6 +161,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "GameKit_GKInvite")]
+unsafe impl NSObjectProtocol for GKInvite {}
+
 extern_methods!(
     #[cfg(feature = "GameKit_GKInvite")]
     unsafe impl GKInvite {
@@ -224,6 +230,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "GameKit_GKMatchmaker")]
+unsafe impl NSObjectProtocol for GKMatchmaker {}
 
 extern_methods!(
     #[cfg(feature = "GameKit_GKMatchmaker")]

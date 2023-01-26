@@ -64,6 +64,12 @@ extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSTextBlock")]
+unsafe impl NSCoding for NSTextBlock {}
+
+#[cfg(feature = "AppKit_NSTextBlock")]
+unsafe impl NSObjectProtocol for NSTextBlock {}
+
+#[cfg(feature = "AppKit_NSTextBlock")]
 unsafe impl NSSecureCoding for NSTextBlock {}
 
 extern_methods!(
@@ -199,6 +205,15 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSTextTableBlock")]
+unsafe impl NSCoding for NSTextTableBlock {}
+
+#[cfg(feature = "AppKit_NSTextTableBlock")]
+unsafe impl NSObjectProtocol for NSTextTableBlock {}
+
+#[cfg(feature = "AppKit_NSTextTableBlock")]
+unsafe impl NSSecureCoding for NSTextTableBlock {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSTextTableBlock")]
     unsafe impl NSTextTableBlock {
@@ -242,6 +257,15 @@ extern_class!(
         type Super = NSTextBlock;
     }
 );
+
+#[cfg(feature = "AppKit_NSTextTable")]
+unsafe impl NSCoding for NSTextTable {}
+
+#[cfg(feature = "AppKit_NSTextTable")]
+unsafe impl NSObjectProtocol for NSTextTable {}
+
+#[cfg(feature = "AppKit_NSTextTable")]
+unsafe impl NSSecureCoding for NSTextTable {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSTextTable")]

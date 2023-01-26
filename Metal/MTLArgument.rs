@@ -159,6 +159,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLType")]
+unsafe impl NSObjectProtocol for MTLType {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLType")]
     unsafe impl MTLType {
@@ -177,6 +180,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Metal_MTLStructMember")]
+unsafe impl NSObjectProtocol for MTLStructMember {}
 
 extern_methods!(
     #[cfg(feature = "Metal_MTLStructMember")]
@@ -224,6 +230,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLStructType")]
+unsafe impl NSObjectProtocol for MTLStructType {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLStructType")]
     unsafe impl MTLStructType {
@@ -248,6 +257,9 @@ extern_class!(
         type Super = MTLType;
     }
 );
+
+#[cfg(feature = "Metal_MTLArrayType")]
+unsafe impl NSObjectProtocol for MTLArrayType {}
 
 extern_methods!(
     #[cfg(feature = "Metal_MTLArrayType")]
@@ -295,6 +307,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLPointerType")]
+unsafe impl NSObjectProtocol for MTLPointerType {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLPointerType")]
     unsafe impl MTLPointerType {
@@ -335,6 +350,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLTextureReferenceType")]
+unsafe impl NSObjectProtocol for MTLTextureReferenceType {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLTextureReferenceType")]
     unsafe impl MTLTextureReferenceType {
@@ -363,6 +381,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Metal_MTLArgument")]
+unsafe impl NSObjectProtocol for MTLArgument {}
 
 extern_methods!(
     #[cfg(feature = "Metal_MTLArgument")]

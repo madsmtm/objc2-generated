@@ -17,6 +17,30 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSTableCellView")]
+unsafe impl NSAccessibility for NSTableCellView {}
+
+#[cfg(feature = "AppKit_NSTableCellView")]
+unsafe impl NSAccessibilityElement for NSTableCellView {}
+
+#[cfg(feature = "AppKit_NSTableCellView")]
+unsafe impl NSAnimatablePropertyContainer for NSTableCellView {}
+
+#[cfg(feature = "AppKit_NSTableCellView")]
+unsafe impl NSAppearanceCustomization for NSTableCellView {}
+
+#[cfg(feature = "AppKit_NSTableCellView")]
+unsafe impl NSCoding for NSTableCellView {}
+
+#[cfg(feature = "AppKit_NSTableCellView")]
+unsafe impl NSDraggingDestination for NSTableCellView {}
+
+#[cfg(feature = "AppKit_NSTableCellView")]
+unsafe impl NSObjectProtocol for NSTableCellView {}
+
+#[cfg(feature = "AppKit_NSTableCellView")]
+unsafe impl NSUserInterfaceItemIdentification for NSTableCellView {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSTableCellView")]
     unsafe impl NSTableCellView {

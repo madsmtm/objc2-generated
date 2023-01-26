@@ -21,6 +21,9 @@ extern_class!(
 #[cfg(feature = "Foundation_NSPort")]
 unsafe impl NSCoding for NSPort {}
 
+#[cfg(feature = "Foundation_NSPort")]
+unsafe impl NSObjectProtocol for NSPort {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSPort")]
     unsafe impl NSPort {
@@ -125,6 +128,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSMachPort")]
+unsafe impl NSCoding for NSMachPort {}
+
+#[cfg(feature = "Foundation_NSMachPort")]
+unsafe impl NSObjectProtocol for NSMachPort {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSMachPort")]
     unsafe impl NSMachPort {
@@ -195,6 +204,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSMessagePort")]
+unsafe impl NSCoding for NSMessagePort {}
+
+#[cfg(feature = "Foundation_NSMessagePort")]
+unsafe impl NSObjectProtocol for NSMessagePort {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSMessagePort")]
     unsafe impl NSMessagePort {}
@@ -211,6 +226,12 @@ extern_class!(
         type Super = NSPort;
     }
 );
+
+#[cfg(feature = "Foundation_NSSocketPort")]
+unsafe impl NSCoding for NSSocketPort {}
+
+#[cfg(feature = "Foundation_NSSocketPort")]
+unsafe impl NSObjectProtocol for NSSocketPort {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSSocketPort")]

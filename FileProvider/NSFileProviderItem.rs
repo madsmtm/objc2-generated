@@ -26,6 +26,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "FileProvider_NSFileProviderItemVersion")]
+unsafe impl NSObjectProtocol for NSFileProviderItemVersion {}
+
 extern_methods!(
     #[cfg(feature = "FileProvider_NSFileProviderItemVersion")]
     unsafe impl NSFileProviderItemVersion {

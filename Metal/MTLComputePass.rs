@@ -15,6 +15,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLComputePassSampleBufferAttachmentDescriptor")]
+unsafe impl NSObjectProtocol for MTLComputePassSampleBufferAttachmentDescriptor {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLComputePassSampleBufferAttachmentDescriptor")]
     unsafe impl MTLComputePassSampleBufferAttachmentDescriptor {
@@ -57,6 +60,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLComputePassSampleBufferAttachmentDescriptorArray")]
+unsafe impl NSObjectProtocol for MTLComputePassSampleBufferAttachmentDescriptorArray {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLComputePassSampleBufferAttachmentDescriptorArray")]
     unsafe impl MTLComputePassSampleBufferAttachmentDescriptorArray {
@@ -87,6 +93,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Metal_MTLComputePassDescriptor")]
+unsafe impl NSObjectProtocol for MTLComputePassDescriptor {}
 
 extern_methods!(
     #[cfg(feature = "Metal_MTLComputePassDescriptor")]

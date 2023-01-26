@@ -19,6 +19,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CloudKit_CKOperation")]
+unsafe impl NSObjectProtocol for CKOperation {}
+
 extern_methods!(
     #[cfg(feature = "CloudKit_CKOperation")]
     unsafe impl CKOperation {
@@ -65,6 +68,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "CloudKit_CKOperationConfiguration")]
+unsafe impl NSObjectProtocol for CKOperationConfiguration {}
 
 extern_methods!(
     #[cfg(feature = "CloudKit_CKOperationConfiguration")]

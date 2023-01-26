@@ -17,6 +17,21 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSPathComponentCell")]
+unsafe impl NSAccessibility for NSPathComponentCell {}
+
+#[cfg(feature = "AppKit_NSPathComponentCell")]
+unsafe impl NSAccessibilityElement for NSPathComponentCell {}
+
+#[cfg(feature = "AppKit_NSPathComponentCell")]
+unsafe impl NSCoding for NSPathComponentCell {}
+
+#[cfg(feature = "AppKit_NSPathComponentCell")]
+unsafe impl NSObjectProtocol for NSPathComponentCell {}
+
+#[cfg(feature = "AppKit_NSPathComponentCell")]
+unsafe impl NSUserInterfaceItemIdentification for NSPathComponentCell {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSPathComponentCell")]
     unsafe impl NSPathComponentCell {

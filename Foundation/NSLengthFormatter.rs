@@ -29,6 +29,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSLengthFormatter")]
+unsafe impl NSCoding for NSLengthFormatter {}
+
+#[cfg(feature = "Foundation_NSLengthFormatter")]
+unsafe impl NSObjectProtocol for NSLengthFormatter {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSLengthFormatter")]
     unsafe impl NSLengthFormatter {

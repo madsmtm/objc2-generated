@@ -64,6 +64,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Metal_MTLSharedTextureHandle")]
+unsafe impl NSCoding for MTLSharedTextureHandle {}
+
+#[cfg(feature = "Metal_MTLSharedTextureHandle")]
+unsafe impl NSObjectProtocol for MTLSharedTextureHandle {}
+
+#[cfg(feature = "Metal_MTLSharedTextureHandle")]
 unsafe impl NSSecureCoding for MTLSharedTextureHandle {}
 
 extern_methods!(
@@ -107,6 +113,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Metal_MTLTextureDescriptor")]
+unsafe impl NSObjectProtocol for MTLTextureDescriptor {}
 
 extern_methods!(
     #[cfg(feature = "Metal_MTLTextureDescriptor")]

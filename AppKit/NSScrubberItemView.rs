@@ -17,6 +17,30 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSScrubberArrangedView")]
+unsafe impl NSAccessibility for NSScrubberArrangedView {}
+
+#[cfg(feature = "AppKit_NSScrubberArrangedView")]
+unsafe impl NSAccessibilityElement for NSScrubberArrangedView {}
+
+#[cfg(feature = "AppKit_NSScrubberArrangedView")]
+unsafe impl NSAnimatablePropertyContainer for NSScrubberArrangedView {}
+
+#[cfg(feature = "AppKit_NSScrubberArrangedView")]
+unsafe impl NSAppearanceCustomization for NSScrubberArrangedView {}
+
+#[cfg(feature = "AppKit_NSScrubberArrangedView")]
+unsafe impl NSCoding for NSScrubberArrangedView {}
+
+#[cfg(feature = "AppKit_NSScrubberArrangedView")]
+unsafe impl NSDraggingDestination for NSScrubberArrangedView {}
+
+#[cfg(feature = "AppKit_NSScrubberArrangedView")]
+unsafe impl NSObjectProtocol for NSScrubberArrangedView {}
+
+#[cfg(feature = "AppKit_NSScrubberArrangedView")]
+unsafe impl NSUserInterfaceItemIdentification for NSScrubberArrangedView {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSScrubberArrangedView")]
     unsafe impl NSScrubberArrangedView {
@@ -50,6 +74,30 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSScrubberSelectionView")]
+unsafe impl NSAccessibility for NSScrubberSelectionView {}
+
+#[cfg(feature = "AppKit_NSScrubberSelectionView")]
+unsafe impl NSAccessibilityElement for NSScrubberSelectionView {}
+
+#[cfg(feature = "AppKit_NSScrubberSelectionView")]
+unsafe impl NSAnimatablePropertyContainer for NSScrubberSelectionView {}
+
+#[cfg(feature = "AppKit_NSScrubberSelectionView")]
+unsafe impl NSAppearanceCustomization for NSScrubberSelectionView {}
+
+#[cfg(feature = "AppKit_NSScrubberSelectionView")]
+unsafe impl NSCoding for NSScrubberSelectionView {}
+
+#[cfg(feature = "AppKit_NSScrubberSelectionView")]
+unsafe impl NSDraggingDestination for NSScrubberSelectionView {}
+
+#[cfg(feature = "AppKit_NSScrubberSelectionView")]
+unsafe impl NSObjectProtocol for NSScrubberSelectionView {}
+
+#[cfg(feature = "AppKit_NSScrubberSelectionView")]
+unsafe impl NSUserInterfaceItemIdentification for NSScrubberSelectionView {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSScrubberSelectionView")]
     unsafe impl NSScrubberSelectionView {}
@@ -67,6 +115,30 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSScrubberItemView")]
+unsafe impl NSAccessibility for NSScrubberItemView {}
+
+#[cfg(feature = "AppKit_NSScrubberItemView")]
+unsafe impl NSAccessibilityElement for NSScrubberItemView {}
+
+#[cfg(feature = "AppKit_NSScrubberItemView")]
+unsafe impl NSAnimatablePropertyContainer for NSScrubberItemView {}
+
+#[cfg(feature = "AppKit_NSScrubberItemView")]
+unsafe impl NSAppearanceCustomization for NSScrubberItemView {}
+
+#[cfg(feature = "AppKit_NSScrubberItemView")]
+unsafe impl NSCoding for NSScrubberItemView {}
+
+#[cfg(feature = "AppKit_NSScrubberItemView")]
+unsafe impl NSDraggingDestination for NSScrubberItemView {}
+
+#[cfg(feature = "AppKit_NSScrubberItemView")]
+unsafe impl NSObjectProtocol for NSScrubberItemView {}
+
+#[cfg(feature = "AppKit_NSScrubberItemView")]
+unsafe impl NSUserInterfaceItemIdentification for NSScrubberItemView {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSScrubberItemView")]
     unsafe impl NSScrubberItemView {}
@@ -83,6 +155,30 @@ extern_class!(
         type Super = NSScrubberItemView;
     }
 );
+
+#[cfg(feature = "AppKit_NSScrubberTextItemView")]
+unsafe impl NSAccessibility for NSScrubberTextItemView {}
+
+#[cfg(feature = "AppKit_NSScrubberTextItemView")]
+unsafe impl NSAccessibilityElement for NSScrubberTextItemView {}
+
+#[cfg(feature = "AppKit_NSScrubberTextItemView")]
+unsafe impl NSAnimatablePropertyContainer for NSScrubberTextItemView {}
+
+#[cfg(feature = "AppKit_NSScrubberTextItemView")]
+unsafe impl NSAppearanceCustomization for NSScrubberTextItemView {}
+
+#[cfg(feature = "AppKit_NSScrubberTextItemView")]
+unsafe impl NSCoding for NSScrubberTextItemView {}
+
+#[cfg(feature = "AppKit_NSScrubberTextItemView")]
+unsafe impl NSDraggingDestination for NSScrubberTextItemView {}
+
+#[cfg(feature = "AppKit_NSScrubberTextItemView")]
+unsafe impl NSObjectProtocol for NSScrubberTextItemView {}
+
+#[cfg(feature = "AppKit_NSScrubberTextItemView")]
+unsafe impl NSUserInterfaceItemIdentification for NSScrubberTextItemView {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSScrubberTextItemView")]
@@ -112,6 +208,30 @@ extern_class!(
         type Super = NSScrubberItemView;
     }
 );
+
+#[cfg(feature = "AppKit_NSScrubberImageItemView")]
+unsafe impl NSAccessibility for NSScrubberImageItemView {}
+
+#[cfg(feature = "AppKit_NSScrubberImageItemView")]
+unsafe impl NSAccessibilityElement for NSScrubberImageItemView {}
+
+#[cfg(feature = "AppKit_NSScrubberImageItemView")]
+unsafe impl NSAnimatablePropertyContainer for NSScrubberImageItemView {}
+
+#[cfg(feature = "AppKit_NSScrubberImageItemView")]
+unsafe impl NSAppearanceCustomization for NSScrubberImageItemView {}
+
+#[cfg(feature = "AppKit_NSScrubberImageItemView")]
+unsafe impl NSCoding for NSScrubberImageItemView {}
+
+#[cfg(feature = "AppKit_NSScrubberImageItemView")]
+unsafe impl NSDraggingDestination for NSScrubberImageItemView {}
+
+#[cfg(feature = "AppKit_NSScrubberImageItemView")]
+unsafe impl NSObjectProtocol for NSScrubberImageItemView {}
+
+#[cfg(feature = "AppKit_NSScrubberImageItemView")]
+unsafe impl NSUserInterfaceItemIdentification for NSScrubberImageItemView {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSScrubberImageItemView")]

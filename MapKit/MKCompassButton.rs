@@ -19,6 +19,30 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "MapKit_MKCompassButton")]
+unsafe impl NSAccessibility for MKCompassButton {}
+
+#[cfg(feature = "MapKit_MKCompassButton")]
+unsafe impl NSAccessibilityElement for MKCompassButton {}
+
+#[cfg(feature = "MapKit_MKCompassButton")]
+unsafe impl NSAnimatablePropertyContainer for MKCompassButton {}
+
+#[cfg(feature = "MapKit_MKCompassButton")]
+unsafe impl NSAppearanceCustomization for MKCompassButton {}
+
+#[cfg(feature = "MapKit_MKCompassButton")]
+unsafe impl NSCoding for MKCompassButton {}
+
+#[cfg(feature = "MapKit_MKCompassButton")]
+unsafe impl NSDraggingDestination for MKCompassButton {}
+
+#[cfg(feature = "MapKit_MKCompassButton")]
+unsafe impl NSObjectProtocol for MKCompassButton {}
+
+#[cfg(feature = "MapKit_MKCompassButton")]
+unsafe impl NSUserInterfaceItemIdentification for MKCompassButton {}
+
 extern_methods!(
     #[cfg(feature = "MapKit_MKCompassButton")]
     unsafe impl MKCompassButton {

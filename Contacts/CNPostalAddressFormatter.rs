@@ -23,6 +23,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Contacts_CNPostalAddressFormatter")]
+unsafe impl NSCoding for CNPostalAddressFormatter {}
+
+#[cfg(feature = "Contacts_CNPostalAddressFormatter")]
+unsafe impl NSObjectProtocol for CNPostalAddressFormatter {}
+
 extern_methods!(
     #[cfg(feature = "Contacts_CNPostalAddressFormatter")]
     unsafe impl CNPostalAddressFormatter {

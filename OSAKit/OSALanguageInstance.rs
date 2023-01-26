@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "OSAKit_OSALanguageInstance")]
+unsafe impl NSObjectProtocol for OSALanguageInstance {}
+
 extern_methods!(
     #[cfg(feature = "OSAKit_OSALanguageInstance")]
     unsafe impl OSALanguageInstance {

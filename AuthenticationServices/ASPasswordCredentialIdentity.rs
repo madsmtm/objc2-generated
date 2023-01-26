@@ -16,6 +16,12 @@ extern_class!(
 );
 
 #[cfg(feature = "AuthenticationServices_ASPasswordCredentialIdentity")]
+unsafe impl NSCoding for ASPasswordCredentialIdentity {}
+
+#[cfg(feature = "AuthenticationServices_ASPasswordCredentialIdentity")]
+unsafe impl NSObjectProtocol for ASPasswordCredentialIdentity {}
+
+#[cfg(feature = "AuthenticationServices_ASPasswordCredentialIdentity")]
 unsafe impl NSSecureCoding for ASPasswordCredentialIdentity {}
 
 extern_methods!(

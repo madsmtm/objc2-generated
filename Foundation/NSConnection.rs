@@ -15,6 +15,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSConnection")]
+unsafe impl NSObjectProtocol for NSConnection {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSConnection")]
     unsafe impl NSConnection {
@@ -303,6 +306,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Foundation_NSDistantObjectRequest")]
+unsafe impl NSObjectProtocol for NSDistantObjectRequest {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSDistantObjectRequest")]

@@ -33,6 +33,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSRelativeDateTimeFormatter")]
+unsafe impl NSCoding for NSRelativeDateTimeFormatter {}
+
+#[cfg(feature = "Foundation_NSRelativeDateTimeFormatter")]
+unsafe impl NSObjectProtocol for NSRelativeDateTimeFormatter {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSRelativeDateTimeFormatter")]
     unsafe impl NSRelativeDateTimeFormatter {

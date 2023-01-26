@@ -27,6 +27,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreData_NSManagedObject")]
+unsafe impl NSObjectProtocol for NSManagedObject {}
+
 extern_methods!(
     #[cfg(feature = "CoreData_NSManagedObject")]
     unsafe impl NSManagedObject {

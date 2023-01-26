@@ -14,6 +14,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSPortMessage")]
+unsafe impl NSObjectProtocol for NSPortMessage {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSPortMessage")]
     unsafe impl NSPortMessage {

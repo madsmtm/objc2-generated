@@ -19,6 +19,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "EventKit_EKRecurrenceRule")]
+unsafe impl NSObjectProtocol for EKRecurrenceRule {}
+
 extern_methods!(
     #[cfg(feature = "EventKit_EKRecurrenceRule")]
     unsafe impl EKRecurrenceRule {

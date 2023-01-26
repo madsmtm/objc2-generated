@@ -20,6 +20,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "MapKit_MKLocalPointsOfInterestRequest")]
+unsafe impl NSObjectProtocol for MKLocalPointsOfInterestRequest {}
+
 extern_methods!(
     #[cfg(feature = "MapKit_MKLocalPointsOfInterestRequest")]
     unsafe impl MKLocalPointsOfInterestRequest {

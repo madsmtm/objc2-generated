@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSPortCoder")]
+unsafe impl NSObjectProtocol for NSPortCoder {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSPortCoder")]
     unsafe impl NSPortCoder {

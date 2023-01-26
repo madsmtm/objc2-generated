@@ -16,6 +16,15 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "BackgroundAssets_BAURLDownload")]
+unsafe impl NSCoding for BAURLDownload {}
+
+#[cfg(feature = "BackgroundAssets_BAURLDownload")]
+unsafe impl NSObjectProtocol for BAURLDownload {}
+
+#[cfg(feature = "BackgroundAssets_BAURLDownload")]
+unsafe impl NSSecureCoding for BAURLDownload {}
+
 extern_methods!(
     #[cfg(feature = "BackgroundAssets_BAURLDownload")]
     unsafe impl BAURLDownload {

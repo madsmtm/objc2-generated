@@ -37,6 +37,22 @@ __inner_extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSDiffableDataSourceSnapshot")]
+unsafe impl<
+        SectionIdentifierType: Message,
+        ItemIdentifierType: Message,
+        SectionIdentifierTypeOwnership: Ownership,
+        ItemIdentifierTypeOwnership: Ownership,
+    > NSObjectProtocol
+    for NSDiffableDataSourceSnapshot<
+        SectionIdentifierType,
+        ItemIdentifierType,
+        SectionIdentifierTypeOwnership,
+        ItemIdentifierTypeOwnership,
+    >
+{
+}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSDiffableDataSourceSnapshot")]
     unsafe impl<
@@ -251,6 +267,22 @@ unsafe impl<
         SectionIdentifierTypeOwnership: Ownership,
         ItemIdentifierTypeOwnership: Ownership,
     > NSCollectionViewDataSource
+    for NSCollectionViewDiffableDataSource<
+        SectionIdentifierType,
+        ItemIdentifierType,
+        SectionIdentifierTypeOwnership,
+        ItemIdentifierTypeOwnership,
+    >
+{
+}
+
+#[cfg(feature = "AppKit_NSCollectionViewDiffableDataSource")]
+unsafe impl<
+        SectionIdentifierType: Message,
+        ItemIdentifierType: Message,
+        SectionIdentifierTypeOwnership: Ownership,
+        ItemIdentifierTypeOwnership: Ownership,
+    > NSObjectProtocol
     for NSCollectionViewDiffableDataSource<
         SectionIdentifierType,
         ItemIdentifierType,

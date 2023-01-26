@@ -68,6 +68,12 @@ extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSLayoutManager")]
+unsafe impl NSCoding for NSLayoutManager {}
+
+#[cfg(feature = "AppKit_NSLayoutManager")]
+unsafe impl NSObjectProtocol for NSLayoutManager {}
+
+#[cfg(feature = "AppKit_NSLayoutManager")]
 unsafe impl NSSecureCoding for NSLayoutManager {}
 
 extern_methods!(

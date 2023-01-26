@@ -24,6 +24,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSTableViewRowAction")]
+unsafe impl NSObjectProtocol for NSTableViewRowAction {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSTableViewRowAction")]
     unsafe impl NSTableViewRowAction {

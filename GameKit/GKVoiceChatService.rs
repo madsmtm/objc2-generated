@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "GameKit_GKVoiceChatService")]
+unsafe impl NSObjectProtocol for GKVoiceChatService {}
+
 extern_methods!(
     #[cfg(feature = "GameKit_GKVoiceChatService")]
     unsafe impl GKVoiceChatService {

@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreLocation_CLGeocoder")]
+unsafe impl NSObjectProtocol for CLGeocoder {}
+
 extern_methods!(
     #[cfg(feature = "CoreLocation_CLGeocoder")]
     unsafe impl CLGeocoder {

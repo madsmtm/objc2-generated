@@ -45,6 +45,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSImage")]
+unsafe impl NSObjectProtocol for NSImage {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSImage")]
     unsafe impl NSImage {
@@ -402,13 +405,13 @@ extern_methods!(
 );
 
 #[cfg(feature = "AppKit_NSImage")]
-unsafe impl NSSecureCoding for NSImage {}
-
-#[cfg(feature = "AppKit_NSImage")]
 unsafe impl NSPasteboardReading for NSImage {}
 
 #[cfg(feature = "AppKit_NSImage")]
 unsafe impl NSPasteboardWriting for NSImage {}
+
+#[cfg(feature = "AppKit_NSImage")]
+unsafe impl NSSecureCoding for NSImage {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSImage")]
@@ -907,6 +910,12 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "AppKit_NSImageSymbolConfiguration")]
+unsafe impl NSCoding for NSImageSymbolConfiguration {}
+
+#[cfg(feature = "AppKit_NSImageSymbolConfiguration")]
+unsafe impl NSObjectProtocol for NSImageSymbolConfiguration {}
 
 #[cfg(feature = "AppKit_NSImageSymbolConfiguration")]
 unsafe impl NSSecureCoding for NSImageSymbolConfiguration {}

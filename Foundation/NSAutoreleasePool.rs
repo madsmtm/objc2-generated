@@ -14,6 +14,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSAutoreleasePool")]
+unsafe impl NSObjectProtocol for NSAutoreleasePool {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSAutoreleasePool")]
     unsafe impl NSAutoreleasePool {

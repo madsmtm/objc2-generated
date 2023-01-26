@@ -26,6 +26,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "BackgroundTasks_BGTaskScheduler")]
+unsafe impl NSObjectProtocol for BGTaskScheduler {}
+
 extern_methods!(
     #[cfg(feature = "BackgroundTasks_BGTaskScheduler")]
     unsafe impl BGTaskScheduler {

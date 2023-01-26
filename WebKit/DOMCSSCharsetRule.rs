@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_DOMCSSCharsetRule")]
+unsafe impl NSObjectProtocol for DOMCSSCharsetRule {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_DOMCSSCharsetRule")]
     unsafe impl DOMCSSCharsetRule {

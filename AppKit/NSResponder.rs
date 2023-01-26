@@ -19,6 +19,9 @@ extern_class!(
 #[cfg(feature = "AppKit_NSResponder")]
 unsafe impl NSCoding for NSResponder {}
 
+#[cfg(feature = "AppKit_NSResponder")]
+unsafe impl NSObjectProtocol for NSResponder {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSResponder {

@@ -31,6 +31,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSAlert")]
+unsafe impl NSObjectProtocol for NSAlert {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSAlert")]
     unsafe impl NSAlert {

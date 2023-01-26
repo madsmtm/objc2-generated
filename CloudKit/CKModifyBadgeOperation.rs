@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CloudKit_CKModifyBadgeOperation")]
+unsafe impl NSObjectProtocol for CKModifyBadgeOperation {}
+
 extern_methods!(
     #[cfg(feature = "CloudKit_CKModifyBadgeOperation")]
     unsafe impl CKModifyBadgeOperation {

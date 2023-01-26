@@ -54,6 +54,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreData_NSPersistentStoreResult")]
+unsafe impl NSObjectProtocol for NSPersistentStoreResult {}
+
 extern_methods!(
     #[cfg(feature = "CoreData_NSPersistentStoreResult")]
     unsafe impl NSPersistentStoreResult {}
@@ -70,6 +73,9 @@ extern_class!(
         type Super = NSPersistentStoreResult;
     }
 );
+
+#[cfg(feature = "CoreData_NSPersistentStoreAsynchronousResult")]
+unsafe impl NSObjectProtocol for NSPersistentStoreAsynchronousResult {}
 
 extern_methods!(
     #[cfg(feature = "CoreData_NSPersistentStoreAsynchronousResult")]
@@ -111,6 +117,12 @@ __inner_extern_class!(
     }
 );
 
+#[cfg(feature = "CoreData_NSAsynchronousFetchResult")]
+unsafe impl<ResultType: Message, ResultTypeOwnership: Ownership> NSObjectProtocol
+    for NSAsynchronousFetchResult<ResultType, ResultTypeOwnership>
+{
+}
+
 extern_methods!(
     #[cfg(feature = "CoreData_NSAsynchronousFetchResult")]
     unsafe impl<ResultType: Message, ResultTypeOwnership: Ownership>
@@ -138,6 +150,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreData_NSBatchInsertResult")]
+unsafe impl NSObjectProtocol for NSBatchInsertResult {}
+
 extern_methods!(
     #[cfg(feature = "CoreData_NSBatchInsertResult")]
     unsafe impl NSBatchInsertResult {
@@ -160,6 +175,9 @@ extern_class!(
         type Super = NSPersistentStoreResult;
     }
 );
+
+#[cfg(feature = "CoreData_NSBatchUpdateResult")]
+unsafe impl NSObjectProtocol for NSBatchUpdateResult {}
 
 extern_methods!(
     #[cfg(feature = "CoreData_NSBatchUpdateResult")]
@@ -184,6 +202,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreData_NSBatchDeleteResult")]
+unsafe impl NSObjectProtocol for NSBatchDeleteResult {}
+
 extern_methods!(
     #[cfg(feature = "CoreData_NSBatchDeleteResult")]
     unsafe impl NSBatchDeleteResult {
@@ -206,6 +227,9 @@ extern_class!(
         type Super = NSPersistentStoreResult;
     }
 );
+
+#[cfg(feature = "CoreData_NSPersistentHistoryResult")]
+unsafe impl NSObjectProtocol for NSPersistentHistoryResult {}
 
 extern_methods!(
     #[cfg(feature = "CoreData_NSPersistentHistoryResult")]
@@ -237,6 +261,9 @@ extern_class!(
         type Super = NSPersistentStoreResult;
     }
 );
+
+#[cfg(feature = "CoreData_NSPersistentCloudKitContainerEventResult")]
+unsafe impl NSObjectProtocol for NSPersistentCloudKitContainerEventResult {}
 
 extern_methods!(
     #[cfg(feature = "CoreData_NSPersistentCloudKitContainerEventResult")]

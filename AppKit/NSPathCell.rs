@@ -28,10 +28,25 @@ extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSPathCell")]
+unsafe impl NSAccessibility for NSPathCell {}
+
+#[cfg(feature = "AppKit_NSPathCell")]
+unsafe impl NSAccessibilityElement for NSPathCell {}
+
+#[cfg(feature = "AppKit_NSPathCell")]
+unsafe impl NSCoding for NSPathCell {}
+
+#[cfg(feature = "AppKit_NSPathCell")]
 unsafe impl NSMenuItemValidation for NSPathCell {}
 
 #[cfg(feature = "AppKit_NSPathCell")]
+unsafe impl NSObjectProtocol for NSPathCell {}
+
+#[cfg(feature = "AppKit_NSPathCell")]
 unsafe impl NSOpenSavePanelDelegate for NSPathCell {}
+
+#[cfg(feature = "AppKit_NSPathCell")]
+unsafe impl NSUserInterfaceItemIdentification for NSPathCell {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSPathCell")]

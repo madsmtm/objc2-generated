@@ -15,6 +15,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLVisibleFunctionTableDescriptor")]
+unsafe impl NSObjectProtocol for MTLVisibleFunctionTableDescriptor {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLVisibleFunctionTableDescriptor")]
     unsafe impl MTLVisibleFunctionTableDescriptor {

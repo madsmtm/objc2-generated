@@ -24,6 +24,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSDraggingImageComponent")]
+unsafe impl NSObjectProtocol for NSDraggingImageComponent {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSDraggingImageComponent")]
     unsafe impl NSDraggingImageComponent {
@@ -71,6 +74,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "AppKit_NSDraggingItem")]
+unsafe impl NSObjectProtocol for NSDraggingItem {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSDraggingItem")]

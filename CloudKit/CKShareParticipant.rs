@@ -62,6 +62,12 @@ extern_class!(
 );
 
 #[cfg(feature = "CloudKit_CKShareParticipant")]
+unsafe impl NSCoding for CKShareParticipant {}
+
+#[cfg(feature = "CloudKit_CKShareParticipant")]
+unsafe impl NSObjectProtocol for CKShareParticipant {}
+
+#[cfg(feature = "CloudKit_CKShareParticipant")]
 unsafe impl NSSecureCoding for CKShareParticipant {}
 
 extern_methods!(

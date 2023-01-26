@@ -17,6 +17,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSTextListElement")]
+unsafe impl NSObjectProtocol for NSTextListElement {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSTextListElement")]
     unsafe impl NSTextListElement {

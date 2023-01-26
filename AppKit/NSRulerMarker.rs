@@ -19,6 +19,9 @@ extern_class!(
 #[cfg(feature = "AppKit_NSRulerMarker")]
 unsafe impl NSCoding for NSRulerMarker {}
 
+#[cfg(feature = "AppKit_NSRulerMarker")]
+unsafe impl NSObjectProtocol for NSRulerMarker {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSRulerMarker")]
     unsafe impl NSRulerMarker {

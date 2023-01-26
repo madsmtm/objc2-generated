@@ -14,6 +14,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSScriptCoercionHandler")]
+unsafe impl NSObjectProtocol for NSScriptCoercionHandler {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSScriptCoercionHandler")]
     unsafe impl NSScriptCoercionHandler {

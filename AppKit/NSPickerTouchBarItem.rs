@@ -35,6 +35,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSPickerTouchBarItem")]
+unsafe impl NSCoding for NSPickerTouchBarItem {}
+
+#[cfg(feature = "AppKit_NSPickerTouchBarItem")]
+unsafe impl NSObjectProtocol for NSPickerTouchBarItem {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSPickerTouchBarItem")]
     unsafe impl NSPickerTouchBarItem {

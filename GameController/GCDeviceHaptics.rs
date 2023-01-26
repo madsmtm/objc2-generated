@@ -38,6 +38,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "GameController_GCDeviceHaptics")]
+unsafe impl NSObjectProtocol for GCDeviceHaptics {}
+
 extern_methods!(
     #[cfg(feature = "GameController_GCDeviceHaptics")]
     unsafe impl GCDeviceHaptics {

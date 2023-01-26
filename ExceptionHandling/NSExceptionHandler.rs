@@ -52,6 +52,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "ExceptionHandling_NSExceptionHandler")]
+unsafe impl NSObjectProtocol for NSExceptionHandler {}
+
 extern_methods!(
     #[cfg(feature = "ExceptionHandling_NSExceptionHandler")]
     unsafe impl NSExceptionHandler {

@@ -23,6 +23,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLFunctionDescriptor")]
+unsafe impl NSObjectProtocol for MTLFunctionDescriptor {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLFunctionDescriptor")]
     unsafe impl MTLFunctionDescriptor {
@@ -85,6 +88,9 @@ extern_class!(
         type Super = MTLFunctionDescriptor;
     }
 );
+
+#[cfg(feature = "Metal_MTLIntersectionFunctionDescriptor")]
+unsafe impl NSObjectProtocol for MTLIntersectionFunctionDescriptor {}
 
 extern_methods!(
     #[cfg(feature = "Metal_MTLIntersectionFunctionDescriptor")]

@@ -39,13 +39,19 @@ extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSColor")]
-unsafe impl NSSecureCoding for NSColor {}
+unsafe impl NSCoding for NSColor {}
+
+#[cfg(feature = "AppKit_NSColor")]
+unsafe impl NSObjectProtocol for NSColor {}
 
 #[cfg(feature = "AppKit_NSColor")]
 unsafe impl NSPasteboardReading for NSColor {}
 
 #[cfg(feature = "AppKit_NSColor")]
 unsafe impl NSPasteboardWriting for NSColor {}
+
+#[cfg(feature = "AppKit_NSColor")]
+unsafe impl NSSecureCoding for NSColor {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSColor")]

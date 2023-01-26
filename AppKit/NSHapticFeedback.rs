@@ -47,6 +47,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSHapticFeedbackManager")]
+unsafe impl NSObjectProtocol for NSHapticFeedbackManager {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSHapticFeedbackManager")]
     unsafe impl NSHapticFeedbackManager {

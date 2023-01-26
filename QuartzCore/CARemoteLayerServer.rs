@@ -15,6 +15,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreAnimation_CARemoteLayerServer")]
+unsafe impl NSObjectProtocol for CARemoteLayerServer {}
+
 extern_methods!(
     #[cfg(feature = "CoreAnimation_CARemoteLayerServer")]
     unsafe impl CARemoteLayerServer {

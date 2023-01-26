@@ -15,6 +15,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Contacts_CNSaveRequest")]
+unsafe impl NSObjectProtocol for CNSaveRequest {}
+
 extern_methods!(
     #[cfg(feature = "Contacts_CNSaveRequest")]
     unsafe impl CNSaveRequest {

@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "MapKit_MKMapItem")]
+unsafe impl NSObjectProtocol for MKMapItem {}
+
 extern_methods!(
     #[cfg(feature = "MapKit_MKMapItem")]
     unsafe impl MKMapItem {

@@ -15,6 +15,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLLinkedFunctions")]
+unsafe impl NSObjectProtocol for MTLLinkedFunctions {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLLinkedFunctions")]
     unsafe impl MTLLinkedFunctions {

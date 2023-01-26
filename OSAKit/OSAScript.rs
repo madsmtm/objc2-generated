@@ -66,6 +66,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "OSAKit_OSAScript")]
+unsafe impl NSObjectProtocol for OSAScript {}
+
 extern_methods!(
     #[cfg(feature = "OSAKit_OSAScript")]
     unsafe impl OSAScript {

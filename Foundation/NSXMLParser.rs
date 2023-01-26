@@ -24,6 +24,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSXMLParser")]
+unsafe impl NSObjectProtocol for NSXMLParser {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSXMLParser")]
     unsafe impl NSXMLParser {

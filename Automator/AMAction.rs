@@ -27,6 +27,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Automator_AMAction")]
+unsafe impl NSObjectProtocol for AMAction {}
+
 extern_methods!(
     #[cfg(feature = "Automator_AMAction")]
     unsafe impl AMAction {

@@ -30,6 +30,21 @@ extern_class!(
 #[cfg(feature = "GameKit_GKMatchmakerViewController")]
 unsafe impl GKViewController for GKMatchmakerViewController {}
 
+#[cfg(feature = "GameKit_GKMatchmakerViewController")]
+unsafe impl NSCoding for GKMatchmakerViewController {}
+
+#[cfg(feature = "GameKit_GKMatchmakerViewController")]
+unsafe impl NSEditor for GKMatchmakerViewController {}
+
+#[cfg(feature = "GameKit_GKMatchmakerViewController")]
+unsafe impl NSObjectProtocol for GKMatchmakerViewController {}
+
+#[cfg(feature = "GameKit_GKMatchmakerViewController")]
+unsafe impl NSSeguePerforming for GKMatchmakerViewController {}
+
+#[cfg(feature = "GameKit_GKMatchmakerViewController")]
+unsafe impl NSUserInterfaceItemIdentification for GKMatchmakerViewController {}
+
 extern_methods!(
     #[cfg(feature = "GameKit_GKMatchmakerViewController")]
     unsafe impl GKMatchmakerViewController {

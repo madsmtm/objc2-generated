@@ -24,6 +24,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSBindingSelectionMarker")]
+unsafe impl NSObjectProtocol for NSBindingSelectionMarker {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSBindingSelectionMarker")]
     unsafe impl NSBindingSelectionMarker {

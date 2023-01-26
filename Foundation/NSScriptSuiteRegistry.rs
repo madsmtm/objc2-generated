@@ -14,6 +14,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSScriptSuiteRegistry")]
+unsafe impl NSObjectProtocol for NSScriptSuiteRegistry {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSScriptSuiteRegistry")]
     unsafe impl NSScriptSuiteRegistry {

@@ -51,6 +51,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "GameController_GCMotion")]
+unsafe impl NSObjectProtocol for GCMotion {}
+
 extern_methods!(
     #[cfg(feature = "GameController_GCMotion")]
     unsafe impl GCMotion {

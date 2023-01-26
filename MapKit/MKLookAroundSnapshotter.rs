@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "MapKit_MKLookAroundSnapshotter")]
+unsafe impl NSObjectProtocol for MKLookAroundSnapshotter {}
+
 extern_methods!(
     #[cfg(feature = "MapKit_MKLookAroundSnapshotter")]
     unsafe impl MKLookAroundSnapshotter {

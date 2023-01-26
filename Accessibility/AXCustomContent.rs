@@ -24,6 +24,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Accessibility_AXCustomContent")]
+unsafe impl NSCoding for AXCustomContent {}
+
+#[cfg(feature = "Accessibility_AXCustomContent")]
+unsafe impl NSObjectProtocol for AXCustomContent {}
+
+#[cfg(feature = "Accessibility_AXCustomContent")]
 unsafe impl NSSecureCoding for AXCustomContent {}
 
 extern_methods!(

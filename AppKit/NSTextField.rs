@@ -18,13 +18,40 @@ extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSTextField")]
-unsafe impl NSUserInterfaceValidations for NSTextField {}
+unsafe impl NSAccessibility for NSTextField {}
+
+#[cfg(feature = "AppKit_NSTextField")]
+unsafe impl NSAccessibilityElement for NSTextField {}
 
 #[cfg(feature = "AppKit_NSTextField")]
 unsafe impl NSAccessibilityNavigableStaticText for NSTextField {}
 
 #[cfg(feature = "AppKit_NSTextField")]
+unsafe impl NSAccessibilityStaticText for NSTextField {}
+
+#[cfg(feature = "AppKit_NSTextField")]
+unsafe impl NSAnimatablePropertyContainer for NSTextField {}
+
+#[cfg(feature = "AppKit_NSTextField")]
+unsafe impl NSAppearanceCustomization for NSTextField {}
+
+#[cfg(feature = "AppKit_NSTextField")]
+unsafe impl NSCoding for NSTextField {}
+
+#[cfg(feature = "AppKit_NSTextField")]
+unsafe impl NSDraggingDestination for NSTextField {}
+
+#[cfg(feature = "AppKit_NSTextField")]
+unsafe impl NSObjectProtocol for NSTextField {}
+
+#[cfg(feature = "AppKit_NSTextField")]
 unsafe impl NSTextContent for NSTextField {}
+
+#[cfg(feature = "AppKit_NSTextField")]
+unsafe impl NSUserInterfaceItemIdentification for NSTextField {}
+
+#[cfg(feature = "AppKit_NSTextField")]
+unsafe impl NSUserInterfaceValidations for NSTextField {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSTextField")]

@@ -31,6 +31,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSProgress")]
+unsafe impl NSObjectProtocol for NSProgress {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSProgress")]
     unsafe impl NSProgress {

@@ -15,6 +15,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreData_NSAtomicStoreCacheNode")]
+unsafe impl NSObjectProtocol for NSAtomicStoreCacheNode {}
+
 extern_methods!(
     #[cfg(feature = "CoreData_NSAtomicStoreCacheNode")]
     unsafe impl NSAtomicStoreCacheNode {

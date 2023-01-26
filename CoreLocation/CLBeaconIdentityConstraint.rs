@@ -21,6 +21,12 @@ extern_class!(
 );
 
 #[cfg(feature = "CoreLocation_CLBeaconIdentityConstraint")]
+unsafe impl NSCoding for CLBeaconIdentityConstraint {}
+
+#[cfg(feature = "CoreLocation_CLBeaconIdentityConstraint")]
+unsafe impl NSObjectProtocol for CLBeaconIdentityConstraint {}
+
+#[cfg(feature = "CoreLocation_CLBeaconIdentityConstraint")]
 unsafe impl NSSecureCoding for CLBeaconIdentityConstraint {}
 
 extern_methods!(

@@ -71,6 +71,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSPrintPanel")]
+unsafe impl NSObjectProtocol for NSPrintPanel {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSPrintPanel")]
     unsafe impl NSPrintPanel {

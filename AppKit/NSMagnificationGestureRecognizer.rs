@@ -17,6 +17,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSMagnificationGestureRecognizer")]
+unsafe impl NSCoding for NSMagnificationGestureRecognizer {}
+
+#[cfg(feature = "AppKit_NSMagnificationGestureRecognizer")]
+unsafe impl NSObjectProtocol for NSMagnificationGestureRecognizer {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSMagnificationGestureRecognizer")]
     unsafe impl NSMagnificationGestureRecognizer {

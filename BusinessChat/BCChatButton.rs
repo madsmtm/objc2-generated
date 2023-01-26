@@ -29,6 +29,30 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "BusinessChat_BCChatButton")]
+unsafe impl NSAccessibility for BCChatButton {}
+
+#[cfg(feature = "BusinessChat_BCChatButton")]
+unsafe impl NSAccessibilityElement for BCChatButton {}
+
+#[cfg(feature = "BusinessChat_BCChatButton")]
+unsafe impl NSAnimatablePropertyContainer for BCChatButton {}
+
+#[cfg(feature = "BusinessChat_BCChatButton")]
+unsafe impl NSAppearanceCustomization for BCChatButton {}
+
+#[cfg(feature = "BusinessChat_BCChatButton")]
+unsafe impl NSCoding for BCChatButton {}
+
+#[cfg(feature = "BusinessChat_BCChatButton")]
+unsafe impl NSDraggingDestination for BCChatButton {}
+
+#[cfg(feature = "BusinessChat_BCChatButton")]
+unsafe impl NSObjectProtocol for BCChatButton {}
+
+#[cfg(feature = "BusinessChat_BCChatButton")]
+unsafe impl NSUserInterfaceItemIdentification for BCChatButton {}
+
 extern_methods!(
     #[cfg(feature = "BusinessChat_BCChatButton")]
     unsafe impl BCChatButton {

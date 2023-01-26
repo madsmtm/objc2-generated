@@ -60,6 +60,9 @@ extern_class!(
 #[cfg(feature = "Foundation_NSScriptObjectSpecifier")]
 unsafe impl NSCoding for NSScriptObjectSpecifier {}
 
+#[cfg(feature = "Foundation_NSScriptObjectSpecifier")]
+unsafe impl NSObjectProtocol for NSScriptObjectSpecifier {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSScriptObjectSpecifier")]
     unsafe impl NSScriptObjectSpecifier {
@@ -199,6 +202,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSIndexSpecifier")]
+unsafe impl NSCoding for NSIndexSpecifier {}
+
+#[cfg(feature = "Foundation_NSIndexSpecifier")]
+unsafe impl NSObjectProtocol for NSIndexSpecifier {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSIndexSpecifier")]
     unsafe impl NSIndexSpecifier {
@@ -235,6 +244,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSMiddleSpecifier")]
+unsafe impl NSCoding for NSMiddleSpecifier {}
+
+#[cfg(feature = "Foundation_NSMiddleSpecifier")]
+unsafe impl NSObjectProtocol for NSMiddleSpecifier {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSMiddleSpecifier")]
     unsafe impl NSMiddleSpecifier {}
@@ -251,6 +266,12 @@ extern_class!(
         type Super = NSScriptObjectSpecifier;
     }
 );
+
+#[cfg(feature = "Foundation_NSNameSpecifier")]
+unsafe impl NSCoding for NSNameSpecifier {}
+
+#[cfg(feature = "Foundation_NSNameSpecifier")]
+unsafe impl NSObjectProtocol for NSNameSpecifier {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSNameSpecifier")]
@@ -295,6 +316,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Foundation_NSPositionalSpecifier")]
+unsafe impl NSObjectProtocol for NSPositionalSpecifier {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSPositionalSpecifier")]
@@ -351,6 +375,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSPropertySpecifier")]
+unsafe impl NSCoding for NSPropertySpecifier {}
+
+#[cfg(feature = "Foundation_NSPropertySpecifier")]
+unsafe impl NSObjectProtocol for NSPropertySpecifier {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSPropertySpecifier")]
     unsafe impl NSPropertySpecifier {}
@@ -368,6 +398,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSRandomSpecifier")]
+unsafe impl NSCoding for NSRandomSpecifier {}
+
+#[cfg(feature = "Foundation_NSRandomSpecifier")]
+unsafe impl NSObjectProtocol for NSRandomSpecifier {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSRandomSpecifier")]
     unsafe impl NSRandomSpecifier {}
@@ -384,6 +420,12 @@ extern_class!(
         type Super = NSScriptObjectSpecifier;
     }
 );
+
+#[cfg(feature = "Foundation_NSRangeSpecifier")]
+unsafe impl NSCoding for NSRangeSpecifier {}
+
+#[cfg(feature = "Foundation_NSRangeSpecifier")]
+unsafe impl NSObjectProtocol for NSRangeSpecifier {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSRangeSpecifier")]
@@ -435,6 +477,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSRelativeSpecifier")]
+unsafe impl NSCoding for NSRelativeSpecifier {}
+
+#[cfg(feature = "Foundation_NSRelativeSpecifier")]
+unsafe impl NSObjectProtocol for NSRelativeSpecifier {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSRelativeSpecifier")]
     unsafe impl NSRelativeSpecifier {
@@ -485,6 +533,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSUniqueIDSpecifier")]
+unsafe impl NSCoding for NSUniqueIDSpecifier {}
+
+#[cfg(feature = "Foundation_NSUniqueIDSpecifier")]
+unsafe impl NSObjectProtocol for NSUniqueIDSpecifier {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSUniqueIDSpecifier")]
     unsafe impl NSUniqueIDSpecifier {
@@ -527,6 +581,12 @@ extern_class!(
         type Super = NSScriptObjectSpecifier;
     }
 );
+
+#[cfg(feature = "Foundation_NSWhoseSpecifier")]
+unsafe impl NSCoding for NSWhoseSpecifier {}
+
+#[cfg(feature = "Foundation_NSWhoseSpecifier")]
+unsafe impl NSObjectProtocol for NSWhoseSpecifier {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSWhoseSpecifier")]

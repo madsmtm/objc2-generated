@@ -18,7 +18,34 @@ extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSTableRowView")]
+unsafe impl NSAccessibility for NSTableRowView {}
+
+#[cfg(feature = "AppKit_NSTableRowView")]
+unsafe impl NSAccessibilityElement for NSTableRowView {}
+
+#[cfg(feature = "AppKit_NSTableRowView")]
+unsafe impl NSAccessibilityGroup for NSTableRowView {}
+
+#[cfg(feature = "AppKit_NSTableRowView")]
 unsafe impl NSAccessibilityRow for NSTableRowView {}
+
+#[cfg(feature = "AppKit_NSTableRowView")]
+unsafe impl NSAnimatablePropertyContainer for NSTableRowView {}
+
+#[cfg(feature = "AppKit_NSTableRowView")]
+unsafe impl NSAppearanceCustomization for NSTableRowView {}
+
+#[cfg(feature = "AppKit_NSTableRowView")]
+unsafe impl NSCoding for NSTableRowView {}
+
+#[cfg(feature = "AppKit_NSTableRowView")]
+unsafe impl NSDraggingDestination for NSTableRowView {}
+
+#[cfg(feature = "AppKit_NSTableRowView")]
+unsafe impl NSObjectProtocol for NSTableRowView {}
+
+#[cfg(feature = "AppKit_NSTableRowView")]
+unsafe impl NSUserInterfaceItemIdentification for NSTableRowView {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSTableRowView")]

@@ -17,6 +17,39 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSStatusBarButton")]
+unsafe impl NSAccessibility for NSStatusBarButton {}
+
+#[cfg(feature = "AppKit_NSStatusBarButton")]
+unsafe impl NSAccessibilityButton for NSStatusBarButton {}
+
+#[cfg(feature = "AppKit_NSStatusBarButton")]
+unsafe impl NSAccessibilityElement for NSStatusBarButton {}
+
+#[cfg(feature = "AppKit_NSStatusBarButton")]
+unsafe impl NSAnimatablePropertyContainer for NSStatusBarButton {}
+
+#[cfg(feature = "AppKit_NSStatusBarButton")]
+unsafe impl NSAppearanceCustomization for NSStatusBarButton {}
+
+#[cfg(feature = "AppKit_NSStatusBarButton")]
+unsafe impl NSCoding for NSStatusBarButton {}
+
+#[cfg(feature = "AppKit_NSStatusBarButton")]
+unsafe impl NSDraggingDestination for NSStatusBarButton {}
+
+#[cfg(feature = "AppKit_NSStatusBarButton")]
+unsafe impl NSObjectProtocol for NSStatusBarButton {}
+
+#[cfg(feature = "AppKit_NSStatusBarButton")]
+unsafe impl NSUserInterfaceCompression for NSStatusBarButton {}
+
+#[cfg(feature = "AppKit_NSStatusBarButton")]
+unsafe impl NSUserInterfaceItemIdentification for NSStatusBarButton {}
+
+#[cfg(feature = "AppKit_NSStatusBarButton")]
+unsafe impl NSUserInterfaceValidations for NSStatusBarButton {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSStatusBarButton")]
     unsafe impl NSStatusBarButton {

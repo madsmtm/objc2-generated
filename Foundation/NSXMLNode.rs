@@ -33,6 +33,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSXMLNode")]
+unsafe impl NSObjectProtocol for NSXMLNode {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSXMLNode")]
     unsafe impl NSXMLNode {
