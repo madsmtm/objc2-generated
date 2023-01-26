@@ -57,10 +57,15 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSRuleEditor")]
     unsafe impl NSRuleEditor {
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<NSRuleEditorDelegate, Shared>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn NSRuleEditorDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&NSRuleEditorDelegate>);
+        pub unsafe fn setDelegate(
+            &self,
+            delegate: Option<&ProtocolObject<dyn NSRuleEditorDelegate>>,
+        );
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other formattingStringsFilename)]
@@ -233,12 +238,10 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct NSRuleEditorDelegate;
-
-    unsafe impl ProtocolType for NSRuleEditorDelegate {
+    pub unsafe trait NSRuleEditorDelegate: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSRuleEditor")]
         #[method(ruleEditor:numberOfChildrenForCriterion:withRowType:)]
-        pub unsafe fn ruleEditor_numberOfChildrenForCriterion_withRowType(
+        unsafe fn ruleEditor_numberOfChildrenForCriterion_withRowType(
             &self,
             editor: &NSRuleEditor,
             criterion: Option<&Object>,
@@ -247,7 +250,7 @@ extern_protocol!(
 
         #[cfg(feature = "AppKit_NSRuleEditor")]
         #[method_id(@__retain_semantics Other ruleEditor:child:forCriterion:withRowType:)]
-        pub unsafe fn ruleEditor_child_forCriterion_withRowType(
+        unsafe fn ruleEditor_child_forCriterion_withRowType(
             &self,
             editor: &NSRuleEditor,
             index: NSInteger,
@@ -257,7 +260,7 @@ extern_protocol!(
 
         #[cfg(feature = "AppKit_NSRuleEditor")]
         #[method_id(@__retain_semantics Other ruleEditor:displayValueForCriterion:inRow:)]
-        pub unsafe fn ruleEditor_displayValueForCriterion_inRow(
+        unsafe fn ruleEditor_displayValueForCriterion_inRow(
             &self,
             editor: &NSRuleEditor,
             criterion: &Object,
@@ -267,7 +270,7 @@ extern_protocol!(
         #[cfg(all(feature = "AppKit_NSRuleEditor", feature = "Foundation_NSDictionary"))]
         #[optional]
         #[method_id(@__retain_semantics Other ruleEditor:predicatePartsForCriterion:withDisplayValue:inRow:)]
-        pub unsafe fn ruleEditor_predicatePartsForCriterion_withDisplayValue_inRow(
+        unsafe fn ruleEditor_predicatePartsForCriterion_withDisplayValue_inRow(
             &self,
             editor: &NSRuleEditor,
             criterion: &Object,
@@ -278,8 +281,10 @@ extern_protocol!(
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(ruleEditorRowsDidChange:)]
-        pub unsafe fn ruleEditorRowsDidChange(&self, notification: &NSNotification);
+        unsafe fn ruleEditorRowsDidChange(&self, notification: &NSNotification);
     }
+
+    unsafe impl ProtocolType for dyn NSRuleEditorDelegate {}
 );
 
 extern_static!(NSRuleEditorRowsDidChangeNotification: &'static NSNotificationName);

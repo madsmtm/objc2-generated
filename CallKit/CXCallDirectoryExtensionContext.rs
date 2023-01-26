@@ -5,20 +5,20 @@ use crate::CallKit::*;
 use crate::Foundation::*;
 
 extern_protocol!(
-    pub struct CXCallDirectoryExtensionContextDelegate;
-
-    unsafe impl ProtocolType for CXCallDirectoryExtensionContextDelegate {
+    pub unsafe trait CXCallDirectoryExtensionContextDelegate: NSObjectProtocol {
         #[cfg(all(
             feature = "CallKit_CXCallDirectoryExtensionContext",
             feature = "Foundation_NSError"
         ))]
         #[method(requestFailedForExtensionContext:withError:)]
-        pub unsafe fn requestFailedForExtensionContext_withError(
+        unsafe fn requestFailedForExtensionContext_withError(
             &self,
             extension_context: &CXCallDirectoryExtensionContext,
             error: &NSError,
         );
     }
+
+    unsafe impl ProtocolType for dyn CXCallDirectoryExtensionContextDelegate {}
 );
 
 extern_class!(
@@ -39,12 +39,12 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<CXCallDirectoryExtensionContextDelegate, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn CXCallDirectoryExtensionContextDelegate>, Shared>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
-            delegate: Option<&CXCallDirectoryExtensionContextDelegate>,
+            delegate: Option<&ProtocolObject<dyn CXCallDirectoryExtensionContextDelegate>>,
         );
 
         #[method(isIncremental)]

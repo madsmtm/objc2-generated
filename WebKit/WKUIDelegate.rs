@@ -33,9 +33,7 @@ ns_enum!(
 );
 
 extern_protocol!(
-    pub struct WKUIDelegate;
-
-    unsafe impl ProtocolType for WKUIDelegate {
+    pub unsafe trait WKUIDelegate: NSObjectProtocol {
         #[cfg(all(
             feature = "WebKit_WKNavigationAction",
             feature = "WebKit_WKWebView",
@@ -44,7 +42,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other webView:createWebViewWithConfiguration:forNavigationAction:windowFeatures:)]
-        pub unsafe fn webView_createWebViewWithConfiguration_forNavigationAction_windowFeatures(
+        unsafe fn webView_createWebViewWithConfiguration_forNavigationAction_windowFeatures(
             &self,
             web_view: &WKWebView,
             configuration: &WKWebViewConfiguration,
@@ -55,7 +53,7 @@ extern_protocol!(
         #[cfg(feature = "WebKit_WKWebView")]
         #[optional]
         #[method(webViewDidClose:)]
-        pub unsafe fn webViewDidClose(&self, web_view: &WKWebView);
+        unsafe fn webViewDidClose(&self, web_view: &WKWebView);
 
         #[cfg(all(
             feature = "Foundation_NSString",
@@ -64,7 +62,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(webView:runJavaScriptAlertPanelWithMessage:initiatedByFrame:completionHandler:)]
-        pub unsafe fn webView_runJavaScriptAlertPanelWithMessage_initiatedByFrame_completionHandler(
+        unsafe fn webView_runJavaScriptAlertPanelWithMessage_initiatedByFrame_completionHandler(
             &self,
             web_view: &WKWebView,
             message: &NSString,
@@ -79,7 +77,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(webView:runJavaScriptConfirmPanelWithMessage:initiatedByFrame:completionHandler:)]
-        pub unsafe fn webView_runJavaScriptConfirmPanelWithMessage_initiatedByFrame_completionHandler(
+        unsafe fn webView_runJavaScriptConfirmPanelWithMessage_initiatedByFrame_completionHandler(
             &self,
             web_view: &WKWebView,
             message: &NSString,
@@ -94,7 +92,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(webView:runJavaScriptTextInputPanelWithPrompt:defaultText:initiatedByFrame:completionHandler:)]
-        pub unsafe fn webView_runJavaScriptTextInputPanelWithPrompt_defaultText_initiatedByFrame_completionHandler(
+        unsafe fn webView_runJavaScriptTextInputPanelWithPrompt_defaultText_initiatedByFrame_completionHandler(
             &self,
             web_view: &WKWebView,
             prompt: &NSString,
@@ -110,7 +108,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(webView:requestMediaCapturePermissionForOrigin:initiatedByFrame:type:decisionHandler:)]
-        pub unsafe fn webView_requestMediaCapturePermissionForOrigin_initiatedByFrame_type_decisionHandler(
+        unsafe fn webView_requestMediaCapturePermissionForOrigin_initiatedByFrame_type_decisionHandler(
             &self,
             web_view: &WKWebView,
             origin: &WKSecurityOrigin,
@@ -126,7 +124,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(webView:requestDeviceOrientationAndMotionPermissionForOrigin:initiatedByFrame:decisionHandler:)]
-        pub unsafe fn webView_requestDeviceOrientationAndMotionPermissionForOrigin_initiatedByFrame_decisionHandler(
+        unsafe fn webView_requestDeviceOrientationAndMotionPermissionForOrigin_initiatedByFrame_decisionHandler(
             &self,
             web_view: &WKWebView,
             origin: &WKSecurityOrigin,
@@ -143,7 +141,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(webView:runOpenPanelWithParameters:initiatedByFrame:completionHandler:)]
-        pub unsafe fn webView_runOpenPanelWithParameters_initiatedByFrame_completionHandler(
+        unsafe fn webView_runOpenPanelWithParameters_initiatedByFrame_completionHandler(
             &self,
             web_view: &WKWebView,
             parameters: &WKOpenPanelParameters,
@@ -151,4 +149,6 @@ extern_protocol!(
             completion_handler: &Block<(*mut NSArray<NSURL>,), ()>,
         );
     }
+
+    unsafe impl ProtocolType for dyn WKUIDelegate {}
 );

@@ -111,10 +111,15 @@ extern_methods!(
         pub unsafe fn setRootObject(&self, root_object: Option<&Object>);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<NSConnectionDelegate, Shared>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn NSConnectionDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&NSConnectionDelegate>);
+        pub unsafe fn setDelegate(
+            &self,
+            delegate: Option<&ProtocolObject<dyn NSConnectionDelegate>>,
+        );
 
         #[method(independentConversationQueueing)]
         pub unsafe fn independentConversationQueueing(&self) -> bool;
@@ -225,13 +230,11 @@ extern_static!(NSConnectionDidDieNotification: &'static NSString);
 
 extern_protocol!(
     #[deprecated = "Use NSXPCConnection instead"]
-    pub struct NSConnectionDelegate;
-
-    unsafe impl ProtocolType for NSConnectionDelegate {
+    pub unsafe trait NSConnectionDelegate: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSConnection")]
         #[optional]
         #[method(makeNewConnection:sender:)]
-        pub unsafe fn makeNewConnection_sender(
+        unsafe fn makeNewConnection_sender(
             &self,
             conn: &NSConnection,
             ancestor: &NSConnection,
@@ -240,7 +243,7 @@ extern_protocol!(
         #[cfg(feature = "Foundation_NSConnection")]
         #[optional]
         #[method(connection:shouldMakeNewConnection:)]
-        pub unsafe fn connection_shouldMakeNewConnection(
+        unsafe fn connection_shouldMakeNewConnection(
             &self,
             ancestor: &NSConnection,
             conn: &NSConnection,
@@ -249,7 +252,7 @@ extern_protocol!(
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSData"))]
         #[optional]
         #[method_id(@__retain_semantics Other authenticationDataForComponents:)]
-        pub unsafe fn authenticationDataForComponents(
+        unsafe fn authenticationDataForComponents(
             &self,
             components: &NSArray,
         ) -> Id<NSData, Shared>;
@@ -257,7 +260,7 @@ extern_protocol!(
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSData"))]
         #[optional]
         #[method(authenticateComponents:withData:)]
-        pub unsafe fn authenticateComponents_withData(
+        unsafe fn authenticateComponents_withData(
             &self,
             components: &NSArray,
             signature: &NSData,
@@ -266,10 +269,8 @@ extern_protocol!(
         #[cfg(feature = "Foundation_NSConnection")]
         #[optional]
         #[method_id(@__retain_semantics Other createConversationForConnection:)]
-        pub unsafe fn createConversationForConnection(
-            &self,
-            conn: &NSConnection,
-        ) -> Id<Object, Shared>;
+        unsafe fn createConversationForConnection(&self, conn: &NSConnection)
+            -> Id<Object, Shared>;
 
         #[cfg(all(
             feature = "Foundation_NSConnection",
@@ -277,12 +278,14 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(connection:handleRequest:)]
-        pub unsafe fn connection_handleRequest(
+        unsafe fn connection_handleRequest(
             &self,
             connection: &NSConnection,
             doreq: &NSDistantObjectRequest,
         ) -> bool;
     }
+
+    unsafe impl ProtocolType for dyn NSConnectionDelegate {}
 );
 
 extern_static!(NSFailedAuthenticationException: &'static NSString);

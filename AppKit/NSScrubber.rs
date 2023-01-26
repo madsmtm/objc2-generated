@@ -6,31 +6,29 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 extern_protocol!(
-    pub struct NSScrubberDataSource;
-
-    unsafe impl ProtocolType for NSScrubberDataSource {
+    pub unsafe trait NSScrubberDataSource: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSScrubber")]
         #[method(numberOfItemsForScrubber:)]
-        pub unsafe fn numberOfItemsForScrubber(&self, scrubber: &NSScrubber) -> NSInteger;
+        unsafe fn numberOfItemsForScrubber(&self, scrubber: &NSScrubber) -> NSInteger;
 
         #[cfg(all(feature = "AppKit_NSScrubber", feature = "AppKit_NSScrubberItemView"))]
         #[method_id(@__retain_semantics Other scrubber:viewForItemAtIndex:)]
-        pub unsafe fn scrubber_viewForItemAtIndex(
+        unsafe fn scrubber_viewForItemAtIndex(
             &self,
             scrubber: &NSScrubber,
             index: NSInteger,
         ) -> Id<NSScrubberItemView, Shared>;
     }
+
+    unsafe impl ProtocolType for dyn NSScrubberDataSource {}
 );
 
 extern_protocol!(
-    pub struct NSScrubberDelegate;
-
-    unsafe impl ProtocolType for NSScrubberDelegate {
+    pub unsafe trait NSScrubberDelegate: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSScrubber")]
         #[optional]
         #[method(scrubber:didSelectItemAtIndex:)]
-        pub unsafe fn scrubber_didSelectItemAtIndex(
+        unsafe fn scrubber_didSelectItemAtIndex(
             &self,
             scrubber: &NSScrubber,
             selected_index: NSInteger,
@@ -39,7 +37,7 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSScrubber")]
         #[optional]
         #[method(scrubber:didHighlightItemAtIndex:)]
-        pub unsafe fn scrubber_didHighlightItemAtIndex(
+        unsafe fn scrubber_didHighlightItemAtIndex(
             &self,
             scrubber: &NSScrubber,
             highlighted_index: NSInteger,
@@ -48,7 +46,7 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSScrubber")]
         #[optional]
         #[method(scrubber:didChangeVisibleRange:)]
-        pub unsafe fn scrubber_didChangeVisibleRange(
+        unsafe fn scrubber_didChangeVisibleRange(
             &self,
             scrubber: &NSScrubber,
             visible_range: NSRange,
@@ -57,18 +55,20 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSScrubber")]
         #[optional]
         #[method(didBeginInteractingWithScrubber:)]
-        pub unsafe fn didBeginInteractingWithScrubber(&self, scrubber: &NSScrubber);
+        unsafe fn didBeginInteractingWithScrubber(&self, scrubber: &NSScrubber);
 
         #[cfg(feature = "AppKit_NSScrubber")]
         #[optional]
         #[method(didFinishInteractingWithScrubber:)]
-        pub unsafe fn didFinishInteractingWithScrubber(&self, scrubber: &NSScrubber);
+        unsafe fn didFinishInteractingWithScrubber(&self, scrubber: &NSScrubber);
 
         #[cfg(feature = "AppKit_NSScrubber")]
         #[optional]
         #[method(didCancelInteractingWithScrubber:)]
-        pub unsafe fn didCancelInteractingWithScrubber(&self, scrubber: &NSScrubber);
+        unsafe fn didCancelInteractingWithScrubber(&self, scrubber: &NSScrubber);
     }
+
+    unsafe impl ProtocolType for dyn NSScrubberDelegate {}
 );
 
 ns_enum!(
@@ -141,16 +141,22 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSScrubber")]
     unsafe impl NSScrubber {
         #[method_id(@__retain_semantics Other dataSource)]
-        pub unsafe fn dataSource(&self) -> Option<Id<NSScrubberDataSource, Shared>>;
+        pub unsafe fn dataSource(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn NSScrubberDataSource>, Shared>>;
 
         #[method(setDataSource:)]
-        pub unsafe fn setDataSource(&self, data_source: Option<&NSScrubberDataSource>);
+        pub unsafe fn setDataSource(
+            &self,
+            data_source: Option<&ProtocolObject<dyn NSScrubberDataSource>>,
+        );
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<NSScrubberDelegate, Shared>>;
+        pub unsafe fn delegate(&self)
+            -> Option<Id<ProtocolObject<dyn NSScrubberDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&NSScrubberDelegate>);
+        pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSScrubberDelegate>>);
 
         #[cfg(feature = "AppKit_NSScrubberLayout")]
         #[method_id(@__retain_semantics Other scrubberLayout)]

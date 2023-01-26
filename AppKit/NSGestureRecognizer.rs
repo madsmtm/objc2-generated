@@ -59,10 +59,15 @@ extern_methods!(
         pub unsafe fn setAction(&self, action: Option<Sel>);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<NSGestureRecognizerDelegate, Shared>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn NSGestureRecognizerDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&NSGestureRecognizerDelegate>);
+        pub unsafe fn setDelegate(
+            &self,
+            delegate: Option<&ProtocolObject<dyn NSGestureRecognizerDelegate>>,
+        );
 
         #[method(isEnabled)]
         pub unsafe fn isEnabled(&self) -> bool;
@@ -149,13 +154,11 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct NSGestureRecognizerDelegate;
-
-    unsafe impl ProtocolType for NSGestureRecognizerDelegate {
+    pub unsafe trait NSGestureRecognizerDelegate: NSObjectProtocol {
         #[cfg(all(feature = "AppKit_NSEvent", feature = "AppKit_NSGestureRecognizer"))]
         #[optional]
         #[method(gestureRecognizer:shouldAttemptToRecognizeWithEvent:)]
-        pub unsafe fn gestureRecognizer_shouldAttemptToRecognizeWithEvent(
+        unsafe fn gestureRecognizer_shouldAttemptToRecognizeWithEvent(
             &self,
             gesture_recognizer: &NSGestureRecognizer,
             event: &NSEvent,
@@ -164,7 +167,7 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSGestureRecognizer")]
         #[optional]
         #[method(gestureRecognizerShouldBegin:)]
-        pub unsafe fn gestureRecognizerShouldBegin(
+        unsafe fn gestureRecognizerShouldBegin(
             &self,
             gesture_recognizer: &NSGestureRecognizer,
         ) -> bool;
@@ -172,7 +175,7 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSGestureRecognizer")]
         #[optional]
         #[method(gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer:)]
-        pub unsafe fn gestureRecognizer_shouldRecognizeSimultaneouslyWithGestureRecognizer(
+        unsafe fn gestureRecognizer_shouldRecognizeSimultaneouslyWithGestureRecognizer(
             &self,
             gesture_recognizer: &NSGestureRecognizer,
             other_gesture_recognizer: &NSGestureRecognizer,
@@ -181,7 +184,7 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSGestureRecognizer")]
         #[optional]
         #[method(gestureRecognizer:shouldRequireFailureOfGestureRecognizer:)]
-        pub unsafe fn gestureRecognizer_shouldRequireFailureOfGestureRecognizer(
+        unsafe fn gestureRecognizer_shouldRequireFailureOfGestureRecognizer(
             &self,
             gesture_recognizer: &NSGestureRecognizer,
             other_gesture_recognizer: &NSGestureRecognizer,
@@ -190,7 +193,7 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSGestureRecognizer")]
         #[optional]
         #[method(gestureRecognizer:shouldBeRequiredToFailByGestureRecognizer:)]
-        pub unsafe fn gestureRecognizer_shouldBeRequiredToFailByGestureRecognizer(
+        unsafe fn gestureRecognizer_shouldBeRequiredToFailByGestureRecognizer(
             &self,
             gesture_recognizer: &NSGestureRecognizer,
             other_gesture_recognizer: &NSGestureRecognizer,
@@ -199,12 +202,14 @@ extern_protocol!(
         #[cfg(all(feature = "AppKit_NSGestureRecognizer", feature = "AppKit_NSTouch"))]
         #[optional]
         #[method(gestureRecognizer:shouldReceiveTouch:)]
-        pub unsafe fn gestureRecognizer_shouldReceiveTouch(
+        unsafe fn gestureRecognizer_shouldReceiveTouch(
             &self,
             gesture_recognizer: &NSGestureRecognizer,
             touch: &NSTouch,
         ) -> bool;
     }
+
+    unsafe impl ProtocolType for dyn NSGestureRecognizerDelegate {}
 );
 
 extern_methods!(

@@ -735,8 +735,10 @@ extern_methods!(
         ) -> Option<Id<NSString, Shared>>;
 
         #[method(validateUserInterfaceItem:)]
-        pub unsafe fn validateUserInterfaceItem(&self, item: &NSValidatedUserInterfaceItem)
-            -> bool;
+        pub unsafe fn validateUserInterfaceItem(
+            &self,
+            item: &ProtocolObject<dyn NSValidatedUserInterfaceItem>,
+        ) -> bool;
 
         #[method(usesUbiquitousStorage)]
         pub unsafe fn usesUbiquitousStorage() -> bool;

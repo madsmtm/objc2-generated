@@ -34,11 +34,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Option<Allocated<Self>>,
-            device: &MTLDevice,
+            device: &ProtocolObject<dyn MTLDevice>,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Other device)]
-        pub unsafe fn device(&self) -> Id<MTLDevice, Shared>;
+        pub unsafe fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>, Shared>;
     }
 );
 
@@ -67,7 +67,7 @@ extern_methods!(
         pub unsafe fn allocator(&self) -> Id<MTKMeshBufferAllocator, Shared>;
 
         #[method_id(@__retain_semantics Other buffer)]
-        pub unsafe fn buffer(&self) -> Id<MTLBuffer, Shared>;
+        pub unsafe fn buffer(&self) -> Id<ProtocolObject<dyn MTLBuffer>, Shared>;
 
         #[method(offset)]
         pub unsafe fn offset(&self) -> NSUInteger;
@@ -140,7 +140,7 @@ extern_methods!(
         pub unsafe fn initWithMesh_device_error(
             this: Option<Allocated<Self>>,
             mesh: &MDLMesh,
-            device: &MTLDevice,
+            device: &ProtocolObject<dyn MTLDevice>,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
         #[cfg(all(
@@ -152,7 +152,7 @@ extern_methods!(
         #[method_id(@__retain_semantics New newMeshesFromAsset:device:sourceMeshes:error:_)]
         pub unsafe fn newMeshesFromAsset_device_sourceMeshes_error(
             asset: &MDLAsset,
-            device: &MTLDevice,
+            device: &ProtocolObject<dyn MTLDevice>,
             source_meshes: *mut *mut NSArray<MDLMesh>,
         ) -> Result<Id<NSArray<MTKMesh>, Shared>, Id<NSError, Shared>>;
 

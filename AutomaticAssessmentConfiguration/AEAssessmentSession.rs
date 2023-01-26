@@ -19,10 +19,15 @@ extern_methods!(
     #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentSession")]
     unsafe impl AEAssessmentSession {
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<AEAssessmentSessionDelegate, Shared>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn AEAssessmentSessionDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&AEAssessmentSessionDelegate>);
+        pub unsafe fn setDelegate(
+            &self,
+            delegate: Option<&ProtocolObject<dyn AEAssessmentSessionDelegate>>,
+        );
 
         #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentConfiguration")]
         #[method_id(@__retain_semantics Other configuration)]

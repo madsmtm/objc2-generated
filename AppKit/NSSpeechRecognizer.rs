@@ -29,10 +29,15 @@ extern_methods!(
         pub unsafe fn stopListening(&self);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<NSSpeechRecognizerDelegate, Shared>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn NSSpeechRecognizerDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&NSSpeechRecognizerDelegate>);
+        pub unsafe fn setDelegate(
+            &self,
+            delegate: Option<&ProtocolObject<dyn NSSpeechRecognizerDelegate>>,
+        );
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other commands)]
@@ -65,16 +70,16 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct NSSpeechRecognizerDelegate;
-
-    unsafe impl ProtocolType for NSSpeechRecognizerDelegate {
+    pub unsafe trait NSSpeechRecognizerDelegate: NSObjectProtocol {
         #[cfg(all(feature = "AppKit_NSSpeechRecognizer", feature = "Foundation_NSString"))]
         #[optional]
         #[method(speechRecognizer:didRecognizeCommand:)]
-        pub unsafe fn speechRecognizer_didRecognizeCommand(
+        unsafe fn speechRecognizer_didRecognizeCommand(
             &self,
             sender: &NSSpeechRecognizer,
             command: &NSString,
         );
     }
+
+    unsafe impl ProtocolType for dyn NSSpeechRecognizerDelegate {}
 );

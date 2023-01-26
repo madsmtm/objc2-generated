@@ -137,13 +137,13 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct NSColorChanging;
-
-    unsafe impl ProtocolType for NSColorChanging {
+    pub unsafe trait NSColorChanging: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSColorPanel")]
         #[method(changeColor:)]
-        pub unsafe fn changeColor(&self, sender: Option<&NSColorPanel>);
+        unsafe fn changeColor(&self, sender: Option<&NSColorPanel>);
     }
+
+    unsafe impl ProtocolType for dyn NSColorChanging {}
 );
 
 extern_static!(NSColorPanelColorDidChangeNotification: &'static NSNotificationName);

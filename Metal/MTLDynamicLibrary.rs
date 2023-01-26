@@ -19,26 +19,26 @@ ns_enum!(
 );
 
 extern_protocol!(
-    pub struct MTLDynamicLibrary;
-
-    unsafe impl ProtocolType for MTLDynamicLibrary {
+    pub unsafe trait MTLDynamicLibrary: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
-        pub fn label(&self) -> Option<Id<NSString, Shared>>;
+        fn label(&self) -> Option<Id<NSString, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:)]
-        pub fn setLabel(&self, label: Option<&NSString>);
+        fn setLabel(&self, label: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other device)]
-        pub fn device(&self) -> Id<MTLDevice, Shared>;
+        fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other installName)]
-        pub fn installName(&self) -> Id<NSString, Shared>;
+        fn installName(&self) -> Id<NSString, Shared>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method(serializeToURL:error:_)]
-        pub fn serializeToURL_error(&self, url: &NSURL) -> Result<(), Id<NSError, Shared>>;
+        fn serializeToURL_error(&self, url: &NSURL) -> Result<(), Id<NSError, Shared>>;
     }
+
+    unsafe impl ProtocolType for dyn MTLDynamicLibrary {}
 );

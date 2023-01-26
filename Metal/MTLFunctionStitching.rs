@@ -5,9 +5,9 @@ use crate::Foundation::*;
 use crate::Metal::*;
 
 extern_protocol!(
-    pub struct MTLFunctionStitchingAttribute;
+    pub unsafe trait MTLFunctionStitchingAttribute: NSObjectProtocol {}
 
-    unsafe impl ProtocolType for MTLFunctionStitchingAttribute {}
+    unsafe impl ProtocolType for dyn MTLFunctionStitchingAttribute {}
 );
 
 extern_class!(
@@ -27,9 +27,9 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct MTLFunctionStitchingNode;
+    pub unsafe trait MTLFunctionStitchingNode: NSObjectProtocol + NSCopying {}
 
-    unsafe impl ProtocolType for MTLFunctionStitchingNode {}
+    unsafe impl ProtocolType for dyn MTLFunctionStitchingNode {}
 );
 
 extern_class!(
@@ -84,11 +84,16 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other arguments)]
-        pub unsafe fn arguments(&self) -> Id<NSArray<MTLFunctionStitchingNode>, Shared>;
+        pub unsafe fn arguments(
+            &self,
+        ) -> Id<NSArray<ProtocolObject<dyn MTLFunctionStitchingNode>>, Shared>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setArguments:)]
-        pub unsafe fn setArguments(&self, arguments: &NSArray<MTLFunctionStitchingNode>);
+        pub unsafe fn setArguments(
+            &self,
+            arguments: &NSArray<ProtocolObject<dyn MTLFunctionStitchingNode>>,
+        );
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other controlDependencies)]
@@ -108,7 +113,7 @@ extern_methods!(
         pub unsafe fn initWithName_arguments_controlDependencies(
             this: Option<Allocated<Self>>,
             name: &NSString,
-            arguments: &NSArray<MTLFunctionStitchingNode>,
+            arguments: &NSArray<ProtocolObject<dyn MTLFunctionStitchingNode>>,
             control_dependencies: &NSArray<MTLFunctionStitchingFunctionNode>,
         ) -> Id<Self, Shared>;
     }
@@ -160,11 +165,16 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other attributes)]
-        pub unsafe fn attributes(&self) -> Id<NSArray<MTLFunctionStitchingAttribute>, Shared>;
+        pub unsafe fn attributes(
+            &self,
+        ) -> Id<NSArray<ProtocolObject<dyn MTLFunctionStitchingAttribute>>, Shared>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setAttributes:)]
-        pub unsafe fn setAttributes(&self, attributes: &NSArray<MTLFunctionStitchingAttribute>);
+        pub unsafe fn setAttributes(
+            &self,
+            attributes: &NSArray<ProtocolObject<dyn MTLFunctionStitchingAttribute>>,
+        );
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -177,7 +187,7 @@ extern_methods!(
             function_name: &NSString,
             nodes: &NSArray<MTLFunctionStitchingFunctionNode>,
             output_node: Option<&MTLFunctionStitchingFunctionNode>,
-            attributes: &NSArray<MTLFunctionStitchingAttribute>,
+            attributes: &NSArray<ProtocolObject<dyn MTLFunctionStitchingAttribute>>,
         ) -> Id<Self, Shared>;
     }
 );
@@ -215,10 +225,10 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other functions)]
-        pub unsafe fn functions(&self) -> Id<NSArray<MTLFunction>, Shared>;
+        pub unsafe fn functions(&self) -> Id<NSArray<ProtocolObject<dyn MTLFunction>>, Shared>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setFunctions:)]
-        pub unsafe fn setFunctions(&self, functions: &NSArray<MTLFunction>);
+        pub unsafe fn setFunctions(&self, functions: &NSArray<ProtocolObject<dyn MTLFunction>>);
     }
 );

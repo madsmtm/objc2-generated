@@ -5,9 +5,7 @@ use crate::BackgroundAssets::*;
 use crate::Foundation::*;
 
 extern_protocol!(
-    pub struct BADownloaderExtension;
-
-    unsafe impl ProtocolType for BADownloaderExtension {
+    pub unsafe trait BADownloaderExtension: NSObjectProtocol {
         #[cfg(all(
             feature = "BackgroundAssets_BAAppExtensionInfo",
             feature = "BackgroundAssets_BADownload",
@@ -16,7 +14,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other downloadsForRequest:manifestURL:extensionInfo:)]
-        pub unsafe fn downloadsForRequest_manifestURL_extensionInfo(
+        unsafe fn downloadsForRequest_manifestURL_extensionInfo(
             &self,
             content_request: BAContentRequest,
             manifest_url: &NSURL,
@@ -30,7 +28,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(backgroundDownload:didReceiveChallenge:completionHandler:)]
-        pub unsafe fn backgroundDownload_didReceiveChallenge_completionHandler(
+        unsafe fn backgroundDownload_didReceiveChallenge_completionHandler(
             &self,
             download: &BADownload,
             challenge: &NSURLAuthenticationChallenge,
@@ -46,16 +44,12 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(backgroundDownload:failedWithError:)]
-        pub unsafe fn backgroundDownload_failedWithError(
-            &self,
-            download: &BADownload,
-            error: &NSError,
-        );
+        unsafe fn backgroundDownload_failedWithError(&self, download: &BADownload, error: &NSError);
 
         #[cfg(all(feature = "BackgroundAssets_BADownload", feature = "Foundation_NSURL"))]
         #[optional]
         #[method(backgroundDownload:finishedWithFileURL:)]
-        pub unsafe fn backgroundDownload_finishedWithFileURL(
+        unsafe fn backgroundDownload_finishedWithFileURL(
             &self,
             download: &BADownload,
             file_url: &NSURL,
@@ -63,6 +57,8 @@ extern_protocol!(
 
         #[optional]
         #[method(extensionWillTerminate)]
-        pub unsafe fn extensionWillTerminate(&self);
+        unsafe fn extensionWillTerminate(&self);
     }
+
+    unsafe impl ProtocolType for dyn BADownloaderExtension {}
 );

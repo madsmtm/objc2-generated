@@ -6,29 +6,27 @@ use crate::Foundation::*;
 use crate::GameController::*;
 
 extern_protocol!(
-    pub struct GCRelativeInput;
-
-    unsafe impl ProtocolType for GCRelativeInput {
+    pub unsafe trait GCRelativeInput: NSObjectProtocol {
         #[method(deltaDidChangeHandler)]
-        pub unsafe fn deltaDidChangeHandler(
+        unsafe fn deltaDidChangeHandler(
             &self,
         ) -> *mut Block<
             (
-                NonNull<GCPhysicalInputElement>,
-                NonNull<GCRelativeInput>,
+                NonNull<ProtocolObject<dyn GCPhysicalInputElement>>,
+                NonNull<ProtocolObject<dyn GCRelativeInput>>,
                 c_float,
             ),
             (),
         >;
 
         #[method(setDeltaDidChangeHandler:)]
-        pub unsafe fn setDeltaDidChangeHandler(
+        unsafe fn setDeltaDidChangeHandler(
             &self,
             delta_did_change_handler: Option<
                 &Block<
                     (
-                        NonNull<GCPhysicalInputElement>,
-                        NonNull<GCRelativeInput>,
+                        NonNull<ProtocolObject<dyn GCPhysicalInputElement>>,
+                        NonNull<ProtocolObject<dyn GCRelativeInput>>,
                         c_float,
                     ),
                     (),
@@ -37,15 +35,17 @@ extern_protocol!(
         );
 
         #[method(delta)]
-        pub unsafe fn delta(&self) -> c_float;
+        unsafe fn delta(&self) -> c_float;
 
         #[method(isAnalog)]
-        pub unsafe fn isAnalog(&self) -> bool;
+        unsafe fn isAnalog(&self) -> bool;
 
         #[method(lastDeltaTimestamp)]
-        pub unsafe fn lastDeltaTimestamp(&self) -> NSTimeInterval;
+        unsafe fn lastDeltaTimestamp(&self) -> NSTimeInterval;
 
         #[method(lastDeltaLatency)]
-        pub unsafe fn lastDeltaLatency(&self) -> NSTimeInterval;
+        unsafe fn lastDeltaLatency(&self) -> NSTimeInterval;
     }
+
+    unsafe impl ProtocolType for dyn GCRelativeInput {}
 );

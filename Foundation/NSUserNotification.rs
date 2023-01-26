@@ -244,10 +244,15 @@ extern_methods!(
         pub unsafe fn defaultUserNotificationCenter() -> Id<NSUserNotificationCenter, Shared>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<NSUserNotificationCenterDelegate, Shared>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn NSUserNotificationCenterDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&NSUserNotificationCenterDelegate>);
+        pub unsafe fn setDelegate(
+            &self,
+            delegate: Option<&ProtocolObject<dyn NSUserNotificationCenterDelegate>>,
+        );
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -295,9 +300,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct NSUserNotificationCenterDelegate;
-
-    unsafe impl ProtocolType for NSUserNotificationCenterDelegate {
+    pub unsafe trait NSUserNotificationCenterDelegate: NSObjectProtocol {
         #[cfg(all(
             feature = "Foundation_NSUserNotification",
             feature = "Foundation_NSUserNotificationCenter"
@@ -305,7 +308,7 @@ extern_protocol!(
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[optional]
         #[method(userNotificationCenter:didDeliverNotification:)]
-        pub unsafe fn userNotificationCenter_didDeliverNotification(
+        unsafe fn userNotificationCenter_didDeliverNotification(
             &self,
             center: &NSUserNotificationCenter,
             notification: &NSUserNotification,
@@ -318,7 +321,7 @@ extern_protocol!(
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[optional]
         #[method(userNotificationCenter:didActivateNotification:)]
-        pub unsafe fn userNotificationCenter_didActivateNotification(
+        unsafe fn userNotificationCenter_didActivateNotification(
             &self,
             center: &NSUserNotificationCenter,
             notification: &NSUserNotification,
@@ -331,10 +334,12 @@ extern_protocol!(
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[optional]
         #[method(userNotificationCenter:shouldPresentNotification:)]
-        pub unsafe fn userNotificationCenter_shouldPresentNotification(
+        unsafe fn userNotificationCenter_shouldPresentNotification(
             &self,
             center: &NSUserNotificationCenter,
             notification: &NSUserNotification,
         ) -> bool;
     }
+
+    unsafe impl ProtocolType for dyn NSUserNotificationCenterDelegate {}
 );

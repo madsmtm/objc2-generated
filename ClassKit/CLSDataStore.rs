@@ -5,22 +5,22 @@ use crate::ClassKit::*;
 use crate::Foundation::*;
 
 extern_protocol!(
-    pub struct CLSDataStoreDelegate;
-
-    unsafe impl ProtocolType for CLSDataStoreDelegate {
+    pub unsafe trait CLSDataStoreDelegate: NSObjectProtocol {
         #[cfg(all(
             feature = "ClassKit_CLSContext",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other createContextForIdentifier:parentContext:parentIdentifierPath:)]
-        pub unsafe fn createContextForIdentifier_parentContext_parentIdentifierPath(
+        unsafe fn createContextForIdentifier_parentContext_parentIdentifierPath(
             &self,
             identifier: &NSString,
             parent_context: &CLSContext,
             parent_identifier_path: &NSArray<NSString>,
         ) -> Option<Id<CLSContext, Shared>>;
     }
+
+    unsafe impl ProtocolType for dyn CLSDataStoreDelegate {}
 );
 
 extern_class!(
@@ -53,10 +53,15 @@ extern_methods!(
         pub unsafe fn runningActivity(&self) -> Option<Id<CLSActivity, Shared>>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<CLSDataStoreDelegate, Shared>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn CLSDataStoreDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&CLSDataStoreDelegate>);
+        pub unsafe fn setDelegate(
+            &self,
+            delegate: Option<&ProtocolObject<dyn CLSDataStoreDelegate>>,
+        );
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self, Shared>;

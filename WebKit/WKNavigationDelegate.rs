@@ -24,13 +24,11 @@ ns_enum!(
 );
 
 extern_protocol!(
-    pub struct WKNavigationDelegate;
-
-    unsafe impl ProtocolType for WKNavigationDelegate {
+    pub unsafe trait WKNavigationDelegate: NSObjectProtocol {
         #[cfg(all(feature = "WebKit_WKNavigationAction", feature = "WebKit_WKWebView"))]
         #[optional]
         #[method(webView:decidePolicyForNavigationAction:decisionHandler:)]
-        pub unsafe fn webView_decidePolicyForNavigationAction_decisionHandler(
+        unsafe fn webView_decidePolicyForNavigationAction_decisionHandler(
             &self,
             web_view: &WKWebView,
             navigation_action: &WKNavigationAction,
@@ -44,7 +42,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(webView:decidePolicyForNavigationAction:preferences:decisionHandler:)]
-        pub unsafe fn webView_decidePolicyForNavigationAction_preferences_decisionHandler(
+        unsafe fn webView_decidePolicyForNavigationAction_preferences_decisionHandler(
             &self,
             web_view: &WKWebView,
             navigation_action: &WKNavigationAction,
@@ -55,7 +53,7 @@ extern_protocol!(
         #[cfg(all(feature = "WebKit_WKNavigationResponse", feature = "WebKit_WKWebView"))]
         #[optional]
         #[method(webView:decidePolicyForNavigationResponse:decisionHandler:)]
-        pub unsafe fn webView_decidePolicyForNavigationResponse_decisionHandler(
+        unsafe fn webView_decidePolicyForNavigationResponse_decisionHandler(
             &self,
             web_view: &WKWebView,
             navigation_response: &WKNavigationResponse,
@@ -65,7 +63,7 @@ extern_protocol!(
         #[cfg(all(feature = "WebKit_WKNavigation", feature = "WebKit_WKWebView"))]
         #[optional]
         #[method(webView:didStartProvisionalNavigation:)]
-        pub unsafe fn webView_didStartProvisionalNavigation(
+        unsafe fn webView_didStartProvisionalNavigation(
             &self,
             web_view: &WKWebView,
             navigation: Option<&WKNavigation>,
@@ -74,7 +72,7 @@ extern_protocol!(
         #[cfg(all(feature = "WebKit_WKNavigation", feature = "WebKit_WKWebView"))]
         #[optional]
         #[method(webView:didReceiveServerRedirectForProvisionalNavigation:)]
-        pub unsafe fn webView_didReceiveServerRedirectForProvisionalNavigation(
+        unsafe fn webView_didReceiveServerRedirectForProvisionalNavigation(
             &self,
             web_view: &WKWebView,
             navigation: Option<&WKNavigation>,
@@ -87,7 +85,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(webView:didFailProvisionalNavigation:withError:)]
-        pub unsafe fn webView_didFailProvisionalNavigation_withError(
+        unsafe fn webView_didFailProvisionalNavigation_withError(
             &self,
             web_view: &WKWebView,
             navigation: Option<&WKNavigation>,
@@ -97,7 +95,7 @@ extern_protocol!(
         #[cfg(all(feature = "WebKit_WKNavigation", feature = "WebKit_WKWebView"))]
         #[optional]
         #[method(webView:didCommitNavigation:)]
-        pub unsafe fn webView_didCommitNavigation(
+        unsafe fn webView_didCommitNavigation(
             &self,
             web_view: &WKWebView,
             navigation: Option<&WKNavigation>,
@@ -106,7 +104,7 @@ extern_protocol!(
         #[cfg(all(feature = "WebKit_WKNavigation", feature = "WebKit_WKWebView"))]
         #[optional]
         #[method(webView:didFinishNavigation:)]
-        pub unsafe fn webView_didFinishNavigation(
+        unsafe fn webView_didFinishNavigation(
             &self,
             web_view: &WKWebView,
             navigation: Option<&WKNavigation>,
@@ -119,7 +117,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(webView:didFailNavigation:withError:)]
-        pub unsafe fn webView_didFailNavigation_withError(
+        unsafe fn webView_didFailNavigation_withError(
             &self,
             web_view: &WKWebView,
             navigation: Option<&WKNavigation>,
@@ -133,7 +131,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(webView:didReceiveAuthenticationChallenge:completionHandler:)]
-        pub unsafe fn webView_didReceiveAuthenticationChallenge_completionHandler(
+        unsafe fn webView_didReceiveAuthenticationChallenge_completionHandler(
             &self,
             web_view: &WKWebView,
             challenge: &NSURLAuthenticationChallenge,
@@ -146,7 +144,7 @@ extern_protocol!(
         #[cfg(feature = "WebKit_WKWebView")]
         #[optional]
         #[method(webViewWebContentProcessDidTerminate:)]
-        pub unsafe fn webViewWebContentProcessDidTerminate(&self, web_view: &WKWebView);
+        unsafe fn webViewWebContentProcessDidTerminate(&self, web_view: &WKWebView);
 
         #[cfg(all(
             feature = "Foundation_NSURLAuthenticationChallenge",
@@ -154,7 +152,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(webView:authenticationChallenge:shouldAllowDeprecatedTLS:)]
-        pub unsafe fn webView_authenticationChallenge_shouldAllowDeprecatedTLS(
+        unsafe fn webView_authenticationChallenge_shouldAllowDeprecatedTLS(
             &self,
             web_view: &WKWebView,
             challenge: &NSURLAuthenticationChallenge,
@@ -168,7 +166,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(webView:navigationAction:didBecomeDownload:)]
-        pub unsafe fn webView_navigationAction_didBecomeDownload(
+        unsafe fn webView_navigationAction_didBecomeDownload(
             &self,
             web_view: &WKWebView,
             navigation_action: &WKNavigationAction,
@@ -182,11 +180,13 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(webView:navigationResponse:didBecomeDownload:)]
-        pub unsafe fn webView_navigationResponse_didBecomeDownload(
+        unsafe fn webView_navigationResponse_didBecomeDownload(
             &self,
             web_view: &WKWebView,
             navigation_response: &WKNavigationResponse,
             download: &WKDownload,
         );
     }
+
+    unsafe impl ProtocolType for dyn WKNavigationDelegate {}
 );

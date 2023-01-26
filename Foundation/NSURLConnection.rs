@@ -85,25 +85,17 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct NSURLConnectionDelegate;
-
-    unsafe impl ProtocolType for NSURLConnectionDelegate {
+    pub unsafe trait NSURLConnectionDelegate: NSObjectProtocol {
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURLConnection"))]
         #[optional]
         #[method(connection:didFailWithError:)]
-        pub unsafe fn connection_didFailWithError(
-            &self,
-            connection: &NSURLConnection,
-            error: &NSError,
-        );
+        unsafe fn connection_didFailWithError(&self, connection: &NSURLConnection, error: &NSError);
 
         #[cfg(feature = "Foundation_NSURLConnection")]
         #[optional]
         #[method(connectionShouldUseCredentialStorage:)]
-        pub unsafe fn connectionShouldUseCredentialStorage(
-            &self,
-            connection: &NSURLConnection,
-        ) -> bool;
+        unsafe fn connectionShouldUseCredentialStorage(&self, connection: &NSURLConnection)
+            -> bool;
 
         #[cfg(all(
             feature = "Foundation_NSURLAuthenticationChallenge",
@@ -111,7 +103,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(connection:willSendRequestForAuthenticationChallenge:)]
-        pub unsafe fn connection_willSendRequestForAuthenticationChallenge(
+        unsafe fn connection_willSendRequestForAuthenticationChallenge(
             &self,
             connection: &NSURLConnection,
             challenge: &NSURLAuthenticationChallenge,
@@ -124,7 +116,7 @@ extern_protocol!(
         #[deprecated = "Use -connection:willSendRequestForAuthenticationChallenge: instead."]
         #[optional]
         #[method(connection:canAuthenticateAgainstProtectionSpace:)]
-        pub unsafe fn connection_canAuthenticateAgainstProtectionSpace(
+        unsafe fn connection_canAuthenticateAgainstProtectionSpace(
             &self,
             connection: &NSURLConnection,
             protection_space: &NSURLProtectionSpace,
@@ -137,7 +129,7 @@ extern_protocol!(
         #[deprecated = "Use -connection:willSendRequestForAuthenticationChallenge: instead."]
         #[optional]
         #[method(connection:didReceiveAuthenticationChallenge:)]
-        pub unsafe fn connection_didReceiveAuthenticationChallenge(
+        unsafe fn connection_didReceiveAuthenticationChallenge(
             &self,
             connection: &NSURLConnection,
             challenge: &NSURLAuthenticationChallenge,
@@ -150,18 +142,18 @@ extern_protocol!(
         #[deprecated = "Use -connection:willSendRequestForAuthenticationChallenge: instead."]
         #[optional]
         #[method(connection:didCancelAuthenticationChallenge:)]
-        pub unsafe fn connection_didCancelAuthenticationChallenge(
+        unsafe fn connection_didCancelAuthenticationChallenge(
             &self,
             connection: &NSURLConnection,
             challenge: &NSURLAuthenticationChallenge,
         );
     }
+
+    unsafe impl ProtocolType for dyn NSURLConnectionDelegate {}
 );
 
 extern_protocol!(
-    pub struct NSURLConnectionDataDelegate;
-
-    unsafe impl ProtocolType for NSURLConnectionDataDelegate {
+    pub unsafe trait NSURLConnectionDataDelegate: NSURLConnectionDelegate {
         #[cfg(all(
             feature = "Foundation_NSURLConnection",
             feature = "Foundation_NSURLRequest",
@@ -169,7 +161,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other connection:willSendRequest:redirectResponse:)]
-        pub unsafe fn connection_willSendRequest_redirectResponse(
+        unsafe fn connection_willSendRequest_redirectResponse(
             &self,
             connection: &NSURLConnection,
             request: &NSURLRequest,
@@ -182,7 +174,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(connection:didReceiveResponse:)]
-        pub unsafe fn connection_didReceiveResponse(
+        unsafe fn connection_didReceiveResponse(
             &self,
             connection: &NSURLConnection,
             response: &NSURLResponse,
@@ -191,7 +183,7 @@ extern_protocol!(
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSURLConnection"))]
         #[optional]
         #[method(connection:didReceiveData:)]
-        pub unsafe fn connection_didReceiveData(&self, connection: &NSURLConnection, data: &NSData);
+        unsafe fn connection_didReceiveData(&self, connection: &NSURLConnection, data: &NSData);
 
         #[cfg(all(
             feature = "Foundation_NSInputStream",
@@ -200,7 +192,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other connection:needNewBodyStream:)]
-        pub unsafe fn connection_needNewBodyStream(
+        unsafe fn connection_needNewBodyStream(
             &self,
             connection: &NSURLConnection,
             request: &NSURLRequest,
@@ -209,7 +201,7 @@ extern_protocol!(
         #[cfg(feature = "Foundation_NSURLConnection")]
         #[optional]
         #[method(connection:didSendBodyData:totalBytesWritten:totalBytesExpectedToWrite:)]
-        pub unsafe fn connection_didSendBodyData_totalBytesWritten_totalBytesExpectedToWrite(
+        unsafe fn connection_didSendBodyData_totalBytesWritten_totalBytesExpectedToWrite(
             &self,
             connection: &NSURLConnection,
             bytes_written: NSInteger,
@@ -223,7 +215,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other connection:willCacheResponse:)]
-        pub unsafe fn connection_willCacheResponse(
+        unsafe fn connection_willCacheResponse(
             &self,
             connection: &NSURLConnection,
             cached_response: &NSCachedURLResponse,
@@ -232,18 +224,18 @@ extern_protocol!(
         #[cfg(feature = "Foundation_NSURLConnection")]
         #[optional]
         #[method(connectionDidFinishLoading:)]
-        pub unsafe fn connectionDidFinishLoading(&self, connection: &NSURLConnection);
+        unsafe fn connectionDidFinishLoading(&self, connection: &NSURLConnection);
     }
+
+    unsafe impl ProtocolType for dyn NSURLConnectionDataDelegate {}
 );
 
 extern_protocol!(
-    pub struct NSURLConnectionDownloadDelegate;
-
-    unsafe impl ProtocolType for NSURLConnectionDownloadDelegate {
+    pub unsafe trait NSURLConnectionDownloadDelegate: NSURLConnectionDelegate {
         #[cfg(feature = "Foundation_NSURLConnection")]
         #[optional]
         #[method(connection:didWriteData:totalBytesWritten:expectedTotalBytes:)]
-        pub unsafe fn connection_didWriteData_totalBytesWritten_expectedTotalBytes(
+        unsafe fn connection_didWriteData_totalBytesWritten_expectedTotalBytes(
             &self,
             connection: &NSURLConnection,
             bytes_written: c_longlong,
@@ -254,7 +246,7 @@ extern_protocol!(
         #[cfg(feature = "Foundation_NSURLConnection")]
         #[optional]
         #[method(connectionDidResumeDownloading:totalBytesWritten:expectedTotalBytes:)]
-        pub unsafe fn connectionDidResumeDownloading_totalBytesWritten_expectedTotalBytes(
+        unsafe fn connectionDidResumeDownloading_totalBytesWritten_expectedTotalBytes(
             &self,
             connection: &NSURLConnection,
             total_bytes_written: c_longlong,
@@ -263,12 +255,14 @@ extern_protocol!(
 
         #[cfg(all(feature = "Foundation_NSURL", feature = "Foundation_NSURLConnection"))]
         #[method(connectionDidFinishDownloading:destinationURL:)]
-        pub unsafe fn connectionDidFinishDownloading_destinationURL(
+        unsafe fn connectionDidFinishDownloading_destinationURL(
             &self,
             connection: &NSURLConnection,
             destination_url: &NSURL,
         );
     }
+
+    unsafe impl ProtocolType for dyn NSURLConnectionDownloadDelegate {}
 );
 
 extern_methods!(

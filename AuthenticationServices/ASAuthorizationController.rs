@@ -5,16 +5,14 @@ use crate::AuthenticationServices::*;
 use crate::Foundation::*;
 
 extern_protocol!(
-    pub struct ASAuthorizationControllerDelegate;
-
-    unsafe impl ProtocolType for ASAuthorizationControllerDelegate {
+    pub unsafe trait ASAuthorizationControllerDelegate: NSObjectProtocol {
         #[cfg(all(
             feature = "AuthenticationServices_ASAuthorization",
             feature = "AuthenticationServices_ASAuthorizationController"
         ))]
         #[optional]
         #[method(authorizationController:didCompleteWithAuthorization:)]
-        pub unsafe fn authorizationController_didCompleteWithAuthorization(
+        unsafe fn authorizationController_didCompleteWithAuthorization(
             &self,
             controller: &ASAuthorizationController,
             authorization: &ASAuthorization,
@@ -26,7 +24,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(authorizationController:didCompleteWithError:)]
-        pub unsafe fn authorizationController_didCompleteWithError(
+        unsafe fn authorizationController_didCompleteWithError(
             &self,
             controller: &ASAuthorizationController,
             error: &NSError,
@@ -35,25 +33,29 @@ extern_protocol!(
         #[cfg(feature = "AuthenticationServices_ASAuthorizationController")]
         #[optional]
         #[method(authorizationController:didCompleteWithCustomMethod:)]
-        pub unsafe fn authorizationController_didCompleteWithCustomMethod(
+        unsafe fn authorizationController_didCompleteWithCustomMethod(
             &self,
             controller: &ASAuthorizationController,
             method: &ASAuthorizationCustomMethod,
         );
     }
+
+    unsafe impl ProtocolType for dyn ASAuthorizationControllerDelegate {}
 );
 
 extern_protocol!(
-    pub struct ASAuthorizationControllerPresentationContextProviding;
-
-    unsafe impl ProtocolType for ASAuthorizationControllerPresentationContextProviding {
+    pub unsafe trait ASAuthorizationControllerPresentationContextProviding:
+        NSObjectProtocol
+    {
         #[cfg(feature = "AuthenticationServices_ASAuthorizationController")]
         #[method_id(@__retain_semantics Other presentationAnchorForAuthorizationController:)]
-        pub unsafe fn presentationAnchorForAuthorizationController(
+        unsafe fn presentationAnchorForAuthorizationController(
             &self,
             controller: &ASAuthorizationController,
         ) -> Id<ASPresentationAnchor, Shared>;
     }
+
+    unsafe impl ProtocolType for dyn ASAuthorizationControllerPresentationContextProviding {}
 );
 
 ns_options!(
@@ -85,21 +87,28 @@ extern_methods!(
         pub unsafe fn authorizationRequests(&self) -> Id<NSArray<ASAuthorizationRequest>, Shared>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ASAuthorizationControllerDelegate, Shared>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn ASAuthorizationControllerDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&ASAuthorizationControllerDelegate>);
+        pub unsafe fn setDelegate(
+            &self,
+            delegate: Option<&ProtocolObject<dyn ASAuthorizationControllerDelegate>>,
+        );
 
         #[method_id(@__retain_semantics Other presentationContextProvider)]
         pub unsafe fn presentationContextProvider(
             &self,
-        ) -> Option<Id<ASAuthorizationControllerPresentationContextProviding, Shared>>;
+        ) -> Option<
+            Id<ProtocolObject<dyn ASAuthorizationControllerPresentationContextProviding>, Shared>,
+        >;
 
         #[method(setPresentationContextProvider:)]
         pub unsafe fn setPresentationContextProvider(
             &self,
             presentation_context_provider: Option<
-                &ASAuthorizationControllerPresentationContextProviding,
+                &ProtocolObject<dyn ASAuthorizationControllerPresentationContextProviding>,
             >,
         );
 

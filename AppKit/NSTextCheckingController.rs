@@ -22,14 +22,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithClient:)]
         pub unsafe fn initWithClient(
             this: Option<Allocated<Self>>,
-            client: &NSTextCheckingClient,
+            client: &ProtocolObject<dyn NSTextCheckingClient>,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Other client)]
-        pub unsafe fn client(&self) -> Id<NSTextCheckingClient, Shared>;
+        pub unsafe fn client(&self) -> Id<ProtocolObject<dyn NSTextCheckingClient>, Shared>;
 
         #[method(invalidate)]
         pub unsafe fn invalidate(&self);

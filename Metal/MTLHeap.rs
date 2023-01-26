@@ -72,106 +72,106 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct MTLHeap;
-
-    unsafe impl ProtocolType for MTLHeap {
+    pub unsafe trait MTLHeap: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
-        pub fn label(&self) -> Option<Id<NSString, Shared>>;
+        fn label(&self) -> Option<Id<NSString, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:)]
-        pub fn setLabel(&self, label: Option<&NSString>);
+        fn setLabel(&self, label: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other device)]
-        pub fn device(&self) -> Id<MTLDevice, Shared>;
+        fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>, Shared>;
 
         #[method(storageMode)]
-        pub fn storageMode(&self) -> MTLStorageMode;
+        fn storageMode(&self) -> MTLStorageMode;
 
         #[method(cpuCacheMode)]
-        pub fn cpuCacheMode(&self) -> MTLCPUCacheMode;
+        fn cpuCacheMode(&self) -> MTLCPUCacheMode;
 
         #[method(hazardTrackingMode)]
-        pub fn hazardTrackingMode(&self) -> MTLHazardTrackingMode;
+        fn hazardTrackingMode(&self) -> MTLHazardTrackingMode;
 
         #[method(resourceOptions)]
-        pub fn resourceOptions(&self) -> MTLResourceOptions;
+        fn resourceOptions(&self) -> MTLResourceOptions;
 
         #[method(size)]
-        pub fn size(&self) -> NSUInteger;
+        fn size(&self) -> NSUInteger;
 
         #[method(usedSize)]
-        pub fn usedSize(&self) -> NSUInteger;
+        fn usedSize(&self) -> NSUInteger;
 
         #[method(currentAllocatedSize)]
-        pub fn currentAllocatedSize(&self) -> NSUInteger;
+        fn currentAllocatedSize(&self) -> NSUInteger;
 
         #[method(maxAvailableSizeWithAlignment:)]
-        pub fn maxAvailableSizeWithAlignment(&self, alignment: NSUInteger) -> NSUInteger;
+        fn maxAvailableSizeWithAlignment(&self, alignment: NSUInteger) -> NSUInteger;
 
         #[method_id(@__retain_semantics New newBufferWithLength:options:)]
-        pub fn newBufferWithLength_options(
+        fn newBufferWithLength_options(
             &self,
             length: NSUInteger,
             options: MTLResourceOptions,
-        ) -> Option<Id<MTLBuffer, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLBuffer>, Shared>>;
 
         #[cfg(feature = "Metal_MTLTextureDescriptor")]
         #[method_id(@__retain_semantics New newTextureWithDescriptor:)]
-        pub fn newTextureWithDescriptor(
+        fn newTextureWithDescriptor(
             &self,
             desc: &MTLTextureDescriptor,
-        ) -> Option<Id<MTLTexture, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLTexture>, Shared>>;
 
         #[method(setPurgeableState:)]
-        pub fn setPurgeableState(&self, state: MTLPurgeableState) -> MTLPurgeableState;
+        fn setPurgeableState(&self, state: MTLPurgeableState) -> MTLPurgeableState;
 
         #[method(type)]
-        pub unsafe fn r#type(&self) -> MTLHeapType;
+        unsafe fn r#type(&self) -> MTLHeapType;
 
         #[method_id(@__retain_semantics New newBufferWithLength:options:offset:)]
-        pub unsafe fn newBufferWithLength_options_offset(
+        unsafe fn newBufferWithLength_options_offset(
             &self,
             length: NSUInteger,
             options: MTLResourceOptions,
             offset: NSUInteger,
-        ) -> Option<Id<MTLBuffer, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLBuffer>, Shared>>;
 
         #[cfg(feature = "Metal_MTLTextureDescriptor")]
         #[method_id(@__retain_semantics New newTextureWithDescriptor:offset:)]
-        pub unsafe fn newTextureWithDescriptor_offset(
+        unsafe fn newTextureWithDescriptor_offset(
             &self,
             descriptor: &MTLTextureDescriptor,
             offset: NSUInteger,
-        ) -> Option<Id<MTLTexture, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLTexture>, Shared>>;
 
         #[method_id(@__retain_semantics New newAccelerationStructureWithSize:)]
-        pub unsafe fn newAccelerationStructureWithSize(
+        unsafe fn newAccelerationStructureWithSize(
             &self,
             size: NSUInteger,
-        ) -> Option<Id<MTLAccelerationStructure, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLAccelerationStructure>, Shared>>;
 
         #[cfg(feature = "Metal_MTLAccelerationStructureDescriptor")]
         #[method_id(@__retain_semantics New newAccelerationStructureWithDescriptor:)]
-        pub unsafe fn newAccelerationStructureWithDescriptor(
+        unsafe fn newAccelerationStructureWithDescriptor(
             &self,
             descriptor: &MTLAccelerationStructureDescriptor,
-        ) -> Option<Id<MTLAccelerationStructure, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLAccelerationStructure>, Shared>>;
 
         #[method_id(@__retain_semantics New newAccelerationStructureWithSize:offset:)]
-        pub unsafe fn newAccelerationStructureWithSize_offset(
+        unsafe fn newAccelerationStructureWithSize_offset(
             &self,
             size: NSUInteger,
             offset: NSUInteger,
-        ) -> Option<Id<MTLAccelerationStructure, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLAccelerationStructure>, Shared>>;
 
         #[cfg(feature = "Metal_MTLAccelerationStructureDescriptor")]
         #[method_id(@__retain_semantics New newAccelerationStructureWithDescriptor:offset:)]
-        pub unsafe fn newAccelerationStructureWithDescriptor_offset(
+        unsafe fn newAccelerationStructureWithDescriptor_offset(
             &self,
             descriptor: &MTLAccelerationStructureDescriptor,
             offset: NSUInteger,
-        ) -> Option<Id<MTLAccelerationStructure, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLAccelerationStructure>, Shared>>;
     }
+
+    unsafe impl ProtocolType for dyn MTLHeap {}
 );

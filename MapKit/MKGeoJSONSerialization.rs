@@ -8,9 +8,9 @@ use crate::Foundation::*;
 use crate::MapKit::*;
 
 extern_protocol!(
-    pub struct MKGeoJSONObject;
+    pub unsafe trait MKGeoJSONObject: NSObjectProtocol {}
 
-    unsafe impl ProtocolType for MKGeoJSONObject {}
+    unsafe impl ProtocolType for dyn MKGeoJSONObject {}
 );
 
 extern_class!(
@@ -36,7 +36,7 @@ extern_methods!(
         pub unsafe fn geoJSONObjectsWithData_error(
             &self,
             data: &NSData,
-        ) -> Result<Id<NSArray<MKGeoJSONObject>, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<NSArray<ProtocolObject<dyn MKGeoJSONObject>>, Shared>, Id<NSError, Shared>>;
     }
 );
 

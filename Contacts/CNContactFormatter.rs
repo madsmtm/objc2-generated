@@ -39,13 +39,15 @@ extern_methods!(
         #[method_id(@__retain_semantics Other descriptorForRequiredKeysForStyle:)]
         pub unsafe fn descriptorForRequiredKeysForStyle(
             style: CNContactFormatterStyle,
-        ) -> Id<CNKeyDescriptor, Shared>;
+        ) -> Id<ProtocolObject<dyn CNKeyDescriptor>, Shared>;
 
         #[method_id(@__retain_semantics Other descriptorForRequiredKeysForNameOrder)]
-        pub unsafe fn descriptorForRequiredKeysForNameOrder() -> Id<CNKeyDescriptor, Shared>;
+        pub unsafe fn descriptorForRequiredKeysForNameOrder(
+        ) -> Id<ProtocolObject<dyn CNKeyDescriptor>, Shared>;
 
         #[method_id(@__retain_semantics Other descriptorForRequiredKeysForDelimiter)]
-        pub unsafe fn descriptorForRequiredKeysForDelimiter() -> Id<CNKeyDescriptor, Shared>;
+        pub unsafe fn descriptorForRequiredKeysForDelimiter(
+        ) -> Id<ProtocolObject<dyn CNKeyDescriptor>, Shared>;
 
         #[cfg(all(feature = "Contacts_CNContact", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other stringFromContact:style:)]

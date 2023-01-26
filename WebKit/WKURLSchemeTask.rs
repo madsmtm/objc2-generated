@@ -6,26 +6,26 @@ use crate::Foundation::*;
 use crate::WebKit::*;
 
 extern_protocol!(
-    pub struct WKURLSchemeTask;
-
-    unsafe impl ProtocolType for WKURLSchemeTask {
+    pub unsafe trait WKURLSchemeTask: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSURLRequest")]
         #[method_id(@__retain_semantics Other request)]
-        pub unsafe fn request(&self) -> Id<NSURLRequest, Shared>;
+        unsafe fn request(&self) -> Id<NSURLRequest, Shared>;
 
         #[cfg(feature = "Foundation_NSURLResponse")]
         #[method(didReceiveResponse:)]
-        pub unsafe fn didReceiveResponse(&self, response: &NSURLResponse);
+        unsafe fn didReceiveResponse(&self, response: &NSURLResponse);
 
         #[cfg(feature = "Foundation_NSData")]
         #[method(didReceiveData:)]
-        pub unsafe fn didReceiveData(&self, data: &NSData);
+        unsafe fn didReceiveData(&self, data: &NSData);
 
         #[method(didFinish)]
-        pub unsafe fn didFinish(&self);
+        unsafe fn didFinish(&self);
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(didFailWithError:)]
-        pub unsafe fn didFailWithError(&self, error: &NSError);
+        unsafe fn didFailWithError(&self, error: &NSError);
     }
+
+    unsafe impl ProtocolType for dyn WKURLSchemeTask {}
 );

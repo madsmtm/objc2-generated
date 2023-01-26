@@ -6,9 +6,9 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 extern_protocol!(
-    pub struct NSWindowRestoration;
+    pub unsafe trait NSWindowRestoration: NSObjectProtocol {}
 
-    unsafe impl ProtocolType for NSWindowRestoration {}
+    unsafe impl ProtocolType for dyn NSWindowRestoration {}
 );
 
 extern_methods!(

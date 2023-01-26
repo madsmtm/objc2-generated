@@ -60,10 +60,15 @@ extern_methods!(
         pub unsafe fn stackViewWithViews(views: &NSArray<NSView>) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<NSStackViewDelegate, Shared>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn NSStackViewDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&NSStackViewDelegate>);
+        pub unsafe fn setDelegate(
+            &self,
+            delegate: Option<&ProtocolObject<dyn NSStackViewDelegate>>,
+        );
 
         #[method(orientation)]
         pub unsafe fn orientation(&self) -> NSUserInterfaceLayoutOrientation;
@@ -166,9 +171,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct NSStackViewDelegate;
-
-    unsafe impl ProtocolType for NSStackViewDelegate {
+    pub unsafe trait NSStackViewDelegate: NSObjectProtocol {
         #[cfg(all(
             feature = "AppKit_NSStackView",
             feature = "AppKit_NSView",
@@ -176,7 +179,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(stackView:willDetachViews:)]
-        pub unsafe fn stackView_willDetachViews(
+        unsafe fn stackView_willDetachViews(
             &self,
             stack_view: &NSStackView,
             views: &NSArray<NSView>,
@@ -189,12 +192,14 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(stackView:didReattachViews:)]
-        pub unsafe fn stackView_didReattachViews(
+        unsafe fn stackView_didReattachViews(
             &self,
             stack_view: &NSStackView,
             views: &NSArray<NSView>,
         );
     }
+
+    unsafe impl ProtocolType for dyn NSStackViewDelegate {}
 );
 
 extern_methods!(

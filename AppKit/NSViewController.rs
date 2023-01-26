@@ -139,7 +139,7 @@ extern_methods!(
         pub unsafe fn presentViewController_animator(
             &self,
             view_controller: &NSViewController,
-            animator: &NSViewControllerPresentationAnimator,
+            animator: &ProtocolObject<dyn NSViewControllerPresentationAnimator>,
         );
 
         #[method(dismissViewController:)]
@@ -237,12 +237,10 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct NSViewControllerPresentationAnimator;
-
-    unsafe impl ProtocolType for NSViewControllerPresentationAnimator {
+    pub unsafe trait NSViewControllerPresentationAnimator: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSViewController")]
         #[method(animatePresentationOfViewController:fromViewController:)]
-        pub unsafe fn animatePresentationOfViewController_fromViewController(
+        unsafe fn animatePresentationOfViewController_fromViewController(
             &self,
             view_controller: &NSViewController,
             from_view_controller: &NSViewController,
@@ -250,12 +248,14 @@ extern_protocol!(
 
         #[cfg(feature = "AppKit_NSViewController")]
         #[method(animateDismissalOfViewController:fromViewController:)]
-        pub unsafe fn animateDismissalOfViewController_fromViewController(
+        unsafe fn animateDismissalOfViewController_fromViewController(
             &self,
             view_controller: &NSViewController,
             from_view_controller: &NSViewController,
         );
     }
+
+    unsafe impl ProtocolType for dyn NSViewControllerPresentationAnimator {}
 );
 
 extern_methods!(

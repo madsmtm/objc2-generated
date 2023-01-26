@@ -24,27 +24,27 @@ extern_methods!(
         #[method_id(@__retain_semantics Other challengeDelegate)]
         pub unsafe fn challengeDelegate(
             &self,
-        ) -> Option<Id<GKChallengesViewControllerDelegate, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn GKChallengesViewControllerDelegate>, Shared>>;
 
         #[method(setChallengeDelegate:)]
         pub unsafe fn setChallengeDelegate(
             &self,
-            challenge_delegate: Option<&GKChallengesViewControllerDelegate>,
+            challenge_delegate: Option<&ProtocolObject<dyn GKChallengesViewControllerDelegate>>,
         );
     }
 );
 
 extern_protocol!(
-    pub struct GKChallengesViewControllerDelegate;
-
-    unsafe impl ProtocolType for GKChallengesViewControllerDelegate {
+    pub unsafe trait GKChallengesViewControllerDelegate {
         #[cfg(feature = "GameKit_GKChallengesViewController")]
         #[method(challengesViewControllerDidFinish:)]
-        pub unsafe fn challengesViewControllerDidFinish(
+        unsafe fn challengesViewControllerDidFinish(
             &self,
             view_controller: Option<&GKChallengesViewController>,
         );
     }
+
+    unsafe impl ProtocolType for dyn GKChallengesViewControllerDelegate {}
 );
 
 extern_methods!(

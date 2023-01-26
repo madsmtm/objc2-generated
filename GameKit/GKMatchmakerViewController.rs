@@ -33,12 +33,12 @@ extern_methods!(
         #[method_id(@__retain_semantics Other matchmakerDelegate)]
         pub unsafe fn matchmakerDelegate(
             &self,
-        ) -> Option<Id<GKMatchmakerViewControllerDelegate, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn GKMatchmakerViewControllerDelegate>, Shared>>;
 
         #[method(setMatchmakerDelegate:)]
         pub unsafe fn setMatchmakerDelegate(
             &self,
-            matchmaker_delegate: Option<&GKMatchmakerViewControllerDelegate>,
+            matchmaker_delegate: Option<&ProtocolObject<dyn GKMatchmakerViewControllerDelegate>>,
         );
 
         #[cfg(feature = "GameKit_GKMatchRequest")]
@@ -112,12 +112,10 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct GKMatchmakerViewControllerDelegate;
-
-    unsafe impl ProtocolType for GKMatchmakerViewControllerDelegate {
+    pub unsafe trait GKMatchmakerViewControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "GameKit_GKMatchmakerViewController")]
         #[method(matchmakerViewControllerWasCancelled:)]
-        pub unsafe fn matchmakerViewControllerWasCancelled(
+        unsafe fn matchmakerViewControllerWasCancelled(
             &self,
             view_controller: &GKMatchmakerViewController,
         );
@@ -127,7 +125,7 @@ extern_protocol!(
             feature = "GameKit_GKMatchmakerViewController"
         ))]
         #[method(matchmakerViewController:didFailWithError:)]
-        pub unsafe fn matchmakerViewController_didFailWithError(
+        unsafe fn matchmakerViewController_didFailWithError(
             &self,
             view_controller: &GKMatchmakerViewController,
             error: &NSError,
@@ -139,7 +137,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(matchmakerViewController:didFindMatch:)]
-        pub unsafe fn matchmakerViewController_didFindMatch(
+        unsafe fn matchmakerViewController_didFindMatch(
             &self,
             view_controller: &GKMatchmakerViewController,
             r#match: &GKMatch,
@@ -152,7 +150,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(matchmakerViewController:didFindHostedPlayers:)]
-        pub unsafe fn matchmakerViewController_didFindHostedPlayers(
+        unsafe fn matchmakerViewController_didFindHostedPlayers(
             &self,
             view_controller: &GKMatchmakerViewController,
             players: &NSArray<GKPlayer>,
@@ -164,7 +162,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(matchmakerViewController:hostedPlayerDidAccept:)]
-        pub unsafe fn matchmakerViewController_hostedPlayerDidAccept(
+        unsafe fn matchmakerViewController_hostedPlayerDidAccept(
             &self,
             view_controller: &GKMatchmakerViewController,
             player: &GKPlayer,
@@ -178,7 +176,7 @@ extern_protocol!(
         #[deprecated = "This is never invoked and its implementation does nothing, use matchmakerViewController:didFindHostedPlayers:"]
         #[optional]
         #[method(matchmakerViewController:didFindPlayers:)]
-        pub unsafe fn matchmakerViewController_didFindPlayers(
+        unsafe fn matchmakerViewController_didFindPlayers(
             &self,
             view_controller: &GKMatchmakerViewController,
             player_i_ds: &NSArray<NSString>,
@@ -191,12 +189,14 @@ extern_protocol!(
         #[deprecated = "This is never invoked and its implementation does nothing, use matchmakerViewController:hostedPlayerDidAccept:"]
         #[optional]
         #[method(matchmakerViewController:didReceiveAcceptFromHostedPlayer:)]
-        pub unsafe fn matchmakerViewController_didReceiveAcceptFromHostedPlayer(
+        unsafe fn matchmakerViewController_didReceiveAcceptFromHostedPlayer(
             &self,
             view_controller: &GKMatchmakerViewController,
             player_id: &NSString,
         );
     }
+
+    unsafe impl ProtocolType for dyn GKMatchmakerViewControllerDelegate {}
 );
 
 extern_methods!(

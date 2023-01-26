@@ -104,10 +104,15 @@ extern_methods!(
         pub unsafe fn currentValue(&self) -> c_float;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<NSAnimationDelegate, Shared>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn NSAnimationDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&NSAnimationDelegate>);
+        pub unsafe fn setDelegate(
+            &self,
+            delegate: Option<&ProtocolObject<dyn NSAnimationDelegate>>,
+        );
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method_id(@__retain_semantics Other progressMarks)]
@@ -151,28 +156,26 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct NSAnimationDelegate;
-
-    unsafe impl ProtocolType for NSAnimationDelegate {
+    pub unsafe trait NSAnimationDelegate: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSAnimation")]
         #[optional]
         #[method(animationShouldStart:)]
-        pub unsafe fn animationShouldStart(&self, animation: &NSAnimation) -> bool;
+        unsafe fn animationShouldStart(&self, animation: &NSAnimation) -> bool;
 
         #[cfg(feature = "AppKit_NSAnimation")]
         #[optional]
         #[method(animationDidStop:)]
-        pub unsafe fn animationDidStop(&self, animation: &NSAnimation);
+        unsafe fn animationDidStop(&self, animation: &NSAnimation);
 
         #[cfg(feature = "AppKit_NSAnimation")]
         #[optional]
         #[method(animationDidEnd:)]
-        pub unsafe fn animationDidEnd(&self, animation: &NSAnimation);
+        unsafe fn animationDidEnd(&self, animation: &NSAnimation);
 
         #[cfg(feature = "AppKit_NSAnimation")]
         #[optional]
         #[method(animation:valueForProgress:)]
-        pub unsafe fn animation_valueForProgress(
+        unsafe fn animation_valueForProgress(
             &self,
             animation: &NSAnimation,
             progress: NSAnimationProgress,
@@ -181,12 +184,14 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSAnimation")]
         #[optional]
         #[method(animation:didReachProgressMark:)]
-        pub unsafe fn animation_didReachProgressMark(
+        unsafe fn animation_didReachProgressMark(
             &self,
             animation: &NSAnimation,
             progress: NSAnimationProgress,
         );
     }
+
+    unsafe impl ProtocolType for dyn NSAnimationDelegate {}
 );
 
 typed_enum!(
@@ -249,31 +254,26 @@ extern_methods!(
 pub type NSAnimatablePropertyKey = NSString;
 
 extern_protocol!(
-    pub struct NSAnimatablePropertyContainer;
-
-    unsafe impl ProtocolType for NSAnimatablePropertyContainer {
+    pub unsafe trait NSAnimatablePropertyContainer {
         #[method_id(@__retain_semantics Other animator)]
-        pub unsafe fn animator(&self) -> Id<Self, Shared>;
+        unsafe fn animator(&self) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other animations)]
-        pub unsafe fn animations(
-            &self,
-        ) -> Id<NSDictionary<NSAnimatablePropertyKey, Object>, Shared>;
+        unsafe fn animations(&self) -> Id<NSDictionary<NSAnimatablePropertyKey, Object>, Shared>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(setAnimations:)]
-        pub unsafe fn setAnimations(
-            &self,
-            animations: &NSDictionary<NSAnimatablePropertyKey, Object>,
-        );
+        unsafe fn setAnimations(&self, animations: &NSDictionary<NSAnimatablePropertyKey, Object>);
 
         #[method_id(@__retain_semantics Other animationForKey:)]
-        pub unsafe fn animationForKey(
+        unsafe fn animationForKey(
             &self,
             key: &NSAnimatablePropertyKey,
         ) -> Option<Id<Object, Shared>>;
     }
+
+    unsafe impl ProtocolType for dyn NSAnimatablePropertyContainer {}
 );
 
 extern_static!(NSAnimationTriggerOrderIn: &'static NSAnimatablePropertyKey);

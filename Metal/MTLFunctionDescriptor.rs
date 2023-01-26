@@ -61,11 +61,16 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other binaryArchives)]
-        pub unsafe fn binaryArchives(&self) -> Option<Id<NSArray<MTLBinaryArchive>, Shared>>;
+        pub unsafe fn binaryArchives(
+            &self,
+        ) -> Option<Id<NSArray<ProtocolObject<dyn MTLBinaryArchive>>, Shared>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setBinaryArchives:)]
-        pub unsafe fn setBinaryArchives(&self, binary_archives: Option<&NSArray<MTLBinaryArchive>>);
+        pub unsafe fn setBinaryArchives(
+            &self,
+            binary_archives: Option<&NSArray<ProtocolObject<dyn MTLBinaryArchive>>>,
+        );
     }
 );
 

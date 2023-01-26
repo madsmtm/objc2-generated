@@ -32,11 +32,11 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<GKSessionDelegate, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn GKSessionDelegate>, Shared>>;
 
         #[deprecated]
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&GKSessionDelegate>);
+        pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn GKSessionDelegate>>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other sessionID)]

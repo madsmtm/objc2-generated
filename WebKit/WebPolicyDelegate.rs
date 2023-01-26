@@ -36,25 +36,23 @@ extern_static!(WebActionOriginalURLKey: Option<&'static NSString>);
 
 extern_protocol!(
     #[deprecated]
-    pub struct WebPolicyDecisionListener;
-
-    unsafe impl ProtocolType for WebPolicyDecisionListener {
+    pub unsafe trait WebPolicyDecisionListener: NSObjectProtocol {
         #[method(use)]
-        pub unsafe fn r#use(&self);
+        unsafe fn r#use(&self);
 
         #[method(download)]
-        pub unsafe fn download(&self);
+        unsafe fn download(&self);
 
         #[method(ignore)]
-        pub unsafe fn ignore(&self);
+        unsafe fn ignore(&self);
     }
+
+    unsafe impl ProtocolType for dyn WebPolicyDecisionListener {}
 );
 
 extern_protocol!(
     #[deprecated]
-    pub struct WebPolicyDelegate;
-
-    unsafe impl ProtocolType for WebPolicyDelegate {
+    pub unsafe trait WebPolicyDelegate: NSObjectProtocol {
         #[cfg(all(
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSURLRequest",
@@ -63,13 +61,13 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(webView:decidePolicyForNavigationAction:request:frame:decisionListener:)]
-        pub unsafe fn webView_decidePolicyForNavigationAction_request_frame_decisionListener(
+        unsafe fn webView_decidePolicyForNavigationAction_request_frame_decisionListener(
             &self,
             web_view: Option<&WebView>,
             action_information: Option<&NSDictionary>,
             request: Option<&NSURLRequest>,
             frame: Option<&WebFrame>,
-            listener: Option<&WebPolicyDecisionListener>,
+            listener: Option<&ProtocolObject<dyn WebPolicyDecisionListener>>,
         );
 
         #[cfg(all(
@@ -80,13 +78,13 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(webView:decidePolicyForNewWindowAction:request:newFrameName:decisionListener:)]
-        pub unsafe fn webView_decidePolicyForNewWindowAction_request_newFrameName_decisionListener(
+        unsafe fn webView_decidePolicyForNewWindowAction_request_newFrameName_decisionListener(
             &self,
             web_view: Option<&WebView>,
             action_information: Option<&NSDictionary>,
             request: Option<&NSURLRequest>,
             frame_name: Option<&NSString>,
-            listener: Option<&WebPolicyDecisionListener>,
+            listener: Option<&ProtocolObject<dyn WebPolicyDecisionListener>>,
         );
 
         #[cfg(all(
@@ -97,13 +95,13 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(webView:decidePolicyForMIMEType:request:frame:decisionListener:)]
-        pub unsafe fn webView_decidePolicyForMIMEType_request_frame_decisionListener(
+        unsafe fn webView_decidePolicyForMIMEType_request_frame_decisionListener(
             &self,
             web_view: Option<&WebView>,
             r#type: Option<&NSString>,
             request: Option<&NSURLRequest>,
             frame: Option<&WebFrame>,
-            listener: Option<&WebPolicyDecisionListener>,
+            listener: Option<&ProtocolObject<dyn WebPolicyDecisionListener>>,
         );
 
         #[cfg(all(
@@ -113,11 +111,13 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(webView:unableToImplementPolicyWithError:frame:)]
-        pub unsafe fn webView_unableToImplementPolicyWithError_frame(
+        unsafe fn webView_unableToImplementPolicyWithError_frame(
             &self,
             web_view: Option<&WebView>,
             error: Option<&NSError>,
             frame: Option<&WebFrame>,
         );
     }
+
+    unsafe impl ProtocolType for dyn WebPolicyDelegate {}
 );

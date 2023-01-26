@@ -56,10 +56,11 @@ extern_methods!(
         pub unsafe fn setAllowedTypes(&self, allowed_types: Option<&NSArray<NSString>>);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<NSPathCellDelegate, Shared>>;
+        pub unsafe fn delegate(&self)
+            -> Option<Id<ProtocolObject<dyn NSPathCellDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&NSPathCellDelegate>);
+        pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSPathCellDelegate>>);
 
         #[method(pathComponentCellClass)]
         pub unsafe fn pathComponentCellClass() -> &'static Class;
@@ -151,13 +152,11 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct NSPathCellDelegate;
-
-    unsafe impl ProtocolType for NSPathCellDelegate {
+    pub unsafe trait NSPathCellDelegate: NSObjectProtocol {
         #[cfg(all(feature = "AppKit_NSOpenPanel", feature = "AppKit_NSPathCell"))]
         #[optional]
         #[method(pathCell:willDisplayOpenPanel:)]
-        pub unsafe fn pathCell_willDisplayOpenPanel(
+        unsafe fn pathCell_willDisplayOpenPanel(
             &self,
             path_cell: &NSPathCell,
             open_panel: &NSOpenPanel,
@@ -166,8 +165,10 @@ extern_protocol!(
         #[cfg(all(feature = "AppKit_NSMenu", feature = "AppKit_NSPathCell"))]
         #[optional]
         #[method(pathCell:willPopUpMenu:)]
-        pub unsafe fn pathCell_willPopUpMenu(&self, path_cell: &NSPathCell, menu: &NSMenu);
+        unsafe fn pathCell_willPopUpMenu(&self, path_cell: &NSPathCell, menu: &NSMenu);
     }
+
+    unsafe impl ProtocolType for dyn NSPathCellDelegate {}
 );
 
 extern_methods!(

@@ -62,17 +62,20 @@ extern_methods!(
         pub unsafe fn defaultTokenizingCharacterSet() -> Id<NSCharacterSet, Shared>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<NSTokenFieldCellDelegate, Shared>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn NSTokenFieldCellDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&NSTokenFieldCellDelegate>);
+        pub unsafe fn setDelegate(
+            &self,
+            delegate: Option<&ProtocolObject<dyn NSTokenFieldCellDelegate>>,
+        );
     }
 );
 
 extern_protocol!(
-    pub struct NSTokenFieldCellDelegate;
-
-    unsafe impl ProtocolType for NSTokenFieldCellDelegate {
+    pub unsafe trait NSTokenFieldCellDelegate: NSObjectProtocol {
         #[cfg(all(
             feature = "AppKit_NSTokenFieldCell",
             feature = "Foundation_NSArray",
@@ -80,7 +83,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other tokenFieldCell:completionsForSubstring:indexOfToken:indexOfSelectedItem:)]
-        pub unsafe fn tokenFieldCell_completionsForSubstring_indexOfToken_indexOfSelectedItem(
+        unsafe fn tokenFieldCell_completionsForSubstring_indexOfToken_indexOfSelectedItem(
             &self,
             token_field_cell: &NSTokenFieldCell,
             substring: &NSString,
@@ -91,7 +94,7 @@ extern_protocol!(
         #[cfg(all(feature = "AppKit_NSTokenFieldCell", feature = "Foundation_NSArray"))]
         #[optional]
         #[method_id(@__retain_semantics Other tokenFieldCell:shouldAddObjects:atIndex:)]
-        pub unsafe fn tokenFieldCell_shouldAddObjects_atIndex(
+        unsafe fn tokenFieldCell_shouldAddObjects_atIndex(
             &self,
             token_field_cell: &NSTokenFieldCell,
             tokens: &NSArray,
@@ -101,7 +104,7 @@ extern_protocol!(
         #[cfg(all(feature = "AppKit_NSTokenFieldCell", feature = "Foundation_NSString"))]
         #[optional]
         #[method_id(@__retain_semantics Other tokenFieldCell:displayStringForRepresentedObject:)]
-        pub unsafe fn tokenFieldCell_displayStringForRepresentedObject(
+        unsafe fn tokenFieldCell_displayStringForRepresentedObject(
             &self,
             token_field_cell: &NSTokenFieldCell,
             represented_object: &Object,
@@ -110,7 +113,7 @@ extern_protocol!(
         #[cfg(all(feature = "AppKit_NSTokenFieldCell", feature = "Foundation_NSString"))]
         #[optional]
         #[method_id(@__retain_semantics Other tokenFieldCell:editingStringForRepresentedObject:)]
-        pub unsafe fn tokenFieldCell_editingStringForRepresentedObject(
+        unsafe fn tokenFieldCell_editingStringForRepresentedObject(
             &self,
             token_field_cell: &NSTokenFieldCell,
             represented_object: &Object,
@@ -119,7 +122,7 @@ extern_protocol!(
         #[cfg(all(feature = "AppKit_NSTokenFieldCell", feature = "Foundation_NSString"))]
         #[optional]
         #[method_id(@__retain_semantics Other tokenFieldCell:representedObjectForEditingString:)]
-        pub unsafe fn tokenFieldCell_representedObjectForEditingString(
+        unsafe fn tokenFieldCell_representedObjectForEditingString(
             &self,
             token_field_cell: &NSTokenFieldCell,
             editing_string: &NSString,
@@ -132,7 +135,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(tokenFieldCell:writeRepresentedObjects:toPasteboard:)]
-        pub unsafe fn tokenFieldCell_writeRepresentedObjects_toPasteboard(
+        unsafe fn tokenFieldCell_writeRepresentedObjects_toPasteboard(
             &self,
             token_field_cell: &NSTokenFieldCell,
             objects: &NSArray,
@@ -146,7 +149,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other tokenFieldCell:readFromPasteboard:)]
-        pub unsafe fn tokenFieldCell_readFromPasteboard(
+        unsafe fn tokenFieldCell_readFromPasteboard(
             &self,
             token_field_cell: &NSTokenFieldCell,
             pboard: &NSPasteboard,
@@ -155,7 +158,7 @@ extern_protocol!(
         #[cfg(all(feature = "AppKit_NSMenu", feature = "AppKit_NSTokenFieldCell"))]
         #[optional]
         #[method_id(@__retain_semantics Other tokenFieldCell:menuForRepresentedObject:)]
-        pub unsafe fn tokenFieldCell_menuForRepresentedObject(
+        unsafe fn tokenFieldCell_menuForRepresentedObject(
             &self,
             token_field_cell: &NSTokenFieldCell,
             represented_object: &Object,
@@ -164,7 +167,7 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSTokenFieldCell")]
         #[optional]
         #[method(tokenFieldCell:hasMenuForRepresentedObject:)]
-        pub unsafe fn tokenFieldCell_hasMenuForRepresentedObject(
+        unsafe fn tokenFieldCell_hasMenuForRepresentedObject(
             &self,
             token_field_cell: &NSTokenFieldCell,
             represented_object: &Object,
@@ -173,12 +176,14 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSTokenFieldCell")]
         #[optional]
         #[method(tokenFieldCell:styleForRepresentedObject:)]
-        pub unsafe fn tokenFieldCell_styleForRepresentedObject(
+        unsafe fn tokenFieldCell_styleForRepresentedObject(
             &self,
             token_field_cell: &NSTokenFieldCell,
             represented_object: &Object,
         ) -> NSTokenStyle;
     }
+
+    unsafe impl ProtocolType for dyn NSTokenFieldCellDelegate {}
 );
 
 extern_static!(NSDefaultTokenStyle: NSTokenStyle = NSTokenStyleDefault);

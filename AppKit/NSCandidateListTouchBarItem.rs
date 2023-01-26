@@ -39,10 +39,15 @@ extern_methods!(
         pub unsafe fn setClient(&self, client: Option<&NSView>);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<NSCandidateListTouchBarItemDelegate, Shared>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn NSCandidateListTouchBarItemDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&NSCandidateListTouchBarItemDelegate>);
+        pub unsafe fn setDelegate(
+            &self,
+            delegate: Option<&ProtocolObject<dyn NSCandidateListTouchBarItemDelegate>>,
+        );
 
         #[method(isCollapsed)]
         pub unsafe fn isCollapsed(&self) -> bool;
@@ -110,13 +115,11 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct NSCandidateListTouchBarItemDelegate;
-
-    unsafe impl ProtocolType for NSCandidateListTouchBarItemDelegate {
+    pub unsafe trait NSCandidateListTouchBarItemDelegate: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSCandidateListTouchBarItem")]
         #[optional]
         #[method(candidateListTouchBarItem:beginSelectingCandidateAtIndex:)]
-        pub unsafe fn candidateListTouchBarItem_beginSelectingCandidateAtIndex(
+        unsafe fn candidateListTouchBarItem_beginSelectingCandidateAtIndex(
             &self,
             an_item: &NSCandidateListTouchBarItem,
             index: NSInteger,
@@ -125,7 +128,7 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSCandidateListTouchBarItem")]
         #[optional]
         #[method(candidateListTouchBarItem:changeSelectionFromCandidateAtIndex:toIndex:)]
-        pub unsafe fn candidateListTouchBarItem_changeSelectionFromCandidateAtIndex_toIndex(
+        unsafe fn candidateListTouchBarItem_changeSelectionFromCandidateAtIndex_toIndex(
             &self,
             an_item: &NSCandidateListTouchBarItem,
             previous_index: NSInteger,
@@ -135,7 +138,7 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSCandidateListTouchBarItem")]
         #[optional]
         #[method(candidateListTouchBarItem:endSelectingCandidateAtIndex:)]
-        pub unsafe fn candidateListTouchBarItem_endSelectingCandidateAtIndex(
+        unsafe fn candidateListTouchBarItem_endSelectingCandidateAtIndex(
             &self,
             an_item: &NSCandidateListTouchBarItem,
             index: NSInteger,
@@ -144,12 +147,14 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSCandidateListTouchBarItem")]
         #[optional]
         #[method(candidateListTouchBarItem:changedCandidateListVisibility:)]
-        pub unsafe fn candidateListTouchBarItem_changedCandidateListVisibility(
+        unsafe fn candidateListTouchBarItem_changedCandidateListVisibility(
             &self,
             an_item: &NSCandidateListTouchBarItem,
             is_visible: bool,
         );
     }
+
+    unsafe impl ProtocolType for dyn NSCandidateListTouchBarItemDelegate {}
 );
 
 extern_methods!(

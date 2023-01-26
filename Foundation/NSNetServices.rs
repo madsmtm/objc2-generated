@@ -81,10 +81,15 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<NSNetServiceDelegate, Shared>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn NSNetServiceDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&NSNetServiceDelegate>);
+        pub unsafe fn setDelegate(
+            &self,
+            delegate: Option<&ProtocolObject<dyn NSNetServiceDelegate>>,
+        );
 
         #[method(includesPeerToPeer)]
         pub unsafe fn includesPeerToPeer(&self) -> bool;
@@ -186,10 +191,15 @@ extern_methods!(
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<NSNetServiceBrowserDelegate, Shared>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn NSNetServiceBrowserDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&NSNetServiceBrowserDelegate>);
+        pub unsafe fn setDelegate(
+            &self,
+            delegate: Option<&ProtocolObject<dyn NSNetServiceBrowserDelegate>>,
+        );
 
         #[method(includesPeerToPeer)]
         pub unsafe fn includesPeerToPeer(&self) -> bool;
@@ -233,18 +243,16 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct NSNetServiceDelegate;
-
-    unsafe impl ProtocolType for NSNetServiceDelegate {
+    pub unsafe trait NSNetServiceDelegate: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSNetService")]
         #[optional]
         #[method(netServiceWillPublish:)]
-        pub unsafe fn netServiceWillPublish(&self, sender: &NSNetService);
+        unsafe fn netServiceWillPublish(&self, sender: &NSNetService);
 
         #[cfg(feature = "Foundation_NSNetService")]
         #[optional]
         #[method(netServiceDidPublish:)]
-        pub unsafe fn netServiceDidPublish(&self, sender: &NSNetService);
+        unsafe fn netServiceDidPublish(&self, sender: &NSNetService);
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",
@@ -254,7 +262,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(netService:didNotPublish:)]
-        pub unsafe fn netService_didNotPublish(
+        unsafe fn netService_didNotPublish(
             &self,
             sender: &NSNetService,
             error_dict: &NSDictionary<NSString, NSNumber>,
@@ -263,12 +271,12 @@ extern_protocol!(
         #[cfg(feature = "Foundation_NSNetService")]
         #[optional]
         #[method(netServiceWillResolve:)]
-        pub unsafe fn netServiceWillResolve(&self, sender: &NSNetService);
+        unsafe fn netServiceWillResolve(&self, sender: &NSNetService);
 
         #[cfg(feature = "Foundation_NSNetService")]
         #[optional]
         #[method(netServiceDidResolveAddress:)]
-        pub unsafe fn netServiceDidResolveAddress(&self, sender: &NSNetService);
+        unsafe fn netServiceDidResolveAddress(&self, sender: &NSNetService);
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",
@@ -278,7 +286,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(netService:didNotResolve:)]
-        pub unsafe fn netService_didNotResolve(
+        unsafe fn netService_didNotResolve(
             &self,
             sender: &NSNetService,
             error_dict: &NSDictionary<NSString, NSNumber>,
@@ -287,16 +295,12 @@ extern_protocol!(
         #[cfg(feature = "Foundation_NSNetService")]
         #[optional]
         #[method(netServiceDidStop:)]
-        pub unsafe fn netServiceDidStop(&self, sender: &NSNetService);
+        unsafe fn netServiceDidStop(&self, sender: &NSNetService);
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSNetService"))]
         #[optional]
         #[method(netService:didUpdateTXTRecordData:)]
-        pub unsafe fn netService_didUpdateTXTRecordData(
-            &self,
-            sender: &NSNetService,
-            data: &NSData,
-        );
+        unsafe fn netService_didUpdateTXTRecordData(&self, sender: &NSNetService, data: &NSData);
 
         #[cfg(all(
             feature = "Foundation_NSInputStream",
@@ -305,28 +309,28 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(netService:didAcceptConnectionWithInputStream:outputStream:)]
-        pub unsafe fn netService_didAcceptConnectionWithInputStream_outputStream(
+        unsafe fn netService_didAcceptConnectionWithInputStream_outputStream(
             &self,
             sender: &NSNetService,
             input_stream: &NSInputStream,
             output_stream: &NSOutputStream,
         );
     }
+
+    unsafe impl ProtocolType for dyn NSNetServiceDelegate {}
 );
 
 extern_protocol!(
-    pub struct NSNetServiceBrowserDelegate;
-
-    unsafe impl ProtocolType for NSNetServiceBrowserDelegate {
+    pub unsafe trait NSNetServiceBrowserDelegate: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSNetServiceBrowser")]
         #[optional]
         #[method(netServiceBrowserWillSearch:)]
-        pub unsafe fn netServiceBrowserWillSearch(&self, browser: &NSNetServiceBrowser);
+        unsafe fn netServiceBrowserWillSearch(&self, browser: &NSNetServiceBrowser);
 
         #[cfg(feature = "Foundation_NSNetServiceBrowser")]
         #[optional]
         #[method(netServiceBrowserDidStopSearch:)]
-        pub unsafe fn netServiceBrowserDidStopSearch(&self, browser: &NSNetServiceBrowser);
+        unsafe fn netServiceBrowserDidStopSearch(&self, browser: &NSNetServiceBrowser);
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",
@@ -336,7 +340,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(netServiceBrowser:didNotSearch:)]
-        pub unsafe fn netServiceBrowser_didNotSearch(
+        unsafe fn netServiceBrowser_didNotSearch(
             &self,
             browser: &NSNetServiceBrowser,
             error_dict: &NSDictionary<NSString, NSNumber>,
@@ -348,7 +352,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(netServiceBrowser:didFindDomain:moreComing:)]
-        pub unsafe fn netServiceBrowser_didFindDomain_moreComing(
+        unsafe fn netServiceBrowser_didFindDomain_moreComing(
             &self,
             browser: &NSNetServiceBrowser,
             domain_string: &NSString,
@@ -361,7 +365,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(netServiceBrowser:didFindService:moreComing:)]
-        pub unsafe fn netServiceBrowser_didFindService_moreComing(
+        unsafe fn netServiceBrowser_didFindService_moreComing(
             &self,
             browser: &NSNetServiceBrowser,
             service: &NSNetService,
@@ -374,7 +378,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(netServiceBrowser:didRemoveDomain:moreComing:)]
-        pub unsafe fn netServiceBrowser_didRemoveDomain_moreComing(
+        unsafe fn netServiceBrowser_didRemoveDomain_moreComing(
             &self,
             browser: &NSNetServiceBrowser,
             domain_string: &NSString,
@@ -387,11 +391,13 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(netServiceBrowser:didRemoveService:moreComing:)]
-        pub unsafe fn netServiceBrowser_didRemoveService_moreComing(
+        unsafe fn netServiceBrowser_didRemoveService_moreComing(
             &self,
             browser: &NSNetServiceBrowser,
             service: &NSNetService,
             more_coming: bool,
         );
     }
+
+    unsafe impl ProtocolType for dyn NSNetServiceBrowserDelegate {}
 );

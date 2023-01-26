@@ -165,27 +165,32 @@ extern_methods!(
         pub unsafe fn setMaxDate(&self, max_date: Option<&NSDate>);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<NSDatePickerCellDelegate, Shared>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn NSDatePickerCellDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&NSDatePickerCellDelegate>);
+        pub unsafe fn setDelegate(
+            &self,
+            delegate: Option<&ProtocolObject<dyn NSDatePickerCellDelegate>>,
+        );
     }
 );
 
 extern_protocol!(
-    pub struct NSDatePickerCellDelegate;
-
-    unsafe impl ProtocolType for NSDatePickerCellDelegate {
+    pub unsafe trait NSDatePickerCellDelegate: NSObjectProtocol {
         #[cfg(all(feature = "AppKit_NSDatePickerCell", feature = "Foundation_NSDate"))]
         #[optional]
         #[method(datePickerCell:validateProposedDateValue:timeInterval:)]
-        pub unsafe fn datePickerCell_validateProposedDateValue_timeInterval(
+        unsafe fn datePickerCell_validateProposedDateValue_timeInterval(
             &self,
             date_picker_cell: &NSDatePickerCell,
             proposed_date_value: NonNull<NonNull<NSDate>>,
             proposed_time_interval: *mut NSTimeInterval,
         );
     }
+
+    unsafe impl ProtocolType for dyn NSDatePickerCellDelegate {}
 );
 
 extern_static!(

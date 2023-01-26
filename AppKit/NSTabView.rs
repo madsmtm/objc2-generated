@@ -156,10 +156,10 @@ extern_methods!(
         pub unsafe fn removeTabViewItem(&self, tab_view_item: &NSTabViewItem);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<NSTabViewDelegate, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSTabViewDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&NSTabViewDelegate>);
+        pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSTabViewDelegate>>);
 
         #[cfg(feature = "AppKit_NSTabViewItem")]
         #[method_id(@__retain_semantics Other tabViewItemAtPoint:)]
@@ -196,13 +196,11 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct NSTabViewDelegate;
-
-    unsafe impl ProtocolType for NSTabViewDelegate {
+    pub unsafe trait NSTabViewDelegate: NSObjectProtocol {
         #[cfg(all(feature = "AppKit_NSTabView", feature = "AppKit_NSTabViewItem"))]
         #[optional]
         #[method(tabView:shouldSelectTabViewItem:)]
-        pub unsafe fn tabView_shouldSelectTabViewItem(
+        unsafe fn tabView_shouldSelectTabViewItem(
             &self,
             tab_view: &NSTabView,
             tab_view_item: Option<&NSTabViewItem>,
@@ -211,7 +209,7 @@ extern_protocol!(
         #[cfg(all(feature = "AppKit_NSTabView", feature = "AppKit_NSTabViewItem"))]
         #[optional]
         #[method(tabView:willSelectTabViewItem:)]
-        pub unsafe fn tabView_willSelectTabViewItem(
+        unsafe fn tabView_willSelectTabViewItem(
             &self,
             tab_view: &NSTabView,
             tab_view_item: Option<&NSTabViewItem>,
@@ -220,7 +218,7 @@ extern_protocol!(
         #[cfg(all(feature = "AppKit_NSTabView", feature = "AppKit_NSTabViewItem"))]
         #[optional]
         #[method(tabView:didSelectTabViewItem:)]
-        pub unsafe fn tabView_didSelectTabViewItem(
+        unsafe fn tabView_didSelectTabViewItem(
             &self,
             tab_view: &NSTabView,
             tab_view_item: Option<&NSTabViewItem>,
@@ -229,8 +227,10 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSTabView")]
         #[optional]
         #[method(tabViewDidChangeNumberOfTabViewItems:)]
-        pub unsafe fn tabViewDidChangeNumberOfTabViewItems(&self, tab_view: &NSTabView);
+        unsafe fn tabViewDidChangeNumberOfTabViewItems(&self, tab_view: &NSTabView);
     }
+
+    unsafe impl ProtocolType for dyn NSTabViewDelegate {}
 );
 
 extern_methods!(

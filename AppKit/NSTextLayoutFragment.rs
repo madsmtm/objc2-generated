@@ -116,6 +116,9 @@ extern_methods!(
         ) -> Id<NSArray<NSTextAttachmentViewProvider>, Shared>;
 
         #[method(frameForTextAttachmentAtLocation:)]
-        pub unsafe fn frameForTextAttachmentAtLocation(&self, location: &NSTextLocation) -> CGRect;
+        pub unsafe fn frameForTextAttachmentAtLocation(
+            &self,
+            location: &ProtocolObject<dyn NSTextLocation>,
+        ) -> CGRect;
     }
 );

@@ -6,13 +6,13 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 extern_protocol!(
-    pub struct NSUserActivityRestoring;
-
-    unsafe impl ProtocolType for NSUserActivityRestoring {
+    pub unsafe trait NSUserActivityRestoring: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSUserActivity")]
         #[method(restoreUserActivityState:)]
-        pub unsafe fn restoreUserActivityState(&self, user_activity: &NSUserActivity);
+        unsafe fn restoreUserActivityState(&self, user_activity: &NSUserActivity);
     }
+
+    unsafe impl ProtocolType for dyn NSUserActivityRestoring {}
 );
 
 extern_methods!(

@@ -187,50 +187,50 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct MTLRasterizationRateMap;
-
-    unsafe impl ProtocolType for MTLRasterizationRateMap {
+    pub unsafe trait MTLRasterizationRateMap: NSObjectProtocol {
         #[method_id(@__retain_semantics Other device)]
-        pub unsafe fn device(&self) -> Id<MTLDevice, Shared>;
+        unsafe fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
-        pub unsafe fn label(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn label(&self) -> Option<Id<NSString, Shared>>;
 
         #[method(screenSize)]
-        pub unsafe fn screenSize(&self) -> MTLSize;
+        unsafe fn screenSize(&self) -> MTLSize;
 
         #[method(physicalGranularity)]
-        pub unsafe fn physicalGranularity(&self) -> MTLSize;
+        unsafe fn physicalGranularity(&self) -> MTLSize;
 
         #[method(layerCount)]
-        pub unsafe fn layerCount(&self) -> NSUInteger;
+        unsafe fn layerCount(&self) -> NSUInteger;
 
         #[method(parameterBufferSizeAndAlign)]
-        pub unsafe fn parameterBufferSizeAndAlign(&self) -> MTLSizeAndAlign;
+        unsafe fn parameterBufferSizeAndAlign(&self) -> MTLSizeAndAlign;
 
         #[method(copyParameterDataToBuffer:offset:)]
-        pub unsafe fn copyParameterDataToBuffer_offset(
+        unsafe fn copyParameterDataToBuffer_offset(
             &self,
-            buffer: &MTLBuffer,
+            buffer: &ProtocolObject<dyn MTLBuffer>,
             offset: NSUInteger,
         );
 
         #[method(physicalSizeForLayer:)]
-        pub unsafe fn physicalSizeForLayer(&self, layer_index: NSUInteger) -> MTLSize;
+        unsafe fn physicalSizeForLayer(&self, layer_index: NSUInteger) -> MTLSize;
 
         #[method(mapScreenToPhysicalCoordinates:forLayer:)]
-        pub unsafe fn mapScreenToPhysicalCoordinates_forLayer(
+        unsafe fn mapScreenToPhysicalCoordinates_forLayer(
             &self,
             screen_coordinates: MTLCoordinate2D,
             layer_index: NSUInteger,
         ) -> MTLCoordinate2D;
 
         #[method(mapPhysicalToScreenCoordinates:forLayer:)]
-        pub unsafe fn mapPhysicalToScreenCoordinates_forLayer(
+        unsafe fn mapPhysicalToScreenCoordinates_forLayer(
             &self,
             physical_coordinates: MTLCoordinate2D,
             layer_index: NSUInteger,
         ) -> MTLCoordinate2D;
     }
+
+    unsafe impl ProtocolType for dyn MTLRasterizationRateMap {}
 );

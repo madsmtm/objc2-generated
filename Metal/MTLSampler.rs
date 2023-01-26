@@ -151,17 +151,17 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct MTLSamplerState;
-
-    unsafe impl ProtocolType for MTLSamplerState {
+    pub unsafe trait MTLSamplerState: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
-        pub fn label(&self) -> Option<Id<NSString, Shared>>;
+        fn label(&self) -> Option<Id<NSString, Shared>>;
 
         #[method_id(@__retain_semantics Other device)]
-        pub fn device(&self) -> Id<MTLDevice, Shared>;
+        fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>, Shared>;
 
         #[method(gpuResourceID)]
-        pub unsafe fn gpuResourceID(&self) -> MTLResourceID;
+        unsafe fn gpuResourceID(&self) -> MTLResourceID;
     }
+
+    unsafe impl ProtocolType for dyn MTLSamplerState {}
 );

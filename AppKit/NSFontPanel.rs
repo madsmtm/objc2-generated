@@ -23,22 +23,19 @@ ns_options!(
 );
 
 extern_protocol!(
-    pub struct NSFontChanging;
-
-    unsafe impl ProtocolType for NSFontChanging {
+    pub unsafe trait NSFontChanging: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSFontManager")]
         #[optional]
         #[method(changeFont:)]
-        pub unsafe fn changeFont(&self, sender: Option<&NSFontManager>);
+        unsafe fn changeFont(&self, sender: Option<&NSFontManager>);
 
         #[cfg(feature = "AppKit_NSFontPanel")]
         #[optional]
         #[method(validModesForFontPanel:)]
-        pub unsafe fn validModesForFontPanel(
-            &self,
-            font_panel: &NSFontPanel,
-        ) -> NSFontPanelModeMask;
+        unsafe fn validModesForFontPanel(&self, font_panel: &NSFontPanel) -> NSFontPanelModeMask;
     }
+
+    unsafe impl ProtocolType for dyn NSFontChanging {}
 );
 
 extern_class!(

@@ -4,15 +4,13 @@ use crate::common::*;
 use crate::Foundation::*;
 
 extern_protocol!(
-    pub struct NSURLAuthenticationChallengeSender;
-
-    unsafe impl ProtocolType for NSURLAuthenticationChallengeSender {
+    pub unsafe trait NSURLAuthenticationChallengeSender: NSObjectProtocol {
         #[cfg(all(
             feature = "Foundation_NSURLAuthenticationChallenge",
             feature = "Foundation_NSURLCredential"
         ))]
         #[method(useCredential:forAuthenticationChallenge:)]
-        pub unsafe fn useCredential_forAuthenticationChallenge(
+        unsafe fn useCredential_forAuthenticationChallenge(
             &self,
             credential: &NSURLCredential,
             challenge: &NSURLAuthenticationChallenge,
@@ -20,22 +18,19 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSURLAuthenticationChallenge")]
         #[method(continueWithoutCredentialForAuthenticationChallenge:)]
-        pub unsafe fn continueWithoutCredentialForAuthenticationChallenge(
+        unsafe fn continueWithoutCredentialForAuthenticationChallenge(
             &self,
             challenge: &NSURLAuthenticationChallenge,
         );
 
         #[cfg(feature = "Foundation_NSURLAuthenticationChallenge")]
         #[method(cancelAuthenticationChallenge:)]
-        pub unsafe fn cancelAuthenticationChallenge(
-            &self,
-            challenge: &NSURLAuthenticationChallenge,
-        );
+        unsafe fn cancelAuthenticationChallenge(&self, challenge: &NSURLAuthenticationChallenge);
 
         #[cfg(feature = "Foundation_NSURLAuthenticationChallenge")]
         #[optional]
         #[method(performDefaultHandlingForAuthenticationChallenge:)]
-        pub unsafe fn performDefaultHandlingForAuthenticationChallenge(
+        unsafe fn performDefaultHandlingForAuthenticationChallenge(
             &self,
             challenge: &NSURLAuthenticationChallenge,
         );
@@ -43,11 +38,13 @@ extern_protocol!(
         #[cfg(feature = "Foundation_NSURLAuthenticationChallenge")]
         #[optional]
         #[method(rejectProtectionSpaceAndContinueWithChallenge:)]
-        pub unsafe fn rejectProtectionSpaceAndContinueWithChallenge(
+        unsafe fn rejectProtectionSpaceAndContinueWithChallenge(
             &self,
             challenge: &NSURLAuthenticationChallenge,
         );
     }
+
+    unsafe impl ProtocolType for dyn NSURLAuthenticationChallengeSender {}
 );
 
 extern_class!(
@@ -78,14 +75,14 @@ extern_methods!(
             previous_failure_count: NSInteger,
             response: Option<&NSURLResponse>,
             error: Option<&NSError>,
-            sender: &NSURLAuthenticationChallengeSender,
+            sender: &ProtocolObject<dyn NSURLAuthenticationChallengeSender>,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Init initWithAuthenticationChallenge:sender:)]
         pub unsafe fn initWithAuthenticationChallenge_sender(
             this: Option<Allocated<Self>>,
             challenge: &NSURLAuthenticationChallenge,
-            sender: &NSURLAuthenticationChallengeSender,
+            sender: &ProtocolObject<dyn NSURLAuthenticationChallengeSender>,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSURLProtectionSpace")]
@@ -108,6 +105,8 @@ extern_methods!(
         pub unsafe fn error(&self) -> Option<Id<NSError, Shared>>;
 
         #[method_id(@__retain_semantics Other sender)]
-        pub unsafe fn sender(&self) -> Option<Id<NSURLAuthenticationChallengeSender, Shared>>;
+        pub unsafe fn sender(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn NSURLAuthenticationChallengeSender>, Shared>>;
     }
 );

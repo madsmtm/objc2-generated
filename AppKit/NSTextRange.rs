@@ -6,12 +6,15 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 extern_protocol!(
-    pub struct NSTextLocation;
-
-    unsafe impl ProtocolType for NSTextLocation {
+    pub unsafe trait NSTextLocation: NSObjectProtocol {
         #[method(compare:)]
-        pub unsafe fn compare(&self, location: &NSTextLocation) -> NSComparisonResult;
+        unsafe fn compare(
+            &self,
+            location: &ProtocolObject<dyn NSTextLocation>,
+        ) -> NSComparisonResult;
     }
+
+    unsafe impl ProtocolType for dyn NSTextLocation {}
 );
 
 extern_class!(
@@ -31,14 +34,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithLocation:endLocation:)]
         pub unsafe fn initWithLocation_endLocation(
             this: Option<Allocated<Self>>,
-            location: &NSTextLocation,
-            end_location: Option<&NSTextLocation>,
+            location: &ProtocolObject<dyn NSTextLocation>,
+            end_location: Option<&ProtocolObject<dyn NSTextLocation>>,
         ) -> Option<Id<Self, Shared>>;
 
         #[method_id(@__retain_semantics Init initWithLocation:)]
         pub unsafe fn initWithLocation(
             this: Option<Allocated<Self>>,
-            location: &NSTextLocation,
+            location: &ProtocolObject<dyn NSTextLocation>,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Init init)]
@@ -51,16 +54,19 @@ extern_methods!(
         pub unsafe fn isEmpty(&self) -> bool;
 
         #[method_id(@__retain_semantics Other location)]
-        pub unsafe fn location(&self) -> Id<NSTextLocation, Shared>;
+        pub unsafe fn location(&self) -> Id<ProtocolObject<dyn NSTextLocation>, Shared>;
 
         #[method_id(@__retain_semantics Other endLocation)]
-        pub unsafe fn endLocation(&self) -> Id<NSTextLocation, Shared>;
+        pub unsafe fn endLocation(&self) -> Id<ProtocolObject<dyn NSTextLocation>, Shared>;
 
         #[method(isEqualToTextRange:)]
         pub unsafe fn isEqualToTextRange(&self, text_range: &NSTextRange) -> bool;
 
         #[method(containsLocation:)]
-        pub unsafe fn containsLocation(&self, location: &NSTextLocation) -> bool;
+        pub unsafe fn containsLocation(
+            &self,
+            location: &ProtocolObject<dyn NSTextLocation>,
+        ) -> bool;
 
         #[method(containsRange:)]
         pub unsafe fn containsRange(&self, text_range: &NSTextRange) -> bool;

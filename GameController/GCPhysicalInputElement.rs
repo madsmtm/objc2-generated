@@ -6,21 +6,21 @@ use crate::Foundation::*;
 use crate::GameController::*;
 
 extern_protocol!(
-    pub struct GCPhysicalInputElement;
-
-    unsafe impl ProtocolType for GCPhysicalInputElement {
+    pub unsafe trait GCPhysicalInputElement: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other sfSymbolsName)]
-        pub unsafe fn sfSymbolsName(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn sfSymbolsName(&self) -> Option<Id<NSString, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedName)]
-        pub unsafe fn localizedName(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn localizedName(&self) -> Option<Id<NSString, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other aliases)]
-        pub unsafe fn aliases(&self) -> Id<NSSet<NSString>, Shared>;
+        unsafe fn aliases(&self) -> Id<NSSet<NSString>, Shared>;
     }
+
+    unsafe impl ProtocolType for dyn GCPhysicalInputElement {}
 );
 
 __inner_extern_class!(

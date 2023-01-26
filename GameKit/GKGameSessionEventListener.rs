@@ -7,27 +7,21 @@ use crate::GameKit::*;
 
 extern_protocol!(
     #[deprecated = "Use GKLocalPlayerListener for multiplayer event notifications."]
-    pub struct GKGameSessionEventListener;
-
-    unsafe impl ProtocolType for GKGameSessionEventListener {
+    pub unsafe trait GKGameSessionEventListener: NSObjectProtocol {
         #[cfg(all(feature = "GameKit_GKCloudPlayer", feature = "GameKit_GKGameSession"))]
         #[optional]
         #[method(session:didAddPlayer:)]
-        pub unsafe fn session_didAddPlayer(&self, session: &GKGameSession, player: &GKCloudPlayer);
+        unsafe fn session_didAddPlayer(&self, session: &GKGameSession, player: &GKCloudPlayer);
 
         #[cfg(all(feature = "GameKit_GKCloudPlayer", feature = "GameKit_GKGameSession"))]
         #[optional]
         #[method(session:didRemovePlayer:)]
-        pub unsafe fn session_didRemovePlayer(
-            &self,
-            session: &GKGameSession,
-            player: &GKCloudPlayer,
-        );
+        unsafe fn session_didRemovePlayer(&self, session: &GKGameSession, player: &GKCloudPlayer);
 
         #[cfg(all(feature = "GameKit_GKCloudPlayer", feature = "GameKit_GKGameSession"))]
         #[optional]
         #[method(session:player:didChangeConnectionState:)]
-        pub unsafe fn session_player_didChangeConnectionState(
+        unsafe fn session_player_didChangeConnectionState(
             &self,
             session: &GKGameSession,
             player: &GKCloudPlayer,
@@ -41,7 +35,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(session:player:didSaveData:)]
-        pub unsafe fn session_player_didSaveData(
+        unsafe fn session_player_didSaveData(
             &self,
             session: &GKGameSession,
             player: &GKCloudPlayer,
@@ -55,7 +49,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(session:didReceiveData:fromPlayer:)]
-        pub unsafe fn session_didReceiveData_fromPlayer(
+        unsafe fn session_didReceiveData_fromPlayer(
             &self,
             session: &GKGameSession,
             data: &NSData,
@@ -70,7 +64,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(session:didReceiveMessage:withData:fromPlayer:)]
-        pub unsafe fn session_didReceiveMessage_withData_fromPlayer(
+        unsafe fn session_didReceiveMessage_withData_fromPlayer(
             &self,
             session: &GKGameSession,
             message: &NSString,
@@ -78,6 +72,8 @@ extern_protocol!(
             player: &GKCloudPlayer,
         );
     }
+
+    unsafe impl ProtocolType for dyn GKGameSessionEventListener {}
 );
 
 extern_methods!(

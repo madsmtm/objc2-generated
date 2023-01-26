@@ -6,12 +6,10 @@ use crate::CoreLocation::*;
 use crate::Foundation::*;
 
 extern_protocol!(
-    pub struct CLLocationPushServiceExtension;
-
-    unsafe impl ProtocolType for CLLocationPushServiceExtension {
+    pub unsafe trait CLLocationPushServiceExtension: NSObjectProtocol {
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(didReceiveLocationPushPayload:completion:)]
-        pub unsafe fn didReceiveLocationPushPayload_completion(
+        unsafe fn didReceiveLocationPushPayload_completion(
             &self,
             payload: &NSDictionary<NSString, Object>,
             completion: &Block<(), ()>,
@@ -19,6 +17,8 @@ extern_protocol!(
 
         #[optional]
         #[method(serviceExtensionWillTerminate)]
-        pub unsafe fn serviceExtensionWillTerminate(&self);
+        unsafe fn serviceExtensionWillTerminate(&self);
     }
+
+    unsafe impl ProtocolType for dyn CLLocationPushServiceExtension {}
 );

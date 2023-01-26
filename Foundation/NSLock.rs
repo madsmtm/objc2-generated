@@ -4,15 +4,15 @@ use crate::common::*;
 use crate::Foundation::*;
 
 extern_protocol!(
-    pub struct NSLocking;
-
-    unsafe impl ProtocolType for NSLocking {
+    pub unsafe trait NSLocking {
         #[method(lock)]
-        pub unsafe fn lock(&self);
+        unsafe fn lock(&self);
 
         #[method(unlock)]
-        pub unsafe fn unlock(&self);
+        unsafe fn unlock(&self);
     }
+
+    unsafe impl ProtocolType for dyn NSLocking {}
 );
 
 extern_class!(

@@ -52,21 +52,15 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct NSSeguePerforming;
-
-    unsafe impl ProtocolType for NSSeguePerforming {
+    pub unsafe trait NSSeguePerforming: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSStoryboardSegue")]
         #[optional]
         #[method(prepareForSegue:sender:)]
-        pub unsafe fn prepareForSegue_sender(
-            &self,
-            segue: &NSStoryboardSegue,
-            sender: Option<&Object>,
-        );
+        unsafe fn prepareForSegue_sender(&self, segue: &NSStoryboardSegue, sender: Option<&Object>);
 
         #[optional]
         #[method(performSegueWithIdentifier:sender:)]
-        pub unsafe fn performSegueWithIdentifier_sender(
+        unsafe fn performSegueWithIdentifier_sender(
             &self,
             identifier: &NSStoryboardSegueIdentifier,
             sender: Option<&Object>,
@@ -74,10 +68,12 @@ extern_protocol!(
 
         #[optional]
         #[method(shouldPerformSegueWithIdentifier:sender:)]
-        pub unsafe fn shouldPerformSegueWithIdentifier_sender(
+        unsafe fn shouldPerformSegueWithIdentifier_sender(
             &self,
             identifier: &NSStoryboardSegueIdentifier,
             sender: Option<&Object>,
         ) -> bool;
     }
+
+    unsafe impl ProtocolType for dyn NSSeguePerforming {}
 );

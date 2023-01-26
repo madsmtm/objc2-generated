@@ -7,18 +7,16 @@ use crate::GameKit::*;
 
 extern_protocol!(
     #[deprecated = "You should instead implement the GKChallengeListener protocol and register a listener with GKLocalPlayer."]
-    pub struct GKChallengeEventHandlerDelegate;
-
-    unsafe impl ProtocolType for GKChallengeEventHandlerDelegate {
+    pub unsafe trait GKChallengeEventHandlerDelegate: NSObjectProtocol {
         #[cfg(feature = "GameKit_GKChallenge")]
         #[optional]
         #[method(localPlayerDidSelectChallenge:)]
-        pub unsafe fn localPlayerDidSelectChallenge(&self, challenge: Option<&GKChallenge>);
+        unsafe fn localPlayerDidSelectChallenge(&self, challenge: Option<&GKChallenge>);
 
         #[cfg(feature = "GameKit_GKChallenge")]
         #[optional]
         #[method(shouldShowBannerForLocallyReceivedChallenge:)]
-        pub unsafe fn shouldShowBannerForLocallyReceivedChallenge(
+        unsafe fn shouldShowBannerForLocallyReceivedChallenge(
             &self,
             challenge: Option<&GKChallenge>,
         ) -> bool;
@@ -26,12 +24,12 @@ extern_protocol!(
         #[cfg(feature = "GameKit_GKChallenge")]
         #[optional]
         #[method(localPlayerDidReceiveChallenge:)]
-        pub unsafe fn localPlayerDidReceiveChallenge(&self, challenge: Option<&GKChallenge>);
+        unsafe fn localPlayerDidReceiveChallenge(&self, challenge: Option<&GKChallenge>);
 
         #[cfg(feature = "GameKit_GKChallenge")]
         #[optional]
         #[method(shouldShowBannerForLocallyCompletedChallenge:)]
-        pub unsafe fn shouldShowBannerForLocallyCompletedChallenge(
+        unsafe fn shouldShowBannerForLocallyCompletedChallenge(
             &self,
             challenge: Option<&GKChallenge>,
         ) -> bool;
@@ -39,12 +37,12 @@ extern_protocol!(
         #[cfg(feature = "GameKit_GKChallenge")]
         #[optional]
         #[method(localPlayerDidCompleteChallenge:)]
-        pub unsafe fn localPlayerDidCompleteChallenge(&self, challenge: Option<&GKChallenge>);
+        unsafe fn localPlayerDidCompleteChallenge(&self, challenge: Option<&GKChallenge>);
 
         #[cfg(feature = "GameKit_GKChallenge")]
         #[optional]
         #[method(shouldShowBannerForRemotelyCompletedChallenge:)]
-        pub unsafe fn shouldShowBannerForRemotelyCompletedChallenge(
+        unsafe fn shouldShowBannerForRemotelyCompletedChallenge(
             &self,
             challenge: Option<&GKChallenge>,
         ) -> bool;
@@ -52,8 +50,10 @@ extern_protocol!(
         #[cfg(feature = "GameKit_GKChallenge")]
         #[optional]
         #[method(remotePlayerDidCompleteChallenge:)]
-        pub unsafe fn remotePlayerDidCompleteChallenge(&self, challenge: Option<&GKChallenge>);
+        unsafe fn remotePlayerDidCompleteChallenge(&self, challenge: Option<&GKChallenge>);
     }
+
+    unsafe impl ProtocolType for dyn GKChallengeEventHandlerDelegate {}
 );
 
 extern_class!(
@@ -77,10 +77,15 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<GKChallengeEventHandlerDelegate, Shared>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn GKChallengeEventHandlerDelegate>, Shared>>;
 
         #[deprecated]
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&GKChallengeEventHandlerDelegate>);
+        pub unsafe fn setDelegate(
+            &self,
+            delegate: Option<&ProtocolObject<dyn GKChallengeEventHandlerDelegate>>,
+        );
     }
 );

@@ -148,10 +148,15 @@ extern_methods!(
         pub unsafe fn continueSpeaking(&self);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<NSSpeechSynthesizerDelegate, Shared>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn NSSpeechSynthesizerDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&NSSpeechSynthesizerDelegate>);
+        pub unsafe fn setDelegate(
+            &self,
+            delegate: Option<&ProtocolObject<dyn NSSpeechSynthesizerDelegate>>,
+        );
 
         #[method_id(@__retain_semantics Other voice)]
         pub unsafe fn voice(&self) -> Option<Id<NSSpeechSynthesizerVoiceName, Shared>>;
@@ -222,13 +227,11 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct NSSpeechSynthesizerDelegate;
-
-    unsafe impl ProtocolType for NSSpeechSynthesizerDelegate {
+    pub unsafe trait NSSpeechSynthesizerDelegate: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSSpeechSynthesizer")]
         #[optional]
         #[method(speechSynthesizer:didFinishSpeaking:)]
-        pub unsafe fn speechSynthesizer_didFinishSpeaking(
+        unsafe fn speechSynthesizer_didFinishSpeaking(
             &self,
             sender: &NSSpeechSynthesizer,
             finished_speaking: bool,
@@ -240,7 +243,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(speechSynthesizer:willSpeakWord:ofString:)]
-        pub unsafe fn speechSynthesizer_willSpeakWord_ofString(
+        unsafe fn speechSynthesizer_willSpeakWord_ofString(
             &self,
             sender: &NSSpeechSynthesizer,
             character_range: NSRange,
@@ -250,7 +253,7 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSSpeechSynthesizer")]
         #[optional]
         #[method(speechSynthesizer:willSpeakPhoneme:)]
-        pub unsafe fn speechSynthesizer_willSpeakPhoneme(
+        unsafe fn speechSynthesizer_willSpeakPhoneme(
             &self,
             sender: &NSSpeechSynthesizer,
             phoneme_opcode: c_short,
@@ -262,7 +265,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(speechSynthesizer:didEncounterErrorAtIndex:ofString:message:)]
-        pub unsafe fn speechSynthesizer_didEncounterErrorAtIndex_ofString_message(
+        unsafe fn speechSynthesizer_didEncounterErrorAtIndex_ofString_message(
             &self,
             sender: &NSSpeechSynthesizer,
             character_index: NSUInteger,
@@ -276,12 +279,14 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(speechSynthesizer:didEncounterSyncMessage:)]
-        pub unsafe fn speechSynthesizer_didEncounterSyncMessage(
+        unsafe fn speechSynthesizer_didEncounterSyncMessage(
             &self,
             sender: &NSSpeechSynthesizer,
             message: &NSString,
         );
     }
+
+    unsafe impl ProtocolType for dyn NSSpeechSynthesizerDelegate {}
 );
 
 typed_enum!(

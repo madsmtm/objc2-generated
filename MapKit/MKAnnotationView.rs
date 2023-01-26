@@ -56,7 +56,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithAnnotation:reuseIdentifier:)]
         pub unsafe fn initWithAnnotation_reuseIdentifier(
             this: Option<Allocated<Self>>,
-            annotation: Option<&MKAnnotation>,
+            annotation: Option<&ProtocolObject<dyn MKAnnotation>>,
             reuse_identifier: Option<&NSString>,
         ) -> Id<Self, Shared>;
 
@@ -78,10 +78,10 @@ extern_methods!(
         pub unsafe fn prepareForDisplay(&self);
 
         #[method_id(@__retain_semantics Other annotation)]
-        pub unsafe fn annotation(&self) -> Option<Id<MKAnnotation, Shared>>;
+        pub unsafe fn annotation(&self) -> Option<Id<ProtocolObject<dyn MKAnnotation>, Shared>>;
 
         #[method(setAnnotation:)]
-        pub unsafe fn setAnnotation(&self, annotation: Option<&MKAnnotation>);
+        pub unsafe fn setAnnotation(&self, annotation: Option<&ProtocolObject<dyn MKAnnotation>>);
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other image)]

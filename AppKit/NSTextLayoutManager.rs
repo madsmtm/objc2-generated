@@ -51,10 +51,15 @@ extern_methods!(
         ) -> Option<Id<Self, Shared>>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<NSTextLayoutManagerDelegate, Shared>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn NSTextLayoutManagerDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&NSTextLayoutManagerDelegate>);
+        pub unsafe fn setDelegate(
+            &self,
+            delegate: Option<&ProtocolObject<dyn NSTextLayoutManagerDelegate>>,
+        );
 
         #[method(usesFontLeading)]
         pub unsafe fn usesFontLeading(&self) -> bool;
@@ -132,17 +137,17 @@ extern_methods!(
         #[method_id(@__retain_semantics Other textLayoutFragmentForLocation:)]
         pub unsafe fn textLayoutFragmentForLocation(
             &self,
-            location: &NSTextLocation,
+            location: &ProtocolObject<dyn NSTextLocation>,
         ) -> Option<Id<NSTextLayoutFragment, Shared>>;
 
         #[cfg(feature = "AppKit_NSTextLayoutFragment")]
         #[method_id(@__retain_semantics Other enumerateTextLayoutFragmentsFromLocation:options:usingBlock:)]
         pub unsafe fn enumerateTextLayoutFragmentsFromLocation_options_usingBlock(
             &self,
-            location: Option<&NSTextLocation>,
+            location: Option<&ProtocolObject<dyn NSTextLocation>>,
             options: NSTextLayoutFragmentEnumerationOptions,
             block: &Block<(NonNull<NSTextLayoutFragment>,), Bool>,
-        ) -> Option<Id<NSTextLocation, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn NSTextLocation>, Shared>>;
 
         #[cfg(all(feature = "AppKit_NSTextSelection", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other textSelections)]
@@ -167,7 +172,7 @@ extern_methods!(
         #[method(enumerateRenderingAttributesFromLocation:reverse:usingBlock:)]
         pub unsafe fn enumerateRenderingAttributesFromLocation_reverse_usingBlock(
             &self,
-            location: &NSTextLocation,
+            location: &ProtocolObject<dyn NSTextLocation>,
             reverse: bool,
             block: &Block<
                 (
@@ -233,7 +238,7 @@ extern_methods!(
         pub unsafe fn renderingAttributesForLink_atLocation(
             &self,
             link: &Object,
-            location: &NSTextLocation,
+            location: &ProtocolObject<dyn NSTextLocation>,
         ) -> Id<NSDictionary<NSAttributedStringKey, Object>, Shared>;
 
         #[cfg(all(feature = "AppKit_NSTextContainer", feature = "AppKit_NSTextRange"))]
@@ -272,9 +277,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct NSTextLayoutManagerDelegate;
-
-    unsafe impl ProtocolType for NSTextLayoutManagerDelegate {
+    pub unsafe trait NSTextLayoutManagerDelegate: NSObjectProtocol {
         #[cfg(all(
             feature = "AppKit_NSTextElement",
             feature = "AppKit_NSTextLayoutFragment",
@@ -282,20 +285,20 @@ extern_protocol!(
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other textLayoutManager:textLayoutFragmentForLocation:inTextElement:)]
-        pub unsafe fn textLayoutManager_textLayoutFragmentForLocation_inTextElement(
+        unsafe fn textLayoutManager_textLayoutFragmentForLocation_inTextElement(
             &self,
             text_layout_manager: &NSTextLayoutManager,
-            location: &NSTextLocation,
+            location: &ProtocolObject<dyn NSTextLocation>,
             text_element: &NSTextElement,
         ) -> Id<NSTextLayoutFragment, Shared>;
 
         #[cfg(feature = "AppKit_NSTextLayoutManager")]
         #[optional]
         #[method(textLayoutManager:shouldBreakLineBeforeLocation:hyphenating:)]
-        pub unsafe fn textLayoutManager_shouldBreakLineBeforeLocation_hyphenating(
+        unsafe fn textLayoutManager_shouldBreakLineBeforeLocation_hyphenating(
             &self,
             text_layout_manager: &NSTextLayoutManager,
-            location: &NSTextLocation,
+            location: &ProtocolObject<dyn NSTextLocation>,
             hyphenating: bool,
         ) -> bool;
 
@@ -305,12 +308,14 @@ extern_protocol!(
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other textLayoutManager:renderingAttributesForLink:atLocation:defaultAttributes:)]
-        pub unsafe fn textLayoutManager_renderingAttributesForLink_atLocation_defaultAttributes(
+        unsafe fn textLayoutManager_renderingAttributesForLink_atLocation_defaultAttributes(
             &self,
             text_layout_manager: &NSTextLayoutManager,
             link: &Object,
-            location: &NSTextLocation,
+            location: &ProtocolObject<dyn NSTextLocation>,
             rendering_attributes: &NSDictionary<NSAttributedStringKey, Object>,
         ) -> Option<Id<NSDictionary<NSAttributedStringKey, Object>, Shared>>;
     }
+
+    unsafe impl ProtocolType for dyn NSTextLayoutManagerDelegate {}
 );

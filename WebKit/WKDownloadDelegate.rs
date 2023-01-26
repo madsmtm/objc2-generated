@@ -14,9 +14,7 @@ ns_enum!(
 );
 
 extern_protocol!(
-    pub struct WKDownloadDelegate;
-
-    unsafe impl ProtocolType for WKDownloadDelegate {
+    pub unsafe trait WKDownloadDelegate: NSObjectProtocol {
         #[cfg(all(
             feature = "Foundation_NSString",
             feature = "Foundation_NSURL",
@@ -24,7 +22,7 @@ extern_protocol!(
             feature = "WebKit_WKDownload"
         ))]
         #[method(download:decideDestinationUsingResponse:suggestedFilename:completionHandler:)]
-        pub unsafe fn download_decideDestinationUsingResponse_suggestedFilename_completionHandler(
+        unsafe fn download_decideDestinationUsingResponse_suggestedFilename_completionHandler(
             &self,
             download: &WKDownload,
             response: &NSURLResponse,
@@ -39,7 +37,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(download:willPerformHTTPRedirection:newRequest:decisionHandler:)]
-        pub unsafe fn download_willPerformHTTPRedirection_newRequest_decisionHandler(
+        unsafe fn download_willPerformHTTPRedirection_newRequest_decisionHandler(
             &self,
             download: &WKDownload,
             response: &NSHTTPURLResponse,
@@ -54,7 +52,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(download:didReceiveAuthenticationChallenge:completionHandler:)]
-        pub unsafe fn download_didReceiveAuthenticationChallenge_completionHandler(
+        unsafe fn download_didReceiveAuthenticationChallenge_completionHandler(
             &self,
             download: &WKDownload,
             challenge: &NSURLAuthenticationChallenge,
@@ -67,7 +65,7 @@ extern_protocol!(
         #[cfg(feature = "WebKit_WKDownload")]
         #[optional]
         #[method(downloadDidFinish:)]
-        pub unsafe fn downloadDidFinish(&self, download: &WKDownload);
+        unsafe fn downloadDidFinish(&self, download: &WKDownload);
 
         #[cfg(all(
             feature = "Foundation_NSData",
@@ -76,11 +74,13 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(download:didFailWithError:resumeData:)]
-        pub unsafe fn download_didFailWithError_resumeData(
+        unsafe fn download_didFailWithError_resumeData(
             &self,
             download: &WKDownload,
             error: &NSError,
             resume_data: Option<&NSData>,
         );
     }
+
+    unsafe impl ProtocolType for dyn WKDownloadDelegate {}
 );

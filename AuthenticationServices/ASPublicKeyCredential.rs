@@ -5,15 +5,15 @@ use crate::AuthenticationServices::*;
 use crate::Foundation::*;
 
 extern_protocol!(
-    pub struct ASPublicKeyCredential;
-
-    unsafe impl ProtocolType for ASPublicKeyCredential {
+    pub unsafe trait ASPublicKeyCredential: ASAuthorizationCredential {
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other rawClientDataJSON)]
-        pub unsafe fn rawClientDataJSON(&self) -> Id<NSData, Shared>;
+        unsafe fn rawClientDataJSON(&self) -> Id<NSData, Shared>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other credentialID)]
-        pub unsafe fn credentialID(&self) -> Id<NSData, Shared>;
+        unsafe fn credentialID(&self) -> Id<NSData, Shared>;
     }
+
+    unsafe impl ProtocolType for dyn ASPublicKeyCredential {}
 );

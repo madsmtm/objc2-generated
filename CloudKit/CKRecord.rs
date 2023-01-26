@@ -16,9 +16,9 @@ extern_static!(CKRecordParentKey: &'static CKRecordFieldKey);
 extern_static!(CKRecordShareKey: &'static CKRecordFieldKey);
 
 extern_protocol!(
-    pub struct CKRecordValue;
+    pub unsafe trait CKRecordValue: NSObjectProtocol {}
 
-    unsafe impl ProtocolType for CKRecordValue {}
+    unsafe impl ProtocolType for dyn CKRecordValue {}
 );
 
 extern_class!(
@@ -94,12 +94,12 @@ extern_methods!(
         pub unsafe fn objectForKey(
             &self,
             key: &CKRecordFieldKey,
-        ) -> Option<Id<CKRecordValue, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn CKRecordValue>, Shared>>;
 
         #[method(setObject:forKey:)]
         pub unsafe fn setObject_forKey(
             &self,
-            object: Option<&CKRecordValue>,
+            object: Option<&ProtocolObject<dyn CKRecordValue>>,
             key: &CKRecordFieldKey,
         );
 
@@ -115,12 +115,12 @@ extern_methods!(
         pub unsafe fn objectForKeyedSubscript(
             &self,
             key: &CKRecordFieldKey,
-        ) -> Option<Id<CKRecordValue, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn CKRecordValue>, Shared>>;
 
         #[method(setObject:forKeyedSubscript:)]
         pub unsafe fn setObject_forKeyedSubscript(
             &self,
-            object: Option<&CKRecordValue>,
+            object: Option<&ProtocolObject<dyn CKRecordValue>>,
             key: &CKRecordFieldKey,
         );
 
@@ -202,43 +202,43 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct CKRecordKeyValueSetting;
-
-    unsafe impl ProtocolType for CKRecordKeyValueSetting {
+    pub unsafe trait CKRecordKeyValueSetting: NSObjectProtocol {
         #[method_id(@__retain_semantics Other objectForKey:)]
-        pub unsafe fn objectForKey(
+        unsafe fn objectForKey(
             &self,
             key: &CKRecordFieldKey,
-        ) -> Option<Id<CKRecordValue, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn CKRecordValue>, Shared>>;
 
         #[method(setObject:forKey:)]
-        pub unsafe fn setObject_forKey(
+        unsafe fn setObject_forKey(
             &self,
-            object: Option<&CKRecordValue>,
+            object: Option<&ProtocolObject<dyn CKRecordValue>>,
             key: &CKRecordFieldKey,
         );
 
         #[method_id(@__retain_semantics Other objectForKeyedSubscript:)]
-        pub unsafe fn objectForKeyedSubscript(
+        unsafe fn objectForKeyedSubscript(
             &self,
             key: &CKRecordFieldKey,
-        ) -> Option<Id<CKRecordValue, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn CKRecordValue>, Shared>>;
 
         #[method(setObject:forKeyedSubscript:)]
-        pub unsafe fn setObject_forKeyedSubscript(
+        unsafe fn setObject_forKeyedSubscript(
             &self,
-            object: Option<&CKRecordValue>,
+            object: Option<&ProtocolObject<dyn CKRecordValue>>,
             key: &CKRecordFieldKey,
         );
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other allKeys)]
-        pub unsafe fn allKeys(&self) -> Id<NSArray<CKRecordFieldKey>, Shared>;
+        unsafe fn allKeys(&self) -> Id<NSArray<CKRecordFieldKey>, Shared>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other changedKeys)]
-        pub unsafe fn changedKeys(&self) -> Id<NSArray<CKRecordFieldKey>, Shared>;
+        unsafe fn changedKeys(&self) -> Id<NSArray<CKRecordFieldKey>, Shared>;
     }
+
+    unsafe impl ProtocolType for dyn CKRecordKeyValueSetting {}
 );
 
 extern_methods!(
@@ -246,6 +246,8 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKRecord")]
     unsafe impl CKRecord {
         #[method_id(@__retain_semantics Other encryptedValues)]
-        pub unsafe fn encryptedValues(&self) -> Id<CKRecordKeyValueSetting, Shared>;
+        pub unsafe fn encryptedValues(
+            &self,
+        ) -> Id<ProtocolObject<dyn CKRecordKeyValueSetting>, Shared>;
     }
 );

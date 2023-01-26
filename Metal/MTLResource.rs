@@ -66,48 +66,48 @@ ns_options!(
 );
 
 extern_protocol!(
-    pub struct MTLResource;
-
-    unsafe impl ProtocolType for MTLResource {
+    pub unsafe trait MTLResource: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
-        pub fn label(&self) -> Option<Id<NSString, Shared>>;
+        fn label(&self) -> Option<Id<NSString, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:)]
-        pub fn setLabel(&self, label: Option<&NSString>);
+        fn setLabel(&self, label: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other device)]
-        pub fn device(&self) -> Id<MTLDevice, Shared>;
+        fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>, Shared>;
 
         #[method(cpuCacheMode)]
-        pub fn cpuCacheMode(&self) -> MTLCPUCacheMode;
+        fn cpuCacheMode(&self) -> MTLCPUCacheMode;
 
         #[method(storageMode)]
-        pub fn storageMode(&self) -> MTLStorageMode;
+        fn storageMode(&self) -> MTLStorageMode;
 
         #[method(hazardTrackingMode)]
-        pub fn hazardTrackingMode(&self) -> MTLHazardTrackingMode;
+        fn hazardTrackingMode(&self) -> MTLHazardTrackingMode;
 
         #[method(resourceOptions)]
-        pub fn resourceOptions(&self) -> MTLResourceOptions;
+        fn resourceOptions(&self) -> MTLResourceOptions;
 
         #[method(setPurgeableState:)]
-        pub fn setPurgeableState(&self, state: MTLPurgeableState) -> MTLPurgeableState;
+        fn setPurgeableState(&self, state: MTLPurgeableState) -> MTLPurgeableState;
 
         #[method_id(@__retain_semantics Other heap)]
-        pub fn heap(&self) -> Option<Id<MTLHeap, Shared>>;
+        fn heap(&self) -> Option<Id<ProtocolObject<dyn MTLHeap>, Shared>>;
 
         #[method(heapOffset)]
-        pub fn heapOffset(&self) -> NSUInteger;
+        fn heapOffset(&self) -> NSUInteger;
 
         #[method(allocatedSize)]
-        pub fn allocatedSize(&self) -> NSUInteger;
+        fn allocatedSize(&self) -> NSUInteger;
 
         #[method(makeAliasable)]
-        pub unsafe fn makeAliasable(&self);
+        unsafe fn makeAliasable(&self);
 
         #[method(isAliasable)]
-        pub fn isAliasable(&self) -> bool;
+        fn isAliasable(&self) -> bool;
     }
+
+    unsafe impl ProtocolType for dyn MTLResource {}
 );

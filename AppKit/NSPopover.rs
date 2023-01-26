@@ -39,10 +39,10 @@ extern_methods!(
         ) -> Option<Id<Self, Shared>>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<NSPopoverDelegate, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSPopoverDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&NSPopoverDelegate>);
+        pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSPopoverDelegate>>);
 
         #[method(behavior)]
         pub unsafe fn behavior(&self) -> NSPopoverBehavior;
@@ -121,28 +121,26 @@ extern_static!(NSPopoverWillCloseNotification: &'static NSNotificationName);
 extern_static!(NSPopoverDidCloseNotification: &'static NSNotificationName);
 
 extern_protocol!(
-    pub struct NSPopoverDelegate;
-
-    unsafe impl ProtocolType for NSPopoverDelegate {
+    pub unsafe trait NSPopoverDelegate: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSPopover")]
         #[optional]
         #[method(popoverShouldClose:)]
-        pub unsafe fn popoverShouldClose(&self, popover: &NSPopover) -> bool;
+        unsafe fn popoverShouldClose(&self, popover: &NSPopover) -> bool;
 
         #[cfg(feature = "AppKit_NSPopover")]
         #[optional]
         #[method(popoverShouldDetach:)]
-        pub unsafe fn popoverShouldDetach(&self, popover: &NSPopover) -> bool;
+        unsafe fn popoverShouldDetach(&self, popover: &NSPopover) -> bool;
 
         #[cfg(feature = "AppKit_NSPopover")]
         #[optional]
         #[method(popoverDidDetach:)]
-        pub unsafe fn popoverDidDetach(&self, popover: &NSPopover);
+        unsafe fn popoverDidDetach(&self, popover: &NSPopover);
 
         #[cfg(all(feature = "AppKit_NSPopover", feature = "AppKit_NSWindow"))]
         #[optional]
         #[method_id(@__retain_semantics Other detachableWindowForPopover:)]
-        pub unsafe fn detachableWindowForPopover(
+        unsafe fn detachableWindowForPopover(
             &self,
             popover: &NSPopover,
         ) -> Option<Id<NSWindow, Shared>>;
@@ -150,21 +148,23 @@ extern_protocol!(
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(popoverWillShow:)]
-        pub unsafe fn popoverWillShow(&self, notification: &NSNotification);
+        unsafe fn popoverWillShow(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(popoverDidShow:)]
-        pub unsafe fn popoverDidShow(&self, notification: &NSNotification);
+        unsafe fn popoverDidShow(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(popoverWillClose:)]
-        pub unsafe fn popoverWillClose(&self, notification: &NSNotification);
+        unsafe fn popoverWillClose(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(popoverDidClose:)]
-        pub unsafe fn popoverDidClose(&self, notification: &NSNotification);
+        unsafe fn popoverDidClose(&self, notification: &NSNotification);
     }
+
+    unsafe impl ProtocolType for dyn NSPopoverDelegate {}
 );

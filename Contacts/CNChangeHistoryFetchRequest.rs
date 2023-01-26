@@ -31,13 +31,15 @@ extern_methods!(
         #[method_id(@__retain_semantics Other additionalContactKeyDescriptors)]
         pub unsafe fn additionalContactKeyDescriptors(
             &self,
-        ) -> Option<Id<NSArray<CNKeyDescriptor>, Shared>>;
+        ) -> Option<Id<NSArray<ProtocolObject<dyn CNKeyDescriptor>>, Shared>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setAdditionalContactKeyDescriptors:)]
         pub unsafe fn setAdditionalContactKeyDescriptors(
             &self,
-            additional_contact_key_descriptors: Option<&NSArray<CNKeyDescriptor>>,
+            additional_contact_key_descriptors: Option<
+                &NSArray<ProtocolObject<dyn CNKeyDescriptor>>,
+            >,
         );
 
         #[method(shouldUnifyResults)]

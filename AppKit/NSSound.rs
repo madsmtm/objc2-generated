@@ -92,10 +92,10 @@ extern_methods!(
         pub unsafe fn isPlaying(&self) -> bool;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<NSSoundDelegate, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSSoundDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&NSSoundDelegate>);
+        pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSSoundDelegate>>);
 
         #[method(duration)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
@@ -158,14 +158,14 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct NSSoundDelegate;
-
-    unsafe impl ProtocolType for NSSoundDelegate {
+    pub unsafe trait NSSoundDelegate: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSSound")]
         #[optional]
         #[method(sound:didFinishPlaying:)]
-        pub unsafe fn sound_didFinishPlaying(&self, sound: &NSSound, flag: bool);
+        unsafe fn sound_didFinishPlaying(&self, sound: &NSSound, flag: bool);
     }
+
+    unsafe impl ProtocolType for dyn NSSoundDelegate {}
 );
 
 extern_methods!(

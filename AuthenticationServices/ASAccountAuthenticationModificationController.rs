@@ -5,9 +5,9 @@ use crate::AuthenticationServices::*;
 use crate::Foundation::*;
 
 extern_protocol!(
-    pub struct ASAccountAuthenticationModificationControllerDelegate;
-
-    unsafe impl ProtocolType for ASAccountAuthenticationModificationControllerDelegate {
+    pub unsafe trait ASAccountAuthenticationModificationControllerDelegate:
+        NSObjectProtocol
+    {
         #[cfg(all(
             feature = "AuthenticationServices_ASAccountAuthenticationModificationController",
             feature = "AuthenticationServices_ASAccountAuthenticationModificationRequest",
@@ -15,7 +15,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(accountAuthenticationModificationController:didSuccessfullyCompleteRequest:withUserInfo:)]
-        pub unsafe fn accountAuthenticationModificationController_didSuccessfullyCompleteRequest_withUserInfo(
+        unsafe fn accountAuthenticationModificationController_didSuccessfullyCompleteRequest_withUserInfo(
             &self,
             controller: &ASAccountAuthenticationModificationController,
             request: &ASAccountAuthenticationModificationRequest,
@@ -29,27 +29,32 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(accountAuthenticationModificationController:didFailRequest:withError:)]
-        pub unsafe fn accountAuthenticationModificationController_didFailRequest_withError(
+        unsafe fn accountAuthenticationModificationController_didFailRequest_withError(
             &self,
             controller: &ASAccountAuthenticationModificationController,
             request: &ASAccountAuthenticationModificationRequest,
             error: &NSError,
         );
     }
+
+    unsafe impl ProtocolType for dyn ASAccountAuthenticationModificationControllerDelegate {}
 );
 
 extern_protocol!(
-    pub struct ASAccountAuthenticationModificationControllerPresentationContextProviding;
-
-    unsafe impl ProtocolType
-        for ASAccountAuthenticationModificationControllerPresentationContextProviding
+    pub unsafe trait ASAccountAuthenticationModificationControllerPresentationContextProviding:
+        NSObjectProtocol
     {
         #[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationController")]
         #[method_id(@__retain_semantics Other presentationAnchorForAccountAuthenticationModificationController:)]
-        pub unsafe fn presentationAnchorForAccountAuthenticationModificationController(
+        unsafe fn presentationAnchorForAccountAuthenticationModificationController(
             &self,
             controller: &ASAccountAuthenticationModificationController,
         ) -> Id<ASPresentationAnchor, Shared>;
+    }
+
+    unsafe impl ProtocolType
+        for dyn ASAccountAuthenticationModificationControllerPresentationContextProviding
+    {
     }
 );
 
@@ -70,26 +75,37 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ASAccountAuthenticationModificationControllerDelegate, Shared>>;
+        ) -> Option<
+            Id<ProtocolObject<dyn ASAccountAuthenticationModificationControllerDelegate>, Shared>,
+        >;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
-            delegate: Option<&ASAccountAuthenticationModificationControllerDelegate>,
+            delegate: Option<
+                &ProtocolObject<dyn ASAccountAuthenticationModificationControllerDelegate>,
+            >,
         );
 
         #[method_id(@__retain_semantics Other presentationContextProvider)]
         pub unsafe fn presentationContextProvider(
             &self,
         ) -> Option<
-            Id<ASAccountAuthenticationModificationControllerPresentationContextProviding, Shared>,
+            Id<
+                ProtocolObject<
+                    dyn ASAccountAuthenticationModificationControllerPresentationContextProviding,
+                >,
+                Shared,
+            >,
         >;
 
         #[method(setPresentationContextProvider:)]
         pub unsafe fn setPresentationContextProvider(
             &self,
             presentation_context_provider: Option<
-                &ASAccountAuthenticationModificationControllerPresentationContextProviding,
+                &ProtocolObject<
+                    dyn ASAccountAuthenticationModificationControllerPresentationContextProviding,
+                >,
             >,
         );
 

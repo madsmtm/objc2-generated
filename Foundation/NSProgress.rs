@@ -248,13 +248,13 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct NSProgressReporting;
-
-    unsafe impl ProtocolType for NSProgressReporting {
+    pub unsafe trait NSProgressReporting: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSProgress")]
         #[method_id(@__retain_semantics Other progress)]
-        pub unsafe fn progress(&self) -> Id<NSProgress, Shared>;
+        unsafe fn progress(&self) -> Id<NSProgress, Shared>;
     }
+
+    unsafe impl ProtocolType for dyn NSProgressReporting {}
 );
 
 extern_static!(NSProgressEstimatedTimeRemainingKey: &'static NSProgressUserInfoKey);

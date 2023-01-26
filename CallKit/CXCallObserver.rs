@@ -5,17 +5,13 @@ use crate::CallKit::*;
 use crate::Foundation::*;
 
 extern_protocol!(
-    pub struct CXCallObserverDelegate;
-
-    unsafe impl ProtocolType for CXCallObserverDelegate {
+    pub unsafe trait CXCallObserverDelegate: NSObjectProtocol {
         #[cfg(all(feature = "CallKit_CXCall", feature = "CallKit_CXCallObserver"))]
         #[method(callObserver:callChanged:)]
-        pub unsafe fn callObserver_callChanged(
-            &self,
-            call_observer: &CXCallObserver,
-            call: &CXCall,
-        );
+        unsafe fn callObserver_callChanged(&self, call_observer: &CXCallObserver, call: &CXCall);
     }
+
+    unsafe impl ProtocolType for dyn CXCallObserverDelegate {}
 );
 
 extern_class!(

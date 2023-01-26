@@ -13,12 +13,10 @@ extern_enum!(
 );
 
 extern_protocol!(
-    pub struct NSTextAttachmentContainer;
-
-    unsafe impl ProtocolType for NSTextAttachmentContainer {
+    pub unsafe trait NSTextAttachmentContainer: NSObjectProtocol {
         #[cfg(all(feature = "AppKit_NSImage", feature = "AppKit_NSTextContainer"))]
         #[method_id(@__retain_semantics Other imageForBounds:textContainer:characterIndex:)]
-        pub unsafe fn imageForBounds_textContainer_characterIndex(
+        unsafe fn imageForBounds_textContainer_characterIndex(
             &self,
             image_bounds: CGRect,
             text_container: Option<&NSTextContainer>,
@@ -27,7 +25,7 @@ extern_protocol!(
 
         #[cfg(feature = "AppKit_NSTextContainer")]
         #[method(attachmentBoundsForTextContainer:proposedLineFragment:glyphPosition:characterIndex:)]
-        pub unsafe fn attachmentBoundsForTextContainer_proposedLineFragment_glyphPosition_characterIndex(
+        unsafe fn attachmentBoundsForTextContainer_proposedLineFragment_glyphPosition_characterIndex(
             &self,
             text_container: Option<&NSTextContainer>,
             line_frag: CGRect,
@@ -35,23 +33,23 @@ extern_protocol!(
             char_index: NSUInteger,
         ) -> CGRect;
     }
+
+    unsafe impl ProtocolType for dyn NSTextAttachmentContainer {}
 );
 
 extern_protocol!(
-    pub struct NSTextAttachmentLayout;
-
-    unsafe impl ProtocolType for NSTextAttachmentLayout {
+    pub unsafe trait NSTextAttachmentLayout: NSObjectProtocol {
         #[cfg(all(
             feature = "AppKit_NSImage",
             feature = "AppKit_NSTextContainer",
             feature = "Foundation_NSDictionary"
         ))]
         #[method_id(@__retain_semantics Other imageForBounds:attributes:location:textContainer:)]
-        pub unsafe fn imageForBounds_attributes_location_textContainer(
+        unsafe fn imageForBounds_attributes_location_textContainer(
             &self,
             bounds: CGRect,
             attributes: &NSDictionary<NSAttributedStringKey, Object>,
-            location: &NSTextLocation,
+            location: &ProtocolObject<dyn NSTextLocation>,
             text_container: Option<&NSTextContainer>,
         ) -> Option<Id<NSImage, Shared>>;
 
@@ -60,10 +58,10 @@ extern_protocol!(
             feature = "Foundation_NSDictionary"
         ))]
         #[method(attachmentBoundsForAttributes:location:textContainer:proposedLineFragment:position:)]
-        pub unsafe fn attachmentBoundsForAttributes_location_textContainer_proposedLineFragment_position(
+        unsafe fn attachmentBoundsForAttributes_location_textContainer_proposedLineFragment_position(
             &self,
             attributes: &NSDictionary<NSAttributedStringKey, Object>,
-            location: &NSTextLocation,
+            location: &ProtocolObject<dyn NSTextLocation>,
             text_container: Option<&NSTextContainer>,
             proposed_line_fragment: CGRect,
             position: CGPoint,
@@ -75,13 +73,15 @@ extern_protocol!(
             feature = "AppKit_NSView"
         ))]
         #[method_id(@__retain_semantics Other viewProviderForParentView:location:textContainer:)]
-        pub unsafe fn viewProviderForParentView_location_textContainer(
+        unsafe fn viewProviderForParentView_location_textContainer(
             &self,
             parent_view: Option<&NSView>,
-            location: &NSTextLocation,
+            location: &ProtocolObject<dyn NSTextLocation>,
             text_container: Option<&NSTextContainer>,
         ) -> Option<Id<NSTextAttachmentViewProvider, Shared>>;
     }
+
+    unsafe impl ProtocolType for dyn NSTextAttachmentLayout {}
 );
 
 extern_class!(
@@ -152,10 +152,15 @@ extern_methods!(
         pub unsafe fn setFileWrapper(&self, file_wrapper: Option<&NSFileWrapper>);
 
         #[method_id(@__retain_semantics Other attachmentCell)]
-        pub unsafe fn attachmentCell(&self) -> Option<Id<NSTextAttachmentCell, Shared>>;
+        pub unsafe fn attachmentCell(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn NSTextAttachmentCell>, Shared>>;
 
         #[method(setAttachmentCell:)]
-        pub unsafe fn setAttachmentCell(&self, attachment_cell: Option<&NSTextAttachmentCell>);
+        pub unsafe fn setAttachmentCell(
+            &self,
+            attachment_cell: Option<&ProtocolObject<dyn NSTextAttachmentCell>>,
+        );
 
         #[method(lineLayoutPadding)]
         pub unsafe fn lineLayoutPadding(&self) -> CGFloat;
@@ -224,7 +229,7 @@ extern_methods!(
             text_attachment: &NSTextAttachment,
             parent_view: Option<&NSView>,
             text_layout_manager: Option<&NSTextLayoutManager>,
-            location: &NSTextLocation,
+            location: &ProtocolObject<dyn NSTextLocation>,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Init init)]
@@ -242,7 +247,7 @@ extern_methods!(
         pub unsafe fn textLayoutManager(&self) -> Option<Id<NSTextLayoutManager, Shared>>;
 
         #[method_id(@__retain_semantics Other location)]
-        pub unsafe fn location(&self) -> Id<NSTextLocation, Shared>;
+        pub unsafe fn location(&self) -> Id<ProtocolObject<dyn NSTextLocation>, Shared>;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other view)]
@@ -272,7 +277,7 @@ extern_methods!(
         pub unsafe fn attachmentBoundsForAttributes_location_textContainer_proposedLineFragment_position(
             &self,
             attributes: &NSDictionary<NSAttributedStringKey, Object>,
-            location: &NSTextLocation,
+            location: &ProtocolObject<dyn NSTextLocation>,
             text_container: Option<&NSTextContainer>,
             proposed_line_fragment: CGRect,
             position: CGPoint,

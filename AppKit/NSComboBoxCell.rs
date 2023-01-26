@@ -91,10 +91,15 @@ extern_methods!(
         pub unsafe fn completedString(&self, string: &NSString) -> Option<Id<NSString, Shared>>;
 
         #[method_id(@__retain_semantics Other dataSource)]
-        pub unsafe fn dataSource(&self) -> Option<Id<NSComboBoxCellDataSource, Shared>>;
+        pub unsafe fn dataSource(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn NSComboBoxCellDataSource>, Shared>>;
 
         #[method(setDataSource:)]
-        pub unsafe fn setDataSource(&self, data_source: Option<&NSComboBoxCellDataSource>);
+        pub unsafe fn setDataSource(
+            &self,
+            data_source: Option<&ProtocolObject<dyn NSComboBoxCellDataSource>>,
+        );
 
         #[method(addItemWithObjectValue:)]
         pub unsafe fn addItemWithObjectValue(&self, object: &Object);
@@ -134,21 +139,16 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct NSComboBoxCellDataSource;
-
-    unsafe impl ProtocolType for NSComboBoxCellDataSource {
+    pub unsafe trait NSComboBoxCellDataSource: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSComboBoxCell")]
         #[optional]
         #[method(numberOfItemsInComboBoxCell:)]
-        pub unsafe fn numberOfItemsInComboBoxCell(
-            &self,
-            combo_box_cell: &NSComboBoxCell,
-        ) -> NSInteger;
+        unsafe fn numberOfItemsInComboBoxCell(&self, combo_box_cell: &NSComboBoxCell) -> NSInteger;
 
         #[cfg(feature = "AppKit_NSComboBoxCell")]
         #[optional]
         #[method_id(@__retain_semantics Other comboBoxCell:objectValueForItemAtIndex:)]
-        pub unsafe fn comboBoxCell_objectValueForItemAtIndex(
+        unsafe fn comboBoxCell_objectValueForItemAtIndex(
             &self,
             combo_box_cell: &NSComboBoxCell,
             index: NSInteger,
@@ -157,7 +157,7 @@ extern_protocol!(
         #[cfg(all(feature = "AppKit_NSComboBoxCell", feature = "Foundation_NSString"))]
         #[optional]
         #[method(comboBoxCell:indexOfItemWithStringValue:)]
-        pub unsafe fn comboBoxCell_indexOfItemWithStringValue(
+        unsafe fn comboBoxCell_indexOfItemWithStringValue(
             &self,
             combo_box_cell: &NSComboBoxCell,
             string: &NSString,
@@ -166,12 +166,14 @@ extern_protocol!(
         #[cfg(all(feature = "AppKit_NSComboBoxCell", feature = "Foundation_NSString"))]
         #[optional]
         #[method_id(@__retain_semantics Other comboBoxCell:completedString:)]
-        pub unsafe fn comboBoxCell_completedString(
+        unsafe fn comboBoxCell_completedString(
             &self,
             combo_box_cell: &NSComboBoxCell,
             uncompleted_string: &NSString,
         ) -> Option<Id<NSString, Shared>>;
     }
+
+    unsafe impl ProtocolType for dyn NSComboBoxCellDataSource {}
 );
 
 extern_methods!(

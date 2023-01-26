@@ -6,66 +6,62 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 extern_protocol!(
-    pub struct NSTextInput;
-
-    unsafe impl ProtocolType for NSTextInput {
+    pub unsafe trait NSTextInput {
         #[deprecated]
         #[method(insertText:)]
-        pub unsafe fn insertText(&self, string: Option<&Object>);
+        unsafe fn insertText(&self, string: Option<&Object>);
 
         #[deprecated]
         #[method(doCommandBySelector:)]
-        pub unsafe fn doCommandBySelector(&self, selector: Option<Sel>);
+        unsafe fn doCommandBySelector(&self, selector: Option<Sel>);
 
         #[deprecated]
         #[method(setMarkedText:selectedRange:)]
-        pub unsafe fn setMarkedText_selectedRange(
-            &self,
-            string: Option<&Object>,
-            sel_range: NSRange,
-        );
+        unsafe fn setMarkedText_selectedRange(&self, string: Option<&Object>, sel_range: NSRange);
 
         #[deprecated]
         #[method(unmarkText)]
-        pub unsafe fn unmarkText(&self);
+        unsafe fn unmarkText(&self);
 
         #[deprecated]
         #[method(hasMarkedText)]
-        pub unsafe fn hasMarkedText(&self) -> bool;
+        unsafe fn hasMarkedText(&self) -> bool;
 
         #[deprecated]
         #[method(conversationIdentifier)]
-        pub unsafe fn conversationIdentifier(&self) -> NSInteger;
+        unsafe fn conversationIdentifier(&self) -> NSInteger;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[deprecated]
         #[method_id(@__retain_semantics Other attributedSubstringFromRange:)]
-        pub unsafe fn attributedSubstringFromRange(
+        unsafe fn attributedSubstringFromRange(
             &self,
             range: NSRange,
         ) -> Option<Id<NSAttributedString, Shared>>;
 
         #[deprecated]
         #[method(markedRange)]
-        pub unsafe fn markedRange(&self) -> NSRange;
+        unsafe fn markedRange(&self) -> NSRange;
 
         #[deprecated]
         #[method(selectedRange)]
-        pub unsafe fn selectedRange(&self) -> NSRange;
+        unsafe fn selectedRange(&self) -> NSRange;
 
         #[deprecated]
         #[method(firstRectForCharacterRange:)]
-        pub unsafe fn firstRectForCharacterRange(&self, range: NSRange) -> NSRect;
+        unsafe fn firstRectForCharacterRange(&self, range: NSRange) -> NSRect;
 
         #[deprecated]
         #[method(characterIndexForPoint:)]
-        pub unsafe fn characterIndexForPoint(&self, point: NSPoint) -> NSUInteger;
+        unsafe fn characterIndexForPoint(&self, point: NSPoint) -> NSUInteger;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[deprecated]
         #[method_id(@__retain_semantics Other validAttributesForMarkedText)]
-        pub unsafe fn validAttributesForMarkedText(&self) -> Option<Id<NSArray, Shared>>;
+        unsafe fn validAttributesForMarkedText(&self) -> Option<Id<NSArray, Shared>>;
     }
+
+    unsafe impl ProtocolType for dyn NSTextInput {}
 );
 
 extern_class!(

@@ -8,19 +8,19 @@ use crate::Foundation::*;
 pub type NSSearchFieldRecentsAutosaveName = NSString;
 
 extern_protocol!(
-    pub struct NSSearchFieldDelegate;
-
-    unsafe impl ProtocolType for NSSearchFieldDelegate {
+    pub unsafe trait NSSearchFieldDelegate: NSTextFieldDelegate {
         #[cfg(feature = "AppKit_NSSearchField")]
         #[optional]
         #[method(searchFieldDidStartSearching:)]
-        pub unsafe fn searchFieldDidStartSearching(&self, sender: &NSSearchField);
+        unsafe fn searchFieldDidStartSearching(&self, sender: &NSSearchField);
 
         #[cfg(feature = "AppKit_NSSearchField")]
         #[optional]
         #[method(searchFieldDidEndSearching:)]
-        pub unsafe fn searchFieldDidEndSearching(&self, sender: &NSSearchField);
+        unsafe fn searchFieldDidEndSearching(&self, sender: &NSSearchField);
     }
+
+    unsafe impl ProtocolType for dyn NSSearchFieldDelegate {}
 );
 
 extern_class!(
@@ -93,10 +93,15 @@ extern_methods!(
         pub unsafe fn setSendsSearchStringImmediately(&self, sends_search_string_immediately: bool);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<NSSearchFieldDelegate, Shared>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn NSSearchFieldDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&NSSearchFieldDelegate>);
+        pub unsafe fn setDelegate(
+            &self,
+            delegate: Option<&ProtocolObject<dyn NSSearchFieldDelegate>>,
+        );
     }
 );
 

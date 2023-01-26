@@ -14,18 +14,16 @@ extern_static!(NSComboBoxSelectionDidChangeNotification: &'static NSNotification
 extern_static!(NSComboBoxSelectionIsChangingNotification: &'static NSNotificationName);
 
 extern_protocol!(
-    pub struct NSComboBoxDataSource;
-
-    unsafe impl ProtocolType for NSComboBoxDataSource {
+    pub unsafe trait NSComboBoxDataSource: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSComboBox")]
         #[optional]
         #[method(numberOfItemsInComboBox:)]
-        pub unsafe fn numberOfItemsInComboBox(&self, combo_box: &NSComboBox) -> NSInteger;
+        unsafe fn numberOfItemsInComboBox(&self, combo_box: &NSComboBox) -> NSInteger;
 
         #[cfg(feature = "AppKit_NSComboBox")]
         #[optional]
         #[method_id(@__retain_semantics Other comboBox:objectValueForItemAtIndex:)]
-        pub unsafe fn comboBox_objectValueForItemAtIndex(
+        unsafe fn comboBox_objectValueForItemAtIndex(
             &self,
             combo_box: &NSComboBox,
             index: NSInteger,
@@ -34,7 +32,7 @@ extern_protocol!(
         #[cfg(all(feature = "AppKit_NSComboBox", feature = "Foundation_NSString"))]
         #[optional]
         #[method(comboBox:indexOfItemWithStringValue:)]
-        pub unsafe fn comboBox_indexOfItemWithStringValue(
+        unsafe fn comboBox_indexOfItemWithStringValue(
             &self,
             combo_box: &NSComboBox,
             string: &NSString,
@@ -43,38 +41,40 @@ extern_protocol!(
         #[cfg(all(feature = "AppKit_NSComboBox", feature = "Foundation_NSString"))]
         #[optional]
         #[method_id(@__retain_semantics Other comboBox:completedString:)]
-        pub unsafe fn comboBox_completedString(
+        unsafe fn comboBox_completedString(
             &self,
             combo_box: &NSComboBox,
             string: &NSString,
         ) -> Option<Id<NSString, Shared>>;
     }
+
+    unsafe impl ProtocolType for dyn NSComboBoxDataSource {}
 );
 
 extern_protocol!(
-    pub struct NSComboBoxDelegate;
-
-    unsafe impl ProtocolType for NSComboBoxDelegate {
+    pub unsafe trait NSComboBoxDelegate: NSTextFieldDelegate {
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(comboBoxWillPopUp:)]
-        pub unsafe fn comboBoxWillPopUp(&self, notification: &NSNotification);
+        unsafe fn comboBoxWillPopUp(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(comboBoxWillDismiss:)]
-        pub unsafe fn comboBoxWillDismiss(&self, notification: &NSNotification);
+        unsafe fn comboBoxWillDismiss(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(comboBoxSelectionDidChange:)]
-        pub unsafe fn comboBoxSelectionDidChange(&self, notification: &NSNotification);
+        unsafe fn comboBoxSelectionDidChange(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(comboBoxSelectionIsChanging:)]
-        pub unsafe fn comboBoxSelectionIsChanging(&self, notification: &NSNotification);
+        unsafe fn comboBoxSelectionIsChanging(&self, notification: &NSNotification);
     }
+
+    unsafe impl ProtocolType for dyn NSComboBoxDelegate {}
 );
 
 extern_class!(
@@ -159,16 +159,22 @@ extern_methods!(
         pub unsafe fn setCompletes(&self, completes: bool);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<NSComboBoxDelegate, Shared>>;
+        pub unsafe fn delegate(&self)
+            -> Option<Id<ProtocolObject<dyn NSComboBoxDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&NSComboBoxDelegate>);
+        pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSComboBoxDelegate>>);
 
         #[method_id(@__retain_semantics Other dataSource)]
-        pub unsafe fn dataSource(&self) -> Option<Id<NSComboBoxDataSource, Shared>>;
+        pub unsafe fn dataSource(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn NSComboBoxDataSource>, Shared>>;
 
         #[method(setDataSource:)]
-        pub unsafe fn setDataSource(&self, data_source: Option<&NSComboBoxDataSource>);
+        pub unsafe fn setDataSource(
+            &self,
+            data_source: Option<&ProtocolObject<dyn NSComboBoxDataSource>>,
+        );
 
         #[method(addItemWithObjectValue:)]
         pub unsafe fn addItemWithObjectValue(&self, object: &Object);

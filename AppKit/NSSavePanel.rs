@@ -50,10 +50,15 @@ extern_methods!(
         pub unsafe fn setAccessoryView(&self, accessory_view: Option<&NSView>);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<NSOpenSavePanelDelegate, Shared>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn NSOpenSavePanelDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&NSOpenSavePanelDelegate>);
+        pub unsafe fn setDelegate(
+            &self,
+            delegate: Option<&ProtocolObject<dyn NSOpenSavePanelDelegate>>,
+        );
 
         #[method(isExpanded)]
         pub unsafe fn isExpanded(&self) -> bool;
@@ -170,18 +175,16 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct NSOpenSavePanelDelegate;
-
-    unsafe impl ProtocolType for NSOpenSavePanelDelegate {
+    pub unsafe trait NSOpenSavePanelDelegate: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSURL")]
         #[optional]
         #[method(panel:shouldEnableURL:)]
-        pub unsafe fn panel_shouldEnableURL(&self, sender: &Object, url: &NSURL) -> bool;
+        unsafe fn panel_shouldEnableURL(&self, sender: &Object, url: &NSURL) -> bool;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[optional]
         #[method(panel:validateURL:error:_)]
-        pub unsafe fn panel_validateURL_error(
+        unsafe fn panel_validateURL_error(
             &self,
             sender: &Object,
             url: &NSURL,
@@ -190,12 +193,12 @@ extern_protocol!(
         #[cfg(feature = "Foundation_NSURL")]
         #[optional]
         #[method(panel:didChangeToDirectoryURL:)]
-        pub unsafe fn panel_didChangeToDirectoryURL(&self, sender: &Object, url: Option<&NSURL>);
+        unsafe fn panel_didChangeToDirectoryURL(&self, sender: &Object, url: Option<&NSURL>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[optional]
         #[method_id(@__retain_semantics Other panel:userEnteredFilename:confirmed:)]
-        pub unsafe fn panel_userEnteredFilename_confirmed(
+        unsafe fn panel_userEnteredFilename_confirmed(
             &self,
             sender: &Object,
             filename: &NSString,
@@ -204,12 +207,14 @@ extern_protocol!(
 
         #[optional]
         #[method(panel:willExpand:)]
-        pub unsafe fn panel_willExpand(&self, sender: &Object, expanding: bool);
+        unsafe fn panel_willExpand(&self, sender: &Object, expanding: bool);
 
         #[optional]
         #[method(panelSelectionDidChange:)]
-        pub unsafe fn panelSelectionDidChange(&self, sender: Option<&Object>);
+        unsafe fn panelSelectionDidChange(&self, sender: Option<&Object>);
     }
+
+    unsafe impl ProtocolType for dyn NSOpenSavePanelDelegate {}
 );
 
 extern_methods!(

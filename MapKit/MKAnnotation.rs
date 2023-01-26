@@ -8,24 +8,24 @@ use crate::Foundation::*;
 use crate::MapKit::*;
 
 extern_protocol!(
-    pub struct MKAnnotation;
-
-    unsafe impl ProtocolType for MKAnnotation {
+    pub unsafe trait MKAnnotation: NSObjectProtocol {
         #[method(coordinate)]
-        pub unsafe fn coordinate(&self) -> CLLocationCoordinate2D;
+        unsafe fn coordinate(&self) -> CLLocationCoordinate2D;
 
         #[cfg(feature = "Foundation_NSString")]
         #[optional]
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn title(&self) -> Option<Id<NSString, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[optional]
         #[method_id(@__retain_semantics Other subtitle)]
-        pub unsafe fn subtitle(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn subtitle(&self) -> Option<Id<NSString, Shared>>;
 
         #[optional]
         #[method(setCoordinate:)]
-        pub unsafe fn setCoordinate(&self, new_coordinate: CLLocationCoordinate2D);
+        unsafe fn setCoordinate(&self, new_coordinate: CLLocationCoordinate2D);
     }
+
+    unsafe impl ProtocolType for dyn MKAnnotation {}
 );

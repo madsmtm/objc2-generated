@@ -6,20 +6,20 @@ use crate::Foundation::*;
 use crate::WebKit::*;
 
 extern_protocol!(
-    pub struct WKScriptMessageHandlerWithReply;
-
-    unsafe impl ProtocolType for WKScriptMessageHandlerWithReply {
+    pub unsafe trait WKScriptMessageHandlerWithReply: NSObjectProtocol {
         #[cfg(all(
             feature = "Foundation_NSString",
             feature = "WebKit_WKScriptMessage",
             feature = "WebKit_WKUserContentController"
         ))]
         #[method(userContentController:didReceiveScriptMessage:replyHandler:)]
-        pub unsafe fn userContentController_didReceiveScriptMessage_replyHandler(
+        unsafe fn userContentController_didReceiveScriptMessage_replyHandler(
             &self,
             user_content_controller: &WKUserContentController,
             message: &WKScriptMessage,
             reply_handler: &Block<(*mut Object, *mut NSString), ()>,
         );
     }
+
+    unsafe impl ProtocolType for dyn WKScriptMessageHandlerWithReply {}
 );

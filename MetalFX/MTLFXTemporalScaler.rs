@@ -96,151 +96,157 @@ extern_methods!(
         #[method_id(@__retain_semantics New newTemporalScalerWithDevice:)]
         pub unsafe fn newTemporalScalerWithDevice(
             &self,
-            device: &MTLDevice,
-        ) -> Option<Id<MTLFXTemporalScaler, Shared>>;
+            device: &ProtocolObject<dyn MTLDevice>,
+        ) -> Option<Id<ProtocolObject<dyn MTLFXTemporalScaler>, Shared>>;
 
         #[method(supportsDevice:)]
-        pub unsafe fn supportsDevice(device: &MTLDevice) -> bool;
+        pub unsafe fn supportsDevice(device: &ProtocolObject<dyn MTLDevice>) -> bool;
     }
 );
 
 extern_protocol!(
-    pub struct MTLFXTemporalScaler;
-
-    unsafe impl ProtocolType for MTLFXTemporalScaler {
+    pub unsafe trait MTLFXTemporalScaler: NSObjectProtocol {
         #[method(colorTextureUsage)]
-        pub unsafe fn colorTextureUsage(&self) -> MTLTextureUsage;
+        unsafe fn colorTextureUsage(&self) -> MTLTextureUsage;
 
         #[method(depthTextureUsage)]
-        pub unsafe fn depthTextureUsage(&self) -> MTLTextureUsage;
+        unsafe fn depthTextureUsage(&self) -> MTLTextureUsage;
 
         #[method(motionTextureUsage)]
-        pub unsafe fn motionTextureUsage(&self) -> MTLTextureUsage;
+        unsafe fn motionTextureUsage(&self) -> MTLTextureUsage;
 
         #[method(outputTextureUsage)]
-        pub unsafe fn outputTextureUsage(&self) -> MTLTextureUsage;
+        unsafe fn outputTextureUsage(&self) -> MTLTextureUsage;
 
         #[method(inputContentWidth)]
-        pub unsafe fn inputContentWidth(&self) -> NSUInteger;
+        unsafe fn inputContentWidth(&self) -> NSUInteger;
 
         #[method(setInputContentWidth:)]
-        pub unsafe fn setInputContentWidth(&self, input_content_width: NSUInteger);
+        unsafe fn setInputContentWidth(&self, input_content_width: NSUInteger);
 
         #[method(inputContentHeight)]
-        pub unsafe fn inputContentHeight(&self) -> NSUInteger;
+        unsafe fn inputContentHeight(&self) -> NSUInteger;
 
         #[method(setInputContentHeight:)]
-        pub unsafe fn setInputContentHeight(&self, input_content_height: NSUInteger);
+        unsafe fn setInputContentHeight(&self, input_content_height: NSUInteger);
 
         #[method_id(@__retain_semantics Other colorTexture)]
-        pub unsafe fn colorTexture(&self) -> Option<Id<MTLTexture, Shared>>;
+        unsafe fn colorTexture(&self) -> Option<Id<ProtocolObject<dyn MTLTexture>, Shared>>;
 
         #[method(setColorTexture:)]
-        pub unsafe fn setColorTexture(&self, color_texture: Option<&MTLTexture>);
+        unsafe fn setColorTexture(&self, color_texture: Option<&ProtocolObject<dyn MTLTexture>>);
 
         #[method_id(@__retain_semantics Other depthTexture)]
-        pub unsafe fn depthTexture(&self) -> Option<Id<MTLTexture, Shared>>;
+        unsafe fn depthTexture(&self) -> Option<Id<ProtocolObject<dyn MTLTexture>, Shared>>;
 
         #[method(setDepthTexture:)]
-        pub unsafe fn setDepthTexture(&self, depth_texture: Option<&MTLTexture>);
+        unsafe fn setDepthTexture(&self, depth_texture: Option<&ProtocolObject<dyn MTLTexture>>);
 
         #[method_id(@__retain_semantics Other motionTexture)]
-        pub unsafe fn motionTexture(&self) -> Option<Id<MTLTexture, Shared>>;
+        unsafe fn motionTexture(&self) -> Option<Id<ProtocolObject<dyn MTLTexture>, Shared>>;
 
         #[method(setMotionTexture:)]
-        pub unsafe fn setMotionTexture(&self, motion_texture: Option<&MTLTexture>);
+        unsafe fn setMotionTexture(&self, motion_texture: Option<&ProtocolObject<dyn MTLTexture>>);
 
         #[method_id(@__retain_semantics Other outputTexture)]
-        pub unsafe fn outputTexture(&self) -> Option<Id<MTLTexture, Shared>>;
+        unsafe fn outputTexture(&self) -> Option<Id<ProtocolObject<dyn MTLTexture>, Shared>>;
 
         #[method(setOutputTexture:)]
-        pub unsafe fn setOutputTexture(&self, output_texture: Option<&MTLTexture>);
+        unsafe fn setOutputTexture(&self, output_texture: Option<&ProtocolObject<dyn MTLTexture>>);
 
         #[method_id(@__retain_semantics Other exposureTexture)]
-        pub unsafe fn exposureTexture(&self) -> Option<Id<MTLTexture, Shared>>;
+        unsafe fn exposureTexture(&self) -> Option<Id<ProtocolObject<dyn MTLTexture>, Shared>>;
 
         #[method(setExposureTexture:)]
-        pub unsafe fn setExposureTexture(&self, exposure_texture: Option<&MTLTexture>);
+        unsafe fn setExposureTexture(
+            &self,
+            exposure_texture: Option<&ProtocolObject<dyn MTLTexture>>,
+        );
 
         #[method(preExposure)]
-        pub unsafe fn preExposure(&self) -> c_float;
+        unsafe fn preExposure(&self) -> c_float;
 
         #[method(setPreExposure:)]
-        pub unsafe fn setPreExposure(&self, pre_exposure: c_float);
+        unsafe fn setPreExposure(&self, pre_exposure: c_float);
 
         #[method(jitterOffsetX)]
-        pub unsafe fn jitterOffsetX(&self) -> c_float;
+        unsafe fn jitterOffsetX(&self) -> c_float;
 
         #[method(setJitterOffsetX:)]
-        pub unsafe fn setJitterOffsetX(&self, jitter_offset_x: c_float);
+        unsafe fn setJitterOffsetX(&self, jitter_offset_x: c_float);
 
         #[method(jitterOffsetY)]
-        pub unsafe fn jitterOffsetY(&self) -> c_float;
+        unsafe fn jitterOffsetY(&self) -> c_float;
 
         #[method(setJitterOffsetY:)]
-        pub unsafe fn setJitterOffsetY(&self, jitter_offset_y: c_float);
+        unsafe fn setJitterOffsetY(&self, jitter_offset_y: c_float);
 
         #[method(motionVectorScaleX)]
-        pub unsafe fn motionVectorScaleX(&self) -> c_float;
+        unsafe fn motionVectorScaleX(&self) -> c_float;
 
         #[method(setMotionVectorScaleX:)]
-        pub unsafe fn setMotionVectorScaleX(&self, motion_vector_scale_x: c_float);
+        unsafe fn setMotionVectorScaleX(&self, motion_vector_scale_x: c_float);
 
         #[method(motionVectorScaleY)]
-        pub unsafe fn motionVectorScaleY(&self) -> c_float;
+        unsafe fn motionVectorScaleY(&self) -> c_float;
 
         #[method(setMotionVectorScaleY:)]
-        pub unsafe fn setMotionVectorScaleY(&self, motion_vector_scale_y: c_float);
+        unsafe fn setMotionVectorScaleY(&self, motion_vector_scale_y: c_float);
 
         #[method(reset)]
-        pub unsafe fn reset(&self) -> bool;
+        unsafe fn reset(&self) -> bool;
 
         #[method(setReset:)]
-        pub unsafe fn setReset(&self, reset: bool);
+        unsafe fn setReset(&self, reset: bool);
 
         #[method(isDepthReversed)]
-        pub unsafe fn isDepthReversed(&self) -> bool;
+        unsafe fn isDepthReversed(&self) -> bool;
 
         #[method(setDepthReversed:)]
-        pub unsafe fn setDepthReversed(&self, depth_reversed: bool);
+        unsafe fn setDepthReversed(&self, depth_reversed: bool);
 
         #[method(colorTextureFormat)]
-        pub unsafe fn colorTextureFormat(&self) -> MTLPixelFormat;
+        unsafe fn colorTextureFormat(&self) -> MTLPixelFormat;
 
         #[method(depthTextureFormat)]
-        pub unsafe fn depthTextureFormat(&self) -> MTLPixelFormat;
+        unsafe fn depthTextureFormat(&self) -> MTLPixelFormat;
 
         #[method(motionTextureFormat)]
-        pub unsafe fn motionTextureFormat(&self) -> MTLPixelFormat;
+        unsafe fn motionTextureFormat(&self) -> MTLPixelFormat;
 
         #[method(outputTextureFormat)]
-        pub unsafe fn outputTextureFormat(&self) -> MTLPixelFormat;
+        unsafe fn outputTextureFormat(&self) -> MTLPixelFormat;
 
         #[method(inputWidth)]
-        pub unsafe fn inputWidth(&self) -> NSUInteger;
+        unsafe fn inputWidth(&self) -> NSUInteger;
 
         #[method(inputHeight)]
-        pub unsafe fn inputHeight(&self) -> NSUInteger;
+        unsafe fn inputHeight(&self) -> NSUInteger;
 
         #[method(outputWidth)]
-        pub unsafe fn outputWidth(&self) -> NSUInteger;
+        unsafe fn outputWidth(&self) -> NSUInteger;
 
         #[method(outputHeight)]
-        pub unsafe fn outputHeight(&self) -> NSUInteger;
+        unsafe fn outputHeight(&self) -> NSUInteger;
 
         #[method(inputContentMinScale)]
-        pub unsafe fn inputContentMinScale(&self) -> c_float;
+        unsafe fn inputContentMinScale(&self) -> c_float;
 
         #[method(inputContentMaxScale)]
-        pub unsafe fn inputContentMaxScale(&self) -> c_float;
+        unsafe fn inputContentMaxScale(&self) -> c_float;
 
         #[method_id(@__retain_semantics Other fence)]
-        pub unsafe fn fence(&self) -> Option<Id<MTLFence, Shared>>;
+        unsafe fn fence(&self) -> Option<Id<ProtocolObject<dyn MTLFence>, Shared>>;
 
         #[method(setFence:)]
-        pub unsafe fn setFence(&self, fence: Option<&MTLFence>);
+        unsafe fn setFence(&self, fence: Option<&ProtocolObject<dyn MTLFence>>);
 
         #[method(encodeToCommandBuffer:)]
-        pub unsafe fn encodeToCommandBuffer(&self, command_buffer: &MTLCommandBuffer);
+        unsafe fn encodeToCommandBuffer(
+            &self,
+            command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
+        );
     }
+
+    unsafe impl ProtocolType for dyn MTLFXTemporalScaler {}
 );

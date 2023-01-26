@@ -173,10 +173,15 @@ extern_methods!(
         ) -> Result<(), Id<NSError, Shared>>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<NSFileManagerDelegate, Shared>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn NSFileManagerDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&NSFileManagerDelegate>);
+        pub unsafe fn setDelegate(
+            &self,
+            delegate: Option<&ProtocolObject<dyn NSFileManagerDelegate>>,
+        );
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",
@@ -658,13 +663,11 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct NSFileManagerDelegate;
-
-    unsafe impl ProtocolType for NSFileManagerDelegate {
+    pub unsafe trait NSFileManagerDelegate: NSObjectProtocol {
         #[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
         #[optional]
         #[method(fileManager:shouldCopyItemAtPath:toPath:)]
-        pub unsafe fn fileManager_shouldCopyItemAtPath_toPath(
+        unsafe fn fileManager_shouldCopyItemAtPath_toPath(
             &self,
             file_manager: &NSFileManager,
             src_path: &NSString,
@@ -674,7 +677,7 @@ extern_protocol!(
         #[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSURL"))]
         #[optional]
         #[method(fileManager:shouldCopyItemAtURL:toURL:)]
-        pub unsafe fn fileManager_shouldCopyItemAtURL_toURL(
+        unsafe fn fileManager_shouldCopyItemAtURL_toURL(
             &self,
             file_manager: &NSFileManager,
             src_url: &NSURL,
@@ -688,7 +691,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(fileManager:shouldProceedAfterError:copyingItemAtPath:toPath:)]
-        pub unsafe fn fileManager_shouldProceedAfterError_copyingItemAtPath_toPath(
+        unsafe fn fileManager_shouldProceedAfterError_copyingItemAtPath_toPath(
             &self,
             file_manager: &NSFileManager,
             error: &NSError,
@@ -703,7 +706,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(fileManager:shouldProceedAfterError:copyingItemAtURL:toURL:)]
-        pub unsafe fn fileManager_shouldProceedAfterError_copyingItemAtURL_toURL(
+        unsafe fn fileManager_shouldProceedAfterError_copyingItemAtURL_toURL(
             &self,
             file_manager: &NSFileManager,
             error: &NSError,
@@ -714,7 +717,7 @@ extern_protocol!(
         #[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
         #[optional]
         #[method(fileManager:shouldMoveItemAtPath:toPath:)]
-        pub unsafe fn fileManager_shouldMoveItemAtPath_toPath(
+        unsafe fn fileManager_shouldMoveItemAtPath_toPath(
             &self,
             file_manager: &NSFileManager,
             src_path: &NSString,
@@ -724,7 +727,7 @@ extern_protocol!(
         #[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSURL"))]
         #[optional]
         #[method(fileManager:shouldMoveItemAtURL:toURL:)]
-        pub unsafe fn fileManager_shouldMoveItemAtURL_toURL(
+        unsafe fn fileManager_shouldMoveItemAtURL_toURL(
             &self,
             file_manager: &NSFileManager,
             src_url: &NSURL,
@@ -738,7 +741,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(fileManager:shouldProceedAfterError:movingItemAtPath:toPath:)]
-        pub unsafe fn fileManager_shouldProceedAfterError_movingItemAtPath_toPath(
+        unsafe fn fileManager_shouldProceedAfterError_movingItemAtPath_toPath(
             &self,
             file_manager: &NSFileManager,
             error: &NSError,
@@ -753,7 +756,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(fileManager:shouldProceedAfterError:movingItemAtURL:toURL:)]
-        pub unsafe fn fileManager_shouldProceedAfterError_movingItemAtURL_toURL(
+        unsafe fn fileManager_shouldProceedAfterError_movingItemAtURL_toURL(
             &self,
             file_manager: &NSFileManager,
             error: &NSError,
@@ -764,7 +767,7 @@ extern_protocol!(
         #[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
         #[optional]
         #[method(fileManager:shouldLinkItemAtPath:toPath:)]
-        pub unsafe fn fileManager_shouldLinkItemAtPath_toPath(
+        unsafe fn fileManager_shouldLinkItemAtPath_toPath(
             &self,
             file_manager: &NSFileManager,
             src_path: &NSString,
@@ -774,7 +777,7 @@ extern_protocol!(
         #[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSURL"))]
         #[optional]
         #[method(fileManager:shouldLinkItemAtURL:toURL:)]
-        pub unsafe fn fileManager_shouldLinkItemAtURL_toURL(
+        unsafe fn fileManager_shouldLinkItemAtURL_toURL(
             &self,
             file_manager: &NSFileManager,
             src_url: &NSURL,
@@ -788,7 +791,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(fileManager:shouldProceedAfterError:linkingItemAtPath:toPath:)]
-        pub unsafe fn fileManager_shouldProceedAfterError_linkingItemAtPath_toPath(
+        unsafe fn fileManager_shouldProceedAfterError_linkingItemAtPath_toPath(
             &self,
             file_manager: &NSFileManager,
             error: &NSError,
@@ -803,7 +806,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(fileManager:shouldProceedAfterError:linkingItemAtURL:toURL:)]
-        pub unsafe fn fileManager_shouldProceedAfterError_linkingItemAtURL_toURL(
+        unsafe fn fileManager_shouldProceedAfterError_linkingItemAtURL_toURL(
             &self,
             file_manager: &NSFileManager,
             error: &NSError,
@@ -814,7 +817,7 @@ extern_protocol!(
         #[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
         #[optional]
         #[method(fileManager:shouldRemoveItemAtPath:)]
-        pub unsafe fn fileManager_shouldRemoveItemAtPath(
+        unsafe fn fileManager_shouldRemoveItemAtPath(
             &self,
             file_manager: &NSFileManager,
             path: &NSString,
@@ -823,7 +826,7 @@ extern_protocol!(
         #[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSURL"))]
         #[optional]
         #[method(fileManager:shouldRemoveItemAtURL:)]
-        pub unsafe fn fileManager_shouldRemoveItemAtURL(
+        unsafe fn fileManager_shouldRemoveItemAtURL(
             &self,
             file_manager: &NSFileManager,
             url: &NSURL,
@@ -836,7 +839,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(fileManager:shouldProceedAfterError:removingItemAtPath:)]
-        pub unsafe fn fileManager_shouldProceedAfterError_removingItemAtPath(
+        unsafe fn fileManager_shouldProceedAfterError_removingItemAtPath(
             &self,
             file_manager: &NSFileManager,
             error: &NSError,
@@ -850,13 +853,15 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(fileManager:shouldProceedAfterError:removingItemAtURL:)]
-        pub unsafe fn fileManager_shouldProceedAfterError_removingItemAtURL(
+        unsafe fn fileManager_shouldProceedAfterError_removingItemAtURL(
             &self,
             file_manager: &NSFileManager,
             error: &NSError,
             url: &NSURL,
         ) -> bool;
     }
+
+    unsafe impl ProtocolType for dyn NSFileManagerDelegate {}
 );
 
 __inner_extern_class!(

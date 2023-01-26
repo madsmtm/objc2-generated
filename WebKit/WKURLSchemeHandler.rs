@@ -6,23 +6,23 @@ use crate::Foundation::*;
 use crate::WebKit::*;
 
 extern_protocol!(
-    pub struct WKURLSchemeHandler;
-
-    unsafe impl ProtocolType for WKURLSchemeHandler {
+    pub unsafe trait WKURLSchemeHandler: NSObjectProtocol {
         #[cfg(feature = "WebKit_WKWebView")]
         #[method(webView:startURLSchemeTask:)]
-        pub unsafe fn webView_startURLSchemeTask(
+        unsafe fn webView_startURLSchemeTask(
             &self,
             web_view: &WKWebView,
-            url_scheme_task: &WKURLSchemeTask,
+            url_scheme_task: &ProtocolObject<dyn WKURLSchemeTask>,
         );
 
         #[cfg(feature = "WebKit_WKWebView")]
         #[method(webView:stopURLSchemeTask:)]
-        pub unsafe fn webView_stopURLSchemeTask(
+        unsafe fn webView_stopURLSchemeTask(
             &self,
             web_view: &WKWebView,
-            url_scheme_task: &WKURLSchemeTask,
+            url_scheme_task: &ProtocolObject<dyn WKURLSchemeTask>,
         );
     }
+
+    unsafe impl ProtocolType for dyn WKURLSchemeHandler {}
 );

@@ -23,30 +23,32 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<NSSharingServicePickerToolbarItemDelegate, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn NSSharingServicePickerToolbarItemDelegate>, Shared>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
-            delegate: Option<&NSSharingServicePickerToolbarItemDelegate>,
+            delegate: Option<&ProtocolObject<dyn NSSharingServicePickerToolbarItemDelegate>>,
         );
     }
 );
 
 extern_protocol!(
-    pub struct NSSharingServicePickerToolbarItemDelegate;
-
-    unsafe impl ProtocolType for NSSharingServicePickerToolbarItemDelegate {
+    pub unsafe trait NSSharingServicePickerToolbarItemDelegate:
+        NSSharingServicePickerDelegate
+    {
         #[cfg(all(
             feature = "AppKit_NSSharingServicePickerToolbarItem",
             feature = "Foundation_NSArray"
         ))]
         #[method_id(@__retain_semantics Other itemsForSharingServicePickerToolbarItem:)]
-        pub unsafe fn itemsForSharingServicePickerToolbarItem(
+        unsafe fn itemsForSharingServicePickerToolbarItem(
             &self,
             picker_toolbar_item: &NSSharingServicePickerToolbarItem,
         ) -> Id<NSArray, Shared>;
     }
+
+    unsafe impl ProtocolType for dyn NSSharingServicePickerToolbarItemDelegate {}
 );
 
 extern_methods!(

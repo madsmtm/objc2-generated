@@ -18,10 +18,15 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSMetadataQuery")]
     unsafe impl NSMetadataQuery {
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<NSMetadataQueryDelegate, Shared>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn NSMetadataQueryDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&NSMetadataQueryDelegate>);
+        pub unsafe fn setDelegate(
+            &self,
+            delegate: Option<&ProtocolObject<dyn NSMetadataQueryDelegate>>,
+        );
 
         #[cfg(feature = "Foundation_NSPredicate")]
         #[method_id(@__retain_semantics Other predicate)]
@@ -170,16 +175,14 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct NSMetadataQueryDelegate;
-
-    unsafe impl ProtocolType for NSMetadataQueryDelegate {
+    pub unsafe trait NSMetadataQueryDelegate: NSObjectProtocol {
         #[cfg(all(
             feature = "Foundation_NSMetadataItem",
             feature = "Foundation_NSMetadataQuery"
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other metadataQuery:replacementObjectForResultObject:)]
-        pub unsafe fn metadataQuery_replacementObjectForResultObject(
+        unsafe fn metadataQuery_replacementObjectForResultObject(
             &self,
             query: &NSMetadataQuery,
             result: &NSMetadataItem,
@@ -191,13 +194,15 @@ extern_protocol!(
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other metadataQuery:replacementValueForAttribute:value:)]
-        pub unsafe fn metadataQuery_replacementValueForAttribute_value(
+        unsafe fn metadataQuery_replacementValueForAttribute_value(
             &self,
             query: &NSMetadataQuery,
             attr_name: &NSString,
             attr_value: &Object,
         ) -> Id<Object, Shared>;
     }
+
+    unsafe impl ProtocolType for dyn NSMetadataQueryDelegate {}
 );
 
 extern_static!(NSMetadataQueryDidStartGatheringNotification: &'static NSNotificationName);

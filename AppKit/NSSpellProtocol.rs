@@ -6,19 +6,19 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 extern_protocol!(
-    pub struct NSChangeSpelling;
-
-    unsafe impl ProtocolType for NSChangeSpelling {
+    pub unsafe trait NSChangeSpelling {
         #[method(changeSpelling:)]
-        pub unsafe fn changeSpelling(&self, sender: Option<&Object>);
+        unsafe fn changeSpelling(&self, sender: Option<&Object>);
     }
+
+    unsafe impl ProtocolType for dyn NSChangeSpelling {}
 );
 
 extern_protocol!(
-    pub struct NSIgnoreMisspelledWords;
-
-    unsafe impl ProtocolType for NSIgnoreMisspelledWords {
+    pub unsafe trait NSIgnoreMisspelledWords {
         #[method(ignoreSpelling:)]
-        pub unsafe fn ignoreSpelling(&self, sender: Option<&Object>);
+        unsafe fn ignoreSpelling(&self, sender: Option<&Object>);
     }
+
+    unsafe impl ProtocolType for dyn NSIgnoreMisspelledWords {}
 );

@@ -6,23 +6,25 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 extern_protocol!(
-    pub struct NSValidatedUserInterfaceItem;
-
-    unsafe impl ProtocolType for NSValidatedUserInterfaceItem {
+    pub unsafe trait NSValidatedUserInterfaceItem {
         #[method(action)]
-        pub unsafe fn action(&self) -> Option<Sel>;
+        unsafe fn action(&self) -> Option<Sel>;
 
         #[method(tag)]
-        pub unsafe fn tag(&self) -> NSInteger;
+        unsafe fn tag(&self) -> NSInteger;
     }
+
+    unsafe impl ProtocolType for dyn NSValidatedUserInterfaceItem {}
 );
 
 extern_protocol!(
-    pub struct NSUserInterfaceValidations;
-
-    unsafe impl ProtocolType for NSUserInterfaceValidations {
+    pub unsafe trait NSUserInterfaceValidations {
         #[method(validateUserInterfaceItem:)]
-        pub unsafe fn validateUserInterfaceItem(&self, item: &NSValidatedUserInterfaceItem)
-            -> bool;
+        unsafe fn validateUserInterfaceItem(
+            &self,
+            item: &ProtocolObject<dyn NSValidatedUserInterfaceItem>,
+        ) -> bool;
     }
+
+    unsafe impl ProtocolType for dyn NSUserInterfaceValidations {}
 );

@@ -6,13 +6,13 @@ use crate::Foundation::*;
 use crate::GameController::*;
 
 extern_protocol!(
-    pub struct GCAxisElement;
-
-    unsafe impl ProtocolType for GCAxisElement {
+    pub unsafe trait GCAxisElement: GCPhysicalInputElement {
         #[method_id(@__retain_semantics Other absoluteInput)]
-        pub unsafe fn absoluteInput(&self) -> Option<Id<GCAxisInput, Shared>>;
+        unsafe fn absoluteInput(&self) -> Option<Id<ProtocolObject<dyn GCAxisInput>, Shared>>;
 
         #[method_id(@__retain_semantics Other relativeInput)]
-        pub unsafe fn relativeInput(&self) -> Id<GCRelativeInput, Shared>;
+        unsafe fn relativeInput(&self) -> Id<ProtocolObject<dyn GCRelativeInput>, Shared>;
     }
+
+    unsafe impl ProtocolType for dyn GCAxisElement {}
 );

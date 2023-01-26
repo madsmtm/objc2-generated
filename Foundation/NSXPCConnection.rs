@@ -4,15 +4,13 @@ use crate::common::*;
 use crate::Foundation::*;
 
 extern_protocol!(
-    pub struct NSXPCProxyCreating;
-
-    unsafe impl ProtocolType for NSXPCProxyCreating {
+    pub unsafe trait NSXPCProxyCreating {
         #[method_id(@__retain_semantics Other remoteObjectProxy)]
-        pub unsafe fn remoteObjectProxy(&self) -> Id<Object, Shared>;
+        unsafe fn remoteObjectProxy(&self) -> Id<Object, Shared>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other remoteObjectProxyWithErrorHandler:)]
-        pub unsafe fn remoteObjectProxyWithErrorHandler(
+        unsafe fn remoteObjectProxyWithErrorHandler(
             &self,
             handler: &Block<(NonNull<NSError>,), ()>,
         ) -> Id<Object, Shared>;
@@ -20,11 +18,13 @@ extern_protocol!(
         #[cfg(feature = "Foundation_NSError")]
         #[optional]
         #[method_id(@__retain_semantics Other synchronousRemoteObjectProxyWithErrorHandler:)]
-        pub unsafe fn synchronousRemoteObjectProxyWithErrorHandler(
+        unsafe fn synchronousRemoteObjectProxyWithErrorHandler(
             &self,
             handler: &Block<(NonNull<NSError>,), ()>,
         ) -> Id<Object, Shared>;
     }
+
+    unsafe impl ProtocolType for dyn NSXPCProxyCreating {}
 );
 
 ns_options!(
@@ -184,10 +184,15 @@ extern_methods!(
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<NSXPCListenerDelegate, Shared>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn NSXPCListenerDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&NSXPCListenerDelegate>);
+        pub unsafe fn setDelegate(
+            &self,
+            delegate: Option<&ProtocolObject<dyn NSXPCListenerDelegate>>,
+        );
 
         #[cfg(feature = "Foundation_NSXPCListenerEndpoint")]
         #[method_id(@__retain_semantics Other endpoint)]
@@ -212,21 +217,21 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct NSXPCListenerDelegate;
-
-    unsafe impl ProtocolType for NSXPCListenerDelegate {
+    pub unsafe trait NSXPCListenerDelegate: NSObjectProtocol {
         #[cfg(all(
             feature = "Foundation_NSXPCConnection",
             feature = "Foundation_NSXPCListener"
         ))]
         #[optional]
         #[method(listener:shouldAcceptNewConnection:)]
-        pub unsafe fn listener_shouldAcceptNewConnection(
+        unsafe fn listener_shouldAcceptNewConnection(
             &self,
             listener: &NSXPCListener,
             new_connection: &NSXPCConnection,
         ) -> bool;
     }
+
+    unsafe impl ProtocolType for dyn NSXPCListenerDelegate {}
 );
 
 extern_class!(

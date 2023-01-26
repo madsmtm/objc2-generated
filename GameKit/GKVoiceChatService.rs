@@ -26,10 +26,10 @@ extern_methods!(
         pub unsafe fn isVoIPAllowed() -> bool;
 
         #[method_id(@__retain_semantics Other client)]
-        pub unsafe fn client(&self) -> Option<Id<GKVoiceChatClient, Shared>>;
+        pub unsafe fn client(&self) -> Option<Id<ProtocolObject<dyn GKVoiceChatClient>, Shared>>;
 
         #[method(setClient:)]
-        pub unsafe fn setClient(&self, client: Option<&GKVoiceChatClient>);
+        pub unsafe fn setClient(&self, client: Option<&ProtocolObject<dyn GKVoiceChatClient>>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(stopVoiceChatWithParticipantID:)]

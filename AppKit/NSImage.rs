@@ -283,10 +283,10 @@ extern_methods!(
         pub unsafe fn unlockFocus(&self);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<NSImageDelegate, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSImageDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&NSImageDelegate>);
+        pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSImageDelegate>>);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other imageTypes)]
@@ -407,13 +407,11 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct NSImageDelegate;
-
-    unsafe impl ProtocolType for NSImageDelegate {
+    pub unsafe trait NSImageDelegate: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSImage")]
         #[optional]
         #[method_id(@__retain_semantics Other imageDidNotDraw:inRect:)]
-        pub unsafe fn imageDidNotDraw_inRect(
+        unsafe fn imageDidNotDraw_inRect(
             &self,
             sender: &NSImage,
             rect: NSRect,
@@ -422,17 +420,17 @@ extern_protocol!(
         #[cfg(all(feature = "AppKit_NSImage", feature = "AppKit_NSImageRep"))]
         #[optional]
         #[method(image:willLoadRepresentation:)]
-        pub unsafe fn image_willLoadRepresentation(&self, image: &NSImage, rep: &NSImageRep);
+        unsafe fn image_willLoadRepresentation(&self, image: &NSImage, rep: &NSImageRep);
 
         #[cfg(all(feature = "AppKit_NSImage", feature = "AppKit_NSImageRep"))]
         #[optional]
         #[method(image:didLoadRepresentationHeader:)]
-        pub unsafe fn image_didLoadRepresentationHeader(&self, image: &NSImage, rep: &NSImageRep);
+        unsafe fn image_didLoadRepresentationHeader(&self, image: &NSImage, rep: &NSImageRep);
 
         #[cfg(all(feature = "AppKit_NSImage", feature = "AppKit_NSImageRep"))]
         #[optional]
         #[method(image:didLoadPartOfRepresentation:withValidRows:)]
-        pub unsafe fn image_didLoadPartOfRepresentation_withValidRows(
+        unsafe fn image_didLoadPartOfRepresentation_withValidRows(
             &self,
             image: &NSImage,
             rep: &NSImageRep,
@@ -442,13 +440,15 @@ extern_protocol!(
         #[cfg(all(feature = "AppKit_NSImage", feature = "AppKit_NSImageRep"))]
         #[optional]
         #[method(image:didLoadRepresentation:withStatus:)]
-        pub unsafe fn image_didLoadRepresentation_withStatus(
+        unsafe fn image_didLoadRepresentation_withStatus(
             &self,
             image: &NSImage,
             rep: &NSImageRep,
             status: NSImageLoadStatus,
         );
     }
+
+    unsafe impl ProtocolType for dyn NSImageDelegate {}
 );
 
 extern_methods!(

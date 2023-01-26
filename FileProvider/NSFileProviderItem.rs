@@ -125,61 +125,59 @@ ns_enum!(
 );
 
 extern_protocol!(
-    pub struct NSFileProviderItem;
-
-    unsafe impl ProtocolType for NSFileProviderItem {
+    pub unsafe trait NSFileProviderItem: NSObjectProtocol {
         #[method_id(@__retain_semantics Other itemIdentifier)]
-        pub unsafe fn itemIdentifier(&self) -> Id<NSFileProviderItemIdentifier, Shared>;
+        unsafe fn itemIdentifier(&self) -> Id<NSFileProviderItemIdentifier, Shared>;
 
         #[method_id(@__retain_semantics Other parentItemIdentifier)]
-        pub unsafe fn parentItemIdentifier(&self) -> Id<NSFileProviderItemIdentifier, Shared>;
+        unsafe fn parentItemIdentifier(&self) -> Id<NSFileProviderItemIdentifier, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other filename)]
-        pub unsafe fn filename(&self) -> Id<NSString, Shared>;
+        unsafe fn filename(&self) -> Id<NSString, Shared>;
 
         #[cfg(feature = "AppKit_UTType")]
         #[optional]
         #[method_id(@__retain_semantics Other contentType)]
-        pub unsafe fn contentType(&self) -> Id<UTType, Shared>;
+        unsafe fn contentType(&self) -> Id<UTType, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
         #[optional]
         #[method_id(@__retain_semantics Other typeIdentifier)]
-        pub unsafe fn typeIdentifier(&self) -> Id<NSString, Shared>;
+        unsafe fn typeIdentifier(&self) -> Id<NSString, Shared>;
 
         #[optional]
         #[method(typeAndCreator)]
-        pub unsafe fn typeAndCreator(&self) -> NSFileProviderTypeAndCreator;
+        unsafe fn typeAndCreator(&self) -> NSFileProviderTypeAndCreator;
 
         #[optional]
         #[method(capabilities)]
-        pub unsafe fn capabilities(&self) -> NSFileProviderItemCapabilities;
+        unsafe fn capabilities(&self) -> NSFileProviderItemCapabilities;
 
         #[optional]
         #[method(fileSystemFlags)]
-        pub unsafe fn fileSystemFlags(&self) -> NSFileProviderFileSystemFlags;
+        unsafe fn fileSystemFlags(&self) -> NSFileProviderFileSystemFlags;
 
         #[cfg(feature = "Foundation_NSNumber")]
         #[optional]
         #[method_id(@__retain_semantics Other documentSize)]
-        pub unsafe fn documentSize(&self) -> Option<Id<NSNumber, Shared>>;
+        unsafe fn documentSize(&self) -> Option<Id<NSNumber, Shared>>;
 
         #[cfg(feature = "Foundation_NSNumber")]
         #[optional]
         #[method_id(@__retain_semantics Other childItemCount)]
-        pub unsafe fn childItemCount(&self) -> Option<Id<NSNumber, Shared>>;
+        unsafe fn childItemCount(&self) -> Option<Id<NSNumber, Shared>>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[optional]
         #[method_id(@__retain_semantics Other creationDate)]
-        pub unsafe fn creationDate(&self) -> Option<Id<NSDate, Shared>>;
+        unsafe fn creationDate(&self) -> Option<Id<NSDate, Shared>>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[optional]
         #[method_id(@__retain_semantics Other contentModificationDate)]
-        pub unsafe fn contentModificationDate(&self) -> Option<Id<NSDate, Shared>>;
+        unsafe fn contentModificationDate(&self) -> Option<Id<NSDate, Shared>>;
 
         #[cfg(all(
             feature = "Foundation_NSData",
@@ -188,99 +186,101 @@ extern_protocol!(
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other extendedAttributes)]
-        pub unsafe fn extendedAttributes(&self) -> Id<NSDictionary<NSString, NSData>, Shared>;
+        unsafe fn extendedAttributes(&self) -> Id<NSDictionary<NSString, NSData>, Shared>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[optional]
         #[method_id(@__retain_semantics Other lastUsedDate)]
-        pub unsafe fn lastUsedDate(&self) -> Option<Id<NSDate, Shared>>;
+        unsafe fn lastUsedDate(&self) -> Option<Id<NSDate, Shared>>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[optional]
         #[method_id(@__retain_semantics Other tagData)]
-        pub unsafe fn tagData(&self) -> Option<Id<NSData, Shared>>;
+        unsafe fn tagData(&self) -> Option<Id<NSData, Shared>>;
 
         #[cfg(feature = "Foundation_NSNumber")]
         #[optional]
         #[method_id(@__retain_semantics Other favoriteRank)]
-        pub unsafe fn favoriteRank(&self) -> Option<Id<NSNumber, Shared>>;
+        unsafe fn favoriteRank(&self) -> Option<Id<NSNumber, Shared>>;
 
         #[optional]
         #[method(isTrashed)]
-        pub unsafe fn isTrashed(&self) -> bool;
+        unsafe fn isTrashed(&self) -> bool;
 
         #[optional]
         #[method(isUploaded)]
-        pub unsafe fn isUploaded(&self) -> bool;
+        unsafe fn isUploaded(&self) -> bool;
 
         #[optional]
         #[method(isUploading)]
-        pub unsafe fn isUploading(&self) -> bool;
+        unsafe fn isUploading(&self) -> bool;
 
         #[cfg(feature = "Foundation_NSError")]
         #[optional]
         #[method_id(@__retain_semantics Other uploadingError)]
-        pub unsafe fn uploadingError(&self) -> Option<Id<NSError, Shared>>;
+        unsafe fn uploadingError(&self) -> Option<Id<NSError, Shared>>;
 
         #[optional]
         #[method(isDownloaded)]
-        pub unsafe fn isDownloaded(&self) -> bool;
+        unsafe fn isDownloaded(&self) -> bool;
 
         #[optional]
         #[method(isDownloading)]
-        pub unsafe fn isDownloading(&self) -> bool;
+        unsafe fn isDownloading(&self) -> bool;
 
         #[cfg(feature = "Foundation_NSError")]
         #[optional]
         #[method_id(@__retain_semantics Other downloadingError)]
-        pub unsafe fn downloadingError(&self) -> Option<Id<NSError, Shared>>;
+        unsafe fn downloadingError(&self) -> Option<Id<NSError, Shared>>;
 
         #[optional]
         #[method(isMostRecentVersionDownloaded)]
-        pub unsafe fn isMostRecentVersionDownloaded(&self) -> bool;
+        unsafe fn isMostRecentVersionDownloaded(&self) -> bool;
 
         #[optional]
         #[method(isShared)]
-        pub unsafe fn isShared(&self) -> bool;
+        unsafe fn isShared(&self) -> bool;
 
         #[optional]
         #[method(isSharedByCurrentUser)]
-        pub unsafe fn isSharedByCurrentUser(&self) -> bool;
+        unsafe fn isSharedByCurrentUser(&self) -> bool;
 
         #[cfg(feature = "Foundation_NSPersonNameComponents")]
         #[optional]
         #[method_id(@__retain_semantics Other ownerNameComponents)]
-        pub unsafe fn ownerNameComponents(&self) -> Option<Id<NSPersonNameComponents, Shared>>;
+        unsafe fn ownerNameComponents(&self) -> Option<Id<NSPersonNameComponents, Shared>>;
 
         #[cfg(feature = "Foundation_NSPersonNameComponents")]
         #[optional]
         #[method_id(@__retain_semantics Other mostRecentEditorNameComponents)]
-        pub unsafe fn mostRecentEditorNameComponents(
+        unsafe fn mostRecentEditorNameComponents(
             &self,
         ) -> Option<Id<NSPersonNameComponents, Shared>>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[optional]
         #[method_id(@__retain_semantics Other versionIdentifier)]
-        pub unsafe fn versionIdentifier(&self) -> Option<Id<NSData, Shared>>;
+        unsafe fn versionIdentifier(&self) -> Option<Id<NSData, Shared>>;
 
         #[cfg(feature = "FileProvider_NSFileProviderItemVersion")]
         #[optional]
         #[method_id(@__retain_semantics Other itemVersion)]
-        pub unsafe fn itemVersion(&self) -> Id<NSFileProviderItemVersion, Shared>;
+        unsafe fn itemVersion(&self) -> Id<NSFileProviderItemVersion, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[optional]
         #[method_id(@__retain_semantics Other symlinkTargetPath)]
-        pub unsafe fn symlinkTargetPath(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn symlinkTargetPath(&self) -> Option<Id<NSString, Shared>>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[optional]
         #[method_id(@__retain_semantics Other userInfo)]
-        pub unsafe fn userInfo(&self) -> Option<Id<NSDictionary, Shared>>;
+        unsafe fn userInfo(&self) -> Option<Id<NSDictionary, Shared>>;
 
         #[optional]
         #[method(contentPolicy)]
-        pub unsafe fn contentPolicy(&self) -> NSFileProviderContentPolicy;
+        unsafe fn contentPolicy(&self) -> NSFileProviderContentPolicy;
     }
+
+    unsafe impl ProtocolType for dyn NSFileProviderItem {}
 );

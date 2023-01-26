@@ -6,13 +6,11 @@ use crate::Foundation::*;
 use crate::GameKit::*;
 
 extern_protocol!(
-    pub struct GKSavedGameListener;
-
-    unsafe impl ProtocolType for GKSavedGameListener {
+    pub unsafe trait GKSavedGameListener: NSObjectProtocol {
         #[cfg(all(feature = "GameKit_GKPlayer", feature = "GameKit_GKSavedGame"))]
         #[optional]
         #[method(player:didModifySavedGame:)]
-        pub unsafe fn player_didModifySavedGame(&self, player: &GKPlayer, saved_game: &GKSavedGame);
+        unsafe fn player_didModifySavedGame(&self, player: &GKPlayer, saved_game: &GKSavedGame);
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -21,10 +19,12 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(player:hasConflictingSavedGames:)]
-        pub unsafe fn player_hasConflictingSavedGames(
+        unsafe fn player_hasConflictingSavedGames(
             &self,
             player: &GKPlayer,
             saved_games: &NSArray<GKSavedGame>,
         );
     }
+
+    unsafe impl ProtocolType for dyn GKSavedGameListener {}
 );

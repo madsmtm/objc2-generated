@@ -133,10 +133,15 @@ extern_methods!(
         pub unsafe fn setPresentsCalendarOverlay(&self, presents_calendar_overlay: bool);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<NSDatePickerCellDelegate, Shared>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn NSDatePickerCellDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&NSDatePickerCellDelegate>);
+        pub unsafe fn setDelegate(
+            &self,
+            delegate: Option<&ProtocolObject<dyn NSDatePickerCellDelegate>>,
+        );
     }
 );
 

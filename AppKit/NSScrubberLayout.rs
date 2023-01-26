@@ -121,19 +121,19 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct NSScrubberFlowLayoutDelegate;
-
-    unsafe impl ProtocolType for NSScrubberFlowLayoutDelegate {
+    pub unsafe trait NSScrubberFlowLayoutDelegate: NSScrubberDelegate {
         #[cfg(all(feature = "AppKit_NSScrubber", feature = "AppKit_NSScrubberFlowLayout"))]
         #[optional]
         #[method(scrubber:layout:sizeForItemAtIndex:)]
-        pub unsafe fn scrubber_layout_sizeForItemAtIndex(
+        unsafe fn scrubber_layout_sizeForItemAtIndex(
             &self,
             scrubber: &NSScrubber,
             layout: &NSScrubberFlowLayout,
             item_index: NSInteger,
         ) -> NSSize;
     }
+
+    unsafe impl ProtocolType for dyn NSScrubberFlowLayoutDelegate {}
 );
 
 extern_class!(

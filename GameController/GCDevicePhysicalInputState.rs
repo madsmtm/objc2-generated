@@ -6,68 +6,80 @@ use crate::Foundation::*;
 use crate::GameController::*;
 
 extern_protocol!(
-    pub struct GCDevicePhysicalInputState;
-
-    unsafe impl ProtocolType for GCDevicePhysicalInputState {
+    pub unsafe trait GCDevicePhysicalInputState: NSObjectProtocol {
         #[method_id(@__retain_semantics Other device)]
-        pub unsafe fn device(&self) -> Option<Id<GCDevice, Shared>>;
+        unsafe fn device(&self) -> Option<Id<ProtocolObject<dyn GCDevice>, Shared>>;
 
         #[method(lastEventTimestamp)]
-        pub unsafe fn lastEventTimestamp(&self) -> NSTimeInterval;
+        unsafe fn lastEventTimestamp(&self) -> NSTimeInterval;
 
         #[method(lastEventLatency)]
-        pub unsafe fn lastEventLatency(&self) -> NSTimeInterval;
+        unsafe fn lastEventLatency(&self) -> NSTimeInterval;
 
         #[cfg(all(
             feature = "Foundation_NSString",
             feature = "GameController_GCPhysicalInputElementCollection"
         ))]
         #[method_id(@__retain_semantics Other elements)]
-        pub unsafe fn elements(
+        unsafe fn elements(
             &self,
-        ) -> Id<GCPhysicalInputElementCollection<NSString, GCPhysicalInputElement>, Shared>;
+        ) -> Id<
+            GCPhysicalInputElementCollection<NSString, ProtocolObject<dyn GCPhysicalInputElement>>,
+            Shared,
+        >;
 
         #[cfg(all(
             feature = "Foundation_NSString",
             feature = "GameController_GCPhysicalInputElementCollection"
         ))]
         #[method_id(@__retain_semantics Other buttons)]
-        pub unsafe fn buttons(
+        unsafe fn buttons(
             &self,
-        ) -> Id<GCPhysicalInputElementCollection<NSString, GCButtonElement>, Shared>;
+        ) -> Id<
+            GCPhysicalInputElementCollection<NSString, ProtocolObject<dyn GCButtonElement>>,
+            Shared,
+        >;
 
         #[cfg(all(
             feature = "Foundation_NSString",
             feature = "GameController_GCPhysicalInputElementCollection"
         ))]
         #[method_id(@__retain_semantics Other axes)]
-        pub unsafe fn axes(
+        unsafe fn axes(
             &self,
-        ) -> Id<GCPhysicalInputElementCollection<NSString, GCAxisElement>, Shared>;
+        ) -> Id<GCPhysicalInputElementCollection<NSString, ProtocolObject<dyn GCAxisElement>>, Shared>;
 
         #[cfg(all(
             feature = "Foundation_NSString",
             feature = "GameController_GCPhysicalInputElementCollection"
         ))]
         #[method_id(@__retain_semantics Other switches)]
-        pub unsafe fn switches(
+        unsafe fn switches(
             &self,
-        ) -> Id<GCPhysicalInputElementCollection<NSString, GCSwitchElement>, Shared>;
+        ) -> Id<
+            GCPhysicalInputElementCollection<NSString, ProtocolObject<dyn GCSwitchElement>>,
+            Shared,
+        >;
 
         #[cfg(all(
             feature = "Foundation_NSString",
             feature = "GameController_GCPhysicalInputElementCollection"
         ))]
         #[method_id(@__retain_semantics Other dpads)]
-        pub unsafe fn dpads(
+        unsafe fn dpads(
             &self,
-        ) -> Id<GCPhysicalInputElementCollection<NSString, GCDirectionPadElement>, Shared>;
+        ) -> Id<
+            GCPhysicalInputElementCollection<NSString, ProtocolObject<dyn GCDirectionPadElement>>,
+            Shared,
+        >;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other objectForKeyedSubscript:)]
-        pub unsafe fn objectForKeyedSubscript(
+        unsafe fn objectForKeyedSubscript(
             &self,
             key: &NSString,
-        ) -> Option<Id<GCPhysicalInputElement, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn GCPhysicalInputElement>, Shared>>;
     }
+
+    unsafe impl ProtocolType for dyn GCDevicePhysicalInputState {}
 );

@@ -6,31 +6,31 @@ use crate::Foundation::*;
 use crate::GameController::*;
 
 extern_protocol!(
-    pub struct GCPhysicalInputElementName;
+    pub unsafe trait GCPhysicalInputElementName {}
 
-    unsafe impl ProtocolType for GCPhysicalInputElementName {}
+    unsafe impl ProtocolType for dyn GCPhysicalInputElementName {}
 );
 
 extern_protocol!(
-    pub struct GCButtonElementName;
+    pub unsafe trait GCButtonElementName: GCPhysicalInputElementName {}
 
-    unsafe impl ProtocolType for GCButtonElementName {}
+    unsafe impl ProtocolType for dyn GCButtonElementName {}
 );
 
 extern_protocol!(
-    pub struct GCAxisElementName;
+    pub unsafe trait GCAxisElementName: GCPhysicalInputElementName {}
 
-    unsafe impl ProtocolType for GCAxisElementName {}
+    unsafe impl ProtocolType for dyn GCAxisElementName {}
 );
 
 extern_protocol!(
-    pub struct GCSwitchElementName;
+    pub unsafe trait GCSwitchElementName: GCPhysicalInputElementName {}
 
-    unsafe impl ProtocolType for GCSwitchElementName {}
+    unsafe impl ProtocolType for dyn GCSwitchElementName {}
 );
 
 extern_protocol!(
-    pub struct GCDirectionPadElementName;
+    pub unsafe trait GCDirectionPadElementName: GCPhysicalInputElementName {}
 
-    unsafe impl ProtocolType for GCDirectionPadElementName {}
+    unsafe impl ProtocolType for dyn GCDirectionPadElementName {}
 );

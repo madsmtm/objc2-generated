@@ -10,13 +10,13 @@ typed_extensible_enum!(
 );
 
 extern_protocol!(
-    pub struct NSUserInterfaceItemIdentification;
-
-    unsafe impl ProtocolType for NSUserInterfaceItemIdentification {
+    pub unsafe trait NSUserInterfaceItemIdentification {
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Option<Id<NSUserInterfaceItemIdentifier, Shared>>;
+        unsafe fn identifier(&self) -> Option<Id<NSUserInterfaceItemIdentifier, Shared>>;
 
         #[method(setIdentifier:)]
-        pub unsafe fn setIdentifier(&self, identifier: Option<&NSUserInterfaceItemIdentifier>);
+        unsafe fn setIdentifier(&self, identifier: Option<&NSUserInterfaceItemIdentifier>);
     }
+
+    unsafe impl ProtocolType for dyn NSUserInterfaceItemIdentification {}
 );

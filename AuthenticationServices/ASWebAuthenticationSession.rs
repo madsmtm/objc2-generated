@@ -43,12 +43,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other presentationContextProvider)]
         pub unsafe fn presentationContextProvider(
             &self,
-        ) -> Option<Id<ASWebAuthenticationPresentationContextProviding, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn ASWebAuthenticationPresentationContextProviding>, Shared>>;
 
         #[method(setPresentationContextProvider:)]
         pub unsafe fn setPresentationContextProvider(
             &self,
-            presentation_context_provider: Option<&ASWebAuthenticationPresentationContextProviding>,
+            presentation_context_provider: Option<
+                &ProtocolObject<dyn ASWebAuthenticationPresentationContextProviding>,
+            >,
         );
 
         #[method(prefersEphemeralWebBrowserSession)]
@@ -78,14 +80,16 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct ASWebAuthenticationPresentationContextProviding;
-
-    unsafe impl ProtocolType for ASWebAuthenticationPresentationContextProviding {
+    pub unsafe trait ASWebAuthenticationPresentationContextProviding:
+        NSObjectProtocol
+    {
         #[cfg(feature = "AuthenticationServices_ASWebAuthenticationSession")]
         #[method_id(@__retain_semantics Other presentationAnchorForWebAuthenticationSession:)]
-        pub unsafe fn presentationAnchorForWebAuthenticationSession(
+        unsafe fn presentationAnchorForWebAuthenticationSession(
             &self,
             session: &ASWebAuthenticationSession,
         ) -> Id<ASPresentationAnchor, Shared>;
     }
+
+    unsafe impl ProtocolType for dyn ASWebAuthenticationPresentationContextProviding {}
 );

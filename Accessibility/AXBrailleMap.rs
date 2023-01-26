@@ -36,16 +36,14 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct AXBrailleMapRenderer;
-
-    unsafe impl ProtocolType for AXBrailleMapRenderer {
+    pub unsafe trait AXBrailleMapRenderer: NSObjectProtocol {
         #[optional]
         #[method(accessibilityBrailleMapRenderRegion)]
-        pub unsafe fn accessibilityBrailleMapRenderRegion(&self) -> CGRect;
+        unsafe fn accessibilityBrailleMapRenderRegion(&self) -> CGRect;
 
         #[optional]
         #[method(setAccessibilityBrailleMapRenderRegion:)]
-        pub unsafe fn setAccessibilityBrailleMapRenderRegion(
+        unsafe fn setAccessibilityBrailleMapRenderRegion(
             &self,
             accessibility_braille_map_render_region: CGRect,
         );
@@ -53,16 +51,18 @@ extern_protocol!(
         #[cfg(feature = "Accessibility_AXBrailleMap")]
         #[optional]
         #[method(accessibilityBrailleMapRenderer)]
-        pub unsafe fn accessibilityBrailleMapRenderer(
+        unsafe fn accessibilityBrailleMapRenderer(
             &self,
         ) -> NonNull<Block<(NonNull<AXBrailleMap>,), ()>>;
 
         #[cfg(feature = "Accessibility_AXBrailleMap")]
         #[optional]
         #[method(setAccessibilityBrailleMapRenderer:)]
-        pub unsafe fn setAccessibilityBrailleMapRenderer(
+        unsafe fn setAccessibilityBrailleMapRenderer(
             &self,
             accessibility_braille_map_renderer: &Block<(NonNull<AXBrailleMap>,), ()>,
         );
     }
+
+    unsafe impl ProtocolType for dyn AXBrailleMapRenderer {}
 );

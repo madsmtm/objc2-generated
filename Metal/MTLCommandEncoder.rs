@@ -24,32 +24,32 @@ ns_options!(
 );
 
 extern_protocol!(
-    pub struct MTLCommandEncoder;
-
-    unsafe impl ProtocolType for MTLCommandEncoder {
+    pub unsafe trait MTLCommandEncoder: NSObjectProtocol {
         #[method_id(@__retain_semantics Other device)]
-        pub unsafe fn device(&self) -> Id<MTLDevice, Shared>;
+        unsafe fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
-        pub fn label(&self) -> Option<Id<NSString, Shared>>;
+        fn label(&self) -> Option<Id<NSString, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:)]
-        pub fn setLabel(&self, label: Option<&NSString>);
+        fn setLabel(&self, label: Option<&NSString>);
 
         #[method(endEncoding)]
-        pub fn endEncoding(&self);
+        fn endEncoding(&self);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(insertDebugSignpost:)]
-        pub fn insertDebugSignpost(&self, string: &NSString);
+        fn insertDebugSignpost(&self, string: &NSString);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(pushDebugGroup:)]
-        pub fn pushDebugGroup(&self, string: &NSString);
+        fn pushDebugGroup(&self, string: &NSString);
 
         #[method(popDebugGroup)]
-        pub fn popDebugGroup(&self);
+        fn popDebugGroup(&self);
     }
+
+    unsafe impl ProtocolType for dyn MTLCommandEncoder {}
 );

@@ -6,13 +6,15 @@ use crate::Foundation::*;
 use crate::GameController::*;
 
 extern_protocol!(
-    pub struct GCButtonElement;
-
-    unsafe impl ProtocolType for GCButtonElement {
+    pub unsafe trait GCButtonElement: GCPhysicalInputElement {
         #[method_id(@__retain_semantics Other pressedInput)]
-        pub unsafe fn pressedInput(&self) -> Id<TodoProtocols, Shared>;
+        unsafe fn pressedInput(&self) -> Id<TodoProtocols, Shared>;
 
         #[method_id(@__retain_semantics Other touchedInput)]
-        pub unsafe fn touchedInput(&self) -> Option<Id<GCTouchedStateInput, Shared>>;
+        unsafe fn touchedInput(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn GCTouchedStateInput>, Shared>>;
     }
+
+    unsafe impl ProtocolType for dyn GCButtonElement {}
 );

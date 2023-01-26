@@ -12,46 +12,48 @@ ns_enum!(
 );
 
 extern_protocol!(
-    pub struct MTLLogContainer;
+    pub unsafe trait MTLLogContainer: NSFastEnumeration {}
 
-    unsafe impl ProtocolType for MTLLogContainer {}
+    unsafe impl ProtocolType for dyn MTLLogContainer {}
 );
 
 extern_protocol!(
-    pub struct MTLFunctionLogDebugLocation;
-
-    unsafe impl ProtocolType for MTLFunctionLogDebugLocation {
+    pub unsafe trait MTLFunctionLogDebugLocation: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other functionName)]
-        pub unsafe fn functionName(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn functionName(&self) -> Option<Id<NSString, Shared>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other URL)]
-        pub unsafe fn URL(&self) -> Option<Id<NSURL, Shared>>;
+        unsafe fn URL(&self) -> Option<Id<NSURL, Shared>>;
 
         #[method(line)]
-        pub unsafe fn line(&self) -> NSUInteger;
+        unsafe fn line(&self) -> NSUInteger;
 
         #[method(column)]
-        pub unsafe fn column(&self) -> NSUInteger;
+        unsafe fn column(&self) -> NSUInteger;
     }
+
+    unsafe impl ProtocolType for dyn MTLFunctionLogDebugLocation {}
 );
 
 extern_protocol!(
-    pub struct MTLFunctionLog;
-
-    unsafe impl ProtocolType for MTLFunctionLog {
+    pub unsafe trait MTLFunctionLog: NSObjectProtocol {
         #[method(type)]
-        pub unsafe fn r#type(&self) -> MTLFunctionLogType;
+        unsafe fn r#type(&self) -> MTLFunctionLogType;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other encoderLabel)]
-        pub unsafe fn encoderLabel(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn encoderLabel(&self) -> Option<Id<NSString, Shared>>;
 
         #[method_id(@__retain_semantics Other function)]
-        pub unsafe fn function(&self) -> Option<Id<MTLFunction, Shared>>;
+        unsafe fn function(&self) -> Option<Id<ProtocolObject<dyn MTLFunction>, Shared>>;
 
         #[method_id(@__retain_semantics Other debugLocation)]
-        pub unsafe fn debugLocation(&self) -> Option<Id<MTLFunctionLogDebugLocation, Shared>>;
+        unsafe fn debugLocation(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn MTLFunctionLogDebugLocation>, Shared>>;
     }
+
+    unsafe impl ProtocolType for dyn MTLFunctionLog {}
 );

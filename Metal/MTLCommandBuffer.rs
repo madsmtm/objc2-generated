@@ -87,23 +87,23 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct MTLCommandBufferEncoderInfo;
-
-    unsafe impl ProtocolType for MTLCommandBufferEncoderInfo {
+    pub unsafe trait MTLCommandBufferEncoderInfo: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
-        pub unsafe fn label(&self) -> Id<NSString, Shared>;
+        unsafe fn label(&self) -> Id<NSString, Shared>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other debugSignposts)]
-        pub unsafe fn debugSignposts(&self) -> Id<NSArray<NSString>, Shared>;
+        unsafe fn debugSignposts(&self) -> Id<NSArray<NSString>, Shared>;
 
         #[method(errorState)]
-        pub unsafe fn errorState(&self) -> MTLCommandEncoderErrorState;
+        unsafe fn errorState(&self) -> MTLCommandEncoderErrorState;
     }
+
+    unsafe impl ProtocolType for dyn MTLCommandBufferEncoderInfo {}
 );
 
-pub type MTLCommandBufferHandler = *mut Block<(NonNull<MTLCommandBuffer>,), ()>;
+pub type MTLCommandBufferHandler = *mut Block<(NonNull<ProtocolObject<dyn MTLCommandBuffer>>,), ()>;
 
 ns_enum!(
     #[underlying(NSUInteger)]
@@ -114,161 +114,165 @@ ns_enum!(
 );
 
 extern_protocol!(
-    pub struct MTLCommandBuffer;
-
-    unsafe impl ProtocolType for MTLCommandBuffer {
+    pub unsafe trait MTLCommandBuffer: NSObjectProtocol {
         #[method_id(@__retain_semantics Other device)]
-        pub unsafe fn device(&self) -> Id<MTLDevice, Shared>;
+        unsafe fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>, Shared>;
 
         #[method_id(@__retain_semantics Other commandQueue)]
-        pub unsafe fn commandQueue(&self) -> Id<MTLCommandQueue, Shared>;
+        unsafe fn commandQueue(&self) -> Id<ProtocolObject<dyn MTLCommandQueue>, Shared>;
 
         #[method(retainedReferences)]
-        pub unsafe fn retainedReferences(&self) -> bool;
+        unsafe fn retainedReferences(&self) -> bool;
 
         #[method(errorOptions)]
-        pub unsafe fn errorOptions(&self) -> MTLCommandBufferErrorOption;
+        unsafe fn errorOptions(&self) -> MTLCommandBufferErrorOption;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
-        pub fn label(&self) -> Option<Id<NSString, Shared>>;
+        fn label(&self) -> Option<Id<NSString, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:)]
-        pub fn setLabel(&self, label: Option<&NSString>);
+        fn setLabel(&self, label: Option<&NSString>);
 
         #[method(kernelStartTime)]
-        pub unsafe fn kernelStartTime(&self) -> CFTimeInterval;
+        unsafe fn kernelStartTime(&self) -> CFTimeInterval;
 
         #[method(kernelEndTime)]
-        pub unsafe fn kernelEndTime(&self) -> CFTimeInterval;
+        unsafe fn kernelEndTime(&self) -> CFTimeInterval;
 
         #[method_id(@__retain_semantics Other logs)]
-        pub unsafe fn logs(&self) -> Id<MTLLogContainer, Shared>;
+        unsafe fn logs(&self) -> Id<ProtocolObject<dyn MTLLogContainer>, Shared>;
 
         #[method(GPUStartTime)]
-        pub unsafe fn GPUStartTime(&self) -> CFTimeInterval;
+        unsafe fn GPUStartTime(&self) -> CFTimeInterval;
 
         #[method(GPUEndTime)]
-        pub unsafe fn GPUEndTime(&self) -> CFTimeInterval;
+        unsafe fn GPUEndTime(&self) -> CFTimeInterval;
 
         #[method(enqueue)]
-        pub fn enqueue(&self);
+        fn enqueue(&self);
 
         #[method(commit)]
-        pub fn commit(&self);
+        fn commit(&self);
 
         #[method(addScheduledHandler:)]
-        pub unsafe fn addScheduledHandler(&self, block: MTLCommandBufferHandler);
+        unsafe fn addScheduledHandler(&self, block: MTLCommandBufferHandler);
 
         #[method(presentDrawable:)]
-        pub fn presentDrawable(&self, drawable: &MTLDrawable);
+        fn presentDrawable(&self, drawable: &ProtocolObject<dyn MTLDrawable>);
 
         #[method(presentDrawable:atTime:)]
-        pub unsafe fn presentDrawable_atTime(
+        unsafe fn presentDrawable_atTime(
             &self,
-            drawable: &MTLDrawable,
+            drawable: &ProtocolObject<dyn MTLDrawable>,
             presentation_time: CFTimeInterval,
         );
 
         #[method(presentDrawable:afterMinimumDuration:)]
-        pub unsafe fn presentDrawable_afterMinimumDuration(
+        unsafe fn presentDrawable_afterMinimumDuration(
             &self,
-            drawable: &MTLDrawable,
+            drawable: &ProtocolObject<dyn MTLDrawable>,
             duration: CFTimeInterval,
         );
 
         #[method(waitUntilScheduled)]
-        pub fn waitUntilScheduled(&self);
+        fn waitUntilScheduled(&self);
 
         #[method(addCompletedHandler:)]
-        pub unsafe fn addCompletedHandler(&self, block: MTLCommandBufferHandler);
+        unsafe fn addCompletedHandler(&self, block: MTLCommandBufferHandler);
 
         #[method(waitUntilCompleted)]
-        pub unsafe fn waitUntilCompleted(&self);
+        unsafe fn waitUntilCompleted(&self);
 
         #[method(status)]
-        pub fn status(&self) -> MTLCommandBufferStatus;
+        fn status(&self) -> MTLCommandBufferStatus;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other error)]
-        pub unsafe fn error(&self) -> Option<Id<NSError, Shared>>;
+        unsafe fn error(&self) -> Option<Id<NSError, Shared>>;
 
         #[method_id(@__retain_semantics Other blitCommandEncoder)]
-        pub fn blitCommandEncoder(&self) -> Option<Id<MTLBlitCommandEncoder, Shared>>;
+        fn blitCommandEncoder(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn MTLBlitCommandEncoder>, Shared>>;
 
         #[cfg(feature = "Metal_MTLRenderPassDescriptor")]
         #[method_id(@__retain_semantics Other renderCommandEncoderWithDescriptor:)]
-        pub fn renderCommandEncoderWithDescriptor(
+        fn renderCommandEncoderWithDescriptor(
             &self,
             render_pass_descriptor: &MTLRenderPassDescriptor,
-        ) -> Option<Id<MTLRenderCommandEncoder, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLRenderCommandEncoder>, Shared>>;
 
         #[cfg(feature = "Metal_MTLComputePassDescriptor")]
         #[method_id(@__retain_semantics Other computeCommandEncoderWithDescriptor:)]
-        pub unsafe fn computeCommandEncoderWithDescriptor(
+        unsafe fn computeCommandEncoderWithDescriptor(
             &self,
             compute_pass_descriptor: &MTLComputePassDescriptor,
-        ) -> Option<Id<MTLComputeCommandEncoder, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLComputeCommandEncoder>, Shared>>;
 
         #[cfg(feature = "Metal_MTLBlitPassDescriptor")]
         #[method_id(@__retain_semantics Other blitCommandEncoderWithDescriptor:)]
-        pub unsafe fn blitCommandEncoderWithDescriptor(
+        unsafe fn blitCommandEncoderWithDescriptor(
             &self,
             blit_pass_descriptor: &MTLBlitPassDescriptor,
-        ) -> Option<Id<MTLBlitCommandEncoder, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLBlitCommandEncoder>, Shared>>;
 
         #[method_id(@__retain_semantics Other computeCommandEncoder)]
-        pub fn computeCommandEncoder(&self) -> Option<Id<MTLComputeCommandEncoder, Shared>>;
+        fn computeCommandEncoder(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn MTLComputeCommandEncoder>, Shared>>;
 
         #[method_id(@__retain_semantics Other computeCommandEncoderWithDispatchType:)]
-        pub fn computeCommandEncoderWithDispatchType(
+        fn computeCommandEncoderWithDispatchType(
             &self,
             dispatch_type: MTLDispatchType,
-        ) -> Option<Id<MTLComputeCommandEncoder, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLComputeCommandEncoder>, Shared>>;
 
         #[method(encodeWaitForEvent:value:)]
-        pub fn encodeWaitForEvent_value(&self, event: &MTLEvent, value: u64);
+        fn encodeWaitForEvent_value(&self, event: &ProtocolObject<dyn MTLEvent>, value: u64);
 
         #[method(encodeSignalEvent:value:)]
-        pub fn encodeSignalEvent_value(&self, event: &MTLEvent, value: u64);
+        fn encodeSignalEvent_value(&self, event: &ProtocolObject<dyn MTLEvent>, value: u64);
 
         #[cfg(feature = "Metal_MTLRenderPassDescriptor")]
         #[method_id(@__retain_semantics Other parallelRenderCommandEncoderWithDescriptor:)]
-        pub fn parallelRenderCommandEncoderWithDescriptor(
+        fn parallelRenderCommandEncoderWithDescriptor(
             &self,
             render_pass_descriptor: &MTLRenderPassDescriptor,
-        ) -> Option<Id<MTLParallelRenderCommandEncoder, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLParallelRenderCommandEncoder>, Shared>>;
 
         #[method_id(@__retain_semantics Other resourceStateCommandEncoder)]
-        pub unsafe fn resourceStateCommandEncoder(
+        unsafe fn resourceStateCommandEncoder(
             &self,
-        ) -> Option<Id<MTLResourceStateCommandEncoder, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLResourceStateCommandEncoder>, Shared>>;
 
         #[cfg(feature = "Metal_MTLResourceStatePassDescriptor")]
         #[method_id(@__retain_semantics Other resourceStateCommandEncoderWithDescriptor:)]
-        pub unsafe fn resourceStateCommandEncoderWithDescriptor(
+        unsafe fn resourceStateCommandEncoderWithDescriptor(
             &self,
             resource_state_pass_descriptor: &MTLResourceStatePassDescriptor,
-        ) -> Option<Id<MTLResourceStateCommandEncoder, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLResourceStateCommandEncoder>, Shared>>;
 
         #[method_id(@__retain_semantics Other accelerationStructureCommandEncoder)]
-        pub fn accelerationStructureCommandEncoder(
+        fn accelerationStructureCommandEncoder(
             &self,
-        ) -> Option<Id<MTLAccelerationStructureCommandEncoder, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLAccelerationStructureCommandEncoder>, Shared>>;
 
         #[cfg(feature = "Metal_MTLAccelerationStructurePassDescriptor")]
         #[method_id(@__retain_semantics Other accelerationStructureCommandEncoderWithDescriptor:)]
-        pub unsafe fn accelerationStructureCommandEncoderWithDescriptor(
+        unsafe fn accelerationStructureCommandEncoderWithDescriptor(
             &self,
             descriptor: &MTLAccelerationStructurePassDescriptor,
-        ) -> Id<MTLAccelerationStructureCommandEncoder, Shared>;
+        ) -> Id<ProtocolObject<dyn MTLAccelerationStructureCommandEncoder>, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(pushDebugGroup:)]
-        pub fn pushDebugGroup(&self, string: &NSString);
+        fn pushDebugGroup(&self, string: &NSString);
 
         #[method(popDebugGroup)]
-        pub fn popDebugGroup(&self);
+        fn popDebugGroup(&self);
     }
+
+    unsafe impl ProtocolType for dyn MTLCommandBuffer {}
 );

@@ -16,22 +16,20 @@ ns_enum!(
 );
 
 extern_protocol!(
-    pub struct CXProviderDelegate;
-
-    unsafe impl ProtocolType for CXProviderDelegate {
+    pub unsafe trait CXProviderDelegate: NSObjectProtocol {
         #[cfg(feature = "CallKit_CXProvider")]
         #[method(providerDidReset:)]
-        pub unsafe fn providerDidReset(&self, provider: &CXProvider);
+        unsafe fn providerDidReset(&self, provider: &CXProvider);
 
         #[cfg(feature = "CallKit_CXProvider")]
         #[optional]
         #[method(providerDidBegin:)]
-        pub unsafe fn providerDidBegin(&self, provider: &CXProvider);
+        unsafe fn providerDidBegin(&self, provider: &CXProvider);
 
         #[cfg(all(feature = "CallKit_CXProvider", feature = "CallKit_CXTransaction"))]
         #[optional]
         #[method(provider:executeTransaction:)]
-        pub unsafe fn provider_executeTransaction(
+        unsafe fn provider_executeTransaction(
             &self,
             provider: &CXProvider,
             transaction: &CXTransaction,
@@ -40,7 +38,7 @@ extern_protocol!(
         #[cfg(all(feature = "CallKit_CXProvider", feature = "CallKit_CXStartCallAction"))]
         #[optional]
         #[method(provider:performStartCallAction:)]
-        pub unsafe fn provider_performStartCallAction(
+        unsafe fn provider_performStartCallAction(
             &self,
             provider: &CXProvider,
             action: &CXStartCallAction,
@@ -49,7 +47,7 @@ extern_protocol!(
         #[cfg(all(feature = "CallKit_CXAnswerCallAction", feature = "CallKit_CXProvider"))]
         #[optional]
         #[method(provider:performAnswerCallAction:)]
-        pub unsafe fn provider_performAnswerCallAction(
+        unsafe fn provider_performAnswerCallAction(
             &self,
             provider: &CXProvider,
             action: &CXAnswerCallAction,
@@ -58,7 +56,7 @@ extern_protocol!(
         #[cfg(all(feature = "CallKit_CXEndCallAction", feature = "CallKit_CXProvider"))]
         #[optional]
         #[method(provider:performEndCallAction:)]
-        pub unsafe fn provider_performEndCallAction(
+        unsafe fn provider_performEndCallAction(
             &self,
             provider: &CXProvider,
             action: &CXEndCallAction,
@@ -70,7 +68,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(provider:performSetHeldCallAction:)]
-        pub unsafe fn provider_performSetHeldCallAction(
+        unsafe fn provider_performSetHeldCallAction(
             &self,
             provider: &CXProvider,
             action: &CXSetHeldCallAction,
@@ -82,7 +80,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(provider:performSetMutedCallAction:)]
-        pub unsafe fn provider_performSetMutedCallAction(
+        unsafe fn provider_performSetMutedCallAction(
             &self,
             provider: &CXProvider,
             action: &CXSetMutedCallAction,
@@ -94,7 +92,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(provider:performSetGroupCallAction:)]
-        pub unsafe fn provider_performSetGroupCallAction(
+        unsafe fn provider_performSetGroupCallAction(
             &self,
             provider: &CXProvider,
             action: &CXSetGroupCallAction,
@@ -106,7 +104,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(provider:performPlayDTMFCallAction:)]
-        pub unsafe fn provider_performPlayDTMFCallAction(
+        unsafe fn provider_performPlayDTMFCallAction(
             &self,
             provider: &CXProvider,
             action: &CXPlayDTMFCallAction,
@@ -115,7 +113,7 @@ extern_protocol!(
         #[cfg(all(feature = "CallKit_CXAction", feature = "CallKit_CXProvider"))]
         #[optional]
         #[method(provider:timedOutPerformingAction:)]
-        pub unsafe fn provider_timedOutPerformingAction(
+        unsafe fn provider_timedOutPerformingAction(
             &self,
             provider: &CXProvider,
             action: &CXAction,
@@ -124,7 +122,7 @@ extern_protocol!(
         #[cfg(all(feature = "CallKit_AVAudioSession", feature = "CallKit_CXProvider"))]
         #[optional]
         #[method(provider:didActivateAudioSession:)]
-        pub unsafe fn provider_didActivateAudioSession(
+        unsafe fn provider_didActivateAudioSession(
             &self,
             provider: &CXProvider,
             audio_session: &AVAudioSession,
@@ -133,12 +131,14 @@ extern_protocol!(
         #[cfg(all(feature = "CallKit_AVAudioSession", feature = "CallKit_CXProvider"))]
         #[optional]
         #[method(provider:didDeactivateAudioSession:)]
-        pub unsafe fn provider_didDeactivateAudioSession(
+        unsafe fn provider_didDeactivateAudioSession(
             &self,
             provider: &CXProvider,
             audio_session: &AVAudioSession,
         );
     }
+
+    unsafe impl ProtocolType for dyn CXProviderDelegate {}
 );
 
 extern_class!(

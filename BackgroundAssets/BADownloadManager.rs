@@ -5,23 +5,21 @@ use crate::BackgroundAssets::*;
 use crate::Foundation::*;
 
 extern_protocol!(
-    pub struct BADownloadManagerDelegate;
-
-    unsafe impl ProtocolType for BADownloadManagerDelegate {
+    pub unsafe trait BADownloadManagerDelegate: NSObjectProtocol {
         #[cfg(feature = "BackgroundAssets_BADownload")]
         #[optional]
         #[method(downloadDidBegin:)]
-        pub unsafe fn downloadDidBegin(&self, download: &BADownload);
+        unsafe fn downloadDidBegin(&self, download: &BADownload);
 
         #[cfg(feature = "BackgroundAssets_BADownload")]
         #[optional]
         #[method(downloadDidPause:)]
-        pub unsafe fn downloadDidPause(&self, download: &BADownload);
+        unsafe fn downloadDidPause(&self, download: &BADownload);
 
         #[cfg(feature = "BackgroundAssets_BADownload")]
         #[optional]
         #[method(download:didWriteBytes:totalBytesWritten:totalBytesExpectedToWrite:)]
-        pub unsafe fn download_didWriteBytes_totalBytesWritten_totalBytesExpectedToWrite(
+        unsafe fn download_didWriteBytes_totalBytesWritten_totalBytesExpectedToWrite(
             &self,
             download: &BADownload,
             bytes_written: i64,
@@ -36,7 +34,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(download:didReceiveChallenge:completionHandler:)]
-        pub unsafe fn download_didReceiveChallenge_completionHandler(
+        unsafe fn download_didReceiveChallenge_completionHandler(
             &self,
             download: &BADownload,
             challenge: &NSURLAuthenticationChallenge,
@@ -52,13 +50,15 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(download:failedWithError:)]
-        pub unsafe fn download_failedWithError(&self, download: &BADownload, error: &NSError);
+        unsafe fn download_failedWithError(&self, download: &BADownload, error: &NSError);
 
         #[cfg(all(feature = "BackgroundAssets_BADownload", feature = "Foundation_NSURL"))]
         #[optional]
         #[method(download:finishedWithFileURL:)]
-        pub unsafe fn download_finishedWithFileURL(&self, download: &BADownload, file_url: &NSURL);
+        unsafe fn download_finishedWithFileURL(&self, download: &BADownload, file_url: &NSURL);
     }
+
+    unsafe impl ProtocolType for dyn BADownloadManagerDelegate {}
 );
 
 extern_class!(
@@ -85,10 +85,15 @@ extern_methods!(
         pub unsafe fn sharedManager() -> Id<BADownloadManager, Shared>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<BADownloadManagerDelegate, Shared>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn BADownloadManagerDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&BADownloadManagerDelegate>);
+        pub unsafe fn setDelegate(
+            &self,
+            delegate: Option<&ProtocolObject<dyn BADownloadManagerDelegate>>,
+        );
 
         #[cfg(all(
             feature = "BackgroundAssets_BADownload",

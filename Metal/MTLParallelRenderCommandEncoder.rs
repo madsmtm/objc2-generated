@@ -5,42 +5,38 @@ use crate::Foundation::*;
 use crate::Metal::*;
 
 extern_protocol!(
-    pub struct MTLParallelRenderCommandEncoder;
-
-    unsafe impl ProtocolType for MTLParallelRenderCommandEncoder {
+    pub unsafe trait MTLParallelRenderCommandEncoder: MTLCommandEncoder {
         #[method_id(@__retain_semantics Other renderCommandEncoder)]
-        pub fn renderCommandEncoder(&self) -> Option<Id<MTLRenderCommandEncoder, Shared>>;
+        fn renderCommandEncoder(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn MTLRenderCommandEncoder>, Shared>>;
 
         #[method(setColorStoreAction:atIndex:)]
-        pub unsafe fn setColorStoreAction_atIndex(
+        unsafe fn setColorStoreAction_atIndex(
             &self,
             store_action: MTLStoreAction,
             color_attachment_index: NSUInteger,
         );
 
         #[method(setDepthStoreAction:)]
-        pub unsafe fn setDepthStoreAction(&self, store_action: MTLStoreAction);
+        unsafe fn setDepthStoreAction(&self, store_action: MTLStoreAction);
 
         #[method(setStencilStoreAction:)]
-        pub unsafe fn setStencilStoreAction(&self, store_action: MTLStoreAction);
+        unsafe fn setStencilStoreAction(&self, store_action: MTLStoreAction);
 
         #[method(setColorStoreActionOptions:atIndex:)]
-        pub unsafe fn setColorStoreActionOptions_atIndex(
+        unsafe fn setColorStoreActionOptions_atIndex(
             &self,
             store_action_options: MTLStoreActionOptions,
             color_attachment_index: NSUInteger,
         );
 
         #[method(setDepthStoreActionOptions:)]
-        pub unsafe fn setDepthStoreActionOptions(
-            &self,
-            store_action_options: MTLStoreActionOptions,
-        );
+        unsafe fn setDepthStoreActionOptions(&self, store_action_options: MTLStoreActionOptions);
 
         #[method(setStencilStoreActionOptions:)]
-        pub unsafe fn setStencilStoreActionOptions(
-            &self,
-            store_action_options: MTLStoreActionOptions,
-        );
+        unsafe fn setStencilStoreActionOptions(&self, store_action_options: MTLStoreActionOptions);
     }
+
+    unsafe impl ProtocolType for dyn MTLParallelRenderCommandEncoder {}
 );

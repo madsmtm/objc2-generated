@@ -7,13 +7,11 @@ use crate::GameKit::*;
 
 extern_protocol!(
     #[deprecated = "Use MCSession in association with MCSessionDelegate from the MultipeerConnectivity framework instead"]
-    pub struct GKSessionDelegate;
-
-    unsafe impl ProtocolType for GKSessionDelegate {
+    pub unsafe trait GKSessionDelegate: NSObjectProtocol {
         #[cfg(all(feature = "Foundation_NSString", feature = "GameKit_GKSession"))]
         #[optional]
         #[method(session:peer:didChangeState:)]
-        pub unsafe fn session_peer_didChangeState(
+        unsafe fn session_peer_didChangeState(
             &self,
             session: &GKSession,
             peer_id: &NSString,
@@ -23,7 +21,7 @@ extern_protocol!(
         #[cfg(all(feature = "Foundation_NSString", feature = "GameKit_GKSession"))]
         #[optional]
         #[method(session:didReceiveConnectionRequestFromPeer:)]
-        pub unsafe fn session_didReceiveConnectionRequestFromPeer(
+        unsafe fn session_didReceiveConnectionRequestFromPeer(
             &self,
             session: &GKSession,
             peer_id: &NSString,
@@ -36,7 +34,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(session:connectionWithPeerFailed:withError:)]
-        pub unsafe fn session_connectionWithPeerFailed_withError(
+        unsafe fn session_connectionWithPeerFailed_withError(
             &self,
             session: &GKSession,
             peer_id: &NSString,
@@ -46,21 +44,21 @@ extern_protocol!(
         #[cfg(all(feature = "Foundation_NSError", feature = "GameKit_GKSession"))]
         #[optional]
         #[method(session:didFailWithError:)]
-        pub unsafe fn session_didFailWithError(&self, session: &GKSession, error: &NSError);
+        unsafe fn session_didFailWithError(&self, session: &GKSession, error: &NSError);
     }
+
+    unsafe impl ProtocolType for dyn GKSessionDelegate {}
 );
 
 extern_protocol!(
-    pub struct GKVoiceChatClient;
-
-    unsafe impl ProtocolType for GKVoiceChatClient {
+    pub unsafe trait GKVoiceChatClient: NSObjectProtocol {
         #[cfg(all(
             feature = "Foundation_NSData",
             feature = "Foundation_NSString",
             feature = "GameKit_GKVoiceChatService"
         ))]
         #[method(voiceChatService:sendData:toParticipantID:)]
-        pub unsafe fn voiceChatService_sendData_toParticipantID(
+        unsafe fn voiceChatService_sendData_toParticipantID(
             &self,
             voice_chat_service: &GKVoiceChatService,
             data: &NSData,
@@ -69,7 +67,7 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other participantID)]
-        pub unsafe fn participantID(&self) -> Id<NSString, Shared>;
+        unsafe fn participantID(&self) -> Id<NSString, Shared>;
 
         #[cfg(all(
             feature = "Foundation_NSData",
@@ -78,7 +76,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(voiceChatService:sendRealTimeData:toParticipantID:)]
-        pub unsafe fn voiceChatService_sendRealTimeData_toParticipantID(
+        unsafe fn voiceChatService_sendRealTimeData_toParticipantID(
             &self,
             voice_chat_service: &GKVoiceChatService,
             data: &NSData,
@@ -91,7 +89,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(voiceChatService:didStartWithParticipantID:)]
-        pub unsafe fn voiceChatService_didStartWithParticipantID(
+        unsafe fn voiceChatService_didStartWithParticipantID(
             &self,
             voice_chat_service: &GKVoiceChatService,
             participant_id: &NSString,
@@ -104,7 +102,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(voiceChatService:didNotStartWithParticipantID:error:)]
-        pub unsafe fn voiceChatService_didNotStartWithParticipantID_error(
+        unsafe fn voiceChatService_didNotStartWithParticipantID_error(
             &self,
             voice_chat_service: &GKVoiceChatService,
             participant_id: &NSString,
@@ -118,7 +116,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(voiceChatService:didStopWithParticipantID:error:)]
-        pub unsafe fn voiceChatService_didStopWithParticipantID_error(
+        unsafe fn voiceChatService_didStopWithParticipantID_error(
             &self,
             voice_chat_service: &GKVoiceChatService,
             participant_id: &NSString,
@@ -131,11 +129,13 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(voiceChatService:didReceiveInvitationFromParticipantID:callID:)]
-        pub unsafe fn voiceChatService_didReceiveInvitationFromParticipantID_callID(
+        unsafe fn voiceChatService_didReceiveInvitationFromParticipantID_callID(
             &self,
             voice_chat_service: &GKVoiceChatService,
             participant_id: &NSString,
             call_id: NSInteger,
         );
     }
+
+    unsafe impl ProtocolType for dyn GKVoiceChatClient {}
 );

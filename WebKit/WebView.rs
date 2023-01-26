@@ -100,40 +100,54 @@ extern_methods!(
         pub unsafe fn setShouldCloseWithWindow(&self, should_close_with_window: bool);
 
         #[method_id(@__retain_semantics Other UIDelegate)]
-        pub unsafe fn UIDelegate(&self) -> Option<Id<WebUIDelegate, Shared>>;
+        pub unsafe fn UIDelegate(&self) -> Option<Id<ProtocolObject<dyn WebUIDelegate>, Shared>>;
 
         #[method(setUIDelegate:)]
-        pub unsafe fn setUIDelegate(&self, ui_delegate: Option<&WebUIDelegate>);
+        pub unsafe fn setUIDelegate(&self, ui_delegate: Option<&ProtocolObject<dyn WebUIDelegate>>);
 
         #[method_id(@__retain_semantics Other resourceLoadDelegate)]
-        pub unsafe fn resourceLoadDelegate(&self) -> Option<Id<WebResourceLoadDelegate, Shared>>;
+        pub unsafe fn resourceLoadDelegate(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn WebResourceLoadDelegate>, Shared>>;
 
         #[method(setResourceLoadDelegate:)]
         pub unsafe fn setResourceLoadDelegate(
             &self,
-            resource_load_delegate: Option<&WebResourceLoadDelegate>,
+            resource_load_delegate: Option<&ProtocolObject<dyn WebResourceLoadDelegate>>,
         );
 
         #[method_id(@__retain_semantics Other downloadDelegate)]
-        pub unsafe fn downloadDelegate(&self) -> Option<Id<WebDownloadDelegate, Shared>>;
+        pub unsafe fn downloadDelegate(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn WebDownloadDelegate>, Shared>>;
 
         #[method(setDownloadDelegate:)]
-        pub unsafe fn setDownloadDelegate(&self, download_delegate: Option<&WebDownloadDelegate>);
+        pub unsafe fn setDownloadDelegate(
+            &self,
+            download_delegate: Option<&ProtocolObject<dyn WebDownloadDelegate>>,
+        );
 
         #[method_id(@__retain_semantics Other frameLoadDelegate)]
-        pub unsafe fn frameLoadDelegate(&self) -> Option<Id<WebFrameLoadDelegate, Shared>>;
+        pub unsafe fn frameLoadDelegate(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn WebFrameLoadDelegate>, Shared>>;
 
         #[method(setFrameLoadDelegate:)]
         pub unsafe fn setFrameLoadDelegate(
             &self,
-            frame_load_delegate: Option<&WebFrameLoadDelegate>,
+            frame_load_delegate: Option<&ProtocolObject<dyn WebFrameLoadDelegate>>,
         );
 
         #[method_id(@__retain_semantics Other policyDelegate)]
-        pub unsafe fn policyDelegate(&self) -> Option<Id<WebPolicyDelegate, Shared>>;
+        pub unsafe fn policyDelegate(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn WebPolicyDelegate>, Shared>>;
 
         #[method(setPolicyDelegate:)]
-        pub unsafe fn setPolicyDelegate(&self, policy_delegate: Option<&WebPolicyDelegate>);
+        pub unsafe fn setPolicyDelegate(
+            &self,
+            policy_delegate: Option<&ProtocolObject<dyn WebPolicyDelegate>>,
+        );
 
         #[cfg(feature = "WebKit_WebFrame")]
         #[method_id(@__retain_semantics Other mainFrame)]
@@ -502,10 +516,15 @@ extern_methods!(
         pub unsafe fn undoManager(&self) -> Option<Id<NSUndoManager, Shared>>;
 
         #[method_id(@__retain_semantics Other editingDelegate)]
-        pub unsafe fn editingDelegate(&self) -> Option<Id<WebEditingDelegate, Shared>>;
+        pub unsafe fn editingDelegate(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn WebEditingDelegate>, Shared>>;
 
         #[method(setEditingDelegate:)]
-        pub unsafe fn setEditingDelegate(&self, editing_delegate: Option<&WebEditingDelegate>);
+        pub unsafe fn setEditingDelegate(
+            &self,
+            editing_delegate: Option<&ProtocolObject<dyn WebEditingDelegate>>,
+        );
 
         #[cfg(all(
             feature = "Foundation_NSString",

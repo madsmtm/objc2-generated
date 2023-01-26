@@ -23,9 +23,9 @@ ns_enum!(
 );
 
 extern_protocol!(
-    pub struct CNKeyDescriptor;
+    pub unsafe trait CNKeyDescriptor: NSObjectProtocol + NSSecureCoding + NSCopying {}
 
-    unsafe impl ProtocolType for CNKeyDescriptor {}
+    unsafe impl ProtocolType for dyn CNKeyDescriptor {}
 );
 
 extern_methods!(
@@ -211,7 +211,10 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(areKeysAvailable:)]
-        pub unsafe fn areKeysAvailable(&self, key_descriptors: &NSArray<CNKeyDescriptor>) -> bool;
+        pub unsafe fn areKeysAvailable(
+            &self,
+            key_descriptors: &NSArray<ProtocolObject<dyn CNKeyDescriptor>>,
+        ) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedStringForKey:)]
@@ -221,7 +224,8 @@ extern_methods!(
         pub unsafe fn comparatorForNameSortOrder(sort_order: CNContactSortOrder) -> NSComparator;
 
         #[method_id(@__retain_semantics Other descriptorForAllComparatorKeys)]
-        pub unsafe fn descriptorForAllComparatorKeys() -> Id<CNKeyDescriptor, Shared>;
+        pub unsafe fn descriptorForAllComparatorKeys(
+        ) -> Id<ProtocolObject<dyn CNKeyDescriptor>, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(isUnifiedWithContactWithIdentifier:)]

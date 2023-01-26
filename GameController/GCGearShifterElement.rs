@@ -20,9 +20,13 @@ extern_methods!(
     #[cfg(feature = "GameController_GCGearShifterElement")]
     unsafe impl GCGearShifterElement {
         #[method_id(@__retain_semantics Other patternInput)]
-        pub unsafe fn patternInput(&self) -> Option<Id<GCSwitchPositionInput, Shared>>;
+        pub unsafe fn patternInput(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn GCSwitchPositionInput>, Shared>>;
 
         #[method_id(@__retain_semantics Other sequentialInput)]
-        pub unsafe fn sequentialInput(&self) -> Option<Id<GCRelativeInput, Shared>>;
+        pub unsafe fn sequentialInput(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn GCRelativeInput>, Shared>>;
     }
 );

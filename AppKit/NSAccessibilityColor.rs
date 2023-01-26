@@ -6,13 +6,13 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 extern_protocol!(
-    pub struct NSAccessibilityColor;
-
-    unsafe impl ProtocolType for NSAccessibilityColor {
+    pub unsafe trait NSAccessibilityColor {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other accessibilityName)]
-        pub unsafe fn accessibilityName(&self) -> Id<NSString, Shared>;
+        unsafe fn accessibilityName(&self) -> Id<NSString, Shared>;
     }
+
+    unsafe impl ProtocolType for dyn NSAccessibilityColor {}
 );
 
 extern_methods!(

@@ -6,24 +6,22 @@ use crate::Foundation::*;
 use crate::InputMethodKit::*;
 
 extern_protocol!(
-    pub struct IMKStateSetting;
-
-    unsafe impl ProtocolType for IMKStateSetting {
+    pub unsafe trait IMKStateSetting {
         #[method(activateServer:)]
-        pub unsafe fn activateServer(&self, sender: Option<&Object>);
+        unsafe fn activateServer(&self, sender: Option<&Object>);
 
         #[method(deactivateServer:)]
-        pub unsafe fn deactivateServer(&self, sender: Option<&Object>);
+        unsafe fn deactivateServer(&self, sender: Option<&Object>);
 
         #[method_id(@__retain_semantics Other valueForTag:client:)]
-        pub unsafe fn valueForTag_client(
+        unsafe fn valueForTag_client(
             &self,
             tag: c_long,
             sender: Option<&Object>,
         ) -> Option<Id<Object, Shared>>;
 
         #[method(setValue:forTag:client:)]
-        pub unsafe fn setValue_forTag_client(
+        unsafe fn setValue_forTag_client(
             &self,
             value: Option<&Object>,
             tag: c_long,
@@ -32,22 +30,22 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other modes:)]
-        pub unsafe fn modes(&self, sender: Option<&Object>) -> Option<Id<NSDictionary, Shared>>;
+        unsafe fn modes(&self, sender: Option<&Object>) -> Option<Id<NSDictionary, Shared>>;
 
         #[method(recognizedEvents:)]
-        pub unsafe fn recognizedEvents(&self, sender: Option<&Object>) -> NSUInteger;
+        unsafe fn recognizedEvents(&self, sender: Option<&Object>) -> NSUInteger;
 
         #[method(showPreferences:)]
-        pub unsafe fn showPreferences(&self, sender: Option<&Object>);
+        unsafe fn showPreferences(&self, sender: Option<&Object>);
     }
+
+    unsafe impl ProtocolType for dyn IMKStateSetting {}
 );
 
 extern_protocol!(
-    pub struct IMKMouseHandling;
-
-    unsafe impl ProtocolType for IMKMouseHandling {
+    pub unsafe trait IMKMouseHandling {
         #[method(mouseDownOnCharacterIndex:coordinate:withModifier:continueTracking:client:)]
-        pub unsafe fn mouseDownOnCharacterIndex_coordinate_withModifier_continueTracking_client(
+        unsafe fn mouseDownOnCharacterIndex_coordinate_withModifier_continueTracking_client(
             &self,
             index: NSUInteger,
             point: NSPoint,
@@ -57,7 +55,7 @@ extern_protocol!(
         ) -> bool;
 
         #[method(mouseUpOnCharacterIndex:coordinate:withModifier:client:)]
-        pub unsafe fn mouseUpOnCharacterIndex_coordinate_withModifier_client(
+        unsafe fn mouseUpOnCharacterIndex_coordinate_withModifier_client(
             &self,
             index: NSUInteger,
             point: NSPoint,
@@ -66,7 +64,7 @@ extern_protocol!(
         ) -> bool;
 
         #[method(mouseMovedOnCharacterIndex:coordinate:withModifier:client:)]
-        pub unsafe fn mouseMovedOnCharacterIndex_coordinate_withModifier_client(
+        unsafe fn mouseMovedOnCharacterIndex_coordinate_withModifier_client(
             &self,
             index: NSUInteger,
             point: NSPoint,
@@ -74,6 +72,8 @@ extern_protocol!(
             sender: Option<&Object>,
         ) -> bool;
     }
+
+    unsafe impl ProtocolType for dyn IMKMouseHandling {}
 );
 
 extern_class!(

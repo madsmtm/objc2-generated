@@ -6,27 +6,27 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 extern_protocol!(
-    pub struct NSPreviewRepresentableActivityItem;
-
-    unsafe impl ProtocolType for NSPreviewRepresentableActivityItem {
+    pub unsafe trait NSPreviewRepresentableActivityItem: NSObjectProtocol {
         #[method_id(@__retain_semantics Other item)]
-        pub unsafe fn item(&self) -> Id<Object, Shared>;
+        unsafe fn item(&self) -> Id<Object, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[optional]
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn title(&self) -> Option<Id<NSString, Shared>>;
 
         #[cfg(feature = "Foundation_NSItemProvider")]
         #[optional]
         #[method_id(@__retain_semantics Other imageProvider)]
-        pub unsafe fn imageProvider(&self) -> Option<Id<NSItemProvider, Shared>>;
+        unsafe fn imageProvider(&self) -> Option<Id<NSItemProvider, Shared>>;
 
         #[cfg(feature = "Foundation_NSItemProvider")]
         #[optional]
         #[method_id(@__retain_semantics Other iconProvider)]
-        pub unsafe fn iconProvider(&self) -> Option<Id<NSItemProvider, Shared>>;
+        unsafe fn iconProvider(&self) -> Option<Id<NSItemProvider, Shared>>;
     }
+
+    unsafe impl ProtocolType for dyn NSPreviewRepresentableActivityItem {}
 );
 
 extern_class!(

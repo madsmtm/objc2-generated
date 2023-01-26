@@ -4,40 +4,32 @@ use crate::common::*;
 use crate::Foundation::*;
 
 extern_protocol!(
-    pub struct NSFilePresenter;
-
-    unsafe impl ProtocolType for NSFilePresenter {
+    pub unsafe trait NSFilePresenter: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other presentedItemURL)]
-        pub unsafe fn presentedItemURL(&self) -> Option<Id<NSURL, Shared>>;
+        unsafe fn presentedItemURL(&self) -> Option<Id<NSURL, Shared>>;
 
         #[cfg(feature = "Foundation_NSOperationQueue")]
         #[method_id(@__retain_semantics Other presentedItemOperationQueue)]
-        pub unsafe fn presentedItemOperationQueue(&self) -> Id<NSOperationQueue, Shared>;
+        unsafe fn presentedItemOperationQueue(&self) -> Id<NSOperationQueue, Shared>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[optional]
         #[method_id(@__retain_semantics Other primaryPresentedItemURL)]
-        pub unsafe fn primaryPresentedItemURL(&self) -> Option<Id<NSURL, Shared>>;
+        unsafe fn primaryPresentedItemURL(&self) -> Option<Id<NSURL, Shared>>;
 
         #[optional]
         #[method(relinquishPresentedItemToReader:)]
-        pub unsafe fn relinquishPresentedItemToReader(
-            &self,
-            reader: &Block<(*mut Block<(), ()>,), ()>,
-        );
+        unsafe fn relinquishPresentedItemToReader(&self, reader: &Block<(*mut Block<(), ()>,), ()>);
 
         #[optional]
         #[method(relinquishPresentedItemToWriter:)]
-        pub unsafe fn relinquishPresentedItemToWriter(
-            &self,
-            writer: &Block<(*mut Block<(), ()>,), ()>,
-        );
+        unsafe fn relinquishPresentedItemToWriter(&self, writer: &Block<(*mut Block<(), ()>,), ()>);
 
         #[cfg(feature = "Foundation_NSError")]
         #[optional]
         #[method(savePresentedItemChangesWithCompletionHandler:)]
-        pub unsafe fn savePresentedItemChangesWithCompletionHandler(
+        unsafe fn savePresentedItemChangesWithCompletionHandler(
             &self,
             completion_handler: &Block<(*mut NSError,), ()>,
         );
@@ -45,7 +37,7 @@ extern_protocol!(
         #[cfg(feature = "Foundation_NSError")]
         #[optional]
         #[method(accommodatePresentedItemDeletionWithCompletionHandler:)]
-        pub unsafe fn accommodatePresentedItemDeletionWithCompletionHandler(
+        unsafe fn accommodatePresentedItemDeletionWithCompletionHandler(
             &self,
             completion_handler: &Block<(*mut NSError,), ()>,
         );
@@ -53,16 +45,16 @@ extern_protocol!(
         #[cfg(feature = "Foundation_NSURL")]
         #[optional]
         #[method(presentedItemDidMoveToURL:)]
-        pub unsafe fn presentedItemDidMoveToURL(&self, new_url: &NSURL);
+        unsafe fn presentedItemDidMoveToURL(&self, new_url: &NSURL);
 
         #[optional]
         #[method(presentedItemDidChange)]
-        pub unsafe fn presentedItemDidChange(&self);
+        unsafe fn presentedItemDidChange(&self);
 
         #[cfg(feature = "Foundation_NSSet")]
         #[optional]
         #[method(presentedItemDidChangeUbiquityAttributes:)]
-        pub unsafe fn presentedItemDidChangeUbiquityAttributes(
+        unsafe fn presentedItemDidChangeUbiquityAttributes(
             &self,
             attributes: &NSSet<NSURLResourceKey>,
         );
@@ -70,29 +62,29 @@ extern_protocol!(
         #[cfg(feature = "Foundation_NSSet")]
         #[optional]
         #[method_id(@__retain_semantics Other observedPresentedItemUbiquityAttributes)]
-        pub unsafe fn observedPresentedItemUbiquityAttributes(
+        unsafe fn observedPresentedItemUbiquityAttributes(
             &self,
         ) -> Id<NSSet<NSURLResourceKey>, Shared>;
 
         #[cfg(feature = "Foundation_NSFileVersion")]
         #[optional]
         #[method(presentedItemDidGainVersion:)]
-        pub unsafe fn presentedItemDidGainVersion(&self, version: &NSFileVersion);
+        unsafe fn presentedItemDidGainVersion(&self, version: &NSFileVersion);
 
         #[cfg(feature = "Foundation_NSFileVersion")]
         #[optional]
         #[method(presentedItemDidLoseVersion:)]
-        pub unsafe fn presentedItemDidLoseVersion(&self, version: &NSFileVersion);
+        unsafe fn presentedItemDidLoseVersion(&self, version: &NSFileVersion);
 
         #[cfg(feature = "Foundation_NSFileVersion")]
         #[optional]
         #[method(presentedItemDidResolveConflictVersion:)]
-        pub unsafe fn presentedItemDidResolveConflictVersion(&self, version: &NSFileVersion);
+        unsafe fn presentedItemDidResolveConflictVersion(&self, version: &NSFileVersion);
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[optional]
         #[method(accommodatePresentedSubitemDeletionAtURL:completionHandler:)]
-        pub unsafe fn accommodatePresentedSubitemDeletionAtURL_completionHandler(
+        unsafe fn accommodatePresentedSubitemDeletionAtURL_completionHandler(
             &self,
             url: &NSURL,
             completion_handler: &Block<(*mut NSError,), ()>,
@@ -101,43 +93,37 @@ extern_protocol!(
         #[cfg(feature = "Foundation_NSURL")]
         #[optional]
         #[method(presentedSubitemDidAppearAtURL:)]
-        pub unsafe fn presentedSubitemDidAppearAtURL(&self, url: &NSURL);
+        unsafe fn presentedSubitemDidAppearAtURL(&self, url: &NSURL);
 
         #[cfg(feature = "Foundation_NSURL")]
         #[optional]
         #[method(presentedSubitemAtURL:didMoveToURL:)]
-        pub unsafe fn presentedSubitemAtURL_didMoveToURL(&self, old_url: &NSURL, new_url: &NSURL);
+        unsafe fn presentedSubitemAtURL_didMoveToURL(&self, old_url: &NSURL, new_url: &NSURL);
 
         #[cfg(feature = "Foundation_NSURL")]
         #[optional]
         #[method(presentedSubitemDidChangeAtURL:)]
-        pub unsafe fn presentedSubitemDidChangeAtURL(&self, url: &NSURL);
+        unsafe fn presentedSubitemDidChangeAtURL(&self, url: &NSURL);
 
         #[cfg(all(feature = "Foundation_NSFileVersion", feature = "Foundation_NSURL"))]
         #[optional]
         #[method(presentedSubitemAtURL:didGainVersion:)]
-        pub unsafe fn presentedSubitemAtURL_didGainVersion(
-            &self,
-            url: &NSURL,
-            version: &NSFileVersion,
-        );
+        unsafe fn presentedSubitemAtURL_didGainVersion(&self, url: &NSURL, version: &NSFileVersion);
 
         #[cfg(all(feature = "Foundation_NSFileVersion", feature = "Foundation_NSURL"))]
         #[optional]
         #[method(presentedSubitemAtURL:didLoseVersion:)]
-        pub unsafe fn presentedSubitemAtURL_didLoseVersion(
-            &self,
-            url: &NSURL,
-            version: &NSFileVersion,
-        );
+        unsafe fn presentedSubitemAtURL_didLoseVersion(&self, url: &NSURL, version: &NSFileVersion);
 
         #[cfg(all(feature = "Foundation_NSFileVersion", feature = "Foundation_NSURL"))]
         #[optional]
         #[method(presentedSubitemAtURL:didResolveConflictVersion:)]
-        pub unsafe fn presentedSubitemAtURL_didResolveConflictVersion(
+        unsafe fn presentedSubitemAtURL_didResolveConflictVersion(
             &self,
             url: &NSURL,
             version: &NSFileVersion,
         );
     }
+
+    unsafe impl ProtocolType for dyn NSFilePresenter {}
 );

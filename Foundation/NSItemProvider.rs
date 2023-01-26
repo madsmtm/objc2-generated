@@ -21,9 +21,7 @@ ns_options!(
 );
 
 extern_protocol!(
-    pub struct NSItemProviderWriting;
-
-    unsafe impl ProtocolType for NSItemProviderWriting {
+    pub unsafe trait NSItemProviderWriting: NSObjectProtocol {
         #[cfg(all(
             feature = "Foundation_NSData",
             feature = "Foundation_NSError",
@@ -31,21 +29,24 @@ extern_protocol!(
             feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other loadDataWithTypeIdentifier:forItemProviderCompletionHandler:)]
-        pub unsafe fn loadDataWithTypeIdentifier_forItemProviderCompletionHandler(
+        unsafe fn loadDataWithTypeIdentifier_forItemProviderCompletionHandler(
             &self,
             type_identifier: &NSString,
             completion_handler: &Block<(*mut NSData, *mut NSError), ()>,
         ) -> Option<Id<NSProgress, Shared>>;
     }
+
+    unsafe impl ProtocolType for dyn NSItemProviderWriting {}
 );
 
 extern_protocol!(
-    pub struct NSItemProviderReading;
+    pub unsafe trait NSItemProviderReading: NSObjectProtocol {}
 
-    unsafe impl ProtocolType for NSItemProviderReading {}
+    unsafe impl ProtocolType for dyn NSItemProviderReading {}
 );
 
-pub type NSItemProviderCompletionHandler = *mut Block<(*mut NSSecureCoding, *mut NSError), ()>;
+pub type NSItemProviderCompletionHandler =
+    *mut Block<(*mut ProtocolObject<dyn NSSecureCoding>, *mut NSError), ()>;
 
 pub type NSItemProviderLoadHandler = *mut Block<
     (
@@ -181,13 +182,13 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithObject:)]
         pub unsafe fn initWithObject(
             this: Option<Allocated<Self>>,
-            object: &NSItemProviderWriting,
+            object: &ProtocolObject<dyn NSItemProviderWriting>,
         ) -> Id<Self, Shared>;
 
         #[method(registerObject:visibility:)]
         pub unsafe fn registerObject_visibility(
             &self,
-            object: &NSItemProviderWriting,
+            object: &ProtocolObject<dyn NSItemProviderWriting>,
             visibility: NSItemProviderRepresentationVisibility,
         );
 
@@ -195,7 +196,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithItem:typeIdentifier:)]
         pub unsafe fn initWithItem_typeIdentifier(
             this: Option<Allocated<Self>>,
-            item: Option<&NSSecureCoding>,
+            item: Option<&ProtocolObject<dyn NSSecureCoding>>,
             type_identifier: Option<&NSString>,
         ) -> Id<Self, Shared>;
 

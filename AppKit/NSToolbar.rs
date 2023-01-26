@@ -74,10 +74,10 @@ extern_methods!(
         pub unsafe fn removeItemAtIndex(&self, index: NSInteger);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<NSToolbarDelegate, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSToolbarDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&NSToolbarDelegate>);
+        pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSToolbarDelegate>>);
 
         #[method(isVisible)]
         pub unsafe fn isVisible(&self) -> bool;
@@ -188,13 +188,11 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct NSToolbarDelegate;
-
-    unsafe impl ProtocolType for NSToolbarDelegate {
+    pub unsafe trait NSToolbarDelegate: NSObjectProtocol {
         #[cfg(all(feature = "AppKit_NSToolbar", feature = "AppKit_NSToolbarItem"))]
         #[optional]
         #[method_id(@__retain_semantics Other toolbar:itemForItemIdentifier:willBeInsertedIntoToolbar:)]
-        pub unsafe fn toolbar_itemForItemIdentifier_willBeInsertedIntoToolbar(
+        unsafe fn toolbar_itemForItemIdentifier_willBeInsertedIntoToolbar(
             &self,
             toolbar: &NSToolbar,
             item_identifier: &NSToolbarItemIdentifier,
@@ -204,7 +202,7 @@ extern_protocol!(
         #[cfg(all(feature = "AppKit_NSToolbar", feature = "Foundation_NSArray"))]
         #[optional]
         #[method_id(@__retain_semantics Other toolbarDefaultItemIdentifiers:)]
-        pub unsafe fn toolbarDefaultItemIdentifiers(
+        unsafe fn toolbarDefaultItemIdentifiers(
             &self,
             toolbar: &NSToolbar,
         ) -> Id<NSArray<NSToolbarItemIdentifier>, Shared>;
@@ -212,7 +210,7 @@ extern_protocol!(
         #[cfg(all(feature = "AppKit_NSToolbar", feature = "Foundation_NSArray"))]
         #[optional]
         #[method_id(@__retain_semantics Other toolbarAllowedItemIdentifiers:)]
-        pub unsafe fn toolbarAllowedItemIdentifiers(
+        unsafe fn toolbarAllowedItemIdentifiers(
             &self,
             toolbar: &NSToolbar,
         ) -> Id<NSArray<NSToolbarItemIdentifier>, Shared>;
@@ -220,7 +218,7 @@ extern_protocol!(
         #[cfg(all(feature = "AppKit_NSToolbar", feature = "Foundation_NSArray"))]
         #[optional]
         #[method_id(@__retain_semantics Other toolbarSelectableItemIdentifiers:)]
-        pub unsafe fn toolbarSelectableItemIdentifiers(
+        unsafe fn toolbarSelectableItemIdentifiers(
             &self,
             toolbar: &NSToolbar,
         ) -> Id<NSArray<NSToolbarItemIdentifier>, Shared>;
@@ -228,7 +226,7 @@ extern_protocol!(
         #[cfg(all(feature = "AppKit_NSToolbar", feature = "Foundation_NSSet"))]
         #[optional]
         #[method_id(@__retain_semantics Other toolbarImmovableItemIdentifiers:)]
-        pub unsafe fn toolbarImmovableItemIdentifiers(
+        unsafe fn toolbarImmovableItemIdentifiers(
             &self,
             toolbar: &NSToolbar,
         ) -> Id<NSSet<NSToolbarItemIdentifier>, Shared>;
@@ -236,7 +234,7 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSToolbar")]
         #[optional]
         #[method(toolbar:itemIdentifier:canBeInsertedAtIndex:)]
-        pub unsafe fn toolbar_itemIdentifier_canBeInsertedAtIndex(
+        unsafe fn toolbar_itemIdentifier_canBeInsertedAtIndex(
             &self,
             toolbar: &NSToolbar,
             item_identifier: &NSToolbarItemIdentifier,
@@ -246,13 +244,15 @@ extern_protocol!(
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(toolbarWillAddItem:)]
-        pub unsafe fn toolbarWillAddItem(&self, notification: &NSNotification);
+        unsafe fn toolbarWillAddItem(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(toolbarDidRemoveItem:)]
-        pub unsafe fn toolbarDidRemoveItem(&self, notification: &NSNotification);
+        unsafe fn toolbarDidRemoveItem(&self, notification: &NSNotification);
     }
+
+    unsafe impl ProtocolType for dyn NSToolbarDelegate {}
 );
 
 extern_static!(NSToolbarWillAddItemNotification: &'static NSNotificationName);

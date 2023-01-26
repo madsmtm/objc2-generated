@@ -79,10 +79,10 @@ extern_methods!(
         pub unsafe fn readRTFDFromFile(&self, path: &NSString) -> bool;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<NSTextDelegate, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSTextDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&NSTextDelegate>);
+        pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSTextDelegate>>);
 
         #[method(isEditable)]
         pub unsafe fn isEditable(&self) -> bool;
@@ -327,34 +327,34 @@ extern_enum!(
 );
 
 extern_protocol!(
-    pub struct NSTextDelegate;
-
-    unsafe impl ProtocolType for NSTextDelegate {
+    pub unsafe trait NSTextDelegate: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSText")]
         #[optional]
         #[method(textShouldBeginEditing:)]
-        pub unsafe fn textShouldBeginEditing(&self, text_object: &NSText) -> bool;
+        unsafe fn textShouldBeginEditing(&self, text_object: &NSText) -> bool;
 
         #[cfg(feature = "AppKit_NSText")]
         #[optional]
         #[method(textShouldEndEditing:)]
-        pub unsafe fn textShouldEndEditing(&self, text_object: &NSText) -> bool;
+        unsafe fn textShouldEndEditing(&self, text_object: &NSText) -> bool;
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(textDidBeginEditing:)]
-        pub unsafe fn textDidBeginEditing(&self, notification: &NSNotification);
+        unsafe fn textDidBeginEditing(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(textDidEndEditing:)]
-        pub unsafe fn textDidEndEditing(&self, notification: &NSNotification);
+        unsafe fn textDidEndEditing(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(textDidChange:)]
-        pub unsafe fn textDidChange(&self, notification: &NSNotification);
+        unsafe fn textDidChange(&self, notification: &NSNotification);
     }
+
+    unsafe impl ProtocolType for dyn NSTextDelegate {}
 );
 
 extern_enum!(

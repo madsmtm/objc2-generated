@@ -116,10 +116,11 @@ extern_methods!(
         pub unsafe fn setTemplateItems(&self, template_items: &NSSet<NSTouchBarItem>);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<NSTouchBarDelegate, Shared>>;
+        pub unsafe fn delegate(&self)
+            -> Option<Id<ProtocolObject<dyn NSTouchBarDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&NSTouchBarDelegate>);
+        pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSTouchBarDelegate>>);
 
         #[cfg(feature = "AppKit_NSTouchBarItem")]
         #[method_id(@__retain_semantics Other itemForIdentifier:)]
@@ -142,28 +143,28 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct NSTouchBarDelegate;
-
-    unsafe impl ProtocolType for NSTouchBarDelegate {
+    pub unsafe trait NSTouchBarDelegate: NSObjectProtocol {
         #[cfg(all(feature = "AppKit_NSTouchBar", feature = "AppKit_NSTouchBarItem"))]
         #[optional]
         #[method_id(@__retain_semantics Other touchBar:makeItemForIdentifier:)]
-        pub unsafe fn touchBar_makeItemForIdentifier(
+        unsafe fn touchBar_makeItemForIdentifier(
             &self,
             touch_bar: &NSTouchBar,
             identifier: &NSTouchBarItemIdentifier,
         ) -> Option<Id<NSTouchBarItem, Shared>>;
     }
+
+    unsafe impl ProtocolType for dyn NSTouchBarDelegate {}
 );
 
 extern_protocol!(
-    pub struct NSTouchBarProvider;
-
-    unsafe impl ProtocolType for NSTouchBarProvider {
+    pub unsafe trait NSTouchBarProvider: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSTouchBar")]
         #[method_id(@__retain_semantics Other touchBar)]
-        pub unsafe fn touchBar(&self) -> Option<Id<NSTouchBar, Shared>>;
+        unsafe fn touchBar(&self) -> Option<Id<NSTouchBar, Shared>>;
     }
+
+    unsafe impl ProtocolType for dyn NSTouchBarProvider {}
 );
 
 extern_methods!(

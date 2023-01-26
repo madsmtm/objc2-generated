@@ -49,7 +49,9 @@ extern_methods!(
         pub unsafe fn button(&self) -> c_short;
 
         #[method_id(@__retain_semantics Other relatedTarget)]
-        pub unsafe fn relatedTarget(&self) -> Option<Id<DOMEventTarget, Shared>>;
+        pub unsafe fn relatedTarget(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn DOMEventTarget>, Shared>>;
 
         #[method(offsetX)]
         pub unsafe fn offsetX(&self) -> c_int;
@@ -89,7 +91,7 @@ extern_methods!(
             shift_key: bool,
             meta_key: bool,
             button: c_ushort,
-            related_target: Option<&DOMEventTarget>,
+            related_target: Option<&ProtocolObject<dyn DOMEventTarget>>,
         );
     }
 );
@@ -117,7 +119,7 @@ extern_methods!(
             shift_key: bool,
             meta_key: bool,
             button: c_ushort,
-            related_target: Option<&DOMEventTarget>,
+            related_target: Option<&ProtocolObject<dyn DOMEventTarget>>,
         );
     }
 );

@@ -89,10 +89,15 @@ extern_methods!(
         pub unsafe fn selectText(&self, sender: Option<&Object>);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<NSTextFieldDelegate, Shared>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn NSTextFieldDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&NSTextFieldDelegate>);
+        pub unsafe fn setDelegate(
+            &self,
+            delegate: Option<&ProtocolObject<dyn NSTextFieldDelegate>>,
+        );
 
         #[cfg(feature = "AppKit_NSText")]
         #[method(textShouldBeginEditing:)]
@@ -219,9 +224,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct NSTextFieldDelegate;
-
-    unsafe impl ProtocolType for NSTextFieldDelegate {
+    pub unsafe trait NSTextFieldDelegate: NSControlTextEditingDelegate {
         #[cfg(all(
             feature = "AppKit_NSTextField",
             feature = "AppKit_NSTextView",
@@ -229,7 +232,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other textField:textView:candidatesForSelectedRange:)]
-        pub unsafe fn textField_textView_candidatesForSelectedRange(
+        unsafe fn textField_textView_candidatesForSelectedRange(
             &self,
             text_field: &NSTextField,
             text_view: &NSTextView,
@@ -244,7 +247,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other textField:textView:candidates:forSelectedRange:)]
-        pub unsafe fn textField_textView_candidates_forSelectedRange(
+        unsafe fn textField_textView_candidates_forSelectedRange(
             &self,
             text_field: &NSTextField,
             text_view: &NSTextView,
@@ -255,13 +258,15 @@ extern_protocol!(
         #[cfg(all(feature = "AppKit_NSTextField", feature = "AppKit_NSTextView"))]
         #[optional]
         #[method(textField:textView:shouldSelectCandidateAtIndex:)]
-        pub unsafe fn textField_textView_shouldSelectCandidateAtIndex(
+        unsafe fn textField_textView_shouldSelectCandidateAtIndex(
             &self,
             text_field: &NSTextField,
             text_view: &NSTextView,
             index: NSUInteger,
         ) -> bool;
     }
+
+    unsafe impl ProtocolType for dyn NSTextFieldDelegate {}
 );
 
 extern_methods!(

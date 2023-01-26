@@ -10,13 +10,13 @@ typed_extensible_enum!(
 );
 
 extern_protocol!(
-    pub struct NSFileProviderItemDecorating;
-
-    unsafe impl ProtocolType for NSFileProviderItemDecorating {
+    pub unsafe trait NSFileProviderItemDecorating: NSFileProviderItem {
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other decorations)]
-        pub unsafe fn decorations(
+        unsafe fn decorations(
             &self,
         ) -> Option<Id<NSArray<NSFileProviderItemDecorationIdentifier>, Shared>>;
     }
+
+    unsafe impl ProtocolType for dyn NSFileProviderItemDecorating {}
 );

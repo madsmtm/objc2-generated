@@ -32,7 +32,9 @@ extern_methods!(
         pub unsafe fn data(&self) -> Id<NSData, Shared>;
 
         #[method_id(@__retain_semantics Other representation)]
-        pub unsafe fn representation(&self) -> Option<Id<WebDocumentRepresentation, Shared>>;
+        pub unsafe fn representation(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn WebDocumentRepresentation>, Shared>>;
 
         #[cfg(feature = "WebKit_WebFrame")]
         #[method_id(@__retain_semantics Other webFrame)]

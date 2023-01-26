@@ -40,12 +40,12 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<EAWiFiUnconfiguredAccessoryBrowserDelegate, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn EAWiFiUnconfiguredAccessoryBrowserDelegate>, Shared>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
-            delegate: Option<&EAWiFiUnconfiguredAccessoryBrowserDelegate>,
+            delegate: Option<&ProtocolObject<dyn EAWiFiUnconfiguredAccessoryBrowserDelegate>>,
         );
 
         #[cfg(all(
@@ -81,12 +81,10 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct EAWiFiUnconfiguredAccessoryBrowserDelegate;
-
-    unsafe impl ProtocolType for EAWiFiUnconfiguredAccessoryBrowserDelegate {
+    pub unsafe trait EAWiFiUnconfiguredAccessoryBrowserDelegate: NSObjectProtocol {
         #[cfg(feature = "ExternalAccessory_EAWiFiUnconfiguredAccessoryBrowser")]
         #[method(accessoryBrowser:didUpdateState:)]
-        pub unsafe fn accessoryBrowser_didUpdateState(
+        unsafe fn accessoryBrowser_didUpdateState(
             &self,
             browser: &EAWiFiUnconfiguredAccessoryBrowser,
             state: EAWiFiUnconfiguredAccessoryBrowserState,
@@ -98,7 +96,7 @@ extern_protocol!(
             feature = "Foundation_NSSet"
         ))]
         #[method(accessoryBrowser:didFindUnconfiguredAccessories:)]
-        pub unsafe fn accessoryBrowser_didFindUnconfiguredAccessories(
+        unsafe fn accessoryBrowser_didFindUnconfiguredAccessories(
             &self,
             browser: &EAWiFiUnconfiguredAccessoryBrowser,
             accessories: &NSSet<EAWiFiUnconfiguredAccessory>,
@@ -110,7 +108,7 @@ extern_protocol!(
             feature = "Foundation_NSSet"
         ))]
         #[method(accessoryBrowser:didRemoveUnconfiguredAccessories:)]
-        pub unsafe fn accessoryBrowser_didRemoveUnconfiguredAccessories(
+        unsafe fn accessoryBrowser_didRemoveUnconfiguredAccessories(
             &self,
             browser: &EAWiFiUnconfiguredAccessoryBrowser,
             accessories: &NSSet<EAWiFiUnconfiguredAccessory>,
@@ -121,11 +119,13 @@ extern_protocol!(
             feature = "ExternalAccessory_EAWiFiUnconfiguredAccessoryBrowser"
         ))]
         #[method(accessoryBrowser:didFinishConfiguringAccessory:withStatus:)]
-        pub unsafe fn accessoryBrowser_didFinishConfiguringAccessory_withStatus(
+        unsafe fn accessoryBrowser_didFinishConfiguringAccessory_withStatus(
             &self,
             browser: &EAWiFiUnconfiguredAccessoryBrowser,
             accessory: &EAWiFiUnconfiguredAccessory,
             status: EAWiFiUnconfiguredAccessoryConfigurationStatus,
         );
     }
+
+    unsafe impl ProtocolType for dyn EAWiFiUnconfiguredAccessoryBrowserDelegate {}
 );

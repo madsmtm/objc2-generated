@@ -5,13 +5,11 @@ use crate::AutomaticAssessmentConfiguration::*;
 use crate::Foundation::*;
 
 extern_protocol!(
-    pub struct AEAssessmentSessionDelegate;
-
-    unsafe impl ProtocolType for AEAssessmentSessionDelegate {
+    pub unsafe trait AEAssessmentSessionDelegate: NSObjectProtocol {
         #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentSession")]
         #[optional]
         #[method(assessmentSessionDidBegin:)]
-        pub unsafe fn assessmentSessionDidBegin(&self, session: &AEAssessmentSession);
+        unsafe fn assessmentSessionDidBegin(&self, session: &AEAssessmentSession);
 
         #[cfg(all(
             feature = "AutomaticAssessmentConfiguration_AEAssessmentSession",
@@ -19,7 +17,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(assessmentSession:failedToBeginWithError:)]
-        pub unsafe fn assessmentSession_failedToBeginWithError(
+        unsafe fn assessmentSession_failedToBeginWithError(
             &self,
             session: &AEAssessmentSession,
             error: &NSError,
@@ -31,7 +29,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(assessmentSession:wasInterruptedWithError:)]
-        pub unsafe fn assessmentSession_wasInterruptedWithError(
+        unsafe fn assessmentSession_wasInterruptedWithError(
             &self,
             session: &AEAssessmentSession,
             error: &NSError,
@@ -40,12 +38,12 @@ extern_protocol!(
         #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentSession")]
         #[optional]
         #[method(assessmentSessionDidEnd:)]
-        pub unsafe fn assessmentSessionDidEnd(&self, session: &AEAssessmentSession);
+        unsafe fn assessmentSessionDidEnd(&self, session: &AEAssessmentSession);
 
         #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentSession")]
         #[optional]
         #[method(assessmentSessionDidUpdate:)]
-        pub unsafe fn assessmentSessionDidUpdate(&self, session: &AEAssessmentSession);
+        unsafe fn assessmentSessionDidUpdate(&self, session: &AEAssessmentSession);
 
         #[cfg(all(
             feature = "AutomaticAssessmentConfiguration_AEAssessmentConfiguration",
@@ -54,11 +52,13 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(assessmentSession:failedToUpdateToConfiguration:error:)]
-        pub unsafe fn assessmentSession_failedToUpdateToConfiguration_error(
+        unsafe fn assessmentSession_failedToUpdateToConfiguration_error(
             &self,
             session: &AEAssessmentSession,
             configuration: &AEAssessmentConfiguration,
             error: &NSError,
         );
     }
+
+    unsafe impl ProtocolType for dyn AEAssessmentSessionDelegate {}
 );

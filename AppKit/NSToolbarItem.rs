@@ -195,13 +195,13 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct NSToolbarItemValidation;
-
-    unsafe impl ProtocolType for NSToolbarItemValidation {
+    pub unsafe trait NSToolbarItemValidation: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSToolbarItem")]
         #[method(validateToolbarItem:)]
-        pub unsafe fn validateToolbarItem(&self, item: &NSToolbarItem) -> bool;
+        unsafe fn validateToolbarItem(&self, item: &NSToolbarItem) -> bool;
     }
+
+    unsafe impl ProtocolType for dyn NSToolbarItemValidation {}
 );
 
 extern_static!(NSToolbarSpaceItemIdentifier: &'static NSToolbarItemIdentifier);

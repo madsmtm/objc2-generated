@@ -28,10 +28,11 @@ extern_methods!(
         pub unsafe fn webView(&self) -> Option<Id<WKWebView, Shared>>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<WKDownloadDelegate, Shared>>;
+        pub unsafe fn delegate(&self)
+            -> Option<Id<ProtocolObject<dyn WKDownloadDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&WKDownloadDelegate>);
+        pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn WKDownloadDelegate>>);
 
         #[cfg(feature = "Foundation_NSData")]
         #[method(cancel:)]

@@ -37,13 +37,11 @@ ns_enum!(
 
 extern_protocol!(
     #[deprecated]
-    pub struct NSURLHandleClient;
-
-    unsafe impl ProtocolType for NSURLHandleClient {
+    pub unsafe trait NSURLHandleClient {
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSURLHandle"))]
         #[deprecated]
         #[method(URLHandle:resourceDataDidBecomeAvailable:)]
-        pub unsafe fn URLHandle_resourceDataDidBecomeAvailable(
+        unsafe fn URLHandle_resourceDataDidBecomeAvailable(
             &self,
             sender: Option<&NSURLHandle>,
             new_bytes: Option<&NSData>,
@@ -52,27 +50,29 @@ extern_protocol!(
         #[cfg(feature = "Foundation_NSURLHandle")]
         #[deprecated]
         #[method(URLHandleResourceDidBeginLoading:)]
-        pub unsafe fn URLHandleResourceDidBeginLoading(&self, sender: Option<&NSURLHandle>);
+        unsafe fn URLHandleResourceDidBeginLoading(&self, sender: Option<&NSURLHandle>);
 
         #[cfg(feature = "Foundation_NSURLHandle")]
         #[deprecated]
         #[method(URLHandleResourceDidFinishLoading:)]
-        pub unsafe fn URLHandleResourceDidFinishLoading(&self, sender: Option<&NSURLHandle>);
+        unsafe fn URLHandleResourceDidFinishLoading(&self, sender: Option<&NSURLHandle>);
 
         #[cfg(feature = "Foundation_NSURLHandle")]
         #[deprecated]
         #[method(URLHandleResourceDidCancelLoading:)]
-        pub unsafe fn URLHandleResourceDidCancelLoading(&self, sender: Option<&NSURLHandle>);
+        unsafe fn URLHandleResourceDidCancelLoading(&self, sender: Option<&NSURLHandle>);
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURLHandle"))]
         #[deprecated]
         #[method(URLHandle:resourceDidFailLoadingWithReason:)]
-        pub unsafe fn URLHandle_resourceDidFailLoadingWithReason(
+        unsafe fn URLHandle_resourceDidFailLoadingWithReason(
             &self,
             sender: Option<&NSURLHandle>,
             reason: Option<&NSString>,
         );
     }
+
+    unsafe impl ProtocolType for dyn NSURLHandleClient {}
 );
 
 extern_class!(
@@ -109,11 +109,11 @@ extern_methods!(
 
         #[deprecated]
         #[method(addClient:)]
-        pub unsafe fn addClient(&self, client: Option<&NSURLHandleClient>);
+        pub unsafe fn addClient(&self, client: Option<&ProtocolObject<dyn NSURLHandleClient>>);
 
         #[deprecated]
         #[method(removeClient:)]
-        pub unsafe fn removeClient(&self, client: Option<&NSURLHandleClient>);
+        pub unsafe fn removeClient(&self, client: Option<&ProtocolObject<dyn NSURLHandleClient>>);
 
         #[deprecated]
         #[method(loadInBackground)]

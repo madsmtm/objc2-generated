@@ -38,10 +38,15 @@ extern_methods!(
         pub unsafe fn setWorkflowView(&self, workflow_view: Option<&AMWorkflowView>);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<AMWorkflowControllerDelegate, Shared>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn AMWorkflowControllerDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&AMWorkflowControllerDelegate>);
+        pub unsafe fn setDelegate(
+            &self,
+            delegate: Option<&ProtocolObject<dyn AMWorkflowControllerDelegate>>,
+        );
 
         #[method(canRun)]
         pub unsafe fn canRun(&self) -> bool;
@@ -70,28 +75,26 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct AMWorkflowControllerDelegate;
-
-    unsafe impl ProtocolType for AMWorkflowControllerDelegate {
+    pub unsafe trait AMWorkflowControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "Automator_AMWorkflowController")]
         #[optional]
         #[method(workflowControllerWillRun:)]
-        pub unsafe fn workflowControllerWillRun(&self, controller: &AMWorkflowController);
+        unsafe fn workflowControllerWillRun(&self, controller: &AMWorkflowController);
 
         #[cfg(feature = "Automator_AMWorkflowController")]
         #[optional]
         #[method(workflowControllerWillStop:)]
-        pub unsafe fn workflowControllerWillStop(&self, controller: &AMWorkflowController);
+        unsafe fn workflowControllerWillStop(&self, controller: &AMWorkflowController);
 
         #[cfg(feature = "Automator_AMWorkflowController")]
         #[optional]
         #[method(workflowControllerDidRun:)]
-        pub unsafe fn workflowControllerDidRun(&self, controller: &AMWorkflowController);
+        unsafe fn workflowControllerDidRun(&self, controller: &AMWorkflowController);
 
         #[cfg(feature = "Automator_AMWorkflowController")]
         #[optional]
         #[method(workflowControllerDidStop:)]
-        pub unsafe fn workflowControllerDidStop(&self, controller: &AMWorkflowController);
+        unsafe fn workflowControllerDidStop(&self, controller: &AMWorkflowController);
 
         #[cfg(all(
             feature = "Automator_AMAction",
@@ -99,7 +102,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(workflowController:willRunAction:)]
-        pub unsafe fn workflowController_willRunAction(
+        unsafe fn workflowController_willRunAction(
             &self,
             controller: &AMWorkflowController,
             action: &AMAction,
@@ -111,7 +114,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(workflowController:didRunAction:)]
-        pub unsafe fn workflowController_didRunAction(
+        unsafe fn workflowController_didRunAction(
             &self,
             controller: &AMWorkflowController,
             action: &AMAction,
@@ -123,10 +126,12 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(workflowController:didError:)]
-        pub unsafe fn workflowController_didError(
+        unsafe fn workflowController_didError(
             &self,
             controller: &AMWorkflowController,
             error: &NSError,
         );
     }
+
+    unsafe impl ProtocolType for dyn AMWorkflowControllerDelegate {}
 );

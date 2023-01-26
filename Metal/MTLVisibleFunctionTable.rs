@@ -31,24 +31,24 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct MTLVisibleFunctionTable;
-
-    unsafe impl ProtocolType for MTLVisibleFunctionTable {
+    pub unsafe trait MTLVisibleFunctionTable: MTLResource {
         #[method(gpuResourceID)]
-        pub unsafe fn gpuResourceID(&self) -> MTLResourceID;
+        unsafe fn gpuResourceID(&self) -> MTLResourceID;
 
         #[method(setFunction:atIndex:)]
-        pub unsafe fn setFunction_atIndex(
+        unsafe fn setFunction_atIndex(
             &self,
-            function: Option<&MTLFunctionHandle>,
+            function: Option<&ProtocolObject<dyn MTLFunctionHandle>>,
             index: NSUInteger,
         );
 
         #[method(setFunctions:withRange:)]
-        pub unsafe fn setFunctions_withRange(
+        unsafe fn setFunctions_withRange(
             &self,
-            functions: NonNull<*const MTLFunctionHandle>,
+            functions: NonNull<*const ProtocolObject<dyn MTLFunctionHandle>>,
             range: NSRange,
         );
     }
+
+    unsafe impl ProtocolType for dyn MTLVisibleFunctionTable {}
 );

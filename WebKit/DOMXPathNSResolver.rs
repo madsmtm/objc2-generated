@@ -7,14 +7,14 @@ use crate::WebKit::*;
 
 extern_protocol!(
     #[deprecated]
-    pub struct DOMXPathNSResolver;
-
-    unsafe impl ProtocolType for DOMXPathNSResolver {
+    pub unsafe trait DOMXPathNSResolver: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other lookupNamespaceURI:)]
-        pub unsafe fn lookupNamespaceURI(
+        unsafe fn lookupNamespaceURI(
             &self,
             prefix: Option<&NSString>,
         ) -> Option<Id<NSString, Shared>>;
     }
+
+    unsafe impl ProtocolType for dyn DOMXPathNSResolver {}
 );

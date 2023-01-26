@@ -89,19 +89,19 @@ extern_static!(NSAppearanceNameAccessibilityHighContrastVibrantLight: &'static N
 extern_static!(NSAppearanceNameAccessibilityHighContrastVibrantDark: &'static NSAppearanceName);
 
 extern_protocol!(
-    pub struct NSAppearanceCustomization;
-
-    unsafe impl ProtocolType for NSAppearanceCustomization {
+    pub unsafe trait NSAppearanceCustomization: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSAppearance")]
         #[method_id(@__retain_semantics Other appearance)]
-        pub unsafe fn appearance(&self) -> Option<Id<NSAppearance, Shared>>;
+        unsafe fn appearance(&self) -> Option<Id<NSAppearance, Shared>>;
 
         #[cfg(feature = "AppKit_NSAppearance")]
         #[method(setAppearance:)]
-        pub unsafe fn setAppearance(&self, appearance: Option<&NSAppearance>);
+        unsafe fn setAppearance(&self, appearance: Option<&NSAppearance>);
 
         #[cfg(feature = "AppKit_NSAppearance")]
         #[method_id(@__retain_semantics Other effectiveAppearance)]
-        pub unsafe fn effectiveAppearance(&self) -> Id<NSAppearance, Shared>;
+        unsafe fn effectiveAppearance(&self) -> Id<NSAppearance, Shared>;
     }
+
+    unsafe impl ProtocolType for dyn NSAppearanceCustomization {}
 );

@@ -5,42 +5,42 @@ use crate::Accessibility::*;
 use crate::Foundation::*;
 
 extern_protocol!(
-    pub struct AXChart;
-
-    unsafe impl ProtocolType for AXChart {
+    pub unsafe trait AXChart: NSObjectProtocol {
         #[cfg(feature = "Accessibility_AXChartDescriptor")]
         #[method_id(@__retain_semantics Other accessibilityChartDescriptor)]
-        pub unsafe fn accessibilityChartDescriptor(&self) -> Option<Id<AXChartDescriptor, Shared>>;
+        unsafe fn accessibilityChartDescriptor(&self) -> Option<Id<AXChartDescriptor, Shared>>;
 
         #[cfg(feature = "Accessibility_AXChartDescriptor")]
         #[method(setAccessibilityChartDescriptor:)]
-        pub unsafe fn setAccessibilityChartDescriptor(
+        unsafe fn setAccessibilityChartDescriptor(
             &self,
             accessibility_chart_descriptor: Option<&AXChartDescriptor>,
         );
     }
+
+    unsafe impl ProtocolType for dyn AXChart {}
 );
 
 extern_protocol!(
-    pub struct AXDataAxisDescriptor;
-
-    unsafe impl ProtocolType for AXDataAxisDescriptor {
+    pub unsafe trait AXDataAxisDescriptor: NSCopying {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Id<NSString, Shared>;
+        unsafe fn title(&self) -> Id<NSString, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setTitle:)]
-        pub unsafe fn setTitle(&self, title: &NSString);
+        unsafe fn setTitle(&self, title: &NSString);
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedTitle)]
-        pub unsafe fn attributedTitle(&self) -> Id<NSAttributedString, Shared>;
+        unsafe fn attributedTitle(&self) -> Id<NSAttributedString, Shared>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setAttributedTitle:)]
-        pub unsafe fn setAttributedTitle(&self, attributed_title: &NSAttributedString);
+        unsafe fn setAttributedTitle(&self, attributed_title: &NSAttributedString);
     }
+
+    unsafe impl ProtocolType for dyn AXDataAxisDescriptor {}
 );
 
 ns_enum!(
@@ -497,10 +497,10 @@ extern_methods!(
         pub unsafe fn setSeries(&self, series: &NSArray<AXDataSeriesDescriptor>);
 
         #[method_id(@__retain_semantics Other xAxis)]
-        pub unsafe fn xAxis(&self) -> Id<AXDataAxisDescriptor, Shared>;
+        pub unsafe fn xAxis(&self) -> Id<ProtocolObject<dyn AXDataAxisDescriptor>, Shared>;
 
         #[method(setXAxis:)]
-        pub unsafe fn setXAxis(&self, x_axis: &AXDataAxisDescriptor);
+        pub unsafe fn setXAxis(&self, x_axis: &ProtocolObject<dyn AXDataAxisDescriptor>);
 
         #[cfg(feature = "Accessibility_AXNumericDataAxisDescriptor")]
         #[method_id(@__retain_semantics Other yAxis)]
@@ -512,13 +512,15 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other additionalAxes)]
-        pub unsafe fn additionalAxes(&self) -> Option<Id<NSArray<AXDataAxisDescriptor>, Shared>>;
+        pub unsafe fn additionalAxes(
+            &self,
+        ) -> Option<Id<NSArray<ProtocolObject<dyn AXDataAxisDescriptor>>, Shared>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setAdditionalAxes:)]
         pub unsafe fn setAdditionalAxes(
             &self,
-            additional_axes: Option<&NSArray<AXDataAxisDescriptor>>,
+            additional_axes: Option<&NSArray<ProtocolObject<dyn AXDataAxisDescriptor>>>,
         );
 
         #[cfg(all(
@@ -532,7 +534,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             title: Option<&NSString>,
             summary: Option<&NSString>,
-            x_axis: &AXDataAxisDescriptor,
+            x_axis: &ProtocolObject<dyn AXDataAxisDescriptor>,
             y_axis: Option<&AXNumericDataAxisDescriptor>,
             series: &NSArray<AXDataSeriesDescriptor>,
         ) -> Id<Self, Shared>;
@@ -549,7 +551,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             attributed_title: Option<&NSAttributedString>,
             summary: Option<&NSString>,
-            x_axis: &AXDataAxisDescriptor,
+            x_axis: &ProtocolObject<dyn AXDataAxisDescriptor>,
             y_axis: &AXNumericDataAxisDescriptor,
             series: &NSArray<AXDataSeriesDescriptor>,
         ) -> Id<Self, Shared>;
@@ -565,9 +567,9 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             title: Option<&NSString>,
             summary: Option<&NSString>,
-            x_axis: &AXDataAxisDescriptor,
+            x_axis: &ProtocolObject<dyn AXDataAxisDescriptor>,
             y_axis: Option<&AXNumericDataAxisDescriptor>,
-            additional_axes: Option<&NSArray<AXDataAxisDescriptor>>,
+            additional_axes: Option<&NSArray<ProtocolObject<dyn AXDataAxisDescriptor>>>,
             series: &NSArray<AXDataSeriesDescriptor>,
         ) -> Id<Self, Shared>;
 
@@ -583,9 +585,9 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             attributed_title: Option<&NSAttributedString>,
             summary: Option<&NSString>,
-            x_axis: &AXDataAxisDescriptor,
+            x_axis: &ProtocolObject<dyn AXDataAxisDescriptor>,
             y_axis: Option<&AXNumericDataAxisDescriptor>,
-            additional_axes: Option<&NSArray<AXDataAxisDescriptor>>,
+            additional_axes: Option<&NSArray<ProtocolObject<dyn AXDataAxisDescriptor>>>,
             series: &NSArray<AXDataSeriesDescriptor>,
         ) -> Id<Self, Shared>;
 

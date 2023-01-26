@@ -89,10 +89,10 @@ extern_methods!(
         pub unsafe fn setAlertStyle(&self, alert_style: NSAlertStyle);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<NSAlertDelegate, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSAlertDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&NSAlertDelegate>);
+        pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSAlertDelegate>>);
 
         #[method(showsSuppressionButton)]
         pub unsafe fn showsSuppressionButton(&self) -> bool;
@@ -133,14 +133,14 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct NSAlertDelegate;
-
-    unsafe impl ProtocolType for NSAlertDelegate {
+    pub unsafe trait NSAlertDelegate: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSAlert")]
         #[optional]
         #[method(alertShowHelp:)]
-        pub unsafe fn alertShowHelp(&self, alert: &NSAlert) -> bool;
+        unsafe fn alertShowHelp(&self, alert: &NSAlert) -> bool;
     }
+
+    unsafe impl ProtocolType for dyn NSAlertDelegate {}
 );
 
 extern_methods!(

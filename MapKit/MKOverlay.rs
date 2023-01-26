@@ -8,21 +8,21 @@ use crate::Foundation::*;
 use crate::MapKit::*;
 
 extern_protocol!(
-    pub struct MKOverlay;
-
-    unsafe impl ProtocolType for MKOverlay {
+    pub unsafe trait MKOverlay: MKAnnotation {
         #[method(coordinate)]
-        pub unsafe fn coordinate(&self) -> CLLocationCoordinate2D;
+        unsafe fn coordinate(&self) -> CLLocationCoordinate2D;
 
         #[method(boundingMapRect)]
-        pub unsafe fn boundingMapRect(&self) -> MKMapRect;
+        unsafe fn boundingMapRect(&self) -> MKMapRect;
 
         #[optional]
         #[method(intersectsMapRect:)]
-        pub unsafe fn intersectsMapRect(&self, map_rect: MKMapRect) -> bool;
+        unsafe fn intersectsMapRect(&self, map_rect: MKMapRect) -> bool;
 
         #[optional]
         #[method(canReplaceMapContent)]
-        pub unsafe fn canReplaceMapContent(&self) -> bool;
+        unsafe fn canReplaceMapContent(&self) -> bool;
     }
+
+    unsafe impl ProtocolType for dyn MKOverlay {}
 );

@@ -266,28 +266,26 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct NSControlTextEditingDelegate;
-
-    unsafe impl ProtocolType for NSControlTextEditingDelegate {
+    pub unsafe trait NSControlTextEditingDelegate: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(controlTextDidBeginEditing:)]
-        pub unsafe fn controlTextDidBeginEditing(&self, obj: &NSNotification);
+        unsafe fn controlTextDidBeginEditing(&self, obj: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(controlTextDidEndEditing:)]
-        pub unsafe fn controlTextDidEndEditing(&self, obj: &NSNotification);
+        unsafe fn controlTextDidEndEditing(&self, obj: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(controlTextDidChange:)]
-        pub unsafe fn controlTextDidChange(&self, obj: &NSNotification);
+        unsafe fn controlTextDidChange(&self, obj: &NSNotification);
 
         #[cfg(all(feature = "AppKit_NSControl", feature = "AppKit_NSText"))]
         #[optional]
         #[method(control:textShouldBeginEditing:)]
-        pub unsafe fn control_textShouldBeginEditing(
+        unsafe fn control_textShouldBeginEditing(
             &self,
             control: &NSControl,
             field_editor: &NSText,
@@ -296,7 +294,7 @@ extern_protocol!(
         #[cfg(all(feature = "AppKit_NSControl", feature = "AppKit_NSText"))]
         #[optional]
         #[method(control:textShouldEndEditing:)]
-        pub unsafe fn control_textShouldEndEditing(
+        unsafe fn control_textShouldEndEditing(
             &self,
             control: &NSControl,
             field_editor: &NSText,
@@ -305,7 +303,7 @@ extern_protocol!(
         #[cfg(all(feature = "AppKit_NSControl", feature = "Foundation_NSString"))]
         #[optional]
         #[method(control:didFailToFormatString:errorDescription:)]
-        pub unsafe fn control_didFailToFormatString_errorDescription(
+        unsafe fn control_didFailToFormatString_errorDescription(
             &self,
             control: &NSControl,
             string: &NSString,
@@ -315,7 +313,7 @@ extern_protocol!(
         #[cfg(all(feature = "AppKit_NSControl", feature = "Foundation_NSString"))]
         #[optional]
         #[method(control:didFailToValidatePartialString:errorDescription:)]
-        pub unsafe fn control_didFailToValidatePartialString_errorDescription(
+        unsafe fn control_didFailToValidatePartialString_errorDescription(
             &self,
             control: &NSControl,
             string: &NSString,
@@ -325,16 +323,12 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSControl")]
         #[optional]
         #[method(control:isValidObject:)]
-        pub unsafe fn control_isValidObject(
-            &self,
-            control: &NSControl,
-            obj: Option<&Object>,
-        ) -> bool;
+        unsafe fn control_isValidObject(&self, control: &NSControl, obj: Option<&Object>) -> bool;
 
         #[cfg(all(feature = "AppKit_NSControl", feature = "AppKit_NSTextView"))]
         #[optional]
         #[method(control:textView:doCommandBySelector:)]
-        pub unsafe fn control_textView_doCommandBySelector(
+        unsafe fn control_textView_doCommandBySelector(
             &self,
             control: &NSControl,
             text_view: &NSTextView,
@@ -349,7 +343,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other control:textView:completions:forPartialWordRange:indexOfSelectedItem:)]
-        pub unsafe fn control_textView_completions_forPartialWordRange_indexOfSelectedItem(
+        unsafe fn control_textView_completions_forPartialWordRange_indexOfSelectedItem(
             &self,
             control: &NSControl,
             text_view: &NSTextView,
@@ -358,6 +352,8 @@ extern_protocol!(
             index: NonNull<NSInteger>,
         ) -> Id<NSArray<NSString>, Shared>;
     }
+
+    unsafe impl ProtocolType for dyn NSControlTextEditingDelegate {}
 );
 
 extern_static!(NSControlTextDidBeginEditingNotification: &'static NSNotificationName);

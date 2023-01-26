@@ -32,12 +32,12 @@ ns_enum!(
 );
 
 extern_protocol!(
-    pub struct ASAuthorizationProviderExtensionRegistrationHandler;
-
-    unsafe impl ProtocolType for ASAuthorizationProviderExtensionRegistrationHandler {
+    pub unsafe trait ASAuthorizationProviderExtensionRegistrationHandler:
+        NSObjectProtocol
+    {
         #[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionLoginManager")]
         #[method(beginDeviceRegistrationUsingLoginManager:options:completion:)]
-        pub unsafe fn beginDeviceRegistrationUsingLoginManager_options_completion(
+        unsafe fn beginDeviceRegistrationUsingLoginManager_options_completion(
             &self,
             login_manager: &ASAuthorizationProviderExtensionLoginManager,
             options: ASAuthorizationProviderExtensionRequestOptions,
@@ -49,7 +49,7 @@ extern_protocol!(
             feature = "Foundation_NSString"
         ))]
         #[method(beginUserRegistrationUsingLoginManager:userName:authenticationMethod:options:completion:)]
-        pub unsafe fn beginUserRegistrationUsingLoginManager_userName_authenticationMethod_options_completion(
+        unsafe fn beginUserRegistrationUsingLoginManager_userName_authenticationMethod_options_completion(
             &self,
             login_manager: &ASAuthorizationProviderExtensionLoginManager,
             user_name: Option<&NSString>,
@@ -60,6 +60,8 @@ extern_protocol!(
 
         #[optional]
         #[method(registrationDidComplete)]
-        pub unsafe fn registrationDidComplete(&self);
+        unsafe fn registrationDidComplete(&self);
     }
+
+    unsafe impl ProtocolType for dyn ASAuthorizationProviderExtensionRegistrationHandler {}
 );

@@ -75,76 +75,79 @@ extern_methods!(
         #[method_id(@__retain_semantics New newSpatialScalerWithDevice:)]
         pub unsafe fn newSpatialScalerWithDevice(
             &self,
-            device: &MTLDevice,
-        ) -> Option<Id<MTLFXSpatialScaler, Shared>>;
+            device: &ProtocolObject<dyn MTLDevice>,
+        ) -> Option<Id<ProtocolObject<dyn MTLFXSpatialScaler>, Shared>>;
 
         #[method(supportsDevice:)]
-        pub unsafe fn supportsDevice(device: &MTLDevice) -> bool;
+        pub unsafe fn supportsDevice(device: &ProtocolObject<dyn MTLDevice>) -> bool;
     }
 );
 
 extern_protocol!(
-    pub struct MTLFXSpatialScaler;
-
-    unsafe impl ProtocolType for MTLFXSpatialScaler {
+    pub unsafe trait MTLFXSpatialScaler: NSObjectProtocol {
         #[method(colorTextureUsage)]
-        pub unsafe fn colorTextureUsage(&self) -> MTLTextureUsage;
+        unsafe fn colorTextureUsage(&self) -> MTLTextureUsage;
 
         #[method(outputTextureUsage)]
-        pub unsafe fn outputTextureUsage(&self) -> MTLTextureUsage;
+        unsafe fn outputTextureUsage(&self) -> MTLTextureUsage;
 
         #[method(inputContentWidth)]
-        pub unsafe fn inputContentWidth(&self) -> NSUInteger;
+        unsafe fn inputContentWidth(&self) -> NSUInteger;
 
         #[method(setInputContentWidth:)]
-        pub unsafe fn setInputContentWidth(&self, input_content_width: NSUInteger);
+        unsafe fn setInputContentWidth(&self, input_content_width: NSUInteger);
 
         #[method(inputContentHeight)]
-        pub unsafe fn inputContentHeight(&self) -> NSUInteger;
+        unsafe fn inputContentHeight(&self) -> NSUInteger;
 
         #[method(setInputContentHeight:)]
-        pub unsafe fn setInputContentHeight(&self, input_content_height: NSUInteger);
+        unsafe fn setInputContentHeight(&self, input_content_height: NSUInteger);
 
         #[method_id(@__retain_semantics Other colorTexture)]
-        pub unsafe fn colorTexture(&self) -> Option<Id<MTLTexture, Shared>>;
+        unsafe fn colorTexture(&self) -> Option<Id<ProtocolObject<dyn MTLTexture>, Shared>>;
 
         #[method(setColorTexture:)]
-        pub unsafe fn setColorTexture(&self, color_texture: Option<&MTLTexture>);
+        unsafe fn setColorTexture(&self, color_texture: Option<&ProtocolObject<dyn MTLTexture>>);
 
         #[method_id(@__retain_semantics Other outputTexture)]
-        pub unsafe fn outputTexture(&self) -> Option<Id<MTLTexture, Shared>>;
+        unsafe fn outputTexture(&self) -> Option<Id<ProtocolObject<dyn MTLTexture>, Shared>>;
 
         #[method(setOutputTexture:)]
-        pub unsafe fn setOutputTexture(&self, output_texture: Option<&MTLTexture>);
+        unsafe fn setOutputTexture(&self, output_texture: Option<&ProtocolObject<dyn MTLTexture>>);
 
         #[method(colorTextureFormat)]
-        pub unsafe fn colorTextureFormat(&self) -> MTLPixelFormat;
+        unsafe fn colorTextureFormat(&self) -> MTLPixelFormat;
 
         #[method(outputTextureFormat)]
-        pub unsafe fn outputTextureFormat(&self) -> MTLPixelFormat;
+        unsafe fn outputTextureFormat(&self) -> MTLPixelFormat;
 
         #[method(inputWidth)]
-        pub unsafe fn inputWidth(&self) -> NSUInteger;
+        unsafe fn inputWidth(&self) -> NSUInteger;
 
         #[method(inputHeight)]
-        pub unsafe fn inputHeight(&self) -> NSUInteger;
+        unsafe fn inputHeight(&self) -> NSUInteger;
 
         #[method(outputWidth)]
-        pub unsafe fn outputWidth(&self) -> NSUInteger;
+        unsafe fn outputWidth(&self) -> NSUInteger;
 
         #[method(outputHeight)]
-        pub unsafe fn outputHeight(&self) -> NSUInteger;
+        unsafe fn outputHeight(&self) -> NSUInteger;
 
         #[method(colorProcessingMode)]
-        pub unsafe fn colorProcessingMode(&self) -> MTLFXSpatialScalerColorProcessingMode;
+        unsafe fn colorProcessingMode(&self) -> MTLFXSpatialScalerColorProcessingMode;
 
         #[method_id(@__retain_semantics Other fence)]
-        pub unsafe fn fence(&self) -> Option<Id<MTLFence, Shared>>;
+        unsafe fn fence(&self) -> Option<Id<ProtocolObject<dyn MTLFence>, Shared>>;
 
         #[method(setFence:)]
-        pub unsafe fn setFence(&self, fence: Option<&MTLFence>);
+        unsafe fn setFence(&self, fence: Option<&ProtocolObject<dyn MTLFence>>);
 
         #[method(encodeToCommandBuffer:)]
-        pub unsafe fn encodeToCommandBuffer(&self, command_buffer: &MTLCommandBuffer);
+        unsafe fn encodeToCommandBuffer(
+            &self,
+            command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
+        );
     }
+
+    unsafe impl ProtocolType for dyn MTLFXSpatialScaler {}
 );

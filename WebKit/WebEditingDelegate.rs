@@ -20,13 +20,11 @@ ns_enum!(
 
 extern_protocol!(
     #[deprecated]
-    pub struct WebEditingDelegate;
-
-    unsafe impl ProtocolType for WebEditingDelegate {
+    pub unsafe trait WebEditingDelegate: NSObjectProtocol {
         #[cfg(all(feature = "WebKit_DOMRange", feature = "WebKit_WebView"))]
         #[optional]
         #[method(webView:shouldBeginEditingInDOMRange:)]
-        pub unsafe fn webView_shouldBeginEditingInDOMRange(
+        unsafe fn webView_shouldBeginEditingInDOMRange(
             &self,
             web_view: Option<&WebView>,
             range: Option<&DOMRange>,
@@ -35,7 +33,7 @@ extern_protocol!(
         #[cfg(all(feature = "WebKit_DOMRange", feature = "WebKit_WebView"))]
         #[optional]
         #[method(webView:shouldEndEditingInDOMRange:)]
-        pub unsafe fn webView_shouldEndEditingInDOMRange(
+        unsafe fn webView_shouldEndEditingInDOMRange(
             &self,
             web_view: Option<&WebView>,
             range: Option<&DOMRange>,
@@ -48,7 +46,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(webView:shouldInsertNode:replacingDOMRange:givenAction:)]
-        pub unsafe fn webView_shouldInsertNode_replacingDOMRange_givenAction(
+        unsafe fn webView_shouldInsertNode_replacingDOMRange_givenAction(
             &self,
             web_view: Option<&WebView>,
             node: Option<&DOMNode>,
@@ -63,7 +61,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(webView:shouldInsertText:replacingDOMRange:givenAction:)]
-        pub unsafe fn webView_shouldInsertText_replacingDOMRange_givenAction(
+        unsafe fn webView_shouldInsertText_replacingDOMRange_givenAction(
             &self,
             web_view: Option<&WebView>,
             text: Option<&NSString>,
@@ -74,7 +72,7 @@ extern_protocol!(
         #[cfg(all(feature = "WebKit_DOMRange", feature = "WebKit_WebView"))]
         #[optional]
         #[method(webView:shouldDeleteDOMRange:)]
-        pub unsafe fn webView_shouldDeleteDOMRange(
+        unsafe fn webView_shouldDeleteDOMRange(
             &self,
             web_view: Option<&WebView>,
             range: Option<&DOMRange>,
@@ -83,7 +81,7 @@ extern_protocol!(
         #[cfg(all(feature = "WebKit_DOMRange", feature = "WebKit_WebView"))]
         #[optional]
         #[method(webView:shouldChangeSelectedDOMRange:toDOMRange:affinity:stillSelecting:)]
-        pub unsafe fn webView_shouldChangeSelectedDOMRange_toDOMRange_affinity_stillSelecting(
+        unsafe fn webView_shouldChangeSelectedDOMRange_toDOMRange_affinity_stillSelecting(
             &self,
             web_view: Option<&WebView>,
             current_range: Option<&DOMRange>,
@@ -99,7 +97,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(webView:shouldApplyStyle:toElementsInDOMRange:)]
-        pub unsafe fn webView_shouldApplyStyle_toElementsInDOMRange(
+        unsafe fn webView_shouldApplyStyle_toElementsInDOMRange(
             &self,
             web_view: Option<&WebView>,
             style: Option<&DOMCSSStyleDeclaration>,
@@ -109,7 +107,7 @@ extern_protocol!(
         #[cfg(all(feature = "WebKit_DOMCSSStyleDeclaration", feature = "WebKit_WebView"))]
         #[optional]
         #[method(webView:shouldChangeTypingStyle:toStyle:)]
-        pub unsafe fn webView_shouldChangeTypingStyle_toStyle(
+        unsafe fn webView_shouldChangeTypingStyle_toStyle(
             &self,
             web_view: Option<&WebView>,
             current_style: Option<&DOMCSSStyleDeclaration>,
@@ -119,7 +117,7 @@ extern_protocol!(
         #[cfg(feature = "WebKit_WebView")]
         #[optional]
         #[method(webView:doCommandBySelector:)]
-        pub unsafe fn webView_doCommandBySelector(
+        unsafe fn webView_doCommandBySelector(
             &self,
             web_view: Option<&WebView>,
             selector: Option<Sel>,
@@ -128,34 +126,36 @@ extern_protocol!(
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(webViewDidBeginEditing:)]
-        pub unsafe fn webViewDidBeginEditing(&self, notification: Option<&NSNotification>);
+        unsafe fn webViewDidBeginEditing(&self, notification: Option<&NSNotification>);
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(webViewDidChange:)]
-        pub unsafe fn webViewDidChange(&self, notification: Option<&NSNotification>);
+        unsafe fn webViewDidChange(&self, notification: Option<&NSNotification>);
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(webViewDidEndEditing:)]
-        pub unsafe fn webViewDidEndEditing(&self, notification: Option<&NSNotification>);
+        unsafe fn webViewDidEndEditing(&self, notification: Option<&NSNotification>);
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(webViewDidChangeTypingStyle:)]
-        pub unsafe fn webViewDidChangeTypingStyle(&self, notification: Option<&NSNotification>);
+        unsafe fn webViewDidChangeTypingStyle(&self, notification: Option<&NSNotification>);
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(webViewDidChangeSelection:)]
-        pub unsafe fn webViewDidChangeSelection(&self, notification: Option<&NSNotification>);
+        unsafe fn webViewDidChangeSelection(&self, notification: Option<&NSNotification>);
 
         #[cfg(all(feature = "Foundation_NSUndoManager", feature = "WebKit_WebView"))]
         #[optional]
         #[method_id(@__retain_semantics Other undoManagerForWebView:)]
-        pub unsafe fn undoManagerForWebView(
+        unsafe fn undoManagerForWebView(
             &self,
             web_view: Option<&WebView>,
         ) -> Option<Id<NSUndoManager, Shared>>;
     }
+
+    unsafe impl ProtocolType for dyn WebEditingDelegate {}
 );

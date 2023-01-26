@@ -19,7 +19,7 @@ extern_methods!(
     #[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
     unsafe impl ASAuthorizationRequest {
         #[method_id(@__retain_semantics Other provider)]
-        pub unsafe fn provider(&self) -> Id<ASAuthorizationProvider, Shared>;
+        pub unsafe fn provider(&self) -> Id<ProtocolObject<dyn ASAuthorizationProvider>, Shared>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self, Shared>;

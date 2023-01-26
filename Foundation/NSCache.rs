@@ -47,10 +47,10 @@ extern_methods!(
         pub unsafe fn setName(&self, name: &NSString);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<NSCacheDelegate, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSCacheDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&NSCacheDelegate>);
+        pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSCacheDelegate>>);
 
         #[method_id(@__retain_semantics Other objectForKey:)]
         pub unsafe fn objectForKey(
@@ -94,12 +94,12 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct NSCacheDelegate;
-
-    unsafe impl ProtocolType for NSCacheDelegate {
+    pub unsafe trait NSCacheDelegate: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSCache")]
         #[optional]
         #[method(cache:willEvictObject:)]
-        pub unsafe fn cache_willEvictObject(&self, cache: &NSCache, obj: &Object);
+        unsafe fn cache_willEvictObject(&self, cache: &NSCache, obj: &Object);
     }
+
+    unsafe impl ProtocolType for dyn NSCacheDelegate {}
 );

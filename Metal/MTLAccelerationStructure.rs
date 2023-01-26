@@ -94,10 +94,15 @@ extern_methods!(
         pub unsafe fn setLabel(&self, label: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other primitiveDataBuffer)]
-        pub unsafe fn primitiveDataBuffer(&self) -> Option<Id<MTLBuffer, Shared>>;
+        pub unsafe fn primitiveDataBuffer(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn MTLBuffer>, Shared>>;
 
         #[method(setPrimitiveDataBuffer:)]
-        pub fn setPrimitiveDataBuffer(&self, primitive_data_buffer: Option<&MTLBuffer>);
+        pub fn setPrimitiveDataBuffer(
+            &self,
+            primitive_data_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
+        );
 
         #[method(primitiveDataBufferOffset)]
         pub unsafe fn primitiveDataBufferOffset(&self) -> NSUInteger;
@@ -215,10 +220,10 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLAccelerationStructureTriangleGeometryDescriptor")]
     unsafe impl MTLAccelerationStructureTriangleGeometryDescriptor {
         #[method_id(@__retain_semantics Other vertexBuffer)]
-        pub unsafe fn vertexBuffer(&self) -> Option<Id<MTLBuffer, Shared>>;
+        pub unsafe fn vertexBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>, Shared>>;
 
         #[method(setVertexBuffer:)]
-        pub fn setVertexBuffer(&self, vertex_buffer: Option<&MTLBuffer>);
+        pub fn setVertexBuffer(&self, vertex_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
 
         #[method(vertexBufferOffset)]
         pub unsafe fn vertexBufferOffset(&self) -> NSUInteger;
@@ -239,10 +244,10 @@ extern_methods!(
         pub fn setVertexStride(&self, vertex_stride: NSUInteger);
 
         #[method_id(@__retain_semantics Other indexBuffer)]
-        pub unsafe fn indexBuffer(&self) -> Option<Id<MTLBuffer, Shared>>;
+        pub unsafe fn indexBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>, Shared>>;
 
         #[method(setIndexBuffer:)]
-        pub fn setIndexBuffer(&self, index_buffer: Option<&MTLBuffer>);
+        pub fn setIndexBuffer(&self, index_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
 
         #[method(indexBufferOffset)]
         pub unsafe fn indexBufferOffset(&self) -> NSUInteger;
@@ -263,12 +268,14 @@ extern_methods!(
         pub fn setTriangleCount(&self, triangle_count: NSUInteger);
 
         #[method_id(@__retain_semantics Other transformationMatrixBuffer)]
-        pub unsafe fn transformationMatrixBuffer(&self) -> Option<Id<MTLBuffer, Shared>>;
+        pub unsafe fn transformationMatrixBuffer(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn MTLBuffer>, Shared>>;
 
         #[method(setTransformationMatrixBuffer:)]
         pub unsafe fn setTransformationMatrixBuffer(
             &self,
-            transformation_matrix_buffer: Option<&MTLBuffer>,
+            transformation_matrix_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
         );
 
         #[method(transformationMatrixBufferOffset)]
@@ -301,10 +308,14 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLAccelerationStructureBoundingBoxGeometryDescriptor")]
     unsafe impl MTLAccelerationStructureBoundingBoxGeometryDescriptor {
         #[method_id(@__retain_semantics Other boundingBoxBuffer)]
-        pub unsafe fn boundingBoxBuffer(&self) -> Option<Id<MTLBuffer, Shared>>;
+        pub unsafe fn boundingBoxBuffer(&self)
+            -> Option<Id<ProtocolObject<dyn MTLBuffer>, Shared>>;
 
         #[method(setBoundingBoxBuffer:)]
-        pub fn setBoundingBoxBuffer(&self, bounding_box_buffer: Option<&MTLBuffer>);
+        pub fn setBoundingBoxBuffer(
+            &self,
+            bounding_box_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
+        );
 
         #[method(boundingBoxBufferOffset)]
         pub unsafe fn boundingBoxBufferOffset(&self) -> NSUInteger;
@@ -344,10 +355,10 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLMotionKeyframeData")]
     unsafe impl MTLMotionKeyframeData {
         #[method_id(@__retain_semantics Other buffer)]
-        pub unsafe fn buffer(&self) -> Option<Id<MTLBuffer, Shared>>;
+        pub unsafe fn buffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>, Shared>>;
 
         #[method(setBuffer:)]
-        pub unsafe fn setBuffer(&self, buffer: Option<&MTLBuffer>);
+        pub unsafe fn setBuffer(&self, buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
 
         #[method(offset)]
         pub unsafe fn offset(&self) -> NSUInteger;
@@ -402,10 +413,10 @@ extern_methods!(
         pub unsafe fn setVertexStride(&self, vertex_stride: NSUInteger);
 
         #[method_id(@__retain_semantics Other indexBuffer)]
-        pub unsafe fn indexBuffer(&self) -> Option<Id<MTLBuffer, Shared>>;
+        pub unsafe fn indexBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>, Shared>>;
 
         #[method(setIndexBuffer:)]
-        pub unsafe fn setIndexBuffer(&self, index_buffer: Option<&MTLBuffer>);
+        pub unsafe fn setIndexBuffer(&self, index_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
 
         #[method(indexBufferOffset)]
         pub unsafe fn indexBufferOffset(&self) -> NSUInteger;
@@ -426,12 +437,14 @@ extern_methods!(
         pub unsafe fn setTriangleCount(&self, triangle_count: NSUInteger);
 
         #[method_id(@__retain_semantics Other transformationMatrixBuffer)]
-        pub unsafe fn transformationMatrixBuffer(&self) -> Option<Id<MTLBuffer, Shared>>;
+        pub unsafe fn transformationMatrixBuffer(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn MTLBuffer>, Shared>>;
 
         #[method(setTransformationMatrixBuffer:)]
         pub unsafe fn setTransformationMatrixBuffer(
             &self,
-            transformation_matrix_buffer: Option<&MTLBuffer>,
+            transformation_matrix_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
         );
 
         #[method(transformationMatrixBufferOffset)]
@@ -559,10 +572,15 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLInstanceAccelerationStructureDescriptor")]
     unsafe impl MTLInstanceAccelerationStructureDescriptor {
         #[method_id(@__retain_semantics Other instanceDescriptorBuffer)]
-        pub unsafe fn instanceDescriptorBuffer(&self) -> Option<Id<MTLBuffer, Shared>>;
+        pub unsafe fn instanceDescriptorBuffer(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn MTLBuffer>, Shared>>;
 
         #[method(setInstanceDescriptorBuffer:)]
-        pub fn setInstanceDescriptorBuffer(&self, instance_descriptor_buffer: Option<&MTLBuffer>);
+        pub fn setInstanceDescriptorBuffer(
+            &self,
+            instance_descriptor_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
+        );
 
         #[method(instanceDescriptorBufferOffset)]
         pub unsafe fn instanceDescriptorBufferOffset(&self) -> NSUInteger;
@@ -589,13 +607,15 @@ extern_methods!(
         #[method_id(@__retain_semantics Other instancedAccelerationStructures)]
         pub unsafe fn instancedAccelerationStructures(
             &self,
-        ) -> Option<Id<NSArray<MTLAccelerationStructure>, Shared>>;
+        ) -> Option<Id<NSArray<ProtocolObject<dyn MTLAccelerationStructure>>, Shared>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setInstancedAccelerationStructures:)]
         pub fn setInstancedAccelerationStructures(
             &self,
-            instanced_acceleration_structures: Option<&NSArray<MTLAccelerationStructure>>,
+            instanced_acceleration_structures: Option<
+                &NSArray<ProtocolObject<dyn MTLAccelerationStructure>>,
+            >,
         );
 
         #[method(instanceDescriptorType)]
@@ -610,10 +630,15 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other motionTransformBuffer)]
-        pub unsafe fn motionTransformBuffer(&self) -> Option<Id<MTLBuffer, Shared>>;
+        pub unsafe fn motionTransformBuffer(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn MTLBuffer>, Shared>>;
 
         #[method(setMotionTransformBuffer:)]
-        pub unsafe fn setMotionTransformBuffer(&self, motion_transform_buffer: Option<&MTLBuffer>);
+        pub unsafe fn setMotionTransformBuffer(
+            &self,
+            motion_transform_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
+        );
 
         #[method(motionTransformBufferOffset)]
         pub unsafe fn motionTransformBufferOffset(&self) -> NSUInteger;
@@ -636,13 +661,13 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct MTLAccelerationStructure;
-
-    unsafe impl ProtocolType for MTLAccelerationStructure {
+    pub unsafe trait MTLAccelerationStructure: MTLResource {
         #[method(size)]
-        pub unsafe fn size(&self) -> NSUInteger;
+        unsafe fn size(&self) -> NSUInteger;
 
         #[method(gpuResourceID)]
-        pub unsafe fn gpuResourceID(&self) -> MTLResourceID;
+        unsafe fn gpuResourceID(&self) -> MTLResourceID;
     }
+
+    unsafe impl ProtocolType for dyn MTLAccelerationStructure {}
 );

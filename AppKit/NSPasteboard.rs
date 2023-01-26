@@ -112,7 +112,10 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(writeObjects:)]
-        pub unsafe fn writeObjects(&self, objects: &NSArray<NSPasteboardWriting>) -> bool;
+        pub unsafe fn writeObjects(
+            &self,
+            objects: &NSArray<ProtocolObject<dyn NSPasteboardWriting>>,
+        ) -> bool;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSDictionary"))]
         #[method_id(@__retain_semantics Other readObjectsForClasses:options:)]
@@ -249,12 +252,10 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct NSPasteboardTypeOwner;
-
-    unsafe impl ProtocolType for NSPasteboardTypeOwner {
+    pub unsafe trait NSPasteboardTypeOwner: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSPasteboard")]
         #[method(pasteboard:provideDataForType:)]
-        pub unsafe fn pasteboard_provideDataForType(
+        unsafe fn pasteboard_provideDataForType(
             &self,
             sender: &NSPasteboard,
             r#type: &NSPasteboardType,
@@ -263,8 +264,10 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSPasteboard")]
         #[optional]
         #[method(pasteboardChangedOwner:)]
-        pub unsafe fn pasteboardChangedOwner(&self, sender: &NSPasteboard);
+        unsafe fn pasteboardChangedOwner(&self, sender: &NSPasteboard);
     }
+
+    unsafe impl ProtocolType for dyn NSPasteboardTypeOwner {}
 );
 
 ns_options!(
@@ -275,12 +278,10 @@ ns_options!(
 );
 
 extern_protocol!(
-    pub struct NSPasteboardWriting;
-
-    unsafe impl ProtocolType for NSPasteboardWriting {
+    pub unsafe trait NSPasteboardWriting: NSObjectProtocol {
         #[cfg(all(feature = "AppKit_NSPasteboard", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other writableTypesForPasteboard:)]
-        pub unsafe fn writableTypesForPasteboard(
+        unsafe fn writableTypesForPasteboard(
             &self,
             pasteboard: &NSPasteboard,
         ) -> Id<NSArray<NSPasteboardType>, Shared>;
@@ -288,18 +289,20 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSPasteboard")]
         #[optional]
         #[method(writingOptionsForType:pasteboard:)]
-        pub unsafe fn writingOptionsForType_pasteboard(
+        unsafe fn writingOptionsForType_pasteboard(
             &self,
             r#type: &NSPasteboardType,
             pasteboard: &NSPasteboard,
         ) -> NSPasteboardWritingOptions;
 
         #[method_id(@__retain_semantics Other pasteboardPropertyListForType:)]
-        pub unsafe fn pasteboardPropertyListForType(
+        unsafe fn pasteboardPropertyListForType(
             &self,
             r#type: &NSPasteboardType,
         ) -> Option<Id<Object, Shared>>;
     }
+
+    unsafe impl ProtocolType for dyn NSPasteboardWriting {}
 );
 
 ns_options!(
@@ -313,17 +316,17 @@ ns_options!(
 );
 
 extern_protocol!(
-    pub struct NSPasteboardReading;
-
-    unsafe impl ProtocolType for NSPasteboardReading {
+    pub unsafe trait NSPasteboardReading: NSObjectProtocol {
         #[optional]
         #[method_id(@__retain_semantics Init initWithPasteboardPropertyList:ofType:)]
-        pub unsafe fn initWithPasteboardPropertyList_ofType(
+        unsafe fn initWithPasteboardPropertyList_ofType(
             this: Option<Allocated<Self>>,
             property_list: &Object,
             r#type: &NSPasteboardType,
         ) -> Option<Id<Self, Shared>>;
     }
+
+    unsafe impl ProtocolType for dyn NSPasteboardReading {}
 );
 
 extern_methods!(

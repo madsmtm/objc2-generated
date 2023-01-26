@@ -5,18 +5,18 @@ use crate::Foundation::*;
 use crate::Metal::*;
 
 extern_protocol!(
-    pub struct MTLFence;
-
-    unsafe impl ProtocolType for MTLFence {
+    pub unsafe trait MTLFence: NSObjectProtocol {
         #[method_id(@__retain_semantics Other device)]
-        pub fn device(&self) -> Id<MTLDevice, Shared>;
+        fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
-        pub fn label(&self) -> Option<Id<NSString, Shared>>;
+        fn label(&self) -> Option<Id<NSString, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:)]
-        pub fn setLabel(&self, label: Option<&NSString>);
+        fn setLabel(&self, label: Option<&NSString>);
     }
+
+    unsafe impl ProtocolType for dyn MTLFence {}
 );

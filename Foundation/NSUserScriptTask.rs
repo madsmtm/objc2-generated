@@ -145,7 +145,7 @@ extern_methods!(
         #[method(executeWithInput:completionHandler:)]
         pub unsafe fn executeWithInput_completionHandler(
             &self,
-            input: Option<&NSSecureCoding>,
+            input: Option<&ProtocolObject<dyn NSSecureCoding>>,
             handler: NSUserAutomatorTaskCompletionHandler,
         );
     }

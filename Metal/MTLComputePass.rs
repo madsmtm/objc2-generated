@@ -19,10 +19,15 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLComputePassSampleBufferAttachmentDescriptor")]
     unsafe impl MTLComputePassSampleBufferAttachmentDescriptor {
         #[method_id(@__retain_semantics Other sampleBuffer)]
-        pub unsafe fn sampleBuffer(&self) -> Option<Id<MTLCounterSampleBuffer, Shared>>;
+        pub unsafe fn sampleBuffer(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn MTLCounterSampleBuffer>, Shared>>;
 
         #[method(setSampleBuffer:)]
-        pub unsafe fn setSampleBuffer(&self, sample_buffer: Option<&MTLCounterSampleBuffer>);
+        pub unsafe fn setSampleBuffer(
+            &self,
+            sample_buffer: Option<&ProtocolObject<dyn MTLCounterSampleBuffer>>,
+        );
 
         #[method(startOfEncoderSampleIndex)]
         pub unsafe fn startOfEncoderSampleIndex(&self) -> NSUInteger;

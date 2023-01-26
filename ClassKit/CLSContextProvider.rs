@@ -5,15 +5,15 @@ use crate::ClassKit::*;
 use crate::Foundation::*;
 
 extern_protocol!(
-    pub struct CLSContextProvider;
-
-    unsafe impl ProtocolType for CLSContextProvider {
+    pub unsafe trait CLSContextProvider {
         #[cfg(all(feature = "ClassKit_CLSContext", feature = "Foundation_NSError"))]
         #[method(updateDescendantsOfContext:completion:)]
-        pub unsafe fn updateDescendantsOfContext_completion(
+        unsafe fn updateDescendantsOfContext_completion(
             &self,
             context: &CLSContext,
             completion: &Block<(*mut NSError,), ()>,
         );
     }
+
+    unsafe impl ProtocolType for dyn CLSContextProvider {}
 );

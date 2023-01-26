@@ -25,17 +25,17 @@ extern_methods!(
 
 extern_protocol!(
     #[deprecated]
-    pub struct WebDownloadDelegate;
-
-    unsafe impl ProtocolType for WebDownloadDelegate {
+    pub unsafe trait WebDownloadDelegate: NSURLDownloadDelegate {
         #[cfg(all(feature = "AppKit_NSWindow", feature = "WebKit_WebDownload"))]
         #[optional]
         #[method_id(@__retain_semantics Other downloadWindowForAuthenticationSheet:)]
-        pub unsafe fn downloadWindowForAuthenticationSheet(
+        unsafe fn downloadWindowForAuthenticationSheet(
             &self,
             download: Option<&WebDownload>,
         ) -> Option<Id<NSWindow, Shared>>;
     }
+
+    unsafe impl ProtocolType for dyn WebDownloadDelegate {}
 );
 
 extern_methods!(
@@ -48,7 +48,7 @@ extern_methods!(
         pub unsafe fn initWithRequest_delegate(
             this: Option<Allocated<Self>>,
             request: &NSURLRequest,
-            delegate: Option<&NSURLDownloadDelegate>,
+            delegate: Option<&ProtocolObject<dyn NSURLDownloadDelegate>>,
         ) -> Id<Self, Shared>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSString"))]
@@ -57,7 +57,7 @@ extern_methods!(
         pub unsafe fn initWithResumeData_delegate_path(
             this: Option<Allocated<Self>>,
             resume_data: &NSData,
-            delegate: Option<&NSURLDownloadDelegate>,
+            delegate: Option<&ProtocolObject<dyn NSURLDownloadDelegate>>,
             path: &NSString,
         ) -> Id<Self, Shared>;
     }

@@ -101,7 +101,7 @@ extern_methods!(
         pub unsafe fn modificationDate(&self) -> Option<Id<NSDate, Shared>>;
 
         #[method_id(@__retain_semantics Other persistentIdentifier)]
-        pub unsafe fn persistentIdentifier(&self) -> Id<NSCoding, Shared>;
+        pub unsafe fn persistentIdentifier(&self) -> Id<ProtocolObject<dyn NSCoding>, Shared>;
 
         #[method(isConflict)]
         pub unsafe fn isConflict(&self) -> bool;

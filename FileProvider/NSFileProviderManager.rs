@@ -177,27 +177,28 @@ extern_methods!(
     #[cfg(feature = "FileProvider_NSFileProviderManager")]
     unsafe impl NSFileProviderManager {
         #[method_id(@__retain_semantics Other enumeratorForMaterializedItems)]
-        pub unsafe fn enumeratorForMaterializedItems(&self)
-            -> Id<NSFileProviderEnumerator, Shared>;
+        pub unsafe fn enumeratorForMaterializedItems(
+            &self,
+        ) -> Id<ProtocolObject<dyn NSFileProviderEnumerator>, Shared>;
     }
 );
 
 extern_static!(NSFileProviderPendingSetDidChange: &'static NSNotificationName);
 
 extern_protocol!(
-    pub struct NSFileProviderPendingSetEnumerator;
-
-    unsafe impl ProtocolType for NSFileProviderPendingSetEnumerator {
+    pub unsafe trait NSFileProviderPendingSetEnumerator: NSFileProviderEnumerator {
         #[cfg(feature = "FileProvider_NSFileProviderDomainVersion")]
         #[method_id(@__retain_semantics Other domainVersion)]
-        pub unsafe fn domainVersion(&self) -> Option<Id<NSFileProviderDomainVersion, Shared>>;
+        unsafe fn domainVersion(&self) -> Option<Id<NSFileProviderDomainVersion, Shared>>;
 
         #[method(refreshInterval)]
-        pub unsafe fn refreshInterval(&self) -> NSTimeInterval;
+        unsafe fn refreshInterval(&self) -> NSTimeInterval;
 
         #[method(isMaximumSizeReached)]
-        pub unsafe fn isMaximumSizeReached(&self) -> bool;
+        unsafe fn isMaximumSizeReached(&self) -> bool;
     }
+
+    unsafe impl ProtocolType for dyn NSFileProviderPendingSetEnumerator {}
 );
 
 extern_methods!(
@@ -207,7 +208,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other enumeratorForPendingItems)]
         pub unsafe fn enumeratorForPendingItems(
             &self,
-        ) -> Id<NSFileProviderPendingSetEnumerator, Shared>;
+        ) -> Id<ProtocolObject<dyn NSFileProviderPendingSetEnumerator>, Shared>;
     }
 );
 

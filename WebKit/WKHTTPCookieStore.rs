@@ -6,14 +6,14 @@ use crate::Foundation::*;
 use crate::WebKit::*;
 
 extern_protocol!(
-    pub struct WKHTTPCookieStoreObserver;
-
-    unsafe impl ProtocolType for WKHTTPCookieStoreObserver {
+    pub unsafe trait WKHTTPCookieStoreObserver: NSObjectProtocol {
         #[cfg(feature = "WebKit_WKHTTPCookieStore")]
         #[optional]
         #[method(cookiesDidChangeInCookieStore:)]
-        pub unsafe fn cookiesDidChangeInCookieStore(&self, cookie_store: &WKHTTPCookieStore);
+        unsafe fn cookiesDidChangeInCookieStore(&self, cookie_store: &WKHTTPCookieStore);
     }
+
+    unsafe impl ProtocolType for dyn WKHTTPCookieStoreObserver {}
 );
 
 extern_class!(
@@ -57,9 +57,12 @@ extern_methods!(
         );
 
         #[method(addObserver:)]
-        pub unsafe fn addObserver(&self, observer: &WKHTTPCookieStoreObserver);
+        pub unsafe fn addObserver(&self, observer: &ProtocolObject<dyn WKHTTPCookieStoreObserver>);
 
         #[method(removeObserver:)]
-        pub unsafe fn removeObserver(&self, observer: &WKHTTPCookieStoreObserver);
+        pub unsafe fn removeObserver(
+            &self,
+            observer: &ProtocolObject<dyn WKHTTPCookieStoreObserver>,
+        );
     }
 );

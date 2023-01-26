@@ -138,14 +138,15 @@ ns_options!(
 );
 
 extern_protocol!(
-    pub struct MTLRenderCommandEncoder;
-
-    unsafe impl ProtocolType for MTLRenderCommandEncoder {
+    pub unsafe trait MTLRenderCommandEncoder: MTLCommandEncoder {
         #[method(setRenderPipelineState:)]
-        pub fn setRenderPipelineState(&self, pipeline_state: &MTLRenderPipelineState);
+        fn setRenderPipelineState(
+            &self,
+            pipeline_state: &ProtocolObject<dyn MTLRenderPipelineState>,
+        );
 
         #[method(setVertexBytes:length:atIndex:)]
-        pub unsafe fn setVertexBytes_length_atIndex(
+        unsafe fn setVertexBytes_length_atIndex(
             &self,
             bytes: NonNull<c_void>,
             length: NSUInteger,
@@ -153,129 +154,131 @@ extern_protocol!(
         );
 
         #[method(setVertexBuffer:offset:atIndex:)]
-        pub unsafe fn setVertexBuffer_offset_atIndex(
+        unsafe fn setVertexBuffer_offset_atIndex(
             &self,
-            buffer: Option<&MTLBuffer>,
+            buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
             offset: NSUInteger,
             index: NSUInteger,
         );
 
         #[method(setVertexBufferOffset:atIndex:)]
-        pub unsafe fn setVertexBufferOffset_atIndex(&self, offset: NSUInteger, index: NSUInteger);
+        unsafe fn setVertexBufferOffset_atIndex(&self, offset: NSUInteger, index: NSUInteger);
 
         #[method(setVertexBuffers:offsets:withRange:)]
-        pub unsafe fn setVertexBuffers_offsets_withRange(
+        unsafe fn setVertexBuffers_offsets_withRange(
             &self,
-            buffers: NonNull<*const MTLBuffer>,
+            buffers: NonNull<*const ProtocolObject<dyn MTLBuffer>>,
             offsets: NonNull<NSUInteger>,
             range: NSRange,
         );
 
         #[method(setVertexTexture:atIndex:)]
-        pub unsafe fn setVertexTexture_atIndex(
+        unsafe fn setVertexTexture_atIndex(
             &self,
-            texture: Option<&MTLTexture>,
+            texture: Option<&ProtocolObject<dyn MTLTexture>>,
             index: NSUInteger,
         );
 
         #[method(setVertexTextures:withRange:)]
-        pub unsafe fn setVertexTextures_withRange(
+        unsafe fn setVertexTextures_withRange(
             &self,
-            textures: NonNull<*const MTLTexture>,
+            textures: NonNull<*const ProtocolObject<dyn MTLTexture>>,
             range: NSRange,
         );
 
         #[method(setVertexSamplerState:atIndex:)]
-        pub unsafe fn setVertexSamplerState_atIndex(
+        unsafe fn setVertexSamplerState_atIndex(
             &self,
-            sampler: Option<&MTLSamplerState>,
+            sampler: Option<&ProtocolObject<dyn MTLSamplerState>>,
             index: NSUInteger,
         );
 
         #[method(setVertexSamplerStates:withRange:)]
-        pub unsafe fn setVertexSamplerStates_withRange(
+        unsafe fn setVertexSamplerStates_withRange(
             &self,
-            samplers: NonNull<*const MTLSamplerState>,
+            samplers: NonNull<*const ProtocolObject<dyn MTLSamplerState>>,
             range: NSRange,
         );
 
         #[method(setVertexSamplerState:lodMinClamp:lodMaxClamp:atIndex:)]
-        pub unsafe fn setVertexSamplerState_lodMinClamp_lodMaxClamp_atIndex(
+        unsafe fn setVertexSamplerState_lodMinClamp_lodMaxClamp_atIndex(
             &self,
-            sampler: Option<&MTLSamplerState>,
+            sampler: Option<&ProtocolObject<dyn MTLSamplerState>>,
             lod_min_clamp: c_float,
             lod_max_clamp: c_float,
             index: NSUInteger,
         );
 
         #[method(setVertexSamplerStates:lodMinClamps:lodMaxClamps:withRange:)]
-        pub unsafe fn setVertexSamplerStates_lodMinClamps_lodMaxClamps_withRange(
+        unsafe fn setVertexSamplerStates_lodMinClamps_lodMaxClamps_withRange(
             &self,
-            samplers: NonNull<*const MTLSamplerState>,
+            samplers: NonNull<*const ProtocolObject<dyn MTLSamplerState>>,
             lod_min_clamps: NonNull<c_float>,
             lod_max_clamps: NonNull<c_float>,
             range: NSRange,
         );
 
         #[method(setVertexVisibleFunctionTable:atBufferIndex:)]
-        pub unsafe fn setVertexVisibleFunctionTable_atBufferIndex(
+        unsafe fn setVertexVisibleFunctionTable_atBufferIndex(
             &self,
-            function_table: Option<&MTLVisibleFunctionTable>,
+            function_table: Option<&ProtocolObject<dyn MTLVisibleFunctionTable>>,
             buffer_index: NSUInteger,
         );
 
         #[method(setVertexVisibleFunctionTables:withBufferRange:)]
-        pub unsafe fn setVertexVisibleFunctionTables_withBufferRange(
+        unsafe fn setVertexVisibleFunctionTables_withBufferRange(
             &self,
-            function_tables: NonNull<*const MTLVisibleFunctionTable>,
+            function_tables: NonNull<*const ProtocolObject<dyn MTLVisibleFunctionTable>>,
             range: NSRange,
         );
 
         #[method(setVertexIntersectionFunctionTable:atBufferIndex:)]
-        pub unsafe fn setVertexIntersectionFunctionTable_atBufferIndex(
+        unsafe fn setVertexIntersectionFunctionTable_atBufferIndex(
             &self,
-            intersection_function_table: Option<&MTLIntersectionFunctionTable>,
+            intersection_function_table: Option<&ProtocolObject<dyn MTLIntersectionFunctionTable>>,
             buffer_index: NSUInteger,
         );
 
         #[method(setVertexIntersectionFunctionTables:withBufferRange:)]
-        pub unsafe fn setVertexIntersectionFunctionTables_withBufferRange(
+        unsafe fn setVertexIntersectionFunctionTables_withBufferRange(
             &self,
-            intersection_function_tables: NonNull<*const MTLIntersectionFunctionTable>,
+            intersection_function_tables: NonNull<
+                *const ProtocolObject<dyn MTLIntersectionFunctionTable>,
+            >,
             range: NSRange,
         );
 
         #[method(setVertexAccelerationStructure:atBufferIndex:)]
-        pub unsafe fn setVertexAccelerationStructure_atBufferIndex(
+        unsafe fn setVertexAccelerationStructure_atBufferIndex(
             &self,
-            acceleration_structure: Option<&MTLAccelerationStructure>,
+            acceleration_structure: Option<&ProtocolObject<dyn MTLAccelerationStructure>>,
             buffer_index: NSUInteger,
         );
 
         #[method(setViewport:)]
-        pub fn setViewport(&self, viewport: MTLViewport);
+        fn setViewport(&self, viewport: MTLViewport);
 
         #[method(setViewports:count:)]
-        pub unsafe fn setViewports_count(&self, viewports: NonNull<MTLViewport>, count: NSUInteger);
+        unsafe fn setViewports_count(&self, viewports: NonNull<MTLViewport>, count: NSUInteger);
 
         #[method(setFrontFacingWinding:)]
-        pub fn setFrontFacingWinding(&self, front_facing_winding: MTLWinding);
+        fn setFrontFacingWinding(&self, front_facing_winding: MTLWinding);
 
         #[method(setVertexAmplificationCount:viewMappings:)]
-        pub unsafe fn setVertexAmplificationCount_viewMappings(
+        unsafe fn setVertexAmplificationCount_viewMappings(
             &self,
             count: NSUInteger,
             view_mappings: *mut MTLVertexAmplificationViewMapping,
         );
 
         #[method(setCullMode:)]
-        pub fn setCullMode(&self, cull_mode: MTLCullMode);
+        fn setCullMode(&self, cull_mode: MTLCullMode);
 
         #[method(setDepthClipMode:)]
-        pub fn setDepthClipMode(&self, depth_clip_mode: MTLDepthClipMode);
+        fn setDepthClipMode(&self, depth_clip_mode: MTLDepthClipMode);
 
         #[method(setDepthBias:slopeScale:clamp:)]
-        pub fn setDepthBias_slopeScale_clamp(
+        fn setDepthBias_slopeScale_clamp(
             &self,
             depth_bias: c_float,
             slope_scale: c_float,
@@ -283,20 +286,20 @@ extern_protocol!(
         );
 
         #[method(setScissorRect:)]
-        pub fn setScissorRect(&self, rect: MTLScissorRect);
+        fn setScissorRect(&self, rect: MTLScissorRect);
 
         #[method(setScissorRects:count:)]
-        pub unsafe fn setScissorRects_count(
+        unsafe fn setScissorRects_count(
             &self,
             scissor_rects: NonNull<MTLScissorRect>,
             count: NSUInteger,
         );
 
         #[method(setTriangleFillMode:)]
-        pub fn setTriangleFillMode(&self, fill_mode: MTLTriangleFillMode);
+        fn setTriangleFillMode(&self, fill_mode: MTLTriangleFillMode);
 
         #[method(setFragmentBytes:length:atIndex:)]
-        pub unsafe fn setFragmentBytes_length_atIndex(
+        unsafe fn setFragmentBytes_length_atIndex(
             &self,
             bytes: NonNull<c_void>,
             length: NSUInteger,
@@ -304,107 +307,109 @@ extern_protocol!(
         );
 
         #[method(setFragmentBuffer:offset:atIndex:)]
-        pub unsafe fn setFragmentBuffer_offset_atIndex(
+        unsafe fn setFragmentBuffer_offset_atIndex(
             &self,
-            buffer: Option<&MTLBuffer>,
+            buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
             offset: NSUInteger,
             index: NSUInteger,
         );
 
         #[method(setFragmentBufferOffset:atIndex:)]
-        pub unsafe fn setFragmentBufferOffset_atIndex(&self, offset: NSUInteger, index: NSUInteger);
+        unsafe fn setFragmentBufferOffset_atIndex(&self, offset: NSUInteger, index: NSUInteger);
 
         #[method(setFragmentBuffers:offsets:withRange:)]
-        pub unsafe fn setFragmentBuffers_offsets_withRange(
+        unsafe fn setFragmentBuffers_offsets_withRange(
             &self,
-            buffers: NonNull<*const MTLBuffer>,
+            buffers: NonNull<*const ProtocolObject<dyn MTLBuffer>>,
             offsets: NonNull<NSUInteger>,
             range: NSRange,
         );
 
         #[method(setFragmentTexture:atIndex:)]
-        pub unsafe fn setFragmentTexture_atIndex(
+        unsafe fn setFragmentTexture_atIndex(
             &self,
-            texture: Option<&MTLTexture>,
+            texture: Option<&ProtocolObject<dyn MTLTexture>>,
             index: NSUInteger,
         );
 
         #[method(setFragmentTextures:withRange:)]
-        pub unsafe fn setFragmentTextures_withRange(
+        unsafe fn setFragmentTextures_withRange(
             &self,
-            textures: NonNull<*const MTLTexture>,
+            textures: NonNull<*const ProtocolObject<dyn MTLTexture>>,
             range: NSRange,
         );
 
         #[method(setFragmentSamplerState:atIndex:)]
-        pub unsafe fn setFragmentSamplerState_atIndex(
+        unsafe fn setFragmentSamplerState_atIndex(
             &self,
-            sampler: Option<&MTLSamplerState>,
+            sampler: Option<&ProtocolObject<dyn MTLSamplerState>>,
             index: NSUInteger,
         );
 
         #[method(setFragmentSamplerStates:withRange:)]
-        pub unsafe fn setFragmentSamplerStates_withRange(
+        unsafe fn setFragmentSamplerStates_withRange(
             &self,
-            samplers: NonNull<*const MTLSamplerState>,
+            samplers: NonNull<*const ProtocolObject<dyn MTLSamplerState>>,
             range: NSRange,
         );
 
         #[method(setFragmentSamplerState:lodMinClamp:lodMaxClamp:atIndex:)]
-        pub unsafe fn setFragmentSamplerState_lodMinClamp_lodMaxClamp_atIndex(
+        unsafe fn setFragmentSamplerState_lodMinClamp_lodMaxClamp_atIndex(
             &self,
-            sampler: Option<&MTLSamplerState>,
+            sampler: Option<&ProtocolObject<dyn MTLSamplerState>>,
             lod_min_clamp: c_float,
             lod_max_clamp: c_float,
             index: NSUInteger,
         );
 
         #[method(setFragmentSamplerStates:lodMinClamps:lodMaxClamps:withRange:)]
-        pub unsafe fn setFragmentSamplerStates_lodMinClamps_lodMaxClamps_withRange(
+        unsafe fn setFragmentSamplerStates_lodMinClamps_lodMaxClamps_withRange(
             &self,
-            samplers: NonNull<*const MTLSamplerState>,
+            samplers: NonNull<*const ProtocolObject<dyn MTLSamplerState>>,
             lod_min_clamps: NonNull<c_float>,
             lod_max_clamps: NonNull<c_float>,
             range: NSRange,
         );
 
         #[method(setFragmentVisibleFunctionTable:atBufferIndex:)]
-        pub unsafe fn setFragmentVisibleFunctionTable_atBufferIndex(
+        unsafe fn setFragmentVisibleFunctionTable_atBufferIndex(
             &self,
-            function_table: Option<&MTLVisibleFunctionTable>,
+            function_table: Option<&ProtocolObject<dyn MTLVisibleFunctionTable>>,
             buffer_index: NSUInteger,
         );
 
         #[method(setFragmentVisibleFunctionTables:withBufferRange:)]
-        pub unsafe fn setFragmentVisibleFunctionTables_withBufferRange(
+        unsafe fn setFragmentVisibleFunctionTables_withBufferRange(
             &self,
-            function_tables: NonNull<*const MTLVisibleFunctionTable>,
+            function_tables: NonNull<*const ProtocolObject<dyn MTLVisibleFunctionTable>>,
             range: NSRange,
         );
 
         #[method(setFragmentIntersectionFunctionTable:atBufferIndex:)]
-        pub unsafe fn setFragmentIntersectionFunctionTable_atBufferIndex(
+        unsafe fn setFragmentIntersectionFunctionTable_atBufferIndex(
             &self,
-            intersection_function_table: Option<&MTLIntersectionFunctionTable>,
+            intersection_function_table: Option<&ProtocolObject<dyn MTLIntersectionFunctionTable>>,
             buffer_index: NSUInteger,
         );
 
         #[method(setFragmentIntersectionFunctionTables:withBufferRange:)]
-        pub unsafe fn setFragmentIntersectionFunctionTables_withBufferRange(
+        unsafe fn setFragmentIntersectionFunctionTables_withBufferRange(
             &self,
-            intersection_function_tables: NonNull<*const MTLIntersectionFunctionTable>,
+            intersection_function_tables: NonNull<
+                *const ProtocolObject<dyn MTLIntersectionFunctionTable>,
+            >,
             range: NSRange,
         );
 
         #[method(setFragmentAccelerationStructure:atBufferIndex:)]
-        pub unsafe fn setFragmentAccelerationStructure_atBufferIndex(
+        unsafe fn setFragmentAccelerationStructure_atBufferIndex(
             &self,
-            acceleration_structure: Option<&MTLAccelerationStructure>,
+            acceleration_structure: Option<&ProtocolObject<dyn MTLAccelerationStructure>>,
             buffer_index: NSUInteger,
         );
 
         #[method(setBlendColorRed:green:blue:alpha:)]
-        pub fn setBlendColorRed_green_blue_alpha(
+        fn setBlendColorRed_green_blue_alpha(
             &self,
             red: c_float,
             green: c_float,
@@ -413,59 +418,52 @@ extern_protocol!(
         );
 
         #[method(setDepthStencilState:)]
-        pub fn setDepthStencilState(&self, depth_stencil_state: Option<&MTLDepthStencilState>);
+        fn setDepthStencilState(
+            &self,
+            depth_stencil_state: Option<&ProtocolObject<dyn MTLDepthStencilState>>,
+        );
 
         #[method(setStencilReferenceValue:)]
-        pub fn setStencilReferenceValue(&self, reference_value: u32);
+        fn setStencilReferenceValue(&self, reference_value: u32);
 
         #[method(setStencilFrontReferenceValue:backReferenceValue:)]
-        pub fn setStencilFrontReferenceValue_backReferenceValue(
+        fn setStencilFrontReferenceValue_backReferenceValue(
             &self,
             front_reference_value: u32,
             back_reference_value: u32,
         );
 
         #[method(setVisibilityResultMode:offset:)]
-        pub fn setVisibilityResultMode_offset(
-            &self,
-            mode: MTLVisibilityResultMode,
-            offset: NSUInteger,
-        );
+        fn setVisibilityResultMode_offset(&self, mode: MTLVisibilityResultMode, offset: NSUInteger);
 
         #[method(setColorStoreAction:atIndex:)]
-        pub unsafe fn setColorStoreAction_atIndex(
+        unsafe fn setColorStoreAction_atIndex(
             &self,
             store_action: MTLStoreAction,
             color_attachment_index: NSUInteger,
         );
 
         #[method(setDepthStoreAction:)]
-        pub unsafe fn setDepthStoreAction(&self, store_action: MTLStoreAction);
+        unsafe fn setDepthStoreAction(&self, store_action: MTLStoreAction);
 
         #[method(setStencilStoreAction:)]
-        pub unsafe fn setStencilStoreAction(&self, store_action: MTLStoreAction);
+        unsafe fn setStencilStoreAction(&self, store_action: MTLStoreAction);
 
         #[method(setColorStoreActionOptions:atIndex:)]
-        pub unsafe fn setColorStoreActionOptions_atIndex(
+        unsafe fn setColorStoreActionOptions_atIndex(
             &self,
             store_action_options: MTLStoreActionOptions,
             color_attachment_index: NSUInteger,
         );
 
         #[method(setDepthStoreActionOptions:)]
-        pub unsafe fn setDepthStoreActionOptions(
-            &self,
-            store_action_options: MTLStoreActionOptions,
-        );
+        unsafe fn setDepthStoreActionOptions(&self, store_action_options: MTLStoreActionOptions);
 
         #[method(setStencilStoreActionOptions:)]
-        pub unsafe fn setStencilStoreActionOptions(
-            &self,
-            store_action_options: MTLStoreActionOptions,
-        );
+        unsafe fn setStencilStoreActionOptions(&self, store_action_options: MTLStoreActionOptions);
 
         #[method(setObjectBytes:length:atIndex:)]
-        pub unsafe fn setObjectBytes_length_atIndex(
+        unsafe fn setObjectBytes_length_atIndex(
             &self,
             bytes: NonNull<c_void>,
             length: NSUInteger,
@@ -473,79 +471,79 @@ extern_protocol!(
         );
 
         #[method(setObjectBuffer:offset:atIndex:)]
-        pub unsafe fn setObjectBuffer_offset_atIndex(
+        unsafe fn setObjectBuffer_offset_atIndex(
             &self,
-            buffer: Option<&MTLBuffer>,
+            buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
             offset: NSUInteger,
             index: NSUInteger,
         );
 
         #[method(setObjectBufferOffset:atIndex:)]
-        pub unsafe fn setObjectBufferOffset_atIndex(&self, offset: NSUInteger, index: NSUInteger);
+        unsafe fn setObjectBufferOffset_atIndex(&self, offset: NSUInteger, index: NSUInteger);
 
         #[method(setObjectBuffers:offsets:withRange:)]
-        pub unsafe fn setObjectBuffers_offsets_withRange(
+        unsafe fn setObjectBuffers_offsets_withRange(
             &self,
-            buffers: NonNull<*const MTLBuffer>,
+            buffers: NonNull<*const ProtocolObject<dyn MTLBuffer>>,
             offsets: NonNull<NSUInteger>,
             range: NSRange,
         );
 
         #[method(setObjectTexture:atIndex:)]
-        pub unsafe fn setObjectTexture_atIndex(
+        unsafe fn setObjectTexture_atIndex(
             &self,
-            texture: Option<&MTLTexture>,
+            texture: Option<&ProtocolObject<dyn MTLTexture>>,
             index: NSUInteger,
         );
 
         #[method(setObjectTextures:withRange:)]
-        pub unsafe fn setObjectTextures_withRange(
+        unsafe fn setObjectTextures_withRange(
             &self,
-            textures: NonNull<*const MTLTexture>,
+            textures: NonNull<*const ProtocolObject<dyn MTLTexture>>,
             range: NSRange,
         );
 
         #[method(setObjectSamplerState:atIndex:)]
-        pub unsafe fn setObjectSamplerState_atIndex(
+        unsafe fn setObjectSamplerState_atIndex(
             &self,
-            sampler: Option<&MTLSamplerState>,
+            sampler: Option<&ProtocolObject<dyn MTLSamplerState>>,
             index: NSUInteger,
         );
 
         #[method(setObjectSamplerStates:withRange:)]
-        pub unsafe fn setObjectSamplerStates_withRange(
+        unsafe fn setObjectSamplerStates_withRange(
             &self,
-            samplers: NonNull<*const MTLSamplerState>,
+            samplers: NonNull<*const ProtocolObject<dyn MTLSamplerState>>,
             range: NSRange,
         );
 
         #[method(setObjectSamplerState:lodMinClamp:lodMaxClamp:atIndex:)]
-        pub unsafe fn setObjectSamplerState_lodMinClamp_lodMaxClamp_atIndex(
+        unsafe fn setObjectSamplerState_lodMinClamp_lodMaxClamp_atIndex(
             &self,
-            sampler: Option<&MTLSamplerState>,
+            sampler: Option<&ProtocolObject<dyn MTLSamplerState>>,
             lod_min_clamp: c_float,
             lod_max_clamp: c_float,
             index: NSUInteger,
         );
 
         #[method(setObjectSamplerStates:lodMinClamps:lodMaxClamps:withRange:)]
-        pub unsafe fn setObjectSamplerStates_lodMinClamps_lodMaxClamps_withRange(
+        unsafe fn setObjectSamplerStates_lodMinClamps_lodMaxClamps_withRange(
             &self,
-            samplers: NonNull<*const MTLSamplerState>,
+            samplers: NonNull<*const ProtocolObject<dyn MTLSamplerState>>,
             lod_min_clamps: NonNull<c_float>,
             lod_max_clamps: NonNull<c_float>,
             range: NSRange,
         );
 
         #[method(setObjectThreadgroupMemoryLength:atIndex:)]
-        pub unsafe fn setObjectThreadgroupMemoryLength_atIndex(
+        unsafe fn setObjectThreadgroupMemoryLength_atIndex(
             &self,
             length: NSUInteger,
             index: NSUInteger,
         );
 
         #[method(setMeshBytes:length:atIndex:)]
-        pub unsafe fn setMeshBytes_length_atIndex(
+        unsafe fn setMeshBytes_length_atIndex(
             &self,
             bytes: NonNull<c_void>,
             length: NSUInteger,
@@ -553,72 +551,72 @@ extern_protocol!(
         );
 
         #[method(setMeshBuffer:offset:atIndex:)]
-        pub unsafe fn setMeshBuffer_offset_atIndex(
+        unsafe fn setMeshBuffer_offset_atIndex(
             &self,
-            buffer: Option<&MTLBuffer>,
+            buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
             offset: NSUInteger,
             index: NSUInteger,
         );
 
         #[method(setMeshBufferOffset:atIndex:)]
-        pub unsafe fn setMeshBufferOffset_atIndex(&self, offset: NSUInteger, index: NSUInteger);
+        unsafe fn setMeshBufferOffset_atIndex(&self, offset: NSUInteger, index: NSUInteger);
 
         #[method(setMeshBuffers:offsets:withRange:)]
-        pub unsafe fn setMeshBuffers_offsets_withRange(
+        unsafe fn setMeshBuffers_offsets_withRange(
             &self,
-            buffers: NonNull<*const MTLBuffer>,
+            buffers: NonNull<*const ProtocolObject<dyn MTLBuffer>>,
             offsets: NonNull<NSUInteger>,
             range: NSRange,
         );
 
         #[method(setMeshTexture:atIndex:)]
-        pub unsafe fn setMeshTexture_atIndex(
+        unsafe fn setMeshTexture_atIndex(
             &self,
-            texture: Option<&MTLTexture>,
+            texture: Option<&ProtocolObject<dyn MTLTexture>>,
             index: NSUInteger,
         );
 
         #[method(setMeshTextures:withRange:)]
-        pub unsafe fn setMeshTextures_withRange(
+        unsafe fn setMeshTextures_withRange(
             &self,
-            textures: NonNull<*const MTLTexture>,
+            textures: NonNull<*const ProtocolObject<dyn MTLTexture>>,
             range: NSRange,
         );
 
         #[method(setMeshSamplerState:atIndex:)]
-        pub unsafe fn setMeshSamplerState_atIndex(
+        unsafe fn setMeshSamplerState_atIndex(
             &self,
-            sampler: Option<&MTLSamplerState>,
+            sampler: Option<&ProtocolObject<dyn MTLSamplerState>>,
             index: NSUInteger,
         );
 
         #[method(setMeshSamplerStates:withRange:)]
-        pub unsafe fn setMeshSamplerStates_withRange(
+        unsafe fn setMeshSamplerStates_withRange(
             &self,
-            samplers: NonNull<*const MTLSamplerState>,
+            samplers: NonNull<*const ProtocolObject<dyn MTLSamplerState>>,
             range: NSRange,
         );
 
         #[method(setMeshSamplerState:lodMinClamp:lodMaxClamp:atIndex:)]
-        pub unsafe fn setMeshSamplerState_lodMinClamp_lodMaxClamp_atIndex(
+        unsafe fn setMeshSamplerState_lodMinClamp_lodMaxClamp_atIndex(
             &self,
-            sampler: Option<&MTLSamplerState>,
+            sampler: Option<&ProtocolObject<dyn MTLSamplerState>>,
             lod_min_clamp: c_float,
             lod_max_clamp: c_float,
             index: NSUInteger,
         );
 
         #[method(setMeshSamplerStates:lodMinClamps:lodMaxClamps:withRange:)]
-        pub unsafe fn setMeshSamplerStates_lodMinClamps_lodMaxClamps_withRange(
+        unsafe fn setMeshSamplerStates_lodMinClamps_lodMaxClamps_withRange(
             &self,
-            samplers: NonNull<*const MTLSamplerState>,
+            samplers: NonNull<*const ProtocolObject<dyn MTLSamplerState>>,
             lod_min_clamps: NonNull<c_float>,
             lod_max_clamps: NonNull<c_float>,
             range: NSRange,
         );
 
         #[method(drawMeshThreadgroups:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:)]
-        pub unsafe fn drawMeshThreadgroups_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup(
+        unsafe fn drawMeshThreadgroups_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup(
             &self,
             threadgroups_per_grid: MTLSize,
             threads_per_object_threadgroup: MTLSize,
@@ -626,7 +624,7 @@ extern_protocol!(
         );
 
         #[method(drawMeshThreads:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:)]
-        pub unsafe fn drawMeshThreads_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup(
+        unsafe fn drawMeshThreads_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup(
             &self,
             threads_per_grid: MTLSize,
             threads_per_object_threadgroup: MTLSize,
@@ -634,16 +632,16 @@ extern_protocol!(
         );
 
         #[method(drawMeshThreadgroupsWithIndirectBuffer:indirectBufferOffset:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:)]
-        pub unsafe fn drawMeshThreadgroupsWithIndirectBuffer_indirectBufferOffset_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup(
+        unsafe fn drawMeshThreadgroupsWithIndirectBuffer_indirectBufferOffset_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup(
             &self,
-            indirect_buffer: &MTLBuffer,
+            indirect_buffer: &ProtocolObject<dyn MTLBuffer>,
             indirect_buffer_offset: NSUInteger,
             threads_per_object_threadgroup: MTLSize,
             threads_per_mesh_threadgroup: MTLSize,
         );
 
         #[method(drawPrimitives:vertexStart:vertexCount:instanceCount:)]
-        pub unsafe fn drawPrimitives_vertexStart_vertexCount_instanceCount(
+        unsafe fn drawPrimitives_vertexStart_vertexCount_instanceCount(
             &self,
             primitive_type: MTLPrimitiveType,
             vertex_start: NSUInteger,
@@ -652,7 +650,7 @@ extern_protocol!(
         );
 
         #[method(drawPrimitives:vertexStart:vertexCount:)]
-        pub unsafe fn drawPrimitives_vertexStart_vertexCount(
+        unsafe fn drawPrimitives_vertexStart_vertexCount(
             &self,
             primitive_type: MTLPrimitiveType,
             vertex_start: NSUInteger,
@@ -660,28 +658,28 @@ extern_protocol!(
         );
 
         #[method(drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:)]
-        pub unsafe fn drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset_instanceCount(
+        unsafe fn drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset_instanceCount(
             &self,
             primitive_type: MTLPrimitiveType,
             index_count: NSUInteger,
             index_type: MTLIndexType,
-            index_buffer: &MTLBuffer,
+            index_buffer: &ProtocolObject<dyn MTLBuffer>,
             index_buffer_offset: NSUInteger,
             instance_count: NSUInteger,
         );
 
         #[method(drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:)]
-        pub unsafe fn drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset(
+        unsafe fn drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset(
             &self,
             primitive_type: MTLPrimitiveType,
             index_count: NSUInteger,
             index_type: MTLIndexType,
-            index_buffer: &MTLBuffer,
+            index_buffer: &ProtocolObject<dyn MTLBuffer>,
             index_buffer_offset: NSUInteger,
         );
 
         #[method(drawPrimitives:vertexStart:vertexCount:instanceCount:baseInstance:)]
-        pub unsafe fn drawPrimitives_vertexStart_vertexCount_instanceCount_baseInstance(
+        unsafe fn drawPrimitives_vertexStart_vertexCount_instanceCount_baseInstance(
             &self,
             primitive_type: MTLPrimitiveType,
             vertex_start: NSUInteger,
@@ -691,12 +689,12 @@ extern_protocol!(
         );
 
         #[method(drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:baseVertex:baseInstance:)]
-        pub unsafe fn drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset_instanceCount_baseVertex_baseInstance(
+        unsafe fn drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset_instanceCount_baseVertex_baseInstance(
             &self,
             primitive_type: MTLPrimitiveType,
             index_count: NSUInteger,
             index_type: MTLIndexType,
-            index_buffer: &MTLBuffer,
+            index_buffer: &ProtocolObject<dyn MTLBuffer>,
             index_buffer_offset: NSUInteger,
             instance_count: NSUInteger,
             base_vertex: NSInteger,
@@ -704,101 +702,109 @@ extern_protocol!(
         );
 
         #[method(drawPrimitives:indirectBuffer:indirectBufferOffset:)]
-        pub unsafe fn drawPrimitives_indirectBuffer_indirectBufferOffset(
+        unsafe fn drawPrimitives_indirectBuffer_indirectBufferOffset(
             &self,
             primitive_type: MTLPrimitiveType,
-            indirect_buffer: &MTLBuffer,
+            indirect_buffer: &ProtocolObject<dyn MTLBuffer>,
             indirect_buffer_offset: NSUInteger,
         );
 
         #[method(drawIndexedPrimitives:indexType:indexBuffer:indexBufferOffset:indirectBuffer:indirectBufferOffset:)]
-        pub unsafe fn drawIndexedPrimitives_indexType_indexBuffer_indexBufferOffset_indirectBuffer_indirectBufferOffset(
+        unsafe fn drawIndexedPrimitives_indexType_indexBuffer_indexBufferOffset_indirectBuffer_indirectBufferOffset(
             &self,
             primitive_type: MTLPrimitiveType,
             index_type: MTLIndexType,
-            index_buffer: &MTLBuffer,
+            index_buffer: &ProtocolObject<dyn MTLBuffer>,
             index_buffer_offset: NSUInteger,
-            indirect_buffer: &MTLBuffer,
+            indirect_buffer: &ProtocolObject<dyn MTLBuffer>,
             indirect_buffer_offset: NSUInteger,
         );
 
         #[deprecated]
         #[method(textureBarrier)]
-        pub unsafe fn textureBarrier(&self);
+        unsafe fn textureBarrier(&self);
 
         #[method(updateFence:afterStages:)]
-        pub fn updateFence_afterStages(&self, fence: &MTLFence, stages: MTLRenderStages);
+        fn updateFence_afterStages(
+            &self,
+            fence: &ProtocolObject<dyn MTLFence>,
+            stages: MTLRenderStages,
+        );
 
         #[method(waitForFence:beforeStages:)]
-        pub fn waitForFence_beforeStages(&self, fence: &MTLFence, stages: MTLRenderStages);
+        fn waitForFence_beforeStages(
+            &self,
+            fence: &ProtocolObject<dyn MTLFence>,
+            stages: MTLRenderStages,
+        );
 
         #[method(setTessellationFactorBuffer:offset:instanceStride:)]
-        pub unsafe fn setTessellationFactorBuffer_offset_instanceStride(
+        unsafe fn setTessellationFactorBuffer_offset_instanceStride(
             &self,
-            buffer: Option<&MTLBuffer>,
+            buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
             offset: NSUInteger,
             instance_stride: NSUInteger,
         );
 
         #[method(setTessellationFactorScale:)]
-        pub unsafe fn setTessellationFactorScale(&self, scale: c_float);
+        unsafe fn setTessellationFactorScale(&self, scale: c_float);
 
         #[method(drawPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:instanceCount:baseInstance:)]
-        pub unsafe fn drawPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_instanceCount_baseInstance(
+        unsafe fn drawPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_instanceCount_baseInstance(
             &self,
             number_of_patch_control_points: NSUInteger,
             patch_start: NSUInteger,
             patch_count: NSUInteger,
-            patch_index_buffer: Option<&MTLBuffer>,
+            patch_index_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
             patch_index_buffer_offset: NSUInteger,
             instance_count: NSUInteger,
             base_instance: NSUInteger,
         );
 
         #[method(drawPatches:patchIndexBuffer:patchIndexBufferOffset:indirectBuffer:indirectBufferOffset:)]
-        pub unsafe fn drawPatches_patchIndexBuffer_patchIndexBufferOffset_indirectBuffer_indirectBufferOffset(
+        unsafe fn drawPatches_patchIndexBuffer_patchIndexBufferOffset_indirectBuffer_indirectBufferOffset(
             &self,
             number_of_patch_control_points: NSUInteger,
-            patch_index_buffer: Option<&MTLBuffer>,
+            patch_index_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
             patch_index_buffer_offset: NSUInteger,
-            indirect_buffer: &MTLBuffer,
+            indirect_buffer: &ProtocolObject<dyn MTLBuffer>,
             indirect_buffer_offset: NSUInteger,
         );
 
         #[method(drawIndexedPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:instanceCount:baseInstance:)]
-        pub unsafe fn drawIndexedPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_controlPointIndexBuffer_controlPointIndexBufferOffset_instanceCount_baseInstance(
+        unsafe fn drawIndexedPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_controlPointIndexBuffer_controlPointIndexBufferOffset_instanceCount_baseInstance(
             &self,
             number_of_patch_control_points: NSUInteger,
             patch_start: NSUInteger,
             patch_count: NSUInteger,
-            patch_index_buffer: Option<&MTLBuffer>,
+            patch_index_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
             patch_index_buffer_offset: NSUInteger,
-            control_point_index_buffer: &MTLBuffer,
+            control_point_index_buffer: &ProtocolObject<dyn MTLBuffer>,
             control_point_index_buffer_offset: NSUInteger,
             instance_count: NSUInteger,
             base_instance: NSUInteger,
         );
 
         #[method(drawIndexedPatches:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:indirectBuffer:indirectBufferOffset:)]
-        pub unsafe fn drawIndexedPatches_patchIndexBuffer_patchIndexBufferOffset_controlPointIndexBuffer_controlPointIndexBufferOffset_indirectBuffer_indirectBufferOffset(
+        unsafe fn drawIndexedPatches_patchIndexBuffer_patchIndexBufferOffset_controlPointIndexBuffer_controlPointIndexBufferOffset_indirectBuffer_indirectBufferOffset(
             &self,
             number_of_patch_control_points: NSUInteger,
-            patch_index_buffer: Option<&MTLBuffer>,
+            patch_index_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
             patch_index_buffer_offset: NSUInteger,
-            control_point_index_buffer: &MTLBuffer,
+            control_point_index_buffer: &ProtocolObject<dyn MTLBuffer>,
             control_point_index_buffer_offset: NSUInteger,
-            indirect_buffer: &MTLBuffer,
+            indirect_buffer: &ProtocolObject<dyn MTLBuffer>,
             indirect_buffer_offset: NSUInteger,
         );
 
         #[method(tileWidth)]
-        pub unsafe fn tileWidth(&self) -> NSUInteger;
+        unsafe fn tileWidth(&self) -> NSUInteger;
 
         #[method(tileHeight)]
-        pub unsafe fn tileHeight(&self) -> NSUInteger;
+        unsafe fn tileHeight(&self) -> NSUInteger;
 
         #[method(setTileBytes:length:atIndex:)]
-        pub unsafe fn setTileBytes_length_atIndex(
+        unsafe fn setTileBytes_length_atIndex(
             &self,
             bytes: NonNull<c_void>,
             length: NSUInteger,
@@ -806,110 +812,112 @@ extern_protocol!(
         );
 
         #[method(setTileBuffer:offset:atIndex:)]
-        pub unsafe fn setTileBuffer_offset_atIndex(
+        unsafe fn setTileBuffer_offset_atIndex(
             &self,
-            buffer: Option<&MTLBuffer>,
+            buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
             offset: NSUInteger,
             index: NSUInteger,
         );
 
         #[method(setTileBufferOffset:atIndex:)]
-        pub unsafe fn setTileBufferOffset_atIndex(&self, offset: NSUInteger, index: NSUInteger);
+        unsafe fn setTileBufferOffset_atIndex(&self, offset: NSUInteger, index: NSUInteger);
 
         #[method(setTileBuffers:offsets:withRange:)]
-        pub unsafe fn setTileBuffers_offsets_withRange(
+        unsafe fn setTileBuffers_offsets_withRange(
             &self,
-            buffers: NonNull<*const MTLBuffer>,
+            buffers: NonNull<*const ProtocolObject<dyn MTLBuffer>>,
             offsets: NonNull<NSUInteger>,
             range: NSRange,
         );
 
         #[method(setTileTexture:atIndex:)]
-        pub unsafe fn setTileTexture_atIndex(
+        unsafe fn setTileTexture_atIndex(
             &self,
-            texture: Option<&MTLTexture>,
+            texture: Option<&ProtocolObject<dyn MTLTexture>>,
             index: NSUInteger,
         );
 
         #[method(setTileTextures:withRange:)]
-        pub unsafe fn setTileTextures_withRange(
+        unsafe fn setTileTextures_withRange(
             &self,
-            textures: NonNull<*const MTLTexture>,
+            textures: NonNull<*const ProtocolObject<dyn MTLTexture>>,
             range: NSRange,
         );
 
         #[method(setTileSamplerState:atIndex:)]
-        pub unsafe fn setTileSamplerState_atIndex(
+        unsafe fn setTileSamplerState_atIndex(
             &self,
-            sampler: Option<&MTLSamplerState>,
+            sampler: Option<&ProtocolObject<dyn MTLSamplerState>>,
             index: NSUInteger,
         );
 
         #[method(setTileSamplerStates:withRange:)]
-        pub unsafe fn setTileSamplerStates_withRange(
+        unsafe fn setTileSamplerStates_withRange(
             &self,
-            samplers: NonNull<*const MTLSamplerState>,
+            samplers: NonNull<*const ProtocolObject<dyn MTLSamplerState>>,
             range: NSRange,
         );
 
         #[method(setTileSamplerState:lodMinClamp:lodMaxClamp:atIndex:)]
-        pub unsafe fn setTileSamplerState_lodMinClamp_lodMaxClamp_atIndex(
+        unsafe fn setTileSamplerState_lodMinClamp_lodMaxClamp_atIndex(
             &self,
-            sampler: Option<&MTLSamplerState>,
+            sampler: Option<&ProtocolObject<dyn MTLSamplerState>>,
             lod_min_clamp: c_float,
             lod_max_clamp: c_float,
             index: NSUInteger,
         );
 
         #[method(setTileSamplerStates:lodMinClamps:lodMaxClamps:withRange:)]
-        pub unsafe fn setTileSamplerStates_lodMinClamps_lodMaxClamps_withRange(
+        unsafe fn setTileSamplerStates_lodMinClamps_lodMaxClamps_withRange(
             &self,
-            samplers: NonNull<*const MTLSamplerState>,
+            samplers: NonNull<*const ProtocolObject<dyn MTLSamplerState>>,
             lod_min_clamps: NonNull<c_float>,
             lod_max_clamps: NonNull<c_float>,
             range: NSRange,
         );
 
         #[method(setTileVisibleFunctionTable:atBufferIndex:)]
-        pub unsafe fn setTileVisibleFunctionTable_atBufferIndex(
+        unsafe fn setTileVisibleFunctionTable_atBufferIndex(
             &self,
-            function_table: Option<&MTLVisibleFunctionTable>,
+            function_table: Option<&ProtocolObject<dyn MTLVisibleFunctionTable>>,
             buffer_index: NSUInteger,
         );
 
         #[method(setTileVisibleFunctionTables:withBufferRange:)]
-        pub unsafe fn setTileVisibleFunctionTables_withBufferRange(
+        unsafe fn setTileVisibleFunctionTables_withBufferRange(
             &self,
-            function_tables: NonNull<*const MTLVisibleFunctionTable>,
+            function_tables: NonNull<*const ProtocolObject<dyn MTLVisibleFunctionTable>>,
             range: NSRange,
         );
 
         #[method(setTileIntersectionFunctionTable:atBufferIndex:)]
-        pub unsafe fn setTileIntersectionFunctionTable_atBufferIndex(
+        unsafe fn setTileIntersectionFunctionTable_atBufferIndex(
             &self,
-            intersection_function_table: Option<&MTLIntersectionFunctionTable>,
+            intersection_function_table: Option<&ProtocolObject<dyn MTLIntersectionFunctionTable>>,
             buffer_index: NSUInteger,
         );
 
         #[method(setTileIntersectionFunctionTables:withBufferRange:)]
-        pub unsafe fn setTileIntersectionFunctionTables_withBufferRange(
+        unsafe fn setTileIntersectionFunctionTables_withBufferRange(
             &self,
-            intersection_function_tables: NonNull<*const MTLIntersectionFunctionTable>,
+            intersection_function_tables: NonNull<
+                *const ProtocolObject<dyn MTLIntersectionFunctionTable>,
+            >,
             range: NSRange,
         );
 
         #[method(setTileAccelerationStructure:atBufferIndex:)]
-        pub unsafe fn setTileAccelerationStructure_atBufferIndex(
+        unsafe fn setTileAccelerationStructure_atBufferIndex(
             &self,
-            acceleration_structure: Option<&MTLAccelerationStructure>,
+            acceleration_structure: Option<&ProtocolObject<dyn MTLAccelerationStructure>>,
             buffer_index: NSUInteger,
         );
 
         #[method(dispatchThreadsPerTile:)]
-        pub unsafe fn dispatchThreadsPerTile(&self, threads_per_tile: MTLSize);
+        unsafe fn dispatchThreadsPerTile(&self, threads_per_tile: MTLSize);
 
         #[method(setThreadgroupMemoryLength:offset:atIndex:)]
-        pub unsafe fn setThreadgroupMemoryLength_offset_atIndex(
+        unsafe fn setThreadgroupMemoryLength_offset_atIndex(
             &self,
             length: NSUInteger,
             offset: NSUInteger,
@@ -918,29 +926,33 @@ extern_protocol!(
 
         #[deprecated]
         #[method(useResource:usage:)]
-        pub fn useResource_usage(&self, resource: &MTLResource, usage: MTLResourceUsage);
+        fn useResource_usage(
+            &self,
+            resource: &ProtocolObject<dyn MTLResource>,
+            usage: MTLResourceUsage,
+        );
 
         #[deprecated]
         #[method(useResources:count:usage:)]
-        pub unsafe fn useResources_count_usage(
+        unsafe fn useResources_count_usage(
             &self,
-            resources: NonNull<NonNull<MTLResource>>,
+            resources: NonNull<NonNull<ProtocolObject<dyn MTLResource>>>,
             count: NSUInteger,
             usage: MTLResourceUsage,
         );
 
         #[method(useResource:usage:stages:)]
-        pub fn useResource_usage_stages(
+        fn useResource_usage_stages(
             &self,
-            resource: &MTLResource,
+            resource: &ProtocolObject<dyn MTLResource>,
             usage: MTLResourceUsage,
             stages: MTLRenderStages,
         );
 
         #[method(useResources:count:usage:stages:)]
-        pub unsafe fn useResources_count_usage_stages(
+        unsafe fn useResources_count_usage_stages(
             &self,
-            resources: NonNull<NonNull<MTLResource>>,
+            resources: NonNull<NonNull<ProtocolObject<dyn MTLResource>>>,
             count: NSUInteger,
             usage: MTLResourceUsage,
             stages: MTLRenderStages,
@@ -948,40 +960,44 @@ extern_protocol!(
 
         #[deprecated]
         #[method(useHeap:)]
-        pub fn useHeap(&self, heap: &MTLHeap);
+        fn useHeap(&self, heap: &ProtocolObject<dyn MTLHeap>);
 
         #[deprecated]
         #[method(useHeaps:count:)]
-        pub unsafe fn useHeaps_count(&self, heaps: NonNull<NonNull<MTLHeap>>, count: NSUInteger);
+        unsafe fn useHeaps_count(
+            &self,
+            heaps: NonNull<NonNull<ProtocolObject<dyn MTLHeap>>>,
+            count: NSUInteger,
+        );
 
         #[method(useHeap:stages:)]
-        pub fn useHeap_stages(&self, heap: &MTLHeap, stages: MTLRenderStages);
+        fn useHeap_stages(&self, heap: &ProtocolObject<dyn MTLHeap>, stages: MTLRenderStages);
 
         #[method(useHeaps:count:stages:)]
-        pub unsafe fn useHeaps_count_stages(
+        unsafe fn useHeaps_count_stages(
             &self,
-            heaps: NonNull<NonNull<MTLHeap>>,
+            heaps: NonNull<NonNull<ProtocolObject<dyn MTLHeap>>>,
             count: NSUInteger,
             stages: MTLRenderStages,
         );
 
         #[method(executeCommandsInBuffer:withRange:)]
-        pub unsafe fn executeCommandsInBuffer_withRange(
+        unsafe fn executeCommandsInBuffer_withRange(
             &self,
-            indirect_command_buffer: &MTLIndirectCommandBuffer,
+            indirect_command_buffer: &ProtocolObject<dyn MTLIndirectCommandBuffer>,
             execution_range: NSRange,
         );
 
         #[method(executeCommandsInBuffer:indirectBuffer:indirectBufferOffset:)]
-        pub unsafe fn executeCommandsInBuffer_indirectBuffer_indirectBufferOffset(
+        unsafe fn executeCommandsInBuffer_indirectBuffer_indirectBufferOffset(
             &self,
-            indirect_commandbuffer: &MTLIndirectCommandBuffer,
-            indirect_range_buffer: &MTLBuffer,
+            indirect_commandbuffer: &ProtocolObject<dyn MTLIndirectCommandBuffer>,
+            indirect_range_buffer: &ProtocolObject<dyn MTLBuffer>,
             indirect_buffer_offset: NSUInteger,
         );
 
         #[method(memoryBarrierWithScope:afterStages:beforeStages:)]
-        pub unsafe fn memoryBarrierWithScope_afterStages_beforeStages(
+        unsafe fn memoryBarrierWithScope_afterStages_beforeStages(
             &self,
             scope: MTLBarrierScope,
             after: MTLRenderStages,
@@ -989,20 +1005,22 @@ extern_protocol!(
         );
 
         #[method(memoryBarrierWithResources:count:afterStages:beforeStages:)]
-        pub unsafe fn memoryBarrierWithResources_count_afterStages_beforeStages(
+        unsafe fn memoryBarrierWithResources_count_afterStages_beforeStages(
             &self,
-            resources: NonNull<NonNull<MTLResource>>,
+            resources: NonNull<NonNull<ProtocolObject<dyn MTLResource>>>,
             count: NSUInteger,
             after: MTLRenderStages,
             before: MTLRenderStages,
         );
 
         #[method(sampleCountersInBuffer:atSampleIndex:withBarrier:)]
-        pub unsafe fn sampleCountersInBuffer_atSampleIndex_withBarrier(
+        unsafe fn sampleCountersInBuffer_atSampleIndex_withBarrier(
             &self,
-            sample_buffer: &MTLCounterSampleBuffer,
+            sample_buffer: &ProtocolObject<dyn MTLCounterSampleBuffer>,
             sample_index: NSUInteger,
             barrier: bool,
         );
     }
+
+    unsafe impl ProtocolType for dyn MTLRenderCommandEncoder {}
 );

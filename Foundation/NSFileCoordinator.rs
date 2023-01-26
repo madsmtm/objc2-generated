@@ -73,19 +73,19 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSFileCoordinator")]
     unsafe impl NSFileCoordinator {
         #[method(addFilePresenter:)]
-        pub unsafe fn addFilePresenter(file_presenter: &NSFilePresenter);
+        pub unsafe fn addFilePresenter(file_presenter: &ProtocolObject<dyn NSFilePresenter>);
 
         #[method(removeFilePresenter:)]
-        pub unsafe fn removeFilePresenter(file_presenter: &NSFilePresenter);
+        pub unsafe fn removeFilePresenter(file_presenter: &ProtocolObject<dyn NSFilePresenter>);
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other filePresenters)]
-        pub unsafe fn filePresenters() -> Id<NSArray<NSFilePresenter>, Shared>;
+        pub unsafe fn filePresenters() -> Id<NSArray<ProtocolObject<dyn NSFilePresenter>>, Shared>;
 
         #[method_id(@__retain_semantics Init initWithFilePresenter:)]
         pub unsafe fn initWithFilePresenter(
             this: Option<Allocated<Self>>,
-            file_presenter_or_nil: Option<&NSFilePresenter>,
+            file_presenter_or_nil: Option<&ProtocolObject<dyn NSFilePresenter>>,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]

@@ -5,21 +5,21 @@ use crate::AuthenticationServices::*;
 use crate::Foundation::*;
 
 extern_protocol!(
-    pub struct ASWebAuthenticationSessionWebBrowserSessionHandling;
-
-    unsafe impl ProtocolType for ASWebAuthenticationSessionWebBrowserSessionHandling {
+    pub unsafe trait ASWebAuthenticationSessionWebBrowserSessionHandling {
         #[cfg(feature = "AuthenticationServices_ASWebAuthenticationSessionRequest")]
         #[method(beginHandlingWebAuthenticationSessionRequest:)]
-        pub unsafe fn beginHandlingWebAuthenticationSessionRequest(
+        unsafe fn beginHandlingWebAuthenticationSessionRequest(
             &self,
             request: Option<&ASWebAuthenticationSessionRequest>,
         );
 
         #[cfg(feature = "AuthenticationServices_ASWebAuthenticationSessionRequest")]
         #[method(cancelWebAuthenticationSessionRequest:)]
-        pub unsafe fn cancelWebAuthenticationSessionRequest(
+        unsafe fn cancelWebAuthenticationSessionRequest(
             &self,
             request: Option<&ASWebAuthenticationSessionRequest>,
         );
     }
+
+    unsafe impl ProtocolType for dyn ASWebAuthenticationSessionWebBrowserSessionHandling {}
 );

@@ -19,7 +19,10 @@ extern_methods!(
     #[cfg(feature = "Contacts_CNChangeHistoryEvent")]
     unsafe impl CNChangeHistoryEvent {
         #[method(acceptEventVisitor:)]
-        pub unsafe fn acceptEventVisitor(&self, visitor: &CNChangeHistoryEventVisitor);
+        pub unsafe fn acceptEventVisitor(
+            &self,
+            visitor: &ProtocolObject<dyn CNChangeHistoryEventVisitor>,
+        );
     }
 );
 
@@ -275,52 +278,47 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct CNChangeHistoryEventVisitor;
-
-    unsafe impl ProtocolType for CNChangeHistoryEventVisitor {
+    pub unsafe trait CNChangeHistoryEventVisitor: NSObjectProtocol {
         #[cfg(feature = "Contacts_CNChangeHistoryDropEverythingEvent")]
         #[method(visitDropEverythingEvent:)]
-        pub unsafe fn visitDropEverythingEvent(&self, event: &CNChangeHistoryDropEverythingEvent);
+        unsafe fn visitDropEverythingEvent(&self, event: &CNChangeHistoryDropEverythingEvent);
 
         #[cfg(feature = "Contacts_CNChangeHistoryAddContactEvent")]
         #[method(visitAddContactEvent:)]
-        pub unsafe fn visitAddContactEvent(&self, event: &CNChangeHistoryAddContactEvent);
+        unsafe fn visitAddContactEvent(&self, event: &CNChangeHistoryAddContactEvent);
 
         #[cfg(feature = "Contacts_CNChangeHistoryUpdateContactEvent")]
         #[method(visitUpdateContactEvent:)]
-        pub unsafe fn visitUpdateContactEvent(&self, event: &CNChangeHistoryUpdateContactEvent);
+        unsafe fn visitUpdateContactEvent(&self, event: &CNChangeHistoryUpdateContactEvent);
 
         #[cfg(feature = "Contacts_CNChangeHistoryDeleteContactEvent")]
         #[method(visitDeleteContactEvent:)]
-        pub unsafe fn visitDeleteContactEvent(&self, event: &CNChangeHistoryDeleteContactEvent);
+        unsafe fn visitDeleteContactEvent(&self, event: &CNChangeHistoryDeleteContactEvent);
 
         #[cfg(feature = "Contacts_CNChangeHistoryAddGroupEvent")]
         #[optional]
         #[method(visitAddGroupEvent:)]
-        pub unsafe fn visitAddGroupEvent(&self, event: &CNChangeHistoryAddGroupEvent);
+        unsafe fn visitAddGroupEvent(&self, event: &CNChangeHistoryAddGroupEvent);
 
         #[cfg(feature = "Contacts_CNChangeHistoryUpdateGroupEvent")]
         #[optional]
         #[method(visitUpdateGroupEvent:)]
-        pub unsafe fn visitUpdateGroupEvent(&self, event: &CNChangeHistoryUpdateGroupEvent);
+        unsafe fn visitUpdateGroupEvent(&self, event: &CNChangeHistoryUpdateGroupEvent);
 
         #[cfg(feature = "Contacts_CNChangeHistoryDeleteGroupEvent")]
         #[optional]
         #[method(visitDeleteGroupEvent:)]
-        pub unsafe fn visitDeleteGroupEvent(&self, event: &CNChangeHistoryDeleteGroupEvent);
+        unsafe fn visitDeleteGroupEvent(&self, event: &CNChangeHistoryDeleteGroupEvent);
 
         #[cfg(feature = "Contacts_CNChangeHistoryAddMemberToGroupEvent")]
         #[optional]
         #[method(visitAddMemberToGroupEvent:)]
-        pub unsafe fn visitAddMemberToGroupEvent(
-            &self,
-            event: &CNChangeHistoryAddMemberToGroupEvent,
-        );
+        unsafe fn visitAddMemberToGroupEvent(&self, event: &CNChangeHistoryAddMemberToGroupEvent);
 
         #[cfg(feature = "Contacts_CNChangeHistoryRemoveMemberFromGroupEvent")]
         #[optional]
         #[method(visitRemoveMemberFromGroupEvent:)]
-        pub unsafe fn visitRemoveMemberFromGroupEvent(
+        unsafe fn visitRemoveMemberFromGroupEvent(
             &self,
             event: &CNChangeHistoryRemoveMemberFromGroupEvent,
         );
@@ -328,7 +326,7 @@ extern_protocol!(
         #[cfg(feature = "Contacts_CNChangeHistoryAddSubgroupToGroupEvent")]
         #[optional]
         #[method(visitAddSubgroupToGroupEvent:)]
-        pub unsafe fn visitAddSubgroupToGroupEvent(
+        unsafe fn visitAddSubgroupToGroupEvent(
             &self,
             event: &CNChangeHistoryAddSubgroupToGroupEvent,
         );
@@ -336,9 +334,11 @@ extern_protocol!(
         #[cfg(feature = "Contacts_CNChangeHistoryRemoveSubgroupFromGroupEvent")]
         #[optional]
         #[method(visitRemoveSubgroupFromGroupEvent:)]
-        pub unsafe fn visitRemoveSubgroupFromGroupEvent(
+        unsafe fn visitRemoveSubgroupFromGroupEvent(
             &self,
             event: &CNChangeHistoryRemoveSubgroupFromGroupEvent,
         );
     }
+
+    unsafe impl ProtocolType for dyn CNChangeHistoryEventVisitor {}
 );

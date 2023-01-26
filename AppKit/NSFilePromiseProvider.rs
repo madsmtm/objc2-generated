@@ -28,10 +28,15 @@ extern_methods!(
         pub unsafe fn setFileType(&self, file_type: &NSString);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<NSFilePromiseProviderDelegate, Shared>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn NSFilePromiseProviderDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&NSFilePromiseProviderDelegate>);
+        pub unsafe fn setDelegate(
+            &self,
+            delegate: Option<&ProtocolObject<dyn NSFilePromiseProviderDelegate>>,
+        );
 
         #[method_id(@__retain_semantics Other userInfo)]
         pub unsafe fn userInfo(&self) -> Option<Id<Object, Shared>>;
@@ -44,7 +49,7 @@ extern_methods!(
         pub unsafe fn initWithFileType_delegate(
             this: Option<Allocated<Self>>,
             file_type: &NSString,
-            delegate: &NSFilePromiseProviderDelegate,
+            delegate: &ProtocolObject<dyn NSFilePromiseProviderDelegate>,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Init init)]
@@ -53,15 +58,13 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct NSFilePromiseProviderDelegate;
-
-    unsafe impl ProtocolType for NSFilePromiseProviderDelegate {
+    pub unsafe trait NSFilePromiseProviderDelegate: NSObjectProtocol {
         #[cfg(all(
             feature = "AppKit_NSFilePromiseProvider",
             feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other filePromiseProvider:fileNameForType:)]
-        pub unsafe fn filePromiseProvider_fileNameForType(
+        unsafe fn filePromiseProvider_fileNameForType(
             &self,
             file_promise_provider: &NSFilePromiseProvider,
             file_type: &NSString,
@@ -73,7 +76,7 @@ extern_protocol!(
             feature = "Foundation_NSURL"
         ))]
         #[method(filePromiseProvider:writePromiseToURL:completionHandler:)]
-        pub unsafe fn filePromiseProvider_writePromiseToURL_completionHandler(
+        unsafe fn filePromiseProvider_writePromiseToURL_completionHandler(
             &self,
             file_promise_provider: &NSFilePromiseProvider,
             url: &NSURL,
@@ -86,9 +89,11 @@ extern_protocol!(
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other operationQueueForFilePromiseProvider:)]
-        pub unsafe fn operationQueueForFilePromiseProvider(
+        unsafe fn operationQueueForFilePromiseProvider(
             &self,
             file_promise_provider: &NSFilePromiseProvider,
         ) -> Id<NSOperationQueue, Shared>;
     }
+
+    unsafe impl ProtocolType for dyn NSFilePromiseProviderDelegate {}
 );

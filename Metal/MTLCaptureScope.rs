@@ -5,27 +5,27 @@ use crate::Foundation::*;
 use crate::Metal::*;
 
 extern_protocol!(
-    pub struct MTLCaptureScope;
-
-    unsafe impl ProtocolType for MTLCaptureScope {
+    pub unsafe trait MTLCaptureScope: NSObjectProtocol {
         #[method(beginScope)]
-        pub fn beginScope(&self);
+        fn beginScope(&self);
 
         #[method(endScope)]
-        pub fn endScope(&self);
+        fn endScope(&self);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
-        pub fn label(&self) -> Option<Id<NSString, Shared>>;
+        fn label(&self) -> Option<Id<NSString, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:)]
-        pub unsafe fn setLabel(&self, label: Option<&NSString>);
+        unsafe fn setLabel(&self, label: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other device)]
-        pub unsafe fn device(&self) -> Id<MTLDevice, Shared>;
+        unsafe fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>, Shared>;
 
         #[method_id(@__retain_semantics Other commandQueue)]
-        pub unsafe fn commandQueue(&self) -> Option<Id<MTLCommandQueue, Shared>>;
+        unsafe fn commandQueue(&self) -> Option<Id<ProtocolObject<dyn MTLCommandQueue>, Shared>>;
     }
+
+    unsafe impl ProtocolType for dyn MTLCaptureScope {}
 );

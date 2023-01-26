@@ -6,21 +6,15 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 extern_protocol!(
-    pub struct NSTextInputClient;
-
-    unsafe impl ProtocolType for NSTextInputClient {
+    pub unsafe trait NSTextInputClient {
         #[method(insertText:replacementRange:)]
-        pub unsafe fn insertText_replacementRange(
-            &self,
-            string: &Object,
-            replacement_range: NSRange,
-        );
+        unsafe fn insertText_replacementRange(&self, string: &Object, replacement_range: NSRange);
 
         #[method(doCommandBySelector:)]
-        pub unsafe fn doCommandBySelector(&self, selector: Sel);
+        unsafe fn doCommandBySelector(&self, selector: Sel);
 
         #[method(setMarkedText:selectedRange:replacementRange:)]
-        pub unsafe fn setMarkedText_selectedRange_replacementRange(
+        unsafe fn setMarkedText_selectedRange_replacementRange(
             &self,
             string: &Object,
             selected_range: NSRange,
@@ -28,20 +22,20 @@ extern_protocol!(
         );
 
         #[method(unmarkText)]
-        pub unsafe fn unmarkText(&self);
+        unsafe fn unmarkText(&self);
 
         #[method(selectedRange)]
-        pub unsafe fn selectedRange(&self) -> NSRange;
+        unsafe fn selectedRange(&self) -> NSRange;
 
         #[method(markedRange)]
-        pub unsafe fn markedRange(&self) -> NSRange;
+        unsafe fn markedRange(&self) -> NSRange;
 
         #[method(hasMarkedText)]
-        pub unsafe fn hasMarkedText(&self) -> bool;
+        unsafe fn hasMarkedText(&self) -> bool;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedSubstringForProposedRange:actualRange:)]
-        pub unsafe fn attributedSubstringForProposedRange_actualRange(
+        unsafe fn attributedSubstringForProposedRange_actualRange(
             &self,
             range: NSRange,
             actual_range: NSRangePointer,
@@ -49,39 +43,40 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other validAttributesForMarkedText)]
-        pub unsafe fn validAttributesForMarkedText(
-            &self,
-        ) -> Id<NSArray<NSAttributedStringKey>, Shared>;
+        unsafe fn validAttributesForMarkedText(&self)
+            -> Id<NSArray<NSAttributedStringKey>, Shared>;
 
         #[method(firstRectForCharacterRange:actualRange:)]
-        pub unsafe fn firstRectForCharacterRange_actualRange(
+        unsafe fn firstRectForCharacterRange_actualRange(
             &self,
             range: NSRange,
             actual_range: NSRangePointer,
         ) -> NSRect;
 
         #[method(characterIndexForPoint:)]
-        pub unsafe fn characterIndexForPoint(&self, point: NSPoint) -> NSUInteger;
+        unsafe fn characterIndexForPoint(&self, point: NSPoint) -> NSUInteger;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[optional]
         #[method_id(@__retain_semantics Other attributedString)]
-        pub unsafe fn attributedString(&self) -> Id<NSAttributedString, Shared>;
+        unsafe fn attributedString(&self) -> Id<NSAttributedString, Shared>;
 
         #[optional]
         #[method(fractionOfDistanceThroughGlyphForPoint:)]
-        pub unsafe fn fractionOfDistanceThroughGlyphForPoint(&self, point: NSPoint) -> CGFloat;
+        unsafe fn fractionOfDistanceThroughGlyphForPoint(&self, point: NSPoint) -> CGFloat;
 
         #[optional]
         #[method(baselineDeltaForCharacterAtIndex:)]
-        pub unsafe fn baselineDeltaForCharacterAtIndex(&self, an_index: NSUInteger) -> CGFloat;
+        unsafe fn baselineDeltaForCharacterAtIndex(&self, an_index: NSUInteger) -> CGFloat;
 
         #[optional]
         #[method(windowLevel)]
-        pub unsafe fn windowLevel(&self) -> NSInteger;
+        unsafe fn windowLevel(&self) -> NSInteger;
 
         #[optional]
         #[method(drawsVerticallyForCharacterAtIndex:)]
-        pub unsafe fn drawsVerticallyForCharacterAtIndex(&self, char_index: NSUInteger) -> bool;
+        unsafe fn drawsVerticallyForCharacterAtIndex(&self, char_index: NSUInteger) -> bool;
     }
+
+    unsafe impl ProtocolType for dyn NSTextInputClient {}
 );

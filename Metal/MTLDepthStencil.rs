@@ -140,14 +140,14 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct MTLDepthStencilState;
-
-    unsafe impl ProtocolType for MTLDepthStencilState {
+    pub unsafe trait MTLDepthStencilState: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
-        pub fn label(&self) -> Option<Id<NSString, Shared>>;
+        fn label(&self) -> Option<Id<NSString, Shared>>;
 
         #[method_id(@__retain_semantics Other device)]
-        pub fn device(&self) -> Id<MTLDevice, Shared>;
+        fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>, Shared>;
     }
+
+    unsafe impl ProtocolType for dyn MTLDepthStencilState {}
 );

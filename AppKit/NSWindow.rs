@@ -358,10 +358,10 @@ extern_methods!(
         pub unsafe fn setContentView(&self, content_view: Option<&NSView>);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<NSWindowDelegate, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSWindowDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&NSWindowDelegate>);
+        pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSWindowDelegate>>);
 
         #[method(windowNumber)]
         pub unsafe fn windowNumber(&self) -> NSInteger;
@@ -1316,18 +1316,16 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct NSWindowDelegate;
-
-    unsafe impl ProtocolType for NSWindowDelegate {
+    pub unsafe trait NSWindowDelegate: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSWindow")]
         #[optional]
         #[method(windowShouldClose:)]
-        pub unsafe fn windowShouldClose(&self, sender: &NSWindow) -> bool;
+        unsafe fn windowShouldClose(&self, sender: &NSWindow) -> bool;
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[optional]
         #[method_id(@__retain_semantics Other windowWillReturnFieldEditor:toObject:)]
-        pub unsafe fn windowWillReturnFieldEditor_toObject(
+        unsafe fn windowWillReturnFieldEditor_toObject(
             &self,
             sender: &NSWindow,
             client: Option<&Object>,
@@ -1336,16 +1334,12 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSWindow")]
         #[optional]
         #[method(windowWillResize:toSize:)]
-        pub unsafe fn windowWillResize_toSize(
-            &self,
-            sender: &NSWindow,
-            frame_size: NSSize,
-        ) -> NSSize;
+        unsafe fn windowWillResize_toSize(&self, sender: &NSWindow, frame_size: NSSize) -> NSSize;
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[optional]
         #[method(windowWillUseStandardFrame:defaultFrame:)]
-        pub unsafe fn windowWillUseStandardFrame_defaultFrame(
+        unsafe fn windowWillUseStandardFrame_defaultFrame(
             &self,
             window: &NSWindow,
             new_frame: NSRect,
@@ -1354,13 +1348,12 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSWindow")]
         #[optional]
         #[method(windowShouldZoom:toFrame:)]
-        pub unsafe fn windowShouldZoom_toFrame(&self, window: &NSWindow, new_frame: NSRect)
-            -> bool;
+        unsafe fn windowShouldZoom_toFrame(&self, window: &NSWindow, new_frame: NSRect) -> bool;
 
         #[cfg(all(feature = "AppKit_NSWindow", feature = "Foundation_NSUndoManager"))]
         #[optional]
         #[method_id(@__retain_semantics Other windowWillReturnUndoManager:)]
-        pub unsafe fn windowWillReturnUndoManager(
+        unsafe fn windowWillReturnUndoManager(
             &self,
             window: &NSWindow,
         ) -> Option<Id<NSUndoManager, Shared>>;
@@ -1368,7 +1361,7 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSWindow")]
         #[optional]
         #[method(window:willPositionSheet:usingRect:)]
-        pub unsafe fn window_willPositionSheet_usingRect(
+        unsafe fn window_willPositionSheet_usingRect(
             &self,
             window: &NSWindow,
             sheet: &NSWindow,
@@ -1378,7 +1371,7 @@ extern_protocol!(
         #[cfg(all(feature = "AppKit_NSMenu", feature = "AppKit_NSWindow"))]
         #[optional]
         #[method(window:shouldPopUpDocumentPathMenu:)]
-        pub unsafe fn window_shouldPopUpDocumentPathMenu(
+        unsafe fn window_shouldPopUpDocumentPathMenu(
             &self,
             window: &NSWindow,
             menu: &NSMenu,
@@ -1391,7 +1384,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(window:shouldDragDocumentWithEvent:from:withPasteboard:)]
-        pub unsafe fn window_shouldDragDocumentWithEvent_from_withPasteboard(
+        unsafe fn window_shouldDragDocumentWithEvent_from_withPasteboard(
             &self,
             window: &NSWindow,
             event: &NSEvent,
@@ -1402,7 +1395,7 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSWindow")]
         #[optional]
         #[method(window:willUseFullScreenContentSize:)]
-        pub unsafe fn window_willUseFullScreenContentSize(
+        unsafe fn window_willUseFullScreenContentSize(
             &self,
             window: &NSWindow,
             proposed_size: NSSize,
@@ -1411,7 +1404,7 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSWindow")]
         #[optional]
         #[method(window:willUseFullScreenPresentationOptions:)]
-        pub unsafe fn window_willUseFullScreenPresentationOptions(
+        unsafe fn window_willUseFullScreenPresentationOptions(
             &self,
             window: &NSWindow,
             proposed_options: NSApplicationPresentationOptions,
@@ -1420,7 +1413,7 @@ extern_protocol!(
         #[cfg(all(feature = "AppKit_NSWindow", feature = "Foundation_NSArray"))]
         #[optional]
         #[method_id(@__retain_semantics Other customWindowsToEnterFullScreenForWindow:)]
-        pub unsafe fn customWindowsToEnterFullScreenForWindow(
+        unsafe fn customWindowsToEnterFullScreenForWindow(
             &self,
             window: &NSWindow,
         ) -> Option<Id<NSArray<NSWindow>, Shared>>;
@@ -1428,7 +1421,7 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSWindow")]
         #[optional]
         #[method(window:startCustomAnimationToEnterFullScreenWithDuration:)]
-        pub unsafe fn window_startCustomAnimationToEnterFullScreenWithDuration(
+        unsafe fn window_startCustomAnimationToEnterFullScreenWithDuration(
             &self,
             window: &NSWindow,
             duration: NSTimeInterval,
@@ -1437,12 +1430,12 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSWindow")]
         #[optional]
         #[method(windowDidFailToEnterFullScreen:)]
-        pub unsafe fn windowDidFailToEnterFullScreen(&self, window: &NSWindow);
+        unsafe fn windowDidFailToEnterFullScreen(&self, window: &NSWindow);
 
         #[cfg(all(feature = "AppKit_NSWindow", feature = "Foundation_NSArray"))]
         #[optional]
         #[method_id(@__retain_semantics Other customWindowsToExitFullScreenForWindow:)]
-        pub unsafe fn customWindowsToExitFullScreenForWindow(
+        unsafe fn customWindowsToExitFullScreenForWindow(
             &self,
             window: &NSWindow,
         ) -> Option<Id<NSArray<NSWindow>, Shared>>;
@@ -1450,7 +1443,7 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSWindow")]
         #[optional]
         #[method(window:startCustomAnimationToExitFullScreenWithDuration:)]
-        pub unsafe fn window_startCustomAnimationToExitFullScreenWithDuration(
+        unsafe fn window_startCustomAnimationToExitFullScreenWithDuration(
             &self,
             window: &NSWindow,
             duration: NSTimeInterval,
@@ -1463,7 +1456,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other customWindowsToEnterFullScreenForWindow:onScreen:)]
-        pub unsafe fn customWindowsToEnterFullScreenForWindow_onScreen(
+        unsafe fn customWindowsToEnterFullScreenForWindow_onScreen(
             &self,
             window: &NSWindow,
             screen: &NSScreen,
@@ -1472,7 +1465,7 @@ extern_protocol!(
         #[cfg(all(feature = "AppKit_NSScreen", feature = "AppKit_NSWindow"))]
         #[optional]
         #[method(window:startCustomAnimationToEnterFullScreenOnScreen:withDuration:)]
-        pub unsafe fn window_startCustomAnimationToEnterFullScreenOnScreen_withDuration(
+        unsafe fn window_startCustomAnimationToEnterFullScreenOnScreen_withDuration(
             &self,
             window: &NSWindow,
             screen: &NSScreen,
@@ -1482,12 +1475,12 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSWindow")]
         #[optional]
         #[method(windowDidFailToExitFullScreen:)]
-        pub unsafe fn windowDidFailToExitFullScreen(&self, window: &NSWindow);
+        unsafe fn windowDidFailToExitFullScreen(&self, window: &NSWindow);
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[optional]
         #[method(window:willResizeForVersionBrowserWithMaxPreferredSize:maxAllowedSize:)]
-        pub unsafe fn window_willResizeForVersionBrowserWithMaxPreferredSize_maxAllowedSize(
+        unsafe fn window_willResizeForVersionBrowserWithMaxPreferredSize_maxAllowedSize(
             &self,
             window: &NSWindow,
             max_preferred_frame_size: NSSize,
@@ -1497,158 +1490,160 @@ extern_protocol!(
         #[cfg(all(feature = "AppKit_NSWindow", feature = "Foundation_NSCoder"))]
         #[optional]
         #[method(window:willEncodeRestorableState:)]
-        pub unsafe fn window_willEncodeRestorableState(&self, window: &NSWindow, state: &NSCoder);
+        unsafe fn window_willEncodeRestorableState(&self, window: &NSWindow, state: &NSCoder);
 
         #[cfg(all(feature = "AppKit_NSWindow", feature = "Foundation_NSCoder"))]
         #[optional]
         #[method(window:didDecodeRestorableState:)]
-        pub unsafe fn window_didDecodeRestorableState(&self, window: &NSWindow, state: &NSCoder);
+        unsafe fn window_didDecodeRestorableState(&self, window: &NSWindow, state: &NSCoder);
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(windowDidResize:)]
-        pub unsafe fn windowDidResize(&self, notification: &NSNotification);
+        unsafe fn windowDidResize(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(windowDidExpose:)]
-        pub unsafe fn windowDidExpose(&self, notification: &NSNotification);
+        unsafe fn windowDidExpose(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(windowWillMove:)]
-        pub unsafe fn windowWillMove(&self, notification: &NSNotification);
+        unsafe fn windowWillMove(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(windowDidMove:)]
-        pub unsafe fn windowDidMove(&self, notification: &NSNotification);
+        unsafe fn windowDidMove(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(windowDidBecomeKey:)]
-        pub unsafe fn windowDidBecomeKey(&self, notification: &NSNotification);
+        unsafe fn windowDidBecomeKey(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(windowDidResignKey:)]
-        pub unsafe fn windowDidResignKey(&self, notification: &NSNotification);
+        unsafe fn windowDidResignKey(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(windowDidBecomeMain:)]
-        pub unsafe fn windowDidBecomeMain(&self, notification: &NSNotification);
+        unsafe fn windowDidBecomeMain(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(windowDidResignMain:)]
-        pub unsafe fn windowDidResignMain(&self, notification: &NSNotification);
+        unsafe fn windowDidResignMain(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(windowWillClose:)]
-        pub unsafe fn windowWillClose(&self, notification: &NSNotification);
+        unsafe fn windowWillClose(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(windowWillMiniaturize:)]
-        pub unsafe fn windowWillMiniaturize(&self, notification: &NSNotification);
+        unsafe fn windowWillMiniaturize(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(windowDidMiniaturize:)]
-        pub unsafe fn windowDidMiniaturize(&self, notification: &NSNotification);
+        unsafe fn windowDidMiniaturize(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(windowDidDeminiaturize:)]
-        pub unsafe fn windowDidDeminiaturize(&self, notification: &NSNotification);
+        unsafe fn windowDidDeminiaturize(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(windowDidUpdate:)]
-        pub unsafe fn windowDidUpdate(&self, notification: &NSNotification);
+        unsafe fn windowDidUpdate(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(windowDidChangeScreen:)]
-        pub unsafe fn windowDidChangeScreen(&self, notification: &NSNotification);
+        unsafe fn windowDidChangeScreen(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(windowDidChangeScreenProfile:)]
-        pub unsafe fn windowDidChangeScreenProfile(&self, notification: &NSNotification);
+        unsafe fn windowDidChangeScreenProfile(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(windowDidChangeBackingProperties:)]
-        pub unsafe fn windowDidChangeBackingProperties(&self, notification: &NSNotification);
+        unsafe fn windowDidChangeBackingProperties(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(windowWillBeginSheet:)]
-        pub unsafe fn windowWillBeginSheet(&self, notification: &NSNotification);
+        unsafe fn windowWillBeginSheet(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(windowDidEndSheet:)]
-        pub unsafe fn windowDidEndSheet(&self, notification: &NSNotification);
+        unsafe fn windowDidEndSheet(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(windowWillStartLiveResize:)]
-        pub unsafe fn windowWillStartLiveResize(&self, notification: &NSNotification);
+        unsafe fn windowWillStartLiveResize(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(windowDidEndLiveResize:)]
-        pub unsafe fn windowDidEndLiveResize(&self, notification: &NSNotification);
+        unsafe fn windowDidEndLiveResize(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(windowWillEnterFullScreen:)]
-        pub unsafe fn windowWillEnterFullScreen(&self, notification: &NSNotification);
+        unsafe fn windowWillEnterFullScreen(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(windowDidEnterFullScreen:)]
-        pub unsafe fn windowDidEnterFullScreen(&self, notification: &NSNotification);
+        unsafe fn windowDidEnterFullScreen(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(windowWillExitFullScreen:)]
-        pub unsafe fn windowWillExitFullScreen(&self, notification: &NSNotification);
+        unsafe fn windowWillExitFullScreen(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(windowDidExitFullScreen:)]
-        pub unsafe fn windowDidExitFullScreen(&self, notification: &NSNotification);
+        unsafe fn windowDidExitFullScreen(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(windowWillEnterVersionBrowser:)]
-        pub unsafe fn windowWillEnterVersionBrowser(&self, notification: &NSNotification);
+        unsafe fn windowWillEnterVersionBrowser(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(windowDidEnterVersionBrowser:)]
-        pub unsafe fn windowDidEnterVersionBrowser(&self, notification: &NSNotification);
+        unsafe fn windowDidEnterVersionBrowser(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(windowWillExitVersionBrowser:)]
-        pub unsafe fn windowWillExitVersionBrowser(&self, notification: &NSNotification);
+        unsafe fn windowWillExitVersionBrowser(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(windowDidExitVersionBrowser:)]
-        pub unsafe fn windowDidExitVersionBrowser(&self, notification: &NSNotification);
+        unsafe fn windowDidExitVersionBrowser(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(windowDidChangeOcclusionState:)]
-        pub unsafe fn windowDidChangeOcclusionState(&self, notification: &NSNotification);
+        unsafe fn windowDidChangeOcclusionState(&self, notification: &NSNotification);
     }
+
+    unsafe impl ProtocolType for dyn NSWindowDelegate {}
 );
 
 extern_static!(NSWindowDidBecomeKeyNotification: &'static NSNotificationName);

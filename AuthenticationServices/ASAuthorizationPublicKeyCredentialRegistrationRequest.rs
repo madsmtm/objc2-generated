@@ -5,65 +5,67 @@ use crate::AuthenticationServices::*;
 use crate::Foundation::*;
 
 extern_protocol!(
-    pub struct ASAuthorizationPublicKeyCredentialRegistrationRequest;
-
-    unsafe impl ProtocolType for ASAuthorizationPublicKeyCredentialRegistrationRequest {
+    pub unsafe trait ASAuthorizationPublicKeyCredentialRegistrationRequest:
+        NSObjectProtocol + NSSecureCoding + NSCopying
+    {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other relyingPartyIdentifier)]
-        pub unsafe fn relyingPartyIdentifier(&self) -> Id<NSString, Shared>;
+        unsafe fn relyingPartyIdentifier(&self) -> Id<NSString, Shared>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other userID)]
-        pub unsafe fn userID(&self) -> Id<NSData, Shared>;
+        unsafe fn userID(&self) -> Id<NSData, Shared>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method(setUserID:)]
-        pub unsafe fn setUserID(&self, user_id: &NSData);
+        unsafe fn setUserID(&self, user_id: &NSData);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString, Shared>;
+        unsafe fn name(&self) -> Id<NSString, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]
-        pub unsafe fn setName(&self, name: &NSString);
+        unsafe fn setName(&self, name: &NSString);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other displayName)]
-        pub unsafe fn displayName(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn displayName(&self) -> Option<Id<NSString, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setDisplayName:)]
-        pub unsafe fn setDisplayName(&self, display_name: Option<&NSString>);
+        unsafe fn setDisplayName(&self, display_name: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other challenge)]
-        pub unsafe fn challenge(&self) -> Id<NSData, Shared>;
+        unsafe fn challenge(&self) -> Id<NSData, Shared>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method(setChallenge:)]
-        pub unsafe fn setChallenge(&self, challenge: &NSData);
+        unsafe fn setChallenge(&self, challenge: &NSData);
 
         #[method_id(@__retain_semantics Other userVerificationPreference)]
-        pub unsafe fn userVerificationPreference(
+        unsafe fn userVerificationPreference(
             &self,
         ) -> Id<ASAuthorizationPublicKeyCredentialUserVerificationPreference, Shared>;
 
         #[method(setUserVerificationPreference:)]
-        pub unsafe fn setUserVerificationPreference(
+        unsafe fn setUserVerificationPreference(
             &self,
             user_verification_preference: &ASAuthorizationPublicKeyCredentialUserVerificationPreference,
         );
 
         #[method_id(@__retain_semantics Other attestationPreference)]
-        pub unsafe fn attestationPreference(
+        unsafe fn attestationPreference(
             &self,
         ) -> Id<ASAuthorizationPublicKeyCredentialAttestationKind, Shared>;
 
         #[method(setAttestationPreference:)]
-        pub unsafe fn setAttestationPreference(
+        unsafe fn setAttestationPreference(
             &self,
             attestation_preference: &ASAuthorizationPublicKeyCredentialAttestationKind,
         );
     }
+
+    unsafe impl ProtocolType for dyn ASAuthorizationPublicKeyCredentialRegistrationRequest {}
 );

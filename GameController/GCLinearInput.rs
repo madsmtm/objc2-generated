@@ -6,29 +6,27 @@ use crate::Foundation::*;
 use crate::GameController::*;
 
 extern_protocol!(
-    pub struct GCLinearInput;
-
-    unsafe impl ProtocolType for GCLinearInput {
+    pub unsafe trait GCLinearInput: NSObjectProtocol {
         #[method(valueDidChangeHandler)]
-        pub unsafe fn valueDidChangeHandler(
+        unsafe fn valueDidChangeHandler(
             &self,
         ) -> *mut Block<
             (
-                NonNull<GCPhysicalInputElement>,
-                NonNull<GCLinearInput>,
+                NonNull<ProtocolObject<dyn GCPhysicalInputElement>>,
+                NonNull<ProtocolObject<dyn GCLinearInput>>,
                 c_float,
             ),
             (),
         >;
 
         #[method(setValueDidChangeHandler:)]
-        pub unsafe fn setValueDidChangeHandler(
+        unsafe fn setValueDidChangeHandler(
             &self,
             value_did_change_handler: Option<
                 &Block<
                     (
-                        NonNull<GCPhysicalInputElement>,
-                        NonNull<GCLinearInput>,
+                        NonNull<ProtocolObject<dyn GCPhysicalInputElement>>,
+                        NonNull<ProtocolObject<dyn GCLinearInput>>,
                         c_float,
                     ),
                     (),
@@ -37,18 +35,20 @@ extern_protocol!(
         );
 
         #[method(value)]
-        pub unsafe fn value(&self) -> c_float;
+        unsafe fn value(&self) -> c_float;
 
         #[method(isAnalog)]
-        pub unsafe fn isAnalog(&self) -> bool;
+        unsafe fn isAnalog(&self) -> bool;
 
         #[method(canWrap)]
-        pub unsafe fn canWrap(&self) -> bool;
+        unsafe fn canWrap(&self) -> bool;
 
         #[method(lastValueTimestamp)]
-        pub unsafe fn lastValueTimestamp(&self) -> NSTimeInterval;
+        unsafe fn lastValueTimestamp(&self) -> NSTimeInterval;
 
         #[method(lastValueLatency)]
-        pub unsafe fn lastValueLatency(&self) -> NSTimeInterval;
+        unsafe fn lastValueLatency(&self) -> NSTimeInterval;
     }
+
+    unsafe impl ProtocolType for dyn GCLinearInput {}
 );

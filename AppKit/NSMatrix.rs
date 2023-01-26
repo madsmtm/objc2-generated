@@ -357,10 +357,10 @@ extern_methods!(
         pub unsafe fn sendDoubleAction(&self);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<NSMatrixDelegate, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSMatrixDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&NSMatrixDelegate>);
+        pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSMatrixDelegate>>);
 
         #[cfg(feature = "AppKit_NSText")]
         #[method(textShouldBeginEditing:)]
@@ -437,7 +437,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct NSMatrixDelegate;
+    pub unsafe trait NSMatrixDelegate: NSControlTextEditingDelegate {}
 
-    unsafe impl ProtocolType for NSMatrixDelegate {}
+    unsafe impl ProtocolType for dyn NSMatrixDelegate {}
 );

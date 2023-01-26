@@ -21,10 +21,15 @@ extern_methods!(
     #[cfg(feature = "ExtensionKit_EXHostViewController")]
     unsafe impl EXHostViewController {
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<EXHostViewControllerDelegate, Shared>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn EXHostViewControllerDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&EXHostViewControllerDelegate>);
+        pub unsafe fn setDelegate(
+            &self,
+            delegate: Option<&ProtocolObject<dyn EXHostViewControllerDelegate>>,
+        );
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other placeholderView)]
@@ -43,13 +48,11 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct EXHostViewControllerDelegate;
-
-    unsafe impl ProtocolType for EXHostViewControllerDelegate {
+    pub unsafe trait EXHostViewControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "ExtensionKit_EXHostViewController")]
         #[optional]
         #[method(hostViewControllerDidActivate:)]
-        pub unsafe fn hostViewControllerDidActivate(&self, view_controller: &EXHostViewController);
+        unsafe fn hostViewControllerDidActivate(&self, view_controller: &EXHostViewController);
 
         #[cfg(all(
             feature = "ExtensionKit_EXHostViewController",
@@ -57,12 +60,14 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(hostViewControllerWillDeactivate:error:)]
-        pub unsafe fn hostViewControllerWillDeactivate_error(
+        unsafe fn hostViewControllerWillDeactivate_error(
             &self,
             view_controller: &EXHostViewController,
             error: Option<&NSError>,
         );
     }
+
+    unsafe impl ProtocolType for dyn EXHostViewControllerDelegate {}
 );
 
 extern_methods!(

@@ -46,11 +46,11 @@ extern_enum!(
 
 extern_protocol!(
     #[deprecated]
-    pub struct DOMNodeFilter;
-
-    unsafe impl ProtocolType for DOMNodeFilter {
+    pub unsafe trait DOMNodeFilter: NSObjectProtocol {
         #[cfg(feature = "WebKit_DOMNode")]
         #[method(acceptNode:)]
-        pub unsafe fn acceptNode(&self, n: Option<&DOMNode>) -> c_short;
+        unsafe fn acceptNode(&self, n: Option<&DOMNode>) -> c_short;
     }
+
+    unsafe impl ProtocolType for dyn DOMNodeFilter {}
 );

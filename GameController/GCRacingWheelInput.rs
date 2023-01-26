@@ -24,13 +24,16 @@ extern_methods!(
         pub unsafe fn wheel(&self) -> Id<GCSteeringWheelElement, Shared>;
 
         #[method_id(@__retain_semantics Other acceleratorPedal)]
-        pub unsafe fn acceleratorPedal(&self) -> Option<Id<GCButtonElement, Shared>>;
+        pub unsafe fn acceleratorPedal(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn GCButtonElement>, Shared>>;
 
         #[method_id(@__retain_semantics Other brakePedal)]
-        pub unsafe fn brakePedal(&self) -> Option<Id<GCButtonElement, Shared>>;
+        pub unsafe fn brakePedal(&self) -> Option<Id<ProtocolObject<dyn GCButtonElement>, Shared>>;
 
         #[method_id(@__retain_semantics Other clutchPedal)]
-        pub unsafe fn clutchPedal(&self) -> Option<Id<GCButtonElement, Shared>>;
+        pub unsafe fn clutchPedal(&self)
+            -> Option<Id<ProtocolObject<dyn GCButtonElement>, Shared>>;
 
         #[cfg(feature = "GameController_GCGearShifterElement")]
         #[method_id(@__retain_semantics Other shifter)]

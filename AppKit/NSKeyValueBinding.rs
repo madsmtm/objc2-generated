@@ -77,17 +77,15 @@ extern_static!(NSObservedKeyPathKey: &'static NSBindingInfoKey);
 extern_static!(NSOptionsKey: &'static NSBindingInfoKey);
 
 extern_protocol!(
-    pub struct NSEditor;
-
-    unsafe impl ProtocolType for NSEditor {
+    pub unsafe trait NSEditor: NSObjectProtocol {
         #[method(discardEditing)]
-        pub unsafe fn discardEditing(&self);
+        unsafe fn discardEditing(&self);
 
         #[method(commitEditing)]
-        pub unsafe fn commitEditing(&self) -> bool;
+        unsafe fn commitEditing(&self) -> bool;
 
         #[method(commitEditingWithDelegate:didCommitSelector:contextInfo:)]
-        pub unsafe fn commitEditingWithDelegate_didCommitSelector_contextInfo(
+        unsafe fn commitEditingWithDelegate_didCommitSelector_contextInfo(
             &self,
             delegate: Option<&Object>,
             did_commit_selector: Option<Sel>,
@@ -96,22 +94,24 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(commitEditingAndReturnError:_)]
-        pub unsafe fn commitEditingAndReturnError(&self) -> Result<(), Id<NSError, Shared>>;
+        unsafe fn commitEditingAndReturnError(&self) -> Result<(), Id<NSError, Shared>>;
     }
+
+    unsafe impl ProtocolType for dyn NSEditor {}
 );
 
 extern_protocol!(
-    pub struct NSEditorRegistration;
-
-    unsafe impl ProtocolType for NSEditorRegistration {
+    pub unsafe trait NSEditorRegistration: NSObjectProtocol {
         #[optional]
         #[method(objectDidBeginEditing:)]
-        pub unsafe fn objectDidBeginEditing(&self, editor: &NSEditor);
+        unsafe fn objectDidBeginEditing(&self, editor: &ProtocolObject<dyn NSEditor>);
 
         #[optional]
         #[method(objectDidEndEditing:)]
-        pub unsafe fn objectDidEndEditing(&self, editor: &NSEditor);
+        unsafe fn objectDidEndEditing(&self, editor: &ProtocolObject<dyn NSEditor>);
     }
+
+    unsafe impl ProtocolType for dyn NSEditorRegistration {}
 );
 
 extern_static!(NSAlignmentBinding: &'static NSBindingName);

@@ -421,91 +421,91 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct MTLBinding;
-
-    unsafe impl ProtocolType for MTLBinding {
+    pub unsafe trait MTLBinding: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString, Shared>;
+        unsafe fn name(&self) -> Id<NSString, Shared>;
 
         #[method(type)]
-        pub unsafe fn r#type(&self) -> MTLBindingType;
+        unsafe fn r#type(&self) -> MTLBindingType;
 
         #[method(access)]
-        pub unsafe fn access(&self) -> MTLArgumentAccess;
+        unsafe fn access(&self) -> MTLArgumentAccess;
 
         #[method(index)]
-        pub unsafe fn index(&self) -> NSUInteger;
+        unsafe fn index(&self) -> NSUInteger;
 
         #[method(isUsed)]
-        pub unsafe fn isUsed(&self) -> bool;
+        unsafe fn isUsed(&self) -> bool;
 
         #[method(isArgument)]
-        pub unsafe fn isArgument(&self) -> bool;
+        unsafe fn isArgument(&self) -> bool;
     }
+
+    unsafe impl ProtocolType for dyn MTLBinding {}
 );
 
 extern_protocol!(
-    pub struct MTLBufferBinding;
-
-    unsafe impl ProtocolType for MTLBufferBinding {
+    pub unsafe trait MTLBufferBinding: MTLBinding {
         #[method(bufferAlignment)]
-        pub unsafe fn bufferAlignment(&self) -> NSUInteger;
+        unsafe fn bufferAlignment(&self) -> NSUInteger;
 
         #[method(bufferDataSize)]
-        pub unsafe fn bufferDataSize(&self) -> NSUInteger;
+        unsafe fn bufferDataSize(&self) -> NSUInteger;
 
         #[method(bufferDataType)]
-        pub unsafe fn bufferDataType(&self) -> MTLDataType;
+        unsafe fn bufferDataType(&self) -> MTLDataType;
 
         #[cfg(feature = "Metal_MTLStructType")]
         #[method_id(@__retain_semantics Other bufferStructType)]
-        pub unsafe fn bufferStructType(&self) -> Option<Id<MTLStructType, Shared>>;
+        unsafe fn bufferStructType(&self) -> Option<Id<MTLStructType, Shared>>;
 
         #[cfg(feature = "Metal_MTLPointerType")]
         #[method_id(@__retain_semantics Other bufferPointerType)]
-        pub unsafe fn bufferPointerType(&self) -> Option<Id<MTLPointerType, Shared>>;
+        unsafe fn bufferPointerType(&self) -> Option<Id<MTLPointerType, Shared>>;
     }
+
+    unsafe impl ProtocolType for dyn MTLBufferBinding {}
 );
 
 extern_protocol!(
-    pub struct MTLThreadgroupBinding;
-
-    unsafe impl ProtocolType for MTLThreadgroupBinding {
+    pub unsafe trait MTLThreadgroupBinding: MTLBinding {
         #[method(threadgroupMemoryAlignment)]
-        pub unsafe fn threadgroupMemoryAlignment(&self) -> NSUInteger;
+        unsafe fn threadgroupMemoryAlignment(&self) -> NSUInteger;
 
         #[method(threadgroupMemoryDataSize)]
-        pub unsafe fn threadgroupMemoryDataSize(&self) -> NSUInteger;
+        unsafe fn threadgroupMemoryDataSize(&self) -> NSUInteger;
     }
+
+    unsafe impl ProtocolType for dyn MTLThreadgroupBinding {}
 );
 
 extern_protocol!(
-    pub struct MTLTextureBinding;
-
-    unsafe impl ProtocolType for MTLTextureBinding {
+    pub unsafe trait MTLTextureBinding: MTLBinding {
         #[method(textureType)]
-        pub unsafe fn textureType(&self) -> MTLTextureType;
+        unsafe fn textureType(&self) -> MTLTextureType;
 
         #[method(textureDataType)]
-        pub unsafe fn textureDataType(&self) -> MTLDataType;
+        unsafe fn textureDataType(&self) -> MTLDataType;
 
         #[method(isDepthTexture)]
-        pub unsafe fn isDepthTexture(&self) -> bool;
+        unsafe fn isDepthTexture(&self) -> bool;
 
         #[method(arrayLength)]
-        pub unsafe fn arrayLength(&self) -> NSUInteger;
+        unsafe fn arrayLength(&self) -> NSUInteger;
     }
+
+    unsafe impl ProtocolType for dyn MTLTextureBinding {}
 );
 
 extern_protocol!(
-    pub struct MTLObjectPayloadBinding;
-
-    unsafe impl ProtocolType for MTLObjectPayloadBinding {
+    pub unsafe trait MTLObjectPayloadBinding: MTLBinding {
         #[method(objectPayloadAlignment)]
-        pub unsafe fn objectPayloadAlignment(&self) -> NSUInteger;
+        unsafe fn objectPayloadAlignment(&self) -> NSUInteger;
 
         #[method(objectPayloadDataSize)]
-        pub unsafe fn objectPayloadDataSize(&self) -> NSUInteger;
+        unsafe fn objectPayloadDataSize(&self) -> NSUInteger;
     }
+
+    unsafe impl ProtocolType for dyn MTLObjectPayloadBinding {}
 );

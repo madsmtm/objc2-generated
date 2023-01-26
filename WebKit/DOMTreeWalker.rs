@@ -29,7 +29,7 @@ extern_methods!(
         pub unsafe fn whatToShow(&self) -> c_uint;
 
         #[method_id(@__retain_semantics Other filter)]
-        pub unsafe fn filter(&self) -> Option<Id<DOMNodeFilter, Shared>>;
+        pub unsafe fn filter(&self) -> Option<Id<ProtocolObject<dyn DOMNodeFilter>, Shared>>;
 
         #[method(expandEntityReferences)]
         pub unsafe fn expandEntityReferences(&self) -> bool;

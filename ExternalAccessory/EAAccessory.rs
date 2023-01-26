@@ -65,20 +65,25 @@ extern_methods!(
         pub unsafe fn protocolStrings(&self) -> Id<NSArray<NSString>, Shared>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<EAAccessoryDelegate, Shared>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn EAAccessoryDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&EAAccessoryDelegate>);
+        pub unsafe fn setDelegate(
+            &self,
+            delegate: Option<&ProtocolObject<dyn EAAccessoryDelegate>>,
+        );
     }
 );
 
 extern_protocol!(
-    pub struct EAAccessoryDelegate;
-
-    unsafe impl ProtocolType for EAAccessoryDelegate {
+    pub unsafe trait EAAccessoryDelegate: NSObjectProtocol {
         #[cfg(feature = "ExternalAccessory_EAAccessory")]
         #[optional]
         #[method(accessoryDidDisconnect:)]
-        pub unsafe fn accessoryDidDisconnect(&self, accessory: &EAAccessory);
+        unsafe fn accessoryDidDisconnect(&self, accessory: &EAAccessory);
     }
+
+    unsafe impl ProtocolType for dyn EAAccessoryDelegate {}
 );

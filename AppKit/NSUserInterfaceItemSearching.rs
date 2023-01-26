@@ -6,12 +6,10 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 extern_protocol!(
-    pub struct NSUserInterfaceItemSearching;
-
-    unsafe impl ProtocolType for NSUserInterfaceItemSearching {
+    pub unsafe trait NSUserInterfaceItemSearching: NSObjectProtocol {
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(searchForItemsWithSearchString:resultLimit:matchedItemHandler:)]
-        pub unsafe fn searchForItemsWithSearchString_resultLimit_matchedItemHandler(
+        unsafe fn searchForItemsWithSearchString_resultLimit_matchedItemHandler(
             &self,
             search_string: &NSString,
             result_limit: NSInteger,
@@ -20,18 +18,19 @@ extern_protocol!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other localizedTitlesForItem:)]
-        pub unsafe fn localizedTitlesForItem(&self, item: &Object)
-            -> Id<NSArray<NSString>, Shared>;
+        unsafe fn localizedTitlesForItem(&self, item: &Object) -> Id<NSArray<NSString>, Shared>;
 
         #[optional]
         #[method(performActionForItem:)]
-        pub unsafe fn performActionForItem(&self, item: &Object);
+        unsafe fn performActionForItem(&self, item: &Object);
 
         #[cfg(feature = "Foundation_NSString")]
         #[optional]
         #[method(showAllHelpTopicsForSearchString:)]
-        pub unsafe fn showAllHelpTopicsForSearchString(&self, search_string: &NSString);
+        unsafe fn showAllHelpTopicsForSearchString(&self, search_string: &NSString);
     }
+
+    unsafe impl ProtocolType for dyn NSUserInterfaceItemSearching {}
 );
 
 extern_methods!(
@@ -41,13 +40,13 @@ extern_methods!(
         #[method(registerUserInterfaceItemSearchHandler:)]
         pub unsafe fn registerUserInterfaceItemSearchHandler(
             &self,
-            handler: &NSUserInterfaceItemSearching,
+            handler: &ProtocolObject<dyn NSUserInterfaceItemSearching>,
         );
 
         #[method(unregisterUserInterfaceItemSearchHandler:)]
         pub unsafe fn unregisterUserInterfaceItemSearchHandler(
             &self,
-            handler: &NSUserInterfaceItemSearching,
+            handler: &ProtocolObject<dyn NSUserInterfaceItemSearching>,
         );
 
         #[cfg(feature = "Foundation_NSString")]

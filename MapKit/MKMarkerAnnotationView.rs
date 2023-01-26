@@ -90,7 +90,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithAnnotation:reuseIdentifier:)]
         pub unsafe fn initWithAnnotation_reuseIdentifier(
             this: Option<Allocated<Self>>,
-            annotation: Option<&MKAnnotation>,
+            annotation: Option<&ProtocolObject<dyn MKAnnotation>>,
             reuse_identifier: Option<&NSString>,
         ) -> Id<Self, Shared>;
     }

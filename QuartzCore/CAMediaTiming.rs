@@ -9,57 +9,57 @@ typed_enum!(
 );
 
 extern_protocol!(
-    pub struct CAMediaTiming;
-
-    unsafe impl ProtocolType for CAMediaTiming {
+    pub unsafe trait CAMediaTiming {
         #[method(beginTime)]
-        pub unsafe fn beginTime(&self) -> CFTimeInterval;
+        unsafe fn beginTime(&self) -> CFTimeInterval;
 
         #[method(setBeginTime:)]
-        pub unsafe fn setBeginTime(&self, begin_time: CFTimeInterval);
+        unsafe fn setBeginTime(&self, begin_time: CFTimeInterval);
 
         #[method(duration)]
-        pub unsafe fn duration(&self) -> CFTimeInterval;
+        unsafe fn duration(&self) -> CFTimeInterval;
 
         #[method(setDuration:)]
-        pub unsafe fn setDuration(&self, duration: CFTimeInterval);
+        unsafe fn setDuration(&self, duration: CFTimeInterval);
 
         #[method(speed)]
-        pub unsafe fn speed(&self) -> c_float;
+        unsafe fn speed(&self) -> c_float;
 
         #[method(setSpeed:)]
-        pub unsafe fn setSpeed(&self, speed: c_float);
+        unsafe fn setSpeed(&self, speed: c_float);
 
         #[method(timeOffset)]
-        pub unsafe fn timeOffset(&self) -> CFTimeInterval;
+        unsafe fn timeOffset(&self) -> CFTimeInterval;
 
         #[method(setTimeOffset:)]
-        pub unsafe fn setTimeOffset(&self, time_offset: CFTimeInterval);
+        unsafe fn setTimeOffset(&self, time_offset: CFTimeInterval);
 
         #[method(repeatCount)]
-        pub unsafe fn repeatCount(&self) -> c_float;
+        unsafe fn repeatCount(&self) -> c_float;
 
         #[method(setRepeatCount:)]
-        pub unsafe fn setRepeatCount(&self, repeat_count: c_float);
+        unsafe fn setRepeatCount(&self, repeat_count: c_float);
 
         #[method(repeatDuration)]
-        pub unsafe fn repeatDuration(&self) -> CFTimeInterval;
+        unsafe fn repeatDuration(&self) -> CFTimeInterval;
 
         #[method(setRepeatDuration:)]
-        pub unsafe fn setRepeatDuration(&self, repeat_duration: CFTimeInterval);
+        unsafe fn setRepeatDuration(&self, repeat_duration: CFTimeInterval);
 
         #[method(autoreverses)]
-        pub unsafe fn autoreverses(&self) -> bool;
+        unsafe fn autoreverses(&self) -> bool;
 
         #[method(setAutoreverses:)]
-        pub unsafe fn setAutoreverses(&self, autoreverses: bool);
+        unsafe fn setAutoreverses(&self, autoreverses: bool);
 
         #[method_id(@__retain_semantics Other fillMode)]
-        pub unsafe fn fillMode(&self) -> Id<CAMediaTimingFillMode, Shared>;
+        unsafe fn fillMode(&self) -> Id<CAMediaTimingFillMode, Shared>;
 
         #[method(setFillMode:)]
-        pub unsafe fn setFillMode(&self, fill_mode: &CAMediaTimingFillMode);
+        unsafe fn setFillMode(&self, fill_mode: &CAMediaTimingFillMode);
     }
+
+    unsafe impl ProtocolType for dyn CAMediaTiming {}
 );
 
 extern_static!(kCAFillModeForwards: &'static CAMediaTimingFillMode);

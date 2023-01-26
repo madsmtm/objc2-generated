@@ -35,7 +35,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other sessionWithConfiguration:delegate:delegateQueue:)]
         pub unsafe fn sessionWithConfiguration_delegate_delegateQueue(
             configuration: &NSURLSessionConfiguration,
-            delegate: Option<&NSURLSessionDelegate>,
+            delegate: Option<&ProtocolObject<dyn NSURLSessionDelegate>>,
             queue: Option<&NSOperationQueue>,
         ) -> Id<NSURLSession, Shared>;
 
@@ -44,7 +44,9 @@ extern_methods!(
         pub unsafe fn delegateQueue(&self) -> Id<NSOperationQueue, Shared>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<NSURLSessionDelegate, Shared>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn NSURLSessionDelegate>, Shared>>;
 
         #[cfg(feature = "Foundation_NSURLSessionConfiguration")]
         #[method_id(@__retain_semantics Other configuration)]
@@ -391,10 +393,15 @@ extern_methods!(
         pub unsafe fn response(&self) -> Option<Id<NSURLResponse, Shared>>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<NSURLSessionTaskDelegate, Shared>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn NSURLSessionTaskDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&NSURLSessionTaskDelegate>);
+        pub unsafe fn setDelegate(
+            &self,
+            delegate: Option<&ProtocolObject<dyn NSURLSessionTaskDelegate>>,
+        );
 
         #[cfg(feature = "Foundation_NSProgress")]
         #[method_id(@__retain_semantics Other progress)]
@@ -1055,13 +1062,11 @@ ns_enum!(
 );
 
 extern_protocol!(
-    pub struct NSURLSessionDelegate;
-
-    unsafe impl ProtocolType for NSURLSessionDelegate {
+    pub unsafe trait NSURLSessionDelegate: NSObjectProtocol {
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURLSession"))]
         #[optional]
         #[method(URLSession:didBecomeInvalidWithError:)]
-        pub unsafe fn URLSession_didBecomeInvalidWithError(
+        unsafe fn URLSession_didBecomeInvalidWithError(
             &self,
             session: &NSURLSession,
             error: Option<&NSError>,
@@ -1074,7 +1079,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(URLSession:didReceiveChallenge:completionHandler:)]
-        pub unsafe fn URLSession_didReceiveChallenge_completionHandler(
+        unsafe fn URLSession_didReceiveChallenge_completionHandler(
             &self,
             session: &NSURLSession,
             challenge: &NSURLAuthenticationChallenge,
@@ -1087,28 +1092,21 @@ extern_protocol!(
         #[cfg(feature = "Foundation_NSURLSession")]
         #[optional]
         #[method(URLSessionDidFinishEventsForBackgroundURLSession:)]
-        pub unsafe fn URLSessionDidFinishEventsForBackgroundURLSession(
-            &self,
-            session: &NSURLSession,
-        );
+        unsafe fn URLSessionDidFinishEventsForBackgroundURLSession(&self, session: &NSURLSession);
     }
+
+    unsafe impl ProtocolType for dyn NSURLSessionDelegate {}
 );
 
 extern_protocol!(
-    pub struct NSURLSessionTaskDelegate;
-
-    unsafe impl ProtocolType for NSURLSessionTaskDelegate {
+    pub unsafe trait NSURLSessionTaskDelegate: NSURLSessionDelegate {
         #[cfg(all(
             feature = "Foundation_NSURLSession",
             feature = "Foundation_NSURLSessionTask"
         ))]
         #[optional]
         #[method(URLSession:didCreateTask:)]
-        pub unsafe fn URLSession_didCreateTask(
-            &self,
-            session: &NSURLSession,
-            task: &NSURLSessionTask,
-        );
+        unsafe fn URLSession_didCreateTask(&self, session: &NSURLSession, task: &NSURLSessionTask);
 
         #[cfg(all(
             feature = "Foundation_NSURLRequest",
@@ -1117,7 +1115,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(URLSession:task:willBeginDelayedRequest:completionHandler:)]
-        pub unsafe fn URLSession_task_willBeginDelayedRequest_completionHandler(
+        unsafe fn URLSession_task_willBeginDelayedRequest_completionHandler(
             &self,
             session: &NSURLSession,
             task: &NSURLSessionTask,
@@ -1134,7 +1132,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(URLSession:taskIsWaitingForConnectivity:)]
-        pub unsafe fn URLSession_taskIsWaitingForConnectivity(
+        unsafe fn URLSession_taskIsWaitingForConnectivity(
             &self,
             session: &NSURLSession,
             task: &NSURLSessionTask,
@@ -1148,7 +1146,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(URLSession:task:willPerformHTTPRedirection:newRequest:completionHandler:)]
-        pub unsafe fn URLSession_task_willPerformHTTPRedirection_newRequest_completionHandler(
+        unsafe fn URLSession_task_willPerformHTTPRedirection_newRequest_completionHandler(
             &self,
             session: &NSURLSession,
             task: &NSURLSessionTask,
@@ -1165,7 +1163,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(URLSession:task:didReceiveChallenge:completionHandler:)]
-        pub unsafe fn URLSession_task_didReceiveChallenge_completionHandler(
+        unsafe fn URLSession_task_didReceiveChallenge_completionHandler(
             &self,
             session: &NSURLSession,
             task: &NSURLSessionTask,
@@ -1183,7 +1181,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(URLSession:task:needNewBodyStream:)]
-        pub unsafe fn URLSession_task_needNewBodyStream(
+        unsafe fn URLSession_task_needNewBodyStream(
             &self,
             session: &NSURLSession,
             task: &NSURLSessionTask,
@@ -1196,7 +1194,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(URLSession:task:didSendBodyData:totalBytesSent:totalBytesExpectedToSend:)]
-        pub unsafe fn URLSession_task_didSendBodyData_totalBytesSent_totalBytesExpectedToSend(
+        unsafe fn URLSession_task_didSendBodyData_totalBytesSent_totalBytesExpectedToSend(
             &self,
             session: &NSURLSession,
             task: &NSURLSessionTask,
@@ -1212,7 +1210,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(URLSession:task:didFinishCollectingMetrics:)]
-        pub unsafe fn URLSession_task_didFinishCollectingMetrics(
+        unsafe fn URLSession_task_didFinishCollectingMetrics(
             &self,
             session: &NSURLSession,
             task: &NSURLSessionTask,
@@ -1226,19 +1224,19 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(URLSession:task:didCompleteWithError:)]
-        pub unsafe fn URLSession_task_didCompleteWithError(
+        unsafe fn URLSession_task_didCompleteWithError(
             &self,
             session: &NSURLSession,
             task: &NSURLSessionTask,
             error: Option<&NSError>,
         );
     }
+
+    unsafe impl ProtocolType for dyn NSURLSessionTaskDelegate {}
 );
 
 extern_protocol!(
-    pub struct NSURLSessionDataDelegate;
-
-    unsafe impl ProtocolType for NSURLSessionDataDelegate {
+    pub unsafe trait NSURLSessionDataDelegate: NSURLSessionTaskDelegate {
         #[cfg(all(
             feature = "Foundation_NSURLResponse",
             feature = "Foundation_NSURLSession",
@@ -1246,7 +1244,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(URLSession:dataTask:didReceiveResponse:completionHandler:)]
-        pub unsafe fn URLSession_dataTask_didReceiveResponse_completionHandler(
+        unsafe fn URLSession_dataTask_didReceiveResponse_completionHandler(
             &self,
             session: &NSURLSession,
             data_task: &NSURLSessionDataTask,
@@ -1261,7 +1259,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(URLSession:dataTask:didBecomeDownloadTask:)]
-        pub unsafe fn URLSession_dataTask_didBecomeDownloadTask(
+        unsafe fn URLSession_dataTask_didBecomeDownloadTask(
             &self,
             session: &NSURLSession,
             data_task: &NSURLSessionDataTask,
@@ -1275,7 +1273,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(URLSession:dataTask:didBecomeStreamTask:)]
-        pub unsafe fn URLSession_dataTask_didBecomeStreamTask(
+        unsafe fn URLSession_dataTask_didBecomeStreamTask(
             &self,
             session: &NSURLSession,
             data_task: &NSURLSessionDataTask,
@@ -1289,7 +1287,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(URLSession:dataTask:didReceiveData:)]
-        pub unsafe fn URLSession_dataTask_didReceiveData(
+        unsafe fn URLSession_dataTask_didReceiveData(
             &self,
             session: &NSURLSession,
             data_task: &NSURLSessionDataTask,
@@ -1303,7 +1301,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(URLSession:dataTask:willCacheResponse:completionHandler:)]
-        pub unsafe fn URLSession_dataTask_willCacheResponse_completionHandler(
+        unsafe fn URLSession_dataTask_willCacheResponse_completionHandler(
             &self,
             session: &NSURLSession,
             data_task: &NSURLSessionDataTask,
@@ -1311,19 +1309,19 @@ extern_protocol!(
             completion_handler: &Block<(*mut NSCachedURLResponse,), ()>,
         );
     }
+
+    unsafe impl ProtocolType for dyn NSURLSessionDataDelegate {}
 );
 
 extern_protocol!(
-    pub struct NSURLSessionDownloadDelegate;
-
-    unsafe impl ProtocolType for NSURLSessionDownloadDelegate {
+    pub unsafe trait NSURLSessionDownloadDelegate: NSURLSessionTaskDelegate {
         #[cfg(all(
             feature = "Foundation_NSURL",
             feature = "Foundation_NSURLSession",
             feature = "Foundation_NSURLSessionDownloadTask"
         ))]
         #[method(URLSession:downloadTask:didFinishDownloadingToURL:)]
-        pub unsafe fn URLSession_downloadTask_didFinishDownloadingToURL(
+        unsafe fn URLSession_downloadTask_didFinishDownloadingToURL(
             &self,
             session: &NSURLSession,
             download_task: &NSURLSessionDownloadTask,
@@ -1336,7 +1334,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(URLSession:downloadTask:didWriteData:totalBytesWritten:totalBytesExpectedToWrite:)]
-        pub unsafe fn URLSession_downloadTask_didWriteData_totalBytesWritten_totalBytesExpectedToWrite(
+        unsafe fn URLSession_downloadTask_didWriteData_totalBytesWritten_totalBytesExpectedToWrite(
             &self,
             session: &NSURLSession,
             download_task: &NSURLSessionDownloadTask,
@@ -1351,7 +1349,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(URLSession:downloadTask:didResumeAtOffset:expectedTotalBytes:)]
-        pub unsafe fn URLSession_downloadTask_didResumeAtOffset_expectedTotalBytes(
+        unsafe fn URLSession_downloadTask_didResumeAtOffset_expectedTotalBytes(
             &self,
             session: &NSURLSession,
             download_task: &NSURLSessionDownloadTask,
@@ -1359,19 +1357,19 @@ extern_protocol!(
             expected_total_bytes: i64,
         );
     }
+
+    unsafe impl ProtocolType for dyn NSURLSessionDownloadDelegate {}
 );
 
 extern_protocol!(
-    pub struct NSURLSessionStreamDelegate;
-
-    unsafe impl ProtocolType for NSURLSessionStreamDelegate {
+    pub unsafe trait NSURLSessionStreamDelegate: NSURLSessionTaskDelegate {
         #[cfg(all(
             feature = "Foundation_NSURLSession",
             feature = "Foundation_NSURLSessionStreamTask"
         ))]
         #[optional]
         #[method(URLSession:readClosedForStreamTask:)]
-        pub unsafe fn URLSession_readClosedForStreamTask(
+        unsafe fn URLSession_readClosedForStreamTask(
             &self,
             session: &NSURLSession,
             stream_task: &NSURLSessionStreamTask,
@@ -1383,7 +1381,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(URLSession:writeClosedForStreamTask:)]
-        pub unsafe fn URLSession_writeClosedForStreamTask(
+        unsafe fn URLSession_writeClosedForStreamTask(
             &self,
             session: &NSURLSession,
             stream_task: &NSURLSessionStreamTask,
@@ -1395,7 +1393,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(URLSession:betterRouteDiscoveredForStreamTask:)]
-        pub unsafe fn URLSession_betterRouteDiscoveredForStreamTask(
+        unsafe fn URLSession_betterRouteDiscoveredForStreamTask(
             &self,
             session: &NSURLSession,
             stream_task: &NSURLSessionStreamTask,
@@ -1409,7 +1407,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(URLSession:streamTask:didBecomeInputStream:outputStream:)]
-        pub unsafe fn URLSession_streamTask_didBecomeInputStream_outputStream(
+        unsafe fn URLSession_streamTask_didBecomeInputStream_outputStream(
             &self,
             session: &NSURLSession,
             stream_task: &NSURLSessionStreamTask,
@@ -1417,12 +1415,12 @@ extern_protocol!(
             output_stream: &NSOutputStream,
         );
     }
+
+    unsafe impl ProtocolType for dyn NSURLSessionStreamDelegate {}
 );
 
 extern_protocol!(
-    pub struct NSURLSessionWebSocketDelegate;
-
-    unsafe impl ProtocolType for NSURLSessionWebSocketDelegate {
+    pub unsafe trait NSURLSessionWebSocketDelegate: NSURLSessionTaskDelegate {
         #[cfg(all(
             feature = "Foundation_NSString",
             feature = "Foundation_NSURLSession",
@@ -1430,7 +1428,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(URLSession:webSocketTask:didOpenWithProtocol:)]
-        pub unsafe fn URLSession_webSocketTask_didOpenWithProtocol(
+        unsafe fn URLSession_webSocketTask_didOpenWithProtocol(
             &self,
             session: &NSURLSession,
             web_socket_task: &NSURLSessionWebSocketTask,
@@ -1444,7 +1442,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(URLSession:webSocketTask:didCloseWithCode:reason:)]
-        pub unsafe fn URLSession_webSocketTask_didCloseWithCode_reason(
+        unsafe fn URLSession_webSocketTask_didCloseWithCode_reason(
             &self,
             session: &NSURLSession,
             web_socket_task: &NSURLSessionWebSocketTask,
@@ -1452,6 +1450,8 @@ extern_protocol!(
             reason: Option<&NSData>,
         );
     }
+
+    unsafe impl ProtocolType for dyn NSURLSessionWebSocketDelegate {}
 );
 
 extern_static!(NSURLSessionDownloadTaskResumeData: &'static NSString);

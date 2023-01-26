@@ -54,19 +54,21 @@ extern_methods!(
         pub unsafe fn configuration(&self) -> Id<WKWebViewConfiguration, Shared>;
 
         #[method_id(@__retain_semantics Other navigationDelegate)]
-        pub unsafe fn navigationDelegate(&self) -> Option<Id<WKNavigationDelegate, Shared>>;
+        pub unsafe fn navigationDelegate(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn WKNavigationDelegate>, Shared>>;
 
         #[method(setNavigationDelegate:)]
         pub unsafe fn setNavigationDelegate(
             &self,
-            navigation_delegate: Option<&WKNavigationDelegate>,
+            navigation_delegate: Option<&ProtocolObject<dyn WKNavigationDelegate>>,
         );
 
         #[method_id(@__retain_semantics Other UIDelegate)]
-        pub unsafe fn UIDelegate(&self) -> Option<Id<WKUIDelegate, Shared>>;
+        pub unsafe fn UIDelegate(&self) -> Option<Id<ProtocolObject<dyn WKUIDelegate>, Shared>>;
 
         #[method(setUIDelegate:)]
-        pub unsafe fn setUIDelegate(&self, ui_delegate: Option<&WKUIDelegate>);
+        pub unsafe fn setUIDelegate(&self, ui_delegate: Option<&ProtocolObject<dyn WKUIDelegate>>);
 
         #[cfg(feature = "WebKit_WKBackForwardList")]
         #[method_id(@__retain_semantics Other backForwardList)]

@@ -6,12 +6,10 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 extern_protocol!(
-    pub struct NSColorPickingDefault;
-
-    unsafe impl ProtocolType for NSColorPickingDefault {
+    pub unsafe trait NSColorPickingDefault {
         #[cfg(feature = "AppKit_NSColorPanel")]
         #[method_id(@__retain_semantics Init initWithPickerMask:colorPanel:)]
-        pub unsafe fn initWithPickerMask_colorPanel(
+        unsafe fn initWithPickerMask_colorPanel(
             this: Option<Allocated<Self>>,
             mask: NSUInteger,
             owning_color_panel: &NSColorPanel,
@@ -19,58 +17,60 @@ extern_protocol!(
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other provideNewButtonImage)]
-        pub unsafe fn provideNewButtonImage(&self) -> Id<NSImage, Shared>;
+        unsafe fn provideNewButtonImage(&self) -> Id<NSImage, Shared>;
 
         #[cfg(all(feature = "AppKit_NSButtonCell", feature = "AppKit_NSImage"))]
         #[method(insertNewButtonImage:in:)]
-        pub unsafe fn insertNewButtonImage_in(
+        unsafe fn insertNewButtonImage_in(
             &self,
             new_button_image: &NSImage,
             button_cell: &NSButtonCell,
         );
 
         #[method(viewSizeChanged:)]
-        pub unsafe fn viewSizeChanged(&self, sender: Option<&Object>);
+        unsafe fn viewSizeChanged(&self, sender: Option<&Object>);
 
         #[method(alphaControlAddedOrRemoved:)]
-        pub unsafe fn alphaControlAddedOrRemoved(&self, sender: Option<&Object>);
+        unsafe fn alphaControlAddedOrRemoved(&self, sender: Option<&Object>);
 
         #[cfg(feature = "AppKit_NSColorList")]
         #[method(attachColorList:)]
-        pub unsafe fn attachColorList(&self, color_list: &NSColorList);
+        unsafe fn attachColorList(&self, color_list: &NSColorList);
 
         #[cfg(feature = "AppKit_NSColorList")]
         #[method(detachColorList:)]
-        pub unsafe fn detachColorList(&self, color_list: &NSColorList);
+        unsafe fn detachColorList(&self, color_list: &NSColorList);
 
         #[method(setMode:)]
-        pub unsafe fn setMode(&self, mode: NSColorPanelMode);
+        unsafe fn setMode(&self, mode: NSColorPanelMode);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other buttonToolTip)]
-        pub unsafe fn buttonToolTip(&self) -> Id<NSString, Shared>;
+        unsafe fn buttonToolTip(&self) -> Id<NSString, Shared>;
 
         #[method(minContentSize)]
-        pub unsafe fn minContentSize(&self) -> NSSize;
+        unsafe fn minContentSize(&self) -> NSSize;
     }
+
+    unsafe impl ProtocolType for dyn NSColorPickingDefault {}
 );
 
 extern_protocol!(
-    pub struct NSColorPickingCustom;
-
-    unsafe impl ProtocolType for NSColorPickingCustom {
+    pub unsafe trait NSColorPickingCustom: NSColorPickingDefault {
         #[method(supportsMode:)]
-        pub unsafe fn supportsMode(&self, mode: NSColorPanelMode) -> bool;
+        unsafe fn supportsMode(&self, mode: NSColorPanelMode) -> bool;
 
         #[method(currentMode)]
-        pub unsafe fn currentMode(&self) -> NSColorPanelMode;
+        unsafe fn currentMode(&self) -> NSColorPanelMode;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other provideNewView:)]
-        pub unsafe fn provideNewView(&self, initial_request: bool) -> Id<NSView, Shared>;
+        unsafe fn provideNewView(&self, initial_request: bool) -> Id<NSView, Shared>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setColor:)]
-        pub unsafe fn setColor(&self, new_color: &NSColor);
+        unsafe fn setColor(&self, new_color: &NSColor);
     }
+
+    unsafe impl ProtocolType for dyn NSColorPickingCustom {}
 );

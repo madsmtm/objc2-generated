@@ -50,10 +50,15 @@ extern_methods!(
         pub unsafe fn changeInLength(&self) -> NSInteger;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<NSTextStorageDelegate, Shared>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn NSTextStorageDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&NSTextStorageDelegate>);
+        pub unsafe fn setDelegate(
+            &self,
+            delegate: Option<&ProtocolObject<dyn NSTextStorageDelegate>>,
+        );
 
         #[method(edited:range:changeInLength:)]
         pub unsafe fn edited_range_changeInLength(
@@ -76,24 +81,24 @@ extern_methods!(
         pub unsafe fn ensureAttributesAreFixedInRange(&self, range: NSRange);
 
         #[method_id(@__retain_semantics Other textStorageObserver)]
-        pub unsafe fn textStorageObserver(&self) -> Option<Id<NSTextStorageObserving, Shared>>;
+        pub unsafe fn textStorageObserver(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn NSTextStorageObserving>, Shared>>;
 
         #[method(setTextStorageObserver:)]
         pub unsafe fn setTextStorageObserver(
             &self,
-            text_storage_observer: Option<&NSTextStorageObserving>,
+            text_storage_observer: Option<&ProtocolObject<dyn NSTextStorageObserving>>,
         );
     }
 );
 
 extern_protocol!(
-    pub struct NSTextStorageDelegate;
-
-    unsafe impl ProtocolType for NSTextStorageDelegate {
+    pub unsafe trait NSTextStorageDelegate: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSTextStorage")]
         #[optional]
         #[method(textStorage:willProcessEditing:range:changeInLength:)]
-        pub unsafe fn textStorage_willProcessEditing_range_changeInLength(
+        unsafe fn textStorage_willProcessEditing_range_changeInLength(
             &self,
             text_storage: &NSTextStorage,
             edited_mask: NSTextStorageEditActions,
@@ -104,7 +109,7 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSTextStorage")]
         #[optional]
         #[method(textStorage:didProcessEditing:range:changeInLength:)]
-        pub unsafe fn textStorage_didProcessEditing_range_changeInLength(
+        unsafe fn textStorage_didProcessEditing_range_changeInLength(
             &self,
             text_storage: &NSTextStorage,
             edited_mask: NSTextStorageEditActions,
@@ -112,6 +117,8 @@ extern_protocol!(
             delta: NSInteger,
         );
     }
+
+    unsafe impl ProtocolType for dyn NSTextStorageDelegate {}
 );
 
 extern_static!(NSTextStorageWillProcessEditingNotification: &'static NSNotificationName);
@@ -119,20 +126,18 @@ extern_static!(NSTextStorageWillProcessEditingNotification: &'static NSNotificat
 extern_static!(NSTextStorageDidProcessEditingNotification: &'static NSNotificationName);
 
 extern_protocol!(
-    pub struct NSTextStorageObserving;
-
-    unsafe impl ProtocolType for NSTextStorageObserving {
+    pub unsafe trait NSTextStorageObserving: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSTextStorage")]
         #[method_id(@__retain_semantics Other textStorage)]
-        pub unsafe fn textStorage(&self) -> Option<Id<NSTextStorage, Shared>>;
+        unsafe fn textStorage(&self) -> Option<Id<NSTextStorage, Shared>>;
 
         #[cfg(feature = "AppKit_NSTextStorage")]
         #[method(setTextStorage:)]
-        pub unsafe fn setTextStorage(&self, text_storage: Option<&NSTextStorage>);
+        unsafe fn setTextStorage(&self, text_storage: Option<&NSTextStorage>);
 
         #[cfg(feature = "AppKit_NSTextStorage")]
         #[method(processEditingForTextStorage:edited:range:changeInLength:invalidatedRange:)]
-        pub unsafe fn processEditingForTextStorage_edited_range_changeInLength_invalidatedRange(
+        unsafe fn processEditingForTextStorage_edited_range_changeInLength_invalidatedRange(
             &self,
             text_storage: &NSTextStorage,
             edit_mask: NSTextStorageEditActions,
@@ -143,12 +148,14 @@ extern_protocol!(
 
         #[cfg(feature = "AppKit_NSTextStorage")]
         #[method(performEditingTransactionForTextStorage:usingBlock:)]
-        pub unsafe fn performEditingTransactionForTextStorage_usingBlock(
+        unsafe fn performEditingTransactionForTextStorage_usingBlock(
             &self,
             text_storage: &NSTextStorage,
             transaction: &Block<(), ()>,
         );
     }
+
+    unsafe impl ProtocolType for dyn NSTextStorageObserving {}
 );
 
 pub type NSTextStorageEditedOptions = NSUInteger;

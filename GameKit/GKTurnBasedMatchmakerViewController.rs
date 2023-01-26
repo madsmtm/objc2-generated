@@ -28,12 +28,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other turnBasedMatchmakerDelegate)]
         pub unsafe fn turnBasedMatchmakerDelegate(
             &self,
-        ) -> Option<Id<GKTurnBasedMatchmakerViewControllerDelegate, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn GKTurnBasedMatchmakerViewControllerDelegate>, Shared>>;
 
         #[method(setTurnBasedMatchmakerDelegate:)]
         pub unsafe fn setTurnBasedMatchmakerDelegate(
             &self,
-            turn_based_matchmaker_delegate: Option<&GKTurnBasedMatchmakerViewControllerDelegate>,
+            turn_based_matchmaker_delegate: Option<
+                &ProtocolObject<dyn GKTurnBasedMatchmakerViewControllerDelegate>,
+            >,
         );
 
         #[method(showExistingMatches)]
@@ -58,12 +60,10 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct GKTurnBasedMatchmakerViewControllerDelegate;
-
-    unsafe impl ProtocolType for GKTurnBasedMatchmakerViewControllerDelegate {
+    pub unsafe trait GKTurnBasedMatchmakerViewControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "GameKit_GKTurnBasedMatchmakerViewController")]
         #[method(turnBasedMatchmakerViewControllerWasCancelled:)]
-        pub unsafe fn turnBasedMatchmakerViewControllerWasCancelled(
+        unsafe fn turnBasedMatchmakerViewControllerWasCancelled(
             &self,
             view_controller: &GKTurnBasedMatchmakerViewController,
         );
@@ -73,7 +73,7 @@ extern_protocol!(
             feature = "GameKit_GKTurnBasedMatchmakerViewController"
         ))]
         #[method(turnBasedMatchmakerViewController:didFailWithError:)]
-        pub unsafe fn turnBasedMatchmakerViewController_didFailWithError(
+        unsafe fn turnBasedMatchmakerViewController_didFailWithError(
             &self,
             view_controller: &GKTurnBasedMatchmakerViewController,
             error: &NSError,
@@ -86,7 +86,7 @@ extern_protocol!(
         #[deprecated = "use GKTurnBasedEventListener player:receivedTurnEventForMatch:didBecomeActive:"]
         #[optional]
         #[method(turnBasedMatchmakerViewController:didFindMatch:)]
-        pub unsafe fn turnBasedMatchmakerViewController_didFindMatch(
+        unsafe fn turnBasedMatchmakerViewController_didFindMatch(
             &self,
             view_controller: &GKTurnBasedMatchmakerViewController,
             r#match: &GKTurnBasedMatch,
@@ -99,12 +99,14 @@ extern_protocol!(
         #[deprecated = "use GKTurnBasedEventListener player:wantsToQuitMatch:"]
         #[optional]
         #[method(turnBasedMatchmakerViewController:playerQuitForMatch:)]
-        pub unsafe fn turnBasedMatchmakerViewController_playerQuitForMatch(
+        unsafe fn turnBasedMatchmakerViewController_playerQuitForMatch(
             &self,
             view_controller: &GKTurnBasedMatchmakerViewController,
             r#match: &GKTurnBasedMatch,
         );
     }
+
+    unsafe impl ProtocolType for dyn GKTurnBasedMatchmakerViewControllerDelegate {}
 );
 
 extern_methods!(

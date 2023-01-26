@@ -15,11 +15,9 @@ extern_enum!(
 );
 
 extern_protocol!(
-    pub struct NSGlyphStorage;
-
-    unsafe impl ProtocolType for NSGlyphStorage {
+    pub unsafe trait NSGlyphStorage {
         #[method(insertGlyphs:length:forStartingGlyphAtIndex:characterIndex:)]
-        pub unsafe fn insertGlyphs_length_forStartingGlyphAtIndex_characterIndex(
+        unsafe fn insertGlyphs_length_forStartingGlyphAtIndex_characterIndex(
             &self,
             glyphs: NonNull<NSGlyph>,
             length: NSUInteger,
@@ -28,7 +26,7 @@ extern_protocol!(
         );
 
         #[method(setIntAttribute:value:forGlyphAtIndex:)]
-        pub unsafe fn setIntAttribute_value_forGlyphAtIndex(
+        unsafe fn setIntAttribute_value_forGlyphAtIndex(
             &self,
             attribute_tag: NSInteger,
             val: NSInteger,
@@ -37,11 +35,13 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedString)]
-        pub unsafe fn attributedString(&self) -> Id<NSAttributedString, Shared>;
+        unsafe fn attributedString(&self) -> Id<NSAttributedString, Shared>;
 
         #[method(layoutOptions)]
-        pub unsafe fn layoutOptions(&self) -> NSUInteger;
+        unsafe fn layoutOptions(&self) -> NSUInteger;
     }
+
+    unsafe impl ProtocolType for dyn NSGlyphStorage {}
 );
 
 extern_class!(
@@ -61,7 +61,7 @@ extern_methods!(
         #[method(generateGlyphsForGlyphStorage:desiredNumberOfCharacters:glyphIndex:characterIndex:)]
         pub unsafe fn generateGlyphsForGlyphStorage_desiredNumberOfCharacters_glyphIndex_characterIndex(
             &self,
-            glyph_storage: &NSGlyphStorage,
+            glyph_storage: &ProtocolObject<dyn NSGlyphStorage>,
             n_chars: NSUInteger,
             glyph_index: *mut NSUInteger,
             char_index: *mut NSUInteger,

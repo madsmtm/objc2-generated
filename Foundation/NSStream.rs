@@ -54,10 +54,10 @@ extern_methods!(
         pub unsafe fn close(&self);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<NSStreamDelegate, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSStreamDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&NSStreamDelegate>);
+        pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSStreamDelegate>>);
 
         #[method_id(@__retain_semantics Other propertyForKey:)]
         pub unsafe fn propertyForKey(
@@ -296,14 +296,14 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct NSStreamDelegate;
-
-    unsafe impl ProtocolType for NSStreamDelegate {
+    pub unsafe trait NSStreamDelegate: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSStream")]
         #[optional]
         #[method(stream:handleEvent:)]
-        pub unsafe fn stream_handleEvent(&self, a_stream: &NSStream, event_code: NSStreamEvent);
+        unsafe fn stream_handleEvent(&self, a_stream: &NSStream, event_code: NSStreamEvent);
     }
+
+    unsafe impl ProtocolType for dyn NSStreamDelegate {}
 );
 
 extern_static!(NSStreamSocketSecurityLevelKey: &'static NSStreamPropertyKey);

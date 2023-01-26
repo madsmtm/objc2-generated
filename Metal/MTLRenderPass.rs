@@ -68,10 +68,10 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLRenderPassAttachmentDescriptor")]
     unsafe impl MTLRenderPassAttachmentDescriptor {
         #[method_id(@__retain_semantics Other texture)]
-        pub fn texture(&self) -> Option<Id<MTLTexture, Shared>>;
+        pub fn texture(&self) -> Option<Id<ProtocolObject<dyn MTLTexture>, Shared>>;
 
         #[method(setTexture:)]
-        pub fn setTexture(&self, texture: Option<&MTLTexture>);
+        pub fn setTexture(&self, texture: Option<&ProtocolObject<dyn MTLTexture>>);
 
         #[method(level)]
         pub fn level(&self) -> NSUInteger;
@@ -92,10 +92,10 @@ extern_methods!(
         pub fn setDepthPlane(&self, depth_plane: NSUInteger);
 
         #[method_id(@__retain_semantics Other resolveTexture)]
-        pub fn resolveTexture(&self) -> Option<Id<MTLTexture, Shared>>;
+        pub fn resolveTexture(&self) -> Option<Id<ProtocolObject<dyn MTLTexture>, Shared>>;
 
         #[method(setResolveTexture:)]
-        pub fn setResolveTexture(&self, resolve_texture: Option<&MTLTexture>);
+        pub fn setResolveTexture(&self, resolve_texture: Option<&ProtocolObject<dyn MTLTexture>>);
 
         #[method(resolveLevel)]
         pub fn resolveLevel(&self) -> NSUInteger;
@@ -282,10 +282,15 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLRenderPassSampleBufferAttachmentDescriptor")]
     unsafe impl MTLRenderPassSampleBufferAttachmentDescriptor {
         #[method_id(@__retain_semantics Other sampleBuffer)]
-        pub fn sampleBuffer(&self) -> Option<Id<MTLCounterSampleBuffer, Shared>>;
+        pub fn sampleBuffer(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn MTLCounterSampleBuffer>, Shared>>;
 
         #[method(setSampleBuffer:)]
-        pub fn setSampleBuffer(&self, sample_buffer: Option<&MTLCounterSampleBuffer>);
+        pub fn setSampleBuffer(
+            &self,
+            sample_buffer: Option<&ProtocolObject<dyn MTLCounterSampleBuffer>>,
+        );
 
         #[method(startOfVertexSampleIndex)]
         pub fn startOfVertexSampleIndex(&self) -> NSUInteger;
@@ -391,10 +396,13 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other visibilityResultBuffer)]
-        pub fn visibilityResultBuffer(&self) -> Option<Id<MTLBuffer, Shared>>;
+        pub fn visibilityResultBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>, Shared>>;
 
         #[method(setVisibilityResultBuffer:)]
-        pub fn setVisibilityResultBuffer(&self, visibility_result_buffer: Option<&MTLBuffer>);
+        pub fn setVisibilityResultBuffer(
+            &self,
+            visibility_result_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
+        );
 
         #[method(renderTargetArrayLength)]
         pub fn renderTargetArrayLength(&self) -> NSUInteger;
@@ -459,12 +467,14 @@ extern_methods!(
         ) -> NSUInteger;
 
         #[method_id(@__retain_semantics Other rasterizationRateMap)]
-        pub fn rasterizationRateMap(&self) -> Option<Id<MTLRasterizationRateMap, Shared>>;
+        pub fn rasterizationRateMap(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn MTLRasterizationRateMap>, Shared>>;
 
         #[method(setRasterizationRateMap:)]
         pub fn setRasterizationRateMap(
             &self,
-            rasterization_rate_map: Option<&MTLRasterizationRateMap>,
+            rasterization_rate_map: Option<&ProtocolObject<dyn MTLRasterizationRateMap>>,
         );
 
         #[cfg(feature = "Metal_MTLRenderPassSampleBufferAttachmentDescriptorArray")]

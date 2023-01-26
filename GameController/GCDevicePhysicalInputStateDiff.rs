@@ -15,19 +15,19 @@ ns_enum!(
 );
 
 extern_protocol!(
-    pub struct GCDevicePhysicalInputStateDiff;
-
-    unsafe impl ProtocolType for GCDevicePhysicalInputStateDiff {
+    pub unsafe trait GCDevicePhysicalInputStateDiff: NSObjectProtocol {
         #[method(changeForElement:)]
-        pub unsafe fn changeForElement(
+        unsafe fn changeForElement(
             &self,
-            element: &GCPhysicalInputElement,
+            element: &ProtocolObject<dyn GCPhysicalInputElement>,
         ) -> GCDevicePhysicalInputElementChange;
 
         #[cfg(feature = "Foundation_NSEnumerator")]
         #[method_id(@__retain_semantics Other changedElements)]
-        pub unsafe fn changedElements(
+        unsafe fn changedElements(
             &self,
-        ) -> Option<Id<NSEnumerator<GCPhysicalInputElement>, Shared>>;
+        ) -> Option<Id<NSEnumerator<ProtocolObject<dyn GCPhysicalInputElement>>, Shared>>;
     }
+
+    unsafe impl ProtocolType for dyn GCDevicePhysicalInputStateDiff {}
 );

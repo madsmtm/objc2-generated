@@ -80,13 +80,16 @@ extern_methods!(
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics New newCaptureScopeWithDevice:)]
-        pub fn newCaptureScopeWithDevice(&self, device: &MTLDevice) -> Id<MTLCaptureScope, Shared>;
+        pub fn newCaptureScopeWithDevice(
+            &self,
+            device: &ProtocolObject<dyn MTLDevice>,
+        ) -> Id<ProtocolObject<dyn MTLCaptureScope>, Shared>;
 
         #[method_id(@__retain_semantics New newCaptureScopeWithCommandQueue:)]
         pub fn newCaptureScopeWithCommandQueue(
             &self,
-            command_queue: &MTLCommandQueue,
-        ) -> Id<MTLCaptureScope, Shared>;
+            command_queue: &ProtocolObject<dyn MTLCommandQueue>,
+        ) -> Id<ProtocolObject<dyn MTLCaptureScope>, Shared>;
 
         #[method(supportsDestination:)]
         pub fn supportsDestination(&self, destination: MTLCaptureDestination) -> bool;
@@ -100,24 +103,32 @@ extern_methods!(
 
         #[deprecated = "Use startCaptureWithDescriptor:error: instead"]
         #[method(startCaptureWithDevice:)]
-        pub fn startCaptureWithDevice(&self, device: &MTLDevice);
+        pub fn startCaptureWithDevice(&self, device: &ProtocolObject<dyn MTLDevice>);
 
         #[deprecated = "Use startCaptureWithDescriptor:error: instead"]
         #[method(startCaptureWithCommandQueue:)]
-        pub fn startCaptureWithCommandQueue(&self, command_queue: &MTLCommandQueue);
+        pub fn startCaptureWithCommandQueue(
+            &self,
+            command_queue: &ProtocolObject<dyn MTLCommandQueue>,
+        );
 
         #[deprecated = "Use startCaptureWithDescriptor:error: instead"]
         #[method(startCaptureWithScope:)]
-        pub fn startCaptureWithScope(&self, capture_scope: &MTLCaptureScope);
+        pub fn startCaptureWithScope(&self, capture_scope: &ProtocolObject<dyn MTLCaptureScope>);
 
         #[method(stopCapture)]
         pub fn stopCapture(&self);
 
         #[method_id(@__retain_semantics Other defaultCaptureScope)]
-        pub fn defaultCaptureScope(&self) -> Option<Id<MTLCaptureScope, Shared>>;
+        pub fn defaultCaptureScope(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn MTLCaptureScope>, Shared>>;
 
         #[method(setDefaultCaptureScope:)]
-        pub fn setDefaultCaptureScope(&self, default_capture_scope: Option<&MTLCaptureScope>);
+        pub fn setDefaultCaptureScope(
+            &self,
+            default_capture_scope: Option<&ProtocolObject<dyn MTLCaptureScope>>,
+        );
 
         #[method(isCapturing)]
         pub fn isCapturing(&self) -> bool;

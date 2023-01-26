@@ -71,24 +71,24 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct AXCustomContentProvider;
-
-    unsafe impl ProtocolType for AXCustomContentProvider {
+    pub unsafe trait AXCustomContentProvider: NSObjectProtocol {
         #[cfg(all(
             feature = "Accessibility_AXCustomContent",
             feature = "Foundation_NSArray"
         ))]
         #[method_id(@__retain_semantics Other accessibilityCustomContent)]
-        pub unsafe fn accessibilityCustomContent(&self) -> Id<NSArray<AXCustomContent>, Shared>;
+        unsafe fn accessibilityCustomContent(&self) -> Id<NSArray<AXCustomContent>, Shared>;
 
         #[cfg(all(
             feature = "Accessibility_AXCustomContent",
             feature = "Foundation_NSArray"
         ))]
         #[method(setAccessibilityCustomContent:)]
-        pub unsafe fn setAccessibilityCustomContent(
+        unsafe fn setAccessibilityCustomContent(
             &self,
             accessibility_custom_content: Option<&NSArray<AXCustomContent>>,
         );
     }
+
+    unsafe impl ProtocolType for dyn AXCustomContentProvider {}
 );

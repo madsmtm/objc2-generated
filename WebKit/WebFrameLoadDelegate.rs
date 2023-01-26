@@ -7,13 +7,11 @@ use crate::WebKit::*;
 
 extern_protocol!(
     #[deprecated]
-    pub struct WebFrameLoadDelegate;
-
-    unsafe impl ProtocolType for WebFrameLoadDelegate {
+    pub unsafe trait WebFrameLoadDelegate: NSObjectProtocol {
         #[cfg(all(feature = "WebKit_WebFrame", feature = "WebKit_WebView"))]
         #[optional]
         #[method(webView:didStartProvisionalLoadForFrame:)]
-        pub unsafe fn webView_didStartProvisionalLoadForFrame(
+        unsafe fn webView_didStartProvisionalLoadForFrame(
             &self,
             sender: Option<&WebView>,
             frame: Option<&WebFrame>,
@@ -22,7 +20,7 @@ extern_protocol!(
         #[cfg(all(feature = "WebKit_WebFrame", feature = "WebKit_WebView"))]
         #[optional]
         #[method(webView:didReceiveServerRedirectForProvisionalLoadForFrame:)]
-        pub unsafe fn webView_didReceiveServerRedirectForProvisionalLoadForFrame(
+        unsafe fn webView_didReceiveServerRedirectForProvisionalLoadForFrame(
             &self,
             sender: Option<&WebView>,
             frame: Option<&WebFrame>,
@@ -35,7 +33,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(webView:didFailProvisionalLoadWithError:forFrame:)]
-        pub unsafe fn webView_didFailProvisionalLoadWithError_forFrame(
+        unsafe fn webView_didFailProvisionalLoadWithError_forFrame(
             &self,
             sender: Option<&WebView>,
             error: Option<&NSError>,
@@ -45,7 +43,7 @@ extern_protocol!(
         #[cfg(all(feature = "WebKit_WebFrame", feature = "WebKit_WebView"))]
         #[optional]
         #[method(webView:didCommitLoadForFrame:)]
-        pub unsafe fn webView_didCommitLoadForFrame(
+        unsafe fn webView_didCommitLoadForFrame(
             &self,
             sender: Option<&WebView>,
             frame: Option<&WebFrame>,
@@ -58,7 +56,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(webView:didReceiveTitle:forFrame:)]
-        pub unsafe fn webView_didReceiveTitle_forFrame(
+        unsafe fn webView_didReceiveTitle_forFrame(
             &self,
             sender: Option<&WebView>,
             title: Option<&NSString>,
@@ -72,7 +70,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(webView:didReceiveIcon:forFrame:)]
-        pub unsafe fn webView_didReceiveIcon_forFrame(
+        unsafe fn webView_didReceiveIcon_forFrame(
             &self,
             sender: Option<&WebView>,
             image: Option<&NSImage>,
@@ -82,7 +80,7 @@ extern_protocol!(
         #[cfg(all(feature = "WebKit_WebFrame", feature = "WebKit_WebView"))]
         #[optional]
         #[method(webView:didFinishLoadForFrame:)]
-        pub unsafe fn webView_didFinishLoadForFrame(
+        unsafe fn webView_didFinishLoadForFrame(
             &self,
             sender: Option<&WebView>,
             frame: Option<&WebFrame>,
@@ -95,7 +93,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(webView:didFailLoadWithError:forFrame:)]
-        pub unsafe fn webView_didFailLoadWithError_forFrame(
+        unsafe fn webView_didFailLoadWithError_forFrame(
             &self,
             sender: Option<&WebView>,
             error: Option<&NSError>,
@@ -105,7 +103,7 @@ extern_protocol!(
         #[cfg(all(feature = "WebKit_WebFrame", feature = "WebKit_WebView"))]
         #[optional]
         #[method(webView:didChangeLocationWithinPageForFrame:)]
-        pub unsafe fn webView_didChangeLocationWithinPageForFrame(
+        unsafe fn webView_didChangeLocationWithinPageForFrame(
             &self,
             sender: Option<&WebView>,
             frame: Option<&WebFrame>,
@@ -119,7 +117,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(webView:willPerformClientRedirectToURL:delay:fireDate:forFrame:)]
-        pub unsafe fn webView_willPerformClientRedirectToURL_delay_fireDate_forFrame(
+        unsafe fn webView_willPerformClientRedirectToURL_delay_fireDate_forFrame(
             &self,
             sender: Option<&WebView>,
             url: Option<&NSURL>,
@@ -131,7 +129,7 @@ extern_protocol!(
         #[cfg(all(feature = "WebKit_WebFrame", feature = "WebKit_WebView"))]
         #[optional]
         #[method(webView:didCancelClientRedirectForFrame:)]
-        pub unsafe fn webView_didCancelClientRedirectForFrame(
+        unsafe fn webView_didCancelClientRedirectForFrame(
             &self,
             sender: Option<&WebView>,
             frame: Option<&WebFrame>,
@@ -140,11 +138,7 @@ extern_protocol!(
         #[cfg(all(feature = "WebKit_WebFrame", feature = "WebKit_WebView"))]
         #[optional]
         #[method(webView:willCloseFrame:)]
-        pub unsafe fn webView_willCloseFrame(
-            &self,
-            sender: Option<&WebView>,
-            frame: Option<&WebFrame>,
-        );
+        unsafe fn webView_willCloseFrame(&self, sender: Option<&WebView>, frame: Option<&WebFrame>);
 
         #[cfg(all(
             feature = "WebKit_WebFrame",
@@ -153,7 +147,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(webView:didClearWindowObject:forFrame:)]
-        pub unsafe fn webView_didClearWindowObject_forFrame(
+        unsafe fn webView_didClearWindowObject_forFrame(
             &self,
             web_view: Option<&WebView>,
             window_object: Option<&WebScriptObject>,
@@ -164,10 +158,12 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:windowScriptObjectAvailable:)]
-        pub unsafe fn webView_windowScriptObjectAvailable(
+        unsafe fn webView_windowScriptObjectAvailable(
             &self,
             web_view: Option<&WebView>,
             window_script_object: Option<&WebScriptObject>,
         );
     }
+
+    unsafe impl ProtocolType for dyn WebFrameLoadDelegate {}
 );

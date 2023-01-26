@@ -4,44 +4,44 @@ use crate::common::*;
 use crate::Foundation::*;
 
 extern_protocol!(
-    pub struct NSCoding;
-
-    unsafe impl ProtocolType for NSCoding {
+    pub unsafe trait NSCoding {
         #[cfg(feature = "Foundation_NSCoder")]
         #[method(encodeWithCoder:)]
-        pub unsafe fn encodeWithCoder(&self, coder: &NSCoder);
+        unsafe fn encodeWithCoder(&self, coder: &NSCoder);
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
+        unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
         ) -> Option<Id<Self, Shared>>;
     }
+
+    unsafe impl ProtocolType for dyn NSCoding {}
 );
 
 extern_protocol!(
-    pub struct NSSecureCoding;
+    pub unsafe trait NSSecureCoding: NSCoding {}
 
-    unsafe impl ProtocolType for NSSecureCoding {}
+    unsafe impl ProtocolType for dyn NSSecureCoding {}
 );
 
 extern_protocol!(
-    pub struct NSDiscardableContent;
-
-    unsafe impl ProtocolType for NSDiscardableContent {
+    pub unsafe trait NSDiscardableContent {
         #[method(beginContentAccess)]
-        pub unsafe fn beginContentAccess(&self) -> bool;
+        unsafe fn beginContentAccess(&self) -> bool;
 
         #[method(endContentAccess)]
-        pub unsafe fn endContentAccess(&self);
+        unsafe fn endContentAccess(&self);
 
         #[method(discardContentIfPossible)]
-        pub unsafe fn discardContentIfPossible(&self);
+        unsafe fn discardContentIfPossible(&self);
 
         #[method(isContentDiscarded)]
-        pub unsafe fn isContentDiscarded(&self) -> bool;
+        unsafe fn isContentDiscarded(&self) -> bool;
     }
+
+    unsafe impl ProtocolType for dyn NSDiscardableContent {}
 );
 
 extern_fn!(

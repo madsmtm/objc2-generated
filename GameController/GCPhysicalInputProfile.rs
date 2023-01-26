@@ -20,7 +20,7 @@ extern_methods!(
     #[cfg(feature = "GameController_GCPhysicalInputProfile")]
     unsafe impl GCPhysicalInputProfile {
         #[method_id(@__retain_semantics Other device)]
-        pub unsafe fn device(&self) -> Option<Id<GCDevice, Shared>>;
+        pub unsafe fn device(&self) -> Option<Id<ProtocolObject<dyn GCDevice>, Shared>>;
 
         #[method(lastEventTimestamp)]
         pub unsafe fn lastEventTimestamp(&self) -> NSTimeInterval;

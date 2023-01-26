@@ -690,12 +690,10 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct NSViewToolTipOwner;
-
-    unsafe impl ProtocolType for NSViewToolTipOwner {
+    pub unsafe trait NSViewToolTipOwner: NSObjectProtocol {
         #[cfg(all(feature = "AppKit_NSView", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other view:stringForToolTip:point:userData:)]
-        pub unsafe fn view_stringForToolTip_point_userData(
+        unsafe fn view_stringForToolTip_point_userData(
             &self,
             view: &NSView,
             tag: NSToolTipTag,
@@ -703,6 +701,8 @@ extern_protocol!(
             data: *mut c_void,
         ) -> Id<NSString, Shared>;
     }
+
+    unsafe impl ProtocolType for dyn NSViewToolTipOwner {}
 );
 
 extern_methods!(
@@ -862,7 +862,7 @@ extern_methods!(
             &self,
             items: &NSArray<NSDraggingItem>,
             event: &NSEvent,
-            source: &NSDraggingSource,
+            source: &ProtocolObject<dyn NSDraggingSource>,
         ) -> Id<NSDraggingSession, Shared>;
 
         #[cfg(feature = "Foundation_NSArray")]

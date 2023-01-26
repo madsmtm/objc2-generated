@@ -54,10 +54,15 @@ extern_methods!(
         ) -> Option<Id<Self, Shared>>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<MKLookAroundViewControllerDelegate, Shared>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn MKLookAroundViewControllerDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&MKLookAroundViewControllerDelegate>);
+        pub unsafe fn setDelegate(
+            &self,
+            delegate: Option<&ProtocolObject<dyn MKLookAroundViewControllerDelegate>>,
+        );
 
         #[cfg(feature = "MapKit_MKLookAroundScene")]
         #[method_id(@__retain_semantics Other scene)]
@@ -99,13 +104,11 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct MKLookAroundViewControllerDelegate;
-
-    unsafe impl ProtocolType for MKLookAroundViewControllerDelegate {
+    pub unsafe trait MKLookAroundViewControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "MapKit_MKLookAroundViewController")]
         #[optional]
         #[method(lookAroundViewControllerWillUpdateScene:)]
-        pub unsafe fn lookAroundViewControllerWillUpdateScene(
+        unsafe fn lookAroundViewControllerWillUpdateScene(
             &self,
             view_controller: &MKLookAroundViewController,
         );
@@ -113,7 +116,7 @@ extern_protocol!(
         #[cfg(feature = "MapKit_MKLookAroundViewController")]
         #[optional]
         #[method(lookAroundViewControllerDidUpdateScene:)]
-        pub unsafe fn lookAroundViewControllerDidUpdateScene(
+        unsafe fn lookAroundViewControllerDidUpdateScene(
             &self,
             view_controller: &MKLookAroundViewController,
         );
@@ -121,7 +124,7 @@ extern_protocol!(
         #[cfg(feature = "MapKit_MKLookAroundViewController")]
         #[optional]
         #[method(lookAroundViewControllerWillPresentFullScreen:)]
-        pub unsafe fn lookAroundViewControllerWillPresentFullScreen(
+        unsafe fn lookAroundViewControllerWillPresentFullScreen(
             &self,
             view_controller: &MKLookAroundViewController,
         );
@@ -129,7 +132,7 @@ extern_protocol!(
         #[cfg(feature = "MapKit_MKLookAroundViewController")]
         #[optional]
         #[method(lookAroundViewControllerDidPresentFullScreen:)]
-        pub unsafe fn lookAroundViewControllerDidPresentFullScreen(
+        unsafe fn lookAroundViewControllerDidPresentFullScreen(
             &self,
             view_controller: &MKLookAroundViewController,
         );
@@ -137,7 +140,7 @@ extern_protocol!(
         #[cfg(feature = "MapKit_MKLookAroundViewController")]
         #[optional]
         #[method(lookAroundViewControllerWillDismissFullScreen:)]
-        pub unsafe fn lookAroundViewControllerWillDismissFullScreen(
+        unsafe fn lookAroundViewControllerWillDismissFullScreen(
             &self,
             view_controller: &MKLookAroundViewController,
         );
@@ -145,9 +148,11 @@ extern_protocol!(
         #[cfg(feature = "MapKit_MKLookAroundViewController")]
         #[optional]
         #[method(lookAroundViewControllerDidDismissFullScreen:)]
-        pub unsafe fn lookAroundViewControllerDidDismissFullScreen(
+        unsafe fn lookAroundViewControllerDidDismissFullScreen(
             &self,
             view_controller: &MKLookAroundViewController,
         );
     }
+
+    unsafe impl ProtocolType for dyn MKLookAroundViewControllerDelegate {}
 );

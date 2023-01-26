@@ -4,28 +4,28 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::Metal::*;
 
-pub type MTLDrawablePresentedHandler = *mut Block<(NonNull<MTLDrawable>,), ()>;
+pub type MTLDrawablePresentedHandler = *mut Block<(NonNull<ProtocolObject<dyn MTLDrawable>>,), ()>;
 
 extern_protocol!(
-    pub struct MTLDrawable;
-
-    unsafe impl ProtocolType for MTLDrawable {
+    pub unsafe trait MTLDrawable: NSObjectProtocol {
         #[method(present)]
-        pub fn present(&self);
+        fn present(&self);
 
         #[method(presentAtTime:)]
-        pub unsafe fn presentAtTime(&self, presentation_time: CFTimeInterval);
+        unsafe fn presentAtTime(&self, presentation_time: CFTimeInterval);
 
         #[method(presentAfterMinimumDuration:)]
-        pub unsafe fn presentAfterMinimumDuration(&self, duration: CFTimeInterval);
+        unsafe fn presentAfterMinimumDuration(&self, duration: CFTimeInterval);
 
         #[method(addPresentedHandler:)]
-        pub unsafe fn addPresentedHandler(&self, block: MTLDrawablePresentedHandler);
+        unsafe fn addPresentedHandler(&self, block: MTLDrawablePresentedHandler);
 
         #[method(presentedTime)]
-        pub unsafe fn presentedTime(&self) -> CFTimeInterval;
+        unsafe fn presentedTime(&self) -> CFTimeInterval;
 
         #[method(drawableID)]
-        pub fn drawableID(&self) -> NSUInteger;
+        fn drawableID(&self) -> NSUInteger;
     }
+
+    unsafe impl ProtocolType for dyn MTLDrawable {}
 );

@@ -31,10 +31,10 @@ extern_methods!(
         pub unsafe fn isValid(&self) -> bool;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, an_object: Option<&NSPortDelegate>);
+        pub unsafe fn setDelegate(&self, an_object: Option<&ProtocolObject<dyn NSPortDelegate>>);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<NSPortDelegate, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSPortDelegate>, Shared>>;
 
         #[cfg(feature = "Foundation_NSRunLoop")]
         #[method(scheduleInRunLoop:forMode:)]
@@ -91,14 +91,14 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct NSPortDelegate;
-
-    unsafe impl ProtocolType for NSPortDelegate {
+    pub unsafe trait NSPortDelegate: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSPortMessage")]
         #[optional]
         #[method(handlePortMessage:)]
-        pub unsafe fn handlePortMessage(&self, message: &NSPortMessage);
+        unsafe fn handlePortMessage(&self, message: &NSPortMessage);
     }
+
+    unsafe impl ProtocolType for dyn NSPortDelegate {}
 );
 
 ns_options!(
@@ -135,10 +135,14 @@ extern_methods!(
         ) -> Id<Self, Shared>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, an_object: Option<&NSMachPortDelegate>);
+        pub unsafe fn setDelegate(
+            &self,
+            an_object: Option<&ProtocolObject<dyn NSMachPortDelegate>>,
+        );
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<NSMachPortDelegate, Shared>>;
+        pub unsafe fn delegate(&self)
+            -> Option<Id<ProtocolObject<dyn NSMachPortDelegate>, Shared>>;
 
         #[method_id(@__retain_semantics Other portWithMachPort:options:)]
         pub unsafe fn portWithMachPort_options(
@@ -167,13 +171,13 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct NSMachPortDelegate;
-
-    unsafe impl ProtocolType for NSMachPortDelegate {
+    pub unsafe trait NSMachPortDelegate: NSPortDelegate {
         #[optional]
         #[method(handleMachMessage:)]
-        pub unsafe fn handleMachMessage(&self, msg: NonNull<c_void>);
+        unsafe fn handleMachMessage(&self, msg: NonNull<c_void>);
     }
+
+    unsafe impl ProtocolType for dyn NSMachPortDelegate {}
 );
 
 extern_class!(

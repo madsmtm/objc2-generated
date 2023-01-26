@@ -110,10 +110,15 @@ extern_methods!(
         pub unsafe fn setSupportsContinuationStreams(&self, supports_continuation_streams: bool);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<NSUserActivityDelegate, Shared>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn NSUserActivityDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&NSUserActivityDelegate>);
+        pub unsafe fn setDelegate(
+            &self,
+            delegate: Option<&ProtocolObject<dyn NSUserActivityDelegate>>,
+        );
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other targetContentIdentifier)]
@@ -196,18 +201,16 @@ extern_methods!(
 extern_static!(NSUserActivityTypeBrowsingWeb: &'static NSString);
 
 extern_protocol!(
-    pub struct NSUserActivityDelegate;
-
-    unsafe impl ProtocolType for NSUserActivityDelegate {
+    pub unsafe trait NSUserActivityDelegate: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSUserActivity")]
         #[optional]
         #[method(userActivityWillSave:)]
-        pub unsafe fn userActivityWillSave(&self, user_activity: &NSUserActivity);
+        unsafe fn userActivityWillSave(&self, user_activity: &NSUserActivity);
 
         #[cfg(feature = "Foundation_NSUserActivity")]
         #[optional]
         #[method(userActivityWasContinued:)]
-        pub unsafe fn userActivityWasContinued(&self, user_activity: &NSUserActivity);
+        unsafe fn userActivityWasContinued(&self, user_activity: &NSUserActivity);
 
         #[cfg(all(
             feature = "Foundation_NSInputStream",
@@ -216,11 +219,13 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(userActivity:didReceiveInputStream:outputStream:)]
-        pub unsafe fn userActivity_didReceiveInputStream_outputStream(
+        unsafe fn userActivity_didReceiveInputStream_outputStream(
             &self,
             user_activity: &NSUserActivity,
             input_stream: &NSInputStream,
             output_stream: &NSOutputStream,
         );
     }
+
+    unsafe impl ProtocolType for dyn NSUserActivityDelegate {}
 );

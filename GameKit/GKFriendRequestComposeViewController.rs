@@ -50,30 +50,32 @@ extern_methods!(
         #[method_id(@__retain_semantics Other composeViewDelegate)]
         pub unsafe fn composeViewDelegate(
             &self,
-        ) -> Option<Id<GKFriendRequestComposeViewControllerDelegate, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn GKFriendRequestComposeViewControllerDelegate>, Shared>>;
 
         #[deprecated]
         #[method(setComposeViewDelegate:)]
         pub unsafe fn setComposeViewDelegate(
             &self,
-            compose_view_delegate: Option<&GKFriendRequestComposeViewControllerDelegate>,
+            compose_view_delegate: Option<
+                &ProtocolObject<dyn GKFriendRequestComposeViewControllerDelegate>,
+            >,
         );
     }
 );
 
 extern_protocol!(
     #[deprecated]
-    pub struct GKFriendRequestComposeViewControllerDelegate;
-
-    unsafe impl ProtocolType for GKFriendRequestComposeViewControllerDelegate {
+    pub unsafe trait GKFriendRequestComposeViewControllerDelegate {
         #[cfg(feature = "GameKit_GKFriendRequestComposeViewController")]
         #[deprecated]
         #[method(friendRequestComposeViewControllerDidFinish:)]
-        pub unsafe fn friendRequestComposeViewControllerDidFinish(
+        unsafe fn friendRequestComposeViewControllerDidFinish(
             &self,
             view_controller: &GKFriendRequestComposeViewController,
         );
     }
+
+    unsafe impl ProtocolType for dyn GKFriendRequestComposeViewControllerDelegate {}
 );
 
 extern_methods!(

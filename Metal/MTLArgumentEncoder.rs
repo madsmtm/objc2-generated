@@ -5,165 +5,171 @@ use crate::Foundation::*;
 use crate::Metal::*;
 
 extern_protocol!(
-    pub struct MTLArgumentEncoder;
-
-    unsafe impl ProtocolType for MTLArgumentEncoder {
+    pub unsafe trait MTLArgumentEncoder: NSObjectProtocol {
         #[method_id(@__retain_semantics Other device)]
-        pub unsafe fn device(&self) -> Id<MTLDevice, Shared>;
+        unsafe fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
-        pub unsafe fn label(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn label(&self) -> Option<Id<NSString, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:)]
-        pub unsafe fn setLabel(&self, label: Option<&NSString>);
+        unsafe fn setLabel(&self, label: Option<&NSString>);
 
         #[method(encodedLength)]
-        pub fn encodedLength(&self) -> NSUInteger;
+        fn encodedLength(&self) -> NSUInteger;
 
         #[method(alignment)]
-        pub fn alignment(&self) -> NSUInteger;
+        fn alignment(&self) -> NSUInteger;
 
         #[method(setArgumentBuffer:offset:)]
-        pub unsafe fn setArgumentBuffer_offset(
+        unsafe fn setArgumentBuffer_offset(
             &self,
-            argument_buffer: Option<&MTLBuffer>,
+            argument_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
             offset: NSUInteger,
         );
 
         #[method(setArgumentBuffer:startOffset:arrayElement:)]
-        pub unsafe fn setArgumentBuffer_startOffset_arrayElement(
+        unsafe fn setArgumentBuffer_startOffset_arrayElement(
             &self,
-            argument_buffer: Option<&MTLBuffer>,
+            argument_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
             start_offset: NSUInteger,
             array_element: NSUInteger,
         );
 
         #[method(setBuffer:offset:atIndex:)]
-        pub unsafe fn setBuffer_offset_atIndex(
+        unsafe fn setBuffer_offset_atIndex(
             &self,
-            buffer: Option<&MTLBuffer>,
+            buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
             offset: NSUInteger,
             index: NSUInteger,
         );
 
         #[method(setBuffers:offsets:withRange:)]
-        pub unsafe fn setBuffers_offsets_withRange(
+        unsafe fn setBuffers_offsets_withRange(
             &self,
-            buffers: NonNull<*const MTLBuffer>,
+            buffers: NonNull<*const ProtocolObject<dyn MTLBuffer>>,
             offsets: NonNull<NSUInteger>,
             range: NSRange,
         );
 
         #[method(setTexture:atIndex:)]
-        pub unsafe fn setTexture_atIndex(&self, texture: Option<&MTLTexture>, index: NSUInteger);
+        unsafe fn setTexture_atIndex(
+            &self,
+            texture: Option<&ProtocolObject<dyn MTLTexture>>,
+            index: NSUInteger,
+        );
 
         #[method(setTextures:withRange:)]
-        pub unsafe fn setTextures_withRange(
+        unsafe fn setTextures_withRange(
             &self,
-            textures: NonNull<*const MTLTexture>,
+            textures: NonNull<*const ProtocolObject<dyn MTLTexture>>,
             range: NSRange,
         );
 
         #[method(setSamplerState:atIndex:)]
-        pub unsafe fn setSamplerState_atIndex(
+        unsafe fn setSamplerState_atIndex(
             &self,
-            sampler: Option<&MTLSamplerState>,
+            sampler: Option<&ProtocolObject<dyn MTLSamplerState>>,
             index: NSUInteger,
         );
 
         #[method(setSamplerStates:withRange:)]
-        pub unsafe fn setSamplerStates_withRange(
+        unsafe fn setSamplerStates_withRange(
             &self,
-            samplers: NonNull<*const MTLSamplerState>,
+            samplers: NonNull<*const ProtocolObject<dyn MTLSamplerState>>,
             range: NSRange,
         );
 
         #[method(constantDataAtIndex:)]
-        pub unsafe fn constantDataAtIndex(&self, index: NSUInteger) -> NonNull<c_void>;
+        unsafe fn constantDataAtIndex(&self, index: NSUInteger) -> NonNull<c_void>;
 
         #[method(setRenderPipelineState:atIndex:)]
-        pub unsafe fn setRenderPipelineState_atIndex(
+        unsafe fn setRenderPipelineState_atIndex(
             &self,
-            pipeline: Option<&MTLRenderPipelineState>,
+            pipeline: Option<&ProtocolObject<dyn MTLRenderPipelineState>>,
             index: NSUInteger,
         );
 
         #[method(setRenderPipelineStates:withRange:)]
-        pub unsafe fn setRenderPipelineStates_withRange(
+        unsafe fn setRenderPipelineStates_withRange(
             &self,
-            pipelines: NonNull<*const MTLRenderPipelineState>,
+            pipelines: NonNull<*const ProtocolObject<dyn MTLRenderPipelineState>>,
             range: NSRange,
         );
 
         #[method(setComputePipelineState:atIndex:)]
-        pub unsafe fn setComputePipelineState_atIndex(
+        unsafe fn setComputePipelineState_atIndex(
             &self,
-            pipeline: Option<&MTLComputePipelineState>,
+            pipeline: Option<&ProtocolObject<dyn MTLComputePipelineState>>,
             index: NSUInteger,
         );
 
         #[method(setComputePipelineStates:withRange:)]
-        pub unsafe fn setComputePipelineStates_withRange(
+        unsafe fn setComputePipelineStates_withRange(
             &self,
-            pipelines: NonNull<*const MTLComputePipelineState>,
+            pipelines: NonNull<*const ProtocolObject<dyn MTLComputePipelineState>>,
             range: NSRange,
         );
 
         #[method(setIndirectCommandBuffer:atIndex:)]
-        pub unsafe fn setIndirectCommandBuffer_atIndex(
+        unsafe fn setIndirectCommandBuffer_atIndex(
             &self,
-            indirect_command_buffer: Option<&MTLIndirectCommandBuffer>,
+            indirect_command_buffer: Option<&ProtocolObject<dyn MTLIndirectCommandBuffer>>,
             index: NSUInteger,
         );
 
         #[method(setIndirectCommandBuffers:withRange:)]
-        pub unsafe fn setIndirectCommandBuffers_withRange(
+        unsafe fn setIndirectCommandBuffers_withRange(
             &self,
-            buffers: NonNull<*const MTLIndirectCommandBuffer>,
+            buffers: NonNull<*const ProtocolObject<dyn MTLIndirectCommandBuffer>>,
             range: NSRange,
         );
 
         #[method(setAccelerationStructure:atIndex:)]
-        pub unsafe fn setAccelerationStructure_atIndex(
+        unsafe fn setAccelerationStructure_atIndex(
             &self,
-            acceleration_structure: Option<&MTLAccelerationStructure>,
+            acceleration_structure: Option<&ProtocolObject<dyn MTLAccelerationStructure>>,
             index: NSUInteger,
         );
 
         #[method_id(@__retain_semantics New newArgumentEncoderForBufferAtIndex:)]
-        pub unsafe fn newArgumentEncoderForBufferAtIndex(
+        unsafe fn newArgumentEncoderForBufferAtIndex(
             &self,
             index: NSUInteger,
-        ) -> Option<Id<MTLArgumentEncoder, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLArgumentEncoder>, Shared>>;
 
         #[method(setVisibleFunctionTable:atIndex:)]
-        pub unsafe fn setVisibleFunctionTable_atIndex(
+        unsafe fn setVisibleFunctionTable_atIndex(
             &self,
-            visible_function_table: Option<&MTLVisibleFunctionTable>,
+            visible_function_table: Option<&ProtocolObject<dyn MTLVisibleFunctionTable>>,
             index: NSUInteger,
         );
 
         #[method(setVisibleFunctionTables:withRange:)]
-        pub unsafe fn setVisibleFunctionTables_withRange(
+        unsafe fn setVisibleFunctionTables_withRange(
             &self,
-            visible_function_tables: NonNull<*const MTLVisibleFunctionTable>,
+            visible_function_tables: NonNull<*const ProtocolObject<dyn MTLVisibleFunctionTable>>,
             range: NSRange,
         );
 
         #[method(setIntersectionFunctionTable:atIndex:)]
-        pub unsafe fn setIntersectionFunctionTable_atIndex(
+        unsafe fn setIntersectionFunctionTable_atIndex(
             &self,
-            intersection_function_table: Option<&MTLIntersectionFunctionTable>,
+            intersection_function_table: Option<&ProtocolObject<dyn MTLIntersectionFunctionTable>>,
             index: NSUInteger,
         );
 
         #[method(setIntersectionFunctionTables:withRange:)]
-        pub unsafe fn setIntersectionFunctionTables_withRange(
+        unsafe fn setIntersectionFunctionTables_withRange(
             &self,
-            intersection_function_tables: NonNull<*const MTLIntersectionFunctionTable>,
+            intersection_function_tables: NonNull<
+                *const ProtocolObject<dyn MTLIntersectionFunctionTable>,
+            >,
             range: NSRange,
         );
     }
+
+    unsafe impl ProtocolType for dyn MTLArgumentEncoder {}
 );

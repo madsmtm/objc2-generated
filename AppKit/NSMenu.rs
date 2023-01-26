@@ -193,10 +193,10 @@ extern_methods!(
         pub unsafe fn performActionForItemAtIndex(&self, index: NSInteger);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<NSMenuDelegate, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSMenuDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&NSMenuDelegate>);
+        pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSMenuDelegate>>);
 
         #[method(menuBarHeight)]
         pub unsafe fn menuBarHeight(&self) -> CGFloat;
@@ -261,33 +261,31 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct NSMenuItemValidation;
-
-    unsafe impl ProtocolType for NSMenuItemValidation {
+    pub unsafe trait NSMenuItemValidation: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSMenuItem")]
         #[method(validateMenuItem:)]
-        pub unsafe fn validateMenuItem(&self, menu_item: &NSMenuItem) -> bool;
+        unsafe fn validateMenuItem(&self, menu_item: &NSMenuItem) -> bool;
     }
+
+    unsafe impl ProtocolType for dyn NSMenuItemValidation {}
 );
 
 extern_protocol!(
-    pub struct NSMenuDelegate;
-
-    unsafe impl ProtocolType for NSMenuDelegate {
+    pub unsafe trait NSMenuDelegate: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSMenu")]
         #[optional]
         #[method(menuNeedsUpdate:)]
-        pub unsafe fn menuNeedsUpdate(&self, menu: &NSMenu);
+        unsafe fn menuNeedsUpdate(&self, menu: &NSMenu);
 
         #[cfg(feature = "AppKit_NSMenu")]
         #[optional]
         #[method(numberOfItemsInMenu:)]
-        pub unsafe fn numberOfItemsInMenu(&self, menu: &NSMenu) -> NSInteger;
+        unsafe fn numberOfItemsInMenu(&self, menu: &NSMenu) -> NSInteger;
 
         #[cfg(all(feature = "AppKit_NSMenu", feature = "AppKit_NSMenuItem"))]
         #[optional]
         #[method(menu:updateItem:atIndex:shouldCancel:)]
-        pub unsafe fn menu_updateItem_atIndex_shouldCancel(
+        unsafe fn menu_updateItem_atIndex_shouldCancel(
             &self,
             menu: &NSMenu,
             item: &NSMenuItem,
@@ -298,27 +296,29 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSMenu")]
         #[optional]
         #[method(menuWillOpen:)]
-        pub unsafe fn menuWillOpen(&self, menu: &NSMenu);
+        unsafe fn menuWillOpen(&self, menu: &NSMenu);
 
         #[cfg(feature = "AppKit_NSMenu")]
         #[optional]
         #[method(menuDidClose:)]
-        pub unsafe fn menuDidClose(&self, menu: &NSMenu);
+        unsafe fn menuDidClose(&self, menu: &NSMenu);
 
         #[cfg(all(feature = "AppKit_NSMenu", feature = "AppKit_NSMenuItem"))]
         #[optional]
         #[method(menu:willHighlightItem:)]
-        pub unsafe fn menu_willHighlightItem(&self, menu: &NSMenu, item: Option<&NSMenuItem>);
+        unsafe fn menu_willHighlightItem(&self, menu: &NSMenu, item: Option<&NSMenuItem>);
 
         #[cfg(all(feature = "AppKit_NSMenu", feature = "AppKit_NSScreen"))]
         #[optional]
         #[method(confinementRectForMenu:onScreen:)]
-        pub unsafe fn confinementRectForMenu_onScreen(
+        unsafe fn confinementRectForMenu_onScreen(
             &self,
             menu: &NSMenu,
             screen: Option<&NSScreen>,
         ) -> NSRect;
     }
+
+    unsafe impl ProtocolType for dyn NSMenuDelegate {}
 );
 
 ns_options!(

@@ -6,25 +6,25 @@ use crate::FileProvider::*;
 use crate::Foundation::*;
 
 extern_protocol!(
-    pub struct NSFileProviderServiceSource;
-
-    unsafe impl ProtocolType for NSFileProviderServiceSource {
+    pub unsafe trait NSFileProviderServiceSource {
         #[method_id(@__retain_semantics Other serviceName)]
-        pub unsafe fn serviceName(&self) -> Id<NSFileProviderServiceName, Shared>;
+        unsafe fn serviceName(&self) -> Id<NSFileProviderServiceName, Shared>;
 
         #[cfg(all(
             feature = "Foundation_NSError",
             feature = "Foundation_NSXPCListenerEndpoint"
         ))]
         #[method_id(@__retain_semantics Other makeListenerEndpointAndReturnError:_)]
-        pub unsafe fn makeListenerEndpointAndReturnError(
+        unsafe fn makeListenerEndpointAndReturnError(
             &self,
         ) -> Result<Id<NSXPCListenerEndpoint, Shared>, Id<NSError, Shared>>;
 
         #[optional]
         #[method(isRestricted)]
-        pub unsafe fn isRestricted(&self) -> bool;
+        unsafe fn isRestricted(&self) -> bool;
     }
+
+    unsafe impl ProtocolType for dyn NSFileProviderServiceSource {}
 );
 
 extern_methods!(
@@ -36,7 +36,10 @@ extern_methods!(
         pub unsafe fn supportedServiceSourcesForItemIdentifier_error(
             &self,
             item_identifier: &NSFileProviderItemIdentifier,
-        ) -> Result<Id<NSArray<NSFileProviderServiceSource>, Shared>, Id<NSError, Shared>>;
+        ) -> Result<
+            Id<NSArray<ProtocolObject<dyn NSFileProviderServiceSource>>, Shared>,
+            Id<NSError, Shared>,
+        >;
     }
 );
 

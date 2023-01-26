@@ -5,17 +5,17 @@ use crate::Foundation::*;
 use crate::Metal::*;
 
 extern_protocol!(
-    pub struct MTLFunctionHandle;
-
-    unsafe impl ProtocolType for MTLFunctionHandle {
+    pub unsafe trait MTLFunctionHandle: NSObjectProtocol {
         #[method(functionType)]
-        pub fn functionType(&self) -> MTLFunctionType;
+        fn functionType(&self) -> MTLFunctionType;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub fn name(&self) -> Id<NSString, Shared>;
+        fn name(&self) -> Id<NSString, Shared>;
 
         #[method_id(@__retain_semantics Other device)]
-        pub fn device(&self) -> Id<MTLDevice, Shared>;
+        fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>, Shared>;
     }
+
+    unsafe impl ProtocolType for dyn MTLFunctionHandle {}
 );

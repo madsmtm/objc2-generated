@@ -91,28 +91,28 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct MTLIndirectCommandBuffer;
-
-    unsafe impl ProtocolType for MTLIndirectCommandBuffer {
+    pub unsafe trait MTLIndirectCommandBuffer: MTLResource {
         #[method(size)]
-        pub fn size(&self) -> NSUInteger;
+        fn size(&self) -> NSUInteger;
 
         #[method(gpuResourceID)]
-        pub unsafe fn gpuResourceID(&self) -> MTLResourceID;
+        unsafe fn gpuResourceID(&self) -> MTLResourceID;
 
         #[method(resetWithRange:)]
-        pub unsafe fn resetWithRange(&self, range: NSRange);
+        unsafe fn resetWithRange(&self, range: NSRange);
 
         #[method_id(@__retain_semantics Other indirectRenderCommandAtIndex:)]
-        pub unsafe fn indirectRenderCommandAtIndex(
+        unsafe fn indirectRenderCommandAtIndex(
             &self,
             command_index: NSUInteger,
-        ) -> Id<MTLIndirectRenderCommand, Shared>;
+        ) -> Id<ProtocolObject<dyn MTLIndirectRenderCommand>, Shared>;
 
         #[method_id(@__retain_semantics Other indirectComputeCommandAtIndex:)]
-        pub unsafe fn indirectComputeCommandAtIndex(
+        unsafe fn indirectComputeCommandAtIndex(
             &self,
             command_index: NSUInteger,
-        ) -> Id<MTLIndirectComputeCommand, Shared>;
+        ) -> Id<ProtocolObject<dyn MTLIndirectComputeCommand>, Shared>;
     }
+
+    unsafe impl ProtocolType for dyn MTLIndirectCommandBuffer {}
 );

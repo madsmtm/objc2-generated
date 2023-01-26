@@ -29,7 +29,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithKeysToFetch:)]
         pub unsafe fn initWithKeysToFetch(
             this: Option<Allocated<Self>>,
-            keys_to_fetch: &NSArray<CNKeyDescriptor>,
+            keys_to_fetch: &NSArray<ProtocolObject<dyn CNKeyDescriptor>>,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSPredicate")]
@@ -42,11 +42,16 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other keysToFetch)]
-        pub unsafe fn keysToFetch(&self) -> Id<NSArray<CNKeyDescriptor>, Shared>;
+        pub unsafe fn keysToFetch(
+            &self,
+        ) -> Id<NSArray<ProtocolObject<dyn CNKeyDescriptor>>, Shared>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setKeysToFetch:)]
-        pub unsafe fn setKeysToFetch(&self, keys_to_fetch: &NSArray<CNKeyDescriptor>);
+        pub unsafe fn setKeysToFetch(
+            &self,
+            keys_to_fetch: &NSArray<ProtocolObject<dyn CNKeyDescriptor>>,
+        );
 
         #[method(mutableObjects)]
         pub unsafe fn mutableObjects(&self) -> bool;

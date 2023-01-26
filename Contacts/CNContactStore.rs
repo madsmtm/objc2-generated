@@ -58,7 +58,7 @@ extern_methods!(
         pub unsafe fn unifiedContactsMatchingPredicate_keysToFetch_error(
             &self,
             predicate: &NSPredicate,
-            keys: &NSArray<CNKeyDescriptor>,
+            keys: &NSArray<ProtocolObject<dyn CNKeyDescriptor>>,
         ) -> Result<Id<NSArray<CNContact>, Shared>, Id<NSError, Shared>>;
 
         #[cfg(all(
@@ -71,7 +71,7 @@ extern_methods!(
         pub unsafe fn unifiedContactWithIdentifier_keysToFetch_error(
             &self,
             identifier: &NSString,
-            keys: &NSArray<CNKeyDescriptor>,
+            keys: &NSArray<ProtocolObject<dyn CNKeyDescriptor>>,
         ) -> Result<Id<CNContact, Shared>, Id<NSError, Shared>>;
 
         #[cfg(all(
@@ -82,7 +82,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other unifiedMeContactWithKeysToFetch:error:_)]
         pub unsafe fn unifiedMeContactWithKeysToFetch_error(
             &self,
-            keys: &NSArray<CNKeyDescriptor>,
+            keys: &NSArray<ProtocolObject<dyn CNKeyDescriptor>>,
         ) -> Result<Id<CNContact, Shared>, Id<NSError, Shared>>;
 
         #[cfg(all(

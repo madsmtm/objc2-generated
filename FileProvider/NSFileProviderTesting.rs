@@ -20,44 +20,52 @@ ns_enum!(
 );
 
 extern_protocol!(
-    pub struct NSFileProviderTestingOperation;
-
-    unsafe impl ProtocolType for NSFileProviderTestingOperation {
+    pub unsafe trait NSFileProviderTestingOperation: NSObjectProtocol {
         #[method(type)]
-        pub unsafe fn r#type(&self) -> NSFileProviderTestingOperationType;
+        unsafe fn r#type(&self) -> NSFileProviderTestingOperationType;
 
         #[method_id(@__retain_semantics Other asIngestion)]
-        pub unsafe fn asIngestion(&self) -> Option<Id<NSFileProviderTestingIngestion, Shared>>;
+        unsafe fn asIngestion(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn NSFileProviderTestingIngestion>, Shared>>;
 
         #[method_id(@__retain_semantics Other asLookup)]
-        pub unsafe fn asLookup(&self) -> Option<Id<NSFileProviderTestingLookup, Shared>>;
+        unsafe fn asLookup(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn NSFileProviderTestingLookup>, Shared>>;
 
         #[method_id(@__retain_semantics Other asCreation)]
-        pub unsafe fn asCreation(&self) -> Option<Id<NSFileProviderTestingCreation, Shared>>;
+        unsafe fn asCreation(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn NSFileProviderTestingCreation>, Shared>>;
 
         #[method_id(@__retain_semantics Other asModification)]
-        pub unsafe fn asModification(
+        unsafe fn asModification(
             &self,
-        ) -> Option<Id<NSFileProviderTestingModification, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn NSFileProviderTestingModification>, Shared>>;
 
         #[method_id(@__retain_semantics Other asDeletion)]
-        pub unsafe fn asDeletion(&self) -> Option<Id<NSFileProviderTestingDeletion, Shared>>;
+        unsafe fn asDeletion(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn NSFileProviderTestingDeletion>, Shared>>;
 
         #[method_id(@__retain_semantics Other asContentFetch)]
-        pub unsafe fn asContentFetch(
+        unsafe fn asContentFetch(
             &self,
-        ) -> Option<Id<NSFileProviderTestingContentFetch, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn NSFileProviderTestingContentFetch>, Shared>>;
 
         #[method_id(@__retain_semantics Other asChildrenEnumeration)]
-        pub unsafe fn asChildrenEnumeration(
+        unsafe fn asChildrenEnumeration(
             &self,
-        ) -> Option<Id<NSFileProviderTestingChildrenEnumeration, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn NSFileProviderTestingChildrenEnumeration>, Shared>>;
 
         #[method_id(@__retain_semantics Other asCollisionResolution)]
-        pub unsafe fn asCollisionResolution(
+        unsafe fn asCollisionResolution(
             &self,
-        ) -> Option<Id<NSFileProviderTestingCollisionResolution, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn NSFileProviderTestingCollisionResolution>, Shared>>;
     }
+
+    unsafe impl ProtocolType for dyn NSFileProviderTestingOperation {}
 );
 
 extern_methods!(
@@ -68,7 +76,10 @@ extern_methods!(
         #[method_id(@__retain_semantics Other listAvailableTestingOperationsWithError:_)]
         pub unsafe fn listAvailableTestingOperationsWithError(
             &self,
-        ) -> Result<Id<NSArray<NSFileProviderTestingOperation>, Shared>, Id<NSError, Shared>>;
+        ) -> Result<
+            Id<NSArray<ProtocolObject<dyn NSFileProviderTestingOperation>>, Shared>,
+            Id<NSError, Shared>,
+        >;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -78,9 +89,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Other runTestingOperations:error:_)]
         pub unsafe fn runTestingOperations_error(
             &self,
-            operations: &NSArray<NSFileProviderTestingOperation>,
+            operations: &NSArray<ProtocolObject<dyn NSFileProviderTestingOperation>>,
         ) -> Result<
-            Id<NSDictionary<NSFileProviderTestingOperation, NSError>, Shared>,
+            Id<NSDictionary<ProtocolObject<dyn NSFileProviderTestingOperation>, NSError>, Shared>,
             Id<NSError, Shared>,
         >;
     }
@@ -95,129 +106,137 @@ ns_enum!(
 );
 
 extern_protocol!(
-    pub struct NSFileProviderTestingIngestion;
-
-    unsafe impl ProtocolType for NSFileProviderTestingIngestion {
+    pub unsafe trait NSFileProviderTestingIngestion: NSFileProviderTestingOperation {
         #[method(side)]
-        pub unsafe fn side(&self) -> NSFileProviderTestingOperationSide;
+        unsafe fn side(&self) -> NSFileProviderTestingOperationSide;
 
         #[method_id(@__retain_semantics Other itemIdentifier)]
-        pub unsafe fn itemIdentifier(&self) -> Id<NSFileProviderItemIdentifier, Shared>;
+        unsafe fn itemIdentifier(&self) -> Id<NSFileProviderItemIdentifier, Shared>;
 
         #[method_id(@__retain_semantics Other item)]
-        pub unsafe fn item(&self) -> Option<Id<NSFileProviderItem, Shared>>;
+        unsafe fn item(&self) -> Option<Id<NSFileProviderItem, Shared>>;
     }
+
+    unsafe impl ProtocolType for dyn NSFileProviderTestingIngestion {}
 );
 
 extern_protocol!(
-    pub struct NSFileProviderTestingLookup;
-
-    unsafe impl ProtocolType for NSFileProviderTestingLookup {
+    pub unsafe trait NSFileProviderTestingLookup: NSFileProviderTestingOperation {
         #[method(side)]
-        pub unsafe fn side(&self) -> NSFileProviderTestingOperationSide;
+        unsafe fn side(&self) -> NSFileProviderTestingOperationSide;
 
         #[method_id(@__retain_semantics Other itemIdentifier)]
-        pub unsafe fn itemIdentifier(&self) -> Id<NSFileProviderItemIdentifier, Shared>;
+        unsafe fn itemIdentifier(&self) -> Id<NSFileProviderItemIdentifier, Shared>;
     }
+
+    unsafe impl ProtocolType for dyn NSFileProviderTestingLookup {}
 );
 
 extern_protocol!(
-    pub struct NSFileProviderTestingCreation;
-
-    unsafe impl ProtocolType for NSFileProviderTestingCreation {
+    pub unsafe trait NSFileProviderTestingCreation: NSFileProviderTestingOperation {
         #[method(targetSide)]
-        pub unsafe fn targetSide(&self) -> NSFileProviderTestingOperationSide;
+        unsafe fn targetSide(&self) -> NSFileProviderTestingOperationSide;
 
         #[method_id(@__retain_semantics Other sourceItem)]
-        pub unsafe fn sourceItem(&self) -> Id<NSFileProviderItem, Shared>;
+        unsafe fn sourceItem(&self) -> Id<NSFileProviderItem, Shared>;
 
         #[cfg(feature = "FileProvider_NSFileProviderDomainVersion")]
         #[method_id(@__retain_semantics Other domainVersion)]
-        pub unsafe fn domainVersion(&self) -> Option<Id<NSFileProviderDomainVersion, Shared>>;
+        unsafe fn domainVersion(&self) -> Option<Id<NSFileProviderDomainVersion, Shared>>;
     }
+
+    unsafe impl ProtocolType for dyn NSFileProviderTestingCreation {}
 );
 
 extern_protocol!(
-    pub struct NSFileProviderTestingModification;
-
-    unsafe impl ProtocolType for NSFileProviderTestingModification {
+    pub unsafe trait NSFileProviderTestingModification:
+        NSFileProviderTestingOperation
+    {
         #[method(targetSide)]
-        pub unsafe fn targetSide(&self) -> NSFileProviderTestingOperationSide;
+        unsafe fn targetSide(&self) -> NSFileProviderTestingOperationSide;
 
         #[method_id(@__retain_semantics Other sourceItem)]
-        pub unsafe fn sourceItem(&self) -> Id<NSFileProviderItem, Shared>;
+        unsafe fn sourceItem(&self) -> Id<NSFileProviderItem, Shared>;
 
         #[method_id(@__retain_semantics Other targetItemIdentifier)]
-        pub unsafe fn targetItemIdentifier(&self) -> Id<NSFileProviderItemIdentifier, Shared>;
+        unsafe fn targetItemIdentifier(&self) -> Id<NSFileProviderItemIdentifier, Shared>;
 
         #[cfg(feature = "FileProvider_NSFileProviderItemVersion")]
         #[method_id(@__retain_semantics Other targetItemBaseVersion)]
-        pub unsafe fn targetItemBaseVersion(&self) -> Id<NSFileProviderItemVersion, Shared>;
+        unsafe fn targetItemBaseVersion(&self) -> Id<NSFileProviderItemVersion, Shared>;
 
         #[method(changedFields)]
-        pub unsafe fn changedFields(&self) -> NSFileProviderItemFields;
+        unsafe fn changedFields(&self) -> NSFileProviderItemFields;
 
         #[cfg(feature = "FileProvider_NSFileProviderDomainVersion")]
         #[method_id(@__retain_semantics Other domainVersion)]
-        pub unsafe fn domainVersion(&self) -> Option<Id<NSFileProviderDomainVersion, Shared>>;
+        unsafe fn domainVersion(&self) -> Option<Id<NSFileProviderDomainVersion, Shared>>;
     }
+
+    unsafe impl ProtocolType for dyn NSFileProviderTestingModification {}
 );
 
 extern_protocol!(
-    pub struct NSFileProviderTestingDeletion;
-
-    unsafe impl ProtocolType for NSFileProviderTestingDeletion {
+    pub unsafe trait NSFileProviderTestingDeletion: NSFileProviderTestingOperation {
         #[method(targetSide)]
-        pub unsafe fn targetSide(&self) -> NSFileProviderTestingOperationSide;
+        unsafe fn targetSide(&self) -> NSFileProviderTestingOperationSide;
 
         #[method_id(@__retain_semantics Other sourceItemIdentifier)]
-        pub unsafe fn sourceItemIdentifier(&self) -> Id<NSFileProviderItemIdentifier, Shared>;
+        unsafe fn sourceItemIdentifier(&self) -> Id<NSFileProviderItemIdentifier, Shared>;
 
         #[method_id(@__retain_semantics Other targetItemIdentifier)]
-        pub unsafe fn targetItemIdentifier(&self) -> Id<NSFileProviderItemIdentifier, Shared>;
+        unsafe fn targetItemIdentifier(&self) -> Id<NSFileProviderItemIdentifier, Shared>;
 
         #[cfg(feature = "FileProvider_NSFileProviderItemVersion")]
         #[method_id(@__retain_semantics Other targetItemBaseVersion)]
-        pub unsafe fn targetItemBaseVersion(&self) -> Id<NSFileProviderItemVersion, Shared>;
+        unsafe fn targetItemBaseVersion(&self) -> Id<NSFileProviderItemVersion, Shared>;
 
         #[cfg(feature = "FileProvider_NSFileProviderDomainVersion")]
         #[method_id(@__retain_semantics Other domainVersion)]
-        pub unsafe fn domainVersion(&self) -> Option<Id<NSFileProviderDomainVersion, Shared>>;
+        unsafe fn domainVersion(&self) -> Option<Id<NSFileProviderDomainVersion, Shared>>;
     }
+
+    unsafe impl ProtocolType for dyn NSFileProviderTestingDeletion {}
 );
 
 extern_protocol!(
-    pub struct NSFileProviderTestingContentFetch;
-
-    unsafe impl ProtocolType for NSFileProviderTestingContentFetch {
+    pub unsafe trait NSFileProviderTestingContentFetch:
+        NSFileProviderTestingOperation
+    {
         #[method(side)]
-        pub unsafe fn side(&self) -> NSFileProviderTestingOperationSide;
+        unsafe fn side(&self) -> NSFileProviderTestingOperationSide;
 
         #[method_id(@__retain_semantics Other itemIdentifier)]
-        pub unsafe fn itemIdentifier(&self) -> Id<NSFileProviderItemIdentifier, Shared>;
+        unsafe fn itemIdentifier(&self) -> Id<NSFileProviderItemIdentifier, Shared>;
     }
+
+    unsafe impl ProtocolType for dyn NSFileProviderTestingContentFetch {}
 );
 
 extern_protocol!(
-    pub struct NSFileProviderTestingChildrenEnumeration;
-
-    unsafe impl ProtocolType for NSFileProviderTestingChildrenEnumeration {
+    pub unsafe trait NSFileProviderTestingChildrenEnumeration:
+        NSFileProviderTestingOperation
+    {
         #[method(side)]
-        pub unsafe fn side(&self) -> NSFileProviderTestingOperationSide;
+        unsafe fn side(&self) -> NSFileProviderTestingOperationSide;
 
         #[method_id(@__retain_semantics Other itemIdentifier)]
-        pub unsafe fn itemIdentifier(&self) -> Id<NSFileProviderItemIdentifier, Shared>;
+        unsafe fn itemIdentifier(&self) -> Id<NSFileProviderItemIdentifier, Shared>;
     }
+
+    unsafe impl ProtocolType for dyn NSFileProviderTestingChildrenEnumeration {}
 );
 
 extern_protocol!(
-    pub struct NSFileProviderTestingCollisionResolution;
-
-    unsafe impl ProtocolType for NSFileProviderTestingCollisionResolution {
+    pub unsafe trait NSFileProviderTestingCollisionResolution:
+        NSFileProviderTestingOperation
+    {
         #[method(side)]
-        pub unsafe fn side(&self) -> NSFileProviderTestingOperationSide;
+        unsafe fn side(&self) -> NSFileProviderTestingOperationSide;
 
         #[method_id(@__retain_semantics Other renamedItem)]
-        pub unsafe fn renamedItem(&self) -> Id<NSFileProviderItem, Shared>;
+        unsafe fn renamedItem(&self) -> Id<NSFileProviderItem, Shared>;
     }
+
+    unsafe impl ProtocolType for dyn NSFileProviderTestingCollisionResolution {}
 );

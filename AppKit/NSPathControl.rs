@@ -94,10 +94,15 @@ extern_methods!(
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&NSColor>);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<NSPathControlDelegate, Shared>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn NSPathControlDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&NSPathControlDelegate>);
+        pub unsafe fn setDelegate(
+            &self,
+            delegate: Option<&ProtocolObject<dyn NSPathControlDelegate>>,
+        );
 
         #[method(setDraggingSourceOperationMask:forLocal:)]
         pub unsafe fn setDraggingSourceOperationMask_forLocal(
@@ -117,9 +122,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct NSPathControlDelegate;
-
-    unsafe impl ProtocolType for NSPathControlDelegate {
+    pub unsafe trait NSPathControlDelegate: NSObjectProtocol {
         #[cfg(all(
             feature = "AppKit_NSPasteboard",
             feature = "AppKit_NSPathControl",
@@ -127,7 +130,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(pathControl:shouldDragItem:withPasteboard:)]
-        pub unsafe fn pathControl_shouldDragItem_withPasteboard(
+        unsafe fn pathControl_shouldDragItem_withPasteboard(
             &self,
             path_control: &NSPathControl,
             path_item: &NSPathControlItem,
@@ -141,7 +144,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(pathControl:shouldDragPathComponentCell:withPasteboard:)]
-        pub unsafe fn pathControl_shouldDragPathComponentCell_withPasteboard(
+        unsafe fn pathControl_shouldDragPathComponentCell_withPasteboard(
             &self,
             path_control: &NSPathControl,
             path_component_cell: &NSPathComponentCell,
@@ -151,25 +154,25 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSPathControl")]
         #[optional]
         #[method(pathControl:validateDrop:)]
-        pub unsafe fn pathControl_validateDrop(
+        unsafe fn pathControl_validateDrop(
             &self,
             path_control: &NSPathControl,
-            info: &NSDraggingInfo,
+            info: &ProtocolObject<dyn NSDraggingInfo>,
         ) -> NSDragOperation;
 
         #[cfg(feature = "AppKit_NSPathControl")]
         #[optional]
         #[method(pathControl:acceptDrop:)]
-        pub unsafe fn pathControl_acceptDrop(
+        unsafe fn pathControl_acceptDrop(
             &self,
             path_control: &NSPathControl,
-            info: &NSDraggingInfo,
+            info: &ProtocolObject<dyn NSDraggingInfo>,
         ) -> bool;
 
         #[cfg(all(feature = "AppKit_NSOpenPanel", feature = "AppKit_NSPathControl"))]
         #[optional]
         #[method(pathControl:willDisplayOpenPanel:)]
-        pub unsafe fn pathControl_willDisplayOpenPanel(
+        unsafe fn pathControl_willDisplayOpenPanel(
             &self,
             path_control: &NSPathControl,
             open_panel: &NSOpenPanel,
@@ -178,8 +181,10 @@ extern_protocol!(
         #[cfg(all(feature = "AppKit_NSMenu", feature = "AppKit_NSPathControl"))]
         #[optional]
         #[method(pathControl:willPopUpMenu:)]
-        pub unsafe fn pathControl_willPopUpMenu(&self, path_control: &NSPathControl, menu: &NSMenu);
+        unsafe fn pathControl_willPopUpMenu(&self, path_control: &NSPathControl, menu: &NSMenu);
     }
+
+    unsafe impl ProtocolType for dyn NSPathControlDelegate {}
 );
 
 extern_methods!(

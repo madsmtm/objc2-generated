@@ -41,10 +41,10 @@ extern_methods!(
         pub unsafe fn players(&self) -> Id<NSArray<GKPlayer>, Shared>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<GKMatchDelegate, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn GKMatchDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&GKMatchDelegate>);
+        pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn GKMatchDelegate>>);
 
         #[method(expectedPlayerCount)]
         pub unsafe fn expectedPlayerCount(&self) -> NSUInteger;
@@ -95,9 +95,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct GKMatchDelegate;
-
-    unsafe impl ProtocolType for GKMatchDelegate {
+    pub unsafe trait GKMatchDelegate: NSObjectProtocol {
         #[cfg(all(
             feature = "Foundation_NSData",
             feature = "GameKit_GKMatch",
@@ -105,7 +103,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(match:didReceiveData:fromRemotePlayer:)]
-        pub unsafe fn match_didReceiveData_fromRemotePlayer(
+        unsafe fn match_didReceiveData_fromRemotePlayer(
             &self,
             r#match: &GKMatch,
             data: &NSData,
@@ -119,7 +117,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(match:didReceiveData:forRecipient:fromRemotePlayer:)]
-        pub unsafe fn match_didReceiveData_forRecipient_fromRemotePlayer(
+        unsafe fn match_didReceiveData_forRecipient_fromRemotePlayer(
             &self,
             r#match: &GKMatch,
             data: &NSData,
@@ -130,7 +128,7 @@ extern_protocol!(
         #[cfg(all(feature = "GameKit_GKMatch", feature = "GameKit_GKPlayer"))]
         #[optional]
         #[method(match:player:didChangeConnectionState:)]
-        pub unsafe fn match_player_didChangeConnectionState(
+        unsafe fn match_player_didChangeConnectionState(
             &self,
             r#match: &GKMatch,
             player: &GKPlayer,
@@ -140,12 +138,12 @@ extern_protocol!(
         #[cfg(all(feature = "Foundation_NSError", feature = "GameKit_GKMatch"))]
         #[optional]
         #[method(match:didFailWithError:)]
-        pub unsafe fn match_didFailWithError(&self, r#match: &GKMatch, error: Option<&NSError>);
+        unsafe fn match_didFailWithError(&self, r#match: &GKMatch, error: Option<&NSError>);
 
         #[cfg(all(feature = "GameKit_GKMatch", feature = "GameKit_GKPlayer"))]
         #[optional]
         #[method(match:shouldReinviteDisconnectedPlayer:)]
-        pub unsafe fn match_shouldReinviteDisconnectedPlayer(
+        unsafe fn match_shouldReinviteDisconnectedPlayer(
             &self,
             r#match: &GKMatch,
             player: &GKPlayer,
@@ -159,7 +157,7 @@ extern_protocol!(
         #[deprecated = "This is never invoked and its implementation does nothing, use match:didReceiveData:fromRemotePlayer:"]
         #[optional]
         #[method(match:didReceiveData:fromPlayer:)]
-        pub unsafe fn match_didReceiveData_fromPlayer(
+        unsafe fn match_didReceiveData_fromPlayer(
             &self,
             r#match: &GKMatch,
             data: &NSData,
@@ -170,7 +168,7 @@ extern_protocol!(
         #[deprecated = "This is never invoked and its implementation does nothing, use match:player:didChangeConnectionState:"]
         #[optional]
         #[method(match:player:didChangeState:)]
-        pub unsafe fn match_player_didChangeState(
+        unsafe fn match_player_didChangeState(
             &self,
             r#match: &GKMatch,
             player_id: &NSString,
@@ -181,12 +179,14 @@ extern_protocol!(
         #[deprecated = "This is never invoked and its implementation does nothing, use shouldReinviteDisconnectedPlayer:"]
         #[optional]
         #[method(match:shouldReinvitePlayer:)]
-        pub unsafe fn match_shouldReinvitePlayer(
+        unsafe fn match_shouldReinvitePlayer(
             &self,
             r#match: &GKMatch,
             player_id: &NSString,
         ) -> bool;
     }
+
+    unsafe impl ProtocolType for dyn GKMatchDelegate {}
 );
 
 extern_methods!(

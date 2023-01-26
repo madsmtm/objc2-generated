@@ -67,7 +67,7 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLSharedTextureHandle")]
     unsafe impl MTLSharedTextureHandle {
         #[method_id(@__retain_semantics Other device)]
-        pub fn device(&self) -> Id<MTLDevice, Shared>;
+        pub fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
@@ -230,90 +230,88 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct MTLTexture;
-
-    unsafe impl ProtocolType for MTLTexture {
+    pub unsafe trait MTLTexture: MTLResource {
         #[deprecated = "Use parentTexture or buffer instead"]
         #[method_id(@__retain_semantics Other rootResource)]
-        pub fn rootResource(&self) -> Option<Id<MTLResource, Shared>>;
+        fn rootResource(&self) -> Option<Id<ProtocolObject<dyn MTLResource>, Shared>>;
 
         #[method_id(@__retain_semantics Other parentTexture)]
-        pub fn parentTexture(&self) -> Option<Id<MTLTexture, Shared>>;
+        fn parentTexture(&self) -> Option<Id<ProtocolObject<dyn MTLTexture>, Shared>>;
 
         #[method(parentRelativeLevel)]
-        pub fn parentRelativeLevel(&self) -> NSUInteger;
+        fn parentRelativeLevel(&self) -> NSUInteger;
 
         #[method(parentRelativeSlice)]
-        pub fn parentRelativeSlice(&self) -> NSUInteger;
+        fn parentRelativeSlice(&self) -> NSUInteger;
 
         #[method_id(@__retain_semantics Other buffer)]
-        pub fn buffer(&self) -> Option<Id<MTLBuffer, Shared>>;
+        fn buffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>, Shared>>;
 
         #[method(bufferOffset)]
-        pub fn bufferOffset(&self) -> NSUInteger;
+        fn bufferOffset(&self) -> NSUInteger;
 
         #[method(bufferBytesPerRow)]
-        pub fn bufferBytesPerRow(&self) -> NSUInteger;
+        fn bufferBytesPerRow(&self) -> NSUInteger;
 
         #[method(iosurfacePlane)]
-        pub fn iosurfacePlane(&self) -> NSUInteger;
+        fn iosurfacePlane(&self) -> NSUInteger;
 
         #[method(textureType)]
-        pub fn textureType(&self) -> MTLTextureType;
+        fn textureType(&self) -> MTLTextureType;
 
         #[method(pixelFormat)]
-        pub fn pixelFormat(&self) -> MTLPixelFormat;
+        fn pixelFormat(&self) -> MTLPixelFormat;
 
         #[method(width)]
-        pub fn width(&self) -> NSUInteger;
+        fn width(&self) -> NSUInteger;
 
         #[method(height)]
-        pub fn height(&self) -> NSUInteger;
+        fn height(&self) -> NSUInteger;
 
         #[method(depth)]
-        pub fn depth(&self) -> NSUInteger;
+        fn depth(&self) -> NSUInteger;
 
         #[method(mipmapLevelCount)]
-        pub fn mipmapLevelCount(&self) -> NSUInteger;
+        fn mipmapLevelCount(&self) -> NSUInteger;
 
         #[method(sampleCount)]
-        pub fn sampleCount(&self) -> NSUInteger;
+        fn sampleCount(&self) -> NSUInteger;
 
         #[method(arrayLength)]
-        pub fn arrayLength(&self) -> NSUInteger;
+        fn arrayLength(&self) -> NSUInteger;
 
         #[method(usage)]
-        pub fn usage(&self) -> MTLTextureUsage;
+        fn usage(&self) -> MTLTextureUsage;
 
         #[method(isShareable)]
-        pub fn isShareable(&self) -> bool;
+        fn isShareable(&self) -> bool;
 
         #[method(isFramebufferOnly)]
-        pub fn isFramebufferOnly(&self) -> bool;
+        fn isFramebufferOnly(&self) -> bool;
 
         #[optional]
         #[method(firstMipmapInTail)]
-        pub fn firstMipmapInTail(&self) -> NSUInteger;
+        fn firstMipmapInTail(&self) -> NSUInteger;
 
         #[optional]
         #[method(tailSizeInBytes)]
-        pub fn tailSizeInBytes(&self) -> NSUInteger;
+        fn tailSizeInBytes(&self) -> NSUInteger;
 
         #[optional]
         #[method(isSparse)]
-        pub fn isSparse(&self) -> bool;
+        fn isSparse(&self) -> bool;
 
         #[method(allowGPUOptimizedContents)]
-        pub fn allowGPUOptimizedContents(&self) -> bool;
+        fn allowGPUOptimizedContents(&self) -> bool;
 
         #[method(compressionType)]
-        pub unsafe fn compressionType(&self) -> MTLTextureCompressionType;
+        unsafe fn compressionType(&self) -> MTLTextureCompressionType;
 
         #[method(gpuResourceID)]
-        pub unsafe fn gpuResourceID(&self) -> MTLResourceID;
+        unsafe fn gpuResourceID(&self) -> MTLResourceID;
 
         #[method(getBytes:bytesPerRow:bytesPerImage:fromRegion:mipmapLevel:slice:)]
-        pub unsafe fn getBytes_bytesPerRow_bytesPerImage_fromRegion_mipmapLevel_slice(
+        unsafe fn getBytes_bytesPerRow_bytesPerImage_fromRegion_mipmapLevel_slice(
             &self,
             pixel_bytes: NonNull<c_void>,
             bytes_per_row: NSUInteger,
@@ -324,7 +322,7 @@ extern_protocol!(
         );
 
         #[method(replaceRegion:mipmapLevel:slice:withBytes:bytesPerRow:bytesPerImage:)]
-        pub unsafe fn replaceRegion_mipmapLevel_slice_withBytes_bytesPerRow_bytesPerImage(
+        unsafe fn replaceRegion_mipmapLevel_slice_withBytes_bytesPerRow_bytesPerImage(
             &self,
             region: MTLRegion,
             level: NSUInteger,
@@ -335,7 +333,7 @@ extern_protocol!(
         );
 
         #[method(getBytes:bytesPerRow:fromRegion:mipmapLevel:)]
-        pub unsafe fn getBytes_bytesPerRow_fromRegion_mipmapLevel(
+        unsafe fn getBytes_bytesPerRow_fromRegion_mipmapLevel(
             &self,
             pixel_bytes: NonNull<c_void>,
             bytes_per_row: NSUInteger,
@@ -344,7 +342,7 @@ extern_protocol!(
         );
 
         #[method(replaceRegion:mipmapLevel:withBytes:bytesPerRow:)]
-        pub unsafe fn replaceRegion_mipmapLevel_withBytes_bytesPerRow(
+        unsafe fn replaceRegion_mipmapLevel_withBytes_bytesPerRow(
             &self,
             region: MTLRegion,
             level: NSUInteger,
@@ -353,44 +351,46 @@ extern_protocol!(
         );
 
         #[method_id(@__retain_semantics New newTextureViewWithPixelFormat:)]
-        pub fn newTextureViewWithPixelFormat(
+        fn newTextureViewWithPixelFormat(
             &self,
             pixel_format: MTLPixelFormat,
-        ) -> Option<Id<MTLTexture, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLTexture>, Shared>>;
 
         #[method_id(@__retain_semantics New newTextureViewWithPixelFormat:textureType:levels:slices:)]
-        pub unsafe fn newTextureViewWithPixelFormat_textureType_levels_slices(
+        unsafe fn newTextureViewWithPixelFormat_textureType_levels_slices(
             &self,
             pixel_format: MTLPixelFormat,
             texture_type: MTLTextureType,
             level_range: NSRange,
             slice_range: NSRange,
-        ) -> Option<Id<MTLTexture, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLTexture>, Shared>>;
 
         #[cfg(feature = "Metal_MTLSharedTextureHandle")]
         #[method_id(@__retain_semantics New newSharedTextureHandle)]
-        pub fn newSharedTextureHandle(&self) -> Option<Id<MTLSharedTextureHandle, Shared>>;
+        fn newSharedTextureHandle(&self) -> Option<Id<MTLSharedTextureHandle, Shared>>;
 
         #[method_id(@__retain_semantics Other remoteStorageTexture)]
-        pub fn remoteStorageTexture(&self) -> Option<Id<MTLTexture, Shared>>;
+        fn remoteStorageTexture(&self) -> Option<Id<ProtocolObject<dyn MTLTexture>, Shared>>;
 
         #[method_id(@__retain_semantics New newRemoteTextureViewForDevice:)]
-        pub unsafe fn newRemoteTextureViewForDevice(
+        unsafe fn newRemoteTextureViewForDevice(
             &self,
-            device: &MTLDevice,
-        ) -> Option<Id<MTLTexture, Shared>>;
+            device: &ProtocolObject<dyn MTLDevice>,
+        ) -> Option<Id<ProtocolObject<dyn MTLTexture>, Shared>>;
 
         #[method(swizzle)]
-        pub fn swizzle(&self) -> MTLTextureSwizzleChannels;
+        fn swizzle(&self) -> MTLTextureSwizzleChannels;
 
         #[method_id(@__retain_semantics New newTextureViewWithPixelFormat:textureType:levels:slices:swizzle:)]
-        pub unsafe fn newTextureViewWithPixelFormat_textureType_levels_slices_swizzle(
+        unsafe fn newTextureViewWithPixelFormat_textureType_levels_slices_swizzle(
             &self,
             pixel_format: MTLPixelFormat,
             texture_type: MTLTextureType,
             level_range: NSRange,
             slice_range: NSRange,
             swizzle: MTLTextureSwizzleChannels,
-        ) -> Option<Id<MTLTexture, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLTexture>, Shared>>;
     }
+
+    unsafe impl ProtocolType for dyn MTLTexture {}
 );

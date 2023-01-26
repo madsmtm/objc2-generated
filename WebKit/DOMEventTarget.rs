@@ -7,49 +7,49 @@ use crate::WebKit::*;
 
 extern_protocol!(
     #[deprecated]
-    pub struct DOMEventTarget;
-
-    unsafe impl ProtocolType for DOMEventTarget {
+    pub unsafe trait DOMEventTarget: NSObjectProtocol + NSCopying {
         #[cfg(feature = "Foundation_NSString")]
         #[method(addEventListener:listener:useCapture:)]
-        pub unsafe fn addEventListener_listener_useCapture(
+        unsafe fn addEventListener_listener_useCapture(
             &self,
             r#type: Option<&NSString>,
-            listener: Option<&DOMEventListener>,
+            listener: Option<&ProtocolObject<dyn DOMEventListener>>,
             use_capture: bool,
         );
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(removeEventListener:listener:useCapture:)]
-        pub unsafe fn removeEventListener_listener_useCapture(
+        unsafe fn removeEventListener_listener_useCapture(
             &self,
             r#type: Option<&NSString>,
-            listener: Option<&DOMEventListener>,
+            listener: Option<&ProtocolObject<dyn DOMEventListener>>,
             use_capture: bool,
         );
 
         #[cfg(feature = "WebKit_DOMEvent")]
         #[method(dispatchEvent:)]
-        pub unsafe fn dispatchEvent(&self, event: Option<&DOMEvent>) -> bool;
+        unsafe fn dispatchEvent(&self, event: Option<&DOMEvent>) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
         #[method(addEventListener:::)]
-        pub unsafe fn addEventListener(
+        unsafe fn addEventListener(
             &self,
             r#type: Option<&NSString>,
-            listener: Option<&DOMEventListener>,
+            listener: Option<&ProtocolObject<dyn DOMEventListener>>,
             use_capture: bool,
         );
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
         #[method(removeEventListener:::)]
-        pub unsafe fn removeEventListener(
+        unsafe fn removeEventListener(
             &self,
             r#type: Option<&NSString>,
-            listener: Option<&DOMEventListener>,
+            listener: Option<&ProtocolObject<dyn DOMEventListener>>,
             use_capture: bool,
         );
     }
+
+    unsafe impl ProtocolType for dyn DOMEventTarget {}
 );

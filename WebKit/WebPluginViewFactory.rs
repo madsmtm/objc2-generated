@@ -17,7 +17,7 @@ extern_static!(WebPlugInShouldLoadMainResourceKey: Option<&'static NSString>);
 
 extern_protocol!(
     #[deprecated]
-    pub struct WebPlugInViewFactory;
+    pub unsafe trait WebPlugInViewFactory: NSObjectProtocol {}
 
-    unsafe impl ProtocolType for WebPlugInViewFactory {}
+    unsafe impl ProtocolType for dyn WebPlugInViewFactory {}
 );

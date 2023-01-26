@@ -19,7 +19,7 @@ extern_methods!(
     #[cfg(feature = "Contacts_CNContactVCardSerialization")]
     unsafe impl CNContactVCardSerialization {
         #[method_id(@__retain_semantics Other descriptorForRequiredKeys)]
-        pub unsafe fn descriptorForRequiredKeys() -> Id<CNKeyDescriptor, Shared>;
+        pub unsafe fn descriptorForRequiredKeys() -> Id<ProtocolObject<dyn CNKeyDescriptor>, Shared>;
 
         #[cfg(all(
             feature = "Contacts_CNContact",

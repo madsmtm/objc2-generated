@@ -63,10 +63,15 @@ extern_methods!(
         pub unsafe fn cacheName(&self) -> Option<Id<NSString, Shared>>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<NSFetchedResultsControllerDelegate, Shared>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn NSFetchedResultsControllerDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&NSFetchedResultsControllerDelegate>);
+        pub unsafe fn setDelegate(
+            &self,
+            delegate: Option<&ProtocolObject<dyn NSFetchedResultsControllerDelegate>>,
+        );
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(deleteCacheWithName:)]
@@ -103,7 +108,9 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other sections)]
-        pub unsafe fn sections(&self) -> Option<Id<NSArray<NSFetchedResultsSectionInfo>, Shared>>;
+        pub unsafe fn sections(
+            &self,
+        ) -> Option<Id<NSArray<ProtocolObject<dyn NSFetchedResultsSectionInfo>>, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(sectionForSectionIndexTitle:atIndex:)]
@@ -116,24 +123,24 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct NSFetchedResultsSectionInfo;
-
-    unsafe impl ProtocolType for NSFetchedResultsSectionInfo {
+    pub unsafe trait NSFetchedResultsSectionInfo {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString, Shared>;
+        unsafe fn name(&self) -> Id<NSString, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other indexTitle)]
-        pub unsafe fn indexTitle(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn indexTitle(&self) -> Option<Id<NSString, Shared>>;
 
         #[method(numberOfObjects)]
-        pub unsafe fn numberOfObjects(&self) -> NSUInteger;
+        unsafe fn numberOfObjects(&self) -> NSUInteger;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other objects)]
-        pub unsafe fn objects(&self) -> Option<Id<NSArray, Shared>>;
+        unsafe fn objects(&self) -> Option<Id<NSArray, Shared>>;
     }
+
+    unsafe impl ProtocolType for dyn NSFetchedResultsSectionInfo {}
 );
 
 ns_enum!(
@@ -147,9 +154,7 @@ ns_enum!(
 );
 
 extern_protocol!(
-    pub struct NSFetchedResultsControllerDelegate;
-
-    unsafe impl ProtocolType for NSFetchedResultsControllerDelegate {
+    pub unsafe trait NSFetchedResultsControllerDelegate: NSObjectProtocol {
         #[cfg(all(
             feature = "CoreData_NSFetchedResultsController",
             feature = "CoreData_NSManagedObjectID",
@@ -157,7 +162,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(controller:didChangeContentWithDifference:)]
-        pub unsafe fn controller_didChangeContentWithDifference(
+        unsafe fn controller_didChangeContentWithDifference(
             &self,
             controller: &NSFetchedResultsController,
             diff: &NSOrderedCollectionDifference<NSManagedObjectID>,
@@ -169,7 +174,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(controller:didChangeObject:atIndexPath:forChangeType:newIndexPath:)]
-        pub unsafe fn controller_didChangeObject_atIndexPath_forChangeType_newIndexPath(
+        unsafe fn controller_didChangeObject_atIndexPath_forChangeType_newIndexPath(
             &self,
             controller: &NSFetchedResultsController,
             an_object: &Object,
@@ -181,10 +186,10 @@ extern_protocol!(
         #[cfg(feature = "CoreData_NSFetchedResultsController")]
         #[optional]
         #[method(controller:didChangeSection:atIndex:forChangeType:)]
-        pub unsafe fn controller_didChangeSection_atIndex_forChangeType(
+        unsafe fn controller_didChangeSection_atIndex_forChangeType(
             &self,
             controller: &NSFetchedResultsController,
-            section_info: &NSFetchedResultsSectionInfo,
+            section_info: &ProtocolObject<dyn NSFetchedResultsSectionInfo>,
             section_index: NSUInteger,
             r#type: NSFetchedResultsChangeType,
         );
@@ -192,12 +197,12 @@ extern_protocol!(
         #[cfg(feature = "CoreData_NSFetchedResultsController")]
         #[optional]
         #[method(controllerWillChangeContent:)]
-        pub unsafe fn controllerWillChangeContent(&self, controller: &NSFetchedResultsController);
+        unsafe fn controllerWillChangeContent(&self, controller: &NSFetchedResultsController);
 
         #[cfg(feature = "CoreData_NSFetchedResultsController")]
         #[optional]
         #[method(controllerDidChangeContent:)]
-        pub unsafe fn controllerDidChangeContent(&self, controller: &NSFetchedResultsController);
+        unsafe fn controllerDidChangeContent(&self, controller: &NSFetchedResultsController);
 
         #[cfg(all(
             feature = "CoreData_NSFetchedResultsController",
@@ -205,10 +210,12 @@ extern_protocol!(
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other controller:sectionIndexTitleForSectionName:)]
-        pub unsafe fn controller_sectionIndexTitleForSectionName(
+        unsafe fn controller_sectionIndexTitleForSectionName(
             &self,
             controller: &NSFetchedResultsController,
             section_name: &NSString,
         ) -> Option<Id<NSString, Shared>>;
     }
+
+    unsafe impl ProtocolType for dyn NSFetchedResultsControllerDelegate {}
 );

@@ -55,16 +55,16 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct NSDockTilePlugIn;
-
-    unsafe impl ProtocolType for NSDockTilePlugIn {
+    pub unsafe trait NSDockTilePlugIn: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSDockTile")]
         #[method(setDockTile:)]
-        pub unsafe fn setDockTile(&self, dock_tile: Option<&NSDockTile>);
+        unsafe fn setDockTile(&self, dock_tile: Option<&NSDockTile>);
 
         #[cfg(feature = "AppKit_NSMenu")]
         #[optional]
         #[method_id(@__retain_semantics Other dockMenu)]
-        pub unsafe fn dockMenu(&self) -> Option<Id<NSMenu, Shared>>;
+        unsafe fn dockMenu(&self) -> Option<Id<NSMenu, Shared>>;
     }
+
+    unsafe impl ProtocolType for dyn NSDockTilePlugIn {}
 );

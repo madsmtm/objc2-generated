@@ -6,9 +6,9 @@ use crate::Foundation::*;
 use crate::GameKit::*;
 
 extern_protocol!(
-    pub struct GKViewController;
+    pub unsafe trait GKViewController {}
 
-    unsafe impl ProtocolType for GKViewController {}
+    unsafe impl ProtocolType for dyn GKViewController {}
 );
 
 extern_class!(

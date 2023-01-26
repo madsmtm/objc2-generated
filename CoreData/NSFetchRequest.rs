@@ -15,9 +15,9 @@ ns_options!(
 );
 
 extern_protocol!(
-    pub struct NSFetchRequestResult;
+    pub unsafe trait NSFetchRequestResult: NSObjectProtocol {}
 
-    unsafe impl ProtocolType for NSFetchRequestResult {}
+    unsafe impl ProtocolType for dyn NSFetchRequestResult {}
 );
 
 extern_methods!(

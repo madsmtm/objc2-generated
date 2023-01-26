@@ -32,10 +32,15 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSPageController")]
     unsafe impl NSPageController {
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<NSPageControllerDelegate, Shared>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn NSPageControllerDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&NSPageControllerDelegate>);
+        pub unsafe fn setDelegate(
+            &self,
+            delegate: Option<&ProtocolObject<dyn NSPageControllerDelegate>>,
+        );
 
         #[method_id(@__retain_semantics Other selectedViewController)]
         pub unsafe fn selectedViewController(&self) -> Option<Id<NSViewController, Shared>>;
@@ -78,13 +83,11 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct NSPageControllerDelegate;
-
-    unsafe impl ProtocolType for NSPageControllerDelegate {
+    pub unsafe trait NSPageControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSPageController")]
         #[optional]
         #[method_id(@__retain_semantics Other pageController:identifierForObject:)]
-        pub unsafe fn pageController_identifierForObject(
+        unsafe fn pageController_identifierForObject(
             &self,
             page_controller: &NSPageController,
             object: &Object,
@@ -96,7 +99,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other pageController:viewControllerForIdentifier:)]
-        pub unsafe fn pageController_viewControllerForIdentifier(
+        unsafe fn pageController_viewControllerForIdentifier(
             &self,
             page_controller: &NSPageController,
             identifier: &NSPageControllerObjectIdentifier,
@@ -105,7 +108,7 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSPageController")]
         #[optional]
         #[method(pageController:frameForObject:)]
-        pub unsafe fn pageController_frameForObject(
+        unsafe fn pageController_frameForObject(
             &self,
             page_controller: &NSPageController,
             object: Option<&Object>,
@@ -117,7 +120,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(pageController:prepareViewController:withObject:)]
-        pub unsafe fn pageController_prepareViewController_withObject(
+        unsafe fn pageController_prepareViewController_withObject(
             &self,
             page_controller: &NSPageController,
             view_controller: &NSViewController,
@@ -127,7 +130,7 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSPageController")]
         #[optional]
         #[method(pageController:didTransitionToObject:)]
-        pub unsafe fn pageController_didTransitionToObject(
+        unsafe fn pageController_didTransitionToObject(
             &self,
             page_controller: &NSPageController,
             object: &Object,
@@ -136,16 +139,15 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSPageController")]
         #[optional]
         #[method(pageControllerWillStartLiveTransition:)]
-        pub unsafe fn pageControllerWillStartLiveTransition(
-            &self,
-            page_controller: &NSPageController,
-        );
+        unsafe fn pageControllerWillStartLiveTransition(&self, page_controller: &NSPageController);
 
         #[cfg(feature = "AppKit_NSPageController")]
         #[optional]
         #[method(pageControllerDidEndLiveTransition:)]
-        pub unsafe fn pageControllerDidEndLiveTransition(&self, page_controller: &NSPageController);
+        unsafe fn pageControllerDidEndLiveTransition(&self, page_controller: &NSPageController);
     }
+
+    unsafe impl ProtocolType for dyn NSPageControllerDelegate {}
 );
 
 extern_methods!(

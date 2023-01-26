@@ -57,9 +57,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct NSCollectionViewDelegateFlowLayout;
-
-    unsafe impl ProtocolType for NSCollectionViewDelegateFlowLayout {
+    pub unsafe trait NSCollectionViewDelegateFlowLayout: NSCollectionViewDelegate {
         #[cfg(all(
             feature = "AppKit_NSCollectionView",
             feature = "AppKit_NSCollectionViewLayout",
@@ -67,7 +65,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(collectionView:layout:sizeForItemAtIndexPath:)]
-        pub unsafe fn collectionView_layout_sizeForItemAtIndexPath(
+        unsafe fn collectionView_layout_sizeForItemAtIndexPath(
             &self,
             collection_view: &NSCollectionView,
             collection_view_layout: &NSCollectionViewLayout,
@@ -80,7 +78,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(collectionView:layout:insetForSectionAtIndex:)]
-        pub unsafe fn collectionView_layout_insetForSectionAtIndex(
+        unsafe fn collectionView_layout_insetForSectionAtIndex(
             &self,
             collection_view: &NSCollectionView,
             collection_view_layout: &NSCollectionViewLayout,
@@ -93,7 +91,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(collectionView:layout:minimumLineSpacingForSectionAtIndex:)]
-        pub unsafe fn collectionView_layout_minimumLineSpacingForSectionAtIndex(
+        unsafe fn collectionView_layout_minimumLineSpacingForSectionAtIndex(
             &self,
             collection_view: &NSCollectionView,
             collection_view_layout: &NSCollectionViewLayout,
@@ -106,7 +104,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(collectionView:layout:minimumInteritemSpacingForSectionAtIndex:)]
-        pub unsafe fn collectionView_layout_minimumInteritemSpacingForSectionAtIndex(
+        unsafe fn collectionView_layout_minimumInteritemSpacingForSectionAtIndex(
             &self,
             collection_view: &NSCollectionView,
             collection_view_layout: &NSCollectionViewLayout,
@@ -119,7 +117,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(collectionView:layout:referenceSizeForHeaderInSection:)]
-        pub unsafe fn collectionView_layout_referenceSizeForHeaderInSection(
+        unsafe fn collectionView_layout_referenceSizeForHeaderInSection(
             &self,
             collection_view: &NSCollectionView,
             collection_view_layout: &NSCollectionViewLayout,
@@ -132,13 +130,15 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(collectionView:layout:referenceSizeForFooterInSection:)]
-        pub unsafe fn collectionView_layout_referenceSizeForFooterInSection(
+        unsafe fn collectionView_layout_referenceSizeForFooterInSection(
             &self,
             collection_view: &NSCollectionView,
             collection_view_layout: &NSCollectionViewLayout,
             section: NSInteger,
         ) -> NSSize;
     }
+
+    unsafe impl ProtocolType for dyn NSCollectionViewDelegateFlowLayout {}
 );
 
 extern_class!(

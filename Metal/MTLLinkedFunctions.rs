@@ -23,19 +23,24 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other functions)]
-        pub fn functions(&self) -> Option<Id<NSArray<MTLFunction>, Shared>>;
+        pub fn functions(&self) -> Option<Id<NSArray<ProtocolObject<dyn MTLFunction>>, Shared>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setFunctions:)]
-        pub fn setFunctions(&self, functions: Option<&NSArray<MTLFunction>>);
+        pub fn setFunctions(&self, functions: Option<&NSArray<ProtocolObject<dyn MTLFunction>>>);
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other binaryFunctions)]
-        pub fn binaryFunctions(&self) -> Option<Id<NSArray<MTLFunction>, Shared>>;
+        pub fn binaryFunctions(
+            &self,
+        ) -> Option<Id<NSArray<ProtocolObject<dyn MTLFunction>>, Shared>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setBinaryFunctions:)]
-        pub fn setBinaryFunctions(&self, binary_functions: Option<&NSArray<MTLFunction>>);
+        pub fn setBinaryFunctions(
+            &self,
+            binary_functions: Option<&NSArray<ProtocolObject<dyn MTLFunction>>>,
+        );
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -43,7 +48,9 @@ extern_methods!(
             feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other groups)]
-        pub fn groups(&self) -> Option<Id<NSDictionary<NSString, NSArray<MTLFunction>>, Shared>>;
+        pub fn groups(
+            &self,
+        ) -> Option<Id<NSDictionary<NSString, NSArray<ProtocolObject<dyn MTLFunction>>>, Shared>>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -51,14 +58,22 @@ extern_methods!(
             feature = "Foundation_NSString"
         ))]
         #[method(setGroups:)]
-        pub fn setGroups(&self, groups: Option<&NSDictionary<NSString, NSArray<MTLFunction>>>);
+        pub fn setGroups(
+            &self,
+            groups: Option<&NSDictionary<NSString, NSArray<ProtocolObject<dyn MTLFunction>>>>,
+        );
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other privateFunctions)]
-        pub fn privateFunctions(&self) -> Option<Id<NSArray<MTLFunction>, Shared>>;
+        pub fn privateFunctions(
+            &self,
+        ) -> Option<Id<NSArray<ProtocolObject<dyn MTLFunction>>, Shared>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setPrivateFunctions:)]
-        pub fn setPrivateFunctions(&self, private_functions: Option<&NSArray<MTLFunction>>);
+        pub fn setPrivateFunctions(
+            &self,
+            private_functions: Option<&NSArray<ProtocolObject<dyn MTLFunction>>>,
+        );
     }
 );

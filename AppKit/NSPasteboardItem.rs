@@ -34,7 +34,7 @@ extern_methods!(
         #[method(setDataProvider:forTypes:)]
         pub unsafe fn setDataProvider_forTypes(
             &self,
-            data_provider: &NSPasteboardItemDataProvider,
+            data_provider: &ProtocolObject<dyn NSPasteboardItemDataProvider>,
             types: &NSArray<NSPasteboardType>,
         ) -> bool;
 
@@ -77,12 +77,10 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct NSPasteboardItemDataProvider;
-
-    unsafe impl ProtocolType for NSPasteboardItemDataProvider {
+    pub unsafe trait NSPasteboardItemDataProvider: NSObjectProtocol {
         #[cfg(all(feature = "AppKit_NSPasteboard", feature = "AppKit_NSPasteboardItem"))]
         #[method(pasteboard:item:provideDataForType:)]
-        pub unsafe fn pasteboard_item_provideDataForType(
+        unsafe fn pasteboard_item_provideDataForType(
             &self,
             pasteboard: Option<&NSPasteboard>,
             item: &NSPasteboardItem,
@@ -92,6 +90,8 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSPasteboard")]
         #[optional]
         #[method(pasteboardFinishedWithDataProvider:)]
-        pub unsafe fn pasteboardFinishedWithDataProvider(&self, pasteboard: &NSPasteboard);
+        unsafe fn pasteboardFinishedWithDataProvider(&self, pasteboard: &NSPasteboard);
     }
+
+    unsafe impl ProtocolType for dyn NSPasteboardItemDataProvider {}
 );

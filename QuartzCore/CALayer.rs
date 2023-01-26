@@ -433,10 +433,13 @@ extern_methods!(
         pub fn setAutoresizingMask(&self, autoresizing_mask: CAAutoresizingMask);
 
         #[method_id(@__retain_semantics Other layoutManager)]
-        pub fn layoutManager(&self) -> Option<Id<CALayoutManager, Shared>>;
+        pub fn layoutManager(&self) -> Option<Id<ProtocolObject<dyn CALayoutManager>, Shared>>;
 
         #[method(setLayoutManager:)]
-        pub fn setLayoutManager(&self, layout_manager: Option<&CALayoutManager>);
+        pub fn setLayoutManager(
+            &self,
+            layout_manager: Option<&ProtocolObject<dyn CALayoutManager>>,
+        );
 
         #[method(preferredFrameSize)]
         pub fn preferredFrameSize(&self) -> CGSize;
@@ -461,19 +464,29 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other defaultActionForKey:)]
-        pub fn defaultActionForKey(event: &NSString) -> Option<Id<CAAction, Shared>>;
+        pub fn defaultActionForKey(
+            event: &NSString,
+        ) -> Option<Id<ProtocolObject<dyn CAAction>, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other actionForKey:)]
-        pub fn actionForKey(&self, event: &NSString) -> Option<Id<CAAction, Shared>>;
+        pub fn actionForKey(
+            &self,
+            event: &NSString,
+        ) -> Option<Id<ProtocolObject<dyn CAAction>, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other actions)]
-        pub fn actions(&self) -> Option<Id<NSDictionary<NSString, CAAction>, Shared>>;
+        pub fn actions(
+            &self,
+        ) -> Option<Id<NSDictionary<NSString, ProtocolObject<dyn CAAction>>, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setActions:)]
-        pub fn setActions(&self, actions: Option<&NSDictionary<NSString, CAAction>>);
+        pub fn setActions(
+            &self,
+            actions: Option<&NSDictionary<NSString, ProtocolObject<dyn CAAction>>>,
+        );
 
         #[cfg(all(feature = "CoreAnimation_CAAnimation", feature = "Foundation_NSString"))]
         #[method(addAnimation:forKey:)]
@@ -503,10 +516,10 @@ extern_methods!(
         pub fn setName(&self, name: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub fn delegate(&self) -> Option<Id<CALayerDelegate, Shared>>;
+        pub fn delegate(&self) -> Option<Id<ProtocolObject<dyn CALayerDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub fn setDelegate(&self, delegate: Option<&CALayerDelegate>);
+        pub fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn CALayerDelegate>>);
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other style)]
@@ -519,39 +532,39 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct CALayoutManager;
-
-    unsafe impl ProtocolType for CALayoutManager {
+    pub unsafe trait CALayoutManager: NSObjectProtocol {
         #[cfg(feature = "CoreAnimation_CALayer")]
         #[optional]
         #[method(preferredSizeOfLayer:)]
-        pub unsafe fn preferredSizeOfLayer(&self, layer: &CALayer) -> CGSize;
+        unsafe fn preferredSizeOfLayer(&self, layer: &CALayer) -> CGSize;
 
         #[cfg(feature = "CoreAnimation_CALayer")]
         #[optional]
         #[method(invalidateLayoutOfLayer:)]
-        pub unsafe fn invalidateLayoutOfLayer(&self, layer: &CALayer);
+        unsafe fn invalidateLayoutOfLayer(&self, layer: &CALayer);
 
         #[cfg(feature = "CoreAnimation_CALayer")]
         #[optional]
         #[method(layoutSublayersOfLayer:)]
-        pub unsafe fn layoutSublayersOfLayer(&self, layer: &CALayer);
+        unsafe fn layoutSublayersOfLayer(&self, layer: &CALayer);
     }
+
+    unsafe impl ProtocolType for dyn CALayoutManager {}
 );
 
 extern_protocol!(
-    pub struct CAAction;
-
-    unsafe impl ProtocolType for CAAction {
+    pub unsafe trait CAAction {
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(runActionForKey:object:arguments:)]
-        pub unsafe fn runActionForKey_object_arguments(
+        unsafe fn runActionForKey_object_arguments(
             &self,
             event: &NSString,
             an_object: &Object,
             dict: Option<&NSDictionary>,
         );
     }
+
+    unsafe impl ProtocolType for dyn CAAction {}
 );
 
 extern_methods!(
@@ -561,33 +574,33 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct CALayerDelegate;
-
-    unsafe impl ProtocolType for CALayerDelegate {
+    pub unsafe trait CALayerDelegate: NSObjectProtocol {
         #[cfg(feature = "CoreAnimation_CALayer")]
         #[optional]
         #[method(displayLayer:)]
-        pub unsafe fn displayLayer(&self, layer: &CALayer);
+        unsafe fn displayLayer(&self, layer: &CALayer);
 
         #[cfg(feature = "CoreAnimation_CALayer")]
         #[optional]
         #[method(layerWillDraw:)]
-        pub unsafe fn layerWillDraw(&self, layer: &CALayer);
+        unsafe fn layerWillDraw(&self, layer: &CALayer);
 
         #[cfg(feature = "CoreAnimation_CALayer")]
         #[optional]
         #[method(layoutSublayersOfLayer:)]
-        pub unsafe fn layoutSublayersOfLayer(&self, layer: &CALayer);
+        unsafe fn layoutSublayersOfLayer(&self, layer: &CALayer);
 
         #[cfg(all(feature = "CoreAnimation_CALayer", feature = "Foundation_NSString"))]
         #[optional]
         #[method_id(@__retain_semantics Other actionForLayer:forKey:)]
-        pub unsafe fn actionForLayer_forKey(
+        unsafe fn actionForLayer_forKey(
             &self,
             layer: &CALayer,
             event: &NSString,
-        ) -> Option<Id<CAAction, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn CAAction>, Shared>>;
     }
+
+    unsafe impl ProtocolType for dyn CALayerDelegate {}
 );
 
 extern_static!(kCAGravityCenter: &'static CALayerContentsGravity);

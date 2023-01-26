@@ -6,20 +6,20 @@ use crate::Foundation::*;
 use crate::GameController::*;
 
 extern_protocol!(
-    pub struct GCDevice;
-
-    unsafe impl ProtocolType for GCDevice {
+    pub unsafe trait GCDevice: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other vendorName)]
-        pub unsafe fn vendorName(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn vendorName(&self) -> Option<Id<NSString, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other productCategory)]
-        pub unsafe fn productCategory(&self) -> Id<NSString, Shared>;
+        unsafe fn productCategory(&self) -> Id<NSString, Shared>;
 
         #[cfg(feature = "GameController_GCPhysicalInputProfile")]
         #[deprecated = "Use the physicalInputProfile property on GCController instead.  For GCKeyboard, use the keyboardInput property.  For GCMouse, use the mouseInput property."]
         #[method_id(@__retain_semantics Other physicalInputProfile)]
-        pub unsafe fn physicalInputProfile(&self) -> Id<GCPhysicalInputProfile, Shared>;
+        unsafe fn physicalInputProfile(&self) -> Id<GCPhysicalInputProfile, Shared>;
     }
+
+    unsafe impl ProtocolType for dyn GCDevice {}
 );

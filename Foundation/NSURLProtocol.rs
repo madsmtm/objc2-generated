@@ -4,16 +4,14 @@ use crate::common::*;
 use crate::Foundation::*;
 
 extern_protocol!(
-    pub struct NSURLProtocolClient;
-
-    unsafe impl ProtocolType for NSURLProtocolClient {
+    pub unsafe trait NSURLProtocolClient: NSObjectProtocol {
         #[cfg(all(
             feature = "Foundation_NSURLProtocol",
             feature = "Foundation_NSURLRequest",
             feature = "Foundation_NSURLResponse"
         ))]
         #[method(URLProtocol:wasRedirectedToRequest:redirectResponse:)]
-        pub unsafe fn URLProtocol_wasRedirectedToRequest_redirectResponse(
+        unsafe fn URLProtocol_wasRedirectedToRequest_redirectResponse(
             &self,
             protocol: &NSURLProtocol,
             request: &NSURLRequest,
@@ -25,7 +23,7 @@ extern_protocol!(
             feature = "Foundation_NSURLProtocol"
         ))]
         #[method(URLProtocol:cachedResponseIsValid:)]
-        pub unsafe fn URLProtocol_cachedResponseIsValid(
+        unsafe fn URLProtocol_cachedResponseIsValid(
             &self,
             protocol: &NSURLProtocol,
             cached_response: &NSCachedURLResponse,
@@ -36,7 +34,7 @@ extern_protocol!(
             feature = "Foundation_NSURLResponse"
         ))]
         #[method(URLProtocol:didReceiveResponse:cacheStoragePolicy:)]
-        pub unsafe fn URLProtocol_didReceiveResponse_cacheStoragePolicy(
+        unsafe fn URLProtocol_didReceiveResponse_cacheStoragePolicy(
             &self,
             protocol: &NSURLProtocol,
             response: &NSURLResponse,
@@ -45,26 +43,22 @@ extern_protocol!(
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSURLProtocol"))]
         #[method(URLProtocol:didLoadData:)]
-        pub unsafe fn URLProtocol_didLoadData(&self, protocol: &NSURLProtocol, data: &NSData);
+        unsafe fn URLProtocol_didLoadData(&self, protocol: &NSURLProtocol, data: &NSData);
 
         #[cfg(feature = "Foundation_NSURLProtocol")]
         #[method(URLProtocolDidFinishLoading:)]
-        pub unsafe fn URLProtocolDidFinishLoading(&self, protocol: &NSURLProtocol);
+        unsafe fn URLProtocolDidFinishLoading(&self, protocol: &NSURLProtocol);
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURLProtocol"))]
         #[method(URLProtocol:didFailWithError:)]
-        pub unsafe fn URLProtocol_didFailWithError(
-            &self,
-            protocol: &NSURLProtocol,
-            error: &NSError,
-        );
+        unsafe fn URLProtocol_didFailWithError(&self, protocol: &NSURLProtocol, error: &NSError);
 
         #[cfg(all(
             feature = "Foundation_NSURLAuthenticationChallenge",
             feature = "Foundation_NSURLProtocol"
         ))]
         #[method(URLProtocol:didReceiveAuthenticationChallenge:)]
-        pub unsafe fn URLProtocol_didReceiveAuthenticationChallenge(
+        unsafe fn URLProtocol_didReceiveAuthenticationChallenge(
             &self,
             protocol: &NSURLProtocol,
             challenge: &NSURLAuthenticationChallenge,
@@ -75,12 +69,14 @@ extern_protocol!(
             feature = "Foundation_NSURLProtocol"
         ))]
         #[method(URLProtocol:didCancelAuthenticationChallenge:)]
-        pub unsafe fn URLProtocol_didCancelAuthenticationChallenge(
+        unsafe fn URLProtocol_didCancelAuthenticationChallenge(
             &self,
             protocol: &NSURLProtocol,
             challenge: &NSURLAuthenticationChallenge,
         );
     }
+
+    unsafe impl ProtocolType for dyn NSURLProtocolClient {}
 );
 
 extern_class!(
@@ -106,11 +102,11 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             request: &NSURLRequest,
             cached_response: Option<&NSCachedURLResponse>,
-            client: Option<&NSURLProtocolClient>,
+            client: Option<&ProtocolObject<dyn NSURLProtocolClient>>,
         ) -> Id<Self, Shared>;
 
         #[method_id(@__retain_semantics Other client)]
-        pub unsafe fn client(&self) -> Option<Id<NSURLProtocolClient, Shared>>;
+        pub unsafe fn client(&self) -> Option<Id<ProtocolObject<dyn NSURLProtocolClient>, Shared>>;
 
         #[cfg(feature = "Foundation_NSURLRequest")]
         #[method_id(@__retain_semantics Other request)]
@@ -193,7 +189,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             task: &NSURLSessionTask,
             cached_response: Option<&NSCachedURLResponse>,
-            client: Option<&NSURLProtocolClient>,
+            client: Option<&ProtocolObject<dyn NSURLProtocolClient>>,
         ) -> Id<Self, Shared>;
 
         #[cfg(feature = "Foundation_NSURLSessionTask")]

@@ -83,9 +83,12 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct GKLocalPlayerListener;
+    pub unsafe trait GKLocalPlayerListener:
+        GKChallengeListener + GKInviteEventListener + GKTurnBasedEventListener + GKSavedGameListener
+    {
+    }
 
-    unsafe impl ProtocolType for GKLocalPlayerListener {}
+    unsafe impl ProtocolType for dyn GKLocalPlayerListener {}
 );
 
 extern_methods!(
@@ -93,10 +96,13 @@ extern_methods!(
     #[cfg(feature = "GameKit_GKLocalPlayer")]
     unsafe impl GKLocalPlayer {
         #[method(registerListener:)]
-        pub unsafe fn registerListener(&self, listener: &GKLocalPlayerListener);
+        pub unsafe fn registerListener(&self, listener: &ProtocolObject<dyn GKLocalPlayerListener>);
 
         #[method(unregisterListener:)]
-        pub unsafe fn unregisterListener(&self, listener: &GKLocalPlayerListener);
+        pub unsafe fn unregisterListener(
+            &self,
+            listener: &ProtocolObject<dyn GKLocalPlayerListener>,
+        );
 
         #[method(unregisterAllListeners)]
         pub unsafe fn unregisterAllListeners(&self);

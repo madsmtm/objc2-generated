@@ -6,10 +6,10 @@ use crate::Foundation::*;
 use crate::GameController::*;
 
 extern_protocol!(
-    pub struct GCSwitchElement;
-
-    unsafe impl ProtocolType for GCSwitchElement {
+    pub unsafe trait GCSwitchElement: GCPhysicalInputElement {
         #[method_id(@__retain_semantics Other positionInput)]
-        pub unsafe fn positionInput(&self) -> Id<GCSwitchPositionInput, Shared>;
+        unsafe fn positionInput(&self) -> Id<ProtocolObject<dyn GCSwitchPositionInput>, Shared>;
     }
+
+    unsafe impl ProtocolType for dyn GCSwitchElement {}
 );

@@ -79,27 +79,27 @@ extern_struct!(
 );
 
 extern_protocol!(
-    pub struct MTLCounter;
-
-    unsafe impl ProtocolType for MTLCounter {
+    pub unsafe trait MTLCounter: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString, Shared>;
+        unsafe fn name(&self) -> Id<NSString, Shared>;
     }
+
+    unsafe impl ProtocolType for dyn MTLCounter {}
 );
 
 extern_protocol!(
-    pub struct MTLCounterSet;
-
-    unsafe impl ProtocolType for MTLCounterSet {
+    pub unsafe trait MTLCounterSet: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString, Shared>;
+        unsafe fn name(&self) -> Id<NSString, Shared>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other counters)]
-        pub unsafe fn counters(&self) -> Id<NSArray<MTLCounter>, Shared>;
+        unsafe fn counters(&self) -> Id<NSArray<ProtocolObject<dyn MTLCounter>>, Shared>;
     }
+
+    unsafe impl ProtocolType for dyn MTLCounterSet {}
 );
 
 extern_class!(
@@ -117,10 +117,10 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLCounterSampleBufferDescriptor")]
     unsafe impl MTLCounterSampleBufferDescriptor {
         #[method_id(@__retain_semantics Other counterSet)]
-        pub unsafe fn counterSet(&self) -> Option<Id<MTLCounterSet, Shared>>;
+        pub unsafe fn counterSet(&self) -> Option<Id<ProtocolObject<dyn MTLCounterSet>, Shared>>;
 
         #[method(setCounterSet:)]
-        pub unsafe fn setCounterSet(&self, counter_set: Option<&MTLCounterSet>);
+        pub unsafe fn setCounterSet(&self, counter_set: Option<&ProtocolObject<dyn MTLCounterSet>>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
@@ -145,23 +145,23 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct MTLCounterSampleBuffer;
-
-    unsafe impl ProtocolType for MTLCounterSampleBuffer {
+    pub unsafe trait MTLCounterSampleBuffer: NSObjectProtocol {
         #[method_id(@__retain_semantics Other device)]
-        pub unsafe fn device(&self) -> Id<MTLDevice, Shared>;
+        unsafe fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
-        pub unsafe fn label(&self) -> Id<NSString, Shared>;
+        unsafe fn label(&self) -> Id<NSString, Shared>;
 
         #[method(sampleCount)]
-        pub unsafe fn sampleCount(&self) -> NSUInteger;
+        unsafe fn sampleCount(&self) -> NSUInteger;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other resolveCounterRange:)]
-        pub unsafe fn resolveCounterRange(&self, range: NSRange) -> Option<Id<NSData, Shared>>;
+        unsafe fn resolveCounterRange(&self, range: NSRange) -> Option<Id<NSData, Shared>>;
     }
+
+    unsafe impl ProtocolType for dyn MTLCounterSampleBuffer {}
 );
 
 extern_static!(MTLCounterErrorDomain: &'static NSErrorDomain);

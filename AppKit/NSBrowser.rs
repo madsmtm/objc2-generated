@@ -68,10 +68,10 @@ extern_methods!(
         pub unsafe fn setCellPrototype(&self, cell_prototype: Option<&Object>);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<NSBrowserDelegate, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSBrowserDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&NSBrowserDelegate>);
+        pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSBrowserDelegate>>);
 
         #[method(reusesColumns)]
         pub unsafe fn reusesColumns(&self) -> bool;
@@ -470,13 +470,11 @@ extern_methods!(
 extern_static!(NSBrowserColumnConfigurationDidChangeNotification: &'static NSNotificationName);
 
 extern_protocol!(
-    pub struct NSBrowserDelegate;
-
-    unsafe impl ProtocolType for NSBrowserDelegate {
+    pub unsafe trait NSBrowserDelegate: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSBrowser")]
         #[optional]
         #[method(browser:numberOfRowsInColumn:)]
-        pub unsafe fn browser_numberOfRowsInColumn(
+        unsafe fn browser_numberOfRowsInColumn(
             &self,
             sender: &NSBrowser,
             column: NSInteger,
@@ -485,7 +483,7 @@ extern_protocol!(
         #[cfg(all(feature = "AppKit_NSBrowser", feature = "AppKit_NSMatrix"))]
         #[optional]
         #[method(browser:createRowsForColumn:inMatrix:)]
-        pub unsafe fn browser_createRowsForColumn_inMatrix(
+        unsafe fn browser_createRowsForColumn_inMatrix(
             &self,
             sender: &NSBrowser,
             column: NSInteger,
@@ -495,7 +493,7 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSBrowser")]
         #[optional]
         #[method(browser:numberOfChildrenOfItem:)]
-        pub unsafe fn browser_numberOfChildrenOfItem(
+        unsafe fn browser_numberOfChildrenOfItem(
             &self,
             browser: &NSBrowser,
             item: Option<&Object>,
@@ -504,7 +502,7 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSBrowser")]
         #[optional]
         #[method_id(@__retain_semantics Other browser:child:ofItem:)]
-        pub unsafe fn browser_child_ofItem(
+        unsafe fn browser_child_ofItem(
             &self,
             browser: &NSBrowser,
             index: NSInteger,
@@ -514,13 +512,12 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSBrowser")]
         #[optional]
         #[method(browser:isLeafItem:)]
-        pub unsafe fn browser_isLeafItem(&self, browser: &NSBrowser, item: Option<&Object>)
-            -> bool;
+        unsafe fn browser_isLeafItem(&self, browser: &NSBrowser, item: Option<&Object>) -> bool;
 
         #[cfg(feature = "AppKit_NSBrowser")]
         #[optional]
         #[method_id(@__retain_semantics Other browser:objectValueForItem:)]
-        pub unsafe fn browser_objectValueForItem(
+        unsafe fn browser_objectValueForItem(
             &self,
             browser: &NSBrowser,
             item: Option<&Object>,
@@ -529,7 +526,7 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSBrowser")]
         #[optional]
         #[method(browser:heightOfRow:inColumn:)]
-        pub unsafe fn browser_heightOfRow_inColumn(
+        unsafe fn browser_heightOfRow_inColumn(
             &self,
             browser: &NSBrowser,
             row: NSInteger,
@@ -539,12 +536,12 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSBrowser")]
         #[optional]
         #[method_id(@__retain_semantics Other rootItemForBrowser:)]
-        pub unsafe fn rootItemForBrowser(&self, browser: &NSBrowser) -> Option<Id<Object, Shared>>;
+        unsafe fn rootItemForBrowser(&self, browser: &NSBrowser) -> Option<Id<Object, Shared>>;
 
         #[cfg(feature = "AppKit_NSBrowser")]
         #[optional]
         #[method(browser:setObjectValue:forItem:)]
-        pub unsafe fn browser_setObjectValue_forItem(
+        unsafe fn browser_setObjectValue_forItem(
             &self,
             browser: &NSBrowser,
             object: Option<&Object>,
@@ -554,16 +551,13 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSBrowser")]
         #[optional]
         #[method(browser:shouldEditItem:)]
-        pub unsafe fn browser_shouldEditItem(
-            &self,
-            browser: &NSBrowser,
-            item: Option<&Object>,
-        ) -> bool;
+        unsafe fn browser_shouldEditItem(&self, browser: &NSBrowser, item: Option<&Object>)
+            -> bool;
 
         #[cfg(feature = "AppKit_NSBrowser")]
         #[optional]
         #[method(browser:willDisplayCell:atRow:column:)]
-        pub unsafe fn browser_willDisplayCell_atRow_column(
+        unsafe fn browser_willDisplayCell_atRow_column(
             &self,
             sender: &NSBrowser,
             cell: &Object,
@@ -574,7 +568,7 @@ extern_protocol!(
         #[cfg(all(feature = "AppKit_NSBrowser", feature = "Foundation_NSString"))]
         #[optional]
         #[method_id(@__retain_semantics Other browser:titleOfColumn:)]
-        pub unsafe fn browser_titleOfColumn(
+        unsafe fn browser_titleOfColumn(
             &self,
             sender: &NSBrowser,
             column: NSInteger,
@@ -583,7 +577,7 @@ extern_protocol!(
         #[cfg(all(feature = "AppKit_NSBrowser", feature = "Foundation_NSString"))]
         #[optional]
         #[method(browser:selectCellWithString:inColumn:)]
-        pub unsafe fn browser_selectCellWithString_inColumn(
+        unsafe fn browser_selectCellWithString_inColumn(
             &self,
             sender: &NSBrowser,
             title: &NSString,
@@ -593,7 +587,7 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSBrowser")]
         #[optional]
         #[method(browser:selectRow:inColumn:)]
-        pub unsafe fn browser_selectRow_inColumn(
+        unsafe fn browser_selectRow_inColumn(
             &self,
             sender: &NSBrowser,
             row: NSInteger,
@@ -603,22 +597,22 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSBrowser")]
         #[optional]
         #[method(browser:isColumnValid:)]
-        pub unsafe fn browser_isColumnValid(&self, sender: &NSBrowser, column: NSInteger) -> bool;
+        unsafe fn browser_isColumnValid(&self, sender: &NSBrowser, column: NSInteger) -> bool;
 
         #[cfg(feature = "AppKit_NSBrowser")]
         #[optional]
         #[method(browserWillScroll:)]
-        pub unsafe fn browserWillScroll(&self, sender: &NSBrowser);
+        unsafe fn browserWillScroll(&self, sender: &NSBrowser);
 
         #[cfg(feature = "AppKit_NSBrowser")]
         #[optional]
         #[method(browserDidScroll:)]
-        pub unsafe fn browserDidScroll(&self, sender: &NSBrowser);
+        unsafe fn browserDidScroll(&self, sender: &NSBrowser);
 
         #[cfg(feature = "AppKit_NSBrowser")]
         #[optional]
         #[method(browser:shouldSizeColumn:forUserResize:toWidth:)]
-        pub unsafe fn browser_shouldSizeColumn_forUserResize_toWidth(
+        unsafe fn browser_shouldSizeColumn_forUserResize_toWidth(
             &self,
             browser: &NSBrowser,
             column_index: NSInteger,
@@ -629,7 +623,7 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSBrowser")]
         #[optional]
         #[method(browser:sizeToFitWidthOfColumn:)]
-        pub unsafe fn browser_sizeToFitWidthOfColumn(
+        unsafe fn browser_sizeToFitWidthOfColumn(
             &self,
             browser: &NSBrowser,
             column_index: NSInteger,
@@ -638,12 +632,12 @@ extern_protocol!(
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(browserColumnConfigurationDidChange:)]
-        pub unsafe fn browserColumnConfigurationDidChange(&self, notification: &NSNotification);
+        unsafe fn browserColumnConfigurationDidChange(&self, notification: &NSNotification);
 
         #[cfg(feature = "AppKit_NSBrowser")]
         #[optional]
         #[method(browser:shouldShowCellExpansionForRow:column:)]
-        pub unsafe fn browser_shouldShowCellExpansionForRow_column(
+        unsafe fn browser_shouldShowCellExpansionForRow_column(
             &self,
             browser: &NSBrowser,
             row: NSInteger,
@@ -657,7 +651,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(browser:writeRowsWithIndexes:inColumn:toPasteboard:)]
-        pub unsafe fn browser_writeRowsWithIndexes_inColumn_toPasteboard(
+        unsafe fn browser_writeRowsWithIndexes_inColumn_toPasteboard(
             &self,
             browser: &NSBrowser,
             row_indexes: &NSIndexSet,
@@ -675,7 +669,7 @@ extern_protocol!(
         #[deprecated = "Use NSFilePromiseReceiver objects instead"]
         #[optional]
         #[method_id(@__retain_semantics Other browser:namesOfPromisedFilesDroppedAtDestination:forDraggedRowsWithIndexes:inColumn:)]
-        pub unsafe fn browser_namesOfPromisedFilesDroppedAtDestination_forDraggedRowsWithIndexes_inColumn(
+        unsafe fn browser_namesOfPromisedFilesDroppedAtDestination_forDraggedRowsWithIndexes_inColumn(
             &self,
             browser: &NSBrowser,
             drop_destination: &NSURL,
@@ -690,7 +684,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(browser:canDragRowsWithIndexes:inColumn:withEvent:)]
-        pub unsafe fn browser_canDragRowsWithIndexes_inColumn_withEvent(
+        unsafe fn browser_canDragRowsWithIndexes_inColumn_withEvent(
             &self,
             browser: &NSBrowser,
             row_indexes: &NSIndexSet,
@@ -706,7 +700,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other browser:draggingImageForRowsWithIndexes:inColumn:withEvent:offset:)]
-        pub unsafe fn browser_draggingImageForRowsWithIndexes_inColumn_withEvent_offset(
+        unsafe fn browser_draggingImageForRowsWithIndexes_inColumn_withEvent_offset(
             &self,
             browser: &NSBrowser,
             row_indexes: &NSIndexSet,
@@ -718,10 +712,10 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSBrowser")]
         #[optional]
         #[method(browser:validateDrop:proposedRow:column:dropOperation:)]
-        pub unsafe fn browser_validateDrop_proposedRow_column_dropOperation(
+        unsafe fn browser_validateDrop_proposedRow_column_dropOperation(
             &self,
             browser: &NSBrowser,
-            info: &NSDraggingInfo,
+            info: &ProtocolObject<dyn NSDraggingInfo>,
             row: NonNull<NSInteger>,
             column: NonNull<NSInteger>,
             drop_operation: NonNull<NSBrowserDropOperation>,
@@ -730,10 +724,10 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSBrowser")]
         #[optional]
         #[method(browser:acceptDrop:atRow:column:dropOperation:)]
-        pub unsafe fn browser_acceptDrop_atRow_column_dropOperation(
+        unsafe fn browser_acceptDrop_atRow_column_dropOperation(
             &self,
             browser: &NSBrowser,
-            info: &NSDraggingInfo,
+            info: &ProtocolObject<dyn NSDraggingInfo>,
             row: NSInteger,
             column: NSInteger,
             drop_operation: NSBrowserDropOperation,
@@ -742,7 +736,7 @@ extern_protocol!(
         #[cfg(all(feature = "AppKit_NSBrowser", feature = "Foundation_NSString"))]
         #[optional]
         #[method_id(@__retain_semantics Other browser:typeSelectStringForRow:inColumn:)]
-        pub unsafe fn browser_typeSelectStringForRow_inColumn(
+        unsafe fn browser_typeSelectStringForRow_inColumn(
             &self,
             browser: &NSBrowser,
             row: NSInteger,
@@ -756,7 +750,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(browser:shouldTypeSelectForEvent:withCurrentSearchString:)]
-        pub unsafe fn browser_shouldTypeSelectForEvent_withCurrentSearchString(
+        unsafe fn browser_shouldTypeSelectForEvent_withCurrentSearchString(
             &self,
             browser: &NSBrowser,
             event: &NSEvent,
@@ -766,7 +760,7 @@ extern_protocol!(
         #[cfg(all(feature = "AppKit_NSBrowser", feature = "Foundation_NSString"))]
         #[optional]
         #[method(browser:nextTypeSelectMatchFromRow:toRow:inColumn:forString:)]
-        pub unsafe fn browser_nextTypeSelectMatchFromRow_toRow_inColumn_forString(
+        unsafe fn browser_nextTypeSelectMatchFromRow_toRow_inColumn_forString(
             &self,
             browser: &NSBrowser,
             start_row: NSInteger,
@@ -778,7 +772,7 @@ extern_protocol!(
         #[cfg(all(feature = "AppKit_NSBrowser", feature = "AppKit_NSViewController"))]
         #[optional]
         #[method_id(@__retain_semantics Other browser:previewViewControllerForLeafItem:)]
-        pub unsafe fn browser_previewViewControllerForLeafItem(
+        unsafe fn browser_previewViewControllerForLeafItem(
             &self,
             browser: &NSBrowser,
             item: &Object,
@@ -787,7 +781,7 @@ extern_protocol!(
         #[cfg(all(feature = "AppKit_NSBrowser", feature = "AppKit_NSViewController"))]
         #[optional]
         #[method_id(@__retain_semantics Other browser:headerViewControllerForItem:)]
-        pub unsafe fn browser_headerViewControllerForItem(
+        unsafe fn browser_headerViewControllerForItem(
             &self,
             browser: &NSBrowser,
             item: Option<&Object>,
@@ -796,7 +790,7 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSBrowser")]
         #[optional]
         #[method(browser:didChangeLastColumn:toColumn:)]
-        pub unsafe fn browser_didChangeLastColumn_toColumn(
+        unsafe fn browser_didChangeLastColumn_toColumn(
             &self,
             browser: &NSBrowser,
             old_last_column: NSInteger,
@@ -806,13 +800,15 @@ extern_protocol!(
         #[cfg(all(feature = "AppKit_NSBrowser", feature = "Foundation_NSIndexSet"))]
         #[optional]
         #[method_id(@__retain_semantics Other browser:selectionIndexesForProposedSelection:inColumn:)]
-        pub unsafe fn browser_selectionIndexesForProposedSelection_inColumn(
+        unsafe fn browser_selectionIndexesForProposedSelection_inColumn(
             &self,
             browser: &NSBrowser,
             proposed_selection_indexes: &NSIndexSet,
             column: NSInteger,
         ) -> Id<NSIndexSet, Shared>;
     }
+
+    unsafe impl ProtocolType for dyn NSBrowserDelegate {}
 );
 
 extern_methods!(

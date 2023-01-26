@@ -5,20 +5,20 @@ use crate::Foundation::*;
 use crate::Metal::*;
 
 extern_protocol!(
-    pub struct MTLEvent;
-
-    unsafe impl ProtocolType for MTLEvent {
+    pub unsafe trait MTLEvent: NSObjectProtocol {
         #[method_id(@__retain_semantics Other device)]
-        pub fn device(&self) -> Option<Id<MTLDevice, Shared>>;
+        fn device(&self) -> Option<Id<ProtocolObject<dyn MTLDevice>, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
-        pub fn label(&self) -> Option<Id<NSString, Shared>>;
+        fn label(&self) -> Option<Id<NSString, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:)]
-        pub fn setLabel(&self, label: Option<&NSString>);
+        fn setLabel(&self, label: Option<&NSString>);
     }
+
+    unsafe impl ProtocolType for dyn MTLEvent {}
 );
 
 extern_class!(
@@ -40,15 +40,14 @@ extern_methods!(
     }
 );
 
-pub type MTLSharedEventNotificationBlock = *mut Block<(NonNull<MTLSharedEvent>, u64), ()>;
+pub type MTLSharedEventNotificationBlock =
+    *mut Block<(NonNull<ProtocolObject<dyn MTLSharedEvent>>, u64), ()>;
 
 extern_protocol!(
-    pub struct MTLSharedEvent;
-
-    unsafe impl ProtocolType for MTLSharedEvent {
+    pub unsafe trait MTLSharedEvent: MTLEvent {
         #[cfg(feature = "Metal_MTLSharedEventListener")]
         #[method(notifyListener:atValue:block:)]
-        pub unsafe fn notifyListener_atValue_block(
+        unsafe fn notifyListener_atValue_block(
             &self,
             listener: &MTLSharedEventListener,
             value: u64,
@@ -57,14 +56,16 @@ extern_protocol!(
 
         #[cfg(feature = "Metal_MTLSharedEventHandle")]
         #[method_id(@__retain_semantics New newSharedEventHandle)]
-        pub unsafe fn newSharedEventHandle(&self) -> Id<MTLSharedEventHandle, Shared>;
+        unsafe fn newSharedEventHandle(&self) -> Id<MTLSharedEventHandle, Shared>;
 
         #[method(signaledValue)]
-        pub unsafe fn signaledValue(&self) -> u64;
+        unsafe fn signaledValue(&self) -> u64;
 
         #[method(setSignaledValue:)]
-        pub unsafe fn setSignaledValue(&self, signaled_value: u64);
+        unsafe fn setSignaledValue(&self, signaled_value: u64);
     }
+
+    unsafe impl ProtocolType for dyn MTLSharedEvent {}
 );
 
 extern_class!(

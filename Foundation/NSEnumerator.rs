@@ -13,17 +13,17 @@ extern_struct!(
 );
 
 extern_protocol!(
-    pub struct NSFastEnumeration;
-
-    unsafe impl ProtocolType for NSFastEnumeration {
+    pub unsafe trait NSFastEnumeration {
         #[method(countByEnumeratingWithState:objects:count:)]
-        pub unsafe fn countByEnumeratingWithState_objects_count(
+        unsafe fn countByEnumeratingWithState_objects_count(
             &self,
             state: NonNull<NSFastEnumerationState>,
             buffer: NonNull<*mut Object>,
             len: NSUInteger,
         ) -> NSUInteger;
     }
+
+    unsafe impl ProtocolType for dyn NSFastEnumeration {}
 );
 
 __inner_extern_class!(

@@ -5,62 +5,63 @@ use crate::Foundation::*;
 use crate::Metal::*;
 
 extern_protocol!(
-    pub struct MTLIndirectRenderCommand;
-
-    unsafe impl ProtocolType for MTLIndirectRenderCommand {
+    pub unsafe trait MTLIndirectRenderCommand: NSObjectProtocol {
         #[method(setRenderPipelineState:)]
-        pub unsafe fn setRenderPipelineState(&self, pipeline_state: &MTLRenderPipelineState);
+        unsafe fn setRenderPipelineState(
+            &self,
+            pipeline_state: &ProtocolObject<dyn MTLRenderPipelineState>,
+        );
 
         #[method(setVertexBuffer:offset:atIndex:)]
-        pub unsafe fn setVertexBuffer_offset_atIndex(
+        unsafe fn setVertexBuffer_offset_atIndex(
             &self,
-            buffer: &MTLBuffer,
+            buffer: &ProtocolObject<dyn MTLBuffer>,
             offset: NSUInteger,
             index: NSUInteger,
         );
 
         #[method(setFragmentBuffer:offset:atIndex:)]
-        pub unsafe fn setFragmentBuffer_offset_atIndex(
+        unsafe fn setFragmentBuffer_offset_atIndex(
             &self,
-            buffer: &MTLBuffer,
+            buffer: &ProtocolObject<dyn MTLBuffer>,
             offset: NSUInteger,
             index: NSUInteger,
         );
 
         #[method(drawPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:instanceCount:baseInstance:tessellationFactorBuffer:tessellationFactorBufferOffset:tessellationFactorBufferInstanceStride:)]
-        pub unsafe fn drawPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_instanceCount_baseInstance_tessellationFactorBuffer_tessellationFactorBufferOffset_tessellationFactorBufferInstanceStride(
+        unsafe fn drawPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_instanceCount_baseInstance_tessellationFactorBuffer_tessellationFactorBufferOffset_tessellationFactorBufferInstanceStride(
             &self,
             number_of_patch_control_points: NSUInteger,
             patch_start: NSUInteger,
             patch_count: NSUInteger,
-            patch_index_buffer: Option<&MTLBuffer>,
+            patch_index_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
             patch_index_buffer_offset: NSUInteger,
             instance_count: NSUInteger,
             base_instance: NSUInteger,
-            buffer: &MTLBuffer,
+            buffer: &ProtocolObject<dyn MTLBuffer>,
             offset: NSUInteger,
             instance_stride: NSUInteger,
         );
 
         #[method(drawIndexedPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:instanceCount:baseInstance:tessellationFactorBuffer:tessellationFactorBufferOffset:tessellationFactorBufferInstanceStride:)]
-        pub unsafe fn drawIndexedPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_controlPointIndexBuffer_controlPointIndexBufferOffset_instanceCount_baseInstance_tessellationFactorBuffer_tessellationFactorBufferOffset_tessellationFactorBufferInstanceStride(
+        unsafe fn drawIndexedPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_controlPointIndexBuffer_controlPointIndexBufferOffset_instanceCount_baseInstance_tessellationFactorBuffer_tessellationFactorBufferOffset_tessellationFactorBufferInstanceStride(
             &self,
             number_of_patch_control_points: NSUInteger,
             patch_start: NSUInteger,
             patch_count: NSUInteger,
-            patch_index_buffer: Option<&MTLBuffer>,
+            patch_index_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
             patch_index_buffer_offset: NSUInteger,
-            control_point_index_buffer: &MTLBuffer,
+            control_point_index_buffer: &ProtocolObject<dyn MTLBuffer>,
             control_point_index_buffer_offset: NSUInteger,
             instance_count: NSUInteger,
             base_instance: NSUInteger,
-            buffer: &MTLBuffer,
+            buffer: &ProtocolObject<dyn MTLBuffer>,
             offset: NSUInteger,
             instance_stride: NSUInteger,
         );
 
         #[method(drawPrimitives:vertexStart:vertexCount:instanceCount:baseInstance:)]
-        pub unsafe fn drawPrimitives_vertexStart_vertexCount_instanceCount_baseInstance(
+        unsafe fn drawPrimitives_vertexStart_vertexCount_instanceCount_baseInstance(
             &self,
             primitive_type: MTLPrimitiveType,
             vertex_start: NSUInteger,
@@ -70,12 +71,12 @@ extern_protocol!(
         );
 
         #[method(drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:baseVertex:baseInstance:)]
-        pub unsafe fn drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset_instanceCount_baseVertex_baseInstance(
+        unsafe fn drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset_instanceCount_baseVertex_baseInstance(
             &self,
             primitive_type: MTLPrimitiveType,
             index_count: NSUInteger,
             index_type: MTLIndexType,
-            index_buffer: &MTLBuffer,
+            index_buffer: &ProtocolObject<dyn MTLBuffer>,
             index_buffer_offset: NSUInteger,
             instance_count: NSUInteger,
             base_vertex: NSInteger,
@@ -83,59 +84,60 @@ extern_protocol!(
         );
 
         #[method(reset)]
-        pub unsafe fn reset(&self);
+        unsafe fn reset(&self);
     }
+
+    unsafe impl ProtocolType for dyn MTLIndirectRenderCommand {}
 );
 
 extern_protocol!(
-    pub struct MTLIndirectComputeCommand;
-
-    unsafe impl ProtocolType for MTLIndirectComputeCommand {
+    pub unsafe trait MTLIndirectComputeCommand: NSObjectProtocol {
         #[method(setComputePipelineState:)]
-        pub unsafe fn setComputePipelineState(&self, pipeline_state: &MTLComputePipelineState);
+        unsafe fn setComputePipelineState(
+            &self,
+            pipeline_state: &ProtocolObject<dyn MTLComputePipelineState>,
+        );
 
         #[method(setKernelBuffer:offset:atIndex:)]
-        pub unsafe fn setKernelBuffer_offset_atIndex(
+        unsafe fn setKernelBuffer_offset_atIndex(
             &self,
-            buffer: &MTLBuffer,
+            buffer: &ProtocolObject<dyn MTLBuffer>,
             offset: NSUInteger,
             index: NSUInteger,
         );
 
         #[method(concurrentDispatchThreadgroups:threadsPerThreadgroup:)]
-        pub unsafe fn concurrentDispatchThreadgroups_threadsPerThreadgroup(
+        unsafe fn concurrentDispatchThreadgroups_threadsPerThreadgroup(
             &self,
             threadgroups_per_grid: MTLSize,
             threads_per_threadgroup: MTLSize,
         );
 
         #[method(concurrentDispatchThreads:threadsPerThreadgroup:)]
-        pub unsafe fn concurrentDispatchThreads_threadsPerThreadgroup(
+        unsafe fn concurrentDispatchThreads_threadsPerThreadgroup(
             &self,
             threads_per_grid: MTLSize,
             threads_per_threadgroup: MTLSize,
         );
 
         #[method(setBarrier)]
-        pub unsafe fn setBarrier(&self);
+        unsafe fn setBarrier(&self);
 
         #[method(clearBarrier)]
-        pub unsafe fn clearBarrier(&self);
+        unsafe fn clearBarrier(&self);
 
         #[method(setImageblockWidth:height:)]
-        pub unsafe fn setImageblockWidth_height(&self, width: NSUInteger, height: NSUInteger);
+        unsafe fn setImageblockWidth_height(&self, width: NSUInteger, height: NSUInteger);
 
         #[method(reset)]
-        pub unsafe fn reset(&self);
+        unsafe fn reset(&self);
 
         #[method(setThreadgroupMemoryLength:atIndex:)]
-        pub unsafe fn setThreadgroupMemoryLength_atIndex(
-            &self,
-            length: NSUInteger,
-            index: NSUInteger,
-        );
+        unsafe fn setThreadgroupMemoryLength_atIndex(&self, length: NSUInteger, index: NSUInteger);
 
         #[method(setStageInRegion:)]
-        pub unsafe fn setStageInRegion(&self, region: MTLRegion);
+        unsafe fn setStageInRegion(&self, region: MTLRegion);
     }
+
+    unsafe impl ProtocolType for dyn MTLIndirectComputeCommand {}
 );

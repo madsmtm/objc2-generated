@@ -41,12 +41,12 @@ extern_methods!(
         #[method_id(@__retain_semantics Other gameCenterDelegate)]
         pub unsafe fn gameCenterDelegate(
             &self,
-        ) -> Option<Id<GKGameCenterControllerDelegate, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn GKGameCenterControllerDelegate>, Shared>>;
 
         #[method(setGameCenterDelegate:)]
         pub unsafe fn setGameCenterDelegate(
             &self,
-            game_center_delegate: Option<&GKGameCenterControllerDelegate>,
+            game_center_delegate: Option<&ProtocolObject<dyn GKGameCenterControllerDelegate>>,
         );
 
         #[method_id(@__retain_semantics Init initWithState:)]
@@ -127,16 +127,16 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct GKGameCenterControllerDelegate;
-
-    unsafe impl ProtocolType for GKGameCenterControllerDelegate {
+    pub unsafe trait GKGameCenterControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "GameKit_GKGameCenterViewController")]
         #[method(gameCenterViewControllerDidFinish:)]
-        pub unsafe fn gameCenterViewControllerDidFinish(
+        unsafe fn gameCenterViewControllerDidFinish(
             &self,
             game_center_view_controller: &GKGameCenterViewController,
         );
     }
+
+    unsafe impl ProtocolType for dyn GKGameCenterControllerDelegate {}
 );
 
 extern_methods!(

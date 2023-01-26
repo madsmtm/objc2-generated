@@ -6,29 +6,27 @@ use crate::Foundation::*;
 use crate::GameController::*;
 
 extern_protocol!(
-    pub struct GCSwitchPositionInput;
-
-    unsafe impl ProtocolType for GCSwitchPositionInput {
+    pub unsafe trait GCSwitchPositionInput: NSObjectProtocol {
         #[method(positionDidChangeHandler)]
-        pub unsafe fn positionDidChangeHandler(
+        unsafe fn positionDidChangeHandler(
             &self,
         ) -> *mut Block<
             (
-                NonNull<GCPhysicalInputElement>,
-                NonNull<GCSwitchPositionInput>,
+                NonNull<ProtocolObject<dyn GCPhysicalInputElement>>,
+                NonNull<ProtocolObject<dyn GCSwitchPositionInput>>,
                 NSInteger,
             ),
             (),
         >;
 
         #[method(setPositionDidChangeHandler:)]
-        pub unsafe fn setPositionDidChangeHandler(
+        unsafe fn setPositionDidChangeHandler(
             &self,
             position_did_change_handler: Option<
                 &Block<
                     (
-                        NonNull<GCPhysicalInputElement>,
-                        NonNull<GCSwitchPositionInput>,
+                        NonNull<ProtocolObject<dyn GCPhysicalInputElement>>,
+                        NonNull<ProtocolObject<dyn GCSwitchPositionInput>>,
                         NSInteger,
                     ),
                     (),
@@ -37,21 +35,23 @@ extern_protocol!(
         );
 
         #[method(position)]
-        pub unsafe fn position(&self) -> NSInteger;
+        unsafe fn position(&self) -> NSInteger;
 
         #[method(positionRange)]
-        pub unsafe fn positionRange(&self) -> NSRange;
+        unsafe fn positionRange(&self) -> NSRange;
 
         #[method(isSequential)]
-        pub unsafe fn isSequential(&self) -> bool;
+        unsafe fn isSequential(&self) -> bool;
 
         #[method(canWrap)]
-        pub unsafe fn canWrap(&self) -> bool;
+        unsafe fn canWrap(&self) -> bool;
 
         #[method(lastPositionTimestamp)]
-        pub unsafe fn lastPositionTimestamp(&self) -> NSTimeInterval;
+        unsafe fn lastPositionTimestamp(&self) -> NSTimeInterval;
 
         #[method(lastPositionLatency)]
-        pub unsafe fn lastPositionLatency(&self) -> NSTimeInterval;
+        unsafe fn lastPositionLatency(&self) -> NSTimeInterval;
     }
+
+    unsafe impl ProtocolType for dyn GCSwitchPositionInput {}
 );

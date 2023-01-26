@@ -234,389 +234,389 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct NSStandardKeyBindingResponding;
-
-    unsafe impl ProtocolType for NSStandardKeyBindingResponding {
+    pub unsafe trait NSStandardKeyBindingResponding: NSObjectProtocol {
         #[optional]
         #[method(insertText:)]
-        pub unsafe fn insertText(&self, insert_string: &Object);
+        unsafe fn insertText(&self, insert_string: &Object);
 
         #[optional]
         #[method(doCommandBySelector:)]
-        pub unsafe fn doCommandBySelector(&self, selector: Sel);
+        unsafe fn doCommandBySelector(&self, selector: Sel);
 
         #[optional]
         #[method(moveForward:)]
-        pub unsafe fn moveForward(&self, sender: Option<&Object>);
+        unsafe fn moveForward(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(moveRight:)]
-        pub unsafe fn moveRight(&self, sender: Option<&Object>);
+        unsafe fn moveRight(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(moveBackward:)]
-        pub unsafe fn moveBackward(&self, sender: Option<&Object>);
+        unsafe fn moveBackward(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(moveLeft:)]
-        pub unsafe fn moveLeft(&self, sender: Option<&Object>);
+        unsafe fn moveLeft(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(moveUp:)]
-        pub unsafe fn moveUp(&self, sender: Option<&Object>);
+        unsafe fn moveUp(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(moveDown:)]
-        pub unsafe fn moveDown(&self, sender: Option<&Object>);
+        unsafe fn moveDown(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(moveWordForward:)]
-        pub unsafe fn moveWordForward(&self, sender: Option<&Object>);
+        unsafe fn moveWordForward(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(moveWordBackward:)]
-        pub unsafe fn moveWordBackward(&self, sender: Option<&Object>);
+        unsafe fn moveWordBackward(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(moveToBeginningOfLine:)]
-        pub unsafe fn moveToBeginningOfLine(&self, sender: Option<&Object>);
+        unsafe fn moveToBeginningOfLine(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(moveToEndOfLine:)]
-        pub unsafe fn moveToEndOfLine(&self, sender: Option<&Object>);
+        unsafe fn moveToEndOfLine(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(moveToBeginningOfParagraph:)]
-        pub unsafe fn moveToBeginningOfParagraph(&self, sender: Option<&Object>);
+        unsafe fn moveToBeginningOfParagraph(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(moveToEndOfParagraph:)]
-        pub unsafe fn moveToEndOfParagraph(&self, sender: Option<&Object>);
+        unsafe fn moveToEndOfParagraph(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(moveToEndOfDocument:)]
-        pub unsafe fn moveToEndOfDocument(&self, sender: Option<&Object>);
+        unsafe fn moveToEndOfDocument(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(moveToBeginningOfDocument:)]
-        pub unsafe fn moveToBeginningOfDocument(&self, sender: Option<&Object>);
+        unsafe fn moveToBeginningOfDocument(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(pageDown:)]
-        pub unsafe fn pageDown(&self, sender: Option<&Object>);
+        unsafe fn pageDown(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(pageUp:)]
-        pub unsafe fn pageUp(&self, sender: Option<&Object>);
+        unsafe fn pageUp(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(centerSelectionInVisibleArea:)]
-        pub unsafe fn centerSelectionInVisibleArea(&self, sender: Option<&Object>);
+        unsafe fn centerSelectionInVisibleArea(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(moveBackwardAndModifySelection:)]
-        pub unsafe fn moveBackwardAndModifySelection(&self, sender: Option<&Object>);
+        unsafe fn moveBackwardAndModifySelection(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(moveForwardAndModifySelection:)]
-        pub unsafe fn moveForwardAndModifySelection(&self, sender: Option<&Object>);
+        unsafe fn moveForwardAndModifySelection(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(moveWordForwardAndModifySelection:)]
-        pub unsafe fn moveWordForwardAndModifySelection(&self, sender: Option<&Object>);
+        unsafe fn moveWordForwardAndModifySelection(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(moveWordBackwardAndModifySelection:)]
-        pub unsafe fn moveWordBackwardAndModifySelection(&self, sender: Option<&Object>);
+        unsafe fn moveWordBackwardAndModifySelection(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(moveUpAndModifySelection:)]
-        pub unsafe fn moveUpAndModifySelection(&self, sender: Option<&Object>);
+        unsafe fn moveUpAndModifySelection(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(moveDownAndModifySelection:)]
-        pub unsafe fn moveDownAndModifySelection(&self, sender: Option<&Object>);
+        unsafe fn moveDownAndModifySelection(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(moveToBeginningOfLineAndModifySelection:)]
-        pub unsafe fn moveToBeginningOfLineAndModifySelection(&self, sender: Option<&Object>);
+        unsafe fn moveToBeginningOfLineAndModifySelection(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(moveToEndOfLineAndModifySelection:)]
-        pub unsafe fn moveToEndOfLineAndModifySelection(&self, sender: Option<&Object>);
+        unsafe fn moveToEndOfLineAndModifySelection(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(moveToBeginningOfParagraphAndModifySelection:)]
-        pub unsafe fn moveToBeginningOfParagraphAndModifySelection(&self, sender: Option<&Object>);
+        unsafe fn moveToBeginningOfParagraphAndModifySelection(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(moveToEndOfParagraphAndModifySelection:)]
-        pub unsafe fn moveToEndOfParagraphAndModifySelection(&self, sender: Option<&Object>);
+        unsafe fn moveToEndOfParagraphAndModifySelection(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(moveToEndOfDocumentAndModifySelection:)]
-        pub unsafe fn moveToEndOfDocumentAndModifySelection(&self, sender: Option<&Object>);
+        unsafe fn moveToEndOfDocumentAndModifySelection(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(moveToBeginningOfDocumentAndModifySelection:)]
-        pub unsafe fn moveToBeginningOfDocumentAndModifySelection(&self, sender: Option<&Object>);
+        unsafe fn moveToBeginningOfDocumentAndModifySelection(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(pageDownAndModifySelection:)]
-        pub unsafe fn pageDownAndModifySelection(&self, sender: Option<&Object>);
+        unsafe fn pageDownAndModifySelection(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(pageUpAndModifySelection:)]
-        pub unsafe fn pageUpAndModifySelection(&self, sender: Option<&Object>);
+        unsafe fn pageUpAndModifySelection(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(moveParagraphForwardAndModifySelection:)]
-        pub unsafe fn moveParagraphForwardAndModifySelection(&self, sender: Option<&Object>);
+        unsafe fn moveParagraphForwardAndModifySelection(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(moveParagraphBackwardAndModifySelection:)]
-        pub unsafe fn moveParagraphBackwardAndModifySelection(&self, sender: Option<&Object>);
+        unsafe fn moveParagraphBackwardAndModifySelection(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(moveWordRight:)]
-        pub unsafe fn moveWordRight(&self, sender: Option<&Object>);
+        unsafe fn moveWordRight(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(moveWordLeft:)]
-        pub unsafe fn moveWordLeft(&self, sender: Option<&Object>);
+        unsafe fn moveWordLeft(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(moveRightAndModifySelection:)]
-        pub unsafe fn moveRightAndModifySelection(&self, sender: Option<&Object>);
+        unsafe fn moveRightAndModifySelection(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(moveLeftAndModifySelection:)]
-        pub unsafe fn moveLeftAndModifySelection(&self, sender: Option<&Object>);
+        unsafe fn moveLeftAndModifySelection(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(moveWordRightAndModifySelection:)]
-        pub unsafe fn moveWordRightAndModifySelection(&self, sender: Option<&Object>);
+        unsafe fn moveWordRightAndModifySelection(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(moveWordLeftAndModifySelection:)]
-        pub unsafe fn moveWordLeftAndModifySelection(&self, sender: Option<&Object>);
+        unsafe fn moveWordLeftAndModifySelection(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(moveToLeftEndOfLine:)]
-        pub unsafe fn moveToLeftEndOfLine(&self, sender: Option<&Object>);
+        unsafe fn moveToLeftEndOfLine(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(moveToRightEndOfLine:)]
-        pub unsafe fn moveToRightEndOfLine(&self, sender: Option<&Object>);
+        unsafe fn moveToRightEndOfLine(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(moveToLeftEndOfLineAndModifySelection:)]
-        pub unsafe fn moveToLeftEndOfLineAndModifySelection(&self, sender: Option<&Object>);
+        unsafe fn moveToLeftEndOfLineAndModifySelection(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(moveToRightEndOfLineAndModifySelection:)]
-        pub unsafe fn moveToRightEndOfLineAndModifySelection(&self, sender: Option<&Object>);
+        unsafe fn moveToRightEndOfLineAndModifySelection(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(scrollPageUp:)]
-        pub unsafe fn scrollPageUp(&self, sender: Option<&Object>);
+        unsafe fn scrollPageUp(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(scrollPageDown:)]
-        pub unsafe fn scrollPageDown(&self, sender: Option<&Object>);
+        unsafe fn scrollPageDown(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(scrollLineUp:)]
-        pub unsafe fn scrollLineUp(&self, sender: Option<&Object>);
+        unsafe fn scrollLineUp(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(scrollLineDown:)]
-        pub unsafe fn scrollLineDown(&self, sender: Option<&Object>);
+        unsafe fn scrollLineDown(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(scrollToBeginningOfDocument:)]
-        pub unsafe fn scrollToBeginningOfDocument(&self, sender: Option<&Object>);
+        unsafe fn scrollToBeginningOfDocument(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(scrollToEndOfDocument:)]
-        pub unsafe fn scrollToEndOfDocument(&self, sender: Option<&Object>);
+        unsafe fn scrollToEndOfDocument(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(transpose:)]
-        pub unsafe fn transpose(&self, sender: Option<&Object>);
+        unsafe fn transpose(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(transposeWords:)]
-        pub unsafe fn transposeWords(&self, sender: Option<&Object>);
+        unsafe fn transposeWords(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(selectAll:)]
-        pub unsafe fn selectAll(&self, sender: Option<&Object>);
+        unsafe fn selectAll(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(selectParagraph:)]
-        pub unsafe fn selectParagraph(&self, sender: Option<&Object>);
+        unsafe fn selectParagraph(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(selectLine:)]
-        pub unsafe fn selectLine(&self, sender: Option<&Object>);
+        unsafe fn selectLine(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(selectWord:)]
-        pub unsafe fn selectWord(&self, sender: Option<&Object>);
+        unsafe fn selectWord(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(indent:)]
-        pub unsafe fn indent(&self, sender: Option<&Object>);
+        unsafe fn indent(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(insertTab:)]
-        pub unsafe fn insertTab(&self, sender: Option<&Object>);
+        unsafe fn insertTab(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(insertBacktab:)]
-        pub unsafe fn insertBacktab(&self, sender: Option<&Object>);
+        unsafe fn insertBacktab(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(insertNewline:)]
-        pub unsafe fn insertNewline(&self, sender: Option<&Object>);
+        unsafe fn insertNewline(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(insertParagraphSeparator:)]
-        pub unsafe fn insertParagraphSeparator(&self, sender: Option<&Object>);
+        unsafe fn insertParagraphSeparator(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(insertNewlineIgnoringFieldEditor:)]
-        pub unsafe fn insertNewlineIgnoringFieldEditor(&self, sender: Option<&Object>);
+        unsafe fn insertNewlineIgnoringFieldEditor(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(insertTabIgnoringFieldEditor:)]
-        pub unsafe fn insertTabIgnoringFieldEditor(&self, sender: Option<&Object>);
+        unsafe fn insertTabIgnoringFieldEditor(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(insertLineBreak:)]
-        pub unsafe fn insertLineBreak(&self, sender: Option<&Object>);
+        unsafe fn insertLineBreak(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(insertContainerBreak:)]
-        pub unsafe fn insertContainerBreak(&self, sender: Option<&Object>);
+        unsafe fn insertContainerBreak(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(insertSingleQuoteIgnoringSubstitution:)]
-        pub unsafe fn insertSingleQuoteIgnoringSubstitution(&self, sender: Option<&Object>);
+        unsafe fn insertSingleQuoteIgnoringSubstitution(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(insertDoubleQuoteIgnoringSubstitution:)]
-        pub unsafe fn insertDoubleQuoteIgnoringSubstitution(&self, sender: Option<&Object>);
+        unsafe fn insertDoubleQuoteIgnoringSubstitution(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(changeCaseOfLetter:)]
-        pub unsafe fn changeCaseOfLetter(&self, sender: Option<&Object>);
+        unsafe fn changeCaseOfLetter(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(uppercaseWord:)]
-        pub unsafe fn uppercaseWord(&self, sender: Option<&Object>);
+        unsafe fn uppercaseWord(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(lowercaseWord:)]
-        pub unsafe fn lowercaseWord(&self, sender: Option<&Object>);
+        unsafe fn lowercaseWord(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(capitalizeWord:)]
-        pub unsafe fn capitalizeWord(&self, sender: Option<&Object>);
+        unsafe fn capitalizeWord(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(deleteForward:)]
-        pub unsafe fn deleteForward(&self, sender: Option<&Object>);
+        unsafe fn deleteForward(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(deleteBackward:)]
-        pub unsafe fn deleteBackward(&self, sender: Option<&Object>);
+        unsafe fn deleteBackward(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(deleteBackwardByDecomposingPreviousCharacter:)]
-        pub unsafe fn deleteBackwardByDecomposingPreviousCharacter(&self, sender: Option<&Object>);
+        unsafe fn deleteBackwardByDecomposingPreviousCharacter(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(deleteWordForward:)]
-        pub unsafe fn deleteWordForward(&self, sender: Option<&Object>);
+        unsafe fn deleteWordForward(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(deleteWordBackward:)]
-        pub unsafe fn deleteWordBackward(&self, sender: Option<&Object>);
+        unsafe fn deleteWordBackward(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(deleteToBeginningOfLine:)]
-        pub unsafe fn deleteToBeginningOfLine(&self, sender: Option<&Object>);
+        unsafe fn deleteToBeginningOfLine(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(deleteToEndOfLine:)]
-        pub unsafe fn deleteToEndOfLine(&self, sender: Option<&Object>);
+        unsafe fn deleteToEndOfLine(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(deleteToBeginningOfParagraph:)]
-        pub unsafe fn deleteToBeginningOfParagraph(&self, sender: Option<&Object>);
+        unsafe fn deleteToBeginningOfParagraph(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(deleteToEndOfParagraph:)]
-        pub unsafe fn deleteToEndOfParagraph(&self, sender: Option<&Object>);
+        unsafe fn deleteToEndOfParagraph(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(yank:)]
-        pub unsafe fn yank(&self, sender: Option<&Object>);
+        unsafe fn yank(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(complete:)]
-        pub unsafe fn complete(&self, sender: Option<&Object>);
+        unsafe fn complete(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(setMark:)]
-        pub unsafe fn setMark(&self, sender: Option<&Object>);
+        unsafe fn setMark(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(deleteToMark:)]
-        pub unsafe fn deleteToMark(&self, sender: Option<&Object>);
+        unsafe fn deleteToMark(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(selectToMark:)]
-        pub unsafe fn selectToMark(&self, sender: Option<&Object>);
+        unsafe fn selectToMark(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(swapWithMark:)]
-        pub unsafe fn swapWithMark(&self, sender: Option<&Object>);
+        unsafe fn swapWithMark(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(cancelOperation:)]
-        pub unsafe fn cancelOperation(&self, sender: Option<&Object>);
+        unsafe fn cancelOperation(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(makeBaseWritingDirectionNatural:)]
-        pub unsafe fn makeBaseWritingDirectionNatural(&self, sender: Option<&Object>);
+        unsafe fn makeBaseWritingDirectionNatural(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(makeBaseWritingDirectionLeftToRight:)]
-        pub unsafe fn makeBaseWritingDirectionLeftToRight(&self, sender: Option<&Object>);
+        unsafe fn makeBaseWritingDirectionLeftToRight(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(makeBaseWritingDirectionRightToLeft:)]
-        pub unsafe fn makeBaseWritingDirectionRightToLeft(&self, sender: Option<&Object>);
+        unsafe fn makeBaseWritingDirectionRightToLeft(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(makeTextWritingDirectionNatural:)]
-        pub unsafe fn makeTextWritingDirectionNatural(&self, sender: Option<&Object>);
+        unsafe fn makeTextWritingDirectionNatural(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(makeTextWritingDirectionLeftToRight:)]
-        pub unsafe fn makeTextWritingDirectionLeftToRight(&self, sender: Option<&Object>);
+        unsafe fn makeTextWritingDirectionLeftToRight(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(makeTextWritingDirectionRightToLeft:)]
-        pub unsafe fn makeTextWritingDirectionRightToLeft(&self, sender: Option<&Object>);
+        unsafe fn makeTextWritingDirectionRightToLeft(&self, sender: Option<&Object>);
 
         #[optional]
         #[method(quickLookPreviewItems:)]
-        pub unsafe fn quickLookPreviewItems(&self, sender: Option<&Object>);
+        unsafe fn quickLookPreviewItems(&self, sender: Option<&Object>);
     }
+
+    unsafe impl ProtocolType for dyn NSStandardKeyBindingResponding {}
 );
 
 extern_methods!(

@@ -7,40 +7,38 @@ use crate::WebKit::*;
 
 extern_protocol!(
     #[deprecated]
-    pub struct WebDocumentView;
-
-    unsafe impl ProtocolType for WebDocumentView {
+    pub unsafe trait WebDocumentView: NSObjectProtocol {
         #[cfg(feature = "WebKit_WebDataSource")]
         #[method(setDataSource:)]
-        pub unsafe fn setDataSource(&self, data_source: Option<&WebDataSource>);
+        unsafe fn setDataSource(&self, data_source: Option<&WebDataSource>);
 
         #[cfg(feature = "WebKit_WebDataSource")]
         #[method(dataSourceUpdated:)]
-        pub unsafe fn dataSourceUpdated(&self, data_source: Option<&WebDataSource>);
+        unsafe fn dataSourceUpdated(&self, data_source: Option<&WebDataSource>);
 
         #[method(setNeedsLayout:)]
-        pub unsafe fn setNeedsLayout(&self, flag: bool);
+        unsafe fn setNeedsLayout(&self, flag: bool);
 
         #[method(layout)]
-        pub unsafe fn layout(&self);
+        unsafe fn layout(&self);
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[method(viewWillMoveToHostWindow:)]
-        pub unsafe fn viewWillMoveToHostWindow(&self, host_window: Option<&NSWindow>);
+        unsafe fn viewWillMoveToHostWindow(&self, host_window: Option<&NSWindow>);
 
         #[method(viewDidMoveToHostWindow)]
-        pub unsafe fn viewDidMoveToHostWindow(&self);
+        unsafe fn viewDidMoveToHostWindow(&self);
     }
+
+    unsafe impl ProtocolType for dyn WebDocumentView {}
 );
 
 extern_protocol!(
     #[deprecated]
-    pub struct WebDocumentSearching;
-
-    unsafe impl ProtocolType for WebDocumentSearching {
+    pub unsafe trait WebDocumentSearching: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSString")]
         #[method(searchFor:direction:caseSensitive:wrap:)]
-        pub unsafe fn searchFor_direction_caseSensitive_wrap(
+        unsafe fn searchFor_direction_caseSensitive_wrap(
             &self,
             string: Option<&NSString>,
             forward: bool,
@@ -48,52 +46,52 @@ extern_protocol!(
             wrap_flag: bool,
         ) -> bool;
     }
+
+    unsafe impl ProtocolType for dyn WebDocumentSearching {}
 );
 
 extern_protocol!(
     #[deprecated]
-    pub struct WebDocumentText;
-
-    unsafe impl ProtocolType for WebDocumentText {
+    pub unsafe trait WebDocumentText: NSObjectProtocol {
         #[method(supportsTextEncoding)]
-        pub unsafe fn supportsTextEncoding(&self) -> bool;
+        unsafe fn supportsTextEncoding(&self) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other string)]
-        pub unsafe fn string(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn string(&self) -> Option<Id<NSString, Shared>>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedString)]
-        pub unsafe fn attributedString(&self) -> Option<Id<NSAttributedString, Shared>>;
+        unsafe fn attributedString(&self) -> Option<Id<NSAttributedString, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other selectedString)]
-        pub unsafe fn selectedString(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn selectedString(&self) -> Option<Id<NSString, Shared>>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other selectedAttributedString)]
-        pub unsafe fn selectedAttributedString(&self) -> Option<Id<NSAttributedString, Shared>>;
+        unsafe fn selectedAttributedString(&self) -> Option<Id<NSAttributedString, Shared>>;
 
         #[method(selectAll)]
-        pub unsafe fn selectAll(&self);
+        unsafe fn selectAll(&self);
 
         #[method(deselectAll)]
-        pub unsafe fn deselectAll(&self);
+        unsafe fn deselectAll(&self);
     }
+
+    unsafe impl ProtocolType for dyn WebDocumentText {}
 );
 
 extern_protocol!(
     #[deprecated]
-    pub struct WebDocumentRepresentation;
-
-    unsafe impl ProtocolType for WebDocumentRepresentation {
+    pub unsafe trait WebDocumentRepresentation: NSObjectProtocol {
         #[cfg(feature = "WebKit_WebDataSource")]
         #[method(setDataSource:)]
-        pub unsafe fn setDataSource(&self, data_source: Option<&WebDataSource>);
+        unsafe fn setDataSource(&self, data_source: Option<&WebDataSource>);
 
         #[cfg(all(feature = "Foundation_NSData", feature = "WebKit_WebDataSource"))]
         #[method(receivedData:withDataSource:)]
-        pub unsafe fn receivedData_withDataSource(
+        unsafe fn receivedData_withDataSource(
             &self,
             data: Option<&NSData>,
             data_source: Option<&WebDataSource>,
@@ -101,7 +99,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "Foundation_NSError", feature = "WebKit_WebDataSource"))]
         #[method(receivedError:withDataSource:)]
-        pub unsafe fn receivedError_withDataSource(
+        unsafe fn receivedError_withDataSource(
             &self,
             error: Option<&NSError>,
             data_source: Option<&WebDataSource>,
@@ -109,17 +107,19 @@ extern_protocol!(
 
         #[cfg(feature = "WebKit_WebDataSource")]
         #[method(finishedLoadingWithDataSource:)]
-        pub unsafe fn finishedLoadingWithDataSource(&self, data_source: Option<&WebDataSource>);
+        unsafe fn finishedLoadingWithDataSource(&self, data_source: Option<&WebDataSource>);
 
         #[method(canProvideDocumentSource)]
-        pub unsafe fn canProvideDocumentSource(&self) -> bool;
+        unsafe fn canProvideDocumentSource(&self) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other documentSource)]
-        pub unsafe fn documentSource(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn documentSource(&self) -> Option<Id<NSString, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn title(&self) -> Option<Id<NSString, Shared>>;
     }
+
+    unsafe impl ProtocolType for dyn WebDocumentRepresentation {}
 );

@@ -6,25 +6,25 @@ use crate::Foundation::*;
 use crate::GameController::*;
 
 extern_protocol!(
-    pub struct GCDirectionPadElement;
-
-    unsafe impl ProtocolType for GCDirectionPadElement {
+    pub unsafe trait GCDirectionPadElement: GCPhysicalInputElement {
         #[method_id(@__retain_semantics Other xAxis)]
-        pub unsafe fn xAxis(&self) -> Id<GCAxisInput, Shared>;
+        unsafe fn xAxis(&self) -> Id<ProtocolObject<dyn GCAxisInput>, Shared>;
 
         #[method_id(@__retain_semantics Other yAxis)]
-        pub unsafe fn yAxis(&self) -> Id<GCAxisInput, Shared>;
+        unsafe fn yAxis(&self) -> Id<ProtocolObject<dyn GCAxisInput>, Shared>;
 
         #[method_id(@__retain_semantics Other up)]
-        pub unsafe fn up(&self) -> Id<TodoProtocols, Shared>;
+        unsafe fn up(&self) -> Id<TodoProtocols, Shared>;
 
         #[method_id(@__retain_semantics Other down)]
-        pub unsafe fn down(&self) -> Id<TodoProtocols, Shared>;
+        unsafe fn down(&self) -> Id<TodoProtocols, Shared>;
 
         #[method_id(@__retain_semantics Other left)]
-        pub unsafe fn left(&self) -> Id<TodoProtocols, Shared>;
+        unsafe fn left(&self) -> Id<TodoProtocols, Shared>;
 
         #[method_id(@__retain_semantics Other right)]
-        pub unsafe fn right(&self) -> Id<TodoProtocols, Shared>;
+        unsafe fn right(&self) -> Id<TodoProtocols, Shared>;
     }
+
+    unsafe impl ProtocolType for dyn GCDirectionPadElement {}
 );

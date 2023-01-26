@@ -101,10 +101,15 @@ extern_methods!(
         pub unsafe fn isAuthorizedForWidgetUpdates(&self) -> bool;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<CLLocationManagerDelegate, Shared>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn CLLocationManagerDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&CLLocationManagerDelegate>);
+        pub unsafe fn setDelegate(
+            &self,
+            delegate: Option<&ProtocolObject<dyn CLLocationManagerDelegate>>,
+        );
 
         #[deprecated]
         #[method(locationServicesEnabled)]

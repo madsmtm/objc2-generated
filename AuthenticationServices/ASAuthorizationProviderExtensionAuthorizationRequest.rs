@@ -19,14 +19,14 @@ extern_static!(
 );
 
 extern_protocol!(
-    pub struct ASAuthorizationProviderExtensionAuthorizationRequestHandler;
-
-    unsafe impl ProtocolType for ASAuthorizationProviderExtensionAuthorizationRequestHandler {
+    pub unsafe trait ASAuthorizationProviderExtensionAuthorizationRequestHandler:
+        NSObjectProtocol
+    {
         #[cfg(
             feature = "AuthenticationServices_ASAuthorizationProviderExtensionAuthorizationRequest"
         )]
         #[method(beginAuthorizationWithRequest:)]
-        pub unsafe fn beginAuthorizationWithRequest(
+        unsafe fn beginAuthorizationWithRequest(
             &self,
             request: &ASAuthorizationProviderExtensionAuthorizationRequest,
         );
@@ -36,11 +36,13 @@ extern_protocol!(
         )]
         #[optional]
         #[method(cancelAuthorizationWithRequest:)]
-        pub unsafe fn cancelAuthorizationWithRequest(
+        unsafe fn cancelAuthorizationWithRequest(
             &self,
             request: &ASAuthorizationProviderExtensionAuthorizationRequest,
         );
     }
+
+    unsafe impl ProtocolType for dyn ASAuthorizationProviderExtensionAuthorizationRequestHandler {}
 );
 
 extern_class!(

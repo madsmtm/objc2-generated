@@ -54,10 +54,15 @@ extern_methods!(
         pub unsafe fn setTimingFunction(&self, timing_function: Option<&CAMediaTimingFunction>);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<CAAnimationDelegate, Shared>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn CAAnimationDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&CAAnimationDelegate>);
+        pub unsafe fn setDelegate(
+            &self,
+            delegate: Option<&ProtocolObject<dyn CAAnimationDelegate>>,
+        );
 
         #[method(isRemovedOnCompletion)]
         pub unsafe fn isRemovedOnCompletion(&self) -> bool;
@@ -77,19 +82,19 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct CAAnimationDelegate;
-
-    unsafe impl ProtocolType for CAAnimationDelegate {
+    pub unsafe trait CAAnimationDelegate: NSObjectProtocol {
         #[cfg(feature = "CoreAnimation_CAAnimation")]
         #[optional]
         #[method(animationDidStart:)]
-        pub unsafe fn animationDidStart(&self, anim: &CAAnimation);
+        unsafe fn animationDidStart(&self, anim: &CAAnimation);
 
         #[cfg(feature = "CoreAnimation_CAAnimation")]
         #[optional]
         #[method(animationDidStop:finished:)]
-        pub unsafe fn animationDidStop_finished(&self, anim: &CAAnimation, flag: bool);
+        unsafe fn animationDidStop_finished(&self, anim: &CAAnimation, flag: bool);
     }
+
+    unsafe impl ProtocolType for dyn CAAnimationDelegate {}
 );
 
 extern_class!(

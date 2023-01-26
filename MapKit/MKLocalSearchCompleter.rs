@@ -81,10 +81,15 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<MKLocalSearchCompleterDelegate, Shared>>;
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn MKLocalSearchCompleterDelegate>, Shared>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&MKLocalSearchCompleterDelegate>);
+        pub unsafe fn setDelegate(
+            &self,
+            delegate: Option<&ProtocolObject<dyn MKLocalSearchCompleterDelegate>>,
+        );
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -102,13 +107,11 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct MKLocalSearchCompleterDelegate;
-
-    unsafe impl ProtocolType for MKLocalSearchCompleterDelegate {
+    pub unsafe trait MKLocalSearchCompleterDelegate: NSObjectProtocol {
         #[cfg(feature = "MapKit_MKLocalSearchCompleter")]
         #[optional]
         #[method(completerDidUpdateResults:)]
-        pub unsafe fn completerDidUpdateResults(&self, completer: &MKLocalSearchCompleter);
+        unsafe fn completerDidUpdateResults(&self, completer: &MKLocalSearchCompleter);
 
         #[cfg(all(
             feature = "Foundation_NSError",
@@ -116,12 +119,14 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(completer:didFailWithError:)]
-        pub unsafe fn completer_didFailWithError(
+        unsafe fn completer_didFailWithError(
             &self,
             completer: &MKLocalSearchCompleter,
             error: &NSError,
         );
     }
+
+    unsafe impl ProtocolType for dyn MKLocalSearchCompleterDelegate {}
 );
 
 extern_class!(

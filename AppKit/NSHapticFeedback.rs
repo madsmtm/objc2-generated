@@ -24,16 +24,16 @@ ns_enum!(
 );
 
 extern_protocol!(
-    pub struct NSHapticFeedbackPerformer;
-
-    unsafe impl ProtocolType for NSHapticFeedbackPerformer {
+    pub unsafe trait NSHapticFeedbackPerformer: NSObjectProtocol {
         #[method(performFeedbackPattern:performanceTime:)]
-        pub unsafe fn performFeedbackPattern_performanceTime(
+        unsafe fn performFeedbackPattern_performanceTime(
             &self,
             pattern: NSHapticFeedbackPattern,
             performance_time: NSHapticFeedbackPerformanceTime,
         );
     }
+
+    unsafe impl ProtocolType for dyn NSHapticFeedbackPerformer {}
 );
 
 extern_class!(
@@ -51,6 +51,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSHapticFeedbackManager")]
     unsafe impl NSHapticFeedbackManager {
         #[method_id(@__retain_semantics Other defaultPerformer)]
-        pub unsafe fn defaultPerformer() -> Id<NSHapticFeedbackPerformer, Shared>;
+        pub unsafe fn defaultPerformer() -> Id<ProtocolObject<dyn NSHapticFeedbackPerformer>, Shared>;
     }
 );

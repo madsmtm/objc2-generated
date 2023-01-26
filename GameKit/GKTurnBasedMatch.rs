@@ -93,13 +93,11 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct GKTurnBasedEventListener;
-
-    unsafe impl ProtocolType for GKTurnBasedEventListener {
+    pub unsafe trait GKTurnBasedEventListener {
         #[cfg(all(feature = "Foundation_NSArray", feature = "GameKit_GKPlayer"))]
         #[optional]
         #[method(player:didRequestMatchWithOtherPlayers:)]
-        pub unsafe fn player_didRequestMatchWithOtherPlayers(
+        unsafe fn player_didRequestMatchWithOtherPlayers(
             &self,
             player: &GKPlayer,
             players_to_invite: &NSArray<GKPlayer>,
@@ -108,7 +106,7 @@ extern_protocol!(
         #[cfg(all(feature = "GameKit_GKPlayer", feature = "GameKit_GKTurnBasedMatch"))]
         #[optional]
         #[method(player:receivedTurnEventForMatch:didBecomeActive:)]
-        pub unsafe fn player_receivedTurnEventForMatch_didBecomeActive(
+        unsafe fn player_receivedTurnEventForMatch_didBecomeActive(
             &self,
             player: &GKPlayer,
             r#match: &GKTurnBasedMatch,
@@ -118,7 +116,7 @@ extern_protocol!(
         #[cfg(all(feature = "GameKit_GKPlayer", feature = "GameKit_GKTurnBasedMatch"))]
         #[optional]
         #[method(player:matchEnded:)]
-        pub unsafe fn player_matchEnded(&self, player: &GKPlayer, r#match: &GKTurnBasedMatch);
+        unsafe fn player_matchEnded(&self, player: &GKPlayer, r#match: &GKTurnBasedMatch);
 
         #[cfg(all(
             feature = "GameKit_GKPlayer",
@@ -127,7 +125,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(player:receivedExchangeRequest:forMatch:)]
-        pub unsafe fn player_receivedExchangeRequest_forMatch(
+        unsafe fn player_receivedExchangeRequest_forMatch(
             &self,
             player: &GKPlayer,
             exchange: &GKTurnBasedExchange,
@@ -141,7 +139,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(player:receivedExchangeCancellation:forMatch:)]
-        pub unsafe fn player_receivedExchangeCancellation_forMatch(
+        unsafe fn player_receivedExchangeCancellation_forMatch(
             &self,
             player: &GKPlayer,
             exchange: &GKTurnBasedExchange,
@@ -157,7 +155,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(player:receivedExchangeReplies:forCompletedExchange:forMatch:)]
-        pub unsafe fn player_receivedExchangeReplies_forCompletedExchange_forMatch(
+        unsafe fn player_receivedExchangeReplies_forCompletedExchange_forMatch(
             &self,
             player: &GKPlayer,
             replies: &NSArray<GKTurnBasedExchangeReply>,
@@ -168,7 +166,7 @@ extern_protocol!(
         #[cfg(all(feature = "GameKit_GKPlayer", feature = "GameKit_GKTurnBasedMatch"))]
         #[optional]
         #[method(player:wantsToQuitMatch:)]
-        pub unsafe fn player_wantsToQuitMatch(&self, player: &GKPlayer, r#match: &GKTurnBasedMatch);
+        unsafe fn player_wantsToQuitMatch(&self, player: &GKPlayer, r#match: &GKTurnBasedMatch);
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -177,12 +175,14 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(player:didRequestMatchWithPlayers:)]
-        pub unsafe fn player_didRequestMatchWithPlayers(
+        unsafe fn player_didRequestMatchWithPlayers(
             &self,
             player: &GKPlayer,
             player_i_ds_to_invite: &NSArray<NSString>,
         );
     }
+
+    unsafe impl ProtocolType for dyn GKTurnBasedEventListener {}
 );
 
 extern_static!(GKTurnTimeoutDefault: NSTimeInterval);
@@ -635,18 +635,16 @@ extern_methods!(
 
 extern_protocol!(
     #[deprecated = "Use registerListener on GKLocalPlayer with an object that implements the GKTurnBasedEventListener protocol"]
-    pub struct GKTurnBasedEventHandlerDelegate;
-
-    unsafe impl ProtocolType for GKTurnBasedEventHandlerDelegate {
+    pub unsafe trait GKTurnBasedEventHandlerDelegate {
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[deprecated]
         #[method(handleInviteFromGameCenter:)]
-        pub unsafe fn handleInviteFromGameCenter(&self, players_to_invite: &NSArray<NSString>);
+        unsafe fn handleInviteFromGameCenter(&self, players_to_invite: &NSArray<NSString>);
 
         #[cfg(feature = "GameKit_GKTurnBasedMatch")]
         #[deprecated]
         #[method(handleTurnEventForMatch:didBecomeActive:)]
-        pub unsafe fn handleTurnEventForMatch_didBecomeActive(
+        unsafe fn handleTurnEventForMatch_didBecomeActive(
             &self,
             r#match: &GKTurnBasedMatch,
             did_become_active: bool,
@@ -656,14 +654,16 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(handleTurnEventForMatch:)]
-        pub unsafe fn handleTurnEventForMatch(&self, r#match: &GKTurnBasedMatch);
+        unsafe fn handleTurnEventForMatch(&self, r#match: &GKTurnBasedMatch);
 
         #[cfg(feature = "GameKit_GKTurnBasedMatch")]
         #[deprecated]
         #[optional]
         #[method(handleMatchEnded:)]
-        pub unsafe fn handleMatchEnded(&self, r#match: &GKTurnBasedMatch);
+        unsafe fn handleMatchEnded(&self, r#match: &GKTurnBasedMatch);
     }
+
+    unsafe impl ProtocolType for dyn GKTurnBasedEventHandlerDelegate {}
 );
 
 extern_class!(

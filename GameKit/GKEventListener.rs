@@ -6,27 +6,21 @@ use crate::Foundation::*;
 use crate::GameKit::*;
 
 extern_protocol!(
-    pub struct GKChallengeListener;
-
-    unsafe impl ProtocolType for GKChallengeListener {
+    pub unsafe trait GKChallengeListener: NSObjectProtocol {
         #[cfg(all(feature = "GameKit_GKChallenge", feature = "GameKit_GKPlayer"))]
         #[optional]
         #[method(player:wantsToPlayChallenge:)]
-        pub unsafe fn player_wantsToPlayChallenge(
-            &self,
-            player: &GKPlayer,
-            challenge: &GKChallenge,
-        );
+        unsafe fn player_wantsToPlayChallenge(&self, player: &GKPlayer, challenge: &GKChallenge);
 
         #[cfg(all(feature = "GameKit_GKChallenge", feature = "GameKit_GKPlayer"))]
         #[optional]
         #[method(player:didReceiveChallenge:)]
-        pub unsafe fn player_didReceiveChallenge(&self, player: &GKPlayer, challenge: &GKChallenge);
+        unsafe fn player_didReceiveChallenge(&self, player: &GKPlayer, challenge: &GKChallenge);
 
         #[cfg(all(feature = "GameKit_GKChallenge", feature = "GameKit_GKPlayer"))]
         #[optional]
         #[method(player:didCompleteChallenge:issuedByFriend:)]
-        pub unsafe fn player_didCompleteChallenge_issuedByFriend(
+        unsafe fn player_didCompleteChallenge_issuedByFriend(
             &self,
             player: &GKPlayer,
             challenge: &GKChallenge,
@@ -36,11 +30,13 @@ extern_protocol!(
         #[cfg(all(feature = "GameKit_GKChallenge", feature = "GameKit_GKPlayer"))]
         #[optional]
         #[method(player:issuedChallengeWasCompleted:byFriend:)]
-        pub unsafe fn player_issuedChallengeWasCompleted_byFriend(
+        unsafe fn player_issuedChallengeWasCompleted_byFriend(
             &self,
             player: &GKPlayer,
             challenge: &GKChallenge,
             friend_player: &GKPlayer,
         );
     }
+
+    unsafe impl ProtocolType for dyn GKChallengeListener {}
 );

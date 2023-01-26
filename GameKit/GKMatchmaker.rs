@@ -182,18 +182,16 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct GKInviteEventListener;
-
-    unsafe impl ProtocolType for GKInviteEventListener {
+    pub unsafe trait GKInviteEventListener {
         #[cfg(all(feature = "GameKit_GKInvite", feature = "GameKit_GKPlayer"))]
         #[optional]
         #[method(player:didAcceptInvite:)]
-        pub unsafe fn player_didAcceptInvite(&self, player: &GKPlayer, invite: &GKInvite);
+        unsafe fn player_didAcceptInvite(&self, player: &GKPlayer, invite: &GKInvite);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "GameKit_GKPlayer"))]
         #[optional]
         #[method(player:didRequestMatchWithRecipients:)]
-        pub unsafe fn player_didRequestMatchWithRecipients(
+        unsafe fn player_didRequestMatchWithRecipients(
             &self,
             player: &GKPlayer,
             recipient_players: &NSArray<GKPlayer>,
@@ -206,12 +204,14 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(player:didRequestMatchWithPlayers:)]
-        pub unsafe fn player_didRequestMatchWithPlayers(
+        unsafe fn player_didRequestMatchWithPlayers(
             &self,
             player: &GKPlayer,
             player_i_ds_to_invite: &NSArray<NSString>,
         );
     }
+
+    unsafe impl ProtocolType for dyn GKInviteEventListener {}
 );
 
 extern_class!(

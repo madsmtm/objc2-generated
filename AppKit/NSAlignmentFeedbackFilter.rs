@@ -6,9 +6,9 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 extern_protocol!(
-    pub struct NSAlignmentFeedbackToken;
+    pub unsafe trait NSAlignmentFeedbackToken: NSObjectProtocol {}
 
-    unsafe impl ProtocolType for NSAlignmentFeedbackToken {}
+    unsafe impl ProtocolType for dyn NSAlignmentFeedbackToken {}
 );
 
 extern_class!(
@@ -44,7 +44,7 @@ extern_methods!(
             previous_point: NSPoint,
             aligned_point: NSPoint,
             default_point: NSPoint,
-        ) -> Option<Id<NSAlignmentFeedbackToken, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn NSAlignmentFeedbackToken>, Shared>>;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other alignmentFeedbackTokenForHorizontalMovementInView:previousX:alignedX:defaultX:)]
@@ -54,7 +54,7 @@ extern_methods!(
             previous_x: CGFloat,
             aligned_x: CGFloat,
             default_x: CGFloat,
-        ) -> Option<Id<NSAlignmentFeedbackToken, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn NSAlignmentFeedbackToken>, Shared>>;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other alignmentFeedbackTokenForVerticalMovementInView:previousY:alignedY:defaultY:)]
@@ -64,13 +64,13 @@ extern_methods!(
             previous_y: CGFloat,
             aligned_y: CGFloat,
             default_y: CGFloat,
-        ) -> Option<Id<NSAlignmentFeedbackToken, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn NSAlignmentFeedbackToken>, Shared>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(performFeedback:performanceTime:)]
         pub unsafe fn performFeedback_performanceTime(
             &self,
-            alignment_feedback_tokens: &NSArray<NSAlignmentFeedbackToken>,
+            alignment_feedback_tokens: &NSArray<ProtocolObject<dyn NSAlignmentFeedbackToken>>,
             performance_time: NSHapticFeedbackPerformanceTime,
         );
     }

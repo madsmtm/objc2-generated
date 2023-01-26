@@ -6,28 +6,22 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 extern_protocol!(
-    pub struct NSInputServiceProvider;
-
-    unsafe impl ProtocolType for NSInputServiceProvider {
+    pub unsafe trait NSInputServiceProvider {
         #[deprecated]
         #[method(insertText:client:)]
-        pub unsafe fn insertText_client(&self, string: Option<&Object>, sender: Option<&Object>);
+        unsafe fn insertText_client(&self, string: Option<&Object>, sender: Option<&Object>);
 
         #[deprecated]
         #[method(doCommandBySelector:client:)]
-        pub unsafe fn doCommandBySelector_client(
-            &self,
-            selector: Option<Sel>,
-            sender: Option<&Object>,
-        );
+        unsafe fn doCommandBySelector_client(&self, selector: Option<Sel>, sender: Option<&Object>);
 
         #[deprecated]
         #[method(markedTextAbandoned:)]
-        pub unsafe fn markedTextAbandoned(&self, sender: Option<&Object>);
+        unsafe fn markedTextAbandoned(&self, sender: Option<&Object>);
 
         #[deprecated]
         #[method(markedTextSelectionChanged:client:)]
-        pub unsafe fn markedTextSelectionChanged_client(
+        unsafe fn markedTextSelectionChanged_client(
             &self,
             new_sel: NSRange,
             sender: Option<&Object>,
@@ -35,43 +29,43 @@ extern_protocol!(
 
         #[deprecated]
         #[method(terminate:)]
-        pub unsafe fn terminate(&self, sender: Option<&Object>);
+        unsafe fn terminate(&self, sender: Option<&Object>);
 
         #[deprecated]
         #[method(canBeDisabled)]
-        pub unsafe fn canBeDisabled(&self) -> bool;
+        unsafe fn canBeDisabled(&self) -> bool;
 
         #[deprecated]
         #[method(wantsToInterpretAllKeystrokes)]
-        pub unsafe fn wantsToInterpretAllKeystrokes(&self) -> bool;
+        unsafe fn wantsToInterpretAllKeystrokes(&self) -> bool;
 
         #[deprecated]
         #[method(wantsToHandleMouseEvents)]
-        pub unsafe fn wantsToHandleMouseEvents(&self) -> bool;
+        unsafe fn wantsToHandleMouseEvents(&self) -> bool;
 
         #[deprecated]
         #[method(wantsToDelayTextChangeNotifications)]
-        pub unsafe fn wantsToDelayTextChangeNotifications(&self) -> bool;
+        unsafe fn wantsToDelayTextChangeNotifications(&self) -> bool;
 
         #[deprecated]
         #[method(inputClientBecomeActive:)]
-        pub unsafe fn inputClientBecomeActive(&self, sender: Option<&Object>);
+        unsafe fn inputClientBecomeActive(&self, sender: Option<&Object>);
 
         #[deprecated]
         #[method(inputClientResignActive:)]
-        pub unsafe fn inputClientResignActive(&self, sender: Option<&Object>);
+        unsafe fn inputClientResignActive(&self, sender: Option<&Object>);
 
         #[deprecated]
         #[method(inputClientEnabled:)]
-        pub unsafe fn inputClientEnabled(&self, sender: Option<&Object>);
+        unsafe fn inputClientEnabled(&self, sender: Option<&Object>);
 
         #[deprecated]
         #[method(inputClientDisabled:)]
-        pub unsafe fn inputClientDisabled(&self, sender: Option<&Object>);
+        unsafe fn inputClientDisabled(&self, sender: Option<&Object>);
 
         #[deprecated]
         #[method(activeConversationWillChange:fromOldConversation:)]
-        pub unsafe fn activeConversationWillChange_fromOldConversation(
+        unsafe fn activeConversationWillChange_fromOldConversation(
             &self,
             sender: Option<&Object>,
             old_conversation: NSInteger,
@@ -79,21 +73,21 @@ extern_protocol!(
 
         #[deprecated]
         #[method(activeConversationChanged:toNewConversation:)]
-        pub unsafe fn activeConversationChanged_toNewConversation(
+        unsafe fn activeConversationChanged_toNewConversation(
             &self,
             sender: Option<&Object>,
             new_conversation: NSInteger,
         );
     }
+
+    unsafe impl ProtocolType for dyn NSInputServiceProvider {}
 );
 
 extern_protocol!(
-    pub struct NSInputServerMouseTracker;
-
-    unsafe impl ProtocolType for NSInputServerMouseTracker {
+    pub unsafe trait NSInputServerMouseTracker {
         #[deprecated]
         #[method(mouseDownOnCharacterIndex:atCoordinate:withModifier:client:)]
-        pub unsafe fn mouseDownOnCharacterIndex_atCoordinate_withModifier_client(
+        unsafe fn mouseDownOnCharacterIndex_atCoordinate_withModifier_client(
             &self,
             index: NSUInteger,
             point: NSPoint,
@@ -103,7 +97,7 @@ extern_protocol!(
 
         #[deprecated]
         #[method(mouseDraggedOnCharacterIndex:atCoordinate:withModifier:client:)]
-        pub unsafe fn mouseDraggedOnCharacterIndex_atCoordinate_withModifier_client(
+        unsafe fn mouseDraggedOnCharacterIndex_atCoordinate_withModifier_client(
             &self,
             index: NSUInteger,
             point: NSPoint,
@@ -113,7 +107,7 @@ extern_protocol!(
 
         #[deprecated]
         #[method(mouseUpOnCharacterIndex:atCoordinate:withModifier:client:)]
-        pub unsafe fn mouseUpOnCharacterIndex_atCoordinate_withModifier_client(
+        unsafe fn mouseUpOnCharacterIndex_atCoordinate_withModifier_client(
             &self,
             index: NSUInteger,
             point: NSPoint,
@@ -121,6 +115,8 @@ extern_protocol!(
             sender: Option<&Object>,
         );
     }
+
+    unsafe impl ProtocolType for dyn NSInputServerMouseTracker {}
 );
 
 extern_class!(

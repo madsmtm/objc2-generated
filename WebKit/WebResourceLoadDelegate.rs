@@ -7,9 +7,7 @@ use crate::WebKit::*;
 
 extern_protocol!(
     #[deprecated]
-    pub struct WebResourceLoadDelegate;
-
-    unsafe impl ProtocolType for WebResourceLoadDelegate {
+    pub unsafe trait WebResourceLoadDelegate: NSObjectProtocol {
         #[cfg(all(
             feature = "Foundation_NSURLRequest",
             feature = "WebKit_WebDataSource",
@@ -17,7 +15,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other webView:identifierForInitialRequest:fromDataSource:)]
-        pub unsafe fn webView_identifierForInitialRequest_fromDataSource(
+        unsafe fn webView_identifierForInitialRequest_fromDataSource(
             &self,
             sender: Option<&WebView>,
             request: Option<&NSURLRequest>,
@@ -32,7 +30,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other webView:resource:willSendRequest:redirectResponse:fromDataSource:)]
-        pub unsafe fn webView_resource_willSendRequest_redirectResponse_fromDataSource(
+        unsafe fn webView_resource_willSendRequest_redirectResponse_fromDataSource(
             &self,
             sender: Option<&WebView>,
             identifier: Option<&Object>,
@@ -48,7 +46,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(webView:resource:didReceiveAuthenticationChallenge:fromDataSource:)]
-        pub unsafe fn webView_resource_didReceiveAuthenticationChallenge_fromDataSource(
+        unsafe fn webView_resource_didReceiveAuthenticationChallenge_fromDataSource(
             &self,
             sender: Option<&WebView>,
             identifier: Option<&Object>,
@@ -63,7 +61,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(webView:resource:didCancelAuthenticationChallenge:fromDataSource:)]
-        pub unsafe fn webView_resource_didCancelAuthenticationChallenge_fromDataSource(
+        unsafe fn webView_resource_didCancelAuthenticationChallenge_fromDataSource(
             &self,
             sender: Option<&WebView>,
             identifier: Option<&Object>,
@@ -78,7 +76,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(webView:resource:didReceiveResponse:fromDataSource:)]
-        pub unsafe fn webView_resource_didReceiveResponse_fromDataSource(
+        unsafe fn webView_resource_didReceiveResponse_fromDataSource(
             &self,
             sender: Option<&WebView>,
             identifier: Option<&Object>,
@@ -89,7 +87,7 @@ extern_protocol!(
         #[cfg(all(feature = "WebKit_WebDataSource", feature = "WebKit_WebView"))]
         #[optional]
         #[method(webView:resource:didReceiveContentLength:fromDataSource:)]
-        pub unsafe fn webView_resource_didReceiveContentLength_fromDataSource(
+        unsafe fn webView_resource_didReceiveContentLength_fromDataSource(
             &self,
             sender: Option<&WebView>,
             identifier: Option<&Object>,
@@ -100,7 +98,7 @@ extern_protocol!(
         #[cfg(all(feature = "WebKit_WebDataSource", feature = "WebKit_WebView"))]
         #[optional]
         #[method(webView:resource:didFinishLoadingFromDataSource:)]
-        pub unsafe fn webView_resource_didFinishLoadingFromDataSource(
+        unsafe fn webView_resource_didFinishLoadingFromDataSource(
             &self,
             sender: Option<&WebView>,
             identifier: Option<&Object>,
@@ -114,7 +112,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(webView:resource:didFailLoadingWithError:fromDataSource:)]
-        pub unsafe fn webView_resource_didFailLoadingWithError_fromDataSource(
+        unsafe fn webView_resource_didFailLoadingWithError_fromDataSource(
             &self,
             sender: Option<&WebView>,
             identifier: Option<&Object>,
@@ -129,11 +127,13 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(webView:plugInFailedWithError:dataSource:)]
-        pub unsafe fn webView_plugInFailedWithError_dataSource(
+        unsafe fn webView_plugInFailedWithError_dataSource(
             &self,
             sender: Option<&WebView>,
             error: Option<&NSError>,
             data_source: Option<&WebDataSource>,
         );
     }
+
+    unsafe impl ProtocolType for dyn WebResourceLoadDelegate {}
 );

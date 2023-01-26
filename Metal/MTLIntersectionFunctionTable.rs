@@ -44,64 +44,68 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct MTLIntersectionFunctionTable;
-
-    unsafe impl ProtocolType for MTLIntersectionFunctionTable {
+    pub unsafe trait MTLIntersectionFunctionTable: MTLResource {
         #[method(setBuffer:offset:atIndex:)]
-        pub unsafe fn setBuffer_offset_atIndex(
+        unsafe fn setBuffer_offset_atIndex(
             &self,
-            buffer: Option<&MTLBuffer>,
+            buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
             offset: NSUInteger,
             index: NSUInteger,
         );
 
         #[method(setBuffers:offsets:withRange:)]
-        pub unsafe fn setBuffers_offsets_withRange(
+        unsafe fn setBuffers_offsets_withRange(
             &self,
-            buffers: NonNull<*const MTLBuffer>,
+            buffers: NonNull<*const ProtocolObject<dyn MTLBuffer>>,
             offsets: NonNull<NSUInteger>,
             range: NSRange,
         );
 
         #[method(gpuResourceID)]
-        pub unsafe fn gpuResourceID(&self) -> MTLResourceID;
+        unsafe fn gpuResourceID(&self) -> MTLResourceID;
 
         #[method(setFunction:atIndex:)]
-        pub fn setFunction_atIndex(&self, function: Option<&MTLFunctionHandle>, index: NSUInteger);
+        fn setFunction_atIndex(
+            &self,
+            function: Option<&ProtocolObject<dyn MTLFunctionHandle>>,
+            index: NSUInteger,
+        );
 
         #[method(setFunctions:withRange:)]
-        pub unsafe fn setFunctions_withRange(
+        unsafe fn setFunctions_withRange(
             &self,
-            functions: NonNull<*const MTLFunctionHandle>,
+            functions: NonNull<*const ProtocolObject<dyn MTLFunctionHandle>>,
             range: NSRange,
         );
 
         #[method(setOpaqueTriangleIntersectionFunctionWithSignature:atIndex:)]
-        pub unsafe fn setOpaqueTriangleIntersectionFunctionWithSignature_atIndex(
+        unsafe fn setOpaqueTriangleIntersectionFunctionWithSignature_atIndex(
             &self,
             signature: MTLIntersectionFunctionSignature,
             index: NSUInteger,
         );
 
         #[method(setOpaqueTriangleIntersectionFunctionWithSignature:withRange:)]
-        pub unsafe fn setOpaqueTriangleIntersectionFunctionWithSignature_withRange(
+        unsafe fn setOpaqueTriangleIntersectionFunctionWithSignature_withRange(
             &self,
             signature: MTLIntersectionFunctionSignature,
             range: NSRange,
         );
 
         #[method(setVisibleFunctionTable:atBufferIndex:)]
-        pub unsafe fn setVisibleFunctionTable_atBufferIndex(
+        unsafe fn setVisibleFunctionTable_atBufferIndex(
             &self,
-            function_table: Option<&MTLVisibleFunctionTable>,
+            function_table: Option<&ProtocolObject<dyn MTLVisibleFunctionTable>>,
             buffer_index: NSUInteger,
         );
 
         #[method(setVisibleFunctionTables:withBufferRange:)]
-        pub unsafe fn setVisibleFunctionTables_withBufferRange(
+        unsafe fn setVisibleFunctionTables_withBufferRange(
             &self,
-            function_tables: NonNull<*const MTLVisibleFunctionTable>,
+            function_tables: NonNull<*const ProtocolObject<dyn MTLVisibleFunctionTable>>,
             buffer_range: NSRange,
         );
     }
+
+    unsafe impl ProtocolType for dyn MTLIntersectionFunctionTable {}
 );

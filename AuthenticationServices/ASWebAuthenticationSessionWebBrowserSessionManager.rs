@@ -25,12 +25,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other sessionHandler)]
         pub unsafe fn sessionHandler(
             &self,
-        ) -> Id<ASWebAuthenticationSessionWebBrowserSessionHandling, Shared>;
+        ) -> Id<ProtocolObject<dyn ASWebAuthenticationSessionWebBrowserSessionHandling>, Shared>;
 
         #[method(setSessionHandler:)]
         pub unsafe fn setSessionHandler(
             &self,
-            session_handler: &ASWebAuthenticationSessionWebBrowserSessionHandling,
+            session_handler: &ProtocolObject<
+                dyn ASWebAuthenticationSessionWebBrowserSessionHandling,
+            >,
         );
 
         #[method(wasLaunchedByAuthenticationServices)]

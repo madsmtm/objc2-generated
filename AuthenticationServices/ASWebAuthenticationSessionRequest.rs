@@ -5,16 +5,14 @@ use crate::AuthenticationServices::*;
 use crate::Foundation::*;
 
 extern_protocol!(
-    pub struct ASWebAuthenticationSessionRequestDelegate;
-
-    unsafe impl ProtocolType for ASWebAuthenticationSessionRequestDelegate {
+    pub unsafe trait ASWebAuthenticationSessionRequestDelegate: NSObjectProtocol {
         #[cfg(all(
             feature = "AuthenticationServices_ASWebAuthenticationSessionRequest",
             feature = "Foundation_NSURL"
         ))]
         #[optional]
         #[method(authenticationSessionRequest:didCompleteWithCallbackURL:)]
-        pub unsafe fn authenticationSessionRequest_didCompleteWithCallbackURL(
+        unsafe fn authenticationSessionRequest_didCompleteWithCallbackURL(
             &self,
             authentication_session_request: &ASWebAuthenticationSessionRequest,
             callback_url: &NSURL,
@@ -26,12 +24,14 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(authenticationSessionRequest:didCancelWithError:)]
-        pub unsafe fn authenticationSessionRequest_didCancelWithError(
+        unsafe fn authenticationSessionRequest_didCancelWithError(
             &self,
             authentication_session_request: &ASWebAuthenticationSessionRequest,
             error: &NSError,
         );
     }
+
+    unsafe impl ProtocolType for dyn ASWebAuthenticationSessionRequestDelegate {}
 );
 
 extern_class!(
@@ -66,12 +66,12 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ASWebAuthenticationSessionRequestDelegate, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn ASWebAuthenticationSessionRequestDelegate>, Shared>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
-            delegate: Option<&ASWebAuthenticationSessionRequestDelegate>,
+            delegate: Option<&ProtocolObject<dyn ASWebAuthenticationSessionRequestDelegate>>,
         );
 
         #[method_id(@__retain_semantics New new)]

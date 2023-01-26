@@ -104,8 +104,13 @@ extern_methods!(
     }
 );
 
-pub type NSCollectionViewCompositionalLayoutSectionProvider =
-    *mut Block<(NSInteger, NonNull<NSCollectionLayoutEnvironment>), *mut NSCollectionLayoutSection>;
+pub type NSCollectionViewCompositionalLayoutSectionProvider = *mut Block<
+    (
+        NSInteger,
+        NonNull<ProtocolObject<dyn NSCollectionLayoutEnvironment>>,
+    ),
+    *mut NSCollectionLayoutSection,
+>;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -189,9 +194,9 @@ ns_enum!(
 
 pub type NSCollectionLayoutSectionVisibleItemsInvalidationHandler = *mut Block<
     (
-        NonNull<NSArray<NSCollectionLayoutVisibleItem>>,
+        NonNull<NSArray<ProtocolObject<dyn NSCollectionLayoutVisibleItem>>>,
         NSPoint,
-        NonNull<NSCollectionLayoutEnvironment>,
+        NonNull<ProtocolObject<dyn NSCollectionLayoutEnvironment>>,
     ),
     (),
 >;
@@ -405,7 +410,7 @@ extern_methods!(
 );
 
 pub type NSCollectionLayoutGroupCustomItemProvider = *mut Block<
-    (NonNull<NSCollectionLayoutEnvironment>,),
+    (NonNull<ProtocolObject<dyn NSCollectionLayoutEnvironment>>,),
     NonNull<NSArray<NSCollectionLayoutGroupCustomItem>>,
 >;
 
@@ -902,81 +907,81 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub struct NSCollectionLayoutContainer;
-
-    unsafe impl ProtocolType for NSCollectionLayoutContainer {
+    pub unsafe trait NSCollectionLayoutContainer: NSObjectProtocol {
         #[method(contentSize)]
-        pub unsafe fn contentSize(&self) -> NSSize;
+        unsafe fn contentSize(&self) -> NSSize;
 
         #[method(effectiveContentSize)]
-        pub unsafe fn effectiveContentSize(&self) -> NSSize;
+        unsafe fn effectiveContentSize(&self) -> NSSize;
 
         #[method(contentInsets)]
-        pub unsafe fn contentInsets(&self) -> NSDirectionalEdgeInsets;
+        unsafe fn contentInsets(&self) -> NSDirectionalEdgeInsets;
 
         #[method(effectiveContentInsets)]
-        pub unsafe fn effectiveContentInsets(&self) -> NSDirectionalEdgeInsets;
+        unsafe fn effectiveContentInsets(&self) -> NSDirectionalEdgeInsets;
     }
+
+    unsafe impl ProtocolType for dyn NSCollectionLayoutContainer {}
 );
 
 extern_protocol!(
-    pub struct NSCollectionLayoutEnvironment;
-
-    unsafe impl ProtocolType for NSCollectionLayoutEnvironment {
+    pub unsafe trait NSCollectionLayoutEnvironment: NSObjectProtocol {
         #[method_id(@__retain_semantics Other container)]
-        pub unsafe fn container(&self) -> Id<NSCollectionLayoutContainer, Shared>;
+        unsafe fn container(&self) -> Id<ProtocolObject<dyn NSCollectionLayoutContainer>, Shared>;
     }
+
+    unsafe impl ProtocolType for dyn NSCollectionLayoutEnvironment {}
 );
 
 extern_protocol!(
-    pub struct NSCollectionLayoutVisibleItem;
-
-    unsafe impl ProtocolType for NSCollectionLayoutVisibleItem {
+    pub unsafe trait NSCollectionLayoutVisibleItem: NSObjectProtocol {
         #[method(alpha)]
-        pub unsafe fn alpha(&self) -> CGFloat;
+        unsafe fn alpha(&self) -> CGFloat;
 
         #[method(setAlpha:)]
-        pub unsafe fn setAlpha(&self, alpha: CGFloat);
+        unsafe fn setAlpha(&self, alpha: CGFloat);
 
         #[method(zIndex)]
-        pub unsafe fn zIndex(&self) -> NSInteger;
+        unsafe fn zIndex(&self) -> NSInteger;
 
         #[method(setZIndex:)]
-        pub unsafe fn setZIndex(&self, z_index: NSInteger);
+        unsafe fn setZIndex(&self, z_index: NSInteger);
 
         #[method(isHidden)]
-        pub unsafe fn isHidden(&self) -> bool;
+        unsafe fn isHidden(&self) -> bool;
 
         #[method(setHidden:)]
-        pub unsafe fn setHidden(&self, hidden: bool);
+        unsafe fn setHidden(&self, hidden: bool);
 
         #[method(center)]
-        pub unsafe fn center(&self) -> NSPoint;
+        unsafe fn center(&self) -> NSPoint;
 
         #[method(setCenter:)]
-        pub unsafe fn setCenter(&self, center: NSPoint);
+        unsafe fn setCenter(&self, center: NSPoint);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString, Shared>;
+        unsafe fn name(&self) -> Id<NSString, Shared>;
 
         #[cfg(feature = "Foundation_NSIndexPath")]
         #[method_id(@__retain_semantics Other indexPath)]
-        pub unsafe fn indexPath(&self) -> Id<NSIndexPath, Shared>;
+        unsafe fn indexPath(&self) -> Id<NSIndexPath, Shared>;
 
         #[method(frame)]
-        pub unsafe fn frame(&self) -> NSRect;
+        unsafe fn frame(&self) -> NSRect;
 
         #[method(bounds)]
-        pub unsafe fn bounds(&self) -> NSRect;
+        unsafe fn bounds(&self) -> NSRect;
 
         #[method(representedElementCategory)]
-        pub unsafe fn representedElementCategory(&self) -> NSCollectionElementCategory;
+        unsafe fn representedElementCategory(&self) -> NSCollectionElementCategory;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other representedElementKind)]
-        pub unsafe fn representedElementKind(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn representedElementKind(&self) -> Option<Id<NSString, Shared>>;
     }
+
+    unsafe impl ProtocolType for dyn NSCollectionLayoutVisibleItem {}
 );
 
 extern_methods!(

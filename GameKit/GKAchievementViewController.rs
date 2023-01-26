@@ -24,28 +24,28 @@ extern_methods!(
         #[method_id(@__retain_semantics Other achievementDelegate)]
         pub unsafe fn achievementDelegate(
             &self,
-        ) -> Option<Id<GKAchievementViewControllerDelegate, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn GKAchievementViewControllerDelegate>, Shared>>;
 
         #[method(setAchievementDelegate:)]
         pub unsafe fn setAchievementDelegate(
             &self,
-            achievement_delegate: Option<&GKAchievementViewControllerDelegate>,
+            achievement_delegate: Option<&ProtocolObject<dyn GKAchievementViewControllerDelegate>>,
         );
     }
 );
 
 extern_protocol!(
     #[deprecated = "Use GKGameCenterViewController instead"]
-    pub struct GKAchievementViewControllerDelegate;
-
-    unsafe impl ProtocolType for GKAchievementViewControllerDelegate {
+    pub unsafe trait GKAchievementViewControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "GameKit_GKAchievementViewController")]
         #[method(achievementViewControllerDidFinish:)]
-        pub unsafe fn achievementViewControllerDidFinish(
+        unsafe fn achievementViewControllerDidFinish(
             &self,
             view_controller: Option<&GKAchievementViewController>,
         );
     }
+
+    unsafe impl ProtocolType for dyn GKAchievementViewControllerDelegate {}
 );
 
 extern_methods!(

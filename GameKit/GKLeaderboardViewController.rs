@@ -43,28 +43,28 @@ extern_methods!(
         #[method_id(@__retain_semantics Other leaderboardDelegate)]
         pub unsafe fn leaderboardDelegate(
             &self,
-        ) -> Option<Id<GKLeaderboardViewControllerDelegate, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn GKLeaderboardViewControllerDelegate>, Shared>>;
 
         #[method(setLeaderboardDelegate:)]
         pub unsafe fn setLeaderboardDelegate(
             &self,
-            leaderboard_delegate: Option<&GKLeaderboardViewControllerDelegate>,
+            leaderboard_delegate: Option<&ProtocolObject<dyn GKLeaderboardViewControllerDelegate>>,
         );
     }
 );
 
 extern_protocol!(
     #[deprecated = "Use GKGameCenterViewController instead"]
-    pub struct GKLeaderboardViewControllerDelegate;
-
-    unsafe impl ProtocolType for GKLeaderboardViewControllerDelegate {
+    pub unsafe trait GKLeaderboardViewControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "GameKit_GKLeaderboardViewController")]
         #[method(leaderboardViewControllerDidFinish:)]
-        pub unsafe fn leaderboardViewControllerDidFinish(
+        unsafe fn leaderboardViewControllerDidFinish(
             &self,
             view_controller: Option<&GKLeaderboardViewController>,
         );
     }
+
+    unsafe impl ProtocolType for dyn GKLeaderboardViewControllerDelegate {}
 );
 
 extern_methods!(
