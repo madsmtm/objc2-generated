@@ -19,9 +19,6 @@ extern_class!(
 );
 
 #[cfg(feature = "MetalKit_MTKView")]
-unsafe impl CALayerDelegate for MTKView {}
-
-#[cfg(feature = "MetalKit_MTKView")]
 unsafe impl NSAccessibility for MTKView {}
 
 #[cfg(feature = "MetalKit_MTKView")]

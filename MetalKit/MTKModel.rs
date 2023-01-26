@@ -26,9 +26,6 @@ extern_class!(
 );
 
 #[cfg(feature = "MetalKit_MTKMeshBufferAllocator")]
-unsafe impl MDLMeshBufferAllocator for MTKMeshBufferAllocator {}
-
-#[cfg(feature = "MetalKit_MTKMeshBufferAllocator")]
 unsafe impl NSObjectProtocol for MTKMeshBufferAllocator {}
 
 extern_methods!(
@@ -58,12 +55,6 @@ extern_class!(
         type Super = NSObject;
     }
 );
-
-#[cfg(feature = "MetalKit_MTKMeshBuffer")]
-unsafe impl MDLMeshBuffer for MTKMeshBuffer {}
-
-#[cfg(feature = "MetalKit_MTKMeshBuffer")]
-unsafe impl MDLNamed for MTKMeshBuffer {}
 
 #[cfg(feature = "MetalKit_MTKMeshBuffer")]
 unsafe impl NSObjectProtocol for MTKMeshBuffer {}

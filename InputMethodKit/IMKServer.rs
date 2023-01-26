@@ -17,9 +17,6 @@ extern_class!(
 );
 
 #[cfg(feature = "InputMethodKit_IMKServer")]
-unsafe impl IMKServerProxy for IMKServer {}
-
-#[cfg(feature = "InputMethodKit_IMKServer")]
 unsafe impl NSObjectProtocol for IMKServer {}
 
 extern_methods!(
