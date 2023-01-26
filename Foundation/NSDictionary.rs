@@ -487,28 +487,6 @@ extern_methods!(
 );
 
 extern_methods!(
-    /// NSGenericFastEnumeration
-    #[cfg(feature = "Foundation_NSDictionary")]
-    unsafe impl<K: Message, V: Message, KOwnership: Ownership, VOwnership: Ownership>
-        NSDictionary<K, V, KOwnership, VOwnership>
-    {
-        #[method(countByEnumeratingWithState:objects:count:)]
-        pub unsafe fn countByEnumeratingWithState_objects_count(
-            &self,
-            state: NonNull<NSFastEnumerationState>,
-            buffer: NonNull<*mut K>,
-            len: NSUInteger,
-        ) -> NSUInteger;
-    }
-);
-
-#[cfg(feature = "Foundation_NSDictionary")]
-unsafe impl<K: Message, V: Message, KOwnership: Ownership, VOwnership: Ownership> NSFastEnumeration
-    for NSDictionary<K, V, KOwnership, VOwnership>
-{
-}
-
-extern_methods!(
     /// Methods declared on superclass `NSDictionary`
     #[cfg(feature = "Foundation_NSMutableDictionary")]
     unsafe impl<
