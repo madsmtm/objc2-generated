@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CloudKit_CKQueryCursor")]
+unsafe impl NSSecureCoding for CKQueryCursor {}
+
 extern_methods!(
     #[cfg(feature = "CloudKit_CKQueryCursor")]
     unsafe impl CKQueryCursor {

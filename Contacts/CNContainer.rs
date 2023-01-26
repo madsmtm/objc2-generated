@@ -25,6 +25,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Contacts_CNContainer")]
+unsafe impl NSSecureCoding for CNContainer {}
+
 extern_methods!(
     #[cfg(feature = "Contacts_CNContainer")]
     unsafe impl CNContainer {

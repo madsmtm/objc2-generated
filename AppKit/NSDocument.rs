@@ -43,6 +43,18 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSDocument")]
+unsafe impl NSEditorRegistration for NSDocument {}
+
+#[cfg(feature = "AppKit_NSDocument")]
+unsafe impl NSFilePresenter for NSDocument {}
+
+#[cfg(feature = "AppKit_NSDocument")]
+unsafe impl NSMenuItemValidation for NSDocument {}
+
+#[cfg(feature = "AppKit_NSDocument")]
+unsafe impl NSUserInterfaceValidations for NSDocument {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSDocument")]
     unsafe impl NSDocument {

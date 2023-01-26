@@ -19,6 +19,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "MapKit_MKCircle")]
+unsafe impl MKOverlay for MKCircle {}
+
 extern_methods!(
     #[cfg(feature = "MapKit_MKCircle")]
     unsafe impl MKCircle {

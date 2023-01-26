@@ -15,6 +15,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AuthenticationServices_ASAuthorizationPasswordProvider")]
+unsafe impl ASAuthorizationProvider for ASAuthorizationPasswordProvider {}
+
 extern_methods!(
     #[cfg(feature = "AuthenticationServices_ASAuthorizationPasswordProvider")]
     unsafe impl ASAuthorizationPasswordProvider {

@@ -31,6 +31,12 @@ __inner_extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSOrderedCollectionDifference")]
+unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSFastEnumeration
+    for NSOrderedCollectionDifference<ObjectType, ObjectTypeOwnership>
+{
+}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSOrderedCollectionDifference")]
     unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>

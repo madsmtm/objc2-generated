@@ -15,6 +15,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Contacts_CNChangeHistoryEvent")]
+unsafe impl NSSecureCoding for CNChangeHistoryEvent {}
+
 extern_methods!(
     #[cfg(feature = "Contacts_CNChangeHistoryEvent")]
     unsafe impl CNChangeHistoryEvent {

@@ -29,6 +29,9 @@ extern_methods!(
     unsafe impl NSDocumentController {}
 );
 
+#[cfg(feature = "AppKit_NSDocumentController")]
+unsafe impl NSWindowRestoration for NSDocumentController {}
+
 extern_methods!(
     /// NSWindowRestoration
     #[cfg(feature = "AppKit_NSApplication")]

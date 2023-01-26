@@ -20,6 +20,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSAppearance")]
+unsafe impl NSSecureCoding for NSAppearance {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSAppearance")]
     unsafe impl NSAppearance {

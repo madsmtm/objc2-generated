@@ -24,6 +24,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CallKit_CXHandle")]
+unsafe impl NSSecureCoding for CXHandle {}
+
 extern_methods!(
     #[cfg(feature = "CallKit_CXHandle")]
     unsafe impl CXHandle {

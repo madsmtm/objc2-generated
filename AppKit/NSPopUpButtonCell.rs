@@ -26,6 +26,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSPopUpButtonCell")]
+unsafe impl NSMenuItemValidation for NSPopUpButtonCell {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSPopUpButtonCell")]
     unsafe impl NSPopUpButtonCell {

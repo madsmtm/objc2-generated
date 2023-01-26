@@ -15,6 +15,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreData_NSPersistentHistoryToken")]
+unsafe impl NSSecureCoding for NSPersistentHistoryToken {}
+
 extern_methods!(
     #[cfg(feature = "CoreData_NSPersistentHistoryToken")]
     unsafe impl NSPersistentHistoryToken {}

@@ -20,6 +20,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreLocation_CLHeading")]
+unsafe impl NSSecureCoding for CLHeading {}
+
 extern_methods!(
     #[cfg(feature = "CoreLocation_CLHeading")]
     unsafe impl CLHeading {

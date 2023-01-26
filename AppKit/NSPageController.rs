@@ -28,6 +28,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSPageController")]
+unsafe impl NSAnimatablePropertyContainer for NSPageController {}
+
+#[cfg(feature = "AppKit_NSPageController")]
+unsafe impl NSCoding for NSPageController {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSPageController")]
     unsafe impl NSPageController {

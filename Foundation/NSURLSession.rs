@@ -374,6 +374,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSURLSessionTask")]
+unsafe impl NSProgressReporting for NSURLSessionTask {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSURLSessionTask")]
     unsafe impl NSURLSessionTask {

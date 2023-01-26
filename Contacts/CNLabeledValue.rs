@@ -20,6 +20,12 @@ __inner_extern_class!(
     }
 );
 
+#[cfg(feature = "Contacts_CNLabeledValue")]
+unsafe impl<ValueType: Message, ValueTypeOwnership: Ownership> NSSecureCoding
+    for CNLabeledValue<ValueType, ValueTypeOwnership>
+{
+}
+
 extern_methods!(
     #[cfg(feature = "Contacts_CNLabeledValue")]
     unsafe impl<ValueType: Message, ValueTypeOwnership: Ownership>

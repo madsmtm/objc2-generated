@@ -17,6 +17,15 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSButton")]
+unsafe impl NSUserInterfaceValidations for NSButton {}
+
+#[cfg(feature = "AppKit_NSButton")]
+unsafe impl NSAccessibilityButton for NSButton {}
+
+#[cfg(feature = "AppKit_NSButton")]
+unsafe impl NSUserInterfaceCompression for NSButton {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSButton")]
     unsafe impl NSButton {

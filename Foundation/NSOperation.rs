@@ -183,6 +183,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSOperationQueue")]
+unsafe impl NSProgressReporting for NSOperationQueue {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSOperationQueue")]
     unsafe impl NSOperationQueue {

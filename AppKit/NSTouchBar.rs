@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSTouchBar")]
+unsafe impl NSCoding for NSTouchBar {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSTouchBar")]
     unsafe impl NSTouchBar {
@@ -184,6 +187,9 @@ extern_methods!(
         pub unsafe fn makeTouchBar(&self) -> Option<Id<NSTouchBar, Shared>>;
     }
 );
+
+#[cfg(feature = "AppKit_NSResponder")]
+unsafe impl NSTouchBarProvider for NSResponder {}
 
 extern_methods!(
     /// NSTouchBarCustomization

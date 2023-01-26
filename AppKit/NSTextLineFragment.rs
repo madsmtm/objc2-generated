@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSTextLineFragment")]
+unsafe impl NSSecureCoding for NSTextLineFragment {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSTextLineFragment")]
     unsafe impl NSTextLineFragment {

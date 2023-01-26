@@ -19,6 +19,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "MapKit_MKMultiPolygon")]
+unsafe impl MKOverlay for MKMultiPolygon {}
+
 extern_methods!(
     #[cfg(feature = "MapKit_MKMultiPolygon")]
     unsafe impl MKMultiPolygon {

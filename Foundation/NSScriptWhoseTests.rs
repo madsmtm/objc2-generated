@@ -28,6 +28,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSScriptWhoseTest")]
+unsafe impl NSCoding for NSScriptWhoseTest {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSScriptWhoseTest")]
     unsafe impl NSScriptWhoseTest {

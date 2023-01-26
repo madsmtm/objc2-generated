@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "MapKit_MKPointOfInterestFilter")]
+unsafe impl NSSecureCoding for MKPointOfInterestFilter {}
+
 extern_methods!(
     #[cfg(feature = "MapKit_MKPointOfInterestFilter")]
     unsafe impl MKPointOfInterestFilter {

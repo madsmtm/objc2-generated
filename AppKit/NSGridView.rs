@@ -192,6 +192,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSGridRow")]
+unsafe impl NSCoding for NSGridRow {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSGridRow")]
     unsafe impl NSGridRow {
@@ -258,6 +261,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSGridColumn")]
+unsafe impl NSCoding for NSGridColumn {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSGridColumn")]
     unsafe impl NSGridColumn {
@@ -317,6 +323,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "AppKit_NSGridCell")]
+unsafe impl NSCoding for NSGridCell {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSGridCell")]

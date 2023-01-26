@@ -23,6 +23,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AuthenticationServices_ASCredentialServiceIdentifier")]
+unsafe impl NSSecureCoding for ASCredentialServiceIdentifier {}
+
 extern_methods!(
     #[cfg(feature = "AuthenticationServices_ASCredentialServiceIdentifier")]
     unsafe impl ASCredentialServiceIdentifier {

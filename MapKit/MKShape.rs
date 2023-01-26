@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "MapKit_MKShape")]
+unsafe impl MKAnnotation for MKShape {}
+
 extern_methods!(
     #[cfg(feature = "MapKit_MKShape")]
     unsafe impl MKShape {

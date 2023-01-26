@@ -33,6 +33,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSExpression")]
+unsafe impl NSSecureCoding for NSExpression {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSExpression")]
     unsafe impl NSExpression {

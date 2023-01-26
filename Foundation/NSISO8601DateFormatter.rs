@@ -35,6 +35,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSISO8601DateFormatter")]
+unsafe impl NSSecureCoding for NSISO8601DateFormatter {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSISO8601DateFormatter")]
     unsafe impl NSISO8601DateFormatter {

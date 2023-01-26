@@ -63,6 +63,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Accessibility_AXNumericDataAxisDescriptor")]
+unsafe impl AXDataAxisDescriptor for AXNumericDataAxisDescriptor {}
+
 extern_methods!(
     #[cfg(feature = "Accessibility_AXNumericDataAxisDescriptor")]
     unsafe impl AXNumericDataAxisDescriptor {
@@ -154,6 +157,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Accessibility_AXCategoricalDataAxisDescriptor")]
+unsafe impl AXDataAxisDescriptor for AXCategoricalDataAxisDescriptor {}
 
 extern_methods!(
     #[cfg(feature = "Accessibility_AXCategoricalDataAxisDescriptor")]

@@ -61,6 +61,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSTextList")]
+unsafe impl NSSecureCoding for NSTextList {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSTextList")]
     unsafe impl NSTextList {

@@ -15,6 +15,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Contacts_CNContactProperty")]
+unsafe impl NSSecureCoding for CNContactProperty {}
+
 extern_methods!(
     #[cfg(feature = "Contacts_CNContactProperty")]
     unsafe impl CNContactProperty {

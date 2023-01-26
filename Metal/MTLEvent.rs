@@ -79,6 +79,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLSharedEventHandle")]
+unsafe impl NSSecureCoding for MTLSharedEventHandle {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLSharedEventHandle")]
     unsafe impl MTLSharedEventHandle {

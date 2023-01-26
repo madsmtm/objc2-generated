@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "FileProvider_NSFileProviderDomainVersion")]
+unsafe impl NSSecureCoding for NSFileProviderDomainVersion {}
+
 extern_methods!(
     #[cfg(feature = "FileProvider_NSFileProviderDomainVersion")]
     unsafe impl NSFileProviderDomainVersion {

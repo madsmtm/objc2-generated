@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "MapKit_MKClusterAnnotation")]
+unsafe impl MKAnnotation for MKClusterAnnotation {}
+
 extern_methods!(
     #[cfg(feature = "MapKit_MKClusterAnnotation")]
     unsafe impl MKClusterAnnotation {

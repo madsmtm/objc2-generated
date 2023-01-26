@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSNotification")]
+unsafe impl NSCoding for NSNotification {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSNotification")]
     unsafe impl NSNotification {

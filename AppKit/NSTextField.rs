@@ -17,6 +17,15 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSTextField")]
+unsafe impl NSUserInterfaceValidations for NSTextField {}
+
+#[cfg(feature = "AppKit_NSTextField")]
+unsafe impl NSAccessibilityNavigableStaticText for NSTextField {}
+
+#[cfg(feature = "AppKit_NSTextField")]
+unsafe impl NSTextContent for NSTextField {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSTextField")]
     unsafe impl NSTextField {

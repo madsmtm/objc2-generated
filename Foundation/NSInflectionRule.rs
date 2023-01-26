@@ -14,6 +14,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSInflectionRule")]
+unsafe impl NSSecureCoding for NSInflectionRule {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSInflectionRule")]
     unsafe impl NSInflectionRule {

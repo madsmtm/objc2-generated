@@ -32,6 +32,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSTrackingArea")]
+unsafe impl NSCoding for NSTrackingArea {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSTrackingArea")]
     unsafe impl NSTrackingArea {

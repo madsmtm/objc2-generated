@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_WKDownload")]
+unsafe impl NSProgressReporting for WKDownload {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_WKDownload")]
     unsafe impl WKDownload {

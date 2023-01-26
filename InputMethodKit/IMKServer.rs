@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "InputMethodKit_IMKServer")]
+unsafe impl IMKServerProxy for IMKServer {}
+
 extern_methods!(
     #[cfg(feature = "InputMethodKit_IMKServer")]
     unsafe impl IMKServer {

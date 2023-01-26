@@ -237,6 +237,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSDecimalNumberHandler")]
+unsafe impl NSDecimalNumberBehaviors for NSDecimalNumberHandler {}
+
+#[cfg(feature = "Foundation_NSDecimalNumberHandler")]
+unsafe impl NSCoding for NSDecimalNumberHandler {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSDecimalNumberHandler")]
     unsafe impl NSDecimalNumberHandler {

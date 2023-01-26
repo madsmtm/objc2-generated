@@ -15,6 +15,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "BackgroundAssets_BAAppExtensionInfo")]
+unsafe impl NSSecureCoding for BAAppExtensionInfo {}
+
 extern_methods!(
     #[cfg(feature = "BackgroundAssets_BAAppExtensionInfo")]
     unsafe impl BAAppExtensionInfo {

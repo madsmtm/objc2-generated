@@ -27,6 +27,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSTabViewController")]
+unsafe impl NSTabViewDelegate for NSTabViewController {}
+
+#[cfg(feature = "AppKit_NSTabViewController")]
+unsafe impl NSToolbarDelegate for NSTabViewController {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSTabViewController")]
     unsafe impl NSTabViewController {

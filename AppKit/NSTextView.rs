@@ -36,6 +36,36 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSTextView")]
+unsafe impl NSColorChanging for NSTextView {}
+
+#[cfg(feature = "AppKit_NSTextView")]
+unsafe impl NSMenuItemValidation for NSTextView {}
+
+#[cfg(feature = "AppKit_NSTextView")]
+unsafe impl NSUserInterfaceValidations for NSTextView {}
+
+#[cfg(feature = "AppKit_NSTextView")]
+unsafe impl NSTextInputClient for NSTextView {}
+
+#[cfg(feature = "AppKit_NSTextView")]
+unsafe impl NSTextLayoutOrientationProvider for NSTextView {}
+
+#[cfg(feature = "AppKit_NSTextView")]
+unsafe impl NSDraggingSource for NSTextView {}
+
+#[cfg(feature = "AppKit_NSTextView")]
+unsafe impl NSStandardKeyBindingResponding for NSTextView {}
+
+#[cfg(feature = "AppKit_NSTextView")]
+unsafe impl NSTextInput for NSTextView {}
+
+#[cfg(feature = "AppKit_NSTextView")]
+unsafe impl NSAccessibilityNavigableStaticText for NSTextView {}
+
+#[cfg(feature = "AppKit_NSTextView")]
+unsafe impl NSTextContent for NSTextView {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSTextView")]
     unsafe impl NSTextView {
@@ -1026,6 +1056,12 @@ extern_methods!(
         ) -> Option<Id<NSCandidateListTouchBarItem, Shared>>;
     }
 );
+
+#[cfg(feature = "AppKit_NSTextView")]
+unsafe impl NSCandidateListTouchBarItemDelegate for NSTextView {}
+
+#[cfg(feature = "AppKit_NSTextView")]
+unsafe impl NSTouchBarDelegate for NSTextView {}
 
 extern_methods!(
     /// NSTextView_Factory

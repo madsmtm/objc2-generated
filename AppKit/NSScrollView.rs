@@ -26,6 +26,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSScrollView")]
+unsafe impl NSTextFinderBarContainer for NSScrollView {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSScrollView")]
     unsafe impl NSScrollView {

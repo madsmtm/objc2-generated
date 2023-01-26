@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSFilePromiseReceiver")]
+unsafe impl NSPasteboardReading for NSFilePromiseReceiver {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSFilePromiseReceiver")]
     unsafe impl NSFilePromiseReceiver {

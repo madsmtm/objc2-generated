@@ -16,6 +16,21 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSMenuItem")]
+unsafe impl NSCoding for NSMenuItem {}
+
+#[cfg(feature = "AppKit_NSMenuItem")]
+unsafe impl NSValidatedUserInterfaceItem for NSMenuItem {}
+
+#[cfg(feature = "AppKit_NSMenuItem")]
+unsafe impl NSUserInterfaceItemIdentification for NSMenuItem {}
+
+#[cfg(feature = "AppKit_NSMenuItem")]
+unsafe impl NSAccessibilityElement for NSMenuItem {}
+
+#[cfg(feature = "AppKit_NSMenuItem")]
+unsafe impl NSAccessibility for NSMenuItem {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSMenuItem")]
     unsafe impl NSMenuItem {

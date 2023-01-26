@@ -139,6 +139,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreLocation_CLBeacon")]
+unsafe impl NSSecureCoding for CLBeacon {}
+
 extern_methods!(
     #[cfg(feature = "CoreLocation_CLBeacon")]
     unsafe impl CLBeacon {

@@ -43,6 +43,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSFontCollection")]
+unsafe impl NSCoding for NSFontCollection {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSFontCollection")]
     unsafe impl NSFontCollection {

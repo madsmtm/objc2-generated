@@ -20,6 +20,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "MapKit_MKMapCameraZoomRange")]
+unsafe impl NSSecureCoding for MKMapCameraZoomRange {}
+
 extern_methods!(
     #[cfg(feature = "MapKit_MKMapCameraZoomRange")]
     unsafe impl MKMapCameraZoomRange {

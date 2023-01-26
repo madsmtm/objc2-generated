@@ -34,6 +34,9 @@ extern_methods!(
     unsafe impl NSString {}
 );
 
+#[cfg(feature = "Foundation_NSString")]
+unsafe impl CNKeyDescriptor for NSString {}
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Contacts_CNContact")]
@@ -44,6 +47,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Contacts_CNContact")]
+unsafe impl NSSecureCoding for CNContact {}
 
 extern_methods!(
     #[cfg(feature = "Contacts_CNContact")]

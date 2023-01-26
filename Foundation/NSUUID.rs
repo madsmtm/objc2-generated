@@ -14,6 +14,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSUUID")]
+unsafe impl NSSecureCoding for NSUUID {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSUUID")]
     unsafe impl NSUUID {

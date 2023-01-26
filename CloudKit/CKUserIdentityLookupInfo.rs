@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CloudKit_CKUserIdentityLookupInfo")]
+unsafe impl NSSecureCoding for CKUserIdentityLookupInfo {}
+
 extern_methods!(
     #[cfg(feature = "CloudKit_CKUserIdentityLookupInfo")]
     unsafe impl CKUserIdentityLookupInfo {

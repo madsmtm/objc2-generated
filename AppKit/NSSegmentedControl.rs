@@ -51,6 +51,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSSegmentedControl")]
+unsafe impl NSUserInterfaceCompression for NSSegmentedControl {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSSegmentedControl")]
     unsafe impl NSSegmentedControl {

@@ -29,6 +29,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDProvider")]
+unsafe impl ASAuthorizationProvider for ASAuthorizationAppleIDProvider {}
+
 extern_methods!(
     #[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDProvider")]
     unsafe impl ASAuthorizationAppleIDProvider {

@@ -63,6 +63,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSTextBlock")]
+unsafe impl NSSecureCoding for NSTextBlock {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSTextBlock")]
     unsafe impl NSTextBlock {

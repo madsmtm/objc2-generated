@@ -42,6 +42,12 @@ __inner_extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSEnumerator")]
+unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSFastEnumeration
+    for NSEnumerator<ObjectType, ObjectTypeOwnership>
+{
+}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSEnumerator")]
     unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>

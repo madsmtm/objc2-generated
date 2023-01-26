@@ -17,6 +17,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSTitlebarAccessoryViewController")]
+unsafe impl NSAnimationDelegate for NSTitlebarAccessoryViewController {}
+
+#[cfg(feature = "AppKit_NSTitlebarAccessoryViewController")]
+unsafe impl NSAnimatablePropertyContainer for NSTitlebarAccessoryViewController {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSTitlebarAccessoryViewController")]
     unsafe impl NSTitlebarAccessoryViewController {

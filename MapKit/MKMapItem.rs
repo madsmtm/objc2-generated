@@ -127,4 +127,7 @@ extern_methods!(
     unsafe impl MKMapItem {}
 );
 
+#[cfg(feature = "MapKit_MKMapItem")]
+unsafe impl NSSecureCoding for MKMapItem {}
+
 extern_static!(MKMapItemTypeIdentifier: &'static NSString);

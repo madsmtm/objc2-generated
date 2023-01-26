@@ -17,6 +17,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSPanGestureRecognizer")]
+unsafe impl NSCoding for NSPanGestureRecognizer {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSPanGestureRecognizer")]
     unsafe impl NSPanGestureRecognizer {

@@ -27,6 +27,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CloudKit_CKSubscription")]
+unsafe impl NSSecureCoding for CKSubscription {}
+
 extern_methods!(
     #[cfg(feature = "CloudKit_CKSubscription")]
     unsafe impl CKSubscription {
@@ -73,6 +76,9 @@ extern_class!(
         type Super = CKSubscription;
     }
 );
+
+#[cfg(feature = "CloudKit_CKQuerySubscription")]
+unsafe impl NSSecureCoding for CKQuerySubscription {}
 
 extern_methods!(
     #[cfg(feature = "CloudKit_CKQuerySubscription")]
@@ -135,6 +141,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CloudKit_CKRecordZoneSubscription")]
+unsafe impl NSSecureCoding for CKRecordZoneSubscription {}
+
 extern_methods!(
     #[cfg(feature = "CloudKit_CKRecordZoneSubscription")]
     unsafe impl CKRecordZoneSubscription {
@@ -184,6 +193,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CloudKit_CKDatabaseSubscription")]
+unsafe impl NSSecureCoding for CKDatabaseSubscription {}
+
 extern_methods!(
     #[cfg(feature = "CloudKit_CKDatabaseSubscription")]
     unsafe impl CKDatabaseSubscription {
@@ -224,6 +236,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "CloudKit_CKNotificationInfo")]
+unsafe impl NSSecureCoding for CKNotificationInfo {}
 
 extern_methods!(
     #[cfg(feature = "CloudKit_CKNotificationInfo")]

@@ -14,6 +14,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSOrthography")]
+unsafe impl NSSecureCoding for NSOrthography {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSOrthography")]
     unsafe impl NSOrthography {

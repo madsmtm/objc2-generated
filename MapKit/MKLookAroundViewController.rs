@@ -28,6 +28,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "MapKit_MKLookAroundViewController")]
+unsafe impl NSSecureCoding for MKLookAroundViewController {}
+
+#[cfg(feature = "MapKit_MKLookAroundViewController")]
+unsafe impl NSCoding for MKLookAroundViewController {}
+
 extern_methods!(
     #[cfg(feature = "MapKit_MKLookAroundViewController")]
     unsafe impl MKLookAroundViewController {

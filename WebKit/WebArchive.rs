@@ -19,6 +19,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_WebArchive")]
+unsafe impl NSCoding for WebArchive {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_WebArchive")]
     unsafe impl WebArchive {

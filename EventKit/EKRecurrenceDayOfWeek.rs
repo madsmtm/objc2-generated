@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "EventKit_EKRecurrenceDayOfWeek")]
+unsafe impl NSSecureCoding for EKRecurrenceDayOfWeek {}
+
 extern_methods!(
     #[cfg(feature = "EventKit_EKRecurrenceDayOfWeek")]
     unsafe impl EKRecurrenceDayOfWeek {

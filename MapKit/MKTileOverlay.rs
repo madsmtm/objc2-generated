@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "MapKit_MKTileOverlay")]
+unsafe impl MKOverlay for MKTileOverlay {}
+
 extern_methods!(
     #[cfg(feature = "MapKit_MKTileOverlay")]
     unsafe impl MKTileOverlay {

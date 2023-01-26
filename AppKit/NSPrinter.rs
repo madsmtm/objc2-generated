@@ -33,6 +33,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSPrinter")]
+unsafe impl NSCoding for NSPrinter {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSPrinter")]
     unsafe impl NSPrinter {

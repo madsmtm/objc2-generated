@@ -19,6 +19,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialAssertion")]
+unsafe impl ASAuthorizationPublicKeyCredentialAssertion
+    for ASAuthorizationSecurityKeyPublicKeyCredentialAssertion
+{
+}
+
 extern_methods!(
     #[cfg(
         feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialAssertion"

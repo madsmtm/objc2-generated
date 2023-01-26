@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_WKPreferences")]
+unsafe impl NSSecureCoding for WKPreferences {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_WKPreferences")]
     unsafe impl WKPreferences {

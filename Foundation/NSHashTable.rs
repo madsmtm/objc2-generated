@@ -36,6 +36,18 @@ __inner_extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSHashTable")]
+unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSSecureCoding
+    for NSHashTable<ObjectType, ObjectTypeOwnership>
+{
+}
+
+#[cfg(feature = "Foundation_NSHashTable")]
+unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSFastEnumeration
+    for NSHashTable<ObjectType, ObjectTypeOwnership>
+{
+}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSHashTable")]
     unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>

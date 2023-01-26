@@ -58,6 +58,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSURLAuthenticationChallenge")]
+unsafe impl NSSecureCoding for NSURLAuthenticationChallenge {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSURLAuthenticationChallenge")]
     unsafe impl NSURLAuthenticationChallenge {

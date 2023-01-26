@@ -14,6 +14,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSNull")]
+unsafe impl NSSecureCoding for NSNull {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSNull")]
     unsafe impl NSNull {

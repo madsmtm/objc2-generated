@@ -68,6 +68,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSString")]
+unsafe impl NSSecureCoding for NSString {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSString")]
     unsafe impl NSString {
@@ -765,6 +768,12 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSString")]
     unsafe impl NSString {}
 );
+
+#[cfg(feature = "Foundation_NSString")]
+unsafe impl NSItemProviderReading for NSString {}
+
+#[cfg(feature = "Foundation_NSString")]
+unsafe impl NSItemProviderWriting for NSString {}
 
 extern_class!(
     #[derive(PartialEq, Eq, Hash)]

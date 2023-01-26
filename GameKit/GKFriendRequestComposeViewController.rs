@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "GameKit_GKFriendRequestComposeViewController")]
+unsafe impl GKViewController for GKFriendRequestComposeViewController {}
+
 extern_methods!(
     #[cfg(feature = "GameKit_GKFriendRequestComposeViewController")]
     unsafe impl GKFriendRequestComposeViewController {}

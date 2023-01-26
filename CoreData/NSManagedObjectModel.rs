@@ -15,6 +15,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreData_NSManagedObjectModel")]
+unsafe impl NSCoding for NSManagedObjectModel {}
+
+#[cfg(feature = "CoreData_NSManagedObjectModel")]
+unsafe impl NSFastEnumeration for NSManagedObjectModel {}
+
 extern_methods!(
     #[cfg(feature = "CoreData_NSManagedObjectModel")]
     unsafe impl NSManagedObjectModel {

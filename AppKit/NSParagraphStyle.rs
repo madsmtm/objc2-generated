@@ -44,6 +44,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSTextTab")]
+unsafe impl NSCoding for NSTextTab {}
+
+#[cfg(feature = "AppKit_NSTextTab")]
+unsafe impl NSSecureCoding for NSTextTab {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSTextTab")]
     unsafe impl NSTextTab {
@@ -84,6 +90,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "AppKit_NSParagraphStyle")]
+unsafe impl NSSecureCoding for NSParagraphStyle {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSParagraphStyle")]

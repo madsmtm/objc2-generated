@@ -364,6 +364,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSURL")]
+unsafe impl NSSecureCoding for NSURL {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSURL")]
     unsafe impl NSURL {
@@ -759,6 +762,12 @@ extern_methods!(
     unsafe impl NSURL {}
 );
 
+#[cfg(feature = "Foundation_NSURL")]
+unsafe impl NSItemProviderReading for NSURL {}
+
+#[cfg(feature = "Foundation_NSURL")]
+unsafe impl NSItemProviderWriting for NSURL {}
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSURLQueryItem")]
@@ -769,6 +778,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Foundation_NSURLQueryItem")]
+unsafe impl NSSecureCoding for NSURLQueryItem {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSURLQueryItem")]
@@ -1147,6 +1159,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Foundation_NSFileSecurity")]
+unsafe impl NSSecureCoding for NSFileSecurity {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSFileSecurity")]

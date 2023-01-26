@@ -14,6 +14,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSIndexPath")]
+unsafe impl NSSecureCoding for NSIndexPath {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSIndexPath")]
     unsafe impl NSIndexPath {

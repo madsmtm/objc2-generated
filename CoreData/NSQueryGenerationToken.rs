@@ -15,6 +15,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreData_NSQueryGenerationToken")]
+unsafe impl NSSecureCoding for NSQueryGenerationToken {}
+
 extern_methods!(
     #[cfg(feature = "CoreData_NSQueryGenerationToken")]
     unsafe impl NSQueryGenerationToken {

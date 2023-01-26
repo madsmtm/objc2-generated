@@ -64,6 +64,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreAnimation_CALayer")]
+unsafe impl NSSecureCoding for CALayer {}
+
+#[cfg(feature = "CoreAnimation_CALayer")]
+unsafe impl CAMediaTiming for CALayer {}
+
 extern_methods!(
     #[cfg(feature = "CoreAnimation_CALayer")]
     unsafe impl CALayer {
@@ -572,6 +578,9 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSNull")]
     unsafe impl NSNull {}
 );
+
+#[cfg(feature = "Foundation_NSNull")]
+unsafe impl CAAction for NSNull {}
 
 extern_protocol!(
     pub unsafe trait CALayerDelegate: NSObjectProtocol {

@@ -16,6 +16,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSTextContainer")]
+unsafe impl NSSecureCoding for NSTextContainer {}
+
+#[cfg(feature = "AppKit_NSTextContainer")]
+unsafe impl NSTextLayoutOrientationProvider for NSTextContainer {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSTextContainer")]
     unsafe impl NSTextContainer {

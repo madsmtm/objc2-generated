@@ -53,6 +53,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSScrubberLayout")]
+unsafe impl NSCoding for NSScrubberLayout {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSScrubberLayout")]
     unsafe impl NSScrubberLayout {

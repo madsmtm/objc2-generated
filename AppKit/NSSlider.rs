@@ -17,6 +17,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSSlider")]
+unsafe impl NSAccessibilitySlider for NSSlider {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSSlider")]
     unsafe impl NSSlider {

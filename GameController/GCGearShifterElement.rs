@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "GameController_GCGearShifterElement")]
+unsafe impl GCPhysicalInputElement for GCGearShifterElement {}
+
 extern_methods!(
     #[cfg(feature = "GameController_GCGearShifterElement")]
     unsafe impl GCGearShifterElement {

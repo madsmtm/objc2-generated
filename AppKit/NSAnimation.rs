@@ -41,6 +41,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSAnimation")]
+unsafe impl NSCoding for NSAnimation {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSAnimation")]
     unsafe impl NSAnimation {

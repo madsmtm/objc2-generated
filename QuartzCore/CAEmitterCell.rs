@@ -15,6 +15,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreAnimation_CAEmitterCell")]
+unsafe impl NSSecureCoding for CAEmitterCell {}
+
+#[cfg(feature = "CoreAnimation_CAEmitterCell")]
+unsafe impl CAMediaTiming for CAEmitterCell {}
+
 extern_methods!(
     #[cfg(feature = "CoreAnimation_CAEmitterCell")]
     unsafe impl CAEmitterCell {

@@ -17,6 +17,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSTextAttachmentCell")]
+unsafe impl NSTextAttachmentCell for NSTextAttachmentCell {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSTextAttachmentCell")]
     unsafe impl NSTextAttachmentCell {}

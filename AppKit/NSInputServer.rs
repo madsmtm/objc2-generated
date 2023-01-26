@@ -131,6 +131,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSInputServer")]
+unsafe impl NSInputServiceProvider for NSInputServer {}
+
+#[cfg(feature = "AppKit_NSInputServer")]
+unsafe impl NSInputServerMouseTracker for NSInputServer {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSInputServer")]
     unsafe impl NSInputServer {

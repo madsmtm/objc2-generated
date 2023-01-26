@@ -111,6 +111,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSPrintInfo")]
+unsafe impl NSCoding for NSPrintInfo {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSPrintInfo")]
     unsafe impl NSPrintInfo {

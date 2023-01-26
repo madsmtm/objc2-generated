@@ -19,6 +19,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSSplitViewController")]
+unsafe impl NSSplitViewDelegate for NSSplitViewController {}
+
+#[cfg(feature = "AppKit_NSSplitViewController")]
+unsafe impl NSUserInterfaceValidations for NSSplitViewController {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSSplitViewController")]
     unsafe impl NSSplitViewController {

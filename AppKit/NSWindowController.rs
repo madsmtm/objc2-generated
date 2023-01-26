@@ -17,6 +17,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSWindowController")]
+unsafe impl NSSeguePerforming for NSWindowController {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSWindowController")]
     unsafe impl NSWindowController {

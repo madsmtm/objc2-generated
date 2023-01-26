@@ -25,6 +25,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSAffineTransform")]
+unsafe impl NSSecureCoding for NSAffineTransform {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSAffineTransform")]
     unsafe impl NSAffineTransform {

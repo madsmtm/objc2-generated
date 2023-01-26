@@ -75,6 +75,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "WebKit_WebUndefined")]
+unsafe impl NSCoding for WebUndefined {}
+
 extern_methods!(
     #[cfg(feature = "WebKit_WebUndefined")]
     unsafe impl WebUndefined {

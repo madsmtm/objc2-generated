@@ -36,6 +36,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSImageRep")]
+unsafe impl NSCoding for NSImageRep {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSImageRep")]
     unsafe impl NSImageRep {

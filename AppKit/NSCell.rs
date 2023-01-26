@@ -120,6 +120,18 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSCell")]
+unsafe impl NSCoding for NSCell {}
+
+#[cfg(feature = "AppKit_NSCell")]
+unsafe impl NSUserInterfaceItemIdentification for NSCell {}
+
+#[cfg(feature = "AppKit_NSCell")]
+unsafe impl NSAccessibilityElement for NSCell {}
+
+#[cfg(feature = "AppKit_NSCell")]
+unsafe impl NSAccessibility for NSCell {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSCell")]
     unsafe impl NSCell {

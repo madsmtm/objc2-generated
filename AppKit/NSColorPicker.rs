@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSColorPicker")]
+unsafe impl NSColorPickingDefault for NSColorPicker {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSColorPicker")]
     unsafe impl NSColorPicker {

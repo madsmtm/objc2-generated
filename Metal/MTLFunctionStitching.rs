@@ -21,6 +21,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLFunctionStitchingAttributeAlwaysInline")]
+unsafe impl MTLFunctionStitchingAttribute for MTLFunctionStitchingAttributeAlwaysInline {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLFunctionStitchingAttributeAlwaysInline")]
     unsafe impl MTLFunctionStitchingAttributeAlwaysInline {}
@@ -42,6 +45,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Metal_MTLFunctionStitchingInputNode")]
+unsafe impl MTLFunctionStitchingNode for MTLFunctionStitchingInputNode {}
 
 extern_methods!(
     #[cfg(feature = "Metal_MTLFunctionStitchingInputNode")]
@@ -70,6 +76,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Metal_MTLFunctionStitchingFunctionNode")]
+unsafe impl MTLFunctionStitchingNode for MTLFunctionStitchingFunctionNode {}
 
 extern_methods!(
     #[cfg(feature = "Metal_MTLFunctionStitchingFunctionNode")]

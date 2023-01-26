@@ -15,6 +15,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialParameters")]
+unsafe impl NSSecureCoding for ASAuthorizationPublicKeyCredentialParameters {}
+
 extern_methods!(
     #[cfg(feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialParameters")]
     unsafe impl ASAuthorizationPublicKeyCredentialParameters {

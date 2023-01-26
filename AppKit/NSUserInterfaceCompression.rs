@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSUserInterfaceCompressionOptions")]
+unsafe impl NSCoding for NSUserInterfaceCompressionOptions {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSUserInterfaceCompressionOptions")]
     unsafe impl NSUserInterfaceCompressionOptions {

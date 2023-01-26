@@ -22,6 +22,15 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSSound")]
+unsafe impl NSSecureCoding for NSSound {}
+
+#[cfg(feature = "AppKit_NSSound")]
+unsafe impl NSPasteboardReading for NSSound {}
+
+#[cfg(feature = "AppKit_NSSound")]
+unsafe impl NSPasteboardWriting for NSSound {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSSound")]
     unsafe impl NSSound {

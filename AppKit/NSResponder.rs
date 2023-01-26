@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSResponder")]
+unsafe impl NSCoding for NSResponder {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSResponder {
@@ -624,6 +627,9 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSResponder {}
 );
+
+#[cfg(feature = "AppKit_NSResponder")]
+unsafe impl NSStandardKeyBindingResponding for NSResponder {}
 
 extern_methods!(
     /// NSUndoSupport

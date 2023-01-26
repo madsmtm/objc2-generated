@@ -188,6 +188,27 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSWindow")]
+unsafe impl NSAnimatablePropertyContainer for NSWindow {}
+
+#[cfg(feature = "AppKit_NSWindow")]
+unsafe impl NSMenuItemValidation for NSWindow {}
+
+#[cfg(feature = "AppKit_NSWindow")]
+unsafe impl NSUserInterfaceValidations for NSWindow {}
+
+#[cfg(feature = "AppKit_NSWindow")]
+unsafe impl NSUserInterfaceItemIdentification for NSWindow {}
+
+#[cfg(feature = "AppKit_NSWindow")]
+unsafe impl NSAppearanceCustomization for NSWindow {}
+
+#[cfg(feature = "AppKit_NSWindow")]
+unsafe impl NSAccessibilityElement for NSWindow {}
+
+#[cfg(feature = "AppKit_NSWindow")]
+unsafe impl NSAccessibility for NSWindow {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSWindow")]
     unsafe impl NSWindow {

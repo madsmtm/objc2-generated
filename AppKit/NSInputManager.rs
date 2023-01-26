@@ -76,6 +76,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSInputManager")]
+unsafe impl NSTextInput for NSInputManager {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSInputManager")]
     unsafe impl NSInputManager {

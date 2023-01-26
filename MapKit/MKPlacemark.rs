@@ -19,6 +19,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "MapKit_MKPlacemark")]
+unsafe impl MKAnnotation for MKPlacemark {}
+
 extern_methods!(
     #[cfg(feature = "MapKit_MKPlacemark")]
     unsafe impl MKPlacemark {

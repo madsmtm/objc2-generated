@@ -46,6 +46,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSTextCheckingResult")]
+unsafe impl NSSecureCoding for NSTextCheckingResult {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSTextCheckingResult")]
     unsafe impl NSTextCheckingResult {

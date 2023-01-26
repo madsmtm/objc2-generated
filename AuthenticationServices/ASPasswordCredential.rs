@@ -15,6 +15,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AuthenticationServices_ASPasswordCredential")]
+unsafe impl ASAuthorizationCredential for ASPasswordCredential {}
+
 extern_methods!(
     #[cfg(feature = "AuthenticationServices_ASPasswordCredential")]
     unsafe impl ASPasswordCredential {

@@ -20,6 +20,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "GameController_GCRacingWheel")]
+unsafe impl GCDevice for GCRacingWheel {}
+
 extern_methods!(
     #[cfg(feature = "GameController_GCRacingWheel")]
     unsafe impl GCRacingWheel {

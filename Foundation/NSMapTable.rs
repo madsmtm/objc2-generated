@@ -46,6 +46,26 @@ __inner_extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSMapTable")]
+unsafe impl<
+        KeyType: Message,
+        ObjectType: Message,
+        KeyTypeOwnership: Ownership,
+        ObjectTypeOwnership: Ownership,
+    > NSSecureCoding for NSMapTable<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
+{
+}
+
+#[cfg(feature = "Foundation_NSMapTable")]
+unsafe impl<
+        KeyType: Message,
+        ObjectType: Message,
+        KeyTypeOwnership: Ownership,
+        ObjectTypeOwnership: Ownership,
+    > NSFastEnumeration for NSMapTable<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
+{
+}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSMapTable")]
     unsafe impl<

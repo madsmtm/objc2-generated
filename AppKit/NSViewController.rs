@@ -32,6 +32,15 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSViewController")]
+unsafe impl NSEditor for NSViewController {}
+
+#[cfg(feature = "AppKit_NSViewController")]
+unsafe impl NSSeguePerforming for NSViewController {}
+
+#[cfg(feature = "AppKit_NSViewController")]
+unsafe impl NSUserInterfaceItemIdentification for NSViewController {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSViewController")]
     unsafe impl NSViewController {
@@ -297,3 +306,6 @@ extern_methods!(
         pub unsafe fn preferredMaximumSize(&self) -> NSSize;
     }
 );
+
+#[cfg(feature = "AppKit_NSViewController")]
+unsafe impl NSExtensionRequestHandling for NSViewController {}

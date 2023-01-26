@@ -44,6 +44,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSException")]
+unsafe impl NSSecureCoding for NSException {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSException")]
     unsafe impl NSException {

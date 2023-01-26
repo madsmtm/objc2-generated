@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSPDFInfo")]
+unsafe impl NSCoding for NSPDFInfo {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSPDFInfo")]
     unsafe impl NSPDFInfo {

@@ -20,6 +20,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "GameController_GCKeyboard")]
+unsafe impl GCDevice for GCKeyboard {}
+
 extern_methods!(
     #[cfg(feature = "GameController_GCKeyboard")]
     unsafe impl GCKeyboard {

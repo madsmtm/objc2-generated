@@ -14,6 +14,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSPointerArray")]
+unsafe impl NSFastEnumeration for NSPointerArray {}
+
+#[cfg(feature = "Foundation_NSPointerArray")]
+unsafe impl NSSecureCoding for NSPointerArray {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSPointerArray")]
     unsafe impl NSPointerArray {

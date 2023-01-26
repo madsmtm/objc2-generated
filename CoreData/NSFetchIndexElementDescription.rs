@@ -23,6 +23,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreData_NSFetchIndexElementDescription")]
+unsafe impl NSCoding for NSFetchIndexElementDescription {}
+
 extern_methods!(
     #[cfg(feature = "CoreData_NSFetchIndexElementDescription")]
     unsafe impl NSFetchIndexElementDescription {

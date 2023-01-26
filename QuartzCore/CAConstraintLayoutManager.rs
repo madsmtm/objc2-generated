@@ -47,6 +47,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreAnimation_CAConstraintLayoutManager")]
+unsafe impl CALayoutManager for CAConstraintLayoutManager {}
+
 extern_methods!(
     #[cfg(feature = "CoreAnimation_CAConstraintLayoutManager")]
     unsafe impl CAConstraintLayoutManager {
@@ -65,6 +68,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "CoreAnimation_CAConstraint")]
+unsafe impl NSSecureCoding for CAConstraint {}
 
 extern_methods!(
     #[cfg(feature = "CoreAnimation_CAConstraint")]

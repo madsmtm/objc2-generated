@@ -544,11 +544,17 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "WebKit_WKWebView")]
+unsafe impl NSUserInterfaceValidations for WKWebView {}
+
 extern_methods!(
     /// WKNSTextFinderClient
     #[cfg(feature = "WebKit_WKWebView")]
     unsafe impl WKWebView {}
 );
+
+#[cfg(feature = "WebKit_WKWebView")]
+unsafe impl NSTextFinderClient for WKWebView {}
 
 extern_methods!(
     /// WKDeprecated

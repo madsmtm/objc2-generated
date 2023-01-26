@@ -37,6 +37,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSTextLayoutManager")]
+unsafe impl NSSecureCoding for NSTextLayoutManager {}
+
+#[cfg(feature = "AppKit_NSTextLayoutManager")]
+unsafe impl NSTextSelectionDataSource for NSTextLayoutManager {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSTextLayoutManager")]
     unsafe impl NSTextLayoutManager {

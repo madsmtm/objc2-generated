@@ -15,6 +15,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AuthenticationServices_ASAuthorizationSingleSignOnCredential")]
+unsafe impl ASAuthorizationCredential for ASAuthorizationSingleSignOnCredential {}
+
 extern_methods!(
     #[cfg(feature = "AuthenticationServices_ASAuthorizationSingleSignOnCredential")]
     unsafe impl ASAuthorizationSingleSignOnCredential {

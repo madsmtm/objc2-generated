@@ -35,6 +35,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSTextSelection")]
+unsafe impl NSSecureCoding for NSTextSelection {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSTextSelection")]
     unsafe impl NSTextSelection {

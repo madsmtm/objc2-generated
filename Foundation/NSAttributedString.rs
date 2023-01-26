@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSAttributedString")]
+unsafe impl NSSecureCoding for NSAttributedString {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSAttributedString")]
     unsafe impl NSAttributedString {
@@ -273,6 +276,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSAttributedStringMarkdownSourcePosition")]
+unsafe impl NSSecureCoding for NSAttributedStringMarkdownSourcePosition {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSAttributedStringMarkdownSourcePosition")]
     unsafe impl NSAttributedStringMarkdownSourcePosition {
@@ -486,6 +492,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Foundation_NSPresentationIntent")]
+unsafe impl NSSecureCoding for NSPresentationIntent {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSPresentationIntent")]

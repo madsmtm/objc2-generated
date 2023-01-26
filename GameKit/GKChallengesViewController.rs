@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "GameKit_GKChallengesViewController")]
+unsafe impl GKViewController for GKChallengesViewController {}
+
 extern_methods!(
     #[cfg(feature = "GameKit_GKChallengesViewController")]
     unsafe impl GKChallengesViewController {

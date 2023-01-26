@@ -73,6 +73,24 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSView")]
+unsafe impl NSAnimatablePropertyContainer for NSView {}
+
+#[cfg(feature = "AppKit_NSView")]
+unsafe impl NSUserInterfaceItemIdentification for NSView {}
+
+#[cfg(feature = "AppKit_NSView")]
+unsafe impl NSDraggingDestination for NSView {}
+
+#[cfg(feature = "AppKit_NSView")]
+unsafe impl NSAppearanceCustomization for NSView {}
+
+#[cfg(feature = "AppKit_NSView")]
+unsafe impl NSAccessibilityElement for NSView {}
+
+#[cfg(feature = "AppKit_NSView")]
+unsafe impl NSAccessibility for NSView {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSView")]
     unsafe impl NSView {

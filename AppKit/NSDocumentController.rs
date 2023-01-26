@@ -16,6 +16,15 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSDocumentController")]
+unsafe impl NSCoding for NSDocumentController {}
+
+#[cfg(feature = "AppKit_NSDocumentController")]
+unsafe impl NSMenuItemValidation for NSDocumentController {}
+
+#[cfg(feature = "AppKit_NSDocumentController")]
+unsafe impl NSUserInterfaceValidations for NSDocumentController {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSDocumentController")]
     unsafe impl NSDocumentController {

@@ -102,6 +102,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSBitmapImageRep")]
+unsafe impl NSSecureCoding for NSBitmapImageRep {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSBitmapImageRep")]
     unsafe impl NSBitmapImageRep {

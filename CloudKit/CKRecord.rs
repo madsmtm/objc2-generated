@@ -32,6 +32,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CloudKit_CKRecord")]
+unsafe impl NSSecureCoding for CKRecord {}
+
 extern_methods!(
     #[cfg(feature = "CloudKit_CKRecord")]
     unsafe impl CKRecord {
@@ -159,11 +162,17 @@ extern_methods!(
     unsafe impl NSString {}
 );
 
+#[cfg(feature = "Foundation_NSString")]
+unsafe impl CKRecordValue for NSString {}
+
 extern_methods!(
     /// CKRecordValue
     #[cfg(feature = "Foundation_NSNumber")]
     unsafe impl NSNumber {}
 );
+
+#[cfg(feature = "Foundation_NSNumber")]
+unsafe impl CKRecordValue for NSNumber {}
 
 extern_methods!(
     /// CKRecordValue
@@ -171,11 +180,17 @@ extern_methods!(
     unsafe impl NSArray {}
 );
 
+#[cfg(feature = "Foundation_NSArray")]
+unsafe impl CKRecordValue for NSArray {}
+
 extern_methods!(
     /// CKRecordValue
     #[cfg(feature = "Foundation_NSDate")]
     unsafe impl NSDate {}
 );
+
+#[cfg(feature = "Foundation_NSDate")]
+unsafe impl CKRecordValue for NSDate {}
 
 extern_methods!(
     /// CKRecordValue
@@ -183,11 +198,17 @@ extern_methods!(
     unsafe impl NSData {}
 );
 
+#[cfg(feature = "Foundation_NSData")]
+unsafe impl CKRecordValue for NSData {}
+
 extern_methods!(
     /// CKRecordValue
     #[cfg(feature = "CloudKit_CKReference")]
     unsafe impl CKReference {}
 );
+
+#[cfg(feature = "CloudKit_CKReference")]
+unsafe impl CKRecordValue for CKReference {}
 
 extern_methods!(
     /// CKRecordValue
@@ -195,11 +216,17 @@ extern_methods!(
     unsafe impl CKAsset {}
 );
 
+#[cfg(feature = "CloudKit_CKAsset")]
+unsafe impl CKRecordValue for CKAsset {}
+
 extern_methods!(
     /// CKRecordValue
     #[cfg(feature = "CoreLocation_CLLocation")]
     unsafe impl CLLocation {}
 );
+
+#[cfg(feature = "CoreLocation_CLLocation")]
+unsafe impl CKRecordValue for CLLocation {}
 
 extern_protocol!(
     pub unsafe trait CKRecordKeyValueSetting: NSObjectProtocol {
@@ -251,3 +278,6 @@ extern_methods!(
         ) -> Id<ProtocolObject<dyn CKRecordKeyValueSetting>, Shared>;
     }
 );
+
+#[cfg(feature = "CloudKit_CKRecord")]
+unsafe impl CKRecordKeyValueSetting for CKRecord {}

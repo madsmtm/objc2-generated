@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "GameController_GCRacingWheelInputState")]
+unsafe impl GCDevicePhysicalInputState for GCRacingWheelInputState {}
+
 extern_methods!(
     #[cfg(feature = "GameController_GCRacingWheelInputState")]
     unsafe impl GCRacingWheelInputState {
@@ -52,6 +55,9 @@ extern_class!(
         type Super = GCRacingWheelInputState;
     }
 );
+
+#[cfg(feature = "GameController_GCRacingWheelInput")]
+unsafe impl GCDevicePhysicalInput for GCRacingWheelInput {}
 
 extern_methods!(
     #[cfg(feature = "GameController_GCRacingWheelInput")]

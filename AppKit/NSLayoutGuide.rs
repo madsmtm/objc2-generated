@@ -16,6 +16,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSLayoutGuide")]
+unsafe impl NSCoding for NSLayoutGuide {}
+
+#[cfg(feature = "AppKit_NSLayoutGuide")]
+unsafe impl NSUserInterfaceItemIdentification for NSLayoutGuide {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSLayoutGuide")]
     unsafe impl NSLayoutGuide {

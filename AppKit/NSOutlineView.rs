@@ -24,6 +24,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSOutlineView")]
+unsafe impl NSAccessibilityOutline for NSOutlineView {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSOutlineView")]
     unsafe impl NSOutlineView {

@@ -17,6 +17,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSTableHeaderView")]
+unsafe impl NSViewToolTipOwner for NSTableHeaderView {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSTableHeaderView")]
     unsafe impl NSTableHeaderView {

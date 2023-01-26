@@ -386,6 +386,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSBundleResourceRequest")]
+unsafe impl NSProgressReporting for NSBundleResourceRequest {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSBundleResourceRequest")]
     unsafe impl NSBundleResourceRequest {

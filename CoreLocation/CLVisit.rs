@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreLocation_CLVisit")]
+unsafe impl NSSecureCoding for CLVisit {}
+
 extern_methods!(
     #[cfg(feature = "CoreLocation_CLVisit")]
     unsafe impl CLVisit {

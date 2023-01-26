@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "GameController_GCSteeringWheelElement")]
+unsafe impl GCAxisElement for GCSteeringWheelElement {}
+
 extern_methods!(
     #[cfg(feature = "GameController_GCSteeringWheelElement")]
     unsafe impl GCSteeringWheelElement {

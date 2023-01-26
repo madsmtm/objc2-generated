@@ -45,6 +45,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSXPCConnection")]
+unsafe impl NSXPCProxyCreating for NSXPCConnection {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSXPCConnection")]
     unsafe impl NSXPCConnection {
@@ -305,6 +308,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Foundation_NSXPCListenerEndpoint")]
+unsafe impl NSSecureCoding for NSXPCListenerEndpoint {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSXPCListenerEndpoint")]

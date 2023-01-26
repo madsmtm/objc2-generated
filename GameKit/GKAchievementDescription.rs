@@ -16,6 +16,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "GameKit_GKAchievementDescription")]
+unsafe impl NSCoding for GKAchievementDescription {}
+
+#[cfg(feature = "GameKit_GKAchievementDescription")]
+unsafe impl NSSecureCoding for GKAchievementDescription {}
+
 extern_methods!(
     #[cfg(feature = "GameKit_GKAchievementDescription")]
     unsafe impl GKAchievementDescription {

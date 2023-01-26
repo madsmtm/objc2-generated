@@ -199,6 +199,9 @@ extern_methods!(
     unsafe impl NSLayoutConstraint {}
 );
 
+#[cfg(feature = "AppKit_NSLayoutConstraint")]
+unsafe impl NSAnimatablePropertyContainer for NSLayoutConstraint {}
+
 extern_methods!(
     /// NSConstraintBasedLayoutInstallingConstraints
     #[cfg(feature = "AppKit_NSView")]

@@ -20,3 +20,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSColor")]
     unsafe impl NSColor {}
 );
+
+#[cfg(feature = "AppKit_NSColor")]
+unsafe impl NSAccessibilityColor for NSColor {}

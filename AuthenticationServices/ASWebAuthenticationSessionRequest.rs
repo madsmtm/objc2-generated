@@ -45,6 +45,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AuthenticationServices_ASWebAuthenticationSessionRequest")]
+unsafe impl NSSecureCoding for ASWebAuthenticationSessionRequest {}
+
 extern_methods!(
     #[cfg(feature = "AuthenticationServices_ASWebAuthenticationSessionRequest")]
     unsafe impl ASWebAuthenticationSessionRequest {

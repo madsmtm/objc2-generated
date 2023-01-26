@@ -100,6 +100,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSScrubberSelectionStyle")]
+unsafe impl NSCoding for NSScrubberSelectionStyle {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSScrubberSelectionStyle")]
     unsafe impl NSScrubberSelectionStyle {

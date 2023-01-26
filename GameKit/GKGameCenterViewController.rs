@@ -30,6 +30,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "GameKit_GKGameCenterViewController")]
+unsafe impl GKViewController for GKGameCenterViewController {}
+
 extern_methods!(
     #[cfg(feature = "GameKit_GKGameCenterViewController")]
     unsafe impl GKGameCenterViewController {}

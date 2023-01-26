@@ -26,11 +26,17 @@ extern_methods!(
     unsafe impl NSNumber {}
 );
 
+#[cfg(feature = "Foundation_NSNumber")]
+unsafe impl NSFetchRequestResult for NSNumber {}
+
 extern_methods!(
     /// NSFetchedResultSupport
     #[cfg(feature = "Foundation_NSDictionary")]
     unsafe impl NSDictionary {}
 );
+
+#[cfg(feature = "Foundation_NSDictionary")]
+unsafe impl NSFetchRequestResult for NSDictionary {}
 
 extern_methods!(
     /// NSFetchedResultSupport
@@ -38,11 +44,17 @@ extern_methods!(
     unsafe impl NSManagedObject {}
 );
 
+#[cfg(feature = "CoreData_NSManagedObject")]
+unsafe impl NSFetchRequestResult for NSManagedObject {}
+
 extern_methods!(
     /// NSFetchedResultSupport
     #[cfg(feature = "CoreData_NSManagedObjectID")]
     unsafe impl NSManagedObjectID {}
 );
+
+#[cfg(feature = "CoreData_NSManagedObjectID")]
+unsafe impl NSFetchRequestResult for NSManagedObjectID {}
 
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -60,6 +72,12 @@ __inner_extern_class!(
         type Super = NSPersistentStoreRequest;
     }
 );
+
+#[cfg(feature = "CoreData_NSFetchRequest")]
+unsafe impl<ResultType: Message, ResultTypeOwnership: Ownership> NSCoding
+    for NSFetchRequest<ResultType, ResultTypeOwnership>
+{
+}
 
 extern_methods!(
     #[cfg(feature = "CoreData_NSFetchRequest")]

@@ -67,6 +67,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSLayoutManager")]
+unsafe impl NSSecureCoding for NSLayoutManager {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSLayoutManager")]
     unsafe impl NSLayoutManager {
@@ -1151,3 +1154,6 @@ extern_methods!(
         pub unsafe fn setGlyphGenerator(&self, glyph_generator: &NSGlyphGenerator);
     }
 );
+
+#[cfg(feature = "AppKit_NSLayoutManager")]
+unsafe impl NSGlyphStorage for NSLayoutManager {}

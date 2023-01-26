@@ -37,6 +37,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSSplitViewItem")]
+unsafe impl NSAnimatablePropertyContainer for NSSplitViewItem {}
+
+#[cfg(feature = "AppKit_NSSplitViewItem")]
+unsafe impl NSCoding for NSSplitViewItem {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSSplitViewItem")]
     unsafe impl NSSplitViewItem {

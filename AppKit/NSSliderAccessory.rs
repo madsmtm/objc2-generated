@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSSliderAccessory")]
+unsafe impl NSCoding for NSSliderAccessory {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSSliderAccessory")]
     unsafe impl NSSliderAccessory {
@@ -44,6 +47,12 @@ extern_methods!(
     unsafe impl NSSliderAccessory {}
 );
 
+#[cfg(feature = "AppKit_NSSliderAccessory")]
+unsafe impl NSAccessibility for NSSliderAccessory {}
+
+#[cfg(feature = "AppKit_NSSliderAccessory")]
+unsafe impl NSAccessibilityElement for NSSliderAccessory {}
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSSliderAccessoryBehavior")]
@@ -54,6 +63,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "AppKit_NSSliderAccessoryBehavior")]
+unsafe impl NSCoding for NSSliderAccessoryBehavior {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSSliderAccessoryBehavior")]

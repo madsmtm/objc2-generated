@@ -17,6 +17,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSMovie")]
+unsafe impl NSCoding for NSMovie {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSMovie")]
     unsafe impl NSMovie {

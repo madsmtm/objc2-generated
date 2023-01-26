@@ -576,6 +576,12 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSAttributedString")]
+unsafe impl NSPasteboardReading for NSAttributedString {}
+
+#[cfg(feature = "Foundation_NSAttributedString")]
+unsafe impl NSPasteboardWriting for NSAttributedString {}
+
 extern_methods!(
     /// NSMutableAttributedStringKitAdditions
     #[cfg(feature = "Foundation_NSMutableAttributedString")]

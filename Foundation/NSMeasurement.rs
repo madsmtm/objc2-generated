@@ -19,6 +19,12 @@ __inner_extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSMeasurement")]
+unsafe impl<UnitType: Message, UnitTypeOwnership: Ownership> NSSecureCoding
+    for NSMeasurement<UnitType, UnitTypeOwnership>
+{
+}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSMeasurement")]
     unsafe impl<UnitType: Message, UnitTypeOwnership: Ownership>

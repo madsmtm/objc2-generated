@@ -422,6 +422,9 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "WebKit_WebView")]
+unsafe impl NSUserInterfaceValidations for WebView {}
+
 extern_static!(WebViewDidBeginEditingNotification: Option<&'static NSString>);
 
 extern_static!(WebViewDidChangeNotification: Option<&'static NSString>);

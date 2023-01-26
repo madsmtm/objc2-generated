@@ -27,6 +27,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSPathCell")]
+unsafe impl NSMenuItemValidation for NSPathCell {}
+
+#[cfg(feature = "AppKit_NSPathCell")]
+unsafe impl NSOpenSavePanelDelegate for NSPathCell {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSPathCell")]
     unsafe impl NSPathCell {

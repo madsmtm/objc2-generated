@@ -15,6 +15,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Contacts_CNInstantMessageAddress")]
+unsafe impl NSSecureCoding for CNInstantMessageAddress {}
+
 extern_methods!(
     #[cfg(feature = "Contacts_CNInstantMessageAddress")]
     unsafe impl CNInstantMessageAddress {

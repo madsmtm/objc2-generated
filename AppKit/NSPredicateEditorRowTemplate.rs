@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSPredicateEditorRowTemplate")]
+unsafe impl NSCoding for NSPredicateEditorRowTemplate {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSPredicateEditorRowTemplate")]
     unsafe impl NSPredicateEditorRowTemplate {

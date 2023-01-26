@@ -24,6 +24,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSURLCredential")]
+unsafe impl NSSecureCoding for NSURLCredential {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSURLCredential")]
     unsafe impl NSURLCredential {

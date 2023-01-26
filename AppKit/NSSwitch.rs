@@ -17,6 +17,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSSwitch")]
+unsafe impl NSAccessibilitySwitch for NSSwitch {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSSwitch")]
     unsafe impl NSSwitch {

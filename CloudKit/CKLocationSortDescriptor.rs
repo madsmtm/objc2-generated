@@ -17,6 +17,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CloudKit_CKLocationSortDescriptor")]
+unsafe impl NSSecureCoding for CKLocationSortDescriptor {}
+
 extern_methods!(
     #[cfg(feature = "CloudKit_CKLocationSortDescriptor")]
     unsafe impl CKLocationSortDescriptor {

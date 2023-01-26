@@ -17,6 +17,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSStepper")]
+unsafe impl NSAccessibilityStepper for NSStepper {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSStepper")]
     unsafe impl NSStepper {

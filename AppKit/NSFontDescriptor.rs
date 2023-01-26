@@ -82,6 +82,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSFontDescriptor")]
+unsafe impl NSSecureCoding for NSFontDescriptor {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSFontDescriptor")]
     unsafe impl NSFontDescriptor {

@@ -29,6 +29,27 @@ __inner_extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSDictionary")]
+unsafe impl<
+        KeyType: Message,
+        ObjectType: Message,
+        KeyTypeOwnership: Ownership,
+        ObjectTypeOwnership: Ownership,
+    > NSSecureCoding for NSDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
+{
+}
+
+#[cfg(feature = "Foundation_NSDictionary")]
+unsafe impl<
+        KeyType: Message,
+        ObjectType: Message,
+        KeyTypeOwnership: Ownership,
+        ObjectTypeOwnership: Ownership,
+    > NSFastEnumeration
+    for NSDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
+{
+}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSDictionary")]
     unsafe impl<
@@ -480,6 +501,12 @@ extern_methods!(
         ) -> NSUInteger;
     }
 );
+
+#[cfg(feature = "Foundation_NSDictionary")]
+unsafe impl<K: Message, V: Message, KOwnership: Ownership, VOwnership: Ownership> NSFastEnumeration
+    for NSDictionary<K, V, KOwnership, VOwnership>
+{
+}
 
 extern_methods!(
     /// Methods declared on superclass `NSDictionary`

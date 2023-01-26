@@ -15,6 +15,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialDescriptor")]
+unsafe impl ASAuthorizationPublicKeyCredentialDescriptor
+    for ASAuthorizationPlatformPublicKeyCredentialDescriptor
+{
+}
+
 extern_methods!(
     #[cfg(feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialDescriptor")]
     unsafe impl ASAuthorizationPlatformPublicKeyCredentialDescriptor {

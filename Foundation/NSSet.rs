@@ -19,6 +19,18 @@ __inner_extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSSet")]
+unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSSecureCoding
+    for NSSet<ObjectType, ObjectTypeOwnership>
+{
+}
+
+#[cfg(feature = "Foundation_NSSet")]
+unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSFastEnumeration
+    for NSSet<ObjectType, ObjectTypeOwnership>
+{
+}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSSet")]
     unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>

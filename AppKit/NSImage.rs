@@ -401,10 +401,25 @@ extern_methods!(
     unsafe impl NSImage {}
 );
 
+#[cfg(feature = "AppKit_NSImage")]
+unsafe impl NSSecureCoding for NSImage {}
+
+#[cfg(feature = "AppKit_NSImage")]
+unsafe impl NSPasteboardReading for NSImage {}
+
+#[cfg(feature = "AppKit_NSImage")]
+unsafe impl NSPasteboardWriting for NSImage {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSImage")]
     unsafe impl NSImage {}
 );
+
+#[cfg(feature = "AppKit_NSImage")]
+unsafe impl NSItemProviderReading for NSImage {}
+
+#[cfg(feature = "AppKit_NSImage")]
+unsafe impl NSItemProviderWriting for NSImage {}
 
 extern_protocol!(
     pub unsafe trait NSImageDelegate: NSObjectProtocol {
@@ -892,6 +907,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "AppKit_NSImageSymbolConfiguration")]
+unsafe impl NSSecureCoding for NSImageSymbolConfiguration {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSImageSymbolConfiguration")]

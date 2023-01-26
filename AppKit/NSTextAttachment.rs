@@ -95,6 +95,15 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSTextAttachment")]
+unsafe impl NSTextAttachmentLayout for NSTextAttachment {}
+
+#[cfg(feature = "AppKit_NSTextAttachment")]
+unsafe impl NSTextAttachmentContainer for NSTextAttachment {}
+
+#[cfg(feature = "AppKit_NSTextAttachment")]
+unsafe impl NSSecureCoding for NSTextAttachment {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSTextAttachment")]
     unsafe impl NSTextAttachment {

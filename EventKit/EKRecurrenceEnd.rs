@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "EventKit_EKRecurrenceEnd")]
+unsafe impl NSSecureCoding for EKRecurrenceEnd {}
+
 extern_methods!(
     #[cfg(feature = "EventKit_EKRecurrenceEnd")]
     unsafe impl EKRecurrenceEnd {

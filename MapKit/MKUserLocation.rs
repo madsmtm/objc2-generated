@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "MapKit_MKUserLocation")]
+unsafe impl MKAnnotation for MKUserLocation {}
+
 extern_methods!(
     #[cfg(feature = "MapKit_MKUserLocation")]
     unsafe impl MKUserLocation {

@@ -58,6 +58,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSMorphology")]
+unsafe impl NSSecureCoding for NSMorphology {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSMorphology")]
     unsafe impl NSMorphology {
@@ -119,6 +122,9 @@ extern_class!(
         type Super = NSObject;
     }
 );
+
+#[cfg(feature = "Foundation_NSMorphologyCustomPronoun")]
+unsafe impl NSSecureCoding for NSMorphologyCustomPronoun {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSMorphologyCustomPronoun")]

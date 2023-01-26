@@ -35,6 +35,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSFormatter")]
+unsafe impl NSCoding for NSFormatter {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSFormatter")]
     unsafe impl NSFormatter {

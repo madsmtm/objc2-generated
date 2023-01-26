@@ -14,6 +14,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSExtensionItem")]
+unsafe impl NSSecureCoding for NSExtensionItem {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSExtensionItem")]
     unsafe impl NSExtensionItem {

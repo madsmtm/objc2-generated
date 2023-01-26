@@ -31,6 +31,15 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreAnimation_CAAnimation")]
+unsafe impl NSSecureCoding for CAAnimation {}
+
+#[cfg(feature = "CoreAnimation_CAAnimation")]
+unsafe impl CAMediaTiming for CAAnimation {}
+
+#[cfg(feature = "CoreAnimation_CAAnimation")]
+unsafe impl CAAction for CAAnimation {}
+
 extern_methods!(
     #[cfg(feature = "CoreAnimation_CAAnimation")]
     unsafe impl CAAnimation {

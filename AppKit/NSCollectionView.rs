@@ -116,6 +116,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSCollectionViewItem")]
+unsafe impl NSCollectionViewElement for NSCollectionViewItem {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSCollectionViewItem")]
     unsafe impl NSCollectionViewItem {
@@ -173,6 +176,12 @@ extern_class!(
         type Super = NSView;
     }
 );
+
+#[cfg(feature = "AppKit_NSCollectionView")]
+unsafe impl NSDraggingSource for NSCollectionView {}
+
+#[cfg(feature = "AppKit_NSCollectionView")]
+unsafe impl NSDraggingDestination for NSCollectionView {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSCollectionView")]

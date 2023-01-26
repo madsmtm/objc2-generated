@@ -237,6 +237,18 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSApplication")]
+unsafe impl NSUserInterfaceValidations for NSApplication {}
+
+#[cfg(feature = "AppKit_NSApplication")]
+unsafe impl NSMenuItemValidation for NSApplication {}
+
+#[cfg(feature = "AppKit_NSApplication")]
+unsafe impl NSAccessibilityElement for NSApplication {}
+
+#[cfg(feature = "AppKit_NSApplication")]
+unsafe impl NSAccessibility for NSApplication {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSApplication")]
     unsafe impl NSApplication {
@@ -462,6 +474,9 @@ extern_methods!(
         pub unsafe fn effectiveAppearance(&self) -> Id<NSAppearance, Shared>;
     }
 );
+
+#[cfg(feature = "AppKit_NSApplication")]
+unsafe impl NSAppearanceCustomization for NSApplication {}
 
 extern_methods!(
     /// NSEvent

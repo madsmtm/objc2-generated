@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSNib")]
+unsafe impl NSCoding for NSNib {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSNib")]
     unsafe impl NSNib {

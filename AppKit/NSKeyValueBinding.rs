@@ -329,3 +329,9 @@ extern_methods!(
     #[cfg(feature = "CoreData_NSManagedObjectContext")]
     unsafe impl NSManagedObjectContext {}
 );
+
+#[cfg(feature = "CoreData_NSManagedObjectContext")]
+unsafe impl NSEditor for NSManagedObjectContext {}
+
+#[cfg(feature = "CoreData_NSManagedObjectContext")]
+unsafe impl NSEditorRegistration for NSManagedObjectContext {}

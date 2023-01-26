@@ -43,6 +43,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSImageCell")]
+unsafe impl NSCoding for NSImageCell {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSImageCell")]
     unsafe impl NSImageCell {

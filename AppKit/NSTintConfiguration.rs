@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSTintConfiguration")]
+unsafe impl NSSecureCoding for NSTintConfiguration {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSTintConfiguration")]
     unsafe impl NSTintConfiguration {

@@ -112,6 +112,18 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSTableView")]
+unsafe impl NSUserInterfaceValidations for NSTableView {}
+
+#[cfg(feature = "AppKit_NSTableView")]
+unsafe impl NSTextViewDelegate for NSTableView {}
+
+#[cfg(feature = "AppKit_NSTableView")]
+unsafe impl NSDraggingSource for NSTableView {}
+
+#[cfg(feature = "AppKit_NSTableView")]
+unsafe impl NSAccessibilityTable for NSTableView {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSTableView")]
     unsafe impl NSTableView {

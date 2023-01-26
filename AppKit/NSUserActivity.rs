@@ -33,6 +33,9 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "AppKit_NSResponder")]
+unsafe impl NSUserActivityRestoring for NSResponder {}
+
 extern_methods!(
     /// NSUserActivity
     #[cfg(feature = "AppKit_NSDocument")]
@@ -50,5 +53,8 @@ extern_methods!(
         pub unsafe fn updateUserActivityState(&self, activity: &NSUserActivity);
     }
 );
+
+#[cfg(feature = "AppKit_NSDocument")]
+unsafe impl NSUserActivityRestoring for NSDocument {}
 
 extern_static!(NSUserActivityDocumentURLKey: &'static NSString);

@@ -17,6 +17,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSTableRowView")]
+unsafe impl NSAccessibilityRow for NSTableRowView {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSTableRowView")]
     unsafe impl NSTableRowView {

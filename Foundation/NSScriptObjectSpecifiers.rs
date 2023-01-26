@@ -57,6 +57,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSScriptObjectSpecifier")]
+unsafe impl NSCoding for NSScriptObjectSpecifier {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSScriptObjectSpecifier")]
     unsafe impl NSScriptObjectSpecifier {

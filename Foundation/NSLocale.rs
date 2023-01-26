@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSLocale")]
+unsafe impl NSSecureCoding for NSLocale {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSLocale")]
     unsafe impl NSLocale {

@@ -14,6 +14,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSURLResponse")]
+unsafe impl NSSecureCoding for NSURLResponse {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSURLResponse")]
     unsafe impl NSURLResponse {

@@ -69,6 +69,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSData")]
+unsafe impl NSSecureCoding for NSData {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSData")]
     unsafe impl NSData {
@@ -466,6 +469,9 @@ extern_class!(
         type Super = NSMutableData;
     }
 );
+
+#[cfg(feature = "Foundation_NSPurgeableData")]
+unsafe impl NSDiscardableContent for NSPurgeableData {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSPurgeableData")]

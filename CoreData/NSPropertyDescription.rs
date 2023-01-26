@@ -15,6 +15,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreData_NSPropertyDescription")]
+unsafe impl NSCoding for NSPropertyDescription {}
+
 extern_methods!(
     #[cfg(feature = "CoreData_NSPropertyDescription")]
     unsafe impl NSPropertyDescription {

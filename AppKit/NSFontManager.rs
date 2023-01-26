@@ -55,6 +55,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSFontManager")]
+unsafe impl NSMenuItemValidation for NSFontManager {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSFontManager")]
     unsafe impl NSFontManager {

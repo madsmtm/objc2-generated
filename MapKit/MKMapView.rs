@@ -32,6 +32,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "MapKit_MKMapView")]
+unsafe impl NSCoding for MKMapView {}
+
 extern_methods!(
     #[cfg(feature = "MapKit_MKMapView")]
     unsafe impl MKMapView {

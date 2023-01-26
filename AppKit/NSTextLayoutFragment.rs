@@ -37,6 +37,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSTextLayoutFragment")]
+unsafe impl NSSecureCoding for NSTextLayoutFragment {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSTextLayoutFragment")]
     unsafe impl NSTextLayoutFragment {

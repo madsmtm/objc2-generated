@@ -19,6 +19,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "MapKit_MKMultiPolyline")]
+unsafe impl MKOverlay for MKMultiPolyline {}
+
 extern_methods!(
     #[cfg(feature = "MapKit_MKMultiPolyline")]
     unsafe impl MKMultiPolyline {

@@ -26,6 +26,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSText")]
+unsafe impl NSChangeSpelling for NSText {}
+
+#[cfg(feature = "AppKit_NSText")]
+unsafe impl NSIgnoreMisspelledWords for NSText {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSText")]
     unsafe impl NSText {

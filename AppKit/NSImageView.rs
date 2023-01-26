@@ -17,6 +17,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSImageView")]
+unsafe impl NSAccessibilityImage for NSImageView {}
+
+#[cfg(feature = "AppKit_NSImageView")]
+unsafe impl NSMenuItemValidation for NSImageView {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSImageView")]
     unsafe impl NSImageView {

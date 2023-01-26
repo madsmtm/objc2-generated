@@ -14,6 +14,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSFileHandle")]
+unsafe impl NSSecureCoding for NSFileHandle {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSFileHandle")]
     unsafe impl NSFileHandle {

@@ -18,6 +18,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "MetalKit_MTKView")]
+unsafe impl NSCoding for MTKView {}
+
+#[cfg(feature = "MetalKit_MTKView")]
+unsafe impl CALayerDelegate for MTKView {}
+
 extern_methods!(
     #[cfg(feature = "MetalKit_MTKView")]
     unsafe impl MTKView {

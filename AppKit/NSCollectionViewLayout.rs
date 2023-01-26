@@ -239,6 +239,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSCollectionViewLayout")]
+unsafe impl NSCoding for NSCollectionViewLayout {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSCollectionViewLayout")]
     unsafe impl NSCollectionViewLayout {

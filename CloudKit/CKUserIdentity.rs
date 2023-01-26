@@ -16,6 +16,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CloudKit_CKUserIdentity")]
+unsafe impl NSSecureCoding for CKUserIdentity {}
+
 extern_methods!(
     #[cfg(feature = "CloudKit_CKUserIdentity")]
     unsafe impl CKUserIdentity {

@@ -13,6 +13,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSValue")]
+unsafe impl NSSecureCoding for NSValue {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSValue")]
     unsafe impl NSValue {

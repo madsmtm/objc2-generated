@@ -51,6 +51,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "MapKit_MKGeoJSONFeature")]
+unsafe impl MKGeoJSONObject for MKGeoJSONFeature {}
+
 extern_methods!(
     #[cfg(feature = "MapKit_MKGeoJSONFeature")]
     unsafe impl MKGeoJSONFeature {
@@ -74,11 +77,17 @@ extern_methods!(
     unsafe impl MKPointAnnotation {}
 );
 
+#[cfg(feature = "MapKit_MKPointAnnotation")]
+unsafe impl MKGeoJSONObject for MKPointAnnotation {}
+
 extern_methods!(
     /// MKGeoJSONSerialization
     #[cfg(feature = "MapKit_MKMultiPoint")]
     unsafe impl MKMultiPoint {}
 );
+
+#[cfg(feature = "MapKit_MKMultiPoint")]
+unsafe impl MKGeoJSONObject for MKMultiPoint {}
 
 extern_methods!(
     /// MKGeoJSONSerialization
@@ -86,11 +95,17 @@ extern_methods!(
     unsafe impl MKMultiPolyline {}
 );
 
+#[cfg(feature = "MapKit_MKMultiPolyline")]
+unsafe impl MKGeoJSONObject for MKMultiPolyline {}
+
 extern_methods!(
     /// MKGeoJSONSerialization
     #[cfg(feature = "MapKit_MKMultiPolygon")]
     unsafe impl MKMultiPolygon {}
 );
+
+#[cfg(feature = "MapKit_MKMultiPolygon")]
+unsafe impl MKGeoJSONObject for MKMultiPolygon {}
 
 extern_methods!(
     /// MKGeoJSONSerialization
@@ -98,8 +113,14 @@ extern_methods!(
     unsafe impl MKPolyline {}
 );
 
+#[cfg(feature = "MapKit_MKPolyline")]
+unsafe impl MKGeoJSONObject for MKPolyline {}
+
 extern_methods!(
     /// MKGeoJSONSerialization
     #[cfg(feature = "MapKit_MKPolygon")]
     unsafe impl MKPolygon {}
 );
+
+#[cfg(feature = "MapKit_MKPolygon")]
+unsafe impl MKGeoJSONObject for MKPolygon {}

@@ -59,6 +59,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreData_NSManagedObjectContext")]
+unsafe impl NSCoding for NSManagedObjectContext {}
+
+#[cfg(feature = "CoreData_NSManagedObjectContext")]
+unsafe impl NSLocking for NSManagedObjectContext {}
+
 extern_methods!(
     #[cfg(feature = "CoreData_NSManagedObjectContext")]
     unsafe impl NSManagedObjectContext {

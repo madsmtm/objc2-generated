@@ -357,11 +357,23 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSURL")]
+unsafe impl NSPasteboardWriting for NSURL {}
+
+#[cfg(feature = "Foundation_NSURL")]
+unsafe impl NSPasteboardReading for NSURL {}
+
 extern_methods!(
     /// NSPasteboardSupport
     #[cfg(feature = "Foundation_NSString")]
     unsafe impl NSString {}
 );
+
+#[cfg(feature = "Foundation_NSString")]
+unsafe impl NSPasteboardWriting for NSString {}
+
+#[cfg(feature = "Foundation_NSString")]
+unsafe impl NSPasteboardReading for NSString {}
 
 extern_methods!(
     /// NSFileContents

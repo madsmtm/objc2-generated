@@ -15,6 +15,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "CoreData_NSEntityDescription")]
+unsafe impl NSCoding for NSEntityDescription {}
+
+#[cfg(feature = "CoreData_NSEntityDescription")]
+unsafe impl NSFastEnumeration for NSEntityDescription {}
+
 extern_methods!(
     #[cfg(feature = "CoreData_NSEntityDescription")]
     unsafe impl NSEntityDescription {

@@ -26,6 +26,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "GameKit_GKChallenge")]
+unsafe impl NSCoding for GKChallenge {}
+
+#[cfg(feature = "GameKit_GKChallenge")]
+unsafe impl NSSecureCoding for GKChallenge {}
+
 extern_methods!(
     #[cfg(feature = "GameKit_GKChallenge")]
     unsafe impl GKChallenge {

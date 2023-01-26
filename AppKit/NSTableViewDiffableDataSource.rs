@@ -53,6 +53,22 @@ __inner_extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSTableViewDiffableDataSource")]
+unsafe impl<
+        SectionIdentifierType: Message,
+        ItemIdentifierType: Message,
+        SectionIdentifierTypeOwnership: Ownership,
+        ItemIdentifierTypeOwnership: Ownership,
+    > NSTableViewDataSource
+    for NSTableViewDiffableDataSource<
+        SectionIdentifierType,
+        ItemIdentifierType,
+        SectionIdentifierTypeOwnership,
+        ItemIdentifierTypeOwnership,
+    >
+{
+}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSTableViewDiffableDataSource")]
     unsafe impl<

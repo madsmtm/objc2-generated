@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "EventKit_EKVirtualConferenceProvider")]
+unsafe impl NSExtensionRequestHandling for EKVirtualConferenceProvider {}
+
 extern_methods!(
     #[cfg(feature = "EventKit_EKVirtualConferenceProvider")]
     unsafe impl EKVirtualConferenceProvider {

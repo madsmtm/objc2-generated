@@ -27,6 +27,12 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSMatrix")]
+unsafe impl NSUserInterfaceValidations for NSMatrix {}
+
+#[cfg(feature = "AppKit_NSMatrix")]
+unsafe impl NSViewToolTipOwner for NSMatrix {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSMatrix")]
     unsafe impl NSMatrix {

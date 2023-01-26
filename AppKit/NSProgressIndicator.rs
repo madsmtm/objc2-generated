@@ -25,6 +25,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSProgressIndicator")]
+unsafe impl NSAccessibilityProgressIndicator for NSProgressIndicator {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSProgressIndicator")]
     unsafe impl NSProgressIndicator {

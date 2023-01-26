@@ -194,6 +194,12 @@ extern_methods!(
     unsafe impl NSToolbarItem {}
 );
 
+#[cfg(feature = "AppKit_NSToolbarItem")]
+unsafe impl NSMenuItemValidation for NSToolbarItem {}
+
+#[cfg(feature = "AppKit_NSToolbarItem")]
+unsafe impl NSValidatedUserInterfaceItem for NSToolbarItem {}
+
 extern_protocol!(
     pub unsafe trait NSToolbarItemValidation: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSToolbarItem")]

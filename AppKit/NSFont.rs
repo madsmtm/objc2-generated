@@ -18,6 +18,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "AppKit_NSFont")]
+unsafe impl NSSecureCoding for NSFont {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSFont")]
     unsafe impl NSFont {

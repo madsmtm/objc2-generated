@@ -21,6 +21,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSCharacterSet")]
+unsafe impl NSSecureCoding for NSCharacterSet {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSCharacterSet")]
     unsafe impl NSCharacterSet {
@@ -129,6 +132,9 @@ extern_class!(
         type Super = NSCharacterSet;
     }
 );
+
+#[cfg(feature = "Foundation_NSMutableCharacterSet")]
+unsafe impl NSSecureCoding for NSMutableCharacterSet {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSMutableCharacterSet")]

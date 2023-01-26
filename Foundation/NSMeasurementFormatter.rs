@@ -24,6 +24,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSMeasurementFormatter")]
+unsafe impl NSSecureCoding for NSMeasurementFormatter {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSMeasurementFormatter")]
     unsafe impl NSMeasurementFormatter {

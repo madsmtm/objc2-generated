@@ -17,6 +17,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "GameKit_GKTurnBasedMatchmakerViewController")]
+unsafe impl GKViewController for GKTurnBasedMatchmakerViewController {}
+
 extern_methods!(
     #[cfg(feature = "GameKit_GKTurnBasedMatchmakerViewController")]
     unsafe impl GKTurnBasedMatchmakerViewController {}

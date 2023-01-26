@@ -63,6 +63,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Metal_MTLSharedTextureHandle")]
+unsafe impl NSSecureCoding for MTLSharedTextureHandle {}
+
 extern_methods!(
     #[cfg(feature = "Metal_MTLSharedTextureHandle")]
     unsafe impl MTLSharedTextureHandle {

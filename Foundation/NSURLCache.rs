@@ -23,6 +23,9 @@ extern_class!(
     }
 );
 
+#[cfg(feature = "Foundation_NSCachedURLResponse")]
+unsafe impl NSSecureCoding for NSCachedURLResponse {}
+
 extern_methods!(
     #[cfg(feature = "Foundation_NSCachedURLResponse")]
     unsafe impl NSCachedURLResponse {
