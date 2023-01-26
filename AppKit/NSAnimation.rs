@@ -271,6 +271,11 @@ extern_protocol!(
             &self,
             key: &NSAnimatablePropertyKey,
         ) -> Option<Id<Object, Shared>>;
+
+        #[method_id(@__retain_semantics Other defaultAnimationForKey:)]
+        unsafe fn defaultAnimationForKey(
+            key: &NSAnimatablePropertyKey,
+        ) -> Option<Id<Object, Shared>>;
     }
 
     unsafe impl ProtocolType for dyn NSAnimatablePropertyContainer {}

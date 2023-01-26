@@ -317,6 +317,20 @@ ns_options!(
 
 extern_protocol!(
     pub unsafe trait NSPasteboardReading: NSObjectProtocol {
+        #[cfg(all(feature = "AppKit_NSPasteboard", feature = "Foundation_NSArray"))]
+        #[method_id(@__retain_semantics Other readableTypesForPasteboard:)]
+        unsafe fn readableTypesForPasteboard(
+            pasteboard: &NSPasteboard,
+        ) -> Id<NSArray<NSPasteboardType>, Shared>;
+
+        #[cfg(feature = "AppKit_NSPasteboard")]
+        #[optional]
+        #[method(readingOptionsForType:pasteboard:)]
+        unsafe fn readingOptionsForType_pasteboard(
+            r#type: &NSPasteboardType,
+            pasteboard: &NSPasteboard,
+        ) -> NSPasteboardReadingOptions;
+
         #[optional]
         #[method_id(@__retain_semantics Init initWithPasteboardPropertyList:ofType:)]
         unsafe fn initWithPasteboardPropertyList_ofType(

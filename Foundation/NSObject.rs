@@ -21,7 +21,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSSecureCoding: NSCoding {}
+    pub unsafe trait NSSecureCoding: NSCoding {
+        #[method(supportsSecureCoding)]
+        unsafe fn supportsSecureCoding() -> bool;
+    }
 
     unsafe impl ProtocolType for dyn NSSecureCoding {}
 );

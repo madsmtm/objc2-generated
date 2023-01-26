@@ -6,7 +6,19 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 extern_protocol!(
-    pub unsafe trait NSWindowRestoration: NSObjectProtocol {}
+    pub unsafe trait NSWindowRestoration: NSObjectProtocol {
+        #[cfg(all(
+            feature = "AppKit_NSWindow",
+            feature = "Foundation_NSCoder",
+            feature = "Foundation_NSError"
+        ))]
+        #[method(restoreWindowWithIdentifier:state:completionHandler:)]
+        unsafe fn restoreWindowWithIdentifier_state_completionHandler(
+            identifier: &NSUserInterfaceItemIdentifier,
+            state: &NSCoder,
+            completion_handler: &Block<(*mut NSWindow, *mut NSError), ()>,
+        );
+    }
 
     unsafe impl ProtocolType for dyn NSWindowRestoration {}
 );

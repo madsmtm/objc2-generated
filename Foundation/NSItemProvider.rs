@@ -22,6 +22,30 @@ ns_options!(
 
 extern_protocol!(
     pub unsafe trait NSItemProviderWriting: NSObjectProtocol {
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[method_id(@__retain_semantics Other writableTypeIdentifiersForItemProvider)]
+        unsafe fn writableTypeIdentifiersForItemProvider_class() -> Id<NSArray<NSString>, Shared>;
+
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[optional]
+        #[method_id(@__retain_semantics Other writableTypeIdentifiersForItemProvider)]
+        unsafe fn writableTypeIdentifiersForItemProvider(&self) -> Id<NSArray<NSString>, Shared>;
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[optional]
+        #[method(itemProviderVisibilityForRepresentationWithTypeIdentifier:)]
+        unsafe fn itemProviderVisibilityForRepresentationWithTypeIdentifier_class(
+            type_identifier: &NSString,
+        ) -> NSItemProviderRepresentationVisibility;
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[optional]
+        #[method(itemProviderVisibilityForRepresentationWithTypeIdentifier:)]
+        unsafe fn itemProviderVisibilityForRepresentationWithTypeIdentifier(
+            &self,
+            type_identifier: &NSString,
+        ) -> NSItemProviderRepresentationVisibility;
+
         #[cfg(all(
             feature = "Foundation_NSData",
             feature = "Foundation_NSError",
@@ -40,7 +64,22 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSItemProviderReading: NSObjectProtocol {}
+    pub unsafe trait NSItemProviderReading: NSObjectProtocol {
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[method_id(@__retain_semantics Other readableTypeIdentifiersForItemProvider)]
+        unsafe fn readableTypeIdentifiersForItemProvider() -> Id<NSArray<NSString>, Shared>;
+
+        #[cfg(all(
+            feature = "Foundation_NSData",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString"
+        ))]
+        #[method_id(@__retain_semantics Other objectWithItemProviderData:typeIdentifier:error:_)]
+        unsafe fn objectWithItemProviderData_typeIdentifier_error(
+            data: &NSData,
+            type_identifier: &NSString,
+        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+    }
 
     unsafe impl ProtocolType for dyn NSItemProviderReading {}
 );

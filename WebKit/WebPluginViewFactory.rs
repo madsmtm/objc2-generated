@@ -17,7 +17,13 @@ extern_static!(WebPlugInShouldLoadMainResourceKey: Option<&'static NSString>);
 
 extern_protocol!(
     #[deprecated]
-    pub unsafe trait WebPlugInViewFactory: NSObjectProtocol {}
+    pub unsafe trait WebPlugInViewFactory: NSObjectProtocol {
+        #[cfg(all(feature = "AppKit_NSView", feature = "Foundation_NSDictionary"))]
+        #[method_id(@__retain_semantics Other plugInViewWithArguments:)]
+        unsafe fn plugInViewWithArguments(
+            arguments: Option<&NSDictionary>,
+        ) -> Option<Id<NSView, Shared>>;
+    }
 
     unsafe impl ProtocolType for dyn WebPlugInViewFactory {}
 );
