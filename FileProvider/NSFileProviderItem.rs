@@ -139,7 +139,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other filename)]
         unsafe fn filename(&self) -> Id<NSString, Shared>;
 
-        #[cfg(feature = "AppKit_UTType")]
+        #[cfg(feature = "UniformTypeIdentifiers_UTType")]
         #[optional]
         #[method_id(@__retain_semantics Other contentType)]
         unsafe fn contentType(&self) -> Id<UTType, Shared>;

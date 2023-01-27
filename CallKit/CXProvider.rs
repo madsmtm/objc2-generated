@@ -119,7 +119,7 @@ extern_protocol!(
             action: &CXAction,
         );
 
-        #[cfg(all(feature = "CallKit_AVAudioSession", feature = "CallKit_CXProvider"))]
+        #[cfg(all(feature = "AVFAudio_AVAudioSession", feature = "CallKit_CXProvider"))]
         #[optional]
         #[method(provider:didActivateAudioSession:)]
         unsafe fn provider_didActivateAudioSession(
@@ -128,7 +128,7 @@ extern_protocol!(
             audio_session: &AVAudioSession,
         );
 
-        #[cfg(all(feature = "CallKit_AVAudioSession", feature = "CallKit_CXProvider"))]
+        #[cfg(all(feature = "AVFAudio_AVAudioSession", feature = "CallKit_CXProvider"))]
         #[optional]
         #[method(provider:didDeactivateAudioSession:)]
         unsafe fn provider_didDeactivateAudioSession(
