@@ -4,6 +4,7 @@ use crate::common::*;
 use crate::AppKit::*;
 use crate::FileProvider::*;
 use crate::Foundation::*;
+use crate::UniformTypeIdentifiers::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
