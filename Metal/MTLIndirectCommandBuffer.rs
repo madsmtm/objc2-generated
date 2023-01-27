@@ -17,6 +17,7 @@ ns_options!(
 );
 
 extern_struct!(
+    #[encoding_name("?")]
     pub struct MTLIndirectCommandBufferExecutionRange {
         pub location: u32,
         pub length: u32,

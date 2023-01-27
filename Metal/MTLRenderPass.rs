@@ -5,6 +5,7 @@ use crate::Foundation::*;
 use crate::Metal::*;
 
 extern_struct!(
+    #[encoding_name("?")]
     pub struct MTLClearColor {
         pub red: c_double,
         pub green: c_double,

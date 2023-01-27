@@ -6,6 +6,7 @@ use crate::Foundation::*;
 use crate::GameController::*;
 
 extern_struct!(
+    #[encoding_name("?")]
     pub struct GCAcceleration {
         pub x: c_double,
         pub y: c_double,
@@ -14,6 +15,7 @@ extern_struct!(
 );
 
 extern_struct!(
+    #[encoding_name("?")]
     pub struct GCRotationRate {
         pub x: c_double,
         pub y: c_double,
@@ -22,6 +24,7 @@ extern_struct!(
 );
 
 extern_struct!(
+    #[encoding_name("?")]
     pub struct GCEulerAngles {
         pub pitch: c_double,
         pub yaw: c_double,

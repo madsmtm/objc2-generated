@@ -4,6 +4,7 @@ use crate::common::*;
 use crate::Foundation::*;
 
 extern_struct!(
+    #[encoding_name("?")]
     pub struct NSAffineTransformStruct {
         pub m11: CGFloat,
         pub m12: CGFloat,

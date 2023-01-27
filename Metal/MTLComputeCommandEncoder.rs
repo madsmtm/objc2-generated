@@ -5,12 +5,14 @@ use crate::Foundation::*;
 use crate::Metal::*;
 
 extern_struct!(
+    #[encoding_name("?")]
     pub struct MTLDispatchThreadgroupsIndirectArguments {
         pub threadgroupsPerGrid: [u32; 3],
     }
 );
 
 extern_struct!(
+    #[encoding_name("?")]
     pub struct MTLStageInRegionIndirectArguments {
         pub stageInOrigin: [u32; 3],
         pub stageInSize: [u32; 3],

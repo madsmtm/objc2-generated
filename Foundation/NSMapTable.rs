@@ -193,6 +193,7 @@ extern_methods!(
 );
 
 extern_struct!(
+    #[encoding_name("?")]
     pub struct NSMapEnumerator {
         _pi: NSUInteger,
         _si: NSUInteger,
@@ -295,6 +296,7 @@ extern_fn!(
 );
 
 extern_struct!(
+    #[encoding_name("?")]
     pub struct NSMapTableKeyCallBacks {
         pub hash: Option<unsafe extern "C" fn(NonNull<NSMapTable>, NonNull<c_void>) -> NSUInteger>,
         pub isEqual: Option<
@@ -309,6 +311,7 @@ extern_struct!(
 );
 
 extern_struct!(
+    #[encoding_name("?")]
     pub struct NSMapTableValueCallBacks {
         pub retain: Option<unsafe extern "C" fn(NonNull<NSMapTable>, NonNull<c_void>)>,
         pub release: Option<unsafe extern "C" fn(NonNull<NSMapTable>, NonNull<c_void>)>,

@@ -33,6 +33,7 @@ ns_enum!(
 );
 
 extern_struct!(
+    #[encoding_name("?")]
     pub struct MTLTextureSwizzleChannels {
         pub red: MTLTextureSwizzle,
         pub green: MTLTextureSwizzle,

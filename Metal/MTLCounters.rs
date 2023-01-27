@@ -49,12 +49,14 @@ extern_static!(MTLCommonCounterSetStageUtilization: &'static MTLCommonCounterSet
 extern_static!(MTLCommonCounterSetStatistic: &'static MTLCommonCounterSet);
 
 extern_struct!(
+    #[encoding_name("?")]
     pub struct MTLCounterResultTimestamp {
         pub timestamp: u64,
     }
 );
 
 extern_struct!(
+    #[encoding_name("?")]
     pub struct MTLCounterResultStageUtilization {
         pub totalCycles: u64,
         pub vertexCycles: u64,
@@ -66,6 +68,7 @@ extern_struct!(
 );
 
 extern_struct!(
+    #[encoding_name("?")]
     pub struct MTLCounterResultStatistic {
         pub tessellationInputPatches: u64,
         pub vertexInvocations: u64,

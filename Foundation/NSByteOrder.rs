@@ -130,12 +130,14 @@ inline_fn!(
 );
 
 extern_struct!(
+    #[encoding_name("?")]
     pub struct NSSwappedFloat {
         pub v: c_uint,
     }
 );
 
 extern_struct!(
+    #[encoding_name("?")]
     pub struct NSSwappedDouble {
         pub v: c_ulonglong,
     }

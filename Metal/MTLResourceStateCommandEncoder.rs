@@ -13,6 +13,7 @@ ns_enum!(
 );
 
 extern_struct!(
+    #[encoding_name("?")]
     pub struct MTLMapIndirectArguments {
         pub regionOriginX: u32,
         pub regionOriginY: u32,

@@ -74,6 +74,7 @@ extern_methods!(
 );
 
 extern_struct!(
+    #[encoding_name("?")]
     pub struct MKTileOverlayPath {
         pub x: NSInteger,
         pub y: NSInteger,

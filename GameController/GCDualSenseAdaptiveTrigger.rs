@@ -41,12 +41,14 @@ ns_enum!(
 );
 
 extern_struct!(
+    #[encoding_name("?")]
     pub struct GCDualSenseAdaptiveTriggerPositionalAmplitudes {
         pub values: [c_float; 10],
     }
 );
 
 extern_struct!(
+    #[encoding_name("?")]
     pub struct GCDualSenseAdaptiveTriggerPositionalResistiveStrengths {
         pub values: [c_float; 10],
     }

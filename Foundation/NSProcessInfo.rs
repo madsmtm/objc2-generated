@@ -25,6 +25,7 @@ extern_enum!(
 );
 
 extern_struct!(
+    #[encoding_name("?")]
     pub struct NSOperatingSystemVersion {
         pub majorVersion: NSInteger,
         pub minorVersion: NSInteger,

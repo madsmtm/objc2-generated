@@ -25,6 +25,7 @@ ns_enum!(
 );
 
 extern_struct!(
+    #[encoding_name("?")]
     pub struct MTLScissorRect {
         pub x: NSUInteger,
         pub y: NSUInteger,
@@ -34,6 +35,7 @@ extern_struct!(
 );
 
 extern_struct!(
+    #[encoding_name("?")]
     pub struct MTLViewport {
         pub originX: c_double,
         pub originY: c_double,
@@ -78,6 +80,7 @@ ns_enum!(
 );
 
 extern_struct!(
+    #[encoding_name("?")]
     pub struct MTLDrawPrimitivesIndirectArguments {
         pub vertexCount: u32,
         pub instanceCount: u32,
@@ -87,6 +90,7 @@ extern_struct!(
 );
 
 extern_struct!(
+    #[encoding_name("?")]
     pub struct MTLDrawIndexedPrimitivesIndirectArguments {
         pub indexCount: u32,
         pub instanceCount: u32,
@@ -97,6 +101,7 @@ extern_struct!(
 );
 
 extern_struct!(
+    #[encoding_name("?")]
     pub struct MTLVertexAmplificationViewMapping {
         pub viewportArrayIndexOffset: u32,
         pub renderTargetArrayIndexOffset: u32,
@@ -104,6 +109,7 @@ extern_struct!(
 );
 
 extern_struct!(
+    #[encoding_name("?")]
     pub struct MTLDrawPatchIndirectArguments {
         pub patchCount: u32,
         pub instanceCount: u32,
@@ -113,6 +119,7 @@ extern_struct!(
 );
 
 extern_struct!(
+    #[encoding_name("?")]
     pub struct MTLQuadTessellationFactorsHalf {
         pub edgeTessellationFactor: [u16; 4],
         pub insideTessellationFactor: [u16; 2],
@@ -120,6 +127,7 @@ extern_struct!(
 );
 
 extern_struct!(
+    #[encoding_name("?")]
     pub struct MTLTriangleTessellationFactorsHalf {
         pub edgeTessellationFactor: [u16; 3],
         pub insideTessellationFactor: u16,

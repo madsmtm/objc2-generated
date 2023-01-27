@@ -166,6 +166,7 @@ ns_enum!(
 );
 
 extern_struct!(
+    #[encoding_name("?")]
     pub struct MTLAccelerationStructureSizes {
         pub accelerationStructureSize: NSUInteger,
         pub buildScratchBufferSize: NSUInteger,
@@ -185,6 +186,7 @@ ns_enum!(
 );
 
 extern_struct!(
+    #[encoding_name("?")]
     pub struct MTLSizeAndAlign {
         pub size: NSUInteger,
         pub align: NSUInteger,

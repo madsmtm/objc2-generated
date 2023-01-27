@@ -153,6 +153,7 @@ extern_methods!(
 );
 
 extern_struct!(
+    #[encoding_name("?")]
     pub struct NSHashEnumerator {
         _pi: NSUInteger,
         _si: NSUInteger,
@@ -237,6 +238,7 @@ extern_fn!(
 );
 
 extern_struct!(
+    #[encoding_name("?")]
     pub struct NSHashTableCallBacks {
         pub hash: Option<unsafe extern "C" fn(NonNull<NSHashTable>, NonNull<c_void>) -> NSUInteger>,
         pub isEqual: Option<

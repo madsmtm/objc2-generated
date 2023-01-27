@@ -535,6 +535,7 @@ extern_methods!(
 );
 
 extern_struct!(
+    #[encoding_name("?")]
     pub struct MTLAccelerationStructureInstanceDescriptor {
         pub transformationMatrix: MTLPackedFloat4x3,
         pub options: MTLAccelerationStructureInstanceOptions,
@@ -545,6 +546,7 @@ extern_struct!(
 );
 
 extern_struct!(
+    #[encoding_name("?")]
     pub struct MTLAccelerationStructureUserIDInstanceDescriptor {
         pub transformationMatrix: MTLPackedFloat4x3,
         pub options: MTLAccelerationStructureInstanceOptions,
@@ -565,6 +567,7 @@ ns_enum!(
 );
 
 extern_struct!(
+    #[encoding_name("?")]
     pub struct MTLAccelerationStructureMotionInstanceDescriptor {
         pub options: MTLAccelerationStructureInstanceOptions,
         pub mask: u32,

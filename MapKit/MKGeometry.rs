@@ -8,6 +8,7 @@ use crate::Foundation::*;
 use crate::MapKit::*;
 
 extern_struct!(
+    #[encoding_name("?")]
     pub struct MKCoordinateSpan {
         pub latitudeDelta: CLLocationDegrees,
         pub longitudeDelta: CLLocationDegrees,
@@ -15,6 +16,7 @@ extern_struct!(
 );
 
 extern_struct!(
+    #[encoding_name("?")]
     pub struct MKCoordinateRegion {
         pub center: CLLocationCoordinate2D,
         pub span: MKCoordinateSpan,
@@ -48,6 +50,7 @@ extern_fn!(
 );
 
 extern_struct!(
+    #[encoding_name("?")]
     pub struct MKMapPoint {
         pub x: c_double,
         pub y: c_double,
@@ -55,6 +58,7 @@ extern_struct!(
 );
 
 extern_struct!(
+    #[encoding_name("?")]
     pub struct MKMapSize {
         pub width: c_double,
         pub height: c_double,
@@ -62,6 +66,7 @@ extern_struct!(
 );
 
 extern_struct!(
+    #[encoding_name("?")]
     pub struct MKMapRect {
         pub origin: MKMapPoint,
         pub size: MKMapSize,

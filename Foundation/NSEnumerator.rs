@@ -4,6 +4,7 @@ use crate::common::*;
 use crate::Foundation::*;
 
 extern_struct!(
+    #[encoding_name("?")]
     pub struct NSFastEnumerationState {
         pub state: c_ulong,
         pub itemsPtr: *mut *mut Object,

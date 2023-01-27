@@ -5,6 +5,7 @@ use crate::Foundation::*;
 use crate::Metal::*;
 
 extern_struct!(
+    #[encoding_name("?")]
     pub struct MTLOrigin {
         pub x: NSUInteger,
         pub y: NSUInteger,
@@ -19,6 +20,7 @@ inline_fn!(
 );
 
 extern_struct!(
+    #[encoding_name("?")]
     pub struct MTLSize {
         pub width: NSUInteger,
         pub height: NSUInteger,
@@ -33,6 +35,7 @@ inline_fn!(
 );
 
 extern_struct!(
+    #[encoding_name("?")]
     pub struct MTLRegion {
         pub origin: MTLOrigin,
         pub size: MTLSize,
@@ -70,6 +73,7 @@ inline_fn!(
 );
 
 extern_struct!(
+    #[encoding_name("?")]
     pub struct MTLSamplePosition {
         pub x: c_float,
         pub y: c_float,
