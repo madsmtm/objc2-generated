@@ -94,7 +94,7 @@ extern_methods!(
         pub unsafe fn operatingSystemVersionString(&self) -> Id<NSString, Shared>;
 
         #[method(operatingSystemVersion)]
-        pub unsafe fn operatingSystemVersion(&self) -> NSOperatingSystemVersion;
+        pub fn operatingSystemVersion(&self) -> NSOperatingSystemVersion;
 
         #[method(processorCount)]
         pub unsafe fn processorCount(&self) -> NSUInteger;
