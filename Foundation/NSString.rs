@@ -763,7 +763,7 @@ extern_methods!(
         pub unsafe fn stringEncodingForData_encodingOptions_convertedString_usedLossyConversion(
             data: &NSData,
             opts: Option<&NSDictionary<NSStringEncodingDetectionOptionsKey, Object>>,
-            string: *mut *mut NSString,
+            string: Option<&mut Option<Id<NSString, Shared>>>,
             used_lossy_conversion: *mut Bool,
         ) -> NSStringEncoding;
     }

@@ -175,8 +175,8 @@ extern_methods!(
             removable_flag: *mut Bool,
             writable_flag: *mut Bool,
             unmountable_flag: *mut Bool,
-            description: *mut *mut NSString,
-            file_system_type: *mut *mut NSString,
+            description: Option<&mut Option<Id<NSString, Shared>>>,
+            file_system_type: Option<&mut Option<Id<NSString, Shared>>>,
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -693,7 +693,7 @@ extern_methods!(
             bundle_identifier: &NSString,
             options: NSWorkspaceLaunchOptions,
             descriptor: Option<&NSAppleEventDescriptor>,
-            identifier: *mut *mut NSNumber,
+            identifier: Option<&mut Option<Id<NSNumber, Shared>>>,
         ) -> bool;
 
         #[cfg(all(
@@ -711,7 +711,7 @@ extern_methods!(
             bundle_identifier: Option<&NSString>,
             options: NSWorkspaceLaunchOptions,
             descriptor: Option<&NSAppleEventDescriptor>,
-            identifiers: *mut *mut NSArray<NSNumber>,
+            identifiers: Option<&mut Option<Id<NSArray<NSNumber>, Shared>>>,
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -811,8 +811,8 @@ extern_methods!(
         pub unsafe fn getInfoForFile_application_type(
             &self,
             full_path: &NSString,
-            app_name: *mut *mut NSString,
-            r#type: *mut *mut NSString,
+            app_name: Option<&mut Option<Id<NSString, Shared>>>,
+            r#type: Option<&mut Option<Id<NSString, Shared>>>,
         ) -> bool;
 
         #[cfg(all(feature = "AppKit_NSImage", feature = "Foundation_NSString"))]

@@ -165,7 +165,7 @@ extern_methods!(
         pub unsafe fn newMeshesFromAsset_device_sourceMeshes_error(
             asset: &MDLAsset,
             device: &ProtocolObject<dyn MTLDevice>,
-            source_meshes: *mut *mut NSArray<MDLMesh>,
+            source_meshes: Option<&mut Option<Id<NSArray<MDLMesh>, Shared>>>,
         ) -> Result<Id<NSArray<MTKMesh>, Shared>, Id<NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "MetalKit_MTKMeshBuffer"))]

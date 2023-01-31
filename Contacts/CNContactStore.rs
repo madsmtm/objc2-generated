@@ -126,7 +126,7 @@ extern_methods!(
         pub unsafe fn enumerateContactsWithFetchRequest_error_usingBlock(
             &self,
             fetch_request: &CNContactFetchRequest,
-            error: *mut *mut NSError,
+            error: Option<&mut Option<Id<NSError, Shared>>>,
             block: &Block<(NonNull<CNContact>, NonNull<Bool>), ()>,
         ) -> bool;
 

@@ -101,7 +101,7 @@ extern_methods!(
         pub unsafe fn scanString_intoString(
             &self,
             string: &NSString,
-            result: *mut *mut NSString,
+            result: Option<&mut Option<Id<NSString, Shared>>>,
         ) -> bool;
 
         #[cfg(all(feature = "Foundation_NSCharacterSet", feature = "Foundation_NSString"))]
@@ -109,7 +109,7 @@ extern_methods!(
         pub unsafe fn scanCharactersFromSet_intoString(
             &self,
             set: &NSCharacterSet,
-            result: *mut *mut NSString,
+            result: Option<&mut Option<Id<NSString, Shared>>>,
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -117,7 +117,7 @@ extern_methods!(
         pub unsafe fn scanUpToString_intoString(
             &self,
             string: &NSString,
-            result: *mut *mut NSString,
+            result: Option<&mut Option<Id<NSString, Shared>>>,
         ) -> bool;
 
         #[cfg(all(feature = "Foundation_NSCharacterSet", feature = "Foundation_NSString"))]
@@ -125,7 +125,7 @@ extern_methods!(
         pub unsafe fn scanUpToCharactersFromSet_intoString(
             &self,
             set: &NSCharacterSet,
-            result: *mut *mut NSString,
+            result: Option<&mut Option<Id<NSString, Shared>>>,
         ) -> bool;
 
         #[method(isAtEnd)]

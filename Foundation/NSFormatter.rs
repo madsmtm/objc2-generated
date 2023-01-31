@@ -73,9 +73,9 @@ extern_methods!(
         #[method(getObjectValue:forString:errorDescription:)]
         pub unsafe fn getObjectValue_forString_errorDescription(
             &self,
-            obj: *mut *mut Object,
+            obj: Option<&mut Option<Id<Object, Shared>>>,
             string: &NSString,
-            error: *mut *mut NSString,
+            error: Option<&mut Option<Id<NSString, Shared>>>,
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -83,19 +83,19 @@ extern_methods!(
         pub unsafe fn isPartialStringValid_newEditingString_errorDescription(
             &self,
             partial_string: &NSString,
-            new_string: *mut *mut NSString,
-            error: *mut *mut NSString,
+            new_string: Option<&mut Option<Id<NSString, Shared>>>,
+            error: Option<&mut Option<Id<NSString, Shared>>>,
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(isPartialStringValid:proposedSelectedRange:originalString:originalSelectedRange:errorDescription:)]
         pub unsafe fn isPartialStringValid_proposedSelectedRange_originalString_originalSelectedRange_errorDescription(
             &self,
-            partial_string_ptr: NonNull<NonNull<NSString>>,
+            partial_string_ptr: &mut Id<NSString, Shared>,
             proposed_sel_range_ptr: NSRangePointer,
             orig_string: &NSString,
             orig_sel_range: NSRange,
-            error: *mut *mut NSString,
+            error: Option<&mut Option<Id<NSString, Shared>>>,
         ) -> bool;
     }
 );

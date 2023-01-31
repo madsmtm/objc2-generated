@@ -871,8 +871,8 @@ extern_methods!(
             &self,
             paste_string: &NSString,
             char_range_to_replace: NSRange,
-            before_string: *mut *mut NSString,
-            after_string: *mut *mut NSString,
+            before_string: Option<&mut Option<Id<NSString, Shared>>>,
+            after_string: Option<&mut Option<Id<NSString, Shared>>>,
         );
 
         #[cfg(feature = "Foundation_NSString")]

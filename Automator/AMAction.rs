@@ -84,7 +84,7 @@ extern_methods!(
             &self,
             input: Option<&Object>,
             an_action: Option<&AMAction>,
-            error_info: *mut *mut NSDictionary<NSString, Object>,
+            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>, Shared>>>,
         ) -> Option<Id<Object, Shared>>;
 
         #[cfg(feature = "Foundation_NSError")]

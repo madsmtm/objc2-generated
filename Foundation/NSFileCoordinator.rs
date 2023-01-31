@@ -122,7 +122,7 @@ extern_methods!(
             &self,
             url: &NSURL,
             options: NSFileCoordinatorReadingOptions,
-            out_error: *mut *mut NSError,
+            out_error: Option<&mut Option<Id<NSError, Shared>>>,
             reader: &Block<(NonNull<NSURL>,), ()>,
         );
 
@@ -132,7 +132,7 @@ extern_methods!(
             &self,
             url: &NSURL,
             options: NSFileCoordinatorWritingOptions,
-            out_error: *mut *mut NSError,
+            out_error: Option<&mut Option<Id<NSError, Shared>>>,
             writer: &Block<(NonNull<NSURL>,), ()>,
         );
 
@@ -144,7 +144,7 @@ extern_methods!(
             reading_options: NSFileCoordinatorReadingOptions,
             writing_url: &NSURL,
             writing_options: NSFileCoordinatorWritingOptions,
-            out_error: *mut *mut NSError,
+            out_error: Option<&mut Option<Id<NSError, Shared>>>,
             reader_writer: &Block<(NonNull<NSURL>, NonNull<NSURL>), ()>,
         );
 
@@ -156,7 +156,7 @@ extern_methods!(
             options1: NSFileCoordinatorWritingOptions,
             url2: &NSURL,
             options2: NSFileCoordinatorWritingOptions,
-            out_error: *mut *mut NSError,
+            out_error: Option<&mut Option<Id<NSError, Shared>>>,
             writer: &Block<(NonNull<NSURL>, NonNull<NSURL>), ()>,
         );
 
@@ -172,7 +172,7 @@ extern_methods!(
             reading_options: NSFileCoordinatorReadingOptions,
             writing_ur_ls: &NSArray<NSURL>,
             writing_options: NSFileCoordinatorWritingOptions,
-            out_error: *mut *mut NSError,
+            out_error: Option<&mut Option<Id<NSError, Shared>>>,
             batch_accessor: &Block<(NonNull<Block<(), ()>>,), ()>,
         );
 

@@ -819,7 +819,7 @@ extern_protocol!(
             &self,
             collection_view: &NSCollectionView,
             dragging_info: &ProtocolObject<dyn NSDraggingInfo>,
-            proposed_drop_index_path: NonNull<NonNull<NSIndexPath>>,
+            proposed_drop_index_path: &mut Id<NSIndexPath, Shared>,
             proposed_drop_operation: NonNull<NSCollectionViewDropOperation>,
         ) -> NSDragOperation;
 

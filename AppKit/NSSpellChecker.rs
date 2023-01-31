@@ -117,7 +117,7 @@ extern_methods!(
             language: Option<&NSString>,
             wrap_flag: bool,
             tag: NSInteger,
-            details: *mut *mut NSArray<NSDictionary<NSString, Object>>,
+            details: Option<&mut Option<Id<NSArray<NSDictionary<NSString, Object>>, Shared>>>,
         ) -> NSRange;
 
         #[cfg(all(
@@ -135,7 +135,7 @@ extern_methods!(
             checking_types: NSTextCheckingTypes,
             options: Option<&NSDictionary<NSTextCheckingOptionKey, Object>>,
             tag: NSInteger,
-            orthography: *mut *mut NSOrthography,
+            orthography: Option<&mut Option<Id<NSOrthography, Shared>>>,
             word_count: *mut NSInteger,
         ) -> Id<NSArray<NSTextCheckingResult>, Shared>;
 

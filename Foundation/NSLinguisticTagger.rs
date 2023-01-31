@@ -233,7 +233,7 @@ extern_methods!(
             unit: NSLinguisticTaggerUnit,
             scheme: &NSLinguisticTagScheme,
             options: NSLinguisticTaggerOptions,
-            token_ranges: *mut *mut NSArray<NSValue>,
+            token_ranges: Option<&mut Option<Id<NSArray<NSValue>, Shared>>>,
         ) -> Id<NSArray<NSLinguisticTag>, Shared>;
 
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
@@ -268,7 +268,7 @@ extern_methods!(
             range: NSRange,
             tag_scheme: &NSString,
             opts: NSLinguisticTaggerOptions,
-            token_ranges: *mut *mut NSArray<NSValue>,
+            token_ranges: Option<&mut Option<Id<NSArray<NSValue>, Shared>>>,
         ) -> Id<NSArray<NSString>, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -308,7 +308,7 @@ extern_methods!(
             scheme: &NSLinguisticTagScheme,
             options: NSLinguisticTaggerOptions,
             orthography: Option<&NSOrthography>,
-            token_ranges: *mut *mut NSArray<NSValue>,
+            token_ranges: Option<&mut Option<Id<NSArray<NSValue>, Shared>>>,
         ) -> Id<NSArray<NSLinguisticTag>, Shared>;
 
         #[cfg(all(feature = "Foundation_NSOrthography", feature = "Foundation_NSString"))]
@@ -337,7 +337,7 @@ extern_methods!(
             tag_scheme: &NSString,
             token_range: NSRangePointer,
             sentence_range: NSRangePointer,
-            scores: *mut *mut NSArray<NSValue>,
+            scores: Option<&mut Option<Id<NSArray<NSValue>, Shared>>>,
         ) -> Option<Id<NSArray<NSString>, Shared>>;
     }
 );
@@ -359,7 +359,7 @@ extern_methods!(
             scheme: &NSLinguisticTagScheme,
             options: NSLinguisticTaggerOptions,
             orthography: Option<&NSOrthography>,
-            token_ranges: *mut *mut NSArray<NSValue>,
+            token_ranges: Option<&mut Option<Id<NSArray<NSValue>, Shared>>>,
         ) -> Id<NSArray<NSLinguisticTag>, Shared>;
 
         #[cfg(feature = "Foundation_NSOrthography")]

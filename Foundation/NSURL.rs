@@ -616,7 +616,7 @@ extern_methods!(
         #[method(getResourceValue:forKey:error:_)]
         pub unsafe fn getResourceValue_forKey_error(
             &self,
-            value: NonNull<*mut Object>,
+            value: &mut Option<Id<Object, Shared>>,
             key: &NSURLResourceKey,
         ) -> Result<(), Id<NSError, Shared>>;
 
@@ -739,7 +739,7 @@ extern_methods!(
         #[method(getPromisedItemResourceValue:forKey:error:_)]
         pub unsafe fn getPromisedItemResourceValue_forKey_error(
             &self,
-            value: NonNull<*mut Object>,
+            value: &mut Option<Id<Object, Shared>>,
             key: &NSURLResourceKey,
         ) -> Result<(), Id<NSError, Shared>>;
 

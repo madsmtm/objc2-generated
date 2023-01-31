@@ -140,7 +140,7 @@ extern_methods!(
         pub unsafe fn launchedTaskWithExecutableURL_arguments_error_terminationHandler(
             url: &NSURL,
             arguments: &NSArray<NSString>,
-            error: *mut *mut NSError,
+            error: Option<&mut Option<Id<NSError, Shared>>>,
             termination_handler: Option<&Block<(NonNull<NSTask>,), ()>>,
         ) -> Option<Id<NSTask, Shared>>;
 

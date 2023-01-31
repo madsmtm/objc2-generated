@@ -200,7 +200,7 @@ extern_protocol!(
         unsafe fn datePickerCell_validateProposedDateValue_timeInterval(
             &self,
             date_picker_cell: &NSDatePickerCell,
-            proposed_date_value: NonNull<NonNull<NSDate>>,
+            proposed_date_value: &mut Id<NSDate, Shared>,
             proposed_time_interval: *mut NSTimeInterval,
         );
     }

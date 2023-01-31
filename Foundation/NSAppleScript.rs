@@ -39,7 +39,7 @@ extern_methods!(
         pub unsafe fn initWithContentsOfURL_error(
             this: Option<Allocated<Self>>,
             url: &NSURL,
-            error_info: *mut *mut NSDictionary<NSString, Object>,
+            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>, Shared>>>,
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -60,7 +60,7 @@ extern_methods!(
         #[method(compileAndReturnError:)]
         pub unsafe fn compileAndReturnError(
             &self,
-            error_info: *mut *mut NSDictionary<NSString, Object>,
+            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>, Shared>>>,
         ) -> bool;
 
         #[cfg(all(
@@ -71,7 +71,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other executeAndReturnError:)]
         pub unsafe fn executeAndReturnError(
             &self,
-            error_info: *mut *mut NSDictionary<NSString, Object>,
+            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>, Shared>>>,
         ) -> Id<NSAppleEventDescriptor, Shared>;
 
         #[cfg(all(
@@ -83,7 +83,7 @@ extern_methods!(
         pub unsafe fn executeAppleEvent_error(
             &self,
             event: &NSAppleEventDescriptor,
-            error_info: *mut *mut NSDictionary<NSString, Object>,
+            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>, Shared>>>,
         ) -> Id<NSAppleEventDescriptor, Shared>;
     }
 );

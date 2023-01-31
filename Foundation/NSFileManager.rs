@@ -334,7 +334,7 @@ extern_methods!(
         pub unsafe fn trashItemAtURL_resultingItemURL_error(
             &self,
             url: &NSURL,
-            out_resulting_url: *mut *mut NSURL,
+            out_resulting_url: Option<&mut Option<Id<NSURL, Shared>>>,
         ) -> Result<(), Id<NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
@@ -564,7 +564,7 @@ extern_methods!(
             new_item_url: &NSURL,
             backup_item_name: Option<&NSString>,
             options: NSFileManagerItemReplacementOptions,
-            resulting_url: *mut *mut NSURL,
+            resulting_url: Option<&mut Option<Id<NSURL, Shared>>>,
         ) -> Result<(), Id<NSError, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
@@ -610,7 +610,7 @@ extern_methods!(
         pub unsafe fn URLForPublishingUbiquitousItemAtURL_expirationDate_error(
             &self,
             url: &NSURL,
-            out_date: *mut *mut NSDate,
+            out_date: Option<&mut Option<Id<NSDate, Shared>>>,
         ) -> Result<Id<NSURL, Shared>, Id<NSError, Shared>>;
 
         #[method_id(@__retain_semantics Other ubiquityIdentityToken)]

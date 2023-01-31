@@ -309,7 +309,11 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             url: &NSURL,
             options: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, Object>,
-            dict: *mut *mut NSDictionary<NSAttributedStringDocumentAttributeKey, Object>,
+            dict: Option<
+                &mut Option<
+                    Id<NSDictionary<NSAttributedStringDocumentAttributeKey, Object>, Shared>,
+                >,
+            >,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
         #[cfg(all(
@@ -322,7 +326,11 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             data: &NSData,
             options: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, Object>,
-            dict: *mut *mut NSDictionary<NSAttributedStringDocumentAttributeKey, Object>,
+            dict: Option<
+                &mut Option<
+                    Id<NSDictionary<NSAttributedStringDocumentAttributeKey, Object>, Shared>,
+                >,
+            >,
         ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
 
         #[cfg(all(
@@ -354,7 +362,11 @@ extern_methods!(
         pub unsafe fn initWithRTF_documentAttributes(
             this: Option<Allocated<Self>>,
             data: &NSData,
-            dict: *mut *mut NSDictionary<NSAttributedStringDocumentAttributeKey, Object>,
+            dict: Option<
+                &mut Option<
+                    Id<NSDictionary<NSAttributedStringDocumentAttributeKey, Object>, Shared>,
+                >,
+            >,
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSDictionary"))]
@@ -362,7 +374,11 @@ extern_methods!(
         pub unsafe fn initWithRTFD_documentAttributes(
             this: Option<Allocated<Self>>,
             data: &NSData,
-            dict: *mut *mut NSDictionary<NSAttributedStringDocumentAttributeKey, Object>,
+            dict: Option<
+                &mut Option<
+                    Id<NSDictionary<NSAttributedStringDocumentAttributeKey, Object>, Shared>,
+                >,
+            >,
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSDictionary"))]
@@ -370,7 +386,11 @@ extern_methods!(
         pub unsafe fn initWithHTML_documentAttributes(
             this: Option<Allocated<Self>>,
             data: &NSData,
-            dict: *mut *mut NSDictionary<NSAttributedStringDocumentAttributeKey, Object>,
+            dict: Option<
+                &mut Option<
+                    Id<NSDictionary<NSAttributedStringDocumentAttributeKey, Object>, Shared>,
+                >,
+            >,
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(all(
@@ -383,7 +403,11 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             data: &NSData,
             base: &NSURL,
-            dict: *mut *mut NSDictionary<NSAttributedStringDocumentAttributeKey, Object>,
+            dict: Option<
+                &mut Option<
+                    Id<NSDictionary<NSAttributedStringDocumentAttributeKey, Object>, Shared>,
+                >,
+            >,
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSDictionary"))]
@@ -391,7 +415,11 @@ extern_methods!(
         pub unsafe fn initWithDocFormat_documentAttributes(
             this: Option<Allocated<Self>>,
             data: &NSData,
-            dict: *mut *mut NSDictionary<NSAttributedStringDocumentAttributeKey, Object>,
+            dict: Option<
+                &mut Option<
+                    Id<NSDictionary<NSAttributedStringDocumentAttributeKey, Object>, Shared>,
+                >,
+            >,
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSDictionary"))]
@@ -400,7 +428,11 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             data: &NSData,
             options: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, Object>,
-            dict: *mut *mut NSDictionary<NSAttributedStringDocumentAttributeKey, Object>,
+            dict: Option<
+                &mut Option<
+                    Id<NSDictionary<NSAttributedStringDocumentAttributeKey, Object>, Shared>,
+                >,
+            >,
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(all(
@@ -411,7 +443,11 @@ extern_methods!(
         pub unsafe fn initWithRTFDFileWrapper_documentAttributes(
             this: Option<Allocated<Self>>,
             wrapper: &NSFileWrapper,
-            dict: *mut *mut NSDictionary<NSAttributedStringDocumentAttributeKey, Object>,
+            dict: Option<
+                &mut Option<
+                    Id<NSDictionary<NSAttributedStringDocumentAttributeKey, Object>, Shared>,
+                >,
+            >,
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSDictionary"))]
@@ -465,7 +501,11 @@ extern_methods!(
             &self,
             url: &NSURL,
             opts: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, Object>,
-            dict: *mut *mut NSDictionary<NSAttributedStringDocumentAttributeKey, Object>,
+            dict: Option<
+                &mut Option<
+                    Id<NSDictionary<NSAttributedStringDocumentAttributeKey, Object>, Shared>,
+                >,
+            >,
         ) -> Result<(), Id<NSError, Shared>>;
 
         #[cfg(all(
@@ -478,7 +518,11 @@ extern_methods!(
             &self,
             data: &NSData,
             opts: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, Object>,
-            dict: *mut *mut NSDictionary<NSAttributedStringDocumentAttributeKey, Object>,
+            dict: Option<
+                &mut Option<
+                    Id<NSDictionary<NSAttributedStringDocumentAttributeKey, Object>, Shared>,
+                >,
+            >,
         ) -> Result<(), Id<NSError, Shared>>;
     }
 );
@@ -673,7 +717,7 @@ extern_methods!(
         pub unsafe fn initWithURL_documentAttributes(
             this: Option<Allocated<Self>>,
             url: &NSURL,
-            dict: *mut *mut NSDictionary,
+            dict: Option<&mut Option<Id<NSDictionary, Shared>>>,
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
@@ -682,7 +726,7 @@ extern_methods!(
         pub unsafe fn initWithPath_documentAttributes(
             this: Option<Allocated<Self>>,
             path: &NSString,
-            dict: *mut *mut NSDictionary,
+            dict: Option<&mut Option<Id<NSDictionary, Shared>>>,
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(feature = "Foundation_NSURL")]
@@ -707,7 +751,7 @@ extern_methods!(
             &self,
             url: &NSURL,
             options: &NSDictionary,
-            dict: *mut *mut NSDictionary,
+            dict: Option<&mut Option<Id<NSDictionary, Shared>>>,
         ) -> bool;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSDictionary"))]
@@ -717,7 +761,7 @@ extern_methods!(
             &self,
             data: &NSData,
             options: &NSDictionary,
-            dict: *mut *mut NSDictionary,
+            dict: Option<&mut Option<Id<NSDictionary, Shared>>>,
         ) -> bool;
     }
 );

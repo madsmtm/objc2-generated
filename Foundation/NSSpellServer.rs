@@ -134,7 +134,7 @@ extern_protocol!(
             sender: &NSSpellServer,
             string_to_check: &NSString,
             language: Option<&NSString>,
-            details: *mut *mut NSArray<NSDictionary<NSString, Object>>,
+            details: Option<&mut Option<Id<NSArray<NSDictionary<NSString, Object>>, Shared>>>,
         ) -> NSRange;
 
         #[cfg(all(

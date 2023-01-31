@@ -157,7 +157,7 @@ extern_methods!(
         pub unsafe fn rasterizationRateMapDescriptorWithScreenSize_layerCount_layers(
             screen_size: MTLSize,
             layer_count: NSUInteger,
-            layers: NonNull<NonNull<MTLRasterizationRateLayerDescriptor>>,
+            layers: &mut Id<MTLRasterizationRateLayerDescriptor, Shared>,
         ) -> Id<MTLRasterizationRateMapDescriptor, Shared>;
 
         #[cfg(feature = "Metal_MTLRasterizationRateLayerDescriptor")]

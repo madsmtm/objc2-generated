@@ -119,7 +119,7 @@ extern_methods!(
         pub unsafe fn initWithContentsOfURL_error(
             this: Option<Allocated<Self>>,
             url: &NSURL,
-            error_info: *mut *mut NSDictionary<NSString, Object>,
+            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>, Shared>>>,
         ) -> Option<Id<Self, Shared>>;
 
         #[cfg(all(
@@ -134,7 +134,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             url: &NSURL,
             language: &OSALanguage,
-            error_info: *mut *mut NSDictionary<NSString, Object>,
+            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>, Shared>>>,
         ) -> Id<Self, Shared>;
 
         #[cfg(all(
@@ -160,7 +160,7 @@ extern_methods!(
         pub unsafe fn initWithCompiledData_error(
             this: Option<Allocated<Self>>,
             data: &NSData,
-            error_info: *mut *mut NSDictionary<NSString, Object>,
+            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>, Shared>>>,
         ) -> Id<Self, Shared>;
 
         #[cfg(all(
@@ -222,7 +222,7 @@ extern_methods!(
         #[method(compileAndReturnError:)]
         pub unsafe fn compileAndReturnError(
             &self,
-            error_info: *mut *mut NSDictionary<NSString, Object>,
+            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>, Shared>>>,
         ) -> bool;
 
         #[cfg(all(
@@ -233,7 +233,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other executeAndReturnError:)]
         pub unsafe fn executeAndReturnError(
             &self,
-            error_info: *mut *mut NSDictionary<NSString, Object>,
+            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>, Shared>>>,
         ) -> Option<Id<NSAppleEventDescriptor, Shared>>;
 
         #[cfg(all(
@@ -245,7 +245,7 @@ extern_methods!(
         pub unsafe fn executeAppleEvent_error(
             &self,
             event: &NSAppleEventDescriptor,
-            error_info: *mut *mut NSDictionary<NSString, Object>,
+            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>, Shared>>>,
         ) -> Option<Id<NSAppleEventDescriptor, Shared>>;
 
         #[cfg(all(
@@ -257,8 +257,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Other executeAndReturnDisplayValue:error:)]
         pub unsafe fn executeAndReturnDisplayValue_error(
             &self,
-            display_value: NonNull<*mut NSAttributedString>,
-            error_info: *mut *mut NSDictionary<NSString, Object>,
+            display_value: &mut Option<Id<NSAttributedString, Shared>>,
+            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>, Shared>>>,
         ) -> Option<Id<NSAppleEventDescriptor, Shared>>;
 
         #[cfg(all(
@@ -272,7 +272,7 @@ extern_methods!(
             &self,
             name: &NSString,
             arguments: &NSArray,
-            error_info: *mut *mut NSDictionary<NSString, Object>,
+            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>, Shared>>>,
         ) -> Option<Id<NSAppleEventDescriptor, Shared>>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
@@ -299,7 +299,7 @@ extern_methods!(
             &self,
             url: &NSURL,
             r#type: &NSString,
-            error_info: *mut *mut NSDictionary<NSString, Object>,
+            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>, Shared>>>,
         ) -> bool;
 
         #[cfg(all(
@@ -313,7 +313,7 @@ extern_methods!(
             url: &NSURL,
             r#type: &NSString,
             storage_options: OSAStorageOptions,
-            error_info: *mut *mut NSDictionary<NSString, Object>,
+            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>, Shared>>>,
         ) -> bool;
 
         #[cfg(all(
@@ -326,7 +326,7 @@ extern_methods!(
             &self,
             r#type: &NSString,
             storage_options: OSAStorageOptions,
-            error_info: *mut *mut NSDictionary<NSString, Object>,
+            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>, Shared>>>,
         ) -> Option<Id<NSData, Shared>>;
     }
 );

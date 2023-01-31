@@ -209,7 +209,7 @@ extern_methods!(
         #[method(validateValue:forKey:error:_)]
         pub unsafe fn validateValue_forKey_error(
             &self,
-            value: NonNull<*mut Object>,
+            value: &mut Option<Id<Object, Shared>>,
             key: &NSString,
         ) -> Result<(), Id<NSError, Shared>>;
 
