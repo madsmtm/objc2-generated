@@ -6,7 +6,9 @@ use crate::FileProvider::*;
 use crate::Foundation::*;
 use crate::UniformTypeIdentifiers::*;
 
-pub type NSFileProviderDomainIdentifier = NSString;
+typed_extensible_enum!(
+    pub type NSFileProviderDomainIdentifier = NSString;
+);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

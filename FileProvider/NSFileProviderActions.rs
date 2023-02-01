@@ -6,7 +6,9 @@ use crate::FileProvider::*;
 use crate::Foundation::*;
 use crate::UniformTypeIdentifiers::*;
 
-pub type NSFileProviderExtensionActionIdentifier = NSString;
+typed_extensible_enum!(
+    pub type NSFileProviderExtensionActionIdentifier = NSString;
+);
 
 extern_methods!(
     /// NSFileProviderActions

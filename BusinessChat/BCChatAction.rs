@@ -5,7 +5,9 @@ use crate::AppKit::*;
 use crate::BusinessChat::*;
 use crate::Foundation::*;
 
-pub type BCParameterName = NSString;
+typed_extensible_enum!(
+    pub type BCParameterName = NSString;
+);
 
 extern_static!(BCParameterNameIntent: &'static BCParameterName);
 

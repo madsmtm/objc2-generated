@@ -5,7 +5,9 @@ use crate::CoreLocation::*;
 use crate::Foundation::*;
 use crate::UserNotifications::*;
 
-pub type UNNotificationSoundName = NSString;
+typed_extensible_enum!(
+    pub type UNNotificationSoundName = NSString;
+);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -6,7 +6,9 @@ use crate::FileProvider::*;
 use crate::Foundation::*;
 use crate::UniformTypeIdentifiers::*;
 
-pub type NSFileProviderItemIdentifier = NSString;
+typed_extensible_enum!(
+    pub type NSFileProviderItemIdentifier = NSString;
+);
 
 extern_static!(NSFileProviderRootContainerItemIdentifier: &'static NSFileProviderItemIdentifier);
 

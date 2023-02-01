@@ -8,7 +8,9 @@ use crate::Foundation::*;
 
 extern_static!(FPUIErrorDomain: &'static NSString);
 
-pub type FPUIActionIdentifier = NSString;
+typed_extensible_enum!(
+    pub type FPUIActionIdentifier = NSString;
+);
 
 ns_enum!(
     #[underlying(NSUInteger)]

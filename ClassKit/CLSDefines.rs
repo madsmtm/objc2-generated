@@ -23,7 +23,9 @@ ns_error_enum!(
     }
 );
 
-pub type CLSErrorUserInfoKey = NSString;
+typed_extensible_enum!(
+    pub type CLSErrorUserInfoKey = NSString;
+);
 
 extern_static!(CLSErrorObjectKey: Option<&'static CLSErrorUserInfoKey>);
 
@@ -31,7 +33,9 @@ extern_static!(CLSErrorUnderlyingErrorsKey: Option<&'static CLSErrorUserInfoKey>
 
 extern_static!(CLSErrorSuccessfulObjectsKey: Option<&'static CLSErrorUserInfoKey>);
 
-pub type CLSPredicateKeyPath = NSString;
+typed_extensible_enum!(
+    pub type CLSPredicateKeyPath = NSString;
+);
 
 extern_static!(CLSPredicateKeyPathDateCreated: Option<&'static CLSPredicateKeyPath>);
 
