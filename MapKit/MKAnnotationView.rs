@@ -24,9 +24,23 @@ typed_extensible_enum!(
     pub type MKFeatureDisplayPriority = c_float;
 );
 
+extern_static!(MKFeatureDisplayPriorityRequired: MKFeatureDisplayPriority = 1000);
+
+extern_static!(MKFeatureDisplayPriorityDefaultHigh: MKFeatureDisplayPriority = 750);
+
+extern_static!(MKFeatureDisplayPriorityDefaultLow: MKFeatureDisplayPriority = 250);
+
 typed_extensible_enum!(
     pub type MKAnnotationViewZPriority = c_float;
 );
+
+extern_static!(MKAnnotationViewZPriorityMax: MKAnnotationViewZPriority = 1000);
+
+extern_static!(MKAnnotationViewZPriorityDefaultSelected: MKAnnotationViewZPriority = 1000);
+
+extern_static!(MKAnnotationViewZPriorityDefaultUnselected: MKAnnotationViewZPriority = 500);
+
+extern_static!(MKAnnotationViewZPriorityMin: MKAnnotationViewZPriority = 0);
 
 ns_enum!(
     #[underlying(NSInteger)]

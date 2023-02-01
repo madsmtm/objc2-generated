@@ -140,7 +140,14 @@ pub use self::__MKAnnotationView::MKAnnotationCalloutInfoDidChangeNotification;
 #[cfg(feature = "MapKit_MKAnnotationView")]
 pub use self::__MKAnnotationView::MKAnnotationView;
 pub use self::__MKAnnotationView::MKAnnotationViewZPriority;
+pub use self::__MKAnnotationView::MKAnnotationViewZPriorityDefaultSelected;
+pub use self::__MKAnnotationView::MKAnnotationViewZPriorityDefaultUnselected;
+pub use self::__MKAnnotationView::MKAnnotationViewZPriorityMax;
+pub use self::__MKAnnotationView::MKAnnotationViewZPriorityMin;
 pub use self::__MKAnnotationView::MKFeatureDisplayPriority;
+pub use self::__MKAnnotationView::MKFeatureDisplayPriorityDefaultHigh;
+pub use self::__MKAnnotationView::MKFeatureDisplayPriorityDefaultLow;
+pub use self::__MKAnnotationView::MKFeatureDisplayPriorityRequired;
 pub use self::__MKAnnotationView::{
     MKAnnotationViewCollisionMode, MKAnnotationViewCollisionModeCircle,
     MKAnnotationViewCollisionModeNone, MKAnnotationViewCollisionModeRectangle,
