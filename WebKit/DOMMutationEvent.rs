@@ -46,10 +46,6 @@ extern_methods!(
         pub unsafe fn prevValue(&self) -> Id<NSString, Shared>;
 
         #[cfg(feature = "Foundation_NSString")]
-        #[method_id(@__retain_semantics Other newValue)]
-        pub unsafe fn newValue(&self) -> Id<NSString, Shared>;
-
-        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other attrName)]
         pub unsafe fn attrName(&self) -> Id<NSString, Shared>;
 
