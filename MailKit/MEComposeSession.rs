@@ -29,22 +29,22 @@ extern_methods!(
     #[cfg(feature = "MailKit_MEComposeSession")]
     unsafe impl MEComposeSession {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSUUID")]
         #[method_id(@__retain_semantics Other sessionID)]
-        pub unsafe fn sessionID(&self) -> Id<NSUUID, Shared>;
+        pub unsafe fn sessionID(&self) -> Id<NSUUID>;
 
         #[cfg(feature = "MailKit_MEMessage")]
         #[method_id(@__retain_semantics Other mailMessage)]
-        pub unsafe fn mailMessage(&self) -> Id<MEMessage, Shared>;
+        pub unsafe fn mailMessage(&self) -> Id<MEMessage>;
 
         #[cfg(feature = "MailKit_MEComposeContext")]
         #[method_id(@__retain_semantics Other composeContext)]
-        pub unsafe fn composeContext(&self) -> Id<MEComposeContext, Shared>;
+        pub unsafe fn composeContext(&self) -> Id<MEComposeContext>;
 
         #[method(reloadSession)]
         pub unsafe fn reloadSession(&self);
@@ -80,7 +80,7 @@ extern_protocol!(
         unsafe fn viewControllerForSession(
             &self,
             session: &MEComposeSession,
-        ) -> Id<MEExtensionViewController, Shared>;
+        ) -> Id<MEExtensionViewController>;
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",
@@ -119,7 +119,7 @@ extern_protocol!(
         unsafe fn additionalHeadersForSession(
             &self,
             session: &MEComposeSession,
-        ) -> Id<NSDictionary<NSString, NSArray<NSString>>, Shared>;
+        ) -> Id<NSDictionary<NSString, NSArray<NSString>>>;
     }
 
     unsafe impl ProtocolType for dyn MEComposeSessionHandler {}

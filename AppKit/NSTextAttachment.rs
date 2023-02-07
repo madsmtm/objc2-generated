@@ -21,7 +21,7 @@ extern_protocol!(
             image_bounds: CGRect,
             text_container: Option<&NSTextContainer>,
             char_index: NSUInteger,
-        ) -> Option<Id<NSImage, Shared>>;
+        ) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "AppKit_NSTextContainer")]
         #[method(attachmentBoundsForTextContainer:proposedLineFragment:glyphPosition:characterIndex:)]
@@ -51,7 +51,7 @@ extern_protocol!(
             attributes: &NSDictionary<NSAttributedStringKey, Object>,
             location: &ProtocolObject<dyn NSTextLocation>,
             text_container: Option<&NSTextContainer>,
-        ) -> Option<Id<NSImage, Shared>>;
+        ) -> Option<Id<NSImage>>;
 
         #[cfg(all(
             feature = "AppKit_NSTextContainer",
@@ -78,7 +78,7 @@ extern_protocol!(
             parent_view: Option<&NSView>,
             location: &ProtocolObject<dyn NSTextLocation>,
             text_container: Option<&NSTextContainer>,
-        ) -> Option<Id<NSTextAttachmentViewProvider, Shared>>;
+        ) -> Option<Id<NSTextAttachmentViewProvider>>;
     }
 
     unsafe impl ProtocolType for dyn NSTextAttachmentLayout {}
@@ -119,18 +119,18 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             content_data: Option<&NSData>,
             uti: Option<&NSString>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSFileWrapper")]
         #[method_id(@__retain_semantics Init initWithFileWrapper:)]
         pub unsafe fn initWithFileWrapper(
             this: Option<Allocated<Self>>,
             file_wrapper: Option<&NSFileWrapper>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other contents)]
-        pub unsafe fn contents(&self) -> Option<Id<NSData, Shared>>;
+        pub unsafe fn contents(&self) -> Option<Id<NSData>>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method(setContents:)]
@@ -138,7 +138,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fileType)]
-        pub unsafe fn fileType(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn fileType(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setFileType:)]
@@ -146,7 +146,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other image)]
-        pub unsafe fn image(&self) -> Option<Id<NSImage, Shared>>;
+        pub unsafe fn image(&self) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method(setImage:)]
@@ -160,7 +160,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSFileWrapper")]
         #[method_id(@__retain_semantics Other fileWrapper)]
-        pub unsafe fn fileWrapper(&self) -> Option<Id<NSFileWrapper, Shared>>;
+        pub unsafe fn fileWrapper(&self) -> Option<Id<NSFileWrapper>>;
 
         #[cfg(feature = "Foundation_NSFileWrapper")]
         #[method(setFileWrapper:)]
@@ -169,7 +169,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other attachmentCell)]
         pub unsafe fn attachmentCell(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn NSTextAttachmentCellProtocol>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn NSTextAttachmentCellProtocol>>>;
 
         #[method(setAttachmentCell:)]
         pub unsafe fn setAttachmentCell(
@@ -215,7 +215,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other attributedStringWithAttachment:)]
         pub unsafe fn attributedStringWithAttachment(
             attachment: &NSTextAttachment,
-        ) -> Id<NSAttributedString, Shared>;
+        ) -> Id<NSAttributedString>;
     }
 );
 
@@ -248,28 +248,28 @@ extern_methods!(
             parent_view: Option<&NSView>,
             text_layout_manager: Option<&NSTextLayoutManager>,
             location: &ProtocolObject<dyn NSTextLocation>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSTextAttachment")]
         #[method_id(@__retain_semantics Other textAttachment)]
-        pub unsafe fn textAttachment(&self) -> Option<Id<NSTextAttachment, Shared>>;
+        pub unsafe fn textAttachment(&self) -> Option<Id<NSTextAttachment>>;
 
         #[cfg(feature = "AppKit_NSTextLayoutManager")]
         #[method_id(@__retain_semantics Other textLayoutManager)]
-        pub unsafe fn textLayoutManager(&self) -> Option<Id<NSTextLayoutManager, Shared>>;
+        pub unsafe fn textLayoutManager(&self) -> Option<Id<NSTextLayoutManager>>;
 
         #[method_id(@__retain_semantics Other location)]
-        pub unsafe fn location(&self) -> Id<ProtocolObject<dyn NSTextLocation>, Shared>;
+        pub unsafe fn location(&self) -> Id<ProtocolObject<dyn NSTextLocation>>;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other view)]
-        pub unsafe fn view(&self) -> Option<Id<NSView, Shared>>;
+        pub unsafe fn view(&self) -> Option<Id<NSView>>;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(setView:)]

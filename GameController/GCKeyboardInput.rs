@@ -50,6 +50,6 @@ extern_methods!(
         pub unsafe fn buttonForKeyCode(
             &self,
             code: GCKeyCode,
-        ) -> Option<Id<GCControllerButtonInput, Shared>>;
+        ) -> Option<Id<GCControllerButtonInput>>;
     }
 );

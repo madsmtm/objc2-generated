@@ -31,7 +31,7 @@ extern_methods!(
         pub unsafe fn groupItemWithIdentifier_items(
             identifier: &NSTouchBarItemIdentifier,
             items: &NSArray<NSTouchBarItem>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(
             feature = "AppKit_NSUserInterfaceCompressionOptions",
@@ -42,16 +42,16 @@ extern_methods!(
             identifier: &NSTouchBarItemIdentifier,
             items: &NSArray<NSTouchBarItem>,
             allowed_compression_options: &NSUserInterfaceCompressionOptions,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other alertStyleGroupItemWithIdentifier:)]
         pub unsafe fn alertStyleGroupItemWithIdentifier(
             identifier: &NSTouchBarItemIdentifier,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSTouchBar")]
         #[method_id(@__retain_semantics Other groupTouchBar)]
-        pub unsafe fn groupTouchBar(&self) -> Id<NSTouchBar, Shared>;
+        pub unsafe fn groupTouchBar(&self) -> Id<NSTouchBar>;
 
         #[cfg(feature = "AppKit_NSTouchBar")]
         #[method(setGroupTouchBar:)]
@@ -59,7 +59,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other customizationLabel)]
-        pub unsafe fn customizationLabel(&self) -> Id<NSString, Shared>;
+        pub unsafe fn customizationLabel(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCustomizationLabel:)]
@@ -88,9 +88,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSUserInterfaceCompressionOptions")]
         #[method_id(@__retain_semantics Other effectiveCompressionOptions)]
-        pub unsafe fn effectiveCompressionOptions(
-            &self,
-        ) -> Id<NSUserInterfaceCompressionOptions, Shared>;
+        pub unsafe fn effectiveCompressionOptions(&self) -> Id<NSUserInterfaceCompressionOptions>;
 
         #[cfg(all(
             feature = "AppKit_NSUserInterfaceCompressionOptions",
@@ -99,7 +97,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other prioritizedCompressionOptions)]
         pub unsafe fn prioritizedCompressionOptions(
             &self,
-        ) -> Id<NSArray<NSUserInterfaceCompressionOptions>, Shared>;
+        ) -> Id<NSArray<NSUserInterfaceCompressionOptions>>;
 
         #[cfg(all(
             feature = "AppKit_NSUserInterfaceCompressionOptions",
@@ -121,6 +119,6 @@ extern_methods!(
         pub unsafe fn initWithIdentifier(
             this: Option<Allocated<Self>>,
             identifier: &NSTouchBarItemIdentifier,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

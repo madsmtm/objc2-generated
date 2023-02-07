@@ -25,7 +25,7 @@ extern_methods!(
     unsafe impl NSMenuToolbarItem {
         #[cfg(feature = "AppKit_NSMenu")]
         #[method_id(@__retain_semantics Other menu)]
-        pub unsafe fn menu(&self) -> Id<NSMenu, Shared>;
+        pub unsafe fn menu(&self) -> Id<NSMenu>;
 
         #[cfg(feature = "AppKit_NSMenu")]
         #[method(setMenu:)]
@@ -47,6 +47,6 @@ extern_methods!(
         pub unsafe fn initWithItemIdentifier(
             this: Option<Allocated<Self>>,
             item_identifier: &NSToolbarItemIdentifier,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

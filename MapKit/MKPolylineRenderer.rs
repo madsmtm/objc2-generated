@@ -30,11 +30,11 @@ extern_methods!(
         pub unsafe fn initWithPolyline(
             this: Option<Allocated<Self>>,
             polyline: &MKPolyline,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "MapKit_MKPolyline")]
         #[method_id(@__retain_semantics Other polyline)]
-        pub unsafe fn polyline(&self) -> Id<MKPolyline, Shared>;
+        pub unsafe fn polyline(&self) -> Id<MKPolyline>;
 
         #[method(strokeStart)]
         pub unsafe fn strokeStart(&self) -> CGFloat;
@@ -58,6 +58,6 @@ extern_methods!(
         pub unsafe fn initWithOverlay(
             this: Option<Allocated<Self>>,
             overlay: &ProtocolObject<dyn MKOverlay>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

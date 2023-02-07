@@ -73,6 +73,6 @@ extern_methods!(
     {
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other allObjects)]
-        pub unsafe fn allObjects(&self) -> Id<NSArray<ObjectType>, Shared>;
+        pub unsafe fn allObjects(&self) -> Id<NSArray<ObjectType>>;
     }
 );

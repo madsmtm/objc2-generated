@@ -35,7 +35,7 @@ extern_methods!(
         pub unsafe fn initWithURLTemplate(
             this: Option<Allocated<Self>>,
             url_template: Option<&NSString>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(tileSize)]
         pub unsafe fn tileSize(&self) -> CGSize;
@@ -63,7 +63,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other URLTemplate)]
-        pub unsafe fn URLTemplate(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn URLTemplate(&self) -> Option<Id<NSString>>;
 
         #[method(canReplaceMapContent)]
         pub unsafe fn canReplaceMapContent(&self) -> bool;
@@ -89,7 +89,7 @@ extern_methods!(
     unsafe impl MKTileOverlay {
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other URLForTilePath:)]
-        pub unsafe fn URLForTilePath(&self, path: MKTileOverlayPath) -> Id<NSURL, Shared>;
+        pub unsafe fn URLForTilePath(&self, path: MKTileOverlayPath) -> Id<NSURL>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
         #[method(loadTileAtPath:result:)]

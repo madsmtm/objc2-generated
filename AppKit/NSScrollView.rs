@@ -57,17 +57,14 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSScrollView")]
     unsafe impl NSScrollView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frame_rect: NSRect,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[method(frameSizeForContentSize:horizontalScrollerClass:verticalScrollerClass:borderType:controlSize:scrollerStyle:)]
         pub unsafe fn frameSizeForContentSize_horizontalScrollerClass_verticalScrollerClass_borderType_controlSize_scrollerStyle(
@@ -114,14 +111,14 @@ extern_methods!(
         pub unsafe fn contentSize(&self) -> NSSize;
 
         #[method_id(@__retain_semantics Other documentView)]
-        pub unsafe fn documentView(&self) -> Option<Id<NSView, Shared>>;
+        pub unsafe fn documentView(&self) -> Option<Id<NSView>>;
 
         #[method(setDocumentView:)]
         pub unsafe fn setDocumentView(&self, document_view: Option<&NSView>);
 
         #[cfg(feature = "AppKit_NSClipView")]
         #[method_id(@__retain_semantics Other contentView)]
-        pub unsafe fn contentView(&self) -> Id<NSClipView, Shared>;
+        pub unsafe fn contentView(&self) -> Id<NSClipView>;
 
         #[cfg(feature = "AppKit_NSClipView")]
         #[method(setContentView:)]
@@ -129,7 +126,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSCursor")]
         #[method_id(@__retain_semantics Other documentCursor)]
-        pub unsafe fn documentCursor(&self) -> Option<Id<NSCursor, Shared>>;
+        pub unsafe fn documentCursor(&self) -> Option<Id<NSCursor>>;
 
         #[cfg(feature = "AppKit_NSCursor")]
         #[method(setDocumentCursor:)]
@@ -143,7 +140,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other backgroundColor)]
-        pub unsafe fn backgroundColor(&self) -> Id<NSColor, Shared>;
+        pub unsafe fn backgroundColor(&self) -> Id<NSColor>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setBackgroundColor:)]
@@ -169,7 +166,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSScroller")]
         #[method_id(@__retain_semantics Other verticalScroller)]
-        pub unsafe fn verticalScroller(&self) -> Option<Id<NSScroller, Shared>>;
+        pub unsafe fn verticalScroller(&self) -> Option<Id<NSScroller>>;
 
         #[cfg(feature = "AppKit_NSScroller")]
         #[method(setVerticalScroller:)]
@@ -177,7 +174,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSScroller")]
         #[method_id(@__retain_semantics Other horizontalScroller)]
-        pub unsafe fn horizontalScroller(&self) -> Option<Id<NSScroller, Shared>>;
+        pub unsafe fn horizontalScroller(&self) -> Option<Id<NSScroller>>;
 
         #[cfg(feature = "AppKit_NSScroller")]
         #[method(setHorizontalScroller:)]
@@ -381,7 +378,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSRulerView")]
         #[method_id(@__retain_semantics Other horizontalRulerView)]
-        pub unsafe fn horizontalRulerView(&self) -> Option<Id<NSRulerView, Shared>>;
+        pub unsafe fn horizontalRulerView(&self) -> Option<Id<NSRulerView>>;
 
         #[cfg(feature = "AppKit_NSRulerView")]
         #[method(setHorizontalRulerView:)]
@@ -389,7 +386,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSRulerView")]
         #[method_id(@__retain_semantics Other verticalRulerView)]
-        pub unsafe fn verticalRulerView(&self) -> Option<Id<NSRulerView, Shared>>;
+        pub unsafe fn verticalRulerView(&self) -> Option<Id<NSRulerView>>;
 
         #[cfg(feature = "AppKit_NSRulerView")]
         #[method(setVerticalRulerView:)]

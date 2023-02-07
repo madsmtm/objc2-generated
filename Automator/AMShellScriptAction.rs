@@ -35,11 +35,11 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other inputFieldSeparator)]
-        pub unsafe fn inputFieldSeparator(&self) -> Id<NSString, Shared>;
+        pub unsafe fn inputFieldSeparator(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other outputFieldSeparator)]
-        pub unsafe fn outputFieldSeparator(&self) -> Id<NSString, Shared>;
+        pub unsafe fn outputFieldSeparator(&self) -> Id<NSString>;
     }
 );
 
@@ -53,13 +53,13 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             dict: Option<&NSDictionary<NSString, Object>>,
             archived: bool,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:error:_)]
         pub unsafe fn initWithContentsOfURL_error(
             this: Option<Allocated<Self>>,
             file_url: &NSURL,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self>, Id<NSError>>;
     }
 );

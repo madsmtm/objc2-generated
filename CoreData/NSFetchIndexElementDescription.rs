@@ -38,15 +38,15 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             property: &NSPropertyDescription,
             collation_type: NSFetchIndexElementType,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "CoreData_NSPropertyDescription")]
         #[method_id(@__retain_semantics Other property)]
-        pub unsafe fn property(&self) -> Option<Id<NSPropertyDescription, Shared>>;
+        pub unsafe fn property(&self) -> Option<Id<NSPropertyDescription>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other propertyName)]
-        pub unsafe fn propertyName(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn propertyName(&self) -> Option<Id<NSString>>;
 
         #[method(collationType)]
         pub unsafe fn collationType(&self) -> NSFetchIndexElementType;
@@ -62,6 +62,6 @@ extern_methods!(
 
         #[cfg(feature = "CoreData_NSFetchIndexDescription")]
         #[method_id(@__retain_semantics Other indexDescription)]
-        pub unsafe fn indexDescription(&self) -> Option<Id<NSFetchIndexDescription, Shared>>;
+        pub unsafe fn indexDescription(&self) -> Option<Id<NSFetchIndexDescription>>;
     }
 );

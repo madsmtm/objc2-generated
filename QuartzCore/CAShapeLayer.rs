@@ -44,7 +44,7 @@ extern_methods!(
     #[cfg(feature = "CoreAnimation_CAShapeLayer")]
     unsafe impl CAShapeLayer {
         #[method_id(@__retain_semantics Other fillRule)]
-        pub unsafe fn fillRule(&self) -> Id<CAShapeLayerFillRule, Shared>;
+        pub unsafe fn fillRule(&self) -> Id<CAShapeLayerFillRule>;
 
         #[method(setFillRule:)]
         pub unsafe fn setFillRule(&self, fill_rule: &CAShapeLayerFillRule);
@@ -74,13 +74,13 @@ extern_methods!(
         pub unsafe fn setMiterLimit(&self, miter_limit: CGFloat);
 
         #[method_id(@__retain_semantics Other lineCap)]
-        pub unsafe fn lineCap(&self) -> Id<CAShapeLayerLineCap, Shared>;
+        pub unsafe fn lineCap(&self) -> Id<CAShapeLayerLineCap>;
 
         #[method(setLineCap:)]
         pub unsafe fn setLineCap(&self, line_cap: &CAShapeLayerLineCap);
 
         #[method_id(@__retain_semantics Other lineJoin)]
-        pub unsafe fn lineJoin(&self) -> Id<CAShapeLayerLineJoin, Shared>;
+        pub unsafe fn lineJoin(&self) -> Id<CAShapeLayerLineJoin>;
 
         #[method(setLineJoin:)]
         pub unsafe fn setLineJoin(&self, line_join: &CAShapeLayerLineJoin);
@@ -93,7 +93,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method_id(@__retain_semantics Other lineDashPattern)]
-        pub unsafe fn lineDashPattern(&self) -> Option<Id<NSArray<NSNumber>, Shared>>;
+        pub unsafe fn lineDashPattern(&self) -> Option<Id<NSArray<NSNumber>>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method(setLineDashPattern:)]
@@ -122,12 +122,9 @@ extern_methods!(
     #[cfg(feature = "CoreAnimation_CAShapeLayer")]
     unsafe impl CAShapeLayer {
         #[method_id(@__retain_semantics Other layer)]
-        pub unsafe fn layer() -> Id<Self, Shared>;
+        pub unsafe fn layer() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithLayer:)]
-        pub unsafe fn initWithLayer(
-            this: Option<Allocated<Self>>,
-            layer: &Object,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithLayer(this: Option<Allocated<Self>>, layer: &Object) -> Id<Self>;
     }
 );

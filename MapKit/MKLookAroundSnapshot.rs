@@ -26,6 +26,6 @@ extern_methods!(
     unsafe impl MKLookAroundSnapshot {
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other image)]
-        pub unsafe fn image(&self) -> Id<NSImage, Shared>;
+        pub unsafe fn image(&self) -> Id<NSImage>;
     }
 );

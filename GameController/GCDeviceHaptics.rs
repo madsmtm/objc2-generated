@@ -46,16 +46,16 @@ extern_methods!(
     unsafe impl GCDeviceHaptics {
         #[cfg(feature = "Foundation_NSSet")]
         #[method_id(@__retain_semantics Other supportedLocalities)]
-        pub unsafe fn supportedLocalities(&self) -> Id<NSSet<GCHapticsLocality>, Shared>;
+        pub unsafe fn supportedLocalities(&self) -> Id<NSSet<GCHapticsLocality>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(feature = "GameController_CHHapticEngine")]
         #[method_id(@__retain_semantics Other createEngineWithLocality:)]
         pub unsafe fn createEngineWithLocality(
             &self,
             locality: &GCHapticsLocality,
-        ) -> Option<Id<CHHapticEngine, Shared>>;
+        ) -> Option<Id<CHHapticEngine>>;
     }
 );

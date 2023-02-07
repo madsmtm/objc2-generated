@@ -23,7 +23,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSSpeechRecognizer")]
     unsafe impl NSSpeechRecognizer {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Option<Id<Self, Shared>>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Option<Id<Self>>;
 
         #[method(startListening)]
         pub unsafe fn startListening(&self);
@@ -32,9 +32,8 @@ extern_methods!(
         pub unsafe fn stopListening(&self);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(
-            &self,
-        ) -> Option<Id<ProtocolObject<dyn NSSpeechRecognizerDelegate>, Shared>>;
+        pub unsafe fn delegate(&self)
+            -> Option<Id<ProtocolObject<dyn NSSpeechRecognizerDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -44,7 +43,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other commands)]
-        pub unsafe fn commands(&self) -> Option<Id<NSArray<NSString>, Shared>>;
+        pub unsafe fn commands(&self) -> Option<Id<NSArray<NSString>>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setCommands:)]
@@ -52,7 +51,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other displayedCommandsTitle)]
-        pub unsafe fn displayedCommandsTitle(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn displayedCommandsTitle(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setDisplayedCommandsTitle:)]

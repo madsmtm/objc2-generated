@@ -39,14 +39,14 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSNotificationQueue")]
     unsafe impl NSNotificationQueue {
         #[method_id(@__retain_semantics Other defaultQueue)]
-        pub unsafe fn defaultQueue() -> Id<NSNotificationQueue, Shared>;
+        pub unsafe fn defaultQueue() -> Id<NSNotificationQueue>;
 
         #[cfg(feature = "Foundation_NSNotificationCenter")]
         #[method_id(@__retain_semantics Init initWithNotificationCenter:)]
         pub unsafe fn initWithNotificationCenter(
             this: Option<Allocated<Self>>,
             notification_center: &NSNotificationCenter,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[method(enqueueNotification:postingStyle:)]

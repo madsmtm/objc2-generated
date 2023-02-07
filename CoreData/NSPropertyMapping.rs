@@ -23,7 +23,7 @@ extern_methods!(
     unsafe impl NSPropertyMapping {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn name(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]
@@ -31,7 +31,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSExpression")]
         #[method_id(@__retain_semantics Other valueExpression)]
-        pub unsafe fn valueExpression(&self) -> Option<Id<NSExpression, Shared>>;
+        pub unsafe fn valueExpression(&self) -> Option<Id<NSExpression>>;
 
         #[cfg(feature = "Foundation_NSExpression")]
         #[method(setValueExpression:)]
@@ -39,7 +39,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other userInfo)]
-        pub unsafe fn userInfo(&self) -> Option<Id<NSDictionary, Shared>>;
+        pub unsafe fn userInfo(&self) -> Option<Id<NSDictionary>>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(setUserInfo:)]

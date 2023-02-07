@@ -51,23 +51,23 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSProcessInfo")]
     unsafe impl NSProcessInfo {
         #[method_id(@__retain_semantics Other processInfo)]
-        pub fn processInfo() -> Id<NSProcessInfo, Shared>;
+        pub fn processInfo() -> Id<NSProcessInfo>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other environment)]
-        pub unsafe fn environment(&self) -> Id<NSDictionary<NSString, NSString>, Shared>;
+        pub unsafe fn environment(&self) -> Id<NSDictionary<NSString, NSString>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other arguments)]
-        pub unsafe fn arguments(&self) -> Id<NSArray<NSString>, Shared>;
+        pub unsafe fn arguments(&self) -> Id<NSArray<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other hostName)]
-        pub unsafe fn hostName(&self) -> Id<NSString, Shared>;
+        pub unsafe fn hostName(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other processName)]
-        pub fn processName(&self) -> Id<NSString, Shared>;
+        pub fn processName(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setProcessName:)]
@@ -78,7 +78,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other globallyUniqueString)]
-        pub unsafe fn globallyUniqueString(&self) -> Id<NSString, Shared>;
+        pub unsafe fn globallyUniqueString(&self) -> Id<NSString>;
 
         #[deprecated = "-operatingSystem always returns NSMACHOperatingSystem, use -operatingSystemVersion or -isOperatingSystemAtLeastVersion: instead"]
         #[method(operatingSystem)]
@@ -87,11 +87,11 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "-operatingSystemName always returns NSMACHOperatingSystem, use -operatingSystemVersionString instead"]
         #[method_id(@__retain_semantics Other operatingSystemName)]
-        pub unsafe fn operatingSystemName(&self) -> Id<NSString, Shared>;
+        pub unsafe fn operatingSystemName(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other operatingSystemVersionString)]
-        pub unsafe fn operatingSystemVersionString(&self) -> Id<NSString, Shared>;
+        pub unsafe fn operatingSystemVersionString(&self) -> Id<NSString>;
 
         #[method(operatingSystemVersion)]
         pub fn operatingSystemVersion(&self) -> NSOperatingSystemVersion;
@@ -167,7 +167,7 @@ extern_methods!(
             &self,
             options: NSActivityOptions,
             reason: &NSString,
-        ) -> Id<NSObject, Shared>;
+        ) -> Id<NSObject>;
 
         #[method(endActivity:)]
         pub unsafe fn endActivity(&self, activity: &NSObject);
@@ -197,11 +197,11 @@ extern_methods!(
     unsafe impl NSProcessInfo {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other userName)]
-        pub unsafe fn userName(&self) -> Id<NSString, Shared>;
+        pub unsafe fn userName(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fullUserName)]
-        pub unsafe fn fullUserName(&self) -> Id<NSString, Shared>;
+        pub unsafe fn fullUserName(&self) -> Id<NSString>;
     }
 );
 

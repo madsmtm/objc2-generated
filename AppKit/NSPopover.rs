@@ -29,17 +29,17 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSPopover")]
     unsafe impl NSPopover {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSPopoverDelegate>, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSPopoverDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSPopoverDelegate>>);
@@ -58,7 +58,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSViewController")]
         #[method_id(@__retain_semantics Other contentViewController)]
-        pub unsafe fn contentViewController(&self) -> Option<Id<NSViewController, Shared>>;
+        pub unsafe fn contentViewController(&self) -> Option<Id<NSViewController>>;
 
         #[cfg(feature = "AppKit_NSViewController")]
         #[method(setContentViewController:)]
@@ -140,10 +140,7 @@ extern_protocol!(
         #[cfg(all(feature = "AppKit_NSPopover", feature = "AppKit_NSWindow"))]
         #[optional]
         #[method_id(@__retain_semantics Other detachableWindowForPopover:)]
-        unsafe fn detachableWindowForPopover(
-            &self,
-            popover: &NSPopover,
-        ) -> Option<Id<NSWindow, Shared>>;
+        unsafe fn detachableWindowForPopover(&self, popover: &NSPopover) -> Option<Id<NSWindow>>;
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]

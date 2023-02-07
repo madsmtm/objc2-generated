@@ -44,29 +44,29 @@ extern_methods!(
     unsafe impl UNNotificationCategory {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn identifier(&self) -> Id<NSString>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "UserNotifications_UNNotificationAction"
         ))]
         #[method_id(@__retain_semantics Other actions)]
-        pub unsafe fn actions(&self) -> Id<NSArray<UNNotificationAction>, Shared>;
+        pub unsafe fn actions(&self) -> Id<NSArray<UNNotificationAction>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other intentIdentifiers)]
-        pub unsafe fn intentIdentifiers(&self) -> Id<NSArray<NSString>, Shared>;
+        pub unsafe fn intentIdentifiers(&self) -> Id<NSArray<NSString>>;
 
         #[method(options)]
         pub unsafe fn options(&self) -> UNNotificationCategoryOptions;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other hiddenPreviewsBodyPlaceholder)]
-        pub unsafe fn hiddenPreviewsBodyPlaceholder(&self) -> Id<NSString, Shared>;
+        pub unsafe fn hiddenPreviewsBodyPlaceholder(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other categorySummaryFormat)]
-        pub unsafe fn categorySummaryFormat(&self) -> Id<NSString, Shared>;
+        pub unsafe fn categorySummaryFormat(&self) -> Id<NSString>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -79,7 +79,7 @@ extern_methods!(
             actions: &NSArray<UNNotificationAction>,
             intent_identifiers: &NSArray<NSString>,
             options: UNNotificationCategoryOptions,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -93,7 +93,7 @@ extern_methods!(
             intent_identifiers: &NSArray<NSString>,
             hidden_previews_body_placeholder: &NSString,
             options: UNNotificationCategoryOptions,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -108,9 +108,9 @@ extern_methods!(
             hidden_previews_body_placeholder: Option<&NSString>,
             category_summary_format: Option<&NSString>,
             options: UNNotificationCategoryOptions,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }
 );

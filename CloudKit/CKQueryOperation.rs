@@ -29,10 +29,10 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKQueryCursor")]
     unsafe impl CKQueryCursor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
     }
 );
 
@@ -57,25 +57,22 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKQueryOperation")]
     unsafe impl CKQueryOperation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(feature = "CloudKit_CKQuery")]
         #[method_id(@__retain_semantics Init initWithQuery:)]
-        pub unsafe fn initWithQuery(
-            this: Option<Allocated<Self>>,
-            query: &CKQuery,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithQuery(this: Option<Allocated<Self>>, query: &CKQuery) -> Id<Self>;
 
         #[cfg(feature = "CloudKit_CKQueryCursor")]
         #[method_id(@__retain_semantics Init initWithCursor:)]
         pub unsafe fn initWithCursor(
             this: Option<Allocated<Self>>,
             cursor: &CKQueryCursor,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "CloudKit_CKQuery")]
         #[method_id(@__retain_semantics Other query)]
-        pub unsafe fn query(&self) -> Option<Id<CKQuery, Shared>>;
+        pub unsafe fn query(&self) -> Option<Id<CKQuery>>;
 
         #[cfg(feature = "CloudKit_CKQuery")]
         #[method(setQuery:)]
@@ -83,7 +80,7 @@ extern_methods!(
 
         #[cfg(feature = "CloudKit_CKQueryCursor")]
         #[method_id(@__retain_semantics Other cursor)]
-        pub unsafe fn cursor(&self) -> Option<Id<CKQueryCursor, Shared>>;
+        pub unsafe fn cursor(&self) -> Option<Id<CKQueryCursor>>;
 
         #[cfg(feature = "CloudKit_CKQueryCursor")]
         #[method(setCursor:)]
@@ -91,7 +88,7 @@ extern_methods!(
 
         #[cfg(feature = "CloudKit_CKRecordZoneID")]
         #[method_id(@__retain_semantics Other zoneID)]
-        pub unsafe fn zoneID(&self) -> Option<Id<CKRecordZoneID, Shared>>;
+        pub unsafe fn zoneID(&self) -> Option<Id<CKRecordZoneID>>;
 
         #[cfg(feature = "CloudKit_CKRecordZoneID")]
         #[method(setZoneID:)]
@@ -105,7 +102,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other desiredKeys)]
-        pub unsafe fn desiredKeys(&self) -> Option<Id<NSArray<CKRecordFieldKey>, Shared>>;
+        pub unsafe fn desiredKeys(&self) -> Option<Id<NSArray<CKRecordFieldKey>>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setDesiredKeys:)]

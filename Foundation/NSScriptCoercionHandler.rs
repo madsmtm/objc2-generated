@@ -21,14 +21,14 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSScriptCoercionHandler")]
     unsafe impl NSScriptCoercionHandler {
         #[method_id(@__retain_semantics Other sharedCoercionHandler)]
-        pub unsafe fn sharedCoercionHandler() -> Id<NSScriptCoercionHandler, Shared>;
+        pub unsafe fn sharedCoercionHandler() -> Id<NSScriptCoercionHandler>;
 
         #[method_id(@__retain_semantics Other coerceValue:toClass:)]
         pub unsafe fn coerceValue_toClass(
             &self,
             value: &Object,
             to_class: &Class,
-        ) -> Option<Id<Object, Shared>>;
+        ) -> Option<Id<Object>>;
 
         #[method(registerCoercer:selector:toConvertFromClass:toClass:)]
         pub unsafe fn registerCoercer_selector_toConvertFromClass_toClass(

@@ -35,17 +35,17 @@ extern_methods!(
         pub unsafe fn setTransitionProgress(&self, transition_progress: CGFloat);
 
         #[method_id(@__retain_semantics Other currentLayout)]
-        pub unsafe fn currentLayout(&self) -> Id<NSCollectionViewLayout, Shared>;
+        pub unsafe fn currentLayout(&self) -> Id<NSCollectionViewLayout>;
 
         #[method_id(@__retain_semantics Other nextLayout)]
-        pub unsafe fn nextLayout(&self) -> Id<NSCollectionViewLayout, Shared>;
+        pub unsafe fn nextLayout(&self) -> Id<NSCollectionViewLayout>;
 
         #[method_id(@__retain_semantics Init initWithCurrentLayout:nextLayout:)]
         pub unsafe fn initWithCurrentLayout_nextLayout(
             this: Option<Allocated<Self>>,
             current_layout: &NSCollectionViewLayout,
             new_layout: &NSCollectionViewLayout,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(updateValue:forAnimatedKey:)]
         pub unsafe fn updateValue_forAnimatedKey(

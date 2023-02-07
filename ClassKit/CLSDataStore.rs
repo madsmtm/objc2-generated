@@ -17,7 +17,7 @@ extern_protocol!(
             identifier: &NSString,
             parent_context: &CLSContext,
             parent_identifier_path: &NSArray<NSString>,
-        ) -> Option<Id<CLSContext, Shared>>;
+        ) -> Option<Id<CLSContext>>;
     }
 
     unsafe impl ProtocolType for dyn CLSDataStoreDelegate {}
@@ -41,24 +41,22 @@ extern_methods!(
     #[cfg(feature = "ClassKit_CLSDataStore")]
     unsafe impl CLSDataStore {
         #[method_id(@__retain_semantics Other shared)]
-        pub unsafe fn shared() -> Id<CLSDataStore, Shared>;
+        pub unsafe fn shared() -> Id<CLSDataStore>;
 
         #[cfg(feature = "ClassKit_CLSContext")]
         #[method_id(@__retain_semantics Other mainAppContext)]
-        pub unsafe fn mainAppContext(&self) -> Id<CLSContext, Shared>;
+        pub unsafe fn mainAppContext(&self) -> Id<CLSContext>;
 
         #[cfg(feature = "ClassKit_CLSContext")]
         #[method_id(@__retain_semantics Other activeContext)]
-        pub unsafe fn activeContext(&self) -> Option<Id<CLSContext, Shared>>;
+        pub unsafe fn activeContext(&self) -> Option<Id<CLSContext>>;
 
         #[cfg(feature = "ClassKit_CLSActivity")]
         #[method_id(@__retain_semantics Other runningActivity)]
-        pub unsafe fn runningActivity(&self) -> Option<Id<CLSActivity, Shared>>;
+        pub unsafe fn runningActivity(&self) -> Option<Id<CLSActivity>>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(
-            &self,
-        ) -> Option<Id<ProtocolObject<dyn CLSDataStoreDelegate>, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn CLSDataStoreDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -67,10 +65,10 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(saveWithCompletion:)]

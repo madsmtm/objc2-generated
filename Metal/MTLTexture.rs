@@ -77,11 +77,11 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLSharedTextureHandle")]
     unsafe impl MTLSharedTextureHandle {
         #[method_id(@__retain_semantics Other device)]
-        pub fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>, Shared>;
+        pub fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
-        pub fn label(&self) -> Option<Id<NSString, Shared>>;
+        pub fn label(&self) -> Option<Id<NSString>>;
     }
 );
 
@@ -127,14 +127,14 @@ extern_methods!(
             width: NSUInteger,
             height: NSUInteger,
             mipmapped: bool,
-        ) -> Id<MTLTextureDescriptor, Shared>;
+        ) -> Id<MTLTextureDescriptor>;
 
         #[method_id(@__retain_semantics Other textureCubeDescriptorWithPixelFormat:size:mipmapped:)]
         pub unsafe fn textureCubeDescriptorWithPixelFormat_size_mipmapped(
             pixel_format: MTLPixelFormat,
             size: NSUInteger,
             mipmapped: bool,
-        ) -> Id<MTLTextureDescriptor, Shared>;
+        ) -> Id<MTLTextureDescriptor>;
 
         #[method_id(@__retain_semantics Other textureBufferDescriptorWithPixelFormat:width:resourceOptions:usage:)]
         pub unsafe fn textureBufferDescriptorWithPixelFormat_width_resourceOptions_usage(
@@ -142,7 +142,7 @@ extern_methods!(
             width: NSUInteger,
             resource_options: MTLResourceOptions,
             usage: MTLTextureUsage,
-        ) -> Id<MTLTextureDescriptor, Shared>;
+        ) -> Id<MTLTextureDescriptor>;
 
         #[method(textureType)]
         pub fn textureType(&self) -> MTLTextureType;
@@ -246,10 +246,10 @@ extern_protocol!(
     pub unsafe trait MTLTexture: MTLResource {
         #[deprecated = "Use parentTexture or buffer instead"]
         #[method_id(@__retain_semantics Other rootResource)]
-        fn rootResource(&self) -> Option<Id<ProtocolObject<dyn MTLResource>, Shared>>;
+        fn rootResource(&self) -> Option<Id<ProtocolObject<dyn MTLResource>>>;
 
         #[method_id(@__retain_semantics Other parentTexture)]
-        fn parentTexture(&self) -> Option<Id<ProtocolObject<dyn MTLTexture>, Shared>>;
+        fn parentTexture(&self) -> Option<Id<ProtocolObject<dyn MTLTexture>>>;
 
         #[method(parentRelativeLevel)]
         fn parentRelativeLevel(&self) -> NSUInteger;
@@ -258,7 +258,7 @@ extern_protocol!(
         fn parentRelativeSlice(&self) -> NSUInteger;
 
         #[method_id(@__retain_semantics Other buffer)]
-        fn buffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>, Shared>>;
+        fn buffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
         #[method(bufferOffset)]
         fn bufferOffset(&self) -> NSUInteger;
@@ -367,7 +367,7 @@ extern_protocol!(
         fn newTextureViewWithPixelFormat(
             &self,
             pixel_format: MTLPixelFormat,
-        ) -> Option<Id<ProtocolObject<dyn MTLTexture>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLTexture>>>;
 
         #[method_id(@__retain_semantics New newTextureViewWithPixelFormat:textureType:levels:slices:)]
         unsafe fn newTextureViewWithPixelFormat_textureType_levels_slices(
@@ -376,20 +376,20 @@ extern_protocol!(
             texture_type: MTLTextureType,
             level_range: NSRange,
             slice_range: NSRange,
-        ) -> Option<Id<ProtocolObject<dyn MTLTexture>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLTexture>>>;
 
         #[cfg(feature = "Metal_MTLSharedTextureHandle")]
         #[method_id(@__retain_semantics New newSharedTextureHandle)]
-        fn newSharedTextureHandle(&self) -> Option<Id<MTLSharedTextureHandle, Shared>>;
+        fn newSharedTextureHandle(&self) -> Option<Id<MTLSharedTextureHandle>>;
 
         #[method_id(@__retain_semantics Other remoteStorageTexture)]
-        fn remoteStorageTexture(&self) -> Option<Id<ProtocolObject<dyn MTLTexture>, Shared>>;
+        fn remoteStorageTexture(&self) -> Option<Id<ProtocolObject<dyn MTLTexture>>>;
 
         #[method_id(@__retain_semantics New newRemoteTextureViewForDevice:)]
         unsafe fn newRemoteTextureViewForDevice(
             &self,
             device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Option<Id<ProtocolObject<dyn MTLTexture>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLTexture>>>;
 
         #[method(swizzle)]
         fn swizzle(&self) -> MTLTextureSwizzleChannels;
@@ -402,7 +402,7 @@ extern_protocol!(
             level_range: NSRange,
             slice_range: NSRange,
             swizzle: MTLTextureSwizzleChannels,
-        ) -> Option<Id<ProtocolObject<dyn MTLTexture>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLTexture>>>;
     }
 
     unsafe impl ProtocolType for dyn MTLTexture {}

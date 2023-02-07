@@ -76,11 +76,11 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other sectionIdentifiers)]
-        pub unsafe fn sectionIdentifiers(&self) -> Id<NSArray<SectionIdentifierType>, Shared>;
+        pub unsafe fn sectionIdentifiers(&self) -> Id<NSArray<SectionIdentifierType>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other itemIdentifiers)]
-        pub unsafe fn itemIdentifiers(&self) -> Id<NSArray<ItemIdentifierType>, Shared>;
+        pub unsafe fn itemIdentifiers(&self) -> Id<NSArray<ItemIdentifierType>>;
 
         #[method(numberOfItemsInSection:)]
         pub unsafe fn numberOfItemsInSection(
@@ -93,7 +93,7 @@ extern_methods!(
         pub unsafe fn itemIdentifiersInSectionWithIdentifier(
             &self,
             section_identifier: &SectionIdentifierType,
-        ) -> Id<NSArray<ItemIdentifierType>, Shared>;
+        ) -> Id<NSArray<ItemIdentifierType>>;
 
         #[method_id(@__retain_semantics Other sectionIdentifierForSectionContainingItemIdentifier:)]
         pub unsafe fn sectionIdentifierForSectionContainingItemIdentifier(
@@ -308,16 +308,16 @@ extern_methods!(
         >
     {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSDiffableDataSourceSnapshot")]
         #[method_id(@__retain_semantics Other snapshot)]
         pub unsafe fn snapshot(
             &self,
-        ) -> Id<NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>, Shared>;
+        ) -> Id<NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>>;
 
         #[cfg(feature = "AppKit_NSDiffableDataSourceSnapshot")]
         #[method(applySnapshot:animatingDifferences:)]
@@ -339,7 +339,7 @@ extern_methods!(
         pub unsafe fn indexPathForItemIdentifier(
             &self,
             identifier: &ItemIdentifierType,
-        ) -> Option<Id<NSIndexPath, Shared>>;
+        ) -> Option<Id<NSIndexPath>>;
 
         #[method(supplementaryViewProvider)]
         pub unsafe fn supplementaryViewProvider(

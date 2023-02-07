@@ -33,27 +33,25 @@ extern_methods!(
 
         #[cfg(feature = "GameController_GCDeviceCursor")]
         #[method_id(@__retain_semantics Other scroll)]
-        pub unsafe fn scroll(&self) -> Id<GCDeviceCursor, Shared>;
+        pub unsafe fn scroll(&self) -> Id<GCDeviceCursor>;
 
         #[cfg(feature = "GameController_GCControllerButtonInput")]
         #[method_id(@__retain_semantics Other leftButton)]
-        pub unsafe fn leftButton(&self) -> Id<GCControllerButtonInput, Shared>;
+        pub unsafe fn leftButton(&self) -> Id<GCControllerButtonInput>;
 
         #[cfg(feature = "GameController_GCControllerButtonInput")]
         #[method_id(@__retain_semantics Other rightButton)]
-        pub unsafe fn rightButton(&self) -> Option<Id<GCControllerButtonInput, Shared>>;
+        pub unsafe fn rightButton(&self) -> Option<Id<GCControllerButtonInput>>;
 
         #[cfg(feature = "GameController_GCControllerButtonInput")]
         #[method_id(@__retain_semantics Other middleButton)]
-        pub unsafe fn middleButton(&self) -> Option<Id<GCControllerButtonInput, Shared>>;
+        pub unsafe fn middleButton(&self) -> Option<Id<GCControllerButtonInput>>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "GameController_GCControllerButtonInput"
         ))]
         #[method_id(@__retain_semantics Other auxiliaryButtons)]
-        pub unsafe fn auxiliaryButtons(
-            &self,
-        ) -> Option<Id<NSArray<GCControllerButtonInput>, Shared>>;
+        pub unsafe fn auxiliaryButtons(&self) -> Option<Id<NSArray<GCControllerButtonInput>>>;
     }
 );

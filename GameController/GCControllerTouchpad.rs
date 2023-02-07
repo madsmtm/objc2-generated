@@ -45,7 +45,7 @@ extern_methods!(
     unsafe impl GCControllerTouchpad {
         #[cfg(feature = "GameController_GCControllerButtonInput")]
         #[method_id(@__retain_semantics Other button)]
-        pub unsafe fn button(&self) -> Id<GCControllerButtonInput, Shared>;
+        pub unsafe fn button(&self) -> Id<GCControllerButtonInput>;
 
         #[method(touchDown)]
         pub unsafe fn touchDown(&self) -> GCControllerTouchpadHandler;
@@ -67,7 +67,7 @@ extern_methods!(
 
         #[cfg(feature = "GameController_GCControllerDirectionPad")]
         #[method_id(@__retain_semantics Other touchSurface)]
-        pub unsafe fn touchSurface(&self) -> Id<GCControllerDirectionPad, Shared>;
+        pub unsafe fn touchSurface(&self) -> Id<GCControllerDirectionPad>;
 
         #[method(touchState)]
         pub unsafe fn touchState(&self) -> GCTouchState;

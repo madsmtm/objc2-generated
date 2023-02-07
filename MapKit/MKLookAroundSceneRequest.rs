@@ -25,30 +25,30 @@ extern_methods!(
     #[cfg(feature = "MapKit_MKLookAroundSceneRequest")]
     unsafe impl MKLookAroundSceneRequest {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoordinate:)]
         pub unsafe fn initWithCoordinate(
             this: Option<Allocated<Self>>,
             coordinate: CLLocationCoordinate2D,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "MapKit_MKMapItem")]
         #[method_id(@__retain_semantics Init initWithMapItem:)]
         pub unsafe fn initWithMapItem(
             this: Option<Allocated<Self>>,
             map_item: &MKMapItem,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(coordinate)]
         pub unsafe fn coordinate(&self) -> CLLocationCoordinate2D;
 
         #[cfg(feature = "MapKit_MKMapItem")]
         #[method_id(@__retain_semantics Other mapItem)]
-        pub unsafe fn mapItem(&self) -> Option<Id<MKMapItem, Shared>>;
+        pub unsafe fn mapItem(&self) -> Option<Id<MKMapItem>>;
 
         #[method(isCancelled)]
         pub unsafe fn isCancelled(&self) -> bool;

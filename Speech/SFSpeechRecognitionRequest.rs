@@ -35,7 +35,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other contextualStrings)]
-        pub unsafe fn contextualStrings(&self) -> Id<NSArray<NSString>, Shared>;
+        pub unsafe fn contextualStrings(&self) -> Id<NSArray<NSString>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setContextualStrings:)]
@@ -44,7 +44,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Not used anymore"]
         #[method_id(@__retain_semantics Other interactionIdentifier)]
-        pub unsafe fn interactionIdentifier(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn interactionIdentifier(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Not used anymore"]
@@ -84,15 +84,15 @@ extern_methods!(
     #[cfg(feature = "Speech_SFSpeechURLRecognitionRequest")]
     unsafe impl SFSpeechURLRecognitionRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Init initWithURL:)]
-        pub unsafe fn initWithURL(this: Option<Allocated<Self>>, url: &NSURL) -> Id<Self, Shared>;
+        pub unsafe fn initWithURL(this: Option<Allocated<Self>>, url: &NSURL) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other URL)]
-        pub unsafe fn URL(&self) -> Id<NSURL, Shared>;
+        pub unsafe fn URL(&self) -> Id<NSURL>;
     }
 );
 
@@ -116,7 +116,7 @@ extern_methods!(
     unsafe impl SFSpeechAudioBufferRecognitionRequest {
         #[cfg(feature = "AVFAudio_AVAudioFormat")]
         #[method_id(@__retain_semantics Other nativeAudioFormat)]
-        pub unsafe fn nativeAudioFormat(&self) -> Id<AVAudioFormat, Shared>;
+        pub unsafe fn nativeAudioFormat(&self) -> Id<AVAudioFormat>;
 
         #[cfg(feature = "AVFAudio_AVAudioPCMBuffer")]
         #[method(appendAudioPCMBuffer:)]

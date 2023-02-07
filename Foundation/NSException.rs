@@ -62,7 +62,7 @@ extern_methods!(
             name: &NSExceptionName,
             reason: Option<&NSString>,
             user_info: Option<&NSDictionary>,
-        ) -> Id<NSException, Shared>;
+        ) -> Id<NSException>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithName:reason:userInfo:)]
@@ -71,26 +71,26 @@ extern_methods!(
             a_name: &NSExceptionName,
             a_reason: Option<&NSString>,
             a_user_info: Option<&NSDictionary>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other name)]
-        pub fn name(&self) -> Id<NSExceptionName, Shared>;
+        pub fn name(&self) -> Id<NSExceptionName>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other reason)]
-        pub fn reason(&self) -> Option<Id<NSString, Shared>>;
+        pub fn reason(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other userInfo)]
-        pub fn userInfo(&self) -> Option<Id<NSDictionary, Shared>>;
+        pub fn userInfo(&self) -> Option<Id<NSDictionary>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method_id(@__retain_semantics Other callStackReturnAddresses)]
-        pub unsafe fn callStackReturnAddresses(&self) -> Id<NSArray<NSNumber>, Shared>;
+        pub unsafe fn callStackReturnAddresses(&self) -> Id<NSArray<NSNumber>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other callStackSymbols)]
-        pub unsafe fn callStackSymbols(&self) -> Id<NSArray<NSString>, Shared>;
+        pub unsafe fn callStackSymbols(&self) -> Id<NSArray<NSString>>;
     }
 );
 
@@ -130,6 +130,6 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSAssertionHandler")]
     unsafe impl NSAssertionHandler {
         #[method_id(@__retain_semantics Other currentHandler)]
-        pub unsafe fn currentHandler() -> Id<NSAssertionHandler, Shared>;
+        pub unsafe fn currentHandler() -> Id<NSAssertionHandler>;
     }
 );

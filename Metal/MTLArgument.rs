@@ -189,7 +189,7 @@ extern_methods!(
     unsafe impl MTLStructMember {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub fn name(&self) -> Id<NSString, Shared>;
+        pub fn name(&self) -> Id<NSString>;
 
         #[method(offset)]
         pub fn offset(&self) -> NSUInteger;
@@ -199,19 +199,19 @@ extern_methods!(
 
         #[cfg(feature = "Metal_MTLStructType")]
         #[method_id(@__retain_semantics Other structType)]
-        pub fn structType(&self) -> Option<Id<MTLStructType, Shared>>;
+        pub fn structType(&self) -> Option<Id<MTLStructType>>;
 
         #[cfg(feature = "Metal_MTLArrayType")]
         #[method_id(@__retain_semantics Other arrayType)]
-        pub fn arrayType(&self) -> Option<Id<MTLArrayType, Shared>>;
+        pub fn arrayType(&self) -> Option<Id<MTLArrayType>>;
 
         #[cfg(feature = "Metal_MTLTextureReferenceType")]
         #[method_id(@__retain_semantics Other textureReferenceType)]
-        pub unsafe fn textureReferenceType(&self) -> Option<Id<MTLTextureReferenceType, Shared>>;
+        pub unsafe fn textureReferenceType(&self) -> Option<Id<MTLTextureReferenceType>>;
 
         #[cfg(feature = "Metal_MTLPointerType")]
         #[method_id(@__retain_semantics Other pointerType)]
-        pub unsafe fn pointerType(&self) -> Option<Id<MTLPointerType, Shared>>;
+        pub unsafe fn pointerType(&self) -> Option<Id<MTLPointerType>>;
 
         #[method(argumentIndex)]
         pub unsafe fn argumentIndex(&self) -> NSUInteger;
@@ -238,11 +238,11 @@ extern_methods!(
     unsafe impl MTLStructType {
         #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLStructMember"))]
         #[method_id(@__retain_semantics Other members)]
-        pub fn members(&self) -> Id<NSArray<MTLStructMember>, Shared>;
+        pub fn members(&self) -> Id<NSArray<MTLStructMember>>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Metal_MTLStructMember"))]
         #[method_id(@__retain_semantics Other memberByName:)]
-        pub fn memberByName(&self, name: &NSString) -> Option<Id<MTLStructMember, Shared>>;
+        pub fn memberByName(&self, name: &NSString) -> Option<Id<MTLStructMember>>;
     }
 );
 
@@ -278,20 +278,18 @@ extern_methods!(
 
         #[cfg(feature = "Metal_MTLStructType")]
         #[method_id(@__retain_semantics Other elementStructType)]
-        pub fn elementStructType(&self) -> Option<Id<MTLStructType, Shared>>;
+        pub fn elementStructType(&self) -> Option<Id<MTLStructType>>;
 
         #[method_id(@__retain_semantics Other elementArrayType)]
-        pub fn elementArrayType(&self) -> Option<Id<MTLArrayType, Shared>>;
+        pub fn elementArrayType(&self) -> Option<Id<MTLArrayType>>;
 
         #[cfg(feature = "Metal_MTLTextureReferenceType")]
         #[method_id(@__retain_semantics Other elementTextureReferenceType)]
-        pub unsafe fn elementTextureReferenceType(
-            &self,
-        ) -> Option<Id<MTLTextureReferenceType, Shared>>;
+        pub unsafe fn elementTextureReferenceType(&self) -> Option<Id<MTLTextureReferenceType>>;
 
         #[cfg(feature = "Metal_MTLPointerType")]
         #[method_id(@__retain_semantics Other elementPointerType)]
-        pub unsafe fn elementPointerType(&self) -> Option<Id<MTLPointerType, Shared>>;
+        pub unsafe fn elementPointerType(&self) -> Option<Id<MTLPointerType>>;
     }
 );
 
@@ -330,11 +328,11 @@ extern_methods!(
 
         #[cfg(feature = "Metal_MTLStructType")]
         #[method_id(@__retain_semantics Other elementStructType)]
-        pub unsafe fn elementStructType(&self) -> Option<Id<MTLStructType, Shared>>;
+        pub unsafe fn elementStructType(&self) -> Option<Id<MTLStructType>>;
 
         #[cfg(feature = "Metal_MTLArrayType")]
         #[method_id(@__retain_semantics Other elementArrayType)]
-        pub unsafe fn elementArrayType(&self) -> Option<Id<MTLArrayType, Shared>>;
+        pub unsafe fn elementArrayType(&self) -> Option<Id<MTLArrayType>>;
     }
 );
 
@@ -390,7 +388,7 @@ extern_methods!(
     unsafe impl MTLArgument {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub fn name(&self) -> Id<NSString, Shared>;
+        pub fn name(&self) -> Id<NSString>;
 
         #[method(type)]
         pub unsafe fn r#type(&self) -> MTLArgumentType;
@@ -415,11 +413,11 @@ extern_methods!(
 
         #[cfg(feature = "Metal_MTLStructType")]
         #[method_id(@__retain_semantics Other bufferStructType)]
-        pub fn bufferStructType(&self) -> Option<Id<MTLStructType, Shared>>;
+        pub fn bufferStructType(&self) -> Option<Id<MTLStructType>>;
 
         #[cfg(feature = "Metal_MTLPointerType")]
         #[method_id(@__retain_semantics Other bufferPointerType)]
-        pub unsafe fn bufferPointerType(&self) -> Option<Id<MTLPointerType, Shared>>;
+        pub unsafe fn bufferPointerType(&self) -> Option<Id<MTLPointerType>>;
 
         #[method(threadgroupMemoryAlignment)]
         pub fn threadgroupMemoryAlignment(&self) -> NSUInteger;
@@ -445,7 +443,7 @@ extern_protocol!(
     pub unsafe trait MTLBinding: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        unsafe fn name(&self) -> Id<NSString, Shared>;
+        unsafe fn name(&self) -> Id<NSString>;
 
         #[method(type)]
         unsafe fn r#type(&self) -> MTLBindingType;
@@ -479,11 +477,11 @@ extern_protocol!(
 
         #[cfg(feature = "Metal_MTLStructType")]
         #[method_id(@__retain_semantics Other bufferStructType)]
-        unsafe fn bufferStructType(&self) -> Option<Id<MTLStructType, Shared>>;
+        unsafe fn bufferStructType(&self) -> Option<Id<MTLStructType>>;
 
         #[cfg(feature = "Metal_MTLPointerType")]
         #[method_id(@__retain_semantics Other bufferPointerType)]
-        unsafe fn bufferPointerType(&self) -> Option<Id<MTLPointerType, Shared>>;
+        unsafe fn bufferPointerType(&self) -> Option<Id<MTLPointerType>>;
     }
 
     unsafe impl ProtocolType for dyn MTLBufferBinding {}

@@ -26,15 +26,15 @@ extern_methods!(
     unsafe impl DOMCSSStyleSheet {
         #[cfg(feature = "WebKit_DOMCSSRule")]
         #[method_id(@__retain_semantics Other ownerRule)]
-        pub unsafe fn ownerRule(&self) -> Option<Id<DOMCSSRule, Shared>>;
+        pub unsafe fn ownerRule(&self) -> Option<Id<DOMCSSRule>>;
 
         #[cfg(feature = "WebKit_DOMCSSRuleList")]
         #[method_id(@__retain_semantics Other cssRules)]
-        pub unsafe fn cssRules(&self) -> Option<Id<DOMCSSRuleList, Shared>>;
+        pub unsafe fn cssRules(&self) -> Option<Id<DOMCSSRuleList>>;
 
         #[cfg(feature = "WebKit_DOMCSSRuleList")]
         #[method_id(@__retain_semantics Other rules)]
-        pub unsafe fn rules(&self) -> Option<Id<DOMCSSRuleList, Shared>>;
+        pub unsafe fn rules(&self) -> Option<Id<DOMCSSRuleList>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(insertRule:index:)]

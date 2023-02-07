@@ -29,28 +29,25 @@ extern_methods!(
     unsafe impl CXTransaction {
         #[cfg(feature = "Foundation_NSUUID")]
         #[method_id(@__retain_semantics Other UUID)]
-        pub unsafe fn UUID(&self) -> Id<NSUUID, Shared>;
+        pub unsafe fn UUID(&self) -> Id<NSUUID>;
 
         #[method(isComplete)]
         pub unsafe fn isComplete(&self) -> bool;
 
         #[cfg(all(feature = "CallKit_CXAction", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other actions)]
-        pub unsafe fn actions(&self) -> Id<NSArray<CXAction>, Shared>;
+        pub unsafe fn actions(&self) -> Id<NSArray<CXAction>>;
 
         #[cfg(all(feature = "CallKit_CXAction", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Init initWithActions:)]
         pub unsafe fn initWithActions(
             this: Option<Allocated<Self>>,
             actions: &NSArray<CXAction>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "CallKit_CXAction")]
         #[method_id(@__retain_semantics Init initWithAction:)]
-        pub unsafe fn initWithAction(
-            this: Option<Allocated<Self>>,
-            action: &CXAction,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithAction(this: Option<Allocated<Self>>, action: &CXAction) -> Id<Self>;
 
         #[cfg(feature = "CallKit_CXAction")]
         #[method(addAction:)]

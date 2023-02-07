@@ -9,7 +9,7 @@ extern_protocol!(
     pub unsafe trait NSAccessibilityColor {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other accessibilityName)]
-        unsafe fn accessibilityName(&self) -> Id<NSString, Shared>;
+        unsafe fn accessibilityName(&self) -> Id<NSString>;
     }
 
     unsafe impl ProtocolType for dyn NSAccessibilityColor {}

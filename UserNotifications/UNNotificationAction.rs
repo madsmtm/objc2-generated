@@ -41,18 +41,18 @@ extern_methods!(
     unsafe impl UNNotificationAction {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn identifier(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Id<NSString, Shared>;
+        pub unsafe fn title(&self) -> Id<NSString>;
 
         #[method(options)]
         pub unsafe fn options(&self) -> UNNotificationActionOptions;
 
         #[cfg(feature = "UserNotifications_UNNotificationActionIcon")]
         #[method_id(@__retain_semantics Other icon)]
-        pub unsafe fn icon(&self) -> Option<Id<UNNotificationActionIcon, Shared>>;
+        pub unsafe fn icon(&self) -> Option<Id<UNNotificationActionIcon>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other actionWithIdentifier:title:options:)]
@@ -60,7 +60,7 @@ extern_methods!(
             identifier: &NSString,
             title: &NSString,
             options: UNNotificationActionOptions,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(
             feature = "Foundation_NSString",
@@ -72,10 +72,10 @@ extern_methods!(
             title: &NSString,
             options: UNNotificationActionOptions,
             icon: Option<&UNNotificationActionIcon>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }
 );
 
@@ -111,7 +111,7 @@ extern_methods!(
             options: UNNotificationActionOptions,
             text_input_button_title: &NSString,
             text_input_placeholder: &NSString,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(
             feature = "Foundation_NSString",
@@ -125,15 +125,15 @@ extern_methods!(
             icon: Option<&UNNotificationActionIcon>,
             text_input_button_title: &NSString,
             text_input_placeholder: &NSString,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other textInputButtonTitle)]
-        pub unsafe fn textInputButtonTitle(&self) -> Id<NSString, Shared>;
+        pub unsafe fn textInputButtonTitle(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other textInputPlaceholder)]
-        pub unsafe fn textInputPlaceholder(&self) -> Id<NSString, Shared>;
+        pub unsafe fn textInputPlaceholder(&self) -> Id<NSString>;
     }
 );
 
@@ -147,7 +147,7 @@ extern_methods!(
             identifier: &NSString,
             title: &NSString,
             options: UNNotificationActionOptions,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(
             feature = "Foundation_NSString",
@@ -159,6 +159,6 @@ extern_methods!(
             title: &NSString,
             options: UNNotificationActionOptions,
             icon: Option<&UNNotificationActionIcon>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

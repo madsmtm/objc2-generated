@@ -46,7 +46,7 @@ extern_protocol!(
             &self,
             container_item_identifier: &NSFileProviderItemIdentifier,
             request: &NSFileProviderRequest,
-        ) -> Result<Id<ProtocolObject<dyn NSFileProviderEnumerator>, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<ProtocolObject<dyn NSFileProviderEnumerator>>, Id<NSError>>;
     }
 
     unsafe impl ProtocolType for dyn NSFileProviderEnumerating {}
@@ -61,7 +61,7 @@ extern_protocol!(
         unsafe fn initWithDomain(
             this: Option<Allocated<Self>>,
             domain: &NSFileProviderDomain,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(invalidate)]
         unsafe fn invalidate(&self);
@@ -77,7 +77,7 @@ extern_protocol!(
             identifier: &NSFileProviderItemIdentifier,
             request: &NSFileProviderRequest,
             completion_handler: &Block<(*mut NSFileProviderItem, *mut NSError), ()>,
-        ) -> Id<NSProgress, Shared>;
+        ) -> Id<NSProgress>;
 
         #[cfg(all(
             feature = "FileProvider_NSFileProviderItemVersion",
@@ -93,7 +93,7 @@ extern_protocol!(
             requested_version: Option<&NSFileProviderItemVersion>,
             request: &NSFileProviderRequest,
             completion_handler: &Block<(*mut NSURL, *mut NSFileProviderItem, *mut NSError), ()>,
-        ) -> Id<NSProgress, Shared>;
+        ) -> Id<NSProgress>;
 
         #[cfg(all(
             feature = "FileProvider_NSFileProviderRequest",
@@ -118,7 +118,7 @@ extern_protocol!(
                 ),
                 (),
             >,
-        ) -> Id<NSProgress, Shared>;
+        ) -> Id<NSProgress>;
 
         #[cfg(all(
             feature = "FileProvider_NSFileProviderItemVersion",
@@ -145,7 +145,7 @@ extern_protocol!(
                 ),
                 (),
             >,
-        ) -> Id<NSProgress, Shared>;
+        ) -> Id<NSProgress>;
 
         #[cfg(all(
             feature = "FileProvider_NSFileProviderItemVersion",
@@ -161,7 +161,7 @@ extern_protocol!(
             options: NSFileProviderDeleteItemOptions,
             request: &NSFileProviderRequest,
             completion_handler: &Block<(*mut NSError,), ()>,
-        ) -> Id<NSProgress, Shared>;
+        ) -> Id<NSProgress>;
 
         #[optional]
         #[method(importDidFinishWithCompletionHandler:)]
@@ -203,7 +203,7 @@ extern_protocol!(
             existing_version: &NSFileProviderItemVersion,
             request: &NSFileProviderRequest,
             completion_handler: &Block<(*mut NSURL, *mut NSFileProviderItem, *mut NSError), ()>,
-        ) -> Id<NSProgress, Shared>;
+        ) -> Id<NSProgress>;
     }
 
     unsafe impl ProtocolType for dyn NSFileProviderIncrementalContentFetching {}
@@ -227,7 +227,7 @@ extern_protocol!(
                 ),
                 (),
             >,
-        ) -> Id<NSProgress, Shared>;
+        ) -> Id<NSProgress>;
     }
 
     unsafe impl ProtocolType for dyn NSFileProviderServicing {}
@@ -255,7 +255,7 @@ extern_protocol!(
                 (),
             >,
             completion_handler: &Block<(*mut NSError,), ()>,
-        ) -> Id<NSProgress, Shared>;
+        ) -> Id<NSProgress>;
     }
 
     unsafe impl ProtocolType for dyn NSFileProviderThumbnailing {}
@@ -274,7 +274,7 @@ extern_protocol!(
             action_identifier: &NSFileProviderExtensionActionIdentifier,
             item_identifiers: &NSArray<NSFileProviderItemIdentifier>,
             completion_handler: &Block<(*mut NSError,), ()>,
-        ) -> Id<NSProgress, Shared>;
+        ) -> Id<NSProgress>;
     }
 
     unsafe impl ProtocolType for dyn NSFileProviderCustomAction {}
@@ -305,11 +305,11 @@ extern_protocol!(
     pub unsafe trait NSFileProviderDomainState: NSObjectProtocol {
         #[cfg(feature = "FileProvider_NSFileProviderDomainVersion")]
         #[method_id(@__retain_semantics Other domainVersion)]
-        unsafe fn domainVersion(&self) -> Id<NSFileProviderDomainVersion, Shared>;
+        unsafe fn domainVersion(&self) -> Id<NSFileProviderDomainVersion>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other userInfo)]
-        unsafe fn userInfo(&self) -> Id<NSDictionary, Shared>;
+        unsafe fn userInfo(&self) -> Id<NSDictionary>;
     }
 
     unsafe impl ProtocolType for dyn NSFileProviderDomainState {}
@@ -343,7 +343,7 @@ extern_protocol!(
                 ),
                 (),
             >,
-        ) -> Id<NSProgress, Shared>;
+        ) -> Id<NSProgress>;
     }
 
     unsafe impl ProtocolType for dyn NSFileProviderPartialContentFetching {}

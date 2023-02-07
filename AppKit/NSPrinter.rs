@@ -44,25 +44,25 @@ extern_methods!(
     unsafe impl NSPrinter {
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other printerNames)]
-        pub unsafe fn printerNames() -> Id<NSArray<NSString>, Shared>;
+        pub unsafe fn printerNames() -> Id<NSArray<NSString>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other printerTypes)]
-        pub unsafe fn printerTypes() -> Id<NSArray<NSPrinterTypeName>, Shared>;
+        pub unsafe fn printerTypes() -> Id<NSArray<NSPrinterTypeName>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other printerWithName:)]
-        pub unsafe fn printerWithName(name: &NSString) -> Option<Id<NSPrinter, Shared>>;
+        pub unsafe fn printerWithName(name: &NSString) -> Option<Id<NSPrinter>>;
 
         #[method_id(@__retain_semantics Other printerWithType:)]
-        pub unsafe fn printerWithType(r#type: &NSPrinterTypeName) -> Option<Id<NSPrinter, Shared>>;
+        pub unsafe fn printerWithType(r#type: &NSPrinterTypeName) -> Option<Id<NSPrinter>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString, Shared>;
+        pub unsafe fn name(&self) -> Id<NSString>;
 
         #[method_id(@__retain_semantics Other type)]
-        pub unsafe fn r#type(&self) -> Id<NSPrinterTypeName, Shared>;
+        pub unsafe fn r#type(&self) -> Id<NSPrinterTypeName>;
 
         #[method(languageLevel)]
         pub unsafe fn languageLevel(&self) -> NSInteger;
@@ -72,9 +72,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other deviceDescription)]
-        pub unsafe fn deviceDescription(
-            &self,
-        ) -> Id<NSDictionary<NSDeviceDescriptionKey, Object>, Shared>;
+        pub unsafe fn deviceDescription(&self) -> Id<NSDictionary<NSDeviceDescriptionKey, Object>>;
     }
 );
 
@@ -134,7 +132,7 @@ extern_methods!(
             &self,
             key: Option<&NSString>,
             table: &NSString,
-        ) -> Option<Id<NSString, Shared>>;
+        ) -> Option<Id<NSString>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[deprecated]
@@ -143,7 +141,7 @@ extern_methods!(
             &self,
             key: Option<&NSString>,
             table: &NSString,
-        ) -> Option<Id<NSArray, Shared>>;
+        ) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
@@ -174,21 +172,21 @@ extern_methods!(
             name: &NSString,
             domain: Option<&NSString>,
             flag: bool,
-        ) -> Option<Id<NSPrinter, Shared>>;
+        ) -> Option<Id<NSPrinter>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
         #[method_id(@__retain_semantics Other domain)]
-        pub unsafe fn domain(&self) -> Id<NSString, Shared>;
+        pub unsafe fn domain(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
         #[method_id(@__retain_semantics Other host)]
-        pub unsafe fn host(&self) -> Id<NSString, Shared>;
+        pub unsafe fn host(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
         #[method_id(@__retain_semantics Other note)]
-        pub unsafe fn note(&self) -> Id<NSString, Shared>;
+        pub unsafe fn note(&self) -> Id<NSString>;
     }
 );

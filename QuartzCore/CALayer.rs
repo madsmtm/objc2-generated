@@ -80,26 +80,23 @@ extern_methods!(
     #[cfg(feature = "CoreAnimation_CALayer")]
     unsafe impl CALayer {
         #[method_id(@__retain_semantics Other layer)]
-        pub fn layer() -> Id<Self, Shared>;
+        pub fn layer() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithLayer:)]
-        pub unsafe fn initWithLayer(
-            this: Option<Allocated<Self>>,
-            layer: &Object,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithLayer(this: Option<Allocated<Self>>, layer: &Object) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other presentationLayer)]
-        pub unsafe fn presentationLayer(&self) -> Option<Id<Self, Shared>>;
+        pub unsafe fn presentationLayer(&self) -> Option<Id<Self>>;
 
         #[method_id(@__retain_semantics Other modelLayer)]
-        pub unsafe fn modelLayer(&self) -> Id<Self, Shared>;
+        pub unsafe fn modelLayer(&self) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other defaultValueForKey:)]
-        pub unsafe fn defaultValueForKey(key: &NSString) -> Option<Id<Object, Shared>>;
+        pub unsafe fn defaultValueForKey(key: &NSString) -> Option<Id<Object>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(needsDisplayForKey:)]
@@ -173,14 +170,14 @@ extern_methods!(
         pub fn contentsAreFlipped(&self) -> bool;
 
         #[method_id(@__retain_semantics Other superlayer)]
-        pub fn superlayer(&self) -> Option<Id<CALayer, Shared>>;
+        pub fn superlayer(&self) -> Option<Id<CALayer>>;
 
         #[method(removeFromSuperlayer)]
         pub fn removeFromSuperlayer(&self);
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other sublayers)]
-        pub unsafe fn sublayers(&self) -> Option<Id<NSArray<CALayer>, Shared>>;
+        pub unsafe fn sublayers(&self) -> Option<Id<NSArray<CALayer>>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setSublayers:)]
@@ -208,7 +205,7 @@ extern_methods!(
         pub fn setSublayerTransform(&self, sublayer_transform: CATransform3D);
 
         #[method_id(@__retain_semantics Other mask)]
-        pub fn mask(&self) -> Option<Id<CALayer, Shared>>;
+        pub fn mask(&self) -> Option<Id<CALayer>>;
 
         #[method(setMask:)]
         pub unsafe fn setMask(&self, mask: Option<&CALayer>);
@@ -243,13 +240,13 @@ extern_methods!(
             -> CFTimeInterval;
 
         #[method_id(@__retain_semantics Other hitTest:)]
-        pub fn hitTest(&self, p: CGPoint) -> Option<Id<CALayer, Shared>>;
+        pub fn hitTest(&self, p: CGPoint) -> Option<Id<CALayer>>;
 
         #[method(containsPoint:)]
         pub fn containsPoint(&self, p: CGPoint) -> bool;
 
         #[method_id(@__retain_semantics Other contents)]
-        pub unsafe fn contents(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn contents(&self) -> Option<Id<Object>>;
 
         #[method(setContents:)]
         pub unsafe fn setContents(&self, contents: Option<&Object>);
@@ -261,7 +258,7 @@ extern_methods!(
         pub fn setContentsRect(&self, contents_rect: CGRect);
 
         #[method_id(@__retain_semantics Other contentsGravity)]
-        pub fn contentsGravity(&self) -> Id<CALayerContentsGravity, Shared>;
+        pub fn contentsGravity(&self) -> Id<CALayerContentsGravity>;
 
         #[method(setContentsGravity:)]
         pub fn setContentsGravity(&self, contents_gravity: &CALayerContentsGravity);
@@ -279,19 +276,19 @@ extern_methods!(
         pub fn setContentsCenter(&self, contents_center: CGRect);
 
         #[method_id(@__retain_semantics Other contentsFormat)]
-        pub fn contentsFormat(&self) -> Id<CALayerContentsFormat, Shared>;
+        pub fn contentsFormat(&self) -> Id<CALayerContentsFormat>;
 
         #[method(setContentsFormat:)]
         pub fn setContentsFormat(&self, contents_format: &CALayerContentsFormat);
 
         #[method_id(@__retain_semantics Other minificationFilter)]
-        pub fn minificationFilter(&self) -> Id<CALayerContentsFilter, Shared>;
+        pub fn minificationFilter(&self) -> Id<CALayerContentsFilter>;
 
         #[method(setMinificationFilter:)]
         pub fn setMinificationFilter(&self, minification_filter: &CALayerContentsFilter);
 
         #[method_id(@__retain_semantics Other magnificationFilter)]
-        pub fn magnificationFilter(&self) -> Id<CALayerContentsFilter, Shared>;
+        pub fn magnificationFilter(&self) -> Id<CALayerContentsFilter>;
 
         #[method(setMagnificationFilter:)]
         pub fn setMagnificationFilter(&self, magnification_filter: &CALayerContentsFilter);
@@ -360,7 +357,7 @@ extern_methods!(
         pub fn setMaskedCorners(&self, masked_corners: CACornerMask);
 
         #[method_id(@__retain_semantics Other cornerCurve)]
-        pub fn cornerCurve(&self) -> Id<CALayerCornerCurve, Shared>;
+        pub fn cornerCurve(&self) -> Id<CALayerCornerCurve>;
 
         #[method(setCornerCurve:)]
         pub fn setCornerCurve(&self, corner_curve: &CALayerCornerCurve);
@@ -387,14 +384,14 @@ extern_methods!(
         pub fn setAllowsGroupOpacity(&self, allows_group_opacity: bool);
 
         #[method_id(@__retain_semantics Other compositingFilter)]
-        pub unsafe fn compositingFilter(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn compositingFilter(&self) -> Option<Id<Object>>;
 
         #[method(setCompositingFilter:)]
         pub unsafe fn setCompositingFilter(&self, compositing_filter: Option<&Object>);
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other filters)]
-        pub unsafe fn filters(&self) -> Option<Id<NSArray, Shared>>;
+        pub unsafe fn filters(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setFilters:)]
@@ -402,7 +399,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other backgroundFilters)]
-        pub unsafe fn backgroundFilters(&self) -> Option<Id<NSArray, Shared>>;
+        pub unsafe fn backgroundFilters(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setBackgroundFilters:)]
@@ -445,7 +442,7 @@ extern_methods!(
         pub fn setAutoresizingMask(&self, autoresizing_mask: CAAutoresizingMask);
 
         #[method_id(@__retain_semantics Other layoutManager)]
-        pub fn layoutManager(&self) -> Option<Id<ProtocolObject<dyn CALayoutManager>, Shared>>;
+        pub fn layoutManager(&self) -> Option<Id<ProtocolObject<dyn CALayoutManager>>>;
 
         #[method(setLayoutManager:)]
         pub fn setLayoutManager(
@@ -476,22 +473,15 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other defaultActionForKey:)]
-        pub fn defaultActionForKey(
-            event: &NSString,
-        ) -> Option<Id<ProtocolObject<dyn CAAction>, Shared>>;
+        pub fn defaultActionForKey(event: &NSString) -> Option<Id<ProtocolObject<dyn CAAction>>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other actionForKey:)]
-        pub fn actionForKey(
-            &self,
-            event: &NSString,
-        ) -> Option<Id<ProtocolObject<dyn CAAction>, Shared>>;
+        pub fn actionForKey(&self, event: &NSString) -> Option<Id<ProtocolObject<dyn CAAction>>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other actions)]
-        pub fn actions(
-            &self,
-        ) -> Option<Id<NSDictionary<NSString, ProtocolObject<dyn CAAction>>, Shared>>;
+        pub fn actions(&self) -> Option<Id<NSDictionary<NSString, ProtocolObject<dyn CAAction>>>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setActions:)]
@@ -513,29 +503,29 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other animationKeys)]
-        pub fn animationKeys(&self) -> Option<Id<NSArray<NSString>, Shared>>;
+        pub fn animationKeys(&self) -> Option<Id<NSArray<NSString>>>;
 
         #[cfg(all(feature = "CoreAnimation_CAAnimation", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other animationForKey:)]
-        pub unsafe fn animationForKey(&self, key: &NSString) -> Option<Id<CAAnimation, Shared>>;
+        pub unsafe fn animationForKey(&self, key: &NSString) -> Option<Id<CAAnimation>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub fn name(&self) -> Option<Id<NSString, Shared>>;
+        pub fn name(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]
         pub fn setName(&self, name: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub fn delegate(&self) -> Option<Id<ProtocolObject<dyn CALayerDelegate>, Shared>>;
+        pub fn delegate(&self) -> Option<Id<ProtocolObject<dyn CALayerDelegate>>>;
 
         #[method(setDelegate:)]
         pub fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn CALayerDelegate>>);
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other style)]
-        pub unsafe fn style(&self) -> Option<Id<NSDictionary, Shared>>;
+        pub unsafe fn style(&self) -> Option<Id<NSDictionary>>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(setStyle:)]
@@ -612,7 +602,7 @@ extern_protocol!(
             &self,
             layer: &CALayer,
             event: &NSString,
-        ) -> Option<Id<ProtocolObject<dyn CAAction>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn CAAction>>>;
     }
 
     unsafe impl ProtocolType for dyn CALayerDelegate {}

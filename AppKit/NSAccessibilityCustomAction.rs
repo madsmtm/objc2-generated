@@ -28,7 +28,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             name: &NSString,
             handler: Option<&Block<(), Bool>>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithName:target:selector:)]
@@ -37,11 +37,11 @@ extern_methods!(
             name: &NSString,
             target: &NSObject,
             selector: Sel,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString, Shared>;
+        pub unsafe fn name(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]
@@ -54,7 +54,7 @@ extern_methods!(
         pub unsafe fn setHandler(&self, handler: Option<&Block<(), Bool>>);
 
         #[method_id(@__retain_semantics Other target)]
-        pub unsafe fn target(&self) -> Option<Id<NSObject, Shared>>;
+        pub unsafe fn target(&self) -> Option<Id<NSObject>>;
 
         #[method(setTarget:)]
         pub unsafe fn setTarget(&self, target: Option<&NSObject>);

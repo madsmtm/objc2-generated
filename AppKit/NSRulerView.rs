@@ -80,10 +80,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            coder: &NSCoder,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, coder: &NSCoder) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSScrollView")]
         #[method_id(@__retain_semantics Init initWithScrollView:orientation:)]
@@ -91,11 +88,11 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             scroll_view: Option<&NSScrollView>,
             orientation: NSRulerOrientation,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSScrollView")]
         #[method_id(@__retain_semantics Other scrollView)]
-        pub unsafe fn scrollView(&self) -> Option<Id<NSScrollView, Shared>>;
+        pub unsafe fn scrollView(&self) -> Option<Id<NSScrollView>>;
 
         #[cfg(feature = "AppKit_NSScrollView")]
         #[method(setScrollView:)]
@@ -138,7 +135,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other measurementUnits)]
-        pub unsafe fn measurementUnits(&self) -> Id<NSRulerViewUnitName, Shared>;
+        pub unsafe fn measurementUnits(&self) -> Id<NSRulerViewUnitName>;
 
         #[method(setMeasurementUnits:)]
         pub unsafe fn setMeasurementUnits(&self, measurement_units: &NSRulerViewUnitName);
@@ -150,7 +147,7 @@ extern_methods!(
         pub unsafe fn setOriginOffset(&self, origin_offset: CGFloat);
 
         #[method_id(@__retain_semantics Other clientView)]
-        pub unsafe fn clientView(&self) -> Option<Id<NSView, Shared>>;
+        pub unsafe fn clientView(&self) -> Option<Id<NSView>>;
 
         #[method(setClientView:)]
         pub unsafe fn setClientView(&self, client_view: Option<&NSView>);
@@ -165,7 +162,7 @@ extern_methods!(
 
         #[cfg(all(feature = "AppKit_NSRulerMarker", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other markers)]
-        pub unsafe fn markers(&self) -> Option<Id<NSArray<NSRulerMarker>, Shared>>;
+        pub unsafe fn markers(&self) -> Option<Id<NSArray<NSRulerMarker>>>;
 
         #[cfg(all(feature = "AppKit_NSRulerMarker", feature = "Foundation_NSArray"))]
         #[method(setMarkers:)]
@@ -180,7 +177,7 @@ extern_methods!(
         ) -> bool;
 
         #[method_id(@__retain_semantics Other accessoryView)]
-        pub unsafe fn accessoryView(&self) -> Option<Id<NSView, Shared>>;
+        pub unsafe fn accessoryView(&self) -> Option<Id<NSView>>;
 
         #[method(setAccessoryView:)]
         pub unsafe fn setAccessoryView(&self, accessory_view: Option<&NSView>);
@@ -295,9 +292,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSRulerView")]
     unsafe impl NSRulerView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frame_rect: NSRect,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
 );

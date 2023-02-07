@@ -36,41 +36,39 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other manufacturer)]
-        pub unsafe fn manufacturer(&self) -> Id<NSString, Shared>;
+        pub unsafe fn manufacturer(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString, Shared>;
+        pub unsafe fn name(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other modelNumber)]
-        pub unsafe fn modelNumber(&self) -> Id<NSString, Shared>;
+        pub unsafe fn modelNumber(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other serialNumber)]
-        pub unsafe fn serialNumber(&self) -> Id<NSString, Shared>;
+        pub unsafe fn serialNumber(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other firmwareRevision)]
-        pub unsafe fn firmwareRevision(&self) -> Id<NSString, Shared>;
+        pub unsafe fn firmwareRevision(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other hardwareRevision)]
-        pub unsafe fn hardwareRevision(&self) -> Id<NSString, Shared>;
+        pub unsafe fn hardwareRevision(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Not supported"]
         #[method_id(@__retain_semantics Other dockType)]
-        pub unsafe fn dockType(&self) -> Id<NSString, Shared>;
+        pub unsafe fn dockType(&self) -> Id<NSString>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other protocolStrings)]
-        pub unsafe fn protocolStrings(&self) -> Id<NSArray<NSString>, Shared>;
+        pub unsafe fn protocolStrings(&self) -> Id<NSArray<NSString>>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(
-            &self,
-        ) -> Option<Id<ProtocolObject<dyn EAAccessoryDelegate>, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn EAAccessoryDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(

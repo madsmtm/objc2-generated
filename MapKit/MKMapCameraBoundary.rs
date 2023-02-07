@@ -34,20 +34,20 @@ extern_methods!(
         pub unsafe fn initWithMapRect(
             this: Option<Allocated<Self>>,
             map_rect: MKMapRect,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[method_id(@__retain_semantics Init initWithCoordinateRegion:)]
         pub unsafe fn initWithCoordinateRegion(
             this: Option<Allocated<Self>>,
             region: MKCoordinateRegion,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[method(mapRect)]
         pub unsafe fn mapRect(&self) -> MKMapRect;

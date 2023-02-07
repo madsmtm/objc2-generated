@@ -30,7 +30,7 @@ extern_methods!(
     unsafe impl ASAuthorizationAppleIDRequest {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other user)]
-        pub unsafe fn user(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn user(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setUser:)]

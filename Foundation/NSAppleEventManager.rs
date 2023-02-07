@@ -29,15 +29,15 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSAppleEventManager")]
     unsafe impl NSAppleEventManager {
         #[method_id(@__retain_semantics Other sharedAppleEventManager)]
-        pub unsafe fn sharedAppleEventManager() -> Id<NSAppleEventManager, Shared>;
+        pub unsafe fn sharedAppleEventManager() -> Id<NSAppleEventManager>;
 
         #[cfg(feature = "Foundation_NSAppleEventDescriptor")]
         #[method_id(@__retain_semantics Other currentAppleEvent)]
-        pub unsafe fn currentAppleEvent(&self) -> Option<Id<NSAppleEventDescriptor, Shared>>;
+        pub unsafe fn currentAppleEvent(&self) -> Option<Id<NSAppleEventDescriptor>>;
 
         #[cfg(feature = "Foundation_NSAppleEventDescriptor")]
         #[method_id(@__retain_semantics Other currentReplyAppleEvent)]
-        pub unsafe fn currentReplyAppleEvent(&self) -> Option<Id<NSAppleEventDescriptor, Shared>>;
+        pub unsafe fn currentReplyAppleEvent(&self) -> Option<Id<NSAppleEventDescriptor>>;
 
         #[method(suspendCurrentAppleEvent)]
         pub unsafe fn suspendCurrentAppleEvent(&self) -> NSAppleEventManagerSuspensionID;
@@ -47,14 +47,14 @@ extern_methods!(
         pub unsafe fn appleEventForSuspensionID(
             &self,
             suspension_id: NSAppleEventManagerSuspensionID,
-        ) -> Id<NSAppleEventDescriptor, Shared>;
+        ) -> Id<NSAppleEventDescriptor>;
 
         #[cfg(feature = "Foundation_NSAppleEventDescriptor")]
         #[method_id(@__retain_semantics Other replyAppleEventForSuspensionID:)]
         pub unsafe fn replyAppleEventForSuspensionID(
             &self,
             suspension_id: NSAppleEventManagerSuspensionID,
-        ) -> Id<NSAppleEventDescriptor, Shared>;
+        ) -> Id<NSAppleEventDescriptor>;
 
         #[method(setCurrentAppleEventAndReplyEventWithSuspensionID:)]
         pub unsafe fn setCurrentAppleEventAndReplyEventWithSuspensionID(

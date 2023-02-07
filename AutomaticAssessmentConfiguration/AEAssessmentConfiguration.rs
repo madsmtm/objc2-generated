@@ -88,7 +88,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other mainParticipantConfiguration)]
         pub unsafe fn mainParticipantConfiguration(
             &self,
-        ) -> Id<AEAssessmentParticipantConfiguration, Shared>;
+        ) -> Id<AEAssessmentParticipantConfiguration>;
 
         #[cfg(all(
             feature = "AutomaticAssessmentConfiguration_AEAssessmentApplication",
@@ -98,7 +98,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other configurationsByApplication)]
         pub unsafe fn configurationsByApplication(
             &self,
-        ) -> Id<NSDictionary<AEAssessmentApplication, AEAssessmentParticipantConfiguration>, Shared>;
+        ) -> Id<NSDictionary<AEAssessmentApplication, AEAssessmentParticipantConfiguration>>;
 
         #[cfg(all(
             feature = "AutomaticAssessmentConfiguration_AEAssessmentApplication",

@@ -26,7 +26,7 @@ extern_methods!(
     unsafe impl DOMStyleSheet {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other type)]
-        pub unsafe fn r#type(&self) -> Id<NSString, Shared>;
+        pub unsafe fn r#type(&self) -> Id<NSString>;
 
         #[method(disabled)]
         pub unsafe fn disabled(&self) -> bool;
@@ -36,21 +36,21 @@ extern_methods!(
 
         #[cfg(feature = "WebKit_DOMNode")]
         #[method_id(@__retain_semantics Other ownerNode)]
-        pub unsafe fn ownerNode(&self) -> Option<Id<DOMNode, Shared>>;
+        pub unsafe fn ownerNode(&self) -> Option<Id<DOMNode>>;
 
         #[method_id(@__retain_semantics Other parentStyleSheet)]
-        pub unsafe fn parentStyleSheet(&self) -> Option<Id<DOMStyleSheet, Shared>>;
+        pub unsafe fn parentStyleSheet(&self) -> Option<Id<DOMStyleSheet>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other href)]
-        pub unsafe fn href(&self) -> Id<NSString, Shared>;
+        pub unsafe fn href(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Id<NSString, Shared>;
+        pub unsafe fn title(&self) -> Id<NSString>;
 
         #[cfg(feature = "WebKit_DOMMediaList")]
         #[method_id(@__retain_semantics Other media)]
-        pub unsafe fn media(&self) -> Option<Id<DOMMediaList, Shared>>;
+        pub unsafe fn media(&self) -> Option<Id<DOMMediaList>>;
     }
 );

@@ -32,11 +32,11 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSPDFPanel")]
     unsafe impl NSPDFPanel {
         #[method_id(@__retain_semantics Other panel)]
-        pub unsafe fn panel() -> Id<NSPDFPanel, Shared>;
+        pub unsafe fn panel() -> Id<NSPDFPanel>;
 
         #[cfg(feature = "AppKit_NSViewController")]
         #[method_id(@__retain_semantics Other accessoryController)]
-        pub unsafe fn accessoryController(&self) -> Option<Id<NSViewController, Shared>>;
+        pub unsafe fn accessoryController(&self) -> Option<Id<NSViewController>>;
 
         #[cfg(feature = "AppKit_NSViewController")]
         #[method(setAccessoryController:)]
@@ -53,7 +53,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other defaultFileName)]
-        pub unsafe fn defaultFileName(&self) -> Id<NSString, Shared>;
+        pub unsafe fn defaultFileName(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setDefaultFileName:)]

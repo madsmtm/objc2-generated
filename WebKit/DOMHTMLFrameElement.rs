@@ -29,7 +29,7 @@ extern_methods!(
     unsafe impl DOMHTMLFrameElement {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other frameBorder)]
-        pub unsafe fn frameBorder(&self) -> Id<NSString, Shared>;
+        pub unsafe fn frameBorder(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setFrameBorder:)]
@@ -37,7 +37,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other longDesc)]
-        pub unsafe fn longDesc(&self) -> Id<NSString, Shared>;
+        pub unsafe fn longDesc(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLongDesc:)]
@@ -45,7 +45,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other marginHeight)]
-        pub unsafe fn marginHeight(&self) -> Id<NSString, Shared>;
+        pub unsafe fn marginHeight(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setMarginHeight:)]
@@ -53,7 +53,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other marginWidth)]
-        pub unsafe fn marginWidth(&self) -> Id<NSString, Shared>;
+        pub unsafe fn marginWidth(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setMarginWidth:)]
@@ -61,7 +61,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString, Shared>;
+        pub unsafe fn name(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]
@@ -75,7 +75,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other scrolling)]
-        pub unsafe fn scrolling(&self) -> Id<NSString, Shared>;
+        pub unsafe fn scrolling(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setScrolling:)]
@@ -83,7 +83,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other src)]
-        pub unsafe fn src(&self) -> Id<NSString, Shared>;
+        pub unsafe fn src(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setSrc:)]
@@ -91,15 +91,15 @@ extern_methods!(
 
         #[cfg(feature = "WebKit_DOMDocument")]
         #[method_id(@__retain_semantics Other contentDocument)]
-        pub unsafe fn contentDocument(&self) -> Option<Id<DOMDocument, Shared>>;
+        pub unsafe fn contentDocument(&self) -> Option<Id<DOMDocument>>;
 
         #[cfg(feature = "WebKit_DOMAbstractView")]
         #[method_id(@__retain_semantics Other contentWindow)]
-        pub unsafe fn contentWindow(&self) -> Option<Id<DOMAbstractView, Shared>>;
+        pub unsafe fn contentWindow(&self) -> Option<Id<DOMAbstractView>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other location)]
-        pub unsafe fn location(&self) -> Id<NSString, Shared>;
+        pub unsafe fn location(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLocation:)]

@@ -22,11 +22,11 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSPortNameServer")]
     unsafe impl NSPortNameServer {
         #[method_id(@__retain_semantics Other systemDefaultPortNameServer)]
-        pub unsafe fn systemDefaultPortNameServer() -> Id<NSPortNameServer, Shared>;
+        pub unsafe fn systemDefaultPortNameServer() -> Id<NSPortNameServer>;
 
         #[cfg(all(feature = "Foundation_NSPort", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other portForName:)]
-        pub unsafe fn portForName(&self, name: &NSString) -> Option<Id<NSPort, Shared>>;
+        pub unsafe fn portForName(&self, name: &NSString) -> Option<Id<NSPort>>;
 
         #[cfg(all(feature = "Foundation_NSPort", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other portForName:host:)]
@@ -34,7 +34,7 @@ extern_methods!(
             &self,
             name: &NSString,
             host: Option<&NSString>,
-        ) -> Option<Id<NSPort, Shared>>;
+        ) -> Option<Id<NSPort>>;
 
         #[cfg(all(feature = "Foundation_NSPort", feature = "Foundation_NSString"))]
         #[method(registerPort:name:)]
@@ -66,11 +66,11 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSMachBootstrapServer")]
     unsafe impl NSMachBootstrapServer {
         #[method_id(@__retain_semantics Other sharedInstance)]
-        pub unsafe fn sharedInstance() -> Id<Object, Shared>;
+        pub unsafe fn sharedInstance() -> Id<Object>;
 
         #[cfg(all(feature = "Foundation_NSPort", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other portForName:)]
-        pub unsafe fn portForName(&self, name: &NSString) -> Option<Id<NSPort, Shared>>;
+        pub unsafe fn portForName(&self, name: &NSString) -> Option<Id<NSPort>>;
 
         #[cfg(all(feature = "Foundation_NSPort", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other portForName:host:)]
@@ -78,7 +78,7 @@ extern_methods!(
             &self,
             name: &NSString,
             host: Option<&NSString>,
-        ) -> Option<Id<NSPort, Shared>>;
+        ) -> Option<Id<NSPort>>;
 
         #[cfg(all(feature = "Foundation_NSPort", feature = "Foundation_NSString"))]
         #[method(registerPort:name:)]
@@ -86,7 +86,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSPort", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other servicePortWithName:)]
-        pub unsafe fn servicePortWithName(&self, name: &NSString) -> Option<Id<NSPort, Shared>>;
+        pub unsafe fn servicePortWithName(&self, name: &NSString) -> Option<Id<NSPort>>;
     }
 );
 
@@ -110,11 +110,11 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSMessagePortNameServer")]
     unsafe impl NSMessagePortNameServer {
         #[method_id(@__retain_semantics Other sharedInstance)]
-        pub unsafe fn sharedInstance() -> Id<Object, Shared>;
+        pub unsafe fn sharedInstance() -> Id<Object>;
 
         #[cfg(all(feature = "Foundation_NSPort", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other portForName:)]
-        pub unsafe fn portForName(&self, name: &NSString) -> Option<Id<NSPort, Shared>>;
+        pub unsafe fn portForName(&self, name: &NSString) -> Option<Id<NSPort>>;
 
         #[cfg(all(feature = "Foundation_NSPort", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other portForName:host:)]
@@ -122,7 +122,7 @@ extern_methods!(
             &self,
             name: &NSString,
             host: Option<&NSString>,
-        ) -> Option<Id<NSPort, Shared>>;
+        ) -> Option<Id<NSPort>>;
     }
 );
 
@@ -146,11 +146,11 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSSocketPortNameServer")]
     unsafe impl NSSocketPortNameServer {
         #[method_id(@__retain_semantics Other sharedInstance)]
-        pub unsafe fn sharedInstance() -> Id<Object, Shared>;
+        pub unsafe fn sharedInstance() -> Id<Object>;
 
         #[cfg(all(feature = "Foundation_NSPort", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other portForName:)]
-        pub unsafe fn portForName(&self, name: &NSString) -> Option<Id<NSPort, Shared>>;
+        pub unsafe fn portForName(&self, name: &NSString) -> Option<Id<NSPort>>;
 
         #[cfg(all(feature = "Foundation_NSPort", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other portForName:host:)]
@@ -158,7 +158,7 @@ extern_methods!(
             &self,
             name: &NSString,
             host: Option<&NSString>,
-        ) -> Option<Id<NSPort, Shared>>;
+        ) -> Option<Id<NSPort>>;
 
         #[cfg(all(feature = "Foundation_NSPort", feature = "Foundation_NSString"))]
         #[method(registerPort:name:)]
@@ -175,7 +175,7 @@ extern_methods!(
             name: &NSString,
             host: Option<&NSString>,
             port_number: u16,
-        ) -> Option<Id<NSPort, Shared>>;
+        ) -> Option<Id<NSPort>>;
 
         #[cfg(all(feature = "Foundation_NSPort", feature = "Foundation_NSString"))]
         #[method(registerPort:name:nameServerPortNumber:)]

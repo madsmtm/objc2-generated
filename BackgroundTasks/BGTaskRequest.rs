@@ -23,21 +23,21 @@ extern_methods!(
     unsafe impl BGTaskRequest {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn identifier(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other earliestBeginDate)]
-        pub unsafe fn earliestBeginDate(&self) -> Option<Id<NSDate, Shared>>;
+        pub unsafe fn earliestBeginDate(&self) -> Option<Id<NSDate>>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method(setEarliestBeginDate:)]
         pub unsafe fn setEarliestBeginDate(&self, earliest_begin_date: Option<&NSDate>);
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
     }
 );
 
@@ -64,7 +64,7 @@ extern_methods!(
         pub unsafe fn initWithIdentifier(
             this: Option<Allocated<Self>>,
             identifier: &NSString,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );
 
@@ -91,7 +91,7 @@ extern_methods!(
         pub unsafe fn initWithIdentifier(
             this: Option<Allocated<Self>>,
             identifier: &NSString,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(requiresNetworkConnectivity)]
         pub unsafe fn requiresNetworkConnectivity(&self) -> bool;

@@ -13,6 +13,6 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other contextIdentifierPath)]
-        pub unsafe fn contextIdentifierPath(&self) -> Option<Id<NSArray<NSString>, Shared>>;
+        pub unsafe fn contextIdentifierPath(&self) -> Option<Id<NSArray<NSString>>>;
     }
 );

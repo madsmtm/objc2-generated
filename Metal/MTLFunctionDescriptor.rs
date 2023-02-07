@@ -30,11 +30,11 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLFunctionDescriptor")]
     unsafe impl MTLFunctionDescriptor {
         #[method_id(@__retain_semantics Other functionDescriptor)]
-        pub fn functionDescriptor() -> Id<MTLFunctionDescriptor, Shared>;
+        pub fn functionDescriptor() -> Id<MTLFunctionDescriptor>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub fn name(&self) -> Option<Id<NSString, Shared>>;
+        pub fn name(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]
@@ -42,7 +42,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other specializedName)]
-        pub fn specializedName(&self) -> Option<Id<NSString, Shared>>;
+        pub fn specializedName(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setSpecializedName:)]
@@ -50,7 +50,7 @@ extern_methods!(
 
         #[cfg(feature = "Metal_MTLFunctionConstantValues")]
         #[method_id(@__retain_semantics Other constantValues)]
-        pub fn constantValues(&self) -> Option<Id<MTLFunctionConstantValues, Shared>>;
+        pub fn constantValues(&self) -> Option<Id<MTLFunctionConstantValues>>;
 
         #[cfg(feature = "Metal_MTLFunctionConstantValues")]
         #[method(setConstantValues:)]
@@ -66,7 +66,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other binaryArchives)]
         pub unsafe fn binaryArchives(
             &self,
-        ) -> Option<Id<NSArray<ProtocolObject<dyn MTLBinaryArchive>>, Shared>>;
+        ) -> Option<Id<NSArray<ProtocolObject<dyn MTLBinaryArchive>>>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setBinaryArchives:)]

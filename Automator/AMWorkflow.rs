@@ -28,21 +28,21 @@ extern_methods!(
         pub unsafe fn runWorkflowAtURL_withInput_error(
             file_url: &NSURL,
             input: Option<&Object>,
-        ) -> Result<Id<Object, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Object>, Id<NSError>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:error:_)]
         pub unsafe fn initWithContentsOfURL_error(
             this: Option<Allocated<Self>>,
             file_url: &NSURL,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self>, Id<NSError>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method(writeToURL:error:_)]
-        pub unsafe fn writeToURL_error(&self, file_url: &NSURL) -> Result<(), Id<NSError, Shared>>;
+        pub unsafe fn writeToURL_error(&self, file_url: &NSURL) -> Result<(), Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setValue:forVariableWithName:)]
@@ -57,7 +57,7 @@ extern_methods!(
         pub unsafe fn valueForVariableWithName(
             &self,
             variable_name: &NSString,
-        ) -> Option<Id<Object, Shared>>;
+        ) -> Option<Id<Object>>;
 
         #[cfg(feature = "Automator_AMAction")]
         #[method(addAction:)]
@@ -80,19 +80,19 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other fileURL)]
-        pub unsafe fn fileURL(&self) -> Option<Id<NSURL, Shared>>;
+        pub unsafe fn fileURL(&self) -> Option<Id<NSURL>>;
 
         #[cfg(all(feature = "Automator_AMAction", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other actions)]
-        pub unsafe fn actions(&self) -> Id<NSArray<AMAction>, Shared>;
+        pub unsafe fn actions(&self) -> Id<NSArray<AMAction>>;
 
         #[method_id(@__retain_semantics Other input)]
-        pub unsafe fn input(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn input(&self) -> Option<Id<Object>>;
 
         #[method(setInput:)]
         pub unsafe fn setInput(&self, input: Option<&Object>);
 
         #[method_id(@__retain_semantics Other output)]
-        pub unsafe fn output(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn output(&self) -> Option<Id<Object>>;
     }
 );

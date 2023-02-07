@@ -42,14 +42,14 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             starting_color: &NSColor,
             ending_color: &NSColor,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(all(feature = "AppKit_NSColor", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Init initWithColors:)]
         pub unsafe fn initWithColors(
             this: Option<Allocated<Self>>,
             color_array: &NSArray<NSColor>,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(all(
             feature = "AppKit_NSColor",
@@ -62,14 +62,11 @@ extern_methods!(
             color_array: &NSArray<NSColor>,
             locations: *mut CGFloat,
             color_space: &NSColorSpace,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            coder: &NSCoder,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, coder: &NSCoder) -> Id<Self>;
 
         #[method(drawFromPoint:toPoint:options:)]
         pub unsafe fn drawFromPoint_toPoint_options(
@@ -113,7 +110,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColorSpace")]
         #[method_id(@__retain_semantics Other colorSpace)]
-        pub unsafe fn colorSpace(&self) -> Id<NSColorSpace, Shared>;
+        pub unsafe fn colorSpace(&self) -> Id<NSColorSpace>;
 
         #[method(numberOfColorStops)]
         pub unsafe fn numberOfColorStops(&self) -> NSInteger;
@@ -122,13 +119,13 @@ extern_methods!(
         #[method(getColor:location:atIndex:)]
         pub unsafe fn getColor_location_atIndex(
             &self,
-            color: Option<&mut Id<NSColor, Shared>>,
+            color: Option<&mut Id<NSColor>>,
             location: *mut CGFloat,
             index: NSInteger,
         );
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other interpolatedColorAtLocation:)]
-        pub unsafe fn interpolatedColorAtLocation(&self, location: CGFloat) -> Id<NSColor, Shared>;
+        pub unsafe fn interpolatedColorAtLocation(&self, location: CGFloat) -> Id<NSColor>;
     }
 );

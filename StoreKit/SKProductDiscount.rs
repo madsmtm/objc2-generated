@@ -41,19 +41,19 @@ extern_methods!(
     unsafe impl SKProductDiscount {
         #[cfg(feature = "Foundation_NSDecimalNumber")]
         #[method_id(@__retain_semantics Other price)]
-        pub unsafe fn price(&self) -> Id<NSDecimalNumber, Shared>;
+        pub unsafe fn price(&self) -> Id<NSDecimalNumber>;
 
         #[cfg(feature = "Foundation_NSLocale")]
         #[method_id(@__retain_semantics Other priceLocale)]
-        pub unsafe fn priceLocale(&self) -> Id<NSLocale, Shared>;
+        pub unsafe fn priceLocale(&self) -> Id<NSLocale>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn identifier(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "StoreKit_SKProductSubscriptionPeriod")]
         #[method_id(@__retain_semantics Other subscriptionPeriod)]
-        pub unsafe fn subscriptionPeriod(&self) -> Id<SKProductSubscriptionPeriod, Shared>;
+        pub unsafe fn subscriptionPeriod(&self) -> Id<SKProductSubscriptionPeriod>;
 
         #[method(numberOfPeriods)]
         pub unsafe fn numberOfPeriods(&self) -> NSUInteger;

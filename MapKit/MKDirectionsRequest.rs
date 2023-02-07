@@ -34,7 +34,7 @@ extern_methods!(
     unsafe impl MKDirectionsRequest {
         #[cfg(feature = "MapKit_MKMapItem")]
         #[method_id(@__retain_semantics Other source)]
-        pub unsafe fn source(&self) -> Option<Id<MKMapItem, Shared>>;
+        pub unsafe fn source(&self) -> Option<Id<MKMapItem>>;
 
         #[cfg(feature = "MapKit_MKMapItem")]
         #[method(setSource:)]
@@ -42,7 +42,7 @@ extern_methods!(
 
         #[cfg(feature = "MapKit_MKMapItem")]
         #[method_id(@__retain_semantics Other destination)]
-        pub unsafe fn destination(&self) -> Option<Id<MKMapItem, Shared>>;
+        pub unsafe fn destination(&self) -> Option<Id<MKMapItem>>;
 
         #[cfg(feature = "MapKit_MKMapItem")]
         #[method(setDestination:)]
@@ -68,7 +68,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other departureDate)]
-        pub unsafe fn departureDate(&self) -> Option<Id<NSDate, Shared>>;
+        pub unsafe fn departureDate(&self) -> Option<Id<NSDate>>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method(setDepartureDate:)]
@@ -76,7 +76,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other arrivalDate)]
-        pub unsafe fn arrivalDate(&self) -> Option<Id<NSDate, Shared>>;
+        pub unsafe fn arrivalDate(&self) -> Option<Id<NSDate>>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method(setArrivalDate:)]
@@ -102,10 +102,8 @@ extern_methods!(
     unsafe impl MKDirectionsRequest {
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
-        pub unsafe fn initWithContentsOfURL(
-            this: Option<Allocated<Self>>,
-            url: &NSURL,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithContentsOfURL(this: Option<Allocated<Self>>, url: &NSURL)
+            -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method(isDirectionsRequestURL:)]

@@ -40,7 +40,7 @@ extern_methods!(
     #[cfg(feature = "CoreAnimation_CATextLayer")]
     unsafe impl CATextLayer {
         #[method_id(@__retain_semantics Other string)]
-        pub unsafe fn string(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn string(&self) -> Option<Id<Object>>;
 
         #[method(setString:)]
         pub unsafe fn setString(&self, string: Option<&Object>);
@@ -58,13 +58,13 @@ extern_methods!(
         pub unsafe fn setWrapped(&self, wrapped: bool);
 
         #[method_id(@__retain_semantics Other truncationMode)]
-        pub unsafe fn truncationMode(&self) -> Id<CATextLayerTruncationMode, Shared>;
+        pub unsafe fn truncationMode(&self) -> Id<CATextLayerTruncationMode>;
 
         #[method(setTruncationMode:)]
         pub unsafe fn setTruncationMode(&self, truncation_mode: &CATextLayerTruncationMode);
 
         #[method_id(@__retain_semantics Other alignmentMode)]
-        pub unsafe fn alignmentMode(&self) -> Id<CATextLayerAlignmentMode, Shared>;
+        pub unsafe fn alignmentMode(&self) -> Id<CATextLayerAlignmentMode>;
 
         #[method(setAlignmentMode:)]
         pub unsafe fn setAlignmentMode(&self, alignment_mode: &CATextLayerAlignmentMode);
@@ -103,12 +103,9 @@ extern_methods!(
     #[cfg(feature = "CoreAnimation_CATextLayer")]
     unsafe impl CATextLayer {
         #[method_id(@__retain_semantics Other layer)]
-        pub unsafe fn layer() -> Id<Self, Shared>;
+        pub unsafe fn layer() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithLayer:)]
-        pub unsafe fn initWithLayer(
-            this: Option<Allocated<Self>>,
-            layer: &Object,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithLayer(this: Option<Allocated<Self>>, layer: &Object) -> Id<Self>;
     }
 );

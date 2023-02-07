@@ -30,13 +30,13 @@ extern_methods!(
     unsafe impl UNNotification {
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other date)]
-        pub unsafe fn date(&self) -> Id<NSDate, Shared>;
+        pub unsafe fn date(&self) -> Id<NSDate>;
 
         #[cfg(feature = "UserNotifications_UNNotificationRequest")]
         #[method_id(@__retain_semantics Other request)]
-        pub unsafe fn request(&self) -> Id<UNNotificationRequest, Shared>;
+        pub unsafe fn request(&self) -> Id<UNNotificationRequest>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }
 );

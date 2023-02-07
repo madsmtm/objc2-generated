@@ -52,17 +52,17 @@ extern_methods!(
         pub unsafe fn initWithXMLString(
             this: Option<Allocated<Self>>,
             string: &NSString,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[method_id(@__retain_semantics Init initWithKind:options:)]
         pub unsafe fn initWithKind_options(
             this: Option<Allocated<Self>>,
             kind: NSXMLNodeKind,
             options: NSXMLNodeOptions,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method(DTDKind)]
         pub unsafe fn DTDKind(&self) -> NSXMLDTDNodeKind;
@@ -75,7 +75,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other publicID)]
-        pub unsafe fn publicID(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn publicID(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setPublicID:)]
@@ -83,7 +83,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other systemID)]
-        pub unsafe fn systemID(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn systemID(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setSystemID:)]
@@ -91,7 +91,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other notationName)]
-        pub unsafe fn notationName(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn notationName(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setNotationName:)]
@@ -104,9 +104,6 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSXMLDTDNode")]
     unsafe impl NSXMLDTDNode {
         #[method_id(@__retain_semantics Init initWithKind:)]
-        pub unsafe fn initWithKind(
-            this: Option<Allocated<Self>>,
-            kind: NSXMLNodeKind,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithKind(this: Option<Allocated<Self>>, kind: NSXMLNodeKind) -> Id<Self>;
     }
 );

@@ -45,11 +45,11 @@ extern_methods!(
     {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn identifier(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
-        pub unsafe fn label(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn label(&self) -> Option<Id<NSString>>;
 
         #[method_id(@__retain_semantics Other value)]
         pub unsafe fn value(&self) -> Id<ValueType, ValueTypeOwnership>;
@@ -59,7 +59,7 @@ extern_methods!(
         pub unsafe fn labeledValueWithLabel_value(
             label: Option<&NSString>,
             value: &ValueType,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithLabel:value:)]
@@ -67,17 +67,14 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             label: Option<&NSString>,
             value: &ValueType,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other labeledValueBySettingLabel:)]
-        pub unsafe fn labeledValueBySettingLabel(
-            &self,
-            label: Option<&NSString>,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn labeledValueBySettingLabel(&self, label: Option<&NSString>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other labeledValueBySettingValue:)]
-        pub unsafe fn labeledValueBySettingValue(&self, value: &ValueType) -> Id<Self, Shared>;
+        pub unsafe fn labeledValueBySettingValue(&self, value: &ValueType) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other labeledValueBySettingLabel:value:)]
@@ -85,11 +82,11 @@ extern_methods!(
             &self,
             label: Option<&NSString>,
             value: &ValueType,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedStringForLabel:)]
-        pub unsafe fn localizedStringForLabel(label: &NSString) -> Id<NSString, Shared>;
+        pub unsafe fn localizedStringForLabel(label: &NSString) -> Id<NSString>;
     }
 );
 

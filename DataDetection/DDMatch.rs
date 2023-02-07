@@ -23,10 +23,10 @@ extern_methods!(
     unsafe impl DDMatch {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other matchedString)]
-        pub unsafe fn matchedString(&self) -> Id<NSString, Shared>;
+        pub unsafe fn matchedString(&self) -> Id<NSString>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }
 );
 
@@ -50,7 +50,7 @@ extern_methods!(
     unsafe impl DDMatchLink {
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other URL)]
-        pub unsafe fn URL(&self) -> Id<NSURL, Shared>;
+        pub unsafe fn URL(&self) -> Id<NSURL>;
     }
 );
 
@@ -74,11 +74,11 @@ extern_methods!(
     unsafe impl DDMatchPhoneNumber {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other phoneNumber)]
-        pub unsafe fn phoneNumber(&self) -> Id<NSString, Shared>;
+        pub unsafe fn phoneNumber(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
-        pub unsafe fn label(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn label(&self) -> Option<Id<NSString>>;
     }
 );
 
@@ -102,11 +102,11 @@ extern_methods!(
     unsafe impl DDMatchEmailAddress {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other emailAddress)]
-        pub unsafe fn emailAddress(&self) -> Id<NSString, Shared>;
+        pub unsafe fn emailAddress(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
-        pub unsafe fn label(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn label(&self) -> Option<Id<NSString>>;
     }
 );
 
@@ -130,23 +130,23 @@ extern_methods!(
     unsafe impl DDMatchPostalAddress {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other street)]
-        pub unsafe fn street(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn street(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other city)]
-        pub unsafe fn city(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn city(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other state)]
-        pub unsafe fn state(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn state(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other postalCode)]
-        pub unsafe fn postalCode(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn postalCode(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other country)]
-        pub unsafe fn country(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn country(&self) -> Option<Id<NSString>>;
     }
 );
 
@@ -173,19 +173,19 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other startDate)]
-        pub unsafe fn startDate(&self) -> Option<Id<NSDate, Shared>>;
+        pub unsafe fn startDate(&self) -> Option<Id<NSDate>>;
 
         #[cfg(feature = "Foundation_NSTimeZone")]
         #[method_id(@__retain_semantics Other startTimeZone)]
-        pub unsafe fn startTimeZone(&self) -> Option<Id<NSTimeZone, Shared>>;
+        pub unsafe fn startTimeZone(&self) -> Option<Id<NSTimeZone>>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other endDate)]
-        pub unsafe fn endDate(&self) -> Option<Id<NSDate, Shared>>;
+        pub unsafe fn endDate(&self) -> Option<Id<NSDate>>;
 
         #[cfg(feature = "Foundation_NSTimeZone")]
         #[method_id(@__retain_semantics Other endTimeZone)]
-        pub unsafe fn endTimeZone(&self) -> Option<Id<NSTimeZone, Shared>>;
+        pub unsafe fn endTimeZone(&self) -> Option<Id<NSTimeZone>>;
     }
 );
 
@@ -209,11 +209,11 @@ extern_methods!(
     unsafe impl DDMatchShipmentTrackingNumber {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other carrier)]
-        pub unsafe fn carrier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn carrier(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other trackingNumber)]
-        pub unsafe fn trackingNumber(&self) -> Id<NSString, Shared>;
+        pub unsafe fn trackingNumber(&self) -> Id<NSString>;
     }
 );
 
@@ -237,11 +237,11 @@ extern_methods!(
     unsafe impl DDMatchFlightNumber {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other airline)]
-        pub unsafe fn airline(&self) -> Id<NSString, Shared>;
+        pub unsafe fn airline(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other flightNumber)]
-        pub unsafe fn flightNumber(&self) -> Id<NSString, Shared>;
+        pub unsafe fn flightNumber(&self) -> Id<NSString>;
     }
 );
 
@@ -265,7 +265,7 @@ extern_methods!(
     unsafe impl DDMatchMoneyAmount {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other currency)]
-        pub unsafe fn currency(&self) -> Id<NSString, Shared>;
+        pub unsafe fn currency(&self) -> Id<NSString>;
 
         #[method(amount)]
         pub unsafe fn amount(&self) -> c_double;

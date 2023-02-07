@@ -59,7 +59,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other URL)]
-        pub unsafe fn URL(&self) -> Option<Id<NSURL, Shared>>;
+        pub unsafe fn URL(&self) -> Option<Id<NSURL>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method(setURL:)]
@@ -70,15 +70,14 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other allowedTypes)]
-        pub unsafe fn allowedTypes(&self) -> Option<Id<NSArray<NSString>, Shared>>;
+        pub unsafe fn allowedTypes(&self) -> Option<Id<NSArray<NSString>>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setAllowedTypes:)]
         pub unsafe fn setAllowedTypes(&self, allowed_types: Option<&NSArray<NSString>>);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self)
-            -> Option<Id<ProtocolObject<dyn NSPathCellDelegate>, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSPathCellDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSPathCellDelegate>>);
@@ -88,7 +87,7 @@ extern_methods!(
 
         #[cfg(all(feature = "AppKit_NSPathComponentCell", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other pathComponentCells)]
-        pub unsafe fn pathComponentCells(&self) -> Id<NSArray<NSPathComponentCell>, Shared>;
+        pub unsafe fn pathComponentCells(&self) -> Id<NSArray<NSPathComponentCell>>;
 
         #[cfg(all(feature = "AppKit_NSPathComponentCell", feature = "Foundation_NSArray"))]
         #[method(setPathComponentCells:)]
@@ -113,11 +112,11 @@ extern_methods!(
             point: NSPoint,
             frame: NSRect,
             view: &NSView,
-        ) -> Option<Id<NSPathComponentCell, Shared>>;
+        ) -> Option<Id<NSPathComponentCell>>;
 
         #[cfg(feature = "AppKit_NSPathComponentCell")]
         #[method_id(@__retain_semantics Other clickedPathComponentCell)]
-        pub unsafe fn clickedPathComponentCell(&self) -> Option<Id<NSPathComponentCell, Shared>>;
+        pub unsafe fn clickedPathComponentCell(&self) -> Option<Id<NSPathComponentCell>>;
 
         #[cfg(all(feature = "AppKit_NSEvent", feature = "AppKit_NSView"))]
         #[method(mouseEntered:withFrame:inView:)]
@@ -145,7 +144,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other backgroundColor)]
-        pub unsafe fn backgroundColor(&self) -> Option<Id<NSColor, Shared>>;
+        pub unsafe fn backgroundColor(&self) -> Option<Id<NSColor>>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setBackgroundColor:)]
@@ -153,7 +152,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other placeholderString)]
-        pub unsafe fn placeholderString(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn placeholderString(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setPlaceholderString:)]
@@ -161,7 +160,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other placeholderAttributedString)]
-        pub unsafe fn placeholderAttributedString(&self) -> Option<Id<NSAttributedString, Shared>>;
+        pub unsafe fn placeholderAttributedString(&self) -> Option<Id<NSAttributedString>>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setPlaceholderAttributedString:)]
@@ -198,16 +197,13 @@ extern_methods!(
     unsafe impl NSPathCell {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initTextCell:)]
-        pub unsafe fn initTextCell(
-            this: Option<Allocated<Self>>,
-            string: &NSString,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initTextCell(this: Option<Allocated<Self>>, string: &NSString) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Init initImageCell:)]
         pub unsafe fn initImageCell(
             this: Option<Allocated<Self>>,
             image: Option<&NSImage>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

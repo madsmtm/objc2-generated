@@ -19,7 +19,7 @@ extern_protocol!(
             content_request: BAContentRequest,
             manifest_url: &NSURL,
             extension_info: &BAAppExtensionInfo,
-        ) -> Id<NSSet<BADownload>, Shared>;
+        ) -> Id<NSSet<BADownload>>;
 
         #[cfg(all(
             feature = "BackgroundAssets_BADownload",

@@ -40,21 +40,18 @@ extern_methods!(
         pub unsafe fn initTextCell(
             this: Option<Allocated<Self>>,
             string: Option<&NSString>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            coder: &NSCoder,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, coder: &NSCoder) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Init initImageCell:)]
         pub unsafe fn initImageCell(
             this: Option<Allocated<Self>>,
             image: Option<&NSImage>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(titleWidth:)]
         pub unsafe fn titleWidth_(&self, size: NSSize) -> CGFloat;
@@ -67,7 +64,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Id<NSString, Shared>;
+        pub unsafe fn title(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setTitle:)]
@@ -75,7 +72,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSFont")]
         #[method_id(@__retain_semantics Other titleFont)]
-        pub unsafe fn titleFont(&self) -> Id<NSFont, Shared>;
+        pub unsafe fn titleFont(&self) -> Id<NSFont>;
 
         #[cfg(feature = "AppKit_NSFont")]
         #[method(setTitleFont:)]
@@ -86,7 +83,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other placeholderString)]
-        pub unsafe fn placeholderString(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn placeholderString(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setPlaceholderString:)]
@@ -94,7 +91,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other placeholderAttributedString)]
-        pub unsafe fn placeholderAttributedString(&self) -> Option<Id<NSAttributedString, Shared>>;
+        pub unsafe fn placeholderAttributedString(&self) -> Option<Id<NSAttributedString>>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setPlaceholderAttributedString:)]
@@ -143,7 +140,7 @@ extern_methods!(
     unsafe impl NSFormCell {
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedTitle)]
-        pub unsafe fn attributedTitle(&self) -> Id<NSAttributedString, Shared>;
+        pub unsafe fn attributedTitle(&self) -> Id<NSAttributedString>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setAttributedTitle:)]

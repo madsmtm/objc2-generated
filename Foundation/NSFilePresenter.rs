@@ -7,16 +7,16 @@ extern_protocol!(
     pub unsafe trait NSFilePresenter: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other presentedItemURL)]
-        unsafe fn presentedItemURL(&self) -> Option<Id<NSURL, Shared>>;
+        unsafe fn presentedItemURL(&self) -> Option<Id<NSURL>>;
 
         #[cfg(feature = "Foundation_NSOperationQueue")]
         #[method_id(@__retain_semantics Other presentedItemOperationQueue)]
-        unsafe fn presentedItemOperationQueue(&self) -> Id<NSOperationQueue, Shared>;
+        unsafe fn presentedItemOperationQueue(&self) -> Id<NSOperationQueue>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[optional]
         #[method_id(@__retain_semantics Other primaryPresentedItemURL)]
-        unsafe fn primaryPresentedItemURL(&self) -> Option<Id<NSURL, Shared>>;
+        unsafe fn primaryPresentedItemURL(&self) -> Option<Id<NSURL>>;
 
         #[optional]
         #[method(relinquishPresentedItemToReader:)]
@@ -62,9 +62,7 @@ extern_protocol!(
         #[cfg(feature = "Foundation_NSSet")]
         #[optional]
         #[method_id(@__retain_semantics Other observedPresentedItemUbiquityAttributes)]
-        unsafe fn observedPresentedItemUbiquityAttributes(
-            &self,
-        ) -> Id<NSSet<NSURLResourceKey>, Shared>;
+        unsafe fn observedPresentedItemUbiquityAttributes(&self) -> Id<NSSet<NSURLResourceKey>>;
 
         #[cfg(feature = "Foundation_NSFileVersion")]
         #[optional]

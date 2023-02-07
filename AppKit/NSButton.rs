@@ -60,7 +60,7 @@ extern_methods!(
             image: &NSImage,
             target: Option<&Object>,
             action: Option<Sel>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other buttonWithTitle:target:action:)]
@@ -68,7 +68,7 @@ extern_methods!(
             title: &NSString,
             target: Option<&Object>,
             action: Option<Sel>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other buttonWithImage:target:action:)]
@@ -76,7 +76,7 @@ extern_methods!(
             image: &NSImage,
             target: Option<&Object>,
             action: Option<Sel>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other checkboxWithTitle:target:action:)]
@@ -84,7 +84,7 @@ extern_methods!(
             title: &NSString,
             target: Option<&Object>,
             action: Option<Sel>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other radioButtonWithTitle:target:action:)]
@@ -92,14 +92,14 @@ extern_methods!(
             title: &NSString,
             target: Option<&Object>,
             action: Option<Sel>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(setButtonType:)]
         pub unsafe fn setButtonType(&self, r#type: NSButtonType);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Id<NSString, Shared>;
+        pub unsafe fn title(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setTitle:)]
@@ -107,7 +107,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedTitle)]
-        pub unsafe fn attributedTitle(&self) -> Id<NSAttributedString, Shared>;
+        pub unsafe fn attributedTitle(&self) -> Id<NSAttributedString>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setAttributedTitle:)]
@@ -115,7 +115,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other alternateTitle)]
-        pub unsafe fn alternateTitle(&self) -> Id<NSString, Shared>;
+        pub unsafe fn alternateTitle(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAlternateTitle:)]
@@ -123,7 +123,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedAlternateTitle)]
-        pub unsafe fn attributedAlternateTitle(&self) -> Id<NSAttributedString, Shared>;
+        pub unsafe fn attributedAlternateTitle(&self) -> Id<NSAttributedString>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setAttributedAlternateTitle:)]
@@ -140,7 +140,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSSound")]
         #[method_id(@__retain_semantics Other sound)]
-        pub unsafe fn sound(&self) -> Option<Id<NSSound, Shared>>;
+        pub unsafe fn sound(&self) -> Option<Id<NSSound>>;
 
         #[cfg(feature = "AppKit_NSSound")]
         #[method(setSound:)]
@@ -197,7 +197,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other image)]
-        pub unsafe fn image(&self) -> Option<Id<NSImage, Shared>>;
+        pub unsafe fn image(&self) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method(setImage:)]
@@ -205,7 +205,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other alternateImage)]
-        pub unsafe fn alternateImage(&self) -> Option<Id<NSImage, Shared>>;
+        pub unsafe fn alternateImage(&self) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method(setAlternateImage:)]
@@ -231,7 +231,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSImageSymbolConfiguration")]
         #[method_id(@__retain_semantics Other symbolConfiguration)]
-        pub unsafe fn symbolConfiguration(&self) -> Option<Id<NSImageSymbolConfiguration, Shared>>;
+        pub unsafe fn symbolConfiguration(&self) -> Option<Id<NSImageSymbolConfiguration>>;
 
         #[cfg(feature = "AppKit_NSImageSymbolConfiguration")]
         #[method(setSymbolConfiguration:)]
@@ -242,7 +242,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other bezelColor)]
-        pub unsafe fn bezelColor(&self) -> Option<Id<NSColor, Shared>>;
+        pub unsafe fn bezelColor(&self) -> Option<Id<NSColor>>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setBezelColor:)]
@@ -250,7 +250,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other contentTintColor)]
-        pub unsafe fn contentTintColor(&self) -> Option<Id<NSColor, Shared>>;
+        pub unsafe fn contentTintColor(&self) -> Option<Id<NSColor>>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setContentTintColor:)]
@@ -276,7 +276,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other keyEquivalent)]
-        pub unsafe fn keyEquivalent(&self) -> Id<NSString, Shared>;
+        pub unsafe fn keyEquivalent(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setKeyEquivalent:)]
@@ -317,9 +317,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSUserInterfaceCompressionOptions")]
         #[method_id(@__retain_semantics Other activeCompressionOptions)]
-        pub unsafe fn activeCompressionOptions(
-            &self,
-        ) -> Id<NSUserInterfaceCompressionOptions, Shared>;
+        pub unsafe fn activeCompressionOptions(&self) -> Id<NSUserInterfaceCompressionOptions>;
     }
 );
 
@@ -339,9 +337,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSButton")]
     unsafe impl NSButton {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frame_rect: NSRect,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
 );

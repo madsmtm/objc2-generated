@@ -62,7 +62,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSCalendar")]
         #[method_id(@__retain_semantics Other calendar)]
-        pub unsafe fn calendar(&self) -> Id<NSCalendar, Shared>;
+        pub unsafe fn calendar(&self) -> Id<NSCalendar>;
 
         #[cfg(feature = "Foundation_NSCalendar")]
         #[method(setCalendar:)]
@@ -70,7 +70,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSLocale")]
         #[method_id(@__retain_semantics Other locale)]
-        pub unsafe fn locale(&self) -> Id<NSLocale, Shared>;
+        pub unsafe fn locale(&self) -> Id<NSLocale>;
 
         #[cfg(feature = "Foundation_NSLocale")]
         #[method(setLocale:)]
@@ -84,14 +84,14 @@ extern_methods!(
         pub unsafe fn localizedStringFromDateComponents(
             &self,
             date_components: &NSDateComponents,
-        ) -> Id<NSString, Shared>;
+        ) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedStringFromTimeInterval:)]
         pub unsafe fn localizedStringFromTimeInterval(
             &self,
             time_interval: NSTimeInterval,
-        ) -> Id<NSString, Shared>;
+        ) -> Id<NSString>;
 
         #[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other localizedStringForDate:relativeToDate:)]
@@ -99,13 +99,10 @@ extern_methods!(
             &self,
             date: &NSDate,
             reference_date: &NSDate,
-        ) -> Id<NSString, Shared>;
+        ) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringForObjectValue:)]
-        pub unsafe fn stringForObjectValue(
-            &self,
-            obj: Option<&Object>,
-        ) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn stringForObjectValue(&self, obj: Option<&Object>) -> Option<Id<NSString>>;
     }
 );

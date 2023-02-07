@@ -39,7 +39,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSScriptObjectSpecifier")]
         #[method_id(@__retain_semantics Other keySpecifier)]
-        pub unsafe fn keySpecifier(&self) -> Id<NSScriptObjectSpecifier, Shared>;
+        pub unsafe fn keySpecifier(&self) -> Id<NSScriptObjectSpecifier>;
     }
 );
 
@@ -115,11 +115,11 @@ extern_methods!(
     unsafe impl NSCreateCommand {
         #[cfg(feature = "Foundation_NSScriptClassDescription")]
         #[method_id(@__retain_semantics Other createClassDescription)]
-        pub unsafe fn createClassDescription(&self) -> Id<NSScriptClassDescription, Shared>;
+        pub unsafe fn createClassDescription(&self) -> Id<NSScriptClassDescription>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other resolvedKeyDictionary)]
-        pub unsafe fn resolvedKeyDictionary(&self) -> Id<NSDictionary<NSString, Object>, Shared>;
+        pub unsafe fn resolvedKeyDictionary(&self) -> Id<NSDictionary<NSString, Object>>;
     }
 );
 
@@ -150,7 +150,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSScriptObjectSpecifier")]
         #[method_id(@__retain_semantics Other keySpecifier)]
-        pub unsafe fn keySpecifier(&self) -> Id<NSScriptObjectSpecifier, Shared>;
+        pub unsafe fn keySpecifier(&self) -> Id<NSScriptObjectSpecifier>;
     }
 );
 
@@ -227,7 +227,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSScriptObjectSpecifier")]
         #[method_id(@__retain_semantics Other keySpecifier)]
-        pub unsafe fn keySpecifier(&self) -> Id<NSScriptObjectSpecifier, Shared>;
+        pub unsafe fn keySpecifier(&self) -> Id<NSScriptObjectSpecifier>;
     }
 );
 
@@ -284,7 +284,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSScriptObjectSpecifier")]
         #[method_id(@__retain_semantics Other keySpecifier)]
-        pub unsafe fn keySpecifier(&self) -> Id<NSScriptObjectSpecifier, Shared>;
+        pub unsafe fn keySpecifier(&self) -> Id<NSScriptObjectSpecifier>;
     }
 );
 
@@ -297,7 +297,7 @@ extern_methods!(
         pub unsafe fn initWithCommandDescription(
             this: Option<Allocated<Self>>,
             command_def: &NSScriptCommandDescription,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );
 
@@ -310,7 +310,7 @@ extern_methods!(
         pub unsafe fn initWithCommandDescription(
             this: Option<Allocated<Self>>,
             command_def: &NSScriptCommandDescription,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );
 
@@ -323,7 +323,7 @@ extern_methods!(
         pub unsafe fn initWithCommandDescription(
             this: Option<Allocated<Self>>,
             command_def: &NSScriptCommandDescription,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );
 
@@ -336,7 +336,7 @@ extern_methods!(
         pub unsafe fn initWithCommandDescription(
             this: Option<Allocated<Self>>,
             command_def: &NSScriptCommandDescription,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );
 
@@ -349,7 +349,7 @@ extern_methods!(
         pub unsafe fn initWithCommandDescription(
             this: Option<Allocated<Self>>,
             command_def: &NSScriptCommandDescription,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );
 
@@ -362,7 +362,7 @@ extern_methods!(
         pub unsafe fn initWithCommandDescription(
             this: Option<Allocated<Self>>,
             command_def: &NSScriptCommandDescription,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );
 
@@ -375,7 +375,7 @@ extern_methods!(
         pub unsafe fn initWithCommandDescription(
             this: Option<Allocated<Self>>,
             command_def: &NSScriptCommandDescription,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );
 
@@ -388,7 +388,7 @@ extern_methods!(
         pub unsafe fn initWithCommandDescription(
             this: Option<Allocated<Self>>,
             command_def: &NSScriptCommandDescription,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );
 
@@ -401,7 +401,7 @@ extern_methods!(
         pub unsafe fn initWithCommandDescription(
             this: Option<Allocated<Self>>,
             command_def: &NSScriptCommandDescription,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );
 
@@ -414,6 +414,6 @@ extern_methods!(
         pub unsafe fn initWithCommandDescription(
             this: Option<Allocated<Self>>,
             command_def: &NSScriptCommandDescription,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

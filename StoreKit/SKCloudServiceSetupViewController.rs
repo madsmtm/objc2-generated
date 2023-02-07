@@ -50,7 +50,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn SKCloudServiceSetupViewControllerDelegate>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn SKCloudServiceSetupViewControllerDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -124,6 +124,6 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             nib_name_or_nil: Option<&NSNibName>,
             nib_bundle_or_nil: Option<&NSBundle>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

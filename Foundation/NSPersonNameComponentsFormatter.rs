@@ -56,7 +56,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSLocale")]
         #[method_id(@__retain_semantics Other locale)]
-        pub unsafe fn locale(&self) -> Id<NSLocale, Shared>;
+        pub unsafe fn locale(&self) -> Id<NSLocale>;
 
         #[cfg(feature = "Foundation_NSLocale")]
         #[method(setLocale:)]
@@ -71,7 +71,7 @@ extern_methods!(
             components: &NSPersonNameComponents,
             name_format_style: NSPersonNameComponentsFormatterStyle,
             name_options: NSPersonNameComponentsFormatterOptions,
-        ) -> Id<NSString, Shared>;
+        ) -> Id<NSString>;
 
         #[cfg(all(
             feature = "Foundation_NSPersonNameComponents",
@@ -81,7 +81,7 @@ extern_methods!(
         pub unsafe fn stringFromPersonNameComponents(
             &self,
             components: &NSPersonNameComponents,
-        ) -> Id<NSString, Shared>;
+        ) -> Id<NSString>;
 
         #[cfg(all(
             feature = "Foundation_NSAttributedString",
@@ -91,7 +91,7 @@ extern_methods!(
         pub unsafe fn annotatedStringFromPersonNameComponents(
             &self,
             components: &NSPersonNameComponents,
-        ) -> Id<NSAttributedString, Shared>;
+        ) -> Id<NSAttributedString>;
 
         #[cfg(all(
             feature = "Foundation_NSPersonNameComponents",
@@ -101,15 +101,15 @@ extern_methods!(
         pub unsafe fn personNameComponentsFromString(
             &self,
             string: &NSString,
-        ) -> Option<Id<NSPersonNameComponents, Shared>>;
+        ) -> Option<Id<NSPersonNameComponents>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(getObjectValue:forString:errorDescription:)]
         pub unsafe fn getObjectValue_forString_errorDescription(
             &self,
-            obj: Option<&mut Option<Id<Object, Shared>>>,
+            obj: Option<&mut Option<Id<Object>>>,
             string: &NSString,
-            error: Option<&mut Option<Id<NSString, Shared>>>,
+            error: Option<&mut Option<Id<NSString>>>,
         ) -> bool;
     }
 );

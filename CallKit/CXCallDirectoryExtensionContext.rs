@@ -42,7 +42,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn CXCallDirectoryExtensionContextDelegate>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn CXCallDirectoryExtensionContextDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(

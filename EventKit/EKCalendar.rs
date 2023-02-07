@@ -27,18 +27,18 @@ extern_methods!(
     unsafe impl EKCalendar {
         #[cfg(feature = "EventKit_EKEventStore")]
         #[method_id(@__retain_semantics Other calendarWithEventStore:)]
-        pub unsafe fn calendarWithEventStore(event_store: &EKEventStore) -> Id<EKCalendar, Shared>;
+        pub unsafe fn calendarWithEventStore(event_store: &EKEventStore) -> Id<EKCalendar>;
 
         #[cfg(feature = "EventKit_EKEventStore")]
         #[method_id(@__retain_semantics Other calendarForEntityType:eventStore:)]
         pub unsafe fn calendarForEntityType_eventStore(
             entity_type: EKEntityType,
             event_store: &EKEventStore,
-        ) -> Id<EKCalendar, Shared>;
+        ) -> Id<EKCalendar>;
 
         #[cfg(feature = "EventKit_EKSource")]
         #[method_id(@__retain_semantics Other source)]
-        pub unsafe fn source(&self) -> Option<Id<EKSource, Shared>>;
+        pub unsafe fn source(&self) -> Option<Id<EKSource>>;
 
         #[cfg(feature = "EventKit_EKSource")]
         #[method(setSource:)]
@@ -46,11 +46,11 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other calendarIdentifier)]
-        pub unsafe fn calendarIdentifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn calendarIdentifier(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Id<NSString, Shared>;
+        pub unsafe fn title(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setTitle:)]
@@ -70,7 +70,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other color)]
-        pub unsafe fn color(&self) -> Id<NSColor, Shared>;
+        pub unsafe fn color(&self) -> Id<NSColor>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setColor:)]

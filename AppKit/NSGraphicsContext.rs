@@ -55,21 +55,20 @@ extern_methods!(
         #[method_id(@__retain_semantics Other graphicsContextWithAttributes:)]
         pub unsafe fn graphicsContextWithAttributes(
             attributes: &NSDictionary<NSGraphicsContextAttributeKey, Object>,
-        ) -> Option<Id<NSGraphicsContext, Shared>>;
+        ) -> Option<Id<NSGraphicsContext>>;
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[method_id(@__retain_semantics Other graphicsContextWithWindow:)]
-        pub unsafe fn graphicsContextWithWindow(window: &NSWindow)
-            -> Id<NSGraphicsContext, Shared>;
+        pub unsafe fn graphicsContextWithWindow(window: &NSWindow) -> Id<NSGraphicsContext>;
 
         #[cfg(feature = "AppKit_NSBitmapImageRep")]
         #[method_id(@__retain_semantics Other graphicsContextWithBitmapImageRep:)]
         pub unsafe fn graphicsContextWithBitmapImageRep(
             bitmap_rep: &NSBitmapImageRep,
-        ) -> Option<Id<NSGraphicsContext, Shared>>;
+        ) -> Option<Id<NSGraphicsContext>>;
 
         #[method_id(@__retain_semantics Other currentContext)]
-        pub unsafe fn currentContext() -> Option<Id<NSGraphicsContext, Shared>>;
+        pub unsafe fn currentContext() -> Option<Id<NSGraphicsContext>>;
 
         #[method(setCurrentContext:)]
         pub unsafe fn setCurrentContext(current_context: Option<&NSGraphicsContext>);
@@ -87,7 +86,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other attributes)]
         pub unsafe fn attributes(
             &self,
-        ) -> Option<Id<NSDictionary<NSGraphicsContextAttributeKey, Object>, Shared>>;
+        ) -> Option<Id<NSDictionary<NSGraphicsContextAttributeKey, Object>>>;
 
         #[method(isDrawingToScreen)]
         pub unsafe fn isDrawingToScreen(&self) -> bool;
@@ -161,7 +160,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other focusStack)]
-        pub unsafe fn focusStack(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn focusStack(&self) -> Option<Id<Object>>;
 
         #[deprecated]
         #[method(setFocusStack:)]
@@ -172,7 +171,7 @@ extern_methods!(
         pub unsafe fn graphicsContextWithGraphicsPort_flipped(
             graphics_port: NonNull<c_void>,
             initial_flipped_state: bool,
-        ) -> Id<NSGraphicsContext, Shared>;
+        ) -> Id<NSGraphicsContext>;
 
         #[deprecated]
         #[method(graphicsPort)]

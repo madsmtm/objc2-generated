@@ -34,14 +34,14 @@ extern_methods!(
     unsafe impl UNNotificationResponse {
         #[cfg(feature = "UserNotifications_UNNotification")]
         #[method_id(@__retain_semantics Other notification)]
-        pub unsafe fn notification(&self) -> Id<UNNotification, Shared>;
+        pub unsafe fn notification(&self) -> Id<UNNotification>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other actionIdentifier)]
-        pub unsafe fn actionIdentifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn actionIdentifier(&self) -> Id<NSString>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }
 );
 
@@ -71,6 +71,6 @@ extern_methods!(
     unsafe impl UNTextInputNotificationResponse {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other userText)]
-        pub unsafe fn userText(&self) -> Id<NSString, Shared>;
+        pub unsafe fn userText(&self) -> Id<NSString>;
     }
 );

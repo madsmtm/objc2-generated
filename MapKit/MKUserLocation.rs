@@ -32,15 +32,15 @@ extern_methods!(
 
         #[cfg(feature = "CoreLocation_CLLocation")]
         #[method_id(@__retain_semantics Other location)]
-        pub unsafe fn location(&self) -> Option<Id<CLLocation, Shared>>;
+        pub unsafe fn location(&self) -> Option<Id<CLLocation>>;
 
         #[cfg(feature = "CoreLocation_CLHeading")]
         #[method_id(@__retain_semantics Other heading)]
-        pub unsafe fn heading(&self) -> Option<Id<CLHeading, Shared>>;
+        pub unsafe fn heading(&self) -> Option<Id<CLHeading>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn title(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setTitle:)]
@@ -48,7 +48,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other subtitle)]
-        pub unsafe fn subtitle(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn subtitle(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setSubtitle:)]

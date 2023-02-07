@@ -29,22 +29,19 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_DOMNode"))]
         #[method_id(@__retain_semantics Other getNamedItem:)]
-        pub unsafe fn getNamedItem(&self, name: Option<&NSString>) -> Option<Id<DOMNode, Shared>>;
+        pub unsafe fn getNamedItem(&self, name: Option<&NSString>) -> Option<Id<DOMNode>>;
 
         #[cfg(feature = "WebKit_DOMNode")]
         #[method_id(@__retain_semantics Other setNamedItem:)]
-        pub unsafe fn setNamedItem(&self, node: Option<&DOMNode>) -> Option<Id<DOMNode, Shared>>;
+        pub unsafe fn setNamedItem(&self, node: Option<&DOMNode>) -> Option<Id<DOMNode>>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_DOMNode"))]
         #[method_id(@__retain_semantics Other removeNamedItem:)]
-        pub unsafe fn removeNamedItem(
-            &self,
-            name: Option<&NSString>,
-        ) -> Option<Id<DOMNode, Shared>>;
+        pub unsafe fn removeNamedItem(&self, name: Option<&NSString>) -> Option<Id<DOMNode>>;
 
         #[cfg(feature = "WebKit_DOMNode")]
         #[method_id(@__retain_semantics Other item:)]
-        pub unsafe fn item(&self, index: c_uint) -> Option<Id<DOMNode, Shared>>;
+        pub unsafe fn item(&self, index: c_uint) -> Option<Id<DOMNode>>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_DOMNode"))]
         #[method_id(@__retain_semantics Other getNamedItemNS:localName:)]
@@ -52,11 +49,11 @@ extern_methods!(
             &self,
             namespace_uri: Option<&NSString>,
             local_name: Option<&NSString>,
-        ) -> Option<Id<DOMNode, Shared>>;
+        ) -> Option<Id<DOMNode>>;
 
         #[cfg(feature = "WebKit_DOMNode")]
         #[method_id(@__retain_semantics Other setNamedItemNS:)]
-        pub unsafe fn setNamedItemNS(&self, node: Option<&DOMNode>) -> Option<Id<DOMNode, Shared>>;
+        pub unsafe fn setNamedItemNS(&self, node: Option<&DOMNode>) -> Option<Id<DOMNode>>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_DOMNode"))]
         #[method_id(@__retain_semantics Other removeNamedItemNS:localName:)]
@@ -64,7 +61,7 @@ extern_methods!(
             &self,
             namespace_uri: Option<&NSString>,
             local_name: Option<&NSString>,
-        ) -> Option<Id<DOMNode, Shared>>;
+        ) -> Option<Id<DOMNode>>;
     }
 );
 
@@ -79,7 +76,7 @@ extern_methods!(
             &self,
             namespace_uri: Option<&NSString>,
             local_name: Option<&NSString>,
-        ) -> Option<Id<DOMNode, Shared>>;
+        ) -> Option<Id<DOMNode>>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_DOMNode"))]
         #[deprecated]
@@ -88,6 +85,6 @@ extern_methods!(
             &self,
             namespace_uri: Option<&NSString>,
             local_name: Option<&NSString>,
-        ) -> Option<Id<DOMNode, Shared>>;
+        ) -> Option<Id<DOMNode>>;
     }
 );

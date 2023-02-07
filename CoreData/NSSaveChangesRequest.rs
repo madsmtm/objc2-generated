@@ -30,22 +30,22 @@ extern_methods!(
             updated_objects: Option<&NSSet<NSManagedObject>>,
             deleted_objects: Option<&NSSet<NSManagedObject>>,
             locked_objects: Option<&NSSet<NSManagedObject>>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(feature = "CoreData_NSManagedObject", feature = "Foundation_NSSet"))]
         #[method_id(@__retain_semantics Other insertedObjects)]
-        pub unsafe fn insertedObjects(&self) -> Option<Id<NSSet<NSManagedObject>, Shared>>;
+        pub unsafe fn insertedObjects(&self) -> Option<Id<NSSet<NSManagedObject>>>;
 
         #[cfg(all(feature = "CoreData_NSManagedObject", feature = "Foundation_NSSet"))]
         #[method_id(@__retain_semantics Other updatedObjects)]
-        pub unsafe fn updatedObjects(&self) -> Option<Id<NSSet<NSManagedObject>, Shared>>;
+        pub unsafe fn updatedObjects(&self) -> Option<Id<NSSet<NSManagedObject>>>;
 
         #[cfg(all(feature = "CoreData_NSManagedObject", feature = "Foundation_NSSet"))]
         #[method_id(@__retain_semantics Other deletedObjects)]
-        pub unsafe fn deletedObjects(&self) -> Option<Id<NSSet<NSManagedObject>, Shared>>;
+        pub unsafe fn deletedObjects(&self) -> Option<Id<NSSet<NSManagedObject>>>;
 
         #[cfg(all(feature = "CoreData_NSManagedObject", feature = "Foundation_NSSet"))]
         #[method_id(@__retain_semantics Other lockedObjects)]
-        pub unsafe fn lockedObjects(&self) -> Option<Id<NSSet<NSManagedObject>, Shared>>;
+        pub unsafe fn lockedObjects(&self) -> Option<Id<NSSet<NSManagedObject>>>;
     }
 );

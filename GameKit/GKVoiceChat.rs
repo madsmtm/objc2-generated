@@ -61,7 +61,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString, Shared>;
+        pub unsafe fn name(&self) -> Id<NSString>;
 
         #[method(isActive)]
         pub unsafe fn isActive(&self) -> bool;
@@ -77,7 +77,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "GameKit_GKPlayer"))]
         #[method_id(@__retain_semantics Other players)]
-        pub unsafe fn players(&self) -> Id<NSArray<GKPlayer>, Shared>;
+        pub unsafe fn players(&self) -> Id<NSArray<GKPlayer>>;
 
         #[method(isVoIPAllowed)]
         pub unsafe fn isVoIPAllowed() -> bool;
@@ -112,7 +112,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[deprecated = "use players"]
         #[method_id(@__retain_semantics Other playerIDs)]
-        pub unsafe fn playerIDs(&self) -> Option<Id<NSArray<NSString>, Shared>>;
+        pub unsafe fn playerIDs(&self) -> Option<Id<NSArray<NSString>>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "This is never invoked and its implementation does nothing, use setPlayer:muted:"]

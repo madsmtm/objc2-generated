@@ -35,11 +35,11 @@ extern_methods!(
 
         #[cfg(feature = "WebKit_DOMHTMLCollection")]
         #[method_id(@__retain_semantics Other cells)]
-        pub unsafe fn cells(&self) -> Option<Id<DOMHTMLCollection, Shared>>;
+        pub unsafe fn cells(&self) -> Option<Id<DOMHTMLCollection>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other align)]
-        pub unsafe fn align(&self) -> Id<NSString, Shared>;
+        pub unsafe fn align(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAlign:)]
@@ -47,7 +47,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other bgColor)]
-        pub unsafe fn bgColor(&self) -> Id<NSString, Shared>;
+        pub unsafe fn bgColor(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setBgColor:)]
@@ -55,7 +55,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other ch)]
-        pub unsafe fn ch(&self) -> Id<NSString, Shared>;
+        pub unsafe fn ch(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCh:)]
@@ -63,7 +63,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other chOff)]
-        pub unsafe fn chOff(&self) -> Id<NSString, Shared>;
+        pub unsafe fn chOff(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setChOff:)]
@@ -71,14 +71,14 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other vAlign)]
-        pub unsafe fn vAlign(&self) -> Id<NSString, Shared>;
+        pub unsafe fn vAlign(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setVAlign:)]
         pub unsafe fn setVAlign(&self, v_align: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other insertCell:)]
-        pub unsafe fn insertCell(&self, index: c_int) -> Option<Id<DOMHTMLElement, Shared>>;
+        pub unsafe fn insertCell(&self, index: c_int) -> Option<Id<DOMHTMLElement>>;
 
         #[method(deleteCell:)]
         pub unsafe fn deleteCell(&self, index: c_int);

@@ -32,19 +32,15 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTextContainer")]
     unsafe impl NSTextContainer {
         #[method_id(@__retain_semantics Init initWithSize:)]
-        pub unsafe fn initWithSize(this: Option<Allocated<Self>>, size: NSSize)
-            -> Id<Self, Shared>;
+        pub unsafe fn initWithSize(this: Option<Allocated<Self>>, size: NSSize) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            coder: &NSCoder,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, coder: &NSCoder) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSLayoutManager")]
         #[method_id(@__retain_semantics Other layoutManager)]
-        pub unsafe fn layoutManager(&self) -> Option<Id<NSLayoutManager, Shared>>;
+        pub unsafe fn layoutManager(&self) -> Option<Id<NSLayoutManager>>;
 
         #[cfg(feature = "AppKit_NSLayoutManager")]
         #[method(setLayoutManager:)]
@@ -56,7 +52,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSTextLayoutManager")]
         #[method_id(@__retain_semantics Other textLayoutManager)]
-        pub unsafe fn textLayoutManager(&self) -> Option<Id<NSTextLayoutManager, Shared>>;
+        pub unsafe fn textLayoutManager(&self) -> Option<Id<NSTextLayoutManager>>;
 
         #[method(size)]
         pub unsafe fn size(&self) -> NSSize;
@@ -66,7 +62,7 @@ extern_methods!(
 
         #[cfg(all(feature = "AppKit_NSBezierPath", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other exclusionPaths)]
-        pub unsafe fn exclusionPaths(&self) -> Id<NSArray<NSBezierPath>, Shared>;
+        pub unsafe fn exclusionPaths(&self) -> Id<NSArray<NSBezierPath>>;
 
         #[cfg(all(feature = "AppKit_NSBezierPath", feature = "Foundation_NSArray"))]
         #[method(setExclusionPaths:)]
@@ -116,7 +112,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSTextView")]
         #[method_id(@__retain_semantics Other textView)]
-        pub unsafe fn textView(&self) -> Option<Id<NSTextView, Shared>>;
+        pub unsafe fn textView(&self) -> Option<Id<NSTextView>>;
 
         #[cfg(feature = "AppKit_NSTextView")]
         #[method(setTextView:)]
@@ -153,7 +149,7 @@ extern_methods!(
         pub unsafe fn initWithContainerSize(
             this: Option<Allocated<Self>>,
             a_container_size: NSSize,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(containerSize)]
         pub unsafe fn containerSize(&self) -> NSSize;

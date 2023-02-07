@@ -27,22 +27,22 @@ extern_methods!(
             feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other statistics)]
-        pub unsafe fn statistics(&self) -> Id<NSDictionary<NSString, NSNumber>, Shared>;
+        pub unsafe fn statistics(&self) -> Id<NSDictionary<NSString, NSNumber>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other allConnections)]
-        pub unsafe fn allConnections() -> Id<NSArray<NSConnection>, Shared>;
+        pub unsafe fn allConnections() -> Id<NSArray<NSConnection>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other defaultConnection)]
-        pub unsafe fn defaultConnection() -> Id<NSConnection, Shared>;
+        pub unsafe fn defaultConnection() -> Id<NSConnection>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other connectionWithRegisteredName:host:)]
         pub unsafe fn connectionWithRegisteredName_host(
             name: &NSString,
             host_name: Option<&NSString>,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(all(
             feature = "Foundation_NSPortNameServer",
@@ -53,7 +53,7 @@ extern_methods!(
             name: &NSString,
             host_name: Option<&NSString>,
             server: &NSPortNameServer,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(all(
             feature = "Foundation_NSDistantObject",
@@ -63,7 +63,7 @@ extern_methods!(
         pub unsafe fn rootProxyForConnectionWithRegisteredName_host(
             name: &NSString,
             host_name: Option<&NSString>,
-        ) -> Option<Id<NSDistantObject, Shared>>;
+        ) -> Option<Id<NSDistantObject>>;
 
         #[cfg(all(
             feature = "Foundation_NSDistantObject",
@@ -75,7 +75,7 @@ extern_methods!(
             name: &NSString,
             host_name: Option<&NSString>,
             server: &NSPortNameServer,
-        ) -> Option<Id<NSDistantObject, Shared>>;
+        ) -> Option<Id<NSDistantObject>>;
 
         #[cfg(all(
             feature = "Foundation_NSPortNameServer",
@@ -86,14 +86,14 @@ extern_methods!(
             name: &NSString,
             root: &Object,
             server: &NSPortNameServer,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other serviceConnectionWithName:rootObject:)]
         pub unsafe fn serviceConnectionWithName_rootObject(
             name: &NSString,
             root: &Object,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[method(requestTimeout)]
         pub unsafe fn requestTimeout(&self) -> NSTimeInterval;
@@ -108,15 +108,13 @@ extern_methods!(
         pub unsafe fn setReplyTimeout(&self, reply_timeout: NSTimeInterval);
 
         #[method_id(@__retain_semantics Other rootObject)]
-        pub unsafe fn rootObject(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn rootObject(&self) -> Option<Id<Object>>;
 
         #[method(setRootObject:)]
         pub unsafe fn setRootObject(&self, root_object: Option<&Object>);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(
-            &self,
-        ) -> Option<Id<ProtocolObject<dyn NSConnectionDelegate>, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSConnectionDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -138,7 +136,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDistantObject")]
         #[method_id(@__retain_semantics Other rootProxy)]
-        pub unsafe fn rootProxy(&self) -> Id<NSDistantObject, Shared>;
+        pub unsafe fn rootProxy(&self) -> Id<NSDistantObject>;
 
         #[method(invalidate)]
         pub unsafe fn invalidate(&self);
@@ -153,7 +151,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other requestModes)]
-        pub unsafe fn requestModes(&self) -> Id<NSArray<NSString>, Shared>;
+        pub unsafe fn requestModes(&self) -> Id<NSArray<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(registerName:)]
@@ -175,10 +173,10 @@ extern_methods!(
         pub unsafe fn connectionWithReceivePort_sendPort(
             receive_port: Option<&NSPort>,
             send_port: Option<&NSPort>,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[method_id(@__retain_semantics Other currentConversation)]
-        pub unsafe fn currentConversation() -> Option<Id<Object, Shared>>;
+        pub unsafe fn currentConversation() -> Option<Id<Object>>;
 
         #[cfg(feature = "Foundation_NSPort")]
         #[method_id(@__retain_semantics Init initWithReceivePort:sendPort:)]
@@ -186,15 +184,15 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             receive_port: Option<&NSPort>,
             send_port: Option<&NSPort>,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSPort")]
         #[method_id(@__retain_semantics Other sendPort)]
-        pub unsafe fn sendPort(&self) -> Id<NSPort, Shared>;
+        pub unsafe fn sendPort(&self) -> Id<NSPort>;
 
         #[cfg(feature = "Foundation_NSPort")]
         #[method_id(@__retain_semantics Other receivePort)]
-        pub unsafe fn receivePort(&self) -> Id<NSPort, Shared>;
+        pub unsafe fn receivePort(&self) -> Id<NSPort>;
 
         #[method(enableMultipleThreads)]
         pub unsafe fn enableMultipleThreads(&self);
@@ -215,11 +213,11 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other remoteObjects)]
-        pub unsafe fn remoteObjects(&self) -> Id<NSArray, Shared>;
+        pub unsafe fn remoteObjects(&self) -> Id<NSArray>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other localObjects)]
-        pub unsafe fn localObjects(&self) -> Id<NSArray, Shared>;
+        pub unsafe fn localObjects(&self) -> Id<NSArray>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(dispatchWithComponents:)]
@@ -255,10 +253,7 @@ extern_protocol!(
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSData"))]
         #[optional]
         #[method_id(@__retain_semantics Other authenticationDataForComponents:)]
-        unsafe fn authenticationDataForComponents(
-            &self,
-            components: &NSArray,
-        ) -> Id<NSData, Shared>;
+        unsafe fn authenticationDataForComponents(&self, components: &NSArray) -> Id<NSData>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSData"))]
         #[optional]
@@ -272,8 +267,7 @@ extern_protocol!(
         #[cfg(feature = "Foundation_NSConnection")]
         #[optional]
         #[method_id(@__retain_semantics Other createConversationForConnection:)]
-        unsafe fn createConversationForConnection(&self, conn: &NSConnection)
-            -> Id<Object, Shared>;
+        unsafe fn createConversationForConnection(&self, conn: &NSConnection) -> Id<Object>;
 
         #[cfg(all(
             feature = "Foundation_NSConnection",
@@ -315,14 +309,14 @@ extern_methods!(
     unsafe impl NSDistantObjectRequest {
         #[cfg(feature = "Foundation_NSInvocation")]
         #[method_id(@__retain_semantics Other invocation)]
-        pub unsafe fn invocation(&self) -> Id<NSInvocation, Shared>;
+        pub unsafe fn invocation(&self) -> Id<NSInvocation>;
 
         #[cfg(feature = "Foundation_NSConnection")]
         #[method_id(@__retain_semantics Other connection)]
-        pub unsafe fn connection(&self) -> Id<NSConnection, Shared>;
+        pub unsafe fn connection(&self) -> Id<NSConnection>;
 
         #[method_id(@__retain_semantics Other conversation)]
-        pub unsafe fn conversation(&self) -> Id<Object, Shared>;
+        pub unsafe fn conversation(&self) -> Id<Object>;
 
         #[cfg(feature = "Foundation_NSException")]
         #[method(replyWithException:)]

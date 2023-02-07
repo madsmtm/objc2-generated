@@ -29,7 +29,7 @@ extern_methods!(
     unsafe impl DOMHTMLMetaElement {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other content)]
-        pub unsafe fn content(&self) -> Id<NSString, Shared>;
+        pub unsafe fn content(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setContent:)]
@@ -37,7 +37,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other httpEquiv)]
-        pub unsafe fn httpEquiv(&self) -> Id<NSString, Shared>;
+        pub unsafe fn httpEquiv(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setHttpEquiv:)]
@@ -45,7 +45,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString, Shared>;
+        pub unsafe fn name(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]
@@ -53,7 +53,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other scheme)]
-        pub unsafe fn scheme(&self) -> Id<NSString, Shared>;
+        pub unsafe fn scheme(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setScheme:)]

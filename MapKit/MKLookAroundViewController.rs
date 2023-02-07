@@ -54,7 +54,7 @@ extern_methods!(
         pub unsafe fn initWithScene(
             this: Option<Allocated<Self>>,
             scene: &MKLookAroundScene,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSBundle", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
@@ -62,19 +62,19 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn MKLookAroundViewControllerDelegate>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MKLookAroundViewControllerDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -84,7 +84,7 @@ extern_methods!(
 
         #[cfg(feature = "MapKit_MKLookAroundScene")]
         #[method_id(@__retain_semantics Other scene)]
-        pub unsafe fn scene(&self) -> Option<Id<MKLookAroundScene, Shared>>;
+        pub unsafe fn scene(&self) -> Option<Id<MKLookAroundScene>>;
 
         #[cfg(feature = "MapKit_MKLookAroundScene")]
         #[method(setScene:)]
@@ -104,7 +104,7 @@ extern_methods!(
 
         #[cfg(feature = "MapKit_MKPointOfInterestFilter")]
         #[method_id(@__retain_semantics Other pointOfInterestFilter)]
-        pub unsafe fn pointOfInterestFilter(&self) -> Option<Id<MKPointOfInterestFilter, Shared>>;
+        pub unsafe fn pointOfInterestFilter(&self) -> Option<Id<MKPointOfInterestFilter>>;
 
         #[cfg(feature = "MapKit_MKPointOfInterestFilter")]
         #[method(setPointOfInterestFilter:)]

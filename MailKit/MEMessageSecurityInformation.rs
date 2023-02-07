@@ -30,31 +30,31 @@ extern_methods!(
     unsafe impl MEMessageSecurityInformation {
         #[cfg(all(feature = "Foundation_NSArray", feature = "MailKit_MEMessageSigner"))]
         #[method_id(@__retain_semantics Other signers)]
-        pub unsafe fn signers(&self) -> Id<NSArray<MEMessageSigner>, Shared>;
+        pub unsafe fn signers(&self) -> Id<NSArray<MEMessageSigner>>;
 
         #[method(isEncrypted)]
         pub unsafe fn isEncrypted(&self) -> bool;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other signingError)]
-        pub unsafe fn signingError(&self) -> Option<Id<NSError, Shared>>;
+        pub unsafe fn signingError(&self) -> Option<Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other encryptionError)]
-        pub unsafe fn encryptionError(&self) -> Option<Id<NSError, Shared>>;
+        pub unsafe fn encryptionError(&self) -> Option<Id<NSError>>;
 
         #[method(shouldBlockRemoteContent)]
         pub unsafe fn shouldBlockRemoteContent(&self) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedRemoteContentBlockingReason)]
-        pub unsafe fn localizedRemoteContentBlockingReason(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn localizedRemoteContentBlockingReason(&self) -> Option<Id<NSString>>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -68,7 +68,7 @@ extern_methods!(
             is_encrypted: bool,
             signing_error: Option<&NSError>,
             encryption_error: Option<&NSError>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -85,6 +85,6 @@ extern_methods!(
             encryption_error: Option<&NSError>,
             should_block_remote_content: bool,
             localized_remote_content_blocking_reason: Option<&NSString>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

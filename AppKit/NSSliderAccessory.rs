@@ -27,11 +27,11 @@ extern_methods!(
     unsafe impl NSSliderAccessory {
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other accessoryWithImage:)]
-        pub unsafe fn accessoryWithImage(image: &NSImage) -> Id<NSSliderAccessory, Shared>;
+        pub unsafe fn accessoryWithImage(image: &NSImage) -> Id<NSSliderAccessory>;
 
         #[cfg(feature = "AppKit_NSSliderAccessoryBehavior")]
         #[method_id(@__retain_semantics Other behavior)]
-        pub unsafe fn behavior(&self) -> Id<NSSliderAccessoryBehavior, Shared>;
+        pub unsafe fn behavior(&self) -> Id<NSSliderAccessoryBehavior>;
 
         #[cfg(feature = "AppKit_NSSliderAccessoryBehavior")]
         #[method(setBehavior:)]
@@ -77,25 +77,25 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSSliderAccessoryBehavior")]
     unsafe impl NSSliderAccessoryBehavior {
         #[method_id(@__retain_semantics Other automaticBehavior)]
-        pub unsafe fn automaticBehavior() -> Id<NSSliderAccessoryBehavior, Shared>;
+        pub unsafe fn automaticBehavior() -> Id<NSSliderAccessoryBehavior>;
 
         #[method_id(@__retain_semantics Other valueStepBehavior)]
-        pub unsafe fn valueStepBehavior() -> Id<NSSliderAccessoryBehavior, Shared>;
+        pub unsafe fn valueStepBehavior() -> Id<NSSliderAccessoryBehavior>;
 
         #[method_id(@__retain_semantics Other valueResetBehavior)]
-        pub unsafe fn valueResetBehavior() -> Id<NSSliderAccessoryBehavior, Shared>;
+        pub unsafe fn valueResetBehavior() -> Id<NSSliderAccessoryBehavior>;
 
         #[method_id(@__retain_semantics Other behaviorWithTarget:action:)]
         pub unsafe fn behaviorWithTarget_action(
             target: Option<&Object>,
             action: Sel,
-        ) -> Id<NSSliderAccessoryBehavior, Shared>;
+        ) -> Id<NSSliderAccessoryBehavior>;
 
         #[cfg(feature = "AppKit_NSSliderAccessory")]
         #[method_id(@__retain_semantics Other behaviorWithHandler:)]
         pub unsafe fn behaviorWithHandler(
             handler: &Block<(NonNull<NSSliderAccessory>,), ()>,
-        ) -> Id<NSSliderAccessoryBehavior, Shared>;
+        ) -> Id<NSSliderAccessoryBehavior>;
 
         #[cfg(feature = "AppKit_NSSliderAccessory")]
         #[method(handleAction:)]

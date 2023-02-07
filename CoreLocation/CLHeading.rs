@@ -52,6 +52,6 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other timestamp)]
-        pub unsafe fn timestamp(&self) -> Id<NSDate, Shared>;
+        pub unsafe fn timestamp(&self) -> Id<NSDate>;
     }
 );

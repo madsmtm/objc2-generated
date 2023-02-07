@@ -20,7 +20,7 @@ extern_protocol!(
             sender: Option<&WebView>,
             request: Option<&NSURLRequest>,
             data_source: Option<&WebDataSource>,
-        ) -> Option<Id<Object, Shared>>;
+        ) -> Option<Id<Object>>;
 
         #[cfg(all(
             feature = "Foundation_NSURLRequest",
@@ -37,7 +37,7 @@ extern_protocol!(
             request: Option<&NSURLRequest>,
             redirect_response: Option<&NSURLResponse>,
             data_source: Option<&WebDataSource>,
-        ) -> Option<Id<NSURLRequest, Shared>>;
+        ) -> Option<Id<NSURLRequest>>;
 
         #[cfg(all(
             feature = "Foundation_NSURLAuthenticationChallenge",

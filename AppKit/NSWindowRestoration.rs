@@ -64,7 +64,7 @@ extern_methods!(
         pub unsafe fn setRestorable(&self, restorable: bool);
 
         #[method_id(@__retain_semantics Other restorationClass)]
-        pub unsafe fn restorationClass(&self) -> Option<Id<TodoClass, Shared>>;
+        pub unsafe fn restorationClass(&self) -> Option<Id<TodoClass>>;
 
         #[method(setRestorationClass:)]
         pub unsafe fn setRestorationClass(&self, restoration_class: Option<&TodoClass>);
@@ -105,13 +105,13 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other restorableStateKeyPaths)]
-        pub unsafe fn restorableStateKeyPaths() -> Id<NSArray<NSString>, Shared>;
+        pub unsafe fn restorableStateKeyPaths() -> Id<NSArray<NSString>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other allowedClassesForRestorableStateKeyPath:)]
         pub unsafe fn allowedClassesForRestorableStateKeyPath(
             key_path: &NSString,
-        ) -> Id<NSArray<TodoClass>, Shared>;
+        ) -> Id<NSArray<TodoClass>>;
     }
 );
 
@@ -168,12 +168,12 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other restorableStateKeyPaths)]
-        pub unsafe fn restorableStateKeyPaths() -> Id<NSArray<NSString>, Shared>;
+        pub unsafe fn restorableStateKeyPaths() -> Id<NSArray<NSString>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other allowedClassesForRestorableStateKeyPath:)]
         pub unsafe fn allowedClassesForRestorableStateKeyPath(
             key_path: &NSString,
-        ) -> Id<NSArray<TodoClass>, Shared>;
+        ) -> Id<NSArray<TodoClass>>;
     }
 );

@@ -81,14 +81,14 @@ extern_methods!(
         pub unsafe fn setTextFont(&self, font_obj: &NSFont);
 
         #[method_id(@__retain_semantics Other cellAtIndex:)]
-        pub unsafe fn cellAtIndex(&self, index: NSInteger) -> Option<Id<Object, Shared>>;
+        pub unsafe fn cellAtIndex(&self, index: NSInteger) -> Option<Id<Object>>;
 
         #[method(drawCellAtIndex:)]
         pub unsafe fn drawCellAtIndex(&self, index: NSInteger);
 
         #[cfg(all(feature = "AppKit_NSFormCell", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other addEntry:)]
-        pub unsafe fn addEntry(&self, title: &NSString) -> Id<NSFormCell, Shared>;
+        pub unsafe fn addEntry(&self, title: &NSString) -> Id<NSFormCell>;
 
         #[cfg(all(feature = "AppKit_NSFormCell", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other insertEntry:atIndex:)]
@@ -96,7 +96,7 @@ extern_methods!(
             &self,
             title: &NSString,
             index: NSInteger,
-        ) -> Option<Id<NSFormCell, Shared>>;
+        ) -> Option<Id<NSFormCell>>;
 
         #[method(removeEntryAtIndex:)]
         pub unsafe fn removeEntryAtIndex(&self, index: NSInteger);
@@ -129,10 +129,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSForm")]
     unsafe impl NSForm {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frame_rect: NSRect,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSCell")]
         #[method_id(@__retain_semantics Init initWithFrame:mode:prototype:numberOfRows:numberOfColumns:)]
@@ -143,7 +140,7 @@ extern_methods!(
             cell: &NSCell,
             rows_high: NSInteger,
             cols_wide: NSInteger,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithFrame:mode:cellClass:numberOfRows:numberOfColumns:)]
         pub unsafe fn initWithFrame_mode_cellClass_numberOfRows_numberOfColumns(
@@ -153,6 +150,6 @@ extern_methods!(
             factory_id: Option<&Class>,
             rows_high: NSInteger,
             cols_wide: NSInteger,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

@@ -33,7 +33,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSUserDefaultsController")]
     unsafe impl NSUserDefaultsController {
         #[method_id(@__retain_semantics Other sharedUserDefaultsController)]
-        pub unsafe fn sharedUserDefaultsController() -> Id<NSUserDefaultsController, Shared>;
+        pub unsafe fn sharedUserDefaultsController() -> Id<NSUserDefaultsController>;
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",
@@ -45,22 +45,22 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             defaults: Option<&NSUserDefaults>,
             initial_values: Option<&NSDictionary<NSString, Object>>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSUserDefaults")]
         #[method_id(@__retain_semantics Other defaults)]
-        pub unsafe fn defaults(&self) -> Id<NSUserDefaults, Shared>;
+        pub unsafe fn defaults(&self) -> Id<NSUserDefaults>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other initialValues)]
-        pub unsafe fn initialValues(&self) -> Option<Id<NSDictionary<NSString, Object>, Shared>>;
+        pub unsafe fn initialValues(&self) -> Option<Id<NSDictionary<NSString, Object>>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setInitialValues:)]
@@ -79,7 +79,7 @@ extern_methods!(
         pub unsafe fn hasUnappliedChanges(&self) -> bool;
 
         #[method_id(@__retain_semantics Other values)]
-        pub unsafe fn values(&self) -> Id<Object, Shared>;
+        pub unsafe fn values(&self) -> Id<Object>;
 
         #[method(revert:)]
         pub unsafe fn revert(&self, sender: Option<&Object>);

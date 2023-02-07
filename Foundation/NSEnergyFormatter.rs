@@ -36,7 +36,7 @@ extern_methods!(
     unsafe impl NSEnergyFormatter {
         #[cfg(feature = "Foundation_NSNumberFormatter")]
         #[method_id(@__retain_semantics Other numberFormatter)]
-        pub unsafe fn numberFormatter(&self) -> Id<NSNumberFormatter, Shared>;
+        pub unsafe fn numberFormatter(&self) -> Id<NSNumberFormatter>;
 
         #[cfg(feature = "Foundation_NSNumberFormatter")]
         #[method(setNumberFormatter:)]
@@ -60,11 +60,11 @@ extern_methods!(
             &self,
             value: c_double,
             unit: NSEnergyFormatterUnit,
-        ) -> Id<NSString, Shared>;
+        ) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringFromJoules:)]
-        pub unsafe fn stringFromJoules(&self, number_in_joules: c_double) -> Id<NSString, Shared>;
+        pub unsafe fn stringFromJoules(&self, number_in_joules: c_double) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other unitStringFromValue:unit:)]
@@ -72,7 +72,7 @@ extern_methods!(
             &self,
             value: c_double,
             unit: NSEnergyFormatterUnit,
-        ) -> Id<NSString, Shared>;
+        ) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other unitStringFromJoules:usedUnit:)]
@@ -80,15 +80,15 @@ extern_methods!(
             &self,
             number_in_joules: c_double,
             unitp: *mut NSEnergyFormatterUnit,
-        ) -> Id<NSString, Shared>;
+        ) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(getObjectValue:forString:errorDescription:)]
         pub unsafe fn getObjectValue_forString_errorDescription(
             &self,
-            obj: Option<&mut Option<Id<Object, Shared>>>,
+            obj: Option<&mut Option<Id<Object>>>,
             string: &NSString,
-            error: Option<&mut Option<Id<NSString, Shared>>>,
+            error: Option<&mut Option<Id<NSString>>>,
         ) -> bool;
     }
 );

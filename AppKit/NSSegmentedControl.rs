@@ -108,7 +108,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other imageForSegment:)]
-        pub unsafe fn imageForSegment(&self, segment: NSInteger) -> Option<Id<NSImage, Shared>>;
+        pub unsafe fn imageForSegment(&self, segment: NSInteger) -> Option<Id<NSImage>>;
 
         #[method(setImageScaling:forSegment:)]
         pub unsafe fn setImageScaling_forSegment(
@@ -126,7 +126,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other labelForSegment:)]
-        pub unsafe fn labelForSegment(&self, segment: NSInteger) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn labelForSegment(&self, segment: NSInteger) -> Option<Id<NSString>>;
 
         #[cfg(feature = "AppKit_NSMenu")]
         #[method(setMenu:forSegment:)]
@@ -134,7 +134,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSMenu")]
         #[method_id(@__retain_semantics Other menuForSegment:)]
-        pub unsafe fn menuForSegment(&self, segment: NSInteger) -> Option<Id<NSMenu, Shared>>;
+        pub unsafe fn menuForSegment(&self, segment: NSInteger) -> Option<Id<NSMenu>>;
 
         #[method(setSelected:forSegment:)]
         pub unsafe fn setSelected_forSegment(&self, selected: bool, segment: NSInteger);
@@ -154,7 +154,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other toolTipForSegment:)]
-        pub unsafe fn toolTipForSegment(&self, segment: NSInteger) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn toolTipForSegment(&self, segment: NSInteger) -> Option<Id<NSString>>;
 
         #[method(setTag:forSegment:)]
         pub unsafe fn setTag_forSegment(&self, tag: NSInteger, segment: NSInteger);
@@ -195,7 +195,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other selectedSegmentBezelColor)]
-        pub unsafe fn selectedSegmentBezelColor(&self) -> Option<Id<NSColor, Shared>>;
+        pub unsafe fn selectedSegmentBezelColor(&self) -> Option<Id<NSColor>>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setSelectedSegmentBezelColor:)]
@@ -245,9 +245,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSUserInterfaceCompressionOptions")]
         #[method_id(@__retain_semantics Other activeCompressionOptions)]
-        pub unsafe fn activeCompressionOptions(
-            &self,
-        ) -> Id<NSUserInterfaceCompressionOptions, Shared>;
+        pub unsafe fn activeCompressionOptions(&self) -> Id<NSUserInterfaceCompressionOptions>;
     }
 );
 
@@ -262,7 +260,7 @@ extern_methods!(
             tracking_mode: NSSegmentSwitchTracking,
             target: Option<&Object>,
             action: Option<Sel>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(feature = "AppKit_NSImage", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other segmentedControlWithImages:trackingMode:target:action:)]
@@ -271,7 +269,7 @@ extern_methods!(
             tracking_mode: NSSegmentSwitchTracking,
             target: Option<&Object>,
             action: Option<Sel>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );
 
@@ -280,9 +278,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSSegmentedControl")]
     unsafe impl NSSegmentedControl {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frame_rect: NSRect,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
 );

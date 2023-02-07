@@ -27,11 +27,11 @@ extern_methods!(
     unsafe impl MKGradientPolylineRenderer {
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method_id(@__retain_semantics Other locations)]
-        pub unsafe fn locations(&self) -> Id<NSArray<NSNumber>, Shared>;
+        pub unsafe fn locations(&self) -> Id<NSArray<NSNumber>>;
 
         #[cfg(all(feature = "AppKit_NSColor", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other colors)]
-        pub unsafe fn colors(&self) -> Id<NSArray<NSColor>, Shared>;
+        pub unsafe fn colors(&self) -> Id<NSArray<NSColor>>;
 
         #[cfg(all(
             feature = "AppKit_NSColor",
@@ -56,7 +56,7 @@ extern_methods!(
         pub unsafe fn initWithPolyline(
             this: Option<Allocated<Self>>,
             polyline: &MKPolyline,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );
 
@@ -68,6 +68,6 @@ extern_methods!(
         pub unsafe fn initWithOverlay(
             this: Option<Allocated<Self>>,
             overlay: &ProtocolObject<dyn MKOverlay>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

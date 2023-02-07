@@ -58,32 +58,32 @@ extern_methods!(
     #[cfg(feature = "MailKit_MEMessageAction")]
     unsafe impl MEMessageAction {
         #[method_id(@__retain_semantics Other moveToTrashAction)]
-        pub unsafe fn moveToTrashAction() -> Id<MEMessageAction, Shared>;
+        pub unsafe fn moveToTrashAction() -> Id<MEMessageAction>;
 
         #[method_id(@__retain_semantics Other moveToArchiveAction)]
-        pub unsafe fn moveToArchiveAction() -> Id<MEMessageAction, Shared>;
+        pub unsafe fn moveToArchiveAction() -> Id<MEMessageAction>;
 
         #[method_id(@__retain_semantics Other moveToJunkAction)]
-        pub unsafe fn moveToJunkAction() -> Id<MEMessageAction, Shared>;
+        pub unsafe fn moveToJunkAction() -> Id<MEMessageAction>;
 
         #[method_id(@__retain_semantics Other markAsReadAction)]
-        pub unsafe fn markAsReadAction() -> Id<MEMessageAction, Shared>;
+        pub unsafe fn markAsReadAction() -> Id<MEMessageAction>;
 
         #[method_id(@__retain_semantics Other markAsUnreadAction)]
-        pub unsafe fn markAsUnreadAction() -> Id<MEMessageAction, Shared>;
+        pub unsafe fn markAsUnreadAction() -> Id<MEMessageAction>;
 
         #[method_id(@__retain_semantics Other flagActionWithFlag:)]
-        pub unsafe fn flagActionWithFlag(flag: MEMessageActionFlag) -> Id<Self, Shared>;
+        pub unsafe fn flagActionWithFlag(flag: MEMessageActionFlag) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other setBackgroundColorActionWithColor:)]
         pub unsafe fn setBackgroundColorActionWithColor(
             color: MEMessageActionMessageColor,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
     }
 );

@@ -50,8 +50,7 @@ extern_methods!(
         pub unsafe fn setMediaLibraries(&self, media_libraries: NSMediaLibrary);
 
         #[method_id(@__retain_semantics Other sharedMediaLibraryBrowserController)]
-        pub unsafe fn sharedMediaLibraryBrowserController(
-        ) -> Id<NSMediaLibraryBrowserController, Shared>;
+        pub unsafe fn sharedMediaLibraryBrowserController() -> Id<NSMediaLibraryBrowserController>;
 
         #[method(togglePanel:)]
         pub unsafe fn togglePanel(&self, sender: Option<&Object>);

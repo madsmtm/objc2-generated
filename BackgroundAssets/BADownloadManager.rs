@@ -79,18 +79,16 @@ extern_methods!(
     #[cfg(feature = "BackgroundAssets_BADownloadManager")]
     unsafe impl BADownloadManager {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Other sharedManager)]
-        pub unsafe fn sharedManager() -> Id<BADownloadManager, Shared>;
+        pub unsafe fn sharedManager() -> Id<BADownloadManager>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(
-            &self,
-        ) -> Option<Id<ProtocolObject<dyn BADownloadManagerDelegate>, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn BADownloadManagerDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -117,7 +115,7 @@ extern_methods!(
         pub unsafe fn scheduleDownload_error(
             &self,
             download: &BADownload,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(performWithExclusiveControl:)]
@@ -142,16 +140,14 @@ extern_methods!(
         pub unsafe fn startForegroundDownload_error(
             &self,
             download: &BADownload,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
 
         #[cfg(all(
             feature = "BackgroundAssets_BADownload",
             feature = "Foundation_NSError"
         ))]
         #[method(cancelDownload:error:_)]
-        pub unsafe fn cancelDownload_error(
-            &self,
-            download: &BADownload,
-        ) -> Result<(), Id<NSError, Shared>>;
+        pub unsafe fn cancelDownload_error(&self, download: &BADownload)
+            -> Result<(), Id<NSError>>;
     }
 );

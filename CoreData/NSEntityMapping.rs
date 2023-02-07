@@ -35,7 +35,7 @@ extern_methods!(
     unsafe impl NSEntityMapping {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString, Shared>;
+        pub unsafe fn name(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]
@@ -49,7 +49,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other sourceEntityName)]
-        pub unsafe fn sourceEntityName(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn sourceEntityName(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setSourceEntityName:)]
@@ -57,7 +57,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other sourceEntityVersionHash)]
-        pub unsafe fn sourceEntityVersionHash(&self) -> Option<Id<NSData, Shared>>;
+        pub unsafe fn sourceEntityVersionHash(&self) -> Option<Id<NSData>>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method(setSourceEntityVersionHash:)]
@@ -68,7 +68,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other destinationEntityName)]
-        pub unsafe fn destinationEntityName(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn destinationEntityName(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setDestinationEntityName:)]
@@ -76,7 +76,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other destinationEntityVersionHash)]
-        pub unsafe fn destinationEntityVersionHash(&self) -> Option<Id<NSData, Shared>>;
+        pub unsafe fn destinationEntityVersionHash(&self) -> Option<Id<NSData>>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method(setDestinationEntityVersionHash:)]
@@ -87,7 +87,7 @@ extern_methods!(
 
         #[cfg(all(feature = "CoreData_NSPropertyMapping", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other attributeMappings)]
-        pub unsafe fn attributeMappings(&self) -> Option<Id<NSArray<NSPropertyMapping>, Shared>>;
+        pub unsafe fn attributeMappings(&self) -> Option<Id<NSArray<NSPropertyMapping>>>;
 
         #[cfg(all(feature = "CoreData_NSPropertyMapping", feature = "Foundation_NSArray"))]
         #[method(setAttributeMappings:)]
@@ -98,8 +98,7 @@ extern_methods!(
 
         #[cfg(all(feature = "CoreData_NSPropertyMapping", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other relationshipMappings)]
-        pub unsafe fn relationshipMappings(&self)
-            -> Option<Id<NSArray<NSPropertyMapping>, Shared>>;
+        pub unsafe fn relationshipMappings(&self) -> Option<Id<NSArray<NSPropertyMapping>>>;
 
         #[cfg(all(feature = "CoreData_NSPropertyMapping", feature = "Foundation_NSArray"))]
         #[method(setRelationshipMappings:)]
@@ -110,7 +109,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSExpression")]
         #[method_id(@__retain_semantics Other sourceExpression)]
-        pub unsafe fn sourceExpression(&self) -> Option<Id<NSExpression, Shared>>;
+        pub unsafe fn sourceExpression(&self) -> Option<Id<NSExpression>>;
 
         #[cfg(feature = "Foundation_NSExpression")]
         #[method(setSourceExpression:)]
@@ -118,7 +117,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other userInfo)]
-        pub unsafe fn userInfo(&self) -> Option<Id<NSDictionary, Shared>>;
+        pub unsafe fn userInfo(&self) -> Option<Id<NSDictionary>>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(setUserInfo:)]
@@ -126,7 +125,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other entityMigrationPolicyClassName)]
-        pub unsafe fn entityMigrationPolicyClassName(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn entityMigrationPolicyClassName(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setEntityMigrationPolicyClassName:)]

@@ -49,7 +49,7 @@ extern_protocol!(
         unsafe fn presentationAnchorForAccountAuthenticationModificationController(
             &self,
             controller: &ASAccountAuthenticationModificationController,
-        ) -> Id<ASPresentationAnchor, Shared>;
+        ) -> Id<ASPresentationAnchor>;
     }
 
     unsafe impl ProtocolType
@@ -78,9 +78,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<
-            Id<ProtocolObject<dyn ASAccountAuthenticationModificationControllerDelegate>, Shared>,
-        >;
+        ) -> Option<Id<ProtocolObject<dyn ASAccountAuthenticationModificationControllerDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -98,7 +96,6 @@ extern_methods!(
                 ProtocolObject<
                     dyn ASAccountAuthenticationModificationControllerPresentationContextProviding,
                 >,
-                Shared,
             >,
         >;
 

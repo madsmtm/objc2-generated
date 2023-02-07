@@ -36,21 +36,19 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             user: &NSString,
             password: &NSString,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other credentialWithUser:password:)]
-        pub unsafe fn credentialWithUser_password(
-            user: &NSString,
-            password: &NSString,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn credentialWithUser_password(user: &NSString, password: &NSString)
+            -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other user)]
-        pub unsafe fn user(&self) -> Id<NSString, Shared>;
+        pub unsafe fn user(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other password)]
-        pub unsafe fn password(&self) -> Id<NSString, Shared>;
+        pub unsafe fn password(&self) -> Id<NSString>;
     }
 );

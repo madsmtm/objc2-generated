@@ -18,7 +18,7 @@ extern_static!(NSTextContentTypeOneTimeCode: &'static NSTextContentType);
 extern_protocol!(
     pub unsafe trait NSTextContent {
         #[method_id(@__retain_semantics Other contentType)]
-        unsafe fn contentType(&self) -> Option<Id<NSTextContentType, Shared>>;
+        unsafe fn contentType(&self) -> Option<Id<NSTextContentType>>;
 
         #[method(setContentType:)]
         unsafe fn setContentType(&self, content_type: Option<&NSTextContentType>);

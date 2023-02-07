@@ -108,7 +108,7 @@ extern_protocol!(
             &self,
             range: NSRange,
             actual_range: NSRangePointer,
-        ) -> Option<Id<NSAttributedString, Shared>>;
+        ) -> Option<Id<NSAttributedString>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setAnnotations:range:)]
@@ -151,13 +151,11 @@ extern_protocol!(
             range: NSRange,
             first_rect: NSRectPointer,
             actual_range: NSRangePointer,
-        ) -> Option<Id<NSView, Shared>>;
+        ) -> Option<Id<NSView>>;
 
         #[cfg(feature = "AppKit_NSCandidateListTouchBarItem")]
         #[method_id(@__retain_semantics Other candidateListTouchBarItem)]
-        unsafe fn candidateListTouchBarItem(
-            &self,
-        ) -> Option<Id<NSCandidateListTouchBarItem, Shared>>;
+        unsafe fn candidateListTouchBarItem(&self) -> Option<Id<NSCandidateListTouchBarItem>>;
     }
 
     unsafe impl ProtocolType for dyn NSTextCheckingClient {}

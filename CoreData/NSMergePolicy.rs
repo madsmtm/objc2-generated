@@ -34,21 +34,19 @@ extern_methods!(
     unsafe impl NSMergeConflict {
         #[cfg(feature = "CoreData_NSManagedObject")]
         #[method_id(@__retain_semantics Other sourceObject)]
-        pub unsafe fn sourceObject(&self) -> Id<NSManagedObject, Shared>;
+        pub unsafe fn sourceObject(&self) -> Id<NSManagedObject>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other objectSnapshot)]
-        pub unsafe fn objectSnapshot(&self) -> Option<Id<NSDictionary<NSString, Object>, Shared>>;
+        pub unsafe fn objectSnapshot(&self) -> Option<Id<NSDictionary<NSString, Object>>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other cachedSnapshot)]
-        pub unsafe fn cachedSnapshot(&self) -> Option<Id<NSDictionary<NSString, Object>, Shared>>;
+        pub unsafe fn cachedSnapshot(&self) -> Option<Id<NSDictionary<NSString, Object>>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other persistedSnapshot)]
-        pub unsafe fn persistedSnapshot(
-            &self,
-        ) -> Option<Id<NSDictionary<NSString, Object>, Shared>>;
+        pub unsafe fn persistedSnapshot(&self) -> Option<Id<NSDictionary<NSString, Object>>>;
 
         #[method(newVersionNumber)]
         pub unsafe fn newVersionNumber(&self) -> NSUInteger;
@@ -69,10 +67,10 @@ extern_methods!(
             oldvers: NSUInteger,
             cachesnap: Option<&NSDictionary<NSString, Object>>,
             persnap: Option<&NSDictionary<NSString, Object>>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }
 );
 
@@ -95,28 +93,27 @@ extern_methods!(
     unsafe impl NSConstraintConflict {
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other constraint)]
-        pub unsafe fn constraint(&self) -> Id<NSArray<NSString>, Shared>;
+        pub unsafe fn constraint(&self) -> Id<NSArray<NSString>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other constraintValues)]
-        pub unsafe fn constraintValues(&self) -> Id<NSDictionary<NSString, Object>, Shared>;
+        pub unsafe fn constraintValues(&self) -> Id<NSDictionary<NSString, Object>>;
 
         #[cfg(feature = "CoreData_NSManagedObject")]
         #[method_id(@__retain_semantics Other databaseObject)]
-        pub unsafe fn databaseObject(&self) -> Option<Id<NSManagedObject, Shared>>;
+        pub unsafe fn databaseObject(&self) -> Option<Id<NSManagedObject>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other databaseSnapshot)]
-        pub unsafe fn databaseSnapshot(&self)
-            -> Option<Id<NSDictionary<NSString, Object>, Shared>>;
+        pub unsafe fn databaseSnapshot(&self) -> Option<Id<NSDictionary<NSString, Object>>>;
 
         #[cfg(all(feature = "CoreData_NSManagedObject", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other conflictingObjects)]
-        pub unsafe fn conflictingObjects(&self) -> Id<NSArray<NSManagedObject>, Shared>;
+        pub unsafe fn conflictingObjects(&self) -> Id<NSArray<NSManagedObject>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSDictionary"))]
         #[method_id(@__retain_semantics Other conflictingSnapshots)]
-        pub unsafe fn conflictingSnapshots(&self) -> Id<NSArray<NSDictionary>, Shared>;
+        pub unsafe fn conflictingSnapshots(&self) -> Id<NSArray<NSDictionary>>;
 
         #[cfg(all(
             feature = "CoreData_NSManagedObject",
@@ -132,7 +129,7 @@ extern_methods!(
             database_snapshot: Option<&NSDictionary>,
             conflicting_objects: &NSArray<NSManagedObject>,
             conflicting_snapshots: &NSArray,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );
 
@@ -154,19 +151,19 @@ extern_methods!(
     #[cfg(feature = "CoreData_NSMergePolicy")]
     unsafe impl NSMergePolicy {
         #[method_id(@__retain_semantics Other errorMergePolicy)]
-        pub unsafe fn errorMergePolicy() -> Id<NSMergePolicy, Shared>;
+        pub unsafe fn errorMergePolicy() -> Id<NSMergePolicy>;
 
         #[method_id(@__retain_semantics Other rollbackMergePolicy)]
-        pub unsafe fn rollbackMergePolicy() -> Id<NSMergePolicy, Shared>;
+        pub unsafe fn rollbackMergePolicy() -> Id<NSMergePolicy>;
 
         #[method_id(@__retain_semantics Other overwriteMergePolicy)]
-        pub unsafe fn overwriteMergePolicy() -> Id<NSMergePolicy, Shared>;
+        pub unsafe fn overwriteMergePolicy() -> Id<NSMergePolicy>;
 
         #[method_id(@__retain_semantics Other mergeByPropertyObjectTrumpMergePolicy)]
-        pub unsafe fn mergeByPropertyObjectTrumpMergePolicy() -> Id<NSMergePolicy, Shared>;
+        pub unsafe fn mergeByPropertyObjectTrumpMergePolicy() -> Id<NSMergePolicy>;
 
         #[method_id(@__retain_semantics Other mergeByPropertyStoreTrumpMergePolicy)]
-        pub unsafe fn mergeByPropertyStoreTrumpMergePolicy() -> Id<NSMergePolicy, Shared>;
+        pub unsafe fn mergeByPropertyStoreTrumpMergePolicy() -> Id<NSMergePolicy>;
 
         #[method(mergeType)]
         pub unsafe fn mergeType(&self) -> NSMergePolicyType;
@@ -175,17 +172,14 @@ extern_methods!(
         pub unsafe fn initWithMergeType(
             this: Option<Allocated<Self>>,
             ty: NSMergePolicyType,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSError"))]
         #[method(resolveConflicts:error:_)]
-        pub unsafe fn resolveConflicts_error(
-            &self,
-            list: &NSArray,
-        ) -> Result<(), Id<NSError, Shared>>;
+        pub unsafe fn resolveConflicts_error(&self, list: &NSArray) -> Result<(), Id<NSError>>;
 
         #[cfg(all(
             feature = "CoreData_NSMergeConflict",
@@ -196,7 +190,7 @@ extern_methods!(
         pub unsafe fn resolveOptimisticLockingVersionConflicts_error(
             &self,
             list: &NSArray<NSMergeConflict>,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
 
         #[cfg(all(
             feature = "CoreData_NSConstraintConflict",
@@ -207,6 +201,6 @@ extern_methods!(
         pub unsafe fn resolveConstraintConflicts_error(
             &self,
             list: &NSArray<NSConstraintConflict>,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
     }
 );

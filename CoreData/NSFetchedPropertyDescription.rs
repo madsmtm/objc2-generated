@@ -27,7 +27,7 @@ extern_methods!(
     unsafe impl NSFetchedPropertyDescription {
         #[cfg(feature = "CoreData_NSFetchRequest")]
         #[method_id(@__retain_semantics Other fetchRequest)]
-        pub unsafe fn fetchRequest(&self) -> Option<Id<NSFetchRequest, Shared>>;
+        pub unsafe fn fetchRequest(&self) -> Option<Id<NSFetchRequest>>;
 
         #[cfg(feature = "CoreData_NSFetchRequest")]
         #[method(setFetchRequest:)]

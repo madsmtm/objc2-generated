@@ -30,7 +30,7 @@ extern_methods!(
     unsafe impl CNChangeHistoryFetchRequest {
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other startingToken)]
-        pub unsafe fn startingToken(&self) -> Option<Id<NSData, Shared>>;
+        pub unsafe fn startingToken(&self) -> Option<Id<NSData>>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method(setStartingToken:)]
@@ -40,7 +40,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other additionalContactKeyDescriptors)]
         pub unsafe fn additionalContactKeyDescriptors(
             &self,
-        ) -> Option<Id<NSArray<ProtocolObject<dyn CNKeyDescriptor>>, Shared>>;
+        ) -> Option<Id<NSArray<ProtocolObject<dyn CNKeyDescriptor>>>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setAdditionalContactKeyDescriptors:)]
@@ -71,7 +71,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other excludedTransactionAuthors)]
-        pub unsafe fn excludedTransactionAuthors(&self) -> Option<Id<NSArray<NSString>, Shared>>;
+        pub unsafe fn excludedTransactionAuthors(&self) -> Option<Id<NSArray<NSString>>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setExcludedTransactionAuthors:)]

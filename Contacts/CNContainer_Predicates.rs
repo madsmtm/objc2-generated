@@ -16,18 +16,18 @@ extern_methods!(
         #[method_id(@__retain_semantics Other predicateForContainersWithIdentifiers:)]
         pub unsafe fn predicateForContainersWithIdentifiers(
             identifiers: &NSArray<NSString>,
-        ) -> Id<NSPredicate, Shared>;
+        ) -> Id<NSPredicate>;
 
         #[cfg(all(feature = "Foundation_NSPredicate", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other predicateForContainerOfContactWithIdentifier:)]
         pub unsafe fn predicateForContainerOfContactWithIdentifier(
             contact_identifier: &NSString,
-        ) -> Id<NSPredicate, Shared>;
+        ) -> Id<NSPredicate>;
 
         #[cfg(all(feature = "Foundation_NSPredicate", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other predicateForContainerOfGroupWithIdentifier:)]
         pub unsafe fn predicateForContainerOfGroupWithIdentifier(
             group_identifier: &NSString,
-        ) -> Id<NSPredicate, Shared>;
+        ) -> Id<NSPredicate>;
     }
 );

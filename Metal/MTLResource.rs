@@ -69,14 +69,14 @@ extern_protocol!(
     pub unsafe trait MTLResource: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
-        fn label(&self) -> Option<Id<NSString, Shared>>;
+        fn label(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:)]
         fn setLabel(&self, label: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other device)]
-        fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>, Shared>;
+        fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
 
         #[method(cpuCacheMode)]
         fn cpuCacheMode(&self) -> MTLCPUCacheMode;
@@ -94,7 +94,7 @@ extern_protocol!(
         fn setPurgeableState(&self, state: MTLPurgeableState) -> MTLPurgeableState;
 
         #[method_id(@__retain_semantics Other heap)]
-        fn heap(&self) -> Option<Id<ProtocolObject<dyn MTLHeap>, Shared>>;
+        fn heap(&self) -> Option<Id<ProtocolObject<dyn MTLHeap>>>;
 
         #[method(heapOffset)]
         fn heapOffset(&self) -> NSUInteger;

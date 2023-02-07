@@ -79,24 +79,24 @@ extern_methods!(
             marker_format: &NSTextListMarkerFormat,
             options: NSTextListOptions,
             starting_item_number: NSInteger,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithMarkerFormat:options:)]
         pub unsafe fn initWithMarkerFormat_options(
             this: Option<Allocated<Self>>,
             marker_format: &NSTextListMarkerFormat,
             options: NSUInteger,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[method_id(@__retain_semantics Other markerFormat)]
-        pub unsafe fn markerFormat(&self) -> Id<NSTextListMarkerFormat, Shared>;
+        pub unsafe fn markerFormat(&self) -> Id<NSTextListMarkerFormat>;
 
         #[method(listOptions)]
         pub unsafe fn listOptions(&self) -> NSTextListOptions;
@@ -112,6 +112,6 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other markerForItemNumber:)]
-        pub unsafe fn markerForItemNumber(&self, item_number: NSInteger) -> Id<NSString, Shared>;
+        pub unsafe fn markerForItemNumber(&self, item_number: NSInteger) -> Id<NSString>;
     }
 );

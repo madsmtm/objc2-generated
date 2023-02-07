@@ -63,11 +63,11 @@ extern_methods!(
     unsafe impl GKTurnBasedParticipant {
         #[cfg(feature = "GameKit_GKPlayer")]
         #[method_id(@__retain_semantics Other player)]
-        pub unsafe fn player(&self) -> Option<Id<GKPlayer, Shared>>;
+        pub unsafe fn player(&self) -> Option<Id<GKPlayer>>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other lastTurnDate)]
-        pub unsafe fn lastTurnDate(&self) -> Option<Id<NSDate, Shared>>;
+        pub unsafe fn lastTurnDate(&self) -> Option<Id<NSDate>>;
 
         #[method(status)]
         pub unsafe fn status(&self) -> GKTurnBasedParticipantStatus;
@@ -80,7 +80,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other timeoutDate)]
-        pub unsafe fn timeoutDate(&self) -> Option<Id<NSDate, Shared>>;
+        pub unsafe fn timeoutDate(&self) -> Option<Id<NSDate>>;
     }
 );
 
@@ -91,7 +91,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "use player"]
         #[method_id(@__retain_semantics Other playerID)]
-        pub unsafe fn playerID(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn playerID(&self) -> Option<Id<NSString>>;
     }
 );
 
@@ -211,29 +211,29 @@ extern_methods!(
     unsafe impl GKTurnBasedMatch {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other matchID)]
-        pub unsafe fn matchID(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn matchID(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other creationDate)]
-        pub unsafe fn creationDate(&self) -> Option<Id<NSDate, Shared>>;
+        pub unsafe fn creationDate(&self) -> Option<Id<NSDate>>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "GameKit_GKTurnBasedParticipant"
         ))]
         #[method_id(@__retain_semantics Other participants)]
-        pub unsafe fn participants(&self) -> Option<Id<NSArray<GKTurnBasedParticipant>, Shared>>;
+        pub unsafe fn participants(&self) -> Option<Id<NSArray<GKTurnBasedParticipant>>>;
 
         #[method(status)]
         pub unsafe fn status(&self) -> GKTurnBasedMatchStatus;
 
         #[cfg(feature = "GameKit_GKTurnBasedParticipant")]
         #[method_id(@__retain_semantics Other currentParticipant)]
-        pub unsafe fn currentParticipant(&self) -> Option<Id<GKTurnBasedParticipant, Shared>>;
+        pub unsafe fn currentParticipant(&self) -> Option<Id<GKTurnBasedParticipant>>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other matchData)]
-        pub unsafe fn matchData(&self) -> Option<Id<NSData, Shared>>;
+        pub unsafe fn matchData(&self) -> Option<Id<NSData>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setLocalizableMessageWithKey:arguments:)]
@@ -245,7 +245,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other message)]
-        pub unsafe fn message(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn message(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setMessage:)]
@@ -259,22 +259,21 @@ extern_methods!(
             feature = "GameKit_GKTurnBasedExchange"
         ))]
         #[method_id(@__retain_semantics Other exchanges)]
-        pub unsafe fn exchanges(&self) -> Option<Id<NSArray<GKTurnBasedExchange>, Shared>>;
+        pub unsafe fn exchanges(&self) -> Option<Id<NSArray<GKTurnBasedExchange>>>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "GameKit_GKTurnBasedExchange"
         ))]
         #[method_id(@__retain_semantics Other activeExchanges)]
-        pub unsafe fn activeExchanges(&self) -> Option<Id<NSArray<GKTurnBasedExchange>, Shared>>;
+        pub unsafe fn activeExchanges(&self) -> Option<Id<NSArray<GKTurnBasedExchange>>>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "GameKit_GKTurnBasedExchange"
         ))]
         #[method_id(@__retain_semantics Other completedExchanges)]
-        pub unsafe fn completedExchanges(&self)
-            -> Option<Id<NSArray<GKTurnBasedExchange>, Shared>>;
+        pub unsafe fn completedExchanges(&self) -> Option<Id<NSArray<GKTurnBasedExchange>>>;
 
         #[method(exchangeDataMaximumSize)]
         pub unsafe fn exchangeDataMaximumSize(&self) -> NSUInteger;
@@ -537,48 +536,48 @@ extern_methods!(
     unsafe impl GKTurnBasedExchange {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other exchangeID)]
-        pub unsafe fn exchangeID(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn exchangeID(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "GameKit_GKTurnBasedParticipant")]
         #[method_id(@__retain_semantics Other sender)]
-        pub unsafe fn sender(&self) -> Option<Id<GKTurnBasedParticipant, Shared>>;
+        pub unsafe fn sender(&self) -> Option<Id<GKTurnBasedParticipant>>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "GameKit_GKTurnBasedParticipant"
         ))]
         #[method_id(@__retain_semantics Other recipients)]
-        pub unsafe fn recipients(&self) -> Option<Id<NSArray<GKTurnBasedParticipant>, Shared>>;
+        pub unsafe fn recipients(&self) -> Option<Id<NSArray<GKTurnBasedParticipant>>>;
 
         #[method(status)]
         pub unsafe fn status(&self) -> GKTurnBasedExchangeStatus;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other message)]
-        pub unsafe fn message(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn message(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other data)]
-        pub unsafe fn data(&self) -> Option<Id<NSData, Shared>>;
+        pub unsafe fn data(&self) -> Option<Id<NSData>>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other sendDate)]
-        pub unsafe fn sendDate(&self) -> Option<Id<NSDate, Shared>>;
+        pub unsafe fn sendDate(&self) -> Option<Id<NSDate>>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other timeoutDate)]
-        pub unsafe fn timeoutDate(&self) -> Option<Id<NSDate, Shared>>;
+        pub unsafe fn timeoutDate(&self) -> Option<Id<NSDate>>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other completionDate)]
-        pub unsafe fn completionDate(&self) -> Option<Id<NSDate, Shared>>;
+        pub unsafe fn completionDate(&self) -> Option<Id<NSDate>>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "GameKit_GKTurnBasedExchangeReply"
         ))]
         #[method_id(@__retain_semantics Other replies)]
-        pub unsafe fn replies(&self) -> Option<Id<NSArray<GKTurnBasedExchangeReply>, Shared>>;
+        pub unsafe fn replies(&self) -> Option<Id<NSArray<GKTurnBasedExchangeReply>>>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -629,19 +628,19 @@ extern_methods!(
     unsafe impl GKTurnBasedExchangeReply {
         #[cfg(feature = "GameKit_GKTurnBasedParticipant")]
         #[method_id(@__retain_semantics Other recipient)]
-        pub unsafe fn recipient(&self) -> Option<Id<GKTurnBasedParticipant, Shared>>;
+        pub unsafe fn recipient(&self) -> Option<Id<GKTurnBasedParticipant>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other message)]
-        pub unsafe fn message(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn message(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other data)]
-        pub unsafe fn data(&self) -> Option<Id<NSData, Shared>>;
+        pub unsafe fn data(&self) -> Option<Id<NSData>>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other replyDate)]
-        pub unsafe fn replyDate(&self) -> Option<Id<NSDate, Shared>>;
+        pub unsafe fn replyDate(&self) -> Option<Id<NSDate>>;
     }
 );
 
@@ -698,11 +697,11 @@ extern_methods!(
     unsafe impl GKTurnBasedEventHandler {
         #[deprecated]
         #[method_id(@__retain_semantics Other sharedTurnBasedEventHandler)]
-        pub unsafe fn sharedTurnBasedEventHandler() -> Id<GKTurnBasedEventHandler, Shared>;
+        pub unsafe fn sharedTurnBasedEventHandler() -> Id<GKTurnBasedEventHandler>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<NSObject, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<NSObject>>;
 
         #[deprecated]
         #[method(setDelegate:)]

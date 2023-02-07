@@ -46,10 +46,7 @@ extern_methods!(
     unsafe impl LPLinkView {
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            coder: &NSCoder,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, coder: &NSCoder) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method(encodeWithCoder:)]
@@ -57,18 +54,18 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Init initWithURL:)]
-        pub unsafe fn initWithURL(this: Option<Allocated<Self>>, url: &NSURL) -> Id<Self, Shared>;
+        pub unsafe fn initWithURL(this: Option<Allocated<Self>>, url: &NSURL) -> Id<Self>;
 
         #[cfg(feature = "LinkPresentation_LPLinkMetadata")]
         #[method_id(@__retain_semantics Init initWithMetadata:)]
         pub unsafe fn initWithMetadata(
             this: Option<Allocated<Self>>,
             metadata: &LPLinkMetadata,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "LinkPresentation_LPLinkMetadata")]
         #[method_id(@__retain_semantics Other metadata)]
-        pub unsafe fn metadata(&self) -> Id<LPLinkMetadata, Shared>;
+        pub unsafe fn metadata(&self) -> Id<LPLinkMetadata>;
 
         #[cfg(feature = "LinkPresentation_LPLinkMetadata")]
         #[method(setMetadata:)]
@@ -81,9 +78,6 @@ extern_methods!(
     #[cfg(feature = "LinkPresentation_LPLinkView")]
     unsafe impl LPLinkView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frame_rect: NSRect,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
 );

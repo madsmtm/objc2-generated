@@ -33,25 +33,25 @@ extern_methods!(
         #[method_id(@__retain_semantics Other draggingImageComponentWithKey:)]
         pub unsafe fn draggingImageComponentWithKey(
             key: &NSDraggingImageComponentKey,
-        ) -> Id<NSDraggingImageComponent, Shared>;
+        ) -> Id<NSDraggingImageComponent>;
 
         #[method_id(@__retain_semantics Init initWithKey:)]
         pub unsafe fn initWithKey(
             this: Option<Allocated<Self>>,
             key: &NSDraggingImageComponentKey,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other key)]
-        pub unsafe fn key(&self) -> Id<NSDraggingImageComponentKey, Shared>;
+        pub unsafe fn key(&self) -> Id<NSDraggingImageComponentKey>;
 
         #[method(setKey:)]
         pub unsafe fn setKey(&self, key: &NSDraggingImageComponentKey);
 
         #[method_id(@__retain_semantics Other contents)]
-        pub unsafe fn contents(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn contents(&self) -> Option<Id<Object>>;
 
         #[method(setContents:)]
         pub unsafe fn setContents(&self, contents: Option<&Object>);
@@ -85,13 +85,13 @@ extern_methods!(
         pub unsafe fn initWithPasteboardWriter(
             this: Option<Allocated<Self>>,
             pasteboard_writer: &ProtocolObject<dyn NSPasteboardWriting>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other item)]
-        pub unsafe fn item(&self) -> Id<Object, Shared>;
+        pub unsafe fn item(&self) -> Id<Object>;
 
         #[method(draggingFrame)]
         pub unsafe fn draggingFrame(&self) -> NSRect;
@@ -128,8 +128,6 @@ extern_methods!(
             feature = "Foundation_NSArray"
         ))]
         #[method_id(@__retain_semantics Other imageComponents)]
-        pub unsafe fn imageComponents(
-            &self,
-        ) -> Option<Id<NSArray<NSDraggingImageComponent>, Shared>>;
+        pub unsafe fn imageComponents(&self) -> Option<Id<NSArray<NSDraggingImageComponent>>>;
     }
 );

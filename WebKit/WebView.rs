@@ -83,7 +83,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other MIMETypesShownAsHTML)]
-        pub unsafe fn MIMETypesShownAsHTML() -> Option<Id<NSArray, Shared>>;
+        pub unsafe fn MIMETypesShownAsHTML() -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setMIMETypesShownAsHTML:)]
@@ -91,15 +91,13 @@ extern_methods!(
 
         #[cfg(all(feature = "AppKit_NSPasteboard", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other URLFromPasteboard:)]
-        pub unsafe fn URLFromPasteboard(
-            pasteboard: Option<&NSPasteboard>,
-        ) -> Option<Id<NSURL, Shared>>;
+        pub unsafe fn URLFromPasteboard(pasteboard: Option<&NSPasteboard>) -> Option<Id<NSURL>>;
 
         #[cfg(all(feature = "AppKit_NSPasteboard", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other URLTitleFromPasteboard:)]
         pub unsafe fn URLTitleFromPasteboard(
             pasteboard: Option<&NSPasteboard>,
-        ) -> Option<Id<NSString, Shared>>;
+        ) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(registerURLSchemeAsLocal:)]
@@ -112,7 +110,7 @@ extern_methods!(
             frame: NSRect,
             frame_name: Option<&NSString>,
             group_name: Option<&NSString>,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[method(close)]
         pub unsafe fn close(&self);
@@ -124,7 +122,7 @@ extern_methods!(
         pub unsafe fn setShouldCloseWithWindow(&self, should_close_with_window: bool);
 
         #[method_id(@__retain_semantics Other UIDelegate)]
-        pub unsafe fn UIDelegate(&self) -> Option<Id<ProtocolObject<dyn WebUIDelegate>, Shared>>;
+        pub unsafe fn UIDelegate(&self) -> Option<Id<ProtocolObject<dyn WebUIDelegate>>>;
 
         #[method(setUIDelegate:)]
         pub unsafe fn setUIDelegate(&self, ui_delegate: Option<&ProtocolObject<dyn WebUIDelegate>>);
@@ -132,7 +130,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other resourceLoadDelegate)]
         pub unsafe fn resourceLoadDelegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn WebResourceLoadDelegate>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn WebResourceLoadDelegate>>>;
 
         #[method(setResourceLoadDelegate:)]
         pub unsafe fn setResourceLoadDelegate(
@@ -143,7 +141,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other downloadDelegate)]
         pub unsafe fn downloadDelegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn WebDownloadDelegate>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn WebDownloadDelegate>>>;
 
         #[method(setDownloadDelegate:)]
         pub unsafe fn setDownloadDelegate(
@@ -154,7 +152,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other frameLoadDelegate)]
         pub unsafe fn frameLoadDelegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn WebFrameLoadDelegate>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn WebFrameLoadDelegate>>>;
 
         #[method(setFrameLoadDelegate:)]
         pub unsafe fn setFrameLoadDelegate(
@@ -163,9 +161,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other policyDelegate)]
-        pub unsafe fn policyDelegate(
-            &self,
-        ) -> Option<Id<ProtocolObject<dyn WebPolicyDelegate>, Shared>>;
+        pub unsafe fn policyDelegate(&self) -> Option<Id<ProtocolObject<dyn WebPolicyDelegate>>>;
 
         #[method(setPolicyDelegate:)]
         pub unsafe fn setPolicyDelegate(
@@ -175,15 +171,15 @@ extern_methods!(
 
         #[cfg(feature = "WebKit_WebFrame")]
         #[method_id(@__retain_semantics Other mainFrame)]
-        pub unsafe fn mainFrame(&self) -> Option<Id<WebFrame, Shared>>;
+        pub unsafe fn mainFrame(&self) -> Option<Id<WebFrame>>;
 
         #[cfg(feature = "WebKit_WebFrame")]
         #[method_id(@__retain_semantics Other selectedFrame)]
-        pub unsafe fn selectedFrame(&self) -> Option<Id<WebFrame, Shared>>;
+        pub unsafe fn selectedFrame(&self) -> Option<Id<WebFrame>>;
 
         #[cfg(feature = "WebKit_WebBackForwardList")]
         #[method_id(@__retain_semantics Other backForwardList)]
-        pub unsafe fn backForwardList(&self) -> Option<Id<WebBackForwardList, Shared>>;
+        pub unsafe fn backForwardList(&self) -> Option<Id<WebBackForwardList>>;
 
         #[method(setMaintainsBackForwardList:)]
         pub unsafe fn setMaintainsBackForwardList(&self, flag: bool);
@@ -206,7 +202,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other applicationNameForUserAgent)]
-        pub unsafe fn applicationNameForUserAgent(&self) -> Id<NSString, Shared>;
+        pub unsafe fn applicationNameForUserAgent(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setApplicationNameForUserAgent:)]
@@ -217,7 +213,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other customUserAgent)]
-        pub unsafe fn customUserAgent(&self) -> Id<NSString, Shared>;
+        pub unsafe fn customUserAgent(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCustomUserAgent:)]
@@ -225,14 +221,14 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other userAgentForURL:)]
-        pub unsafe fn userAgentForURL(&self, url: Option<&NSURL>) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn userAgentForURL(&self, url: Option<&NSURL>) -> Option<Id<NSString>>;
 
         #[method(supportsTextEncoding)]
         pub unsafe fn supportsTextEncoding(&self) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other customTextEncodingName)]
-        pub unsafe fn customTextEncodingName(&self) -> Id<NSString, Shared>;
+        pub unsafe fn customTextEncodingName(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCustomTextEncodingName:)]
@@ -243,7 +239,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other mediaStyle)]
-        pub unsafe fn mediaStyle(&self) -> Id<NSString, Shared>;
+        pub unsafe fn mediaStyle(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setMediaStyle:)]
@@ -254,15 +250,15 @@ extern_methods!(
         pub unsafe fn stringByEvaluatingJavaScriptFromString(
             &self,
             script: Option<&NSString>,
-        ) -> Option<Id<NSString, Shared>>;
+        ) -> Option<Id<NSString>>;
 
         #[cfg(feature = "WebKit_WebScriptObject")]
         #[method_id(@__retain_semantics Other windowScriptObject)]
-        pub unsafe fn windowScriptObject(&self) -> Option<Id<WebScriptObject, Shared>>;
+        pub unsafe fn windowScriptObject(&self) -> Option<Id<WebScriptObject>>;
 
         #[cfg(feature = "WebKit_WebPreferences")]
         #[method_id(@__retain_semantics Other preferences)]
-        pub unsafe fn preferences(&self) -> Option<Id<WebPreferences, Shared>>;
+        pub unsafe fn preferences(&self) -> Option<Id<WebPreferences>>;
 
         #[cfg(feature = "WebKit_WebPreferences")]
         #[method(setPreferences:)]
@@ -270,7 +266,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other preferencesIdentifier)]
-        pub unsafe fn preferencesIdentifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn preferencesIdentifier(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setPreferencesIdentifier:)]
@@ -278,7 +274,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[method_id(@__retain_semantics Other hostWindow)]
-        pub unsafe fn hostWindow(&self) -> Option<Id<NSWindow, Shared>>;
+        pub unsafe fn hostWindow(&self) -> Option<Id<NSWindow>>;
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[method(setHostWindow:)]
@@ -304,7 +300,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other groupName)]
-        pub unsafe fn groupName(&self) -> Id<NSString, Shared>;
+        pub unsafe fn groupName(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setGroupName:)]
@@ -318,11 +314,11 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other elementAtPoint:)]
-        pub unsafe fn elementAtPoint(&self, point: NSPoint) -> Option<Id<NSDictionary, Shared>>;
+        pub unsafe fn elementAtPoint(&self, point: NSPoint) -> Option<Id<NSDictionary>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other pasteboardTypesForSelection)]
-        pub unsafe fn pasteboardTypesForSelection(&self) -> Id<NSArray, Shared>;
+        pub unsafe fn pasteboardTypesForSelection(&self) -> Id<NSArray>;
 
         #[cfg(all(feature = "AppKit_NSPasteboard", feature = "Foundation_NSArray"))]
         #[method(writeSelectionWithPasteboardTypes:toPasteboard:)]
@@ -337,7 +333,7 @@ extern_methods!(
         pub unsafe fn pasteboardTypesForElement(
             &self,
             element: Option<&NSDictionary>,
-        ) -> Option<Id<NSArray, Shared>>;
+        ) -> Option<Id<NSArray>>;
 
         #[cfg(all(
             feature = "AppKit_NSPasteboard",
@@ -372,7 +368,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other mainFrameURL)]
-        pub unsafe fn mainFrameURL(&self) -> Id<NSString, Shared>;
+        pub unsafe fn mainFrameURL(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setMainFrameURL:)]
@@ -380,15 +376,15 @@ extern_methods!(
 
         #[cfg(feature = "WebKit_DOMDocument")]
         #[method_id(@__retain_semantics Other mainFrameDocument)]
-        pub unsafe fn mainFrameDocument(&self) -> Option<Id<DOMDocument, Shared>>;
+        pub unsafe fn mainFrameDocument(&self) -> Option<Id<DOMDocument>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other mainFrameTitle)]
-        pub unsafe fn mainFrameTitle(&self) -> Id<NSString, Shared>;
+        pub unsafe fn mainFrameTitle(&self) -> Id<NSString>;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other mainFrameIcon)]
-        pub unsafe fn mainFrameIcon(&self) -> Option<Id<NSImage, Shared>>;
+        pub unsafe fn mainFrameIcon(&self) -> Option<Id<NSImage>>;
     }
 );
 
@@ -473,7 +469,7 @@ extern_methods!(
             &self,
             element: Option<&DOMElement>,
             pseudo_element: Option<&NSString>,
-        ) -> Option<Id<DOMCSSStyleDeclaration, Shared>>;
+        ) -> Option<Id<DOMCSSStyleDeclaration>>;
     }
 );
 
@@ -483,10 +479,7 @@ extern_methods!(
     unsafe impl WebView {
         #[cfg(feature = "WebKit_DOMRange")]
         #[method_id(@__retain_semantics Other editableDOMRangeForPoint:)]
-        pub unsafe fn editableDOMRangeForPoint(
-            &self,
-            point: NSPoint,
-        ) -> Option<Id<DOMRange, Shared>>;
+        pub unsafe fn editableDOMRangeForPoint(&self, point: NSPoint) -> Option<Id<DOMRange>>;
 
         #[cfg(feature = "WebKit_DOMRange")]
         #[method(setSelectedDOMRange:affinity:)]
@@ -498,7 +491,7 @@ extern_methods!(
 
         #[cfg(feature = "WebKit_DOMRange")]
         #[method_id(@__retain_semantics Other selectedDOMRange)]
-        pub unsafe fn selectedDOMRange(&self) -> Option<Id<DOMRange, Shared>>;
+        pub unsafe fn selectedDOMRange(&self) -> Option<Id<DOMRange>>;
 
         #[method(selectionAffinity)]
         pub unsafe fn selectionAffinity(&self) -> NSSelectionAffinity;
@@ -514,7 +507,7 @@ extern_methods!(
 
         #[cfg(feature = "WebKit_DOMCSSStyleDeclaration")]
         #[method_id(@__retain_semantics Other typingStyle)]
-        pub unsafe fn typingStyle(&self) -> Option<Id<DOMCSSStyleDeclaration, Shared>>;
+        pub unsafe fn typingStyle(&self) -> Option<Id<DOMCSSStyleDeclaration>>;
 
         #[cfg(feature = "WebKit_DOMCSSStyleDeclaration")]
         #[method(setTypingStyle:)]
@@ -540,12 +533,10 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSUndoManager")]
         #[method_id(@__retain_semantics Other undoManager)]
-        pub unsafe fn undoManager(&self) -> Option<Id<NSUndoManager, Shared>>;
+        pub unsafe fn undoManager(&self) -> Option<Id<NSUndoManager>>;
 
         #[method_id(@__retain_semantics Other editingDelegate)]
-        pub unsafe fn editingDelegate(
-            &self,
-        ) -> Option<Id<ProtocolObject<dyn WebEditingDelegate>, Shared>>;
+        pub unsafe fn editingDelegate(&self) -> Option<Id<ProtocolObject<dyn WebEditingDelegate>>>;
 
         #[method(setEditingDelegate:)]
         pub unsafe fn setEditingDelegate(
@@ -561,7 +552,7 @@ extern_methods!(
         pub unsafe fn styleDeclarationWithText(
             &self,
             text: Option<&NSString>,
-        ) -> Option<Id<DOMCSSStyleDeclaration, Shared>>;
+        ) -> Option<Id<DOMCSSStyleDeclaration>>;
     }
 );
 
@@ -686,9 +677,6 @@ extern_methods!(
     #[cfg(feature = "WebKit_WebView")]
     unsafe impl WebView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frame_rect: NSRect,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
 );

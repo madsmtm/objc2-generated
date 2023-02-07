@@ -24,41 +24,37 @@ extern_methods!(
     unsafe impl NSPersistentHistoryChangeRequest {
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other fetchHistoryAfterDate:)]
-        pub unsafe fn fetchHistoryAfterDate(date: &NSDate) -> Id<Self, Shared>;
+        pub unsafe fn fetchHistoryAfterDate(date: &NSDate) -> Id<Self>;
 
         #[cfg(feature = "CoreData_NSPersistentHistoryToken")]
         #[method_id(@__retain_semantics Other fetchHistoryAfterToken:)]
-        pub unsafe fn fetchHistoryAfterToken(
-            token: Option<&NSPersistentHistoryToken>,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn fetchHistoryAfterToken(token: Option<&NSPersistentHistoryToken>) -> Id<Self>;
 
         #[cfg(feature = "CoreData_NSPersistentHistoryTransaction")]
         #[method_id(@__retain_semantics Other fetchHistoryAfterTransaction:)]
         pub unsafe fn fetchHistoryAfterTransaction(
             transaction: Option<&NSPersistentHistoryTransaction>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "CoreData_NSFetchRequest")]
         #[method_id(@__retain_semantics Other fetchHistoryWithFetchRequest:)]
-        pub unsafe fn fetchHistoryWithFetchRequest(
-            fetch_request: &NSFetchRequest,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn fetchHistoryWithFetchRequest(fetch_request: &NSFetchRequest) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other deleteHistoryBeforeDate:)]
-        pub unsafe fn deleteHistoryBeforeDate(date: &NSDate) -> Id<Self, Shared>;
+        pub unsafe fn deleteHistoryBeforeDate(date: &NSDate) -> Id<Self>;
 
         #[cfg(feature = "CoreData_NSPersistentHistoryToken")]
         #[method_id(@__retain_semantics Other deleteHistoryBeforeToken:)]
         pub unsafe fn deleteHistoryBeforeToken(
             token: Option<&NSPersistentHistoryToken>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "CoreData_NSPersistentHistoryTransaction")]
         #[method_id(@__retain_semantics Other deleteHistoryBeforeTransaction:)]
         pub unsafe fn deleteHistoryBeforeTransaction(
             transaction: Option<&NSPersistentHistoryTransaction>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(resultType)]
         pub unsafe fn resultType(&self) -> NSPersistentHistoryResultType;
@@ -68,11 +64,11 @@ extern_methods!(
 
         #[cfg(feature = "CoreData_NSPersistentHistoryToken")]
         #[method_id(@__retain_semantics Other token)]
-        pub unsafe fn token(&self) -> Option<Id<NSPersistentHistoryToken, Shared>>;
+        pub unsafe fn token(&self) -> Option<Id<NSPersistentHistoryToken>>;
 
         #[cfg(feature = "CoreData_NSFetchRequest")]
         #[method_id(@__retain_semantics Other fetchRequest)]
-        pub unsafe fn fetchRequest(&self) -> Option<Id<NSFetchRequest, Shared>>;
+        pub unsafe fn fetchRequest(&self) -> Option<Id<NSFetchRequest>>;
 
         #[cfg(feature = "CoreData_NSFetchRequest")]
         #[method(setFetchRequest:)]

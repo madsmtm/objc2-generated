@@ -32,10 +32,10 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKDatabase")]
     unsafe impl CKDatabase {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
 
         #[cfg(feature = "CloudKit_CKDatabaseOperation")]
         #[method(addOperation:)]

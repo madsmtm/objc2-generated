@@ -31,10 +31,10 @@ extern_methods!(
     #[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionLoginManager")]
     unsafe impl ASAuthorizationProviderExtensionLoginManager {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
 
         #[method(isDeviceRegistered)]
         pub unsafe fn isDeviceRegistered(&self) -> bool;
@@ -44,11 +44,11 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other registrationToken)]
-        pub unsafe fn registrationToken(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn registrationToken(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other loginUserName)]
-        pub unsafe fn loginUserName(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn loginUserName(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLoginUserName:)]
@@ -56,7 +56,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other ssoTokens)]
-        pub unsafe fn ssoTokens(&self) -> Option<Id<NSDictionary, Shared>>;
+        pub unsafe fn ssoTokens(&self) -> Option<Id<NSDictionary>>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(setSsoTokens:)]
@@ -68,7 +68,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other loginConfiguration)]
         pub unsafe fn loginConfiguration(
             &self,
-        ) -> Option<Id<ASAuthorizationProviderExtensionLoginConfiguration, Shared>>;
+        ) -> Option<Id<ASAuthorizationProviderExtensionLoginConfiguration>>;
 
         #[cfg(all(
             feature = "AuthenticationServices_ASAuthorizationProviderExtensionLoginConfiguration",
@@ -78,7 +78,7 @@ extern_methods!(
         pub unsafe fn saveLoginConfiguration_error(
             &self,
             login_configuration: &ASAuthorizationProviderExtensionLoginConfiguration,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(userNeedsReauthenticationWithCompletion:)]

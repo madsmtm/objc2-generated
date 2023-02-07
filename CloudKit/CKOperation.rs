@@ -26,11 +26,11 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKOperation")]
     unsafe impl CKOperation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(feature = "CloudKit_CKOperationConfiguration")]
         #[method_id(@__retain_semantics Other configuration)]
-        pub unsafe fn configuration(&self) -> Id<CKOperationConfiguration, Shared>;
+        pub unsafe fn configuration(&self) -> Id<CKOperationConfiguration>;
 
         #[cfg(feature = "CloudKit_CKOperationConfiguration")]
         #[method(setConfiguration:)]
@@ -38,14 +38,14 @@ extern_methods!(
 
         #[cfg(feature = "CloudKit_CKOperationGroup")]
         #[method_id(@__retain_semantics Other group)]
-        pub unsafe fn group(&self) -> Option<Id<CKOperationGroup, Shared>>;
+        pub unsafe fn group(&self) -> Option<Id<CKOperationGroup>>;
 
         #[cfg(feature = "CloudKit_CKOperationGroup")]
         #[method(setGroup:)]
         pub unsafe fn setGroup(&self, group: Option<&CKOperationGroup>);
 
         #[method_id(@__retain_semantics Other operationID)]
-        pub unsafe fn operationID(&self) -> Id<CKOperationID, Shared>;
+        pub unsafe fn operationID(&self) -> Id<CKOperationID>;
 
         #[method(longLivedOperationWasPersistedBlock)]
         pub unsafe fn longLivedOperationWasPersistedBlock(&self) -> *mut Block<(), ()>;
@@ -77,7 +77,7 @@ extern_methods!(
     unsafe impl CKOperationConfiguration {
         #[cfg(feature = "CloudKit_CKContainer")]
         #[method_id(@__retain_semantics Other container)]
-        pub unsafe fn container(&self) -> Option<Id<CKContainer, Shared>>;
+        pub unsafe fn container(&self) -> Option<Id<CKContainer>>;
 
         #[cfg(feature = "CloudKit_CKContainer")]
         #[method(setContainer:)]
@@ -128,7 +128,7 @@ extern_methods!(
         #[cfg(feature = "CloudKit_CKContainer")]
         #[deprecated = "Use CKOperationConfiguration"]
         #[method_id(@__retain_semantics Other container)]
-        pub unsafe fn container(&self) -> Option<Id<CKContainer, Shared>>;
+        pub unsafe fn container(&self) -> Option<Id<CKContainer>>;
 
         #[cfg(feature = "CloudKit_CKContainer")]
         #[deprecated = "Use CKOperationConfiguration"]

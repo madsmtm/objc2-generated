@@ -30,20 +30,20 @@ extern_methods!(
     unsafe impl MEDecodedMessageBanner {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Id<NSString, Shared>;
+        pub unsafe fn title(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other primaryActionTitle)]
-        pub unsafe fn primaryActionTitle(&self) -> Id<NSString, Shared>;
+        pub unsafe fn primaryActionTitle(&self) -> Id<NSString>;
 
         #[method(isDismissable)]
         pub unsafe fn isDismissable(&self) -> bool;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithTitle:primaryActionTitle:dismissable:)]
@@ -52,6 +52,6 @@ extern_methods!(
             title: &NSString,
             primary_action_title: &NSString,
             dismissable: bool,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

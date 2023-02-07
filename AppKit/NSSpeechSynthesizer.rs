@@ -125,7 +125,7 @@ extern_methods!(
         pub unsafe fn initWithVoice(
             this: Option<Allocated<Self>>,
             voice: Option<&NSSpeechSynthesizerVoiceName>,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(startSpeakingString:)]
@@ -153,7 +153,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn NSSpeechSynthesizerDelegate>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn NSSpeechSynthesizerDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -162,7 +162,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other voice)]
-        pub unsafe fn voice(&self) -> Option<Id<NSSpeechSynthesizerVoiceName, Shared>>;
+        pub unsafe fn voice(&self) -> Option<Id<NSSpeechSynthesizerVoiceName>>;
 
         #[method(setVoice:)]
         pub unsafe fn setVoice(&self, voice: Option<&NSSpeechSynthesizerVoiceName>) -> bool;
@@ -194,14 +194,14 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other phonemesFromText:)]
-        pub unsafe fn phonemesFromText(&self, text: &NSString) -> Id<NSString, Shared>;
+        pub unsafe fn phonemesFromText(&self, text: &NSString) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other objectForProperty:error:_)]
         pub unsafe fn objectForProperty_error(
             &self,
             property: &NSSpeechPropertyKey,
-        ) -> Result<Id<Object, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Object>, Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(setObject:forProperty:error:_)]
@@ -209,23 +209,23 @@ extern_methods!(
             &self,
             object: Option<&Object>,
             property: &NSSpeechPropertyKey,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
 
         #[method(isAnyApplicationSpeaking)]
         pub unsafe fn isAnyApplicationSpeaking() -> bool;
 
         #[method_id(@__retain_semantics Other defaultVoice)]
-        pub unsafe fn defaultVoice() -> Id<NSSpeechSynthesizerVoiceName, Shared>;
+        pub unsafe fn defaultVoice() -> Id<NSSpeechSynthesizerVoiceName>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other availableVoices)]
-        pub unsafe fn availableVoices() -> Id<NSArray<NSSpeechSynthesizerVoiceName>, Shared>;
+        pub unsafe fn availableVoices() -> Id<NSArray<NSSpeechSynthesizerVoiceName>>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other attributesForVoice:)]
         pub unsafe fn attributesForVoice(
             voice: &NSSpeechSynthesizerVoiceName,
-        ) -> Id<NSDictionary<NSVoiceAttributeKey, Object>, Shared>;
+        ) -> Id<NSDictionary<NSVoiceAttributeKey, Object>>;
     }
 );
 

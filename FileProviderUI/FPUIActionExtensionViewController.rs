@@ -38,7 +38,7 @@ extern_methods!(
     unsafe impl FPUIActionExtensionViewController {
         #[cfg(feature = "FileProviderUI_FPUIActionExtensionContext")]
         #[method_id(@__retain_semantics Other extensionContext)]
-        pub unsafe fn extensionContext(&self) -> Id<FPUIActionExtensionContext, Shared>;
+        pub unsafe fn extensionContext(&self) -> Id<FPUIActionExtensionContext>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(prepareForError:)]
@@ -64,6 +64,6 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             nib_name_or_nil: Option<&NSNibName>,
             nib_bundle_or_nil: Option<&NSBundle>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

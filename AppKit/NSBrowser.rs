@@ -86,13 +86,13 @@ extern_methods!(
         pub unsafe fn setCellClass(&self, factory_id: &Class);
 
         #[method_id(@__retain_semantics Other cellPrototype)]
-        pub unsafe fn cellPrototype(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn cellPrototype(&self) -> Option<Id<Object>>;
 
         #[method(setCellPrototype:)]
         pub unsafe fn setCellPrototype(&self, cell_prototype: Option<&Object>);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSBrowserDelegate>, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSBrowserDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSBrowserDelegate>>);
@@ -174,21 +174,18 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSIndexPath")]
         #[method_id(@__retain_semantics Other itemAtIndexPath:)]
-        pub unsafe fn itemAtIndexPath(
-            &self,
-            index_path: &NSIndexPath,
-        ) -> Option<Id<Object, Shared>>;
+        pub unsafe fn itemAtIndexPath(&self, index_path: &NSIndexPath) -> Option<Id<Object>>;
 
         #[method_id(@__retain_semantics Other itemAtRow:inColumn:)]
         pub unsafe fn itemAtRow_inColumn(
             &self,
             row: NSInteger,
             column: NSInteger,
-        ) -> Option<Id<Object, Shared>>;
+        ) -> Option<Id<Object>>;
 
         #[cfg(feature = "Foundation_NSIndexPath")]
         #[method_id(@__retain_semantics Other indexPathForColumn:)]
-        pub unsafe fn indexPathForColumn(&self, column: NSInteger) -> Id<NSIndexPath, Shared>;
+        pub unsafe fn indexPathForColumn(&self, column: NSInteger) -> Id<NSIndexPath>;
 
         #[method(isLeafItem:)]
         pub unsafe fn isLeafItem(&self, item: Option<&Object>) -> bool;
@@ -202,10 +199,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other parentForItemsInColumn:)]
-        pub unsafe fn parentForItemsInColumn(
-            &self,
-            column: NSInteger,
-        ) -> Option<Id<Object, Shared>>;
+        pub unsafe fn parentForItemsInColumn(&self, column: NSInteger) -> Option<Id<Object>>;
 
         #[method(scrollRowToVisible:inColumn:)]
         pub unsafe fn scrollRowToVisible_inColumn(&self, row: NSInteger, column: NSInteger);
@@ -216,11 +210,11 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other titleOfColumn:)]
-        pub unsafe fn titleOfColumn(&self, column: NSInteger) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn titleOfColumn(&self, column: NSInteger) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other pathSeparator)]
-        pub unsafe fn pathSeparator(&self) -> Id<NSString, Shared>;
+        pub unsafe fn pathSeparator(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setPathSeparator:)]
@@ -232,11 +226,11 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other path)]
-        pub unsafe fn path(&self) -> Id<NSString, Shared>;
+        pub unsafe fn path(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other pathToColumn:)]
-        pub unsafe fn pathToColumn(&self, column: NSInteger) -> Id<NSString, Shared>;
+        pub unsafe fn pathToColumn(&self, column: NSInteger) -> Id<NSString>;
 
         #[method(clickedColumn)]
         pub unsafe fn clickedColumn(&self) -> NSInteger;
@@ -248,14 +242,14 @@ extern_methods!(
         pub unsafe fn selectedColumn(&self) -> NSInteger;
 
         #[method_id(@__retain_semantics Other selectedCell)]
-        pub unsafe fn selectedCell(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn selectedCell(&self) -> Option<Id<Object>>;
 
         #[method_id(@__retain_semantics Other selectedCellInColumn:)]
-        pub unsafe fn selectedCellInColumn(&self, column: NSInteger) -> Option<Id<Object, Shared>>;
+        pub unsafe fn selectedCellInColumn(&self, column: NSInteger) -> Option<Id<Object>>;
 
         #[cfg(all(feature = "AppKit_NSCell", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other selectedCells)]
-        pub unsafe fn selectedCells(&self) -> Option<Id<NSArray<NSCell>, Shared>>;
+        pub unsafe fn selectedCells(&self) -> Option<Id<NSArray<NSCell>>>;
 
         #[method(selectRow:inColumn:)]
         pub unsafe fn selectRow_inColumn(&self, row: NSInteger, column: NSInteger);
@@ -265,7 +259,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSIndexPath")]
         #[method_id(@__retain_semantics Other selectionIndexPath)]
-        pub unsafe fn selectionIndexPath(&self) -> Option<Id<NSIndexPath, Shared>>;
+        pub unsafe fn selectionIndexPath(&self) -> Option<Id<NSIndexPath>>;
 
         #[cfg(feature = "Foundation_NSIndexPath")]
         #[method(setSelectionIndexPath:)]
@@ -273,7 +267,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSIndexPath"))]
         #[method_id(@__retain_semantics Other selectionIndexPaths)]
-        pub unsafe fn selectionIndexPaths(&self) -> Id<NSArray<NSIndexPath>, Shared>;
+        pub unsafe fn selectionIndexPaths(&self) -> Id<NSArray<NSIndexPath>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSIndexPath"))]
         #[method(setSelectionIndexPaths:)]
@@ -288,7 +282,7 @@ extern_methods!(
         pub unsafe fn selectedRowIndexesInColumn(
             &self,
             column: NSInteger,
-        ) -> Option<Id<NSIndexSet, Shared>>;
+        ) -> Option<Id<NSIndexSet>>;
 
         #[method(reloadColumn:)]
         pub unsafe fn reloadColumn(&self, column: NSInteger);
@@ -328,7 +322,7 @@ extern_methods!(
             &self,
             row: NSInteger,
             col: NSInteger,
-        ) -> Option<Id<Object, Shared>>;
+        ) -> Option<Id<Object>>;
 
         #[method(selectAll:)]
         pub unsafe fn selectAll(&self, sender: Option<&Object>);
@@ -425,7 +419,7 @@ extern_methods!(
         pub unsafe fn defaultColumnWidth(&self) -> CGFloat;
 
         #[method_id(@__retain_semantics Other columnsAutosaveName)]
-        pub unsafe fn columnsAutosaveName(&self) -> Id<NSBrowserColumnsAutosaveName, Shared>;
+        pub unsafe fn columnsAutosaveName(&self) -> Id<NSBrowserColumnsAutosaveName>;
 
         #[method(setColumnsAutosaveName:)]
         pub unsafe fn setColumnsAutosaveName(
@@ -457,7 +451,7 @@ extern_methods!(
             column: NSInteger,
             event: &NSEvent,
             drag_image_offset: NSPointPointer,
-        ) -> Option<Id<NSImage, Shared>>;
+        ) -> Option<Id<NSImage>>;
 
         #[method(setDraggingSourceOperationMask:forLocal:)]
         pub unsafe fn setDraggingSourceOperationMask_forLocal(
@@ -474,7 +468,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other backgroundColor)]
-        pub unsafe fn backgroundColor(&self) -> Id<NSColor, Shared>;
+        pub unsafe fn backgroundColor(&self) -> Id<NSColor>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setBackgroundColor:)]
@@ -531,7 +525,7 @@ extern_protocol!(
             browser: &NSBrowser,
             index: NSInteger,
             item: Option<&Object>,
-        ) -> Id<Object, Shared>;
+        ) -> Id<Object>;
 
         #[cfg(feature = "AppKit_NSBrowser")]
         #[optional]
@@ -545,7 +539,7 @@ extern_protocol!(
             &self,
             browser: &NSBrowser,
             item: Option<&Object>,
-        ) -> Option<Id<Object, Shared>>;
+        ) -> Option<Id<Object>>;
 
         #[cfg(feature = "AppKit_NSBrowser")]
         #[optional]
@@ -560,7 +554,7 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSBrowser")]
         #[optional]
         #[method_id(@__retain_semantics Other rootItemForBrowser:)]
-        unsafe fn rootItemForBrowser(&self, browser: &NSBrowser) -> Option<Id<Object, Shared>>;
+        unsafe fn rootItemForBrowser(&self, browser: &NSBrowser) -> Option<Id<Object>>;
 
         #[cfg(feature = "AppKit_NSBrowser")]
         #[optional]
@@ -596,7 +590,7 @@ extern_protocol!(
             &self,
             sender: &NSBrowser,
             column: NSInteger,
-        ) -> Option<Id<NSString, Shared>>;
+        ) -> Option<Id<NSString>>;
 
         #[cfg(all(feature = "AppKit_NSBrowser", feature = "Foundation_NSString"))]
         #[optional]
@@ -699,7 +693,7 @@ extern_protocol!(
             drop_destination: &NSURL,
             row_indexes: &NSIndexSet,
             column: NSInteger,
-        ) -> Id<NSArray<NSString>, Shared>;
+        ) -> Id<NSArray<NSString>>;
 
         #[cfg(all(
             feature = "AppKit_NSBrowser",
@@ -731,7 +725,7 @@ extern_protocol!(
             column: NSInteger,
             event: &NSEvent,
             drag_image_offset: NSPointPointer,
-        ) -> Option<Id<NSImage, Shared>>;
+        ) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "AppKit_NSBrowser")]
         #[optional]
@@ -765,7 +759,7 @@ extern_protocol!(
             browser: &NSBrowser,
             row: NSInteger,
             column: NSInteger,
-        ) -> Option<Id<NSString, Shared>>;
+        ) -> Option<Id<NSString>>;
 
         #[cfg(all(
             feature = "AppKit_NSBrowser",
@@ -800,7 +794,7 @@ extern_protocol!(
             &self,
             browser: &NSBrowser,
             item: &Object,
-        ) -> Option<Id<NSViewController, Shared>>;
+        ) -> Option<Id<NSViewController>>;
 
         #[cfg(all(feature = "AppKit_NSBrowser", feature = "AppKit_NSViewController"))]
         #[optional]
@@ -809,7 +803,7 @@ extern_protocol!(
             &self,
             browser: &NSBrowser,
             item: Option<&Object>,
-        ) -> Option<Id<NSViewController, Shared>>;
+        ) -> Option<Id<NSViewController>>;
 
         #[cfg(feature = "AppKit_NSBrowser")]
         #[optional]
@@ -829,7 +823,7 @@ extern_protocol!(
             browser: &NSBrowser,
             proposed_selection_indexes: &NSIndexSet,
             column: NSInteger,
-        ) -> Id<NSIndexSet, Shared>;
+        ) -> Id<NSIndexSet>;
     }
 
     unsafe impl ProtocolType for dyn NSBrowserDelegate {}
@@ -880,7 +874,7 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSMatrix")]
         #[deprecated = "Use the item based NSBrowser instead"]
         #[method_id(@__retain_semantics Other matrixInColumn:)]
-        pub unsafe fn matrixInColumn(&self, column: NSInteger) -> Option<Id<NSMatrix, Shared>>;
+        pub unsafe fn matrixInColumn(&self, column: NSInteger) -> Option<Id<NSMatrix>>;
     }
 );
 
@@ -889,9 +883,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSBrowser")]
     unsafe impl NSBrowser {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frame_rect: NSRect,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
 );

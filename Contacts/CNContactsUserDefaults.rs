@@ -22,13 +22,13 @@ extern_methods!(
     #[cfg(feature = "Contacts_CNContactsUserDefaults")]
     unsafe impl CNContactsUserDefaults {
         #[method_id(@__retain_semantics Other sharedDefaults)]
-        pub unsafe fn sharedDefaults() -> Id<Self, Shared>;
+        pub unsafe fn sharedDefaults() -> Id<Self>;
 
         #[method(sortOrder)]
         pub unsafe fn sortOrder(&self) -> CNContactSortOrder;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other countryCode)]
-        pub unsafe fn countryCode(&self) -> Id<NSString, Shared>;
+        pub unsafe fn countryCode(&self) -> Id<NSString>;
     }
 );

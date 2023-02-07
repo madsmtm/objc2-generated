@@ -36,17 +36,17 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other securityError)]
-        pub unsafe fn securityError(&self) -> Option<Id<NSError, Shared>>;
+        pub unsafe fn securityError(&self) -> Option<Id<NSError>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "MailKit_MEEmailAddress"))]
         #[method_id(@__retain_semantics Other addressesFailingEncryption)]
-        pub unsafe fn addressesFailingEncryption(&self) -> Id<NSArray<MEEmailAddress>, Shared>;
+        pub unsafe fn addressesFailingEncryption(&self) -> Id<NSArray<MEEmailAddress>>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -60,6 +60,6 @@ extern_methods!(
             can_encrypt: bool,
             security_error: Option<&NSError>,
             addresses_failing_encryption: &NSArray<MEEmailAddress>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

@@ -101,7 +101,7 @@ extern_methods!(
             key_options: NSPointerFunctionsOptions,
             value_options: NSPointerFunctionsOptions,
             initial_capacity: NSUInteger,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSPointerFunctions")]
         #[method_id(@__retain_semantics Init initWithKeyPointerFunctions:valuePointerFunctions:capacity:)]
@@ -110,49 +110,49 @@ extern_methods!(
             key_functions: &NSPointerFunctions,
             value_functions: &NSPointerFunctions,
             initial_capacity: NSUInteger,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other mapTableWithKeyOptions:valueOptions:)]
         pub unsafe fn mapTableWithKeyOptions_valueOptions(
             key_options: NSPointerFunctionsOptions,
             value_options: NSPointerFunctionsOptions,
-        ) -> Id<NSMapTable<KeyType, ObjectType>, Shared>;
+        ) -> Id<NSMapTable<KeyType, ObjectType>>;
 
         #[deprecated = "GC no longer supported"]
         #[method_id(@__retain_semantics Other mapTableWithStrongToStrongObjects)]
-        pub unsafe fn mapTableWithStrongToStrongObjects() -> Id<Object, Shared>;
+        pub unsafe fn mapTableWithStrongToStrongObjects() -> Id<Object>;
 
         #[deprecated = "GC no longer supported"]
         #[method_id(@__retain_semantics Other mapTableWithWeakToStrongObjects)]
-        pub unsafe fn mapTableWithWeakToStrongObjects() -> Id<Object, Shared>;
+        pub unsafe fn mapTableWithWeakToStrongObjects() -> Id<Object>;
 
         #[deprecated = "GC no longer supported"]
         #[method_id(@__retain_semantics Other mapTableWithStrongToWeakObjects)]
-        pub unsafe fn mapTableWithStrongToWeakObjects() -> Id<Object, Shared>;
+        pub unsafe fn mapTableWithStrongToWeakObjects() -> Id<Object>;
 
         #[deprecated = "GC no longer supported"]
         #[method_id(@__retain_semantics Other mapTableWithWeakToWeakObjects)]
-        pub unsafe fn mapTableWithWeakToWeakObjects() -> Id<Object, Shared>;
+        pub unsafe fn mapTableWithWeakToWeakObjects() -> Id<Object>;
 
         #[method_id(@__retain_semantics Other strongToStrongObjectsMapTable)]
-        pub unsafe fn strongToStrongObjectsMapTable() -> Id<NSMapTable<KeyType, ObjectType>, Shared>;
+        pub unsafe fn strongToStrongObjectsMapTable() -> Id<NSMapTable<KeyType, ObjectType>>;
 
         #[method_id(@__retain_semantics Other weakToStrongObjectsMapTable)]
-        pub unsafe fn weakToStrongObjectsMapTable() -> Id<NSMapTable<KeyType, ObjectType>, Shared>;
+        pub unsafe fn weakToStrongObjectsMapTable() -> Id<NSMapTable<KeyType, ObjectType>>;
 
         #[method_id(@__retain_semantics Other strongToWeakObjectsMapTable)]
-        pub unsafe fn strongToWeakObjectsMapTable() -> Id<NSMapTable<KeyType, ObjectType>, Shared>;
+        pub unsafe fn strongToWeakObjectsMapTable() -> Id<NSMapTable<KeyType, ObjectType>>;
 
         #[method_id(@__retain_semantics Other weakToWeakObjectsMapTable)]
-        pub unsafe fn weakToWeakObjectsMapTable() -> Id<NSMapTable<KeyType, ObjectType>, Shared>;
+        pub unsafe fn weakToWeakObjectsMapTable() -> Id<NSMapTable<KeyType, ObjectType>>;
 
         #[cfg(feature = "Foundation_NSPointerFunctions")]
         #[method_id(@__retain_semantics Other keyPointerFunctions)]
-        pub unsafe fn keyPointerFunctions(&self) -> Id<NSPointerFunctions, Shared>;
+        pub unsafe fn keyPointerFunctions(&self) -> Id<NSPointerFunctions>;
 
         #[cfg(feature = "Foundation_NSPointerFunctions")]
         #[method_id(@__retain_semantics Other valuePointerFunctions)]
-        pub unsafe fn valuePointerFunctions(&self) -> Id<NSPointerFunctions, Shared>;
+        pub unsafe fn valuePointerFunctions(&self) -> Id<NSPointerFunctions>;
 
         #[method_id(@__retain_semantics Other objectForKey:)]
         pub unsafe fn objectForKey(
@@ -175,20 +175,18 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSEnumerator")]
         #[method_id(@__retain_semantics Other keyEnumerator)]
-        pub unsafe fn keyEnumerator(&self) -> Id<NSEnumerator<KeyType>, Shared>;
+        pub unsafe fn keyEnumerator(&self) -> Id<NSEnumerator<KeyType>>;
 
         #[cfg(feature = "Foundation_NSEnumerator")]
         #[method_id(@__retain_semantics Other objectEnumerator)]
-        pub unsafe fn objectEnumerator(&self) -> Option<Id<NSEnumerator<ObjectType>, Shared>>;
+        pub unsafe fn objectEnumerator(&self) -> Option<Id<NSEnumerator<ObjectType>>>;
 
         #[method(removeAllObjects)]
         pub unsafe fn removeAllObjects(&self);
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other dictionaryRepresentation)]
-        pub unsafe fn dictionaryRepresentation(
-            &self,
-        ) -> Id<NSDictionary<KeyType, ObjectType>, Shared>;
+        pub unsafe fn dictionaryRepresentation(&self) -> Id<NSDictionary<KeyType, ObjectType>>;
     }
 );
 

@@ -48,7 +48,7 @@ extern_protocol!(
             configuration: &WKWebViewConfiguration,
             navigation_action: &WKNavigationAction,
             window_features: &WKWindowFeatures,
-        ) -> Option<Id<WKWebView, Shared>>;
+        ) -> Option<Id<WKWebView>>;
 
         #[cfg(feature = "WebKit_WKWebView")]
         #[optional]

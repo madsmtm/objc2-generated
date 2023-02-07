@@ -29,7 +29,7 @@ extern_methods!(
     unsafe impl DOMHTMLElement {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Id<NSString, Shared>;
+        pub unsafe fn title(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setTitle:)]
@@ -37,7 +37,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other lang)]
-        pub unsafe fn lang(&self) -> Id<NSString, Shared>;
+        pub unsafe fn lang(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLang:)]
@@ -45,7 +45,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other dir)]
-        pub unsafe fn dir(&self) -> Id<NSString, Shared>;
+        pub unsafe fn dir(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setDir:)]
@@ -59,7 +59,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other accessKey)]
-        pub unsafe fn accessKey(&self) -> Id<NSString, Shared>;
+        pub unsafe fn accessKey(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAccessKey:)]
@@ -67,7 +67,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other innerText)]
-        pub unsafe fn innerText(&self) -> Id<NSString, Shared>;
+        pub unsafe fn innerText(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setInnerText:)]
@@ -75,7 +75,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other outerText)]
-        pub unsafe fn outerText(&self) -> Id<NSString, Shared>;
+        pub unsafe fn outerText(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setOuterText:)]
@@ -83,7 +83,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other contentEditable)]
-        pub unsafe fn contentEditable(&self) -> Id<NSString, Shared>;
+        pub unsafe fn contentEditable(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setContentEditable:)]
@@ -94,7 +94,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other idName)]
-        pub unsafe fn idName(&self) -> Id<NSString, Shared>;
+        pub unsafe fn idName(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setIdName:)]
@@ -102,11 +102,11 @@ extern_methods!(
 
         #[cfg(feature = "WebKit_DOMHTMLCollection")]
         #[method_id(@__retain_semantics Other children)]
-        pub unsafe fn children(&self) -> Option<Id<DOMHTMLCollection, Shared>>;
+        pub unsafe fn children(&self) -> Option<Id<DOMHTMLCollection>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other titleDisplayString)]
-        pub unsafe fn titleDisplayString(&self) -> Id<NSString, Shared>;
+        pub unsafe fn titleDisplayString(&self) -> Id<NSString>;
 
         #[method(click)]
         pub unsafe fn click(&self);

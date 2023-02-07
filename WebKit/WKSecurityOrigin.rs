@@ -23,15 +23,15 @@ extern_methods!(
     #[cfg(feature = "WebKit_WKSecurityOrigin")]
     unsafe impl WKSecurityOrigin {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other protocol)]
-        pub unsafe fn protocol(&self) -> Id<NSString, Shared>;
+        pub unsafe fn protocol(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other host)]
-        pub unsafe fn host(&self) -> Id<NSString, Shared>;
+        pub unsafe fn host(&self) -> Id<NSString>;
 
         #[method(port)]
         pub unsafe fn port(&self) -> NSInteger;

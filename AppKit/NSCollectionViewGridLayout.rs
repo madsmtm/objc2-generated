@@ -70,7 +70,7 @@ extern_methods!(
 
         #[cfg(all(feature = "AppKit_NSColor", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other backgroundColors)]
-        pub unsafe fn backgroundColors(&self) -> Id<NSArray<NSColor>, Shared>;
+        pub unsafe fn backgroundColors(&self) -> Id<NSArray<NSColor>>;
 
         #[cfg(all(feature = "AppKit_NSColor", feature = "Foundation_NSArray"))]
         #[method(setBackgroundColors:)]

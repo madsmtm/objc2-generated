@@ -59,7 +59,7 @@ extern_methods!(
             menu: Option<&NSMenu>,
             target: Option<&Object>,
             action: Option<Sel>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(feature = "AppKit_NSImage", feature = "AppKit_NSMenu"))]
         #[method_id(@__retain_semantics Other comboButtonWithImage:menu:target:action:)]
@@ -68,7 +68,7 @@ extern_methods!(
             menu: Option<&NSMenu>,
             target: Option<&Object>,
             action: Option<Sel>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(
             feature = "AppKit_NSImage",
@@ -82,11 +82,11 @@ extern_methods!(
             menu: Option<&NSMenu>,
             target: Option<&Object>,
             action: Option<Sel>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Id<NSString, Shared>;
+        pub unsafe fn title(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setTitle:)]
@@ -94,7 +94,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other image)]
-        pub unsafe fn image(&self) -> Option<Id<NSImage, Shared>>;
+        pub unsafe fn image(&self) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method(setImage:)]
@@ -108,7 +108,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSMenu")]
         #[method_id(@__retain_semantics Other menu)]
-        pub unsafe fn menu(&self) -> Id<NSMenu, Shared>;
+        pub unsafe fn menu(&self) -> Id<NSMenu>;
 
         #[cfg(feature = "AppKit_NSMenu")]
         #[method(setMenu:)]
@@ -127,9 +127,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSComboButton")]
     unsafe impl NSComboButton {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frame_rect: NSRect,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
 );

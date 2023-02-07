@@ -26,7 +26,7 @@ extern_methods!(
     unsafe impl DOMCSSPageRule {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other selectorText)]
-        pub unsafe fn selectorText(&self) -> Id<NSString, Shared>;
+        pub unsafe fn selectorText(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setSelectorText:)]
@@ -34,6 +34,6 @@ extern_methods!(
 
         #[cfg(feature = "WebKit_DOMCSSStyleDeclaration")]
         #[method_id(@__retain_semantics Other style)]
-        pub unsafe fn style(&self) -> Option<Id<DOMCSSStyleDeclaration, Shared>>;
+        pub unsafe fn style(&self) -> Option<Id<DOMCSSStyleDeclaration>>;
     }
 );

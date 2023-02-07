@@ -34,7 +34,7 @@ extern_methods!(
     unsafe impl GKDialogController {
         #[cfg(feature = "AppKit_NSWindow")]
         #[method_id(@__retain_semantics Other parentWindow)]
-        pub unsafe fn parentWindow(&self) -> Option<Id<NSWindow, Shared>>;
+        pub unsafe fn parentWindow(&self) -> Option<Id<NSWindow>>;
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[method(setParentWindow:)]
@@ -54,6 +54,6 @@ extern_methods!(
     #[cfg(feature = "GameKit_GKDialogController")]
     unsafe impl GKDialogController {
         #[method_id(@__retain_semantics Other sharedDialogController)]
-        pub unsafe fn sharedDialogController() -> Id<GKDialogController, Shared>;
+        pub unsafe fn sharedDialogController() -> Id<GKDialogController>;
     }
 );

@@ -36,10 +36,10 @@ extern_methods!(
         pub unsafe fn initWithPolylines(
             this: Option<Allocated<Self>>,
             polylines: &NSArray<MKPolyline>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "MapKit_MKPolyline"))]
         #[method_id(@__retain_semantics Other polylines)]
-        pub unsafe fn polylines(&self) -> Id<NSArray<MKPolyline>, Shared>;
+        pub unsafe fn polylines(&self) -> Id<NSArray<MKPolyline>>;
     }
 );

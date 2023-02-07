@@ -30,10 +30,10 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKLocationSortDescriptor")]
     unsafe impl CKLocationSortDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
 
         #[cfg(all(feature = "CoreLocation_CLLocation", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithKey:relativeLocation:)]
@@ -41,18 +41,16 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             key: &NSString,
             relative_location: &CLLocation,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            a_decoder: &NSCoder,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, a_decoder: &NSCoder)
+            -> Id<Self>;
 
         #[cfg(feature = "CoreLocation_CLLocation")]
         #[method_id(@__retain_semantics Other relativeLocation)]
-        pub unsafe fn relativeLocation(&self) -> Id<CLLocation, Shared>;
+        pub unsafe fn relativeLocation(&self) -> Id<CLLocation>;
     }
 );
 
@@ -65,7 +63,7 @@ extern_methods!(
         pub unsafe fn sortDescriptorWithKey_ascending(
             key: Option<&NSString>,
             ascending: bool,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other sortDescriptorWithKey:ascending:selector:)]
@@ -73,7 +71,7 @@ extern_methods!(
             key: Option<&NSString>,
             ascending: bool,
             selector: Option<Sel>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithKey:ascending:)]
@@ -81,7 +79,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             key: Option<&NSString>,
             ascending: bool,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithKey:ascending:selector:)]
@@ -90,7 +88,7 @@ extern_methods!(
             key: Option<&NSString>,
             ascending: bool,
             selector: Option<Sel>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other sortDescriptorWithKey:ascending:comparator:)]
@@ -98,7 +96,7 @@ extern_methods!(
             key: Option<&NSString>,
             ascending: bool,
             cmptr: NSComparator,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithKey:ascending:comparator:)]
@@ -107,6 +105,6 @@ extern_methods!(
             key: Option<&NSString>,
             ascending: bool,
             cmptr: NSComparator,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

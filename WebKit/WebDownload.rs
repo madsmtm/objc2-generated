@@ -35,7 +35,7 @@ extern_protocol!(
         unsafe fn downloadWindowForAuthenticationSheet(
             &self,
             download: Option<&WebDownload>,
-        ) -> Option<Id<NSWindow, Shared>>;
+        ) -> Option<Id<NSWindow>>;
     }
 
     unsafe impl ProtocolType for dyn WebDownloadDelegate {}
@@ -52,7 +52,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             request: &NSURLRequest,
             delegate: Option<&ProtocolObject<dyn NSURLDownloadDelegate>>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSString"))]
         #[deprecated = "Use NSURLSession downloadTask (see NSURLSession.h)"]
@@ -62,6 +62,6 @@ extern_methods!(
             resume_data: &NSData,
             delegate: Option<&ProtocolObject<dyn NSURLDownloadDelegate>>,
             path: &NSString,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

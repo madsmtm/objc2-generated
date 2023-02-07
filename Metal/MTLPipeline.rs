@@ -60,7 +60,7 @@ extern_methods!(
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             buffer_index: NSUInteger,
-        ) -> Id<MTLPipelineBufferDescriptor, Shared>;
+        ) -> Id<MTLPipelineBufferDescriptor>;
 
         #[cfg(feature = "Metal_MTLPipelineBufferDescriptor")]
         #[method(setObject:atIndexedSubscript:)]

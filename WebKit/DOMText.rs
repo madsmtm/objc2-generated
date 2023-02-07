@@ -29,16 +29,13 @@ extern_methods!(
     unsafe impl DOMText {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other wholeText)]
-        pub unsafe fn wholeText(&self) -> Id<NSString, Shared>;
+        pub unsafe fn wholeText(&self) -> Id<NSString>;
 
         #[method_id(@__retain_semantics Other splitText:)]
-        pub unsafe fn splitText(&self, offset: c_uint) -> Option<Id<DOMText, Shared>>;
+        pub unsafe fn splitText(&self, offset: c_uint) -> Option<Id<DOMText>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other replaceWholeText:)]
-        pub unsafe fn replaceWholeText(
-            &self,
-            content: Option<&NSString>,
-        ) -> Option<Id<DOMText, Shared>>;
+        pub unsafe fn replaceWholeText(&self, content: Option<&NSString>) -> Option<Id<DOMText>>;
     }
 );

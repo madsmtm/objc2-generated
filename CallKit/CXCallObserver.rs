@@ -33,6 +33,6 @@ extern_methods!(
     unsafe impl CXCallObserver {
         #[cfg(all(feature = "CallKit_CXCall", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other calls)]
-        pub unsafe fn calls(&self) -> Id<NSArray<CXCall>, Shared>;
+        pub unsafe fn calls(&self) -> Id<NSArray<CXCall>>;
     }
 );

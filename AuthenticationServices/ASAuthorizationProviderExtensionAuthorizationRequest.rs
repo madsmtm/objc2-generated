@@ -111,47 +111,47 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other url)]
-        pub unsafe fn url(&self) -> Id<NSURL, Shared>;
+        pub unsafe fn url(&self) -> Id<NSURL>;
 
         #[method_id(@__retain_semantics Other requestedOperation)]
         pub unsafe fn requestedOperation(
             &self,
-        ) -> Id<ASAuthorizationProviderAuthorizationOperation, Shared>;
+        ) -> Id<ASAuthorizationProviderAuthorizationOperation>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other httpHeaders)]
-        pub unsafe fn httpHeaders(&self) -> Id<NSDictionary<NSString, NSString>, Shared>;
+        pub unsafe fn httpHeaders(&self) -> Id<NSDictionary<NSString, NSString>>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other httpBody)]
-        pub unsafe fn httpBody(&self) -> Id<NSData, Shared>;
+        pub unsafe fn httpBody(&self) -> Id<NSData>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other realm)]
-        pub unsafe fn realm(&self) -> Id<NSString, Shared>;
+        pub unsafe fn realm(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other extensionData)]
-        pub unsafe fn extensionData(&self) -> Id<NSDictionary, Shared>;
+        pub unsafe fn extensionData(&self) -> Id<NSDictionary>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other callerBundleIdentifier)]
-        pub unsafe fn callerBundleIdentifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn callerBundleIdentifier(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other authorizationOptions)]
-        pub unsafe fn authorizationOptions(&self) -> Id<NSDictionary, Shared>;
+        pub unsafe fn authorizationOptions(&self) -> Id<NSDictionary>;
 
         #[method(isCallerManaged)]
         pub unsafe fn isCallerManaged(&self) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other callerTeamIdentifier)]
-        pub unsafe fn callerTeamIdentifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn callerTeamIdentifier(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedCallerDisplayName)]
-        pub unsafe fn localizedCallerDisplayName(&self) -> Id<NSString, Shared>;
+        pub unsafe fn localizedCallerDisplayName(&self) -> Id<NSString>;
 
         #[method(isUserInterfaceEnabled)]
         pub unsafe fn isUserInterfaceEnabled(&self) -> bool;
@@ -160,6 +160,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other loginManager)]
         pub unsafe fn loginManager(
             &self,
-        ) -> Option<Id<ASAuthorizationProviderExtensionLoginManager, Shared>>;
+        ) -> Option<Id<ASAuthorizationProviderExtensionLoginManager>>;
     }
 );

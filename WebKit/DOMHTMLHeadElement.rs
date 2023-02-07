@@ -29,7 +29,7 @@ extern_methods!(
     unsafe impl DOMHTMLHeadElement {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other profile)]
-        pub unsafe fn profile(&self) -> Id<NSString, Shared>;
+        pub unsafe fn profile(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setProfile:)]

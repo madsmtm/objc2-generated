@@ -49,48 +49,48 @@ extern_methods!(
             feature = "UserNotifications_UNNotificationAttachment"
         ))]
         #[method_id(@__retain_semantics Other attachments)]
-        pub unsafe fn attachments(&self) -> Id<NSArray<UNNotificationAttachment>, Shared>;
+        pub unsafe fn attachments(&self) -> Id<NSArray<UNNotificationAttachment>>;
 
         #[cfg(feature = "Foundation_NSNumber")]
         #[method_id(@__retain_semantics Other badge)]
-        pub unsafe fn badge(&self) -> Option<Id<NSNumber, Shared>>;
+        pub unsafe fn badge(&self) -> Option<Id<NSNumber>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other body)]
-        pub unsafe fn body(&self) -> Id<NSString, Shared>;
+        pub unsafe fn body(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other categoryIdentifier)]
-        pub unsafe fn categoryIdentifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn categoryIdentifier(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other launchImageName)]
-        pub unsafe fn launchImageName(&self) -> Id<NSString, Shared>;
+        pub unsafe fn launchImageName(&self) -> Id<NSString>;
 
         #[cfg(feature = "UserNotifications_UNNotificationSound")]
         #[method_id(@__retain_semantics Other sound)]
-        pub unsafe fn sound(&self) -> Option<Id<UNNotificationSound, Shared>>;
+        pub unsafe fn sound(&self) -> Option<Id<UNNotificationSound>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other subtitle)]
-        pub unsafe fn subtitle(&self) -> Id<NSString, Shared>;
+        pub unsafe fn subtitle(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other threadIdentifier)]
-        pub unsafe fn threadIdentifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn threadIdentifier(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Id<NSString, Shared>;
+        pub unsafe fn title(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other userInfo)]
-        pub unsafe fn userInfo(&self) -> Id<NSDictionary, Shared>;
+        pub unsafe fn userInfo(&self) -> Id<NSDictionary>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "summaryArgument is ignored"]
         #[method_id(@__retain_semantics Other summaryArgument)]
-        pub unsafe fn summaryArgument(&self) -> Id<NSString, Shared>;
+        pub unsafe fn summaryArgument(&self) -> Id<NSString>;
 
         #[deprecated = "summaryArgumentCount is ignored"]
         #[method(summaryArgumentCount)]
@@ -98,7 +98,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other targetContentIdentifier)]
-        pub unsafe fn targetContentIdentifier(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn targetContentIdentifier(&self) -> Option<Id<NSString>>;
 
         #[method(interruptionLevel)]
         pub unsafe fn interruptionLevel(&self) -> UNNotificationInterruptionLevel;
@@ -108,14 +108,14 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other filterCriteria)]
-        pub unsafe fn filterCriteria(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn filterCriteria(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other contentByUpdatingWithProvider:error:_)]
         pub unsafe fn contentByUpdatingWithProvider_error(
             &self,
             provider: &ProtocolObject<dyn UNNotificationContentProviding>,
-        ) -> Result<Id<UNNotificationContent, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<UNNotificationContent>, Id<NSError>>;
     }
 );
 
@@ -148,7 +148,7 @@ extern_methods!(
             feature = "UserNotifications_UNNotificationAttachment"
         ))]
         #[method_id(@__retain_semantics Other attachments)]
-        pub unsafe fn attachments(&self) -> Id<NSArray<UNNotificationAttachment>, Shared>;
+        pub unsafe fn attachments(&self) -> Id<NSArray<UNNotificationAttachment>>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -159,7 +159,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSNumber")]
         #[method_id(@__retain_semantics Other badge)]
-        pub unsafe fn badge(&self) -> Option<Id<NSNumber, Shared>>;
+        pub unsafe fn badge(&self) -> Option<Id<NSNumber>>;
 
         #[cfg(feature = "Foundation_NSNumber")]
         #[method(setBadge:)]
@@ -167,7 +167,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other body)]
-        pub unsafe fn body(&self) -> Id<NSString, Shared>;
+        pub unsafe fn body(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setBody:)]
@@ -175,7 +175,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other categoryIdentifier)]
-        pub unsafe fn categoryIdentifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn categoryIdentifier(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCategoryIdentifier:)]
@@ -183,7 +183,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other launchImageName)]
-        pub unsafe fn launchImageName(&self) -> Id<NSString, Shared>;
+        pub unsafe fn launchImageName(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLaunchImageName:)]
@@ -191,7 +191,7 @@ extern_methods!(
 
         #[cfg(feature = "UserNotifications_UNNotificationSound")]
         #[method_id(@__retain_semantics Other sound)]
-        pub unsafe fn sound(&self) -> Option<Id<UNNotificationSound, Shared>>;
+        pub unsafe fn sound(&self) -> Option<Id<UNNotificationSound>>;
 
         #[cfg(feature = "UserNotifications_UNNotificationSound")]
         #[method(setSound:)]
@@ -199,7 +199,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other subtitle)]
-        pub unsafe fn subtitle(&self) -> Id<NSString, Shared>;
+        pub unsafe fn subtitle(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setSubtitle:)]
@@ -207,7 +207,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other threadIdentifier)]
-        pub unsafe fn threadIdentifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn threadIdentifier(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setThreadIdentifier:)]
@@ -215,7 +215,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Id<NSString, Shared>;
+        pub unsafe fn title(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setTitle:)]
@@ -223,7 +223,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other userInfo)]
-        pub unsafe fn userInfo(&self) -> Id<NSDictionary, Shared>;
+        pub unsafe fn userInfo(&self) -> Id<NSDictionary>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(setUserInfo:)]
@@ -232,7 +232,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "summaryArgument is ignored"]
         #[method_id(@__retain_semantics Other summaryArgument)]
-        pub unsafe fn summaryArgument(&self) -> Id<NSString, Shared>;
+        pub unsafe fn summaryArgument(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "summaryArgument is ignored"]
@@ -249,7 +249,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other targetContentIdentifier)]
-        pub unsafe fn targetContentIdentifier(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn targetContentIdentifier(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setTargetContentIdentifier:)]
@@ -275,7 +275,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other filterCriteria)]
-        pub unsafe fn filterCriteria(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn filterCriteria(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setFilterCriteria:)]

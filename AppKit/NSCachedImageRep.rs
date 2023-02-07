@@ -34,7 +34,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             win: Option<&NSWindow>,
             rect: NSRect,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithSize:depth:separate:alpha:)]
@@ -44,12 +44,12 @@ extern_methods!(
             depth: NSWindowDepth,
             flag: bool,
             alpha: bool,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[deprecated]
         #[method_id(@__retain_semantics Other window)]
-        pub unsafe fn window(&self) -> Option<Id<NSWindow, Shared>>;
+        pub unsafe fn window(&self) -> Option<Id<NSWindow>>;
 
         #[deprecated]
         #[method(rect)]

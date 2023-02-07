@@ -30,14 +30,14 @@ extern_methods!(
         pub unsafe fn buttonWithType_style(
             r#type: ASAuthorizationAppleIDButtonType,
             style: ASAuthorizationAppleIDButtonStyle,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithAuthorizationButtonType:authorizationButtonStyle:)]
         pub unsafe fn initWithAuthorizationButtonType_authorizationButtonStyle(
             this: Option<Allocated<Self>>,
             r#type: ASAuthorizationAppleIDButtonType,
             style: ASAuthorizationAppleIDButtonStyle,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(cornerRadius)]
         pub unsafe fn cornerRadius(&self) -> CGFloat;

@@ -8,7 +8,7 @@ extern_protocol!(
     pub unsafe trait AXChart: NSObjectProtocol {
         #[cfg(feature = "Accessibility_AXChartDescriptor")]
         #[method_id(@__retain_semantics Other accessibilityChartDescriptor)]
-        unsafe fn accessibilityChartDescriptor(&self) -> Option<Id<AXChartDescriptor, Shared>>;
+        unsafe fn accessibilityChartDescriptor(&self) -> Option<Id<AXChartDescriptor>>;
 
         #[cfg(feature = "Accessibility_AXChartDescriptor")]
         #[method(setAccessibilityChartDescriptor:)]
@@ -25,7 +25,7 @@ extern_protocol!(
     pub unsafe trait AXDataAxisDescriptor {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
-        unsafe fn title(&self) -> Id<NSString, Shared>;
+        unsafe fn title(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setTitle:)]
@@ -33,7 +33,7 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedTitle)]
-        unsafe fn attributedTitle(&self) -> Id<NSAttributedString, Shared>;
+        unsafe fn attributedTitle(&self) -> Id<NSAttributedString>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setAttributedTitle:)]
@@ -105,7 +105,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method_id(@__retain_semantics Other gridlinePositions)]
-        pub unsafe fn gridlinePositions(&self) -> Id<NSArray<NSNumber>, Shared>;
+        pub unsafe fn gridlinePositions(&self) -> Id<NSArray<NSNumber>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method(setGridlinePositions:)]
@@ -124,7 +124,7 @@ extern_methods!(
             upper_bound: c_double,
             gridline_positions: Option<&NSArray<NSNumber>>,
             value_description_provider: &Block<(c_double,), NonNull<NSString>>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -140,13 +140,13 @@ extern_methods!(
             upper_bound: c_double,
             gridline_positions: Option<&NSArray<NSNumber>>,
             value_description_provider: &Block<(c_double,), NonNull<NSString>>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
     }
 );
 
@@ -172,7 +172,7 @@ extern_methods!(
     unsafe impl AXCategoricalDataAxisDescriptor {
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other categoryOrder)]
-        pub unsafe fn categoryOrder(&self) -> Id<NSArray<NSString>, Shared>;
+        pub unsafe fn categoryOrder(&self) -> Id<NSArray<NSString>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setCategoryOrder:)]
@@ -184,7 +184,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             title: &NSString,
             category_order: &NSArray<NSString>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -196,13 +196,13 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             attributed_title: &NSAttributedString,
             category_order: &NSArray<NSString>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
     }
 );
 
@@ -231,24 +231,24 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other category)]
-        pub unsafe fn category(&self) -> Id<NSString, Shared>;
+        pub unsafe fn category(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCategory:)]
         pub unsafe fn setCategory(&self, category: &NSString);
 
         #[method_id(@__retain_semantics Other valueWithNumber:)]
-        pub unsafe fn valueWithNumber(number: c_double) -> Id<Self, Shared>;
+        pub unsafe fn valueWithNumber(number: c_double) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other valueWithCategory:)]
-        pub unsafe fn valueWithCategory(category: &NSString) -> Id<Self, Shared>;
+        pub unsafe fn valueWithCategory(category: &NSString) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
     }
 );
 
@@ -271,7 +271,7 @@ extern_methods!(
     unsafe impl AXDataPoint {
         #[cfg(feature = "Accessibility_AXDataPointValue")]
         #[method_id(@__retain_semantics Other xValue)]
-        pub unsafe fn xValue(&self) -> Id<AXDataPointValue, Shared>;
+        pub unsafe fn xValue(&self) -> Id<AXDataPointValue>;
 
         #[cfg(feature = "Accessibility_AXDataPointValue")]
         #[method(setXValue:)]
@@ -279,7 +279,7 @@ extern_methods!(
 
         #[cfg(feature = "Accessibility_AXDataPointValue")]
         #[method_id(@__retain_semantics Other yValue)]
-        pub unsafe fn yValue(&self) -> Option<Id<AXDataPointValue, Shared>>;
+        pub unsafe fn yValue(&self) -> Option<Id<AXDataPointValue>>;
 
         #[cfg(feature = "Accessibility_AXDataPointValue")]
         #[method(setYValue:)]
@@ -290,7 +290,7 @@ extern_methods!(
             feature = "Foundation_NSArray"
         ))]
         #[method_id(@__retain_semantics Other additionalValues)]
-        pub unsafe fn additionalValues(&self) -> Id<NSArray<AXDataPointValue>, Shared>;
+        pub unsafe fn additionalValues(&self) -> Id<NSArray<AXDataPointValue>>;
 
         #[cfg(all(
             feature = "Accessibility_AXDataPointValue",
@@ -301,7 +301,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
-        pub unsafe fn label(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn label(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:)]
@@ -309,7 +309,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedLabel)]
-        pub unsafe fn attributedLabel(&self) -> Option<Id<NSAttributedString, Shared>>;
+        pub unsafe fn attributedLabel(&self) -> Option<Id<NSAttributedString>>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setAttributedLabel:)]
@@ -321,7 +321,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             x_value: &AXDataPointValue,
             y_value: Option<&AXDataPointValue>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(
             feature = "Accessibility_AXDataPointValue",
@@ -333,7 +333,7 @@ extern_methods!(
             x_value: &AXDataPointValue,
             y_value: Option<&AXDataPointValue>,
             additional_values: Option<&NSArray<AXDataPointValue>>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(
             feature = "Accessibility_AXDataPointValue",
@@ -347,13 +347,13 @@ extern_methods!(
             y_value: Option<&AXDataPointValue>,
             additional_values: Option<&NSArray<AXDataPointValue>>,
             label: Option<&NSString>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
     }
 );
 
@@ -376,7 +376,7 @@ extern_methods!(
     unsafe impl AXDataSeriesDescriptor {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn name(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]
@@ -384,7 +384,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedName)]
-        pub unsafe fn attributedName(&self) -> Id<NSAttributedString, Shared>;
+        pub unsafe fn attributedName(&self) -> Id<NSAttributedString>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setAttributedName:)]
@@ -398,7 +398,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Accessibility_AXDataPoint", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other dataPoints)]
-        pub unsafe fn dataPoints(&self) -> Id<NSArray<AXDataPoint>, Shared>;
+        pub unsafe fn dataPoints(&self) -> Id<NSArray<AXDataPoint>>;
 
         #[cfg(all(feature = "Accessibility_AXDataPoint", feature = "Foundation_NSArray"))]
         #[method(setDataPoints:)]
@@ -415,7 +415,7 @@ extern_methods!(
             name: &NSString,
             is_continuous: bool,
             data_points: &NSArray<AXDataPoint>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(
             feature = "Accessibility_AXDataPoint",
@@ -428,13 +428,13 @@ extern_methods!(
             attributed_name: &NSAttributedString,
             is_continuous: bool,
             data_points: &NSArray<AXDataPoint>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
     }
 );
 
@@ -469,7 +469,7 @@ extern_methods!(
     unsafe impl AXChartDescriptor {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn title(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setTitle:)]
@@ -477,7 +477,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedTitle)]
-        pub unsafe fn attributedTitle(&self) -> Option<Id<NSAttributedString, Shared>>;
+        pub unsafe fn attributedTitle(&self) -> Option<Id<NSAttributedString>>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setAttributedTitle:)]
@@ -485,7 +485,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other summary)]
-        pub unsafe fn summary(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn summary(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setSummary:)]
@@ -511,7 +511,7 @@ extern_methods!(
             feature = "Foundation_NSArray"
         ))]
         #[method_id(@__retain_semantics Other series)]
-        pub unsafe fn series(&self) -> Id<NSArray<AXDataSeriesDescriptor>, Shared>;
+        pub unsafe fn series(&self) -> Id<NSArray<AXDataSeriesDescriptor>>;
 
         #[cfg(all(
             feature = "Accessibility_AXDataSeriesDescriptor",
@@ -521,14 +521,14 @@ extern_methods!(
         pub unsafe fn setSeries(&self, series: &NSArray<AXDataSeriesDescriptor>);
 
         #[method_id(@__retain_semantics Other xAxis)]
-        pub unsafe fn xAxis(&self) -> Id<ProtocolObject<dyn AXDataAxisDescriptor>, Shared>;
+        pub unsafe fn xAxis(&self) -> Id<ProtocolObject<dyn AXDataAxisDescriptor>>;
 
         #[method(setXAxis:)]
         pub unsafe fn setXAxis(&self, x_axis: &ProtocolObject<dyn AXDataAxisDescriptor>);
 
         #[cfg(feature = "Accessibility_AXNumericDataAxisDescriptor")]
         #[method_id(@__retain_semantics Other yAxis)]
-        pub unsafe fn yAxis(&self) -> Option<Id<AXNumericDataAxisDescriptor, Shared>>;
+        pub unsafe fn yAxis(&self) -> Option<Id<AXNumericDataAxisDescriptor>>;
 
         #[cfg(feature = "Accessibility_AXNumericDataAxisDescriptor")]
         #[method(setYAxis:)]
@@ -538,7 +538,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other additionalAxes)]
         pub unsafe fn additionalAxes(
             &self,
-        ) -> Option<Id<NSArray<ProtocolObject<dyn AXDataAxisDescriptor>>, Shared>>;
+        ) -> Option<Id<NSArray<ProtocolObject<dyn AXDataAxisDescriptor>>>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setAdditionalAxes:)]
@@ -561,7 +561,7 @@ extern_methods!(
             x_axis: &ProtocolObject<dyn AXDataAxisDescriptor>,
             y_axis: Option<&AXNumericDataAxisDescriptor>,
             series: &NSArray<AXDataSeriesDescriptor>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(
             feature = "Accessibility_AXDataSeriesDescriptor",
@@ -578,7 +578,7 @@ extern_methods!(
             x_axis: &ProtocolObject<dyn AXDataAxisDescriptor>,
             y_axis: &AXNumericDataAxisDescriptor,
             series: &NSArray<AXDataSeriesDescriptor>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(
             feature = "Accessibility_AXDataSeriesDescriptor",
@@ -595,7 +595,7 @@ extern_methods!(
             y_axis: Option<&AXNumericDataAxisDescriptor>,
             additional_axes: Option<&NSArray<ProtocolObject<dyn AXDataAxisDescriptor>>>,
             series: &NSArray<AXDataSeriesDescriptor>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(
             feature = "Accessibility_AXDataSeriesDescriptor",
@@ -613,13 +613,13 @@ extern_methods!(
             y_axis: Option<&AXNumericDataAxisDescriptor>,
             additional_axes: Option<&NSArray<ProtocolObject<dyn AXDataAxisDescriptor>>>,
             series: &NSArray<AXDataSeriesDescriptor>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
     }
 );
 

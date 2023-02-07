@@ -26,10 +26,10 @@ extern_methods!(
         pub unsafe fn initWithFormat(
             this: Option<Allocated<Self>>,
             format: &AVAudioFormat,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(addRequest:withObserver:error:_)]
@@ -37,7 +37,7 @@ extern_methods!(
             &self,
             request: &ProtocolObject<dyn SNRequest>,
             observer: &ProtocolObject<dyn SNResultsObserving>,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
 
         #[method(removeRequest:)]
         pub unsafe fn removeRequest(&self, request: &ProtocolObject<dyn SNRequest>);
@@ -80,10 +80,10 @@ extern_methods!(
         pub unsafe fn initWithURL_error(
             this: Option<Allocated<Self>>,
             url: &NSURL,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self>, Id<NSError>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(addRequest:withObserver:error:_)]
@@ -91,7 +91,7 @@ extern_methods!(
             &self,
             request: &ProtocolObject<dyn SNRequest>,
             observer: &ProtocolObject<dyn SNResultsObserving>,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
 
         #[method(removeRequest:)]
         pub unsafe fn removeRequest(&self, request: &ProtocolObject<dyn SNRequest>);

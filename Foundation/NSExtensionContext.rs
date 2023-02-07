@@ -22,7 +22,7 @@ extern_methods!(
     unsafe impl NSExtensionContext {
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other inputItems)]
-        pub unsafe fn inputItems(&self) -> Id<NSArray, Shared>;
+        pub unsafe fn inputItems(&self) -> Id<NSArray>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(completeRequestReturningItems:completionHandler:)]

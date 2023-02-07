@@ -38,11 +38,11 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other view)]
-        pub unsafe fn view(&self) -> Option<Id<NSView, Shared>>;
+        pub unsafe fn view(&self) -> Option<Id<NSView>>;
 
         #[cfg(feature = "Foundation_NSBundle")]
         #[method_id(@__retain_semantics Other bundle)]
-        pub unsafe fn bundle(&self) -> Id<NSBundle, Shared>;
+        pub unsafe fn bundle(&self) -> Id<NSBundle>;
 
         #[cfg(all(
             feature = "Foundation_NSMutableDictionary",
@@ -74,13 +74,13 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             dict: Option<&NSDictionary<NSString, Object>>,
             archived: bool,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:error:_)]
         pub unsafe fn initWithContentsOfURL_error(
             this: Option<Allocated<Self>>,
             file_url: &NSURL,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self>, Id<NSError>>;
     }
 );

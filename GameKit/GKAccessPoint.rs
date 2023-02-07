@@ -33,7 +33,7 @@ extern_methods!(
     #[cfg(feature = "GameKit_GKAccessPoint")]
     unsafe impl GKAccessPoint {
         #[method_id(@__retain_semantics Other shared)]
-        pub unsafe fn shared() -> Id<GKAccessPoint, Shared>;
+        pub unsafe fn shared() -> Id<GKAccessPoint>;
 
         #[method(isActive)]
         pub unsafe fn isActive(&self) -> bool;
@@ -70,7 +70,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[method_id(@__retain_semantics Other parentWindow)]
-        pub unsafe fn parentWindow(&self) -> Option<Id<NSWindow, Shared>>;
+        pub unsafe fn parentWindow(&self) -> Option<Id<NSWindow>>;
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[method(setParentWindow:)]

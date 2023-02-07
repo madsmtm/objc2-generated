@@ -52,7 +52,7 @@ extern_methods!(
             user: &NSString,
             password: &NSString,
             persistence: NSURLCredentialPersistence,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other credentialWithUser:password:persistence:)]
@@ -60,15 +60,15 @@ extern_methods!(
             user: &NSString,
             password: &NSString,
             persistence: NSURLCredentialPersistence,
-        ) -> Id<NSURLCredential, Shared>;
+        ) -> Id<NSURLCredential>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other user)]
-        pub unsafe fn user(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn user(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other password)]
-        pub unsafe fn password(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn password(&self) -> Option<Id<NSString>>;
 
         #[method(hasPassword)]
         pub unsafe fn hasPassword(&self) -> bool;
@@ -81,7 +81,7 @@ extern_methods!(
     unsafe impl NSURLCredential {
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other certificates)]
-        pub unsafe fn certificates(&self) -> Id<NSArray, Shared>;
+        pub unsafe fn certificates(&self) -> Id<NSArray>;
     }
 );
 

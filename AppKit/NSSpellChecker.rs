@@ -68,7 +68,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSSpellChecker")]
     unsafe impl NSSpellChecker {
         #[method_id(@__retain_semantics Other sharedSpellChecker)]
-        pub unsafe fn sharedSpellChecker() -> Id<NSSpellChecker, Shared>;
+        pub unsafe fn sharedSpellChecker() -> Id<NSSpellChecker>;
 
         #[method(sharedSpellCheckerExists)]
         pub unsafe fn sharedSpellCheckerExists() -> bool;
@@ -117,7 +117,7 @@ extern_methods!(
             language: Option<&NSString>,
             wrap_flag: bool,
             tag: NSInteger,
-            details: Option<&mut Option<Id<NSArray<NSDictionary<NSString, Object>>, Shared>>>,
+            details: Option<&mut Option<Id<NSArray<NSDictionary<NSString, Object>>>>>,
         ) -> NSRange;
 
         #[cfg(all(
@@ -135,9 +135,9 @@ extern_methods!(
             checking_types: NSTextCheckingTypes,
             options: Option<&NSDictionary<NSTextCheckingOptionKey, Object>>,
             tag: NSInteger,
-            orthography: Option<&mut Option<Id<NSOrthography, Shared>>>,
+            orthography: Option<&mut Option<Id<NSOrthography>>>,
             word_count: *mut NSInteger,
-        ) -> Id<NSArray<NSTextCheckingResult>, Shared>;
+        ) -> Id<NSArray<NSTextCheckingResult>>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -201,20 +201,18 @@ extern_methods!(
             options: Option<&NSDictionary<NSTextCheckingOptionKey, Object>>,
             location: NSPoint,
             view: &NSView,
-        ) -> Option<Id<NSMenu, Shared>>;
+        ) -> Option<Id<NSMenu>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other userQuotesArrayForLanguage:)]
         pub unsafe fn userQuotesArrayForLanguage(
             &self,
             language: &NSString,
-        ) -> Id<NSArray<NSString>, Shared>;
+        ) -> Id<NSArray<NSString>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other userReplacementsDictionary)]
-        pub unsafe fn userReplacementsDictionary(
-            &self,
-        ) -> Id<NSDictionary<NSString, NSString>, Shared>;
+        pub unsafe fn userReplacementsDictionary(&self) -> Id<NSDictionary<NSString, NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(updateSpellingPanelWithMisspelledWord:)]
@@ -230,11 +228,11 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSPanel")]
         #[method_id(@__retain_semantics Other spellingPanel)]
-        pub unsafe fn spellingPanel(&self) -> Id<NSPanel, Shared>;
+        pub unsafe fn spellingPanel(&self) -> Id<NSPanel>;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other accessoryView)]
-        pub unsafe fn accessoryView(&self) -> Option<Id<NSView, Shared>>;
+        pub unsafe fn accessoryView(&self) -> Option<Id<NSView>>;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(setAccessoryView:)]
@@ -242,13 +240,13 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSPanel")]
         #[method_id(@__retain_semantics Other substitutionsPanel)]
-        pub unsafe fn substitutionsPanel(&self) -> Id<NSPanel, Shared>;
+        pub unsafe fn substitutionsPanel(&self) -> Id<NSPanel>;
 
         #[cfg(feature = "AppKit_NSViewController")]
         #[method_id(@__retain_semantics Other substitutionsPanelAccessoryViewController)]
         pub unsafe fn substitutionsPanelAccessoryViewController(
             &self,
-        ) -> Option<Id<NSViewController, Shared>>;
+        ) -> Option<Id<NSViewController>>;
 
         #[cfg(feature = "AppKit_NSViewController")]
         #[method(setSubstitutionsPanelAccessoryViewController:)]
@@ -273,7 +271,7 @@ extern_methods!(
         pub unsafe fn ignoredWordsInSpellDocumentWithTag(
             &self,
             tag: NSInteger,
-        ) -> Option<Id<NSArray<NSString>, Shared>>;
+        ) -> Option<Id<NSArray<NSString>>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setIgnoredWords:inSpellDocumentWithTag:)]
@@ -291,7 +289,7 @@ extern_methods!(
             string: &NSString,
             language: Option<&NSString>,
             tag: NSInteger,
-        ) -> Option<Id<NSArray<NSString>, Shared>>;
+        ) -> Option<Id<NSArray<NSString>>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other correctionForWordRange:inString:language:inSpellDocumentWithTag:)]
@@ -301,7 +299,7 @@ extern_methods!(
             string: &NSString,
             language: &NSString,
             tag: NSInteger,
-        ) -> Option<Id<NSString, Shared>>;
+        ) -> Option<Id<NSString>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other completionsForPartialWordRange:inString:language:inSpellDocumentWithTag:)]
@@ -311,7 +309,7 @@ extern_methods!(
             string: &NSString,
             language: Option<&NSString>,
             tag: NSInteger,
-        ) -> Option<Id<NSArray<NSString>, Shared>>;
+        ) -> Option<Id<NSArray<NSString>>>;
 
         #[cfg(all(feature = "Foundation_NSOrthography", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other languageForWordRange:inString:orthography:)]
@@ -320,7 +318,7 @@ extern_methods!(
             range: NSRange,
             string: &NSString,
             orthography: Option<&NSOrthography>,
-        ) -> Option<Id<NSString, Shared>>;
+        ) -> Option<Id<NSString>>;
 
         #[method(closeSpellDocumentWithTag:)]
         pub unsafe fn closeSpellDocumentWithTag(&self, tag: NSInteger);
@@ -375,11 +373,11 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other availableLanguages)]
-        pub unsafe fn availableLanguages(&self) -> Id<NSArray<NSString>, Shared>;
+        pub unsafe fn availableLanguages(&self) -> Id<NSArray<NSString>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other userPreferredLanguages)]
-        pub unsafe fn userPreferredLanguages(&self) -> Id<NSArray<NSString>, Shared>;
+        pub unsafe fn userPreferredLanguages(&self) -> Id<NSArray<NSString>>;
 
         #[method(automaticallyIdentifiesLanguages)]
         pub unsafe fn automaticallyIdentifiesLanguages(&self) -> bool;
@@ -429,7 +427,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other language)]
-        pub unsafe fn language(&self) -> Id<NSString, Shared>;
+        pub unsafe fn language(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLanguage:)]
@@ -472,8 +470,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[deprecated = "Use -guessesForWordRange:inString:language:inSpellDocumentWithTag instead"]
         #[method_id(@__retain_semantics Other guessesForWord:)]
-        pub unsafe fn guessesForWord(&self, word: Option<&NSString>)
-            -> Option<Id<NSArray, Shared>>;
+        pub unsafe fn guessesForWord(&self, word: Option<&NSString>) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]

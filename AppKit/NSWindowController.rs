@@ -34,27 +34,27 @@ extern_methods!(
         pub unsafe fn initWithWindow(
             this: Option<Allocated<Self>>,
             window: Option<&NSWindow>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[method_id(@__retain_semantics Init initWithWindowNibName:)]
         pub unsafe fn initWithWindowNibName(
             this: Option<Allocated<Self>>,
             window_nib_name: &NSNibName,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithWindowNibName:owner:)]
         pub unsafe fn initWithWindowNibName_owner(
             this: Option<Allocated<Self>>,
             window_nib_name: &NSNibName,
             owner: &Object,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithWindowNibPath:owner:)]
@@ -62,20 +62,20 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             window_nib_path: &NSString,
             owner: &Object,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other windowNibName)]
-        pub unsafe fn windowNibName(&self) -> Option<Id<NSNibName, Shared>>;
+        pub unsafe fn windowNibName(&self) -> Option<Id<NSNibName>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other windowNibPath)]
-        pub unsafe fn windowNibPath(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn windowNibPath(&self) -> Option<Id<NSString>>;
 
         #[method_id(@__retain_semantics Other owner)]
-        pub unsafe fn owner(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn owner(&self) -> Option<Id<Object>>;
 
         #[method_id(@__retain_semantics Other windowFrameAutosaveName)]
-        pub unsafe fn windowFrameAutosaveName(&self) -> Id<NSWindowFrameAutosaveName, Shared>;
+        pub unsafe fn windowFrameAutosaveName(&self) -> Id<NSWindowFrameAutosaveName>;
 
         #[method(setWindowFrameAutosaveName:)]
         pub unsafe fn setWindowFrameAutosaveName(
@@ -90,7 +90,7 @@ extern_methods!(
         pub unsafe fn setShouldCascadeWindows(&self, should_cascade_windows: bool);
 
         #[method_id(@__retain_semantics Other document)]
-        pub unsafe fn document(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn document(&self) -> Option<Id<Object>>;
 
         #[method(setDocument:)]
         pub unsafe fn setDocument(&self, document: Option<&Object>);
@@ -112,11 +112,11 @@ extern_methods!(
         pub unsafe fn windowTitleForDocumentDisplayName(
             &self,
             display_name: &NSString,
-        ) -> Id<NSString, Shared>;
+        ) -> Id<NSString>;
 
         #[cfg(feature = "AppKit_NSViewController")]
         #[method_id(@__retain_semantics Other contentViewController)]
-        pub unsafe fn contentViewController(&self) -> Option<Id<NSViewController, Shared>>;
+        pub unsafe fn contentViewController(&self) -> Option<Id<NSViewController>>;
 
         #[cfg(feature = "AppKit_NSViewController")]
         #[method(setContentViewController:)]
@@ -127,7 +127,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[method_id(@__retain_semantics Other window)]
-        pub unsafe fn window(&self) -> Option<Id<NSWindow, Shared>>;
+        pub unsafe fn window(&self) -> Option<Id<NSWindow>>;
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[method(setWindow:)]
@@ -159,7 +159,7 @@ extern_methods!(
     unsafe impl NSWindowController {
         #[cfg(feature = "AppKit_NSStoryboard")]
         #[method_id(@__retain_semantics Other storyboard)]
-        pub unsafe fn storyboard(&self) -> Option<Id<NSStoryboard, Shared>>;
+        pub unsafe fn storyboard(&self) -> Option<Id<NSStoryboard>>;
     }
 );
 

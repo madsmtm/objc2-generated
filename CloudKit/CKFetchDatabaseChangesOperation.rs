@@ -24,18 +24,18 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKFetchDatabaseChangesOperation")]
     unsafe impl CKFetchDatabaseChangesOperation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(feature = "CloudKit_CKServerChangeToken")]
         #[method_id(@__retain_semantics Init initWithPreviousServerChangeToken:)]
         pub unsafe fn initWithPreviousServerChangeToken(
             this: Option<Allocated<Self>>,
             previous_server_change_token: Option<&CKServerChangeToken>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "CloudKit_CKServerChangeToken")]
         #[method_id(@__retain_semantics Other previousServerChangeToken)]
-        pub unsafe fn previousServerChangeToken(&self) -> Option<Id<CKServerChangeToken, Shared>>;
+        pub unsafe fn previousServerChangeToken(&self) -> Option<Id<CKServerChangeToken>>;
 
         #[cfg(feature = "CloudKit_CKServerChangeToken")]
         #[method(setPreviousServerChangeToken:)]

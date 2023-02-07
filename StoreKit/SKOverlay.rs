@@ -82,26 +82,26 @@ extern_methods!(
     #[cfg(feature = "StoreKit_SKOverlay")]
     unsafe impl SKOverlay {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
 
         #[cfg(feature = "StoreKit_SKOverlayConfiguration")]
         #[method_id(@__retain_semantics Init initWithConfiguration:)]
         pub unsafe fn initWithConfiguration(
             this: Option<Allocated<Self>>,
             configuration: &SKOverlayConfiguration,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn SKOverlayDelegate>, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn SKOverlayDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn SKOverlayDelegate>>);
 
         #[cfg(feature = "StoreKit_SKOverlayConfiguration")]
         #[method_id(@__retain_semantics Other configuration)]
-        pub unsafe fn configuration(&self) -> Id<SKOverlayConfiguration, Shared>;
+        pub unsafe fn configuration(&self) -> Id<SKOverlayConfiguration>;
     }
 );

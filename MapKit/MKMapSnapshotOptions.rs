@@ -26,7 +26,7 @@ extern_methods!(
     unsafe impl MKMapSnapshotOptions {
         #[cfg(feature = "MapKit_MKMapCamera")]
         #[method_id(@__retain_semantics Other camera)]
-        pub unsafe fn camera(&self) -> Id<MKMapCamera, Shared>;
+        pub unsafe fn camera(&self) -> Id<MKMapCamera>;
 
         #[cfg(feature = "MapKit_MKMapCamera")]
         #[method(setCamera:)]
@@ -52,7 +52,7 @@ extern_methods!(
 
         #[cfg(feature = "MapKit_MKPointOfInterestFilter")]
         #[method_id(@__retain_semantics Other pointOfInterestFilter)]
-        pub unsafe fn pointOfInterestFilter(&self) -> Option<Id<MKPointOfInterestFilter, Shared>>;
+        pub unsafe fn pointOfInterestFilter(&self) -> Option<Id<MKPointOfInterestFilter>>;
 
         #[cfg(feature = "MapKit_MKPointOfInterestFilter")]
         #[method(setPointOfInterestFilter:)]
@@ -83,7 +83,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSAppearance")]
         #[method_id(@__retain_semantics Other appearance)]
-        pub unsafe fn appearance(&self) -> Option<Id<NSAppearance, Shared>>;
+        pub unsafe fn appearance(&self) -> Option<Id<NSAppearance>>;
 
         #[cfg(feature = "AppKit_NSAppearance")]
         #[method(setAppearance:)]

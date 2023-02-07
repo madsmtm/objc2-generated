@@ -103,12 +103,11 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other completedString:)]
-        pub unsafe fn completedString(&self, string: &NSString) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn completedString(&self, string: &NSString) -> Option<Id<NSString>>;
 
         #[method_id(@__retain_semantics Other dataSource)]
-        pub unsafe fn dataSource(
-            &self,
-        ) -> Option<Id<ProtocolObject<dyn NSComboBoxCellDataSource>, Shared>>;
+        pub unsafe fn dataSource(&self)
+            -> Option<Id<ProtocolObject<dyn NSComboBoxCellDataSource>>>;
 
         #[method(setDataSource:)]
         pub unsafe fn setDataSource(
@@ -139,17 +138,17 @@ extern_methods!(
         pub unsafe fn selectItemWithObjectValue(&self, object: Option<&Object>);
 
         #[method_id(@__retain_semantics Other itemObjectValueAtIndex:)]
-        pub unsafe fn itemObjectValueAtIndex(&self, index: NSInteger) -> Id<Object, Shared>;
+        pub unsafe fn itemObjectValueAtIndex(&self, index: NSInteger) -> Id<Object>;
 
         #[method_id(@__retain_semantics Other objectValueOfSelectedItem)]
-        pub unsafe fn objectValueOfSelectedItem(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn objectValueOfSelectedItem(&self) -> Option<Id<Object>>;
 
         #[method(indexOfItemWithObjectValue:)]
         pub unsafe fn indexOfItemWithObjectValue(&self, object: &Object) -> NSInteger;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other objectValues)]
-        pub unsafe fn objectValues(&self) -> Id<NSArray, Shared>;
+        pub unsafe fn objectValues(&self) -> Id<NSArray>;
     }
 );
 
@@ -167,7 +166,7 @@ extern_protocol!(
             &self,
             combo_box_cell: &NSComboBoxCell,
             index: NSInteger,
-        ) -> Id<Object, Shared>;
+        ) -> Id<Object>;
 
         #[cfg(all(feature = "AppKit_NSComboBoxCell", feature = "Foundation_NSString"))]
         #[optional]
@@ -185,7 +184,7 @@ extern_protocol!(
             &self,
             combo_box_cell: &NSComboBoxCell,
             uncompleted_string: &NSString,
-        ) -> Option<Id<NSString, Shared>>;
+        ) -> Option<Id<NSString>>;
     }
 
     unsafe impl ProtocolType for dyn NSComboBoxCellDataSource {}
@@ -197,16 +196,13 @@ extern_methods!(
     unsafe impl NSComboBoxCell {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initTextCell:)]
-        pub unsafe fn initTextCell(
-            this: Option<Allocated<Self>>,
-            string: &NSString,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initTextCell(this: Option<Allocated<Self>>, string: &NSString) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Init initImageCell:)]
         pub unsafe fn initImageCell(
             this: Option<Allocated<Self>>,
             image: Option<&NSImage>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

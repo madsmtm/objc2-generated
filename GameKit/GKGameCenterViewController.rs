@@ -59,7 +59,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other gameCenterDelegate)]
         pub unsafe fn gameCenterDelegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn GKGameCenterControllerDelegate>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn GKGameCenterControllerDelegate>>>;
 
         #[method(setGameCenterDelegate:)]
         pub unsafe fn setGameCenterDelegate(
@@ -71,7 +71,7 @@ extern_methods!(
         pub unsafe fn initWithState(
             this: Option<Allocated<Self>>,
             state: GKGameCenterViewControllerState,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithLeaderboardID:playerScope:timeScope:)]
@@ -80,7 +80,7 @@ extern_methods!(
             leaderboard_id: &NSString,
             player_scope: GKLeaderboardPlayerScope,
             time_scope: GKLeaderboardTimeScope,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "GameKit_GKLeaderboard")]
         #[method_id(@__retain_semantics Init initWithLeaderboard:playerScope:)]
@@ -88,14 +88,14 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             leaderboard: &GKLeaderboard,
             player_scope: GKLeaderboardPlayerScope,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithAchievementID:)]
         pub unsafe fn initWithAchievementID(
             this: Option<Allocated<Self>>,
             achievement_id: &NSString,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );
 
@@ -125,7 +125,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use -initWithLeaderboard: instead"]
         #[method_id(@__retain_semantics Other leaderboardIdentifier)]
-        pub unsafe fn leaderboardIdentifier(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn leaderboardIdentifier(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use -initWithLeaderboard: instead"]
@@ -135,7 +135,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "GKGameCenterViewController's leaderboardCategory property is deprecated. Use -initWithLeaderboard: instead"]
         #[method_id(@__retain_semantics Other leaderboardCategory)]
-        pub unsafe fn leaderboardCategory(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn leaderboardCategory(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "GKGameCenterViewController's leaderboardCategory property is deprecated. Use -initWithLeaderboard: instead"]
@@ -167,6 +167,6 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             nib_name_or_nil: Option<&NSNibName>,
             nib_bundle_or_nil: Option<&NSBundle>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

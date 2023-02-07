@@ -22,7 +22,7 @@ extern_methods!(
     #[cfg(feature = "Contacts_CNContactVCardSerialization")]
     unsafe impl CNContactVCardSerialization {
         #[method_id(@__retain_semantics Other descriptorForRequiredKeys)]
-        pub unsafe fn descriptorForRequiredKeys() -> Id<ProtocolObject<dyn CNKeyDescriptor>, Shared>;
+        pub unsafe fn descriptorForRequiredKeys() -> Id<ProtocolObject<dyn CNKeyDescriptor>>;
 
         #[cfg(all(
             feature = "Contacts_CNContact",
@@ -33,7 +33,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other dataWithContacts:error:_)]
         pub unsafe fn dataWithContacts_error(
             contacts: &NSArray<CNContact>,
-        ) -> Result<Id<NSData, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<NSData>, Id<NSError>>;
 
         #[cfg(all(
             feature = "Contacts_CNContact",
@@ -44,6 +44,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other contactsWithData:error:_)]
         pub unsafe fn contactsWithData_error(
             data: &NSData,
-        ) -> Result<Id<NSArray<CNContact>, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<NSArray<CNContact>>, Id<NSError>>;
     }
 );

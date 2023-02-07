@@ -29,11 +29,11 @@ extern_methods!(
     unsafe impl DOMHTMLLegendElement {
         #[cfg(feature = "WebKit_DOMHTMLFormElement")]
         #[method_id(@__retain_semantics Other form)]
-        pub unsafe fn form(&self) -> Option<Id<DOMHTMLFormElement, Shared>>;
+        pub unsafe fn form(&self) -> Option<Id<DOMHTMLFormElement>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other align)]
-        pub unsafe fn align(&self) -> Id<NSString, Shared>;
+        pub unsafe fn align(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAlign:)]
@@ -42,7 +42,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
         #[method_id(@__retain_semantics Other accessKey)]
-        pub unsafe fn accessKey(&self) -> Id<NSString, Shared>;
+        pub unsafe fn accessKey(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]

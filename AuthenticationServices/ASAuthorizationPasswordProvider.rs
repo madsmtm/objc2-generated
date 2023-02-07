@@ -26,6 +26,6 @@ extern_methods!(
     unsafe impl ASAuthorizationPasswordProvider {
         #[cfg(feature = "AuthenticationServices_ASAuthorizationPasswordRequest")]
         #[method_id(@__retain_semantics Other createRequest)]
-        pub unsafe fn createRequest(&self) -> Id<ASAuthorizationPasswordRequest, Shared>;
+        pub unsafe fn createRequest(&self) -> Id<ASAuthorizationPasswordRequest>;
     }
 );

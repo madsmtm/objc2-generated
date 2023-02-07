@@ -41,34 +41,34 @@ extern_methods!(
     unsafe impl GKGameSession {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn identifier(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Id<NSString, Shared>;
+        pub unsafe fn title(&self) -> Id<NSString>;
 
         #[cfg(feature = "GameKit_GKCloudPlayer")]
         #[method_id(@__retain_semantics Other owner)]
-        pub unsafe fn owner(&self) -> Id<GKCloudPlayer, Shared>;
+        pub unsafe fn owner(&self) -> Id<GKCloudPlayer>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "GameKit_GKCloudPlayer"))]
         #[method_id(@__retain_semantics Other players)]
-        pub unsafe fn players(&self) -> Id<NSArray<GKCloudPlayer>, Shared>;
+        pub unsafe fn players(&self) -> Id<NSArray<GKCloudPlayer>>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other lastModifiedDate)]
-        pub unsafe fn lastModifiedDate(&self) -> Id<NSDate, Shared>;
+        pub unsafe fn lastModifiedDate(&self) -> Id<NSDate>;
 
         #[cfg(feature = "GameKit_GKCloudPlayer")]
         #[method_id(@__retain_semantics Other lastModifiedPlayer)]
-        pub unsafe fn lastModifiedPlayer(&self) -> Id<GKCloudPlayer, Shared>;
+        pub unsafe fn lastModifiedPlayer(&self) -> Id<GKCloudPlayer>;
 
         #[method(maxNumberOfConnectedPlayers)]
         pub unsafe fn maxNumberOfConnectedPlayers(&self) -> NSInteger;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "GameKit_GKCloudPlayer"))]
         #[method_id(@__retain_semantics Other badgedPlayers)]
-        pub unsafe fn badgedPlayers(&self) -> Id<NSArray<GKCloudPlayer>, Shared>;
+        pub unsafe fn badgedPlayers(&self) -> Id<NSArray<GKCloudPlayer>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method(createSessionInContainer:withTitle:maxConnectedPlayers:completionHandler:)]
@@ -139,7 +139,7 @@ extern_methods!(
         pub unsafe fn playersWithConnectionState(
             &self,
             state: GKConnectionState,
-        ) -> Id<NSArray<GKCloudPlayer>, Shared>;
+        ) -> Id<NSArray<GKCloudPlayer>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
         #[method(sendData:withTransportType:completionHandler:)]

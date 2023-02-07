@@ -268,12 +268,10 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSValue")]
     unsafe impl NSValue {
         #[method_id(@__retain_semantics Other valueWithMKCoordinate:)]
-        pub unsafe fn valueWithMKCoordinate(
-            coordinate: CLLocationCoordinate2D,
-        ) -> Id<NSValue, Shared>;
+        pub unsafe fn valueWithMKCoordinate(coordinate: CLLocationCoordinate2D) -> Id<NSValue>;
 
         #[method_id(@__retain_semantics Other valueWithMKCoordinateSpan:)]
-        pub unsafe fn valueWithMKCoordinateSpan(span: MKCoordinateSpan) -> Id<NSValue, Shared>;
+        pub unsafe fn valueWithMKCoordinateSpan(span: MKCoordinateSpan) -> Id<NSValue>;
 
         #[method(MKCoordinateValue)]
         pub unsafe fn MKCoordinateValue(&self) -> CLLocationCoordinate2D;

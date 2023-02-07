@@ -81,9 +81,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSRuleEditor")]
     unsafe impl NSRuleEditor {
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(
-            &self,
-        ) -> Option<Id<ProtocolObject<dyn NSRuleEditorDelegate>, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSRuleEditorDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -93,7 +91,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other formattingStringsFilename)]
-        pub unsafe fn formattingStringsFilename(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn formattingStringsFilename(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setFormattingStringsFilename:)]
@@ -104,9 +102,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other formattingDictionary)]
-        pub unsafe fn formattingDictionary(
-            &self,
-        ) -> Option<Id<NSDictionary<NSString, NSString>, Shared>>;
+        pub unsafe fn formattingDictionary(&self) -> Option<Id<NSDictionary<NSString, NSString>>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setFormattingDictionary:)]
@@ -144,29 +140,29 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSPredicate")]
         #[method_id(@__retain_semantics Other predicate)]
-        pub unsafe fn predicate(&self) -> Option<Id<NSPredicate, Shared>>;
+        pub unsafe fn predicate(&self) -> Option<Id<NSPredicate>>;
 
         #[method(reloadPredicate)]
         pub unsafe fn reloadPredicate(&self);
 
         #[cfg(feature = "Foundation_NSPredicate")]
         #[method_id(@__retain_semantics Other predicateForRow:)]
-        pub unsafe fn predicateForRow(&self, row: NSInteger) -> Option<Id<NSPredicate, Shared>>;
+        pub unsafe fn predicateForRow(&self, row: NSInteger) -> Option<Id<NSPredicate>>;
 
         #[method(numberOfRows)]
         pub unsafe fn numberOfRows(&self) -> NSInteger;
 
         #[cfg(feature = "Foundation_NSIndexSet")]
         #[method_id(@__retain_semantics Other subrowIndexesForRow:)]
-        pub unsafe fn subrowIndexesForRow(&self, row_index: NSInteger) -> Id<NSIndexSet, Shared>;
+        pub unsafe fn subrowIndexesForRow(&self, row_index: NSInteger) -> Id<NSIndexSet>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other criteriaForRow:)]
-        pub unsafe fn criteriaForRow(&self, row: NSInteger) -> Id<NSArray, Shared>;
+        pub unsafe fn criteriaForRow(&self, row: NSInteger) -> Id<NSArray>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other displayValuesForRow:)]
-        pub unsafe fn displayValuesForRow(&self, row: NSInteger) -> Id<NSArray, Shared>;
+        pub unsafe fn displayValuesForRow(&self, row: NSInteger) -> Id<NSArray>;
 
         #[method(rowForDisplayValue:)]
         pub unsafe fn rowForDisplayValue(&self, display_value: &Object) -> NSInteger;
@@ -211,7 +207,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSIndexSet")]
         #[method_id(@__retain_semantics Other selectedRowIndexes)]
-        pub unsafe fn selectedRowIndexes(&self) -> Id<NSIndexSet, Shared>;
+        pub unsafe fn selectedRowIndexes(&self) -> Id<NSIndexSet>;
 
         #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(selectRowIndexes:byExtendingSelection:)]
@@ -229,7 +225,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other rowTypeKeyPath)]
-        pub unsafe fn rowTypeKeyPath(&self) -> Id<NSString, Shared>;
+        pub unsafe fn rowTypeKeyPath(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setRowTypeKeyPath:)]
@@ -237,7 +233,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other subrowsKeyPath)]
-        pub unsafe fn subrowsKeyPath(&self) -> Id<NSString, Shared>;
+        pub unsafe fn subrowsKeyPath(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setSubrowsKeyPath:)]
@@ -245,7 +241,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other criteriaKeyPath)]
-        pub unsafe fn criteriaKeyPath(&self) -> Id<NSString, Shared>;
+        pub unsafe fn criteriaKeyPath(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCriteriaKeyPath:)]
@@ -253,7 +249,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other displayValuesKeyPath)]
-        pub unsafe fn displayValuesKeyPath(&self) -> Id<NSString, Shared>;
+        pub unsafe fn displayValuesKeyPath(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setDisplayValuesKeyPath:)]
@@ -280,7 +276,7 @@ extern_protocol!(
             index: NSInteger,
             criterion: Option<&Object>,
             row_type: NSRuleEditorRowType,
-        ) -> Id<Object, Shared>;
+        ) -> Id<Object>;
 
         #[cfg(feature = "AppKit_NSRuleEditor")]
         #[method_id(@__retain_semantics Other ruleEditor:displayValueForCriterion:inRow:)]
@@ -289,7 +285,7 @@ extern_protocol!(
             editor: &NSRuleEditor,
             criterion: &Object,
             row: NSInteger,
-        ) -> Id<Object, Shared>;
+        ) -> Id<Object>;
 
         #[cfg(all(feature = "AppKit_NSRuleEditor", feature = "Foundation_NSDictionary"))]
         #[optional]
@@ -300,7 +296,7 @@ extern_protocol!(
             criterion: &Object,
             value: &Object,
             row: NSInteger,
-        ) -> Option<Id<NSDictionary<NSRuleEditorPredicatePartKey, Object>, Shared>>;
+        ) -> Option<Id<NSDictionary<NSRuleEditorPredicatePartKey, Object>>>;
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
@@ -318,9 +314,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSRuleEditor")]
     unsafe impl NSRuleEditor {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frame_rect: NSRect,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
 );

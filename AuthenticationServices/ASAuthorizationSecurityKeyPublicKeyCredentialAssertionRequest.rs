@@ -55,7 +55,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other allowedCredentials)]
         pub unsafe fn allowedCredentials(
             &self,
-        ) -> Id<NSArray<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor>, Shared>;
+        ) -> Id<NSArray<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor>>;
 
         #[cfg(all(
             feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor",

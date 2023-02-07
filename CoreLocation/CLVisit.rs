@@ -30,11 +30,11 @@ extern_methods!(
     unsafe impl CLVisit {
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other arrivalDate)]
-        pub unsafe fn arrivalDate(&self) -> Id<NSDate, Shared>;
+        pub unsafe fn arrivalDate(&self) -> Id<NSDate>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other departureDate)]
-        pub unsafe fn departureDate(&self) -> Id<NSDate, Shared>;
+        pub unsafe fn departureDate(&self) -> Id<NSDate>;
 
         #[method(coordinate)]
         pub unsafe fn coordinate(&self) -> CLLocationCoordinate2D;

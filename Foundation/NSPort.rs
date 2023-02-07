@@ -28,7 +28,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSPort")]
     unsafe impl NSPort {
         #[method_id(@__retain_semantics Other port)]
-        pub unsafe fn port() -> Id<NSPort, Shared>;
+        pub unsafe fn port() -> Id<NSPort>;
 
         #[method(invalidate)]
         pub unsafe fn invalidate(&self);
@@ -40,7 +40,7 @@ extern_methods!(
         pub unsafe fn setDelegate(&self, an_object: Option<&ProtocolObject<dyn NSPortDelegate>>);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSPortDelegate>, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSPortDelegate>>>;
 
         #[cfg(feature = "Foundation_NSRunLoop")]
         #[method(scheduleInRunLoop:forMode:)]
@@ -138,13 +138,10 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSMachPort")]
     unsafe impl NSMachPort {
         #[method_id(@__retain_semantics Other portWithMachPort:)]
-        pub unsafe fn portWithMachPort(mach_port: u32) -> Id<NSPort, Shared>;
+        pub unsafe fn portWithMachPort(mach_port: u32) -> Id<NSPort>;
 
         #[method_id(@__retain_semantics Init initWithMachPort:)]
-        pub unsafe fn initWithMachPort(
-            this: Option<Allocated<Self>>,
-            mach_port: u32,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithMachPort(this: Option<Allocated<Self>>, mach_port: u32) -> Id<Self>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -153,21 +150,17 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self)
-            -> Option<Id<ProtocolObject<dyn NSMachPortDelegate>, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSMachPortDelegate>>>;
 
         #[method_id(@__retain_semantics Other portWithMachPort:options:)]
-        pub unsafe fn portWithMachPort_options(
-            mach_port: u32,
-            f: NSMachPortOptions,
-        ) -> Id<NSPort, Shared>;
+        pub unsafe fn portWithMachPort_options(mach_port: u32, f: NSMachPortOptions) -> Id<NSPort>;
 
         #[method_id(@__retain_semantics Init initWithMachPort:options:)]
         pub unsafe fn initWithMachPort_options(
             this: Option<Allocated<Self>>,
             mach_port: u32,
             f: NSMachPortOptions,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(machPort)]
         pub unsafe fn machPort(&self) -> u32;
@@ -237,13 +230,13 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSSocketPort")]
     unsafe impl NSSocketPort {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithTCPPort:)]
         pub unsafe fn initWithTCPPort(
             this: Option<Allocated<Self>>,
             port: c_ushort,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Init initWithProtocolFamily:socketType:protocol:address:)]
@@ -253,7 +246,7 @@ extern_methods!(
             r#type: c_int,
             protocol: c_int,
             address: &NSData,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[method_id(@__retain_semantics Init initWithProtocolFamily:socketType:protocol:socket:)]
         pub unsafe fn initWithProtocolFamily_socketType_protocol_socket(
@@ -262,7 +255,7 @@ extern_methods!(
             r#type: c_int,
             protocol: c_int,
             sock: NSSocketNativeHandle,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initRemoteWithTCPPort:host:)]
@@ -270,7 +263,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             port: c_ushort,
             host_name: Option<&NSString>,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Init initRemoteWithProtocolFamily:socketType:protocol:address:)]
@@ -280,7 +273,7 @@ extern_methods!(
             r#type: c_int,
             protocol: c_int,
             address: &NSData,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(protocolFamily)]
         pub unsafe fn protocolFamily(&self) -> c_int;
@@ -293,7 +286,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other address)]
-        pub unsafe fn address(&self) -> Id<NSData, Shared>;
+        pub unsafe fn address(&self) -> Id<NSData>;
 
         #[method(socket)]
         pub unsafe fn socket(&self) -> NSSocketNativeHandle;

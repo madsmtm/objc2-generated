@@ -29,7 +29,7 @@ extern_methods!(
     unsafe impl DOMHTMLQuoteElement {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other cite)]
-        pub unsafe fn cite(&self) -> Id<NSString, Shared>;
+        pub unsafe fn cite(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCite:)]

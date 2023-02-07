@@ -29,7 +29,7 @@ extern_methods!(
 
         #[cfg(feature = "CoreAnimation_CALayer")]
         #[method_id(@__retain_semantics Other layer)]
-        pub unsafe fn layer(&self) -> Option<Id<CALayer, Shared>>;
+        pub unsafe fn layer(&self) -> Option<Id<CALayer>>;
 
         #[cfg(feature = "CoreAnimation_CALayer")]
         #[method(setLayer:)]

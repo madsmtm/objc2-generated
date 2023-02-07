@@ -25,7 +25,7 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKFetchRecordChangesOperation")]
     unsafe impl CKFetchRecordChangesOperation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(all(
             feature = "CloudKit_CKRecordZoneID",
@@ -36,11 +36,11 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             record_zone_id: &CKRecordZoneID,
             previous_server_change_token: Option<&CKServerChangeToken>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "CloudKit_CKRecordZoneID")]
         #[method_id(@__retain_semantics Other recordZoneID)]
-        pub unsafe fn recordZoneID(&self) -> Option<Id<CKRecordZoneID, Shared>>;
+        pub unsafe fn recordZoneID(&self) -> Option<Id<CKRecordZoneID>>;
 
         #[cfg(feature = "CloudKit_CKRecordZoneID")]
         #[method(setRecordZoneID:)]
@@ -48,7 +48,7 @@ extern_methods!(
 
         #[cfg(feature = "CloudKit_CKServerChangeToken")]
         #[method_id(@__retain_semantics Other previousServerChangeToken)]
-        pub unsafe fn previousServerChangeToken(&self) -> Option<Id<CKServerChangeToken, Shared>>;
+        pub unsafe fn previousServerChangeToken(&self) -> Option<Id<CKServerChangeToken>>;
 
         #[cfg(feature = "CloudKit_CKServerChangeToken")]
         #[method(setPreviousServerChangeToken:)]
@@ -65,7 +65,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other desiredKeys)]
-        pub unsafe fn desiredKeys(&self) -> Option<Id<NSArray<CKRecordFieldKey>, Shared>>;
+        pub unsafe fn desiredKeys(&self) -> Option<Id<NSArray<CKRecordFieldKey>>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setDesiredKeys:)]

@@ -30,28 +30,26 @@ extern_methods!(
         pub unsafe fn invalidateClassDescriptionCache();
 
         #[method_id(@__retain_semantics Other classDescriptionForClass:)]
-        pub unsafe fn classDescriptionForClass(
-            a_class: &Class,
-        ) -> Option<Id<NSClassDescription, Shared>>;
+        pub unsafe fn classDescriptionForClass(a_class: &Class) -> Option<Id<NSClassDescription>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other attributeKeys)]
-        pub unsafe fn attributeKeys(&self) -> Id<NSArray<NSString>, Shared>;
+        pub unsafe fn attributeKeys(&self) -> Id<NSArray<NSString>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other toOneRelationshipKeys)]
-        pub unsafe fn toOneRelationshipKeys(&self) -> Id<NSArray<NSString>, Shared>;
+        pub unsafe fn toOneRelationshipKeys(&self) -> Id<NSArray<NSString>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other toManyRelationshipKeys)]
-        pub unsafe fn toManyRelationshipKeys(&self) -> Id<NSArray<NSString>, Shared>;
+        pub unsafe fn toManyRelationshipKeys(&self) -> Id<NSArray<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other inverseForRelationshipKey:)]
         pub unsafe fn inverseForRelationshipKey(
             &self,
             relationship_key: &NSString,
-        ) -> Option<Id<NSString, Shared>>;
+        ) -> Option<Id<NSString>>;
     }
 );
 

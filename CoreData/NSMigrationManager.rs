@@ -27,7 +27,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             source_model: &NSManagedObjectModel,
             destination_model: &NSManagedObjectModel,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(
             feature = "CoreData_NSMappingModel",
@@ -46,7 +46,7 @@ extern_methods!(
             d_url: &NSURL,
             d_store_type: &NSString,
             d_options: Option<&NSDictionary>,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
 
         #[method(usesStoreSpecificMigrationManager)]
         pub unsafe fn usesStoreSpecificMigrationManager(&self) -> bool;
@@ -62,23 +62,23 @@ extern_methods!(
 
         #[cfg(feature = "CoreData_NSMappingModel")]
         #[method_id(@__retain_semantics Other mappingModel)]
-        pub unsafe fn mappingModel(&self) -> Id<NSMappingModel, Shared>;
+        pub unsafe fn mappingModel(&self) -> Id<NSMappingModel>;
 
         #[cfg(feature = "CoreData_NSManagedObjectModel")]
         #[method_id(@__retain_semantics Other sourceModel)]
-        pub unsafe fn sourceModel(&self) -> Id<NSManagedObjectModel, Shared>;
+        pub unsafe fn sourceModel(&self) -> Id<NSManagedObjectModel>;
 
         #[cfg(feature = "CoreData_NSManagedObjectModel")]
         #[method_id(@__retain_semantics Other destinationModel)]
-        pub unsafe fn destinationModel(&self) -> Id<NSManagedObjectModel, Shared>;
+        pub unsafe fn destinationModel(&self) -> Id<NSManagedObjectModel>;
 
         #[cfg(feature = "CoreData_NSManagedObjectContext")]
         #[method_id(@__retain_semantics Other sourceContext)]
-        pub unsafe fn sourceContext(&self) -> Id<NSManagedObjectContext, Shared>;
+        pub unsafe fn sourceContext(&self) -> Id<NSManagedObjectContext>;
 
         #[cfg(feature = "CoreData_NSManagedObjectContext")]
         #[method_id(@__retain_semantics Other destinationContext)]
-        pub unsafe fn destinationContext(&self) -> Id<NSManagedObjectContext, Shared>;
+        pub unsafe fn destinationContext(&self) -> Id<NSManagedObjectContext>;
 
         #[cfg(all(
             feature = "CoreData_NSEntityDescription",
@@ -88,7 +88,7 @@ extern_methods!(
         pub unsafe fn sourceEntityForEntityMapping(
             &self,
             m_entity: &NSEntityMapping,
-        ) -> Option<Id<NSEntityDescription, Shared>>;
+        ) -> Option<Id<NSEntityDescription>>;
 
         #[cfg(all(
             feature = "CoreData_NSEntityDescription",
@@ -98,7 +98,7 @@ extern_methods!(
         pub unsafe fn destinationEntityForEntityMapping(
             &self,
             m_entity: &NSEntityMapping,
-        ) -> Option<Id<NSEntityDescription, Shared>>;
+        ) -> Option<Id<NSEntityDescription>>;
 
         #[cfg(all(
             feature = "CoreData_NSEntityMapping",
@@ -122,7 +122,7 @@ extern_methods!(
             &self,
             mapping_name: &NSString,
             source_instances: Option<&NSArray<NSManagedObject>>,
-        ) -> Id<NSArray<NSManagedObject>, Shared>;
+        ) -> Id<NSArray<NSManagedObject>>;
 
         #[cfg(all(
             feature = "CoreData_NSManagedObject",
@@ -134,18 +134,18 @@ extern_methods!(
             &self,
             mapping_name: &NSString,
             destination_instances: Option<&NSArray<NSManagedObject>>,
-        ) -> Id<NSArray<NSManagedObject>, Shared>;
+        ) -> Id<NSArray<NSManagedObject>>;
 
         #[cfg(feature = "CoreData_NSEntityMapping")]
         #[method_id(@__retain_semantics Other currentEntityMapping)]
-        pub unsafe fn currentEntityMapping(&self) -> Id<NSEntityMapping, Shared>;
+        pub unsafe fn currentEntityMapping(&self) -> Id<NSEntityMapping>;
 
         #[method(migrationProgress)]
         pub unsafe fn migrationProgress(&self) -> c_float;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other userInfo)]
-        pub unsafe fn userInfo(&self) -> Option<Id<NSDictionary, Shared>>;
+        pub unsafe fn userInfo(&self) -> Option<Id<NSDictionary>>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(setUserInfo:)]

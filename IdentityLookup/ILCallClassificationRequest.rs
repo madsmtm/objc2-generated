@@ -33,9 +33,9 @@ extern_methods!(
             feature = "IdentityLookup_ILCallCommunication"
         ))]
         #[method_id(@__retain_semantics Other callCommunications)]
-        pub unsafe fn callCommunications(&self) -> Id<NSArray<ILCallCommunication>, Shared>;
+        pub unsafe fn callCommunications(&self) -> Id<NSArray<ILCallCommunication>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }
 );

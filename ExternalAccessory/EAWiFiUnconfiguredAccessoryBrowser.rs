@@ -43,7 +43,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn EAWiFiUnconfiguredAccessoryBrowserDelegate>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn EAWiFiUnconfiguredAccessoryBrowserDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -56,9 +56,7 @@ extern_methods!(
             feature = "Foundation_NSSet"
         ))]
         #[method_id(@__retain_semantics Other unconfiguredAccessories)]
-        pub unsafe fn unconfiguredAccessories(
-            &self,
-        ) -> Id<NSSet<EAWiFiUnconfiguredAccessory>, Shared>;
+        pub unsafe fn unconfiguredAccessories(&self) -> Id<NSSet<EAWiFiUnconfiguredAccessory>>;
 
         #[cfg(feature = "Foundation_NSPredicate")]
         #[method(startSearchingForUnconfiguredAccessoriesMatchingPredicate:)]

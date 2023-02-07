@@ -29,7 +29,7 @@ extern_methods!(
     unsafe impl DOMHTMLAreaElement {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other alt)]
-        pub unsafe fn alt(&self) -> Id<NSString, Shared>;
+        pub unsafe fn alt(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAlt:)]
@@ -37,7 +37,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other coords)]
-        pub unsafe fn coords(&self) -> Id<NSString, Shared>;
+        pub unsafe fn coords(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCoords:)]
@@ -51,7 +51,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other shape)]
-        pub unsafe fn shape(&self) -> Id<NSString, Shared>;
+        pub unsafe fn shape(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setShape:)]
@@ -59,7 +59,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other target)]
-        pub unsafe fn target(&self) -> Id<NSString, Shared>;
+        pub unsafe fn target(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setTarget:)]
@@ -68,7 +68,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
         #[method_id(@__retain_semantics Other accessKey)]
-        pub unsafe fn accessKey(&self) -> Id<NSString, Shared>;
+        pub unsafe fn accessKey(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
@@ -77,11 +77,11 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other absoluteLinkURL)]
-        pub unsafe fn absoluteLinkURL(&self) -> Id<NSURL, Shared>;
+        pub unsafe fn absoluteLinkURL(&self) -> Id<NSURL>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other href)]
-        pub unsafe fn href(&self) -> Id<NSString, Shared>;
+        pub unsafe fn href(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setHref:)]
@@ -89,30 +89,30 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other protocol)]
-        pub unsafe fn protocol(&self) -> Id<NSString, Shared>;
+        pub unsafe fn protocol(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other host)]
-        pub unsafe fn host(&self) -> Id<NSString, Shared>;
+        pub unsafe fn host(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other hostname)]
-        pub unsafe fn hostname(&self) -> Id<NSString, Shared>;
+        pub unsafe fn hostname(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other port)]
-        pub unsafe fn port(&self) -> Id<NSString, Shared>;
+        pub unsafe fn port(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other pathname)]
-        pub unsafe fn pathname(&self) -> Id<NSString, Shared>;
+        pub unsafe fn pathname(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other search)]
-        pub unsafe fn search(&self) -> Id<NSString, Shared>;
+        pub unsafe fn search(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other hashName)]
-        pub unsafe fn hashName(&self) -> Id<NSString, Shared>;
+        pub unsafe fn hashName(&self) -> Id<NSString>;
     }
 );

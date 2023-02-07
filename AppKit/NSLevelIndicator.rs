@@ -115,7 +115,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other fillColor)]
-        pub unsafe fn fillColor(&self) -> Id<NSColor, Shared>;
+        pub unsafe fn fillColor(&self) -> Id<NSColor>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setFillColor:)]
@@ -123,7 +123,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other warningFillColor)]
-        pub unsafe fn warningFillColor(&self) -> Id<NSColor, Shared>;
+        pub unsafe fn warningFillColor(&self) -> Id<NSColor>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setWarningFillColor:)]
@@ -131,7 +131,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other criticalFillColor)]
-        pub unsafe fn criticalFillColor(&self) -> Id<NSColor, Shared>;
+        pub unsafe fn criticalFillColor(&self) -> Id<NSColor>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setCriticalFillColor:)]
@@ -154,7 +154,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other ratingImage)]
-        pub unsafe fn ratingImage(&self) -> Option<Id<NSImage, Shared>>;
+        pub unsafe fn ratingImage(&self) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method(setRatingImage:)]
@@ -162,7 +162,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other ratingPlaceholderImage)]
-        pub unsafe fn ratingPlaceholderImage(&self) -> Option<Id<NSImage, Shared>>;
+        pub unsafe fn ratingPlaceholderImage(&self) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method(setRatingPlaceholderImage:)]
@@ -175,9 +175,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSLevelIndicator")]
     unsafe impl NSLevelIndicator {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frame_rect: NSRect,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
 );

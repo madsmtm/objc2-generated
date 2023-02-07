@@ -38,7 +38,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_DOMNode"))]
         #[method_id(@__retain_semantics Other namedItem:)]
-        pub unsafe fn namedItem(&self, name: Option<&NSString>) -> Option<Id<DOMNode, Shared>>;
+        pub unsafe fn namedItem(&self, name: Option<&NSString>) -> Option<Id<DOMNode>>;
 
         #[cfg(feature = "WebKit_DOMHTMLOptionElement")]
         #[method(add:index:)]
@@ -49,6 +49,6 @@ extern_methods!(
 
         #[cfg(feature = "WebKit_DOMNode")]
         #[method_id(@__retain_semantics Other item:)]
-        pub unsafe fn item(&self, index: c_uint) -> Option<Id<DOMNode, Shared>>;
+        pub unsafe fn item(&self, index: c_uint) -> Option<Id<DOMNode>>;
     }
 );

@@ -36,7 +36,7 @@ extern_methods!(
     unsafe impl GCMicroGamepad {
         #[cfg(feature = "GameController_GCController")]
         #[method_id(@__retain_semantics Other controller)]
-        pub unsafe fn controller(&self) -> Option<Id<GCController, Shared>>;
+        pub unsafe fn controller(&self) -> Option<Id<GCController>>;
 
         #[method(valueChangedHandler)]
         pub unsafe fn valueChangedHandler(&self) -> GCMicroGamepadValueChangedHandler;
@@ -50,23 +50,23 @@ extern_methods!(
         #[cfg(feature = "GameController_GCMicroGamepadSnapshot")]
         #[deprecated = "GCMicroGamepadSnapshot has been deprecated, use [GCController capture] instead"]
         #[method_id(@__retain_semantics Other saveSnapshot)]
-        pub unsafe fn saveSnapshot(&self) -> Id<GCMicroGamepadSnapshot, Shared>;
+        pub unsafe fn saveSnapshot(&self) -> Id<GCMicroGamepadSnapshot>;
 
         #[cfg(feature = "GameController_GCControllerDirectionPad")]
         #[method_id(@__retain_semantics Other dpad)]
-        pub unsafe fn dpad(&self) -> Id<GCControllerDirectionPad, Shared>;
+        pub unsafe fn dpad(&self) -> Id<GCControllerDirectionPad>;
 
         #[cfg(feature = "GameController_GCControllerButtonInput")]
         #[method_id(@__retain_semantics Other buttonA)]
-        pub unsafe fn buttonA(&self) -> Id<GCControllerButtonInput, Shared>;
+        pub unsafe fn buttonA(&self) -> Id<GCControllerButtonInput>;
 
         #[cfg(feature = "GameController_GCControllerButtonInput")]
         #[method_id(@__retain_semantics Other buttonX)]
-        pub unsafe fn buttonX(&self) -> Id<GCControllerButtonInput, Shared>;
+        pub unsafe fn buttonX(&self) -> Id<GCControllerButtonInput>;
 
         #[cfg(feature = "GameController_GCControllerButtonInput")]
         #[method_id(@__retain_semantics Other buttonMenu)]
-        pub unsafe fn buttonMenu(&self) -> Id<GCControllerButtonInput, Shared>;
+        pub unsafe fn buttonMenu(&self) -> Id<GCControllerButtonInput>;
 
         #[method(reportsAbsoluteDpadValues)]
         pub unsafe fn reportsAbsoluteDpadValues(&self) -> bool;

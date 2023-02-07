@@ -31,7 +31,7 @@ extern_methods!(
             context_node: Option<&DOMNode>,
             r#type: c_ushort,
             in_result: Option<&DOMXPathResult>,
-        ) -> Option<Id<DOMXPathResult, Shared>>;
+        ) -> Option<Id<DOMXPathResult>>;
     }
 );
 
@@ -47,6 +47,6 @@ extern_methods!(
             context_node: Option<&DOMNode>,
             r#type: c_ushort,
             in_result: Option<&DOMXPathResult>,
-        ) -> Option<Id<DOMXPathResult, Shared>>;
+        ) -> Option<Id<DOMXPathResult>>;
     }
 );

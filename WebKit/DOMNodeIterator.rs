@@ -26,31 +26,31 @@ extern_methods!(
     unsafe impl DOMNodeIterator {
         #[cfg(feature = "WebKit_DOMNode")]
         #[method_id(@__retain_semantics Other root)]
-        pub unsafe fn root(&self) -> Option<Id<DOMNode, Shared>>;
+        pub unsafe fn root(&self) -> Option<Id<DOMNode>>;
 
         #[method(whatToShow)]
         pub unsafe fn whatToShow(&self) -> c_uint;
 
         #[method_id(@__retain_semantics Other filter)]
-        pub unsafe fn filter(&self) -> Option<Id<ProtocolObject<dyn DOMNodeFilter>, Shared>>;
+        pub unsafe fn filter(&self) -> Option<Id<ProtocolObject<dyn DOMNodeFilter>>>;
 
         #[method(expandEntityReferences)]
         pub unsafe fn expandEntityReferences(&self) -> bool;
 
         #[cfg(feature = "WebKit_DOMNode")]
         #[method_id(@__retain_semantics Other referenceNode)]
-        pub unsafe fn referenceNode(&self) -> Option<Id<DOMNode, Shared>>;
+        pub unsafe fn referenceNode(&self) -> Option<Id<DOMNode>>;
 
         #[method(pointerBeforeReferenceNode)]
         pub unsafe fn pointerBeforeReferenceNode(&self) -> bool;
 
         #[cfg(feature = "WebKit_DOMNode")]
         #[method_id(@__retain_semantics Other nextNode)]
-        pub unsafe fn nextNode(&self) -> Option<Id<DOMNode, Shared>>;
+        pub unsafe fn nextNode(&self) -> Option<Id<DOMNode>>;
 
         #[cfg(feature = "WebKit_DOMNode")]
         #[method_id(@__retain_semantics Other previousNode)]
-        pub unsafe fn previousNode(&self) -> Option<Id<DOMNode, Shared>>;
+        pub unsafe fn previousNode(&self) -> Option<Id<DOMNode>>;
 
         #[method(detach)]
         pub unsafe fn detach(&self);

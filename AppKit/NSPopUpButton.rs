@@ -58,11 +58,11 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             button_frame: NSRect,
             flag: bool,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSMenu")]
         #[method_id(@__retain_semantics Other menu)]
-        pub unsafe fn menu(&self) -> Option<Id<NSMenu, Shared>>;
+        pub unsafe fn menu(&self) -> Option<Id<NSMenu>>;
 
         #[cfg(feature = "AppKit_NSMenu")]
         #[method(setMenu:)]
@@ -110,7 +110,7 @@ extern_methods!(
 
         #[cfg(all(feature = "AppKit_NSMenuItem", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other itemArray)]
-        pub unsafe fn itemArray(&self) -> Id<NSArray<NSMenuItem>, Shared>;
+        pub unsafe fn itemArray(&self) -> Id<NSArray<NSMenuItem>>;
 
         #[method(numberOfItems)]
         pub unsafe fn numberOfItems(&self) -> NSInteger;
@@ -138,15 +138,15 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSMenuItem")]
         #[method_id(@__retain_semantics Other itemAtIndex:)]
-        pub unsafe fn itemAtIndex(&self, index: NSInteger) -> Option<Id<NSMenuItem, Shared>>;
+        pub unsafe fn itemAtIndex(&self, index: NSInteger) -> Option<Id<NSMenuItem>>;
 
         #[cfg(all(feature = "AppKit_NSMenuItem", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other itemWithTitle:)]
-        pub unsafe fn itemWithTitle(&self, title: &NSString) -> Option<Id<NSMenuItem, Shared>>;
+        pub unsafe fn itemWithTitle(&self, title: &NSString) -> Option<Id<NSMenuItem>>;
 
         #[cfg(feature = "AppKit_NSMenuItem")]
         #[method_id(@__retain_semantics Other lastItem)]
-        pub unsafe fn lastItem(&self) -> Option<Id<NSMenuItem, Shared>>;
+        pub unsafe fn lastItem(&self) -> Option<Id<NSMenuItem>>;
 
         #[cfg(feature = "AppKit_NSMenuItem")]
         #[method(selectItem:)]
@@ -168,7 +168,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSMenuItem")]
         #[method_id(@__retain_semantics Other selectedItem)]
-        pub unsafe fn selectedItem(&self) -> Option<Id<NSMenuItem, Shared>>;
+        pub unsafe fn selectedItem(&self) -> Option<Id<NSMenuItem>>;
 
         #[method(indexOfSelectedItem)]
         pub unsafe fn indexOfSelectedItem(&self) -> NSInteger;
@@ -181,15 +181,15 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other itemTitleAtIndex:)]
-        pub unsafe fn itemTitleAtIndex(&self, index: NSInteger) -> Id<NSString, Shared>;
+        pub unsafe fn itemTitleAtIndex(&self, index: NSInteger) -> Id<NSString>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other itemTitles)]
-        pub unsafe fn itemTitles(&self) -> Id<NSArray<NSString>, Shared>;
+        pub unsafe fn itemTitles(&self) -> Id<NSArray<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other titleOfSelectedItem)]
-        pub unsafe fn titleOfSelectedItem(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn titleOfSelectedItem(&self) -> Option<Id<NSString>>;
     }
 );
 
@@ -206,7 +206,7 @@ extern_methods!(
             image: &NSImage,
             target: Option<&Object>,
             action: Option<Sel>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other buttonWithTitle:target:action:)]
@@ -214,7 +214,7 @@ extern_methods!(
             title: &NSString,
             target: Option<&Object>,
             action: Option<Sel>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other buttonWithImage:target:action:)]
@@ -222,7 +222,7 @@ extern_methods!(
             image: &NSImage,
             target: Option<&Object>,
             action: Option<Sel>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other checkboxWithTitle:target:action:)]
@@ -230,7 +230,7 @@ extern_methods!(
             title: &NSString,
             target: Option<&Object>,
             action: Option<Sel>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other radioButtonWithTitle:target:action:)]
@@ -238,7 +238,7 @@ extern_methods!(
             title: &NSString,
             target: Option<&Object>,
             action: Option<Sel>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );
 
@@ -247,9 +247,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSPopUpButton")]
     unsafe impl NSPopUpButton {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frame_rect: NSRect,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
 );

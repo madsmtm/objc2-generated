@@ -46,32 +46,32 @@ extern_methods!(
             context: &NSManagedObjectContext,
             section_name_key_path: Option<&NSString>,
             name: Option<&NSString>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(performFetch:_)]
-        pub unsafe fn performFetch(&self) -> Result<(), Id<NSError, Shared>>;
+        pub unsafe fn performFetch(&self) -> Result<(), Id<NSError>>;
 
         #[cfg(feature = "CoreData_NSFetchRequest")]
         #[method_id(@__retain_semantics Other fetchRequest)]
-        pub unsafe fn fetchRequest(&self) -> Id<NSFetchRequest<ResultType>, Shared>;
+        pub unsafe fn fetchRequest(&self) -> Id<NSFetchRequest<ResultType>>;
 
         #[cfg(feature = "CoreData_NSManagedObjectContext")]
         #[method_id(@__retain_semantics Other managedObjectContext)]
-        pub unsafe fn managedObjectContext(&self) -> Id<NSManagedObjectContext, Shared>;
+        pub unsafe fn managedObjectContext(&self) -> Id<NSManagedObjectContext>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other sectionNameKeyPath)]
-        pub unsafe fn sectionNameKeyPath(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn sectionNameKeyPath(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other cacheName)]
-        pub unsafe fn cacheName(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn cacheName(&self) -> Option<Id<NSString>>;
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn NSFetchedResultsControllerDelegate>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn NSFetchedResultsControllerDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -85,7 +85,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other fetchedObjects)]
-        pub unsafe fn fetchedObjects(&self) -> Option<Id<NSArray<ResultType>, Shared>>;
+        pub unsafe fn fetchedObjects(&self) -> Option<Id<NSArray<ResultType>>>;
 
         #[cfg(feature = "Foundation_NSIndexPath")]
         #[method_id(@__retain_semantics Other objectAtIndexPath:)]
@@ -96,27 +96,24 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSIndexPath")]
         #[method_id(@__retain_semantics Other indexPathForObject:)]
-        pub unsafe fn indexPathForObject(
-            &self,
-            object: &ResultType,
-        ) -> Option<Id<NSIndexPath, Shared>>;
+        pub unsafe fn indexPathForObject(&self, object: &ResultType) -> Option<Id<NSIndexPath>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other sectionIndexTitleForSectionName:)]
         pub unsafe fn sectionIndexTitleForSectionName(
             &self,
             section_name: &NSString,
-        ) -> Option<Id<NSString, Shared>>;
+        ) -> Option<Id<NSString>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other sectionIndexTitles)]
-        pub unsafe fn sectionIndexTitles(&self) -> Id<NSArray<NSString>, Shared>;
+        pub unsafe fn sectionIndexTitles(&self) -> Id<NSArray<NSString>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other sections)]
         pub unsafe fn sections(
             &self,
-        ) -> Option<Id<NSArray<ProtocolObject<dyn NSFetchedResultsSectionInfo>>, Shared>>;
+        ) -> Option<Id<NSArray<ProtocolObject<dyn NSFetchedResultsSectionInfo>>>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(sectionForSectionIndexTitle:atIndex:)]
@@ -132,18 +129,18 @@ extern_protocol!(
     pub unsafe trait NSFetchedResultsSectionInfo {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        unsafe fn name(&self) -> Id<NSString, Shared>;
+        unsafe fn name(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other indexTitle)]
-        unsafe fn indexTitle(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn indexTitle(&self) -> Option<Id<NSString>>;
 
         #[method(numberOfObjects)]
         unsafe fn numberOfObjects(&self) -> NSUInteger;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other objects)]
-        unsafe fn objects(&self) -> Option<Id<NSArray, Shared>>;
+        unsafe fn objects(&self) -> Option<Id<NSArray>>;
     }
 
     unsafe impl ProtocolType for dyn NSFetchedResultsSectionInfo {}
@@ -220,7 +217,7 @@ extern_protocol!(
             &self,
             controller: &NSFetchedResultsController,
             section_name: &NSString,
-        ) -> Option<Id<NSString, Shared>>;
+        ) -> Option<Id<NSString>>;
     }
 
     unsafe impl ProtocolType for dyn NSFetchedResultsControllerDelegate {}

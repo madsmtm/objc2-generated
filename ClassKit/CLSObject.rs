@@ -29,16 +29,16 @@ extern_methods!(
     unsafe impl CLSObject {
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other dateCreated)]
-        pub unsafe fn dateCreated(&self) -> Id<NSDate, Shared>;
+        pub unsafe fn dateCreated(&self) -> Id<NSDate>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other dateLastModified)]
-        pub unsafe fn dateLastModified(&self) -> Id<NSDate, Shared>;
+        pub unsafe fn dateLastModified(&self) -> Id<NSDate>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }
 );

@@ -28,7 +28,7 @@ extern_methods!(
     unsafe impl NSExtensionItem {
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedTitle)]
-        pub unsafe fn attributedTitle(&self) -> Option<Id<NSAttributedString, Shared>>;
+        pub unsafe fn attributedTitle(&self) -> Option<Id<NSAttributedString>>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setAttributedTitle:)]
@@ -36,7 +36,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedContentText)]
-        pub unsafe fn attributedContentText(&self) -> Option<Id<NSAttributedString, Shared>>;
+        pub unsafe fn attributedContentText(&self) -> Option<Id<NSAttributedString>>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setAttributedContentText:)]
@@ -47,7 +47,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSItemProvider"))]
         #[method_id(@__retain_semantics Other attachments)]
-        pub unsafe fn attachments(&self) -> Option<Id<NSArray<NSItemProvider>, Shared>>;
+        pub unsafe fn attachments(&self) -> Option<Id<NSArray<NSItemProvider>>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSItemProvider"))]
         #[method(setAttachments:)]
@@ -55,7 +55,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other userInfo)]
-        pub unsafe fn userInfo(&self) -> Option<Id<NSDictionary, Shared>>;
+        pub unsafe fn userInfo(&self) -> Option<Id<NSDictionary>>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(setUserInfo:)]

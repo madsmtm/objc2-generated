@@ -28,14 +28,14 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSNotification")]
     unsafe impl NSNotification {
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSNotificationName, Shared>;
+        pub unsafe fn name(&self) -> Id<NSNotificationName>;
 
         #[method_id(@__retain_semantics Other object)]
-        pub unsafe fn object(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn object(&self) -> Option<Id<Object>>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other userInfo)]
-        pub unsafe fn userInfo(&self) -> Option<Id<NSDictionary, Shared>>;
+        pub unsafe fn userInfo(&self) -> Option<Id<NSDictionary>>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Init initWithName:object:userInfo:)]
@@ -44,14 +44,14 @@ extern_methods!(
             name: &NSNotificationName,
             object: Option<&Object>,
             user_info: Option<&NSDictionary>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
     }
 );
 
@@ -63,7 +63,7 @@ extern_methods!(
         pub unsafe fn notificationWithName_object(
             a_name: &NSNotificationName,
             an_object: Option<&Object>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other notificationWithName:object:userInfo:)]
@@ -71,10 +71,10 @@ extern_methods!(
             a_name: &NSNotificationName,
             an_object: Option<&Object>,
             a_user_info: Option<&NSDictionary>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }
 );
 
@@ -96,7 +96,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSNotificationCenter")]
     unsafe impl NSNotificationCenter {
         #[method_id(@__retain_semantics Other defaultCenter)]
-        pub unsafe fn defaultCenter() -> Id<NSNotificationCenter, Shared>;
+        pub unsafe fn defaultCenter() -> Id<NSNotificationCenter>;
 
         #[method(addObserver:selector:name:object:)]
         pub unsafe fn addObserver_selector_name_object(
@@ -149,6 +149,6 @@ extern_methods!(
             obj: Option<&Object>,
             queue: Option<&NSOperationQueue>,
             block: &Block<(NonNull<NSNotification>,), ()>,
-        ) -> Id<NSObject, Shared>;
+        ) -> Id<NSObject>;
     }
 );

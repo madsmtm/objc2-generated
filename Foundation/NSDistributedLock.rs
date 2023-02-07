@@ -22,17 +22,17 @@ extern_methods!(
     unsafe impl NSDistributedLock {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other lockWithPath:)]
-        pub unsafe fn lockWithPath(path: &NSString) -> Option<Id<NSDistributedLock, Shared>>;
+        pub unsafe fn lockWithPath(path: &NSString) -> Option<Id<NSDistributedLock>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithPath:)]
         pub unsafe fn initWithPath(
             this: Option<Allocated<Self>>,
             path: &NSString,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[method(tryLock)]
         pub unsafe fn tryLock(&self) -> bool;
@@ -45,6 +45,6 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other lockDate)]
-        pub unsafe fn lockDate(&self) -> Id<NSDate, Shared>;
+        pub unsafe fn lockDate(&self) -> Id<NSDate>;
     }
 );

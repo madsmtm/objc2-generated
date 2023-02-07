@@ -33,14 +33,14 @@ extern_methods!(
     #[cfg(feature = "FileProvider_NSFileProviderManager")]
     unsafe impl NSFileProviderManager {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other defaultManager)]
-        pub unsafe fn defaultManager() -> Id<NSFileProviderManager, Shared>;
+        pub unsafe fn defaultManager() -> Id<NSFileProviderManager>;
 
         #[cfg(feature = "FileProvider_NSFileProviderDomain")]
         #[method_id(@__retain_semantics Other managerForDomain:)]
-        pub unsafe fn managerForDomain(domain: &NSFileProviderDomain) -> Option<Id<Self, Shared>>;
+        pub unsafe fn managerForDomain(domain: &NSFileProviderDomain) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(signalEnumeratorForContainerItemIdentifier:completionHandler:)]
@@ -86,28 +86,26 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other providerIdentifier)]
-        pub unsafe fn providerIdentifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn providerIdentifier(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other documentStorageURL)]
-        pub unsafe fn documentStorageURL(&self) -> Id<NSURL, Shared>;
+        pub unsafe fn documentStorageURL(&self) -> Id<NSURL>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other temporaryDirectoryURLWithError:_)]
-        pub unsafe fn temporaryDirectoryURLWithError(
-            &self,
-        ) -> Result<Id<NSURL, Shared>, Id<NSError, Shared>>;
+        pub unsafe fn temporaryDirectoryURLWithError(&self) -> Result<Id<NSURL>, Id<NSError>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method(writePlaceholderAtURL:withMetadata:error:_)]
         pub unsafe fn writePlaceholderAtURL_withMetadata_error(
             placeholder_url: &NSURL,
             metadata: &NSFileProviderItem,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other placeholderURLForURL:)]
-        pub unsafe fn placeholderURLForURL(url: &NSURL) -> Id<NSURL, Shared>;
+        pub unsafe fn placeholderURLForURL(url: &NSURL) -> Id<NSURL>;
 
         #[cfg(all(
             feature = "FileProvider_NSFileProviderDomain",
@@ -170,7 +168,7 @@ extern_methods!(
         pub unsafe fn globalProgressForKind(
             &self,
             kind: &NSProgressFileOperationKind,
-        ) -> Id<NSProgress, Shared>;
+        ) -> Id<NSProgress>;
     }
 );
 
@@ -183,7 +181,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other enumeratorForMaterializedItems)]
         pub unsafe fn enumeratorForMaterializedItems(
             &self,
-        ) -> Id<ProtocolObject<dyn NSFileProviderEnumerator>, Shared>;
+        ) -> Id<ProtocolObject<dyn NSFileProviderEnumerator>>;
     }
 );
 
@@ -193,7 +191,7 @@ extern_protocol!(
     pub unsafe trait NSFileProviderPendingSetEnumerator: NSFileProviderEnumerator {
         #[cfg(feature = "FileProvider_NSFileProviderDomainVersion")]
         #[method_id(@__retain_semantics Other domainVersion)]
-        unsafe fn domainVersion(&self) -> Option<Id<NSFileProviderDomainVersion, Shared>>;
+        unsafe fn domainVersion(&self) -> Option<Id<NSFileProviderDomainVersion>>;
 
         #[method(refreshInterval)]
         unsafe fn refreshInterval(&self) -> NSTimeInterval;
@@ -212,7 +210,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other enumeratorForPendingItems)]
         pub unsafe fn enumeratorForPendingItems(
             &self,
-        ) -> Id<ProtocolObject<dyn NSFileProviderPendingSetEnumerator>, Shared>;
+        ) -> Id<ProtocolObject<dyn NSFileProviderPendingSetEnumerator>>;
     }
 );
 

@@ -27,25 +27,25 @@ extern_methods!(
     unsafe impl EKSource {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other sourceIdentifier)]
-        pub unsafe fn sourceIdentifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn sourceIdentifier(&self) -> Id<NSString>;
 
         #[method(sourceType)]
         pub unsafe fn sourceType(&self) -> EKSourceType;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Id<NSString, Shared>;
+        pub unsafe fn title(&self) -> Id<NSString>;
 
         #[cfg(all(feature = "EventKit_EKCalendar", feature = "Foundation_NSSet"))]
         #[method_id(@__retain_semantics Other calendars)]
-        pub unsafe fn calendars(&self) -> Id<NSSet<EKCalendar>, Shared>;
+        pub unsafe fn calendars(&self) -> Id<NSSet<EKCalendar>>;
 
         #[cfg(all(feature = "EventKit_EKCalendar", feature = "Foundation_NSSet"))]
         #[method_id(@__retain_semantics Other calendarsForEntityType:)]
         pub unsafe fn calendarsForEntityType(
             &self,
             entity_type: EKEntityType,
-        ) -> Id<NSSet<EKCalendar>, Shared>;
+        ) -> Id<NSSet<EKCalendar>>;
 
         #[method(isDelegate)]
         pub unsafe fn isDelegate(&self) -> bool;

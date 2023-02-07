@@ -30,25 +30,25 @@ extern_methods!(
     unsafe impl MEDecodedMessage {
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other rawData)]
-        pub unsafe fn rawData(&self) -> Option<Id<NSData, Shared>>;
+        pub unsafe fn rawData(&self) -> Option<Id<NSData>>;
 
         #[cfg(feature = "MailKit_MEMessageSecurityInformation")]
         #[method_id(@__retain_semantics Other securityInformation)]
-        pub unsafe fn securityInformation(&self) -> Id<MEMessageSecurityInformation, Shared>;
+        pub unsafe fn securityInformation(&self) -> Id<MEMessageSecurityInformation>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other context)]
-        pub unsafe fn context(&self) -> Option<Id<NSData, Shared>>;
+        pub unsafe fn context(&self) -> Option<Id<NSData>>;
 
         #[cfg(feature = "MailKit_MEDecodedMessageBanner")]
         #[method_id(@__retain_semantics Other banner)]
-        pub unsafe fn banner(&self) -> Option<Id<MEDecodedMessageBanner, Shared>>;
+        pub unsafe fn banner(&self) -> Option<Id<MEDecodedMessageBanner>>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(all(
             feature = "Foundation_NSData",
@@ -60,7 +60,7 @@ extern_methods!(
             raw_data: Option<&NSData>,
             security_information: &MEMessageSecurityInformation,
             context: Option<&NSData>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(
             feature = "Foundation_NSData",
@@ -74,6 +74,6 @@ extern_methods!(
             security_information: &MEMessageSecurityInformation,
             context: Option<&NSData>,
             banner: Option<&MEDecodedMessageBanner>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

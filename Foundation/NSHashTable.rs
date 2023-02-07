@@ -70,7 +70,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             options: NSPointerFunctionsOptions,
             initial_capacity: NSUInteger,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSPointerFunctions")]
         #[method_id(@__retain_semantics Init initWithPointerFunctions:capacity:)]
@@ -78,23 +78,23 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             functions: &NSPointerFunctions,
             initial_capacity: NSUInteger,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other hashTableWithOptions:)]
         pub unsafe fn hashTableWithOptions(
             options: NSPointerFunctionsOptions,
-        ) -> Id<NSHashTable<ObjectType>, Shared>;
+        ) -> Id<NSHashTable<ObjectType>>;
 
         #[deprecated = "GC no longer supported"]
         #[method_id(@__retain_semantics Other hashTableWithWeakObjects)]
-        pub unsafe fn hashTableWithWeakObjects() -> Id<Object, Shared>;
+        pub unsafe fn hashTableWithWeakObjects() -> Id<Object>;
 
         #[method_id(@__retain_semantics Other weakObjectsHashTable)]
-        pub unsafe fn weakObjectsHashTable() -> Id<NSHashTable<ObjectType>, Shared>;
+        pub unsafe fn weakObjectsHashTable() -> Id<NSHashTable<ObjectType>>;
 
         #[cfg(feature = "Foundation_NSPointerFunctions")]
         #[method_id(@__retain_semantics Other pointerFunctions)]
-        pub unsafe fn pointerFunctions(&self) -> Id<NSPointerFunctions, Shared>;
+        pub unsafe fn pointerFunctions(&self) -> Id<NSPointerFunctions>;
 
         #[method(count)]
         pub unsafe fn count(&self) -> NSUInteger;
@@ -107,7 +107,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSEnumerator")]
         #[method_id(@__retain_semantics Other objectEnumerator)]
-        pub unsafe fn objectEnumerator(&self) -> Id<NSEnumerator<ObjectType>, Shared>;
+        pub unsafe fn objectEnumerator(&self) -> Id<NSEnumerator<ObjectType>>;
 
         #[method(addObject:)]
         pub unsafe fn addObject(&self, object: Option<&ObjectType>);
@@ -120,7 +120,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other allObjects)]
-        pub unsafe fn allObjects(&self) -> Id<NSArray<ObjectType>, Shared>;
+        pub unsafe fn allObjects(&self) -> Id<NSArray<ObjectType>>;
 
         #[method_id(@__retain_semantics Other anyObject)]
         pub unsafe fn anyObject(&self) -> Option<Id<ObjectType, ObjectTypeOwnership>>;
@@ -148,7 +148,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSSet")]
         #[method_id(@__retain_semantics Other setRepresentation)]
-        pub unsafe fn setRepresentation(&self) -> Id<NSSet<ObjectType>, Shared>;
+        pub unsafe fn setRepresentation(&self) -> Id<NSSet<ObjectType>>;
     }
 );
 

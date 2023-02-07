@@ -30,15 +30,15 @@ extern_methods!(
     #[cfg(feature = "GameController_GCRacingWheel")]
     unsafe impl GCRacingWheel {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSSet")]
         #[method_id(@__retain_semantics Other connectedRacingWheels)]
-        pub unsafe fn connectedRacingWheels() -> Id<NSSet<GCRacingWheel>, Shared>;
+        pub unsafe fn connectedRacingWheels() -> Id<NSSet<GCRacingWheel>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(acquireDeviceWithError:_)]
-        pub unsafe fn acquireDeviceWithError(&self) -> Result<(), Id<NSError, Shared>>;
+        pub unsafe fn acquireDeviceWithError(&self) -> Result<(), Id<NSError>>;
 
         #[method(relinquishDevice)]
         pub unsafe fn relinquishDevice(&self);
@@ -48,12 +48,12 @@ extern_methods!(
 
         #[cfg(feature = "GameController_GCRacingWheelInput")]
         #[method_id(@__retain_semantics Other wheelInput)]
-        pub unsafe fn wheelInput(&self) -> Id<GCRacingWheelInput, Shared>;
+        pub unsafe fn wheelInput(&self) -> Id<GCRacingWheelInput>;
 
         #[method(isSnapshot)]
         pub unsafe fn isSnapshot(&self) -> bool;
 
         #[method_id(@__retain_semantics Other capture)]
-        pub unsafe fn capture(&self) -> Id<GCRacingWheel, Shared>;
+        pub unsafe fn capture(&self) -> Id<GCRacingWheel>;
     }
 );

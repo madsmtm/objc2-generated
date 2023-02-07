@@ -38,11 +38,11 @@ extern_methods!(
     unsafe impl DOMElement {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other tagName)]
-        pub unsafe fn tagName(&self) -> Id<NSString, Shared>;
+        pub unsafe fn tagName(&self) -> Id<NSString>;
 
         #[cfg(feature = "WebKit_DOMCSSStyleDeclaration")]
         #[method_id(@__retain_semantics Other style)]
-        pub unsafe fn style(&self) -> Option<Id<DOMCSSStyleDeclaration, Shared>>;
+        pub unsafe fn style(&self) -> Option<Id<DOMCSSStyleDeclaration>>;
 
         #[method(offsetLeft)]
         pub unsafe fn offsetLeft(&self) -> c_int;
@@ -87,11 +87,11 @@ extern_methods!(
         pub unsafe fn scrollHeight(&self) -> c_int;
 
         #[method_id(@__retain_semantics Other offsetParent)]
-        pub unsafe fn offsetParent(&self) -> Option<Id<DOMElement, Shared>>;
+        pub unsafe fn offsetParent(&self) -> Option<Id<DOMElement>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other innerHTML)]
-        pub unsafe fn innerHTML(&self) -> Id<NSString, Shared>;
+        pub unsafe fn innerHTML(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setInnerHTML:)]
@@ -99,7 +99,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other outerHTML)]
-        pub unsafe fn outerHTML(&self) -> Id<NSString, Shared>;
+        pub unsafe fn outerHTML(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setOuterHTML:)]
@@ -107,7 +107,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other className)]
-        pub unsafe fn className(&self) -> Id<NSString, Shared>;
+        pub unsafe fn className(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setClassName:)]
@@ -115,26 +115,26 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other innerText)]
-        pub unsafe fn innerText(&self) -> Id<NSString, Shared>;
+        pub unsafe fn innerText(&self) -> Id<NSString>;
 
         #[method_id(@__retain_semantics Other previousElementSibling)]
-        pub unsafe fn previousElementSibling(&self) -> Option<Id<DOMElement, Shared>>;
+        pub unsafe fn previousElementSibling(&self) -> Option<Id<DOMElement>>;
 
         #[method_id(@__retain_semantics Other nextElementSibling)]
-        pub unsafe fn nextElementSibling(&self) -> Option<Id<DOMElement, Shared>>;
+        pub unsafe fn nextElementSibling(&self) -> Option<Id<DOMElement>>;
 
         #[method_id(@__retain_semantics Other firstElementChild)]
-        pub unsafe fn firstElementChild(&self) -> Option<Id<DOMElement, Shared>>;
+        pub unsafe fn firstElementChild(&self) -> Option<Id<DOMElement>>;
 
         #[method_id(@__retain_semantics Other lastElementChild)]
-        pub unsafe fn lastElementChild(&self) -> Option<Id<DOMElement, Shared>>;
+        pub unsafe fn lastElementChild(&self) -> Option<Id<DOMElement>>;
 
         #[method(childElementCount)]
         pub unsafe fn childElementCount(&self) -> c_uint;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other getAttribute:)]
-        pub unsafe fn getAttribute(&self, name: Option<&NSString>) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn getAttribute(&self, name: Option<&NSString>) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAttribute:value:)]
@@ -146,31 +146,23 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_DOMAttr"))]
         #[method_id(@__retain_semantics Other getAttributeNode:)]
-        pub unsafe fn getAttributeNode(
-            &self,
-            name: Option<&NSString>,
-        ) -> Option<Id<DOMAttr, Shared>>;
+        pub unsafe fn getAttributeNode(&self, name: Option<&NSString>) -> Option<Id<DOMAttr>>;
 
         #[cfg(feature = "WebKit_DOMAttr")]
         #[method_id(@__retain_semantics Other setAttributeNode:)]
-        pub unsafe fn setAttributeNode(
-            &self,
-            new_attr: Option<&DOMAttr>,
-        ) -> Option<Id<DOMAttr, Shared>>;
+        pub unsafe fn setAttributeNode(&self, new_attr: Option<&DOMAttr>) -> Option<Id<DOMAttr>>;
 
         #[cfg(feature = "WebKit_DOMAttr")]
         #[method_id(@__retain_semantics Other removeAttributeNode:)]
-        pub unsafe fn removeAttributeNode(
-            &self,
-            old_attr: Option<&DOMAttr>,
-        ) -> Option<Id<DOMAttr, Shared>>;
+        pub unsafe fn removeAttributeNode(&self, old_attr: Option<&DOMAttr>)
+            -> Option<Id<DOMAttr>>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_DOMNodeList"))]
         #[method_id(@__retain_semantics Other getElementsByTagName:)]
         pub unsafe fn getElementsByTagName(
             &self,
             name: Option<&NSString>,
-        ) -> Option<Id<DOMNodeList, Shared>>;
+        ) -> Option<Id<DOMNodeList>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other getAttributeNS:localName:)]
@@ -178,7 +170,7 @@ extern_methods!(
             &self,
             namespace_uri: Option<&NSString>,
             local_name: Option<&NSString>,
-        ) -> Option<Id<NSString, Shared>>;
+        ) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAttributeNS:qualifiedName:value:)]
@@ -203,7 +195,7 @@ extern_methods!(
             &self,
             namespace_uri: Option<&NSString>,
             local_name: Option<&NSString>,
-        ) -> Option<Id<DOMNodeList, Shared>>;
+        ) -> Option<Id<DOMNodeList>>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_DOMAttr"))]
         #[method_id(@__retain_semantics Other getAttributeNodeNS:localName:)]
@@ -211,14 +203,11 @@ extern_methods!(
             &self,
             namespace_uri: Option<&NSString>,
             local_name: Option<&NSString>,
-        ) -> Option<Id<DOMAttr, Shared>>;
+        ) -> Option<Id<DOMAttr>>;
 
         #[cfg(feature = "WebKit_DOMAttr")]
         #[method_id(@__retain_semantics Other setAttributeNodeNS:)]
-        pub unsafe fn setAttributeNodeNS(
-            &self,
-            new_attr: Option<&DOMAttr>,
-        ) -> Option<Id<DOMAttr, Shared>>;
+        pub unsafe fn setAttributeNodeNS(&self, new_attr: Option<&DOMAttr>) -> Option<Id<DOMAttr>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(hasAttribute:)]
@@ -255,24 +244,21 @@ extern_methods!(
         pub unsafe fn getElementsByClassName(
             &self,
             name: Option<&NSString>,
-        ) -> Option<Id<DOMNodeList, Shared>>;
+        ) -> Option<Id<DOMNodeList>>;
 
         #[method(webkitRequestFullScreen:)]
         pub unsafe fn webkitRequestFullScreen(&self, flags: c_ushort);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other querySelector:)]
-        pub unsafe fn querySelector(
-            &self,
-            selectors: Option<&NSString>,
-        ) -> Option<Id<DOMElement, Shared>>;
+        pub unsafe fn querySelector(&self, selectors: Option<&NSString>) -> Option<Id<DOMElement>>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_DOMNodeList"))]
         #[method_id(@__retain_semantics Other querySelectorAll:)]
         pub unsafe fn querySelectorAll(
             &self,
             selectors: Option<&NSString>,
-        ) -> Option<Id<DOMNodeList, Shared>>;
+        ) -> Option<Id<DOMNodeList>>;
     }
 );
 
@@ -292,7 +278,7 @@ extern_methods!(
             &self,
             namespace_uri: Option<&NSString>,
             local_name: Option<&NSString>,
-        ) -> Option<Id<NSString, Shared>>;
+        ) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
@@ -320,7 +306,7 @@ extern_methods!(
             &self,
             namespace_uri: Option<&NSString>,
             local_name: Option<&NSString>,
-        ) -> Option<Id<DOMNodeList, Shared>>;
+        ) -> Option<Id<DOMNodeList>>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_DOMAttr"))]
         #[deprecated]
@@ -329,7 +315,7 @@ extern_methods!(
             &self,
             namespace_uri: Option<&NSString>,
             local_name: Option<&NSString>,
-        ) -> Option<Id<DOMAttr, Shared>>;
+        ) -> Option<Id<DOMAttr>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]

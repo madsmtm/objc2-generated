@@ -37,7 +37,7 @@ extern_methods!(
     unsafe impl CAGradientLayer {
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other colors)]
-        pub unsafe fn colors(&self) -> Option<Id<NSArray, Shared>>;
+        pub unsafe fn colors(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setColors:)]
@@ -45,7 +45,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method_id(@__retain_semantics Other locations)]
-        pub unsafe fn locations(&self) -> Option<Id<NSArray<NSNumber>, Shared>>;
+        pub unsafe fn locations(&self) -> Option<Id<NSArray<NSNumber>>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method(setLocations:)]
@@ -64,7 +64,7 @@ extern_methods!(
         pub unsafe fn setEndPoint(&self, end_point: CGPoint);
 
         #[method_id(@__retain_semantics Other type)]
-        pub unsafe fn r#type(&self) -> Id<CAGradientLayerType, Shared>;
+        pub unsafe fn r#type(&self) -> Id<CAGradientLayerType>;
 
         #[method(setType:)]
         pub unsafe fn setType(&self, r#type: &CAGradientLayerType);
@@ -82,12 +82,9 @@ extern_methods!(
     #[cfg(feature = "CoreAnimation_CAGradientLayer")]
     unsafe impl CAGradientLayer {
         #[method_id(@__retain_semantics Other layer)]
-        pub unsafe fn layer() -> Id<Self, Shared>;
+        pub unsafe fn layer() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithLayer:)]
-        pub unsafe fn initWithLayer(
-            this: Option<Allocated<Self>>,
-            layer: &Object,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithLayer(this: Option<Allocated<Self>>, layer: &Object) -> Id<Self>;
     }
 );

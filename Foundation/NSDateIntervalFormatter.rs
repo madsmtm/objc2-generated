@@ -37,7 +37,7 @@ extern_methods!(
     unsafe impl NSDateIntervalFormatter {
         #[cfg(feature = "Foundation_NSLocale")]
         #[method_id(@__retain_semantics Other locale)]
-        pub unsafe fn locale(&self) -> Id<NSLocale, Shared>;
+        pub unsafe fn locale(&self) -> Id<NSLocale>;
 
         #[cfg(feature = "Foundation_NSLocale")]
         #[method(setLocale:)]
@@ -45,7 +45,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSCalendar")]
         #[method_id(@__retain_semantics Other calendar)]
-        pub unsafe fn calendar(&self) -> Id<NSCalendar, Shared>;
+        pub unsafe fn calendar(&self) -> Id<NSCalendar>;
 
         #[cfg(feature = "Foundation_NSCalendar")]
         #[method(setCalendar:)]
@@ -53,7 +53,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSTimeZone")]
         #[method_id(@__retain_semantics Other timeZone)]
-        pub unsafe fn timeZone(&self) -> Id<NSTimeZone, Shared>;
+        pub unsafe fn timeZone(&self) -> Id<NSTimeZone>;
 
         #[cfg(feature = "Foundation_NSTimeZone")]
         #[method(setTimeZone:)]
@@ -61,7 +61,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other dateTemplate)]
-        pub unsafe fn dateTemplate(&self) -> Id<NSString, Shared>;
+        pub unsafe fn dateTemplate(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setDateTemplate:)]
@@ -85,13 +85,13 @@ extern_methods!(
             &self,
             from_date: &NSDate,
             to_date: &NSDate,
-        ) -> Id<NSString, Shared>;
+        ) -> Id<NSString>;
 
         #[cfg(all(feature = "Foundation_NSDateInterval", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other stringFromDateInterval:)]
         pub unsafe fn stringFromDateInterval(
             &self,
             date_interval: &NSDateInterval,
-        ) -> Option<Id<NSString, Shared>>;
+        ) -> Option<Id<NSString>>;
     }
 );

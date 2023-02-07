@@ -63,7 +63,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSCharacterSet")]
         #[method_id(@__retain_semantics Other tokenizingCharacterSet)]
-        pub unsafe fn tokenizingCharacterSet(&self) -> Id<NSCharacterSet, Shared>;
+        pub unsafe fn tokenizingCharacterSet(&self) -> Id<NSCharacterSet>;
 
         #[cfg(feature = "Foundation_NSCharacterSet")]
         #[method(setTokenizingCharacterSet:)]
@@ -74,12 +74,10 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSCharacterSet")]
         #[method_id(@__retain_semantics Other defaultTokenizingCharacterSet)]
-        pub unsafe fn defaultTokenizingCharacterSet() -> Id<NSCharacterSet, Shared>;
+        pub unsafe fn defaultTokenizingCharacterSet() -> Id<NSCharacterSet>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(
-            &self,
-        ) -> Option<Id<ProtocolObject<dyn NSTokenFieldCellDelegate>, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSTokenFieldCellDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -104,7 +102,7 @@ extern_protocol!(
             substring: &NSString,
             token_index: NSInteger,
             selected_index: NonNull<NSInteger>,
-        ) -> Id<NSArray, Shared>;
+        ) -> Id<NSArray>;
 
         #[cfg(all(feature = "AppKit_NSTokenFieldCell", feature = "Foundation_NSArray"))]
         #[optional]
@@ -114,7 +112,7 @@ extern_protocol!(
             token_field_cell: &NSTokenFieldCell,
             tokens: &NSArray,
             index: NSUInteger,
-        ) -> Id<NSArray, Shared>;
+        ) -> Id<NSArray>;
 
         #[cfg(all(feature = "AppKit_NSTokenFieldCell", feature = "Foundation_NSString"))]
         #[optional]
@@ -123,7 +121,7 @@ extern_protocol!(
             &self,
             token_field_cell: &NSTokenFieldCell,
             represented_object: &Object,
-        ) -> Option<Id<NSString, Shared>>;
+        ) -> Option<Id<NSString>>;
 
         #[cfg(all(feature = "AppKit_NSTokenFieldCell", feature = "Foundation_NSString"))]
         #[optional]
@@ -132,7 +130,7 @@ extern_protocol!(
             &self,
             token_field_cell: &NSTokenFieldCell,
             represented_object: &Object,
-        ) -> Option<Id<NSString, Shared>>;
+        ) -> Option<Id<NSString>>;
 
         #[cfg(all(feature = "AppKit_NSTokenFieldCell", feature = "Foundation_NSString"))]
         #[optional]
@@ -141,7 +139,7 @@ extern_protocol!(
             &self,
             token_field_cell: &NSTokenFieldCell,
             editing_string: &NSString,
-        ) -> Option<Id<Object, Shared>>;
+        ) -> Option<Id<Object>>;
 
         #[cfg(all(
             feature = "AppKit_NSPasteboard",
@@ -168,7 +166,7 @@ extern_protocol!(
             &self,
             token_field_cell: &NSTokenFieldCell,
             pboard: &NSPasteboard,
-        ) -> Option<Id<NSArray, Shared>>;
+        ) -> Option<Id<NSArray>>;
 
         #[cfg(all(feature = "AppKit_NSMenu", feature = "AppKit_NSTokenFieldCell"))]
         #[optional]
@@ -177,7 +175,7 @@ extern_protocol!(
             &self,
             token_field_cell: &NSTokenFieldCell,
             represented_object: &Object,
-        ) -> Option<Id<NSMenu, Shared>>;
+        ) -> Option<Id<NSMenu>>;
 
         #[cfg(feature = "AppKit_NSTokenFieldCell")]
         #[optional]
@@ -213,16 +211,13 @@ extern_methods!(
     unsafe impl NSTokenFieldCell {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initTextCell:)]
-        pub unsafe fn initTextCell(
-            this: Option<Allocated<Self>>,
-            string: &NSString,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initTextCell(this: Option<Allocated<Self>>, string: &NSString) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Init initImageCell:)]
         pub unsafe fn initImageCell(
             this: Option<Allocated<Self>>,
             image: Option<&NSImage>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

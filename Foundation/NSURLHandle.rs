@@ -108,7 +108,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
         #[method_id(@__retain_semantics Other failureReason)]
-        pub unsafe fn failureReason(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn failureReason(&self) -> Option<Id<NSString>>;
 
         #[deprecated]
         #[method(addClient:)]
@@ -129,12 +129,12 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSData")]
         #[deprecated]
         #[method_id(@__retain_semantics Other resourceData)]
-        pub unsafe fn resourceData(&self) -> Option<Id<NSData, Shared>>;
+        pub unsafe fn resourceData(&self) -> Option<Id<NSData>>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[deprecated]
         #[method_id(@__retain_semantics Other availableResourceData)]
-        pub unsafe fn availableResourceData(&self) -> Option<Id<NSData, Shared>>;
+        pub unsafe fn availableResourceData(&self) -> Option<Id<NSData>>;
 
         #[deprecated]
         #[method(expectedResourceDataSize)]
@@ -162,8 +162,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSURL")]
         #[deprecated]
         #[method_id(@__retain_semantics Other cachedHandleForURL:)]
-        pub unsafe fn cachedHandleForURL(an_url: Option<&NSURL>)
-            -> Option<Id<NSURLHandle, Shared>>;
+        pub unsafe fn cachedHandleForURL(an_url: Option<&NSURL>) -> Option<Id<NSURLHandle>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[deprecated]
@@ -172,15 +171,12 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             an_url: Option<&NSURL>,
             will_cache: bool,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
         #[method_id(@__retain_semantics Other propertyForKey:)]
-        pub unsafe fn propertyForKey(
-            &self,
-            property_key: Option<&NSString>,
-        ) -> Option<Id<Object, Shared>>;
+        pub unsafe fn propertyForKey(&self, property_key: Option<&NSString>) -> Option<Id<Object>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
@@ -188,7 +184,7 @@ extern_methods!(
         pub unsafe fn propertyForKeyIfAvailable(
             &self,
             property_key: Option<&NSString>,
-        ) -> Option<Id<Object, Shared>>;
+        ) -> Option<Id<Object>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
@@ -207,7 +203,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSData")]
         #[deprecated]
         #[method_id(@__retain_semantics Other loadInForeground)]
-        pub unsafe fn loadInForeground(&self) -> Option<Id<NSData, Shared>>;
+        pub unsafe fn loadInForeground(&self) -> Option<Id<NSData>>;
 
         #[deprecated]
         #[method(beginLoadInBackground)]

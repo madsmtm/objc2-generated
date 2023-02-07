@@ -44,7 +44,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub fn name(&self) -> Option<Id<NSString, Shared>>;
+        pub fn name(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]
@@ -76,7 +76,7 @@ extern_methods!(
         pub unsafe fn initWithCondition(
             this: Option<Allocated<Self>>,
             condition: NSInteger,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(condition)]
         pub unsafe fn condition(&self) -> NSInteger;
@@ -107,7 +107,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn name(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]
@@ -144,7 +144,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn name(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]
@@ -187,7 +187,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn name(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]

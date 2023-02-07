@@ -185,11 +185,11 @@ extern_methods!(
     unsafe impl NSScrubberTextItemView {
         #[cfg(feature = "AppKit_NSTextField")]
         #[method_id(@__retain_semantics Other textField)]
-        pub unsafe fn textField(&self) -> Id<NSTextField, Shared>;
+        pub unsafe fn textField(&self) -> Id<NSTextField>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Id<NSString, Shared>;
+        pub unsafe fn title(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setTitle:)]
@@ -238,11 +238,11 @@ extern_methods!(
     unsafe impl NSScrubberImageItemView {
         #[cfg(feature = "AppKit_NSImageView")]
         #[method_id(@__retain_semantics Other imageView)]
-        pub unsafe fn imageView(&self) -> Id<NSImageView, Shared>;
+        pub unsafe fn imageView(&self) -> Id<NSImageView>;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other image)]
-        pub unsafe fn image(&self) -> Id<NSImage, Shared>;
+        pub unsafe fn image(&self) -> Id<NSImage>;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method(setImage:)]
@@ -261,10 +261,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSScrubberArrangedView")]
     unsafe impl NSScrubberArrangedView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frame_rect: NSRect,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
 );
 
@@ -273,10 +270,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSScrubberSelectionView")]
     unsafe impl NSScrubberSelectionView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frame_rect: NSRect,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
 );
 
@@ -285,10 +279,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSScrubberItemView")]
     unsafe impl NSScrubberItemView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frame_rect: NSRect,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
 );
 
@@ -297,10 +288,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSScrubberTextItemView")]
     unsafe impl NSScrubberTextItemView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frame_rect: NSRect,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
 );
 
@@ -309,9 +297,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSScrubberImageItemView")]
     unsafe impl NSScrubberImageItemView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frame_rect: NSRect,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
 );

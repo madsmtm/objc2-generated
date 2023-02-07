@@ -35,12 +35,12 @@ extern_methods!(
         pub unsafe fn polylineWithPoints_count(
             points: NonNull<MKMapPoint>,
             count: NSUInteger,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other polylineWithCoordinates:count:)]
         pub unsafe fn polylineWithCoordinates_count(
             coords: NonNull<CLLocationCoordinate2D>,
             count: NSUInteger,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

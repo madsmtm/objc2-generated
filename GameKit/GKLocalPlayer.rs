@@ -24,10 +24,10 @@ extern_methods!(
     #[cfg(feature = "GameKit_GKLocalPlayer")]
     unsafe impl GKLocalPlayer {
         #[method_id(@__retain_semantics Other local)]
-        pub unsafe fn local() -> Id<GKLocalPlayer, Shared>;
+        pub unsafe fn local() -> Id<GKLocalPlayer>;
 
         #[method_id(@__retain_semantics Other localPlayer)]
-        pub unsafe fn localPlayer() -> Id<GKLocalPlayer, Shared>;
+        pub unsafe fn localPlayer() -> Id<GKLocalPlayer>;
 
         #[method(isAuthenticated)]
         pub unsafe fn isAuthenticated(&self) -> bool;
@@ -190,7 +190,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[deprecated = " This property is obsolete, Use loadFriendPlayersWithCompletionHandler: instead"]
         #[method_id(@__retain_semantics Other friends)]
-        pub unsafe fn friends(&self) -> Option<Id<NSArray<NSString>, Shared>>;
+        pub unsafe fn friends(&self) -> Option<Id<NSArray<NSString>>>;
     }
 );
 
@@ -266,7 +266,7 @@ extern_methods!(
         pub unsafe fn presentFriendRequestCreatorFromWindow_error(
             &self,
             window: Option<&NSWindow>,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
     }
 );
 
@@ -276,8 +276,6 @@ extern_methods!(
     unsafe impl GKLocalPlayer {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other anonymousGuestPlayerWithIdentifier:)]
-        pub unsafe fn anonymousGuestPlayerWithIdentifier(
-            guest_identifier: &NSString,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn anonymousGuestPlayerWithIdentifier(guest_identifier: &NSString) -> Id<Self>;
     }
 );

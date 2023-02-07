@@ -26,7 +26,7 @@ extern_methods!(
     unsafe impl MKLookAroundSnapshotOptions {
         #[cfg(feature = "MapKit_MKPointOfInterestFilter")]
         #[method_id(@__retain_semantics Other pointOfInterestFilter)]
-        pub unsafe fn pointOfInterestFilter(&self) -> Option<Id<MKPointOfInterestFilter, Shared>>;
+        pub unsafe fn pointOfInterestFilter(&self) -> Option<Id<MKPointOfInterestFilter>>;
 
         #[cfg(feature = "MapKit_MKPointOfInterestFilter")]
         #[method(setPointOfInterestFilter:)]

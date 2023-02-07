@@ -31,9 +31,9 @@ extern_methods!(
     unsafe impl GCKeyboard {
         #[cfg(feature = "GameController_GCKeyboardInput")]
         #[method_id(@__retain_semantics Other keyboardInput)]
-        pub unsafe fn keyboardInput(&self) -> Option<Id<GCKeyboardInput, Shared>>;
+        pub unsafe fn keyboardInput(&self) -> Option<Id<GCKeyboardInput>>;
 
         #[method_id(@__retain_semantics Other coalescedKeyboard)]
-        pub unsafe fn coalescedKeyboard() -> Option<Id<GCKeyboard, Shared>>;
+        pub unsafe fn coalescedKeyboard() -> Option<Id<GCKeyboard>>;
     }
 );

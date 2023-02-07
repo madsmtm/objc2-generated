@@ -30,7 +30,7 @@ extern_methods!(
     unsafe impl NSCalendarDate {
         #[deprecated = "Use NSCalendar instead"]
         #[method_id(@__retain_semantics Other calendarDate)]
-        pub unsafe fn calendarDate() -> Id<Object, Shared>;
+        pub unsafe fn calendarDate() -> Id<Object>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use NSDateFormatter instead"]
@@ -39,7 +39,7 @@ extern_methods!(
             description: &NSString,
             format: &NSString,
             locale: Option<&Object>,
-        ) -> Option<Id<Object, Shared>>;
+        ) -> Option<Id<Object>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use NSDateFormatter instead"]
@@ -47,7 +47,7 @@ extern_methods!(
         pub unsafe fn dateWithString_calendarFormat(
             description: &NSString,
             format: &NSString,
-        ) -> Option<Id<Object, Shared>>;
+        ) -> Option<Id<Object>>;
 
         #[cfg(feature = "Foundation_NSTimeZone")]
         #[deprecated = "Use NSCalendar and NSDateComponents instead"]
@@ -60,7 +60,7 @@ extern_methods!(
             minute: NSUInteger,
             second: NSUInteger,
             a_time_zone: Option<&NSTimeZone>,
-        ) -> Id<Object, Shared>;
+        ) -> Id<Object>;
 
         #[deprecated = "Use NSCalendar instead"]
         #[method_id(@__retain_semantics Other dateByAddingYears:months:days:hours:minutes:seconds:)]
@@ -72,7 +72,7 @@ extern_methods!(
             hour: NSInteger,
             minute: NSInteger,
             second: NSInteger,
-        ) -> Id<NSCalendarDate, Shared>;
+        ) -> Id<NSCalendarDate>;
 
         #[deprecated]
         #[method(dayOfCommonEra)]
@@ -113,7 +113,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
         #[method_id(@__retain_semantics Other calendarFormat)]
-        pub unsafe fn calendarFormat(&self) -> Id<NSString, Shared>;
+        pub unsafe fn calendarFormat(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
@@ -122,26 +122,22 @@ extern_methods!(
             &self,
             format: &NSString,
             locale: Option<&Object>,
-        ) -> Id<NSString, Shared>;
+        ) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
         #[method_id(@__retain_semantics Other descriptionWithCalendarFormat:)]
-        pub unsafe fn descriptionWithCalendarFormat(
-            &self,
-            format: &NSString,
-        ) -> Id<NSString, Shared>;
+        pub unsafe fn descriptionWithCalendarFormat(&self, format: &NSString) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
         #[method_id(@__retain_semantics Other descriptionWithLocale:)]
-        pub unsafe fn descriptionWithLocale(&self, locale: Option<&Object>)
-            -> Id<NSString, Shared>;
+        pub unsafe fn descriptionWithLocale(&self, locale: Option<&Object>) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSTimeZone")]
         #[deprecated]
         #[method_id(@__retain_semantics Other timeZone)]
-        pub unsafe fn timeZone(&self) -> Id<NSTimeZone, Shared>;
+        pub unsafe fn timeZone(&self) -> Id<NSTimeZone>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use NSDateFormatter instead"]
@@ -151,7 +147,7 @@ extern_methods!(
             description: &NSString,
             format: &NSString,
             locale: Option<&Object>,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use NSDateFormatter instead"]
@@ -160,7 +156,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             description: &NSString,
             format: &NSString,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use NSDateFormatter instead"]
@@ -168,7 +164,7 @@ extern_methods!(
         pub unsafe fn initWithString(
             this: Option<Allocated<Self>>,
             description: &NSString,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSTimeZone")]
         #[deprecated = "Use NSCalendar and NSDateComponents instead"]
@@ -182,7 +178,7 @@ extern_methods!(
             minute: NSUInteger,
             second: NSUInteger,
             a_time_zone: Option<&NSTimeZone>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
@@ -209,11 +205,11 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other distantFuture)]
-        pub unsafe fn distantFuture() -> Id<Self, Shared>;
+        pub unsafe fn distantFuture() -> Id<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other distantPast)]
-        pub unsafe fn distantPast() -> Id<Self, Shared>;
+        pub unsafe fn distantPast() -> Id<Self>;
     }
 );
 
@@ -227,19 +223,17 @@ extern_methods!(
         pub unsafe fn dateWithNaturalLanguageString_locale(
             string: &NSString,
             locale: Option<&Object>,
-        ) -> Option<Id<Object, Shared>>;
+        ) -> Option<Id<Object>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Create an NSDateFormatter with `init` and set the dateFormat property instead."]
         #[method_id(@__retain_semantics Other dateWithNaturalLanguageString:)]
-        pub unsafe fn dateWithNaturalLanguageString(
-            string: &NSString,
-        ) -> Option<Id<Object, Shared>>;
+        pub unsafe fn dateWithNaturalLanguageString(string: &NSString) -> Option<Id<Object>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use NSDateFormatter instead"]
         #[method_id(@__retain_semantics Other dateWithString:)]
-        pub unsafe fn dateWithString(a_string: &NSString) -> Id<Object, Shared>;
+        pub unsafe fn dateWithString(a_string: &NSString) -> Id<Object>;
 
         #[cfg(all(
             feature = "Foundation_NSCalendarDate",
@@ -252,7 +246,7 @@ extern_methods!(
             &self,
             format: Option<&NSString>,
             a_time_zone: Option<&NSTimeZone>,
-        ) -> Id<NSCalendarDate, Shared>;
+        ) -> Id<NSCalendarDate>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSTimeZone"))]
         #[deprecated]
@@ -262,7 +256,7 @@ extern_methods!(
             format: Option<&NSString>,
             a_time_zone: Option<&NSTimeZone>,
             locale: Option<&Object>,
-        ) -> Option<Id<NSString, Shared>>;
+        ) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use NSDateFormatter instead"]
@@ -270,7 +264,7 @@ extern_methods!(
         pub unsafe fn initWithString(
             this: Option<Allocated<Self>>,
             description: &NSString,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
     }
 );
 
@@ -282,7 +276,7 @@ extern_methods!(
         pub unsafe fn initWithTimeIntervalSinceReferenceDate(
             this: Option<Allocated<Self>>,
             ti: NSTimeInterval,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );
 
@@ -293,42 +287,40 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSCalendarDate")]
     unsafe impl NSCalendarDate {
         #[method_id(@__retain_semantics Other date)]
-        pub unsafe fn date() -> Id<Self, Shared>;
+        pub unsafe fn date() -> Id<Self>;
 
         #[method_id(@__retain_semantics Other dateWithTimeIntervalSinceNow:)]
-        pub unsafe fn dateWithTimeIntervalSinceNow(secs: NSTimeInterval) -> Id<Self, Shared>;
+        pub unsafe fn dateWithTimeIntervalSinceNow(secs: NSTimeInterval) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other dateWithTimeIntervalSinceReferenceDate:)]
-        pub unsafe fn dateWithTimeIntervalSinceReferenceDate(
-            ti: NSTimeInterval,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn dateWithTimeIntervalSinceReferenceDate(ti: NSTimeInterval) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other dateWithTimeIntervalSince1970:)]
-        pub unsafe fn dateWithTimeIntervalSince1970(secs: NSTimeInterval) -> Id<Self, Shared>;
+        pub unsafe fn dateWithTimeIntervalSince1970(secs: NSTimeInterval) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other dateWithTimeInterval:sinceDate:)]
         pub unsafe fn dateWithTimeInterval_sinceDate(
             secs_to_be_added: NSTimeInterval,
             date: &NSDate,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithTimeIntervalSinceNow:)]
         pub unsafe fn initWithTimeIntervalSinceNow(
             this: Option<Allocated<Self>>,
             secs: NSTimeInterval,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithTimeIntervalSince1970:)]
         pub unsafe fn initWithTimeIntervalSince1970(
             this: Option<Allocated<Self>>,
             secs: NSTimeInterval,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithTimeInterval:sinceDate:)]
         pub unsafe fn initWithTimeInterval_sinceDate(
             this: Option<Allocated<Self>>,
             secs_to_be_added: NSTimeInterval,
             date: &NSDate,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

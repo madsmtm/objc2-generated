@@ -74,14 +74,14 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKShareParticipant")]
     unsafe impl CKShareParticipant {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
 
         #[cfg(feature = "CloudKit_CKUserIdentity")]
         #[method_id(@__retain_semantics Other userIdentity)]
-        pub unsafe fn userIdentity(&self) -> Id<CKUserIdentity, Shared>;
+        pub unsafe fn userIdentity(&self) -> Id<CKUserIdentity>;
 
         #[method(role)]
         pub unsafe fn role(&self) -> CKShareParticipantRole;

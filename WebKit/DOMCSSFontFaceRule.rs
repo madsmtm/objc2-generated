@@ -26,6 +26,6 @@ extern_methods!(
     unsafe impl DOMCSSFontFaceRule {
         #[cfg(feature = "WebKit_DOMCSSStyleDeclaration")]
         #[method_id(@__retain_semantics Other style)]
-        pub unsafe fn style(&self) -> Option<Id<DOMCSSStyleDeclaration, Shared>>;
+        pub unsafe fn style(&self) -> Option<Id<DOMCSSStyleDeclaration>>;
     }
 );

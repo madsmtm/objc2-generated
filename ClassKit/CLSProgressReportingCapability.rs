@@ -44,7 +44,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other details)]
-        pub unsafe fn details(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn details(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithKind:details:)]
@@ -52,6 +52,6 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             kind: CLSProgressReportingCapabilityKind,
             details: Option<&NSString>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

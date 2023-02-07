@@ -23,12 +23,12 @@ extern_methods!(
     unsafe impl MTLComputePipelineReflection {
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other bindings)]
-        pub unsafe fn bindings(&self) -> Id<NSArray<ProtocolObject<dyn MTLBinding>>, Shared>;
+        pub unsafe fn bindings(&self) -> Id<NSArray<ProtocolObject<dyn MTLBinding>>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLArgument"))]
         #[deprecated]
         #[method_id(@__retain_semantics Other arguments)]
-        pub fn arguments(&self) -> Id<NSArray<MTLArgument>, Shared>;
+        pub fn arguments(&self) -> Id<NSArray<MTLArgument>>;
     }
 );
 
@@ -51,14 +51,14 @@ extern_methods!(
     unsafe impl MTLComputePipelineDescriptor {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
-        pub fn label(&self) -> Option<Id<NSString, Shared>>;
+        pub fn label(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:)]
         pub fn setLabel(&self, label: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other computeFunction)]
-        pub fn computeFunction(&self) -> Option<Id<ProtocolObject<dyn MTLFunction>, Shared>>;
+        pub fn computeFunction(&self) -> Option<Id<ProtocolObject<dyn MTLFunction>>>;
 
         #[method(setComputeFunction:)]
         pub fn setComputeFunction(
@@ -86,7 +86,7 @@ extern_methods!(
 
         #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
         #[method_id(@__retain_semantics Other stageInputDescriptor)]
-        pub fn stageInputDescriptor(&self) -> Option<Id<MTLStageInputOutputDescriptor, Shared>>;
+        pub fn stageInputDescriptor(&self) -> Option<Id<MTLStageInputOutputDescriptor>>;
 
         #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
         #[method(setStageInputDescriptor:)]
@@ -97,7 +97,7 @@ extern_methods!(
 
         #[cfg(feature = "Metal_MTLPipelineBufferDescriptorArray")]
         #[method_id(@__retain_semantics Other buffers)]
-        pub fn buffers(&self) -> Id<MTLPipelineBufferDescriptorArray, Shared>;
+        pub fn buffers(&self) -> Id<MTLPipelineBufferDescriptorArray>;
 
         #[method(supportIndirectCommandBuffers)]
         pub fn supportIndirectCommandBuffers(&self) -> bool;
@@ -108,9 +108,8 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSArray")]
         #[deprecated]
         #[method_id(@__retain_semantics Other insertLibraries)]
-        pub fn insertLibraries(
-            &self,
-        ) -> Option<Id<NSArray<ProtocolObject<dyn MTLDynamicLibrary>>, Shared>>;
+        pub fn insertLibraries(&self)
+            -> Option<Id<NSArray<ProtocolObject<dyn MTLDynamicLibrary>>>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[deprecated]
@@ -122,9 +121,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other preloadedLibraries)]
-        pub fn preloadedLibraries(
-            &self,
-        ) -> Id<NSArray<ProtocolObject<dyn MTLDynamicLibrary>>, Shared>;
+        pub fn preloadedLibraries(&self) -> Id<NSArray<ProtocolObject<dyn MTLDynamicLibrary>>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setPreloadedLibraries:)]
@@ -135,9 +132,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other binaryArchives)]
-        pub fn binaryArchives(
-            &self,
-        ) -> Option<Id<NSArray<ProtocolObject<dyn MTLBinaryArchive>>, Shared>>;
+        pub fn binaryArchives(&self) -> Option<Id<NSArray<ProtocolObject<dyn MTLBinaryArchive>>>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setBinaryArchives:)]
@@ -151,7 +146,7 @@ extern_methods!(
 
         #[cfg(feature = "Metal_MTLLinkedFunctions")]
         #[method_id(@__retain_semantics Other linkedFunctions)]
-        pub fn linkedFunctions(&self) -> Option<Id<MTLLinkedFunctions, Shared>>;
+        pub fn linkedFunctions(&self) -> Option<Id<MTLLinkedFunctions>>;
 
         #[cfg(feature = "Metal_MTLLinkedFunctions")]
         #[method(setLinkedFunctions:)]
@@ -175,10 +170,10 @@ extern_protocol!(
     pub unsafe trait MTLComputePipelineState: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
-        fn label(&self) -> Option<Id<NSString, Shared>>;
+        fn label(&self) -> Option<Id<NSString>>;
 
         #[method_id(@__retain_semantics Other device)]
-        fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>, Shared>;
+        fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
 
         #[method(maxTotalThreadsPerThreadgroup)]
         fn maxTotalThreadsPerThreadgroup(&self) -> NSUInteger;
@@ -205,28 +200,28 @@ extern_protocol!(
         fn functionHandleWithFunction(
             &self,
             function: &ProtocolObject<dyn MTLFunction>,
-        ) -> Option<Id<ProtocolObject<dyn MTLFunctionHandle>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLFunctionHandle>>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSError"))]
         #[method_id(@__retain_semantics New newComputePipelineStateWithAdditionalBinaryFunctions:error:_)]
         fn newComputePipelineStateWithAdditionalBinaryFunctions_error(
             &self,
             functions: &NSArray<ProtocolObject<dyn MTLFunction>>,
-        ) -> Result<Id<ProtocolObject<dyn MTLComputePipelineState>, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<ProtocolObject<dyn MTLComputePipelineState>>, Id<NSError>>;
 
         #[cfg(feature = "Metal_MTLVisibleFunctionTableDescriptor")]
         #[method_id(@__retain_semantics New newVisibleFunctionTableWithDescriptor:)]
         fn newVisibleFunctionTableWithDescriptor(
             &self,
             descriptor: &MTLVisibleFunctionTableDescriptor,
-        ) -> Option<Id<ProtocolObject<dyn MTLVisibleFunctionTable>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLVisibleFunctionTable>>>;
 
         #[cfg(feature = "Metal_MTLIntersectionFunctionTableDescriptor")]
         #[method_id(@__retain_semantics New newIntersectionFunctionTableWithDescriptor:)]
         fn newIntersectionFunctionTableWithDescriptor(
             &self,
             descriptor: &MTLIntersectionFunctionTableDescriptor,
-        ) -> Option<Id<ProtocolObject<dyn MTLIntersectionFunctionTable>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLIntersectionFunctionTable>>>;
     }
 
     unsafe impl ProtocolType for dyn MTLComputePipelineState {}

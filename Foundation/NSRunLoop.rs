@@ -25,13 +25,13 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSRunLoop")]
     unsafe impl NSRunLoop {
         #[method_id(@__retain_semantics Other currentRunLoop)]
-        pub unsafe fn currentRunLoop() -> Id<NSRunLoop, Shared>;
+        pub unsafe fn currentRunLoop() -> Id<NSRunLoop>;
 
         #[method_id(@__retain_semantics Other mainRunLoop)]
-        pub unsafe fn mainRunLoop() -> Id<NSRunLoop, Shared>;
+        pub unsafe fn mainRunLoop() -> Id<NSRunLoop>;
 
         #[method_id(@__retain_semantics Other currentMode)]
-        pub unsafe fn currentMode(&self) -> Option<Id<NSRunLoopMode, Shared>>;
+        pub unsafe fn currentMode(&self) -> Option<Id<NSRunLoopMode>>;
 
         #[cfg(feature = "Foundation_NSTimer")]
         #[method(addTimer:forMode:)]
@@ -47,7 +47,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other limitDateForMode:)]
-        pub unsafe fn limitDateForMode(&self, mode: &NSRunLoopMode) -> Option<Id<NSDate, Shared>>;
+        pub unsafe fn limitDateForMode(&self, mode: &NSRunLoopMode) -> Option<Id<NSDate>>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method(acceptInputForMode:beforeDate:)]

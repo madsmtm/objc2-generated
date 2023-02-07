@@ -28,7 +28,7 @@ extern_methods!(
             request: &NSURLRequest,
             delegate: Option<&Object>,
             start_immediately: bool,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSURLRequest")]
         #[deprecated = "Use NSURLSession (see NSURLSession.h)"]
@@ -37,7 +37,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             request: &NSURLRequest,
             delegate: Option<&Object>,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSURLRequest")]
         #[deprecated = "Use NSURLSession (see NSURLSession.h)"]
@@ -45,15 +45,15 @@ extern_methods!(
         pub unsafe fn connectionWithRequest_delegate(
             request: &NSURLRequest,
             delegate: Option<&Object>,
-        ) -> Option<Id<NSURLConnection, Shared>>;
+        ) -> Option<Id<NSURLConnection>>;
 
         #[cfg(feature = "Foundation_NSURLRequest")]
         #[method_id(@__retain_semantics Other originalRequest)]
-        pub unsafe fn originalRequest(&self) -> Id<NSURLRequest, Shared>;
+        pub unsafe fn originalRequest(&self) -> Id<NSURLRequest>;
 
         #[cfg(feature = "Foundation_NSURLRequest")]
         #[method_id(@__retain_semantics Other currentRequest)]
-        pub unsafe fn currentRequest(&self) -> Id<NSURLRequest, Shared>;
+        pub unsafe fn currentRequest(&self) -> Id<NSURLRequest>;
 
         #[method(start)]
         pub unsafe fn start(&self);
@@ -169,7 +169,7 @@ extern_protocol!(
             connection: &NSURLConnection,
             request: &NSURLRequest,
             response: Option<&NSURLResponse>,
-        ) -> Option<Id<NSURLRequest, Shared>>;
+        ) -> Option<Id<NSURLRequest>>;
 
         #[cfg(all(
             feature = "Foundation_NSURLConnection",
@@ -199,7 +199,7 @@ extern_protocol!(
             &self,
             connection: &NSURLConnection,
             request: &NSURLRequest,
-        ) -> Option<Id<NSInputStream, Shared>>;
+        ) -> Option<Id<NSInputStream>>;
 
         #[cfg(feature = "Foundation_NSURLConnection")]
         #[optional]
@@ -222,7 +222,7 @@ extern_protocol!(
             &self,
             connection: &NSURLConnection,
             cached_response: &NSCachedURLResponse,
-        ) -> Option<Id<NSCachedURLResponse, Shared>>;
+        ) -> Option<Id<NSCachedURLResponse>>;
 
         #[cfg(feature = "Foundation_NSURLConnection")]
         #[optional]
@@ -282,8 +282,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Other sendSynchronousRequest:returningResponse:error:_)]
         pub unsafe fn sendSynchronousRequest_returningResponse_error(
             request: &NSURLRequest,
-            response: Option<&mut Option<Id<NSURLResponse, Shared>>>,
-        ) -> Result<Id<NSData, Shared>, Id<NSError, Shared>>;
+            response: Option<&mut Option<Id<NSURLResponse>>>,
+        ) -> Result<Id<NSData>, Id<NSError>>;
     }
 );
 

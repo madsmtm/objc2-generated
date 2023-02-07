@@ -9,62 +9,60 @@ extern_methods!(
     unsafe impl NSString {
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other pathWithComponents:)]
-        pub unsafe fn pathWithComponents(components: &NSArray<NSString>) -> Id<NSString, Shared>;
+        pub unsafe fn pathWithComponents(components: &NSArray<NSString>) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other pathComponents)]
-        pub unsafe fn pathComponents(&self) -> Id<NSArray<NSString>, Shared>;
+        pub unsafe fn pathComponents(&self) -> Id<NSArray<NSString>>;
 
         #[method(isAbsolutePath)]
         pub unsafe fn isAbsolutePath(&self) -> bool;
 
         #[method_id(@__retain_semantics Other lastPathComponent)]
-        pub unsafe fn lastPathComponent(&self) -> Id<NSString, Shared>;
+        pub unsafe fn lastPathComponent(&self) -> Id<NSString>;
 
         #[method_id(@__retain_semantics Other stringByDeletingLastPathComponent)]
-        pub unsafe fn stringByDeletingLastPathComponent(&self) -> Id<NSString, Shared>;
+        pub unsafe fn stringByDeletingLastPathComponent(&self) -> Id<NSString>;
 
         #[method_id(@__retain_semantics Other stringByAppendingPathComponent:)]
-        pub fn stringByAppendingPathComponent(&self, str: &NSString) -> Id<NSString, Shared>;
+        pub fn stringByAppendingPathComponent(&self, str: &NSString) -> Id<NSString>;
 
         #[method_id(@__retain_semantics Other pathExtension)]
-        pub unsafe fn pathExtension(&self) -> Id<NSString, Shared>;
+        pub unsafe fn pathExtension(&self) -> Id<NSString>;
 
         #[method_id(@__retain_semantics Other stringByDeletingPathExtension)]
-        pub unsafe fn stringByDeletingPathExtension(&self) -> Id<NSString, Shared>;
+        pub unsafe fn stringByDeletingPathExtension(&self) -> Id<NSString>;
 
         #[method_id(@__retain_semantics Other stringByAppendingPathExtension:)]
-        pub unsafe fn stringByAppendingPathExtension(
-            &self,
-            str: &NSString,
-        ) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn stringByAppendingPathExtension(&self, str: &NSString)
+            -> Option<Id<NSString>>;
 
         #[method_id(@__retain_semantics Other stringByAbbreviatingWithTildeInPath)]
-        pub unsafe fn stringByAbbreviatingWithTildeInPath(&self) -> Id<NSString, Shared>;
+        pub unsafe fn stringByAbbreviatingWithTildeInPath(&self) -> Id<NSString>;
 
         #[method_id(@__retain_semantics Other stringByExpandingTildeInPath)]
-        pub unsafe fn stringByExpandingTildeInPath(&self) -> Id<NSString, Shared>;
+        pub unsafe fn stringByExpandingTildeInPath(&self) -> Id<NSString>;
 
         #[method_id(@__retain_semantics Other stringByStandardizingPath)]
-        pub unsafe fn stringByStandardizingPath(&self) -> Id<NSString, Shared>;
+        pub unsafe fn stringByStandardizingPath(&self) -> Id<NSString>;
 
         #[method_id(@__retain_semantics Other stringByResolvingSymlinksInPath)]
-        pub unsafe fn stringByResolvingSymlinksInPath(&self) -> Id<NSString, Shared>;
+        pub unsafe fn stringByResolvingSymlinksInPath(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other stringsByAppendingPaths:)]
         pub unsafe fn stringsByAppendingPaths(
             &self,
             paths: &NSArray<NSString>,
-        ) -> Id<NSArray<NSString>, Shared>;
+        ) -> Id<NSArray<NSString>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(completePathIntoString:caseSensitive:matchesIntoArray:filterTypes:)]
         pub unsafe fn completePathIntoString_caseSensitive_matchesIntoArray_filterTypes(
             &self,
-            output_name: Option<&mut Option<Id<NSString, Shared>>>,
+            output_name: Option<&mut Option<Id<NSString>>>,
             flag: bool,
-            output_array: Option<&mut Option<Id<NSArray<NSString>, Shared>>>,
+            output_array: Option<&mut Option<Id<NSArray<NSString>>>>,
             filter_types: Option<&NSArray<NSString>>,
         ) -> NSUInteger;
 
@@ -91,7 +89,7 @@ extern_methods!(
         pub unsafe fn pathsMatchingExtensions(
             &self,
             filter_types: &NSArray<NSString>,
-        ) -> Id<NSArray<NSString>, Shared>;
+        ) -> Id<NSArray<NSString>>;
     }
 );
 

@@ -34,7 +34,7 @@ extern_methods!(
         pub unsafe fn initWithLeaderboardIdentifier(
             this: Option<Allocated<Self>>,
             identifier: &NSString,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "GameKit_GKPlayer"))]
         #[method_id(@__retain_semantics Init initWithLeaderboardIdentifier:player:)]
@@ -42,7 +42,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             identifier: &NSString,
             player: &GKPlayer,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(value)]
         pub unsafe fn value(&self) -> i64;
@@ -52,11 +52,11 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other formattedValue)]
-        pub unsafe fn formattedValue(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn formattedValue(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other leaderboardIdentifier)]
-        pub unsafe fn leaderboardIdentifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn leaderboardIdentifier(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLeaderboardIdentifier:)]
@@ -70,11 +70,11 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other date)]
-        pub unsafe fn date(&self) -> Id<NSDate, Shared>;
+        pub unsafe fn date(&self) -> Id<NSDate>;
 
         #[cfg(feature = "GameKit_GKPlayer")]
         #[method_id(@__retain_semantics Other player)]
-        pub unsafe fn player(&self) -> Option<Id<GKPlayer, Shared>>;
+        pub unsafe fn player(&self) -> Option<Id<GKPlayer>>;
 
         #[method(rank)]
         pub unsafe fn rank(&self) -> NSInteger;
@@ -112,12 +112,12 @@ extern_methods!(
         pub unsafe fn initWithCategory(
             this: Option<Allocated<Self>>,
             category: Option<&NSString>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use leaderboardIdentifier instead"]
         #[method_id(@__retain_semantics Other category)]
-        pub unsafe fn category(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn category(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use leaderboardIdentifier instead"]
@@ -136,11 +136,11 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             identifier: &NSString,
             player_id: &NSString,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "use player instead"]
         #[method_id(@__retain_semantics Other playerID)]
-        pub unsafe fn playerID(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn playerID(&self) -> Option<Id<NSString>>;
     }
 );

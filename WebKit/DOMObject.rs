@@ -27,7 +27,7 @@ extern_methods!(
     #[cfg(feature = "WebKit_DOMObject")]
     unsafe impl DOMObject {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Option<Id<Self, Shared>>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Option<Id<Self>>;
     }
 );
 
@@ -37,6 +37,6 @@ extern_methods!(
     unsafe impl DOMObject {
         #[cfg(feature = "WebKit_DOMStyleSheet")]
         #[method_id(@__retain_semantics Other sheet)]
-        pub unsafe fn sheet(&self) -> Option<Id<DOMStyleSheet, Shared>>;
+        pub unsafe fn sheet(&self) -> Option<Id<DOMStyleSheet>>;
     }
 );

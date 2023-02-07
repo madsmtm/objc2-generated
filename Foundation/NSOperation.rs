@@ -66,7 +66,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other dependencies)]
-        pub unsafe fn dependencies(&self) -> Id<NSArray<NSOperation>, Shared>;
+        pub unsafe fn dependencies(&self) -> Id<NSArray<NSOperation>>;
 
         #[method(queuePriority)]
         pub unsafe fn queuePriority(&self) -> NSOperationQueuePriority;
@@ -99,7 +99,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn name(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]
@@ -126,7 +126,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSBlockOperation")]
     unsafe impl NSBlockOperation {
         #[method_id(@__retain_semantics Other blockOperationWithBlock:)]
-        pub unsafe fn blockOperationWithBlock(block: &Block<(), ()>) -> Id<Self, Shared>;
+        pub unsafe fn blockOperationWithBlock(block: &Block<(), ()>) -> Id<Self>;
 
         #[method(addExecutionBlock:)]
         pub unsafe fn addExecutionBlock(&self, block: &Block<(), ()>);
@@ -157,21 +157,21 @@ extern_methods!(
             target: &Object,
             sel: Sel,
             arg: Option<&Object>,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSInvocation")]
         #[method_id(@__retain_semantics Init initWithInvocation:)]
         pub unsafe fn initWithInvocation(
             this: Option<Allocated<Self>>,
             inv: &NSInvocation,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSInvocation")]
         #[method_id(@__retain_semantics Other invocation)]
-        pub unsafe fn invocation(&self) -> Id<NSInvocation, Shared>;
+        pub unsafe fn invocation(&self) -> Id<NSInvocation>;
 
         #[method_id(@__retain_semantics Other result)]
-        pub unsafe fn result(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn result(&self) -> Option<Id<Object>>;
     }
 );
 
@@ -203,7 +203,7 @@ extern_methods!(
     unsafe impl NSOperationQueue {
         #[cfg(feature = "Foundation_NSProgress")]
         #[method_id(@__retain_semantics Other progress)]
-        pub unsafe fn progress(&self) -> Id<NSProgress, Shared>;
+        pub unsafe fn progress(&self) -> Id<NSProgress>;
 
         #[cfg(feature = "Foundation_NSOperation")]
         #[method(addOperation:)]
@@ -240,7 +240,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn name(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]
@@ -259,10 +259,10 @@ extern_methods!(
         pub unsafe fn waitUntilAllOperationsAreFinished(&self);
 
         #[method_id(@__retain_semantics Other currentQueue)]
-        pub unsafe fn currentQueue() -> Option<Id<NSOperationQueue, Shared>>;
+        pub unsafe fn currentQueue() -> Option<Id<NSOperationQueue>>;
 
         #[method_id(@__retain_semantics Other mainQueue)]
-        pub unsafe fn mainQueue() -> Id<NSOperationQueue, Shared>;
+        pub unsafe fn mainQueue() -> Id<NSOperationQueue>;
     }
 );
 
@@ -273,7 +273,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSOperation"))]
         #[deprecated = "access to operations is inherently a race condition, it should not be used. For barrier style behaviors please use addBarrierBlock: instead"]
         #[method_id(@__retain_semantics Other operations)]
-        pub unsafe fn operations(&self) -> Id<NSArray<NSOperation>, Shared>;
+        pub unsafe fn operations(&self) -> Id<NSArray<NSOperation>>;
 
         #[deprecated]
         #[method(operationCount)]

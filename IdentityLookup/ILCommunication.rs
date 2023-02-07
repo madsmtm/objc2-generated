@@ -29,16 +29,16 @@ extern_methods!(
     unsafe impl ILCommunication {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other sender)]
-        pub unsafe fn sender(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn sender(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other dateReceived)]
-        pub unsafe fn dateReceived(&self) -> Id<NSDate, Shared>;
+        pub unsafe fn dateReceived(&self) -> Id<NSDate>;
 
         #[method(isEqualToCommunication:)]
         pub unsafe fn isEqualToCommunication(&self, communication: &ILCommunication) -> bool;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }
 );

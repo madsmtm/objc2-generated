@@ -26,7 +26,7 @@ extern_methods!(
     unsafe impl GCGamepadSnapshot {
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other snapshotData)]
-        pub unsafe fn snapshotData(&self) -> Id<NSData, Shared>;
+        pub unsafe fn snapshotData(&self) -> Id<NSData>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method(setSnapshotData:)]
@@ -37,7 +37,7 @@ extern_methods!(
         pub unsafe fn initWithSnapshotData(
             this: Option<Allocated<Self>>,
             data: &NSData,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "GameController_GCController"))]
         #[method_id(@__retain_semantics Init initWithController:snapshotData:)]
@@ -45,7 +45,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             controller: &GCController,
             data: &NSData,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );
 

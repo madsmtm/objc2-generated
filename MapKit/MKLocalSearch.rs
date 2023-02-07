@@ -32,14 +32,14 @@ extern_methods!(
         pub unsafe fn initWithRequest(
             this: Option<Allocated<Self>>,
             request: &MKLocalSearchRequest,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "MapKit_MKLocalPointsOfInterestRequest")]
         #[method_id(@__retain_semantics Init initWithPointsOfInterestRequest:)]
         pub unsafe fn initWithPointsOfInterestRequest(
             this: Option<Allocated<Self>>,
             request: &MKLocalPointsOfInterestRequest,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(startWithCompletionHandler:)]
         pub unsafe fn startWithCompletionHandler(

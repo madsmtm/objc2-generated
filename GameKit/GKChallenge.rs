@@ -49,26 +49,26 @@ extern_methods!(
 
         #[cfg(feature = "GameKit_GKPlayer")]
         #[method_id(@__retain_semantics Other issuingPlayer)]
-        pub unsafe fn issuingPlayer(&self) -> Option<Id<GKPlayer, Shared>>;
+        pub unsafe fn issuingPlayer(&self) -> Option<Id<GKPlayer>>;
 
         #[cfg(feature = "GameKit_GKPlayer")]
         #[method_id(@__retain_semantics Other receivingPlayer)]
-        pub unsafe fn receivingPlayer(&self) -> Option<Id<GKPlayer, Shared>>;
+        pub unsafe fn receivingPlayer(&self) -> Option<Id<GKPlayer>>;
 
         #[method(state)]
         pub unsafe fn state(&self) -> GKChallengeState;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other issueDate)]
-        pub unsafe fn issueDate(&self) -> Id<NSDate, Shared>;
+        pub unsafe fn issueDate(&self) -> Id<NSDate>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other completionDate)]
-        pub unsafe fn completionDate(&self) -> Option<Id<NSDate, Shared>>;
+        pub unsafe fn completionDate(&self) -> Option<Id<NSDate>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other message)]
-        pub unsafe fn message(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn message(&self) -> Option<Id<NSString>>;
     }
 );
 
@@ -79,12 +79,12 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = " This property is obsolete, Use issuingPlayer instead"]
         #[method_id(@__retain_semantics Other issuingPlayerID)]
-        pub unsafe fn issuingPlayerID(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn issuingPlayerID(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = " This property is obsolete, Use receivingPlayer instead"]
         #[method_id(@__retain_semantics Other receivingPlayerID)]
-        pub unsafe fn receivingPlayerID(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn receivingPlayerID(&self) -> Option<Id<NSString>>;
     }
 );
 
@@ -114,7 +114,7 @@ extern_methods!(
     unsafe impl GKScoreChallenge {
         #[cfg(feature = "GameKit_GKScore")]
         #[method_id(@__retain_semantics Other score)]
-        pub unsafe fn score(&self) -> Option<Id<GKScore, Shared>>;
+        pub unsafe fn score(&self) -> Option<Id<GKScore>>;
     }
 );
 
@@ -144,7 +144,7 @@ extern_methods!(
     unsafe impl GKAchievementChallenge {
         #[cfg(feature = "GameKit_GKAchievement")]
         #[method_id(@__retain_semantics Other achievement)]
-        pub unsafe fn achievement(&self) -> Option<Id<GKAchievement, Shared>>;
+        pub unsafe fn achievement(&self) -> Option<Id<GKAchievement>>;
     }
 );
 
@@ -272,7 +272,7 @@ extern_methods!(
             message: Option<&NSString>,
             players: Option<&NSArray<GKPlayer>>,
             completion_handler: GKChallengeComposeCompletionBlock,
-        ) -> Id<NSViewController, Shared>;
+        ) -> Id<NSViewController>;
     }
 );
 
@@ -292,7 +292,7 @@ extern_methods!(
             message: Option<&NSString>,
             players: Option<&NSArray<GKPlayer>>,
             completion_handler: GKChallengeComposeCompletionBlock,
-        ) -> Id<NSViewController, Shared>;
+        ) -> Id<NSViewController>;
     }
 );
 
@@ -312,7 +312,7 @@ extern_methods!(
             message: Option<&NSString>,
             players: &NSArray<GKPlayer>,
             completion_handler: GKChallengeComposeCompletionBlock,
-        ) -> Id<NSViewController, Shared>;
+        ) -> Id<NSViewController>;
     }
 );
 

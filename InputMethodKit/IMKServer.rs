@@ -28,7 +28,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             name: Option<&NSString>,
             bundle_identifier: Option<&NSString>,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithName:controllerClass:delegateClass:)]
@@ -37,11 +37,11 @@ extern_methods!(
             name: Option<&NSString>,
             controller_class_id: Option<&Class>,
             delegate_class_id: Option<&Class>,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSBundle")]
         #[method_id(@__retain_semantics Other bundle)]
-        pub unsafe fn bundle(&self) -> Option<Id<NSBundle, Shared>>;
+        pub unsafe fn bundle(&self) -> Option<Id<NSBundle>>;
 
         #[method(paletteWillTerminate)]
         pub unsafe fn paletteWillTerminate(&self) -> bool;

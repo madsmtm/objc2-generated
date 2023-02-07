@@ -34,11 +34,11 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             name: &NSString,
             elements: Option<&NSArray<NSFetchIndexElementDescription>>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString, Shared>;
+        pub unsafe fn name(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]
@@ -49,7 +49,7 @@ extern_methods!(
             feature = "Foundation_NSArray"
         ))]
         #[method_id(@__retain_semantics Other elements)]
-        pub unsafe fn elements(&self) -> Id<NSArray<NSFetchIndexElementDescription>, Shared>;
+        pub unsafe fn elements(&self) -> Id<NSArray<NSFetchIndexElementDescription>>;
 
         #[cfg(all(
             feature = "CoreData_NSFetchIndexElementDescription",
@@ -60,11 +60,11 @@ extern_methods!(
 
         #[cfg(feature = "CoreData_NSEntityDescription")]
         #[method_id(@__retain_semantics Other entity)]
-        pub unsafe fn entity(&self) -> Option<Id<NSEntityDescription, Shared>>;
+        pub unsafe fn entity(&self) -> Option<Id<NSEntityDescription>>;
 
         #[cfg(feature = "Foundation_NSPredicate")]
         #[method_id(@__retain_semantics Other partialIndexPredicate)]
-        pub unsafe fn partialIndexPredicate(&self) -> Option<Id<NSPredicate, Shared>>;
+        pub unsafe fn partialIndexPredicate(&self) -> Option<Id<NSPredicate>>;
 
         #[cfg(feature = "Foundation_NSPredicate")]
         #[method(setPartialIndexPredicate:)]

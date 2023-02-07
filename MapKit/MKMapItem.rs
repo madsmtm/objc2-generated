@@ -26,14 +26,14 @@ extern_methods!(
     unsafe impl MKMapItem {
         #[cfg(feature = "MapKit_MKPlacemark")]
         #[method_id(@__retain_semantics Other placemark)]
-        pub unsafe fn placemark(&self) -> Id<MKPlacemark, Shared>;
+        pub unsafe fn placemark(&self) -> Id<MKPlacemark>;
 
         #[method(isCurrentLocation)]
         pub unsafe fn isCurrentLocation(&self) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn name(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]
@@ -41,7 +41,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other phoneNumber)]
-        pub unsafe fn phoneNumber(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn phoneNumber(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setPhoneNumber:)]
@@ -49,7 +49,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other url)]
-        pub unsafe fn url(&self) -> Option<Id<NSURL, Shared>>;
+        pub unsafe fn url(&self) -> Option<Id<NSURL>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method(setUrl:)]
@@ -57,16 +57,14 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSTimeZone")]
         #[method_id(@__retain_semantics Other timeZone)]
-        pub unsafe fn timeZone(&self) -> Option<Id<NSTimeZone, Shared>>;
+        pub unsafe fn timeZone(&self) -> Option<Id<NSTimeZone>>;
 
         #[cfg(feature = "Foundation_NSTimeZone")]
         #[method(setTimeZone:)]
         pub unsafe fn setTimeZone(&self, time_zone: Option<&NSTimeZone>);
 
         #[method_id(@__retain_semantics Other pointOfInterestCategory)]
-        pub unsafe fn pointOfInterestCategory(
-            &self,
-        ) -> Option<Id<MKPointOfInterestCategory, Shared>>;
+        pub unsafe fn pointOfInterestCategory(&self) -> Option<Id<MKPointOfInterestCategory>>;
 
         #[method(setPointOfInterestCategory:)]
         pub unsafe fn setPointOfInterestCategory(
@@ -75,14 +73,14 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other mapItemForCurrentLocation)]
-        pub unsafe fn mapItemForCurrentLocation() -> Id<MKMapItem, Shared>;
+        pub unsafe fn mapItemForCurrentLocation() -> Id<MKMapItem>;
 
         #[cfg(feature = "MapKit_MKPlacemark")]
         #[method_id(@__retain_semantics Init initWithPlacemark:)]
         pub unsafe fn initWithPlacemark(
             this: Option<Allocated<Self>>,
             placemark: &MKPlacemark,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(openInMapsWithLaunchOptions:)]

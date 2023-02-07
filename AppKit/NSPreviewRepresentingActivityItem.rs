@@ -8,22 +8,22 @@ use crate::Foundation::*;
 extern_protocol!(
     pub unsafe trait NSPreviewRepresentableActivityItem: NSObjectProtocol {
         #[method_id(@__retain_semantics Other item)]
-        unsafe fn item(&self) -> Id<Object, Shared>;
+        unsafe fn item(&self) -> Id<Object>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[optional]
         #[method_id(@__retain_semantics Other title)]
-        unsafe fn title(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn title(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSItemProvider")]
         #[optional]
         #[method_id(@__retain_semantics Other imageProvider)]
-        unsafe fn imageProvider(&self) -> Option<Id<NSItemProvider, Shared>>;
+        unsafe fn imageProvider(&self) -> Option<Id<NSItemProvider>>;
 
         #[cfg(feature = "Foundation_NSItemProvider")]
         #[optional]
         #[method_id(@__retain_semantics Other iconProvider)]
-        unsafe fn iconProvider(&self) -> Option<Id<NSItemProvider, Shared>>;
+        unsafe fn iconProvider(&self) -> Option<Id<NSItemProvider>>;
     }
 
     unsafe impl ProtocolType for dyn NSPreviewRepresentableActivityItem {}
@@ -57,7 +57,7 @@ extern_methods!(
             title: Option<&NSString>,
             image: Option<&NSImage>,
             icon: Option<&NSImage>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSItemProvider", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithItem:title:imageProvider:iconProvider:)]
@@ -67,12 +67,12 @@ extern_methods!(
             title: Option<&NSString>,
             image_provider: Option<&NSItemProvider>,
             icon_provider: Option<&NSItemProvider>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
     }
 );

@@ -35,11 +35,11 @@ extern_methods!(
 
         #[cfg(feature = "WebKit_DOMHTMLFormElement")]
         #[method_id(@__retain_semantics Other form)]
-        pub unsafe fn form(&self) -> Option<Id<DOMHTMLFormElement, Shared>>;
+        pub unsafe fn form(&self) -> Option<Id<DOMHTMLFormElement>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
-        pub unsafe fn label(&self) -> Id<NSString, Shared>;
+        pub unsafe fn label(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:)]
@@ -59,7 +59,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other value)]
-        pub unsafe fn value(&self) -> Id<NSString, Shared>;
+        pub unsafe fn value(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setValue:)]
@@ -67,7 +67,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other text)]
-        pub unsafe fn text(&self) -> Id<NSString, Shared>;
+        pub unsafe fn text(&self) -> Id<NSString>;
 
         #[method(index)]
         pub unsafe fn index(&self) -> c_int;

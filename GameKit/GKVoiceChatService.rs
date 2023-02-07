@@ -23,13 +23,13 @@ extern_methods!(
     #[cfg(feature = "GameKit_GKVoiceChatService")]
     unsafe impl GKVoiceChatService {
         #[method_id(@__retain_semantics Other defaultVoiceChatService)]
-        pub unsafe fn defaultVoiceChatService() -> Option<Id<GKVoiceChatService, Shared>>;
+        pub unsafe fn defaultVoiceChatService() -> Option<Id<GKVoiceChatService>>;
 
         #[method(isVoIPAllowed)]
         pub unsafe fn isVoIPAllowed() -> bool;
 
         #[method_id(@__retain_semantics Other client)]
-        pub unsafe fn client(&self) -> Option<Id<ProtocolObject<dyn GKVoiceChatClient>, Shared>>;
+        pub unsafe fn client(&self) -> Option<Id<ProtocolObject<dyn GKVoiceChatClient>>>;
 
         #[method(setClient:)]
         pub unsafe fn setClient(&self, client: Option<&ProtocolObject<dyn GKVoiceChatClient>>);

@@ -34,12 +34,12 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSPort")]
         #[method_id(@__retain_semantics Other decodePortObject)]
-        pub unsafe fn decodePortObject(&self) -> Option<Id<NSPort, Shared>>;
+        pub unsafe fn decodePortObject(&self) -> Option<Id<NSPort>>;
 
         #[cfg(feature = "Foundation_NSConnection")]
         #[deprecated]
         #[method_id(@__retain_semantics Other connection)]
-        pub unsafe fn connection(&self) -> Option<Id<NSConnection, Shared>>;
+        pub unsafe fn connection(&self) -> Option<Id<NSConnection>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSPort"))]
         #[deprecated]
@@ -48,7 +48,7 @@ extern_methods!(
             rcv_port: Option<&NSPort>,
             snd_port: Option<&NSPort>,
             comps: Option<&NSArray>,
-        ) -> Id<Object, Shared>;
+        ) -> Id<Object>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSPort"))]
         #[deprecated]
@@ -58,7 +58,7 @@ extern_methods!(
             rcv_port: Option<&NSPort>,
             snd_port: Option<&NSPort>,
             comps: Option<&NSArray>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[deprecated]
         #[method(dispatch)]

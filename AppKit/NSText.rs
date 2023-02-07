@@ -60,21 +60,18 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSText")]
     unsafe impl NSText {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frame_rect: NSRect,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other string)]
-        pub unsafe fn string(&self) -> Id<NSString, Shared>;
+        pub unsafe fn string(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setString:)]
@@ -94,11 +91,11 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other RTFFromRange:)]
-        pub unsafe fn RTFFromRange(&self, range: NSRange) -> Option<Id<NSData, Shared>>;
+        pub unsafe fn RTFFromRange(&self, range: NSRange) -> Option<Id<NSData>>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other RTFDFromRange:)]
-        pub unsafe fn RTFDFromRange(&self, range: NSRange) -> Option<Id<NSData, Shared>>;
+        pub unsafe fn RTFDFromRange(&self, range: NSRange) -> Option<Id<NSData>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(writeRTFDToFile:atomically:)]
@@ -109,7 +106,7 @@ extern_methods!(
         pub unsafe fn readRTFDFromFile(&self, path: &NSString) -> bool;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSTextDelegate>, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSTextDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSTextDelegate>>);
@@ -158,7 +155,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other backgroundColor)]
-        pub unsafe fn backgroundColor(&self) -> Option<Id<NSColor, Shared>>;
+        pub unsafe fn backgroundColor(&self) -> Option<Id<NSColor>>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setBackgroundColor:)]
@@ -178,7 +175,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSFont")]
         #[method_id(@__retain_semantics Other font)]
-        pub unsafe fn font(&self) -> Option<Id<NSFont, Shared>>;
+        pub unsafe fn font(&self) -> Option<Id<NSFont>>;
 
         #[cfg(feature = "AppKit_NSFont")]
         #[method(setFont:)]
@@ -186,7 +183,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other textColor)]
-        pub unsafe fn textColor(&self) -> Option<Id<NSColor, Shared>>;
+        pub unsafe fn textColor(&self) -> Option<Id<NSColor>>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setTextColor:)]

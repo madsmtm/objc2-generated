@@ -26,13 +26,13 @@ extern_methods!(
         pub unsafe fn initWithClient(
             this: Option<Allocated<Self>>,
             client: &ProtocolObject<dyn NSTextCheckingClient>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other client)]
-        pub unsafe fn client(&self) -> Id<ProtocolObject<dyn NSTextCheckingClient>, Shared>;
+        pub unsafe fn client(&self) -> Id<ProtocolObject<dyn NSTextCheckingClient>>;
 
         #[method(invalidate)]
         pub unsafe fn invalidate(&self);
@@ -84,7 +84,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other validAnnotations)]
-        pub unsafe fn validAnnotations(&self) -> Id<NSArray<NSAttributedStringKey>, Shared>;
+        pub unsafe fn validAnnotations(&self) -> Id<NSArray<NSAttributedStringKey>>;
 
         #[cfg(feature = "AppKit_NSMenu")]
         #[method_id(@__retain_semantics Other menuAtIndex:clickedOnSelection:effectiveRange:)]
@@ -93,7 +93,7 @@ extern_methods!(
             location: NSUInteger,
             clicked_on_selection: bool,
             effective_range: NSRangePointer,
-        ) -> Option<Id<NSMenu, Shared>>;
+        ) -> Option<Id<NSMenu>>;
 
         #[method(spellCheckerDocumentTag)]
         pub unsafe fn spellCheckerDocumentTag(&self) -> NSInteger;

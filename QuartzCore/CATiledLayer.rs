@@ -59,12 +59,9 @@ extern_methods!(
     #[cfg(feature = "CoreAnimation_CATiledLayer")]
     unsafe impl CATiledLayer {
         #[method_id(@__retain_semantics Other layer)]
-        pub unsafe fn layer() -> Id<Self, Shared>;
+        pub unsafe fn layer() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithLayer:)]
-        pub unsafe fn initWithLayer(
-            this: Option<Allocated<Self>>,
-            layer: &Object,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithLayer(this: Option<Allocated<Self>>, layer: &Object) -> Id<Self>;
     }
 );

@@ -37,7 +37,7 @@ extern_methods!(
         pub unsafe fn stringFromPostalAddress_style(
             postal_address: &CNPostalAddress,
             style: CNPostalAddressFormatterStyle,
-        ) -> Id<NSString, Shared>;
+        ) -> Id<NSString>;
 
         #[cfg(all(
             feature = "Contacts_CNPostalAddress",
@@ -49,7 +49,7 @@ extern_methods!(
             postal_address: &CNPostalAddress,
             style: CNPostalAddressFormatterStyle,
             attributes: &NSDictionary,
-        ) -> Id<NSAttributedString, Shared>;
+        ) -> Id<NSAttributedString>;
 
         #[method(style)]
         pub unsafe fn style(&self) -> CNPostalAddressFormatterStyle;
@@ -62,7 +62,7 @@ extern_methods!(
         pub unsafe fn stringFromPostalAddress(
             &self,
             postal_address: &CNPostalAddress,
-        ) -> Id<NSString, Shared>;
+        ) -> Id<NSString>;
 
         #[cfg(all(
             feature = "Contacts_CNPostalAddress",
@@ -74,7 +74,7 @@ extern_methods!(
             &self,
             postal_address: &CNPostalAddress,
             attributes: &NSDictionary,
-        ) -> Id<NSAttributedString, Shared>;
+        ) -> Id<NSAttributedString>;
     }
 );
 

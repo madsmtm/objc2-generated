@@ -29,11 +29,11 @@ extern_methods!(
     unsafe impl CNInstantMessageAddress {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other username)]
-        pub unsafe fn username(&self) -> Id<NSString, Shared>;
+        pub unsafe fn username(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other service)]
-        pub unsafe fn service(&self) -> Id<NSString, Shared>;
+        pub unsafe fn service(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithUsername:service:)]
@@ -41,15 +41,15 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             username: &NSString,
             service: &NSString,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedStringForKey:)]
-        pub unsafe fn localizedStringForKey(key: &NSString) -> Id<NSString, Shared>;
+        pub unsafe fn localizedStringForKey(key: &NSString) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedStringForService:)]
-        pub unsafe fn localizedStringForService(service: &NSString) -> Id<NSString, Shared>;
+        pub unsafe fn localizedStringForService(service: &NSString) -> Id<NSString>;
     }
 );
 

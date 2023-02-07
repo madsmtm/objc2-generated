@@ -29,7 +29,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSShadow")]
     unsafe impl NSShadow {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method(shadowOffset)]
         pub unsafe fn shadowOffset(&self) -> NSSize;
@@ -45,7 +45,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other shadowColor)]
-        pub unsafe fn shadowColor(&self) -> Option<Id<NSColor, Shared>>;
+        pub unsafe fn shadowColor(&self) -> Option<Id<NSColor>>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setShadowColor:)]

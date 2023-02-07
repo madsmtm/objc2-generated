@@ -35,32 +35,32 @@ extern_methods!(
     unsafe impl SKPaymentTransaction {
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other error)]
-        pub unsafe fn error(&self) -> Option<Id<NSError, Shared>>;
+        pub unsafe fn error(&self) -> Option<Id<NSError>>;
 
         #[method_id(@__retain_semantics Other originalTransaction)]
-        pub unsafe fn originalTransaction(&self) -> Option<Id<SKPaymentTransaction, Shared>>;
+        pub unsafe fn originalTransaction(&self) -> Option<Id<SKPaymentTransaction>>;
 
         #[cfg(feature = "StoreKit_SKPayment")]
         #[method_id(@__retain_semantics Other payment)]
-        pub unsafe fn payment(&self) -> Id<SKPayment, Shared>;
+        pub unsafe fn payment(&self) -> Id<SKPayment>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "StoreKit_SKDownload"))]
         #[deprecated = "Hosted content is no longer supported"]
         #[method_id(@__retain_semantics Other downloads)]
-        pub unsafe fn downloads(&self) -> Id<NSArray<SKDownload>, Shared>;
+        pub unsafe fn downloads(&self) -> Id<NSArray<SKDownload>>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other transactionDate)]
-        pub unsafe fn transactionDate(&self) -> Option<Id<NSDate, Shared>>;
+        pub unsafe fn transactionDate(&self) -> Option<Id<NSDate>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other transactionIdentifier)]
-        pub unsafe fn transactionIdentifier(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn transactionIdentifier(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[deprecated]
         #[method_id(@__retain_semantics Other transactionReceipt)]
-        pub unsafe fn transactionReceipt(&self) -> Option<Id<NSData, Shared>>;
+        pub unsafe fn transactionReceipt(&self) -> Option<Id<NSData>>;
 
         #[method(transactionState)]
         pub unsafe fn transactionState(&self) -> SKPaymentTransactionState;

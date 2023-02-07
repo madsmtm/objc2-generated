@@ -115,7 +115,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             is_software: bool,
             is_accessory: bool,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(isSimulatedBySoftware)]
         pub unsafe fn isSimulatedBySoftware(&self) -> bool;
@@ -153,7 +153,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             latitude: CLLocationDegrees,
             longitude: CLLocationDegrees,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Init initWithCoordinate:altitude:horizontalAccuracy:verticalAccuracy:timestamp:)]
@@ -164,7 +164,7 @@ extern_methods!(
             h_accuracy: CLLocationAccuracy,
             v_accuracy: CLLocationAccuracy,
             timestamp: &NSDate,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Init initWithCoordinate:altitude:horizontalAccuracy:verticalAccuracy:course:speed:timestamp:)]
@@ -177,7 +177,7 @@ extern_methods!(
             course: CLLocationDirection,
             speed: CLLocationSpeed,
             timestamp: &NSDate,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Init initWithCoordinate:altitude:horizontalAccuracy:verticalAccuracy:course:courseAccuracy:speed:speedAccuracy:timestamp:)]
@@ -192,7 +192,7 @@ extern_methods!(
             speed: CLLocationSpeed,
             speed_accuracy: CLLocationSpeedAccuracy,
             timestamp: &NSDate,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(
             feature = "CoreLocation_CLLocationSourceInformation",
@@ -211,7 +211,7 @@ extern_methods!(
             speed_accuracy: CLLocationSpeedAccuracy,
             timestamp: &NSDate,
             source_info: &CLLocationSourceInformation,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(coordinate)]
         pub unsafe fn coordinate(&self) -> CLLocationCoordinate2D;
@@ -242,14 +242,14 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other timestamp)]
-        pub unsafe fn timestamp(&self) -> Id<NSDate, Shared>;
+        pub unsafe fn timestamp(&self) -> Id<NSDate>;
 
         #[cfg(feature = "CoreLocation_CLFloor")]
         #[method_id(@__retain_semantics Other floor)]
-        pub unsafe fn floor(&self) -> Option<Id<CLFloor, Shared>>;
+        pub unsafe fn floor(&self) -> Option<Id<CLFloor>>;
 
         #[cfg(feature = "CoreLocation_CLLocationSourceInformation")]
         #[method_id(@__retain_semantics Other sourceInformation)]
-        pub unsafe fn sourceInformation(&self) -> Option<Id<CLLocationSourceInformation, Shared>>;
+        pub unsafe fn sourceInformation(&self) -> Option<Id<CLLocationSourceInformation>>;
     }
 );

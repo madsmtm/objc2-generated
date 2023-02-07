@@ -24,33 +24,33 @@ extern_methods!(
     unsafe impl NSBatchUpdateRequest {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other batchUpdateRequestWithEntityName:)]
-        pub unsafe fn batchUpdateRequestWithEntityName(entity_name: &NSString) -> Id<Self, Shared>;
+        pub unsafe fn batchUpdateRequestWithEntityName(entity_name: &NSString) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithEntityName:)]
         pub unsafe fn initWithEntityName(
             this: Option<Allocated<Self>>,
             entity_name: &NSString,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "CoreData_NSEntityDescription")]
         #[method_id(@__retain_semantics Init initWithEntity:)]
         pub unsafe fn initWithEntity(
             this: Option<Allocated<Self>>,
             entity: &NSEntityDescription,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other entityName)]
-        pub unsafe fn entityName(&self) -> Id<NSString, Shared>;
+        pub unsafe fn entityName(&self) -> Id<NSString>;
 
         #[cfg(feature = "CoreData_NSEntityDescription")]
         #[method_id(@__retain_semantics Other entity)]
-        pub unsafe fn entity(&self) -> Id<NSEntityDescription, Shared>;
+        pub unsafe fn entity(&self) -> Id<NSEntityDescription>;
 
         #[cfg(feature = "Foundation_NSPredicate")]
         #[method_id(@__retain_semantics Other predicate)]
-        pub unsafe fn predicate(&self) -> Option<Id<NSPredicate, Shared>>;
+        pub unsafe fn predicate(&self) -> Option<Id<NSPredicate>>;
 
         #[cfg(feature = "Foundation_NSPredicate")]
         #[method(setPredicate:)]
@@ -70,7 +70,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other propertiesToUpdate)]
-        pub unsafe fn propertiesToUpdate(&self) -> Option<Id<NSDictionary, Shared>>;
+        pub unsafe fn propertiesToUpdate(&self) -> Option<Id<NSDictionary>>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(setPropertiesToUpdate:)]

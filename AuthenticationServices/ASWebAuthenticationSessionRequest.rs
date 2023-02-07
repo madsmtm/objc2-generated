@@ -59,15 +59,15 @@ extern_methods!(
     unsafe impl ASWebAuthenticationSessionRequest {
         #[cfg(feature = "Foundation_NSUUID")]
         #[method_id(@__retain_semantics Other UUID)]
-        pub unsafe fn UUID(&self) -> Id<NSUUID, Shared>;
+        pub unsafe fn UUID(&self) -> Id<NSUUID>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other URL)]
-        pub unsafe fn URL(&self) -> Id<NSURL, Shared>;
+        pub unsafe fn URL(&self) -> Id<NSURL>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other callbackURLScheme)]
-        pub unsafe fn callbackURLScheme(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn callbackURLScheme(&self) -> Option<Id<NSString>>;
 
         #[method(shouldUseEphemeralSession)]
         pub unsafe fn shouldUseEphemeralSession(&self) -> bool;
@@ -75,7 +75,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn ASWebAuthenticationSessionRequestDelegate>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn ASWebAuthenticationSessionRequestDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -84,10 +84,10 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(cancelWithError:)]

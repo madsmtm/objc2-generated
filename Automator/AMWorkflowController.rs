@@ -35,7 +35,7 @@ extern_methods!(
     unsafe impl AMWorkflowController {
         #[cfg(feature = "Automator_AMWorkflow")]
         #[method_id(@__retain_semantics Other workflow)]
-        pub unsafe fn workflow(&self) -> Option<Id<AMWorkflow, Shared>>;
+        pub unsafe fn workflow(&self) -> Option<Id<AMWorkflow>>;
 
         #[cfg(feature = "Automator_AMWorkflow")]
         #[method(setWorkflow:)]
@@ -43,7 +43,7 @@ extern_methods!(
 
         #[cfg(feature = "Automator_AMWorkflowView")]
         #[method_id(@__retain_semantics Other workflowView)]
-        pub unsafe fn workflowView(&self) -> Option<Id<AMWorkflowView, Shared>>;
+        pub unsafe fn workflowView(&self) -> Option<Id<AMWorkflowView>>;
 
         #[cfg(feature = "Automator_AMWorkflowView")]
         #[method(setWorkflowView:)]
@@ -52,7 +52,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn AMWorkflowControllerDelegate>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn AMWorkflowControllerDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(

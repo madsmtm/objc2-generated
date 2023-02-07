@@ -73,22 +73,22 @@ extern_methods!(
     #[cfg(feature = "ClassKit_CLSContext")]
     unsafe impl CLSContext {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other identifierPath)]
-        pub unsafe fn identifierPath(&self) -> Id<NSArray<NSString>, Shared>;
+        pub unsafe fn identifierPath(&self) -> Id<NSArray<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn identifier(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other universalLinkURL)]
-        pub unsafe fn universalLinkURL(&self) -> Option<Id<NSURL, Shared>>;
+        pub unsafe fn universalLinkURL(&self) -> Option<Id<NSURL>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method(setUniversalLinkURL:)]
@@ -99,7 +99,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other customTypeName)]
-        pub unsafe fn customTypeName(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn customTypeName(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCustomTypeName:)]
@@ -107,7 +107,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Id<NSString, Shared>;
+        pub unsafe fn title(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setTitle:)]
@@ -120,7 +120,7 @@ extern_methods!(
         pub unsafe fn setDisplayOrder(&self, display_order: NSInteger);
 
         #[method_id(@__retain_semantics Other topic)]
-        pub unsafe fn topic(&self) -> Option<Id<CLSContextTopic, Shared>>;
+        pub unsafe fn topic(&self) -> Option<Id<CLSContextTopic>>;
 
         #[method(setTopic:)]
         pub unsafe fn setTopic(&self, topic: Option<&CLSContextTopic>);
@@ -150,11 +150,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other progressReportingCapabilities)]
         pub unsafe fn progressReportingCapabilities(
             &self,
-        ) -> Id<NSSet<CLSProgressReportingCapability>, Shared>;
+        ) -> Id<NSSet<CLSProgressReportingCapability>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other summary)]
-        pub unsafe fn summary(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn summary(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setSummary:)]
@@ -167,7 +167,7 @@ extern_methods!(
             r#type: CLSContextType,
             identifier: &NSString,
             title: &NSString,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(isActive)]
         pub unsafe fn isActive(&self) -> bool;
@@ -201,7 +201,7 @@ extern_methods!(
     #[cfg(feature = "ClassKit_CLSContext")]
     unsafe impl CLSContext {
         #[method_id(@__retain_semantics Other parent)]
-        pub unsafe fn parent(&self) -> Option<Id<CLSContext, Shared>>;
+        pub unsafe fn parent(&self) -> Option<Id<CLSContext>>;
 
         #[method(removeFromParent)]
         pub unsafe fn removeFromParent(&self);
@@ -223,7 +223,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other navigationChildContexts)]
-        pub unsafe fn navigationChildContexts(&self) -> Id<NSArray<CLSContext>, Shared>;
+        pub unsafe fn navigationChildContexts(&self) -> Id<NSArray<CLSContext>>;
 
         #[method(addNavigationChildContext:)]
         pub unsafe fn addNavigationChildContext(&self, child: &CLSContext);

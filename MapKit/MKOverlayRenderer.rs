@@ -28,10 +28,10 @@ extern_methods!(
         pub unsafe fn initWithOverlay(
             this: Option<Allocated<Self>>,
             overlay: &ProtocolObject<dyn MKOverlay>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other overlay)]
-        pub unsafe fn overlay(&self) -> Id<ProtocolObject<dyn MKOverlay>, Shared>;
+        pub unsafe fn overlay(&self) -> Id<ProtocolObject<dyn MKOverlay>>;
 
         #[method(pointForMapPoint:)]
         pub unsafe fn pointForMapPoint(&self, map_point: MKMapPoint) -> CGPoint;

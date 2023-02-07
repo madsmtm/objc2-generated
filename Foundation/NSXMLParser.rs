@@ -35,26 +35,21 @@ extern_methods!(
         pub unsafe fn initWithContentsOfURL(
             this: Option<Allocated<Self>>,
             url: &NSURL,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Init initWithData:)]
-        pub unsafe fn initWithData(
-            this: Option<Allocated<Self>>,
-            data: &NSData,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithData(this: Option<Allocated<Self>>, data: &NSData) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSInputStream")]
         #[method_id(@__retain_semantics Init initWithStream:)]
         pub unsafe fn initWithStream(
             this: Option<Allocated<Self>>,
             stream: &NSInputStream,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(
-            &self,
-        ) -> Option<Id<ProtocolObject<dyn NSXMLParserDelegate>, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSXMLParserDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -90,7 +85,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other allowedExternalEntityURLs)]
-        pub unsafe fn allowedExternalEntityURLs(&self) -> Option<Id<NSSet<NSURL>, Shared>>;
+        pub unsafe fn allowedExternalEntityURLs(&self) -> Option<Id<NSSet<NSURL>>>;
 
         #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSURL"))]
         #[method(setAllowedExternalEntityURLs:)]
@@ -107,7 +102,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other parserError)]
-        pub unsafe fn parserError(&self) -> Option<Id<NSError, Shared>>;
+        pub unsafe fn parserError(&self) -> Option<Id<NSError>>;
 
         #[method(shouldResolveExternalEntities)]
         pub unsafe fn shouldResolveExternalEntities(&self) -> bool;
@@ -126,11 +121,11 @@ extern_methods!(
     unsafe impl NSXMLParser {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other publicID)]
-        pub unsafe fn publicID(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn publicID(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other systemID)]
-        pub unsafe fn systemID(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn systemID(&self) -> Option<Id<NSString>>;
 
         #[method(lineNumber)]
         pub unsafe fn lineNumber(&self) -> NSInteger;
@@ -306,7 +301,7 @@ extern_protocol!(
             parser: &NSXMLParser,
             name: &NSString,
             system_id: Option<&NSString>,
-        ) -> Option<Id<NSData, Shared>>;
+        ) -> Option<Id<NSData>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSXMLParser"))]
         #[optional]

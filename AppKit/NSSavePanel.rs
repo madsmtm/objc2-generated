@@ -48,15 +48,15 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSSavePanel")]
     unsafe impl NSSavePanel {
         #[method_id(@__retain_semantics Other savePanel)]
-        pub unsafe fn savePanel() -> Id<NSSavePanel, Shared>;
+        pub unsafe fn savePanel() -> Id<NSSavePanel>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other URL)]
-        pub unsafe fn URL(&self) -> Option<Id<NSURL, Shared>>;
+        pub unsafe fn URL(&self) -> Option<Id<NSURL>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other directoryURL)]
-        pub unsafe fn directoryURL(&self) -> Option<Id<NSURL, Shared>>;
+        pub unsafe fn directoryURL(&self) -> Option<Id<NSURL>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method(setDirectoryURL:)]
@@ -70,16 +70,14 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other accessoryView)]
-        pub unsafe fn accessoryView(&self) -> Option<Id<NSView, Shared>>;
+        pub unsafe fn accessoryView(&self) -> Option<Id<NSView>>;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(setAccessoryView:)]
         pub unsafe fn setAccessoryView(&self, accessory_view: Option<&NSView>);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(
-            &self,
-        ) -> Option<Id<ProtocolObject<dyn NSOpenSavePanelDelegate>, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSOpenSavePanelDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -119,7 +117,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other prompt)]
-        pub unsafe fn prompt(&self) -> Id<NSString, Shared>;
+        pub unsafe fn prompt(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setPrompt:)]
@@ -127,7 +125,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Id<NSString, Shared>;
+        pub unsafe fn title(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setTitle:)]
@@ -135,7 +133,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other nameFieldLabel)]
-        pub unsafe fn nameFieldLabel(&self) -> Id<NSString, Shared>;
+        pub unsafe fn nameFieldLabel(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setNameFieldLabel:)]
@@ -143,7 +141,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other nameFieldStringValue)]
-        pub unsafe fn nameFieldStringValue(&self) -> Id<NSString, Shared>;
+        pub unsafe fn nameFieldStringValue(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setNameFieldStringValue:)]
@@ -151,7 +149,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other message)]
-        pub unsafe fn message(&self) -> Id<NSString, Shared>;
+        pub unsafe fn message(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setMessage:)]
@@ -174,7 +172,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other tagNames)]
-        pub unsafe fn tagNames(&self) -> Option<Id<NSArray<NSString>, Shared>>;
+        pub unsafe fn tagNames(&self) -> Option<Id<NSArray<NSString>>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setTagNames:)]
@@ -215,7 +213,7 @@ extern_protocol!(
             &self,
             sender: &Object,
             url: &NSURL,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[optional]
@@ -230,7 +228,7 @@ extern_protocol!(
             sender: &Object,
             filename: &NSString,
             ok_flag: bool,
-        ) -> Option<Id<NSString, Shared>>;
+        ) -> Option<Id<NSString>>;
 
         #[optional]
         #[method(panel:willExpand:)]
@@ -251,12 +249,12 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use -URL instead"]
         #[method_id(@__retain_semantics Other filename)]
-        pub unsafe fn filename(&self) -> Id<NSString, Shared>;
+        pub unsafe fn filename(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use -directoryURL instead"]
         #[method_id(@__retain_semantics Other directory)]
-        pub unsafe fn directory(&self) -> Id<NSString, Shared>;
+        pub unsafe fn directory(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use -setDirectoryURL: instead"]
@@ -266,7 +264,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use -allowedFileTypes instead"]
         #[method_id(@__retain_semantics Other requiredFileType)]
-        pub unsafe fn requiredFileType(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn requiredFileType(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use -setAllowedFileTypes: instead"]
@@ -302,7 +300,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[deprecated = "Use -allowedContentTypes instead"]
         #[method_id(@__retain_semantics Other allowedFileTypes)]
-        pub unsafe fn allowedFileTypes(&self) -> Option<Id<NSArray<NSString>, Shared>>;
+        pub unsafe fn allowedFileTypes(&self) -> Option<Id<NSArray<NSString>>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[deprecated = "Use -allowedContentTypes instead"]
@@ -322,7 +320,7 @@ extern_methods!(
             style: NSWindowStyleMask,
             backing_store_type: NSBackingStoreType,
             flag: bool,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSScreen")]
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:screen:)]
@@ -333,12 +331,12 @@ extern_methods!(
             backing_store_type: NSBackingStoreType,
             flag: bool,
             screen: Option<&NSScreen>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSViewController")]
         #[method_id(@__retain_semantics Other windowWithContentViewController:)]
         pub unsafe fn windowWithContentViewController(
             content_view_controller: &NSViewController,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

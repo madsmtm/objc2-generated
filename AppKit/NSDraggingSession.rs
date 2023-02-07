@@ -45,7 +45,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSPasteboard")]
         #[method_id(@__retain_semantics Other draggingPasteboard)]
-        pub unsafe fn draggingPasteboard(&self) -> Id<NSPasteboard, Shared>;
+        pub unsafe fn draggingPasteboard(&self) -> Id<NSPasteboard>;
 
         #[method(draggingSequenceNumber)]
         pub unsafe fn draggingSequenceNumber(&self) -> NSInteger;

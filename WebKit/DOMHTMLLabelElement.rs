@@ -29,11 +29,11 @@ extern_methods!(
     unsafe impl DOMHTMLLabelElement {
         #[cfg(feature = "WebKit_DOMHTMLFormElement")]
         #[method_id(@__retain_semantics Other form)]
-        pub unsafe fn form(&self) -> Option<Id<DOMHTMLFormElement, Shared>>;
+        pub unsafe fn form(&self) -> Option<Id<DOMHTMLFormElement>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other htmlFor)]
-        pub unsafe fn htmlFor(&self) -> Id<NSString, Shared>;
+        pub unsafe fn htmlFor(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setHtmlFor:)]
@@ -42,7 +42,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
         #[method_id(@__retain_semantics Other accessKey)]
-        pub unsafe fn accessKey(&self) -> Id<NSString, Shared>;
+        pub unsafe fn accessKey(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]

@@ -92,7 +92,7 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
-        unsafe fn label(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn label(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:)]
@@ -103,7 +103,7 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other error)]
-        unsafe fn error(&self) -> Option<Id<NSError, Shared>>;
+        unsafe fn error(&self) -> Option<Id<NSError>>;
     }
 
     unsafe impl ProtocolType for dyn MTLIOCommandBuffer {}

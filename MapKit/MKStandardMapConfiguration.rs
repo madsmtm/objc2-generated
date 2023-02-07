@@ -40,26 +40,26 @@ extern_methods!(
     #[cfg(feature = "MapKit_MKStandardMapConfiguration")]
     unsafe impl MKStandardMapConfiguration {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithElevationStyle:)]
         pub unsafe fn initWithElevationStyle(
             this: Option<Allocated<Self>>,
             elevation_style: MKMapElevationStyle,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithElevationStyle:emphasisStyle:)]
         pub unsafe fn initWithElevationStyle_emphasisStyle(
             this: Option<Allocated<Self>>,
             elevation_style: MKMapElevationStyle,
             emphasis_style: MKStandardMapEmphasisStyle,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithEmphasisStyle:)]
         pub unsafe fn initWithEmphasisStyle(
             this: Option<Allocated<Self>>,
             emphasis_style: MKStandardMapEmphasisStyle,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(emphasisStyle)]
         pub unsafe fn emphasisStyle(&self) -> MKStandardMapEmphasisStyle;
@@ -69,7 +69,7 @@ extern_methods!(
 
         #[cfg(feature = "MapKit_MKPointOfInterestFilter")]
         #[method_id(@__retain_semantics Other pointOfInterestFilter)]
-        pub unsafe fn pointOfInterestFilter(&self) -> Option<Id<MKPointOfInterestFilter, Shared>>;
+        pub unsafe fn pointOfInterestFilter(&self) -> Option<Id<MKPointOfInterestFilter>>;
 
         #[cfg(feature = "MapKit_MKPointOfInterestFilter")]
         #[method(setPointOfInterestFilter:)]

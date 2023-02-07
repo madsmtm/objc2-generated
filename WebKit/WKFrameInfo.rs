@@ -27,14 +27,14 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSURLRequest")]
         #[method_id(@__retain_semantics Other request)]
-        pub unsafe fn request(&self) -> Id<NSURLRequest, Shared>;
+        pub unsafe fn request(&self) -> Id<NSURLRequest>;
 
         #[cfg(feature = "WebKit_WKSecurityOrigin")]
         #[method_id(@__retain_semantics Other securityOrigin)]
-        pub unsafe fn securityOrigin(&self) -> Id<WKSecurityOrigin, Shared>;
+        pub unsafe fn securityOrigin(&self) -> Id<WKSecurityOrigin>;
 
         #[cfg(feature = "WebKit_WKWebView")]
         #[method_id(@__retain_semantics Other webView)]
-        pub unsafe fn webView(&self) -> Option<Id<WKWebView, Shared>>;
+        pub unsafe fn webView(&self) -> Option<Id<WKWebView>>;
     }
 );

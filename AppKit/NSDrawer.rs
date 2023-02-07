@@ -52,11 +52,11 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             content_size: NSSize,
             edge: NSRectEdge,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[method_id(@__retain_semantics Other parentWindow)]
-        pub unsafe fn parentWindow(&self) -> Option<Id<NSWindow, Shared>>;
+        pub unsafe fn parentWindow(&self) -> Option<Id<NSWindow>>;
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[method(setParentWindow:)]
@@ -64,7 +64,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other contentView)]
-        pub unsafe fn contentView(&self) -> Option<Id<NSView, Shared>>;
+        pub unsafe fn contentView(&self) -> Option<Id<NSView>>;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(setContentView:)]
@@ -77,7 +77,7 @@ extern_methods!(
         pub unsafe fn setPreferredEdge(&self, preferred_edge: NSRectEdge);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSDrawerDelegate>, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSDrawerDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSDrawerDelegate>>);
@@ -145,7 +145,7 @@ extern_methods!(
         #[cfg(all(feature = "AppKit_NSDrawer", feature = "Foundation_NSArray"))]
         #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
         #[method_id(@__retain_semantics Other drawers)]
-        pub unsafe fn drawers(&self) -> Option<Id<NSArray<NSDrawer>, Shared>>;
+        pub unsafe fn drawers(&self) -> Option<Id<NSArray<NSDrawer>>>;
     }
 );
 

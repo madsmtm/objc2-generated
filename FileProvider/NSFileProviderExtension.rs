@@ -28,21 +28,21 @@ extern_methods!(
         pub unsafe fn itemForIdentifier_error(
             &self,
             identifier: &NSFileProviderItemIdentifier,
-        ) -> Result<Id<NSFileProviderItem, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<NSFileProviderItem>, Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other URLForItemWithPersistentIdentifier:)]
         pub unsafe fn URLForItemWithPersistentIdentifier(
             &self,
             identifier: &NSFileProviderItemIdentifier,
-        ) -> Option<Id<NSURL, Shared>>;
+        ) -> Option<Id<NSURL>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other persistentIdentifierForItemAtURL:)]
         pub unsafe fn persistentIdentifierForItemAtURL(
             &self,
             url: &NSURL,
-        ) -> Option<Id<NSFileProviderItemIdentifier, Shared>>;
+        ) -> Option<Id<NSFileProviderItemIdentifier>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method(providePlaceholderAtURL:completionHandler:)]
@@ -84,21 +84,21 @@ extern_methods!(
         pub unsafe fn writePlaceholderAtURL_withMetadata_error(
             placeholder_url: &NSURL,
             metadata: &NSDictionary<NSURLResourceKey, Object>,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[deprecated]
         #[method_id(@__retain_semantics Other placeholderURLForURL:)]
-        pub unsafe fn placeholderURLForURL(url: &NSURL) -> Id<NSURL, Shared>;
+        pub unsafe fn placeholderURLForURL(url: &NSURL) -> Id<NSURL>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
         #[method_id(@__retain_semantics Other providerIdentifier)]
-        pub unsafe fn providerIdentifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn providerIdentifier(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[deprecated]
         #[method_id(@__retain_semantics Other documentStorageURL)]
-        pub unsafe fn documentStorageURL(&self) -> Id<NSURL, Shared>;
+        pub unsafe fn documentStorageURL(&self) -> Id<NSURL>;
     }
 );

@@ -24,7 +24,7 @@ extern_methods!(
     unsafe impl NSIncrementalStore {
         #[cfg(feature = "Foundation_NSError")]
         #[method(loadMetadata:_)]
-        pub unsafe fn loadMetadata(&self) -> Result<(), Id<NSError, Shared>>;
+        pub unsafe fn loadMetadata(&self) -> Result<(), Id<NSError>>;
 
         #[cfg(all(
             feature = "CoreData_NSManagedObjectContext",
@@ -36,7 +36,7 @@ extern_methods!(
             &self,
             request: &NSPersistentStoreRequest,
             context: Option<&NSManagedObjectContext>,
-        ) -> Result<Id<Object, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Object>, Id<NSError>>;
 
         #[cfg(all(
             feature = "CoreData_NSIncrementalStoreNode",
@@ -49,7 +49,7 @@ extern_methods!(
             &self,
             object_id: &NSManagedObjectID,
             context: &NSManagedObjectContext,
-        ) -> Result<Id<NSIncrementalStoreNode, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<NSIncrementalStoreNode>, Id<NSError>>;
 
         #[cfg(all(
             feature = "CoreData_NSManagedObjectContext",
@@ -63,11 +63,11 @@ extern_methods!(
             relationship: &NSRelationshipDescription,
             object_id: &NSManagedObjectID,
             context: Option<&NSManagedObjectContext>,
-        ) -> Result<Id<Object, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Object>, Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other identifierForNewStoreAtURL:)]
-        pub unsafe fn identifierForNewStoreAtURL(store_url: &NSURL) -> Id<Object, Shared>;
+        pub unsafe fn identifierForNewStoreAtURL(store_url: &NSURL) -> Id<Object>;
 
         #[cfg(all(
             feature = "CoreData_NSManagedObject",
@@ -79,7 +79,7 @@ extern_methods!(
         pub unsafe fn obtainPermanentIDsForObjects_error(
             &self,
             array: &NSArray<NSManagedObject>,
-        ) -> Result<Id<NSArray<NSManagedObjectID>, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<NSArray<NSManagedObjectID>>, Id<NSError>>;
 
         #[cfg(all(feature = "CoreData_NSManagedObjectID", feature = "Foundation_NSArray"))]
         #[method(managedObjectContextDidRegisterObjectsWithIDs:)]
@@ -104,14 +104,14 @@ extern_methods!(
             &self,
             entity: &NSEntityDescription,
             data: &Object,
-        ) -> Id<NSManagedObjectID, Shared>;
+        ) -> Id<NSManagedObjectID>;
 
         #[cfg(feature = "CoreData_NSManagedObjectID")]
         #[method_id(@__retain_semantics Other referenceObjectForObjectID:)]
         pub unsafe fn referenceObjectForObjectID(
             &self,
             object_id: &NSManagedObjectID,
-        ) -> Id<Object, Shared>;
+        ) -> Id<Object>;
     }
 );
 
@@ -132,6 +132,6 @@ extern_methods!(
             name: Option<&NSString>,
             url: &NSURL,
             options: Option<&NSDictionary>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

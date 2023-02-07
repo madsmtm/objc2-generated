@@ -10,10 +10,7 @@ extern_protocol!(
     pub unsafe trait DOMXPathNSResolver: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other lookupNamespaceURI:)]
-        unsafe fn lookupNamespaceURI(
-            &self,
-            prefix: Option<&NSString>,
-        ) -> Option<Id<NSString, Shared>>;
+        unsafe fn lookupNamespaceURI(&self, prefix: Option<&NSString>) -> Option<Id<NSString>>;
     }
 
     unsafe impl ProtocolType for dyn DOMXPathNSResolver {}

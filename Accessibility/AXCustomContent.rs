@@ -37,33 +37,30 @@ extern_methods!(
     unsafe impl AXCustomContent {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other customContentWithLabel:value:)]
-        pub unsafe fn customContentWithLabel_value(
-            label: &NSString,
-            value: &NSString,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn customContentWithLabel_value(label: &NSString, value: &NSString) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other customContentWithAttributedLabel:attributedValue:)]
         pub unsafe fn customContentWithAttributedLabel_attributedValue(
             label: &NSAttributedString,
             value: &NSAttributedString,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
-        pub unsafe fn label(&self) -> Id<NSString, Shared>;
+        pub unsafe fn label(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedLabel)]
-        pub unsafe fn attributedLabel(&self) -> Id<NSAttributedString, Shared>;
+        pub unsafe fn attributedLabel(&self) -> Id<NSAttributedString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other value)]
-        pub unsafe fn value(&self) -> Id<NSString, Shared>;
+        pub unsafe fn value(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedValue)]
-        pub unsafe fn attributedValue(&self) -> Id<NSAttributedString, Shared>;
+        pub unsafe fn attributedValue(&self) -> Id<NSAttributedString>;
 
         #[method(importance)]
         pub unsafe fn importance(&self) -> AXCustomContentImportance;
@@ -72,10 +69,10 @@ extern_methods!(
         pub unsafe fn setImportance(&self, importance: AXCustomContentImportance);
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
     }
 );
 
@@ -86,7 +83,7 @@ extern_protocol!(
             feature = "Foundation_NSArray"
         ))]
         #[method_id(@__retain_semantics Other accessibilityCustomContent)]
-        unsafe fn accessibilityCustomContent(&self) -> Id<NSArray<AXCustomContent>, Shared>;
+        unsafe fn accessibilityCustomContent(&self) -> Id<NSArray<AXCustomContent>>;
 
         #[cfg(all(
             feature = "Accessibility_AXCustomContent",

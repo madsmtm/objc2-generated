@@ -24,13 +24,13 @@ extern_methods!(
     unsafe impl NSScreen {
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other screens)]
-        pub unsafe fn screens() -> Id<NSArray<NSScreen>, Shared>;
+        pub unsafe fn screens() -> Id<NSArray<NSScreen>>;
 
         #[method_id(@__retain_semantics Other mainScreen)]
-        pub unsafe fn mainScreen() -> Option<Id<NSScreen, Shared>>;
+        pub unsafe fn mainScreen() -> Option<Id<NSScreen>>;
 
         #[method_id(@__retain_semantics Other deepestScreen)]
-        pub unsafe fn deepestScreen() -> Option<Id<NSScreen, Shared>>;
+        pub unsafe fn deepestScreen() -> Option<Id<NSScreen>>;
 
         #[method(screensHaveSeparateSpaces)]
         pub unsafe fn screensHaveSeparateSpaces() -> bool;
@@ -46,13 +46,11 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other deviceDescription)]
-        pub unsafe fn deviceDescription(
-            &self,
-        ) -> Id<NSDictionary<NSDeviceDescriptionKey, Object>, Shared>;
+        pub unsafe fn deviceDescription(&self) -> Id<NSDictionary<NSDeviceDescriptionKey, Object>>;
 
         #[cfg(feature = "AppKit_NSColorSpace")]
         #[method_id(@__retain_semantics Other colorSpace)]
-        pub unsafe fn colorSpace(&self) -> Option<Id<NSColorSpace, Shared>>;
+        pub unsafe fn colorSpace(&self) -> Option<Id<NSColorSpace>>;
 
         #[method(supportedWindowDepths)]
         pub unsafe fn supportedWindowDepths(&self) -> NonNull<NSWindowDepth>;
@@ -78,7 +76,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedName)]
-        pub unsafe fn localizedName(&self) -> Id<NSString, Shared>;
+        pub unsafe fn localizedName(&self) -> Id<NSString>;
 
         #[method(safeAreaInsets)]
         pub unsafe fn safeAreaInsets(&self) -> NSEdgeInsets;

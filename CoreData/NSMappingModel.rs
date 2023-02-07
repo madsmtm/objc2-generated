@@ -31,7 +31,7 @@ extern_methods!(
             bundles: Option<&NSArray<NSBundle>>,
             source_model: Option<&NSManagedObjectModel>,
             destination_model: Option<&NSManagedObjectModel>,
-        ) -> Option<Id<NSMappingModel, Shared>>;
+        ) -> Option<Id<NSMappingModel>>;
 
         #[cfg(all(
             feature = "CoreData_NSManagedObjectModel",
@@ -41,18 +41,18 @@ extern_methods!(
         pub unsafe fn inferredMappingModelForSourceModel_destinationModel_error(
             source_model: &NSManagedObjectModel,
             destination_model: &NSManagedObjectModel,
-        ) -> Result<Id<NSMappingModel, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<NSMappingModel>, Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
         pub unsafe fn initWithContentsOfURL(
             this: Option<Allocated<Self>>,
             url: Option<&NSURL>,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(all(feature = "CoreData_NSEntityMapping", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other entityMappings)]
-        pub unsafe fn entityMappings(&self) -> Option<Id<NSArray<NSEntityMapping>, Shared>>;
+        pub unsafe fn entityMappings(&self) -> Option<Id<NSArray<NSEntityMapping>>>;
 
         #[cfg(all(feature = "CoreData_NSEntityMapping", feature = "Foundation_NSArray"))]
         #[method(setEntityMappings:)]
@@ -64,8 +64,6 @@ extern_methods!(
             feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other entityMappingsByName)]
-        pub unsafe fn entityMappingsByName(
-            &self,
-        ) -> Id<NSDictionary<NSString, NSEntityMapping>, Shared>;
+        pub unsafe fn entityMappingsByName(&self) -> Id<NSDictionary<NSString, NSEntityMapping>>;
     }
 );

@@ -30,14 +30,14 @@ extern_methods!(
     unsafe impl NSPasteboardItem {
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other types)]
-        pub unsafe fn types(&self) -> Id<NSArray<NSPasteboardType>, Shared>;
+        pub unsafe fn types(&self) -> Id<NSArray<NSPasteboardType>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other availableTypeFromArray:)]
         pub unsafe fn availableTypeFromArray(
             &self,
             types: &NSArray<NSPasteboardType>,
-        ) -> Option<Id<NSPasteboardType, Shared>>;
+        ) -> Option<Id<NSPasteboardType>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setDataProvider:forTypes:)]
@@ -68,20 +68,14 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other dataForType:)]
-        pub unsafe fn dataForType(&self, r#type: &NSPasteboardType) -> Option<Id<NSData, Shared>>;
+        pub unsafe fn dataForType(&self, r#type: &NSPasteboardType) -> Option<Id<NSData>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringForType:)]
-        pub unsafe fn stringForType(
-            &self,
-            r#type: &NSPasteboardType,
-        ) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn stringForType(&self, r#type: &NSPasteboardType) -> Option<Id<NSString>>;
 
         #[method_id(@__retain_semantics Other propertyListForType:)]
-        pub unsafe fn propertyListForType(
-            &self,
-            r#type: &NSPasteboardType,
-        ) -> Option<Id<Object, Shared>>;
+        pub unsafe fn propertyListForType(&self, r#type: &NSPasteboardType) -> Option<Id<Object>>;
     }
 );
 

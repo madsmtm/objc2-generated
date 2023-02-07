@@ -33,21 +33,18 @@ extern_methods!(
             location: CGFloat,
             image: &NSImage,
             image_origin: NSPoint,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            coder: &NSCoder,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, coder: &NSCoder) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSRulerView")]
         #[method_id(@__retain_semantics Other ruler)]
-        pub unsafe fn ruler(&self) -> Option<Id<NSRulerView, Shared>>;
+        pub unsafe fn ruler(&self) -> Option<Id<NSRulerView>>;
 
         #[method(markerLocation)]
         pub unsafe fn markerLocation(&self) -> CGFloat;
@@ -57,7 +54,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other image)]
-        pub unsafe fn image(&self) -> Id<NSImage, Shared>;
+        pub unsafe fn image(&self) -> Id<NSImage>;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method(setImage:)]
@@ -85,7 +82,7 @@ extern_methods!(
         pub unsafe fn isDragging(&self) -> bool;
 
         #[method_id(@__retain_semantics Other representedObject)]
-        pub unsafe fn representedObject(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn representedObject(&self) -> Option<Id<Object>>;
 
         #[method(setRepresentedObject:)]
         pub unsafe fn setRepresentedObject(&self, represented_object: Option<&Object>);

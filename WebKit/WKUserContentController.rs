@@ -30,7 +30,7 @@ extern_methods!(
     unsafe impl WKUserContentController {
         #[cfg(all(feature = "Foundation_NSArray", feature = "WebKit_WKUserScript"))]
         #[method_id(@__retain_semantics Other userScripts)]
-        pub unsafe fn userScripts(&self) -> Id<NSArray<WKUserScript>, Shared>;
+        pub unsafe fn userScripts(&self) -> Id<NSArray<WKUserScript>>;
 
         #[cfg(feature = "WebKit_WKUserScript")]
         #[method(addUserScript:)]

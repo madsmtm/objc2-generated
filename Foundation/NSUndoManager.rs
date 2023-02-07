@@ -56,7 +56,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other runLoopModes)]
-        pub unsafe fn runLoopModes(&self) -> Id<NSArray<NSRunLoopMode>, Shared>;
+        pub unsafe fn runLoopModes(&self) -> Id<NSArray<NSRunLoopMode>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setRunLoopModes:)]
@@ -98,7 +98,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other prepareWithInvocationTarget:)]
-        pub unsafe fn prepareWithInvocationTarget(&self, target: &Object) -> Id<Object, Shared>;
+        pub unsafe fn prepareWithInvocationTarget(&self, target: &Object) -> Id<Object>;
 
         #[method(registerUndoWithTarget:handler:)]
         pub unsafe fn registerUndoWithTarget_handler(
@@ -118,11 +118,11 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other undoActionName)]
-        pub unsafe fn undoActionName(&self) -> Id<NSString, Shared>;
+        pub unsafe fn undoActionName(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other redoActionName)]
-        pub unsafe fn redoActionName(&self) -> Id<NSString, Shared>;
+        pub unsafe fn redoActionName(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setActionName:)]
@@ -130,25 +130,21 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other undoMenuItemTitle)]
-        pub unsafe fn undoMenuItemTitle(&self) -> Id<NSString, Shared>;
+        pub unsafe fn undoMenuItemTitle(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other redoMenuItemTitle)]
-        pub unsafe fn redoMenuItemTitle(&self) -> Id<NSString, Shared>;
+        pub unsafe fn redoMenuItemTitle(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other undoMenuTitleForUndoActionName:)]
-        pub unsafe fn undoMenuTitleForUndoActionName(
-            &self,
-            action_name: &NSString,
-        ) -> Id<NSString, Shared>;
+        pub unsafe fn undoMenuTitleForUndoActionName(&self, action_name: &NSString)
+            -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other redoMenuTitleForUndoActionName:)]
-        pub unsafe fn redoMenuTitleForUndoActionName(
-            &self,
-            action_name: &NSString,
-        ) -> Id<NSString, Shared>;
+        pub unsafe fn redoMenuTitleForUndoActionName(&self, action_name: &NSString)
+            -> Id<NSString>;
     }
 );
 

@@ -27,7 +27,7 @@ extern_methods!(
     unsafe impl NSDerivedAttributeDescription {
         #[cfg(feature = "Foundation_NSExpression")]
         #[method_id(@__retain_semantics Other derivationExpression)]
-        pub unsafe fn derivationExpression(&self) -> Option<Id<NSExpression, Shared>>;
+        pub unsafe fn derivationExpression(&self) -> Option<Id<NSExpression>>;
 
         #[cfg(feature = "Foundation_NSExpression")]
         #[method(setDerivationExpression:)]

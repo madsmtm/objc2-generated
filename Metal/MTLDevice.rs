@@ -248,7 +248,7 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLArgumentDescriptor")]
     unsafe impl MTLArgumentDescriptor {
         #[method_id(@__retain_semantics Other argumentDescriptor)]
-        pub fn argumentDescriptor() -> Id<MTLArgumentDescriptor, Shared>;
+        pub fn argumentDescriptor() -> Id<MTLArgumentDescriptor>;
 
         #[method(dataType)]
         pub unsafe fn dataType(&self) -> MTLDataType;
@@ -294,7 +294,7 @@ extern_protocol!(
     pub unsafe trait MTLDevice: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        fn name(&self) -> Id<NSString, Shared>;
+        fn name(&self) -> Id<NSString>;
 
         #[method(registryID)]
         fn registryID(&self) -> u64;
@@ -364,13 +364,13 @@ extern_protocol!(
         fn currentAllocatedSize(&self) -> NSUInteger;
 
         #[method_id(@__retain_semantics New newCommandQueue)]
-        fn newCommandQueue(&self) -> Option<Id<ProtocolObject<dyn MTLCommandQueue>, Shared>>;
+        fn newCommandQueue(&self) -> Option<Id<ProtocolObject<dyn MTLCommandQueue>>>;
 
         #[method_id(@__retain_semantics New newCommandQueueWithMaxCommandBufferCount:)]
         fn newCommandQueueWithMaxCommandBufferCount(
             &self,
             max_command_buffer_count: NSUInteger,
-        ) -> Option<Id<ProtocolObject<dyn MTLCommandQueue>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLCommandQueue>>>;
 
         #[cfg(feature = "Metal_MTLTextureDescriptor")]
         #[method(heapTextureSizeAndAlignWithDescriptor:)]
@@ -391,14 +391,14 @@ extern_protocol!(
         fn newHeapWithDescriptor(
             &self,
             descriptor: &MTLHeapDescriptor,
-        ) -> Option<Id<ProtocolObject<dyn MTLHeap>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLHeap>>>;
 
         #[method_id(@__retain_semantics New newBufferWithLength:options:)]
         fn newBufferWithLength_options(
             &self,
             length: NSUInteger,
             options: MTLResourceOptions,
-        ) -> Option<Id<ProtocolObject<dyn MTLBuffer>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
         #[method_id(@__retain_semantics New newBufferWithBytes:length:options:)]
         unsafe fn newBufferWithBytes_length_options(
@@ -406,7 +406,7 @@ extern_protocol!(
             pointer: NonNull<c_void>,
             length: NSUInteger,
             options: MTLResourceOptions,
-        ) -> Option<Id<ProtocolObject<dyn MTLBuffer>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
         #[method_id(@__retain_semantics New newBufferWithBytesNoCopy:length:options:deallocator:)]
         unsafe fn newBufferWithBytesNoCopy_length_options_deallocator(
@@ -415,52 +415,52 @@ extern_protocol!(
             length: NSUInteger,
             options: MTLResourceOptions,
             deallocator: Option<&Block<(NonNull<c_void>, NSUInteger), ()>>,
-        ) -> Option<Id<ProtocolObject<dyn MTLBuffer>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
         #[cfg(feature = "Metal_MTLDepthStencilDescriptor")]
         #[method_id(@__retain_semantics New newDepthStencilStateWithDescriptor:)]
         fn newDepthStencilStateWithDescriptor(
             &self,
             descriptor: &MTLDepthStencilDescriptor,
-        ) -> Option<Id<ProtocolObject<dyn MTLDepthStencilState>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLDepthStencilState>>>;
 
         #[cfg(feature = "Metal_MTLTextureDescriptor")]
         #[method_id(@__retain_semantics New newTextureWithDescriptor:)]
         fn newTextureWithDescriptor(
             &self,
             descriptor: &MTLTextureDescriptor,
-        ) -> Option<Id<ProtocolObject<dyn MTLTexture>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLTexture>>>;
 
         #[cfg(feature = "Metal_MTLTextureDescriptor")]
         #[method_id(@__retain_semantics New newSharedTextureWithDescriptor:)]
         unsafe fn newSharedTextureWithDescriptor(
             &self,
             descriptor: &MTLTextureDescriptor,
-        ) -> Option<Id<ProtocolObject<dyn MTLTexture>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLTexture>>>;
 
         #[cfg(feature = "Metal_MTLSharedTextureHandle")]
         #[method_id(@__retain_semantics New newSharedTextureWithHandle:)]
         unsafe fn newSharedTextureWithHandle(
             &self,
             shared_handle: &MTLSharedTextureHandle,
-        ) -> Option<Id<ProtocolObject<dyn MTLTexture>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLTexture>>>;
 
         #[cfg(feature = "Metal_MTLSamplerDescriptor")]
         #[method_id(@__retain_semantics New newSamplerStateWithDescriptor:)]
         fn newSamplerStateWithDescriptor(
             &self,
             descriptor: &MTLSamplerDescriptor,
-        ) -> Option<Id<ProtocolObject<dyn MTLSamplerState>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLSamplerState>>>;
 
         #[method_id(@__retain_semantics New newDefaultLibrary)]
-        fn newDefaultLibrary(&self) -> Option<Id<ProtocolObject<dyn MTLLibrary>, Shared>>;
+        fn newDefaultLibrary(&self) -> Option<Id<ProtocolObject<dyn MTLLibrary>>>;
 
         #[cfg(all(feature = "Foundation_NSBundle", feature = "Foundation_NSError"))]
         #[method_id(@__retain_semantics New newDefaultLibraryWithBundle:error:_)]
         unsafe fn newDefaultLibraryWithBundle_error(
             &self,
             bundle: &NSBundle,
-        ) -> Result<Id<ProtocolObject<dyn MTLLibrary>, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<ProtocolObject<dyn MTLLibrary>>, Id<NSError>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[deprecated = "Use -newLibraryWithURL:error: instead"]
@@ -468,14 +468,14 @@ extern_protocol!(
         fn newLibraryWithFile_error(
             &self,
             filepath: &NSString,
-        ) -> Result<Id<ProtocolObject<dyn MTLLibrary>, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<ProtocolObject<dyn MTLLibrary>>, Id<NSError>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics New newLibraryWithURL:error:_)]
         unsafe fn newLibraryWithURL_error(
             &self,
             url: &NSURL,
-        ) -> Result<Id<ProtocolObject<dyn MTLLibrary>, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<ProtocolObject<dyn MTLLibrary>>, Id<NSError>>;
 
         #[cfg(all(
             feature = "Foundation_NSError",
@@ -487,7 +487,7 @@ extern_protocol!(
             &self,
             source: &NSString,
             options: Option<&MTLCompileOptions>,
-        ) -> Result<Id<ProtocolObject<dyn MTLLibrary>, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<ProtocolObject<dyn MTLLibrary>>, Id<NSError>>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Metal_MTLCompileOptions"))]
         #[method(newLibraryWithSource:options:completionHandler:)]
@@ -506,7 +506,7 @@ extern_protocol!(
         unsafe fn newLibraryWithStitchedDescriptor_error(
             &self,
             descriptor: &MTLStitchedLibraryDescriptor,
-        ) -> Result<Id<ProtocolObject<dyn MTLLibrary>, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<ProtocolObject<dyn MTLLibrary>>, Id<NSError>>;
 
         #[cfg(feature = "Metal_MTLStitchedLibraryDescriptor")]
         #[method(newLibraryWithStitchedDescriptor:completionHandler:)]
@@ -524,7 +524,7 @@ extern_protocol!(
         fn newRenderPipelineStateWithDescriptor_error(
             &self,
             descriptor: &MTLRenderPipelineDescriptor,
-        ) -> Result<Id<ProtocolObject<dyn MTLRenderPipelineState>, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<ProtocolObject<dyn MTLRenderPipelineState>>, Id<NSError>>;
 
         #[cfg(feature = "Metal_MTLRenderPipelineDescriptor")]
         #[method(newRenderPipelineStateWithDescriptor:completionHandler:)]
@@ -548,7 +548,7 @@ extern_protocol!(
         fn newComputePipelineStateWithFunction_error(
             &self,
             compute_function: &ProtocolObject<dyn MTLFunction>,
-        ) -> Result<Id<ProtocolObject<dyn MTLComputePipelineState>, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<ProtocolObject<dyn MTLComputePipelineState>>, Id<NSError>>;
 
         #[method(newComputePipelineStateWithFunction:completionHandler:)]
         unsafe fn newComputePipelineStateWithFunction_completionHandler(
@@ -575,7 +575,7 @@ extern_protocol!(
         );
 
         #[method_id(@__retain_semantics New newFence)]
-        fn newFence(&self) -> Option<Id<ProtocolObject<dyn MTLFence>, Shared>>;
+        fn newFence(&self) -> Option<Id<ProtocolObject<dyn MTLFence>>>;
 
         #[deprecated = "Use supportsFamily instead"]
         #[method(supportsFeatureSet:)]
@@ -637,7 +637,7 @@ extern_protocol!(
         fn newArgumentEncoderWithArguments(
             &self,
             arguments: &NSArray<MTLArgumentDescriptor>,
-        ) -> Option<Id<ProtocolObject<dyn MTLArgumentEncoder>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLArgumentEncoder>>>;
 
         #[method(supportsRasterizationRateMapWithLayerCount:)]
         unsafe fn supportsRasterizationRateMapWithLayerCount(
@@ -650,7 +650,7 @@ extern_protocol!(
         unsafe fn newRasterizationRateMapWithDescriptor(
             &self,
             descriptor: &MTLRasterizationRateMapDescriptor,
-        ) -> Option<Id<ProtocolObject<dyn MTLRasterizationRateMap>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLRasterizationRateMap>>>;
 
         #[cfg(feature = "Metal_MTLIndirectCommandBufferDescriptor")]
         #[method_id(@__retain_semantics New newIndirectCommandBufferWithDescriptor:maxCommandCount:options:)]
@@ -659,20 +659,20 @@ extern_protocol!(
             descriptor: &MTLIndirectCommandBufferDescriptor,
             max_count: NSUInteger,
             options: MTLResourceOptions,
-        ) -> Option<Id<ProtocolObject<dyn MTLIndirectCommandBuffer>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLIndirectCommandBuffer>>>;
 
         #[method_id(@__retain_semantics New newEvent)]
-        fn newEvent(&self) -> Option<Id<ProtocolObject<dyn MTLEvent>, Shared>>;
+        fn newEvent(&self) -> Option<Id<ProtocolObject<dyn MTLEvent>>>;
 
         #[method_id(@__retain_semantics New newSharedEvent)]
-        fn newSharedEvent(&self) -> Option<Id<ProtocolObject<dyn MTLSharedEvent>, Shared>>;
+        fn newSharedEvent(&self) -> Option<Id<ProtocolObject<dyn MTLSharedEvent>>>;
 
         #[cfg(feature = "Metal_MTLSharedEventHandle")]
         #[method_id(@__retain_semantics New newSharedEventWithHandle:)]
         unsafe fn newSharedEventWithHandle(
             &self,
             shared_event_handle: &MTLSharedEventHandle,
-        ) -> Option<Id<ProtocolObject<dyn MTLSharedEvent>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLSharedEvent>>>;
 
         #[method(peerGroupID)]
         unsafe fn peerGroupID(&self) -> u64;
@@ -688,7 +688,7 @@ extern_protocol!(
         unsafe fn newIOHandleWithURL_error(
             &self,
             url: &NSURL,
-        ) -> Result<Id<ProtocolObject<dyn MTLIOFileHandle>, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<ProtocolObject<dyn MTLIOFileHandle>>, Id<NSError>>;
 
         #[cfg(all(
             feature = "Foundation_NSError",
@@ -698,7 +698,7 @@ extern_protocol!(
         unsafe fn newIOCommandQueueWithDescriptor_error(
             &self,
             descriptor: &MTLIOCommandQueueDescriptor,
-        ) -> Result<Id<ProtocolObject<dyn MTLIOCommandQueue>, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<ProtocolObject<dyn MTLIOCommandQueue>>, Id<NSError>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics New newIOHandleWithURL:compressionMethod:error:_)]
@@ -706,7 +706,7 @@ extern_protocol!(
             &self,
             url: &NSURL,
             compression_method: MTLIOCompressionMethod,
-        ) -> Result<Id<ProtocolObject<dyn MTLIOFileHandle>, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<ProtocolObject<dyn MTLIOFileHandle>>, Id<NSError>>;
 
         #[method(sparseTileSizeWithTextureType:pixelFormat:sampleCount:)]
         unsafe fn sparseTileSizeWithTextureType_pixelFormat_sampleCount(
@@ -760,9 +760,7 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other counterSets)]
-        unsafe fn counterSets(
-            &self,
-        ) -> Option<Id<NSArray<ProtocolObject<dyn MTLCounterSet>>, Shared>>;
+        unsafe fn counterSets(&self) -> Option<Id<NSArray<ProtocolObject<dyn MTLCounterSet>>>>;
 
         #[cfg(all(
             feature = "Foundation_NSError",
@@ -772,7 +770,7 @@ extern_protocol!(
         unsafe fn newCounterSampleBufferWithDescriptor_error(
             &self,
             descriptor: &MTLCounterSampleBufferDescriptor,
-        ) -> Result<Id<ProtocolObject<dyn MTLCounterSampleBuffer>, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<ProtocolObject<dyn MTLCounterSampleBuffer>>, Id<NSError>>;
 
         #[method(sampleTimestamps:gpuTimestamp:)]
         unsafe fn sampleTimestamps_gpuTimestamp(
@@ -785,7 +783,7 @@ extern_protocol!(
         unsafe fn newArgumentEncoderWithBufferBinding(
             &self,
             buffer_binding: &ProtocolObject<dyn MTLBufferBinding>,
-        ) -> Id<ProtocolObject<dyn MTLArgumentEncoder>, Shared>;
+        ) -> Id<ProtocolObject<dyn MTLArgumentEncoder>>;
 
         #[method(supportsCounterSampling:)]
         fn supportsCounterSampling(&self, sampling_point: MTLCounterSamplingPoint) -> bool;
@@ -804,14 +802,14 @@ extern_protocol!(
         fn newDynamicLibrary_error(
             &self,
             library: &ProtocolObject<dyn MTLLibrary>,
-        ) -> Result<Id<ProtocolObject<dyn MTLDynamicLibrary>, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<ProtocolObject<dyn MTLDynamicLibrary>>, Id<NSError>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics New newDynamicLibraryWithURL:error:_)]
         fn newDynamicLibraryWithURL_error(
             &self,
             url: &NSURL,
-        ) -> Result<Id<ProtocolObject<dyn MTLDynamicLibrary>, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<ProtocolObject<dyn MTLDynamicLibrary>>, Id<NSError>>;
 
         #[cfg(all(
             feature = "Foundation_NSError",
@@ -821,7 +819,7 @@ extern_protocol!(
         fn newBinaryArchiveWithDescriptor_error(
             &self,
             descriptor: &MTLBinaryArchiveDescriptor,
-        ) -> Result<Id<ProtocolObject<dyn MTLBinaryArchive>, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<ProtocolObject<dyn MTLBinaryArchive>>, Id<NSError>>;
 
         #[method(supportsRaytracing)]
         fn supportsRaytracing(&self) -> bool;
@@ -837,14 +835,14 @@ extern_protocol!(
         fn newAccelerationStructureWithSize(
             &self,
             size: NSUInteger,
-        ) -> Option<Id<ProtocolObject<dyn MTLAccelerationStructure>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLAccelerationStructure>>>;
 
         #[cfg(feature = "Metal_MTLAccelerationStructureDescriptor")]
         #[method_id(@__retain_semantics New newAccelerationStructureWithDescriptor:)]
         unsafe fn newAccelerationStructureWithDescriptor(
             &self,
             descriptor: &MTLAccelerationStructureDescriptor,
-        ) -> Option<Id<ProtocolObject<dyn MTLAccelerationStructure>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLAccelerationStructure>>>;
 
         #[method(heapAccelerationStructureSizeAndAlignWithSize:)]
         unsafe fn heapAccelerationStructureSizeAndAlignWithSize(

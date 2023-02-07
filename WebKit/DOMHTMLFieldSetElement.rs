@@ -29,6 +29,6 @@ extern_methods!(
     unsafe impl DOMHTMLFieldSetElement {
         #[cfg(feature = "WebKit_DOMHTMLFormElement")]
         #[method_id(@__retain_semantics Other form)]
-        pub unsafe fn form(&self) -> Option<Id<DOMHTMLFormElement, Shared>>;
+        pub unsafe fn form(&self) -> Option<Id<DOMHTMLFormElement>>;
     }
 );

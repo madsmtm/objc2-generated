@@ -54,7 +54,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSColorWell")]
     unsafe impl NSColorWell {
         #[method_id(@__retain_semantics Other colorWellWithStyle:)]
-        pub unsafe fn colorWellWithStyle(style: NSColorWellStyle) -> Id<Self, Shared>;
+        pub unsafe fn colorWellWithStyle(style: NSColorWellStyle) -> Id<Self>;
 
         #[method(deactivate)]
         pub unsafe fn deactivate(&self);
@@ -81,7 +81,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other color)]
-        pub unsafe fn color(&self) -> Id<NSColor, Shared>;
+        pub unsafe fn color(&self) -> Id<NSColor>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setColor:)]
@@ -95,14 +95,14 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other image)]
-        pub unsafe fn image(&self) -> Option<Id<NSImage, Shared>>;
+        pub unsafe fn image(&self) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&NSImage>);
 
         #[method_id(@__retain_semantics Other pulldownTarget)]
-        pub unsafe fn pulldownTarget(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn pulldownTarget(&self) -> Option<Id<Object>>;
 
         #[method(setPulldownTarget:)]
         pub unsafe fn setPulldownTarget(&self, pulldown_target: Option<&Object>);
@@ -120,9 +120,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSColorWell")]
     unsafe impl NSColorWell {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frame_rect: NSRect,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
 );

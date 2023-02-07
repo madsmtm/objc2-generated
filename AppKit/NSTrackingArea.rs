@@ -49,7 +49,7 @@ extern_methods!(
             options: NSTrackingAreaOptions,
             owner: Option<&Object>,
             user_info: Option<&NSDictionary<Object, Object>>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(rect)]
         pub unsafe fn rect(&self) -> NSRect;
@@ -58,10 +58,10 @@ extern_methods!(
         pub unsafe fn options(&self) -> NSTrackingAreaOptions;
 
         #[method_id(@__retain_semantics Other owner)]
-        pub unsafe fn owner(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn owner(&self) -> Option<Id<Object>>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other userInfo)]
-        pub unsafe fn userInfo(&self) -> Option<Id<NSDictionary<Object, Object>, Shared>>;
+        pub unsafe fn userInfo(&self) -> Option<Id<NSDictionary<Object, Object>>>;
     }
 );

@@ -52,7 +52,7 @@ extern_methods!(
             selection_mode: NSPickerTouchBarItemSelectionMode,
             target: Option<&Object>,
             action: Option<Sel>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(feature = "AppKit_NSImage", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other pickerTouchBarItemWithIdentifier:images:selectionMode:target:action:)]
@@ -62,7 +62,7 @@ extern_methods!(
             selection_mode: NSPickerTouchBarItemSelectionMode,
             target: Option<&Object>,
             action: Option<Sel>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(controlRepresentation)]
         pub unsafe fn controlRepresentation(&self) -> NSPickerTouchBarItemControlRepresentation;
@@ -75,7 +75,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other collapsedRepresentationLabel)]
-        pub unsafe fn collapsedRepresentationLabel(&self) -> Id<NSString, Shared>;
+        pub unsafe fn collapsedRepresentationLabel(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCollapsedRepresentationLabel:)]
@@ -86,7 +86,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other collapsedRepresentationImage)]
-        pub unsafe fn collapsedRepresentationImage(&self) -> Option<Id<NSImage, Shared>>;
+        pub unsafe fn collapsedRepresentationImage(&self) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method(setCollapsedRepresentationImage:)]
@@ -103,7 +103,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other selectionColor)]
-        pub unsafe fn selectionColor(&self) -> Option<Id<NSColor, Shared>>;
+        pub unsafe fn selectionColor(&self) -> Option<Id<NSColor>>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setSelectionColor:)]
@@ -127,7 +127,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other imageAtIndex:)]
-        pub unsafe fn imageAtIndex(&self, index: NSInteger) -> Option<Id<NSImage, Shared>>;
+        pub unsafe fn imageAtIndex(&self, index: NSInteger) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:atIndex:)]
@@ -135,10 +135,10 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other labelAtIndex:)]
-        pub unsafe fn labelAtIndex(&self, index: NSInteger) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn labelAtIndex(&self, index: NSInteger) -> Option<Id<NSString>>;
 
         #[method_id(@__retain_semantics Other target)]
-        pub unsafe fn target(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn target(&self) -> Option<Id<Object>>;
 
         #[method(setTarget:)]
         pub unsafe fn setTarget(&self, target: Option<&Object>);
@@ -163,7 +163,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other customizationLabel)]
-        pub unsafe fn customizationLabel(&self) -> Id<NSString, Shared>;
+        pub unsafe fn customizationLabel(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCustomizationLabel:)]
@@ -179,6 +179,6 @@ extern_methods!(
         pub unsafe fn initWithIdentifier(
             this: Option<Allocated<Self>>,
             identifier: &NSTouchBarItemIdentifier,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

@@ -140,7 +140,7 @@ extern_protocol!(
             &self,
             sender: Option<&WebView>,
             request: Option<&NSURLRequest>,
-        ) -> Option<Id<WebView, Shared>>;
+        ) -> Option<Id<WebView>>;
 
         #[cfg(feature = "WebKit_WebView")]
         #[optional]
@@ -154,7 +154,7 @@ extern_protocol!(
             &self,
             sender: Option<&WebView>,
             request: Option<&NSURLRequest>,
-        ) -> Option<Id<WebView, Shared>>;
+        ) -> Option<Id<WebView>>;
 
         #[cfg(feature = "WebKit_WebView")]
         #[optional]
@@ -179,10 +179,8 @@ extern_protocol!(
         #[cfg(all(feature = "AppKit_NSResponder", feature = "WebKit_WebView"))]
         #[optional]
         #[method_id(@__retain_semantics Other webViewFirstResponder:)]
-        unsafe fn webViewFirstResponder(
-            &self,
-            sender: Option<&WebView>,
-        ) -> Option<Id<NSResponder, Shared>>;
+        unsafe fn webViewFirstResponder(&self, sender: Option<&WebView>)
+            -> Option<Id<NSResponder>>;
 
         #[cfg(all(feature = "AppKit_NSResponder", feature = "WebKit_WebView"))]
         #[optional]
@@ -201,10 +199,7 @@ extern_protocol!(
         #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_WebView"))]
         #[optional]
         #[method_id(@__retain_semantics Other webViewStatusText:)]
-        unsafe fn webViewStatusText(
-            &self,
-            sender: Option<&WebView>,
-        ) -> Option<Id<NSString, Shared>>;
+        unsafe fn webViewStatusText(&self, sender: Option<&WebView>) -> Option<Id<NSString>>;
 
         #[cfg(feature = "WebKit_WebView")]
         #[optional]
@@ -287,7 +282,7 @@ extern_protocol!(
             prompt: Option<&NSString>,
             default_text: Option<&NSString>,
             frame: Option<&WebFrame>,
-        ) -> Option<Id<NSString, Shared>>;
+        ) -> Option<Id<NSString>>;
 
         #[cfg(all(
             feature = "Foundation_NSString",
@@ -344,7 +339,7 @@ extern_protocol!(
             sender: Option<&WebView>,
             element: Option<&NSDictionary>,
             default_menu_items: Option<&NSArray>,
-        ) -> Option<Id<NSArray, Shared>>;
+        ) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "WebKit_WebView")]
         #[optional]
@@ -463,7 +458,7 @@ extern_protocol!(
             sender: Option<&WebView>,
             prompt: Option<&NSString>,
             default_text: Option<&NSString>,
-        ) -> Option<Id<NSString, Shared>>;
+        ) -> Option<Id<NSString>>;
 
         #[cfg(feature = "WebKit_WebView")]
         #[deprecated]

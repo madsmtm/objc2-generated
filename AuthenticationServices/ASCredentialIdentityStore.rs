@@ -33,10 +33,10 @@ extern_methods!(
     #[cfg(feature = "AuthenticationServices_ASCredentialIdentityStore")]
     unsafe impl ASCredentialIdentityStore {
         #[method_id(@__retain_semantics Other sharedStore)]
-        pub unsafe fn sharedStore() -> Id<ASCredentialIdentityStore, Shared>;
+        pub unsafe fn sharedStore() -> Id<ASCredentialIdentityStore>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(feature = "AuthenticationServices_ASCredentialIdentityStoreState")]
         #[method(getCredentialIdentityStoreStateWithCompletion:)]

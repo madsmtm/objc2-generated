@@ -112,6 +112,6 @@ extern_methods!(
         pub unsafe fn directMessagesSetting(&self) -> UNNotificationSetting;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }
 );

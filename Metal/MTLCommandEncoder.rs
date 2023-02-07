@@ -26,11 +26,11 @@ ns_options!(
 extern_protocol!(
     pub unsafe trait MTLCommandEncoder: NSObjectProtocol {
         #[method_id(@__retain_semantics Other device)]
-        unsafe fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>, Shared>;
+        unsafe fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
-        fn label(&self) -> Option<Id<NSString, Shared>>;
+        fn label(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:)]

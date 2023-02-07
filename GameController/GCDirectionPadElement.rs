@@ -8,22 +8,22 @@ use crate::GameController::*;
 extern_protocol!(
     pub unsafe trait GCDirectionPadElement: GCPhysicalInputElement {
         #[method_id(@__retain_semantics Other xAxis)]
-        unsafe fn xAxis(&self) -> Id<ProtocolObject<dyn GCAxisInput>, Shared>;
+        unsafe fn xAxis(&self) -> Id<ProtocolObject<dyn GCAxisInput>>;
 
         #[method_id(@__retain_semantics Other yAxis)]
-        unsafe fn yAxis(&self) -> Id<ProtocolObject<dyn GCAxisInput>, Shared>;
+        unsafe fn yAxis(&self) -> Id<ProtocolObject<dyn GCAxisInput>>;
 
         #[method_id(@__retain_semantics Other up)]
-        unsafe fn up(&self) -> Id<TodoProtocols, Shared>;
+        unsafe fn up(&self) -> Id<TodoProtocols>;
 
         #[method_id(@__retain_semantics Other down)]
-        unsafe fn down(&self) -> Id<TodoProtocols, Shared>;
+        unsafe fn down(&self) -> Id<TodoProtocols>;
 
         #[method_id(@__retain_semantics Other left)]
-        unsafe fn left(&self) -> Id<TodoProtocols, Shared>;
+        unsafe fn left(&self) -> Id<TodoProtocols>;
 
         #[method_id(@__retain_semantics Other right)]
-        unsafe fn right(&self) -> Id<TodoProtocols, Shared>;
+        unsafe fn right(&self) -> Id<TodoProtocols>;
     }
 
     unsafe impl ProtocolType for dyn GCDirectionPadElement {}

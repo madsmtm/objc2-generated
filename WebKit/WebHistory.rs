@@ -36,7 +36,7 @@ extern_methods!(
     #[cfg(feature = "WebKit_WebHistory")]
     unsafe impl WebHistory {
         #[method_id(@__retain_semantics Other optionalSharedHistory)]
-        pub unsafe fn optionalSharedHistory() -> Option<Id<WebHistory, Shared>>;
+        pub unsafe fn optionalSharedHistory() -> Option<Id<WebHistory>>;
 
         #[method(setOptionalSharedHistory:)]
         pub unsafe fn setOptionalSharedHistory(history: Option<&WebHistory>);
@@ -54,18 +54,18 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other orderedLastVisitedDays)]
-        pub unsafe fn orderedLastVisitedDays(&self) -> Id<NSArray, Shared>;
+        pub unsafe fn orderedLastVisitedDays(&self) -> Id<NSArray>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSCalendarDate"))]
         #[method_id(@__retain_semantics Other orderedItemsLastVisitedOnDay:)]
         pub unsafe fn orderedItemsLastVisitedOnDay(
             &self,
             calendar_date: Option<&NSCalendarDate>,
-        ) -> Option<Id<NSArray, Shared>>;
+        ) -> Option<Id<NSArray>>;
 
         #[cfg(all(feature = "Foundation_NSURL", feature = "WebKit_WebHistoryItem"))]
         #[method_id(@__retain_semantics Other itemForURL:)]
-        pub unsafe fn itemForURL(&self, url: Option<&NSURL>) -> Option<Id<WebHistoryItem, Shared>>;
+        pub unsafe fn itemForURL(&self, url: Option<&NSURL>) -> Option<Id<WebHistoryItem>>;
 
         #[method(historyItemLimit)]
         pub unsafe fn historyItemLimit(&self) -> c_int;

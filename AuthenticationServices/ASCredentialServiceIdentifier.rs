@@ -41,11 +41,11 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             identifier: &NSString,
             r#type: ASCredentialServiceIdentifierType,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn identifier(&self) -> Id<NSString>;
 
         #[method(type)]
         pub unsafe fn r#type(&self) -> ASCredentialServiceIdentifierType;

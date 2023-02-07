@@ -44,7 +44,7 @@ extern_methods!(
         pub unsafe fn regularExpressionWithPattern_options_error(
             pattern: &NSString,
             options: NSRegularExpressionOptions,
-        ) -> Result<Id<NSRegularExpression, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<NSRegularExpression>, Id<NSError>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithPattern:options:error:_)]
@@ -52,11 +52,11 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             pattern: &NSString,
             options: NSRegularExpressionOptions,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self>, Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other pattern)]
-        pub unsafe fn pattern(&self) -> Id<NSString, Shared>;
+        pub unsafe fn pattern(&self) -> Id<NSString>;
 
         #[method(options)]
         pub unsafe fn options(&self) -> NSRegularExpressionOptions;
@@ -66,7 +66,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other escapedPatternForString:)]
-        pub unsafe fn escapedPatternForString(string: &NSString) -> Id<NSString, Shared>;
+        pub unsafe fn escapedPatternForString(string: &NSString) -> Id<NSString>;
     }
 );
 
@@ -120,7 +120,7 @@ extern_methods!(
             string: &NSString,
             options: NSMatchingOptions,
             range: NSRange,
-        ) -> Id<NSArray<NSTextCheckingResult>, Shared>;
+        ) -> Id<NSArray<NSTextCheckingResult>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(numberOfMatchesInString:options:range:)]
@@ -141,7 +141,7 @@ extern_methods!(
             string: &NSString,
             options: NSMatchingOptions,
             range: NSRange,
-        ) -> Option<Id<NSTextCheckingResult, Shared>>;
+        ) -> Option<Id<NSTextCheckingResult>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(rangeOfFirstMatchInString:options:range:)]
@@ -166,7 +166,7 @@ extern_methods!(
             options: NSMatchingOptions,
             range: NSRange,
             templ: &NSString,
-        ) -> Id<NSString, Shared>;
+        ) -> Id<NSString>;
 
         #[cfg(all(
             feature = "Foundation_NSMutableString",
@@ -192,11 +192,11 @@ extern_methods!(
             string: &NSString,
             offset: NSInteger,
             templ: &NSString,
-        ) -> Id<NSString, Shared>;
+        ) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other escapedTemplateForString:)]
-        pub unsafe fn escapedTemplateForString(string: &NSString) -> Id<NSString, Shared>;
+        pub unsafe fn escapedTemplateForString(string: &NSString) -> Id<NSString>;
     }
 );
 
@@ -228,14 +228,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other dataDetectorWithTypes:error:_)]
         pub unsafe fn dataDetectorWithTypes_error(
             checking_types: NSTextCheckingTypes,
-        ) -> Result<Id<NSDataDetector, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<NSDataDetector>, Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Init initWithTypes:error:_)]
         pub unsafe fn initWithTypes_error(
             this: Option<Allocated<Self>>,
             checking_types: NSTextCheckingTypes,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self>, Id<NSError>>;
 
         #[method(checkingTypes)]
         pub unsafe fn checkingTypes(&self) -> NSTextCheckingTypes;
@@ -252,6 +252,6 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             pattern: &NSString,
             options: NSRegularExpressionOptions,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self>, Id<NSError>>;
     }
 );

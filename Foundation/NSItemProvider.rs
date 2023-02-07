@@ -24,12 +24,12 @@ extern_protocol!(
     pub unsafe trait NSItemProviderWriting: NSObjectProtocol {
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other writableTypeIdentifiersForItemProvider)]
-        unsafe fn writableTypeIdentifiersForItemProvider_class() -> Id<NSArray<NSString>, Shared>;
+        unsafe fn writableTypeIdentifiersForItemProvider_class() -> Id<NSArray<NSString>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[optional]
         #[method_id(@__retain_semantics Other writableTypeIdentifiersForItemProvider)]
-        unsafe fn writableTypeIdentifiersForItemProvider(&self) -> Id<NSArray<NSString>, Shared>;
+        unsafe fn writableTypeIdentifiersForItemProvider(&self) -> Id<NSArray<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[optional]
@@ -57,7 +57,7 @@ extern_protocol!(
             &self,
             type_identifier: &NSString,
             completion_handler: &Block<(*mut NSData, *mut NSError), ()>,
-        ) -> Option<Id<NSProgress, Shared>>;
+        ) -> Option<Id<NSProgress>>;
     }
 
     unsafe impl ProtocolType for dyn NSItemProviderWriting {}
@@ -67,7 +67,7 @@ extern_protocol!(
     pub unsafe trait NSItemProviderReading: NSObjectProtocol {
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other readableTypeIdentifiersForItemProvider)]
-        unsafe fn readableTypeIdentifiersForItemProvider() -> Id<NSArray<NSString>, Shared>;
+        unsafe fn readableTypeIdentifiersForItemProvider() -> Id<NSArray<NSString>>;
 
         #[cfg(all(
             feature = "Foundation_NSData",
@@ -78,7 +78,7 @@ extern_protocol!(
         unsafe fn objectWithItemProviderData_typeIdentifier_error(
             data: &NSData,
             type_identifier: &NSString,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self>, Id<NSError>>;
     }
 
     unsafe impl ProtocolType for dyn NSItemProviderReading {}
@@ -114,7 +114,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSItemProvider")]
     unsafe impl NSItemProvider {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(all(
             feature = "Foundation_NSData",
@@ -153,14 +153,14 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other registeredTypeIdentifiers)]
-        pub unsafe fn registeredTypeIdentifiers(&self) -> Id<NSArray<NSString>, Shared>;
+        pub unsafe fn registeredTypeIdentifiers(&self) -> Id<NSArray<NSString>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other registeredTypeIdentifiersWithFileOptions:)]
         pub unsafe fn registeredTypeIdentifiersWithFileOptions(
             &self,
             file_options: NSItemProviderFileOptions,
-        ) -> Id<NSArray<NSString>, Shared>;
+        ) -> Id<NSArray<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(hasItemConformingToTypeIdentifier:)]
@@ -185,7 +185,7 @@ extern_methods!(
             &self,
             type_identifier: &NSString,
             completion_handler: &Block<(*mut NSData, *mut NSError), ()>,
-        ) -> Id<NSProgress, Shared>;
+        ) -> Id<NSProgress>;
 
         #[cfg(all(
             feature = "Foundation_NSError",
@@ -198,7 +198,7 @@ extern_methods!(
             &self,
             type_identifier: &NSString,
             completion_handler: &Block<(*mut NSURL, *mut NSError), ()>,
-        ) -> Id<NSProgress, Shared>;
+        ) -> Id<NSProgress>;
 
         #[cfg(all(
             feature = "Foundation_NSError",
@@ -211,11 +211,11 @@ extern_methods!(
             &self,
             type_identifier: &NSString,
             completion_handler: &Block<(*mut NSURL, Bool, *mut NSError), ()>,
-        ) -> Id<NSProgress, Shared>;
+        ) -> Id<NSProgress>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other suggestedName)]
-        pub unsafe fn suggestedName(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn suggestedName(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setSuggestedName:)]
@@ -225,7 +225,7 @@ extern_methods!(
         pub unsafe fn initWithObject(
             this: Option<Allocated<Self>>,
             object: &ProtocolObject<dyn NSItemProviderWriting>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(registerObject:visibility:)]
         pub unsafe fn registerObject_visibility(
@@ -240,14 +240,14 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             item: Option<&ProtocolObject<dyn NSSecureCoding>>,
             type_identifier: Option<&NSString>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
         pub unsafe fn initWithContentsOfURL(
             this: Option<Allocated<Self>>,
             file_url: Option<&NSURL>,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(registerItemForTypeIdentifier:loadHandler:)]

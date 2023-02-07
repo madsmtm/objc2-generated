@@ -41,12 +41,12 @@ extern_methods!(
             url: &NSURL,
             callback_url_scheme: Option<&NSString>,
             completion_handler: ASWebAuthenticationSessionCompletionHandler,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other presentationContextProvider)]
         pub unsafe fn presentationContextProvider(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn ASWebAuthenticationPresentationContextProviding>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn ASWebAuthenticationPresentationContextProviding>>>;
 
         #[method(setPresentationContextProvider:)]
         pub unsafe fn setPresentationContextProvider(
@@ -75,10 +75,10 @@ extern_methods!(
         pub unsafe fn cancel(&self);
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }
 );
 
@@ -91,7 +91,7 @@ extern_protocol!(
         unsafe fn presentationAnchorForWebAuthenticationSession(
             &self,
             session: &ASWebAuthenticationSession,
-        ) -> Id<ASPresentationAnchor, Shared>;
+        ) -> Id<ASPresentationAnchor>;
     }
 
     unsafe impl ProtocolType for dyn ASWebAuthenticationPresentationContextProviding {}

@@ -30,15 +30,15 @@ extern_methods!(
     unsafe impl CKShareMetadata {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other containerIdentifier)]
-        pub unsafe fn containerIdentifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn containerIdentifier(&self) -> Id<NSString>;
 
         #[cfg(feature = "CloudKit_CKShare")]
         #[method_id(@__retain_semantics Other share)]
-        pub unsafe fn share(&self) -> Id<CKShare, Shared>;
+        pub unsafe fn share(&self) -> Id<CKShare>;
 
         #[cfg(feature = "CloudKit_CKRecordID")]
         #[method_id(@__retain_semantics Other hierarchicalRootRecordID)]
-        pub unsafe fn hierarchicalRootRecordID(&self) -> Option<Id<CKRecordID, Shared>>;
+        pub unsafe fn hierarchicalRootRecordID(&self) -> Option<Id<CKRecordID>>;
 
         #[method(participantRole)]
         pub unsafe fn participantRole(&self) -> CKShareParticipantRole;
@@ -51,11 +51,11 @@ extern_methods!(
 
         #[cfg(feature = "CloudKit_CKUserIdentity")]
         #[method_id(@__retain_semantics Other ownerIdentity)]
-        pub unsafe fn ownerIdentity(&self) -> Id<CKUserIdentity, Shared>;
+        pub unsafe fn ownerIdentity(&self) -> Id<CKUserIdentity>;
 
         #[cfg(feature = "CloudKit_CKRecord")]
         #[method_id(@__retain_semantics Other rootRecord)]
-        pub unsafe fn rootRecord(&self) -> Option<Id<CKRecord, Shared>>;
+        pub unsafe fn rootRecord(&self) -> Option<Id<CKRecord>>;
 
         #[deprecated]
         #[method(participantType)]
@@ -64,6 +64,6 @@ extern_methods!(
         #[cfg(feature = "CloudKit_CKRecordID")]
         #[deprecated]
         #[method_id(@__retain_semantics Other rootRecordID)]
-        pub unsafe fn rootRecordID(&self) -> Id<CKRecordID, Shared>;
+        pub unsafe fn rootRecordID(&self) -> Id<CKRecordID>;
     }
 );

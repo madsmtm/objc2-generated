@@ -37,7 +37,7 @@ extern_methods!(
     unsafe impl NSPersistentDocument {
         #[cfg(feature = "CoreData_NSManagedObjectContext")]
         #[method_id(@__retain_semantics Other managedObjectContext)]
-        pub unsafe fn managedObjectContext(&self) -> Option<Id<NSManagedObjectContext, Shared>>;
+        pub unsafe fn managedObjectContext(&self) -> Option<Id<NSManagedObjectContext>>;
 
         #[cfg(feature = "CoreData_NSManagedObjectContext")]
         #[method(setManagedObjectContext:)]
@@ -48,7 +48,7 @@ extern_methods!(
 
         #[cfg(feature = "CoreData_NSManagedObjectModel")]
         #[method_id(@__retain_semantics Other managedObjectModel)]
-        pub unsafe fn managedObjectModel(&self) -> Option<Id<NSManagedObjectModel, Shared>>;
+        pub unsafe fn managedObjectModel(&self) -> Option<Id<NSManagedObjectModel>>;
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",
@@ -63,14 +63,11 @@ extern_methods!(
             file_type: &NSString,
             configuration: Option<&NSString>,
             store_options: Option<&NSDictionary<NSString, Object>>,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other persistentStoreTypeForFileType:)]
-        pub unsafe fn persistentStoreTypeForFileType(
-            &self,
-            file_type: &NSString,
-        ) -> Id<NSString, Shared>;
+        pub unsafe fn persistentStoreTypeForFileType(&self, file_type: &NSString) -> Id<NSString>;
 
         #[cfg(all(
             feature = "Foundation_NSError",
@@ -84,7 +81,7 @@ extern_methods!(
             type_name: &NSString,
             save_operation: NSSaveOperationType,
             absolute_original_contents_url: Option<&NSURL>,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
 
         #[cfg(all(
             feature = "Foundation_NSError",
@@ -96,7 +93,7 @@ extern_methods!(
             &self,
             absolute_url: &NSURL,
             type_name: &NSString,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
 
         #[cfg(all(
             feature = "Foundation_NSError",
@@ -108,7 +105,7 @@ extern_methods!(
             &self,
             in_absolute_url: &NSURL,
             in_type_name: &NSString,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
     }
 );
 
@@ -127,7 +124,7 @@ extern_methods!(
             &self,
             url: Option<&NSURL>,
             file_type: Option<&NSString>,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
     }
 );
 
@@ -140,7 +137,7 @@ extern_methods!(
         pub unsafe fn initWithType_error(
             this: Option<Allocated<Self>>,
             type_name: &NSString,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self>, Id<NSError>>;
 
         #[cfg(all(
             feature = "Foundation_NSError",
@@ -152,7 +149,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             url: &NSURL,
             type_name: &NSString,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self>, Id<NSError>>;
 
         #[cfg(all(
             feature = "Foundation_NSError",
@@ -165,7 +162,7 @@ extern_methods!(
             url_or_nil: Option<&NSURL>,
             contents_url: &NSURL,
             type_name: &NSString,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self>, Id<NSError>>;
     }
 );
 
@@ -182,7 +179,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             absolute_path: &NSString,
             type_name: &NSString,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
         #[deprecated]
@@ -191,6 +188,6 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             url: &NSURL,
             type_name: &NSString,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
     }
 );

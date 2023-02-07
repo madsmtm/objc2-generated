@@ -41,7 +41,7 @@ extern_methods!(
         pub unsafe fn setAlpha(&self, alpha: CGFloat);
 
         #[method_id(@__retain_semantics Other layoutAttributesForItemAtIndex:)]
-        pub unsafe fn layoutAttributesForItemAtIndex(index: NSInteger) -> Id<Self, Shared>;
+        pub unsafe fn layoutAttributesForItemAtIndex(index: NSInteger) -> Id<Self>;
     }
 );
 
@@ -70,20 +70,17 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSScrubber")]
         #[method_id(@__retain_semantics Other scrubber)]
-        pub unsafe fn scrubber(&self) -> Option<Id<NSScrubber, Shared>>;
+        pub unsafe fn scrubber(&self) -> Option<Id<NSScrubber>>;
 
         #[method(visibleRect)]
         pub unsafe fn visibleRect(&self) -> NSRect;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            coder: &NSCoder,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, coder: &NSCoder) -> Id<Self>;
 
         #[method(invalidateLayout)]
         pub unsafe fn invalidateLayout(&self);
@@ -99,7 +96,7 @@ extern_methods!(
         pub unsafe fn layoutAttributesForItemAtIndex(
             &self,
             index: NSInteger,
-        ) -> Option<Id<NSScrubberLayoutAttributes, Shared>>;
+        ) -> Option<Id<NSScrubberLayoutAttributes>>;
 
         #[cfg(all(
             feature = "AppKit_NSScrubberLayoutAttributes",
@@ -109,7 +106,7 @@ extern_methods!(
         pub unsafe fn layoutAttributesForItemsInRect(
             &self,
             rect: NSRect,
-        ) -> Id<NSSet<NSScrubberLayoutAttributes>, Shared>;
+        ) -> Id<NSSet<NSScrubberLayoutAttributes>>;
 
         #[method(shouldInvalidateLayoutForSelectionChange)]
         pub unsafe fn shouldInvalidateLayoutForSelectionChange(&self) -> bool;
@@ -215,13 +212,10 @@ extern_methods!(
         pub unsafe fn initWithNumberOfVisibleItems(
             this: Option<Allocated<Self>>,
             number_of_visible_items: NSInteger,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            coder: &NSCoder,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, coder: &NSCoder) -> Id<Self>;
     }
 );

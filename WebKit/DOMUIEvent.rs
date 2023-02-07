@@ -26,7 +26,7 @@ extern_methods!(
     unsafe impl DOMUIEvent {
         #[cfg(feature = "WebKit_DOMAbstractView")]
         #[method_id(@__retain_semantics Other view)]
-        pub unsafe fn view(&self) -> Option<Id<DOMAbstractView, Shared>>;
+        pub unsafe fn view(&self) -> Option<Id<DOMAbstractView>>;
 
         #[method(detail)]
         pub unsafe fn detail(&self) -> c_int;

@@ -29,7 +29,7 @@ extern_methods!(
     unsafe impl DOMHTMLFontElement {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other color)]
-        pub unsafe fn color(&self) -> Id<NSString, Shared>;
+        pub unsafe fn color(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setColor:)]
@@ -37,7 +37,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other face)]
-        pub unsafe fn face(&self) -> Id<NSString, Shared>;
+        pub unsafe fn face(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setFace:)]
@@ -45,7 +45,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other size)]
-        pub unsafe fn size(&self) -> Id<NSString, Shared>;
+        pub unsafe fn size(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setSize:)]

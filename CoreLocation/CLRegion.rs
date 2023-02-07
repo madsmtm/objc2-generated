@@ -55,7 +55,7 @@ extern_methods!(
             center: CLLocationCoordinate2D,
             radius: CLLocationDistance,
             identifier: &NSString,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[deprecated = "Please see CLCircularRegion"]
         #[method(center)]
@@ -67,7 +67,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn identifier(&self) -> Id<NSString>;
 
         #[method(notifyOnEntry)]
         pub unsafe fn notifyOnEntry(&self) -> bool;

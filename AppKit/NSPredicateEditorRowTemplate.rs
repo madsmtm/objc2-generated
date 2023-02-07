@@ -31,7 +31,7 @@ extern_methods!(
 
         #[cfg(all(feature = "AppKit_NSView", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other templateViews)]
-        pub unsafe fn templateViews(&self) -> Id<NSArray<NSView>, Shared>;
+        pub unsafe fn templateViews(&self) -> Id<NSArray<NSView>>;
 
         #[cfg(feature = "Foundation_NSPredicate")]
         #[method(setPredicate:)]
@@ -42,14 +42,14 @@ extern_methods!(
         pub unsafe fn predicateWithSubpredicates(
             &self,
             subpredicates: Option<&NSArray<NSPredicate>>,
-        ) -> Id<NSPredicate, Shared>;
+        ) -> Id<NSPredicate>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSPredicate"))]
         #[method_id(@__retain_semantics Other displayableSubpredicatesOfPredicate:)]
         pub unsafe fn displayableSubpredicatesOfPredicate(
             &self,
             predicate: &NSPredicate,
-        ) -> Option<Id<NSArray<NSPredicate>, Shared>>;
+        ) -> Option<Id<NSArray<NSPredicate>>>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -64,7 +64,7 @@ extern_methods!(
             modifier: NSComparisonPredicateModifier,
             operators: &NSArray<NSNumber>,
             options: NSUInteger,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -79,22 +79,22 @@ extern_methods!(
             modifier: NSComparisonPredicateModifier,
             operators: &NSArray<NSNumber>,
             options: NSUInteger,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method_id(@__retain_semantics Init initWithCompoundTypes:)]
         pub unsafe fn initWithCompoundTypes(
             this: Option<Allocated<Self>>,
             compound_types: &NSArray<NSNumber>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSExpression"))]
         #[method_id(@__retain_semantics Other leftExpressions)]
-        pub unsafe fn leftExpressions(&self) -> Option<Id<NSArray<NSExpression>, Shared>>;
+        pub unsafe fn leftExpressions(&self) -> Option<Id<NSArray<NSExpression>>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSExpression"))]
         #[method_id(@__retain_semantics Other rightExpressions)]
-        pub unsafe fn rightExpressions(&self) -> Option<Id<NSArray<NSExpression>, Shared>>;
+        pub unsafe fn rightExpressions(&self) -> Option<Id<NSArray<NSExpression>>>;
 
         #[method(rightExpressionAttributeType)]
         pub unsafe fn rightExpressionAttributeType(&self) -> NSAttributeType;
@@ -104,14 +104,14 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method_id(@__retain_semantics Other operators)]
-        pub unsafe fn operators(&self) -> Option<Id<NSArray<NSNumber>, Shared>>;
+        pub unsafe fn operators(&self) -> Option<Id<NSArray<NSNumber>>>;
 
         #[method(options)]
         pub unsafe fn options(&self) -> NSUInteger;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method_id(@__retain_semantics Other compoundTypes)]
-        pub unsafe fn compoundTypes(&self) -> Option<Id<NSArray<NSNumber>, Shared>>;
+        pub unsafe fn compoundTypes(&self) -> Option<Id<NSArray<NSNumber>>>;
 
         #[cfg(all(
             feature = "CoreData_NSEntityDescription",
@@ -122,6 +122,6 @@ extern_methods!(
         pub unsafe fn templatesWithAttributeKeyPaths_inEntityDescription(
             key_paths: &NSArray<NSString>,
             entity_description: &NSEntityDescription,
-        ) -> Id<NSArray<NSPredicateEditorRowTemplate>, Shared>;
+        ) -> Id<NSArray<NSPredicateEditorRowTemplate>>;
     }
 );

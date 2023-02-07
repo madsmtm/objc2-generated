@@ -132,7 +132,7 @@ extern_methods!(
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             index: NSUInteger,
-        ) -> Id<MTLVertexBufferLayoutDescriptor, Shared>;
+        ) -> Id<MTLVertexBufferLayoutDescriptor>;
 
         #[cfg(feature = "Metal_MTLVertexBufferLayoutDescriptor")]
         #[method(setObject:atIndexedSubscript:)]
@@ -203,7 +203,7 @@ extern_methods!(
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             index: NSUInteger,
-        ) -> Id<MTLVertexAttributeDescriptor, Shared>;
+        ) -> Id<MTLVertexAttributeDescriptor>;
 
         #[cfg(feature = "Metal_MTLVertexAttributeDescriptor")]
         #[method(setObject:atIndexedSubscript:)]
@@ -233,15 +233,15 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLVertexDescriptor")]
     unsafe impl MTLVertexDescriptor {
         #[method_id(@__retain_semantics Other vertexDescriptor)]
-        pub fn vertexDescriptor() -> Id<MTLVertexDescriptor, Shared>;
+        pub fn vertexDescriptor() -> Id<MTLVertexDescriptor>;
 
         #[cfg(feature = "Metal_MTLVertexBufferLayoutDescriptorArray")]
         #[method_id(@__retain_semantics Other layouts)]
-        pub fn layouts(&self) -> Id<MTLVertexBufferLayoutDescriptorArray, Shared>;
+        pub fn layouts(&self) -> Id<MTLVertexBufferLayoutDescriptorArray>;
 
         #[cfg(feature = "Metal_MTLVertexAttributeDescriptorArray")]
         #[method_id(@__retain_semantics Other attributes)]
-        pub fn attributes(&self) -> Id<MTLVertexAttributeDescriptorArray, Shared>;
+        pub fn attributes(&self) -> Id<MTLVertexAttributeDescriptorArray>;
 
         #[method(reset)]
         pub fn reset(&self);

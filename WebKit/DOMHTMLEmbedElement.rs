@@ -29,7 +29,7 @@ extern_methods!(
     unsafe impl DOMHTMLEmbedElement {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other align)]
-        pub unsafe fn align(&self) -> Id<NSString, Shared>;
+        pub unsafe fn align(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAlign:)]
@@ -43,7 +43,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString, Shared>;
+        pub unsafe fn name(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]
@@ -51,7 +51,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other src)]
-        pub unsafe fn src(&self) -> Id<NSString, Shared>;
+        pub unsafe fn src(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setSrc:)]
@@ -59,7 +59,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other type)]
-        pub unsafe fn r#type(&self) -> Id<NSString, Shared>;
+        pub unsafe fn r#type(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setType:)]

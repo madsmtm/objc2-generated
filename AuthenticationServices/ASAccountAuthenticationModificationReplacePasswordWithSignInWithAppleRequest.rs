@@ -46,18 +46,18 @@ extern_methods!(
             user: &NSString,
             service_identifier: &ASCredentialServiceIdentifier,
             user_info: Option<&NSDictionary>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other user)]
-        pub unsafe fn user(&self) -> Id<NSString, Shared>;
+        pub unsafe fn user(&self) -> Id<NSString>;
 
         #[cfg(feature = "AuthenticationServices_ASCredentialServiceIdentifier")]
         #[method_id(@__retain_semantics Other serviceIdentifier)]
-        pub unsafe fn serviceIdentifier(&self) -> Id<ASCredentialServiceIdentifier, Shared>;
+        pub unsafe fn serviceIdentifier(&self) -> Id<ASCredentialServiceIdentifier>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other userInfo)]
-        pub unsafe fn userInfo(&self) -> Option<Id<NSDictionary, Shared>>;
+        pub unsafe fn userInfo(&self) -> Option<Id<NSDictionary>>;
     }
 );

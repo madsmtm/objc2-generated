@@ -29,7 +29,7 @@ extern_methods!(
     unsafe impl DOMHTMLHeadingElement {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other align)]
-        pub unsafe fn align(&self) -> Id<NSString, Shared>;
+        pub unsafe fn align(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAlign:)]

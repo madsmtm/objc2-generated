@@ -33,57 +33,57 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other owningView)]
-        pub unsafe fn owningView(&self) -> Option<Id<NSView, Shared>>;
+        pub unsafe fn owningView(&self) -> Option<Id<NSView>>;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(setOwningView:)]
         pub unsafe fn setOwningView(&self, owning_view: Option<&NSView>);
 
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<NSUserInterfaceItemIdentifier, Shared>;
+        pub unsafe fn identifier(&self) -> Id<NSUserInterfaceItemIdentifier>;
 
         #[method(setIdentifier:)]
         pub unsafe fn setIdentifier(&self, identifier: &NSUserInterfaceItemIdentifier);
 
         #[cfg(feature = "AppKit_NSLayoutXAxisAnchor")]
         #[method_id(@__retain_semantics Other leadingAnchor)]
-        pub unsafe fn leadingAnchor(&self) -> Id<NSLayoutXAxisAnchor, Shared>;
+        pub unsafe fn leadingAnchor(&self) -> Id<NSLayoutXAxisAnchor>;
 
         #[cfg(feature = "AppKit_NSLayoutXAxisAnchor")]
         #[method_id(@__retain_semantics Other trailingAnchor)]
-        pub unsafe fn trailingAnchor(&self) -> Id<NSLayoutXAxisAnchor, Shared>;
+        pub unsafe fn trailingAnchor(&self) -> Id<NSLayoutXAxisAnchor>;
 
         #[cfg(feature = "AppKit_NSLayoutXAxisAnchor")]
         #[method_id(@__retain_semantics Other leftAnchor)]
-        pub unsafe fn leftAnchor(&self) -> Id<NSLayoutXAxisAnchor, Shared>;
+        pub unsafe fn leftAnchor(&self) -> Id<NSLayoutXAxisAnchor>;
 
         #[cfg(feature = "AppKit_NSLayoutXAxisAnchor")]
         #[method_id(@__retain_semantics Other rightAnchor)]
-        pub unsafe fn rightAnchor(&self) -> Id<NSLayoutXAxisAnchor, Shared>;
+        pub unsafe fn rightAnchor(&self) -> Id<NSLayoutXAxisAnchor>;
 
         #[cfg(feature = "AppKit_NSLayoutYAxisAnchor")]
         #[method_id(@__retain_semantics Other topAnchor)]
-        pub unsafe fn topAnchor(&self) -> Id<NSLayoutYAxisAnchor, Shared>;
+        pub unsafe fn topAnchor(&self) -> Id<NSLayoutYAxisAnchor>;
 
         #[cfg(feature = "AppKit_NSLayoutYAxisAnchor")]
         #[method_id(@__retain_semantics Other bottomAnchor)]
-        pub unsafe fn bottomAnchor(&self) -> Id<NSLayoutYAxisAnchor, Shared>;
+        pub unsafe fn bottomAnchor(&self) -> Id<NSLayoutYAxisAnchor>;
 
         #[cfg(feature = "AppKit_NSLayoutDimension")]
         #[method_id(@__retain_semantics Other widthAnchor)]
-        pub unsafe fn widthAnchor(&self) -> Id<NSLayoutDimension, Shared>;
+        pub unsafe fn widthAnchor(&self) -> Id<NSLayoutDimension>;
 
         #[cfg(feature = "AppKit_NSLayoutDimension")]
         #[method_id(@__retain_semantics Other heightAnchor)]
-        pub unsafe fn heightAnchor(&self) -> Id<NSLayoutDimension, Shared>;
+        pub unsafe fn heightAnchor(&self) -> Id<NSLayoutDimension>;
 
         #[cfg(feature = "AppKit_NSLayoutXAxisAnchor")]
         #[method_id(@__retain_semantics Other centerXAnchor)]
-        pub unsafe fn centerXAnchor(&self) -> Id<NSLayoutXAxisAnchor, Shared>;
+        pub unsafe fn centerXAnchor(&self) -> Id<NSLayoutXAxisAnchor>;
 
         #[cfg(feature = "AppKit_NSLayoutYAxisAnchor")]
         #[method_id(@__retain_semantics Other centerYAnchor)]
-        pub unsafe fn centerYAnchor(&self) -> Id<NSLayoutYAxisAnchor, Shared>;
+        pub unsafe fn centerYAnchor(&self) -> Id<NSLayoutYAxisAnchor>;
 
         #[method(hasAmbiguousLayout)]
         pub unsafe fn hasAmbiguousLayout(&self) -> bool;
@@ -93,7 +93,7 @@ extern_methods!(
         pub unsafe fn constraintsAffectingLayoutForOrientation(
             &self,
             orientation: NSLayoutConstraintOrientation,
-        ) -> Id<NSArray<NSLayoutConstraint>, Shared>;
+        ) -> Id<NSArray<NSLayoutConstraint>>;
     }
 );
 
@@ -111,6 +111,6 @@ extern_methods!(
 
         #[cfg(all(feature = "AppKit_NSLayoutGuide", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other layoutGuides)]
-        pub unsafe fn layoutGuides(&self) -> Id<NSArray<NSLayoutGuide>, Shared>;
+        pub unsafe fn layoutGuides(&self) -> Id<NSArray<NSLayoutGuide>>;
     }
 );

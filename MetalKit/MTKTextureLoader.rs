@@ -79,16 +79,16 @@ extern_methods!(
     #[cfg(feature = "MetalKit_MTKTextureLoader")]
     unsafe impl MTKTextureLoader {
         #[method_id(@__retain_semantics Other device)]
-        pub unsafe fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>, Shared>;
+        pub unsafe fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Option<Allocated<Self>>,
             device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSURL"))]
         #[method(newTextureWithContentsOfURL:options:completionHandler:)]
@@ -204,7 +204,7 @@ extern_methods!(
             &self,
             url: &NSURL,
             options: Option<&NSDictionary<MTKTextureLoaderOption, Object>>,
-        ) -> Result<Id<ProtocolObject<dyn MTLTexture>, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<ProtocolObject<dyn MTLTexture>>, Id<NSError>>;
 
         #[cfg(all(
             feature = "Foundation_NSData",
@@ -216,7 +216,7 @@ extern_methods!(
             &self,
             data: &NSData,
             options: Option<&NSDictionary<MTKTextureLoaderOption, Object>>,
-        ) -> Result<Id<ProtocolObject<dyn MTLTexture>, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<ProtocolObject<dyn MTLTexture>>, Id<NSError>>;
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",
@@ -228,7 +228,7 @@ extern_methods!(
             &self,
             texture: &MDLTexture,
             options: Option<&NSDictionary<MTKTextureLoaderOption, Object>>,
-        ) -> Result<Id<ProtocolObject<dyn MTLTexture>, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<ProtocolObject<dyn MTLTexture>>, Id<NSError>>;
 
         #[cfg(all(
             feature = "Foundation_NSBundle",
@@ -243,7 +243,7 @@ extern_methods!(
             scale_factor: CGFloat,
             bundle: Option<&NSBundle>,
             options: Option<&NSDictionary<MTKTextureLoaderOption, Object>>,
-        ) -> Result<Id<ProtocolObject<dyn MTLTexture>, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<ProtocolObject<dyn MTLTexture>>, Id<NSError>>;
 
         #[cfg(all(
             feature = "Foundation_NSBundle",
@@ -259,6 +259,6 @@ extern_methods!(
             display_gamut: NSDisplayGamut,
             bundle: Option<&NSBundle>,
             options: Option<&NSDictionary<MTKTextureLoaderOption, Object>>,
-        ) -> Result<Id<ProtocolObject<dyn MTLTexture>, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<ProtocolObject<dyn MTLTexture>>, Id<NSError>>;
     }
 );

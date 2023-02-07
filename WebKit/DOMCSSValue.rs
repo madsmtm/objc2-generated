@@ -41,7 +41,7 @@ extern_methods!(
     unsafe impl DOMCSSValue {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other cssText)]
-        pub unsafe fn cssText(&self) -> Id<NSString, Shared>;
+        pub unsafe fn cssText(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCssText:)]

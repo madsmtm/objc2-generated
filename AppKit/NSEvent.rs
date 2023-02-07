@@ -368,7 +368,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[method_id(@__retain_semantics Other window)]
-        pub unsafe fn window(&self) -> Option<Id<NSWindow, Shared>>;
+        pub unsafe fn window(&self) -> Option<Id<NSWindow>>;
 
         #[method(windowNumber)]
         pub unsafe fn windowNumber(&self) -> NSInteger;
@@ -376,7 +376,7 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSGraphicsContext")]
         #[deprecated = "This method always returns nil. If you need access to the current drawing context, use [NSGraphicsContext currentContext] inside of a draw operation."]
         #[method_id(@__retain_semantics Other context)]
-        pub unsafe fn context(&self) -> Option<Id<NSGraphicsContext, Shared>>;
+        pub unsafe fn context(&self) -> Option<Id<NSGraphicsContext>>;
 
         #[method(clickCount)]
         pub unsafe fn clickCount(&self) -> NSInteger;
@@ -419,18 +419,18 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other characters)]
-        pub unsafe fn characters(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn characters(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other charactersIgnoringModifiers)]
-        pub unsafe fn charactersIgnoringModifiers(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn charactersIgnoringModifiers(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other charactersByApplyingModifiers:)]
         pub unsafe fn charactersByApplyingModifiers(
             &self,
             modifiers: NSEventModifierFlags,
-        ) -> Option<Id<NSString, Shared>>;
+        ) -> Option<Id<NSString>>;
 
         #[method(isARepeat)]
         pub unsafe fn isARepeat(&self) -> bool;
@@ -446,7 +446,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSTrackingArea")]
         #[method_id(@__retain_semantics Other trackingArea)]
-        pub unsafe fn trackingArea(&self) -> Option<Id<NSTrackingArea, Shared>>;
+        pub unsafe fn trackingArea(&self) -> Option<Id<NSTrackingArea>>;
 
         #[method(subtype)]
         pub unsafe fn subtype(&self) -> NSEventSubtype;
@@ -461,7 +461,7 @@ extern_methods!(
         pub unsafe fn eventRef(&self) -> *mut c_void;
 
         #[method_id(@__retain_semantics Other eventWithEventRef:)]
-        pub unsafe fn eventWithEventRef(event_ref: NonNull<c_void>) -> Option<Id<NSEvent, Shared>>;
+        pub unsafe fn eventWithEventRef(event_ref: NonNull<c_void>) -> Option<Id<NSEvent>>;
 
         #[method(isMouseCoalescingEnabled)]
         pub unsafe fn isMouseCoalescingEnabled() -> bool;
@@ -497,7 +497,7 @@ extern_methods!(
         pub unsafe fn tangentialPressure(&self) -> c_float;
 
         #[method_id(@__retain_semantics Other vendorDefined)]
-        pub unsafe fn vendorDefined(&self) -> Id<Object, Shared>;
+        pub unsafe fn vendorDefined(&self) -> Id<Object>;
 
         #[method(vendorID)]
         pub unsafe fn vendorID(&self) -> NSUInteger;
@@ -539,11 +539,11 @@ extern_methods!(
             &self,
             phase: NSTouchPhase,
             view: Option<&NSView>,
-        ) -> Id<NSSet<NSTouch>, Shared>;
+        ) -> Id<NSSet<NSTouch>>;
 
         #[cfg(all(feature = "AppKit_NSTouch", feature = "Foundation_NSSet"))]
         #[method_id(@__retain_semantics Other allTouches)]
-        pub unsafe fn allTouches(&self) -> Id<NSSet<NSTouch>, Shared>;
+        pub unsafe fn allTouches(&self) -> Id<NSSet<NSTouch>>;
 
         #[cfg(all(
             feature = "AppKit_NSTouch",
@@ -551,14 +551,11 @@ extern_methods!(
             feature = "Foundation_NSSet"
         ))]
         #[method_id(@__retain_semantics Other touchesForView:)]
-        pub unsafe fn touchesForView(&self, view: &NSView) -> Id<NSSet<NSTouch>, Shared>;
+        pub unsafe fn touchesForView(&self, view: &NSView) -> Id<NSSet<NSTouch>>;
 
         #[cfg(all(feature = "AppKit_NSTouch", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other coalescedTouchesForTouch:)]
-        pub unsafe fn coalescedTouchesForTouch(
-            &self,
-            touch: &NSTouch,
-        ) -> Id<NSArray<NSTouch>, Shared>;
+        pub unsafe fn coalescedTouchesForTouch(&self, touch: &NSTouch) -> Id<NSArray<NSTouch>>;
 
         #[method(phase)]
         pub unsafe fn phase(&self) -> NSEventPhase;
@@ -608,7 +605,7 @@ extern_methods!(
             e_num: NSInteger,
             c_num: NSInteger,
             pressure: c_float,
-        ) -> Option<Id<NSEvent, Shared>>;
+        ) -> Option<Id<NSEvent>>;
 
         #[cfg(all(feature = "AppKit_NSGraphicsContext", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other keyEventWithType:location:modifierFlags:timestamp:windowNumber:context:characters:charactersIgnoringModifiers:isARepeat:keyCode:)]
@@ -623,7 +620,7 @@ extern_methods!(
             ukeys: &NSString,
             flag: bool,
             code: c_ushort,
-        ) -> Option<Id<NSEvent, Shared>>;
+        ) -> Option<Id<NSEvent>>;
 
         #[cfg(feature = "AppKit_NSGraphicsContext")]
         #[method_id(@__retain_semantics Other enterExitEventWithType:location:modifierFlags:timestamp:windowNumber:context:eventNumber:trackingNumber:userData:)]
@@ -637,7 +634,7 @@ extern_methods!(
             e_num: NSInteger,
             t_num: NSInteger,
             data: *mut c_void,
-        ) -> Option<Id<NSEvent, Shared>>;
+        ) -> Option<Id<NSEvent>>;
 
         #[cfg(feature = "AppKit_NSGraphicsContext")]
         #[method_id(@__retain_semantics Other otherEventWithType:location:modifierFlags:timestamp:windowNumber:context:subtype:data1:data2:)]
@@ -651,7 +648,7 @@ extern_methods!(
             subtype: c_short,
             d1: NSInteger,
             d2: NSInteger,
-        ) -> Option<Id<NSEvent, Shared>>;
+        ) -> Option<Id<NSEvent>>;
 
         #[method(mouseLocation)]
         pub unsafe fn mouseLocation() -> NSPoint;
@@ -675,13 +672,13 @@ extern_methods!(
         pub unsafe fn addGlobalMonitorForEventsMatchingMask_handler(
             mask: NSEventMask,
             block: &Block<(NonNull<NSEvent>,), ()>,
-        ) -> Option<Id<Object, Shared>>;
+        ) -> Option<Id<Object>>;
 
         #[method_id(@__retain_semantics Other addLocalMonitorForEventsMatchingMask:handler:)]
         pub unsafe fn addLocalMonitorForEventsMatchingMask_handler(
             mask: NSEventMask,
             block: &Block<(NonNull<NSEvent>,), *mut NSEvent>,
-        ) -> Option<Id<Object, Shared>>;
+        ) -> Option<Id<Object>>;
 
         #[method(removeMonitor:)]
         pub unsafe fn removeMonitor(event_monitor: &Object);

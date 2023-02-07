@@ -30,7 +30,7 @@ extern_methods!(
     unsafe impl ILMessageCommunication {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other messageBody)]
-        pub unsafe fn messageBody(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn messageBody(&self) -> Option<Id<NSString>>;
 
         #[method(isEqualToMessageCommunication:)]
         pub unsafe fn isEqualToMessageCommunication(
@@ -39,6 +39,6 @@ extern_methods!(
         ) -> bool;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }
 );

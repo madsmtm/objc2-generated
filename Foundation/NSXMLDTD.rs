@@ -22,14 +22,14 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSXMLDTD")]
     unsafe impl NSXMLDTD {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithKind:options:)]
         pub unsafe fn initWithKind_options(
             this: Option<Allocated<Self>>,
             kind: NSXMLNodeKind,
             options: NSXMLNodeOptions,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:options:error:_)]
@@ -37,7 +37,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             url: &NSURL,
             mask: NSXMLNodeOptions,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self>, Id<NSError>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
         #[method_id(@__retain_semantics Init initWithData:options:error:_)]
@@ -45,11 +45,11 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             data: &NSData,
             mask: NSXMLNodeOptions,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self>, Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other publicID)]
-        pub unsafe fn publicID(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn publicID(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setPublicID:)]
@@ -57,7 +57,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other systemID)]
-        pub unsafe fn systemID(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn systemID(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setSystemID:)]
@@ -89,24 +89,19 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSXMLDTDNode"))]
         #[method_id(@__retain_semantics Other entityDeclarationForName:)]
-        pub unsafe fn entityDeclarationForName(
-            &self,
-            name: &NSString,
-        ) -> Option<Id<NSXMLDTDNode, Shared>>;
+        pub unsafe fn entityDeclarationForName(&self, name: &NSString) -> Option<Id<NSXMLDTDNode>>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSXMLDTDNode"))]
         #[method_id(@__retain_semantics Other notationDeclarationForName:)]
         pub unsafe fn notationDeclarationForName(
             &self,
             name: &NSString,
-        ) -> Option<Id<NSXMLDTDNode, Shared>>;
+        ) -> Option<Id<NSXMLDTDNode>>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSXMLDTDNode"))]
         #[method_id(@__retain_semantics Other elementDeclarationForName:)]
-        pub unsafe fn elementDeclarationForName(
-            &self,
-            name: &NSString,
-        ) -> Option<Id<NSXMLDTDNode, Shared>>;
+        pub unsafe fn elementDeclarationForName(&self, name: &NSString)
+            -> Option<Id<NSXMLDTDNode>>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSXMLDTDNode"))]
         #[method_id(@__retain_semantics Other attributeDeclarationForName:elementName:)]
@@ -114,13 +109,13 @@ extern_methods!(
             &self,
             name: &NSString,
             element_name: &NSString,
-        ) -> Option<Id<NSXMLDTDNode, Shared>>;
+        ) -> Option<Id<NSXMLDTDNode>>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSXMLDTDNode"))]
         #[method_id(@__retain_semantics Other predefinedEntityDeclarationForName:)]
         pub unsafe fn predefinedEntityDeclarationForName(
             name: &NSString,
-        ) -> Option<Id<NSXMLDTDNode, Shared>>;
+        ) -> Option<Id<NSXMLDTDNode>>;
     }
 );
 
@@ -129,9 +124,6 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSXMLDTD")]
     unsafe impl NSXMLDTD {
         #[method_id(@__retain_semantics Init initWithKind:)]
-        pub unsafe fn initWithKind(
-            this: Option<Allocated<Self>>,
-            kind: NSXMLNodeKind,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithKind(this: Option<Allocated<Self>>, kind: NSXMLNodeKind) -> Id<Self>;
     }
 );

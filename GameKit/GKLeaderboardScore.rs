@@ -24,7 +24,7 @@ extern_methods!(
     unsafe impl GKLeaderboardScore {
         #[cfg(feature = "GameKit_GKPlayer")]
         #[method_id(@__retain_semantics Other player)]
-        pub unsafe fn player(&self) -> Id<GKPlayer, Shared>;
+        pub unsafe fn player(&self) -> Id<GKPlayer>;
 
         #[cfg(feature = "GameKit_GKPlayer")]
         #[method(setPlayer:)]
@@ -44,7 +44,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other leaderboardID)]
-        pub unsafe fn leaderboardID(&self) -> Id<NSString, Shared>;
+        pub unsafe fn leaderboardID(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLeaderboardID:)]

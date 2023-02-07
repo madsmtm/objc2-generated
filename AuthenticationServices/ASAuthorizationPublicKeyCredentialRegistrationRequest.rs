@@ -10,11 +10,11 @@ extern_protocol!(
     {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other relyingPartyIdentifier)]
-        unsafe fn relyingPartyIdentifier(&self) -> Id<NSString, Shared>;
+        unsafe fn relyingPartyIdentifier(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other userID)]
-        unsafe fn userID(&self) -> Id<NSData, Shared>;
+        unsafe fn userID(&self) -> Id<NSData>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method(setUserID:)]
@@ -22,7 +22,7 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        unsafe fn name(&self) -> Id<NSString, Shared>;
+        unsafe fn name(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]
@@ -30,7 +30,7 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other displayName)]
-        unsafe fn displayName(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn displayName(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setDisplayName:)]
@@ -38,7 +38,7 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other challenge)]
-        unsafe fn challenge(&self) -> Id<NSData, Shared>;
+        unsafe fn challenge(&self) -> Id<NSData>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method(setChallenge:)]
@@ -47,7 +47,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other userVerificationPreference)]
         unsafe fn userVerificationPreference(
             &self,
-        ) -> Id<ASAuthorizationPublicKeyCredentialUserVerificationPreference, Shared>;
+        ) -> Id<ASAuthorizationPublicKeyCredentialUserVerificationPreference>;
 
         #[method(setUserVerificationPreference:)]
         unsafe fn setUserVerificationPreference(
@@ -58,7 +58,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other attestationPreference)]
         unsafe fn attestationPreference(
             &self,
-        ) -> Id<ASAuthorizationPublicKeyCredentialAttestationKind, Shared>;
+        ) -> Id<ASAuthorizationPublicKeyCredentialAttestationKind>;
 
         #[method(setAttestationPreference:)]
         unsafe fn setAttestationPreference(

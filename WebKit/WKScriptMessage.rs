@@ -23,22 +23,22 @@ extern_methods!(
     #[cfg(feature = "WebKit_WKScriptMessage")]
     unsafe impl WKScriptMessage {
         #[method_id(@__retain_semantics Other body)]
-        pub unsafe fn body(&self) -> Id<Object, Shared>;
+        pub unsafe fn body(&self) -> Id<Object>;
 
         #[cfg(feature = "WebKit_WKWebView")]
         #[method_id(@__retain_semantics Other webView)]
-        pub unsafe fn webView(&self) -> Option<Id<WKWebView, Shared>>;
+        pub unsafe fn webView(&self) -> Option<Id<WKWebView>>;
 
         #[cfg(feature = "WebKit_WKFrameInfo")]
         #[method_id(@__retain_semantics Other frameInfo)]
-        pub unsafe fn frameInfo(&self) -> Id<WKFrameInfo, Shared>;
+        pub unsafe fn frameInfo(&self) -> Id<WKFrameInfo>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString, Shared>;
+        pub unsafe fn name(&self) -> Id<NSString>;
 
         #[cfg(feature = "WebKit_WKContentWorld")]
         #[method_id(@__retain_semantics Other world)]
-        pub unsafe fn world(&self) -> Id<WKContentWorld, Shared>;
+        pub unsafe fn world(&self) -> Id<WKContentWorld>;
     }
 );

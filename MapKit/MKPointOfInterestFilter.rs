@@ -31,24 +31,24 @@ extern_methods!(
     #[cfg(feature = "MapKit_MKPointOfInterestFilter")]
     unsafe impl MKPointOfInterestFilter {
         #[method_id(@__retain_semantics Other filterIncludingAllCategories)]
-        pub unsafe fn filterIncludingAllCategories() -> Id<MKPointOfInterestFilter, Shared>;
+        pub unsafe fn filterIncludingAllCategories() -> Id<MKPointOfInterestFilter>;
 
         #[method_id(@__retain_semantics Other filterExcludingAllCategories)]
-        pub unsafe fn filterExcludingAllCategories() -> Id<MKPointOfInterestFilter, Shared>;
+        pub unsafe fn filterExcludingAllCategories() -> Id<MKPointOfInterestFilter>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Init initIncludingCategories:)]
         pub unsafe fn initIncludingCategories(
             this: Option<Allocated<Self>>,
             categories: &NSArray<MKPointOfInterestCategory>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Init initExcludingCategories:)]
         pub unsafe fn initExcludingCategories(
             this: Option<Allocated<Self>>,
             categories: &NSArray<MKPointOfInterestCategory>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(includesCategory:)]
         pub unsafe fn includesCategory(&self, category: &MKPointOfInterestCategory) -> bool;

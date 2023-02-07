@@ -24,35 +24,32 @@ extern_methods!(
     unsafe impl WKBackForwardList {
         #[cfg(feature = "WebKit_WKBackForwardListItem")]
         #[method_id(@__retain_semantics Other currentItem)]
-        pub unsafe fn currentItem(&self) -> Option<Id<WKBackForwardListItem, Shared>>;
+        pub unsafe fn currentItem(&self) -> Option<Id<WKBackForwardListItem>>;
 
         #[cfg(feature = "WebKit_WKBackForwardListItem")]
         #[method_id(@__retain_semantics Other backItem)]
-        pub unsafe fn backItem(&self) -> Option<Id<WKBackForwardListItem, Shared>>;
+        pub unsafe fn backItem(&self) -> Option<Id<WKBackForwardListItem>>;
 
         #[cfg(feature = "WebKit_WKBackForwardListItem")]
         #[method_id(@__retain_semantics Other forwardItem)]
-        pub unsafe fn forwardItem(&self) -> Option<Id<WKBackForwardListItem, Shared>>;
+        pub unsafe fn forwardItem(&self) -> Option<Id<WKBackForwardListItem>>;
 
         #[cfg(feature = "WebKit_WKBackForwardListItem")]
         #[method_id(@__retain_semantics Other itemAtIndex:)]
-        pub unsafe fn itemAtIndex(
-            &self,
-            index: NSInteger,
-        ) -> Option<Id<WKBackForwardListItem, Shared>>;
+        pub unsafe fn itemAtIndex(&self, index: NSInteger) -> Option<Id<WKBackForwardListItem>>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "WebKit_WKBackForwardListItem"
         ))]
         #[method_id(@__retain_semantics Other backList)]
-        pub unsafe fn backList(&self) -> Id<NSArray<WKBackForwardListItem>, Shared>;
+        pub unsafe fn backList(&self) -> Id<NSArray<WKBackForwardListItem>>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "WebKit_WKBackForwardListItem"
         ))]
         #[method_id(@__retain_semantics Other forwardList)]
-        pub unsafe fn forwardList(&self) -> Id<NSArray<WKBackForwardListItem>, Shared>;
+        pub unsafe fn forwardList(&self) -> Id<NSArray<WKBackForwardListItem>>;
     }
 );

@@ -55,7 +55,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSNumber")]
         #[deprecated]
         #[method_id(@__retain_semantics Other contentLength)]
-        pub unsafe fn contentLength(&self) -> Id<NSNumber, Shared>;
+        pub unsafe fn contentLength(&self) -> Id<NSNumber>;
 
         #[deprecated = "Hosted content is no longer supported"]
         #[method(expectedContentLength)]
@@ -64,22 +64,22 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Hosted content is no longer supported"]
         #[method_id(@__retain_semantics Other contentIdentifier)]
-        pub unsafe fn contentIdentifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn contentIdentifier(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[deprecated = "Hosted content is no longer supported"]
         #[method_id(@__retain_semantics Other contentURL)]
-        pub unsafe fn contentURL(&self) -> Option<Id<NSURL, Shared>>;
+        pub unsafe fn contentURL(&self) -> Option<Id<NSURL>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Hosted content is no longer supported"]
         #[method_id(@__retain_semantics Other contentVersion)]
-        pub unsafe fn contentVersion(&self) -> Id<NSString, Shared>;
+        pub unsafe fn contentVersion(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[deprecated = "Hosted content is no longer supported"]
         #[method_id(@__retain_semantics Other error)]
-        pub unsafe fn error(&self) -> Option<Id<NSError, Shared>>;
+        pub unsafe fn error(&self) -> Option<Id<NSError>>;
 
         #[deprecated = "Hosted content is no longer supported"]
         #[method(progress)]
@@ -92,12 +92,12 @@ extern_methods!(
         #[cfg(feature = "StoreKit_SKPaymentTransaction")]
         #[deprecated = "Hosted content is no longer supported"]
         #[method_id(@__retain_semantics Other transaction)]
-        pub unsafe fn transaction(&self) -> Id<SKPaymentTransaction, Shared>;
+        pub unsafe fn transaction(&self) -> Id<SKPaymentTransaction>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
         #[deprecated = "Hosted content is no longer supported"]
         #[method_id(@__retain_semantics Other contentURLForProductID:)]
-        pub unsafe fn contentURLForProductID(product_id: &NSString) -> Option<Id<NSURL, Shared>>;
+        pub unsafe fn contentURLForProductID(product_id: &NSString) -> Option<Id<NSURL>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Hosted content is no longer supported"]

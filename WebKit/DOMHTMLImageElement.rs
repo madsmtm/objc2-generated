@@ -29,7 +29,7 @@ extern_methods!(
     unsafe impl DOMHTMLImageElement {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString, Shared>;
+        pub unsafe fn name(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]
@@ -37,7 +37,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other align)]
-        pub unsafe fn align(&self) -> Id<NSString, Shared>;
+        pub unsafe fn align(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAlign:)]
@@ -45,7 +45,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other alt)]
-        pub unsafe fn alt(&self) -> Id<NSString, Shared>;
+        pub unsafe fn alt(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAlt:)]
@@ -53,7 +53,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other border)]
-        pub unsafe fn border(&self) -> Id<NSString, Shared>;
+        pub unsafe fn border(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setBorder:)]
@@ -79,7 +79,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other longDesc)]
-        pub unsafe fn longDesc(&self) -> Id<NSString, Shared>;
+        pub unsafe fn longDesc(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLongDesc:)]
@@ -87,7 +87,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other src)]
-        pub unsafe fn src(&self) -> Id<NSString, Shared>;
+        pub unsafe fn src(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setSrc:)]
@@ -95,7 +95,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other useMap)]
-        pub unsafe fn useMap(&self) -> Id<NSString, Shared>;
+        pub unsafe fn useMap(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setUseMap:)]
@@ -118,7 +118,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other lowsrc)]
-        pub unsafe fn lowsrc(&self) -> Id<NSString, Shared>;
+        pub unsafe fn lowsrc(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLowsrc:)]
@@ -138,10 +138,10 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other altDisplayString)]
-        pub unsafe fn altDisplayString(&self) -> Id<NSString, Shared>;
+        pub unsafe fn altDisplayString(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other absoluteImageURL)]
-        pub unsafe fn absoluteImageURL(&self) -> Id<NSURL, Shared>;
+        pub unsafe fn absoluteImageURL(&self) -> Id<NSURL>;
     }
 );

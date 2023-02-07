@@ -29,20 +29,20 @@ extern_methods!(
     unsafe impl ILMessageFilterQueryRequest {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other sender)]
-        pub unsafe fn sender(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn sender(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other messageBody)]
-        pub unsafe fn messageBody(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn messageBody(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other receiverISOCountryCode)]
-        pub unsafe fn receiverISOCountryCode(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn receiverISOCountryCode(&self) -> Option<Id<NSString>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
     }
 );

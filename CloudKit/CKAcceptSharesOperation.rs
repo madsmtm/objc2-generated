@@ -24,18 +24,18 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKAcceptSharesOperation")]
     unsafe impl CKAcceptSharesOperation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(all(feature = "CloudKit_CKShareMetadata", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Init initWithShareMetadatas:)]
         pub unsafe fn initWithShareMetadatas(
             this: Option<Allocated<Self>>,
             share_metadatas: &NSArray<CKShareMetadata>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(feature = "CloudKit_CKShareMetadata", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other shareMetadatas)]
-        pub unsafe fn shareMetadatas(&self) -> Option<Id<NSArray<CKShareMetadata>, Shared>>;
+        pub unsafe fn shareMetadatas(&self) -> Option<Id<NSArray<CKShareMetadata>>>;
 
         #[cfg(all(feature = "CloudKit_CKShareMetadata", feature = "Foundation_NSArray"))]
         #[method(setShareMetadatas:)]

@@ -22,11 +22,11 @@ extern_methods!(
     #[cfg(feature = "AdSupport_ASIdentifierManager")]
     unsafe impl ASIdentifierManager {
         #[method_id(@__retain_semantics Other sharedManager)]
-        pub unsafe fn sharedManager() -> Id<ASIdentifierManager, Shared>;
+        pub unsafe fn sharedManager() -> Id<ASIdentifierManager>;
 
         #[cfg(feature = "Foundation_NSUUID")]
         #[method_id(@__retain_semantics Other advertisingIdentifier)]
-        pub unsafe fn advertisingIdentifier(&self) -> Id<NSUUID, Shared>;
+        pub unsafe fn advertisingIdentifier(&self) -> Id<NSUUID>;
 
         #[deprecated = "This has been replaced by functionality in AppTrackingTransparency's ATTrackingManager class."]
         #[method(isAdvertisingTrackingEnabled)]

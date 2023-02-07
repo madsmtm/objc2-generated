@@ -24,34 +24,34 @@ extern_methods!(
     unsafe impl WKWindowFeatures {
         #[cfg(feature = "Foundation_NSNumber")]
         #[method_id(@__retain_semantics Other menuBarVisibility)]
-        pub unsafe fn menuBarVisibility(&self) -> Option<Id<NSNumber, Shared>>;
+        pub unsafe fn menuBarVisibility(&self) -> Option<Id<NSNumber>>;
 
         #[cfg(feature = "Foundation_NSNumber")]
         #[method_id(@__retain_semantics Other statusBarVisibility)]
-        pub unsafe fn statusBarVisibility(&self) -> Option<Id<NSNumber, Shared>>;
+        pub unsafe fn statusBarVisibility(&self) -> Option<Id<NSNumber>>;
 
         #[cfg(feature = "Foundation_NSNumber")]
         #[method_id(@__retain_semantics Other toolbarsVisibility)]
-        pub unsafe fn toolbarsVisibility(&self) -> Option<Id<NSNumber, Shared>>;
+        pub unsafe fn toolbarsVisibility(&self) -> Option<Id<NSNumber>>;
 
         #[cfg(feature = "Foundation_NSNumber")]
         #[method_id(@__retain_semantics Other allowsResizing)]
-        pub unsafe fn allowsResizing(&self) -> Option<Id<NSNumber, Shared>>;
+        pub unsafe fn allowsResizing(&self) -> Option<Id<NSNumber>>;
 
         #[cfg(feature = "Foundation_NSNumber")]
         #[method_id(@__retain_semantics Other x)]
-        pub unsafe fn x(&self) -> Option<Id<NSNumber, Shared>>;
+        pub unsafe fn x(&self) -> Option<Id<NSNumber>>;
 
         #[cfg(feature = "Foundation_NSNumber")]
         #[method_id(@__retain_semantics Other y)]
-        pub unsafe fn y(&self) -> Option<Id<NSNumber, Shared>>;
+        pub unsafe fn y(&self) -> Option<Id<NSNumber>>;
 
         #[cfg(feature = "Foundation_NSNumber")]
         #[method_id(@__retain_semantics Other width)]
-        pub unsafe fn width(&self) -> Option<Id<NSNumber, Shared>>;
+        pub unsafe fn width(&self) -> Option<Id<NSNumber>>;
 
         #[cfg(feature = "Foundation_NSNumber")]
         #[method_id(@__retain_semantics Other height)]
-        pub unsafe fn height(&self) -> Option<Id<NSNumber, Shared>>;
+        pub unsafe fn height(&self) -> Option<Id<NSNumber>>;
     }
 );

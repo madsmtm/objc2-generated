@@ -29,7 +29,7 @@ extern_methods!(
     unsafe impl DOMHTMLTitleElement {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other text)]
-        pub unsafe fn text(&self) -> Id<NSString, Shared>;
+        pub unsafe fn text(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setText:)]

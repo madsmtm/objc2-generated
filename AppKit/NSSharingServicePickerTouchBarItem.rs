@@ -29,7 +29,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn NSSharingServicePickerTouchBarItemDelegate>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn NSSharingServicePickerTouchBarItemDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -45,7 +45,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other buttonTitle)]
-        pub unsafe fn buttonTitle(&self) -> Id<NSString, Shared>;
+        pub unsafe fn buttonTitle(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setButtonTitle:)]
@@ -53,7 +53,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other buttonImage)]
-        pub unsafe fn buttonImage(&self) -> Option<Id<NSImage, Shared>>;
+        pub unsafe fn buttonImage(&self) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method(setButtonImage:)]
@@ -73,7 +73,7 @@ extern_protocol!(
         unsafe fn itemsForSharingServicePickerTouchBarItem(
             &self,
             picker_touch_bar_item: &NSSharingServicePickerTouchBarItem,
-        ) -> Id<NSArray, Shared>;
+        ) -> Id<NSArray>;
     }
 
     unsafe impl ProtocolType for dyn NSSharingServicePickerTouchBarItemDelegate {}
@@ -87,6 +87,6 @@ extern_methods!(
         pub unsafe fn initWithIdentifier(
             this: Option<Allocated<Self>>,
             identifier: &NSTouchBarItemIdentifier,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

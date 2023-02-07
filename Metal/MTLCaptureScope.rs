@@ -14,17 +14,17 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
-        fn label(&self) -> Option<Id<NSString, Shared>>;
+        fn label(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:)]
         unsafe fn setLabel(&self, label: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other device)]
-        unsafe fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>, Shared>;
+        unsafe fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
 
         #[method_id(@__retain_semantics Other commandQueue)]
-        unsafe fn commandQueue(&self) -> Option<Id<ProtocolObject<dyn MTLCommandQueue>, Shared>>;
+        unsafe fn commandQueue(&self) -> Option<Id<ProtocolObject<dyn MTLCommandQueue>>>;
     }
 
     unsafe impl ProtocolType for dyn MTLCaptureScope {}

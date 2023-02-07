@@ -23,7 +23,7 @@ extern_methods!(
     #[cfg(feature = "WebKit_WKFindResult")]
     unsafe impl WKFindResult {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method(matchFound)]
         pub unsafe fn matchFound(&self) -> bool;

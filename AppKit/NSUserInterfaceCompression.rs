@@ -26,28 +26,25 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSUserInterfaceCompressionOptions")]
     unsafe impl NSUserInterfaceCompressionOptions {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            coder: &NSCoder,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, coder: &NSCoder) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
             this: Option<Allocated<Self>>,
             identifier: &NSString,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSSet")]
         #[method_id(@__retain_semantics Init initWithCompressionOptions:)]
         pub unsafe fn initWithCompressionOptions(
             this: Option<Allocated<Self>>,
             options: &NSSet<NSUserInterfaceCompressionOptions>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(containsOptions:)]
         pub unsafe fn containsOptions(&self, options: &NSUserInterfaceCompressionOptions) -> bool;
@@ -63,28 +60,28 @@ extern_methods!(
         pub unsafe fn optionsByAddingOptions(
             &self,
             options: &NSUserInterfaceCompressionOptions,
-        ) -> Id<NSUserInterfaceCompressionOptions, Shared>;
+        ) -> Id<NSUserInterfaceCompressionOptions>;
 
         #[method_id(@__retain_semantics Other optionsByRemovingOptions:)]
         pub unsafe fn optionsByRemovingOptions(
             &self,
             options: &NSUserInterfaceCompressionOptions,
-        ) -> Id<NSUserInterfaceCompressionOptions, Shared>;
+        ) -> Id<NSUserInterfaceCompressionOptions>;
 
         #[method_id(@__retain_semantics Other hideImagesOption)]
-        pub unsafe fn hideImagesOption() -> Id<NSUserInterfaceCompressionOptions, Shared>;
+        pub unsafe fn hideImagesOption() -> Id<NSUserInterfaceCompressionOptions>;
 
         #[method_id(@__retain_semantics Other hideTextOption)]
-        pub unsafe fn hideTextOption() -> Id<NSUserInterfaceCompressionOptions, Shared>;
+        pub unsafe fn hideTextOption() -> Id<NSUserInterfaceCompressionOptions>;
 
         #[method_id(@__retain_semantics Other reduceMetricsOption)]
-        pub unsafe fn reduceMetricsOption() -> Id<NSUserInterfaceCompressionOptions, Shared>;
+        pub unsafe fn reduceMetricsOption() -> Id<NSUserInterfaceCompressionOptions>;
 
         #[method_id(@__retain_semantics Other breakEqualWidthsOption)]
-        pub unsafe fn breakEqualWidthsOption() -> Id<NSUserInterfaceCompressionOptions, Shared>;
+        pub unsafe fn breakEqualWidthsOption() -> Id<NSUserInterfaceCompressionOptions>;
 
         #[method_id(@__retain_semantics Other standardOptions)]
-        pub unsafe fn standardOptions() -> Id<NSUserInterfaceCompressionOptions, Shared>;
+        pub unsafe fn standardOptions() -> Id<NSUserInterfaceCompressionOptions>;
     }
 );
 
@@ -112,7 +109,7 @@ extern_protocol!(
 
         #[cfg(feature = "AppKit_NSUserInterfaceCompressionOptions")]
         #[method_id(@__retain_semantics Other activeCompressionOptions)]
-        unsafe fn activeCompressionOptions(&self) -> Id<NSUserInterfaceCompressionOptions, Shared>;
+        unsafe fn activeCompressionOptions(&self) -> Id<NSUserInterfaceCompressionOptions>;
     }
 
     unsafe impl ProtocolType for dyn NSUserInterfaceCompression {}

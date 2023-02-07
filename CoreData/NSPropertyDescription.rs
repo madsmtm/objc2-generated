@@ -26,11 +26,11 @@ extern_methods!(
     unsafe impl NSPropertyDescription {
         #[cfg(feature = "CoreData_NSEntityDescription")]
         #[method_id(@__retain_semantics Other entity)]
-        pub unsafe fn entity(&self) -> Id<NSEntityDescription, Shared>;
+        pub unsafe fn entity(&self) -> Id<NSEntityDescription>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString, Shared>;
+        pub unsafe fn name(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]
@@ -50,11 +50,11 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSPredicate"))]
         #[method_id(@__retain_semantics Other validationPredicates)]
-        pub unsafe fn validationPredicates(&self) -> Id<NSArray<NSPredicate>, Shared>;
+        pub unsafe fn validationPredicates(&self) -> Id<NSArray<NSPredicate>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other validationWarnings)]
-        pub unsafe fn validationWarnings(&self) -> Id<NSArray, Shared>;
+        pub unsafe fn validationWarnings(&self) -> Id<NSArray>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -70,7 +70,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other userInfo)]
-        pub unsafe fn userInfo(&self) -> Option<Id<NSDictionary, Shared>>;
+        pub unsafe fn userInfo(&self) -> Option<Id<NSDictionary>>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(setUserInfo:)]
@@ -86,11 +86,11 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other versionHash)]
-        pub unsafe fn versionHash(&self) -> Id<NSData, Shared>;
+        pub unsafe fn versionHash(&self) -> Id<NSData>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other versionHashModifier)]
-        pub unsafe fn versionHashModifier(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn versionHashModifier(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setVersionHashModifier:)]
@@ -112,7 +112,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other renamingIdentifier)]
-        pub unsafe fn renamingIdentifier(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn renamingIdentifier(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setRenamingIdentifier:)]

@@ -55,14 +55,14 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             duration: NSTimeInterval,
             animation_curve: NSAnimationCurve,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[method(startAnimation)]
         pub unsafe fn startAnimation(&self);
@@ -110,9 +110,7 @@ extern_methods!(
         pub unsafe fn currentValue(&self) -> c_float;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(
-            &self,
-        ) -> Option<Id<ProtocolObject<dyn NSAnimationDelegate>, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSAnimationDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -122,7 +120,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method_id(@__retain_semantics Other progressMarks)]
-        pub unsafe fn progressMarks(&self) -> Id<NSArray<NSNumber>, Shared>;
+        pub unsafe fn progressMarks(&self) -> Id<NSArray<NSNumber>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method(setProgressMarks:)]
@@ -156,8 +154,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other runLoopModesForAnimating)]
-        pub unsafe fn runLoopModesForAnimating(&self)
-            -> Option<Id<NSArray<NSRunLoopMode>, Shared>>;
+        pub unsafe fn runLoopModesForAnimating(&self) -> Option<Id<NSArray<NSRunLoopMode>>>;
     }
 );
 
@@ -246,13 +243,13 @@ extern_methods!(
         pub unsafe fn initWithViewAnimations(
             this: Option<Allocated<Self>>,
             view_animations: &NSArray<NSDictionary<NSViewAnimationKey, Object>>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSDictionary"))]
         #[method_id(@__retain_semantics Other viewAnimations)]
         pub unsafe fn viewAnimations(
             &self,
-        ) -> Id<NSArray<NSDictionary<NSViewAnimationKey, Object>>, Shared>;
+        ) -> Id<NSArray<NSDictionary<NSViewAnimationKey, Object>>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSDictionary"))]
         #[method(setViewAnimations:)]
@@ -268,26 +265,21 @@ pub type NSAnimatablePropertyKey = NSString;
 extern_protocol!(
     pub unsafe trait NSAnimatablePropertyContainer {
         #[method_id(@__retain_semantics Other animator)]
-        unsafe fn animator(&self) -> Id<Self, Shared>;
+        unsafe fn animator(&self) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other animations)]
-        unsafe fn animations(&self) -> Id<NSDictionary<NSAnimatablePropertyKey, Object>, Shared>;
+        unsafe fn animations(&self) -> Id<NSDictionary<NSAnimatablePropertyKey, Object>>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(setAnimations:)]
         unsafe fn setAnimations(&self, animations: &NSDictionary<NSAnimatablePropertyKey, Object>);
 
         #[method_id(@__retain_semantics Other animationForKey:)]
-        unsafe fn animationForKey(
-            &self,
-            key: &NSAnimatablePropertyKey,
-        ) -> Option<Id<Object, Shared>>;
+        unsafe fn animationForKey(&self, key: &NSAnimatablePropertyKey) -> Option<Id<Object>>;
 
         #[method_id(@__retain_semantics Other defaultAnimationForKey:)]
-        unsafe fn defaultAnimationForKey(
-            key: &NSAnimatablePropertyKey,
-        ) -> Option<Id<Object, Shared>>;
+        unsafe fn defaultAnimationForKey(key: &NSAnimatablePropertyKey) -> Option<Id<Object>>;
     }
 
     unsafe impl ProtocolType for dyn NSAnimatablePropertyContainer {}
@@ -306,6 +298,6 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             duration: NSTimeInterval,
             animation_curve: NSAnimationCurve,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

@@ -24,7 +24,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn AEAssessmentSessionDelegate>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn AEAssessmentSessionDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -34,7 +34,7 @@ extern_methods!(
 
         #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentConfiguration")]
         #[method_id(@__retain_semantics Other configuration)]
-        pub unsafe fn configuration(&self) -> Id<AEAssessmentConfiguration, Shared>;
+        pub unsafe fn configuration(&self) -> Id<AEAssessmentConfiguration>;
 
         #[method(isActive)]
         pub unsafe fn isActive(&self) -> bool;
@@ -44,13 +44,13 @@ extern_methods!(
         pub unsafe fn initWithConfiguration(
             this: Option<Allocated<Self>>,
             configuration: &AEAssessmentConfiguration,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
 
         #[method(begin)]
         pub unsafe fn begin(&self);

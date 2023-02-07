@@ -39,7 +39,7 @@ extern_methods!(
         pub unsafe fn geoJSONObjectsWithData_error(
             &self,
             data: &NSData,
-        ) -> Result<Id<NSArray<ProtocolObject<dyn MKGeoJSONObject>>, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<NSArray<ProtocolObject<dyn MKGeoJSONObject>>>, Id<NSError>>;
     }
 );
 
@@ -65,15 +65,15 @@ extern_methods!(
     unsafe impl MKGeoJSONFeature {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn identifier(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other properties)]
-        pub unsafe fn properties(&self) -> Option<Id<NSData, Shared>>;
+        pub unsafe fn properties(&self) -> Option<Id<NSData>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "MapKit_MKShape"))]
         #[method_id(@__retain_semantics Other geometry)]
-        pub unsafe fn geometry(&self) -> Id<NSArray<MKShape>, Shared>;
+        pub unsafe fn geometry(&self) -> Id<NSArray<MKShape>>;
     }
 );
 

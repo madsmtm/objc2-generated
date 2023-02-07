@@ -33,14 +33,14 @@ extern_methods!(
     #[cfg(feature = "MapKit_MKLocalSearchRequest")]
     unsafe impl MKLocalSearchRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithNaturalLanguageQuery:)]
         pub unsafe fn initWithNaturalLanguageQuery(
             this: Option<Allocated<Self>>,
             natural_language_query: &NSString,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithNaturalLanguageQuery:region:)]
@@ -48,11 +48,11 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             natural_language_query: &NSString,
             region: MKCoordinateRegion,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other naturalLanguageQuery)]
-        pub unsafe fn naturalLanguageQuery(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn naturalLanguageQuery(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setNaturalLanguageQuery:)]
@@ -72,7 +72,7 @@ extern_methods!(
 
         #[cfg(feature = "MapKit_MKPointOfInterestFilter")]
         #[method_id(@__retain_semantics Other pointOfInterestFilter)]
-        pub unsafe fn pointOfInterestFilter(&self) -> Option<Id<MKPointOfInterestFilter, Shared>>;
+        pub unsafe fn pointOfInterestFilter(&self) -> Option<Id<MKPointOfInterestFilter>>;
 
         #[cfg(feature = "MapKit_MKPointOfInterestFilter")]
         #[method(setPointOfInterestFilter:)]

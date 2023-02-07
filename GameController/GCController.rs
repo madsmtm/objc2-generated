@@ -58,7 +58,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other current)]
-        pub unsafe fn current() -> Option<Id<GCController, Shared>>;
+        pub unsafe fn current() -> Option<Id<GCController>>;
 
         #[method(shouldMonitorBackgroundEvents)]
         pub unsafe fn shouldMonitorBackgroundEvents() -> bool;
@@ -80,43 +80,43 @@ extern_methods!(
 
         #[cfg(feature = "GameController_GCDeviceBattery")]
         #[method_id(@__retain_semantics Other battery)]
-        pub unsafe fn battery(&self) -> Option<Id<GCDeviceBattery, Shared>>;
+        pub unsafe fn battery(&self) -> Option<Id<GCDeviceBattery>>;
 
         #[cfg(feature = "GameController_GCPhysicalInputProfile")]
         #[method_id(@__retain_semantics Other physicalInputProfile)]
-        pub unsafe fn physicalInputProfile(&self) -> Id<GCPhysicalInputProfile, Shared>;
+        pub unsafe fn physicalInputProfile(&self) -> Id<GCPhysicalInputProfile>;
 
         #[cfg(feature = "GameController_GCGamepad")]
         #[deprecated]
         #[method_id(@__retain_semantics Other gamepad)]
-        pub unsafe fn gamepad(&self) -> Option<Id<GCGamepad, Shared>>;
+        pub unsafe fn gamepad(&self) -> Option<Id<GCGamepad>>;
 
         #[cfg(feature = "GameController_GCMicroGamepad")]
         #[method_id(@__retain_semantics Other microGamepad)]
-        pub unsafe fn microGamepad(&self) -> Option<Id<GCMicroGamepad, Shared>>;
+        pub unsafe fn microGamepad(&self) -> Option<Id<GCMicroGamepad>>;
 
         #[cfg(feature = "GameController_GCExtendedGamepad")]
         #[method_id(@__retain_semantics Other extendedGamepad)]
-        pub unsafe fn extendedGamepad(&self) -> Option<Id<GCExtendedGamepad, Shared>>;
+        pub unsafe fn extendedGamepad(&self) -> Option<Id<GCExtendedGamepad>>;
 
         #[cfg(feature = "GameController_GCMotion")]
         #[method_id(@__retain_semantics Other motion)]
-        pub unsafe fn motion(&self) -> Option<Id<GCMotion, Shared>>;
+        pub unsafe fn motion(&self) -> Option<Id<GCMotion>>;
 
         #[cfg(feature = "GameController_GCDeviceLight")]
         #[method_id(@__retain_semantics Other light)]
-        pub unsafe fn light(&self) -> Option<Id<GCDeviceLight, Shared>>;
+        pub unsafe fn light(&self) -> Option<Id<GCDeviceLight>>;
 
         #[cfg(feature = "GameController_GCDeviceHaptics")]
         #[method_id(@__retain_semantics Other haptics)]
-        pub unsafe fn haptics(&self) -> Option<Id<GCDeviceHaptics, Shared>>;
+        pub unsafe fn haptics(&self) -> Option<Id<GCDeviceHaptics>>;
 
         #[method_id(@__retain_semantics Other capture)]
-        pub unsafe fn capture(&self) -> Id<GCController, Shared>;
+        pub unsafe fn capture(&self) -> Id<GCController>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other controllers)]
-        pub unsafe fn controllers() -> Id<NSArray<GCController>, Shared>;
+        pub unsafe fn controllers() -> Id<NSArray<GCController>>;
 
         #[method(startWirelessControllerDiscoveryWithCompletionHandler:)]
         pub unsafe fn startWirelessControllerDiscoveryWithCompletionHandler(
@@ -127,9 +127,9 @@ extern_methods!(
         pub unsafe fn stopWirelessControllerDiscovery();
 
         #[method_id(@__retain_semantics Other controllerWithMicroGamepad)]
-        pub unsafe fn controllerWithMicroGamepad() -> Id<GCController, Shared>;
+        pub unsafe fn controllerWithMicroGamepad() -> Id<GCController>;
 
         #[method_id(@__retain_semantics Other controllerWithExtendedGamepad)]
-        pub unsafe fn controllerWithExtendedGamepad() -> Id<GCController, Shared>;
+        pub unsafe fn controllerWithExtendedGamepad() -> Id<GCController>;
     }
 );

@@ -23,16 +23,16 @@ extern_methods!(
     unsafe impl NSPersistentCloudKitContainerOptions {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other containerIdentifier)]
-        pub unsafe fn containerIdentifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn containerIdentifier(&self) -> Id<NSString>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithContainerIdentifier:)]
         pub unsafe fn initWithContainerIdentifier(
             this: Option<Allocated<Self>>,
             container_identifier: &NSString,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

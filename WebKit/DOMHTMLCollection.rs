@@ -29,14 +29,14 @@ extern_methods!(
 
         #[cfg(feature = "WebKit_DOMNode")]
         #[method_id(@__retain_semantics Other item:)]
-        pub unsafe fn item(&self, index: c_uint) -> Option<Id<DOMNode, Shared>>;
+        pub unsafe fn item(&self, index: c_uint) -> Option<Id<DOMNode>>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_DOMNode"))]
         #[method_id(@__retain_semantics Other namedItem:)]
-        pub unsafe fn namedItem(&self, name: Option<&NSString>) -> Option<Id<DOMNode, Shared>>;
+        pub unsafe fn namedItem(&self, name: Option<&NSString>) -> Option<Id<DOMNode>>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_DOMNodeList"))]
         #[method_id(@__retain_semantics Other tags:)]
-        pub unsafe fn tags(&self, name: Option<&NSString>) -> Option<Id<DOMNodeList, Shared>>;
+        pub unsafe fn tags(&self, name: Option<&NSString>) -> Option<Id<DOMNodeList>>;
     }
 );

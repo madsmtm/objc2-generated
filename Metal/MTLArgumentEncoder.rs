@@ -7,11 +7,11 @@ use crate::Metal::*;
 extern_protocol!(
     pub unsafe trait MTLArgumentEncoder: NSObjectProtocol {
         #[method_id(@__retain_semantics Other device)]
-        unsafe fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>, Shared>;
+        unsafe fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
-        unsafe fn label(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn label(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:)]
@@ -138,7 +138,7 @@ extern_protocol!(
         unsafe fn newArgumentEncoderForBufferAtIndex(
             &self,
             index: NSUInteger,
-        ) -> Option<Id<ProtocolObject<dyn MTLArgumentEncoder>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLArgumentEncoder>>>;
 
         #[method(setVisibleFunctionTable:atIndex:)]
         unsafe fn setVisibleFunctionTable_atIndex(

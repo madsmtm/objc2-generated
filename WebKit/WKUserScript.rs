@@ -32,7 +32,7 @@ extern_methods!(
     unsafe impl WKUserScript {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other source)]
-        pub unsafe fn source(&self) -> Id<NSString, Shared>;
+        pub unsafe fn source(&self) -> Id<NSString>;
 
         #[method(injectionTime)]
         pub unsafe fn injectionTime(&self) -> WKUserScriptInjectionTime;
@@ -47,7 +47,7 @@ extern_methods!(
             source: &NSString,
             injection_time: WKUserScriptInjectionTime,
             for_main_frame_only: bool,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_WKContentWorld"))]
         #[method_id(@__retain_semantics Init initWithSource:injectionTime:forMainFrameOnly:inContentWorld:)]
@@ -57,6 +57,6 @@ extern_methods!(
             injection_time: WKUserScriptInjectionTime,
             for_main_frame_only: bool,
             content_world: &WKContentWorld,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

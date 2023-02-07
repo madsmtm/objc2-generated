@@ -34,7 +34,7 @@ extern_methods!(
     #[cfg(feature = "FileProvider_NSFileProviderDomainVersion")]
     unsafe impl NSFileProviderDomainVersion {
         #[method_id(@__retain_semantics Other next)]
-        pub unsafe fn next(&self) -> Id<NSFileProviderDomainVersion, Shared>;
+        pub unsafe fn next(&self) -> Id<NSFileProviderDomainVersion>;
 
         #[method(compare:)]
         pub unsafe fn compare(
@@ -76,7 +76,7 @@ extern_methods!(
             identifier: &NSFileProviderDomainIdentifier,
             display_name: &NSString,
             path_relative_to_document_storage: &NSString,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithIdentifier:displayName:)]
@@ -84,18 +84,18 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             identifier: &NSFileProviderDomainIdentifier,
             display_name: &NSString,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<NSFileProviderDomainIdentifier, Shared>;
+        pub unsafe fn identifier(&self) -> Id<NSFileProviderDomainIdentifier>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other displayName)]
-        pub unsafe fn displayName(&self) -> Id<NSString, Shared>;
+        pub unsafe fn displayName(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other pathRelativeToDocumentStorage)]
-        pub unsafe fn pathRelativeToDocumentStorage(&self) -> Id<NSString, Shared>;
+        pub unsafe fn pathRelativeToDocumentStorage(&self) -> Id<NSString>;
 
         #[method(isDisconnected)]
         pub unsafe fn isDisconnected(&self) -> bool;
@@ -120,7 +120,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other backingStoreIdentity)]
-        pub unsafe fn backingStoreIdentity(&self) -> Option<Id<NSData, Shared>>;
+        pub unsafe fn backingStoreIdentity(&self) -> Option<Id<NSData>>;
 
         #[method(supportsSyncingTrash)]
         pub unsafe fn supportsSyncingTrash(&self) -> bool;
@@ -136,7 +136,7 @@ extern_methods!(
     unsafe impl NSFileProviderExtension {
         #[cfg(feature = "FileProvider_NSFileProviderDomain")]
         #[method_id(@__retain_semantics Other domain)]
-        pub unsafe fn domain(&self) -> Option<Id<NSFileProviderDomain, Shared>>;
+        pub unsafe fn domain(&self) -> Option<Id<NSFileProviderDomain>>;
     }
 );
 

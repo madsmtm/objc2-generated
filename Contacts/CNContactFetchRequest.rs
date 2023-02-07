@@ -29,21 +29,21 @@ extern_methods!(
     #[cfg(feature = "Contacts_CNContactFetchRequest")]
     unsafe impl CNContactFetchRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Init initWithKeysToFetch:)]
         pub unsafe fn initWithKeysToFetch(
             this: Option<Allocated<Self>>,
             keys_to_fetch: &NSArray<ProtocolObject<dyn CNKeyDescriptor>>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSPredicate")]
         #[method_id(@__retain_semantics Other predicate)]
-        pub unsafe fn predicate(&self) -> Option<Id<NSPredicate, Shared>>;
+        pub unsafe fn predicate(&self) -> Option<Id<NSPredicate>>;
 
         #[cfg(feature = "Foundation_NSPredicate")]
         #[method(setPredicate:)]
@@ -51,9 +51,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other keysToFetch)]
-        pub unsafe fn keysToFetch(
-            &self,
-        ) -> Id<NSArray<ProtocolObject<dyn CNKeyDescriptor>>, Shared>;
+        pub unsafe fn keysToFetch(&self) -> Id<NSArray<ProtocolObject<dyn CNKeyDescriptor>>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setKeysToFetch:)]

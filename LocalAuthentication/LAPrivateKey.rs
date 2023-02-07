@@ -23,12 +23,12 @@ extern_methods!(
     unsafe impl LAPrivateKey {
         #[cfg(feature = "LocalAuthentication_LAPublicKey")]
         #[method_id(@__retain_semantics Other publicKey)]
-        pub unsafe fn publicKey(&self) -> Id<LAPublicKey, Shared>;
+        pub unsafe fn publicKey(&self) -> Id<LAPublicKey>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }
 );

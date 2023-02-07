@@ -9,15 +9,15 @@ extern_protocol!(
     pub unsafe trait GCPhysicalInputElement: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other sfSymbolsName)]
-        unsafe fn sfSymbolsName(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn sfSymbolsName(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedName)]
-        unsafe fn localizedName(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn localizedName(&self) -> Option<Id<NSString>>;
 
         #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other aliases)]
-        unsafe fn aliases(&self) -> Id<NSSet<NSString>, Shared>;
+        unsafe fn aliases(&self) -> Id<NSSet<NSString>>;
     }
 
     unsafe impl ProtocolType for dyn GCPhysicalInputElement {}
@@ -66,10 +66,10 @@ extern_methods!(
         GCPhysicalInputElementCollection<Key, Element, KeyOwnership, ElementOwnership>
     {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method(count)]
         pub unsafe fn count(&self) -> NSUInteger;
@@ -85,6 +85,6 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSEnumerator")]
         #[method_id(@__retain_semantics Other elementEnumerator)]
-        pub unsafe fn elementEnumerator(&self) -> Id<NSEnumerator<Element>, Shared>;
+        pub unsafe fn elementEnumerator(&self) -> Id<NSEnumerator<Element>>;
     }
 );

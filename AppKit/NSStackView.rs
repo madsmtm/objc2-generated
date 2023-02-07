@@ -81,12 +81,10 @@ extern_methods!(
     unsafe impl NSStackView {
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other stackViewWithViews:)]
-        pub unsafe fn stackViewWithViews(views: &NSArray<NSView>) -> Id<Self, Shared>;
+        pub unsafe fn stackViewWithViews(views: &NSArray<NSView>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(
-            &self,
-        ) -> Option<Id<ProtocolObject<dyn NSStackViewDelegate>, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSStackViewDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -138,7 +136,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other arrangedSubviews)]
-        pub unsafe fn arrangedSubviews(&self) -> Id<NSArray<NSView>, Shared>;
+        pub unsafe fn arrangedSubviews(&self) -> Id<NSArray<NSView>>;
 
         #[method(addArrangedSubview:)]
         pub unsafe fn addArrangedSubview(&self, view: &NSView);
@@ -151,7 +149,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other detachedViews)]
-        pub unsafe fn detachedViews(&self) -> Id<NSArray<NSView>, Shared>;
+        pub unsafe fn detachedViews(&self) -> Id<NSArray<NSView>>;
 
         #[method(setVisibilityPriority:forView:)]
         pub unsafe fn setVisibilityPriority_forView(
@@ -249,10 +247,7 @@ extern_methods!(
 
         #[cfg(all(feature = "AppKit_NSView", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other viewsInGravity:)]
-        pub unsafe fn viewsInGravity(
-            &self,
-            gravity: NSStackViewGravity,
-        ) -> Id<NSArray<NSView>, Shared>;
+        pub unsafe fn viewsInGravity(&self, gravity: NSStackViewGravity) -> Id<NSArray<NSView>>;
 
         #[cfg(all(feature = "AppKit_NSView", feature = "Foundation_NSArray"))]
         #[method(setViews:inGravity:)]
@@ -264,7 +259,7 @@ extern_methods!(
 
         #[cfg(all(feature = "AppKit_NSView", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other views)]
-        pub unsafe fn views(&self) -> Id<NSArray<NSView>, Shared>;
+        pub unsafe fn views(&self) -> Id<NSArray<NSView>>;
     }
 );
 
@@ -287,9 +282,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSStackView")]
     unsafe impl NSStackView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frame_rect: NSRect,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
 );

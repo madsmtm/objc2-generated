@@ -66,14 +66,14 @@ extern_methods!(
         pub unsafe fn setAltitude(&self, altitude: CLLocationDistance);
 
         #[method_id(@__retain_semantics Other camera)]
-        pub unsafe fn camera() -> Id<Self, Shared>;
+        pub unsafe fn camera() -> Id<Self>;
 
         #[method_id(@__retain_semantics Other cameraLookingAtCenterCoordinate:fromEyeCoordinate:eyeAltitude:)]
         pub unsafe fn cameraLookingAtCenterCoordinate_fromEyeCoordinate_eyeAltitude(
             center_coordinate: CLLocationCoordinate2D,
             eye_coordinate: CLLocationCoordinate2D,
             eye_altitude: CLLocationDistance,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other cameraLookingAtCenterCoordinate:fromDistance:pitch:heading:)]
         pub unsafe fn cameraLookingAtCenterCoordinate_fromDistance_pitch_heading(
@@ -81,7 +81,7 @@ extern_methods!(
             distance: CLLocationDistance,
             pitch: CGFloat,
             heading: CLLocationDirection,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "MapKit_MKMapItem")]
         #[method_id(@__retain_semantics Other cameraLookingAtMapItem:forViewSize:allowPitch:)]
@@ -89,6 +89,6 @@ extern_methods!(
             map_item: &MKMapItem,
             view_size: CGSize,
             allow_pitch: bool,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

@@ -38,23 +38,23 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn identifier(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other groupIdentifier)]
-        pub unsafe fn groupIdentifier(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn groupIdentifier(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn title(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other achievedDescription)]
-        pub unsafe fn achievedDescription(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn achievedDescription(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other unachievedDescription)]
-        pub unsafe fn unachievedDescription(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn unachievedDescription(&self) -> Option<Id<NSString>>;
 
         #[method(maximumPoints)]
         pub unsafe fn maximumPoints(&self) -> NSInteger;
@@ -73,7 +73,7 @@ extern_methods!(
     unsafe impl GKAchievementDescription {
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other image)]
-        pub unsafe fn image(&self) -> Option<Id<NSImage, Shared>>;
+        pub unsafe fn image(&self) -> Option<Id<NSImage>>;
 
         #[cfg(all(feature = "AppKit_NSImage", feature = "Foundation_NSError"))]
         #[method(loadImageWithCompletionHandler:)]
@@ -84,10 +84,10 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other incompleteAchievementImage)]
-        pub unsafe fn incompleteAchievementImage() -> Id<NSImage, Shared>;
+        pub unsafe fn incompleteAchievementImage() -> Id<NSImage>;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other placeholderCompletedAchievementImage)]
-        pub unsafe fn placeholderCompletedAchievementImage() -> Id<NSImage, Shared>;
+        pub unsafe fn placeholderCompletedAchievementImage() -> Id<NSImage>;
     }
 );

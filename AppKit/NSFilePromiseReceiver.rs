@@ -27,15 +27,15 @@ extern_methods!(
     unsafe impl NSFilePromiseReceiver {
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other readableDraggedTypes)]
-        pub unsafe fn readableDraggedTypes() -> Id<NSArray<NSString>, Shared>;
+        pub unsafe fn readableDraggedTypes() -> Id<NSArray<NSString>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other fileTypes)]
-        pub unsafe fn fileTypes(&self) -> Id<NSArray<NSString>, Shared>;
+        pub unsafe fn fileTypes(&self) -> Id<NSArray<NSString>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other fileNames)]
-        pub unsafe fn fileNames(&self) -> Id<NSArray<NSString>, Shared>;
+        pub unsafe fn fileNames(&self) -> Id<NSArray<NSString>>;
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",

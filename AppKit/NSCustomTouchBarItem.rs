@@ -28,7 +28,7 @@ extern_methods!(
     unsafe impl NSCustomTouchBarItem {
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other view)]
-        pub unsafe fn view(&self) -> Id<NSView, Shared>;
+        pub unsafe fn view(&self) -> Id<NSView>;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(setView:)]
@@ -36,7 +36,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSViewController")]
         #[method_id(@__retain_semantics Other viewController)]
-        pub unsafe fn viewController(&self) -> Option<Id<NSViewController, Shared>>;
+        pub unsafe fn viewController(&self) -> Option<Id<NSViewController>>;
 
         #[cfg(feature = "AppKit_NSViewController")]
         #[method(setViewController:)]
@@ -44,7 +44,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other customizationLabel)]
-        pub unsafe fn customizationLabel(&self) -> Id<NSString, Shared>;
+        pub unsafe fn customizationLabel(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCustomizationLabel:)]
@@ -60,6 +60,6 @@ extern_methods!(
         pub unsafe fn initWithIdentifier(
             this: Option<Allocated<Self>>,
             identifier: &NSTouchBarItemIdentifier,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

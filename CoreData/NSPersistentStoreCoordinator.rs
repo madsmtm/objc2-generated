@@ -119,19 +119,19 @@ extern_methods!(
         pub unsafe fn initWithManagedObjectModel(
             this: Option<Allocated<Self>>,
             model: &NSManagedObjectModel,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "CoreData_NSManagedObjectModel")]
         #[method_id(@__retain_semantics Other managedObjectModel)]
-        pub unsafe fn managedObjectModel(&self) -> Id<NSManagedObjectModel, Shared>;
+        pub unsafe fn managedObjectModel(&self) -> Id<NSManagedObjectModel>;
 
         #[cfg(all(feature = "CoreData_NSPersistentStore", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other persistentStores)]
-        pub unsafe fn persistentStores(&self) -> Id<NSArray<NSPersistentStore>, Shared>;
+        pub unsafe fn persistentStores(&self) -> Id<NSArray<NSPersistentStore>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn name(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]
@@ -139,14 +139,11 @@ extern_methods!(
 
         #[cfg(all(feature = "CoreData_NSPersistentStore", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other persistentStoreForURL:)]
-        pub unsafe fn persistentStoreForURL(
-            &self,
-            url: &NSURL,
-        ) -> Option<Id<NSPersistentStore, Shared>>;
+        pub unsafe fn persistentStoreForURL(&self, url: &NSURL) -> Option<Id<NSPersistentStore>>;
 
         #[cfg(all(feature = "CoreData_NSPersistentStore", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other URLForPersistentStore:)]
-        pub unsafe fn URLForPersistentStore(&self, store: &NSPersistentStore) -> Id<NSURL, Shared>;
+        pub unsafe fn URLForPersistentStore(&self, store: &NSPersistentStore) -> Id<NSURL>;
 
         #[cfg(all(feature = "CoreData_NSPersistentStore", feature = "Foundation_NSURL"))]
         #[method(setURL:forPersistentStore:)]
@@ -170,7 +167,7 @@ extern_methods!(
             configuration: Option<&NSString>,
             store_url: Option<&NSURL>,
             options: Option<&NSDictionary>,
-        ) -> Result<Id<NSPersistentStore, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<NSPersistentStore>, Id<NSError>>;
 
         #[cfg(all(
             feature = "CoreData_NSPersistentStoreDescription",
@@ -188,7 +185,7 @@ extern_methods!(
         pub unsafe fn removePersistentStore_error(
             &self,
             store: &NSPersistentStore,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
 
         #[cfg(all(
             feature = "CoreData_NSPersistentStore",
@@ -211,14 +208,14 @@ extern_methods!(
         pub unsafe fn metadataForPersistentStore(
             &self,
             store: &NSPersistentStore,
-        ) -> Id<NSDictionary<NSString, Object>, Shared>;
+        ) -> Id<NSDictionary<NSString, Object>>;
 
         #[cfg(all(feature = "CoreData_NSManagedObjectID", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other managedObjectIDForURIRepresentation:)]
         pub unsafe fn managedObjectIDForURIRepresentation(
             &self,
             url: &NSURL,
-        ) -> Option<Id<NSManagedObjectID, Shared>>;
+        ) -> Option<Id<NSManagedObjectID>>;
 
         #[cfg(all(
             feature = "CoreData_NSManagedObjectContext",
@@ -230,7 +227,7 @@ extern_methods!(
             &self,
             request: &NSPersistentStoreRequest,
             context: &NSManagedObjectContext,
-        ) -> Result<Id<Object, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Object>, Id<NSError>>;
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",
@@ -238,7 +235,7 @@ extern_methods!(
             feature = "Foundation_NSValue"
         ))]
         #[method_id(@__retain_semantics Other registeredStoreTypes)]
-        pub unsafe fn registeredStoreTypes() -> Id<NSDictionary<NSString, NSValue>, Shared>;
+        pub unsafe fn registeredStoreTypes() -> Id<NSDictionary<NSString, NSValue>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(registerStoreClass:forStoreType:)]
@@ -258,7 +255,7 @@ extern_methods!(
             store_type: &NSString,
             url: &NSURL,
             options: Option<&NSDictionary>,
-        ) -> Result<Id<NSDictionary<NSString, Object>, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<NSDictionary<NSString, Object>>, Id<NSError>>;
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",
@@ -272,14 +269,12 @@ extern_methods!(
             store_type: &NSString,
             url: &NSURL,
             options: Option<&NSDictionary>,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSURL"))]
         #[deprecated = "Spotlight integration is deprecated. Use CoreSpotlight integration instead."]
         #[method_id(@__retain_semantics Other elementsDerivedFromExternalRecordURL:)]
-        pub unsafe fn elementsDerivedFromExternalRecordURL(
-            file_url: &NSURL,
-        ) -> Id<NSDictionary, Shared>;
+        pub unsafe fn elementsDerivedFromExternalRecordURL(file_url: &NSURL) -> Id<NSDictionary>;
 
         #[cfg(all(
             feature = "CoreData_NSPersistentStore",
@@ -297,7 +292,7 @@ extern_methods!(
             destination_url: &NSURL,
             options: Option<&NSDictionary>,
             store_type: &NSString,
-        ) -> Result<Id<NSPersistentStore, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<NSPersistentStore>, Id<NSError>>;
 
         #[cfg(all(
             feature = "CoreData_NSPersistentStore",
@@ -313,7 +308,7 @@ extern_methods!(
             url: &NSURL,
             options: Option<&NSDictionary>,
             store_type: &NSString,
-        ) -> Result<Id<NSPersistentStore, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<NSPersistentStore>, Id<NSError>>;
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",
@@ -327,7 +322,7 @@ extern_methods!(
             url: &NSURL,
             store_type: &NSString,
             options: Option<&NSDictionary>,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",
@@ -343,7 +338,7 @@ extern_methods!(
             source_url: &NSURL,
             source_options: Option<&NSDictionary>,
             store_type: &NSString,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
 
         #[method(performBlock:)]
         pub unsafe fn performBlock(&self, block: &Block<(), ()>);
@@ -359,7 +354,7 @@ extern_methods!(
         pub unsafe fn currentPersistentHistoryTokenFromStores(
             &self,
             stores: Option<&NSArray>,
-        ) -> Option<Id<NSPersistentHistoryToken, Shared>>;
+        ) -> Option<Id<NSPersistentHistoryToken>>;
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",
@@ -370,7 +365,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other metadataForPersistentStoreWithURL:error:_)]
         pub unsafe fn metadataForPersistentStoreWithURL_error(
             url: &NSURL,
-        ) -> Result<Id<NSDictionary, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<NSDictionary>, Id<NSError>>;
 
         #[deprecated = "Use -performBlockAndWait: instead"]
         #[method(lock)]
@@ -395,7 +390,7 @@ extern_methods!(
         pub unsafe fn metadataForPersistentStoreOfType_URL_error(
             store_type: Option<&NSString>,
             url: &NSURL,
-        ) -> Result<Id<NSDictionary<NSString, Object>, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<NSDictionary<NSString, Object>>, Id<NSError>>;
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",
@@ -409,7 +404,7 @@ extern_methods!(
             metadata: Option<&NSDictionary<NSString, Object>>,
             store_type: Option<&NSString>,
             url: &NSURL,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",
@@ -421,7 +416,7 @@ extern_methods!(
         pub unsafe fn removeUbiquitousContentAndPersistentStoreAtURL_options_error(
             store_url: &NSURL,
             options: Option<&NSDictionary>,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
     }
 );
 

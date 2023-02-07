@@ -32,7 +32,7 @@ extern_methods!(
     unsafe impl MTLVertexAttribute {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub fn name(&self) -> Id<NSString, Shared>;
+        pub fn name(&self) -> Id<NSString>;
 
         #[method(attributeIndex)]
         pub fn attributeIndex(&self) -> NSUInteger;
@@ -70,7 +70,7 @@ extern_methods!(
     unsafe impl MTLAttribute {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub fn name(&self) -> Id<NSString, Shared>;
+        pub fn name(&self) -> Id<NSString>;
 
         #[method(attributeIndex)]
         pub fn attributeIndex(&self) -> NSUInteger;
@@ -121,7 +121,7 @@ extern_methods!(
     unsafe impl MTLFunctionConstant {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub fn name(&self) -> Id<NSString, Shared>;
+        pub fn name(&self) -> Id<NSString>;
 
         #[method(type)]
         pub unsafe fn r#type(&self) -> MTLDataType;
@@ -138,14 +138,14 @@ extern_protocol!(
     pub unsafe trait MTLFunction: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
-        fn label(&self) -> Option<Id<NSString, Shared>>;
+        fn label(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:)]
         fn setLabel(&self, label: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other device)]
-        fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>, Shared>;
+        fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
 
         #[method(functionType)]
         fn functionType(&self) -> MTLFunctionType;
@@ -158,15 +158,15 @@ extern_protocol!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLVertexAttribute"))]
         #[method_id(@__retain_semantics Other vertexAttributes)]
-        fn vertexAttributes(&self) -> Option<Id<NSArray<MTLVertexAttribute>, Shared>>;
+        fn vertexAttributes(&self) -> Option<Id<NSArray<MTLVertexAttribute>>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLAttribute"))]
         #[method_id(@__retain_semantics Other stageInputAttributes)]
-        fn stageInputAttributes(&self) -> Option<Id<NSArray<MTLAttribute>, Shared>>;
+        fn stageInputAttributes(&self) -> Option<Id<NSArray<MTLAttribute>>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        fn name(&self) -> Id<NSString, Shared>;
+        fn name(&self) -> Id<NSString>;
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",
@@ -174,15 +174,13 @@ extern_protocol!(
             feature = "Metal_MTLFunctionConstant"
         ))]
         #[method_id(@__retain_semantics Other functionConstantsDictionary)]
-        fn functionConstantsDictionary(
-            &self,
-        ) -> Id<NSDictionary<NSString, MTLFunctionConstant>, Shared>;
+        fn functionConstantsDictionary(&self) -> Id<NSDictionary<NSString, MTLFunctionConstant>>;
 
         #[method_id(@__retain_semantics New newArgumentEncoderWithBufferIndex:)]
         unsafe fn newArgumentEncoderWithBufferIndex(
             &self,
             buffer_index: NSUInteger,
-        ) -> Id<ProtocolObject<dyn MTLArgumentEncoder>, Shared>;
+        ) -> Id<ProtocolObject<dyn MTLArgumentEncoder>>;
 
         #[method(options)]
         fn options(&self) -> MTLFunctionOptions;
@@ -242,7 +240,7 @@ extern_methods!(
     unsafe impl MTLCompileOptions {
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other preprocessorMacros)]
-        pub fn preprocessorMacros(&self) -> Option<Id<NSDictionary<NSString, NSObject>, Shared>>;
+        pub fn preprocessorMacros(&self) -> Option<Id<NSDictionary<NSString, NSObject>>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setPreprocessorMacros:)]
@@ -271,7 +269,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other installName)]
-        pub fn installName(&self) -> Option<Id<NSString, Shared>>;
+        pub fn installName(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setInstallName:)]
@@ -279,9 +277,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other libraries)]
-        pub fn libraries(
-            &self,
-        ) -> Option<Id<NSArray<ProtocolObject<dyn MTLDynamicLibrary>>, Shared>>;
+        pub fn libraries(&self) -> Option<Id<NSArray<ProtocolObject<dyn MTLDynamicLibrary>>>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setLibraries:)]
@@ -322,21 +318,21 @@ extern_protocol!(
     pub unsafe trait MTLLibrary: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
-        fn label(&self) -> Option<Id<NSString, Shared>>;
+        fn label(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:)]
         fn setLabel(&self, label: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other device)]
-        fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>, Shared>;
+        fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics New newFunctionWithName:)]
         fn newFunctionWithName(
             &self,
             function_name: &NSString,
-        ) -> Option<Id<ProtocolObject<dyn MTLFunction>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLFunction>>>;
 
         #[cfg(all(
             feature = "Foundation_NSError",
@@ -348,7 +344,7 @@ extern_protocol!(
             &self,
             name: &NSString,
             constant_values: &MTLFunctionConstantValues,
-        ) -> Result<Id<ProtocolObject<dyn MTLFunction>, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<ProtocolObject<dyn MTLFunction>>, Id<NSError>>;
 
         #[cfg(all(
             feature = "Foundation_NSError",
@@ -382,7 +378,7 @@ extern_protocol!(
         fn newFunctionWithDescriptor_error(
             &self,
             descriptor: &MTLFunctionDescriptor,
-        ) -> Result<Id<ProtocolObject<dyn MTLFunction>, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<ProtocolObject<dyn MTLFunction>>, Id<NSError>>;
 
         #[cfg(all(
             feature = "Foundation_NSError",
@@ -403,18 +399,18 @@ extern_protocol!(
         fn newIntersectionFunctionWithDescriptor_error(
             &self,
             descriptor: &MTLIntersectionFunctionDescriptor,
-        ) -> Result<Id<ProtocolObject<dyn MTLFunction>, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<ProtocolObject<dyn MTLFunction>>, Id<NSError>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other functionNames)]
-        fn functionNames(&self) -> Id<NSArray<NSString>, Shared>;
+        fn functionNames(&self) -> Id<NSArray<NSString>>;
 
         #[method(type)]
         unsafe fn r#type(&self) -> MTLLibraryType;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other installName)]
-        fn installName(&self) -> Option<Id<NSString, Shared>>;
+        fn installName(&self) -> Option<Id<NSString>>;
     }
 
     unsafe impl ProtocolType for dyn MTLLibrary {}

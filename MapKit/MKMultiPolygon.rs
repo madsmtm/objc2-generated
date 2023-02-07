@@ -36,10 +36,10 @@ extern_methods!(
         pub unsafe fn initWithPolygons(
             this: Option<Allocated<Self>>,
             polygons: &NSArray<MKPolygon>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "MapKit_MKPolygon"))]
         #[method_id(@__retain_semantics Other polygons)]
-        pub unsafe fn polygons(&self) -> Id<NSArray<MKPolygon>, Shared>;
+        pub unsafe fn polygons(&self) -> Id<NSArray<MKPolygon>>;
     }
 );

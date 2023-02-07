@@ -30,6 +30,6 @@ extern_methods!(
                 (),
             >,
             completion_handler: &Block<(*mut NSError,), ()>,
-        ) -> Id<NSProgress, Shared>;
+        ) -> Id<NSProgress>;
     }
 );

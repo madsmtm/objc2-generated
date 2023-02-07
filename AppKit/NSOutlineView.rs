@@ -73,9 +73,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSOutlineView")]
     unsafe impl NSOutlineView {
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(
-            &self,
-        ) -> Option<Id<ProtocolObject<dyn NSOutlineViewDelegate>, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSOutlineViewDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -84,9 +82,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other dataSource)]
-        pub unsafe fn dataSource(
-            &self,
-        ) -> Option<Id<ProtocolObject<dyn NSOutlineViewDataSource>, Shared>>;
+        pub unsafe fn dataSource(&self) -> Option<Id<ProtocolObject<dyn NSOutlineViewDataSource>>>;
 
         #[method(setDataSource:)]
         pub unsafe fn setDataSource(
@@ -96,7 +92,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSTableColumn")]
         #[method_id(@__retain_semantics Other outlineTableColumn)]
-        pub unsafe fn outlineTableColumn(&self) -> Option<Id<NSTableColumn, Shared>>;
+        pub unsafe fn outlineTableColumn(&self) -> Option<Id<NSTableColumn>>;
 
         #[cfg(feature = "AppKit_NSTableColumn")]
         #[method(setOutlineTableColumn:)]
@@ -113,7 +109,7 @@ extern_methods!(
             &self,
             index: NSInteger,
             item: Option<&Object>,
-        ) -> Option<Id<Object, Shared>>;
+        ) -> Option<Id<Object>>;
 
         #[method(expandItem:expandChildren:)]
         pub unsafe fn expandItem_expandChildren(
@@ -146,13 +142,13 @@ extern_methods!(
         pub unsafe fn reloadItem(&self, item: Option<&Object>);
 
         #[method_id(@__retain_semantics Other parentForItem:)]
-        pub unsafe fn parentForItem(&self, item: Option<&Object>) -> Option<Id<Object, Shared>>;
+        pub unsafe fn parentForItem(&self, item: Option<&Object>) -> Option<Id<Object>>;
 
         #[method(childIndexForItem:)]
         pub unsafe fn childIndexForItem(&self, item: &Object) -> NSInteger;
 
         #[method_id(@__retain_semantics Other itemAtRow:)]
-        pub unsafe fn itemAtRow(&self, row: NSInteger) -> Option<Id<Object, Shared>>;
+        pub unsafe fn itemAtRow(&self, row: NSInteger) -> Option<Id<Object>>;
 
         #[method(rowForItem:)]
         pub unsafe fn rowForItem(&self, item: Option<&Object>) -> NSInteger;
@@ -281,7 +277,7 @@ extern_protocol!(
             outline_view: &NSOutlineView,
             index: NSInteger,
             item: Option<&Object>,
-        ) -> Id<Object, Shared>;
+        ) -> Id<Object>;
 
         #[cfg(feature = "AppKit_NSOutlineView")]
         #[optional]
@@ -300,7 +296,7 @@ extern_protocol!(
             outline_view: &NSOutlineView,
             table_column: Option<&NSTableColumn>,
             item: Option<&Object>,
-        ) -> Option<Id<Object, Shared>>;
+        ) -> Option<Id<Object>>;
 
         #[cfg(all(feature = "AppKit_NSOutlineView", feature = "AppKit_NSTableColumn"))]
         #[optional]
@@ -320,7 +316,7 @@ extern_protocol!(
             &self,
             outline_view: &NSOutlineView,
             object: &Object,
-        ) -> Option<Id<Object, Shared>>;
+        ) -> Option<Id<Object>>;
 
         #[cfg(feature = "AppKit_NSOutlineView")]
         #[optional]
@@ -329,7 +325,7 @@ extern_protocol!(
             &self,
             outline_view: &NSOutlineView,
             item: Option<&Object>,
-        ) -> Option<Id<Object, Shared>>;
+        ) -> Option<Id<Object>>;
 
         #[cfg(all(
             feature = "AppKit_NSOutlineView",
@@ -351,7 +347,7 @@ extern_protocol!(
             &self,
             outline_view: &NSOutlineView,
             item: &Object,
-        ) -> Option<Id<ProtocolObject<dyn NSPasteboardWriting>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn NSPasteboardWriting>>>;
 
         #[cfg(all(
             feature = "AppKit_NSDraggingSession",
@@ -439,7 +435,7 @@ extern_protocol!(
             outline_view: &NSOutlineView,
             drop_destination: &NSURL,
             items: &NSArray,
-        ) -> Id<NSArray<NSString>, Shared>;
+        ) -> Id<NSArray<NSString>>;
     }
 
     unsafe impl ProtocolType for dyn NSOutlineViewDataSource {}
@@ -459,7 +455,7 @@ extern_protocol!(
             outline_view: &NSOutlineView,
             table_column: Option<&NSTableColumn>,
             item: &Object,
-        ) -> Option<Id<NSView, Shared>>;
+        ) -> Option<Id<NSView>>;
 
         #[cfg(all(feature = "AppKit_NSOutlineView", feature = "AppKit_NSTableRowView"))]
         #[optional]
@@ -468,7 +464,7 @@ extern_protocol!(
             &self,
             outline_view: &NSOutlineView,
             item: &Object,
-        ) -> Option<Id<NSTableRowView, Shared>>;
+        ) -> Option<Id<NSTableRowView>>;
 
         #[cfg(all(feature = "AppKit_NSOutlineView", feature = "AppKit_NSTableRowView"))]
         #[optional]
@@ -532,7 +528,7 @@ extern_protocol!(
             &self,
             outline_view: &NSOutlineView,
             proposed_selection_indexes: &NSIndexSet,
-        ) -> Id<NSIndexSet, Shared>;
+        ) -> Id<NSIndexSet>;
 
         #[cfg(all(feature = "AppKit_NSOutlineView", feature = "AppKit_NSTableColumn"))]
         #[optional]
@@ -586,7 +582,7 @@ extern_protocol!(
             table_column: Option<&NSTableColumn>,
             item: &Object,
             mouse_location: NSPoint,
-        ) -> Id<NSString, Shared>;
+        ) -> Id<NSString>;
 
         #[cfg(feature = "AppKit_NSOutlineView")]
         #[optional]
@@ -607,7 +603,7 @@ extern_protocol!(
             &self,
             outline_view: &NSOutlineView,
             item: &Object,
-        ) -> Option<Id<NSTintConfiguration, Shared>>;
+        ) -> Option<Id<NSTintConfiguration>>;
 
         #[cfg(all(
             feature = "AppKit_NSOutlineView",
@@ -621,7 +617,7 @@ extern_protocol!(
             outline_view: &NSOutlineView,
             table_column: Option<&NSTableColumn>,
             item: &Object,
-        ) -> Option<Id<NSString, Shared>>;
+        ) -> Option<Id<NSString>>;
 
         #[cfg(all(feature = "AppKit_NSOutlineView", feature = "Foundation_NSString"))]
         #[optional]
@@ -632,7 +628,7 @@ extern_protocol!(
             start_item: &Object,
             end_item: &Object,
             search_string: &NSString,
-        ) -> Option<Id<Object, Shared>>;
+        ) -> Option<Id<Object>>;
 
         #[cfg(all(
             feature = "AppKit_NSEvent",
@@ -685,7 +681,7 @@ extern_protocol!(
             outline_view: &NSOutlineView,
             table_column: Option<&NSTableColumn>,
             item: &Object,
-        ) -> Option<Id<NSCell, Shared>>;
+        ) -> Option<Id<NSCell>>;
 
         #[cfg(feature = "AppKit_NSOutlineView")]
         #[optional]
@@ -822,9 +818,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSOutlineView")]
     unsafe impl NSOutlineView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frame_rect: NSRect,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
 );

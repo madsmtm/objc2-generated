@@ -58,10 +58,10 @@ extern_methods!(
         #[method_id(@__retain_semantics Other notificationCenterForType:)]
         pub unsafe fn notificationCenterForType(
             notification_center_type: &NSDistributedNotificationCenterType,
-        ) -> Id<NSDistributedNotificationCenter, Shared>;
+        ) -> Id<NSDistributedNotificationCenter>;
 
         #[method_id(@__retain_semantics Other defaultCenter)]
-        pub unsafe fn defaultCenter() -> Id<NSDistributedNotificationCenter, Shared>;
+        pub unsafe fn defaultCenter() -> Id<NSDistributedNotificationCenter>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(addObserver:selector:name:object:suspensionBehavior:)]

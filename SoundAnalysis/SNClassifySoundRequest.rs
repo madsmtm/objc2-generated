@@ -32,30 +32,30 @@ extern_methods!(
 
         #[cfg(feature = "SoundAnalysis_SNTimeDurationConstraint")]
         #[method_id(@__retain_semantics Other windowDurationConstraint)]
-        pub unsafe fn windowDurationConstraint(&self) -> Id<SNTimeDurationConstraint, Shared>;
+        pub unsafe fn windowDurationConstraint(&self) -> Id<SNTimeDurationConstraint>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other knownClassifications)]
-        pub unsafe fn knownClassifications(&self) -> Id<NSArray<NSString>, Shared>;
+        pub unsafe fn knownClassifications(&self) -> Id<NSArray<NSString>>;
 
         #[cfg(all(feature = "CoreML_MLModel", feature = "Foundation_NSError"))]
         #[method_id(@__retain_semantics Init initWithMLModel:error:_)]
         pub unsafe fn initWithMLModel_error(
             this: Option<Allocated<Self>>,
             ml_model: &MLModel,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self>, Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Init initWithClassifierIdentifier:error:_)]
         pub unsafe fn initWithClassifierIdentifier_error(
             this: Option<Allocated<Self>>,
             classifier_identifier: &SNClassifierIdentifier,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self>, Id<NSError>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
     }
 );

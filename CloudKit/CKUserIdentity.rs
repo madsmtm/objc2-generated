@@ -29,26 +29,26 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKUserIdentity")]
     unsafe impl CKUserIdentity {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
 
         #[cfg(feature = "CloudKit_CKUserIdentityLookupInfo")]
         #[method_id(@__retain_semantics Other lookupInfo)]
-        pub unsafe fn lookupInfo(&self) -> Option<Id<CKUserIdentityLookupInfo, Shared>>;
+        pub unsafe fn lookupInfo(&self) -> Option<Id<CKUserIdentityLookupInfo>>;
 
         #[cfg(feature = "Foundation_NSPersonNameComponents")]
         #[method_id(@__retain_semantics Other nameComponents)]
-        pub unsafe fn nameComponents(&self) -> Option<Id<NSPersonNameComponents, Shared>>;
+        pub unsafe fn nameComponents(&self) -> Option<Id<NSPersonNameComponents>>;
 
         #[cfg(feature = "CloudKit_CKRecordID")]
         #[method_id(@__retain_semantics Other userRecordID)]
-        pub unsafe fn userRecordID(&self) -> Option<Id<CKRecordID, Shared>>;
+        pub unsafe fn userRecordID(&self) -> Option<Id<CKRecordID>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other contactIdentifiers)]
-        pub unsafe fn contactIdentifiers(&self) -> Id<NSArray<NSString>, Shared>;
+        pub unsafe fn contactIdentifiers(&self) -> Id<NSArray<NSString>>;
 
         #[method(hasiCloudAccount)]
         pub unsafe fn hasiCloudAccount(&self) -> bool;

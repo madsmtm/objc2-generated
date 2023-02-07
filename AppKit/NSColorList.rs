@@ -34,16 +34,16 @@ extern_methods!(
     unsafe impl NSColorList {
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other availableColorLists)]
-        pub unsafe fn availableColorLists() -> Id<NSArray<NSColorList>, Shared>;
+        pub unsafe fn availableColorLists() -> Id<NSArray<NSColorList>>;
 
         #[method_id(@__retain_semantics Other colorListNamed:)]
-        pub unsafe fn colorListNamed(name: &NSColorListName) -> Option<Id<NSColorList, Shared>>;
+        pub unsafe fn colorListNamed(name: &NSColorListName) -> Option<Id<NSColorList>>;
 
         #[method_id(@__retain_semantics Init initWithName:)]
         pub unsafe fn initWithName(
             this: Option<Allocated<Self>>,
             name: &NSColorListName,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithName:fromFile:)]
@@ -51,10 +51,10 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             name: &NSColorListName,
             path: Option<&NSString>,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Option<Id<NSColorListName, Shared>>;
+        pub unsafe fn name(&self) -> Option<Id<NSColorListName>>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setColor:forKey:)]
@@ -74,21 +74,18 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other colorWithKey:)]
-        pub unsafe fn colorWithKey(&self, key: &NSColorName) -> Option<Id<NSColor, Shared>>;
+        pub unsafe fn colorWithKey(&self, key: &NSColorName) -> Option<Id<NSColor>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other allKeys)]
-        pub unsafe fn allKeys(&self) -> Id<NSArray<NSColorName>, Shared>;
+        pub unsafe fn allKeys(&self) -> Id<NSArray<NSColorName>>;
 
         #[method(isEditable)]
         pub unsafe fn isEditable(&self) -> bool;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method(writeToURL:error:_)]
-        pub unsafe fn writeToURL_error(
-            &self,
-            url: Option<&NSURL>,
-        ) -> Result<(), Id<NSError, Shared>>;
+        pub unsafe fn writeToURL_error(&self, url: Option<&NSURL>) -> Result<(), Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use -writeToURL:error: instead"]

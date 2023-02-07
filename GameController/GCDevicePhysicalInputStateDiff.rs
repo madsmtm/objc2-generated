@@ -26,7 +26,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other changedElements)]
         unsafe fn changedElements(
             &self,
-        ) -> Option<Id<NSEnumerator<ProtocolObject<dyn GCPhysicalInputElement>>, Shared>>;
+        ) -> Option<Id<NSEnumerator<ProtocolObject<dyn GCPhysicalInputElement>>>>;
     }
 
     unsafe impl ProtocolType for dyn GCDevicePhysicalInputStateDiff {}

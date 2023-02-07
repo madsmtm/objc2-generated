@@ -27,7 +27,7 @@ extern_methods!(
     unsafe impl NSPDFInfo {
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other URL)]
-        pub unsafe fn URL(&self) -> Option<Id<NSURL, Shared>>;
+        pub unsafe fn URL(&self) -> Option<Id<NSURL>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method(setURL:)]
@@ -41,7 +41,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other tagNames)]
-        pub unsafe fn tagNames(&self) -> Id<NSArray<NSString>, Shared>;
+        pub unsafe fn tagNames(&self) -> Id<NSArray<NSString>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setTagNames:)]

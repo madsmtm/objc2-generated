@@ -126,7 +126,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other backgroundColor)]
-        pub unsafe fn backgroundColor(&self) -> Id<NSColor, Shared>;
+        pub unsafe fn backgroundColor(&self) -> Id<NSColor>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setBackgroundColor:)]
@@ -145,7 +145,7 @@ extern_methods!(
         pub unsafe fn drawDraggingDestinationFeedbackInRect(&self, dirty_rect: NSRect);
 
         #[method_id(@__retain_semantics Other viewAtColumn:)]
-        pub unsafe fn viewAtColumn(&self, column: NSInteger) -> Option<Id<Object, Shared>>;
+        pub unsafe fn viewAtColumn(&self, column: NSInteger) -> Option<Id<Object>>;
 
         #[method(numberOfColumns)]
         pub unsafe fn numberOfColumns(&self) -> NSInteger;
@@ -157,9 +157,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTableRowView")]
     unsafe impl NSTableRowView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frame_rect: NSRect,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
 );

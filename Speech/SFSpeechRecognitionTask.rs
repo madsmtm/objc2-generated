@@ -49,7 +49,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other error)]
-        pub unsafe fn error(&self) -> Option<Id<NSError, Shared>>;
+        pub unsafe fn error(&self) -> Option<Id<NSError>>;
     }
 );
 

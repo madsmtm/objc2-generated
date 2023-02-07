@@ -65,13 +65,13 @@ extern_methods!(
         pub unsafe fn initWithProperties(
             this: Option<Allocated<Self>>,
             properties: &NSDictionary<NSHTTPCookiePropertyKey, Object>,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other cookieWithProperties:)]
         pub unsafe fn cookieWithProperties(
             properties: &NSDictionary<NSHTTPCookiePropertyKey, Object>,
-        ) -> Option<Id<NSHTTPCookie, Shared>>;
+        ) -> Option<Id<NSHTTPCookie>>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -81,7 +81,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other requestHeaderFieldsWithCookies:)]
         pub unsafe fn requestHeaderFieldsWithCookies(
             cookies: &NSArray<NSHTTPCookie>,
-        ) -> Id<NSDictionary<NSString, NSString>, Shared>;
+        ) -> Id<NSDictionary<NSString, NSString>>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -93,39 +93,39 @@ extern_methods!(
         pub unsafe fn cookiesWithResponseHeaderFields_forURL(
             header_fields: &NSDictionary<NSString, NSString>,
             url: &NSURL,
-        ) -> Id<NSArray<NSHTTPCookie>, Shared>;
+        ) -> Id<NSArray<NSHTTPCookie>>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other properties)]
         pub unsafe fn properties(
             &self,
-        ) -> Option<Id<NSDictionary<NSHTTPCookiePropertyKey, Object>, Shared>>;
+        ) -> Option<Id<NSDictionary<NSHTTPCookiePropertyKey, Object>>>;
 
         #[method(version)]
         pub unsafe fn version(&self) -> NSUInteger;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString, Shared>;
+        pub unsafe fn name(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other value)]
-        pub unsafe fn value(&self) -> Id<NSString, Shared>;
+        pub unsafe fn value(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other expiresDate)]
-        pub unsafe fn expiresDate(&self) -> Option<Id<NSDate, Shared>>;
+        pub unsafe fn expiresDate(&self) -> Option<Id<NSDate>>;
 
         #[method(isSessionOnly)]
         pub unsafe fn isSessionOnly(&self) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other domain)]
-        pub unsafe fn domain(&self) -> Id<NSString, Shared>;
+        pub unsafe fn domain(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other path)]
-        pub unsafe fn path(&self) -> Id<NSString, Shared>;
+        pub unsafe fn path(&self) -> Id<NSString>;
 
         #[method(isSecure)]
         pub unsafe fn isSecure(&self) -> bool;
@@ -135,17 +135,17 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other comment)]
-        pub unsafe fn comment(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn comment(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other commentURL)]
-        pub unsafe fn commentURL(&self) -> Option<Id<NSURL, Shared>>;
+        pub unsafe fn commentURL(&self) -> Option<Id<NSURL>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method_id(@__retain_semantics Other portList)]
-        pub unsafe fn portList(&self) -> Option<Id<NSArray<NSNumber>, Shared>>;
+        pub unsafe fn portList(&self) -> Option<Id<NSArray<NSNumber>>>;
 
         #[method_id(@__retain_semantics Other sameSitePolicy)]
-        pub unsafe fn sameSitePolicy(&self) -> Option<Id<NSHTTPCookieStringPolicy, Shared>>;
+        pub unsafe fn sameSitePolicy(&self) -> Option<Id<NSHTTPCookieStringPolicy>>;
     }
 );

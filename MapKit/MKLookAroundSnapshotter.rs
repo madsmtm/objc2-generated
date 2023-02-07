@@ -25,10 +25,10 @@ extern_methods!(
     #[cfg(feature = "MapKit_MKLookAroundSnapshotter")]
     unsafe impl MKLookAroundSnapshotter {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(all(
             feature = "MapKit_MKLookAroundScene",
@@ -39,7 +39,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             scene: &MKLookAroundScene,
             options: &MKLookAroundSnapshotOptions,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(
             feature = "Foundation_NSError",

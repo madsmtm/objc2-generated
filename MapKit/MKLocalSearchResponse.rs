@@ -26,7 +26,7 @@ extern_methods!(
     unsafe impl MKLocalSearchResponse {
         #[cfg(all(feature = "Foundation_NSArray", feature = "MapKit_MKMapItem"))]
         #[method_id(@__retain_semantics Other mapItems)]
-        pub unsafe fn mapItems(&self) -> Id<NSArray<MKMapItem>, Shared>;
+        pub unsafe fn mapItems(&self) -> Id<NSArray<MKMapItem>>;
 
         #[method(boundingRegion)]
         pub unsafe fn boundingRegion(&self) -> MKCoordinateRegion;

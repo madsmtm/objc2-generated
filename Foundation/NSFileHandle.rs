@@ -28,74 +28,67 @@ extern_methods!(
     unsafe impl NSFileHandle {
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other availableData)]
-        pub unsafe fn availableData(&self) -> Id<NSData, Shared>;
+        pub unsafe fn availableData(&self) -> Id<NSData>;
 
         #[method_id(@__retain_semantics Init initWithFileDescriptor:closeOnDealloc:)]
         pub unsafe fn initWithFileDescriptor_closeOnDealloc(
             this: Option<Allocated<Self>>,
             fd: c_int,
             closeopt: bool,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
         #[method_id(@__retain_semantics Other readDataToEndOfFileAndReturnError:_)]
-        pub unsafe fn readDataToEndOfFileAndReturnError(
-            &self,
-        ) -> Result<Id<NSData, Shared>, Id<NSError, Shared>>;
+        pub unsafe fn readDataToEndOfFileAndReturnError(&self) -> Result<Id<NSData>, Id<NSError>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
         #[method_id(@__retain_semantics Other readDataUpToLength:error:_)]
         pub unsafe fn readDataUpToLength_error(
             &self,
             length: NSUInteger,
-        ) -> Result<Id<NSData, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<NSData>, Id<NSError>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
         #[method(writeData:error:_)]
-        pub unsafe fn writeData_error(&self, data: &NSData) -> Result<(), Id<NSError, Shared>>;
+        pub unsafe fn writeData_error(&self, data: &NSData) -> Result<(), Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(getOffset:error:_)]
         pub unsafe fn getOffset_error(
             &self,
             offset_in_file: NonNull<c_ulonglong>,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(seekToEndReturningOffset:error:_)]
         pub unsafe fn seekToEndReturningOffset_error(
             &self,
             offset_in_file: *mut c_ulonglong,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(seekToOffset:error:_)]
-        pub unsafe fn seekToOffset_error(
-            &self,
-            offset: c_ulonglong,
-        ) -> Result<(), Id<NSError, Shared>>;
+        pub unsafe fn seekToOffset_error(&self, offset: c_ulonglong) -> Result<(), Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(truncateAtOffset:error:_)]
-        pub unsafe fn truncateAtOffset_error(
-            &self,
-            offset: c_ulonglong,
-        ) -> Result<(), Id<NSError, Shared>>;
+        pub unsafe fn truncateAtOffset_error(&self, offset: c_ulonglong)
+            -> Result<(), Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(synchronizeAndReturnError:_)]
-        pub unsafe fn synchronizeAndReturnError(&self) -> Result<(), Id<NSError, Shared>>;
+        pub unsafe fn synchronizeAndReturnError(&self) -> Result<(), Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(closeAndReturnError:_)]
-        pub unsafe fn closeAndReturnError(&self) -> Result<(), Id<NSError, Shared>>;
+        pub unsafe fn closeAndReturnError(&self) -> Result<(), Id<NSError>>;
     }
 );
 
@@ -104,46 +97,43 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSFileHandle")]
     unsafe impl NSFileHandle {
         #[method_id(@__retain_semantics Other fileHandleWithStandardInput)]
-        pub unsafe fn fileHandleWithStandardInput() -> Id<NSFileHandle, Shared>;
+        pub unsafe fn fileHandleWithStandardInput() -> Id<NSFileHandle>;
 
         #[method_id(@__retain_semantics Other fileHandleWithStandardOutput)]
-        pub unsafe fn fileHandleWithStandardOutput() -> Id<NSFileHandle, Shared>;
+        pub unsafe fn fileHandleWithStandardOutput() -> Id<NSFileHandle>;
 
         #[method_id(@__retain_semantics Other fileHandleWithStandardError)]
-        pub unsafe fn fileHandleWithStandardError() -> Id<NSFileHandle, Shared>;
+        pub unsafe fn fileHandleWithStandardError() -> Id<NSFileHandle>;
 
         #[method_id(@__retain_semantics Other fileHandleWithNullDevice)]
-        pub unsafe fn fileHandleWithNullDevice() -> Id<NSFileHandle, Shared>;
+        pub unsafe fn fileHandleWithNullDevice() -> Id<NSFileHandle>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fileHandleForReadingAtPath:)]
-        pub unsafe fn fileHandleForReadingAtPath(path: &NSString) -> Option<Id<Self, Shared>>;
+        pub unsafe fn fileHandleForReadingAtPath(path: &NSString) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fileHandleForWritingAtPath:)]
-        pub unsafe fn fileHandleForWritingAtPath(path: &NSString) -> Option<Id<Self, Shared>>;
+        pub unsafe fn fileHandleForWritingAtPath(path: &NSString) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fileHandleForUpdatingAtPath:)]
-        pub unsafe fn fileHandleForUpdatingAtPath(path: &NSString) -> Option<Id<Self, Shared>>;
+        pub unsafe fn fileHandleForUpdatingAtPath(path: &NSString) -> Option<Id<Self>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other fileHandleForReadingFromURL:error:_)]
         pub unsafe fn fileHandleForReadingFromURL_error(
             url: &NSURL,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self>, Id<NSError>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other fileHandleForWritingToURL:error:_)]
-        pub unsafe fn fileHandleForWritingToURL_error(
-            url: &NSURL,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        pub unsafe fn fileHandleForWritingToURL_error(url: &NSURL)
+            -> Result<Id<Self>, Id<NSError>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other fileHandleForUpdatingURL:error:_)]
-        pub unsafe fn fileHandleForUpdatingURL_error(
-            url: &NSURL,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        pub unsafe fn fileHandleForUpdatingURL_error(url: &NSURL) -> Result<Id<Self>, Id<NSError>>;
     }
 );
 
@@ -232,10 +222,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSFileHandle")]
     unsafe impl NSFileHandle {
         #[method_id(@__retain_semantics Init initWithFileDescriptor:)]
-        pub unsafe fn initWithFileDescriptor(
-            this: Option<Allocated<Self>>,
-            fd: c_int,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithFileDescriptor(this: Option<Allocated<Self>>, fd: c_int) -> Id<Self>;
 
         #[method(fileDescriptor)]
         pub unsafe fn fileDescriptor(&self) -> c_int;
@@ -248,12 +235,12 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSData")]
         #[deprecated]
         #[method_id(@__retain_semantics Other readDataToEndOfFile)]
-        pub unsafe fn readDataToEndOfFile(&self) -> Id<NSData, Shared>;
+        pub unsafe fn readDataToEndOfFile(&self) -> Id<NSData>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[deprecated]
         #[method_id(@__retain_semantics Other readDataOfLength:)]
-        pub unsafe fn readDataOfLength(&self, length: NSUInteger) -> Id<NSData, Shared>;
+        pub unsafe fn readDataOfLength(&self, length: NSUInteger) -> Id<NSData>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[deprecated]
@@ -305,13 +292,13 @@ extern_methods!(
     unsafe impl NSPipe {
         #[cfg(feature = "Foundation_NSFileHandle")]
         #[method_id(@__retain_semantics Other fileHandleForReading)]
-        pub unsafe fn fileHandleForReading(&self) -> Id<NSFileHandle, Shared>;
+        pub unsafe fn fileHandleForReading(&self) -> Id<NSFileHandle>;
 
         #[cfg(feature = "Foundation_NSFileHandle")]
         #[method_id(@__retain_semantics Other fileHandleForWriting)]
-        pub unsafe fn fileHandleForWriting(&self) -> Id<NSFileHandle, Shared>;
+        pub unsafe fn fileHandleForWriting(&self) -> Id<NSFileHandle>;
 
         #[method_id(@__retain_semantics Other pipe)]
-        pub unsafe fn pipe() -> Id<NSPipe, Shared>;
+        pub unsafe fn pipe() -> Id<NSPipe>;
     }
 );

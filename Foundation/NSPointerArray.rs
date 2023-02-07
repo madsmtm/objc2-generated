@@ -33,29 +33,29 @@ extern_methods!(
         pub unsafe fn initWithOptions(
             this: Option<Allocated<Self>>,
             options: NSPointerFunctionsOptions,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSPointerFunctions")]
         #[method_id(@__retain_semantics Init initWithPointerFunctions:)]
         pub unsafe fn initWithPointerFunctions(
             this: Option<Allocated<Self>>,
             functions: &NSPointerFunctions,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other pointerArrayWithOptions:)]
         pub unsafe fn pointerArrayWithOptions(
             options: NSPointerFunctionsOptions,
-        ) -> Id<NSPointerArray, Shared>;
+        ) -> Id<NSPointerArray>;
 
         #[cfg(feature = "Foundation_NSPointerFunctions")]
         #[method_id(@__retain_semantics Other pointerArrayWithPointerFunctions:)]
         pub unsafe fn pointerArrayWithPointerFunctions(
             functions: &NSPointerFunctions,
-        ) -> Id<NSPointerArray, Shared>;
+        ) -> Id<NSPointerArray>;
 
         #[cfg(feature = "Foundation_NSPointerFunctions")]
         #[method_id(@__retain_semantics Other pointerFunctions)]
-        pub unsafe fn pointerFunctions(&self) -> Id<NSPointerFunctions, Shared>;
+        pub unsafe fn pointerFunctions(&self) -> Id<NSPointerFunctions>;
 
         #[method(pointerAtIndex:)]
         pub unsafe fn pointerAtIndex(&self, index: NSUInteger) -> *mut c_void;
@@ -93,20 +93,20 @@ extern_methods!(
     unsafe impl NSPointerArray {
         #[deprecated = "GC no longer supported"]
         #[method_id(@__retain_semantics Other pointerArrayWithStrongObjects)]
-        pub unsafe fn pointerArrayWithStrongObjects() -> Id<Object, Shared>;
+        pub unsafe fn pointerArrayWithStrongObjects() -> Id<Object>;
 
         #[deprecated = "GC no longer supported"]
         #[method_id(@__retain_semantics Other pointerArrayWithWeakObjects)]
-        pub unsafe fn pointerArrayWithWeakObjects() -> Id<Object, Shared>;
+        pub unsafe fn pointerArrayWithWeakObjects() -> Id<Object>;
 
         #[method_id(@__retain_semantics Other strongObjectsPointerArray)]
-        pub unsafe fn strongObjectsPointerArray() -> Id<NSPointerArray, Shared>;
+        pub unsafe fn strongObjectsPointerArray() -> Id<NSPointerArray>;
 
         #[method_id(@__retain_semantics Other weakObjectsPointerArray)]
-        pub unsafe fn weakObjectsPointerArray() -> Id<NSPointerArray, Shared>;
+        pub unsafe fn weakObjectsPointerArray() -> Id<NSPointerArray>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other allObjects)]
-        pub unsafe fn allObjects(&self) -> Id<NSArray, Shared>;
+        pub unsafe fn allObjects(&self) -> Id<NSArray>;
     }
 );

@@ -29,26 +29,26 @@ extern_methods!(
     unsafe impl DOMDocumentType {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString, Shared>;
+        pub unsafe fn name(&self) -> Id<NSString>;
 
         #[cfg(feature = "WebKit_DOMNamedNodeMap")]
         #[method_id(@__retain_semantics Other entities)]
-        pub unsafe fn entities(&self) -> Option<Id<DOMNamedNodeMap, Shared>>;
+        pub unsafe fn entities(&self) -> Option<Id<DOMNamedNodeMap>>;
 
         #[cfg(feature = "WebKit_DOMNamedNodeMap")]
         #[method_id(@__retain_semantics Other notations)]
-        pub unsafe fn notations(&self) -> Option<Id<DOMNamedNodeMap, Shared>>;
+        pub unsafe fn notations(&self) -> Option<Id<DOMNamedNodeMap>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other publicId)]
-        pub unsafe fn publicId(&self) -> Id<NSString, Shared>;
+        pub unsafe fn publicId(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other systemId)]
-        pub unsafe fn systemId(&self) -> Id<NSString, Shared>;
+        pub unsafe fn systemId(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other internalSubset)]
-        pub unsafe fn internalSubset(&self) -> Id<NSString, Shared>;
+        pub unsafe fn internalSubset(&self) -> Id<NSString>;
     }
 );

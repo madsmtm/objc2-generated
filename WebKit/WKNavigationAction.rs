@@ -36,14 +36,14 @@ extern_methods!(
     unsafe impl WKNavigationAction {
         #[cfg(feature = "WebKit_WKFrameInfo")]
         #[method_id(@__retain_semantics Other targetFrame)]
-        pub unsafe fn targetFrame(&self) -> Option<Id<WKFrameInfo, Shared>>;
+        pub unsafe fn targetFrame(&self) -> Option<Id<WKFrameInfo>>;
 
         #[method(navigationType)]
         pub unsafe fn navigationType(&self) -> WKNavigationType;
 
         #[cfg(feature = "Foundation_NSURLRequest")]
         #[method_id(@__retain_semantics Other request)]
-        pub unsafe fn request(&self) -> Id<NSURLRequest, Shared>;
+        pub unsafe fn request(&self) -> Id<NSURLRequest>;
 
         #[method(shouldPerformDownload)]
         pub unsafe fn shouldPerformDownload(&self) -> bool;

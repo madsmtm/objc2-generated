@@ -53,7 +53,7 @@ extern_methods!(
 
         #[cfg(feature = "Automator_AMWorkflowController")]
         #[method_id(@__retain_semantics Other workflowController)]
-        pub unsafe fn workflowController(&self) -> Option<Id<AMWorkflowController, Shared>>;
+        pub unsafe fn workflowController(&self) -> Option<Id<AMWorkflowController>>;
 
         #[cfg(feature = "Automator_AMWorkflowController")]
         #[method(setWorkflowController:)]
@@ -69,9 +69,6 @@ extern_methods!(
     #[cfg(feature = "Automator_AMWorkflowView")]
     unsafe impl AMWorkflowView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frame_rect: NSRect,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
 );

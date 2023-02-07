@@ -70,7 +70,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other backgroundColor)]
-        pub unsafe fn backgroundColor(&self) -> Id<NSColor, Shared>;
+        pub unsafe fn backgroundColor(&self) -> Id<NSColor>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setBackgroundColor:)]
@@ -78,7 +78,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other textColor)]
-        pub unsafe fn textColor(&self) -> Id<NSColor, Shared>;
+        pub unsafe fn textColor(&self) -> Id<NSColor>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setTextColor:)]
@@ -98,7 +98,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSCalendar")]
         #[method_id(@__retain_semantics Other calendar)]
-        pub unsafe fn calendar(&self) -> Option<Id<NSCalendar, Shared>>;
+        pub unsafe fn calendar(&self) -> Option<Id<NSCalendar>>;
 
         #[cfg(feature = "Foundation_NSCalendar")]
         #[method(setCalendar:)]
@@ -106,7 +106,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSLocale")]
         #[method_id(@__retain_semantics Other locale)]
-        pub unsafe fn locale(&self) -> Option<Id<NSLocale, Shared>>;
+        pub unsafe fn locale(&self) -> Option<Id<NSLocale>>;
 
         #[cfg(feature = "Foundation_NSLocale")]
         #[method(setLocale:)]
@@ -114,7 +114,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSTimeZone")]
         #[method_id(@__retain_semantics Other timeZone)]
-        pub unsafe fn timeZone(&self) -> Option<Id<NSTimeZone, Shared>>;
+        pub unsafe fn timeZone(&self) -> Option<Id<NSTimeZone>>;
 
         #[cfg(feature = "Foundation_NSTimeZone")]
         #[method(setTimeZone:)]
@@ -122,7 +122,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other dateValue)]
-        pub unsafe fn dateValue(&self) -> Id<NSDate, Shared>;
+        pub unsafe fn dateValue(&self) -> Id<NSDate>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method(setDateValue:)]
@@ -136,7 +136,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other minDate)]
-        pub unsafe fn minDate(&self) -> Option<Id<NSDate, Shared>>;
+        pub unsafe fn minDate(&self) -> Option<Id<NSDate>>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method(setMinDate:)]
@@ -144,7 +144,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other maxDate)]
-        pub unsafe fn maxDate(&self) -> Option<Id<NSDate, Shared>>;
+        pub unsafe fn maxDate(&self) -> Option<Id<NSDate>>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method(setMaxDate:)]
@@ -157,9 +157,7 @@ extern_methods!(
         pub unsafe fn setPresentsCalendarOverlay(&self, presents_calendar_overlay: bool);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(
-            &self,
-        ) -> Option<Id<ProtocolObject<dyn NSDatePickerCellDelegate>, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSDatePickerCellDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -174,9 +172,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSDatePicker")]
     unsafe impl NSDatePicker {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frame_rect: NSRect,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
 );

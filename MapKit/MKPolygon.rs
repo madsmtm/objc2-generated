@@ -35,7 +35,7 @@ extern_methods!(
         pub unsafe fn polygonWithPoints_count(
             points: NonNull<MKMapPoint>,
             count: NSUInteger,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other polygonWithPoints:count:interiorPolygons:)]
@@ -43,13 +43,13 @@ extern_methods!(
             points: NonNull<MKMapPoint>,
             count: NSUInteger,
             interior_polygons: Option<&NSArray<MKPolygon>>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other polygonWithCoordinates:count:)]
         pub unsafe fn polygonWithCoordinates_count(
             coords: NonNull<CLLocationCoordinate2D>,
             count: NSUInteger,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other polygonWithCoordinates:count:interiorPolygons:)]
@@ -57,10 +57,10 @@ extern_methods!(
             coords: NonNull<CLLocationCoordinate2D>,
             count: NSUInteger,
             interior_polygons: Option<&NSArray<MKPolygon>>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other interiorPolygons)]
-        pub unsafe fn interiorPolygons(&self) -> Option<Id<NSArray<MKPolygon>, Shared>>;
+        pub unsafe fn interiorPolygons(&self) -> Option<Id<NSArray<MKPolygon>>>;
     }
 );

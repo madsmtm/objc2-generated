@@ -35,29 +35,29 @@ extern_methods!(
             main_resource: Option<&WebResource>,
             subresources: Option<&NSArray>,
             subframe_archives: Option<&NSArray>,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Init initWithData:)]
         pub unsafe fn initWithData(
             this: Option<Allocated<Self>>,
             data: Option<&NSData>,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "WebKit_WebResource")]
         #[method_id(@__retain_semantics Other mainResource)]
-        pub unsafe fn mainResource(&self) -> Option<Id<WebResource, Shared>>;
+        pub unsafe fn mainResource(&self) -> Option<Id<WebResource>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other subresources)]
-        pub unsafe fn subresources(&self) -> Id<NSArray, Shared>;
+        pub unsafe fn subresources(&self) -> Id<NSArray>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other subframeArchives)]
-        pub unsafe fn subframeArchives(&self) -> Id<NSArray, Shared>;
+        pub unsafe fn subframeArchives(&self) -> Id<NSArray>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other data)]
-        pub unsafe fn data(&self) -> Id<NSData, Shared>;
+        pub unsafe fn data(&self) -> Id<NSData>;
     }
 );

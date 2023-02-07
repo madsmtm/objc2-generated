@@ -26,18 +26,18 @@ extern_methods!(
     unsafe impl DOMRect {
         #[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
         #[method_id(@__retain_semantics Other top)]
-        pub unsafe fn top(&self) -> Option<Id<DOMCSSPrimitiveValue, Shared>>;
+        pub unsafe fn top(&self) -> Option<Id<DOMCSSPrimitiveValue>>;
 
         #[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
         #[method_id(@__retain_semantics Other right)]
-        pub unsafe fn right(&self) -> Option<Id<DOMCSSPrimitiveValue, Shared>>;
+        pub unsafe fn right(&self) -> Option<Id<DOMCSSPrimitiveValue>>;
 
         #[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
         #[method_id(@__retain_semantics Other bottom)]
-        pub unsafe fn bottom(&self) -> Option<Id<DOMCSSPrimitiveValue, Shared>>;
+        pub unsafe fn bottom(&self) -> Option<Id<DOMCSSPrimitiveValue>>;
 
         #[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
         #[method_id(@__retain_semantics Other left)]
-        pub unsafe fn left(&self) -> Option<Id<DOMCSSPrimitiveValue, Shared>>;
+        pub unsafe fn left(&self) -> Option<Id<DOMCSSPrimitiveValue>>;
     }
 );

@@ -21,7 +21,7 @@ extern_protocol!(
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[optional]
         #[method_id(@__retain_semantics Other requiredHeaders)]
-        unsafe fn requiredHeaders(&self) -> Id<NSArray<NSString>, Shared>;
+        unsafe fn requiredHeaders(&self) -> Id<NSArray<NSString>>;
     }
 
     unsafe impl ProtocolType for dyn MEMessageActionHandler {}

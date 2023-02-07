@@ -58,19 +58,19 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other string)]
-        unsafe fn string(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn string(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedString)]
-        unsafe fn attributedString(&self) -> Option<Id<NSAttributedString, Shared>>;
+        unsafe fn attributedString(&self) -> Option<Id<NSAttributedString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other selectedString)]
-        unsafe fn selectedString(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn selectedString(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other selectedAttributedString)]
-        unsafe fn selectedAttributedString(&self) -> Option<Id<NSAttributedString, Shared>>;
+        unsafe fn selectedAttributedString(&self) -> Option<Id<NSAttributedString>>;
 
         #[method(selectAll)]
         unsafe fn selectAll(&self);
@@ -114,11 +114,11 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other documentSource)]
-        unsafe fn documentSource(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn documentSource(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
-        unsafe fn title(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn title(&self) -> Option<Id<NSString>>;
     }
 
     unsafe impl ProtocolType for dyn WebDocumentRepresentation {}

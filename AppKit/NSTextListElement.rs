@@ -37,14 +37,14 @@ extern_methods!(
             contents: Option<&NSAttributedString>,
             marker_attributes: Option<&NSDictionary<NSAttributedStringKey, Object>>,
             children: Option<&NSArray<NSTextListElement>>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Init initWithAttributedString:)]
         pub unsafe fn initWithAttributedString(
             this: Option<Allocated<Self>>,
             attributed_string: Option<&NSAttributedString>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(
             feature = "AppKit_NSTextList",
@@ -58,7 +58,7 @@ extern_methods!(
             marker_attributes: Option<&NSDictionary<NSAttributedStringKey, Object>>,
             text_list: &NSTextList,
             children: Option<&NSArray<NSTextListElement>>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(feature = "AppKit_NSTextList", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other textListElementWithChildElements:textList:nestingLevel:)]
@@ -66,32 +66,32 @@ extern_methods!(
             children: &NSArray<NSTextListElement>,
             text_list: &NSTextList,
             nesting_level: NSInteger,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "AppKit_NSTextList")]
         #[method_id(@__retain_semantics Other textList)]
-        pub unsafe fn textList(&self) -> Id<NSTextList, Shared>;
+        pub unsafe fn textList(&self) -> Id<NSTextList>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other contents)]
-        pub unsafe fn contents(&self) -> Option<Id<NSAttributedString, Shared>>;
+        pub unsafe fn contents(&self) -> Option<Id<NSAttributedString>>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other markerAttributes)]
         pub unsafe fn markerAttributes(
             &self,
-        ) -> Option<Id<NSDictionary<NSAttributedStringKey, Object>, Shared>>;
+        ) -> Option<Id<NSDictionary<NSAttributedStringKey, Object>>>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedString)]
-        pub unsafe fn attributedString(&self) -> Id<NSAttributedString, Shared>;
+        pub unsafe fn attributedString(&self) -> Id<NSAttributedString>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other childElements)]
-        pub unsafe fn childElements(&self) -> Id<NSArray<NSTextListElement>, Shared>;
+        pub unsafe fn childElements(&self) -> Id<NSArray<NSTextListElement>>;
 
         #[method_id(@__retain_semantics Other parentElement)]
-        pub unsafe fn parentElement(&self) -> Option<Id<NSTextListElement, Shared>>;
+        pub unsafe fn parentElement(&self) -> Option<Id<NSTextListElement>>;
     }
 );
 
@@ -104,6 +104,6 @@ extern_methods!(
         pub unsafe fn initWithTextContentManager(
             this: Option<Allocated<Self>>,
             text_content_manager: Option<&NSTextContentManager>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

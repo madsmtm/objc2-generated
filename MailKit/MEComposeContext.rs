@@ -34,11 +34,11 @@ extern_methods!(
     unsafe impl MEComposeContext {
         #[cfg(feature = "Foundation_NSUUID")]
         #[method_id(@__retain_semantics Other contextID)]
-        pub unsafe fn contextID(&self) -> Id<NSUUID, Shared>;
+        pub unsafe fn contextID(&self) -> Id<NSUUID>;
 
         #[cfg(feature = "MailKit_MEMessage")]
         #[method_id(@__retain_semantics Other originalMessage)]
-        pub unsafe fn originalMessage(&self) -> Option<Id<MEMessage, Shared>>;
+        pub unsafe fn originalMessage(&self) -> Option<Id<MEMessage>>;
 
         #[method(action)]
         pub unsafe fn action(&self) -> MEComposeUserAction;

@@ -33,24 +33,24 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSAppearance")]
     unsafe impl NSAppearance {
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSAppearanceName, Shared>;
+        pub unsafe fn name(&self) -> Id<NSAppearanceName>;
 
         #[deprecated = "Use -performAsCurrentDrawingAppearance: to temporarily set the drawing appearance, or +currentDrawingAppearance to access the currently drawing appearance."]
         #[method_id(@__retain_semantics Other currentAppearance)]
-        pub unsafe fn currentAppearance() -> Option<Id<NSAppearance, Shared>>;
+        pub unsafe fn currentAppearance() -> Option<Id<NSAppearance>>;
 
         #[deprecated = "Use -performAsCurrentDrawingAppearance: to temporarily set the drawing appearance, or +currentDrawingAppearance to access the currently drawing appearance."]
         #[method(setCurrentAppearance:)]
         pub unsafe fn setCurrentAppearance(current_appearance: Option<&NSAppearance>);
 
         #[method_id(@__retain_semantics Other currentDrawingAppearance)]
-        pub unsafe fn currentDrawingAppearance() -> Id<NSAppearance, Shared>;
+        pub unsafe fn currentDrawingAppearance() -> Id<NSAppearance>;
 
         #[method(performAsCurrentDrawingAppearance:)]
         pub unsafe fn performAsCurrentDrawingAppearance(&self, block: &Block<(), ()>);
 
         #[method_id(@__retain_semantics Other appearanceNamed:)]
-        pub unsafe fn appearanceNamed(name: &NSAppearanceName) -> Option<Id<NSAppearance, Shared>>;
+        pub unsafe fn appearanceNamed(name: &NSAppearanceName) -> Option<Id<NSAppearance>>;
 
         #[cfg(feature = "Foundation_NSBundle")]
         #[method_id(@__retain_semantics Init initWithAppearanceNamed:bundle:)]
@@ -58,14 +58,14 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             name: &NSAppearanceName,
             bundle: Option<&NSBundle>,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[method(allowsVibrancy)]
         pub unsafe fn allowsVibrancy(&self) -> bool;
@@ -75,7 +75,7 @@ extern_methods!(
         pub unsafe fn bestMatchFromAppearancesWithNames(
             &self,
             appearances: &NSArray<NSAppearanceName>,
-        ) -> Option<Id<NSAppearanceName, Shared>>;
+        ) -> Option<Id<NSAppearanceName>>;
     }
 );
 
@@ -101,7 +101,7 @@ extern_protocol!(
     pub unsafe trait NSAppearanceCustomization: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSAppearance")]
         #[method_id(@__retain_semantics Other appearance)]
-        unsafe fn appearance(&self) -> Option<Id<NSAppearance, Shared>>;
+        unsafe fn appearance(&self) -> Option<Id<NSAppearance>>;
 
         #[cfg(feature = "AppKit_NSAppearance")]
         #[method(setAppearance:)]
@@ -109,7 +109,7 @@ extern_protocol!(
 
         #[cfg(feature = "AppKit_NSAppearance")]
         #[method_id(@__retain_semantics Other effectiveAppearance)]
-        unsafe fn effectiveAppearance(&self) -> Id<NSAppearance, Shared>;
+        unsafe fn effectiveAppearance(&self) -> Id<NSAppearance>;
     }
 
     unsafe impl ProtocolType for dyn NSAppearanceCustomization {}

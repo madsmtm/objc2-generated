@@ -29,10 +29,10 @@ extern_methods!(
     #[cfg(feature = "BackgroundAssets_BAURLDownload")]
     unsafe impl BAURLDownload {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURLRequest"))]
         #[method_id(@__retain_semantics Init initWithIdentifier:request:applicationGroupIdentifier:)]
@@ -41,7 +41,7 @@ extern_methods!(
             identifier: &NSString,
             request: &NSURLRequest,
             application_group_identifier: &NSString,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURLRequest"))]
         #[method_id(@__retain_semantics Init initWithIdentifier:request:applicationGroupIdentifier:priority:)]
@@ -51,6 +51,6 @@ extern_methods!(
             request: &NSURLRequest,
             application_group_identifier: &NSString,
             priority: BADownloaderPriority,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

@@ -26,11 +26,11 @@ extern_methods!(
     unsafe impl MKMapSnapshot {
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other image)]
-        pub unsafe fn image(&self) -> Id<NSImage, Shared>;
+        pub unsafe fn image(&self) -> Id<NSImage>;
 
         #[cfg(feature = "AppKit_NSAppearance")]
         #[method_id(@__retain_semantics Other appearance)]
-        pub unsafe fn appearance(&self) -> Id<NSAppearance, Shared>;
+        pub unsafe fn appearance(&self) -> Id<NSAppearance>;
 
         #[method(pointForCoordinate:)]
         pub unsafe fn pointForCoordinate(&self, coordinate: CLLocationCoordinate2D) -> NSPoint;

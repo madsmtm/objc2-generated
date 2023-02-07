@@ -30,11 +30,11 @@ extern_methods!(
         pub unsafe fn initWithPolygon(
             this: Option<Allocated<Self>>,
             polygon: &MKPolygon,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "MapKit_MKPolygon")]
         #[method_id(@__retain_semantics Other polygon)]
-        pub unsafe fn polygon(&self) -> Id<MKPolygon, Shared>;
+        pub unsafe fn polygon(&self) -> Id<MKPolygon>;
 
         #[method(strokeStart)]
         pub unsafe fn strokeStart(&self) -> CGFloat;
@@ -58,6 +58,6 @@ extern_methods!(
         pub unsafe fn initWithOverlay(
             this: Option<Allocated<Self>>,
             overlay: &ProtocolObject<dyn MKOverlay>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

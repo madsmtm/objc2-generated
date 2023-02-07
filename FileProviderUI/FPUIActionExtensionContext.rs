@@ -39,8 +39,7 @@ extern_methods!(
     #[cfg(feature = "FileProviderUI_FPUIActionExtensionContext")]
     unsafe impl FPUIActionExtensionContext {
         #[method_id(@__retain_semantics Other domainIdentifier)]
-        pub unsafe fn domainIdentifier(&self)
-            -> Option<Id<NSFileProviderDomainIdentifier, Shared>>;
+        pub unsafe fn domainIdentifier(&self) -> Option<Id<NSFileProviderDomainIdentifier>>;
 
         #[method(completeRequest)]
         pub unsafe fn completeRequest(&self);

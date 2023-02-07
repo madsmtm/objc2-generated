@@ -22,7 +22,7 @@ extern_methods!(
     #[cfg(feature = "CoreAnimation_CARemoteLayerServer")]
     unsafe impl CARemoteLayerServer {
         #[method_id(@__retain_semantics Other sharedServer)]
-        pub unsafe fn sharedServer() -> Id<CARemoteLayerServer, Shared>;
+        pub unsafe fn sharedServer() -> Id<CARemoteLayerServer>;
     }
 );
 
@@ -31,6 +31,6 @@ extern_methods!(
     #[cfg(feature = "CoreAnimation_CALayer")]
     unsafe impl CALayer {
         #[method_id(@__retain_semantics Other layerWithRemoteClientId:)]
-        pub unsafe fn layerWithRemoteClientId(client_id: u32) -> Id<CALayer, Shared>;
+        pub unsafe fn layerWithRemoteClientId(client_id: u32) -> Id<CALayer>;
     }
 );

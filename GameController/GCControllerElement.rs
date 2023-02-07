@@ -32,7 +32,7 @@ extern_methods!(
     #[cfg(feature = "GameController_GCControllerElement")]
     unsafe impl GCControllerElement {
         #[method_id(@__retain_semantics Other collection)]
-        pub unsafe fn collection(&self) -> Option<Id<GCControllerElement, Shared>>;
+        pub unsafe fn collection(&self) -> Option<Id<GCControllerElement>>;
 
         #[method(isAnalog)]
         pub unsafe fn isAnalog(&self) -> bool;
@@ -51,7 +51,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other sfSymbolsName)]
-        pub unsafe fn sfSymbolsName(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn sfSymbolsName(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setSfSymbolsName:)]
@@ -59,7 +59,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedName)]
-        pub unsafe fn localizedName(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn localizedName(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLocalizedName:)]
@@ -67,7 +67,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other unmappedSfSymbolsName)]
-        pub unsafe fn unmappedSfSymbolsName(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn unmappedSfSymbolsName(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setUnmappedSfSymbolsName:)]
@@ -75,7 +75,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other unmappedLocalizedName)]
-        pub unsafe fn unmappedLocalizedName(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn unmappedLocalizedName(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setUnmappedLocalizedName:)]
@@ -83,6 +83,6 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other aliases)]
-        pub unsafe fn aliases(&self) -> Id<NSSet<NSString>, Shared>;
+        pub unsafe fn aliases(&self) -> Id<NSSet<NSString>>;
     }
 );

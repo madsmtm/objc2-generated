@@ -48,6 +48,6 @@ extern_methods!(
             title: &NSString,
             score: c_double,
             max_score: c_double,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

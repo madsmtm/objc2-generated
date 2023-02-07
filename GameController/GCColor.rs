@@ -29,7 +29,7 @@ extern_methods!(
     #[cfg(feature = "GameController_GCColor")]
     unsafe impl GCColor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithRed:green:blue:)]
         pub unsafe fn initWithRed_green_blue(
@@ -37,7 +37,7 @@ extern_methods!(
             red: c_float,
             green: c_float,
             blue: c_float,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(red)]
         pub unsafe fn red(&self) -> c_float;

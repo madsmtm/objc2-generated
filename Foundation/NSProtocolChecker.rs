@@ -21,10 +21,10 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSProtocolChecker")]
     unsafe impl NSProtocolChecker {
         #[method_id(@__retain_semantics Other protocol)]
-        pub unsafe fn protocol(&self) -> Id<Protocol, Shared>;
+        pub unsafe fn protocol(&self) -> Id<Protocol>;
 
         #[method_id(@__retain_semantics Other target)]
-        pub unsafe fn target(&self) -> Option<Id<NSObject, Shared>>;
+        pub unsafe fn target(&self) -> Option<Id<NSObject>>;
     }
 );
 
@@ -36,13 +36,13 @@ extern_methods!(
         pub unsafe fn protocolCheckerWithTarget_protocol(
             an_object: &NSObject,
             a_protocol: &Protocol,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithTarget:protocol:)]
         pub unsafe fn initWithTarget_protocol(
             this: Option<Allocated<Self>>,
             an_object: &NSObject,
             a_protocol: &Protocol,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

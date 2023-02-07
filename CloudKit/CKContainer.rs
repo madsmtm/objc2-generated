@@ -27,23 +27,21 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKContainer")]
     unsafe impl CKContainer {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Other defaultContainer)]
-        pub unsafe fn defaultContainer() -> Id<CKContainer, Shared>;
+        pub unsafe fn defaultContainer() -> Id<CKContainer>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other containerWithIdentifier:)]
-        pub unsafe fn containerWithIdentifier(
-            container_identifier: &NSString,
-        ) -> Id<CKContainer, Shared>;
+        pub unsafe fn containerWithIdentifier(container_identifier: &NSString) -> Id<CKContainer>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other containerIdentifier)]
-        pub unsafe fn containerIdentifier(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn containerIdentifier(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "CloudKit_CKOperation")]
         #[method(addOperation:)]
@@ -57,22 +55,22 @@ extern_methods!(
     unsafe impl CKContainer {
         #[cfg(feature = "CloudKit_CKDatabase")]
         #[method_id(@__retain_semantics Other privateCloudDatabase)]
-        pub unsafe fn privateCloudDatabase(&self) -> Id<CKDatabase, Shared>;
+        pub unsafe fn privateCloudDatabase(&self) -> Id<CKDatabase>;
 
         #[cfg(feature = "CloudKit_CKDatabase")]
         #[method_id(@__retain_semantics Other publicCloudDatabase)]
-        pub unsafe fn publicCloudDatabase(&self) -> Id<CKDatabase, Shared>;
+        pub unsafe fn publicCloudDatabase(&self) -> Id<CKDatabase>;
 
         #[cfg(feature = "CloudKit_CKDatabase")]
         #[method_id(@__retain_semantics Other sharedCloudDatabase)]
-        pub unsafe fn sharedCloudDatabase(&self) -> Id<CKDatabase, Shared>;
+        pub unsafe fn sharedCloudDatabase(&self) -> Id<CKDatabase>;
 
         #[cfg(feature = "CloudKit_CKDatabase")]
         #[method_id(@__retain_semantics Other databaseWithDatabaseScope:)]
         pub unsafe fn databaseWithDatabaseScope(
             &self,
             database_scope: CKDatabaseScope,
-        ) -> Id<CKDatabase, Shared>;
+        ) -> Id<CKDatabase>;
     }
 );
 

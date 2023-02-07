@@ -43,6 +43,6 @@ extern_methods!(
         pub unsafe fn initWithCallUUID(
             this: Option<Allocated<Self>>,
             call_uuid: &NSUUID,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

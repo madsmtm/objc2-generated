@@ -26,11 +26,11 @@ extern_methods!(
     unsafe impl DOMCSSMediaRule {
         #[cfg(feature = "WebKit_DOMMediaList")]
         #[method_id(@__retain_semantics Other media)]
-        pub unsafe fn media(&self) -> Option<Id<DOMMediaList, Shared>>;
+        pub unsafe fn media(&self) -> Option<Id<DOMMediaList>>;
 
         #[cfg(feature = "WebKit_DOMCSSRuleList")]
         #[method_id(@__retain_semantics Other cssRules)]
-        pub unsafe fn cssRules(&self) -> Option<Id<DOMCSSRuleList, Shared>>;
+        pub unsafe fn cssRules(&self) -> Option<Id<DOMCSSRuleList>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(insertRule:index:)]

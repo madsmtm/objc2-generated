@@ -33,7 +33,7 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKModifyRecordsOperation")]
     unsafe impl CKModifyRecordsOperation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(all(
             feature = "CloudKit_CKRecord",
@@ -45,11 +45,11 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             records: Option<&NSArray<CKRecord>>,
             record_i_ds: Option<&NSArray<CKRecordID>>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(feature = "CloudKit_CKRecord", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other recordsToSave)]
-        pub unsafe fn recordsToSave(&self) -> Option<Id<NSArray<CKRecord>, Shared>>;
+        pub unsafe fn recordsToSave(&self) -> Option<Id<NSArray<CKRecord>>>;
 
         #[cfg(all(feature = "CloudKit_CKRecord", feature = "Foundation_NSArray"))]
         #[method(setRecordsToSave:)]
@@ -57,7 +57,7 @@ extern_methods!(
 
         #[cfg(all(feature = "CloudKit_CKRecordID", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other recordIDsToDelete)]
-        pub unsafe fn recordIDsToDelete(&self) -> Option<Id<NSArray<CKRecordID>, Shared>>;
+        pub unsafe fn recordIDsToDelete(&self) -> Option<Id<NSArray<CKRecordID>>>;
 
         #[cfg(all(feature = "CloudKit_CKRecordID", feature = "Foundation_NSArray"))]
         #[method(setRecordIDsToDelete:)]
@@ -74,7 +74,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other clientChangeTokenData)]
-        pub unsafe fn clientChangeTokenData(&self) -> Option<Id<NSData, Shared>>;
+        pub unsafe fn clientChangeTokenData(&self) -> Option<Id<NSData>>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method(setClientChangeTokenData:)]

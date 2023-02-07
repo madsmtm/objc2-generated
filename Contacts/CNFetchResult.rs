@@ -32,16 +32,16 @@ extern_methods!(
         CNFetchResult<ValueType, ValueTypeOwnership>
     {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Other value)]
         pub unsafe fn value(&self) -> Id<ValueType, ValueTypeOwnership>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other currentHistoryToken)]
-        pub unsafe fn currentHistoryToken(&self) -> Id<NSData, Shared>;
+        pub unsafe fn currentHistoryToken(&self) -> Id<NSData>;
     }
 );

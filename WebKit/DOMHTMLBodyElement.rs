@@ -29,7 +29,7 @@ extern_methods!(
     unsafe impl DOMHTMLBodyElement {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other aLink)]
-        pub unsafe fn aLink(&self) -> Id<NSString, Shared>;
+        pub unsafe fn aLink(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setALink:)]
@@ -37,7 +37,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other background)]
-        pub unsafe fn background(&self) -> Id<NSString, Shared>;
+        pub unsafe fn background(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setBackground:)]
@@ -45,7 +45,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other bgColor)]
-        pub unsafe fn bgColor(&self) -> Id<NSString, Shared>;
+        pub unsafe fn bgColor(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setBgColor:)]
@@ -53,7 +53,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other link)]
-        pub unsafe fn link(&self) -> Id<NSString, Shared>;
+        pub unsafe fn link(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLink:)]
@@ -61,7 +61,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other text)]
-        pub unsafe fn text(&self) -> Id<NSString, Shared>;
+        pub unsafe fn text(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setText:)]
@@ -69,7 +69,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other vLink)]
-        pub unsafe fn vLink(&self) -> Id<NSString, Shared>;
+        pub unsafe fn vLink(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setVLink:)]

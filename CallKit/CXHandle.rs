@@ -41,7 +41,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other value)]
-        pub unsafe fn value(&self) -> Id<NSString, Shared>;
+        pub unsafe fn value(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithType:value:)]
@@ -49,10 +49,10 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             r#type: CXHandleType,
             value: &NSString,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method(isEqualToHandle:)]
         pub unsafe fn isEqualToHandle(&self, handle: &CXHandle) -> bool;

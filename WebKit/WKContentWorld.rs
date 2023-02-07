@@ -23,23 +23,23 @@ extern_methods!(
     #[cfg(feature = "WebKit_WKContentWorld")]
     unsafe impl WKContentWorld {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other pageWorld)]
-        pub unsafe fn pageWorld() -> Id<WKContentWorld, Shared>;
+        pub unsafe fn pageWorld() -> Id<WKContentWorld>;
 
         #[method_id(@__retain_semantics Other defaultClientWorld)]
-        pub unsafe fn defaultClientWorld() -> Id<WKContentWorld, Shared>;
+        pub unsafe fn defaultClientWorld() -> Id<WKContentWorld>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other worldWithName:)]
-        pub unsafe fn worldWithName(name: &NSString) -> Id<WKContentWorld, Shared>;
+        pub unsafe fn worldWithName(name: &NSString) -> Id<WKContentWorld>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn name(&self) -> Option<Id<NSString>>;
     }
 );

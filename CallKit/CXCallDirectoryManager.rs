@@ -31,7 +31,7 @@ extern_methods!(
     #[cfg(feature = "CallKit_CXCallDirectoryManager")]
     unsafe impl CXCallDirectoryManager {
         #[method_id(@__retain_semantics Other sharedInstance)]
-        pub unsafe fn sharedInstance() -> Id<CXCallDirectoryManager, Shared>;
+        pub unsafe fn sharedInstance() -> Id<CXCallDirectoryManager>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method(reloadExtensionWithIdentifier:completionHandler:)]

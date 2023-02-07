@@ -29,17 +29,15 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKQuery")]
     unsafe impl CKQuery {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            a_decoder: &NSCoder,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, a_decoder: &NSCoder)
+            -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSPredicate")]
         #[method_id(@__retain_semantics Init initWithRecordType:predicate:)]
@@ -47,21 +45,21 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             record_type: &CKRecordType,
             predicate: &NSPredicate,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other recordType)]
-        pub unsafe fn recordType(&self) -> Id<CKRecordType, Shared>;
+        pub unsafe fn recordType(&self) -> Id<CKRecordType>;
 
         #[cfg(feature = "Foundation_NSPredicate")]
         #[method_id(@__retain_semantics Other predicate)]
-        pub unsafe fn predicate(&self) -> Id<NSPredicate, Shared>;
+        pub unsafe fn predicate(&self) -> Id<NSPredicate>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSSortDescriptor"
         ))]
         #[method_id(@__retain_semantics Other sortDescriptors)]
-        pub unsafe fn sortDescriptors(&self) -> Option<Id<NSArray<NSSortDescriptor>, Shared>>;
+        pub unsafe fn sortDescriptors(&self) -> Option<Id<NSArray<NSSortDescriptor>>>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",

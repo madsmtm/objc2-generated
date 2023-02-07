@@ -79,14 +79,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other scriptDataDescriptorWithContentsOfURL:)]
         pub unsafe fn scriptDataDescriptorWithContentsOfURL(
             url: &NSURL,
-        ) -> Option<Id<NSAppleEventDescriptor, Shared>>;
+        ) -> Option<Id<NSAppleEventDescriptor>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithSource:)]
-        pub unsafe fn initWithSource(
-            this: Option<Allocated<Self>>,
-            source: &NSString,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithSource(this: Option<Allocated<Self>>, source: &NSString) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "OSAKit_OSALanguage"))]
         #[method_id(@__retain_semantics Init initWithSource:language:)]
@@ -94,7 +91,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             source: &NSString,
             language: Option<&OSALanguage>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(
             feature = "Foundation_NSString",
@@ -108,7 +105,7 @@ extern_methods!(
             url: Option<&NSURL>,
             instance: Option<&OSALanguageInstance>,
             storage_options: OSAStorageOptions,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",
@@ -119,8 +116,8 @@ extern_methods!(
         pub unsafe fn initWithContentsOfURL_error(
             this: Option<Allocated<Self>>,
             url: &NSURL,
-            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>, Shared>>>,
-        ) -> Option<Id<Self, Shared>>;
+            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>>>>,
+        ) -> Option<Id<Self>>;
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",
@@ -134,8 +131,8 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             url: &NSURL,
             language: &OSALanguage,
-            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>, Shared>>>,
-        ) -> Id<Self, Shared>;
+            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>>>>,
+        ) -> Id<Self>;
 
         #[cfg(all(
             feature = "Foundation_NSError",
@@ -148,7 +145,7 @@ extern_methods!(
             url: &NSURL,
             instance: Option<&OSALanguageInstance>,
             storage_options: OSAStorageOptions,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self>, Id<NSError>>;
 
         #[cfg(all(
             feature = "Foundation_NSData",
@@ -160,8 +157,8 @@ extern_methods!(
         pub unsafe fn initWithCompiledData_error(
             this: Option<Allocated<Self>>,
             data: &NSData,
-            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>, Shared>>>,
-        ) -> Id<Self, Shared>;
+            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>>>>,
+        ) -> Id<Self>;
 
         #[cfg(all(
             feature = "Foundation_NSData",
@@ -174,7 +171,7 @@ extern_methods!(
             data: &NSData,
             url: Option<&NSURL>,
             storage_options: OSAStorageOptions,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self>, Id<NSError>>;
 
         #[cfg(all(
             feature = "Foundation_NSAppleEventDescriptor",
@@ -189,19 +186,19 @@ extern_methods!(
             url: Option<&NSURL>,
             instance: Option<&OSALanguageInstance>,
             storage_options: OSAStorageOptions,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self>, Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other source)]
-        pub unsafe fn source(&self) -> Id<NSString, Shared>;
+        pub unsafe fn source(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other url)]
-        pub unsafe fn url(&self) -> Option<Id<NSURL, Shared>>;
+        pub unsafe fn url(&self) -> Option<Id<NSURL>>;
 
         #[cfg(feature = "OSAKit_OSALanguage")]
         #[method_id(@__retain_semantics Other language)]
-        pub unsafe fn language(&self) -> Id<OSALanguage, Shared>;
+        pub unsafe fn language(&self) -> Id<OSALanguage>;
 
         #[cfg(feature = "OSAKit_OSALanguage")]
         #[method(setLanguage:)]
@@ -209,7 +206,7 @@ extern_methods!(
 
         #[cfg(feature = "OSAKit_OSALanguageInstance")]
         #[method_id(@__retain_semantics Other languageInstance)]
-        pub unsafe fn languageInstance(&self) -> Id<OSALanguageInstance, Shared>;
+        pub unsafe fn languageInstance(&self) -> Id<OSALanguageInstance>;
 
         #[cfg(feature = "OSAKit_OSALanguageInstance")]
         #[method(setLanguageInstance:)]
@@ -222,7 +219,7 @@ extern_methods!(
         #[method(compileAndReturnError:)]
         pub unsafe fn compileAndReturnError(
             &self,
-            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>, Shared>>>,
+            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>>>>,
         ) -> bool;
 
         #[cfg(all(
@@ -233,8 +230,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Other executeAndReturnError:)]
         pub unsafe fn executeAndReturnError(
             &self,
-            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>, Shared>>>,
-        ) -> Option<Id<NSAppleEventDescriptor, Shared>>;
+            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>>>>,
+        ) -> Option<Id<NSAppleEventDescriptor>>;
 
         #[cfg(all(
             feature = "Foundation_NSAppleEventDescriptor",
@@ -245,8 +242,8 @@ extern_methods!(
         pub unsafe fn executeAppleEvent_error(
             &self,
             event: &NSAppleEventDescriptor,
-            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>, Shared>>>,
-        ) -> Option<Id<NSAppleEventDescriptor, Shared>>;
+            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>>>>,
+        ) -> Option<Id<NSAppleEventDescriptor>>;
 
         #[cfg(all(
             feature = "Foundation_NSAppleEventDescriptor",
@@ -257,9 +254,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Other executeAndReturnDisplayValue:error:)]
         pub unsafe fn executeAndReturnDisplayValue_error(
             &self,
-            display_value: &mut Option<Id<NSAttributedString, Shared>>,
-            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>, Shared>>>,
-        ) -> Option<Id<NSAppleEventDescriptor, Shared>>;
+            display_value: &mut Option<Id<NSAttributedString>>,
+            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>>>>,
+        ) -> Option<Id<NSAppleEventDescriptor>>;
 
         #[cfg(all(
             feature = "Foundation_NSAppleEventDescriptor",
@@ -272,12 +269,12 @@ extern_methods!(
             &self,
             name: &NSString,
             arguments: &NSArray,
-            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>, Shared>>>,
-        ) -> Option<Id<NSAppleEventDescriptor, Shared>>;
+            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>>>>,
+        ) -> Option<Id<NSAppleEventDescriptor>>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other richTextSource)]
-        pub unsafe fn richTextSource(&self) -> Option<Id<NSAttributedString, Shared>>;
+        pub unsafe fn richTextSource(&self) -> Option<Id<NSAttributedString>>;
 
         #[cfg(all(
             feature = "Foundation_NSAppleEventDescriptor",
@@ -287,7 +284,7 @@ extern_methods!(
         pub unsafe fn richTextFromDescriptor(
             &self,
             descriptor: &NSAppleEventDescriptor,
-        ) -> Option<Id<NSAttributedString, Shared>>;
+        ) -> Option<Id<NSAttributedString>>;
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",
@@ -299,7 +296,7 @@ extern_methods!(
             &self,
             url: &NSURL,
             r#type: &NSString,
-            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>, Shared>>>,
+            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>>>>,
         ) -> bool;
 
         #[cfg(all(
@@ -313,7 +310,7 @@ extern_methods!(
             url: &NSURL,
             r#type: &NSString,
             storage_options: OSAStorageOptions,
-            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>, Shared>>>,
+            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>>>>,
         ) -> bool;
 
         #[cfg(all(
@@ -326,7 +323,7 @@ extern_methods!(
             &self,
             r#type: &NSString,
             storage_options: OSAStorageOptions,
-            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>, Shared>>>,
-        ) -> Option<Id<NSData, Shared>>;
+            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>>>>,
+        ) -> Option<Id<NSData>>;
     }
 );

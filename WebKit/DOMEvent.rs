@@ -41,15 +41,13 @@ extern_methods!(
     unsafe impl DOMEvent {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other type)]
-        pub unsafe fn r#type(&self) -> Id<NSString, Shared>;
+        pub unsafe fn r#type(&self) -> Id<NSString>;
 
         #[method_id(@__retain_semantics Other target)]
-        pub unsafe fn target(&self) -> Option<Id<ProtocolObject<dyn DOMEventTarget>, Shared>>;
+        pub unsafe fn target(&self) -> Option<Id<ProtocolObject<dyn DOMEventTarget>>>;
 
         #[method_id(@__retain_semantics Other currentTarget)]
-        pub unsafe fn currentTarget(
-            &self,
-        ) -> Option<Id<ProtocolObject<dyn DOMEventTarget>, Shared>>;
+        pub unsafe fn currentTarget(&self) -> Option<Id<ProtocolObject<dyn DOMEventTarget>>>;
 
         #[method(eventPhase)]
         pub unsafe fn eventPhase(&self) -> c_ushort;
@@ -64,7 +62,7 @@ extern_methods!(
         pub unsafe fn timeStamp(&self) -> DOMTimeStamp;
 
         #[method_id(@__retain_semantics Other srcElement)]
-        pub unsafe fn srcElement(&self) -> Option<Id<ProtocolObject<dyn DOMEventTarget>, Shared>>;
+        pub unsafe fn srcElement(&self) -> Option<Id<ProtocolObject<dyn DOMEventTarget>>>;
 
         #[method(returnValue)]
         pub unsafe fn returnValue(&self) -> bool;

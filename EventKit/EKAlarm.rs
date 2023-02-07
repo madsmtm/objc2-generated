@@ -27,10 +27,10 @@ extern_methods!(
     unsafe impl EKAlarm {
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other alarmWithAbsoluteDate:)]
-        pub unsafe fn alarmWithAbsoluteDate(date: &NSDate) -> Id<EKAlarm, Shared>;
+        pub unsafe fn alarmWithAbsoluteDate(date: &NSDate) -> Id<EKAlarm>;
 
         #[method_id(@__retain_semantics Other alarmWithRelativeOffset:)]
-        pub unsafe fn alarmWithRelativeOffset(offset: NSTimeInterval) -> Id<EKAlarm, Shared>;
+        pub unsafe fn alarmWithRelativeOffset(offset: NSTimeInterval) -> Id<EKAlarm>;
 
         #[method(relativeOffset)]
         pub unsafe fn relativeOffset(&self) -> NSTimeInterval;
@@ -40,7 +40,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other absoluteDate)]
-        pub unsafe fn absoluteDate(&self) -> Option<Id<NSDate, Shared>>;
+        pub unsafe fn absoluteDate(&self) -> Option<Id<NSDate>>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method(setAbsoluteDate:)]
@@ -48,7 +48,7 @@ extern_methods!(
 
         #[cfg(feature = "EventKit_EKStructuredLocation")]
         #[method_id(@__retain_semantics Other structuredLocation)]
-        pub unsafe fn structuredLocation(&self) -> Option<Id<EKStructuredLocation, Shared>>;
+        pub unsafe fn structuredLocation(&self) -> Option<Id<EKStructuredLocation>>;
 
         #[cfg(feature = "EventKit_EKStructuredLocation")]
         #[method(setStructuredLocation:)]
@@ -68,7 +68,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other emailAddress)]
-        pub unsafe fn emailAddress(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn emailAddress(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setEmailAddress:)]
@@ -76,7 +76,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other soundName)]
-        pub unsafe fn soundName(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn soundName(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setSoundName:)]
@@ -85,7 +85,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSURL")]
         #[deprecated]
         #[method_id(@__retain_semantics Other url)]
-        pub unsafe fn url(&self) -> Option<Id<NSURL, Shared>>;
+        pub unsafe fn url(&self) -> Option<Id<NSURL>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[deprecated]

@@ -21,11 +21,11 @@ extern_protocol!(
     pub unsafe trait MTLFunctionLogDebugLocation: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other functionName)]
-        unsafe fn functionName(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn functionName(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other URL)]
-        unsafe fn URL(&self) -> Option<Id<NSURL, Shared>>;
+        unsafe fn URL(&self) -> Option<Id<NSURL>>;
 
         #[method(line)]
         unsafe fn line(&self) -> NSUInteger;
@@ -44,15 +44,15 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other encoderLabel)]
-        unsafe fn encoderLabel(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn encoderLabel(&self) -> Option<Id<NSString>>;
 
         #[method_id(@__retain_semantics Other function)]
-        unsafe fn function(&self) -> Option<Id<ProtocolObject<dyn MTLFunction>, Shared>>;
+        unsafe fn function(&self) -> Option<Id<ProtocolObject<dyn MTLFunction>>>;
 
         #[method_id(@__retain_semantics Other debugLocation)]
         unsafe fn debugLocation(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn MTLFunctionLogDebugLocation>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLFunctionLogDebugLocation>>>;
     }
 
     unsafe impl ProtocolType for dyn MTLFunctionLog {}

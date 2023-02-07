@@ -27,23 +27,23 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSUUID")]
     unsafe impl NSUUID {
         #[method_id(@__retain_semantics Other UUID)]
-        pub fn UUID() -> Id<Self, Shared>;
+        pub fn UUID() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithUUIDString:)]
         pub fn initWithUUIDString(
             this: Option<Allocated<Self>>,
             string: &NSString,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[method(compare:)]
         pub unsafe fn compare(&self, other_uuid: &NSUUID) -> NSComparisonResult;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other UUIDString)]
-        pub fn UUIDString(&self) -> Id<NSString, Shared>;
+        pub fn UUIDString(&self) -> Id<NSString>;
     }
 );

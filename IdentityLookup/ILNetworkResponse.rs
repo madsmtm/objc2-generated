@@ -29,13 +29,13 @@ extern_methods!(
     unsafe impl ILNetworkResponse {
         #[cfg(feature = "Foundation_NSHTTPURLResponse")]
         #[method_id(@__retain_semantics Other urlResponse)]
-        pub unsafe fn urlResponse(&self) -> Id<NSHTTPURLResponse, Shared>;
+        pub unsafe fn urlResponse(&self) -> Id<NSHTTPURLResponse>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other data)]
-        pub unsafe fn data(&self) -> Id<NSData, Shared>;
+        pub unsafe fn data(&self) -> Id<NSData>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }
 );

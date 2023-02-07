@@ -34,15 +34,15 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             primary_string: &NSString,
             alternative_strings: &NSArray<NSString>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other primaryString)]
-        pub unsafe fn primaryString(&self) -> Id<NSString, Shared>;
+        pub unsafe fn primaryString(&self) -> Id<NSString>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other alternativeStrings)]
-        pub unsafe fn alternativeStrings(&self) -> Id<NSArray<NSString>, Shared>;
+        pub unsafe fn alternativeStrings(&self) -> Id<NSArray<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(noteSelectedAlternativeString:)]

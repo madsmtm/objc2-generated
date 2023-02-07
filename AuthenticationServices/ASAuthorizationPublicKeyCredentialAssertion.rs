@@ -10,15 +10,15 @@ extern_protocol!(
     {
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other rawAuthenticatorData)]
-        unsafe fn rawAuthenticatorData(&self) -> Id<NSData, Shared>;
+        unsafe fn rawAuthenticatorData(&self) -> Id<NSData>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other userID)]
-        unsafe fn userID(&self) -> Id<NSData, Shared>;
+        unsafe fn userID(&self) -> Id<NSData>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other signature)]
-        unsafe fn signature(&self) -> Id<NSData, Shared>;
+        unsafe fn signature(&self) -> Id<NSData>;
     }
 
     unsafe impl ProtocolType for dyn ASAuthorizationPublicKeyCredentialAssertion {}

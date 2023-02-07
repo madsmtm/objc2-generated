@@ -35,7 +35,7 @@ extern_methods!(
         pub unsafe fn entityForName_inManagedObjectContext(
             entity_name: &NSString,
             context: &NSManagedObjectContext,
-        ) -> Option<Id<NSEntityDescription, Shared>>;
+        ) -> Option<Id<NSEntityDescription>>;
 
         #[cfg(all(
             feature = "CoreData_NSManagedObject",
@@ -46,15 +46,15 @@ extern_methods!(
         pub unsafe fn insertNewObjectForEntityForName_inManagedObjectContext(
             entity_name: &NSString,
             context: &NSManagedObjectContext,
-        ) -> Id<NSManagedObject, Shared>;
+        ) -> Id<NSManagedObject>;
 
         #[cfg(feature = "CoreData_NSManagedObjectModel")]
         #[method_id(@__retain_semantics Other managedObjectModel)]
-        pub unsafe fn managedObjectModel(&self) -> Id<NSManagedObjectModel, Shared>;
+        pub unsafe fn managedObjectModel(&self) -> Id<NSManagedObjectModel>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other managedObjectClassName)]
-        pub unsafe fn managedObjectClassName(&self) -> Id<NSString, Shared>;
+        pub unsafe fn managedObjectClassName(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setManagedObjectClassName:)]
@@ -65,7 +65,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn name(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]
@@ -79,20 +79,18 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other subentitiesByName)]
-        pub unsafe fn subentitiesByName(
-            &self,
-        ) -> Id<NSDictionary<NSString, NSEntityDescription>, Shared>;
+        pub unsafe fn subentitiesByName(&self) -> Id<NSDictionary<NSString, NSEntityDescription>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other subentities)]
-        pub unsafe fn subentities(&self) -> Id<NSArray<NSEntityDescription>, Shared>;
+        pub unsafe fn subentities(&self) -> Id<NSArray<NSEntityDescription>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setSubentities:)]
         pub unsafe fn setSubentities(&self, subentities: &NSArray<NSEntityDescription>);
 
         #[method_id(@__retain_semantics Other superentity)]
-        pub unsafe fn superentity(&self) -> Option<Id<NSEntityDescription, Shared>>;
+        pub unsafe fn superentity(&self) -> Option<Id<NSEntityDescription>>;
 
         #[cfg(all(
             feature = "CoreData_NSPropertyDescription",
@@ -100,16 +98,14 @@ extern_methods!(
             feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other propertiesByName)]
-        pub unsafe fn propertiesByName(
-            &self,
-        ) -> Id<NSDictionary<NSString, NSPropertyDescription>, Shared>;
+        pub unsafe fn propertiesByName(&self) -> Id<NSDictionary<NSString, NSPropertyDescription>>;
 
         #[cfg(all(
             feature = "CoreData_NSPropertyDescription",
             feature = "Foundation_NSArray"
         ))]
         #[method_id(@__retain_semantics Other properties)]
-        pub unsafe fn properties(&self) -> Id<NSArray<NSPropertyDescription>, Shared>;
+        pub unsafe fn properties(&self) -> Id<NSArray<NSPropertyDescription>>;
 
         #[cfg(all(
             feature = "CoreData_NSPropertyDescription",
@@ -120,7 +116,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other userInfo)]
-        pub unsafe fn userInfo(&self) -> Option<Id<NSDictionary, Shared>>;
+        pub unsafe fn userInfo(&self) -> Option<Id<NSDictionary>>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(setUserInfo:)]
@@ -132,9 +128,8 @@ extern_methods!(
             feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other attributesByName)]
-        pub unsafe fn attributesByName(
-            &self,
-        ) -> Id<NSDictionary<NSString, NSAttributeDescription>, Shared>;
+        pub unsafe fn attributesByName(&self)
+            -> Id<NSDictionary<NSString, NSAttributeDescription>>;
 
         #[cfg(all(
             feature = "CoreData_NSRelationshipDescription",
@@ -144,7 +139,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other relationshipsByName)]
         pub unsafe fn relationshipsByName(
             &self,
-        ) -> Id<NSDictionary<NSString, NSRelationshipDescription>, Shared>;
+        ) -> Id<NSDictionary<NSString, NSRelationshipDescription>>;
 
         #[cfg(all(
             feature = "CoreData_NSRelationshipDescription",
@@ -154,18 +149,18 @@ extern_methods!(
         pub unsafe fn relationshipsWithDestinationEntity(
             &self,
             entity: &NSEntityDescription,
-        ) -> Id<NSArray<NSRelationshipDescription>, Shared>;
+        ) -> Id<NSArray<NSRelationshipDescription>>;
 
         #[method(isKindOfEntity:)]
         pub unsafe fn isKindOfEntity(&self, entity: &NSEntityDescription) -> bool;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other versionHash)]
-        pub unsafe fn versionHash(&self) -> Id<NSData, Shared>;
+        pub unsafe fn versionHash(&self) -> Id<NSData>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other versionHashModifier)]
-        pub unsafe fn versionHashModifier(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn versionHashModifier(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setVersionHashModifier:)]
@@ -173,7 +168,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other renamingIdentifier)]
-        pub unsafe fn renamingIdentifier(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn renamingIdentifier(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setRenamingIdentifier:)]
@@ -184,7 +179,7 @@ extern_methods!(
             feature = "Foundation_NSArray"
         ))]
         #[method_id(@__retain_semantics Other indexes)]
-        pub unsafe fn indexes(&self) -> Id<NSArray<NSFetchIndexDescription>, Shared>;
+        pub unsafe fn indexes(&self) -> Id<NSArray<NSFetchIndexDescription>>;
 
         #[cfg(all(
             feature = "CoreData_NSFetchIndexDescription",
@@ -195,7 +190,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other uniquenessConstraints)]
-        pub unsafe fn uniquenessConstraints(&self) -> Id<NSArray<NSArray<Object>>, Shared>;
+        pub unsafe fn uniquenessConstraints(&self) -> Id<NSArray<NSArray<Object>>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setUniquenessConstraints:)]
@@ -207,7 +202,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSArray")]
         #[deprecated = "Use NSEntityDescription.indexes instead"]
         #[method_id(@__retain_semantics Other compoundIndexes)]
-        pub unsafe fn compoundIndexes(&self) -> Id<NSArray<NSArray<Object>>, Shared>;
+        pub unsafe fn compoundIndexes(&self) -> Id<NSArray<NSArray<Object>>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[deprecated = "Use NSEntityDescription.indexes instead"]
@@ -216,7 +211,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSExpression")]
         #[method_id(@__retain_semantics Other coreSpotlightDisplayNameExpression)]
-        pub unsafe fn coreSpotlightDisplayNameExpression(&self) -> Id<NSExpression, Shared>;
+        pub unsafe fn coreSpotlightDisplayNameExpression(&self) -> Id<NSExpression>;
 
         #[cfg(feature = "Foundation_NSExpression")]
         #[method(setCoreSpotlightDisplayNameExpression:)]

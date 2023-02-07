@@ -28,24 +28,21 @@ extern_methods!(
     unsafe impl NSDateInterval {
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other startDate)]
-        pub unsafe fn startDate(&self) -> Id<NSDate, Shared>;
+        pub unsafe fn startDate(&self) -> Id<NSDate>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other endDate)]
-        pub unsafe fn endDate(&self) -> Id<NSDate, Shared>;
+        pub unsafe fn endDate(&self) -> Id<NSDate>;
 
         #[method(duration)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            coder: &NSCoder,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, coder: &NSCoder) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Init initWithStartDate:duration:)]
@@ -53,7 +50,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             start_date: &NSDate,
             duration: NSTimeInterval,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Init initWithStartDate:endDate:)]
@@ -61,7 +58,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             start_date: &NSDate,
             end_date: &NSDate,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(compare:)]
         pub unsafe fn compare(&self, date_interval: &NSDateInterval) -> NSComparisonResult;
@@ -76,7 +73,7 @@ extern_methods!(
         pub unsafe fn intersectionWithDateInterval(
             &self,
             date_interval: &NSDateInterval,
-        ) -> Option<Id<NSDateInterval, Shared>>;
+        ) -> Option<Id<NSDateInterval>>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method(containsDate:)]

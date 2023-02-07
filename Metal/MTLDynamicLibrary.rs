@@ -22,22 +22,22 @@ extern_protocol!(
     pub unsafe trait MTLDynamicLibrary: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
-        fn label(&self) -> Option<Id<NSString, Shared>>;
+        fn label(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:)]
         fn setLabel(&self, label: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other device)]
-        fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>, Shared>;
+        fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other installName)]
-        fn installName(&self) -> Id<NSString, Shared>;
+        fn installName(&self) -> Id<NSString>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method(serializeToURL:error:_)]
-        fn serializeToURL_error(&self, url: &NSURL) -> Result<(), Id<NSError, Shared>>;
+        fn serializeToURL_error(&self, url: &NSURL) -> Result<(), Id<NSError>>;
     }
 
     unsafe impl ProtocolType for dyn MTLDynamicLibrary {}

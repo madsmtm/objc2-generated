@@ -7,11 +7,11 @@ use crate::Metal::*;
 extern_protocol!(
     pub unsafe trait MTLEvent: NSObjectProtocol {
         #[method_id(@__retain_semantics Other device)]
-        fn device(&self) -> Option<Id<ProtocolObject<dyn MTLDevice>, Shared>>;
+        fn device(&self) -> Option<Id<ProtocolObject<dyn MTLDevice>>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
-        fn label(&self) -> Option<Id<NSString, Shared>>;
+        fn label(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:)]
@@ -39,7 +39,7 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLSharedEventListener")]
     unsafe impl MTLSharedEventListener {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }
 );
 
@@ -59,7 +59,7 @@ extern_protocol!(
 
         #[cfg(feature = "Metal_MTLSharedEventHandle")]
         #[method_id(@__retain_semantics New newSharedEventHandle)]
-        unsafe fn newSharedEventHandle(&self) -> Id<MTLSharedEventHandle, Shared>;
+        unsafe fn newSharedEventHandle(&self) -> Id<MTLSharedEventHandle>;
 
         #[method(signaledValue)]
         unsafe fn signaledValue(&self) -> u64;
@@ -96,6 +96,6 @@ extern_methods!(
     unsafe impl MTLSharedEventHandle {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
-        pub fn label(&self) -> Option<Id<NSString, Shared>>;
+        pub fn label(&self) -> Option<Id<NSString>>;
     }
 );

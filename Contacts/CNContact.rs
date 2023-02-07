@@ -62,78 +62,78 @@ extern_methods!(
     unsafe impl CNContact {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn identifier(&self) -> Id<NSString>;
 
         #[method(contactType)]
         pub unsafe fn contactType(&self) -> CNContactType;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other namePrefix)]
-        pub unsafe fn namePrefix(&self) -> Id<NSString, Shared>;
+        pub unsafe fn namePrefix(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other givenName)]
-        pub unsafe fn givenName(&self) -> Id<NSString, Shared>;
+        pub unsafe fn givenName(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other middleName)]
-        pub unsafe fn middleName(&self) -> Id<NSString, Shared>;
+        pub unsafe fn middleName(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other familyName)]
-        pub unsafe fn familyName(&self) -> Id<NSString, Shared>;
+        pub unsafe fn familyName(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other previousFamilyName)]
-        pub unsafe fn previousFamilyName(&self) -> Id<NSString, Shared>;
+        pub unsafe fn previousFamilyName(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other nameSuffix)]
-        pub unsafe fn nameSuffix(&self) -> Id<NSString, Shared>;
+        pub unsafe fn nameSuffix(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other nickname)]
-        pub unsafe fn nickname(&self) -> Id<NSString, Shared>;
+        pub unsafe fn nickname(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other organizationName)]
-        pub unsafe fn organizationName(&self) -> Id<NSString, Shared>;
+        pub unsafe fn organizationName(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other departmentName)]
-        pub unsafe fn departmentName(&self) -> Id<NSString, Shared>;
+        pub unsafe fn departmentName(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other jobTitle)]
-        pub unsafe fn jobTitle(&self) -> Id<NSString, Shared>;
+        pub unsafe fn jobTitle(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other phoneticGivenName)]
-        pub unsafe fn phoneticGivenName(&self) -> Id<NSString, Shared>;
+        pub unsafe fn phoneticGivenName(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other phoneticMiddleName)]
-        pub unsafe fn phoneticMiddleName(&self) -> Id<NSString, Shared>;
+        pub unsafe fn phoneticMiddleName(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other phoneticFamilyName)]
-        pub unsafe fn phoneticFamilyName(&self) -> Id<NSString, Shared>;
+        pub unsafe fn phoneticFamilyName(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other phoneticOrganizationName)]
-        pub unsafe fn phoneticOrganizationName(&self) -> Id<NSString, Shared>;
+        pub unsafe fn phoneticOrganizationName(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other note)]
-        pub unsafe fn note(&self) -> Id<NSString, Shared>;
+        pub unsafe fn note(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other imageData)]
-        pub unsafe fn imageData(&self) -> Option<Id<NSData, Shared>>;
+        pub unsafe fn imageData(&self) -> Option<Id<NSData>>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other thumbnailImageData)]
-        pub unsafe fn thumbnailImageData(&self) -> Option<Id<NSData, Shared>>;
+        pub unsafe fn thumbnailImageData(&self) -> Option<Id<NSData>>;
 
         #[method(imageDataAvailable)]
         pub unsafe fn imageDataAvailable(&self) -> bool;
@@ -144,7 +144,7 @@ extern_methods!(
             feature = "Foundation_NSArray"
         ))]
         #[method_id(@__retain_semantics Other phoneNumbers)]
-        pub unsafe fn phoneNumbers(&self) -> Id<NSArray<CNLabeledValue<CNPhoneNumber>>, Shared>;
+        pub unsafe fn phoneNumbers(&self) -> Id<NSArray<CNLabeledValue<CNPhoneNumber>>>;
 
         #[cfg(all(
             feature = "Contacts_CNLabeledValue",
@@ -152,7 +152,7 @@ extern_methods!(
             feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other emailAddresses)]
-        pub unsafe fn emailAddresses(&self) -> Id<NSArray<CNLabeledValue<NSString>>, Shared>;
+        pub unsafe fn emailAddresses(&self) -> Id<NSArray<CNLabeledValue<NSString>>>;
 
         #[cfg(all(
             feature = "Contacts_CNLabeledValue",
@@ -160,9 +160,7 @@ extern_methods!(
             feature = "Foundation_NSArray"
         ))]
         #[method_id(@__retain_semantics Other postalAddresses)]
-        pub unsafe fn postalAddresses(
-            &self,
-        ) -> Id<NSArray<CNLabeledValue<CNPostalAddress>>, Shared>;
+        pub unsafe fn postalAddresses(&self) -> Id<NSArray<CNLabeledValue<CNPostalAddress>>>;
 
         #[cfg(all(
             feature = "Contacts_CNLabeledValue",
@@ -170,7 +168,7 @@ extern_methods!(
             feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other urlAddresses)]
-        pub unsafe fn urlAddresses(&self) -> Id<NSArray<CNLabeledValue<NSString>>, Shared>;
+        pub unsafe fn urlAddresses(&self) -> Id<NSArray<CNLabeledValue<NSString>>>;
 
         #[cfg(all(
             feature = "Contacts_CNContactRelation",
@@ -178,9 +176,7 @@ extern_methods!(
             feature = "Foundation_NSArray"
         ))]
         #[method_id(@__retain_semantics Other contactRelations)]
-        pub unsafe fn contactRelations(
-            &self,
-        ) -> Id<NSArray<CNLabeledValue<CNContactRelation>>, Shared>;
+        pub unsafe fn contactRelations(&self) -> Id<NSArray<CNLabeledValue<CNContactRelation>>>;
 
         #[cfg(all(
             feature = "Contacts_CNLabeledValue",
@@ -188,8 +184,7 @@ extern_methods!(
             feature = "Foundation_NSArray"
         ))]
         #[method_id(@__retain_semantics Other socialProfiles)]
-        pub unsafe fn socialProfiles(&self)
-            -> Id<NSArray<CNLabeledValue<CNSocialProfile>>, Shared>;
+        pub unsafe fn socialProfiles(&self) -> Id<NSArray<CNLabeledValue<CNSocialProfile>>>;
 
         #[cfg(all(
             feature = "Contacts_CNInstantMessageAddress",
@@ -199,15 +194,15 @@ extern_methods!(
         #[method_id(@__retain_semantics Other instantMessageAddresses)]
         pub unsafe fn instantMessageAddresses(
             &self,
-        ) -> Id<NSArray<CNLabeledValue<CNInstantMessageAddress>>, Shared>;
+        ) -> Id<NSArray<CNLabeledValue<CNInstantMessageAddress>>>;
 
         #[cfg(feature = "Foundation_NSDateComponents")]
         #[method_id(@__retain_semantics Other birthday)]
-        pub unsafe fn birthday(&self) -> Option<Id<NSDateComponents, Shared>>;
+        pub unsafe fn birthday(&self) -> Option<Id<NSDateComponents>>;
 
         #[cfg(feature = "Foundation_NSDateComponents")]
         #[method_id(@__retain_semantics Other nonGregorianBirthday)]
-        pub unsafe fn nonGregorianBirthday(&self) -> Option<Id<NSDateComponents, Shared>>;
+        pub unsafe fn nonGregorianBirthday(&self) -> Option<Id<NSDateComponents>>;
 
         #[cfg(all(
             feature = "Contacts_CNLabeledValue",
@@ -215,7 +210,7 @@ extern_methods!(
             feature = "Foundation_NSDateComponents"
         ))]
         #[method_id(@__retain_semantics Other dates)]
-        pub unsafe fn dates(&self) -> Id<NSArray<CNLabeledValue<NSDateComponents>>, Shared>;
+        pub unsafe fn dates(&self) -> Id<NSArray<CNLabeledValue<NSDateComponents>>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(isKeyAvailable:)]
@@ -230,14 +225,13 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedStringForKey:)]
-        pub unsafe fn localizedStringForKey(key: &NSString) -> Id<NSString, Shared>;
+        pub unsafe fn localizedStringForKey(key: &NSString) -> Id<NSString>;
 
         #[method(comparatorForNameSortOrder:)]
         pub unsafe fn comparatorForNameSortOrder(sort_order: CNContactSortOrder) -> NSComparator;
 
         #[method_id(@__retain_semantics Other descriptorForAllComparatorKeys)]
-        pub unsafe fn descriptorForAllComparatorKeys(
-        ) -> Id<ProtocolObject<dyn CNKeyDescriptor>, Shared>;
+        pub unsafe fn descriptorForAllComparatorKeys() -> Id<ProtocolObject<dyn CNKeyDescriptor>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(isUnifiedWithContactWithIdentifier:)]

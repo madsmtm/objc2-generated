@@ -31,7 +31,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             request: &NSURLRequest,
             delegate: Option<&ProtocolObject<dyn NSURLDownloadDelegate>>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSString"))]
         #[deprecated = "Use NSURLSession downloadTask (see NSURLSession.h)"]
@@ -41,7 +41,7 @@ extern_methods!(
             resume_data: &NSData,
             delegate: Option<&ProtocolObject<dyn NSURLDownloadDelegate>>,
             path: &NSString,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(cancel)]
         pub unsafe fn cancel(&self);
@@ -52,11 +52,11 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSURLRequest")]
         #[method_id(@__retain_semantics Other request)]
-        pub unsafe fn request(&self) -> Id<NSURLRequest, Shared>;
+        pub unsafe fn request(&self) -> Id<NSURLRequest>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other resumeData)]
-        pub unsafe fn resumeData(&self) -> Option<Id<NSData, Shared>>;
+        pub unsafe fn resumeData(&self) -> Option<Id<NSData>>;
 
         #[method(deletesFileUponFailure)]
         pub unsafe fn deletesFileUponFailure(&self) -> bool;
@@ -85,7 +85,7 @@ extern_protocol!(
             download: &NSURLDownload,
             request: &NSURLRequest,
             redirect_response: Option<&NSURLResponse>,
-        ) -> Option<Id<NSURLRequest, Shared>>;
+        ) -> Option<Id<NSURLRequest>>;
 
         #[cfg(all(
             feature = "Foundation_NSURLDownload",

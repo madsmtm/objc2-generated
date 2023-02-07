@@ -43,22 +43,20 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKOperationGroup")]
     unsafe impl CKOperationGroup {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            a_decoder: &NSCoder,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, a_decoder: &NSCoder)
+            -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other operationGroupID)]
-        pub unsafe fn operationGroupID(&self) -> Id<NSString, Shared>;
+        pub unsafe fn operationGroupID(&self) -> Id<NSString>;
 
         #[cfg(feature = "CloudKit_CKOperationConfiguration")]
         #[method_id(@__retain_semantics Other defaultConfiguration)]
-        pub unsafe fn defaultConfiguration(&self) -> Id<CKOperationConfiguration, Shared>;
+        pub unsafe fn defaultConfiguration(&self) -> Id<CKOperationConfiguration>;
 
         #[cfg(feature = "CloudKit_CKOperationConfiguration")]
         #[method(setDefaultConfiguration:)]
@@ -69,7 +67,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn name(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]

@@ -26,22 +26,22 @@ extern_methods!(
     unsafe impl DOMRGBColor {
         #[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
         #[method_id(@__retain_semantics Other red)]
-        pub unsafe fn red(&self) -> Option<Id<DOMCSSPrimitiveValue, Shared>>;
+        pub unsafe fn red(&self) -> Option<Id<DOMCSSPrimitiveValue>>;
 
         #[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
         #[method_id(@__retain_semantics Other green)]
-        pub unsafe fn green(&self) -> Option<Id<DOMCSSPrimitiveValue, Shared>>;
+        pub unsafe fn green(&self) -> Option<Id<DOMCSSPrimitiveValue>>;
 
         #[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
         #[method_id(@__retain_semantics Other blue)]
-        pub unsafe fn blue(&self) -> Option<Id<DOMCSSPrimitiveValue, Shared>>;
+        pub unsafe fn blue(&self) -> Option<Id<DOMCSSPrimitiveValue>>;
 
         #[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
         #[method_id(@__retain_semantics Other alpha)]
-        pub unsafe fn alpha(&self) -> Option<Id<DOMCSSPrimitiveValue, Shared>>;
+        pub unsafe fn alpha(&self) -> Option<Id<DOMCSSPrimitiveValue>>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other color)]
-        pub unsafe fn color(&self) -> Id<NSColor, Shared>;
+        pub unsafe fn color(&self) -> Id<NSColor>;
     }
 );

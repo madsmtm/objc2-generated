@@ -26,7 +26,7 @@ extern_methods!(
     unsafe impl DOMMediaList {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other mediaText)]
-        pub unsafe fn mediaText(&self) -> Id<NSString, Shared>;
+        pub unsafe fn mediaText(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setMediaText:)]
@@ -37,7 +37,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other item:)]
-        pub unsafe fn item(&self, index: c_uint) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn item(&self, index: c_uint) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(deleteMedium:)]

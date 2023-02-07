@@ -47,10 +47,10 @@ extern_methods!(
     unsafe impl WebFrameView {
         #[cfg(feature = "WebKit_WebFrame")]
         #[method_id(@__retain_semantics Other webFrame)]
-        pub unsafe fn webFrame(&self) -> Option<Id<WebFrame, Shared>>;
+        pub unsafe fn webFrame(&self) -> Option<Id<WebFrame>>;
 
         #[method_id(@__retain_semantics Other documentView)]
-        pub unsafe fn documentView(&self) -> Option<Id<NSView, Shared>>;
+        pub unsafe fn documentView(&self) -> Option<Id<NSView>>;
 
         #[method(allowsScrolling)]
         pub unsafe fn allowsScrolling(&self) -> bool;
@@ -66,7 +66,7 @@ extern_methods!(
         pub unsafe fn printOperationWithPrintInfo(
             &self,
             print_info: Option<&NSPrintInfo>,
-        ) -> Option<Id<NSPrintOperation, Shared>>;
+        ) -> Option<Id<NSPrintOperation>>;
 
         #[method(documentViewShouldHandlePrint)]
         pub unsafe fn documentViewShouldHandlePrint(&self) -> bool;
@@ -81,9 +81,6 @@ extern_methods!(
     #[cfg(feature = "WebKit_WebFrameView")]
     unsafe impl WebFrameView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frame_rect: NSRect,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
 );

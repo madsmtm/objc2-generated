@@ -46,24 +46,18 @@ extern_methods!(
     #[cfg(feature = "LocalAuthenticationEmbeddedUI_LAAuthenticationView")]
     unsafe impl LAAuthenticationView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frame_rect: NSRect,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            coder: &NSCoder,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, coder: &NSCoder) -> Id<Self>;
 
         #[cfg(feature = "LocalAuthentication_LAContext")]
         #[method_id(@__retain_semantics Init initWithContext:)]
         pub unsafe fn initWithContext(
             this: Option<Allocated<Self>>,
             context: &LAContext,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "LocalAuthentication_LAContext")]
         #[method_id(@__retain_semantics Init initWithContext:controlSize:)]
@@ -71,11 +65,11 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             context: &LAContext,
             control_size: NSControlSize,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "LocalAuthentication_LAContext")]
         #[method_id(@__retain_semantics Other context)]
-        pub unsafe fn context(&self) -> Id<LAContext, Shared>;
+        pub unsafe fn context(&self) -> Id<LAContext>;
 
         #[method(controlSize)]
         pub unsafe fn controlSize(&self) -> NSControlSize;

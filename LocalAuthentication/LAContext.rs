@@ -59,10 +59,7 @@ extern_methods!(
     unsafe impl LAContext {
         #[cfg(feature = "Foundation_NSError")]
         #[method(canEvaluatePolicy:error:_)]
-        pub unsafe fn canEvaluatePolicy_error(
-            &self,
-            policy: LAPolicy,
-        ) -> Result<(), Id<NSError, Shared>>;
+        pub unsafe fn canEvaluatePolicy_error(&self, policy: LAPolicy) -> Result<(), Id<NSError>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method(evaluatePolicy:localizedReason:reply:)]
@@ -89,7 +86,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedFallbackTitle)]
-        pub unsafe fn localizedFallbackTitle(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn localizedFallbackTitle(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLocalizedFallbackTitle:)]
@@ -98,7 +95,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSNumber")]
         #[deprecated = "No longer supported"]
         #[method_id(@__retain_semantics Other maxBiometryFailures)]
-        pub unsafe fn maxBiometryFailures(&self) -> Option<Id<NSNumber, Shared>>;
+        pub unsafe fn maxBiometryFailures(&self) -> Option<Id<NSNumber>>;
 
         #[cfg(feature = "Foundation_NSNumber")]
         #[deprecated = "No longer supported"]
@@ -107,7 +104,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedCancelTitle)]
-        pub unsafe fn localizedCancelTitle(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn localizedCancelTitle(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLocalizedCancelTitle:)]
@@ -115,7 +112,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other evaluatedPolicyDomainState)]
-        pub unsafe fn evaluatedPolicyDomainState(&self) -> Option<Id<NSData, Shared>>;
+        pub unsafe fn evaluatedPolicyDomainState(&self) -> Option<Id<NSData>>;
 
         #[method(touchIDAuthenticationAllowableReuseDuration)]
         pub unsafe fn touchIDAuthenticationAllowableReuseDuration(&self) -> NSTimeInterval;
@@ -128,7 +125,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedReason)]
-        pub unsafe fn localizedReason(&self) -> Id<NSString, Shared>;
+        pub unsafe fn localizedReason(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLocalizedReason:)]

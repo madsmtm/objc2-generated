@@ -39,28 +39,28 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             location: &ProtocolObject<dyn NSTextLocation>,
             end_location: Option<&ProtocolObject<dyn NSTextLocation>>,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[method_id(@__retain_semantics Init initWithLocation:)]
         pub unsafe fn initWithLocation(
             this: Option<Allocated<Self>>,
             location: &ProtocolObject<dyn NSTextLocation>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
 
         #[method(isEmpty)]
         pub unsafe fn isEmpty(&self) -> bool;
 
         #[method_id(@__retain_semantics Other location)]
-        pub unsafe fn location(&self) -> Id<ProtocolObject<dyn NSTextLocation>, Shared>;
+        pub unsafe fn location(&self) -> Id<ProtocolObject<dyn NSTextLocation>>;
 
         #[method_id(@__retain_semantics Other endLocation)]
-        pub unsafe fn endLocation(&self) -> Id<ProtocolObject<dyn NSTextLocation>, Shared>;
+        pub unsafe fn endLocation(&self) -> Id<ProtocolObject<dyn NSTextLocation>>;
 
         #[method(isEqualToTextRange:)]
         pub unsafe fn isEqualToTextRange(&self, text_range: &NSTextRange) -> bool;
@@ -81,12 +81,12 @@ extern_methods!(
         pub unsafe fn textRangeByIntersectingWithTextRange(
             &self,
             text_range: &NSTextRange,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[method_id(@__retain_semantics Other textRangeByFormingUnionWithTextRange:)]
         pub unsafe fn textRangeByFormingUnionWithTextRange(
             &self,
             text_range: &NSTextRange,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

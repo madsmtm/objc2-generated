@@ -23,11 +23,11 @@ extern_methods!(
     #[cfg(feature = "WebKit_WKContentRuleListStore")]
     unsafe impl WKContentRuleListStore {
         #[method_id(@__retain_semantics Other defaultStore)]
-        pub unsafe fn defaultStore() -> Option<Id<Self, Shared>>;
+        pub unsafe fn defaultStore() -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other storeWithURL:)]
-        pub unsafe fn storeWithURL(url: Option<&NSURL>) -> Option<Id<Self, Shared>>;
+        pub unsafe fn storeWithURL(url: Option<&NSURL>) -> Option<Id<Self>>;
 
         #[cfg(all(
             feature = "Foundation_NSError",

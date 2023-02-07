@@ -27,11 +27,11 @@ extern_methods!(
         pub unsafe fn rendererWithCGLContext_options(
             ctx: NonNull<c_void>,
             dict: Option<&NSDictionary>,
-        ) -> Id<CARenderer, Shared>;
+        ) -> Id<CARenderer>;
 
         #[cfg(feature = "CoreAnimation_CALayer")]
         #[method_id(@__retain_semantics Other layer)]
-        pub fn layer(&self) -> Option<Id<CALayer, Shared>>;
+        pub fn layer(&self) -> Option<Id<CALayer>>;
 
         #[cfg(feature = "CoreAnimation_CALayer")]
         #[method(setLayer:)]

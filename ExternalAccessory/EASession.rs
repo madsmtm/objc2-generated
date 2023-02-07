@@ -30,22 +30,22 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             accessory: &EAAccessory,
             protocol_string: &NSString,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "ExternalAccessory_EAAccessory")]
         #[method_id(@__retain_semantics Other accessory)]
-        pub unsafe fn accessory(&self) -> Option<Id<EAAccessory, Shared>>;
+        pub unsafe fn accessory(&self) -> Option<Id<EAAccessory>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other protocolString)]
-        pub unsafe fn protocolString(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn protocolString(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSInputStream")]
         #[method_id(@__retain_semantics Other inputStream)]
-        pub unsafe fn inputStream(&self) -> Option<Id<NSInputStream, Shared>>;
+        pub unsafe fn inputStream(&self) -> Option<Id<NSInputStream>>;
 
         #[cfg(feature = "Foundation_NSOutputStream")]
         #[method_id(@__retain_semantics Other outputStream)]
-        pub unsafe fn outputStream(&self) -> Option<Id<NSOutputStream, Shared>>;
+        pub unsafe fn outputStream(&self) -> Option<Id<NSOutputStream>>;
     }
 );

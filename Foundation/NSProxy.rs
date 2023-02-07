@@ -15,10 +15,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSMethodSignature")]
         #[method_id(@__retain_semantics Other methodSignatureForSelector:)]
-        pub unsafe fn methodSignatureForSelector(
-            &self,
-            sel: Sel,
-        ) -> Option<Id<NSMethodSignature, Shared>>;
+        pub unsafe fn methodSignatureForSelector(&self, sel: Sel) -> Option<Id<NSMethodSignature>>;
 
         #[method(dealloc)]
         pub unsafe fn dealloc(&self);
@@ -28,11 +25,11 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other description)]
-        pub unsafe fn description(&self) -> Id<NSString, Shared>;
+        pub unsafe fn description(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other debugDescription)]
-        pub unsafe fn debugDescription(&self) -> Id<NSString, Shared>;
+        pub unsafe fn debugDescription(&self) -> Id<NSString>;
 
         #[method(respondsToSelector:)]
         pub unsafe fn respondsToSelector(a_selector: Sel) -> bool;

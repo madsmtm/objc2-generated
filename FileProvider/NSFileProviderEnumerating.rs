@@ -117,6 +117,6 @@ extern_methods!(
         pub unsafe fn enumeratorForContainerItemIdentifier_error(
             &self,
             container_item_identifier: &NSFileProviderItemIdentifier,
-        ) -> Result<Id<ProtocolObject<dyn NSFileProviderEnumerator>, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<ProtocolObject<dyn NSFileProviderEnumerator>>, Id<NSError>>;
     }
 );

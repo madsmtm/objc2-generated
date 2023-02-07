@@ -24,7 +24,7 @@ extern_methods!(
     unsafe impl GKLeaderboardEntry {
         #[cfg(feature = "GameKit_GKPlayer")]
         #[method_id(@__retain_semantics Other player)]
-        pub unsafe fn player(&self) -> Id<GKPlayer, Shared>;
+        pub unsafe fn player(&self) -> Id<GKPlayer>;
 
         #[method(rank)]
         pub unsafe fn rank(&self) -> NSInteger;
@@ -34,16 +34,16 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other formattedScore)]
-        pub unsafe fn formattedScore(&self) -> Id<NSString, Shared>;
+        pub unsafe fn formattedScore(&self) -> Id<NSString>;
 
         #[method(context)]
         pub unsafe fn context(&self) -> NSUInteger;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other date)]
-        pub unsafe fn date(&self) -> Id<NSDate, Shared>;
+        pub unsafe fn date(&self) -> Id<NSDate>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }
 );

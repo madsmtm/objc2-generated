@@ -36,25 +36,24 @@ extern_methods!(
     unsafe impl NSTabViewItem {
         #[cfg(feature = "AppKit_NSViewController")]
         #[method_id(@__retain_semantics Other tabViewItemWithViewController:)]
-        pub unsafe fn tabViewItemWithViewController(
-            view_controller: &NSViewController,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn tabViewItemWithViewController(view_controller: &NSViewController)
+            -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
             this: Option<Allocated<Self>>,
             identifier: Option<&Object>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn identifier(&self) -> Option<Id<Object>>;
 
         #[method(setIdentifier:)]
         pub unsafe fn setIdentifier(&self, identifier: Option<&Object>);
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other color)]
-        pub unsafe fn color(&self) -> Id<NSColor, Shared>;
+        pub unsafe fn color(&self) -> Id<NSColor>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setColor:)]
@@ -62,7 +61,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
-        pub unsafe fn label(&self) -> Id<NSString, Shared>;
+        pub unsafe fn label(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:)]
@@ -70,7 +69,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other image)]
-        pub unsafe fn image(&self) -> Option<Id<NSImage, Shared>>;
+        pub unsafe fn image(&self) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method(setImage:)]
@@ -78,7 +77,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other view)]
-        pub unsafe fn view(&self) -> Option<Id<NSView, Shared>>;
+        pub unsafe fn view(&self) -> Option<Id<NSView>>;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(setView:)]
@@ -86,7 +85,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSViewController")]
         #[method_id(@__retain_semantics Other viewController)]
-        pub unsafe fn viewController(&self) -> Option<Id<NSViewController, Shared>>;
+        pub unsafe fn viewController(&self) -> Option<Id<NSViewController>>;
 
         #[cfg(feature = "AppKit_NSViewController")]
         #[method(setViewController:)]
@@ -97,11 +96,11 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSTabView")]
         #[method_id(@__retain_semantics Other tabView)]
-        pub unsafe fn tabView(&self) -> Option<Id<NSTabView, Shared>>;
+        pub unsafe fn tabView(&self) -> Option<Id<NSTabView>>;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other initialFirstResponder)]
-        pub unsafe fn initialFirstResponder(&self) -> Option<Id<NSView, Shared>>;
+        pub unsafe fn initialFirstResponder(&self) -> Option<Id<NSView>>;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(setInitialFirstResponder:)]
@@ -109,7 +108,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other toolTip)]
-        pub unsafe fn toolTip(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn toolTip(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setToolTip:)]

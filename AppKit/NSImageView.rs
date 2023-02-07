@@ -52,11 +52,11 @@ extern_methods!(
     unsafe impl NSImageView {
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other imageViewWithImage:)]
-        pub unsafe fn imageViewWithImage(image: &NSImage) -> Id<Self, Shared>;
+        pub unsafe fn imageViewWithImage(image: &NSImage) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other image)]
-        pub unsafe fn image(&self) -> Option<Id<NSImage, Shared>>;
+        pub unsafe fn image(&self) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method(setImage:)]
@@ -88,7 +88,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSImageSymbolConfiguration")]
         #[method_id(@__retain_semantics Other symbolConfiguration)]
-        pub unsafe fn symbolConfiguration(&self) -> Option<Id<NSImageSymbolConfiguration, Shared>>;
+        pub unsafe fn symbolConfiguration(&self) -> Option<Id<NSImageSymbolConfiguration>>;
 
         #[cfg(feature = "AppKit_NSImageSymbolConfiguration")]
         #[method(setSymbolConfiguration:)]
@@ -99,7 +99,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other contentTintColor)]
-        pub unsafe fn contentTintColor(&self) -> Option<Id<NSColor, Shared>>;
+        pub unsafe fn contentTintColor(&self) -> Option<Id<NSColor>>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setContentTintColor:)]
@@ -124,9 +124,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSImageView")]
     unsafe impl NSImageView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frame_rect: NSRect,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
 );

@@ -56,7 +56,7 @@ extern_methods!(
             r#type: &NSString,
             name: &NSString,
             port: c_int,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithDomain:type:name:)]
@@ -65,7 +65,7 @@ extern_methods!(
             domain: &NSString,
             r#type: &NSString,
             name: &NSString,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSRunLoop")]
         #[method(scheduleInRunLoop:forMode:)]
@@ -84,9 +84,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(
-            &self,
-        ) -> Option<Id<ProtocolObject<dyn NSNetServiceDelegate>, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSNetServiceDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -102,23 +100,23 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString, Shared>;
+        pub unsafe fn name(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other type)]
-        pub unsafe fn r#type(&self) -> Id<NSString, Shared>;
+        pub unsafe fn r#type(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other domain)]
-        pub unsafe fn domain(&self) -> Id<NSString, Shared>;
+        pub unsafe fn domain(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other hostName)]
-        pub unsafe fn hostName(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn hostName(&self) -> Option<Id<NSString>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSData"))]
         #[method_id(@__retain_semantics Other addresses)]
-        pub unsafe fn addresses(&self) -> Option<Id<NSArray<NSData>, Shared>>;
+        pub unsafe fn addresses(&self) -> Option<Id<NSArray<NSData>>>;
 
         #[method(port)]
         pub unsafe fn port(&self) -> NSInteger;
@@ -144,7 +142,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other dictionaryFromTXTRecordData:)]
         pub unsafe fn dictionaryFromTXTRecordData(
             txt_data: &NSData,
-        ) -> Id<NSDictionary<NSString, NSData>, Shared>;
+        ) -> Id<NSDictionary<NSString, NSData>>;
 
         #[cfg(all(
             feature = "Foundation_NSData",
@@ -154,7 +152,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other dataFromTXTRecordDictionary:)]
         pub unsafe fn dataFromTXTRecordDictionary(
             txt_dictionary: &NSDictionary<NSString, NSData>,
-        ) -> Id<NSData, Shared>;
+        ) -> Id<NSData>;
 
         #[method(resolveWithTimeout:)]
         pub unsafe fn resolveWithTimeout(&self, timeout: NSTimeInterval);
@@ -165,7 +163,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other TXTRecordData)]
-        pub unsafe fn TXTRecordData(&self) -> Option<Id<NSData, Shared>>;
+        pub unsafe fn TXTRecordData(&self) -> Option<Id<NSData>>;
 
         #[method(startMonitoring)]
         pub unsafe fn startMonitoring(&self);
@@ -194,12 +192,12 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSNetServiceBrowser")]
     unsafe impl NSNetServiceBrowser {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn NSNetServiceBrowserDelegate>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn NSNetServiceBrowserDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(

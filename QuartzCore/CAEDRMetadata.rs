@@ -22,7 +22,7 @@ extern_methods!(
     #[cfg(feature = "CoreAnimation_CAEDRMetadata")]
     unsafe impl CAEDRMetadata {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other HDR10MetadataWithDisplayInfo:contentInfo:opticalOutputScale:)]
@@ -30,17 +30,17 @@ extern_methods!(
             display_data: Option<&NSData>,
             content_data: Option<&NSData>,
             scale: c_float,
-        ) -> Id<CAEDRMetadata, Shared>;
+        ) -> Id<CAEDRMetadata>;
 
         #[method_id(@__retain_semantics Other HDR10MetadataWithMinLuminance:maxLuminance:opticalOutputScale:)]
         pub unsafe fn HDR10MetadataWithMinLuminance_maxLuminance_opticalOutputScale(
             min_nits: c_float,
             max_nits: c_float,
             scale: c_float,
-        ) -> Id<CAEDRMetadata, Shared>;
+        ) -> Id<CAEDRMetadata>;
 
         #[method_id(@__retain_semantics Other HLGMetadata)]
-        pub unsafe fn HLGMetadata() -> Id<CAEDRMetadata, Shared>;
+        pub unsafe fn HLGMetadata() -> Id<CAEDRMetadata>;
 
         #[method(isAvailable)]
         pub unsafe fn isAvailable() -> bool;

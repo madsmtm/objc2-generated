@@ -37,14 +37,14 @@ extern_methods!(
     unsafe impl NSRelationshipDescription {
         #[cfg(feature = "CoreData_NSEntityDescription")]
         #[method_id(@__retain_semantics Other destinationEntity)]
-        pub unsafe fn destinationEntity(&self) -> Option<Id<NSEntityDescription, Shared>>;
+        pub unsafe fn destinationEntity(&self) -> Option<Id<NSEntityDescription>>;
 
         #[cfg(feature = "CoreData_NSEntityDescription")]
         #[method(setDestinationEntity:)]
         pub unsafe fn setDestinationEntity(&self, destination_entity: Option<&NSEntityDescription>);
 
         #[method_id(@__retain_semantics Other inverseRelationship)]
-        pub unsafe fn inverseRelationship(&self) -> Option<Id<NSRelationshipDescription, Shared>>;
+        pub unsafe fn inverseRelationship(&self) -> Option<Id<NSRelationshipDescription>>;
 
         #[method(setInverseRelationship:)]
         pub unsafe fn setInverseRelationship(
@@ -75,7 +75,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other versionHash)]
-        pub unsafe fn versionHash(&self) -> Id<NSData, Shared>;
+        pub unsafe fn versionHash(&self) -> Id<NSData>;
 
         #[method(isOrdered)]
         pub unsafe fn isOrdered(&self) -> bool;

@@ -35,7 +35,7 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedString)]
-        unsafe fn attributedString(&self) -> Id<NSAttributedString, Shared>;
+        unsafe fn attributedString(&self) -> Id<NSAttributedString>;
 
         #[method(layoutOptions)]
         unsafe fn layoutOptions(&self) -> NSUInteger;
@@ -71,6 +71,6 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other sharedGlyphGenerator)]
-        pub unsafe fn sharedGlyphGenerator() -> Id<NSGlyphGenerator, Shared>;
+        pub unsafe fn sharedGlyphGenerator() -> Id<NSGlyphGenerator>;
     }
 );

@@ -28,7 +28,7 @@ extern_methods!(
     unsafe impl GCExtendedGamepad {
         #[cfg(feature = "GameController_GCController")]
         #[method_id(@__retain_semantics Other controller)]
-        pub unsafe fn controller(&self) -> Option<Id<GCController, Shared>>;
+        pub unsafe fn controller(&self) -> Option<Id<GCController>>;
 
         #[method(valueChangedHandler)]
         pub unsafe fn valueChangedHandler(&self) -> GCExtendedGamepadValueChangedHandler;
@@ -42,71 +42,71 @@ extern_methods!(
         #[cfg(feature = "GameController_GCExtendedGamepadSnapshot")]
         #[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController capture] instead"]
         #[method_id(@__retain_semantics Other saveSnapshot)]
-        pub unsafe fn saveSnapshot(&self) -> Id<GCExtendedGamepadSnapshot, Shared>;
+        pub unsafe fn saveSnapshot(&self) -> Id<GCExtendedGamepadSnapshot>;
 
         #[cfg(feature = "GameController_GCControllerDirectionPad")]
         #[method_id(@__retain_semantics Other dpad)]
-        pub unsafe fn dpad(&self) -> Id<GCControllerDirectionPad, Shared>;
+        pub unsafe fn dpad(&self) -> Id<GCControllerDirectionPad>;
 
         #[cfg(feature = "GameController_GCControllerButtonInput")]
         #[method_id(@__retain_semantics Other buttonA)]
-        pub unsafe fn buttonA(&self) -> Id<GCControllerButtonInput, Shared>;
+        pub unsafe fn buttonA(&self) -> Id<GCControllerButtonInput>;
 
         #[cfg(feature = "GameController_GCControllerButtonInput")]
         #[method_id(@__retain_semantics Other buttonB)]
-        pub unsafe fn buttonB(&self) -> Id<GCControllerButtonInput, Shared>;
+        pub unsafe fn buttonB(&self) -> Id<GCControllerButtonInput>;
 
         #[cfg(feature = "GameController_GCControllerButtonInput")]
         #[method_id(@__retain_semantics Other buttonX)]
-        pub unsafe fn buttonX(&self) -> Id<GCControllerButtonInput, Shared>;
+        pub unsafe fn buttonX(&self) -> Id<GCControllerButtonInput>;
 
         #[cfg(feature = "GameController_GCControllerButtonInput")]
         #[method_id(@__retain_semantics Other buttonY)]
-        pub unsafe fn buttonY(&self) -> Id<GCControllerButtonInput, Shared>;
+        pub unsafe fn buttonY(&self) -> Id<GCControllerButtonInput>;
 
         #[cfg(feature = "GameController_GCControllerButtonInput")]
         #[method_id(@__retain_semantics Other buttonMenu)]
-        pub unsafe fn buttonMenu(&self) -> Id<GCControllerButtonInput, Shared>;
+        pub unsafe fn buttonMenu(&self) -> Id<GCControllerButtonInput>;
 
         #[cfg(feature = "GameController_GCControllerButtonInput")]
         #[method_id(@__retain_semantics Other buttonOptions)]
-        pub unsafe fn buttonOptions(&self) -> Option<Id<GCControllerButtonInput, Shared>>;
+        pub unsafe fn buttonOptions(&self) -> Option<Id<GCControllerButtonInput>>;
 
         #[cfg(feature = "GameController_GCControllerButtonInput")]
         #[method_id(@__retain_semantics Other buttonHome)]
-        pub unsafe fn buttonHome(&self) -> Option<Id<GCControllerButtonInput, Shared>>;
+        pub unsafe fn buttonHome(&self) -> Option<Id<GCControllerButtonInput>>;
 
         #[cfg(feature = "GameController_GCControllerDirectionPad")]
         #[method_id(@__retain_semantics Other leftThumbstick)]
-        pub unsafe fn leftThumbstick(&self) -> Id<GCControllerDirectionPad, Shared>;
+        pub unsafe fn leftThumbstick(&self) -> Id<GCControllerDirectionPad>;
 
         #[cfg(feature = "GameController_GCControllerDirectionPad")]
         #[method_id(@__retain_semantics Other rightThumbstick)]
-        pub unsafe fn rightThumbstick(&self) -> Id<GCControllerDirectionPad, Shared>;
+        pub unsafe fn rightThumbstick(&self) -> Id<GCControllerDirectionPad>;
 
         #[cfg(feature = "GameController_GCControllerButtonInput")]
         #[method_id(@__retain_semantics Other leftShoulder)]
-        pub unsafe fn leftShoulder(&self) -> Id<GCControllerButtonInput, Shared>;
+        pub unsafe fn leftShoulder(&self) -> Id<GCControllerButtonInput>;
 
         #[cfg(feature = "GameController_GCControllerButtonInput")]
         #[method_id(@__retain_semantics Other rightShoulder)]
-        pub unsafe fn rightShoulder(&self) -> Id<GCControllerButtonInput, Shared>;
+        pub unsafe fn rightShoulder(&self) -> Id<GCControllerButtonInput>;
 
         #[cfg(feature = "GameController_GCControllerButtonInput")]
         #[method_id(@__retain_semantics Other leftTrigger)]
-        pub unsafe fn leftTrigger(&self) -> Id<GCControllerButtonInput, Shared>;
+        pub unsafe fn leftTrigger(&self) -> Id<GCControllerButtonInput>;
 
         #[cfg(feature = "GameController_GCControllerButtonInput")]
         #[method_id(@__retain_semantics Other rightTrigger)]
-        pub unsafe fn rightTrigger(&self) -> Id<GCControllerButtonInput, Shared>;
+        pub unsafe fn rightTrigger(&self) -> Id<GCControllerButtonInput>;
 
         #[cfg(feature = "GameController_GCControllerButtonInput")]
         #[method_id(@__retain_semantics Other leftThumbstickButton)]
-        pub unsafe fn leftThumbstickButton(&self) -> Option<Id<GCControllerButtonInput, Shared>>;
+        pub unsafe fn leftThumbstickButton(&self) -> Option<Id<GCControllerButtonInput>>;
 
         #[cfg(feature = "GameController_GCControllerButtonInput")]
         #[method_id(@__retain_semantics Other rightThumbstickButton)]
-        pub unsafe fn rightThumbstickButton(&self) -> Option<Id<GCControllerButtonInput, Shared>>;
+        pub unsafe fn rightThumbstickButton(&self) -> Option<Id<GCControllerButtonInput>>;
 
         #[method(setStateFromExtendedGamepad:)]
         pub unsafe fn setStateFromExtendedGamepad(&self, extended_gamepad: &GCExtendedGamepad);

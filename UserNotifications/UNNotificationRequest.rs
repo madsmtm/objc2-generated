@@ -30,15 +30,15 @@ extern_methods!(
     unsafe impl UNNotificationRequest {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn identifier(&self) -> Id<NSString>;
 
         #[cfg(feature = "UserNotifications_UNNotificationContent")]
         #[method_id(@__retain_semantics Other content)]
-        pub unsafe fn content(&self) -> Id<UNNotificationContent, Shared>;
+        pub unsafe fn content(&self) -> Id<UNNotificationContent>;
 
         #[cfg(feature = "UserNotifications_UNNotificationTrigger")]
         #[method_id(@__retain_semantics Other trigger)]
-        pub unsafe fn trigger(&self) -> Option<Id<UNNotificationTrigger, Shared>>;
+        pub unsafe fn trigger(&self) -> Option<Id<UNNotificationTrigger>>;
 
         #[cfg(all(
             feature = "Foundation_NSString",
@@ -50,9 +50,9 @@ extern_methods!(
             identifier: &NSString,
             content: &UNNotificationContent,
             trigger: Option<&UNNotificationTrigger>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }
 );

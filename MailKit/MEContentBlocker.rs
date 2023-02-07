@@ -9,7 +9,7 @@ extern_protocol!(
     pub unsafe trait MEContentBlocker: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other contentRulesJSON)]
-        unsafe fn contentRulesJSON(&self) -> Id<NSData, Shared>;
+        unsafe fn contentRulesJSON(&self) -> Id<NSData>;
     }
 
     unsafe impl ProtocolType for dyn MEContentBlocker {}

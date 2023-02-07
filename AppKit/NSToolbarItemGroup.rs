@@ -50,7 +50,7 @@ extern_methods!(
             labels: Option<&NSArray<NSString>>,
             target: Option<&Object>,
             action: Option<Sel>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(
             feature = "AppKit_NSImage",
@@ -65,11 +65,11 @@ extern_methods!(
             labels: Option<&NSArray<NSString>>,
             target: Option<&Object>,
             action: Option<Sel>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other subitems)]
-        pub unsafe fn subitems(&self) -> Id<NSArray<NSToolbarItem>, Shared>;
+        pub unsafe fn subitems(&self) -> Id<NSArray<NSToolbarItem>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setSubitems:)]
@@ -112,6 +112,6 @@ extern_methods!(
         pub unsafe fn initWithItemIdentifier(
             this: Option<Allocated<Self>>,
             item_identifier: &NSToolbarItemIdentifier,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

@@ -22,38 +22,38 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSHost")]
     unsafe impl NSHost {
         #[method_id(@__retain_semantics Other currentHost)]
-        pub unsafe fn currentHost() -> Id<Self, Shared>;
+        pub unsafe fn currentHost() -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other hostWithName:)]
-        pub unsafe fn hostWithName(name: Option<&NSString>) -> Id<Self, Shared>;
+        pub unsafe fn hostWithName(name: Option<&NSString>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other hostWithAddress:)]
-        pub unsafe fn hostWithAddress(address: &NSString) -> Id<Self, Shared>;
+        pub unsafe fn hostWithAddress(address: &NSString) -> Id<Self>;
 
         #[method(isEqualToHost:)]
         pub unsafe fn isEqualToHost(&self, a_host: &NSHost) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn name(&self) -> Option<Id<NSString>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other names)]
-        pub unsafe fn names(&self) -> Id<NSArray<NSString>, Shared>;
+        pub unsafe fn names(&self) -> Id<NSArray<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other address)]
-        pub unsafe fn address(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn address(&self) -> Option<Id<NSString>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other addresses)]
-        pub unsafe fn addresses(&self) -> Id<NSArray<NSString>, Shared>;
+        pub unsafe fn addresses(&self) -> Id<NSArray<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedName)]
-        pub unsafe fn localizedName(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn localizedName(&self) -> Option<Id<NSString>>;
 
         #[deprecated = "Caching no longer supported"]
         #[method(setHostCacheEnabled:)]

@@ -21,22 +21,22 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSScriptExecutionContext")]
     unsafe impl NSScriptExecutionContext {
         #[method_id(@__retain_semantics Other sharedScriptExecutionContext)]
-        pub unsafe fn sharedScriptExecutionContext() -> Id<NSScriptExecutionContext, Shared>;
+        pub unsafe fn sharedScriptExecutionContext() -> Id<NSScriptExecutionContext>;
 
         #[method_id(@__retain_semantics Other topLevelObject)]
-        pub unsafe fn topLevelObject(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn topLevelObject(&self) -> Option<Id<Object>>;
 
         #[method(setTopLevelObject:)]
         pub unsafe fn setTopLevelObject(&self, top_level_object: Option<&Object>);
 
         #[method_id(@__retain_semantics Other objectBeingTested)]
-        pub unsafe fn objectBeingTested(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn objectBeingTested(&self) -> Option<Id<Object>>;
 
         #[method(setObjectBeingTested:)]
         pub unsafe fn setObjectBeingTested(&self, object_being_tested: Option<&Object>);
 
         #[method_id(@__retain_semantics Other rangeContainerObject)]
-        pub unsafe fn rangeContainerObject(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn rangeContainerObject(&self) -> Option<Id<Object>>;
 
         #[method(setRangeContainerObject:)]
         pub unsafe fn setRangeContainerObject(&self, range_container_object: Option<&Object>);

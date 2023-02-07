@@ -27,11 +27,11 @@ extern_methods!(
         pub unsafe fn initWithTextContentManager(
             this: Option<Allocated<Self>>,
             text_content_manager: Option<&NSTextContentManager>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSTextContentManager")]
         #[method_id(@__retain_semantics Other textContentManager)]
-        pub unsafe fn textContentManager(&self) -> Option<Id<NSTextContentManager, Shared>>;
+        pub unsafe fn textContentManager(&self) -> Option<Id<NSTextContentManager>>;
 
         #[cfg(feature = "AppKit_NSTextContentManager")]
         #[method(setTextContentManager:)]
@@ -42,7 +42,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSTextRange")]
         #[method_id(@__retain_semantics Other elementRange)]
-        pub unsafe fn elementRange(&self) -> Option<Id<NSTextRange, Shared>>;
+        pub unsafe fn elementRange(&self) -> Option<Id<NSTextRange>>;
 
         #[cfg(feature = "AppKit_NSTextRange")]
         #[method(setElementRange:)]
@@ -50,10 +50,10 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other childElements)]
-        pub unsafe fn childElements(&self) -> Id<NSArray<NSTextElement>, Shared>;
+        pub unsafe fn childElements(&self) -> Id<NSArray<NSTextElement>>;
 
         #[method_id(@__retain_semantics Other parentElement)]
-        pub unsafe fn parentElement(&self) -> Option<Id<NSTextElement, Shared>>;
+        pub unsafe fn parentElement(&self) -> Option<Id<NSTextElement>>;
 
         #[method(isRepresentedElement)]
         pub unsafe fn isRepresentedElement(&self) -> bool;
@@ -83,19 +83,19 @@ extern_methods!(
         pub unsafe fn initWithAttributedString(
             this: Option<Allocated<Self>>,
             attributed_string: Option<&NSAttributedString>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedString)]
-        pub unsafe fn attributedString(&self) -> Id<NSAttributedString, Shared>;
+        pub unsafe fn attributedString(&self) -> Id<NSAttributedString>;
 
         #[cfg(feature = "AppKit_NSTextRange")]
         #[method_id(@__retain_semantics Other paragraphContentRange)]
-        pub unsafe fn paragraphContentRange(&self) -> Option<Id<NSTextRange, Shared>>;
+        pub unsafe fn paragraphContentRange(&self) -> Option<Id<NSTextRange>>;
 
         #[cfg(feature = "AppKit_NSTextRange")]
         #[method_id(@__retain_semantics Other paragraphSeparatorRange)]
-        pub unsafe fn paragraphSeparatorRange(&self) -> Option<Id<NSTextRange, Shared>>;
+        pub unsafe fn paragraphSeparatorRange(&self) -> Option<Id<NSTextRange>>;
     }
 );
 
@@ -108,6 +108,6 @@ extern_methods!(
         pub unsafe fn initWithTextContentManager(
             this: Option<Allocated<Self>>,
             text_content_manager: Option<&NSTextContentManager>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

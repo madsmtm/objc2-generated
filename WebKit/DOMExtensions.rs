@@ -14,7 +14,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other lineBoxRects)]
-        pub unsafe fn lineBoxRects(&self) -> Option<Id<NSArray, Shared>>;
+        pub unsafe fn lineBoxRects(&self) -> Option<Id<NSArray>>;
     }
 );
 
@@ -24,7 +24,7 @@ extern_methods!(
     unsafe impl DOMElement {
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other image)]
-        pub unsafe fn image(&self) -> Option<Id<NSImage, Shared>>;
+        pub unsafe fn image(&self) -> Option<Id<NSImage>>;
     }
 );
 
@@ -42,7 +42,7 @@ extern_methods!(
             &self,
             markup_string: Option<&NSString>,
             base_url: Option<&NSURL>,
-        ) -> Option<Id<DOMDocumentFragment, Shared>>;
+        ) -> Option<Id<DOMDocumentFragment>>;
 
         #[cfg(all(
             feature = "Foundation_NSString",
@@ -52,6 +52,6 @@ extern_methods!(
         pub unsafe fn createDocumentFragmentWithText(
             &self,
             text: Option<&NSString>,
-        ) -> Option<Id<DOMDocumentFragment, Shared>>;
+        ) -> Option<Id<DOMDocumentFragment>>;
     }
 );

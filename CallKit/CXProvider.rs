@@ -163,13 +163,13 @@ extern_methods!(
         pub unsafe fn initWithConfiguration(
             this: Option<Allocated<Self>>,
             configuration: &CXProviderConfiguration,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(all(
             feature = "CallKit_CXCallUpdate",
@@ -222,7 +222,7 @@ extern_methods!(
 
         #[cfg(feature = "CallKit_CXProviderConfiguration")]
         #[method_id(@__retain_semantics Other configuration)]
-        pub unsafe fn configuration(&self) -> Id<CXProviderConfiguration, Shared>;
+        pub unsafe fn configuration(&self) -> Id<CXProviderConfiguration>;
 
         #[cfg(feature = "CallKit_CXProviderConfiguration")]
         #[method(setConfiguration:)]
@@ -233,7 +233,7 @@ extern_methods!(
 
         #[cfg(all(feature = "CallKit_CXTransaction", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other pendingTransactions)]
-        pub unsafe fn pendingTransactions(&self) -> Id<NSArray<CXTransaction>, Shared>;
+        pub unsafe fn pendingTransactions(&self) -> Id<NSArray<CXTransaction>>;
 
         #[cfg(all(
             feature = "CallKit_CXCallAction",
@@ -245,6 +245,6 @@ extern_methods!(
             &self,
             call_action_class: &Class,
             call_uuid: &NSUUID,
-        ) -> Id<NSArray<CXCallAction>, Shared>;
+        ) -> Id<NSArray<CXCallAction>>;
     }
 );

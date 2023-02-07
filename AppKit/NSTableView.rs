@@ -158,22 +158,17 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTableView")]
     unsafe impl NSTableView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frame_rect: NSRect,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[method_id(@__retain_semantics Other dataSource)]
-        pub unsafe fn dataSource(
-            &self,
-        ) -> Option<Id<ProtocolObject<dyn NSTableViewDataSource>, Shared>>;
+        pub unsafe fn dataSource(&self) -> Option<Id<ProtocolObject<dyn NSTableViewDataSource>>>;
 
         #[method(setDataSource:)]
         pub unsafe fn setDataSource(
@@ -182,9 +177,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(
-            &self,
-        ) -> Option<Id<ProtocolObject<dyn NSTableViewDelegate>, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSTableViewDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -194,14 +187,14 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSTableHeaderView")]
         #[method_id(@__retain_semantics Other headerView)]
-        pub unsafe fn headerView(&self) -> Option<Id<NSTableHeaderView, Shared>>;
+        pub unsafe fn headerView(&self) -> Option<Id<NSTableHeaderView>>;
 
         #[cfg(feature = "AppKit_NSTableHeaderView")]
         #[method(setHeaderView:)]
         pub unsafe fn setHeaderView(&self, header_view: Option<&NSTableHeaderView>);
 
         #[method_id(@__retain_semantics Other cornerView)]
-        pub unsafe fn cornerView(&self) -> Option<Id<NSView, Shared>>;
+        pub unsafe fn cornerView(&self) -> Option<Id<NSView>>;
 
         #[method(setCornerView:)]
         pub unsafe fn setCornerView(&self, corner_view: Option<&NSView>);
@@ -250,7 +243,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other backgroundColor)]
-        pub unsafe fn backgroundColor(&self) -> Id<NSColor, Shared>;
+        pub unsafe fn backgroundColor(&self) -> Id<NSColor>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setBackgroundColor:)]
@@ -258,7 +251,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other gridColor)]
-        pub unsafe fn gridColor(&self) -> Id<NSColor, Shared>;
+        pub unsafe fn gridColor(&self) -> Id<NSColor>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setGridColor:)]
@@ -285,7 +278,7 @@ extern_methods!(
 
         #[cfg(all(feature = "AppKit_NSTableColumn", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other tableColumns)]
-        pub unsafe fn tableColumns(&self) -> Id<NSArray<NSTableColumn>, Shared>;
+        pub unsafe fn tableColumns(&self) -> Id<NSArray<NSTableColumn>>;
 
         #[method(numberOfColumns)]
         pub unsafe fn numberOfColumns(&self) -> NSInteger;
@@ -315,7 +308,7 @@ extern_methods!(
         pub unsafe fn tableColumnWithIdentifier(
             &self,
             identifier: &NSUserInterfaceItemIdentifier,
-        ) -> Option<Id<NSTableColumn, Shared>>;
+        ) -> Option<Id<NSTableColumn>>;
 
         #[method(tile)]
         pub unsafe fn tile(&self);
@@ -369,7 +362,7 @@ extern_methods!(
             feature = "Foundation_NSSortDescriptor"
         ))]
         #[method_id(@__retain_semantics Other sortDescriptors)]
-        pub unsafe fn sortDescriptors(&self) -> Id<NSArray<NSSortDescriptor>, Shared>;
+        pub unsafe fn sortDescriptors(&self) -> Id<NSArray<NSSortDescriptor>>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -391,11 +384,11 @@ extern_methods!(
         pub unsafe fn indicatorImageInTableColumn(
             &self,
             table_column: &NSTableColumn,
-        ) -> Option<Id<NSImage, Shared>>;
+        ) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "AppKit_NSTableColumn")]
         #[method_id(@__retain_semantics Other highlightedTableColumn)]
-        pub unsafe fn highlightedTableColumn(&self) -> Option<Id<NSTableColumn, Shared>>;
+        pub unsafe fn highlightedTableColumn(&self) -> Option<Id<NSTableColumn>>;
 
         #[cfg(feature = "AppKit_NSTableColumn")]
         #[method(setHighlightedTableColumn:)]
@@ -432,7 +425,7 @@ extern_methods!(
             table_columns: &NSArray<NSTableColumn>,
             drag_event: &NSEvent,
             drag_image_offset: NSPointPointer,
-        ) -> Id<NSImage, Shared>;
+        ) -> Id<NSImage>;
 
         #[method(setDraggingSourceOperationMask:forLocal:)]
         pub unsafe fn setDraggingSourceOperationMask_forLocal(
@@ -490,11 +483,11 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSIndexSet")]
         #[method_id(@__retain_semantics Other selectedColumnIndexes)]
-        pub unsafe fn selectedColumnIndexes(&self) -> Id<NSIndexSet, Shared>;
+        pub unsafe fn selectedColumnIndexes(&self) -> Id<NSIndexSet>;
 
         #[cfg(feature = "Foundation_NSIndexSet")]
         #[method_id(@__retain_semantics Other selectedRowIndexes)]
-        pub unsafe fn selectedRowIndexes(&self) -> Id<NSIndexSet, Shared>;
+        pub unsafe fn selectedRowIndexes(&self) -> Id<NSIndexSet>;
 
         #[method(deselectColumn:)]
         pub unsafe fn deselectColumn(&self, column: NSInteger);
@@ -563,7 +556,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSIndexSet")]
         #[method_id(@__retain_semantics Other columnIndexesInRect:)]
-        pub unsafe fn columnIndexesInRect(&self, rect: NSRect) -> Id<NSIndexSet, Shared>;
+        pub unsafe fn columnIndexesInRect(&self, rect: NSRect) -> Id<NSIndexSet>;
 
         #[method(rowsInRect:)]
         pub unsafe fn rowsInRect(&self, rect: NSRect) -> NSRange;
@@ -578,7 +571,7 @@ extern_methods!(
         pub unsafe fn frameOfCellAtColumn_row(&self, column: NSInteger, row: NSInteger) -> NSRect;
 
         #[method_id(@__retain_semantics Other autosaveName)]
-        pub unsafe fn autosaveName(&self) -> Option<Id<NSTableViewAutosaveName, Shared>>;
+        pub unsafe fn autosaveName(&self) -> Option<Id<NSTableViewAutosaveName>>;
 
         #[method(setAutosaveName:)]
         pub unsafe fn setAutosaveName(&self, autosave_name: Option<&NSTableViewAutosaveName>);
@@ -617,7 +610,7 @@ extern_methods!(
             column: NSInteger,
             row: NSInteger,
             make_if_necessary: bool,
-        ) -> Option<Id<NSView, Shared>>;
+        ) -> Option<Id<NSView>>;
 
         #[cfg(feature = "AppKit_NSTableRowView")]
         #[method_id(@__retain_semantics Other rowViewAtRow:makeIfNecessary:)]
@@ -625,7 +618,7 @@ extern_methods!(
             &self,
             row: NSInteger,
             make_if_necessary: bool,
-        ) -> Option<Id<NSTableRowView, Shared>>;
+        ) -> Option<Id<NSTableRowView>>;
 
         #[method(rowForView:)]
         pub unsafe fn rowForView(&self, view: &NSView) -> NSInteger;
@@ -638,7 +631,7 @@ extern_methods!(
             &self,
             identifier: &NSUserInterfaceItemIdentifier,
             owner: Option<&Object>,
-        ) -> Option<Id<NSView, Shared>>;
+        ) -> Option<Id<NSView>>;
 
         #[cfg(feature = "AppKit_NSTableRowView")]
         #[method(enumerateAvailableRowViewsUsingBlock:)]
@@ -702,7 +695,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSIndexSet")]
         #[method_id(@__retain_semantics Other hiddenRowIndexes)]
-        pub unsafe fn hiddenRowIndexes(&self) -> Id<NSIndexSet, Shared>;
+        pub unsafe fn hiddenRowIndexes(&self) -> Id<NSIndexSet>;
 
         #[cfg(feature = "AppKit_NSNib")]
         #[method(registerNib:forIdentifier:)]
@@ -716,7 +709,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other registeredNibsByIdentifier)]
         pub unsafe fn registeredNibsByIdentifier(
             &self,
-        ) -> Option<Id<NSDictionary<NSUserInterfaceItemIdentifier, NSNib>, Shared>>;
+        ) -> Option<Id<NSDictionary<NSUserInterfaceItemIdentifier, NSNib>>>;
 
         #[cfg(feature = "AppKit_NSTableRowView")]
         #[method(didAddRowView:forRow:)]
@@ -763,7 +756,7 @@ extern_protocol!(
             table_view: &NSTableView,
             table_column: Option<&NSTableColumn>,
             row: NSInteger,
-        ) -> Option<Id<NSView, Shared>>;
+        ) -> Option<Id<NSView>>;
 
         #[cfg(all(feature = "AppKit_NSTableRowView", feature = "AppKit_NSTableView"))]
         #[optional]
@@ -772,7 +765,7 @@ extern_protocol!(
             &self,
             table_view: &NSTableView,
             row: NSInteger,
-        ) -> Option<Id<NSTableRowView, Shared>>;
+        ) -> Option<Id<NSTableRowView>>;
 
         #[cfg(all(feature = "AppKit_NSTableRowView", feature = "AppKit_NSTableView"))]
         #[optional]
@@ -831,7 +824,7 @@ extern_protocol!(
             table_column: Option<&NSTableColumn>,
             row: NSInteger,
             mouse_location: NSPoint,
-        ) -> Id<NSString, Shared>;
+        ) -> Id<NSString>;
 
         #[cfg(all(feature = "AppKit_NSTableColumn", feature = "AppKit_NSTableView"))]
         #[optional]
@@ -870,7 +863,7 @@ extern_protocol!(
             table_view: &NSTableView,
             table_column: Option<&NSTableColumn>,
             row: NSInteger,
-        ) -> Option<Id<NSCell, Shared>>;
+        ) -> Option<Id<NSCell>>;
 
         #[cfg(feature = "AppKit_NSTableView")]
         #[optional]
@@ -893,7 +886,7 @@ extern_protocol!(
             &self,
             table_view: &NSTableView,
             proposed_selection_indexes: &NSIndexSet,
-        ) -> Id<NSIndexSet, Shared>;
+        ) -> Id<NSIndexSet>;
 
         #[cfg(all(feature = "AppKit_NSTableColumn", feature = "AppKit_NSTableView"))]
         #[optional]
@@ -949,7 +942,7 @@ extern_protocol!(
             table_view: &NSTableView,
             table_column: Option<&NSTableColumn>,
             row: NSInteger,
-        ) -> Option<Id<NSString, Shared>>;
+        ) -> Option<Id<NSString>>;
 
         #[cfg(all(feature = "AppKit_NSTableView", feature = "Foundation_NSString"))]
         #[optional]
@@ -1012,7 +1005,7 @@ extern_protocol!(
             table_view: &NSTableView,
             row: NSInteger,
             edge: NSTableRowActionEdge,
-        ) -> Id<NSArray<NSTableViewRowAction>, Shared>;
+        ) -> Id<NSArray<NSTableViewRowAction>>;
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
@@ -1063,7 +1056,7 @@ extern_protocol!(
             table_view: &NSTableView,
             table_column: Option<&NSTableColumn>,
             row: NSInteger,
-        ) -> Option<Id<Object, Shared>>;
+        ) -> Option<Id<Object>>;
 
         #[cfg(all(feature = "AppKit_NSTableColumn", feature = "AppKit_NSTableView"))]
         #[optional]
@@ -1096,7 +1089,7 @@ extern_protocol!(
             &self,
             table_view: &NSTableView,
             row: NSInteger,
-        ) -> Option<Id<ProtocolObject<dyn NSPasteboardWriting>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn NSPasteboardWriting>>>;
 
         #[cfg(all(
             feature = "AppKit_NSDraggingSession",
@@ -1185,7 +1178,7 @@ extern_protocol!(
             table_view: &NSTableView,
             drop_destination: &NSURL,
             index_set: &NSIndexSet,
-        ) -> Id<NSArray<NSString>, Shared>;
+        ) -> Id<NSArray<NSString>>;
     }
 
     unsafe impl ProtocolType for dyn NSTableViewDataSource {}
@@ -1214,12 +1207,12 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSEnumerator")]
         #[deprecated]
         #[method_id(@__retain_semantics Other selectedColumnEnumerator)]
-        pub unsafe fn selectedColumnEnumerator(&self) -> Id<NSEnumerator, Shared>;
+        pub unsafe fn selectedColumnEnumerator(&self) -> Id<NSEnumerator>;
 
         #[cfg(feature = "Foundation_NSEnumerator")]
         #[deprecated]
         #[method_id(@__retain_semantics Other selectedRowEnumerator)]
-        pub unsafe fn selectedRowEnumerator(&self) -> Id<NSEnumerator, Shared>;
+        pub unsafe fn selectedRowEnumerator(&self) -> Id<NSEnumerator>;
 
         #[cfg(all(
             feature = "AppKit_NSEvent",
@@ -1233,7 +1226,7 @@ extern_methods!(
             drag_rows: &NSArray,
             drag_event: &NSEvent,
             drag_image_offset: NSPointPointer,
-        ) -> Option<Id<NSImage, Shared>>;
+        ) -> Option<Id<NSImage>>;
 
         #[deprecated]
         #[method(setAutoresizesAllColumnsToFit:)]
@@ -1254,7 +1247,7 @@ extern_methods!(
             &self,
             column: NSInteger,
             row: NSInteger,
-        ) -> Option<Id<NSCell, Shared>>;
+        ) -> Option<Id<NSCell>>;
 
         #[cfg(feature = "AppKit_NSText")]
         #[deprecated = "Use a View Based TableView with an NSTextField"]

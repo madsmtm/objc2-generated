@@ -30,7 +30,7 @@ extern_methods!(
     unsafe impl LPLinkMetadata {
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other originalURL)]
-        pub unsafe fn originalURL(&self) -> Option<Id<NSURL, Shared>>;
+        pub unsafe fn originalURL(&self) -> Option<Id<NSURL>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method(setOriginalURL:)]
@@ -38,7 +38,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other URL)]
-        pub unsafe fn URL(&self) -> Option<Id<NSURL, Shared>>;
+        pub unsafe fn URL(&self) -> Option<Id<NSURL>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method(setURL:)]
@@ -46,7 +46,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn title(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setTitle:)]
@@ -54,7 +54,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSItemProvider")]
         #[method_id(@__retain_semantics Other iconProvider)]
-        pub unsafe fn iconProvider(&self) -> Option<Id<NSItemProvider, Shared>>;
+        pub unsafe fn iconProvider(&self) -> Option<Id<NSItemProvider>>;
 
         #[cfg(feature = "Foundation_NSItemProvider")]
         #[method(setIconProvider:)]
@@ -62,7 +62,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSItemProvider")]
         #[method_id(@__retain_semantics Other imageProvider)]
-        pub unsafe fn imageProvider(&self) -> Option<Id<NSItemProvider, Shared>>;
+        pub unsafe fn imageProvider(&self) -> Option<Id<NSItemProvider>>;
 
         #[cfg(feature = "Foundation_NSItemProvider")]
         #[method(setImageProvider:)]
@@ -70,7 +70,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSItemProvider")]
         #[method_id(@__retain_semantics Other videoProvider)]
-        pub unsafe fn videoProvider(&self) -> Option<Id<NSItemProvider, Shared>>;
+        pub unsafe fn videoProvider(&self) -> Option<Id<NSItemProvider>>;
 
         #[cfg(feature = "Foundation_NSItemProvider")]
         #[method(setVideoProvider:)]
@@ -78,7 +78,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other remoteVideoURL)]
-        pub unsafe fn remoteVideoURL(&self) -> Option<Id<NSURL, Shared>>;
+        pub unsafe fn remoteVideoURL(&self) -> Option<Id<NSURL>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method(setRemoteVideoURL:)]

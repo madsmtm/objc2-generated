@@ -93,16 +93,14 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
-        pub unsafe fn label(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn label(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:)]
         pub unsafe fn setLabel(&self, label: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other primitiveDataBuffer)]
-        pub unsafe fn primitiveDataBuffer(
-            &self,
-        ) -> Option<Id<ProtocolObject<dyn MTLBuffer>, Shared>>;
+        pub unsafe fn primitiveDataBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
         #[method(setPrimitiveDataBuffer:)]
         pub fn setPrimitiveDataBuffer(
@@ -163,7 +161,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other geometryDescriptors)]
         pub unsafe fn geometryDescriptors(
             &self,
-        ) -> Option<Id<NSArray<MTLAccelerationStructureGeometryDescriptor>, Shared>>;
+        ) -> Option<Id<NSArray<MTLAccelerationStructureGeometryDescriptor>>>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -209,7 +207,7 @@ extern_methods!(
         pub unsafe fn setMotionKeyframeCount(&self, motion_keyframe_count: NSUInteger);
 
         #[method_id(@__retain_semantics Other descriptor)]
-        pub fn descriptor() -> Id<Self, Shared>;
+        pub fn descriptor() -> Id<Self>;
     }
 );
 
@@ -232,7 +230,7 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLAccelerationStructureTriangleGeometryDescriptor")]
     unsafe impl MTLAccelerationStructureTriangleGeometryDescriptor {
         #[method_id(@__retain_semantics Other vertexBuffer)]
-        pub unsafe fn vertexBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>, Shared>>;
+        pub unsafe fn vertexBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
         #[method(setVertexBuffer:)]
         pub fn setVertexBuffer(&self, vertex_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
@@ -256,7 +254,7 @@ extern_methods!(
         pub fn setVertexStride(&self, vertex_stride: NSUInteger);
 
         #[method_id(@__retain_semantics Other indexBuffer)]
-        pub unsafe fn indexBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>, Shared>>;
+        pub unsafe fn indexBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
         #[method(setIndexBuffer:)]
         pub fn setIndexBuffer(&self, index_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
@@ -282,7 +280,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other transformationMatrixBuffer)]
         pub unsafe fn transformationMatrixBuffer(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn MTLBuffer>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
         #[method(setTransformationMatrixBuffer:)]
         pub unsafe fn setTransformationMatrixBuffer(
@@ -300,7 +298,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other descriptor)]
-        pub fn descriptor() -> Id<Self, Shared>;
+        pub fn descriptor() -> Id<Self>;
     }
 );
 
@@ -323,8 +321,7 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLAccelerationStructureBoundingBoxGeometryDescriptor")]
     unsafe impl MTLAccelerationStructureBoundingBoxGeometryDescriptor {
         #[method_id(@__retain_semantics Other boundingBoxBuffer)]
-        pub unsafe fn boundingBoxBuffer(&self)
-            -> Option<Id<ProtocolObject<dyn MTLBuffer>, Shared>>;
+        pub unsafe fn boundingBoxBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
         #[method(setBoundingBoxBuffer:)]
         pub fn setBoundingBoxBuffer(
@@ -351,7 +348,7 @@ extern_methods!(
         pub fn setBoundingBoxCount(&self, bounding_box_count: NSUInteger);
 
         #[method_id(@__retain_semantics Other descriptor)]
-        pub fn descriptor() -> Id<Self, Shared>;
+        pub fn descriptor() -> Id<Self>;
     }
 );
 
@@ -373,7 +370,7 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLMotionKeyframeData")]
     unsafe impl MTLMotionKeyframeData {
         #[method_id(@__retain_semantics Other buffer)]
-        pub unsafe fn buffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>, Shared>>;
+        pub unsafe fn buffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
         #[method(setBuffer:)]
         pub unsafe fn setBuffer(&self, buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
@@ -385,7 +382,7 @@ extern_methods!(
         pub unsafe fn setOffset(&self, offset: NSUInteger);
 
         #[method_id(@__retain_semantics Other data)]
-        pub unsafe fn data() -> Id<Self, Shared>;
+        pub unsafe fn data() -> Id<Self>;
     }
 );
 
@@ -412,7 +409,7 @@ extern_methods!(
             feature = "Metal_MTLMotionKeyframeData"
         ))]
         #[method_id(@__retain_semantics Other vertexBuffers)]
-        pub unsafe fn vertexBuffers(&self) -> Id<NSArray<MTLMotionKeyframeData>, Shared>;
+        pub unsafe fn vertexBuffers(&self) -> Id<NSArray<MTLMotionKeyframeData>>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -434,7 +431,7 @@ extern_methods!(
         pub unsafe fn setVertexStride(&self, vertex_stride: NSUInteger);
 
         #[method_id(@__retain_semantics Other indexBuffer)]
-        pub unsafe fn indexBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>, Shared>>;
+        pub unsafe fn indexBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
         #[method(setIndexBuffer:)]
         pub unsafe fn setIndexBuffer(&self, index_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
@@ -460,7 +457,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other transformationMatrixBuffer)]
         pub unsafe fn transformationMatrixBuffer(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn MTLBuffer>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
         #[method(setTransformationMatrixBuffer:)]
         pub unsafe fn setTransformationMatrixBuffer(
@@ -478,7 +475,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other descriptor)]
-        pub unsafe fn descriptor() -> Id<Self, Shared>;
+        pub unsafe fn descriptor() -> Id<Self>;
     }
 );
 
@@ -505,7 +502,7 @@ extern_methods!(
             feature = "Metal_MTLMotionKeyframeData"
         ))]
         #[method_id(@__retain_semantics Other boundingBoxBuffers)]
-        pub unsafe fn boundingBoxBuffers(&self) -> Id<NSArray<MTLMotionKeyframeData>, Shared>;
+        pub unsafe fn boundingBoxBuffers(&self) -> Id<NSArray<MTLMotionKeyframeData>>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -530,7 +527,7 @@ extern_methods!(
         pub unsafe fn setBoundingBoxCount(&self, bounding_box_count: NSUInteger);
 
         #[method_id(@__retain_semantics Other descriptor)]
-        pub unsafe fn descriptor() -> Id<Self, Shared>;
+        pub unsafe fn descriptor() -> Id<Self>;
     }
 );
 
@@ -602,9 +599,7 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLInstanceAccelerationStructureDescriptor")]
     unsafe impl MTLInstanceAccelerationStructureDescriptor {
         #[method_id(@__retain_semantics Other instanceDescriptorBuffer)]
-        pub unsafe fn instanceDescriptorBuffer(
-            &self,
-        ) -> Option<Id<ProtocolObject<dyn MTLBuffer>, Shared>>;
+        pub unsafe fn instanceDescriptorBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
         #[method(setInstanceDescriptorBuffer:)]
         pub fn setInstanceDescriptorBuffer(
@@ -637,7 +632,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other instancedAccelerationStructures)]
         pub unsafe fn instancedAccelerationStructures(
             &self,
-        ) -> Option<Id<NSArray<ProtocolObject<dyn MTLAccelerationStructure>>, Shared>>;
+        ) -> Option<Id<NSArray<ProtocolObject<dyn MTLAccelerationStructure>>>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setInstancedAccelerationStructures:)]
@@ -660,9 +655,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other motionTransformBuffer)]
-        pub unsafe fn motionTransformBuffer(
-            &self,
-        ) -> Option<Id<ProtocolObject<dyn MTLBuffer>, Shared>>;
+        pub unsafe fn motionTransformBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
         #[method(setMotionTransformBuffer:)]
         pub unsafe fn setMotionTransformBuffer(
@@ -686,7 +679,7 @@ extern_methods!(
         pub unsafe fn setMotionTransformCount(&self, motion_transform_count: NSUInteger);
 
         #[method_id(@__retain_semantics Other descriptor)]
-        pub fn descriptor() -> Id<Self, Shared>;
+        pub fn descriptor() -> Id<Self>;
     }
 );
 

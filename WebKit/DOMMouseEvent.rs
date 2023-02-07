@@ -52,9 +52,7 @@ extern_methods!(
         pub unsafe fn button(&self) -> c_short;
 
         #[method_id(@__retain_semantics Other relatedTarget)]
-        pub unsafe fn relatedTarget(
-            &self,
-        ) -> Option<Id<ProtocolObject<dyn DOMEventTarget>, Shared>>;
+        pub unsafe fn relatedTarget(&self) -> Option<Id<ProtocolObject<dyn DOMEventTarget>>>;
 
         #[method(offsetX)]
         pub unsafe fn offsetX(&self) -> c_int;
@@ -70,11 +68,11 @@ extern_methods!(
 
         #[cfg(feature = "WebKit_DOMNode")]
         #[method_id(@__retain_semantics Other fromElement)]
-        pub unsafe fn fromElement(&self) -> Option<Id<DOMNode, Shared>>;
+        pub unsafe fn fromElement(&self) -> Option<Id<DOMNode>>;
 
         #[cfg(feature = "WebKit_DOMNode")]
         #[method_id(@__retain_semantics Other toElement)]
-        pub unsafe fn toElement(&self) -> Option<Id<DOMNode, Shared>>;
+        pub unsafe fn toElement(&self) -> Option<Id<DOMNode>>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_DOMAbstractView"))]
         #[method(initMouseEvent:canBubble:cancelable:view:detail:screenX:screenY:clientX:clientY:ctrlKey:altKey:shiftKey:metaKey:button:relatedTarget:)]

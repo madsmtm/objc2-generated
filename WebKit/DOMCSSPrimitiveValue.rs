@@ -110,19 +110,19 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other getStringValue)]
-        pub unsafe fn getStringValue(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn getStringValue(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "WebKit_DOMCounter")]
         #[method_id(@__retain_semantics Other getCounterValue)]
-        pub unsafe fn getCounterValue(&self) -> Option<Id<DOMCounter, Shared>>;
+        pub unsafe fn getCounterValue(&self) -> Option<Id<DOMCounter>>;
 
         #[cfg(feature = "WebKit_DOMRect")]
         #[method_id(@__retain_semantics Other getRectValue)]
-        pub unsafe fn getRectValue(&self) -> Option<Id<DOMRect, Shared>>;
+        pub unsafe fn getRectValue(&self) -> Option<Id<DOMRect>>;
 
         #[cfg(feature = "WebKit_DOMRGBColor")]
         #[method_id(@__retain_semantics Other getRGBColorValue)]
-        pub unsafe fn getRGBColorValue(&self) -> Option<Id<DOMRGBColor, Shared>>;
+        pub unsafe fn getRGBColorValue(&self) -> Option<Id<DOMRGBColor>>;
     }
 );
 

@@ -32,7 +32,7 @@ extern_methods!(
             r#type: EKRecurrenceFrequency,
             interval: NSInteger,
             end: Option<&EKRecurrenceEnd>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(
             feature = "EventKit_EKRecurrenceDayOfWeek",
@@ -52,15 +52,15 @@ extern_methods!(
             days_of_the_year: Option<&NSArray<NSNumber>>,
             set_positions: Option<&NSArray<NSNumber>>,
             end: Option<&EKRecurrenceEnd>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other calendarIdentifier)]
-        pub unsafe fn calendarIdentifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn calendarIdentifier(&self) -> Id<NSString>;
 
         #[cfg(feature = "EventKit_EKRecurrenceEnd")]
         #[method_id(@__retain_semantics Other recurrenceEnd)]
-        pub unsafe fn recurrenceEnd(&self) -> Option<Id<EKRecurrenceEnd, Shared>>;
+        pub unsafe fn recurrenceEnd(&self) -> Option<Id<EKRecurrenceEnd>>;
 
         #[cfg(feature = "EventKit_EKRecurrenceEnd")]
         #[method(setRecurrenceEnd:)]
@@ -80,26 +80,26 @@ extern_methods!(
             feature = "Foundation_NSArray"
         ))]
         #[method_id(@__retain_semantics Other daysOfTheWeek)]
-        pub unsafe fn daysOfTheWeek(&self) -> Option<Id<NSArray<EKRecurrenceDayOfWeek>, Shared>>;
+        pub unsafe fn daysOfTheWeek(&self) -> Option<Id<NSArray<EKRecurrenceDayOfWeek>>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method_id(@__retain_semantics Other daysOfTheMonth)]
-        pub unsafe fn daysOfTheMonth(&self) -> Option<Id<NSArray<NSNumber>, Shared>>;
+        pub unsafe fn daysOfTheMonth(&self) -> Option<Id<NSArray<NSNumber>>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method_id(@__retain_semantics Other daysOfTheYear)]
-        pub unsafe fn daysOfTheYear(&self) -> Option<Id<NSArray<NSNumber>, Shared>>;
+        pub unsafe fn daysOfTheYear(&self) -> Option<Id<NSArray<NSNumber>>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method_id(@__retain_semantics Other weeksOfTheYear)]
-        pub unsafe fn weeksOfTheYear(&self) -> Option<Id<NSArray<NSNumber>, Shared>>;
+        pub unsafe fn weeksOfTheYear(&self) -> Option<Id<NSArray<NSNumber>>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method_id(@__retain_semantics Other monthsOfTheYear)]
-        pub unsafe fn monthsOfTheYear(&self) -> Option<Id<NSArray<NSNumber>, Shared>>;
+        pub unsafe fn monthsOfTheYear(&self) -> Option<Id<NSArray<NSNumber>>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method_id(@__retain_semantics Other setPositions)]
-        pub unsafe fn setPositions(&self) -> Option<Id<NSArray<NSNumber>, Shared>>;
+        pub unsafe fn setPositions(&self) -> Option<Id<NSArray<NSNumber>>>;
     }
 );

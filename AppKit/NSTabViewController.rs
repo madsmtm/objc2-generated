@@ -59,7 +59,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSTabView")]
         #[method_id(@__retain_semantics Other tabView)]
-        pub unsafe fn tabView(&self) -> Id<NSTabView, Shared>;
+        pub unsafe fn tabView(&self) -> Id<NSTabView>;
 
         #[cfg(feature = "AppKit_NSTabView")]
         #[method(setTabView:)]
@@ -85,7 +85,7 @@ extern_methods!(
 
         #[cfg(all(feature = "AppKit_NSTabViewItem", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other tabViewItems)]
-        pub unsafe fn tabViewItems(&self) -> Id<NSArray<NSTabViewItem>, Shared>;
+        pub unsafe fn tabViewItems(&self) -> Id<NSArray<NSTabViewItem>>;
 
         #[cfg(all(feature = "AppKit_NSTabViewItem", feature = "Foundation_NSArray"))]
         #[method(setTabViewItems:)]
@@ -118,7 +118,7 @@ extern_methods!(
         pub unsafe fn tabViewItemForViewController(
             &self,
             view_controller: &NSViewController,
-        ) -> Option<Id<NSTabViewItem, Shared>>;
+        ) -> Option<Id<NSTabViewItem>>;
 
         #[method(viewDidLoad)]
         pub unsafe fn viewDidLoad(&self);
@@ -154,28 +154,28 @@ extern_methods!(
             toolbar: &NSToolbar,
             item_identifier: &NSToolbarItemIdentifier,
             flag: bool,
-        ) -> Option<Id<NSToolbarItem, Shared>>;
+        ) -> Option<Id<NSToolbarItem>>;
 
         #[cfg(all(feature = "AppKit_NSToolbar", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other toolbarDefaultItemIdentifiers:)]
         pub unsafe fn toolbarDefaultItemIdentifiers(
             &self,
             toolbar: &NSToolbar,
-        ) -> Id<NSArray<NSToolbarItemIdentifier>, Shared>;
+        ) -> Id<NSArray<NSToolbarItemIdentifier>>;
 
         #[cfg(all(feature = "AppKit_NSToolbar", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other toolbarAllowedItemIdentifiers:)]
         pub unsafe fn toolbarAllowedItemIdentifiers(
             &self,
             toolbar: &NSToolbar,
-        ) -> Id<NSArray<NSToolbarItemIdentifier>, Shared>;
+        ) -> Id<NSArray<NSToolbarItemIdentifier>>;
 
         #[cfg(all(feature = "AppKit_NSToolbar", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other toolbarSelectableItemIdentifiers:)]
         pub unsafe fn toolbarSelectableItemIdentifiers(
             &self,
             toolbar: &NSToolbar,
-        ) -> Id<NSArray<NSToolbarItemIdentifier>, Shared>;
+        ) -> Id<NSArray<NSToolbarItemIdentifier>>;
     }
 );
 
@@ -189,6 +189,6 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             nib_name_or_nil: Option<&NSNibName>,
             nib_bundle_or_nil: Option<&NSBundle>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

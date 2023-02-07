@@ -21,7 +21,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSThread")]
     unsafe impl NSThread {
         #[method_id(@__retain_semantics Other currentThread)]
-        pub fn currentThread() -> Id<NSThread, Shared>;
+        pub fn currentThread() -> Id<NSThread>;
 
         #[method(detachNewThreadWithBlock:)]
         pub unsafe fn detachNewThreadWithBlock(block: &Block<(), ()>);
@@ -70,15 +70,15 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method_id(@__retain_semantics Other callStackReturnAddresses)]
-        pub unsafe fn callStackReturnAddresses() -> Id<NSArray<NSNumber>, Shared>;
+        pub unsafe fn callStackReturnAddresses() -> Id<NSArray<NSNumber>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other callStackSymbols)]
-        pub unsafe fn callStackSymbols() -> Id<NSArray<NSString>, Shared>;
+        pub unsafe fn callStackSymbols() -> Id<NSArray<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub fn name(&self) -> Option<Id<NSString, Shared>>;
+        pub fn name(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]
@@ -97,10 +97,10 @@ extern_methods!(
         pub fn isMainThread_class() -> bool;
 
         #[method_id(@__retain_semantics Other mainThread)]
-        pub fn mainThread() -> Id<NSThread, Shared>;
+        pub fn mainThread() -> Id<NSThread>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithTarget:selector:object:)]
         pub unsafe fn initWithTarget_selector_object(
@@ -108,13 +108,13 @@ extern_methods!(
             target: &Object,
             selector: Sel,
             argument: Option<&Object>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithBlock:)]
         pub unsafe fn initWithBlock(
             this: Option<Allocated<Self>>,
             block: &Block<(), ()>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(isExecuting)]
         pub unsafe fn isExecuting(&self) -> bool;

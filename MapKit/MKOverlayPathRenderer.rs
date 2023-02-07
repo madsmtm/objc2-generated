@@ -27,7 +27,7 @@ extern_methods!(
     unsafe impl MKOverlayPathRenderer {
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other fillColor)]
-        pub unsafe fn fillColor(&self) -> Option<Id<NSColor, Shared>>;
+        pub unsafe fn fillColor(&self) -> Option<Id<NSColor>>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setFillColor:)]
@@ -35,7 +35,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other strokeColor)]
-        pub unsafe fn strokeColor(&self) -> Option<Id<NSColor, Shared>>;
+        pub unsafe fn strokeColor(&self) -> Option<Id<NSColor>>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setStrokeColor:)]
@@ -61,7 +61,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method_id(@__retain_semantics Other lineDashPattern)]
-        pub unsafe fn lineDashPattern(&self) -> Option<Id<NSArray<NSNumber>, Shared>>;
+        pub unsafe fn lineDashPattern(&self) -> Option<Id<NSArray<NSNumber>>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method(setLineDashPattern:)]
@@ -89,6 +89,6 @@ extern_methods!(
         pub unsafe fn initWithOverlay(
             this: Option<Allocated<Self>>,
             overlay: &ProtocolObject<dyn MKOverlay>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

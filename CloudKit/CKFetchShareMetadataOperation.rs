@@ -24,18 +24,18 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKFetchShareMetadataOperation")]
     unsafe impl CKFetchShareMetadataOperation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Init initWithShareURLs:)]
         pub unsafe fn initWithShareURLs(
             this: Option<Allocated<Self>>,
             share_ur_ls: &NSArray<NSURL>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other shareURLs)]
-        pub unsafe fn shareURLs(&self) -> Option<Id<NSArray<NSURL>, Shared>>;
+        pub unsafe fn shareURLs(&self) -> Option<Id<NSArray<NSURL>>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURL"))]
         #[method(setShareURLs:)]
@@ -49,8 +49,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other rootRecordDesiredKeys)]
-        pub unsafe fn rootRecordDesiredKeys(&self)
-            -> Option<Id<NSArray<CKRecordFieldKey>, Shared>>;
+        pub unsafe fn rootRecordDesiredKeys(&self) -> Option<Id<NSArray<CKRecordFieldKey>>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setRootRecordDesiredKeys:)]

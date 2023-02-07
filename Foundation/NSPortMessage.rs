@@ -27,19 +27,19 @@ extern_methods!(
             send_port: Option<&NSPort>,
             reply_port: Option<&NSPort>,
             components: Option<&NSArray>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other components)]
-        pub unsafe fn components(&self) -> Option<Id<NSArray, Shared>>;
+        pub unsafe fn components(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSPort")]
         #[method_id(@__retain_semantics Other receivePort)]
-        pub unsafe fn receivePort(&self) -> Option<Id<NSPort, Shared>>;
+        pub unsafe fn receivePort(&self) -> Option<Id<NSPort>>;
 
         #[cfg(feature = "Foundation_NSPort")]
         #[method_id(@__retain_semantics Other sendPort)]
-        pub unsafe fn sendPort(&self) -> Option<Id<NSPort, Shared>>;
+        pub unsafe fn sendPort(&self) -> Option<Id<NSPort>>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method(sendBeforeDate:)]

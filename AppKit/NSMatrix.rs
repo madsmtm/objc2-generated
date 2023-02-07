@@ -61,10 +61,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSMatrix")]
     unsafe impl NSMatrix {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frame_rect: NSRect,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSCell")]
         #[method_id(@__retain_semantics Init initWithFrame:mode:prototype:numberOfRows:numberOfColumns:)]
@@ -75,7 +72,7 @@ extern_methods!(
             cell: &NSCell,
             rows_high: NSInteger,
             cols_wide: NSInteger,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithFrame:mode:cellClass:numberOfRows:numberOfColumns:)]
         pub unsafe fn initWithFrame_mode_cellClass_numberOfRows_numberOfColumns(
@@ -85,7 +82,7 @@ extern_methods!(
             factory_id: Option<&Class>,
             rows_high: NSInteger,
             cols_wide: NSInteger,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(cellClass)]
         pub unsafe fn cellClass(&self) -> &'static Class;
@@ -95,7 +92,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSCell")]
         #[method_id(@__retain_semantics Other prototype)]
-        pub unsafe fn prototype(&self) -> Option<Id<NSCell, Shared>>;
+        pub unsafe fn prototype(&self) -> Option<Id<NSCell>>;
 
         #[cfg(feature = "AppKit_NSCell")]
         #[method(setPrototype:)]
@@ -103,11 +100,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSCell")]
         #[method_id(@__retain_semantics Other makeCellAtRow:column:)]
-        pub unsafe fn makeCellAtRow_column(
-            &self,
-            row: NSInteger,
-            col: NSInteger,
-        ) -> Id<NSCell, Shared>;
+        pub unsafe fn makeCellAtRow_column(&self, row: NSInteger, col: NSInteger) -> Id<NSCell>;
 
         #[method(mode)]
         pub unsafe fn mode(&self) -> NSMatrixMode;
@@ -126,7 +119,7 @@ extern_methods!(
 
         #[cfg(all(feature = "AppKit_NSCell", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other cells)]
-        pub unsafe fn cells(&self) -> Id<NSArray<NSCell>, Shared>;
+        pub unsafe fn cells(&self) -> Id<NSArray<NSCell>>;
 
         #[method(sortUsingSelector:)]
         pub unsafe fn sortUsingSelector(&self, comparator: Sel);
@@ -144,11 +137,11 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSCell")]
         #[method_id(@__retain_semantics Other selectedCell)]
-        pub unsafe fn selectedCell(&self) -> Option<Id<NSCell, Shared>>;
+        pub unsafe fn selectedCell(&self) -> Option<Id<NSCell>>;
 
         #[cfg(all(feature = "AppKit_NSCell", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other selectedCells)]
-        pub unsafe fn selectedCells(&self) -> Id<NSArray<NSCell>, Shared>;
+        pub unsafe fn selectedCells(&self) -> Id<NSArray<NSCell>>;
 
         #[method(selectedRow)]
         pub unsafe fn selectedRow(&self) -> NSInteger;
@@ -203,7 +196,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other backgroundColor)]
-        pub unsafe fn backgroundColor(&self) -> Id<NSColor, Shared>;
+        pub unsafe fn backgroundColor(&self) -> Id<NSColor>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setBackgroundColor:)]
@@ -211,7 +204,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other cellBackgroundColor)]
-        pub unsafe fn cellBackgroundColor(&self) -> Option<Id<NSColor, Shared>>;
+        pub unsafe fn cellBackgroundColor(&self) -> Option<Id<NSColor>>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setCellBackgroundColor:)]
@@ -252,11 +245,8 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSCell")]
         #[method_id(@__retain_semantics Other cellAtRow:column:)]
-        pub unsafe fn cellAtRow_column(
-            &self,
-            row: NSInteger,
-            col: NSInteger,
-        ) -> Option<Id<NSCell, Shared>>;
+        pub unsafe fn cellAtRow_column(&self, row: NSInteger, col: NSInteger)
+            -> Option<Id<NSCell>>;
 
         #[method(cellFrameAtRow:column:)]
         pub unsafe fn cellFrameAtRow_column(&self, row: NSInteger, col: NSInteger) -> NSRect;
@@ -334,7 +324,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSCell")]
         #[method_id(@__retain_semantics Other cellWithTag:)]
-        pub unsafe fn cellWithTag(&self, tag: NSInteger) -> Option<Id<NSCell, Shared>>;
+        pub unsafe fn cellWithTag(&self, tag: NSInteger) -> Option<Id<NSCell>>;
 
         #[method(doubleAction)]
         pub unsafe fn doubleAction(&self) -> Option<Sel>;
@@ -387,7 +377,7 @@ extern_methods!(
         pub unsafe fn sendDoubleAction(&self);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSMatrixDelegate>, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSMatrixDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSMatrixDelegate>>);
@@ -421,7 +411,7 @@ extern_methods!(
             &self,
             row: NSInteger,
             col: NSInteger,
-        ) -> Option<Id<NSCell, Shared>>;
+        ) -> Option<Id<NSCell>>;
 
         #[cfg(feature = "AppKit_NSEvent")]
         #[method(acceptsFirstMouse:)]
@@ -436,7 +426,7 @@ extern_methods!(
 
         #[cfg(all(feature = "AppKit_NSCell", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other toolTipForCell:)]
-        pub unsafe fn toolTipForCell(&self, cell: &NSCell) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn toolTipForCell(&self, cell: &NSCell) -> Option<Id<NSString>>;
 
         #[method(autorecalculatesCellSize)]
         pub unsafe fn autorecalculatesCellSize(&self) -> bool;
@@ -458,7 +448,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSCell")]
         #[method_id(@__retain_semantics Other keyCell)]
-        pub unsafe fn keyCell(&self) -> Option<Id<NSCell, Shared>>;
+        pub unsafe fn keyCell(&self) -> Option<Id<NSCell>>;
 
         #[cfg(feature = "AppKit_NSCell")]
         #[method(setKeyCell:)]

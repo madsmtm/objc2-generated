@@ -49,7 +49,7 @@ extern_methods!(
         pub unsafe fn initWithLevelIndicatorStyle(
             this: Option<Allocated<Self>>,
             level_indicator_style: NSLevelIndicatorStyle,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(levelIndicatorStyle)]
         pub unsafe fn levelIndicatorStyle(&self) -> NSLevelIndicatorStyle;
@@ -129,16 +129,13 @@ extern_methods!(
     unsafe impl NSLevelIndicatorCell {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initTextCell:)]
-        pub unsafe fn initTextCell(
-            this: Option<Allocated<Self>>,
-            string: &NSString,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initTextCell(this: Option<Allocated<Self>>, string: &NSString) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Init initImageCell:)]
         pub unsafe fn initImageCell(
             this: Option<Allocated<Self>>,
             image: Option<&NSImage>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

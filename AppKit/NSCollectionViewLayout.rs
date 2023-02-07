@@ -70,7 +70,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSIndexPath")]
         #[method_id(@__retain_semantics Other indexPath)]
-        pub unsafe fn indexPath(&self) -> Option<Id<NSIndexPath, Shared>>;
+        pub unsafe fn indexPath(&self) -> Option<Id<NSIndexPath>>;
 
         #[cfg(feature = "Foundation_NSIndexPath")]
         #[method(setIndexPath:)]
@@ -81,33 +81,31 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other representedElementKind)]
-        pub unsafe fn representedElementKind(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn representedElementKind(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSIndexPath")]
         #[method_id(@__retain_semantics Other layoutAttributesForItemWithIndexPath:)]
-        pub unsafe fn layoutAttributesForItemWithIndexPath(
-            index_path: &NSIndexPath,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn layoutAttributesForItemWithIndexPath(index_path: &NSIndexPath) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSIndexPath")]
         #[method_id(@__retain_semantics Other layoutAttributesForInterItemGapBeforeIndexPath:)]
         pub unsafe fn layoutAttributesForInterItemGapBeforeIndexPath(
             index_path: &NSIndexPath,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSIndexPath")]
         #[method_id(@__retain_semantics Other layoutAttributesForSupplementaryViewOfKind:withIndexPath:)]
         pub unsafe fn layoutAttributesForSupplementaryViewOfKind_withIndexPath(
             element_kind: &NSCollectionViewSupplementaryElementKind,
             index_path: &NSIndexPath,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSIndexPath")]
         #[method_id(@__retain_semantics Other layoutAttributesForDecorationViewOfKind:withIndexPath:)]
         pub unsafe fn layoutAttributesForDecorationViewOfKind_withIndexPath(
             decoration_view_kind: &NSCollectionViewDecorationElementKind,
             index_path: &NSIndexPath,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );
 
@@ -141,11 +139,11 @@ extern_methods!(
     unsafe impl NSCollectionViewUpdateItem {
         #[cfg(feature = "Foundation_NSIndexPath")]
         #[method_id(@__retain_semantics Other indexPathBeforeUpdate)]
-        pub unsafe fn indexPathBeforeUpdate(&self) -> Option<Id<NSIndexPath, Shared>>;
+        pub unsafe fn indexPathBeforeUpdate(&self) -> Option<Id<NSIndexPath>>;
 
         #[cfg(feature = "Foundation_NSIndexPath")]
         #[method_id(@__retain_semantics Other indexPathAfterUpdate)]
-        pub unsafe fn indexPathAfterUpdate(&self) -> Option<Id<NSIndexPath, Shared>>;
+        pub unsafe fn indexPathAfterUpdate(&self) -> Option<Id<NSIndexPath>>;
 
         #[method(updateAction)]
         pub unsafe fn updateAction(&self) -> NSCollectionUpdateAction;
@@ -197,7 +195,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSIndexPath", feature = "Foundation_NSSet"))]
         #[method_id(@__retain_semantics Other invalidatedItemIndexPaths)]
-        pub unsafe fn invalidatedItemIndexPaths(&self) -> Option<Id<NSSet<NSIndexPath>, Shared>>;
+        pub unsafe fn invalidatedItemIndexPaths(&self) -> Option<Id<NSSet<NSIndexPath>>>;
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",
@@ -207,9 +205,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other invalidatedSupplementaryIndexPaths)]
         pub unsafe fn invalidatedSupplementaryIndexPaths(
             &self,
-        ) -> Option<
-            Id<NSDictionary<NSCollectionViewSupplementaryElementKind, NSSet<NSIndexPath>>, Shared>,
-        >;
+        ) -> Option<Id<NSDictionary<NSCollectionViewSupplementaryElementKind, NSSet<NSIndexPath>>>>;
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",
@@ -219,9 +215,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other invalidatedDecorationIndexPaths)]
         pub unsafe fn invalidatedDecorationIndexPaths(
             &self,
-        ) -> Option<
-            Id<NSDictionary<NSCollectionViewDecorationElementKind, NSSet<NSIndexPath>>, Shared>,
-        >;
+        ) -> Option<Id<NSDictionary<NSCollectionViewDecorationElementKind, NSSet<NSIndexPath>>>>;
 
         #[method(contentOffsetAdjustment)]
         pub unsafe fn contentOffsetAdjustment(&self) -> NSPoint;
@@ -259,7 +253,7 @@ extern_methods!(
     unsafe impl NSCollectionViewLayout {
         #[cfg(feature = "AppKit_NSCollectionView")]
         #[method_id(@__retain_semantics Other collectionView)]
-        pub unsafe fn collectionView(&self) -> Option<Id<NSCollectionView, Shared>>;
+        pub unsafe fn collectionView(&self) -> Option<Id<NSCollectionView>>;
 
         #[method(invalidateLayout)]
         pub unsafe fn invalidateLayout(&self);
@@ -309,7 +303,7 @@ extern_methods!(
         pub unsafe fn layoutAttributesForElementsInRect(
             &self,
             rect: NSRect,
-        ) -> Id<NSArray<NSCollectionViewLayoutAttributes>, Shared>;
+        ) -> Id<NSArray<NSCollectionViewLayoutAttributes>>;
 
         #[cfg(all(
             feature = "AppKit_NSCollectionViewLayoutAttributes",
@@ -319,7 +313,7 @@ extern_methods!(
         pub unsafe fn layoutAttributesForItemAtIndexPath(
             &self,
             index_path: &NSIndexPath,
-        ) -> Option<Id<NSCollectionViewLayoutAttributes, Shared>>;
+        ) -> Option<Id<NSCollectionViewLayoutAttributes>>;
 
         #[cfg(all(
             feature = "AppKit_NSCollectionViewLayoutAttributes",
@@ -330,7 +324,7 @@ extern_methods!(
             &self,
             element_kind: &NSCollectionViewSupplementaryElementKind,
             index_path: &NSIndexPath,
-        ) -> Option<Id<NSCollectionViewLayoutAttributes, Shared>>;
+        ) -> Option<Id<NSCollectionViewLayoutAttributes>>;
 
         #[cfg(all(
             feature = "AppKit_NSCollectionViewLayoutAttributes",
@@ -341,14 +335,14 @@ extern_methods!(
             &self,
             element_kind: &NSCollectionViewDecorationElementKind,
             index_path: &NSIndexPath,
-        ) -> Option<Id<NSCollectionViewLayoutAttributes, Shared>>;
+        ) -> Option<Id<NSCollectionViewLayoutAttributes>>;
 
         #[cfg(feature = "AppKit_NSCollectionViewLayoutAttributes")]
         #[method_id(@__retain_semantics Other layoutAttributesForDropTargetAtPoint:)]
         pub unsafe fn layoutAttributesForDropTargetAtPoint(
             &self,
             point_in_collection_view: NSPoint,
-        ) -> Option<Id<NSCollectionViewLayoutAttributes, Shared>>;
+        ) -> Option<Id<NSCollectionViewLayoutAttributes>>;
 
         #[cfg(all(
             feature = "AppKit_NSCollectionViewLayoutAttributes",
@@ -358,7 +352,7 @@ extern_methods!(
         pub unsafe fn layoutAttributesForInterItemGapBeforeIndexPath(
             &self,
             index_path: &NSIndexPath,
-        ) -> Option<Id<NSCollectionViewLayoutAttributes, Shared>>;
+        ) -> Option<Id<NSCollectionViewLayoutAttributes>>;
 
         #[method(shouldInvalidateLayoutForBoundsChange:)]
         pub unsafe fn shouldInvalidateLayoutForBoundsChange(&self, new_bounds: NSRect) -> bool;
@@ -368,7 +362,7 @@ extern_methods!(
         pub unsafe fn invalidationContextForBoundsChange(
             &self,
             new_bounds: NSRect,
-        ) -> Id<NSCollectionViewLayoutInvalidationContext, Shared>;
+        ) -> Id<NSCollectionViewLayoutInvalidationContext>;
 
         #[cfg(feature = "AppKit_NSCollectionViewLayoutAttributes")]
         #[method(shouldInvalidateLayoutForPreferredLayoutAttributes:withOriginalAttributes:)]
@@ -387,7 +381,7 @@ extern_methods!(
             &self,
             preferred_attributes: &NSCollectionViewLayoutAttributes,
             original_attributes: &NSCollectionViewLayoutAttributes,
-        ) -> Id<NSCollectionViewLayoutInvalidationContext, Shared>;
+        ) -> Id<NSCollectionViewLayoutInvalidationContext>;
 
         #[method(targetContentOffsetForProposedContentOffset:withScrollingVelocity:)]
         pub unsafe fn targetContentOffsetForProposedContentOffset_withScrollingVelocity(
@@ -447,7 +441,7 @@ extern_methods!(
         pub unsafe fn initialLayoutAttributesForAppearingItemAtIndexPath(
             &self,
             item_index_path: &NSIndexPath,
-        ) -> Option<Id<NSCollectionViewLayoutAttributes, Shared>>;
+        ) -> Option<Id<NSCollectionViewLayoutAttributes>>;
 
         #[cfg(all(
             feature = "AppKit_NSCollectionViewLayoutAttributes",
@@ -457,7 +451,7 @@ extern_methods!(
         pub unsafe fn finalLayoutAttributesForDisappearingItemAtIndexPath(
             &self,
             item_index_path: &NSIndexPath,
-        ) -> Option<Id<NSCollectionViewLayoutAttributes, Shared>>;
+        ) -> Option<Id<NSCollectionViewLayoutAttributes>>;
 
         #[cfg(all(
             feature = "AppKit_NSCollectionViewLayoutAttributes",
@@ -468,7 +462,7 @@ extern_methods!(
             &self,
             element_kind: &NSCollectionViewSupplementaryElementKind,
             element_index_path: &NSIndexPath,
-        ) -> Option<Id<NSCollectionViewLayoutAttributes, Shared>>;
+        ) -> Option<Id<NSCollectionViewLayoutAttributes>>;
 
         #[cfg(all(
             feature = "AppKit_NSCollectionViewLayoutAttributes",
@@ -479,7 +473,7 @@ extern_methods!(
             &self,
             element_kind: &NSCollectionViewSupplementaryElementKind,
             element_index_path: &NSIndexPath,
-        ) -> Option<Id<NSCollectionViewLayoutAttributes, Shared>>;
+        ) -> Option<Id<NSCollectionViewLayoutAttributes>>;
 
         #[cfg(all(
             feature = "AppKit_NSCollectionViewLayoutAttributes",
@@ -490,7 +484,7 @@ extern_methods!(
             &self,
             element_kind: &NSCollectionViewDecorationElementKind,
             decoration_index_path: &NSIndexPath,
-        ) -> Option<Id<NSCollectionViewLayoutAttributes, Shared>>;
+        ) -> Option<Id<NSCollectionViewLayoutAttributes>>;
 
         #[cfg(all(
             feature = "AppKit_NSCollectionViewLayoutAttributes",
@@ -501,34 +495,34 @@ extern_methods!(
             &self,
             element_kind: &NSCollectionViewDecorationElementKind,
             decoration_index_path: &NSIndexPath,
-        ) -> Option<Id<NSCollectionViewLayoutAttributes, Shared>>;
+        ) -> Option<Id<NSCollectionViewLayoutAttributes>>;
 
         #[cfg(all(feature = "Foundation_NSIndexPath", feature = "Foundation_NSSet"))]
         #[method_id(@__retain_semantics Other indexPathsToDeleteForSupplementaryViewOfKind:)]
         pub unsafe fn indexPathsToDeleteForSupplementaryViewOfKind(
             &self,
             element_kind: &NSCollectionViewSupplementaryElementKind,
-        ) -> Id<NSSet<NSIndexPath>, Shared>;
+        ) -> Id<NSSet<NSIndexPath>>;
 
         #[cfg(all(feature = "Foundation_NSIndexPath", feature = "Foundation_NSSet"))]
         #[method_id(@__retain_semantics Other indexPathsToDeleteForDecorationViewOfKind:)]
         pub unsafe fn indexPathsToDeleteForDecorationViewOfKind(
             &self,
             element_kind: &NSCollectionViewDecorationElementKind,
-        ) -> Id<NSSet<NSIndexPath>, Shared>;
+        ) -> Id<NSSet<NSIndexPath>>;
 
         #[cfg(all(feature = "Foundation_NSIndexPath", feature = "Foundation_NSSet"))]
         #[method_id(@__retain_semantics Other indexPathsToInsertForSupplementaryViewOfKind:)]
         pub unsafe fn indexPathsToInsertForSupplementaryViewOfKind(
             &self,
             element_kind: &NSCollectionViewSupplementaryElementKind,
-        ) -> Id<NSSet<NSIndexPath>, Shared>;
+        ) -> Id<NSSet<NSIndexPath>>;
 
         #[cfg(all(feature = "Foundation_NSIndexPath", feature = "Foundation_NSSet"))]
         #[method_id(@__retain_semantics Other indexPathsToInsertForDecorationViewOfKind:)]
         pub unsafe fn indexPathsToInsertForDecorationViewOfKind(
             &self,
             element_kind: &NSCollectionViewDecorationElementKind,
-        ) -> Id<NSSet<NSIndexPath>, Shared>;
+        ) -> Id<NSSet<NSIndexPath>>;
     }
 );

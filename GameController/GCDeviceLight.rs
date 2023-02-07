@@ -24,13 +24,13 @@ extern_methods!(
     unsafe impl GCDeviceLight {
         #[cfg(feature = "GameController_GCColor")]
         #[method_id(@__retain_semantics Other color)]
-        pub unsafe fn color(&self) -> Id<GCColor, Shared>;
+        pub unsafe fn color(&self) -> Id<GCColor>;
 
         #[cfg(feature = "GameController_GCColor")]
         #[method(setColor:)]
         pub unsafe fn setColor(&self, color: &GCColor);
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }
 );

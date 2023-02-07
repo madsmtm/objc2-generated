@@ -29,27 +29,27 @@ extern_methods!(
     #[cfg(feature = "MailKit_MEAddressAnnotation")]
     unsafe impl MEAddressAnnotation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other errorWithLocalizedDescription:)]
         pub unsafe fn errorWithLocalizedDescription(
             localized_description: &NSString,
-        ) -> Id<MEAddressAnnotation, Shared>;
+        ) -> Id<MEAddressAnnotation>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other warningWithLocalizedDescription:)]
         pub unsafe fn warningWithLocalizedDescription(
             localized_description: &NSString,
-        ) -> Id<MEAddressAnnotation, Shared>;
+        ) -> Id<MEAddressAnnotation>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other successWithLocalizedDescription:)]
         pub unsafe fn successWithLocalizedDescription(
             localized_description: &NSString,
-        ) -> Id<MEAddressAnnotation, Shared>;
+        ) -> Id<MEAddressAnnotation>;
     }
 );

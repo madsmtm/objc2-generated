@@ -29,7 +29,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other contentView)]
-        pub unsafe fn contentView(&self) -> Option<Id<NSView, Shared>>;
+        pub unsafe fn contentView(&self) -> Option<Id<NSView>>;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(setContentView:)]
@@ -46,14 +46,14 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other badgeLabel)]
-        pub unsafe fn badgeLabel(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn badgeLabel(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setBadgeLabel:)]
         pub unsafe fn setBadgeLabel(&self, badge_label: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other owner)]
-        pub unsafe fn owner(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn owner(&self) -> Option<Id<Object>>;
     }
 );
 
@@ -66,7 +66,7 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSMenu")]
         #[optional]
         #[method_id(@__retain_semantics Other dockMenu)]
-        unsafe fn dockMenu(&self) -> Option<Id<NSMenu, Shared>>;
+        unsafe fn dockMenu(&self) -> Option<Id<NSMenu>>;
     }
 
     unsafe impl ProtocolType for dyn NSDockTilePlugIn {}

@@ -23,7 +23,7 @@ extern_methods!(
     unsafe impl CXCall {
         #[cfg(feature = "Foundation_NSUUID")]
         #[method_id(@__retain_semantics Other UUID)]
-        pub unsafe fn UUID(&self) -> Id<NSUUID, Shared>;
+        pub unsafe fn UUID(&self) -> Id<NSUUID>;
 
         #[method(isOutgoing)]
         pub unsafe fn isOutgoing(&self) -> bool;
@@ -38,7 +38,7 @@ extern_methods!(
         pub unsafe fn hasEnded(&self) -> bool;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method(isEqualToCall:)]
         pub unsafe fn isEqualToCall(&self, call: &CXCall) -> bool;

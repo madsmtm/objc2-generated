@@ -10,7 +10,7 @@ extern_protocol!(
     {
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other credentialID)]
-        unsafe fn credentialID(&self) -> Id<NSData, Shared>;
+        unsafe fn credentialID(&self) -> Id<NSData>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method(setCredentialID:)]

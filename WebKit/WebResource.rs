@@ -38,26 +38,26 @@ extern_methods!(
             mime_type: Option<&NSString>,
             text_encoding_name: Option<&NSString>,
             frame_name: Option<&NSString>,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other data)]
-        pub unsafe fn data(&self) -> Id<NSData, Shared>;
+        pub unsafe fn data(&self) -> Id<NSData>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other URL)]
-        pub unsafe fn URL(&self) -> Option<Id<NSURL, Shared>>;
+        pub unsafe fn URL(&self) -> Option<Id<NSURL>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other MIMEType)]
-        pub unsafe fn MIMEType(&self) -> Id<NSString, Shared>;
+        pub unsafe fn MIMEType(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other textEncodingName)]
-        pub unsafe fn textEncodingName(&self) -> Id<NSString, Shared>;
+        pub unsafe fn textEncodingName(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other frameName)]
-        pub unsafe fn frameName(&self) -> Id<NSString, Shared>;
+        pub unsafe fn frameName(&self) -> Id<NSString>;
     }
 );

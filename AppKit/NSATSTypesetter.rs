@@ -24,7 +24,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSATSTypesetter")]
     unsafe impl NSATSTypesetter {
         #[method_id(@__retain_semantics Other sharedTypesetter)]
-        pub unsafe fn sharedTypesetter() -> Id<NSATSTypesetter, Shared>;
+        pub unsafe fn sharedTypesetter() -> Id<NSATSTypesetter>;
     }
 );
 
@@ -72,7 +72,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSFont")]
         #[method_id(@__retain_semantics Other substituteFontForFont:)]
-        pub unsafe fn substituteFontForFont(&self, original_font: &NSFont) -> Id<NSFont, Shared>;
+        pub unsafe fn substituteFontForFont(&self, original_font: &NSFont) -> Id<NSFont>;
 
         #[cfg(feature = "AppKit_NSTextTab")]
         #[method_id(@__retain_semantics Other textTabForGlyphLocation:writingDirection:maxLocation:)]
@@ -81,7 +81,7 @@ extern_methods!(
             glyph_location: CGFloat,
             direction: NSWritingDirection,
             max_location: CGFloat,
-        ) -> Option<Id<NSTextTab, Shared>>;
+        ) -> Option<Id<NSTextTab>>;
 
         #[method(bidiProcessingEnabled)]
         pub unsafe fn bidiProcessingEnabled(&self) -> bool;
@@ -91,7 +91,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedString)]
-        pub unsafe fn attributedString(&self) -> Option<Id<NSAttributedString, Shared>>;
+        pub unsafe fn attributedString(&self) -> Option<Id<NSAttributedString>>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setAttributedString:)]
@@ -139,11 +139,11 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSLayoutManager")]
         #[method_id(@__retain_semantics Other layoutManager)]
-        pub unsafe fn layoutManager(&self) -> Option<Id<NSLayoutManager, Shared>>;
+        pub unsafe fn layoutManager(&self) -> Option<Id<NSLayoutManager>>;
 
         #[cfg(feature = "AppKit_NSTextContainer")]
         #[method_id(@__retain_semantics Other currentTextContainer)]
-        pub unsafe fn currentTextContainer(&self) -> Option<Id<NSTextContainer, Shared>>;
+        pub unsafe fn currentTextContainer(&self) -> Option<Id<NSTextContainer>>;
 
         #[method(setHardInvalidation:forGlyphRange:)]
         pub unsafe fn setHardInvalidation_forGlyphRange(&self, flag: bool, glyph_range: NSRange);

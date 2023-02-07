@@ -66,7 +66,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             server: Option<&IMKServer>,
             panel_type: IMKCandidatePanelType,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "InputMethodKit_IMKServer")]
         #[method_id(@__retain_semantics Init initWithServer:panelType:styleType:)]
@@ -75,7 +75,7 @@ extern_methods!(
             server: Option<&IMKServer>,
             panel_type: IMKCandidatePanelType,
             style: IMKStyleType,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[method(panelType)]
         pub unsafe fn panelType(&self) -> IMKCandidatePanelType;
@@ -116,7 +116,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other selectionKeys)]
-        pub unsafe fn selectionKeys(&self) -> Option<Id<NSArray, Shared>>;
+        pub unsafe fn selectionKeys(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(setAttributes:)]
@@ -124,7 +124,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other attributes)]
-        pub unsafe fn attributes(&self) -> Option<Id<NSDictionary, Shared>>;
+        pub unsafe fn attributes(&self) -> Option<Id<NSDictionary>>;
 
         #[method(setDismissesAutomatically:)]
         pub unsafe fn setDismissesAutomatically(&self, flag: bool);
@@ -177,7 +177,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other selectedCandidateString)]
-        pub unsafe fn selectedCandidateString(&self) -> Option<Id<NSAttributedString, Shared>>;
+        pub unsafe fn selectedCandidateString(&self) -> Option<Id<NSAttributedString>>;
 
         #[method(candidateIdentifierAtLineNumber:)]
         pub unsafe fn candidateIdentifierAtLineNumber(&self, line_number: NSInteger) -> NSInteger;

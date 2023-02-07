@@ -48,11 +48,11 @@ extern_methods!(
     unsafe impl MKCompassButton {
         #[cfg(feature = "MapKit_MKMapView")]
         #[method_id(@__retain_semantics Other compassButtonWithMapView:)]
-        pub unsafe fn compassButtonWithMapView(map_view: Option<&MKMapView>) -> Id<Self, Shared>;
+        pub unsafe fn compassButtonWithMapView(map_view: Option<&MKMapView>) -> Id<Self>;
 
         #[cfg(feature = "MapKit_MKMapView")]
         #[method_id(@__retain_semantics Other mapView)]
-        pub unsafe fn mapView(&self) -> Option<Id<MKMapView, Shared>>;
+        pub unsafe fn mapView(&self) -> Option<Id<MKMapView>>;
 
         #[cfg(feature = "MapKit_MKMapView")]
         #[method(setMapView:)]
@@ -71,9 +71,6 @@ extern_methods!(
     #[cfg(feature = "MapKit_MKCompassButton")]
     unsafe impl MKCompassButton {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frame_rect: NSRect,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
 );

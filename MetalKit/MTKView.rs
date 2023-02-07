@@ -50,23 +50,20 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             frame_rect: CGRect,
             device: Option<&ProtocolObject<dyn MTLDevice>>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            coder: &NSCoder,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, coder: &NSCoder) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn MTKViewDelegate>, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn MTKViewDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn MTKViewDelegate>>);
 
         #[method_id(@__retain_semantics Other device)]
-        pub unsafe fn device(&self) -> Option<Id<ProtocolObject<dyn MTLDevice>, Shared>>;
+        pub unsafe fn device(&self) -> Option<Id<ProtocolObject<dyn MTLDevice>>>;
 
         #[method(setDevice:)]
         pub unsafe fn setDevice(&self, device: Option<&ProtocolObject<dyn MTLDevice>>);
@@ -144,23 +141,17 @@ extern_methods!(
         pub unsafe fn setClearStencil(&self, clear_stencil: u32);
 
         #[method_id(@__retain_semantics Other depthStencilTexture)]
-        pub unsafe fn depthStencilTexture(
-            &self,
-        ) -> Option<Id<ProtocolObject<dyn MTLTexture>, Shared>>;
+        pub unsafe fn depthStencilTexture(&self) -> Option<Id<ProtocolObject<dyn MTLTexture>>>;
 
         #[method_id(@__retain_semantics Other multisampleColorTexture)]
-        pub unsafe fn multisampleColorTexture(
-            &self,
-        ) -> Option<Id<ProtocolObject<dyn MTLTexture>, Shared>>;
+        pub unsafe fn multisampleColorTexture(&self) -> Option<Id<ProtocolObject<dyn MTLTexture>>>;
 
         #[method(releaseDrawables)]
         pub unsafe fn releaseDrawables(&self);
 
         #[cfg(feature = "Metal_MTLRenderPassDescriptor")]
         #[method_id(@__retain_semantics Other currentRenderPassDescriptor)]
-        pub unsafe fn currentRenderPassDescriptor(
-            &self,
-        ) -> Option<Id<MTLRenderPassDescriptor, Shared>>;
+        pub unsafe fn currentRenderPassDescriptor(&self) -> Option<Id<MTLRenderPassDescriptor>>;
 
         #[method(preferredFramesPerSecond)]
         pub unsafe fn preferredFramesPerSecond(&self) -> NSInteger;
@@ -190,7 +181,7 @@ extern_methods!(
         pub unsafe fn preferredDrawableSize(&self) -> CGSize;
 
         #[method_id(@__retain_semantics Other preferredDevice)]
-        pub unsafe fn preferredDevice(&self) -> Option<Id<ProtocolObject<dyn MTLDevice>, Shared>>;
+        pub unsafe fn preferredDevice(&self) -> Option<Id<ProtocolObject<dyn MTLDevice>>>;
 
         #[method(isPaused)]
         pub unsafe fn isPaused(&self) -> bool;
@@ -222,9 +213,6 @@ extern_methods!(
     #[cfg(feature = "MetalKit_MTKView")]
     unsafe impl MTKView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frame_rect: NSRect,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
 );

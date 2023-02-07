@@ -23,11 +23,11 @@ extern_methods!(
     unsafe impl AEAssessmentApplication {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other bundleIdentifier)]
-        pub unsafe fn bundleIdentifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn bundleIdentifier(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other teamIdentifier)]
-        pub unsafe fn teamIdentifier(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn teamIdentifier(&self) -> Option<Id<NSString>>;
 
         #[method(requiresSignatureValidation)]
         pub unsafe fn requiresSignatureValidation(&self) -> bool;
@@ -40,7 +40,7 @@ extern_methods!(
         pub unsafe fn initWithBundleIdentifier(
             this: Option<Allocated<Self>>,
             bundle_identifier: &NSString,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithBundleIdentifier:teamIdentifier:)]
@@ -48,12 +48,12 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             bundle_identifier: &NSString,
             team_identifier: Option<&NSString>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
     }
 );

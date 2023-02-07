@@ -26,6 +26,6 @@ extern_methods!(
     unsafe impl DOMAbstractView {
         #[cfg(feature = "WebKit_DOMDocument")]
         #[method_id(@__retain_semantics Other document)]
-        pub unsafe fn document(&self) -> Option<Id<DOMDocument, Shared>>;
+        pub unsafe fn document(&self) -> Option<Id<DOMDocument>>;
     }
 );

@@ -44,74 +44,65 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSAppleEventDescriptor")]
     unsafe impl NSAppleEventDescriptor {
         #[method_id(@__retain_semantics Other nullDescriptor)]
-        pub unsafe fn nullDescriptor() -> Id<NSAppleEventDescriptor, Shared>;
+        pub unsafe fn nullDescriptor() -> Id<NSAppleEventDescriptor>;
 
         #[method_id(@__retain_semantics Other descriptorWithBoolean:)]
-        pub unsafe fn descriptorWithBoolean(boolean: Boolean)
-            -> Id<NSAppleEventDescriptor, Shared>;
+        pub unsafe fn descriptorWithBoolean(boolean: Boolean) -> Id<NSAppleEventDescriptor>;
 
         #[method_id(@__retain_semantics Other descriptorWithEnumCode:)]
-        pub unsafe fn descriptorWithEnumCode(
-            enumerator: OSType,
-        ) -> Id<NSAppleEventDescriptor, Shared>;
+        pub unsafe fn descriptorWithEnumCode(enumerator: OSType) -> Id<NSAppleEventDescriptor>;
 
         #[method_id(@__retain_semantics Other descriptorWithInt32:)]
-        pub unsafe fn descriptorWithInt32(signed_int: i32) -> Id<NSAppleEventDescriptor, Shared>;
+        pub unsafe fn descriptorWithInt32(signed_int: i32) -> Id<NSAppleEventDescriptor>;
 
         #[method_id(@__retain_semantics Other descriptorWithDouble:)]
-        pub unsafe fn descriptorWithDouble(
-            double_value: c_double,
-        ) -> Id<NSAppleEventDescriptor, Shared>;
+        pub unsafe fn descriptorWithDouble(double_value: c_double) -> Id<NSAppleEventDescriptor>;
 
         #[method_id(@__retain_semantics Other descriptorWithTypeCode:)]
-        pub unsafe fn descriptorWithTypeCode(
-            type_code: OSType,
-        ) -> Id<NSAppleEventDescriptor, Shared>;
+        pub unsafe fn descriptorWithTypeCode(type_code: OSType) -> Id<NSAppleEventDescriptor>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other descriptorWithString:)]
-        pub unsafe fn descriptorWithString(string: &NSString)
-            -> Id<NSAppleEventDescriptor, Shared>;
+        pub unsafe fn descriptorWithString(string: &NSString) -> Id<NSAppleEventDescriptor>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other descriptorWithDate:)]
-        pub unsafe fn descriptorWithDate(date: &NSDate) -> Id<NSAppleEventDescriptor, Shared>;
+        pub unsafe fn descriptorWithDate(date: &NSDate) -> Id<NSAppleEventDescriptor>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other descriptorWithFileURL:)]
-        pub unsafe fn descriptorWithFileURL(file_url: &NSURL)
-            -> Id<NSAppleEventDescriptor, Shared>;
+        pub unsafe fn descriptorWithFileURL(file_url: &NSURL) -> Id<NSAppleEventDescriptor>;
 
         #[method_id(@__retain_semantics Other listDescriptor)]
-        pub unsafe fn listDescriptor() -> Id<NSAppleEventDescriptor, Shared>;
+        pub unsafe fn listDescriptor() -> Id<NSAppleEventDescriptor>;
 
         #[method_id(@__retain_semantics Other recordDescriptor)]
-        pub unsafe fn recordDescriptor() -> Id<NSAppleEventDescriptor, Shared>;
+        pub unsafe fn recordDescriptor() -> Id<NSAppleEventDescriptor>;
 
         #[method_id(@__retain_semantics Other currentProcessDescriptor)]
-        pub unsafe fn currentProcessDescriptor() -> Id<NSAppleEventDescriptor, Shared>;
+        pub unsafe fn currentProcessDescriptor() -> Id<NSAppleEventDescriptor>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other descriptorWithBundleIdentifier:)]
         pub unsafe fn descriptorWithBundleIdentifier(
             bundle_identifier: &NSString,
-        ) -> Id<NSAppleEventDescriptor, Shared>;
+        ) -> Id<NSAppleEventDescriptor>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other descriptorWithApplicationURL:)]
         pub unsafe fn descriptorWithApplicationURL(
             application_url: &NSURL,
-        ) -> Id<NSAppleEventDescriptor, Shared>;
+        ) -> Id<NSAppleEventDescriptor>;
 
         #[method_id(@__retain_semantics Init initListDescriptor)]
-        pub unsafe fn initListDescriptor(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn initListDescriptor(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initRecordDescriptor)]
-        pub unsafe fn initRecordDescriptor(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn initRecordDescriptor(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other data)]
-        pub unsafe fn data(&self) -> Id<NSData, Shared>;
+        pub unsafe fn data(&self) -> Id<NSData>;
 
         #[method(booleanValue)]
         pub unsafe fn booleanValue(&self) -> Boolean;
@@ -130,15 +121,15 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringValue)]
-        pub unsafe fn stringValue(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn stringValue(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other dateValue)]
-        pub unsafe fn dateValue(&self) -> Option<Id<NSDate, Shared>>;
+        pub unsafe fn dateValue(&self) -> Option<Id<NSDate>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other fileURLValue)]
-        pub unsafe fn fileURLValue(&self) -> Option<Id<NSURL, Shared>>;
+        pub unsafe fn fileURLValue(&self) -> Option<Id<NSURL>>;
 
         #[method(isRecordDescriptor)]
         pub unsafe fn isRecordDescriptor(&self) -> bool;
@@ -157,7 +148,7 @@ extern_methods!(
         pub unsafe fn descriptorAtIndex(
             &self,
             index: NSInteger,
-        ) -> Option<Id<NSAppleEventDescriptor, Shared>>;
+        ) -> Option<Id<NSAppleEventDescriptor>>;
 
         #[method(removeDescriptorAtIndex:)]
         pub unsafe fn removeDescriptorAtIndex(&self, index: NSInteger);

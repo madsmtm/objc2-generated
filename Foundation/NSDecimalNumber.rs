@@ -27,7 +27,7 @@ extern_protocol!(
             error: NSCalculationError,
             left_operand: &NSDecimalNumber,
             right_operand: Option<&NSDecimalNumber>,
-        ) -> Option<Id<NSDecimalNumber, Shared>>;
+        ) -> Option<Id<NSDecimalNumber>>;
     }
 
     unsafe impl ProtocolType for dyn NSDecimalNumberBehaviors {}
@@ -63,20 +63,17 @@ extern_methods!(
             mantissa: c_ulonglong,
             exponent: c_short,
             flag: bool,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithDecimal:)]
-        pub unsafe fn initWithDecimal(
-            this: Option<Allocated<Self>>,
-            dcm: NSDecimal,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithDecimal(this: Option<Allocated<Self>>, dcm: NSDecimal) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithString:)]
         pub unsafe fn initWithString(
             this: Option<Allocated<Self>>,
             number_value: Option<&NSString>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithString:locale:)]
@@ -84,12 +81,11 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             number_value: Option<&NSString>,
             locale: Option<&Object>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other descriptionWithLocale:)]
-        pub unsafe fn descriptionWithLocale(&self, locale: Option<&Object>)
-            -> Id<NSString, Shared>;
+        pub unsafe fn descriptionWithLocale(&self, locale: Option<&Object>) -> Id<NSString>;
 
         #[method(decimalValue)]
         pub unsafe fn decimalValue(&self) -> NSDecimal;
@@ -99,128 +95,128 @@ extern_methods!(
             mantissa: c_ulonglong,
             exponent: c_short,
             flag: bool,
-        ) -> Id<NSDecimalNumber, Shared>;
+        ) -> Id<NSDecimalNumber>;
 
         #[method_id(@__retain_semantics Other decimalNumberWithDecimal:)]
-        pub unsafe fn decimalNumberWithDecimal(dcm: NSDecimal) -> Id<NSDecimalNumber, Shared>;
+        pub unsafe fn decimalNumberWithDecimal(dcm: NSDecimal) -> Id<NSDecimalNumber>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other decimalNumberWithString:)]
         pub unsafe fn decimalNumberWithString(
             number_value: Option<&NSString>,
-        ) -> Id<NSDecimalNumber, Shared>;
+        ) -> Id<NSDecimalNumber>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other decimalNumberWithString:locale:)]
         pub unsafe fn decimalNumberWithString_locale(
             number_value: Option<&NSString>,
             locale: Option<&Object>,
-        ) -> Id<NSDecimalNumber, Shared>;
+        ) -> Id<NSDecimalNumber>;
 
         #[method_id(@__retain_semantics Other zero)]
-        pub unsafe fn zero() -> Id<NSDecimalNumber, Shared>;
+        pub unsafe fn zero() -> Id<NSDecimalNumber>;
 
         #[method_id(@__retain_semantics Other one)]
-        pub unsafe fn one() -> Id<NSDecimalNumber, Shared>;
+        pub unsafe fn one() -> Id<NSDecimalNumber>;
 
         #[method_id(@__retain_semantics Other minimumDecimalNumber)]
-        pub unsafe fn minimumDecimalNumber() -> Id<NSDecimalNumber, Shared>;
+        pub unsafe fn minimumDecimalNumber() -> Id<NSDecimalNumber>;
 
         #[method_id(@__retain_semantics Other maximumDecimalNumber)]
-        pub unsafe fn maximumDecimalNumber() -> Id<NSDecimalNumber, Shared>;
+        pub unsafe fn maximumDecimalNumber() -> Id<NSDecimalNumber>;
 
         #[method_id(@__retain_semantics Other notANumber)]
-        pub unsafe fn notANumber() -> Id<NSDecimalNumber, Shared>;
+        pub unsafe fn notANumber() -> Id<NSDecimalNumber>;
 
         #[method_id(@__retain_semantics Other decimalNumberByAdding:)]
         pub unsafe fn decimalNumberByAdding(
             &self,
             decimal_number: &NSDecimalNumber,
-        ) -> Id<NSDecimalNumber, Shared>;
+        ) -> Id<NSDecimalNumber>;
 
         #[method_id(@__retain_semantics Other decimalNumberByAdding:withBehavior:)]
         pub unsafe fn decimalNumberByAdding_withBehavior(
             &self,
             decimal_number: &NSDecimalNumber,
             behavior: Option<&ProtocolObject<dyn NSDecimalNumberBehaviors>>,
-        ) -> Id<NSDecimalNumber, Shared>;
+        ) -> Id<NSDecimalNumber>;
 
         #[method_id(@__retain_semantics Other decimalNumberBySubtracting:)]
         pub unsafe fn decimalNumberBySubtracting(
             &self,
             decimal_number: &NSDecimalNumber,
-        ) -> Id<NSDecimalNumber, Shared>;
+        ) -> Id<NSDecimalNumber>;
 
         #[method_id(@__retain_semantics Other decimalNumberBySubtracting:withBehavior:)]
         pub unsafe fn decimalNumberBySubtracting_withBehavior(
             &self,
             decimal_number: &NSDecimalNumber,
             behavior: Option<&ProtocolObject<dyn NSDecimalNumberBehaviors>>,
-        ) -> Id<NSDecimalNumber, Shared>;
+        ) -> Id<NSDecimalNumber>;
 
         #[method_id(@__retain_semantics Other decimalNumberByMultiplyingBy:)]
         pub unsafe fn decimalNumberByMultiplyingBy(
             &self,
             decimal_number: &NSDecimalNumber,
-        ) -> Id<NSDecimalNumber, Shared>;
+        ) -> Id<NSDecimalNumber>;
 
         #[method_id(@__retain_semantics Other decimalNumberByMultiplyingBy:withBehavior:)]
         pub unsafe fn decimalNumberByMultiplyingBy_withBehavior(
             &self,
             decimal_number: &NSDecimalNumber,
             behavior: Option<&ProtocolObject<dyn NSDecimalNumberBehaviors>>,
-        ) -> Id<NSDecimalNumber, Shared>;
+        ) -> Id<NSDecimalNumber>;
 
         #[method_id(@__retain_semantics Other decimalNumberByDividingBy:)]
         pub unsafe fn decimalNumberByDividingBy(
             &self,
             decimal_number: &NSDecimalNumber,
-        ) -> Id<NSDecimalNumber, Shared>;
+        ) -> Id<NSDecimalNumber>;
 
         #[method_id(@__retain_semantics Other decimalNumberByDividingBy:withBehavior:)]
         pub unsafe fn decimalNumberByDividingBy_withBehavior(
             &self,
             decimal_number: &NSDecimalNumber,
             behavior: Option<&ProtocolObject<dyn NSDecimalNumberBehaviors>>,
-        ) -> Id<NSDecimalNumber, Shared>;
+        ) -> Id<NSDecimalNumber>;
 
         #[method_id(@__retain_semantics Other decimalNumberByRaisingToPower:)]
         pub unsafe fn decimalNumberByRaisingToPower(
             &self,
             power: NSUInteger,
-        ) -> Id<NSDecimalNumber, Shared>;
+        ) -> Id<NSDecimalNumber>;
 
         #[method_id(@__retain_semantics Other decimalNumberByRaisingToPower:withBehavior:)]
         pub unsafe fn decimalNumberByRaisingToPower_withBehavior(
             &self,
             power: NSUInteger,
             behavior: Option<&ProtocolObject<dyn NSDecimalNumberBehaviors>>,
-        ) -> Id<NSDecimalNumber, Shared>;
+        ) -> Id<NSDecimalNumber>;
 
         #[method_id(@__retain_semantics Other decimalNumberByMultiplyingByPowerOf10:)]
         pub unsafe fn decimalNumberByMultiplyingByPowerOf10(
             &self,
             power: c_short,
-        ) -> Id<NSDecimalNumber, Shared>;
+        ) -> Id<NSDecimalNumber>;
 
         #[method_id(@__retain_semantics Other decimalNumberByMultiplyingByPowerOf10:withBehavior:)]
         pub unsafe fn decimalNumberByMultiplyingByPowerOf10_withBehavior(
             &self,
             power: c_short,
             behavior: Option<&ProtocolObject<dyn NSDecimalNumberBehaviors>>,
-        ) -> Id<NSDecimalNumber, Shared>;
+        ) -> Id<NSDecimalNumber>;
 
         #[method_id(@__retain_semantics Other decimalNumberByRoundingAccordingToBehavior:)]
         pub unsafe fn decimalNumberByRoundingAccordingToBehavior(
             &self,
             behavior: Option<&ProtocolObject<dyn NSDecimalNumberBehaviors>>,
-        ) -> Id<NSDecimalNumber, Shared>;
+        ) -> Id<NSDecimalNumber>;
 
         #[method(compare:)]
         pub unsafe fn compare(&self, decimal_number: &NSNumber) -> NSComparisonResult;
 
         #[method_id(@__retain_semantics Other defaultBehavior)]
-        pub unsafe fn defaultBehavior() -> Id<ProtocolObject<dyn NSDecimalNumberBehaviors>, Shared>;
+        pub unsafe fn defaultBehavior() -> Id<ProtocolObject<dyn NSDecimalNumberBehaviors>>;
 
         #[method(setDefaultBehavior:)]
         pub unsafe fn setDefaultBehavior(
@@ -259,7 +255,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSDecimalNumberHandler")]
     unsafe impl NSDecimalNumberHandler {
         #[method_id(@__retain_semantics Other defaultDecimalNumberHandler)]
-        pub unsafe fn defaultDecimalNumberHandler() -> Id<NSDecimalNumberHandler, Shared>;
+        pub unsafe fn defaultDecimalNumberHandler() -> Id<NSDecimalNumberHandler>;
 
         #[method_id(@__retain_semantics Init initWithRoundingMode:scale:raiseOnExactness:raiseOnOverflow:raiseOnUnderflow:raiseOnDivideByZero:)]
         pub unsafe fn initWithRoundingMode_scale_raiseOnExactness_raiseOnOverflow_raiseOnUnderflow_raiseOnDivideByZero(
@@ -270,7 +266,7 @@ extern_methods!(
             overflow: bool,
             underflow: bool,
             divide_by_zero: bool,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other decimalNumberHandlerWithRoundingMode:scale:raiseOnExactness:raiseOnOverflow:raiseOnUnderflow:raiseOnDivideByZero:)]
         pub unsafe fn decimalNumberHandlerWithRoundingMode_scale_raiseOnExactness_raiseOnOverflow_raiseOnUnderflow_raiseOnDivideByZero(
@@ -280,7 +276,7 @@ extern_methods!(
             overflow: bool,
             underflow: bool,
             divide_by_zero: bool,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );
 
@@ -311,6 +307,6 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             value: NonNull<c_void>,
             r#type: NonNull<c_char>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

@@ -28,18 +28,18 @@ extern_methods!(
     unsafe impl NSPDFImageRep {
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other imageRepWithData:)]
-        pub unsafe fn imageRepWithData(pdf_data: &NSData) -> Option<Id<Self, Shared>>;
+        pub unsafe fn imageRepWithData(pdf_data: &NSData) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Init initWithData:)]
         pub unsafe fn initWithData(
             this: Option<Allocated<Self>>,
             pdf_data: &NSData,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other PDFRepresentation)]
-        pub unsafe fn PDFRepresentation(&self) -> Id<NSData, Shared>;
+        pub unsafe fn PDFRepresentation(&self) -> Id<NSData>;
 
         #[method(bounds)]
         pub unsafe fn bounds(&self) -> NSRect;

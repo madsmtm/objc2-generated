@@ -33,13 +33,13 @@ extern_methods!(
     #[cfg(feature = "BackgroundTasks_BGTaskScheduler")]
     unsafe impl BGTaskScheduler {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Other sharedScheduler)]
-        pub unsafe fn sharedScheduler() -> Id<BGTaskScheduler, Shared>;
+        pub unsafe fn sharedScheduler() -> Id<BGTaskScheduler>;
 
         #[cfg(all(
             feature = "BackgroundTasks_BGTaskRequest",
@@ -49,7 +49,7 @@ extern_methods!(
         pub unsafe fn submitTaskRequest_error(
             &self,
             task_request: &BGTaskRequest,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(cancelTaskRequestWithIdentifier:)]

@@ -32,7 +32,7 @@ extern_methods!(
         pub unsafe fn repeats(&self) -> bool;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }
 );
 
@@ -93,11 +93,11 @@ extern_methods!(
         pub unsafe fn triggerWithTimeInterval_repeats(
             time_interval: NSTimeInterval,
             repeats: bool,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other nextTriggerDate)]
-        pub unsafe fn nextTriggerDate(&self) -> Option<Id<NSDate, Shared>>;
+        pub unsafe fn nextTriggerDate(&self) -> Option<Id<NSDate>>;
     }
 );
 
@@ -127,18 +127,18 @@ extern_methods!(
     unsafe impl UNCalendarNotificationTrigger {
         #[cfg(feature = "Foundation_NSDateComponents")]
         #[method_id(@__retain_semantics Other dateComponents)]
-        pub unsafe fn dateComponents(&self) -> Id<NSDateComponents, Shared>;
+        pub unsafe fn dateComponents(&self) -> Id<NSDateComponents>;
 
         #[cfg(feature = "Foundation_NSDateComponents")]
         #[method_id(@__retain_semantics Other triggerWithDateMatchingComponents:repeats:)]
         pub unsafe fn triggerWithDateMatchingComponents_repeats(
             date_components: &NSDateComponents,
             repeats: bool,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other nextTriggerDate)]
-        pub unsafe fn nextTriggerDate(&self) -> Option<Id<NSDate, Shared>>;
+        pub unsafe fn nextTriggerDate(&self) -> Option<Id<NSDate>>;
     }
 );
 
@@ -168,13 +168,10 @@ extern_methods!(
     unsafe impl UNLocationNotificationTrigger {
         #[cfg(feature = "CoreLocation_CLRegion")]
         #[method_id(@__retain_semantics Other region)]
-        pub unsafe fn region(&self) -> Id<CLRegion, Shared>;
+        pub unsafe fn region(&self) -> Id<CLRegion>;
 
         #[cfg(feature = "CoreLocation_CLRegion")]
         #[method_id(@__retain_semantics Other triggerWithRegion:repeats:)]
-        pub unsafe fn triggerWithRegion_repeats(
-            region: &CLRegion,
-            repeats: bool,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn triggerWithRegion_repeats(region: &CLRegion, repeats: bool) -> Id<Self>;
     }
 );

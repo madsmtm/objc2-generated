@@ -35,7 +35,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             uuid: &NSUUID,
             identifier: &NSString,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSUUID"))]
         #[deprecated]
@@ -44,7 +44,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             proximity_uuid: &NSUUID,
             identifier: &NSString,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSUUID"))]
         #[method_id(@__retain_semantics Init initWithUUID:major:identifier:)]
@@ -53,7 +53,7 @@ extern_methods!(
             uuid: &NSUUID,
             major: CLBeaconMajorValue,
             identifier: &NSString,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSUUID"))]
         #[deprecated]
@@ -63,7 +63,7 @@ extern_methods!(
             proximity_uuid: &NSUUID,
             major: CLBeaconMajorValue,
             identifier: &NSString,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSUUID"))]
         #[method_id(@__retain_semantics Init initWithUUID:major:minor:identifier:)]
@@ -73,7 +73,7 @@ extern_methods!(
             major: CLBeaconMajorValue,
             minor: CLBeaconMinorValue,
             identifier: &NSString,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSUUID"))]
         #[deprecated]
@@ -84,7 +84,7 @@ extern_methods!(
             major: CLBeaconMajorValue,
             minor: CLBeaconMinorValue,
             identifier: &NSString,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(
             feature = "CoreLocation_CLBeaconIdentityConstraint",
@@ -95,7 +95,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             beacon_identity_constraint: &CLBeaconIdentityConstraint,
             identifier: &NSString,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(
             feature = "Foundation_NSMutableDictionary",
@@ -110,24 +110,24 @@ extern_methods!(
 
         #[cfg(feature = "CoreLocation_CLBeaconIdentityConstraint")]
         #[method_id(@__retain_semantics Other beaconIdentityConstraint)]
-        pub unsafe fn beaconIdentityConstraint(&self) -> Id<CLBeaconIdentityConstraint, Shared>;
+        pub unsafe fn beaconIdentityConstraint(&self) -> Id<CLBeaconIdentityConstraint>;
 
         #[cfg(feature = "Foundation_NSUUID")]
         #[method_id(@__retain_semantics Other UUID)]
-        pub unsafe fn UUID(&self) -> Id<NSUUID, Shared>;
+        pub unsafe fn UUID(&self) -> Id<NSUUID>;
 
         #[cfg(feature = "Foundation_NSUUID")]
         #[deprecated]
         #[method_id(@__retain_semantics Other proximityUUID)]
-        pub unsafe fn proximityUUID(&self) -> Id<NSUUID, Shared>;
+        pub unsafe fn proximityUUID(&self) -> Id<NSUUID>;
 
         #[cfg(feature = "Foundation_NSNumber")]
         #[method_id(@__retain_semantics Other major)]
-        pub unsafe fn major(&self) -> Option<Id<NSNumber, Shared>>;
+        pub unsafe fn major(&self) -> Option<Id<NSNumber>>;
 
         #[cfg(feature = "Foundation_NSNumber")]
         #[method_id(@__retain_semantics Other minor)]
-        pub unsafe fn minor(&self) -> Option<Id<NSNumber, Shared>>;
+        pub unsafe fn minor(&self) -> Option<Id<NSNumber>>;
 
         #[method(notifyEntryStateOnDisplay)]
         pub unsafe fn notifyEntryStateOnDisplay(&self) -> bool;
@@ -162,24 +162,24 @@ extern_methods!(
     unsafe impl CLBeacon {
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other timestamp)]
-        pub unsafe fn timestamp(&self) -> Id<NSDate, Shared>;
+        pub unsafe fn timestamp(&self) -> Id<NSDate>;
 
         #[cfg(feature = "Foundation_NSUUID")]
         #[method_id(@__retain_semantics Other UUID)]
-        pub unsafe fn UUID(&self) -> Id<NSUUID, Shared>;
+        pub unsafe fn UUID(&self) -> Id<NSUUID>;
 
         #[cfg(feature = "Foundation_NSUUID")]
         #[deprecated]
         #[method_id(@__retain_semantics Other proximityUUID)]
-        pub unsafe fn proximityUUID(&self) -> Id<NSUUID, Shared>;
+        pub unsafe fn proximityUUID(&self) -> Id<NSUUID>;
 
         #[cfg(feature = "Foundation_NSNumber")]
         #[method_id(@__retain_semantics Other major)]
-        pub unsafe fn major(&self) -> Id<NSNumber, Shared>;
+        pub unsafe fn major(&self) -> Id<NSNumber>;
 
         #[cfg(feature = "Foundation_NSNumber")]
         #[method_id(@__retain_semantics Other minor)]
-        pub unsafe fn minor(&self) -> Id<NSNumber, Shared>;
+        pub unsafe fn minor(&self) -> Id<NSNumber>;
 
         #[method(proximity)]
         pub unsafe fn proximity(&self) -> CLProximity;
@@ -204,6 +204,6 @@ extern_methods!(
             center: CLLocationCoordinate2D,
             radius: CLLocationDistance,
             identifier: &NSString,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

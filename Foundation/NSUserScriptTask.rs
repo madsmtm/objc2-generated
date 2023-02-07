@@ -27,11 +27,11 @@ extern_methods!(
         pub unsafe fn initWithURL_error(
             this: Option<Allocated<Self>>,
             url: &NSURL,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self>, Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other scriptURL)]
-        pub unsafe fn scriptURL(&self) -> Id<NSURL, Shared>;
+        pub unsafe fn scriptURL(&self) -> Id<NSURL>;
 
         #[method(executeWithCompletionHandler:)]
         pub unsafe fn executeWithCompletionHandler(
@@ -63,7 +63,7 @@ extern_methods!(
     unsafe impl NSUserUnixTask {
         #[cfg(feature = "Foundation_NSFileHandle")]
         #[method_id(@__retain_semantics Other standardInput)]
-        pub unsafe fn standardInput(&self) -> Option<Id<NSFileHandle, Shared>>;
+        pub unsafe fn standardInput(&self) -> Option<Id<NSFileHandle>>;
 
         #[cfg(feature = "Foundation_NSFileHandle")]
         #[method(setStandardInput:)]
@@ -71,7 +71,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSFileHandle")]
         #[method_id(@__retain_semantics Other standardOutput)]
-        pub unsafe fn standardOutput(&self) -> Option<Id<NSFileHandle, Shared>>;
+        pub unsafe fn standardOutput(&self) -> Option<Id<NSFileHandle>>;
 
         #[cfg(feature = "Foundation_NSFileHandle")]
         #[method(setStandardOutput:)]
@@ -79,7 +79,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSFileHandle")]
         #[method_id(@__retain_semantics Other standardError)]
-        pub unsafe fn standardError(&self) -> Option<Id<NSFileHandle, Shared>>;
+        pub unsafe fn standardError(&self) -> Option<Id<NSFileHandle>>;
 
         #[cfg(feature = "Foundation_NSFileHandle")]
         #[method(setStandardError:)]
@@ -148,7 +148,7 @@ extern_methods!(
     unsafe impl NSUserAutomatorTask {
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other variables)]
-        pub unsafe fn variables(&self) -> Option<Id<NSDictionary<NSString, Object>, Shared>>;
+        pub unsafe fn variables(&self) -> Option<Id<NSDictionary<NSString, Object>>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setVariables:)]
@@ -172,7 +172,7 @@ extern_methods!(
         pub unsafe fn initWithURL_error(
             this: Option<Allocated<Self>>,
             url: &NSURL,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self>, Id<NSError>>;
     }
 );
 
@@ -185,7 +185,7 @@ extern_methods!(
         pub unsafe fn initWithURL_error(
             this: Option<Allocated<Self>>,
             url: &NSURL,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self>, Id<NSError>>;
     }
 );
 
@@ -198,6 +198,6 @@ extern_methods!(
         pub unsafe fn initWithURL_error(
             this: Option<Allocated<Self>>,
             url: &NSURL,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self>, Id<NSError>>;
     }
 );

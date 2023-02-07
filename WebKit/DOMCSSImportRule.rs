@@ -26,14 +26,14 @@ extern_methods!(
     unsafe impl DOMCSSImportRule {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other href)]
-        pub unsafe fn href(&self) -> Id<NSString, Shared>;
+        pub unsafe fn href(&self) -> Id<NSString>;
 
         #[cfg(feature = "WebKit_DOMMediaList")]
         #[method_id(@__retain_semantics Other media)]
-        pub unsafe fn media(&self) -> Option<Id<DOMMediaList, Shared>>;
+        pub unsafe fn media(&self) -> Option<Id<DOMMediaList>>;
 
         #[cfg(feature = "WebKit_DOMCSSStyleSheet")]
         #[method_id(@__retain_semantics Other styleSheet)]
-        pub unsafe fn styleSheet(&self) -> Option<Id<DOMCSSStyleSheet, Shared>>;
+        pub unsafe fn styleSheet(&self) -> Option<Id<DOMCSSStyleSheet>>;
     }
 );

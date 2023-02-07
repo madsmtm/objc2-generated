@@ -30,7 +30,7 @@ extern_methods!(
         pub unsafe fn initWithTileOverlay(
             this: Option<Allocated<Self>>,
             overlay: &MKTileOverlay,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(reloadData)]
         pub unsafe fn reloadData(&self);
@@ -45,6 +45,6 @@ extern_methods!(
         pub unsafe fn initWithOverlay(
             this: Option<Allocated<Self>>,
             overlay: &ProtocolObject<dyn MKOverlay>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

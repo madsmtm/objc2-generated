@@ -27,11 +27,11 @@ extern_methods!(
     unsafe impl EKCalendarItem {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other UUID)]
-        pub unsafe fn UUID(&self) -> Id<NSString, Shared>;
+        pub unsafe fn UUID(&self) -> Id<NSString>;
 
         #[cfg(feature = "EventKit_EKCalendar")]
         #[method_id(@__retain_semantics Other calendar)]
-        pub unsafe fn calendar(&self) -> Option<Id<EKCalendar, Shared>>;
+        pub unsafe fn calendar(&self) -> Option<Id<EKCalendar>>;
 
         #[cfg(feature = "EventKit_EKCalendar")]
         #[method(setCalendar:)]
@@ -39,15 +39,15 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other calendarItemIdentifier)]
-        pub unsafe fn calendarItemIdentifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn calendarItemIdentifier(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other calendarItemExternalIdentifier)]
-        pub unsafe fn calendarItemExternalIdentifier(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn calendarItemExternalIdentifier(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Id<NSString, Shared>;
+        pub unsafe fn title(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setTitle:)]
@@ -55,7 +55,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other location)]
-        pub unsafe fn location(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn location(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLocation:)]
@@ -63,7 +63,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other notes)]
-        pub unsafe fn notes(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn notes(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setNotes:)]
@@ -71,7 +71,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other URL)]
-        pub unsafe fn URL(&self) -> Option<Id<NSURL, Shared>>;
+        pub unsafe fn URL(&self) -> Option<Id<NSURL>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method(setURL:)]
@@ -79,15 +79,15 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other lastModifiedDate)]
-        pub unsafe fn lastModifiedDate(&self) -> Option<Id<NSDate, Shared>>;
+        pub unsafe fn lastModifiedDate(&self) -> Option<Id<NSDate>>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other creationDate)]
-        pub unsafe fn creationDate(&self) -> Option<Id<NSDate, Shared>>;
+        pub unsafe fn creationDate(&self) -> Option<Id<NSDate>>;
 
         #[cfg(feature = "Foundation_NSTimeZone")]
         #[method_id(@__retain_semantics Other timeZone)]
-        pub unsafe fn timeZone(&self) -> Option<Id<NSTimeZone, Shared>>;
+        pub unsafe fn timeZone(&self) -> Option<Id<NSTimeZone>>;
 
         #[cfg(feature = "Foundation_NSTimeZone")]
         #[method(setTimeZone:)]
@@ -107,11 +107,11 @@ extern_methods!(
 
         #[cfg(all(feature = "EventKit_EKParticipant", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other attendees)]
-        pub unsafe fn attendees(&self) -> Option<Id<NSArray<EKParticipant>, Shared>>;
+        pub unsafe fn attendees(&self) -> Option<Id<NSArray<EKParticipant>>>;
 
         #[cfg(all(feature = "EventKit_EKAlarm", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other alarms)]
-        pub unsafe fn alarms(&self) -> Option<Id<NSArray<EKAlarm>, Shared>>;
+        pub unsafe fn alarms(&self) -> Option<Id<NSArray<EKAlarm>>>;
 
         #[cfg(all(feature = "EventKit_EKAlarm", feature = "Foundation_NSArray"))]
         #[method(setAlarms:)]
@@ -127,7 +127,7 @@ extern_methods!(
 
         #[cfg(all(feature = "EventKit_EKRecurrenceRule", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other recurrenceRules)]
-        pub unsafe fn recurrenceRules(&self) -> Option<Id<NSArray<EKRecurrenceRule>, Shared>>;
+        pub unsafe fn recurrenceRules(&self) -> Option<Id<NSArray<EKRecurrenceRule>>>;
 
         #[cfg(all(feature = "EventKit_EKRecurrenceRule", feature = "Foundation_NSArray"))]
         #[method(setRecurrenceRules:)]

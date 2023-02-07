@@ -26,33 +26,28 @@ extern_methods!(
     unsafe impl NSListFormatter {
         #[cfg(feature = "Foundation_NSLocale")]
         #[method_id(@__retain_semantics Other locale)]
-        pub unsafe fn locale(&self) -> Id<NSLocale, Shared>;
+        pub unsafe fn locale(&self) -> Id<NSLocale>;
 
         #[cfg(feature = "Foundation_NSLocale")]
         #[method(setLocale:)]
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
 
         #[method_id(@__retain_semantics Other itemFormatter)]
-        pub unsafe fn itemFormatter(&self) -> Option<Id<NSFormatter, Shared>>;
+        pub unsafe fn itemFormatter(&self) -> Option<Id<NSFormatter>>;
 
         #[method(setItemFormatter:)]
         pub unsafe fn setItemFormatter(&self, item_formatter: Option<&NSFormatter>);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other localizedStringByJoiningStrings:)]
-        pub unsafe fn localizedStringByJoiningStrings(
-            strings: &NSArray<NSString>,
-        ) -> Id<NSString, Shared>;
+        pub unsafe fn localizedStringByJoiningStrings(strings: &NSArray<NSString>) -> Id<NSString>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other stringFromItems:)]
-        pub unsafe fn stringFromItems(&self, items: &NSArray) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn stringFromItems(&self, items: &NSArray) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringForObjectValue:)]
-        pub unsafe fn stringForObjectValue(
-            &self,
-            obj: Option<&Object>,
-        ) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn stringForObjectValue(&self, obj: Option<&Object>) -> Option<Id<NSString>>;
     }
 );

@@ -31,16 +31,16 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSBindingSelectionMarker")]
     unsafe impl NSBindingSelectionMarker {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other multipleValuesSelectionMarker)]
-        pub unsafe fn multipleValuesSelectionMarker() -> Id<NSBindingSelectionMarker, Shared>;
+        pub unsafe fn multipleValuesSelectionMarker() -> Id<NSBindingSelectionMarker>;
 
         #[method_id(@__retain_semantics Other noSelectionMarker)]
-        pub unsafe fn noSelectionMarker() -> Id<NSBindingSelectionMarker, Shared>;
+        pub unsafe fn noSelectionMarker() -> Id<NSBindingSelectionMarker>;
 
         #[method_id(@__retain_semantics Other notApplicableSelectionMarker)]
-        pub unsafe fn notApplicableSelectionMarker() -> Id<NSBindingSelectionMarker, Shared>;
+        pub unsafe fn notApplicableSelectionMarker() -> Id<NSBindingSelectionMarker>;
 
         #[method(setDefaultPlaceholder:forMarker:onClass:withBinding:)]
         pub unsafe fn setDefaultPlaceholder_forMarker_onClass_withBinding(
@@ -55,7 +55,7 @@ extern_methods!(
             marker: Option<&NSBindingSelectionMarker>,
             object_class: &Class,
             binding: &NSBindingName,
-        ) -> Option<Id<Object, Shared>>;
+        ) -> Option<Id<Object>>;
     }
 );
 
@@ -97,7 +97,7 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(commitEditingAndReturnError:_)]
-        unsafe fn commitEditingAndReturnError(&self) -> Result<(), Id<NSError, Shared>>;
+        unsafe fn commitEditingAndReturnError(&self) -> Result<(), Id<NSError>>;
     }
 
     unsafe impl ProtocolType for dyn NSEditor {}

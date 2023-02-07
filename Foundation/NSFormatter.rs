@@ -46,10 +46,7 @@ extern_methods!(
     unsafe impl NSFormatter {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringForObjectValue:)]
-        pub unsafe fn stringForObjectValue(
-            &self,
-            obj: Option<&Object>,
-        ) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn stringForObjectValue(&self, obj: Option<&Object>) -> Option<Id<NSString>>;
 
         #[cfg(all(
             feature = "Foundation_NSAttributedString",
@@ -60,22 +57,19 @@ extern_methods!(
             &self,
             obj: &Object,
             attrs: Option<&NSDictionary<NSAttributedStringKey, Object>>,
-        ) -> Option<Id<NSAttributedString, Shared>>;
+        ) -> Option<Id<NSAttributedString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other editingStringForObjectValue:)]
-        pub unsafe fn editingStringForObjectValue(
-            &self,
-            obj: &Object,
-        ) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn editingStringForObjectValue(&self, obj: &Object) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(getObjectValue:forString:errorDescription:)]
         pub unsafe fn getObjectValue_forString_errorDescription(
             &self,
-            obj: Option<&mut Option<Id<Object, Shared>>>,
+            obj: Option<&mut Option<Id<Object>>>,
             string: &NSString,
-            error: Option<&mut Option<Id<NSString, Shared>>>,
+            error: Option<&mut Option<Id<NSString>>>,
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -83,19 +77,19 @@ extern_methods!(
         pub unsafe fn isPartialStringValid_newEditingString_errorDescription(
             &self,
             partial_string: &NSString,
-            new_string: Option<&mut Option<Id<NSString, Shared>>>,
-            error: Option<&mut Option<Id<NSString, Shared>>>,
+            new_string: Option<&mut Option<Id<NSString>>>,
+            error: Option<&mut Option<Id<NSString>>>,
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(isPartialStringValid:proposedSelectedRange:originalString:originalSelectedRange:errorDescription:)]
         pub unsafe fn isPartialStringValid_proposedSelectedRange_originalString_originalSelectedRange_errorDescription(
             &self,
-            partial_string_ptr: &mut Id<NSString, Shared>,
+            partial_string_ptr: &mut Id<NSString>,
             proposed_sel_range_ptr: NSRangePointer,
             orig_string: &NSString,
             orig_sel_range: NSRange,
-            error: Option<&mut Option<Id<NSString, Shared>>>,
+            error: Option<&mut Option<Id<NSString>>>,
         ) -> bool;
     }
 );

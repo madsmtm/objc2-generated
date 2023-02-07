@@ -29,7 +29,7 @@ extern_methods!(
     unsafe impl DOMHTMLFrameSetElement {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other cols)]
-        pub unsafe fn cols(&self) -> Id<NSString, Shared>;
+        pub unsafe fn cols(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCols:)]
@@ -37,7 +37,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other rows)]
-        pub unsafe fn rows(&self) -> Id<NSString, Shared>;
+        pub unsafe fn rows(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setRows:)]

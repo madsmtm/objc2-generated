@@ -83,7 +83,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other trackFillColor)]
-        pub unsafe fn trackFillColor(&self) -> Option<Id<NSColor, Shared>>;
+        pub unsafe fn trackFillColor(&self) -> Option<Id<NSColor>>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setTrackFillColor:)]
@@ -141,7 +141,7 @@ extern_methods!(
         pub unsafe fn sliderWithTarget_action(
             target: Option<&Object>,
             action: Option<Sel>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other sliderWithValue:minValue:maxValue:target:action:)]
         pub unsafe fn sliderWithValue_minValue_maxValue_target_action(
@@ -150,7 +150,7 @@ extern_methods!(
             max_value: c_double,
             target: Option<&Object>,
             action: Option<Sel>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );
 
@@ -165,7 +165,7 @@ extern_methods!(
 
         #[deprecated = "-titleCell has returned nil since 10.0"]
         #[method_id(@__retain_semantics Other titleCell)]
-        pub unsafe fn titleCell(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn titleCell(&self) -> Option<Id<Object>>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[deprecated = "-setTitleColor: had no effect since 10.0"]
@@ -175,7 +175,7 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSColor")]
         #[deprecated = "-titleColor has returned nil since 10.0"]
         #[method_id(@__retain_semantics Other titleColor)]
-        pub unsafe fn titleColor(&self) -> Option<Id<NSColor, Shared>>;
+        pub unsafe fn titleColor(&self) -> Option<Id<NSColor>>;
 
         #[cfg(feature = "AppKit_NSFont")]
         #[deprecated = "-setTitleFont: had no effect since 10.0"]
@@ -185,12 +185,12 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSFont")]
         #[deprecated = "-titleFont has returned nil since 10.0"]
         #[method_id(@__retain_semantics Other titleFont)]
-        pub unsafe fn titleFont(&self) -> Option<Id<NSFont, Shared>>;
+        pub unsafe fn titleFont(&self) -> Option<Id<NSFont>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "-title has returned nil since 10.0"]
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn title(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "-setTitle: had no effect since 10.0"]
@@ -209,7 +209,7 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSImage")]
         #[deprecated = "-image has returned nil since 10.0"]
         #[method_id(@__retain_semantics Other image)]
-        pub unsafe fn image(&self) -> Option<Id<NSImage, Shared>>;
+        pub unsafe fn image(&self) -> Option<Id<NSImage>>;
     }
 );
 
@@ -218,9 +218,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSSlider")]
     unsafe impl NSSlider {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frame_rect: NSRect,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
 );

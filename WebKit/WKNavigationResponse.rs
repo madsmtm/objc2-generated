@@ -27,7 +27,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSURLResponse")]
         #[method_id(@__retain_semantics Other response)]
-        pub unsafe fn response(&self) -> Id<NSURLResponse, Shared>;
+        pub unsafe fn response(&self) -> Id<NSURLResponse>;
 
         #[method(canShowMIMEType)]
         pub unsafe fn canShowMIMEType(&self) -> bool;

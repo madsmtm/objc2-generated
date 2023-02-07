@@ -27,7 +27,7 @@ extern_methods!(
         pub unsafe fn initForWritingWithMutableData(
             this: Option<Allocated<Self>>,
             mdata: &NSMutableData,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSMutableData")]
         #[method_id(@__retain_semantics Other archiverData)]
@@ -41,7 +41,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other archivedDataWithRootObject:)]
-        pub unsafe fn archivedDataWithRootObject(root_object: &Object) -> Id<NSData, Shared>;
+        pub unsafe fn archivedDataWithRootObject(root_object: &Object) -> Id<NSData>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(archiveRootObject:toFile:)]
@@ -60,7 +60,7 @@ extern_methods!(
         pub unsafe fn classNameEncodedForTrueClassName(
             &self,
             true_name: &NSString,
-        ) -> Option<Id<NSString, Shared>>;
+        ) -> Option<Id<NSString>>;
 
         #[method(replaceObject:withObject:)]
         pub unsafe fn replaceObject_withObject(&self, object: &Object, new_object: &Object);
@@ -91,7 +91,7 @@ extern_methods!(
         pub unsafe fn initForReadingWithData(
             this: Option<Allocated<Self>>,
             data: &NSData,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[method(setObjectZone:)]
         pub unsafe fn setObjectZone(&self, zone: *mut NSZone);
@@ -107,11 +107,11 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other unarchiveObjectWithData:)]
-        pub unsafe fn unarchiveObjectWithData(data: &NSData) -> Option<Id<Object, Shared>>;
+        pub unsafe fn unarchiveObjectWithData(data: &NSData) -> Option<Id<Object>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other unarchiveObjectWithFile:)]
-        pub unsafe fn unarchiveObjectWithFile(path: &NSString) -> Option<Id<Object, Shared>>;
+        pub unsafe fn unarchiveObjectWithFile(path: &NSString) -> Option<Id<Object>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(decodeClassName:asClassName:)]
@@ -132,14 +132,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other classNameDecodedForArchiveClassName:)]
         pub unsafe fn classNameDecodedForArchiveClassName_class(
             in_archive_name: &NSString,
-        ) -> Id<NSString, Shared>;
+        ) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other classNameDecodedForArchiveClassName:)]
         pub unsafe fn classNameDecodedForArchiveClassName(
             &self,
             in_archive_name: &NSString,
-        ) -> Id<NSString, Shared>;
+        ) -> Id<NSString>;
 
         #[method(replaceObject:withObject:)]
         pub unsafe fn replaceObject_withObject(&self, object: &Object, new_object: &Object);

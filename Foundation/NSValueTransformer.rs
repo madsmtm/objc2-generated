@@ -45,11 +45,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other valueTransformerForName:)]
         pub unsafe fn valueTransformerForName(
             name: &NSValueTransformerName,
-        ) -> Option<Id<NSValueTransformer, Shared>>;
+        ) -> Option<Id<NSValueTransformer>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other valueTransformerNames)]
-        pub unsafe fn valueTransformerNames() -> Id<NSArray<NSValueTransformerName>, Shared>;
+        pub unsafe fn valueTransformerNames() -> Id<NSArray<NSValueTransformerName>>;
 
         #[method(transformedValueClass)]
         pub unsafe fn transformedValueClass() -> &'static Class;
@@ -58,14 +58,10 @@ extern_methods!(
         pub unsafe fn allowsReverseTransformation() -> bool;
 
         #[method_id(@__retain_semantics Other transformedValue:)]
-        pub unsafe fn transformedValue(&self, value: Option<&Object>)
-            -> Option<Id<Object, Shared>>;
+        pub unsafe fn transformedValue(&self, value: Option<&Object>) -> Option<Id<Object>>;
 
         #[method_id(@__retain_semantics Other reverseTransformedValue:)]
-        pub unsafe fn reverseTransformedValue(
-            &self,
-            value: Option<&Object>,
-        ) -> Option<Id<Object, Shared>>;
+        pub unsafe fn reverseTransformedValue(&self, value: Option<&Object>) -> Option<Id<Object>>;
     }
 );
 
@@ -89,6 +85,6 @@ extern_methods!(
     unsafe impl NSSecureUnarchiveFromDataTransformer {
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other allowedTopLevelClasses)]
-        pub unsafe fn allowedTopLevelClasses() -> Id<NSArray<TodoClass>, Shared>;
+        pub unsafe fn allowedTopLevelClasses() -> Id<NSArray<TodoClass>>;
     }
 );

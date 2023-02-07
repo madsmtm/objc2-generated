@@ -28,7 +28,7 @@ extern_methods!(
     #[cfg(feature = "AuthenticationServices_ASPasswordCredentialIdentity")]
     unsafe impl ASPasswordCredentialIdentity {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(all(
             feature = "AuthenticationServices_ASCredentialServiceIdentifier",
@@ -40,7 +40,7 @@ extern_methods!(
             service_identifier: &ASCredentialServiceIdentifier,
             user: &NSString,
             record_identifier: Option<&NSString>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(
             feature = "AuthenticationServices_ASCredentialServiceIdentifier",
@@ -51,19 +51,19 @@ extern_methods!(
             service_identifier: &ASCredentialServiceIdentifier,
             user: &NSString,
             record_identifier: Option<&NSString>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "AuthenticationServices_ASCredentialServiceIdentifier")]
         #[method_id(@__retain_semantics Other serviceIdentifier)]
-        pub unsafe fn serviceIdentifier(&self) -> Id<ASCredentialServiceIdentifier, Shared>;
+        pub unsafe fn serviceIdentifier(&self) -> Id<ASCredentialServiceIdentifier>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other user)]
-        pub unsafe fn user(&self) -> Id<NSString, Shared>;
+        pub unsafe fn user(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other recordIdentifier)]
-        pub unsafe fn recordIdentifier(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn recordIdentifier(&self) -> Option<Id<NSString>>;
 
         #[method(rank)]
         pub unsafe fn rank(&self) -> NSInteger;

@@ -44,7 +44,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn UNUserNotificationCenterDelegate>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn UNUserNotificationCenterDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -56,10 +56,10 @@ extern_methods!(
         pub unsafe fn supportsContentExtensions(&self) -> bool;
 
         #[method_id(@__retain_semantics Other currentNotificationCenter)]
-        pub unsafe fn currentNotificationCenter() -> Id<UNUserNotificationCenter, Shared>;
+        pub unsafe fn currentNotificationCenter() -> Id<UNUserNotificationCenter>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(requestAuthorizationWithOptions:completionHandler:)]

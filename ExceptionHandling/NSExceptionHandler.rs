@@ -59,7 +59,7 @@ extern_methods!(
     #[cfg(feature = "ExceptionHandling_NSExceptionHandler")]
     unsafe impl NSExceptionHandler {
         #[method_id(@__retain_semantics Other defaultExceptionHandler)]
-        pub unsafe fn defaultExceptionHandler() -> Option<Id<NSExceptionHandler, Shared>>;
+        pub unsafe fn defaultExceptionHandler() -> Option<Id<NSExceptionHandler>>;
 
         #[method(setExceptionHandlingMask:)]
         pub unsafe fn setExceptionHandlingMask(&self, a_mask: NSUInteger);
@@ -77,6 +77,6 @@ extern_methods!(
         pub unsafe fn setDelegate(&self, an_object: Option<&Object>);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<Object>>;
     }
 );

@@ -104,9 +104,7 @@ extern_methods!(
         pub unsafe fn isAuthorizedForWidgetUpdates(&self) -> bool;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(
-            &self,
-        ) -> Option<Id<ProtocolObject<dyn CLLocationManagerDelegate>, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn CLLocationManagerDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -121,7 +119,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Set the purpose string in Info.plist using key NSLocationUsageDescription"]
         #[method_id(@__retain_semantics Other purpose)]
-        pub unsafe fn purpose(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn purpose(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Set the purpose string in Info.plist using key NSLocationUsageDescription"]
@@ -175,7 +173,7 @@ extern_methods!(
 
         #[cfg(feature = "CoreLocation_CLLocation")]
         #[method_id(@__retain_semantics Other location)]
-        pub unsafe fn location(&self) -> Option<Id<CLLocation, Shared>>;
+        pub unsafe fn location(&self) -> Option<Id<CLLocation>>;
 
         #[deprecated]
         #[method(headingAvailable)]
@@ -195,28 +193,26 @@ extern_methods!(
 
         #[cfg(feature = "CoreLocation_CLHeading")]
         #[method_id(@__retain_semantics Other heading)]
-        pub unsafe fn heading(&self) -> Option<Id<CLHeading, Shared>>;
+        pub unsafe fn heading(&self) -> Option<Id<CLHeading>>;
 
         #[method(maximumRegionMonitoringDistance)]
         pub unsafe fn maximumRegionMonitoringDistance(&self) -> CLLocationDistance;
 
         #[cfg(all(feature = "CoreLocation_CLRegion", feature = "Foundation_NSSet"))]
         #[method_id(@__retain_semantics Other monitoredRegions)]
-        pub unsafe fn monitoredRegions(&self) -> Id<NSSet<CLRegion>, Shared>;
+        pub unsafe fn monitoredRegions(&self) -> Id<NSSet<CLRegion>>;
 
         #[cfg(all(feature = "CoreLocation_CLRegion", feature = "Foundation_NSSet"))]
         #[deprecated = "Use -rangedBeaconConstraints"]
         #[method_id(@__retain_semantics Other rangedRegions)]
-        pub unsafe fn rangedRegions(&self) -> Id<NSSet<CLRegion>, Shared>;
+        pub unsafe fn rangedRegions(&self) -> Id<NSSet<CLRegion>>;
 
         #[cfg(all(
             feature = "CoreLocation_CLBeaconIdentityConstraint",
             feature = "Foundation_NSSet"
         ))]
         #[method_id(@__retain_semantics Other rangedBeaconConstraints)]
-        pub unsafe fn rangedBeaconConstraints(
-            &self,
-        ) -> Id<NSSet<CLBeaconIdentityConstraint>, Shared>;
+        pub unsafe fn rangedBeaconConstraints(&self) -> Id<NSSet<CLBeaconIdentityConstraint>>;
 
         #[method(requestWhenInUseAuthorization)]
         pub unsafe fn requestWhenInUseAuthorization(&self);

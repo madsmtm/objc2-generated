@@ -26,11 +26,11 @@ extern_methods!(
         pub unsafe fn initWithObjectID(
             this: Option<Allocated<Self>>,
             moid: &NSManagedObjectID,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "CoreData_NSManagedObjectID")]
         #[method_id(@__retain_semantics Other objectID)]
-        pub unsafe fn objectID(&self) -> Id<NSManagedObjectID, Shared>;
+        pub unsafe fn objectID(&self) -> Id<NSManagedObjectID>;
 
         #[cfg(all(
             feature = "Foundation_NSMutableDictionary",
@@ -53,7 +53,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other valueForKey:)]
-        pub unsafe fn valueForKey(&self, key: &NSString) -> Option<Id<Object, Shared>>;
+        pub unsafe fn valueForKey(&self, key: &NSString) -> Option<Id<Object>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setValue:forKey:)]

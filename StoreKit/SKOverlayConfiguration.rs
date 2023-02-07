@@ -31,10 +31,10 @@ extern_methods!(
     #[cfg(feature = "StoreKit_SKOverlayConfiguration")]
     unsafe impl SKOverlayConfiguration {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
     }
 );
 
@@ -57,10 +57,10 @@ extern_methods!(
     #[cfg(feature = "StoreKit_SKOverlayAppConfiguration")]
     unsafe impl SKOverlayAppConfiguration {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithAppIdentifier:position:)]
@@ -68,11 +68,11 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             app_identifier: &NSString,
             position: SKOverlayPosition,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other appIdentifier)]
-        pub unsafe fn appIdentifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn appIdentifier(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAppIdentifier:)]
@@ -80,7 +80,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other campaignToken)]
-        pub unsafe fn campaignToken(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn campaignToken(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCampaignToken:)]
@@ -88,7 +88,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other providerToken)]
-        pub unsafe fn providerToken(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn providerToken(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setProviderToken:)]
@@ -96,7 +96,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other customProductPageIdentifier)]
-        pub unsafe fn customProductPageIdentifier(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn customProductPageIdentifier(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCustomProductPageIdentifier:)]
@@ -107,7 +107,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other latestReleaseID)]
-        pub unsafe fn latestReleaseID(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn latestReleaseID(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLatestReleaseID:)]
@@ -131,7 +131,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other additionalValueForKey:)]
-        pub unsafe fn additionalValueForKey(&self, key: &NSString) -> Option<Id<Object, Shared>>;
+        pub unsafe fn additionalValueForKey(&self, key: &NSString) -> Option<Id<Object>>;
 
         #[cfg(feature = "StoreKit_SKAdImpression")]
         #[method(setAdImpression:)]
@@ -158,20 +158,20 @@ extern_methods!(
     #[cfg(feature = "StoreKit_SKOverlayAppClipConfiguration")]
     unsafe impl SKOverlayAppClipConfiguration {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithPosition:)]
         pub unsafe fn initWithPosition(
             this: Option<Allocated<Self>>,
             position: SKOverlayPosition,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other campaignToken)]
-        pub unsafe fn campaignToken(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn campaignToken(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCampaignToken:)]
@@ -179,7 +179,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other providerToken)]
-        pub unsafe fn providerToken(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn providerToken(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setProviderToken:)]
@@ -187,7 +187,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other customProductPageIdentifier)]
-        pub unsafe fn customProductPageIdentifier(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn customProductPageIdentifier(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCustomProductPageIdentifier:)]
@@ -198,7 +198,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other latestReleaseID)]
-        pub unsafe fn latestReleaseID(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn latestReleaseID(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLatestReleaseID:)]
@@ -216,6 +216,6 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other additionalValueForKey:)]
-        pub unsafe fn additionalValueForKey(&self, key: &NSString) -> Option<Id<Object, Shared>>;
+        pub unsafe fn additionalValueForKey(&self, key: &NSString) -> Option<Id<Object>>;
     }
 );

@@ -133,17 +133,17 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             tag_schemes: &NSArray<NSLinguisticTagScheme>,
             opts: NSUInteger,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[method_id(@__retain_semantics Other tagSchemes)]
-        pub unsafe fn tagSchemes(&self) -> Id<NSArray<NSLinguisticTagScheme>, Shared>;
+        pub unsafe fn tagSchemes(&self) -> Id<NSArray<NSLinguisticTagScheme>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[method_id(@__retain_semantics Other string)]
-        pub unsafe fn string(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn string(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
@@ -156,14 +156,14 @@ extern_methods!(
         pub unsafe fn availableTagSchemesForUnit_language(
             unit: NSLinguisticTaggerUnit,
             language: &NSString,
-        ) -> Id<NSArray<NSLinguisticTagScheme>, Shared>;
+        ) -> Id<NSArray<NSLinguisticTagScheme>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[method_id(@__retain_semantics Other availableTagSchemesForLanguage:)]
         pub unsafe fn availableTagSchemesForLanguage(
             language: &NSString,
-        ) -> Id<NSArray<NSLinguisticTagScheme>, Shared>;
+        ) -> Id<NSArray<NSLinguisticTagScheme>>;
 
         #[cfg(feature = "Foundation_NSOrthography")]
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
@@ -181,7 +181,7 @@ extern_methods!(
             &self,
             char_index: NSUInteger,
             effective_range: NSRangePointer,
-        ) -> Option<Id<NSOrthography, Shared>>;
+        ) -> Option<Id<NSOrthography>>;
 
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[method(stringEditedInRange:changeInLength:)]
@@ -222,7 +222,7 @@ extern_methods!(
             unit: NSLinguisticTaggerUnit,
             scheme: &NSLinguisticTagScheme,
             token_range: NSRangePointer,
-        ) -> Option<Id<NSLinguisticTag, Shared>>;
+        ) -> Option<Id<NSLinguisticTag>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
@@ -233,8 +233,8 @@ extern_methods!(
             unit: NSLinguisticTaggerUnit,
             scheme: &NSLinguisticTagScheme,
             options: NSLinguisticTaggerOptions,
-            token_ranges: Option<&mut Option<Id<NSArray<NSValue>, Shared>>>,
-        ) -> Id<NSArray<NSLinguisticTag>, Shared>;
+            token_ranges: Option<&mut Option<Id<NSArray<NSValue>>>>,
+        ) -> Id<NSArray<NSLinguisticTag>>;
 
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[method(enumerateTagsInRange:scheme:options:usingBlock:)]
@@ -254,7 +254,7 @@ extern_methods!(
             scheme: &NSLinguisticTagScheme,
             token_range: NSRangePointer,
             sentence_range: NSRangePointer,
-        ) -> Option<Id<NSLinguisticTag, Shared>>;
+        ) -> Option<Id<NSLinguisticTag>>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -268,18 +268,18 @@ extern_methods!(
             range: NSRange,
             tag_scheme: &NSString,
             opts: NSLinguisticTaggerOptions,
-            token_ranges: Option<&mut Option<Id<NSArray<NSValue>, Shared>>>,
-        ) -> Id<NSArray<NSString>, Shared>;
+            token_ranges: Option<&mut Option<Id<NSArray<NSValue>>>>,
+        ) -> Id<NSArray<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[method_id(@__retain_semantics Other dominantLanguage)]
-        pub unsafe fn dominantLanguage(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn dominantLanguage(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[method_id(@__retain_semantics Other dominantLanguageForString:)]
-        pub unsafe fn dominantLanguageForString(string: &NSString) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn dominantLanguageForString(string: &NSString) -> Option<Id<NSString>>;
 
         #[cfg(all(feature = "Foundation_NSOrthography", feature = "Foundation_NSString"))]
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
@@ -291,7 +291,7 @@ extern_methods!(
             scheme: &NSLinguisticTagScheme,
             orthography: Option<&NSOrthography>,
             token_range: NSRangePointer,
-        ) -> Option<Id<NSLinguisticTag, Shared>>;
+        ) -> Option<Id<NSLinguisticTag>>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -308,8 +308,8 @@ extern_methods!(
             scheme: &NSLinguisticTagScheme,
             options: NSLinguisticTaggerOptions,
             orthography: Option<&NSOrthography>,
-            token_ranges: Option<&mut Option<Id<NSArray<NSValue>, Shared>>>,
-        ) -> Id<NSArray<NSLinguisticTag>, Shared>;
+            token_ranges: Option<&mut Option<Id<NSArray<NSValue>>>>,
+        ) -> Id<NSArray<NSLinguisticTag>>;
 
         #[cfg(all(feature = "Foundation_NSOrthography", feature = "Foundation_NSString"))]
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
@@ -337,8 +337,8 @@ extern_methods!(
             tag_scheme: &NSString,
             token_range: NSRangePointer,
             sentence_range: NSRangePointer,
-            scores: Option<&mut Option<Id<NSArray<NSValue>, Shared>>>,
-        ) -> Option<Id<NSArray<NSString>, Shared>>;
+            scores: Option<&mut Option<Id<NSArray<NSValue>>>>,
+        ) -> Option<Id<NSArray<NSString>>>;
     }
 );
 
@@ -359,8 +359,8 @@ extern_methods!(
             scheme: &NSLinguisticTagScheme,
             options: NSLinguisticTaggerOptions,
             orthography: Option<&NSOrthography>,
-            token_ranges: Option<&mut Option<Id<NSArray<NSValue>, Shared>>>,
-        ) -> Id<NSArray<NSLinguisticTag>, Shared>;
+            token_ranges: Option<&mut Option<Id<NSArray<NSValue>>>>,
+        ) -> Id<NSArray<NSLinguisticTag>>;
 
         #[cfg(feature = "Foundation_NSOrthography")]
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]

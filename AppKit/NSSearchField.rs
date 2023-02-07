@@ -85,16 +85,14 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other recentSearches)]
-        pub unsafe fn recentSearches(&self) -> Id<NSArray<NSString>, Shared>;
+        pub unsafe fn recentSearches(&self) -> Id<NSArray<NSString>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setRecentSearches:)]
         pub unsafe fn setRecentSearches(&self, recent_searches: &NSArray<NSString>);
 
         #[method_id(@__retain_semantics Other recentsAutosaveName)]
-        pub unsafe fn recentsAutosaveName(
-            &self,
-        ) -> Option<Id<NSSearchFieldRecentsAutosaveName, Shared>>;
+        pub unsafe fn recentsAutosaveName(&self) -> Option<Id<NSSearchFieldRecentsAutosaveName>>;
 
         #[method(setRecentsAutosaveName:)]
         pub unsafe fn setRecentsAutosaveName(
@@ -104,7 +102,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSMenu")]
         #[method_id(@__retain_semantics Other searchMenuTemplate)]
-        pub unsafe fn searchMenuTemplate(&self) -> Option<Id<NSMenu, Shared>>;
+        pub unsafe fn searchMenuTemplate(&self) -> Option<Id<NSMenu>>;
 
         #[cfg(feature = "AppKit_NSMenu")]
         #[method(setSearchMenuTemplate:)]
@@ -129,9 +127,7 @@ extern_methods!(
         pub unsafe fn setSendsSearchStringImmediately(&self, sends_search_string_immediately: bool);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(
-            &self,
-        ) -> Option<Id<ProtocolObject<dyn NSSearchFieldDelegate>, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSSearchFieldDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -175,21 +171,21 @@ extern_methods!(
     unsafe impl NSSearchField {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other labelWithString:)]
-        pub unsafe fn labelWithString(string_value: &NSString) -> Id<Self, Shared>;
+        pub unsafe fn labelWithString(string_value: &NSString) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other wrappingLabelWithString:)]
-        pub unsafe fn wrappingLabelWithString(string_value: &NSString) -> Id<Self, Shared>;
+        pub unsafe fn wrappingLabelWithString(string_value: &NSString) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other labelWithAttributedString:)]
         pub unsafe fn labelWithAttributedString(
             attributed_string_value: &NSAttributedString,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other textFieldWithString:)]
-        pub unsafe fn textFieldWithString(string_value: &NSString) -> Id<Self, Shared>;
+        pub unsafe fn textFieldWithString(string_value: &NSString) -> Id<Self>;
     }
 );
 
@@ -198,9 +194,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSSearchField")]
     unsafe impl NSSearchField {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frame_rect: NSRect,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
 );

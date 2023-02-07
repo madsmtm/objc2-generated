@@ -9,7 +9,7 @@ extern_methods!(
     unsafe impl ASCredentialProviderViewController {
         #[cfg(feature = "AuthenticationServices_ASCredentialProviderExtensionContext")]
         #[method_id(@__retain_semantics Other extensionContext)]
-        pub unsafe fn extensionContext(&self) -> Id<ASCredentialProviderExtensionContext, Shared>;
+        pub unsafe fn extensionContext(&self) -> Id<ASCredentialProviderExtensionContext>;
 
         #[cfg(all(
             feature = "AuthenticationServices_ASCredentialServiceIdentifier",

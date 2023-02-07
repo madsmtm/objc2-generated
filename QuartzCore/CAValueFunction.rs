@@ -32,10 +32,10 @@ extern_methods!(
     #[cfg(feature = "CoreAnimation_CAValueFunction")]
     unsafe impl CAValueFunction {
         #[method_id(@__retain_semantics Other functionWithName:)]
-        pub unsafe fn functionWithName(name: &CAValueFunctionName) -> Option<Id<Self, Shared>>;
+        pub unsafe fn functionWithName(name: &CAValueFunctionName) -> Option<Id<Self>>;
 
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<CAValueFunctionName, Shared>;
+        pub unsafe fn name(&self) -> Id<CAValueFunctionName>;
     }
 );
 

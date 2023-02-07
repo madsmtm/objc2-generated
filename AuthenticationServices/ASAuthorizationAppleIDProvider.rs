@@ -40,7 +40,7 @@ extern_methods!(
     unsafe impl ASAuthorizationAppleIDProvider {
         #[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDRequest")]
         #[method_id(@__retain_semantics Other createRequest)]
-        pub unsafe fn createRequest(&self) -> Id<ASAuthorizationAppleIDRequest, Shared>;
+        pub unsafe fn createRequest(&self) -> Id<ASAuthorizationAppleIDRequest>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method(getCredentialStateForUserID:completion:)]

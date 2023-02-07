@@ -281,16 +281,16 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSValue")]
     unsafe impl NSValue {
         #[method_id(@__retain_semantics Other valueWithPoint:)]
-        pub unsafe fn valueWithPoint(point: NSPoint) -> Id<NSValue, Shared>;
+        pub unsafe fn valueWithPoint(point: NSPoint) -> Id<NSValue>;
 
         #[method_id(@__retain_semantics Other valueWithSize:)]
-        pub unsafe fn valueWithSize(size: NSSize) -> Id<NSValue, Shared>;
+        pub unsafe fn valueWithSize(size: NSSize) -> Id<NSValue>;
 
         #[method_id(@__retain_semantics Other valueWithRect:)]
-        pub unsafe fn valueWithRect(rect: NSRect) -> Id<NSValue, Shared>;
+        pub unsafe fn valueWithRect(rect: NSRect) -> Id<NSValue>;
 
         #[method_id(@__retain_semantics Other valueWithEdgeInsets:)]
-        pub unsafe fn valueWithEdgeInsets(insets: NSEdgeInsets) -> Id<NSValue, Shared>;
+        pub unsafe fn valueWithEdgeInsets(insets: NSEdgeInsets) -> Id<NSValue>;
 
         #[method(pointValue)]
         pub unsafe fn pointValue(&self) -> NSPoint;

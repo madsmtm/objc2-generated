@@ -27,23 +27,20 @@ extern_methods!(
     unsafe impl GCRacingWheelInputState {
         #[cfg(feature = "GameController_GCSteeringWheelElement")]
         #[method_id(@__retain_semantics Other wheel)]
-        pub unsafe fn wheel(&self) -> Id<GCSteeringWheelElement, Shared>;
+        pub unsafe fn wheel(&self) -> Id<GCSteeringWheelElement>;
 
         #[method_id(@__retain_semantics Other acceleratorPedal)]
-        pub unsafe fn acceleratorPedal(
-            &self,
-        ) -> Option<Id<ProtocolObject<dyn GCButtonElement>, Shared>>;
+        pub unsafe fn acceleratorPedal(&self) -> Option<Id<ProtocolObject<dyn GCButtonElement>>>;
 
         #[method_id(@__retain_semantics Other brakePedal)]
-        pub unsafe fn brakePedal(&self) -> Option<Id<ProtocolObject<dyn GCButtonElement>, Shared>>;
+        pub unsafe fn brakePedal(&self) -> Option<Id<ProtocolObject<dyn GCButtonElement>>>;
 
         #[method_id(@__retain_semantics Other clutchPedal)]
-        pub unsafe fn clutchPedal(&self)
-            -> Option<Id<ProtocolObject<dyn GCButtonElement>, Shared>>;
+        pub unsafe fn clutchPedal(&self) -> Option<Id<ProtocolObject<dyn GCButtonElement>>>;
 
         #[cfg(feature = "GameController_GCGearShifterElement")]
         #[method_id(@__retain_semantics Other shifter)]
-        pub unsafe fn shifter(&self) -> Option<Id<GCGearShifterElement, Shared>>;
+        pub unsafe fn shifter(&self) -> Option<Id<GCGearShifterElement>>;
     }
 );
 
@@ -72,9 +69,9 @@ extern_methods!(
     #[cfg(feature = "GameController_GCRacingWheelInput")]
     unsafe impl GCRacingWheelInput {
         #[method_id(@__retain_semantics Other capture)]
-        pub unsafe fn capture(&self) -> Id<GCRacingWheelInputState, Shared>;
+        pub unsafe fn capture(&self) -> Id<GCRacingWheelInputState>;
 
         #[method_id(@__retain_semantics Other nextInputState)]
-        pub unsafe fn nextInputState(&self) -> Option<Id<GCRacingWheelInputState, Shared>>;
+        pub unsafe fn nextInputState(&self) -> Option<Id<GCRacingWheelInputState>>;
     }
 );

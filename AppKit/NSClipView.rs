@@ -46,7 +46,7 @@ extern_methods!(
     unsafe impl NSClipView {
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other backgroundColor)]
-        pub unsafe fn backgroundColor(&self) -> Id<NSColor, Shared>;
+        pub unsafe fn backgroundColor(&self) -> Id<NSColor>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setBackgroundColor:)]
@@ -59,7 +59,7 @@ extern_methods!(
         pub unsafe fn setDrawsBackground(&self, draws_background: bool);
 
         #[method_id(@__retain_semantics Other documentView)]
-        pub unsafe fn documentView(&self) -> Option<Id<NSView, Shared>>;
+        pub unsafe fn documentView(&self) -> Option<Id<NSView>>;
 
         #[method(setDocumentView:)]
         pub unsafe fn setDocumentView(&self, document_view: Option<&NSView>);
@@ -69,7 +69,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSCursor")]
         #[method_id(@__retain_semantics Other documentCursor)]
-        pub unsafe fn documentCursor(&self) -> Option<Id<NSCursor, Shared>>;
+        pub unsafe fn documentCursor(&self) -> Option<Id<NSCursor>>;
 
         #[cfg(feature = "AppKit_NSCursor")]
         #[method(setDocumentCursor:)]
@@ -149,9 +149,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSClipView")]
     unsafe impl NSClipView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frame_rect: NSRect,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
 );

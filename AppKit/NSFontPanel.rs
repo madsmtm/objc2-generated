@@ -81,14 +81,14 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSFontPanel")]
     unsafe impl NSFontPanel {
         #[method_id(@__retain_semantics Other sharedFontPanel)]
-        pub unsafe fn sharedFontPanel() -> Id<NSFontPanel, Shared>;
+        pub unsafe fn sharedFontPanel() -> Id<NSFontPanel>;
 
         #[method(sharedFontPanelExists)]
         pub unsafe fn sharedFontPanelExists() -> bool;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other accessoryView)]
-        pub unsafe fn accessoryView(&self) -> Option<Id<NSView, Shared>>;
+        pub unsafe fn accessoryView(&self) -> Option<Id<NSView>>;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(setAccessoryView:)]
@@ -100,7 +100,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSFont")]
         #[method_id(@__retain_semantics Other panelConvertFont:)]
-        pub unsafe fn panelConvertFont(&self, font_obj: &NSFont) -> Id<NSFont, Shared>;
+        pub unsafe fn panelConvertFont(&self, font_obj: &NSFont) -> Id<NSFont>;
 
         #[method(worksWhenModal)]
         pub unsafe fn worksWhenModal(&self) -> bool;
@@ -161,7 +161,7 @@ extern_methods!(
             style: NSWindowStyleMask,
             backing_store_type: NSBackingStoreType,
             flag: bool,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSScreen")]
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:screen:)]
@@ -172,12 +172,12 @@ extern_methods!(
             backing_store_type: NSBackingStoreType,
             flag: bool,
             screen: Option<&NSScreen>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSViewController")]
         #[method_id(@__retain_semantics Other windowWithContentViewController:)]
         pub unsafe fn windowWithContentViewController(
             content_view_controller: &NSViewController,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

@@ -259,12 +259,10 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSApplication")]
     unsafe impl NSApplication {
         #[method_id(@__retain_semantics Other sharedApplication)]
-        pub unsafe fn sharedApplication() -> Id<NSApplication, Shared>;
+        pub unsafe fn sharedApplication() -> Id<NSApplication>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(
-            &self,
-        ) -> Option<Id<ProtocolObject<dyn NSApplicationDelegate>, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSApplicationDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -283,18 +281,15 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[method_id(@__retain_semantics Other windowWithWindowNumber:)]
-        pub unsafe fn windowWithWindowNumber(
-            &self,
-            window_num: NSInteger,
-        ) -> Option<Id<NSWindow, Shared>>;
+        pub unsafe fn windowWithWindowNumber(&self, window_num: NSInteger) -> Option<Id<NSWindow>>;
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[method_id(@__retain_semantics Other mainWindow)]
-        pub unsafe fn mainWindow(&self) -> Option<Id<NSWindow, Shared>>;
+        pub unsafe fn mainWindow(&self) -> Option<Id<NSWindow>>;
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[method_id(@__retain_semantics Other keyWindow)]
-        pub unsafe fn keyWindow(&self) -> Option<Id<NSWindow, Shared>>;
+        pub unsafe fn keyWindow(&self) -> Option<Id<NSWindow>>;
 
         #[method(isActive)]
         pub unsafe fn isActive(&self) -> bool;
@@ -341,7 +336,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[method_id(@__retain_semantics Other modalWindow)]
-        pub unsafe fn modalWindow(&self) -> Option<Id<NSWindow, Shared>>;
+        pub unsafe fn modalWindow(&self) -> Option<Id<NSWindow>>;
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[method(beginModalSessionForWindow:)]
@@ -378,7 +373,7 @@ extern_methods!(
 
         #[cfg(all(feature = "AppKit_NSWindow", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other windows)]
-        pub unsafe fn windows(&self) -> Id<NSArray<NSWindow>, Shared>;
+        pub unsafe fn windows(&self) -> Id<NSArray<NSWindow>>;
 
         #[method(setWindowsNeedUpdate:)]
         pub unsafe fn setWindowsNeedUpdate(&self, need_update: bool);
@@ -388,7 +383,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSMenu")]
         #[method_id(@__retain_semantics Other mainMenu)]
-        pub unsafe fn mainMenu(&self) -> Option<Id<NSMenu, Shared>>;
+        pub unsafe fn mainMenu(&self) -> Option<Id<NSMenu>>;
 
         #[cfg(feature = "AppKit_NSMenu")]
         #[method(setMainMenu:)]
@@ -396,7 +391,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSMenu")]
         #[method_id(@__retain_semantics Other helpMenu)]
-        pub unsafe fn helpMenu(&self) -> Option<Id<NSMenu, Shared>>;
+        pub unsafe fn helpMenu(&self) -> Option<Id<NSMenu>>;
 
         #[cfg(feature = "AppKit_NSMenu")]
         #[method(setHelpMenu:)]
@@ -404,7 +399,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other applicationIconImage)]
-        pub unsafe fn applicationIconImage(&self) -> Option<Id<NSImage, Shared>>;
+        pub unsafe fn applicationIconImage(&self) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method(setApplicationIconImage:)]
@@ -421,7 +416,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSDockTile")]
         #[method_id(@__retain_semantics Other dockTile)]
-        pub unsafe fn dockTile(&self) -> Id<NSDockTile, Shared>;
+        pub unsafe fn dockTile(&self) -> Id<NSDockTile>;
 
         #[cfg(feature = "Foundation_NSException")]
         #[method(reportException:)]
@@ -469,7 +464,7 @@ extern_methods!(
     unsafe impl NSApplication {
         #[cfg(feature = "AppKit_NSAppearance")]
         #[method_id(@__retain_semantics Other appearance)]
-        pub unsafe fn appearance(&self) -> Option<Id<NSAppearance, Shared>>;
+        pub unsafe fn appearance(&self) -> Option<Id<NSAppearance>>;
 
         #[cfg(feature = "AppKit_NSAppearance")]
         #[method(setAppearance:)]
@@ -477,7 +472,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSAppearance")]
         #[method_id(@__retain_semantics Other effectiveAppearance)]
-        pub unsafe fn effectiveAppearance(&self) -> Id<NSAppearance, Shared>;
+        pub unsafe fn effectiveAppearance(&self) -> Id<NSAppearance>;
     }
 );
 
@@ -498,7 +493,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSEvent")]
         #[method_id(@__retain_semantics Other currentEvent)]
-        pub unsafe fn currentEvent(&self) -> Option<Id<NSEvent, Shared>>;
+        pub unsafe fn currentEvent(&self) -> Option<Id<NSEvent>>;
 
         #[cfg(all(feature = "AppKit_NSEvent", feature = "Foundation_NSDate"))]
         #[method_id(@__retain_semantics Other nextEventMatchingMask:untilDate:inMode:dequeue:)]
@@ -508,7 +503,7 @@ extern_methods!(
             expiration: Option<&NSDate>,
             mode: &NSRunLoopMode,
             deq_flag: bool,
-        ) -> Option<Id<NSEvent, Shared>>;
+        ) -> Option<Id<NSEvent>>;
 
         #[cfg(feature = "AppKit_NSEvent")]
         #[method(discardEventsMatchingMask:beforeEvent:)]
@@ -533,7 +528,7 @@ extern_methods!(
         ) -> bool;
 
         #[method_id(@__retain_semantics Other targetForAction:)]
-        pub unsafe fn targetForAction(&self, action: Sel) -> Option<Id<Object, Shared>>;
+        pub unsafe fn targetForAction(&self, action: Sel) -> Option<Id<Object>>;
 
         #[method_id(@__retain_semantics Other targetForAction:to:from:)]
         pub unsafe fn targetForAction_to_from(
@@ -541,7 +536,7 @@ extern_methods!(
             action: Sel,
             target: Option<&Object>,
             sender: Option<&Object>,
-        ) -> Option<Id<Object, Shared>>;
+        ) -> Option<Id<Object>>;
 
         #[method(tryToPerform:with:)]
         pub unsafe fn tryToPerform_with(&self, action: Sel, object: Option<&Object>) -> bool;
@@ -551,7 +546,7 @@ extern_methods!(
             &self,
             send_type: Option<&NSPasteboardType>,
             return_type: Option<&NSPasteboardType>,
-        ) -> Option<Id<Object, Shared>>;
+        ) -> Option<Id<Object>>;
     }
 );
 
@@ -561,7 +556,7 @@ extern_methods!(
     unsafe impl NSApplication {
         #[cfg(feature = "AppKit_NSMenu")]
         #[method_id(@__retain_semantics Other windowsMenu)]
-        pub unsafe fn windowsMenu(&self) -> Option<Id<NSMenu, Shared>>;
+        pub unsafe fn windowsMenu(&self) -> Option<Id<NSMenu>>;
 
         #[cfg(feature = "AppKit_NSMenu")]
         #[method(setWindowsMenu:)]
@@ -736,7 +731,7 @@ extern_protocol!(
         #[cfg(all(feature = "AppKit_NSApplication", feature = "AppKit_NSMenu"))]
         #[optional]
         #[method_id(@__retain_semantics Other applicationDockMenu:)]
-        unsafe fn applicationDockMenu(&self, sender: &NSApplication) -> Option<Id<NSMenu, Shared>>;
+        unsafe fn applicationDockMenu(&self, sender: &NSApplication) -> Option<Id<NSMenu>>;
 
         #[cfg(all(feature = "AppKit_NSApplication", feature = "Foundation_NSError"))]
         #[optional]
@@ -745,7 +740,7 @@ extern_protocol!(
             &self,
             application: &NSApplication,
             error: &NSError,
-        ) -> Id<NSError, Shared>;
+        ) -> Id<NSError>;
 
         #[cfg(all(feature = "AppKit_NSApplication", feature = "Foundation_NSData"))]
         #[optional]
@@ -964,7 +959,7 @@ extern_methods!(
     unsafe impl NSApplication {
         #[cfg(feature = "AppKit_NSMenu")]
         #[method_id(@__retain_semantics Other servicesMenu)]
-        pub unsafe fn servicesMenu(&self) -> Option<Id<NSMenu, Shared>>;
+        pub unsafe fn servicesMenu(&self) -> Option<Id<NSMenu>>;
 
         #[cfg(feature = "AppKit_NSMenu")]
         #[method(setServicesMenu:)]
@@ -1005,7 +1000,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSApplication")]
     unsafe impl NSApplication {
         #[method_id(@__retain_semantics Other servicesProvider)]
-        pub unsafe fn servicesProvider(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn servicesProvider(&self) -> Option<Id<Object>>;
 
         #[method(setServicesProvider:)]
         pub unsafe fn setServicesProvider(&self, services_provider: Option<&Object>);
@@ -1250,11 +1245,11 @@ extern_methods!(
             &self,
             selector: Sel,
             flag: bool,
-        ) -> Option<Id<NSWindow, Shared>>;
+        ) -> Option<Id<NSWindow>>;
 
         #[cfg(feature = "AppKit_NSGraphicsContext")]
         #[deprecated = "This method always returns nil. If you need access to the current drawing context, use [NSGraphicsContext currentContext] inside of a draw operation."]
         #[method_id(@__retain_semantics Other context)]
-        pub unsafe fn context(&self) -> Option<Id<NSGraphicsContext, Shared>>;
+        pub unsafe fn context(&self) -> Option<Id<NSGraphicsContext>>;
     }
 );

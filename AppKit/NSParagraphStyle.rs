@@ -58,9 +58,8 @@ extern_methods!(
     unsafe impl NSTextTab {
         #[cfg(all(feature = "Foundation_NSCharacterSet", feature = "Foundation_NSLocale"))]
         #[method_id(@__retain_semantics Other columnTerminatorsForLocale:)]
-        pub unsafe fn columnTerminatorsForLocale(
-            a_locale: Option<&NSLocale>,
-        ) -> Id<NSCharacterSet, Shared>;
+        pub unsafe fn columnTerminatorsForLocale(a_locale: Option<&NSLocale>)
+            -> Id<NSCharacterSet>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Init initWithTextAlignment:location:options:)]
@@ -69,7 +68,7 @@ extern_methods!(
             alignment: NSTextAlignment,
             loc: CGFloat,
             options: &NSDictionary<NSTextTabOptionKey, Object>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(alignment)]
         pub unsafe fn alignment(&self) -> NSTextAlignment;
@@ -79,7 +78,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other options)]
-        pub unsafe fn options(&self) -> Id<NSDictionary<NSTextTabOptionKey, Object>, Shared>;
+        pub unsafe fn options(&self) -> Id<NSDictionary<NSTextTabOptionKey, Object>>;
     }
 );
 
@@ -107,7 +106,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSParagraphStyle")]
     unsafe impl NSParagraphStyle {
         #[method_id(@__retain_semantics Other defaultParagraphStyle)]
-        pub unsafe fn defaultParagraphStyle() -> Id<NSParagraphStyle, Shared>;
+        pub unsafe fn defaultParagraphStyle() -> Id<NSParagraphStyle>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(defaultWritingDirectionForLanguage:)]
@@ -159,7 +158,7 @@ extern_methods!(
 
         #[cfg(all(feature = "AppKit_NSTextTab", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other tabStops)]
-        pub unsafe fn tabStops(&self) -> Id<NSArray<NSTextTab>, Shared>;
+        pub unsafe fn tabStops(&self) -> Id<NSArray<NSTextTab>>;
 
         #[method(defaultTabInterval)]
         pub unsafe fn defaultTabInterval(&self) -> CGFloat;
@@ -172,11 +171,11 @@ extern_methods!(
 
         #[cfg(all(feature = "AppKit_NSTextBlock", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other textBlocks)]
-        pub unsafe fn textBlocks(&self) -> Id<NSArray<NSTextBlock>, Shared>;
+        pub unsafe fn textBlocks(&self) -> Id<NSArray<NSTextBlock>>;
 
         #[cfg(all(feature = "AppKit_NSTextList", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other textLists)]
-        pub unsafe fn textLists(&self) -> Id<NSArray<NSTextList>, Shared>;
+        pub unsafe fn textLists(&self) -> Id<NSArray<NSTextList>>;
 
         #[method(headerLevel)]
         pub unsafe fn headerLevel(&self) -> NSInteger;
@@ -296,7 +295,7 @@ extern_methods!(
 
         #[cfg(all(feature = "AppKit_NSTextTab", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other tabStops)]
-        pub unsafe fn tabStops(&self) -> Id<NSArray<NSTextTab>, Shared>;
+        pub unsafe fn tabStops(&self) -> Id<NSArray<NSTextTab>>;
 
         #[cfg(all(feature = "AppKit_NSTextTab", feature = "Foundation_NSArray"))]
         #[method(setTabStops:)]
@@ -339,7 +338,7 @@ extern_methods!(
 
         #[cfg(all(feature = "AppKit_NSTextBlock", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other textBlocks)]
-        pub unsafe fn textBlocks(&self) -> Id<NSArray<NSTextBlock>, Shared>;
+        pub unsafe fn textBlocks(&self) -> Id<NSArray<NSTextBlock>>;
 
         #[cfg(all(feature = "AppKit_NSTextBlock", feature = "Foundation_NSArray"))]
         #[method(setTextBlocks:)]
@@ -347,7 +346,7 @@ extern_methods!(
 
         #[cfg(all(feature = "AppKit_NSTextList", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other textLists)]
-        pub unsafe fn textLists(&self) -> Id<NSArray<NSTextList>, Shared>;
+        pub unsafe fn textLists(&self) -> Id<NSArray<NSTextList>>;
 
         #[cfg(all(feature = "AppKit_NSTextList", feature = "Foundation_NSArray"))]
         #[method(setTextLists:)]
@@ -386,7 +385,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             r#type: NSTextTabType,
             loc: CGFloat,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(tabStopType)]
         pub unsafe fn tabStopType(&self) -> NSTextTabType;

@@ -29,6 +29,6 @@ extern_methods!(
 
         #[cfg(feature = "WebKit_DOMFile")]
         #[method_id(@__retain_semantics Other item:)]
-        pub unsafe fn item(&self, index: c_uint) -> Option<Id<DOMFile, Shared>>;
+        pub unsafe fn item(&self, index: c_uint) -> Option<Id<DOMFile>>;
     }
 );

@@ -39,7 +39,7 @@ extern_methods!(
 
         #[cfg(feature = "ClassKit_CLSActivityItem")]
         #[method_id(@__retain_semantics Other primaryActivityItem)]
-        pub unsafe fn primaryActivityItem(&self) -> Option<Id<CLSActivityItem, Shared>>;
+        pub unsafe fn primaryActivityItem(&self) -> Option<Id<CLSActivityItem>>;
 
         #[cfg(feature = "ClassKit_CLSActivityItem")]
         #[method(setPrimaryActivityItem:)]
@@ -57,7 +57,7 @@ extern_methods!(
 
         #[cfg(all(feature = "ClassKit_CLSActivityItem", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other additionalActivityItems)]
-        pub unsafe fn additionalActivityItems(&self) -> Id<NSArray<CLSActivityItem>, Shared>;
+        pub unsafe fn additionalActivityItems(&self) -> Id<NSArray<CLSActivityItem>>;
     }
 );
 
@@ -85,10 +85,10 @@ extern_methods!(
     unsafe impl CLSContext {
         #[cfg(feature = "ClassKit_CLSActivity")]
         #[method_id(@__retain_semantics Other currentActivity)]
-        pub unsafe fn currentActivity(&self) -> Option<Id<CLSActivity, Shared>>;
+        pub unsafe fn currentActivity(&self) -> Option<Id<CLSActivity>>;
 
         #[cfg(feature = "ClassKit_CLSActivity")]
         #[method_id(@__retain_semantics Other createNewActivity)]
-        pub unsafe fn createNewActivity(&self) -> Id<CLSActivity, Shared>;
+        pub unsafe fn createNewActivity(&self) -> Id<CLSActivity>;
     }
 );

@@ -41,7 +41,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             response: &NSURLResponse,
             data: &NSData,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(
             feature = "Foundation_NSData",
@@ -55,19 +55,19 @@ extern_methods!(
             data: &NSData,
             user_info: Option<&NSDictionary>,
             storage_policy: NSURLCacheStoragePolicy,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSURLResponse")]
         #[method_id(@__retain_semantics Other response)]
-        pub unsafe fn response(&self) -> Id<NSURLResponse, Shared>;
+        pub unsafe fn response(&self) -> Id<NSURLResponse>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other data)]
-        pub unsafe fn data(&self) -> Id<NSData, Shared>;
+        pub unsafe fn data(&self) -> Id<NSData>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other userInfo)]
-        pub unsafe fn userInfo(&self) -> Option<Id<NSDictionary, Shared>>;
+        pub unsafe fn userInfo(&self) -> Option<Id<NSDictionary>>;
 
         #[method(storagePolicy)]
         pub unsafe fn storagePolicy(&self) -> NSURLCacheStoragePolicy;
@@ -92,7 +92,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSURLCache")]
     unsafe impl NSURLCache {
         #[method_id(@__retain_semantics Other sharedURLCache)]
-        pub unsafe fn sharedURLCache() -> Id<NSURLCache, Shared>;
+        pub unsafe fn sharedURLCache() -> Id<NSURLCache>;
 
         #[method(setSharedURLCache:)]
         pub unsafe fn setSharedURLCache(shared_url_cache: &NSURLCache);
@@ -105,7 +105,7 @@ extern_methods!(
             memory_capacity: NSUInteger,
             disk_capacity: NSUInteger,
             path: Option<&NSString>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Init initWithMemoryCapacity:diskCapacity:directoryURL:)]
@@ -114,7 +114,7 @@ extern_methods!(
             memory_capacity: NSUInteger,
             disk_capacity: NSUInteger,
             directory_url: Option<&NSURL>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(
             feature = "Foundation_NSCachedURLResponse",
@@ -124,7 +124,7 @@ extern_methods!(
         pub unsafe fn cachedResponseForRequest(
             &self,
             request: &NSURLRequest,
-        ) -> Option<Id<NSCachedURLResponse, Shared>>;
+        ) -> Option<Id<NSCachedURLResponse>>;
 
         #[cfg(all(
             feature = "Foundation_NSCachedURLResponse",

@@ -35,11 +35,11 @@ extern_methods!(
             raw_data: &NSData,
             is_signed: bool,
             is_encrypted: bool,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other rawData)]
-        pub unsafe fn rawData(&self) -> Id<NSData, Shared>;
+        pub unsafe fn rawData(&self) -> Id<NSData>;
 
         #[method(isSigned)]
         pub unsafe fn isSigned(&self) -> bool;

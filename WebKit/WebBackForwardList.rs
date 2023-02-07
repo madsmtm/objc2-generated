@@ -39,23 +39,23 @@ extern_methods!(
 
         #[cfg(feature = "WebKit_WebHistoryItem")]
         #[method_id(@__retain_semantics Other backItem)]
-        pub unsafe fn backItem(&self) -> Option<Id<WebHistoryItem, Shared>>;
+        pub unsafe fn backItem(&self) -> Option<Id<WebHistoryItem>>;
 
         #[cfg(feature = "WebKit_WebHistoryItem")]
         #[method_id(@__retain_semantics Other currentItem)]
-        pub unsafe fn currentItem(&self) -> Option<Id<WebHistoryItem, Shared>>;
+        pub unsafe fn currentItem(&self) -> Option<Id<WebHistoryItem>>;
 
         #[cfg(feature = "WebKit_WebHistoryItem")]
         #[method_id(@__retain_semantics Other forwardItem)]
-        pub unsafe fn forwardItem(&self) -> Option<Id<WebHistoryItem, Shared>>;
+        pub unsafe fn forwardItem(&self) -> Option<Id<WebHistoryItem>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other backListWithLimit:)]
-        pub unsafe fn backListWithLimit(&self, limit: c_int) -> Option<Id<NSArray, Shared>>;
+        pub unsafe fn backListWithLimit(&self, limit: c_int) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other forwardListWithLimit:)]
-        pub unsafe fn forwardListWithLimit(&self, limit: c_int) -> Option<Id<NSArray, Shared>>;
+        pub unsafe fn forwardListWithLimit(&self, limit: c_int) -> Option<Id<NSArray>>;
 
         #[method(capacity)]
         pub unsafe fn capacity(&self) -> c_int;
@@ -75,7 +75,7 @@ extern_methods!(
 
         #[cfg(feature = "WebKit_WebHistoryItem")]
         #[method_id(@__retain_semantics Other itemAtIndex:)]
-        pub unsafe fn itemAtIndex(&self, index: c_int) -> Option<Id<WebHistoryItem, Shared>>;
+        pub unsafe fn itemAtIndex(&self, index: c_int) -> Option<Id<WebHistoryItem>>;
     }
 );
 

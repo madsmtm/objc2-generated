@@ -97,7 +97,7 @@ extern_methods!(
             style: NSWindowStyleMask,
             backing_store_type: NSBackingStoreType,
             flag: bool,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSScreen")]
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:screen:)]
@@ -108,12 +108,12 @@ extern_methods!(
             backing_store_type: NSBackingStoreType,
             flag: bool,
             screen: Option<&NSScreen>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSViewController")]
         #[method_id(@__retain_semantics Other windowWithContentViewController:)]
         pub unsafe fn windowWithContentViewController(
             content_view_controller: &NSViewController,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

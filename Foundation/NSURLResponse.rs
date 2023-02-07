@@ -34,26 +34,26 @@ extern_methods!(
             mime_type: Option<&NSString>,
             length: NSInteger,
             name: Option<&NSString>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other URL)]
-        pub unsafe fn URL(&self) -> Option<Id<NSURL, Shared>>;
+        pub unsafe fn URL(&self) -> Option<Id<NSURL>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other MIMEType)]
-        pub unsafe fn MIMEType(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn MIMEType(&self) -> Option<Id<NSString>>;
 
         #[method(expectedContentLength)]
         pub unsafe fn expectedContentLength(&self) -> c_longlong;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other textEncodingName)]
-        pub unsafe fn textEncodingName(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn textEncodingName(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other suggestedFilename)]
-        pub unsafe fn suggestedFilename(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn suggestedFilename(&self) -> Option<Id<NSString>>;
     }
 );
 
@@ -93,25 +93,22 @@ extern_methods!(
             status_code: NSInteger,
             http_version: Option<&NSString>,
             header_fields: Option<&NSDictionary<NSString, NSString>>,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[method(statusCode)]
         pub unsafe fn statusCode(&self) -> NSInteger;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other allHeaderFields)]
-        pub unsafe fn allHeaderFields(&self) -> Id<NSDictionary, Shared>;
+        pub unsafe fn allHeaderFields(&self) -> Id<NSDictionary>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other valueForHTTPHeaderField:)]
-        pub unsafe fn valueForHTTPHeaderField(
-            &self,
-            field: &NSString,
-        ) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn valueForHTTPHeaderField(&self, field: &NSString) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedStringForStatusCode:)]
-        pub unsafe fn localizedStringForStatusCode(status_code: NSInteger) -> Id<NSString, Shared>;
+        pub unsafe fn localizedStringForStatusCode(status_code: NSInteger) -> Id<NSString>;
     }
 );
 
@@ -127,6 +124,6 @@ extern_methods!(
             mime_type: Option<&NSString>,
             length: NSInteger,
             name: Option<&NSString>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

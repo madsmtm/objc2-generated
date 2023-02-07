@@ -44,7 +44,7 @@ extern_methods!(
 
         #[cfg(feature = "CoreAnimation_CAMediaTimingFunction")]
         #[method_id(@__retain_semantics Other animationTimingFunction)]
-        pub fn animationTimingFunction() -> Option<Id<CAMediaTimingFunction, Shared>>;
+        pub fn animationTimingFunction() -> Option<Id<CAMediaTimingFunction>>;
 
         #[cfg(feature = "CoreAnimation_CAMediaTimingFunction")]
         #[method(setAnimationTimingFunction:)]
@@ -64,7 +64,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other valueForKey:)]
-        pub unsafe fn valueForKey(key: &NSString) -> Option<Id<Object, Shared>>;
+        pub unsafe fn valueForKey(key: &NSString) -> Option<Id<Object>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setValue:forKey:)]

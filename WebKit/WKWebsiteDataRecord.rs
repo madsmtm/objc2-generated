@@ -46,10 +46,10 @@ extern_methods!(
     unsafe impl WKWebsiteDataRecord {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other displayName)]
-        pub unsafe fn displayName(&self) -> Id<NSString, Shared>;
+        pub unsafe fn displayName(&self) -> Id<NSString>;
 
         #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other dataTypes)]
-        pub unsafe fn dataTypes(&self) -> Id<NSSet<NSString>, Shared>;
+        pub unsafe fn dataTypes(&self) -> Id<NSSet<NSString>>;
     }
 );

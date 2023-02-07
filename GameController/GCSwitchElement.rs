@@ -8,7 +8,7 @@ use crate::GameController::*;
 extern_protocol!(
     pub unsafe trait GCSwitchElement: GCPhysicalInputElement {
         #[method_id(@__retain_semantics Other positionInput)]
-        unsafe fn positionInput(&self) -> Id<ProtocolObject<dyn GCSwitchPositionInput>, Shared>;
+        unsafe fn positionInput(&self) -> Id<ProtocolObject<dyn GCSwitchPositionInput>>;
     }
 
     unsafe impl ProtocolType for dyn GCSwitchElement {}

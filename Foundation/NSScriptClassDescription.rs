@@ -24,7 +24,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other classDescriptionForClass:)]
         pub unsafe fn classDescriptionForClass(
             a_class: &Class,
-        ) -> Option<Id<NSScriptClassDescription, Shared>>;
+        ) -> Option<Id<NSScriptClassDescription>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithSuiteName:className:dictionary:)]
@@ -33,22 +33,22 @@ extern_methods!(
             suite_name: &NSString,
             class_name: &NSString,
             class_declaration: Option<&NSDictionary>,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other suiteName)]
-        pub unsafe fn suiteName(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn suiteName(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other className)]
-        pub unsafe fn className(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn className(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other implementationClassName)]
-        pub unsafe fn implementationClassName(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn implementationClassName(&self) -> Option<Id<NSString>>;
 
         #[method_id(@__retain_semantics Other superclassDescription)]
-        pub unsafe fn superclassDescription(&self) -> Option<Id<NSScriptClassDescription, Shared>>;
+        pub unsafe fn superclassDescription(&self) -> Option<Id<NSScriptClassDescription>>;
 
         #[method(appleEventCode)]
         pub unsafe fn appleEventCode(&self) -> FourCharCode;
@@ -72,14 +72,14 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other typeForKey:)]
-        pub unsafe fn typeForKey(&self, key: &NSString) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn typeForKey(&self, key: &NSString) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other classDescriptionForKey:)]
         pub unsafe fn classDescriptionForKey(
             &self,
             key: &NSString,
-        ) -> Option<Id<NSScriptClassDescription, Shared>>;
+        ) -> Option<Id<NSScriptClassDescription>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(appleEventCodeForKey:)]
@@ -90,11 +90,11 @@ extern_methods!(
         pub unsafe fn keyWithAppleEventCode(
             &self,
             apple_event_code: FourCharCode,
-        ) -> Option<Id<NSString, Shared>>;
+        ) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other defaultSubcontainerAttributeKey)]
-        pub unsafe fn defaultSubcontainerAttributeKey(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn defaultSubcontainerAttributeKey(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(isLocationRequiredToCreateForKey:)]

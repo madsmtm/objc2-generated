@@ -25,7 +25,7 @@ extern_methods!(
     unsafe impl CKDatabaseOperation {
         #[cfg(feature = "CloudKit_CKDatabase")]
         #[method_id(@__retain_semantics Other database)]
-        pub unsafe fn database(&self) -> Option<Id<CKDatabase, Shared>>;
+        pub unsafe fn database(&self) -> Option<Id<CKDatabase>>;
 
         #[cfg(feature = "CloudKit_CKDatabase")]
         #[method(setDatabase:)]

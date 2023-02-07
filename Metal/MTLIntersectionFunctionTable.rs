@@ -36,7 +36,7 @@ extern_methods!(
     unsafe impl MTLIntersectionFunctionTableDescriptor {
         #[method_id(@__retain_semantics Other intersectionFunctionTableDescriptor)]
         pub unsafe fn intersectionFunctionTableDescriptor(
-        ) -> Id<MTLIntersectionFunctionTableDescriptor, Shared>;
+        ) -> Id<MTLIntersectionFunctionTableDescriptor>;
 
         #[method(functionCount)]
         pub unsafe fn functionCount(&self) -> NSUInteger;

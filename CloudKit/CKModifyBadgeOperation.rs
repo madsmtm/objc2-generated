@@ -25,13 +25,13 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKModifyBadgeOperation")]
     unsafe impl CKModifyBadgeOperation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithBadgeValue:)]
         pub unsafe fn initWithBadgeValue(
             this: Option<Allocated<Self>>,
             badge_value: NSUInteger,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(badgeValue)]
         pub unsafe fn badgeValue(&self) -> NSUInteger;

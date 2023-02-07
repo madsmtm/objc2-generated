@@ -34,25 +34,25 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             call_uuid: &NSUUID,
             handle: &CXHandle,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             a_decoder: &NSCoder,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSUUID")]
         #[method_id(@__retain_semantics Init initWithCallUUID:)]
         pub unsafe fn initWithCallUUID(
             this: Option<Allocated<Self>>,
             call_uuid: &NSUUID,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "CallKit_CXHandle")]
         #[method_id(@__retain_semantics Other handle)]
-        pub unsafe fn handle(&self) -> Id<CXHandle, Shared>;
+        pub unsafe fn handle(&self) -> Id<CXHandle>;
 
         #[cfg(feature = "CallKit_CXHandle")]
         #[method(setHandle:)]
@@ -60,7 +60,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other contactIdentifier)]
-        pub unsafe fn contactIdentifier(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn contactIdentifier(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setContactIdentifier:)]

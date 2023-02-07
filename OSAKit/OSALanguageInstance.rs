@@ -24,22 +24,22 @@ extern_methods!(
     unsafe impl OSALanguageInstance {
         #[cfg(feature = "OSAKit_OSALanguage")]
         #[method_id(@__retain_semantics Other languageInstanceWithLanguage:)]
-        pub unsafe fn languageInstanceWithLanguage(language: &OSALanguage) -> Id<Self, Shared>;
+        pub unsafe fn languageInstanceWithLanguage(language: &OSALanguage) -> Id<Self>;
 
         #[cfg(feature = "OSAKit_OSALanguage")]
         #[method_id(@__retain_semantics Init initWithLanguage:)]
         pub unsafe fn initWithLanguage(
             this: Option<Allocated<Self>>,
             language: &OSALanguage,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "OSAKit_OSALanguage")]
         #[method_id(@__retain_semantics Other language)]
-        pub unsafe fn language(&self) -> Id<OSALanguage, Shared>;
+        pub unsafe fn language(&self) -> Id<OSALanguage>;
 
         #[cfg(feature = "Foundation_NSAppleEventDescriptor")]
         #[method_id(@__retain_semantics Other defaultTarget)]
-        pub unsafe fn defaultTarget(&self) -> Option<Id<NSAppleEventDescriptor, Shared>>;
+        pub unsafe fn defaultTarget(&self) -> Option<Id<NSAppleEventDescriptor>>;
 
         #[cfg(feature = "Foundation_NSAppleEventDescriptor")]
         #[method(setDefaultTarget:)]
@@ -53,6 +53,6 @@ extern_methods!(
         pub unsafe fn richTextFromDescriptor(
             &self,
             descriptor: &NSAppleEventDescriptor,
-        ) -> Option<Id<NSAttributedString, Shared>>;
+        ) -> Option<Id<NSAttributedString>>;
     }
 );

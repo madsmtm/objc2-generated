@@ -31,11 +31,11 @@ extern_methods!(
             session_id: Option<&NSString>,
             name: Option<&NSString>,
             mode: GKSessionMode,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn GKSessionDelegate>, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn GKSessionDelegate>>>;
 
         #[deprecated]
         #[method(setDelegate:)]
@@ -43,11 +43,11 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other sessionID)]
-        pub unsafe fn sessionID(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn sessionID(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other displayName)]
-        pub unsafe fn displayName(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn displayName(&self) -> Option<Id<NSString>>;
 
         #[deprecated]
         #[method(sessionMode)]
@@ -55,7 +55,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other peerID)]
-        pub unsafe fn peerID(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn peerID(&self) -> Option<Id<NSString>>;
 
         #[method(isAvailable)]
         pub unsafe fn isAvailable(&self) -> bool;
@@ -71,10 +71,8 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other displayNameForPeer:)]
-        pub unsafe fn displayNameForPeer(
-            &self,
-            peer_id: Option<&NSString>,
-        ) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn displayNameForPeer(&self, peer_id: Option<&NSString>)
+            -> Option<Id<NSString>>;
 
         #[method(setDataReceiveHandler:withContext:)]
         pub unsafe fn setDataReceiveHandler_withContext(
@@ -112,6 +110,6 @@ extern_methods!(
         pub unsafe fn peersWithConnectionState(
             &self,
             state: GKPeerConnectionState,
-        ) -> Option<Id<NSArray, Shared>>;
+        ) -> Option<Id<NSArray>>;
     }
 );

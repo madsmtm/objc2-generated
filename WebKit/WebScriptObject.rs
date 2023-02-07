@@ -33,14 +33,11 @@ extern_methods!(
             &self,
             name: Option<&NSString>,
             arguments: Option<&NSArray>,
-        ) -> Option<Id<Object, Shared>>;
+        ) -> Option<Id<Object>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other evaluateWebScript:)]
-        pub unsafe fn evaluateWebScript(
-            &self,
-            script: Option<&NSString>,
-        ) -> Option<Id<Object, Shared>>;
+        pub unsafe fn evaluateWebScript(&self, script: Option<&NSString>) -> Option<Id<Object>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(removeWebScriptKey:)]
@@ -48,10 +45,10 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringRepresentation)]
-        pub unsafe fn stringRepresentation(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn stringRepresentation(&self) -> Option<Id<NSString>>;
 
         #[method_id(@__retain_semantics Other webScriptValueAtIndex:)]
-        pub unsafe fn webScriptValueAtIndex(&self, index: c_uint) -> Option<Id<Object, Shared>>;
+        pub unsafe fn webScriptValueAtIndex(&self, index: c_uint) -> Option<Id<Object>>;
 
         #[method(setWebScriptValueAtIndex:value:)]
         pub unsafe fn setWebScriptValueAtIndex_value(&self, index: c_uint, value: Option<&Object>);
@@ -62,7 +59,7 @@ extern_methods!(
 
         #[cfg(feature = "WebKit_JSValue")]
         #[method_id(@__retain_semantics Other JSValue)]
-        pub unsafe fn JSValue(&self) -> Option<Id<JSValue, Shared>>;
+        pub unsafe fn JSValue(&self) -> Option<Id<JSValue>>;
     }
 );
 
@@ -88,6 +85,6 @@ extern_methods!(
     #[cfg(feature = "WebKit_WebUndefined")]
     unsafe impl WebUndefined {
         #[method_id(@__retain_semantics Other undefined)]
-        pub unsafe fn undefined() -> Option<Id<WebUndefined, Shared>>;
+        pub unsafe fn undefined() -> Option<Id<WebUndefined>>;
     }
 );

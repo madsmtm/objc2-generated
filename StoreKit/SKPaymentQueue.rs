@@ -23,9 +23,7 @@ extern_methods!(
     #[cfg(feature = "StoreKit_SKPaymentQueue")]
     unsafe impl SKPaymentQueue {
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(
-            &self,
-        ) -> Option<Id<ProtocolObject<dyn SKPaymentQueueDelegate>, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn SKPaymentQueueDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -35,10 +33,10 @@ extern_methods!(
 
         #[cfg(feature = "StoreKit_SKStorefront")]
         #[method_id(@__retain_semantics Other storefront)]
-        pub unsafe fn storefront(&self) -> Option<Id<SKStorefront, Shared>>;
+        pub unsafe fn storefront(&self) -> Option<Id<SKStorefront>>;
 
         #[method_id(@__retain_semantics Other defaultQueue)]
-        pub unsafe fn defaultQueue() -> Id<Self, Shared>;
+        pub unsafe fn defaultQueue() -> Id<Self>;
 
         #[method(canMakePayments)]
         pub unsafe fn canMakePayments() -> bool;
@@ -97,14 +95,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other transactionObservers)]
         pub unsafe fn transactionObservers(
             &self,
-        ) -> Id<NSArray<ProtocolObject<dyn SKPaymentTransactionObserver>>, Shared>;
+        ) -> Id<NSArray<ProtocolObject<dyn SKPaymentTransactionObserver>>>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "StoreKit_SKPaymentTransaction"
         ))]
         #[method_id(@__retain_semantics Other transactions)]
-        pub unsafe fn transactions(&self) -> Id<NSArray<SKPaymentTransaction>, Shared>;
+        pub unsafe fn transactions(&self) -> Id<NSArray<SKPaymentTransaction>>;
 
         #[method(showPriceConsentIfNeeded)]
         pub unsafe fn showPriceConsentIfNeeded(&self);

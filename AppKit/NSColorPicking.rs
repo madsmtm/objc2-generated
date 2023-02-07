@@ -13,11 +13,11 @@ extern_protocol!(
             this: Option<Allocated<Self>>,
             mask: NSUInteger,
             owning_color_panel: &NSColorPanel,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other provideNewButtonImage)]
-        unsafe fn provideNewButtonImage(&self) -> Id<NSImage, Shared>;
+        unsafe fn provideNewButtonImage(&self) -> Id<NSImage>;
 
         #[cfg(all(feature = "AppKit_NSButtonCell", feature = "AppKit_NSImage"))]
         #[method(insertNewButtonImage:in:)]
@@ -46,7 +46,7 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other buttonToolTip)]
-        unsafe fn buttonToolTip(&self) -> Id<NSString, Shared>;
+        unsafe fn buttonToolTip(&self) -> Id<NSString>;
 
         #[method(minContentSize)]
         unsafe fn minContentSize(&self) -> NSSize;
@@ -65,7 +65,7 @@ extern_protocol!(
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other provideNewView:)]
-        unsafe fn provideNewView(&self, initial_request: bool) -> Id<NSView, Shared>;
+        unsafe fn provideNewView(&self, initial_request: bool) -> Id<NSView>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setColor:)]

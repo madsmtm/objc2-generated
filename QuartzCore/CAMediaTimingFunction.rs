@@ -32,7 +32,7 @@ extern_methods!(
     #[cfg(feature = "CoreAnimation_CAMediaTimingFunction")]
     unsafe impl CAMediaTimingFunction {
         #[method_id(@__retain_semantics Other functionWithName:)]
-        pub unsafe fn functionWithName(name: &CAMediaTimingFunctionName) -> Id<Self, Shared>;
+        pub unsafe fn functionWithName(name: &CAMediaTimingFunctionName) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other functionWithControlPoints::::)]
         pub unsafe fn functionWithControlPoints(
@@ -40,7 +40,7 @@ extern_methods!(
             c1y: c_float,
             c2x: c_float,
             c2y: c_float,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithControlPoints::::)]
         pub unsafe fn initWithControlPoints(
@@ -49,7 +49,7 @@ extern_methods!(
             c1y: c_float,
             c2x: c_float,
             c2y: c_float,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );
 

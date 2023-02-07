@@ -62,19 +62,19 @@ extern_methods!(
     unsafe impl MKPinAnnotationView {
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other redPinColor)]
-        pub unsafe fn redPinColor() -> Id<NSColor, Shared>;
+        pub unsafe fn redPinColor() -> Id<NSColor>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other greenPinColor)]
-        pub unsafe fn greenPinColor() -> Id<NSColor, Shared>;
+        pub unsafe fn greenPinColor() -> Id<NSColor>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other purplePinColor)]
-        pub unsafe fn purplePinColor() -> Id<NSColor, Shared>;
+        pub unsafe fn purplePinColor() -> Id<NSColor>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other pinTintColor)]
-        pub unsafe fn pinTintColor(&self) -> Option<Id<NSColor, Shared>>;
+        pub unsafe fn pinTintColor(&self) -> Option<Id<NSColor>>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setPinTintColor:)]
@@ -106,7 +106,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             annotation: Option<&ProtocolObject<dyn MKAnnotation>>,
             reuse_identifier: Option<&NSString>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );
 
@@ -115,9 +115,6 @@ extern_methods!(
     #[cfg(feature = "MapKit_MKPinAnnotationView")]
     unsafe impl MKPinAnnotationView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frame_rect: NSRect,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
 );

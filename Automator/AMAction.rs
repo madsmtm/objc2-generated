@@ -39,25 +39,25 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             dict: Option<&NSDictionary<NSString, Object>>,
             archived: bool,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:error:_)]
         pub unsafe fn initWithContentsOfURL_error(
             this: Option<Allocated<Self>>,
             file_url: &NSURL,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self>, Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString, Shared>;
+        pub unsafe fn name(&self) -> Id<NSString>;
 
         #[method(ignoresInput)]
         pub unsafe fn ignoresInput(&self) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other selectedInputType)]
-        pub unsafe fn selectedInputType(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn selectedInputType(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setSelectedInputType:)]
@@ -65,7 +65,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other selectedOutputType)]
-        pub unsafe fn selectedOutputType(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn selectedOutputType(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setSelectedOutputType:)]
@@ -84,15 +84,15 @@ extern_methods!(
             &self,
             input: Option<&Object>,
             an_action: Option<&AMAction>,
-            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>, Shared>>>,
-        ) -> Option<Id<Object, Shared>>;
+            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>>>>,
+        ) -> Option<Id<Object>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other runWithInput:error:_)]
         pub unsafe fn runWithInput_error(
             &self,
             input: Option<&Object>,
-        ) -> Result<Id<Object, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Object>, Id<NSError>>;
 
         #[method(runAsynchronouslyWithInput:)]
         pub unsafe fn runAsynchronouslyWithInput(&self, input: Option<&Object>);
@@ -113,7 +113,7 @@ extern_methods!(
         pub unsafe fn finishRunningWithError(&self, error: Option<&NSError>);
 
         #[method_id(@__retain_semantics Other output)]
-        pub unsafe fn output(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn output(&self) -> Option<Id<Object>>;
 
         #[method(setOutput:)]
         pub unsafe fn setOutput(&self, output: Option<&Object>);

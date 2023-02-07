@@ -32,16 +32,14 @@ extern_methods!(
     unsafe impl EKRecurrenceEnd {
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other recurrenceEndWithEndDate:)]
-        pub unsafe fn recurrenceEndWithEndDate(end_date: &NSDate) -> Id<Self, Shared>;
+        pub unsafe fn recurrenceEndWithEndDate(end_date: &NSDate) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other recurrenceEndWithOccurrenceCount:)]
-        pub unsafe fn recurrenceEndWithOccurrenceCount(
-            occurrence_count: NSUInteger,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn recurrenceEndWithOccurrenceCount(occurrence_count: NSUInteger) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other endDate)]
-        pub unsafe fn endDate(&self) -> Option<Id<NSDate, Shared>>;
+        pub unsafe fn endDate(&self) -> Option<Id<NSDate>>;
 
         #[method(occurrenceCount)]
         pub unsafe fn occurrenceCount(&self) -> NSUInteger;

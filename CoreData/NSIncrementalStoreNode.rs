@@ -32,7 +32,7 @@ extern_methods!(
             object_id: &NSManagedObjectID,
             values: &NSDictionary<NSString, Object>,
             version: u64,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(updateWithValues:version:)]
@@ -44,7 +44,7 @@ extern_methods!(
 
         #[cfg(feature = "CoreData_NSManagedObjectID")]
         #[method_id(@__retain_semantics Other objectID)]
-        pub unsafe fn objectID(&self) -> Id<NSManagedObjectID, Shared>;
+        pub unsafe fn objectID(&self) -> Id<NSManagedObjectID>;
 
         #[method(version)]
         pub unsafe fn version(&self) -> u64;
@@ -54,6 +54,6 @@ extern_methods!(
         pub unsafe fn valueForPropertyDescription(
             &self,
             prop: &NSPropertyDescription,
-        ) -> Option<Id<Object, Shared>>;
+        ) -> Option<Id<Object>>;
     }
 );

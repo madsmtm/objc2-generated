@@ -29,7 +29,7 @@ extern_methods!(
     unsafe impl DOMHTMLModElement {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other cite)]
-        pub unsafe fn cite(&self) -> Id<NSString, Shared>;
+        pub unsafe fn cite(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCite:)]
@@ -37,7 +37,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other dateTime)]
-        pub unsafe fn dateTime(&self) -> Id<NSString, Shared>;
+        pub unsafe fn dateTime(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setDateTime:)]

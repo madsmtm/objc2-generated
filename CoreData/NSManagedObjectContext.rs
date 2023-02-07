@@ -73,17 +73,17 @@ extern_methods!(
     unsafe impl NSManagedObjectContext {
         #[deprecated = "Use -initWithConcurrencyType: instead"]
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
 
         #[deprecated = "Use -initWithConcurrencyType: instead"]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithConcurrencyType:)]
         pub unsafe fn initWithConcurrencyType(
             this: Option<Allocated<Self>>,
             ct: NSManagedObjectContextConcurrencyType,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(performBlock:)]
         pub unsafe fn performBlock(&self, block: &Block<(), ()>);
@@ -93,9 +93,8 @@ extern_methods!(
 
         #[cfg(feature = "CoreData_NSPersistentStoreCoordinator")]
         #[method_id(@__retain_semantics Other persistentStoreCoordinator)]
-        pub unsafe fn persistentStoreCoordinator(
-            &self,
-        ) -> Option<Id<NSPersistentStoreCoordinator, Shared>>;
+        pub unsafe fn persistentStoreCoordinator(&self)
+            -> Option<Id<NSPersistentStoreCoordinator>>;
 
         #[cfg(feature = "CoreData_NSPersistentStoreCoordinator")]
         #[method(setPersistentStoreCoordinator:)]
@@ -105,14 +104,14 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other parentContext)]
-        pub unsafe fn parentContext(&self) -> Option<Id<NSManagedObjectContext, Shared>>;
+        pub unsafe fn parentContext(&self) -> Option<Id<NSManagedObjectContext>>;
 
         #[method(setParentContext:)]
         pub unsafe fn setParentContext(&self, parent_context: Option<&NSManagedObjectContext>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn name(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]
@@ -120,7 +119,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSUndoManager")]
         #[method_id(@__retain_semantics Other undoManager)]
-        pub unsafe fn undoManager(&self) -> Option<Id<NSUndoManager, Shared>>;
+        pub unsafe fn undoManager(&self) -> Option<Id<NSUndoManager>>;
 
         #[cfg(feature = "Foundation_NSUndoManager")]
         #[method(setUndoManager:)]
@@ -144,17 +143,14 @@ extern_methods!(
         pub unsafe fn objectRegisteredForID(
             &self,
             object_id: &NSManagedObjectID,
-        ) -> Option<Id<NSManagedObject, Shared>>;
+        ) -> Option<Id<NSManagedObject>>;
 
         #[cfg(all(
             feature = "CoreData_NSManagedObject",
             feature = "CoreData_NSManagedObjectID"
         ))]
         #[method_id(@__retain_semantics Other objectWithID:)]
-        pub unsafe fn objectWithID(
-            &self,
-            object_id: &NSManagedObjectID,
-        ) -> Id<NSManagedObject, Shared>;
+        pub unsafe fn objectWithID(&self, object_id: &NSManagedObjectID) -> Id<NSManagedObject>;
 
         #[cfg(all(
             feature = "CoreData_NSManagedObject",
@@ -165,7 +161,7 @@ extern_methods!(
         pub unsafe fn existingObjectWithID_error(
             &self,
             object_id: &NSManagedObjectID,
-        ) -> Result<Id<NSManagedObject, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<NSManagedObject>, Id<NSError>>;
 
         #[cfg(all(
             feature = "CoreData_NSFetchRequest",
@@ -176,7 +172,7 @@ extern_methods!(
         pub unsafe fn executeFetchRequest_error(
             &self,
             request: &NSFetchRequest,
-        ) -> Result<Id<NSArray, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<NSArray>, Id<NSError>>;
 
         #[cfg(all(
             feature = "CoreData_NSPersistentStoreRequest",
@@ -187,7 +183,7 @@ extern_methods!(
         pub unsafe fn executeRequest_error(
             &self,
             request: &NSPersistentStoreRequest,
-        ) -> Result<Id<NSPersistentStoreResult, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<NSPersistentStoreResult>, Id<NSError>>;
 
         #[cfg(feature = "CoreData_NSManagedObject")]
         #[method(insertObject:)]
@@ -228,19 +224,19 @@ extern_methods!(
 
         #[cfg(all(feature = "CoreData_NSManagedObject", feature = "Foundation_NSSet"))]
         #[method_id(@__retain_semantics Other insertedObjects)]
-        pub unsafe fn insertedObjects(&self) -> Id<NSSet<NSManagedObject>, Shared>;
+        pub unsafe fn insertedObjects(&self) -> Id<NSSet<NSManagedObject>>;
 
         #[cfg(all(feature = "CoreData_NSManagedObject", feature = "Foundation_NSSet"))]
         #[method_id(@__retain_semantics Other updatedObjects)]
-        pub unsafe fn updatedObjects(&self) -> Id<NSSet<NSManagedObject>, Shared>;
+        pub unsafe fn updatedObjects(&self) -> Id<NSSet<NSManagedObject>>;
 
         #[cfg(all(feature = "CoreData_NSManagedObject", feature = "Foundation_NSSet"))]
         #[method_id(@__retain_semantics Other deletedObjects)]
-        pub unsafe fn deletedObjects(&self) -> Id<NSSet<NSManagedObject>, Shared>;
+        pub unsafe fn deletedObjects(&self) -> Id<NSSet<NSManagedObject>>;
 
         #[cfg(all(feature = "CoreData_NSManagedObject", feature = "Foundation_NSSet"))]
         #[method_id(@__retain_semantics Other registeredObjects)]
-        pub unsafe fn registeredObjects(&self) -> Id<NSSet<NSManagedObject>, Shared>;
+        pub unsafe fn registeredObjects(&self) -> Id<NSSet<NSManagedObject>>;
 
         #[method(undo)]
         pub unsafe fn undo(&self);
@@ -256,7 +252,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(save:_)]
-        pub unsafe fn save(&self) -> Result<(), Id<NSError, Shared>>;
+        pub unsafe fn save(&self) -> Result<(), Id<NSError>>;
 
         #[method(refreshAllObjects)]
         pub unsafe fn refreshAllObjects(&self);
@@ -317,7 +313,7 @@ extern_methods!(
         pub unsafe fn setStalenessInterval(&self, staleness_interval: NSTimeInterval);
 
         #[method_id(@__retain_semantics Other mergePolicy)]
-        pub unsafe fn mergePolicy(&self) -> Id<Object, Shared>;
+        pub unsafe fn mergePolicy(&self) -> Id<Object>;
 
         #[method(setMergePolicy:)]
         pub unsafe fn setMergePolicy(&self, merge_policy: &Object);
@@ -331,7 +327,7 @@ extern_methods!(
         pub unsafe fn obtainPermanentIDsForObjects_error(
             &self,
             objects: &NSArray<NSManagedObject>,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[method(mergeChangesFromContextDidSaveNotification:)]
@@ -349,7 +345,7 @@ extern_methods!(
 
         #[cfg(feature = "CoreData_NSQueryGenerationToken")]
         #[method_id(@__retain_semantics Other queryGenerationToken)]
-        pub unsafe fn queryGenerationToken(&self) -> Option<Id<NSQueryGenerationToken, Shared>>;
+        pub unsafe fn queryGenerationToken(&self) -> Option<Id<NSQueryGenerationToken>>;
 
         #[cfg(all(
             feature = "CoreData_NSQueryGenerationToken",
@@ -359,7 +355,7 @@ extern_methods!(
         pub unsafe fn setQueryGenerationFromToken_error(
             &self,
             generation: Option<&NSQueryGenerationToken>,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
 
         #[method(automaticallyMergesChangesFromParent)]
         pub unsafe fn automaticallyMergesChangesFromParent(&self) -> bool;
@@ -372,7 +368,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other transactionAuthor)]
-        pub unsafe fn transactionAuthor(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn transactionAuthor(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setTransactionAuthor:)]

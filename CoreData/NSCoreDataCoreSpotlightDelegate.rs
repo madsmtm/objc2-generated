@@ -30,14 +30,14 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other domainIdentifier)]
-        pub unsafe fn domainIdentifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn domainIdentifier(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other indexName)]
-        pub unsafe fn indexName(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn indexName(&self) -> Option<Id<NSString>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(all(
             feature = "CoreData_NSPersistentStoreCoordinator",
@@ -48,7 +48,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             description: &NSPersistentStoreDescription,
             psc: &NSPersistentStoreCoordinator,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(
             feature = "CoreData_NSManagedObjectModel",
@@ -60,7 +60,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             description: &NSPersistentStoreDescription,
             model: &NSManagedObjectModel,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(startSpotlightIndexing)]
         pub unsafe fn startSpotlightIndexing(&self);

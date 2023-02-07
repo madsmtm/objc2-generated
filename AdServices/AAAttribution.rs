@@ -34,7 +34,6 @@ extern_methods!(
     unsafe impl AAAttribution {
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other attributionTokenWithError:_)]
-        pub unsafe fn attributionTokenWithError(
-        ) -> Result<Id<NSString, Shared>, Id<NSError, Shared>>;
+        pub unsafe fn attributionTokenWithError() -> Result<Id<NSString>, Id<NSError>>;
     }
 );

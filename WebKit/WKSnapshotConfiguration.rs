@@ -30,7 +30,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSNumber")]
         #[method_id(@__retain_semantics Other snapshotWidth)]
-        pub unsafe fn snapshotWidth(&self) -> Option<Id<NSNumber, Shared>>;
+        pub unsafe fn snapshotWidth(&self) -> Option<Id<NSNumber>>;
 
         #[cfg(feature = "Foundation_NSNumber")]
         #[method(setSnapshotWidth:)]

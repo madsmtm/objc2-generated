@@ -22,8 +22,7 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLVisibleFunctionTableDescriptor")]
     unsafe impl MTLVisibleFunctionTableDescriptor {
         #[method_id(@__retain_semantics Other visibleFunctionTableDescriptor)]
-        pub unsafe fn visibleFunctionTableDescriptor(
-        ) -> Id<MTLVisibleFunctionTableDescriptor, Shared>;
+        pub unsafe fn visibleFunctionTableDescriptor() -> Id<MTLVisibleFunctionTableDescriptor>;
 
         #[method(functionCount)]
         pub unsafe fn functionCount(&self) -> NSUInteger;

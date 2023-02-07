@@ -61,10 +61,10 @@ extern_methods!(
         pub unsafe fn initWithIdentifier(
             this: Option<Allocated<Self>>,
             identifier: &NSToolbarIdentifier,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method(insertItemWithItemIdentifier:atIndex:)]
         pub unsafe fn insertItemWithItemIdentifier_atIndex(
@@ -77,7 +77,7 @@ extern_methods!(
         pub unsafe fn removeItemAtIndex(&self, index: NSInteger);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSToolbarDelegate>, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSToolbarDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSToolbarDelegate>>);
@@ -101,7 +101,7 @@ extern_methods!(
         pub unsafe fn setDisplayMode(&self, display_mode: NSToolbarDisplayMode);
 
         #[method_id(@__retain_semantics Other selectedItemIdentifier)]
-        pub unsafe fn selectedItemIdentifier(&self) -> Option<Id<NSToolbarItemIdentifier, Shared>>;
+        pub unsafe fn selectedItemIdentifier(&self) -> Option<Id<NSToolbarItemIdentifier>>;
 
         #[method(setSelectedItemIdentifier:)]
         pub unsafe fn setSelectedItemIdentifier(
@@ -130,19 +130,19 @@ extern_methods!(
         pub unsafe fn setAllowsUserCustomization(&self, allows_user_customization: bool);
 
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<NSToolbarIdentifier, Shared>;
+        pub unsafe fn identifier(&self) -> Id<NSToolbarIdentifier>;
 
         #[cfg(all(feature = "AppKit_NSToolbarItem", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other items)]
-        pub unsafe fn items(&self) -> Id<NSArray<NSToolbarItem>, Shared>;
+        pub unsafe fn items(&self) -> Id<NSArray<NSToolbarItem>>;
 
         #[cfg(all(feature = "AppKit_NSToolbarItem", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other visibleItems)]
-        pub unsafe fn visibleItems(&self) -> Option<Id<NSArray<NSToolbarItem>, Shared>>;
+        pub unsafe fn visibleItems(&self) -> Option<Id<NSArray<NSToolbarItem>>>;
 
         #[cfg(feature = "Foundation_NSSet")]
         #[method_id(@__retain_semantics Other centeredItemIdentifiers)]
-        pub unsafe fn centeredItemIdentifiers(&self) -> Id<NSSet<NSToolbarItemIdentifier>, Shared>;
+        pub unsafe fn centeredItemIdentifiers(&self) -> Id<NSSet<NSToolbarItemIdentifier>>;
 
         #[cfg(feature = "Foundation_NSSet")]
         #[method(setCenteredItemIdentifiers:)]
@@ -153,7 +153,7 @@ extern_methods!(
 
         #[deprecated = "Use the centeredItemIdentifiers property instead"]
         #[method_id(@__retain_semantics Other centeredItemIdentifier)]
-        pub unsafe fn centeredItemIdentifier(&self) -> Option<Id<NSToolbarItemIdentifier, Shared>>;
+        pub unsafe fn centeredItemIdentifier(&self) -> Option<Id<NSToolbarItemIdentifier>>;
 
         #[deprecated = "Use the centeredItemIdentifiers property instead"]
         #[method(setCenteredItemIdentifier:)]
@@ -177,7 +177,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other configurationDictionary)]
-        pub unsafe fn configurationDictionary(&self) -> Id<NSDictionary<NSString, Object>, Shared>;
+        pub unsafe fn configurationDictionary(&self) -> Id<NSDictionary<NSString, Object>>;
 
         #[method(validateVisibleItems)]
         pub unsafe fn validateVisibleItems(&self);
@@ -200,7 +200,7 @@ extern_protocol!(
             toolbar: &NSToolbar,
             item_identifier: &NSToolbarItemIdentifier,
             flag: bool,
-        ) -> Option<Id<NSToolbarItem, Shared>>;
+        ) -> Option<Id<NSToolbarItem>>;
 
         #[cfg(all(feature = "AppKit_NSToolbar", feature = "Foundation_NSArray"))]
         #[optional]
@@ -208,7 +208,7 @@ extern_protocol!(
         unsafe fn toolbarDefaultItemIdentifiers(
             &self,
             toolbar: &NSToolbar,
-        ) -> Id<NSArray<NSToolbarItemIdentifier>, Shared>;
+        ) -> Id<NSArray<NSToolbarItemIdentifier>>;
 
         #[cfg(all(feature = "AppKit_NSToolbar", feature = "Foundation_NSArray"))]
         #[optional]
@@ -216,7 +216,7 @@ extern_protocol!(
         unsafe fn toolbarAllowedItemIdentifiers(
             &self,
             toolbar: &NSToolbar,
-        ) -> Id<NSArray<NSToolbarItemIdentifier>, Shared>;
+        ) -> Id<NSArray<NSToolbarItemIdentifier>>;
 
         #[cfg(all(feature = "AppKit_NSToolbar", feature = "Foundation_NSArray"))]
         #[optional]
@@ -224,7 +224,7 @@ extern_protocol!(
         unsafe fn toolbarSelectableItemIdentifiers(
             &self,
             toolbar: &NSToolbar,
-        ) -> Id<NSArray<NSToolbarItemIdentifier>, Shared>;
+        ) -> Id<NSArray<NSToolbarItemIdentifier>>;
 
         #[cfg(all(feature = "AppKit_NSToolbar", feature = "Foundation_NSSet"))]
         #[optional]
@@ -232,7 +232,7 @@ extern_protocol!(
         unsafe fn toolbarImmovableItemIdentifiers(
             &self,
             toolbar: &NSToolbar,
-        ) -> Id<NSSet<NSToolbarItemIdentifier>, Shared>;
+        ) -> Id<NSSet<NSToolbarItemIdentifier>>;
 
         #[cfg(feature = "AppKit_NSToolbar")]
         #[optional]
@@ -269,7 +269,7 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSView")]
         #[deprecated = "Use NSTitlebarAccessoryViewController with NSWindow instead"]
         #[method_id(@__retain_semantics Other fullScreenAccessoryView)]
-        pub unsafe fn fullScreenAccessoryView(&self) -> Option<Id<NSView, Shared>>;
+        pub unsafe fn fullScreenAccessoryView(&self) -> Option<Id<NSView>>;
 
         #[cfg(feature = "AppKit_NSView")]
         #[deprecated = "Use NSTitlebarAccessoryViewController with NSWindow instead"]

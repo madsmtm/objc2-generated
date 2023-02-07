@@ -45,28 +45,22 @@ extern_methods!(
     unsafe impl NSSearchFieldCell {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initTextCell:)]
-        pub unsafe fn initTextCell(
-            this: Option<Allocated<Self>>,
-            string: &NSString,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initTextCell(this: Option<Allocated<Self>>, string: &NSString) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            coder: &NSCoder,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, coder: &NSCoder) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Init initImageCell:)]
         pub unsafe fn initImageCell(
             this: Option<Allocated<Self>>,
             image: Option<&NSImage>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSButtonCell")]
         #[method_id(@__retain_semantics Other searchButtonCell)]
-        pub unsafe fn searchButtonCell(&self) -> Option<Id<NSButtonCell, Shared>>;
+        pub unsafe fn searchButtonCell(&self) -> Option<Id<NSButtonCell>>;
 
         #[cfg(feature = "AppKit_NSButtonCell")]
         #[method(setSearchButtonCell:)]
@@ -74,7 +68,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSButtonCell")]
         #[method_id(@__retain_semantics Other cancelButtonCell)]
-        pub unsafe fn cancelButtonCell(&self) -> Option<Id<NSButtonCell, Shared>>;
+        pub unsafe fn cancelButtonCell(&self) -> Option<Id<NSButtonCell>>;
 
         #[cfg(feature = "AppKit_NSButtonCell")]
         #[method(setCancelButtonCell:)]
@@ -97,7 +91,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSMenu")]
         #[method_id(@__retain_semantics Other searchMenuTemplate)]
-        pub unsafe fn searchMenuTemplate(&self) -> Option<Id<NSMenu, Shared>>;
+        pub unsafe fn searchMenuTemplate(&self) -> Option<Id<NSMenu>>;
 
         #[cfg(feature = "AppKit_NSMenu")]
         #[method(setSearchMenuTemplate:)]
@@ -117,16 +111,14 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other recentSearches)]
-        pub unsafe fn recentSearches(&self) -> Id<NSArray<NSString>, Shared>;
+        pub unsafe fn recentSearches(&self) -> Id<NSArray<NSString>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setRecentSearches:)]
         pub unsafe fn setRecentSearches(&self, recent_searches: Option<&NSArray<NSString>>);
 
         #[method_id(@__retain_semantics Other recentsAutosaveName)]
-        pub unsafe fn recentsAutosaveName(
-            &self,
-        ) -> Option<Id<NSSearchFieldRecentsAutosaveName, Shared>>;
+        pub unsafe fn recentsAutosaveName(&self) -> Option<Id<NSSearchFieldRecentsAutosaveName>>;
 
         #[method(setRecentsAutosaveName:)]
         pub unsafe fn setRecentsAutosaveName(

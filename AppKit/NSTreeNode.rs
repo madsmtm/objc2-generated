@@ -23,29 +23,27 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTreeNode")]
     unsafe impl NSTreeNode {
         #[method_id(@__retain_semantics Other treeNodeWithRepresentedObject:)]
-        pub unsafe fn treeNodeWithRepresentedObject(
-            model_object: Option<&Object>,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn treeNodeWithRepresentedObject(model_object: Option<&Object>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithRepresentedObject:)]
         pub unsafe fn initWithRepresentedObject(
             this: Option<Allocated<Self>>,
             model_object: Option<&Object>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other representedObject)]
-        pub unsafe fn representedObject(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn representedObject(&self) -> Option<Id<Object>>;
 
         #[cfg(feature = "Foundation_NSIndexPath")]
         #[method_id(@__retain_semantics Other indexPath)]
-        pub unsafe fn indexPath(&self) -> Id<NSIndexPath, Shared>;
+        pub unsafe fn indexPath(&self) -> Id<NSIndexPath>;
 
         #[method(isLeaf)]
         pub unsafe fn isLeaf(&self) -> bool;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other childNodes)]
-        pub unsafe fn childNodes(&self) -> Option<Id<NSArray<NSTreeNode>, Shared>>;
+        pub unsafe fn childNodes(&self) -> Option<Id<NSArray<NSTreeNode>>>;
 
         #[cfg(feature = "Foundation_NSMutableArray")]
         #[method_id(@__retain_semantics Other mutableChildNodes)]
@@ -56,10 +54,10 @@ extern_methods!(
         pub unsafe fn descendantNodeAtIndexPath(
             &self,
             index_path: &NSIndexPath,
-        ) -> Option<Id<NSTreeNode, Shared>>;
+        ) -> Option<Id<NSTreeNode>>;
 
         #[method_id(@__retain_semantics Other parentNode)]
-        pub unsafe fn parentNode(&self) -> Option<Id<NSTreeNode, Shared>>;
+        pub unsafe fn parentNode(&self) -> Option<Id<NSTreeNode>>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",

@@ -37,11 +37,11 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSTreeNode")]
         #[method_id(@__retain_semantics Other arrangedObjects)]
-        pub unsafe fn arrangedObjects(&self) -> Id<NSTreeNode, Shared>;
+        pub unsafe fn arrangedObjects(&self) -> Id<NSTreeNode>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other childrenKeyPath)]
-        pub unsafe fn childrenKeyPath(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn childrenKeyPath(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setChildrenKeyPath:)]
@@ -49,7 +49,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other countKeyPath)]
-        pub unsafe fn countKeyPath(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn countKeyPath(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCountKeyPath:)]
@@ -57,7 +57,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other leafKeyPath)]
-        pub unsafe fn leafKeyPath(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn leafKeyPath(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLeafKeyPath:)]
@@ -68,7 +68,7 @@ extern_methods!(
             feature = "Foundation_NSSortDescriptor"
         ))]
         #[method_id(@__retain_semantics Other sortDescriptors)]
-        pub unsafe fn sortDescriptors(&self) -> Id<NSArray<NSSortDescriptor>, Shared>;
+        pub unsafe fn sortDescriptors(&self) -> Id<NSArray<NSSortDescriptor>>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -78,7 +78,7 @@ extern_methods!(
         pub unsafe fn setSortDescriptors(&self, sort_descriptors: &NSArray<NSSortDescriptor>);
 
         #[method_id(@__retain_semantics Other content)]
-        pub unsafe fn content(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn content(&self) -> Option<Id<Object>>;
 
         #[method(setContent:)]
         pub unsafe fn setContent(&self, content: Option<&Object>);
@@ -163,7 +163,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other selectedObjects)]
-        pub unsafe fn selectedObjects(&self) -> Id<NSArray, Shared>;
+        pub unsafe fn selectedObjects(&self) -> Id<NSArray>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSIndexPath"))]
         #[method(setSelectionIndexPaths:)]
@@ -171,7 +171,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSIndexPath"))]
         #[method_id(@__retain_semantics Other selectionIndexPaths)]
-        pub unsafe fn selectionIndexPaths(&self) -> Id<NSArray<NSIndexPath>, Shared>;
+        pub unsafe fn selectionIndexPaths(&self) -> Id<NSArray<NSIndexPath>>;
 
         #[cfg(feature = "Foundation_NSIndexPath")]
         #[method(setSelectionIndexPath:)]
@@ -179,7 +179,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSIndexPath")]
         #[method_id(@__retain_semantics Other selectionIndexPath)]
-        pub unsafe fn selectionIndexPath(&self) -> Option<Id<NSIndexPath, Shared>>;
+        pub unsafe fn selectionIndexPath(&self) -> Option<Id<NSIndexPath>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSIndexPath"))]
         #[method(addSelectionIndexPaths:)]
@@ -191,7 +191,7 @@ extern_methods!(
 
         #[cfg(all(feature = "AppKit_NSTreeNode", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other selectedNodes)]
-        pub unsafe fn selectedNodes(&self) -> Id<NSArray<NSTreeNode>, Shared>;
+        pub unsafe fn selectedNodes(&self) -> Id<NSArray<NSTreeNode>>;
 
         #[cfg(all(feature = "AppKit_NSTreeNode", feature = "Foundation_NSIndexPath"))]
         #[method(moveNode:toIndexPath:)]
@@ -211,19 +211,15 @@ extern_methods!(
 
         #[cfg(all(feature = "AppKit_NSTreeNode", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other childrenKeyPathForNode:)]
-        pub unsafe fn childrenKeyPathForNode(
-            &self,
-            node: &NSTreeNode,
-        ) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn childrenKeyPathForNode(&self, node: &NSTreeNode) -> Option<Id<NSString>>;
 
         #[cfg(all(feature = "AppKit_NSTreeNode", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other countKeyPathForNode:)]
-        pub unsafe fn countKeyPathForNode(&self, node: &NSTreeNode)
-            -> Option<Id<NSString, Shared>>;
+        pub unsafe fn countKeyPathForNode(&self, node: &NSTreeNode) -> Option<Id<NSString>>;
 
         #[cfg(all(feature = "AppKit_NSTreeNode", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other leafKeyPathForNode:)]
-        pub unsafe fn leafKeyPathForNode(&self, node: &NSTreeNode) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn leafKeyPathForNode(&self, node: &NSTreeNode) -> Option<Id<NSString>>;
     }
 );
 
@@ -235,6 +231,6 @@ extern_methods!(
         pub unsafe fn initWithContent(
             this: Option<Allocated<Self>>,
             content: Option<&Object>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

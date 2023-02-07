@@ -10,7 +10,7 @@ extern_protocol!(
     {
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other challenge)]
-        unsafe fn challenge(&self) -> Id<NSData, Shared>;
+        unsafe fn challenge(&self) -> Id<NSData>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method(setChallenge:)]
@@ -18,7 +18,7 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other relyingPartyIdentifier)]
-        unsafe fn relyingPartyIdentifier(&self) -> Id<NSString, Shared>;
+        unsafe fn relyingPartyIdentifier(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setRelyingPartyIdentifier:)]
@@ -28,7 +28,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other allowedCredentials)]
         unsafe fn allowedCredentials(
             &self,
-        ) -> Id<NSArray<ProtocolObject<dyn ASAuthorizationPublicKeyCredentialDescriptor>>, Shared>;
+        ) -> Id<NSArray<ProtocolObject<dyn ASAuthorizationPublicKeyCredentialDescriptor>>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setAllowedCredentials:)]
@@ -42,7 +42,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other userVerificationPreference)]
         unsafe fn userVerificationPreference(
             &self,
-        ) -> Id<ASAuthorizationPublicKeyCredentialUserVerificationPreference, Shared>;
+        ) -> Id<ASAuthorizationPublicKeyCredentialUserVerificationPreference>;
 
         #[method(setUserVerificationPreference:)]
         unsafe fn setUserVerificationPreference(

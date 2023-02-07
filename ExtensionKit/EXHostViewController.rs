@@ -38,7 +38,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn EXHostViewControllerDelegate>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn EXHostViewControllerDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -48,7 +48,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other placeholderView)]
-        pub unsafe fn placeholderView(&self) -> Id<NSView, Shared>;
+        pub unsafe fn placeholderView(&self) -> Id<NSView>;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(setPlaceholderView:)]
@@ -56,9 +56,8 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSXPCConnection"))]
         #[method_id(@__retain_semantics Other makeXPCConnectionWithError:_)]
-        pub unsafe fn makeXPCConnectionWithError(
-            &self,
-        ) -> Result<Id<NSXPCConnection, Shared>, Id<NSError, Shared>>;
+        pub unsafe fn makeXPCConnectionWithError(&self)
+            -> Result<Id<NSXPCConnection>, Id<NSError>>;
     }
 );
 
@@ -95,6 +94,6 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             nib_name_or_nil: Option<&NSNibName>,
             nib_bundle_or_nil: Option<&NSBundle>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

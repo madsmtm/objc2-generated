@@ -24,21 +24,21 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKFetchRecordsOperation")]
     unsafe impl CKFetchRecordsOperation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(all(feature = "CloudKit_CKRecordID", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Init initWithRecordIDs:)]
         pub unsafe fn initWithRecordIDs(
             this: Option<Allocated<Self>>,
             record_i_ds: &NSArray<CKRecordID>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other fetchCurrentUserRecordOperation)]
-        pub unsafe fn fetchCurrentUserRecordOperation() -> Id<Self, Shared>;
+        pub unsafe fn fetchCurrentUserRecordOperation() -> Id<Self>;
 
         #[cfg(all(feature = "CloudKit_CKRecordID", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other recordIDs)]
-        pub unsafe fn recordIDs(&self) -> Option<Id<NSArray<CKRecordID>, Shared>>;
+        pub unsafe fn recordIDs(&self) -> Option<Id<NSArray<CKRecordID>>>;
 
         #[cfg(all(feature = "CloudKit_CKRecordID", feature = "Foundation_NSArray"))]
         #[method(setRecordIDs:)]
@@ -46,7 +46,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other desiredKeys)]
-        pub unsafe fn desiredKeys(&self) -> Option<Id<NSArray<CKRecordFieldKey>, Shared>>;
+        pub unsafe fn desiredKeys(&self) -> Option<Id<NSArray<CKRecordFieldKey>>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setDesiredKeys:)]

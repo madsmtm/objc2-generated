@@ -28,6 +28,6 @@ extern_methods!(
         pub unsafe fn length(&self) -> c_uint;
 
         #[method_id(@__retain_semantics Other item:)]
-        pub unsafe fn item(&self, index: c_uint) -> Option<Id<DOMCSSValue, Shared>>;
+        pub unsafe fn item(&self, index: c_uint) -> Option<Id<DOMCSSValue>>;
     }
 );

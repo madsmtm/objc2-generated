@@ -29,7 +29,7 @@ extern_methods!(
     unsafe impl DOMHTMLFormElement {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other acceptCharset)]
-        pub unsafe fn acceptCharset(&self) -> Id<NSString, Shared>;
+        pub unsafe fn acceptCharset(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAcceptCharset:)]
@@ -37,7 +37,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other action)]
-        pub unsafe fn action(&self) -> Id<NSString, Shared>;
+        pub unsafe fn action(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAction:)]
@@ -45,7 +45,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other enctype)]
-        pub unsafe fn enctype(&self) -> Id<NSString, Shared>;
+        pub unsafe fn enctype(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setEnctype:)]
@@ -53,7 +53,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other encoding)]
-        pub unsafe fn encoding(&self) -> Id<NSString, Shared>;
+        pub unsafe fn encoding(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setEncoding:)]
@@ -61,7 +61,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other method)]
-        pub unsafe fn method(&self) -> Id<NSString, Shared>;
+        pub unsafe fn method(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setMethod:)]
@@ -69,7 +69,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString, Shared>;
+        pub unsafe fn name(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]
@@ -77,7 +77,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other target)]
-        pub unsafe fn target(&self) -> Id<NSString, Shared>;
+        pub unsafe fn target(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setTarget:)]
@@ -85,7 +85,7 @@ extern_methods!(
 
         #[cfg(feature = "WebKit_DOMHTMLCollection")]
         #[method_id(@__retain_semantics Other elements)]
-        pub unsafe fn elements(&self) -> Option<Id<DOMHTMLCollection, Shared>>;
+        pub unsafe fn elements(&self) -> Option<Id<DOMHTMLCollection>>;
 
         #[method(length)]
         pub unsafe fn length(&self) -> c_int;

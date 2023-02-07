@@ -23,10 +23,7 @@ extern_methods!(
     unsafe impl NSXMLElement {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithName:)]
-        pub unsafe fn initWithName(
-            this: Option<Allocated<Self>>,
-            name: &NSString,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithName(this: Option<Allocated<Self>>, name: &NSString) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithName:URI:)]
@@ -34,7 +31,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             name: &NSString,
             uri: Option<&NSString>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithName:stringValue:)]
@@ -42,25 +39,25 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             name: &NSString,
             string: Option<&NSString>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithXMLString:error:_)]
         pub unsafe fn initWithXMLString_error(
             this: Option<Allocated<Self>>,
             string: &NSString,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self>, Id<NSError>>;
 
         #[method_id(@__retain_semantics Init initWithKind:options:)]
         pub unsafe fn initWithKind_options(
             this: Option<Allocated<Self>>,
             kind: NSXMLNodeKind,
             options: NSXMLNodeOptions,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other elementsForName:)]
-        pub unsafe fn elementsForName(&self, name: &NSString) -> Id<NSArray<NSXMLElement>, Shared>;
+        pub unsafe fn elementsForName(&self, name: &NSString) -> Id<NSArray<NSXMLElement>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other elementsForLocalName:URI:)]
@@ -68,7 +65,7 @@ extern_methods!(
             &self,
             local_name: &NSString,
             uri: Option<&NSString>,
-        ) -> Id<NSArray<NSXMLElement>, Shared>;
+        ) -> Id<NSArray<NSXMLElement>>;
 
         #[method(addAttribute:)]
         pub unsafe fn addAttribute(&self, attribute: &NSXMLNode);
@@ -79,7 +76,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other attributes)]
-        pub unsafe fn attributes(&self) -> Option<Id<NSArray<NSXMLNode>, Shared>>;
+        pub unsafe fn attributes(&self) -> Option<Id<NSArray<NSXMLNode>>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setAttributes:)]
@@ -94,7 +91,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other attributeForName:)]
-        pub unsafe fn attributeForName(&self, name: &NSString) -> Option<Id<NSXMLNode, Shared>>;
+        pub unsafe fn attributeForName(&self, name: &NSString) -> Option<Id<NSXMLNode>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other attributeForLocalName:URI:)]
@@ -102,7 +99,7 @@ extern_methods!(
             &self,
             local_name: &NSString,
             uri: Option<&NSString>,
-        ) -> Option<Id<NSXMLNode, Shared>>;
+        ) -> Option<Id<NSXMLNode>>;
 
         #[method(addNamespace:)]
         pub unsafe fn addNamespace(&self, a_namespace: &NSXMLNode);
@@ -113,7 +110,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other namespaces)]
-        pub unsafe fn namespaces(&self) -> Option<Id<NSArray<NSXMLNode>, Shared>>;
+        pub unsafe fn namespaces(&self) -> Option<Id<NSArray<NSXMLNode>>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setNamespaces:)]
@@ -121,21 +118,18 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other namespaceForPrefix:)]
-        pub unsafe fn namespaceForPrefix(&self, name: &NSString) -> Option<Id<NSXMLNode, Shared>>;
+        pub unsafe fn namespaceForPrefix(&self, name: &NSString) -> Option<Id<NSXMLNode>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other resolveNamespaceForName:)]
-        pub unsafe fn resolveNamespaceForName(
-            &self,
-            name: &NSString,
-        ) -> Option<Id<NSXMLNode, Shared>>;
+        pub unsafe fn resolveNamespaceForName(&self, name: &NSString) -> Option<Id<NSXMLNode>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other resolvePrefixForNamespaceURI:)]
         pub unsafe fn resolvePrefixForNamespaceURI(
             &self,
             namespace_uri: &NSString,
-        ) -> Option<Id<NSString, Shared>>;
+        ) -> Option<Id<NSString>>;
 
         #[method(insertChild:atIndex:)]
         pub unsafe fn insertChild_atIndex(&self, child: &NSXMLNode, index: NSUInteger);
@@ -182,9 +176,6 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSXMLElement")]
     unsafe impl NSXMLElement {
         #[method_id(@__retain_semantics Init initWithKind:)]
-        pub unsafe fn initWithKind(
-            this: Option<Allocated<Self>>,
-            kind: NSXMLNodeKind,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithKind(this: Option<Allocated<Self>>, kind: NSXMLNodeKind) -> Id<Self>;
     }
 );

@@ -10,7 +10,7 @@ extern_protocol!(
     {
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other rawAttestationObject)]
-        unsafe fn rawAttestationObject(&self) -> Option<Id<NSData, Shared>>;
+        unsafe fn rawAttestationObject(&self) -> Option<Id<NSData>>;
     }
 
     unsafe impl ProtocolType for dyn ASAuthorizationPublicKeyCredentialRegistration {}

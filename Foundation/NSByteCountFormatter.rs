@@ -56,11 +56,11 @@ extern_methods!(
         pub unsafe fn stringFromByteCount_countStyle(
             byte_count: c_longlong,
             count_style: NSByteCountFormatterCountStyle,
-        ) -> Id<NSString, Shared>;
+        ) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringFromByteCount:)]
-        pub unsafe fn stringFromByteCount(&self, byte_count: c_longlong) -> Id<NSString, Shared>;
+        pub unsafe fn stringFromByteCount(&self, byte_count: c_longlong) -> Id<NSString>;
 
         #[cfg(all(
             feature = "Foundation_NSMeasurement",
@@ -71,7 +71,7 @@ extern_methods!(
         pub unsafe fn stringFromMeasurement_countStyle(
             measurement: &NSMeasurement<NSUnitInformationStorage>,
             count_style: NSByteCountFormatterCountStyle,
-        ) -> Id<NSString, Shared>;
+        ) -> Id<NSString>;
 
         #[cfg(all(
             feature = "Foundation_NSMeasurement",
@@ -82,14 +82,11 @@ extern_methods!(
         pub unsafe fn stringFromMeasurement(
             &self,
             measurement: &NSMeasurement<NSUnitInformationStorage>,
-        ) -> Id<NSString, Shared>;
+        ) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringForObjectValue:)]
-        pub unsafe fn stringForObjectValue(
-            &self,
-            obj: Option<&Object>,
-        ) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn stringForObjectValue(&self, obj: Option<&Object>) -> Option<Id<NSString>>;
 
         #[method(allowedUnits)]
         pub unsafe fn allowedUnits(&self) -> NSByteCountFormatterUnits;

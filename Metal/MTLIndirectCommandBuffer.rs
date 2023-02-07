@@ -109,13 +109,13 @@ extern_protocol!(
         unsafe fn indirectRenderCommandAtIndex(
             &self,
             command_index: NSUInteger,
-        ) -> Id<ProtocolObject<dyn MTLIndirectRenderCommand>, Shared>;
+        ) -> Id<ProtocolObject<dyn MTLIndirectRenderCommand>>;
 
         #[method_id(@__retain_semantics Other indirectComputeCommandAtIndex:)]
         unsafe fn indirectComputeCommandAtIndex(
             &self,
             command_index: NSUInteger,
-        ) -> Id<ProtocolObject<dyn MTLIndirectComputeCommand>, Shared>;
+        ) -> Id<ProtocolObject<dyn MTLIndirectComputeCommand>>;
     }
 
     unsafe impl ProtocolType for dyn MTLIndirectCommandBuffer {}

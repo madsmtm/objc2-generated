@@ -29,39 +29,39 @@ extern_methods!(
     unsafe impl CNPostalAddress {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other street)]
-        pub unsafe fn street(&self) -> Id<NSString, Shared>;
+        pub unsafe fn street(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other subLocality)]
-        pub unsafe fn subLocality(&self) -> Id<NSString, Shared>;
+        pub unsafe fn subLocality(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other city)]
-        pub unsafe fn city(&self) -> Id<NSString, Shared>;
+        pub unsafe fn city(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other subAdministrativeArea)]
-        pub unsafe fn subAdministrativeArea(&self) -> Id<NSString, Shared>;
+        pub unsafe fn subAdministrativeArea(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other state)]
-        pub unsafe fn state(&self) -> Id<NSString, Shared>;
+        pub unsafe fn state(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other postalCode)]
-        pub unsafe fn postalCode(&self) -> Id<NSString, Shared>;
+        pub unsafe fn postalCode(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other country)]
-        pub unsafe fn country(&self) -> Id<NSString, Shared>;
+        pub unsafe fn country(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other ISOCountryCode)]
-        pub unsafe fn ISOCountryCode(&self) -> Id<NSString, Shared>;
+        pub unsafe fn ISOCountryCode(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedStringForKey:)]
-        pub unsafe fn localizedStringForKey(key: &NSString) -> Id<NSString, Shared>;
+        pub unsafe fn localizedStringForKey(key: &NSString) -> Id<NSString>;
     }
 );
 

@@ -44,7 +44,7 @@ extern_methods!(
     {
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other client)]
-        pub unsafe fn client(&self) -> Option<Id<NSView, Shared>>;
+        pub unsafe fn client(&self) -> Option<Id<NSView>>;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(setClient:)]
@@ -53,7 +53,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn NSCandidateListTouchBarItemDelegate>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn NSCandidateListTouchBarItemDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -105,7 +105,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other candidates)]
-        pub unsafe fn candidates(&self) -> Id<NSArray<CandidateType>, Shared>;
+        pub unsafe fn candidates(&self) -> Id<NSArray<CandidateType>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setCandidates:forSelectedRange:inString:)]
@@ -118,7 +118,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other customizationLabel)]
-        pub unsafe fn customizationLabel(&self) -> Id<NSString, Shared>;
+        pub unsafe fn customizationLabel(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCustomizationLabel:)]
@@ -175,9 +175,7 @@ extern_methods!(
     unsafe impl NSView {
         #[cfg(feature = "AppKit_NSCandidateListTouchBarItem")]
         #[method_id(@__retain_semantics Other candidateListTouchBarItem)]
-        pub unsafe fn candidateListTouchBarItem(
-            &self,
-        ) -> Option<Id<NSCandidateListTouchBarItem, Shared>>;
+        pub unsafe fn candidateListTouchBarItem(&self) -> Option<Id<NSCandidateListTouchBarItem>>;
     }
 );
 
@@ -193,6 +191,6 @@ extern_methods!(
         pub unsafe fn initWithIdentifier(
             this: Option<Allocated<Self>>,
             identifier: &NSTouchBarItemIdentifier,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

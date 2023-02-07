@@ -25,7 +25,7 @@ extern_methods!(
         pub unsafe fn displayLinkWithTarget_selector(
             target: &Object,
             sel: Sel,
-        ) -> Id<CADisplayLink, Shared>;
+        ) -> Id<CADisplayLink>;
 
         #[cfg(feature = "Foundation_NSRunLoop")]
         #[method(addToRunLoop:forMode:)]

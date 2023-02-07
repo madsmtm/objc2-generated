@@ -31,15 +31,15 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             mask: NSUInteger,
             owning_color_panel: &NSColorPanel,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "AppKit_NSColorPanel")]
         #[method_id(@__retain_semantics Other colorPanel)]
-        pub unsafe fn colorPanel(&self) -> Id<NSColorPanel, Shared>;
+        pub unsafe fn colorPanel(&self) -> Id<NSColorPanel>;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other provideNewButtonImage)]
-        pub unsafe fn provideNewButtonImage(&self) -> Id<NSImage, Shared>;
+        pub unsafe fn provideNewButtonImage(&self) -> Id<NSImage>;
 
         #[cfg(all(feature = "AppKit_NSButtonCell", feature = "AppKit_NSImage"))]
         #[method(insertNewButtonImage:in:)]
@@ -65,7 +65,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other buttonToolTip)]
-        pub unsafe fn buttonToolTip(&self) -> Id<NSString, Shared>;
+        pub unsafe fn buttonToolTip(&self) -> Id<NSString>;
 
         #[method(minContentSize)]
         pub unsafe fn minContentSize(&self) -> NSSize;

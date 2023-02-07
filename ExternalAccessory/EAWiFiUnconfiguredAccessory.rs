@@ -32,23 +32,23 @@ extern_methods!(
     unsafe impl EAWiFiUnconfiguredAccessory {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString, Shared>;
+        pub unsafe fn name(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other manufacturer)]
-        pub unsafe fn manufacturer(&self) -> Id<NSString, Shared>;
+        pub unsafe fn manufacturer(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other model)]
-        pub unsafe fn model(&self) -> Id<NSString, Shared>;
+        pub unsafe fn model(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other ssid)]
-        pub unsafe fn ssid(&self) -> Id<NSString, Shared>;
+        pub unsafe fn ssid(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other macAddress)]
-        pub unsafe fn macAddress(&self) -> Id<NSString, Shared>;
+        pub unsafe fn macAddress(&self) -> Id<NSString>;
 
         #[method(properties)]
         pub unsafe fn properties(&self) -> EAWiFiUnconfiguredAccessoryProperties;

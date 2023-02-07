@@ -53,18 +53,15 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             string_value: &NSString,
             pull_down: bool,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            coder: &NSCoder,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, coder: &NSCoder) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSMenu")]
         #[method_id(@__retain_semantics Other menu)]
-        pub unsafe fn menu(&self) -> Option<Id<NSMenu, Shared>>;
+        pub unsafe fn menu(&self) -> Option<Id<NSMenu>>;
 
         #[cfg(feature = "AppKit_NSMenu")]
         #[method(setMenu:)]
@@ -124,7 +121,7 @@ extern_methods!(
 
         #[cfg(all(feature = "AppKit_NSMenuItem", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other itemArray)]
-        pub unsafe fn itemArray(&self) -> Id<NSArray<NSMenuItem>, Shared>;
+        pub unsafe fn itemArray(&self) -> Id<NSArray<NSMenuItem>>;
 
         #[method(numberOfItems)]
         pub unsafe fn numberOfItems(&self) -> NSInteger;
@@ -152,15 +149,15 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSMenuItem")]
         #[method_id(@__retain_semantics Other itemAtIndex:)]
-        pub unsafe fn itemAtIndex(&self, index: NSInteger) -> Option<Id<NSMenuItem, Shared>>;
+        pub unsafe fn itemAtIndex(&self, index: NSInteger) -> Option<Id<NSMenuItem>>;
 
         #[cfg(all(feature = "AppKit_NSMenuItem", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other itemWithTitle:)]
-        pub unsafe fn itemWithTitle(&self, title: &NSString) -> Option<Id<NSMenuItem, Shared>>;
+        pub unsafe fn itemWithTitle(&self, title: &NSString) -> Option<Id<NSMenuItem>>;
 
         #[cfg(feature = "AppKit_NSMenuItem")]
         #[method_id(@__retain_semantics Other lastItem)]
-        pub unsafe fn lastItem(&self) -> Option<Id<NSMenuItem, Shared>>;
+        pub unsafe fn lastItem(&self) -> Option<Id<NSMenuItem>>;
 
         #[cfg(feature = "AppKit_NSMenuItem")]
         #[method(selectItem:)]
@@ -182,7 +179,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSMenuItem")]
         #[method_id(@__retain_semantics Other selectedItem)]
-        pub unsafe fn selectedItem(&self) -> Option<Id<NSMenuItem, Shared>>;
+        pub unsafe fn selectedItem(&self) -> Option<Id<NSMenuItem>>;
 
         #[method(indexOfSelectedItem)]
         pub unsafe fn indexOfSelectedItem(&self) -> NSInteger;
@@ -192,15 +189,15 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other itemTitleAtIndex:)]
-        pub unsafe fn itemTitleAtIndex(&self, index: NSInteger) -> Id<NSString, Shared>;
+        pub unsafe fn itemTitleAtIndex(&self, index: NSInteger) -> Id<NSString>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other itemTitles)]
-        pub unsafe fn itemTitles(&self) -> Id<NSArray<NSString>, Shared>;
+        pub unsafe fn itemTitles(&self) -> Id<NSArray<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other titleOfSelectedItem)]
-        pub unsafe fn titleOfSelectedItem(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn titleOfSelectedItem(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(attachPopUpWithFrame:inView:)]
@@ -229,10 +226,7 @@ extern_methods!(
     unsafe impl NSPopUpButtonCell {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initTextCell:)]
-        pub unsafe fn initTextCell(
-            this: Option<Allocated<Self>>,
-            string: &NSString,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initTextCell(this: Option<Allocated<Self>>, string: &NSString) -> Id<Self>;
     }
 );
 
@@ -245,6 +239,6 @@ extern_methods!(
         pub unsafe fn initImageCell(
             this: Option<Allocated<Self>>,
             image: Option<&NSImage>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

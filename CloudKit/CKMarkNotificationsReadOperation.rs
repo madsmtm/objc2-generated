@@ -25,18 +25,18 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKMarkNotificationsReadOperation")]
     unsafe impl CKMarkNotificationsReadOperation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(all(feature = "CloudKit_CKNotificationID", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Init initWithNotificationIDsToMarkRead:)]
         pub unsafe fn initWithNotificationIDsToMarkRead(
             this: Option<Allocated<Self>>,
             notification_i_ds: &NSArray<CKNotificationID>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(feature = "CloudKit_CKNotificationID", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other notificationIDs)]
-        pub unsafe fn notificationIDs(&self) -> Option<Id<NSArray<CKNotificationID>, Shared>>;
+        pub unsafe fn notificationIDs(&self) -> Option<Id<NSArray<CKNotificationID>>>;
 
         #[cfg(all(feature = "CloudKit_CKNotificationID", feature = "Foundation_NSArray"))]
         #[method(setNotificationIDs:)]

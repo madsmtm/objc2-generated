@@ -52,7 +52,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSValue")]
     unsafe impl NSValue {
         #[method_id(@__retain_semantics Other valueWithRange:)]
-        pub unsafe fn valueWithRange(range: NSRange) -> Id<NSValue, Shared>;
+        pub unsafe fn valueWithRange(range: NSRange) -> Id<NSValue>;
 
         #[method(rangeValue)]
         pub unsafe fn rangeValue(&self) -> NSRange;

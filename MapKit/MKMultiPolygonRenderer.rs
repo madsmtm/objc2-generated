@@ -30,11 +30,11 @@ extern_methods!(
         pub unsafe fn initWithMultiPolygon(
             this: Option<Allocated<Self>>,
             multi_polygon: &MKMultiPolygon,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "MapKit_MKMultiPolygon")]
         #[method_id(@__retain_semantics Other multiPolygon)]
-        pub unsafe fn multiPolygon(&self) -> Id<MKMultiPolygon, Shared>;
+        pub unsafe fn multiPolygon(&self) -> Id<MKMultiPolygon>;
     }
 );
 
@@ -46,6 +46,6 @@ extern_methods!(
         pub unsafe fn initWithOverlay(
             this: Option<Allocated<Self>>,
             overlay: &ProtocolObject<dyn MKOverlay>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

@@ -29,22 +29,20 @@ extern_methods!(
     #[cfg(feature = "MailKit_MEMessageActionDecision")]
     unsafe impl MEMessageActionDecision {
         #[method_id(@__retain_semantics Other invokeAgainWithBody)]
-        pub unsafe fn invokeAgainWithBody() -> Id<MEMessageActionDecision, Shared>;
+        pub unsafe fn invokeAgainWithBody() -> Id<MEMessageActionDecision>;
 
         #[cfg(feature = "MailKit_MEMessageAction")]
         #[method_id(@__retain_semantics Other decisionApplyingAction:)]
-        pub unsafe fn decisionApplyingAction(action: &MEMessageAction) -> Id<Self, Shared>;
+        pub unsafe fn decisionApplyingAction(action: &MEMessageAction) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "MailKit_MEMessageAction"))]
         #[method_id(@__retain_semantics Other decisionApplyingActions:)]
-        pub unsafe fn decisionApplyingActions(
-            actions: &NSArray<MEMessageAction>,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn decisionApplyingActions(actions: &NSArray<MEMessageAction>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }
 );

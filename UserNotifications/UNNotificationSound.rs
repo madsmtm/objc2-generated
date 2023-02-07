@@ -33,33 +33,33 @@ extern_methods!(
     #[cfg(feature = "UserNotifications_UNNotificationSound")]
     unsafe impl UNNotificationSound {
         #[method_id(@__retain_semantics Other defaultSound)]
-        pub unsafe fn defaultSound() -> Id<UNNotificationSound, Shared>;
+        pub unsafe fn defaultSound() -> Id<UNNotificationSound>;
 
         #[method_id(@__retain_semantics Other defaultRingtoneSound)]
-        pub unsafe fn defaultRingtoneSound() -> Id<UNNotificationSound, Shared>;
+        pub unsafe fn defaultRingtoneSound() -> Id<UNNotificationSound>;
 
         #[method_id(@__retain_semantics Other defaultCriticalSound)]
-        pub unsafe fn defaultCriticalSound() -> Id<UNNotificationSound, Shared>;
+        pub unsafe fn defaultCriticalSound() -> Id<UNNotificationSound>;
 
         #[method_id(@__retain_semantics Other defaultCriticalSoundWithAudioVolume:)]
-        pub unsafe fn defaultCriticalSoundWithAudioVolume(volume: c_float) -> Id<Self, Shared>;
+        pub unsafe fn defaultCriticalSoundWithAudioVolume(volume: c_float) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other soundNamed:)]
-        pub unsafe fn soundNamed(name: &UNNotificationSoundName) -> Id<Self, Shared>;
+        pub unsafe fn soundNamed(name: &UNNotificationSoundName) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other ringtoneSoundNamed:)]
-        pub unsafe fn ringtoneSoundNamed(name: &UNNotificationSoundName) -> Id<Self, Shared>;
+        pub unsafe fn ringtoneSoundNamed(name: &UNNotificationSoundName) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other criticalSoundNamed:)]
-        pub unsafe fn criticalSoundNamed(name: &UNNotificationSoundName) -> Id<Self, Shared>;
+        pub unsafe fn criticalSoundNamed(name: &UNNotificationSoundName) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other criticalSoundNamed:withAudioVolume:)]
         pub unsafe fn criticalSoundNamed_withAudioVolume(
             name: &UNNotificationSoundName,
             volume: c_float,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }
 );

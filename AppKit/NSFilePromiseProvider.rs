@@ -27,7 +27,7 @@ extern_methods!(
     unsafe impl NSFilePromiseProvider {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fileType)]
-        pub unsafe fn fileType(&self) -> Id<NSString, Shared>;
+        pub unsafe fn fileType(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setFileType:)]
@@ -36,7 +36,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn NSFilePromiseProviderDelegate>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn NSFilePromiseProviderDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -45,7 +45,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other userInfo)]
-        pub unsafe fn userInfo(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn userInfo(&self) -> Option<Id<Object>>;
 
         #[method(setUserInfo:)]
         pub unsafe fn setUserInfo(&self, user_info: Option<&Object>);
@@ -56,10 +56,10 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             file_type: &NSString,
             delegate: &ProtocolObject<dyn NSFilePromiseProviderDelegate>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }
 );
 
@@ -74,7 +74,7 @@ extern_protocol!(
             &self,
             file_promise_provider: &NSFilePromiseProvider,
             file_type: &NSString,
-        ) -> Id<NSString, Shared>;
+        ) -> Id<NSString>;
 
         #[cfg(all(
             feature = "AppKit_NSFilePromiseProvider",
@@ -98,7 +98,7 @@ extern_protocol!(
         unsafe fn operationQueueForFilePromiseProvider(
             &self,
             file_promise_provider: &NSFilePromiseProvider,
-        ) -> Id<NSOperationQueue, Shared>;
+        ) -> Id<NSOperationQueue>;
     }
 
     unsafe impl ProtocolType for dyn NSFilePromiseProviderDelegate {}

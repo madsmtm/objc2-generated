@@ -67,7 +67,7 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other participantID)]
-        unsafe fn participantID(&self) -> Id<NSString, Shared>;
+        unsafe fn participantID(&self) -> Id<NSString>;
 
         #[cfg(all(
             feature = "Foundation_NSData",

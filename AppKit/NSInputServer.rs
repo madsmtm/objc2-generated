@@ -150,6 +150,6 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             delegate: Option<&Object>,
             name: Option<&NSString>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

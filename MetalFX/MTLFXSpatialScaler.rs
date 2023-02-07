@@ -79,7 +79,7 @@ extern_methods!(
         pub unsafe fn newSpatialScalerWithDevice(
             &self,
             device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Option<Id<ProtocolObject<dyn MTLFXSpatialScaler>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLFXSpatialScaler>>>;
 
         #[method(supportsDevice:)]
         pub unsafe fn supportsDevice(device: &ProtocolObject<dyn MTLDevice>) -> bool;
@@ -107,13 +107,13 @@ extern_protocol!(
         unsafe fn setInputContentHeight(&self, input_content_height: NSUInteger);
 
         #[method_id(@__retain_semantics Other colorTexture)]
-        unsafe fn colorTexture(&self) -> Option<Id<ProtocolObject<dyn MTLTexture>, Shared>>;
+        unsafe fn colorTexture(&self) -> Option<Id<ProtocolObject<dyn MTLTexture>>>;
 
         #[method(setColorTexture:)]
         unsafe fn setColorTexture(&self, color_texture: Option<&ProtocolObject<dyn MTLTexture>>);
 
         #[method_id(@__retain_semantics Other outputTexture)]
-        unsafe fn outputTexture(&self) -> Option<Id<ProtocolObject<dyn MTLTexture>, Shared>>;
+        unsafe fn outputTexture(&self) -> Option<Id<ProtocolObject<dyn MTLTexture>>>;
 
         #[method(setOutputTexture:)]
         unsafe fn setOutputTexture(&self, output_texture: Option<&ProtocolObject<dyn MTLTexture>>);
@@ -140,7 +140,7 @@ extern_protocol!(
         unsafe fn colorProcessingMode(&self) -> MTLFXSpatialScalerColorProcessingMode;
 
         #[method_id(@__retain_semantics Other fence)]
-        unsafe fn fence(&self) -> Option<Id<ProtocolObject<dyn MTLFence>, Shared>>;
+        unsafe fn fence(&self) -> Option<Id<ProtocolObject<dyn MTLFence>>>;
 
         #[method(setFence:)]
         unsafe fn setFence(&self, fence: Option<&ProtocolObject<dyn MTLFence>>);

@@ -29,19 +29,19 @@ extern_methods!(
     unsafe impl CNSocialProfile {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other urlString)]
-        pub unsafe fn urlString(&self) -> Id<NSString, Shared>;
+        pub unsafe fn urlString(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other username)]
-        pub unsafe fn username(&self) -> Id<NSString, Shared>;
+        pub unsafe fn username(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other userIdentifier)]
-        pub unsafe fn userIdentifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn userIdentifier(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other service)]
-        pub unsafe fn service(&self) -> Id<NSString, Shared>;
+        pub unsafe fn service(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithUrlString:username:userIdentifier:service:)]
@@ -51,15 +51,15 @@ extern_methods!(
             username: Option<&NSString>,
             user_identifier: Option<&NSString>,
             service: Option<&NSString>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedStringForKey:)]
-        pub unsafe fn localizedStringForKey(key: &NSString) -> Id<NSString, Shared>;
+        pub unsafe fn localizedStringForKey(key: &NSString) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedStringForService:)]
-        pub unsafe fn localizedStringForService(service: &NSString) -> Id<NSString, Shared>;
+        pub unsafe fn localizedStringForService(service: &NSString) -> Id<NSString>;
     }
 );
 

@@ -29,7 +29,7 @@ extern_methods!(
     unsafe impl DOMHTMLInputElement {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other accept)]
-        pub unsafe fn accept(&self) -> Id<NSString, Shared>;
+        pub unsafe fn accept(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAccept:)]
@@ -37,7 +37,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other alt)]
-        pub unsafe fn alt(&self) -> Id<NSString, Shared>;
+        pub unsafe fn alt(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAlt:)]
@@ -69,11 +69,11 @@ extern_methods!(
 
         #[cfg(feature = "WebKit_DOMHTMLFormElement")]
         #[method_id(@__retain_semantics Other form)]
-        pub unsafe fn form(&self) -> Option<Id<DOMHTMLFormElement, Shared>>;
+        pub unsafe fn form(&self) -> Option<Id<DOMHTMLFormElement>>;
 
         #[cfg(feature = "WebKit_DOMFileList")]
         #[method_id(@__retain_semantics Other files)]
-        pub unsafe fn files(&self) -> Option<Id<DOMFileList, Shared>>;
+        pub unsafe fn files(&self) -> Option<Id<DOMFileList>>;
 
         #[cfg(feature = "WebKit_DOMFileList")]
         #[method(setFiles:)]
@@ -99,7 +99,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString, Shared>;
+        pub unsafe fn name(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]
@@ -113,7 +113,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other size)]
-        pub unsafe fn size(&self) -> Id<NSString, Shared>;
+        pub unsafe fn size(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setSize:)]
@@ -121,7 +121,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other src)]
-        pub unsafe fn src(&self) -> Id<NSString, Shared>;
+        pub unsafe fn src(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setSrc:)]
@@ -129,7 +129,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other type)]
-        pub unsafe fn r#type(&self) -> Id<NSString, Shared>;
+        pub unsafe fn r#type(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setType:)]
@@ -137,7 +137,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other defaultValue)]
-        pub unsafe fn defaultValue(&self) -> Id<NSString, Shared>;
+        pub unsafe fn defaultValue(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setDefaultValue:)]
@@ -145,7 +145,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other value)]
-        pub unsafe fn value(&self) -> Id<NSString, Shared>;
+        pub unsafe fn value(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setValue:)]
@@ -168,7 +168,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other align)]
-        pub unsafe fn align(&self) -> Id<NSString, Shared>;
+        pub unsafe fn align(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAlign:)]
@@ -176,7 +176,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other useMap)]
-        pub unsafe fn useMap(&self) -> Id<NSString, Shared>;
+        pub unsafe fn useMap(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setUseMap:)]
@@ -185,7 +185,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
         #[method_id(@__retain_semantics Other accessKey)]
-        pub unsafe fn accessKey(&self) -> Id<NSString, Shared>;
+        pub unsafe fn accessKey(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
@@ -194,11 +194,11 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other altDisplayString)]
-        pub unsafe fn altDisplayString(&self) -> Id<NSString, Shared>;
+        pub unsafe fn altDisplayString(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other absoluteImageURL)]
-        pub unsafe fn absoluteImageURL(&self) -> Id<NSURL, Shared>;
+        pub unsafe fn absoluteImageURL(&self) -> Id<NSURL>;
 
         #[method(select)]
         pub unsafe fn select(&self);

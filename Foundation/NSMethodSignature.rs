@@ -23,7 +23,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other signatureWithObjCTypes:)]
         pub unsafe fn signatureWithObjCTypes(
             types: NonNull<c_char>,
-        ) -> Option<Id<NSMethodSignature, Shared>>;
+        ) -> Option<Id<NSMethodSignature>>;
 
         #[method(numberOfArguments)]
         pub unsafe fn numberOfArguments(&self) -> NSUInteger;

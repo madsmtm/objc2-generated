@@ -26,7 +26,7 @@ extern_protocol!(
         unsafe fn extensionViewControllerForMessageSigners(
             &self,
             message_signers: &NSArray<MEMessageSigner>,
-        ) -> Option<Id<MEExtensionViewController, Shared>>;
+        ) -> Option<Id<MEExtensionViewController>>;
 
         #[cfg(all(
             feature = "Foundation_NSData",
@@ -36,7 +36,7 @@ extern_protocol!(
         unsafe fn extensionViewControllerForMessageContext(
             &self,
             context: &NSData,
-        ) -> Option<Id<MEExtensionViewController, Shared>>;
+        ) -> Option<Id<MEExtensionViewController>>;
 
         #[cfg(all(
             feature = "Foundation_NSData",

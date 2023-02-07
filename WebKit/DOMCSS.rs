@@ -11,7 +11,7 @@ extern_methods!(
     unsafe impl DOMCSSStyleDeclaration {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other azimuth)]
-        pub unsafe fn azimuth(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn azimuth(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAzimuth:)]
@@ -19,7 +19,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other background)]
-        pub unsafe fn background(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn background(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setBackground:)]
@@ -27,7 +27,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other backgroundAttachment)]
-        pub unsafe fn backgroundAttachment(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn backgroundAttachment(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setBackgroundAttachment:)]
@@ -35,7 +35,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other backgroundColor)]
-        pub unsafe fn backgroundColor(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn backgroundColor(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setBackgroundColor:)]
@@ -43,7 +43,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other backgroundImage)]
-        pub unsafe fn backgroundImage(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn backgroundImage(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setBackgroundImage:)]
@@ -51,7 +51,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other backgroundPosition)]
-        pub unsafe fn backgroundPosition(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn backgroundPosition(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setBackgroundPosition:)]
@@ -59,7 +59,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other backgroundRepeat)]
-        pub unsafe fn backgroundRepeat(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn backgroundRepeat(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setBackgroundRepeat:)]
@@ -67,7 +67,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other border)]
-        pub unsafe fn border(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn border(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setBorder:)]
@@ -75,7 +75,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other borderCollapse)]
-        pub unsafe fn borderCollapse(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn borderCollapse(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setBorderCollapse:)]
@@ -83,7 +83,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other borderColor)]
-        pub unsafe fn borderColor(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn borderColor(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setBorderColor:)]
@@ -91,7 +91,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other borderSpacing)]
-        pub unsafe fn borderSpacing(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn borderSpacing(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setBorderSpacing:)]
@@ -99,7 +99,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other borderStyle)]
-        pub unsafe fn borderStyle(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn borderStyle(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setBorderStyle:)]
@@ -107,7 +107,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other borderTop)]
-        pub unsafe fn borderTop(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn borderTop(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setBorderTop:)]
@@ -115,7 +115,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other borderRight)]
-        pub unsafe fn borderRight(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn borderRight(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setBorderRight:)]
@@ -123,7 +123,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other borderBottom)]
-        pub unsafe fn borderBottom(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn borderBottom(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setBorderBottom:)]
@@ -131,7 +131,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other borderLeft)]
-        pub unsafe fn borderLeft(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn borderLeft(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setBorderLeft:)]
@@ -139,7 +139,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other borderTopColor)]
-        pub unsafe fn borderTopColor(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn borderTopColor(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setBorderTopColor:)]
@@ -147,7 +147,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other borderRightColor)]
-        pub unsafe fn borderRightColor(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn borderRightColor(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setBorderRightColor:)]
@@ -155,7 +155,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other borderBottomColor)]
-        pub unsafe fn borderBottomColor(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn borderBottomColor(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setBorderBottomColor:)]
@@ -163,7 +163,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other borderLeftColor)]
-        pub unsafe fn borderLeftColor(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn borderLeftColor(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setBorderLeftColor:)]
@@ -171,7 +171,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other borderTopStyle)]
-        pub unsafe fn borderTopStyle(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn borderTopStyle(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setBorderTopStyle:)]
@@ -179,7 +179,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other borderRightStyle)]
-        pub unsafe fn borderRightStyle(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn borderRightStyle(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setBorderRightStyle:)]
@@ -187,7 +187,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other borderBottomStyle)]
-        pub unsafe fn borderBottomStyle(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn borderBottomStyle(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setBorderBottomStyle:)]
@@ -195,7 +195,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other borderLeftStyle)]
-        pub unsafe fn borderLeftStyle(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn borderLeftStyle(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setBorderLeftStyle:)]
@@ -203,7 +203,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other borderTopWidth)]
-        pub unsafe fn borderTopWidth(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn borderTopWidth(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setBorderTopWidth:)]
@@ -211,7 +211,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other borderRightWidth)]
-        pub unsafe fn borderRightWidth(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn borderRightWidth(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setBorderRightWidth:)]
@@ -219,7 +219,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other borderBottomWidth)]
-        pub unsafe fn borderBottomWidth(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn borderBottomWidth(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setBorderBottomWidth:)]
@@ -227,7 +227,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other borderLeftWidth)]
-        pub unsafe fn borderLeftWidth(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn borderLeftWidth(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setBorderLeftWidth:)]
@@ -235,7 +235,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other borderWidth)]
-        pub unsafe fn borderWidth(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn borderWidth(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setBorderWidth:)]
@@ -243,7 +243,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other bottom)]
-        pub unsafe fn bottom(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn bottom(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setBottom:)]
@@ -251,7 +251,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other captionSide)]
-        pub unsafe fn captionSide(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn captionSide(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCaptionSide:)]
@@ -259,7 +259,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other clear)]
-        pub unsafe fn clear(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn clear(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setClear:)]
@@ -267,7 +267,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other clip)]
-        pub unsafe fn clip(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn clip(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setClip:)]
@@ -275,7 +275,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other color)]
-        pub unsafe fn color(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn color(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setColor:)]
@@ -283,7 +283,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other content)]
-        pub unsafe fn content(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn content(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setContent:)]
@@ -291,7 +291,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other counterIncrement)]
-        pub unsafe fn counterIncrement(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn counterIncrement(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCounterIncrement:)]
@@ -299,7 +299,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other counterReset)]
-        pub unsafe fn counterReset(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn counterReset(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCounterReset:)]
@@ -307,7 +307,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other cue)]
-        pub unsafe fn cue(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn cue(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCue:)]
@@ -315,7 +315,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other cueAfter)]
-        pub unsafe fn cueAfter(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn cueAfter(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCueAfter:)]
@@ -323,7 +323,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other cueBefore)]
-        pub unsafe fn cueBefore(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn cueBefore(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCueBefore:)]
@@ -331,7 +331,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other cursor)]
-        pub unsafe fn cursor(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn cursor(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCursor:)]
@@ -339,7 +339,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other direction)]
-        pub unsafe fn direction(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn direction(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setDirection:)]
@@ -347,7 +347,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other display)]
-        pub unsafe fn display(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn display(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setDisplay:)]
@@ -355,7 +355,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other elevation)]
-        pub unsafe fn elevation(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn elevation(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setElevation:)]
@@ -363,7 +363,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other emptyCells)]
-        pub unsafe fn emptyCells(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn emptyCells(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setEmptyCells:)]
@@ -371,7 +371,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other cssFloat)]
-        pub unsafe fn cssFloat(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn cssFloat(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCssFloat:)]
@@ -379,7 +379,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other font)]
-        pub unsafe fn font(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn font(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setFont:)]
@@ -387,7 +387,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fontFamily)]
-        pub unsafe fn fontFamily(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn fontFamily(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setFontFamily:)]
@@ -395,7 +395,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fontSize)]
-        pub unsafe fn fontSize(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn fontSize(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setFontSize:)]
@@ -403,7 +403,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fontSizeAdjust)]
-        pub unsafe fn fontSizeAdjust(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn fontSizeAdjust(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setFontSizeAdjust:)]
@@ -411,7 +411,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fontStretch)]
-        pub unsafe fn fontStretch(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn fontStretch(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setFontStretch:)]
@@ -419,7 +419,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fontStyle)]
-        pub unsafe fn fontStyle(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn fontStyle(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setFontStyle:)]
@@ -427,7 +427,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fontVariant)]
-        pub unsafe fn fontVariant(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn fontVariant(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setFontVariant:)]
@@ -435,7 +435,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fontWeight)]
-        pub unsafe fn fontWeight(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn fontWeight(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setFontWeight:)]
@@ -443,7 +443,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other height)]
-        pub unsafe fn height(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn height(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setHeight:)]
@@ -451,7 +451,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other left)]
-        pub unsafe fn left(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn left(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLeft:)]
@@ -459,7 +459,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other letterSpacing)]
-        pub unsafe fn letterSpacing(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn letterSpacing(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLetterSpacing:)]
@@ -467,7 +467,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other lineHeight)]
-        pub unsafe fn lineHeight(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn lineHeight(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLineHeight:)]
@@ -475,7 +475,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other listStyle)]
-        pub unsafe fn listStyle(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn listStyle(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setListStyle:)]
@@ -483,7 +483,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other listStyleImage)]
-        pub unsafe fn listStyleImage(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn listStyleImage(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setListStyleImage:)]
@@ -491,7 +491,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other listStylePosition)]
-        pub unsafe fn listStylePosition(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn listStylePosition(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setListStylePosition:)]
@@ -499,7 +499,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other listStyleType)]
-        pub unsafe fn listStyleType(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn listStyleType(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setListStyleType:)]
@@ -507,7 +507,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other margin)]
-        pub unsafe fn margin(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn margin(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setMargin:)]
@@ -515,7 +515,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other marginTop)]
-        pub unsafe fn marginTop(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn marginTop(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setMarginTop:)]
@@ -523,7 +523,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other marginRight)]
-        pub unsafe fn marginRight(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn marginRight(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setMarginRight:)]
@@ -531,7 +531,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other marginBottom)]
-        pub unsafe fn marginBottom(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn marginBottom(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setMarginBottom:)]
@@ -539,7 +539,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other marginLeft)]
-        pub unsafe fn marginLeft(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn marginLeft(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setMarginLeft:)]
@@ -547,7 +547,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other markerOffset)]
-        pub unsafe fn markerOffset(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn markerOffset(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setMarkerOffset:)]
@@ -555,7 +555,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other marks)]
-        pub unsafe fn marks(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn marks(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setMarks:)]
@@ -563,7 +563,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other maxHeight)]
-        pub unsafe fn maxHeight(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn maxHeight(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setMaxHeight:)]
@@ -571,7 +571,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other maxWidth)]
-        pub unsafe fn maxWidth(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn maxWidth(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setMaxWidth:)]
@@ -579,7 +579,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other minHeight)]
-        pub unsafe fn minHeight(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn minHeight(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setMinHeight:)]
@@ -587,7 +587,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other minWidth)]
-        pub unsafe fn minWidth(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn minWidth(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setMinWidth:)]
@@ -595,7 +595,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other orphans)]
-        pub unsafe fn orphans(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn orphans(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setOrphans:)]
@@ -603,7 +603,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other outline)]
-        pub unsafe fn outline(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn outline(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setOutline:)]
@@ -611,7 +611,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other outlineColor)]
-        pub unsafe fn outlineColor(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn outlineColor(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setOutlineColor:)]
@@ -619,7 +619,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other outlineStyle)]
-        pub unsafe fn outlineStyle(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn outlineStyle(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setOutlineStyle:)]
@@ -627,7 +627,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other outlineWidth)]
-        pub unsafe fn outlineWidth(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn outlineWidth(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setOutlineWidth:)]
@@ -635,7 +635,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other overflow)]
-        pub unsafe fn overflow(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn overflow(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setOverflow:)]
@@ -643,7 +643,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other padding)]
-        pub unsafe fn padding(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn padding(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setPadding:)]
@@ -651,7 +651,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other paddingTop)]
-        pub unsafe fn paddingTop(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn paddingTop(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setPaddingTop:)]
@@ -659,7 +659,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other paddingRight)]
-        pub unsafe fn paddingRight(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn paddingRight(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setPaddingRight:)]
@@ -667,7 +667,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other paddingBottom)]
-        pub unsafe fn paddingBottom(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn paddingBottom(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setPaddingBottom:)]
@@ -675,7 +675,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other paddingLeft)]
-        pub unsafe fn paddingLeft(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn paddingLeft(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setPaddingLeft:)]
@@ -683,7 +683,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other page)]
-        pub unsafe fn page(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn page(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setPage:)]
@@ -691,7 +691,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other pageBreakAfter)]
-        pub unsafe fn pageBreakAfter(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn pageBreakAfter(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setPageBreakAfter:)]
@@ -699,7 +699,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other pageBreakBefore)]
-        pub unsafe fn pageBreakBefore(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn pageBreakBefore(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setPageBreakBefore:)]
@@ -707,7 +707,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other pageBreakInside)]
-        pub unsafe fn pageBreakInside(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn pageBreakInside(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setPageBreakInside:)]
@@ -715,7 +715,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other pause)]
-        pub unsafe fn pause(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn pause(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setPause:)]
@@ -723,7 +723,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other pauseAfter)]
-        pub unsafe fn pauseAfter(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn pauseAfter(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setPauseAfter:)]
@@ -731,7 +731,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other pauseBefore)]
-        pub unsafe fn pauseBefore(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn pauseBefore(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setPauseBefore:)]
@@ -739,7 +739,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other pitch)]
-        pub unsafe fn pitch(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn pitch(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setPitch:)]
@@ -747,7 +747,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other pitchRange)]
-        pub unsafe fn pitchRange(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn pitchRange(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setPitchRange:)]
@@ -755,7 +755,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other playDuring)]
-        pub unsafe fn playDuring(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn playDuring(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setPlayDuring:)]
@@ -763,7 +763,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other position)]
-        pub unsafe fn position(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn position(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setPosition:)]
@@ -771,7 +771,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other quotes)]
-        pub unsafe fn quotes(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn quotes(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setQuotes:)]
@@ -779,7 +779,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other richness)]
-        pub unsafe fn richness(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn richness(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setRichness:)]
@@ -787,7 +787,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other right)]
-        pub unsafe fn right(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn right(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setRight:)]
@@ -795,7 +795,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other size)]
-        pub unsafe fn size(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn size(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setSize:)]
@@ -803,7 +803,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other speak)]
-        pub unsafe fn speak(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn speak(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setSpeak:)]
@@ -811,7 +811,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other speakHeader)]
-        pub unsafe fn speakHeader(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn speakHeader(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setSpeakHeader:)]
@@ -819,7 +819,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other speakNumeral)]
-        pub unsafe fn speakNumeral(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn speakNumeral(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setSpeakNumeral:)]
@@ -827,7 +827,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other speakPunctuation)]
-        pub unsafe fn speakPunctuation(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn speakPunctuation(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setSpeakPunctuation:)]
@@ -835,7 +835,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other speechRate)]
-        pub unsafe fn speechRate(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn speechRate(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setSpeechRate:)]
@@ -843,7 +843,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stress)]
-        pub unsafe fn stress(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn stress(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setStress:)]
@@ -851,7 +851,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other tableLayout)]
-        pub unsafe fn tableLayout(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn tableLayout(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setTableLayout:)]
@@ -859,7 +859,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other textAlign)]
-        pub unsafe fn textAlign(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn textAlign(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setTextAlign:)]
@@ -867,7 +867,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other textDecoration)]
-        pub unsafe fn textDecoration(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn textDecoration(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setTextDecoration:)]
@@ -875,7 +875,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other textIndent)]
-        pub unsafe fn textIndent(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn textIndent(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setTextIndent:)]
@@ -883,7 +883,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other textShadow)]
-        pub unsafe fn textShadow(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn textShadow(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setTextShadow:)]
@@ -891,7 +891,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other textTransform)]
-        pub unsafe fn textTransform(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn textTransform(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setTextTransform:)]
@@ -899,7 +899,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other top)]
-        pub unsafe fn top(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn top(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setTop:)]
@@ -907,7 +907,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other unicodeBidi)]
-        pub unsafe fn unicodeBidi(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn unicodeBidi(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setUnicodeBidi:)]
@@ -915,7 +915,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other verticalAlign)]
-        pub unsafe fn verticalAlign(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn verticalAlign(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setVerticalAlign:)]
@@ -923,7 +923,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other visibility)]
-        pub unsafe fn visibility(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn visibility(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setVisibility:)]
@@ -931,7 +931,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other voiceFamily)]
-        pub unsafe fn voiceFamily(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn voiceFamily(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setVoiceFamily:)]
@@ -939,7 +939,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other volume)]
-        pub unsafe fn volume(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn volume(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setVolume:)]
@@ -947,7 +947,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other whiteSpace)]
-        pub unsafe fn whiteSpace(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn whiteSpace(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setWhiteSpace:)]
@@ -955,7 +955,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other widows)]
-        pub unsafe fn widows(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn widows(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setWidows:)]
@@ -963,7 +963,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other width)]
-        pub unsafe fn width(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn width(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setWidth:)]
@@ -971,7 +971,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other wordSpacing)]
-        pub unsafe fn wordSpacing(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn wordSpacing(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setWordSpacing:)]
@@ -979,7 +979,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other zIndex)]
-        pub unsafe fn zIndex(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn zIndex(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setZIndex:)]

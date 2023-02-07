@@ -71,7 +71,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other transactionAuthor)]
-        pub unsafe fn transactionAuthor(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn transactionAuthor(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setTransactionAuthor:)]

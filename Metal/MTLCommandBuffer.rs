@@ -93,11 +93,11 @@ extern_protocol!(
     pub unsafe trait MTLCommandBufferEncoderInfo: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
-        unsafe fn label(&self) -> Id<NSString, Shared>;
+        unsafe fn label(&self) -> Id<NSString>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other debugSignposts)]
-        unsafe fn debugSignposts(&self) -> Id<NSArray<NSString>, Shared>;
+        unsafe fn debugSignposts(&self) -> Id<NSArray<NSString>>;
 
         #[method(errorState)]
         unsafe fn errorState(&self) -> MTLCommandEncoderErrorState;
@@ -119,10 +119,10 @@ ns_enum!(
 extern_protocol!(
     pub unsafe trait MTLCommandBuffer: NSObjectProtocol {
         #[method_id(@__retain_semantics Other device)]
-        unsafe fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>, Shared>;
+        unsafe fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
 
         #[method_id(@__retain_semantics Other commandQueue)]
-        unsafe fn commandQueue(&self) -> Id<ProtocolObject<dyn MTLCommandQueue>, Shared>;
+        unsafe fn commandQueue(&self) -> Id<ProtocolObject<dyn MTLCommandQueue>>;
 
         #[method(retainedReferences)]
         unsafe fn retainedReferences(&self) -> bool;
@@ -132,7 +132,7 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
-        fn label(&self) -> Option<Id<NSString, Shared>>;
+        fn label(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:)]
@@ -145,7 +145,7 @@ extern_protocol!(
         unsafe fn kernelEndTime(&self) -> CFTimeInterval;
 
         #[method_id(@__retain_semantics Other logs)]
-        unsafe fn logs(&self) -> Id<ProtocolObject<dyn MTLLogContainer>, Shared>;
+        unsafe fn logs(&self) -> Id<ProtocolObject<dyn MTLLogContainer>>;
 
         #[method(GPUStartTime)]
         unsafe fn GPUStartTime(&self) -> CFTimeInterval;
@@ -193,44 +193,41 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other error)]
-        unsafe fn error(&self) -> Option<Id<NSError, Shared>>;
+        unsafe fn error(&self) -> Option<Id<NSError>>;
 
         #[method_id(@__retain_semantics Other blitCommandEncoder)]
-        fn blitCommandEncoder(
-            &self,
-        ) -> Option<Id<ProtocolObject<dyn MTLBlitCommandEncoder>, Shared>>;
+        fn blitCommandEncoder(&self) -> Option<Id<ProtocolObject<dyn MTLBlitCommandEncoder>>>;
 
         #[cfg(feature = "Metal_MTLRenderPassDescriptor")]
         #[method_id(@__retain_semantics Other renderCommandEncoderWithDescriptor:)]
         fn renderCommandEncoderWithDescriptor(
             &self,
             render_pass_descriptor: &MTLRenderPassDescriptor,
-        ) -> Option<Id<ProtocolObject<dyn MTLRenderCommandEncoder>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLRenderCommandEncoder>>>;
 
         #[cfg(feature = "Metal_MTLComputePassDescriptor")]
         #[method_id(@__retain_semantics Other computeCommandEncoderWithDescriptor:)]
         unsafe fn computeCommandEncoderWithDescriptor(
             &self,
             compute_pass_descriptor: &MTLComputePassDescriptor,
-        ) -> Option<Id<ProtocolObject<dyn MTLComputeCommandEncoder>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLComputeCommandEncoder>>>;
 
         #[cfg(feature = "Metal_MTLBlitPassDescriptor")]
         #[method_id(@__retain_semantics Other blitCommandEncoderWithDescriptor:)]
         unsafe fn blitCommandEncoderWithDescriptor(
             &self,
             blit_pass_descriptor: &MTLBlitPassDescriptor,
-        ) -> Option<Id<ProtocolObject<dyn MTLBlitCommandEncoder>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLBlitCommandEncoder>>>;
 
         #[method_id(@__retain_semantics Other computeCommandEncoder)]
-        fn computeCommandEncoder(
-            &self,
-        ) -> Option<Id<ProtocolObject<dyn MTLComputeCommandEncoder>, Shared>>;
+        fn computeCommandEncoder(&self)
+            -> Option<Id<ProtocolObject<dyn MTLComputeCommandEncoder>>>;
 
         #[method_id(@__retain_semantics Other computeCommandEncoderWithDispatchType:)]
         fn computeCommandEncoderWithDispatchType(
             &self,
             dispatch_type: MTLDispatchType,
-        ) -> Option<Id<ProtocolObject<dyn MTLComputeCommandEncoder>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLComputeCommandEncoder>>>;
 
         #[method(encodeWaitForEvent:value:)]
         fn encodeWaitForEvent_value(&self, event: &ProtocolObject<dyn MTLEvent>, value: u64);
@@ -243,31 +240,31 @@ extern_protocol!(
         fn parallelRenderCommandEncoderWithDescriptor(
             &self,
             render_pass_descriptor: &MTLRenderPassDescriptor,
-        ) -> Option<Id<ProtocolObject<dyn MTLParallelRenderCommandEncoder>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLParallelRenderCommandEncoder>>>;
 
         #[method_id(@__retain_semantics Other resourceStateCommandEncoder)]
         unsafe fn resourceStateCommandEncoder(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn MTLResourceStateCommandEncoder>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLResourceStateCommandEncoder>>>;
 
         #[cfg(feature = "Metal_MTLResourceStatePassDescriptor")]
         #[method_id(@__retain_semantics Other resourceStateCommandEncoderWithDescriptor:)]
         unsafe fn resourceStateCommandEncoderWithDescriptor(
             &self,
             resource_state_pass_descriptor: &MTLResourceStatePassDescriptor,
-        ) -> Option<Id<ProtocolObject<dyn MTLResourceStateCommandEncoder>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLResourceStateCommandEncoder>>>;
 
         #[method_id(@__retain_semantics Other accelerationStructureCommandEncoder)]
         fn accelerationStructureCommandEncoder(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn MTLAccelerationStructureCommandEncoder>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLAccelerationStructureCommandEncoder>>>;
 
         #[cfg(feature = "Metal_MTLAccelerationStructurePassDescriptor")]
         #[method_id(@__retain_semantics Other accelerationStructureCommandEncoderWithDescriptor:)]
         unsafe fn accelerationStructureCommandEncoderWithDescriptor(
             &self,
             descriptor: &MTLAccelerationStructurePassDescriptor,
-        ) -> Id<ProtocolObject<dyn MTLAccelerationStructureCommandEncoder>, Shared>;
+        ) -> Id<ProtocolObject<dyn MTLAccelerationStructureCommandEncoder>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(pushDebugGroup:)]

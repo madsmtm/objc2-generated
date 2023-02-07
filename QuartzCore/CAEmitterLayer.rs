@@ -48,7 +48,7 @@ extern_methods!(
             feature = "Foundation_NSArray"
         ))]
         #[method_id(@__retain_semantics Other emitterCells)]
-        pub unsafe fn emitterCells(&self) -> Option<Id<NSArray<CAEmitterCell>, Shared>>;
+        pub unsafe fn emitterCells(&self) -> Option<Id<NSArray<CAEmitterCell>>>;
 
         #[cfg(all(
             feature = "CoreAnimation_CAEmitterCell",
@@ -94,19 +94,19 @@ extern_methods!(
         pub unsafe fn setEmitterDepth(&self, emitter_depth: CGFloat);
 
         #[method_id(@__retain_semantics Other emitterShape)]
-        pub unsafe fn emitterShape(&self) -> Id<CAEmitterLayerEmitterShape, Shared>;
+        pub unsafe fn emitterShape(&self) -> Id<CAEmitterLayerEmitterShape>;
 
         #[method(setEmitterShape:)]
         pub unsafe fn setEmitterShape(&self, emitter_shape: &CAEmitterLayerEmitterShape);
 
         #[method_id(@__retain_semantics Other emitterMode)]
-        pub unsafe fn emitterMode(&self) -> Id<CAEmitterLayerEmitterMode, Shared>;
+        pub unsafe fn emitterMode(&self) -> Id<CAEmitterLayerEmitterMode>;
 
         #[method(setEmitterMode:)]
         pub unsafe fn setEmitterMode(&self, emitter_mode: &CAEmitterLayerEmitterMode);
 
         #[method_id(@__retain_semantics Other renderMode)]
-        pub unsafe fn renderMode(&self) -> Id<CAEmitterLayerRenderMode, Shared>;
+        pub unsafe fn renderMode(&self) -> Id<CAEmitterLayerRenderMode>;
 
         #[method(setRenderMode:)]
         pub unsafe fn setRenderMode(&self, render_mode: &CAEmitterLayerRenderMode);
@@ -178,12 +178,9 @@ extern_methods!(
     #[cfg(feature = "CoreAnimation_CAEmitterLayer")]
     unsafe impl CAEmitterLayer {
         #[method_id(@__retain_semantics Other layer)]
-        pub unsafe fn layer() -> Id<Self, Shared>;
+        pub unsafe fn layer() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithLayer:)]
-        pub unsafe fn initWithLayer(
-            this: Option<Allocated<Self>>,
-            layer: &Object,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithLayer(this: Option<Allocated<Self>>, layer: &Object) -> Id<Self>;
     }
 );

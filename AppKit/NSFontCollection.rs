@@ -56,16 +56,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other fontCollectionWithDescriptors:)]
         pub unsafe fn fontCollectionWithDescriptors(
             query_descriptors: &NSArray<NSFontDescriptor>,
-        ) -> Id<NSFontCollection, Shared>;
+        ) -> Id<NSFontCollection>;
 
         #[method_id(@__retain_semantics Other fontCollectionWithAllAvailableDescriptors)]
-        pub unsafe fn fontCollectionWithAllAvailableDescriptors() -> Id<NSFontCollection, Shared>;
+        pub unsafe fn fontCollectionWithAllAvailableDescriptors() -> Id<NSFontCollection>;
 
         #[cfg(feature = "Foundation_NSLocale")]
         #[method_id(@__retain_semantics Other fontCollectionWithLocale:)]
-        pub unsafe fn fontCollectionWithLocale(
-            locale: &NSLocale,
-        ) -> Option<Id<NSFontCollection, Shared>>;
+        pub unsafe fn fontCollectionWithLocale(locale: &NSLocale) -> Option<Id<NSFontCollection>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(showFontCollection:withName:visibility:error:_)]
@@ -73,14 +71,14 @@ extern_methods!(
             collection: &NSFontCollection,
             name: &NSFontCollectionName,
             visibility: NSFontCollectionVisibility,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(hideFontCollectionWithName:visibility:error:_)]
         pub unsafe fn hideFontCollectionWithName_visibility_error(
             name: &NSFontCollectionName,
             visibility: NSFontCollectionVisibility,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(renameFontCollectionWithName:visibility:toName:error:_)]
@@ -88,34 +86,34 @@ extern_methods!(
             old_name: &NSFontCollectionName,
             visibility: NSFontCollectionVisibility,
             new_name: &NSFontCollectionName,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other allFontCollectionNames)]
-        pub unsafe fn allFontCollectionNames() -> Id<NSArray<NSFontCollectionName>, Shared>;
+        pub unsafe fn allFontCollectionNames() -> Id<NSArray<NSFontCollectionName>>;
 
         #[method_id(@__retain_semantics Other fontCollectionWithName:)]
         pub unsafe fn fontCollectionWithName(
             name: &NSFontCollectionName,
-        ) -> Option<Id<NSFontCollection, Shared>>;
+        ) -> Option<Id<NSFontCollection>>;
 
         #[method_id(@__retain_semantics Other fontCollectionWithName:visibility:)]
         pub unsafe fn fontCollectionWithName_visibility(
             name: &NSFontCollectionName,
             visibility: NSFontCollectionVisibility,
-        ) -> Option<Id<NSFontCollection, Shared>>;
+        ) -> Option<Id<NSFontCollection>>;
 
         #[cfg(all(feature = "AppKit_NSFontDescriptor", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other queryDescriptors)]
-        pub unsafe fn queryDescriptors(&self) -> Option<Id<NSArray<NSFontDescriptor>, Shared>>;
+        pub unsafe fn queryDescriptors(&self) -> Option<Id<NSArray<NSFontDescriptor>>>;
 
         #[cfg(all(feature = "AppKit_NSFontDescriptor", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other exclusionDescriptors)]
-        pub unsafe fn exclusionDescriptors(&self) -> Option<Id<NSArray<NSFontDescriptor>, Shared>>;
+        pub unsafe fn exclusionDescriptors(&self) -> Option<Id<NSArray<NSFontDescriptor>>>;
 
         #[cfg(all(feature = "AppKit_NSFontDescriptor", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other matchingDescriptors)]
-        pub unsafe fn matchingDescriptors(&self) -> Option<Id<NSArray<NSFontDescriptor>, Shared>>;
+        pub unsafe fn matchingDescriptors(&self) -> Option<Id<NSArray<NSFontDescriptor>>>;
 
         #[cfg(all(
             feature = "AppKit_NSFontDescriptor",
@@ -127,7 +125,7 @@ extern_methods!(
         pub unsafe fn matchingDescriptorsWithOptions(
             &self,
             options: Option<&NSDictionary<NSFontCollectionMatchingOptionKey, NSNumber>>,
-        ) -> Option<Id<NSArray<NSFontDescriptor>, Shared>>;
+        ) -> Option<Id<NSArray<NSFontDescriptor>>>;
 
         #[cfg(all(
             feature = "AppKit_NSFontDescriptor",
@@ -138,7 +136,7 @@ extern_methods!(
         pub unsafe fn matchingDescriptorsForFamily(
             &self,
             family: &NSString,
-        ) -> Option<Id<NSArray<NSFontDescriptor>, Shared>>;
+        ) -> Option<Id<NSArray<NSFontDescriptor>>>;
 
         #[cfg(all(
             feature = "AppKit_NSFontDescriptor",
@@ -152,7 +150,7 @@ extern_methods!(
             &self,
             family: &NSString,
             options: Option<&NSDictionary<NSFontCollectionMatchingOptionKey, NSNumber>>,
-        ) -> Option<Id<NSArray<NSFontDescriptor>, Shared>>;
+        ) -> Option<Id<NSArray<NSFontDescriptor>>>;
     }
 );
 
@@ -181,32 +179,29 @@ extern_methods!(
         #[method_id(@__retain_semantics Other fontCollectionWithDescriptors:)]
         pub unsafe fn fontCollectionWithDescriptors(
             query_descriptors: &NSArray<NSFontDescriptor>,
-        ) -> Id<NSMutableFontCollection, Shared>;
+        ) -> Id<NSMutableFontCollection>;
 
         #[method_id(@__retain_semantics Other fontCollectionWithAllAvailableDescriptors)]
-        pub unsafe fn fontCollectionWithAllAvailableDescriptors(
-        ) -> Id<NSMutableFontCollection, Shared>;
+        pub unsafe fn fontCollectionWithAllAvailableDescriptors() -> Id<NSMutableFontCollection>;
 
         #[cfg(feature = "Foundation_NSLocale")]
         #[method_id(@__retain_semantics Other fontCollectionWithLocale:)]
-        pub unsafe fn fontCollectionWithLocale(
-            locale: &NSLocale,
-        ) -> Id<NSMutableFontCollection, Shared>;
+        pub unsafe fn fontCollectionWithLocale(locale: &NSLocale) -> Id<NSMutableFontCollection>;
 
         #[method_id(@__retain_semantics Other fontCollectionWithName:)]
         pub unsafe fn fontCollectionWithName(
             name: &NSFontCollectionName,
-        ) -> Option<Id<NSMutableFontCollection, Shared>>;
+        ) -> Option<Id<NSMutableFontCollection>>;
 
         #[method_id(@__retain_semantics Other fontCollectionWithName:visibility:)]
         pub unsafe fn fontCollectionWithName_visibility(
             name: &NSFontCollectionName,
             visibility: NSFontCollectionVisibility,
-        ) -> Option<Id<NSMutableFontCollection, Shared>>;
+        ) -> Option<Id<NSMutableFontCollection>>;
 
         #[cfg(all(feature = "AppKit_NSFontDescriptor", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other queryDescriptors)]
-        pub unsafe fn queryDescriptors(&self) -> Option<Id<NSArray<NSFontDescriptor>, Shared>>;
+        pub unsafe fn queryDescriptors(&self) -> Option<Id<NSArray<NSFontDescriptor>>>;
 
         #[cfg(all(feature = "AppKit_NSFontDescriptor", feature = "Foundation_NSArray"))]
         #[method(setQueryDescriptors:)]
@@ -217,7 +212,7 @@ extern_methods!(
 
         #[cfg(all(feature = "AppKit_NSFontDescriptor", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other exclusionDescriptors)]
-        pub unsafe fn exclusionDescriptors(&self) -> Option<Id<NSArray<NSFontDescriptor>, Shared>>;
+        pub unsafe fn exclusionDescriptors(&self) -> Option<Id<NSArray<NSFontDescriptor>>>;
 
         #[cfg(all(feature = "AppKit_NSFontDescriptor", feature = "Foundation_NSArray"))]
         #[method(setExclusionDescriptors:)]

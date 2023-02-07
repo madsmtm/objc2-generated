@@ -39,19 +39,19 @@ extern_methods!(
         pub unsafe fn initWithContentsOfURL_error(
             this: Option<Allocated<Self>>,
             url: &NSURL,
-            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>, Shared>>>,
-        ) -> Option<Id<Self, Shared>>;
+            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>>>>,
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Option<Allocated<Self>>,
             source: &NSString,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other source)]
-        pub unsafe fn source(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn source(&self) -> Option<Id<NSString>>;
 
         #[method(isCompiled)]
         pub unsafe fn isCompiled(&self) -> bool;
@@ -60,7 +60,7 @@ extern_methods!(
         #[method(compileAndReturnError:)]
         pub unsafe fn compileAndReturnError(
             &self,
-            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>, Shared>>>,
+            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>>>>,
         ) -> bool;
 
         #[cfg(all(
@@ -71,8 +71,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Other executeAndReturnError:)]
         pub unsafe fn executeAndReturnError(
             &self,
-            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>, Shared>>>,
-        ) -> Id<NSAppleEventDescriptor, Shared>;
+            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>>>>,
+        ) -> Id<NSAppleEventDescriptor>;
 
         #[cfg(all(
             feature = "Foundation_NSAppleEventDescriptor",
@@ -83,7 +83,7 @@ extern_methods!(
         pub unsafe fn executeAppleEvent_error(
             &self,
             event: &NSAppleEventDescriptor,
-            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>, Shared>>>,
-        ) -> Id<NSAppleEventDescriptor, Shared>;
+            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>>>>,
+        ) -> Id<NSAppleEventDescriptor>;
     }
 );

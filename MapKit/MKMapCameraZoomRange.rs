@@ -37,19 +37,19 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             min_distance: CLLocationDistance,
             max_distance: CLLocationDistance,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[method_id(@__retain_semantics Init initWithMinCenterCoordinateDistance:)]
         pub unsafe fn initWithMinCenterCoordinateDistance(
             this: Option<Allocated<Self>>,
             min_distance: CLLocationDistance,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[method_id(@__retain_semantics Init initWithMaxCenterCoordinateDistance:)]
         pub unsafe fn initWithMaxCenterCoordinateDistance(
             this: Option<Allocated<Self>>,
             max_distance: CLLocationDistance,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[method(minCenterCoordinateDistance)]
         pub unsafe fn minCenterCoordinateDistance(&self) -> CLLocationDistance;

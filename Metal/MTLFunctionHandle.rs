@@ -11,10 +11,10 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        fn name(&self) -> Id<NSString, Shared>;
+        fn name(&self) -> Id<NSString>;
 
         #[method_id(@__retain_semantics Other device)]
-        fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>, Shared>;
+        fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
     }
 
     unsafe impl ProtocolType for dyn MTLFunctionHandle {}

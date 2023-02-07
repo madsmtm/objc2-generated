@@ -24,18 +24,18 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKFetchWebAuthTokenOperation")]
     unsafe impl CKFetchWebAuthTokenOperation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithAPIToken:)]
         pub unsafe fn initWithAPIToken(
             this: Option<Allocated<Self>>,
             api_token: &NSString,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other APIToken)]
-        pub unsafe fn APIToken(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn APIToken(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAPIToken:)]

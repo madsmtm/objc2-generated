@@ -38,7 +38,7 @@ extern_methods!(
         pub unsafe fn endGrouping();
 
         #[method_id(@__retain_semantics Other currentContext)]
-        pub unsafe fn currentContext() -> Id<NSAnimationContext, Shared>;
+        pub unsafe fn currentContext() -> Id<NSAnimationContext>;
 
         #[method(duration)]
         pub unsafe fn duration(&self) -> NSTimeInterval;

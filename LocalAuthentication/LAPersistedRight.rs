@@ -24,17 +24,17 @@ extern_methods!(
     unsafe impl LAPersistedRight {
         #[cfg(feature = "LocalAuthentication_LAPrivateKey")]
         #[method_id(@__retain_semantics Other key)]
-        pub unsafe fn key(&self) -> Id<LAPrivateKey, Shared>;
+        pub unsafe fn key(&self) -> Id<LAPrivateKey>;
 
         #[cfg(feature = "LocalAuthentication_LASecret")]
         #[method_id(@__retain_semantics Other secret)]
-        pub unsafe fn secret(&self) -> Id<LASecret, Shared>;
+        pub unsafe fn secret(&self) -> Id<LASecret>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }
 );
 
@@ -47,6 +47,6 @@ extern_methods!(
         pub unsafe fn initWithRequirement(
             this: Option<Allocated<Self>>,
             requirement: &LAAuthenticationRequirement,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

@@ -31,11 +31,11 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSWorkspace")]
     unsafe impl NSWorkspace {
         #[method_id(@__retain_semantics Other sharedWorkspace)]
-        pub unsafe fn sharedWorkspace() -> Id<NSWorkspace, Shared>;
+        pub unsafe fn sharedWorkspace() -> Id<NSWorkspace>;
 
         #[cfg(feature = "Foundation_NSNotificationCenter")]
         #[method_id(@__retain_semantics Other notificationCenter)]
-        pub unsafe fn notificationCenter(&self) -> Id<NSNotificationCenter, Shared>;
+        pub unsafe fn notificationCenter(&self) -> Id<NSNotificationCenter>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method(openURL:)]
@@ -111,7 +111,7 @@ extern_methods!(
 
         #[cfg(all(feature = "AppKit_NSImage", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other iconForFile:)]
-        pub unsafe fn iconForFile(&self, full_path: &NSString) -> Id<NSImage, Shared>;
+        pub unsafe fn iconForFile(&self, full_path: &NSString) -> Id<NSImage>;
 
         #[cfg(all(
             feature = "AppKit_NSImage",
@@ -119,10 +119,7 @@ extern_methods!(
             feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other iconForFiles:)]
-        pub unsafe fn iconForFiles(
-            &self,
-            full_paths: &NSArray<NSString>,
-        ) -> Option<Id<NSImage, Shared>>;
+        pub unsafe fn iconForFiles(&self, full_paths: &NSArray<NSString>) -> Option<Id<NSImage>>;
 
         #[cfg(all(feature = "AppKit_NSImage", feature = "Foundation_NSString"))]
         #[method(setIcon:forFile:options:)]
@@ -135,11 +132,11 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other fileLabels)]
-        pub unsafe fn fileLabels(&self) -> Id<NSArray<NSString>, Shared>;
+        pub unsafe fn fileLabels(&self) -> Id<NSArray<NSString>>;
 
         #[cfg(all(feature = "AppKit_NSColor", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other fileLabelColors)]
-        pub unsafe fn fileLabelColors(&self) -> Id<NSArray<NSColor>, Shared>;
+        pub unsafe fn fileLabelColors(&self) -> Id<NSArray<NSColor>>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -175,8 +172,8 @@ extern_methods!(
             removable_flag: *mut Bool,
             writable_flag: *mut Bool,
             unmountable_flag: *mut Bool,
-            description: Option<&mut Option<Id<NSString, Shared>>>,
-            file_system_type: Option<&mut Option<Id<NSString, Shared>>>,
+            description: Option<&mut Option<Id<NSString>>>,
+            file_system_type: Option<&mut Option<Id<NSString>>>,
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -188,7 +185,7 @@ extern_methods!(
         pub unsafe fn unmountAndEjectDeviceAtURL_error(
             &self,
             url: &NSURL,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
 
         #[method(extendPowerOffBy:)]
         pub unsafe fn extendPowerOffBy(&self, requested: NSInteger) -> NSInteger;
@@ -201,7 +198,7 @@ extern_methods!(
         pub unsafe fn URLForApplicationWithBundleIdentifier(
             &self,
             bundle_identifier: &NSString,
-        ) -> Option<Id<NSURL, Shared>>;
+        ) -> Option<Id<NSURL>>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -212,18 +209,15 @@ extern_methods!(
         pub unsafe fn URLsForApplicationsWithBundleIdentifier(
             &self,
             bundle_identifier: &NSString,
-        ) -> Id<NSArray<NSURL>, Shared>;
+        ) -> Id<NSArray<NSURL>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other URLForApplicationToOpenURL:)]
-        pub unsafe fn URLForApplicationToOpenURL(&self, url: &NSURL) -> Option<Id<NSURL, Shared>>;
+        pub unsafe fn URLForApplicationToOpenURL(&self, url: &NSURL) -> Option<Id<NSURL>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other URLsForApplicationsToOpenURL:)]
-        pub unsafe fn URLsForApplicationsToOpenURL(
-            &self,
-            url: &NSURL,
-        ) -> Id<NSArray<NSURL>, Shared>;
+        pub unsafe fn URLsForApplicationsToOpenURL(&self, url: &NSURL) -> Id<NSArray<NSURL>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method(setDefaultApplicationAtURL:toOpenContentTypeOfFileAtURL:completionHandler:)]
@@ -258,11 +252,11 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSRunningApplication")]
         #[method_id(@__retain_semantics Other frontmostApplication)]
-        pub unsafe fn frontmostApplication(&self) -> Option<Id<NSRunningApplication, Shared>>;
+        pub unsafe fn frontmostApplication(&self) -> Option<Id<NSRunningApplication>>;
 
         #[cfg(feature = "AppKit_NSRunningApplication")]
         #[method_id(@__retain_semantics Other menuBarOwningApplication)]
-        pub unsafe fn menuBarOwningApplication(&self) -> Option<Id<NSRunningApplication, Shared>>;
+        pub unsafe fn menuBarOwningApplication(&self) -> Option<Id<NSRunningApplication>>;
     }
 );
 
@@ -284,7 +278,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSWorkspaceOpenConfiguration")]
     unsafe impl NSWorkspaceOpenConfiguration {
         #[method_id(@__retain_semantics Other configuration)]
-        pub unsafe fn configuration() -> Id<Self, Shared>;
+        pub unsafe fn configuration() -> Id<Self>;
 
         #[method(promptsUserIfNeeded)]
         pub unsafe fn promptsUserIfNeeded(&self) -> bool;
@@ -342,7 +336,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other arguments)]
-        pub unsafe fn arguments(&self) -> Id<NSArray<NSString>, Shared>;
+        pub unsafe fn arguments(&self) -> Id<NSArray<NSString>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setArguments:)]
@@ -350,7 +344,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other environment)]
-        pub unsafe fn environment(&self) -> Id<NSDictionary<NSString, NSString>, Shared>;
+        pub unsafe fn environment(&self) -> Id<NSDictionary<NSString, NSString>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setEnvironment:)]
@@ -358,7 +352,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSAppleEventDescriptor")]
         #[method_id(@__retain_semantics Other appleEvent)]
-        pub unsafe fn appleEvent(&self) -> Option<Id<NSAppleEventDescriptor, Shared>>;
+        pub unsafe fn appleEvent(&self) -> Option<Id<NSAppleEventDescriptor>>;
 
         #[cfg(feature = "Foundation_NSAppleEventDescriptor")]
         #[method(setAppleEvent:)]
@@ -398,21 +392,18 @@ extern_methods!(
             url: &NSURL,
             screen: &NSScreen,
             options: &NSDictionary<NSWorkspaceDesktopImageOptionKey, Object>,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
 
         #[cfg(all(feature = "AppKit_NSScreen", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other desktopImageURLForScreen:)]
-        pub unsafe fn desktopImageURLForScreen(
-            &self,
-            screen: &NSScreen,
-        ) -> Option<Id<NSURL, Shared>>;
+        pub unsafe fn desktopImageURLForScreen(&self, screen: &NSScreen) -> Option<Id<NSURL>>;
 
         #[cfg(all(feature = "AppKit_NSScreen", feature = "Foundation_NSDictionary"))]
         #[method_id(@__retain_semantics Other desktopImageOptionsForScreen:)]
         pub unsafe fn desktopImageOptionsForScreen(
             &self,
             screen: &NSScreen,
-        ) -> Option<Id<NSDictionary<NSWorkspaceDesktopImageOptionKey, Object>, Shared>>;
+        ) -> Option<Id<NSDictionary<NSWorkspaceDesktopImageOptionKey, Object>>>;
     }
 );
 
@@ -469,7 +460,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other fileManagerWithAuthorization:)]
         pub unsafe fn fileManagerWithAuthorization(
             authorization: &NSWorkspaceAuthorization,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );
 
@@ -621,7 +612,7 @@ extern_methods!(
             url: &NSURL,
             options: NSWorkspaceLaunchOptions,
             configuration: &NSDictionary<NSWorkspaceLaunchConfigurationKey, Object>,
-        ) -> Result<Id<NSRunningApplication, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<NSRunningApplication>, Id<NSError>>;
 
         #[cfg(all(
             feature = "AppKit_NSRunningApplication",
@@ -636,7 +627,7 @@ extern_methods!(
             url: &NSURL,
             options: NSWorkspaceLaunchOptions,
             configuration: &NSDictionary<NSWorkspaceLaunchConfigurationKey, Object>,
-        ) -> Result<Id<NSRunningApplication, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<NSRunningApplication>, Id<NSError>>;
 
         #[cfg(all(
             feature = "AppKit_NSRunningApplication",
@@ -653,7 +644,7 @@ extern_methods!(
             application_url: &NSURL,
             options: NSWorkspaceLaunchOptions,
             configuration: &NSDictionary<NSWorkspaceLaunchConfigurationKey, Object>,
-        ) -> Result<Id<NSRunningApplication, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<NSRunningApplication>, Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use -[NSWorkspace openApplicationAtURL:configuration:completionHandler:] instead."]
@@ -668,10 +659,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use -[NSWorkspace URLForApplicationWithBundleIdentifier:] instead."]
         #[method_id(@__retain_semantics Other fullPathForApplication:)]
-        pub unsafe fn fullPathForApplication(
-            &self,
-            app_name: &NSString,
-        ) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn fullPathForApplication(&self, app_name: &NSString) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use -[NSWorkspace URLForApplicationWithBundleIdentifier:] instead."]
@@ -679,7 +667,7 @@ extern_methods!(
         pub unsafe fn absolutePathForAppBundleWithIdentifier(
             &self,
             bundle_identifier: &NSString,
-        ) -> Option<Id<NSString, Shared>>;
+        ) -> Option<Id<NSString>>;
 
         #[cfg(all(
             feature = "Foundation_NSAppleEventDescriptor",
@@ -693,7 +681,7 @@ extern_methods!(
             bundle_identifier: &NSString,
             options: NSWorkspaceLaunchOptions,
             descriptor: Option<&NSAppleEventDescriptor>,
-            identifier: Option<&mut Option<Id<NSNumber, Shared>>>,
+            identifier: Option<&mut Option<Id<NSNumber>>>,
         ) -> bool;
 
         #[cfg(all(
@@ -711,7 +699,7 @@ extern_methods!(
             bundle_identifier: Option<&NSString>,
             options: NSWorkspaceLaunchOptions,
             descriptor: Option<&NSAppleEventDescriptor>,
-            identifiers: Option<&mut Option<Id<NSArray<NSNumber>, Shared>>>,
+            identifiers: Option<&mut Option<Id<NSArray<NSNumber>>>>,
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -756,27 +744,27 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSArray")]
         #[deprecated]
         #[method_id(@__retain_semantics Other mountNewRemovableMedia)]
-        pub unsafe fn mountNewRemovableMedia(&self) -> Option<Id<NSArray, Shared>>;
+        pub unsafe fn mountNewRemovableMedia(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[deprecated = "Use -[NSWorkspace frontmostApplication] instead."]
         #[method_id(@__retain_semantics Other activeApplication)]
-        pub unsafe fn activeApplication(&self) -> Option<Id<NSDictionary, Shared>>;
+        pub unsafe fn activeApplication(&self) -> Option<Id<NSDictionary>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[deprecated = "Use -[NSFileManager mountedVolumeURLsIncludingResourceValuesForKeys:options:] instead."]
         #[method_id(@__retain_semantics Other mountedLocalVolumePaths)]
-        pub unsafe fn mountedLocalVolumePaths(&self) -> Option<Id<NSArray, Shared>>;
+        pub unsafe fn mountedLocalVolumePaths(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[deprecated = "Use -[NSFileManager mountedVolumeURLsIncludingResourceValuesForKeys:options:] instead."]
         #[method_id(@__retain_semantics Other mountedRemovableMedia)]
-        pub unsafe fn mountedRemovableMedia(&self) -> Option<Id<NSArray, Shared>>;
+        pub unsafe fn mountedRemovableMedia(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[deprecated = "Use -[NSWorkspace runningApplications] instead."]
         #[method_id(@__retain_semantics Other launchedApplications)]
-        pub unsafe fn launchedApplications(&self) -> Option<Id<NSArray, Shared>>;
+        pub unsafe fn launchedApplications(&self) -> Option<Id<NSArray>>;
 
         #[cfg(all(
             feature = "AppKit_NSImage",
@@ -811,14 +799,14 @@ extern_methods!(
         pub unsafe fn getInfoForFile_application_type(
             &self,
             full_path: &NSString,
-            app_name: Option<&mut Option<Id<NSString, Shared>>>,
-            r#type: Option<&mut Option<Id<NSString, Shared>>>,
+            app_name: Option<&mut Option<Id<NSString>>>,
+            r#type: Option<&mut Option<Id<NSString>>>,
         ) -> bool;
 
         #[cfg(all(feature = "AppKit_NSImage", feature = "Foundation_NSString"))]
         #[deprecated = "Use -[NSWorkspace iconForContentType:] instead."]
         #[method_id(@__retain_semantics Other iconForFileType:)]
-        pub unsafe fn iconForFileType(&self, file_type: &NSString) -> Id<NSImage, Shared>;
+        pub unsafe fn iconForFileType(&self, file_type: &NSString) -> Id<NSImage>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[deprecated = "Use -[NSURL getResourceValue:forKey:error:] with NSURLContentTypeKey instead."]
@@ -826,7 +814,7 @@ extern_methods!(
         pub unsafe fn typeOfFile_error(
             &self,
             absolute_file_path: &NSString,
-        ) -> Result<Id<NSString, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<NSString>, Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use UTType.localizedDescription instead."]
@@ -834,7 +822,7 @@ extern_methods!(
         pub unsafe fn localizedDescriptionForType(
             &self,
             type_name: &NSString,
-        ) -> Option<Id<NSString, Shared>>;
+        ) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use UTType.preferredFilenameExtension instead."]
@@ -842,7 +830,7 @@ extern_methods!(
         pub unsafe fn preferredFilenameExtensionForType(
             &self,
             type_name: &NSString,
-        ) -> Option<Id<NSString, Shared>>;
+        ) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use +[UTType typesWithTag:tagClass:conformingToType:] to get a list of candidate types, then check if the input type conforms to any of them."]

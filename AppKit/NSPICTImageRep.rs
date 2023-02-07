@@ -28,18 +28,18 @@ extern_methods!(
     unsafe impl NSPICTImageRep {
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other imageRepWithData:)]
-        pub unsafe fn imageRepWithData(pict_data: &NSData) -> Option<Id<Self, Shared>>;
+        pub unsafe fn imageRepWithData(pict_data: &NSData) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Init initWithData:)]
         pub unsafe fn initWithData(
             this: Option<Allocated<Self>>,
             pict_data: &NSData,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other PICTRepresentation)]
-        pub unsafe fn PICTRepresentation(&self) -> Id<NSData, Shared>;
+        pub unsafe fn PICTRepresentation(&self) -> Id<NSData>;
 
         #[method(boundingBox)]
         pub unsafe fn boundingBox(&self) -> NSRect;

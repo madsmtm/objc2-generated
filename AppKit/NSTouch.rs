@@ -58,7 +58,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTouch")]
     unsafe impl NSTouch {
         #[method_id(@__retain_semantics Other identity)]
-        pub unsafe fn identity(&self) -> Id<TodoProtocols, Shared>;
+        pub unsafe fn identity(&self) -> Id<TodoProtocols>;
 
         #[method(phase)]
         pub unsafe fn phase(&self) -> NSTouchPhase;
@@ -70,7 +70,7 @@ extern_methods!(
         pub unsafe fn isResting(&self) -> bool;
 
         #[method_id(@__retain_semantics Other device)]
-        pub unsafe fn device(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn device(&self) -> Option<Id<Object>>;
 
         #[method(deviceSize)]
         pub unsafe fn deviceSize(&self) -> NSSize;

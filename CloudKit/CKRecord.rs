@@ -45,16 +45,16 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKRecord")]
     unsafe impl CKRecord {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithRecordType:)]
         pub unsafe fn initWithRecordType(
             this: Option<Allocated<Self>>,
             record_type: &CKRecordType,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "CloudKit_CKRecordID")]
         #[method_id(@__retain_semantics Init initWithRecordType:recordID:)]
@@ -62,7 +62,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             record_type: &CKRecordType,
             record_id: &CKRecordID,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "CloudKit_CKRecordZoneID")]
         #[method_id(@__retain_semantics Init initWithRecordType:zoneID:)]
@@ -70,40 +70,40 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             record_type: &CKRecordType,
             zone_id: &CKRecordZoneID,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other recordType)]
-        pub unsafe fn recordType(&self) -> Id<CKRecordType, Shared>;
+        pub unsafe fn recordType(&self) -> Id<CKRecordType>;
 
         #[cfg(feature = "CloudKit_CKRecordID")]
         #[method_id(@__retain_semantics Other recordID)]
-        pub unsafe fn recordID(&self) -> Id<CKRecordID, Shared>;
+        pub unsafe fn recordID(&self) -> Id<CKRecordID>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other recordChangeTag)]
-        pub unsafe fn recordChangeTag(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn recordChangeTag(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "CloudKit_CKRecordID")]
         #[method_id(@__retain_semantics Other creatorUserRecordID)]
-        pub unsafe fn creatorUserRecordID(&self) -> Option<Id<CKRecordID, Shared>>;
+        pub unsafe fn creatorUserRecordID(&self) -> Option<Id<CKRecordID>>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other creationDate)]
-        pub unsafe fn creationDate(&self) -> Option<Id<NSDate, Shared>>;
+        pub unsafe fn creationDate(&self) -> Option<Id<NSDate>>;
 
         #[cfg(feature = "CloudKit_CKRecordID")]
         #[method_id(@__retain_semantics Other lastModifiedUserRecordID)]
-        pub unsafe fn lastModifiedUserRecordID(&self) -> Option<Id<CKRecordID, Shared>>;
+        pub unsafe fn lastModifiedUserRecordID(&self) -> Option<Id<CKRecordID>>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other modificationDate)]
-        pub unsafe fn modificationDate(&self) -> Option<Id<NSDate, Shared>>;
+        pub unsafe fn modificationDate(&self) -> Option<Id<NSDate>>;
 
         #[method_id(@__retain_semantics Other objectForKey:)]
         pub unsafe fn objectForKey(
             &self,
             key: &CKRecordFieldKey,
-        ) -> Option<Id<ProtocolObject<dyn CKRecordValue>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn CKRecordValue>>>;
 
         #[method(setObject:forKey:)]
         pub unsafe fn setObject_forKey(
@@ -114,17 +114,17 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other allKeys)]
-        pub unsafe fn allKeys(&self) -> Id<NSArray<CKRecordFieldKey>, Shared>;
+        pub unsafe fn allKeys(&self) -> Id<NSArray<CKRecordFieldKey>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other allTokens)]
-        pub unsafe fn allTokens(&self) -> Id<NSArray<NSString>, Shared>;
+        pub unsafe fn allTokens(&self) -> Id<NSArray<NSString>>;
 
         #[method_id(@__retain_semantics Other objectForKeyedSubscript:)]
         pub unsafe fn objectForKeyedSubscript(
             &self,
             key: &CKRecordFieldKey,
-        ) -> Option<Id<ProtocolObject<dyn CKRecordValue>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn CKRecordValue>>>;
 
         #[method(setObject:forKeyedSubscript:)]
         pub unsafe fn setObject_forKeyedSubscript(
@@ -135,7 +135,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other changedKeys)]
-        pub unsafe fn changedKeys(&self) -> Id<NSArray<CKRecordFieldKey>, Shared>;
+        pub unsafe fn changedKeys(&self) -> Id<NSArray<CKRecordFieldKey>>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method(encodeSystemFieldsWithCoder:)]
@@ -143,11 +143,11 @@ extern_methods!(
 
         #[cfg(feature = "CloudKit_CKReference")]
         #[method_id(@__retain_semantics Other share)]
-        pub unsafe fn share(&self) -> Option<Id<CKReference, Shared>>;
+        pub unsafe fn share(&self) -> Option<Id<CKReference>>;
 
         #[cfg(feature = "CloudKit_CKReference")]
         #[method_id(@__retain_semantics Other parent)]
-        pub unsafe fn parent(&self) -> Option<Id<CKReference, Shared>>;
+        pub unsafe fn parent(&self) -> Option<Id<CKReference>>;
 
         #[cfg(feature = "CloudKit_CKReference")]
         #[method(setParent:)]
@@ -240,7 +240,7 @@ extern_protocol!(
         unsafe fn objectForKey(
             &self,
             key: &CKRecordFieldKey,
-        ) -> Option<Id<ProtocolObject<dyn CKRecordValue>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn CKRecordValue>>>;
 
         #[method(setObject:forKey:)]
         unsafe fn setObject_forKey(
@@ -253,7 +253,7 @@ extern_protocol!(
         unsafe fn objectForKeyedSubscript(
             &self,
             key: &CKRecordFieldKey,
-        ) -> Option<Id<ProtocolObject<dyn CKRecordValue>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn CKRecordValue>>>;
 
         #[method(setObject:forKeyedSubscript:)]
         unsafe fn setObject_forKeyedSubscript(
@@ -264,11 +264,11 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other allKeys)]
-        unsafe fn allKeys(&self) -> Id<NSArray<CKRecordFieldKey>, Shared>;
+        unsafe fn allKeys(&self) -> Id<NSArray<CKRecordFieldKey>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other changedKeys)]
-        unsafe fn changedKeys(&self) -> Id<NSArray<CKRecordFieldKey>, Shared>;
+        unsafe fn changedKeys(&self) -> Id<NSArray<CKRecordFieldKey>>;
     }
 
     unsafe impl ProtocolType for dyn CKRecordKeyValueSetting {}
@@ -279,9 +279,7 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKRecord")]
     unsafe impl CKRecord {
         #[method_id(@__retain_semantics Other encryptedValues)]
-        pub unsafe fn encryptedValues(
-            &self,
-        ) -> Id<ProtocolObject<dyn CKRecordKeyValueSetting>, Shared>;
+        pub unsafe fn encryptedValues(&self) -> Id<ProtocolObject<dyn CKRecordKeyValueSetting>>;
     }
 );
 

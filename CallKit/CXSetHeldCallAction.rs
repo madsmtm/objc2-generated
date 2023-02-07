@@ -34,21 +34,21 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             call_uuid: &NSUUID,
             on_hold: bool,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             a_decoder: &NSCoder,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSUUID")]
         #[method_id(@__retain_semantics Init initWithCallUUID:)]
         pub unsafe fn initWithCallUUID(
             this: Option<Allocated<Self>>,
             call_uuid: &NSUUID,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(isOnHold)]
         pub unsafe fn isOnHold(&self) -> bool;

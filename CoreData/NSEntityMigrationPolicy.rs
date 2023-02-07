@@ -43,7 +43,7 @@ extern_methods!(
             &self,
             mapping: &NSEntityMapping,
             manager: &NSMigrationManager,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
 
         #[cfg(all(
             feature = "CoreData_NSEntityMapping",
@@ -57,7 +57,7 @@ extern_methods!(
             s_instance: &NSManagedObject,
             mapping: &NSEntityMapping,
             manager: &NSMigrationManager,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
 
         #[cfg(all(
             feature = "CoreData_NSEntityMapping",
@@ -69,7 +69,7 @@ extern_methods!(
             &self,
             mapping: &NSEntityMapping,
             manager: &NSMigrationManager,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
 
         #[cfg(all(
             feature = "CoreData_NSEntityMapping",
@@ -83,7 +83,7 @@ extern_methods!(
             d_instance: &NSManagedObject,
             mapping: &NSEntityMapping,
             manager: &NSMigrationManager,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
 
         #[cfg(all(
             feature = "CoreData_NSEntityMapping",
@@ -95,7 +95,7 @@ extern_methods!(
             &self,
             mapping: &NSEntityMapping,
             manager: &NSMigrationManager,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
 
         #[cfg(all(
             feature = "CoreData_NSEntityMapping",
@@ -107,7 +107,7 @@ extern_methods!(
             &self,
             mapping: &NSEntityMapping,
             manager: &NSMigrationManager,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
 
         #[cfg(all(
             feature = "CoreData_NSEntityMapping",
@@ -119,6 +119,6 @@ extern_methods!(
             &self,
             mapping: &NSEntityMapping,
             manager: &NSMigrationManager,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
     }
 );

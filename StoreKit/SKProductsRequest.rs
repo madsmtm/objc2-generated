@@ -45,12 +45,10 @@ extern_methods!(
         pub unsafe fn initWithProductIdentifiers(
             this: Option<Allocated<Self>>,
             product_identifiers: &NSSet<NSString>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(
-            &self,
-        ) -> Option<Id<ProtocolObject<dyn SKProductsRequestDelegate>, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn SKProductsRequestDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -79,10 +77,10 @@ extern_methods!(
     unsafe impl SKProductsResponse {
         #[cfg(all(feature = "Foundation_NSArray", feature = "StoreKit_SKProduct"))]
         #[method_id(@__retain_semantics Other products)]
-        pub unsafe fn products(&self) -> Id<NSArray<SKProduct>, Shared>;
+        pub unsafe fn products(&self) -> Id<NSArray<SKProduct>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other invalidProductIdentifiers)]
-        pub unsafe fn invalidProductIdentifiers(&self) -> Id<NSArray<NSString>, Shared>;
+        pub unsafe fn invalidProductIdentifiers(&self) -> Id<NSArray<NSString>>;
     }
 );

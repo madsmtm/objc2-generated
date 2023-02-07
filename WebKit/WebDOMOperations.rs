@@ -11,7 +11,7 @@ extern_methods!(
     unsafe impl DOMNode {
         #[cfg(feature = "WebKit_WebArchive")]
         #[method_id(@__retain_semantics Other webArchive)]
-        pub unsafe fn webArchive(&self) -> Option<Id<WebArchive, Shared>>;
+        pub unsafe fn webArchive(&self) -> Option<Id<WebArchive>>;
     }
 );
 
@@ -21,14 +21,12 @@ extern_methods!(
     unsafe impl DOMDocument {
         #[cfg(feature = "WebKit_WebFrame")]
         #[method_id(@__retain_semantics Other webFrame)]
-        pub unsafe fn webFrame(&self) -> Option<Id<WebFrame, Shared>>;
+        pub unsafe fn webFrame(&self) -> Option<Id<WebFrame>>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other URLWithAttributeString:)]
-        pub unsafe fn URLWithAttributeString(
-            &self,
-            string: Option<&NSString>,
-        ) -> Option<Id<NSURL, Shared>>;
+        pub unsafe fn URLWithAttributeString(&self, string: Option<&NSString>)
+            -> Option<Id<NSURL>>;
     }
 );
 
@@ -38,11 +36,11 @@ extern_methods!(
     unsafe impl DOMRange {
         #[cfg(feature = "WebKit_WebArchive")]
         #[method_id(@__retain_semantics Other webArchive)]
-        pub unsafe fn webArchive(&self) -> Option<Id<WebArchive, Shared>>;
+        pub unsafe fn webArchive(&self) -> Option<Id<WebArchive>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other markupString)]
-        pub unsafe fn markupString(&self) -> Id<NSString, Shared>;
+        pub unsafe fn markupString(&self) -> Id<NSString>;
     }
 );
 
@@ -52,7 +50,7 @@ extern_methods!(
     unsafe impl DOMHTMLFrameElement {
         #[cfg(feature = "WebKit_WebFrame")]
         #[method_id(@__retain_semantics Other contentFrame)]
-        pub unsafe fn contentFrame(&self) -> Option<Id<WebFrame, Shared>>;
+        pub unsafe fn contentFrame(&self) -> Option<Id<WebFrame>>;
     }
 );
 
@@ -62,7 +60,7 @@ extern_methods!(
     unsafe impl DOMHTMLIFrameElement {
         #[cfg(feature = "WebKit_WebFrame")]
         #[method_id(@__retain_semantics Other contentFrame)]
-        pub unsafe fn contentFrame(&self) -> Option<Id<WebFrame, Shared>>;
+        pub unsafe fn contentFrame(&self) -> Option<Id<WebFrame>>;
     }
 );
 
@@ -72,6 +70,6 @@ extern_methods!(
     unsafe impl DOMHTMLObjectElement {
         #[cfg(feature = "WebKit_WebFrame")]
         #[method_id(@__retain_semantics Other contentFrame)]
-        pub unsafe fn contentFrame(&self) -> Option<Id<WebFrame, Shared>>;
+        pub unsafe fn contentFrame(&self) -> Option<Id<WebFrame>>;
     }
 );

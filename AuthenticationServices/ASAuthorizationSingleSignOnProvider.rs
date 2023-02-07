@@ -26,22 +26,21 @@ extern_methods!(
     unsafe impl ASAuthorizationSingleSignOnProvider {
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other authorizationProviderWithIdentityProviderURL:)]
-        pub unsafe fn authorizationProviderWithIdentityProviderURL(url: &NSURL)
-            -> Id<Self, Shared>;
+        pub unsafe fn authorizationProviderWithIdentityProviderURL(url: &NSURL) -> Id<Self>;
 
         #[cfg(feature = "AuthenticationServices_ASAuthorizationSingleSignOnRequest")]
         #[method_id(@__retain_semantics Other createRequest)]
-        pub unsafe fn createRequest(&self) -> Id<ASAuthorizationSingleSignOnRequest, Shared>;
+        pub unsafe fn createRequest(&self) -> Id<ASAuthorizationSingleSignOnRequest>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other url)]
-        pub unsafe fn url(&self) -> Id<NSURL, Shared>;
+        pub unsafe fn url(&self) -> Id<NSURL>;
 
         #[method(canPerformAuthorization)]
         pub unsafe fn canPerformAuthorization(&self) -> bool;

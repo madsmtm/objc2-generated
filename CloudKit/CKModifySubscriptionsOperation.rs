@@ -24,7 +24,7 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKModifySubscriptionsOperation")]
     unsafe impl CKModifySubscriptionsOperation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(all(feature = "CloudKit_CKSubscription", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Init initWithSubscriptionsToSave:subscriptionIDsToDelete:)]
@@ -32,11 +32,11 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             subscriptions_to_save: Option<&NSArray<CKSubscription>>,
             subscription_i_ds_to_delete: Option<&NSArray<CKSubscriptionID>>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(feature = "CloudKit_CKSubscription", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other subscriptionsToSave)]
-        pub unsafe fn subscriptionsToSave(&self) -> Option<Id<NSArray<CKSubscription>, Shared>>;
+        pub unsafe fn subscriptionsToSave(&self) -> Option<Id<NSArray<CKSubscription>>>;
 
         #[cfg(all(feature = "CloudKit_CKSubscription", feature = "Foundation_NSArray"))]
         #[method(setSubscriptionsToSave:)]
@@ -47,9 +47,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other subscriptionIDsToDelete)]
-        pub unsafe fn subscriptionIDsToDelete(
-            &self,
-        ) -> Option<Id<NSArray<CKSubscriptionID>, Shared>>;
+        pub unsafe fn subscriptionIDsToDelete(&self) -> Option<Id<NSArray<CKSubscriptionID>>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setSubscriptionIDsToDelete:)]

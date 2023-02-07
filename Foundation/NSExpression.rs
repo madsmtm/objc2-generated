@@ -50,52 +50,52 @@ extern_methods!(
         pub unsafe fn expressionWithFormat_argumentArray(
             expression_format: &NSString,
             arguments: &NSArray,
-        ) -> Id<NSExpression, Shared>;
+        ) -> Id<NSExpression>;
 
         #[method_id(@__retain_semantics Other expressionForConstantValue:)]
-        pub unsafe fn expressionForConstantValue(obj: Option<&Object>) -> Id<NSExpression, Shared>;
+        pub unsafe fn expressionForConstantValue(obj: Option<&Object>) -> Id<NSExpression>;
 
         #[method_id(@__retain_semantics Other expressionForEvaluatedObject)]
-        pub unsafe fn expressionForEvaluatedObject() -> Id<NSExpression, Shared>;
+        pub unsafe fn expressionForEvaluatedObject() -> Id<NSExpression>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other expressionForVariable:)]
-        pub unsafe fn expressionForVariable(string: &NSString) -> Id<NSExpression, Shared>;
+        pub unsafe fn expressionForVariable(string: &NSString) -> Id<NSExpression>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other expressionForKeyPath:)]
-        pub unsafe fn expressionForKeyPath(key_path: &NSString) -> Id<NSExpression, Shared>;
+        pub unsafe fn expressionForKeyPath(key_path: &NSString) -> Id<NSExpression>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other expressionForFunction:arguments:)]
         pub unsafe fn expressionForFunction_arguments(
             name: &NSString,
             parameters: &NSArray,
-        ) -> Id<NSExpression, Shared>;
+        ) -> Id<NSExpression>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other expressionForAggregate:)]
         pub unsafe fn expressionForAggregate(
             subexpressions: &NSArray<NSExpression>,
-        ) -> Id<NSExpression, Shared>;
+        ) -> Id<NSExpression>;
 
         #[method_id(@__retain_semantics Other expressionForUnionSet:with:)]
         pub unsafe fn expressionForUnionSet_with(
             left: &NSExpression,
             right: &NSExpression,
-        ) -> Id<NSExpression, Shared>;
+        ) -> Id<NSExpression>;
 
         #[method_id(@__retain_semantics Other expressionForIntersectSet:with:)]
         pub unsafe fn expressionForIntersectSet_with(
             left: &NSExpression,
             right: &NSExpression,
-        ) -> Id<NSExpression, Shared>;
+        ) -> Id<NSExpression>;
 
         #[method_id(@__retain_semantics Other expressionForMinusSet:with:)]
         pub unsafe fn expressionForMinusSet_with(
             left: &NSExpression,
             right: &NSExpression,
-        ) -> Id<NSExpression, Shared>;
+        ) -> Id<NSExpression>;
 
         #[cfg(all(feature = "Foundation_NSPredicate", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other expressionForSubquery:usingIteratorVariable:predicate:)]
@@ -103,7 +103,7 @@ extern_methods!(
             expression: &NSExpression,
             variable: &NSString,
             predicate: &NSPredicate,
-        ) -> Id<NSExpression, Shared>;
+        ) -> Id<NSExpression>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other expressionForFunction:selectorName:arguments:)]
@@ -111,10 +111,10 @@ extern_methods!(
             target: &NSExpression,
             name: &NSString,
             parameters: Option<&NSArray>,
-        ) -> Id<NSExpression, Shared>;
+        ) -> Id<NSExpression>;
 
         #[method_id(@__retain_semantics Other expressionForAnyKey)]
-        pub unsafe fn expressionForAnyKey() -> Id<NSExpression, Shared>;
+        pub unsafe fn expressionForAnyKey() -> Id<NSExpression>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -131,7 +131,7 @@ extern_methods!(
                 NonNull<Object>,
             >,
             arguments: Option<&NSArray<NSExpression>>,
-        ) -> Id<NSExpression, Shared>;
+        ) -> Id<NSExpression>;
 
         #[cfg(feature = "Foundation_NSPredicate")]
         #[method_id(@__retain_semantics Other expressionForConditional:trueExpression:falseExpression:)]
@@ -139,64 +139,64 @@ extern_methods!(
             predicate: &NSPredicate,
             true_expression: &NSExpression,
             false_expression: &NSExpression,
-        ) -> Id<NSExpression, Shared>;
+        ) -> Id<NSExpression>;
 
         #[method_id(@__retain_semantics Init initWithExpressionType:)]
         pub unsafe fn initWithExpressionType(
             this: Option<Allocated<Self>>,
             r#type: NSExpressionType,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[method(expressionType)]
         pub unsafe fn expressionType(&self) -> NSExpressionType;
 
         #[method_id(@__retain_semantics Other constantValue)]
-        pub unsafe fn constantValue(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn constantValue(&self) -> Option<Id<Object>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other keyPath)]
-        pub unsafe fn keyPath(&self) -> Id<NSString, Shared>;
+        pub unsafe fn keyPath(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other function)]
-        pub unsafe fn function(&self) -> Id<NSString, Shared>;
+        pub unsafe fn function(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other variable)]
-        pub unsafe fn variable(&self) -> Id<NSString, Shared>;
+        pub unsafe fn variable(&self) -> Id<NSString>;
 
         #[method_id(@__retain_semantics Other operand)]
-        pub unsafe fn operand(&self) -> Id<NSExpression, Shared>;
+        pub unsafe fn operand(&self) -> Id<NSExpression>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other arguments)]
-        pub unsafe fn arguments(&self) -> Option<Id<NSArray<NSExpression>, Shared>>;
+        pub unsafe fn arguments(&self) -> Option<Id<NSArray<NSExpression>>>;
 
         #[method_id(@__retain_semantics Other collection)]
-        pub unsafe fn collection(&self) -> Id<Object, Shared>;
+        pub unsafe fn collection(&self) -> Id<Object>;
 
         #[cfg(feature = "Foundation_NSPredicate")]
         #[method_id(@__retain_semantics Other predicate)]
-        pub unsafe fn predicate(&self) -> Id<NSPredicate, Shared>;
+        pub unsafe fn predicate(&self) -> Id<NSPredicate>;
 
         #[method_id(@__retain_semantics Other leftExpression)]
-        pub unsafe fn leftExpression(&self) -> Id<NSExpression, Shared>;
+        pub unsafe fn leftExpression(&self) -> Id<NSExpression>;
 
         #[method_id(@__retain_semantics Other rightExpression)]
-        pub unsafe fn rightExpression(&self) -> Id<NSExpression, Shared>;
+        pub unsafe fn rightExpression(&self) -> Id<NSExpression>;
 
         #[method_id(@__retain_semantics Other trueExpression)]
-        pub unsafe fn trueExpression(&self) -> Id<NSExpression, Shared>;
+        pub unsafe fn trueExpression(&self) -> Id<NSExpression>;
 
         #[method_id(@__retain_semantics Other falseExpression)]
-        pub unsafe fn falseExpression(&self) -> Id<NSExpression, Shared>;
+        pub unsafe fn falseExpression(&self) -> Id<NSExpression>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -222,7 +222,7 @@ extern_methods!(
             &self,
             object: Option<&Object>,
             context: Option<&NSMutableDictionary>,
-        ) -> Option<Id<Object, Shared>>;
+        ) -> Option<Id<Object>>;
 
         #[method(allowEvaluation)]
         pub unsafe fn allowEvaluation(&self);

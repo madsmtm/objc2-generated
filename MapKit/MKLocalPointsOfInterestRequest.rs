@@ -27,20 +27,20 @@ extern_methods!(
     #[cfg(feature = "MapKit_MKLocalPointsOfInterestRequest")]
     unsafe impl MKLocalPointsOfInterestRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithCenterCoordinate:radius:)]
         pub unsafe fn initWithCenterCoordinate_radius(
             this: Option<Allocated<Self>>,
             coordinate: CLLocationCoordinate2D,
             radius: CLLocationDistance,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoordinateRegion:)]
         pub unsafe fn initWithCoordinateRegion(
             this: Option<Allocated<Self>>,
             region: MKCoordinateRegion,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(coordinate)]
         pub unsafe fn coordinate(&self) -> CLLocationCoordinate2D;
@@ -53,7 +53,7 @@ extern_methods!(
 
         #[cfg(feature = "MapKit_MKPointOfInterestFilter")]
         #[method_id(@__retain_semantics Other pointOfInterestFilter)]
-        pub unsafe fn pointOfInterestFilter(&self) -> Option<Id<MKPointOfInterestFilter, Shared>>;
+        pub unsafe fn pointOfInterestFilter(&self) -> Option<Id<MKPointOfInterestFilter>>;
 
         #[cfg(feature = "MapKit_MKPointOfInterestFilter")]
         #[method(setPointOfInterestFilter:)]

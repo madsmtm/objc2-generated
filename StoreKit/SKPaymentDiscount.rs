@@ -35,26 +35,26 @@ extern_methods!(
             nonce: &NSUUID,
             signature: &NSString,
             timestamp: &NSNumber,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn identifier(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other keyIdentifier)]
-        pub unsafe fn keyIdentifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn keyIdentifier(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSUUID")]
         #[method_id(@__retain_semantics Other nonce)]
-        pub unsafe fn nonce(&self) -> Id<NSUUID, Shared>;
+        pub unsafe fn nonce(&self) -> Id<NSUUID>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other signature)]
-        pub unsafe fn signature(&self) -> Id<NSString, Shared>;
+        pub unsafe fn signature(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSNumber")]
         #[method_id(@__retain_semantics Other timestamp)]
-        pub unsafe fn timestamp(&self) -> Id<NSNumber, Shared>;
+        pub unsafe fn timestamp(&self) -> Id<NSNumber>;
     }
 );

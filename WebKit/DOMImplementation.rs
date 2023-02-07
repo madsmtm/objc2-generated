@@ -39,7 +39,7 @@ extern_methods!(
             qualified_name: Option<&NSString>,
             public_id: Option<&NSString>,
             system_id: Option<&NSString>,
-        ) -> Option<Id<DOMDocumentType, Shared>>;
+        ) -> Option<Id<DOMDocumentType>>;
 
         #[cfg(all(
             feature = "Foundation_NSString",
@@ -52,7 +52,7 @@ extern_methods!(
             namespace_uri: Option<&NSString>,
             qualified_name: Option<&NSString>,
             doctype: Option<&DOMDocumentType>,
-        ) -> Option<Id<DOMDocument, Shared>>;
+        ) -> Option<Id<DOMDocument>>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_DOMCSSStyleSheet"))]
         #[method_id(@__retain_semantics Other createCSSStyleSheet:media:)]
@@ -60,14 +60,14 @@ extern_methods!(
             &self,
             title: Option<&NSString>,
             media: Option<&NSString>,
-        ) -> Option<Id<DOMCSSStyleSheet, Shared>>;
+        ) -> Option<Id<DOMCSSStyleSheet>>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_DOMHTMLDocument"))]
         #[method_id(@__retain_semantics Other createHTMLDocument:)]
         pub unsafe fn createHTMLDocument(
             &self,
             title: Option<&NSString>,
-        ) -> Option<Id<DOMHTMLDocument, Shared>>;
+        ) -> Option<Id<DOMHTMLDocument>>;
     }
 );
 
@@ -92,7 +92,7 @@ extern_methods!(
             qualified_name: Option<&NSString>,
             public_id: Option<&NSString>,
             system_id: Option<&NSString>,
-        ) -> Option<Id<DOMDocumentType, Shared>>;
+        ) -> Option<Id<DOMDocumentType>>;
 
         #[cfg(all(
             feature = "Foundation_NSString",
@@ -106,7 +106,7 @@ extern_methods!(
             namespace_uri: Option<&NSString>,
             qualified_name: Option<&NSString>,
             doctype: Option<&DOMDocumentType>,
-        ) -> Option<Id<DOMDocument, Shared>>;
+        ) -> Option<Id<DOMDocument>>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_DOMCSSStyleSheet"))]
         #[deprecated]
@@ -115,6 +115,6 @@ extern_methods!(
             &self,
             title: Option<&NSString>,
             media: Option<&NSString>,
-        ) -> Option<Id<DOMCSSStyleSheet, Shared>>;
+        ) -> Option<Id<DOMCSSStyleSheet>>;
     }
 );

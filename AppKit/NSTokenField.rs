@@ -20,7 +20,7 @@ extern_protocol!(
             substring: &NSString,
             token_index: NSInteger,
             selected_index: *mut NSInteger,
-        ) -> Option<Id<NSArray, Shared>>;
+        ) -> Option<Id<NSArray>>;
 
         #[cfg(all(feature = "AppKit_NSTokenField", feature = "Foundation_NSArray"))]
         #[optional]
@@ -30,7 +30,7 @@ extern_protocol!(
             token_field: &NSTokenField,
             tokens: &NSArray,
             index: NSUInteger,
-        ) -> Id<NSArray, Shared>;
+        ) -> Id<NSArray>;
 
         #[cfg(all(feature = "AppKit_NSTokenField", feature = "Foundation_NSString"))]
         #[optional]
@@ -39,7 +39,7 @@ extern_protocol!(
             &self,
             token_field: &NSTokenField,
             represented_object: &Object,
-        ) -> Option<Id<NSString, Shared>>;
+        ) -> Option<Id<NSString>>;
 
         #[cfg(all(feature = "AppKit_NSTokenField", feature = "Foundation_NSString"))]
         #[optional]
@@ -48,7 +48,7 @@ extern_protocol!(
             &self,
             token_field: &NSTokenField,
             represented_object: &Object,
-        ) -> Option<Id<NSString, Shared>>;
+        ) -> Option<Id<NSString>>;
 
         #[cfg(all(feature = "AppKit_NSTokenField", feature = "Foundation_NSString"))]
         #[optional]
@@ -57,7 +57,7 @@ extern_protocol!(
             &self,
             token_field: &NSTokenField,
             editing_string: &NSString,
-        ) -> Option<Id<Object, Shared>>;
+        ) -> Option<Id<Object>>;
 
         #[cfg(all(
             feature = "AppKit_NSPasteboard",
@@ -84,7 +84,7 @@ extern_protocol!(
             &self,
             token_field: &NSTokenField,
             pboard: &NSPasteboard,
-        ) -> Option<Id<NSArray, Shared>>;
+        ) -> Option<Id<NSArray>>;
 
         #[cfg(all(feature = "AppKit_NSMenu", feature = "AppKit_NSTokenField"))]
         #[optional]
@@ -93,7 +93,7 @@ extern_protocol!(
             &self,
             token_field: &NSTokenField,
             represented_object: &Object,
-        ) -> Option<Id<NSMenu, Shared>>;
+        ) -> Option<Id<NSMenu>>;
 
         #[cfg(feature = "AppKit_NSTokenField")]
         #[optional]
@@ -169,9 +169,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTokenField")]
     unsafe impl NSTokenField {
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(
-            &self,
-        ) -> Option<Id<ProtocolObject<dyn NSTokenFieldDelegate>, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSTokenFieldDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -196,7 +194,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSCharacterSet")]
         #[method_id(@__retain_semantics Other tokenizingCharacterSet)]
-        pub unsafe fn tokenizingCharacterSet(&self) -> Id<NSCharacterSet, Shared>;
+        pub unsafe fn tokenizingCharacterSet(&self) -> Id<NSCharacterSet>;
 
         #[cfg(feature = "Foundation_NSCharacterSet")]
         #[method(setTokenizingCharacterSet:)]
@@ -207,7 +205,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSCharacterSet")]
         #[method_id(@__retain_semantics Other defaultTokenizingCharacterSet)]
-        pub unsafe fn defaultTokenizingCharacterSet() -> Id<NSCharacterSet, Shared>;
+        pub unsafe fn defaultTokenizingCharacterSet() -> Id<NSCharacterSet>;
     }
 );
 
@@ -219,21 +217,21 @@ extern_methods!(
     unsafe impl NSTokenField {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other labelWithString:)]
-        pub unsafe fn labelWithString(string_value: &NSString) -> Id<Self, Shared>;
+        pub unsafe fn labelWithString(string_value: &NSString) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other wrappingLabelWithString:)]
-        pub unsafe fn wrappingLabelWithString(string_value: &NSString) -> Id<Self, Shared>;
+        pub unsafe fn wrappingLabelWithString(string_value: &NSString) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other labelWithAttributedString:)]
         pub unsafe fn labelWithAttributedString(
             attributed_string_value: &NSAttributedString,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other textFieldWithString:)]
-        pub unsafe fn textFieldWithString(string_value: &NSString) -> Id<Self, Shared>;
+        pub unsafe fn textFieldWithString(string_value: &NSString) -> Id<Self>;
     }
 );
 
@@ -242,9 +240,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTokenField")]
     unsafe impl NSTokenField {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frame_rect: NSRect,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
 );

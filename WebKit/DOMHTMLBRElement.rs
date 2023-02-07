@@ -29,7 +29,7 @@ extern_methods!(
     unsafe impl DOMHTMLBRElement {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other clear)]
-        pub unsafe fn clear(&self) -> Id<NSString, Shared>;
+        pub unsafe fn clear(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setClear:)]

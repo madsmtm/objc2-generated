@@ -20,7 +20,7 @@ extern_methods!(
             open_in_place: bool,
             coordinated: bool,
             visibility: NSItemProviderRepresentationVisibility,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(
             feature = "Foundation_NSData",
@@ -62,14 +62,14 @@ extern_methods!(
             feature = "UniformTypeIdentifiers_UTType"
         ))]
         #[method_id(@__retain_semantics Other registeredContentTypes)]
-        pub unsafe fn registeredContentTypes(&self) -> Id<NSArray<UTType>, Shared>;
+        pub unsafe fn registeredContentTypes(&self) -> Id<NSArray<UTType>>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "UniformTypeIdentifiers_UTType"
         ))]
         #[method_id(@__retain_semantics Other registeredContentTypesForOpenInPlace)]
-        pub unsafe fn registeredContentTypesForOpenInPlace(&self) -> Id<NSArray<UTType>, Shared>;
+        pub unsafe fn registeredContentTypesForOpenInPlace(&self) -> Id<NSArray<UTType>>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -79,7 +79,7 @@ extern_methods!(
         pub unsafe fn registeredContentTypesConformingToContentType(
             &self,
             content_type: &UTType,
-        ) -> Id<NSArray<UTType>, Shared>;
+        ) -> Id<NSArray<UTType>>;
 
         #[cfg(all(
             feature = "Foundation_NSData",
@@ -92,7 +92,7 @@ extern_methods!(
             &self,
             content_type: &UTType,
             completion_handler: &Block<(*mut NSData, *mut NSError), ()>,
-        ) -> Id<NSProgress, Shared>;
+        ) -> Id<NSProgress>;
 
         #[cfg(all(
             feature = "Foundation_NSError",
@@ -106,6 +106,6 @@ extern_methods!(
             content_type: &UTType,
             open_in_place: bool,
             completion_handler: &Block<(*mut NSURL, Bool, *mut NSError), ()>,
-        ) -> Id<NSProgress, Shared>;
+        ) -> Id<NSProgress>;
     }
 );

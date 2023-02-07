@@ -39,7 +39,7 @@ extern_methods!(
     {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other valueForKey:)]
-        pub unsafe fn valueForKey(&self, key: &NSString) -> Id<Object, Shared>;
+        pub unsafe fn valueForKey(&self, key: &NSString) -> Id<Object>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setValue:forKey:)]
@@ -90,7 +90,7 @@ extern_methods!(
     {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other valueForKey:)]
-        pub unsafe fn valueForKey(&self, key: &NSString) -> Id<Object, Shared>;
+        pub unsafe fn valueForKey(&self, key: &NSString) -> Id<Object>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setValue:forKey:)]
@@ -106,7 +106,7 @@ extern_methods!(
     {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other valueForKey:)]
-        pub unsafe fn valueForKey(&self, key: &NSString) -> Id<Object, Shared>;
+        pub unsafe fn valueForKey(&self, key: &NSString) -> Id<Object>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setValue:forKey:)]

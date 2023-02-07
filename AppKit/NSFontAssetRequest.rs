@@ -33,7 +33,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSFontAssetRequest")]
     unsafe impl NSFontAssetRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(all(feature = "AppKit_NSFontDescriptor", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Init initWithFontDescriptors:options:)]
@@ -41,15 +41,15 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             font_descriptors: &NSArray<NSFontDescriptor>,
             options: NSFontAssetRequestOptions,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(feature = "AppKit_NSFontDescriptor", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other downloadedFontDescriptors)]
-        pub unsafe fn downloadedFontDescriptors(&self) -> Id<NSArray<NSFontDescriptor>, Shared>;
+        pub unsafe fn downloadedFontDescriptors(&self) -> Id<NSArray<NSFontDescriptor>>;
 
         #[cfg(feature = "Foundation_NSProgress")]
         #[method_id(@__retain_semantics Other progress)]
-        pub unsafe fn progress(&self) -> Id<NSProgress, Shared>;
+        pub unsafe fn progress(&self) -> Id<NSProgress>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(downloadFontAssetsWithCompletionHandler:)]

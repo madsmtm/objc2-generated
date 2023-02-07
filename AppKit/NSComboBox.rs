@@ -27,7 +27,7 @@ extern_protocol!(
             &self,
             combo_box: &NSComboBox,
             index: NSInteger,
-        ) -> Option<Id<Object, Shared>>;
+        ) -> Option<Id<Object>>;
 
         #[cfg(all(feature = "AppKit_NSComboBox", feature = "Foundation_NSString"))]
         #[optional]
@@ -45,7 +45,7 @@ extern_protocol!(
             &self,
             combo_box: &NSComboBox,
             string: &NSString,
-        ) -> Option<Id<NSString, Shared>>;
+        ) -> Option<Id<NSString>>;
     }
 
     unsafe impl ProtocolType for dyn NSComboBoxDataSource {}
@@ -195,16 +195,13 @@ extern_methods!(
         pub unsafe fn setCompletes(&self, completes: bool);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self)
-            -> Option<Id<ProtocolObject<dyn NSComboBoxDelegate>, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSComboBoxDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSComboBoxDelegate>>);
 
         #[method_id(@__retain_semantics Other dataSource)]
-        pub unsafe fn dataSource(
-            &self,
-        ) -> Option<Id<ProtocolObject<dyn NSComboBoxDataSource>, Shared>>;
+        pub unsafe fn dataSource(&self) -> Option<Id<ProtocolObject<dyn NSComboBoxDataSource>>>;
 
         #[method(setDataSource:)]
         pub unsafe fn setDataSource(
@@ -235,17 +232,17 @@ extern_methods!(
         pub unsafe fn selectItemWithObjectValue(&self, object: Option<&Object>);
 
         #[method_id(@__retain_semantics Other itemObjectValueAtIndex:)]
-        pub unsafe fn itemObjectValueAtIndex(&self, index: NSInteger) -> Id<Object, Shared>;
+        pub unsafe fn itemObjectValueAtIndex(&self, index: NSInteger) -> Id<Object>;
 
         #[method_id(@__retain_semantics Other objectValueOfSelectedItem)]
-        pub unsafe fn objectValueOfSelectedItem(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn objectValueOfSelectedItem(&self) -> Option<Id<Object>>;
 
         #[method(indexOfItemWithObjectValue:)]
         pub unsafe fn indexOfItemWithObjectValue(&self, object: &Object) -> NSInteger;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other objectValues)]
-        pub unsafe fn objectValues(&self) -> Id<NSArray, Shared>;
+        pub unsafe fn objectValues(&self) -> Id<NSArray>;
     }
 );
 
@@ -257,21 +254,21 @@ extern_methods!(
     unsafe impl NSComboBox {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other labelWithString:)]
-        pub unsafe fn labelWithString(string_value: &NSString) -> Id<Self, Shared>;
+        pub unsafe fn labelWithString(string_value: &NSString) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other wrappingLabelWithString:)]
-        pub unsafe fn wrappingLabelWithString(string_value: &NSString) -> Id<Self, Shared>;
+        pub unsafe fn wrappingLabelWithString(string_value: &NSString) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other labelWithAttributedString:)]
         pub unsafe fn labelWithAttributedString(
             attributed_string_value: &NSAttributedString,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other textFieldWithString:)]
-        pub unsafe fn textFieldWithString(string_value: &NSString) -> Id<Self, Shared>;
+        pub unsafe fn textFieldWithString(string_value: &NSString) -> Id<Self>;
     }
 );
 
@@ -280,9 +277,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSComboBox")]
     unsafe impl NSComboBox {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frame_rect: NSRect,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
 );

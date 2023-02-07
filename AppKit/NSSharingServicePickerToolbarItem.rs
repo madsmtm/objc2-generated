@@ -26,7 +26,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn NSSharingServicePickerToolbarItemDelegate>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn NSSharingServicePickerToolbarItemDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -48,7 +48,7 @@ extern_protocol!(
         unsafe fn itemsForSharingServicePickerToolbarItem(
             &self,
             picker_toolbar_item: &NSSharingServicePickerToolbarItem,
-        ) -> Id<NSArray, Shared>;
+        ) -> Id<NSArray>;
     }
 
     unsafe impl ProtocolType for dyn NSSharingServicePickerToolbarItemDelegate {}
@@ -62,6 +62,6 @@ extern_methods!(
         pub unsafe fn initWithItemIdentifier(
             this: Option<Allocated<Self>>,
             item_identifier: &NSToolbarItemIdentifier,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

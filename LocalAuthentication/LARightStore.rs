@@ -22,7 +22,7 @@ extern_methods!(
     #[cfg(feature = "LocalAuthentication_LARightStore")]
     unsafe impl LARightStore {
         #[method_id(@__retain_semantics Other sharedStore)]
-        pub unsafe fn sharedStore() -> Id<LARightStore, Shared>;
+        pub unsafe fn sharedStore() -> Id<LARightStore>;
 
         #[cfg(all(
             feature = "Foundation_NSError",
@@ -90,9 +90,9 @@ extern_methods!(
         pub unsafe fn removeAllRightsWithCompletion(&self, handler: &Block<(*mut NSError,), ()>);
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }
 );

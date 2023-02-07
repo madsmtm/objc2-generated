@@ -27,11 +27,11 @@ extern_methods!(
     unsafe impl EKReminder {
         #[cfg(feature = "EventKit_EKEventStore")]
         #[method_id(@__retain_semantics Other reminderWithEventStore:)]
-        pub unsafe fn reminderWithEventStore(event_store: &EKEventStore) -> Id<EKReminder, Shared>;
+        pub unsafe fn reminderWithEventStore(event_store: &EKEventStore) -> Id<EKReminder>;
 
         #[cfg(feature = "Foundation_NSDateComponents")]
         #[method_id(@__retain_semantics Other startDateComponents)]
-        pub unsafe fn startDateComponents(&self) -> Option<Id<NSDateComponents, Shared>>;
+        pub unsafe fn startDateComponents(&self) -> Option<Id<NSDateComponents>>;
 
         #[cfg(feature = "Foundation_NSDateComponents")]
         #[method(setStartDateComponents:)]
@@ -42,7 +42,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDateComponents")]
         #[method_id(@__retain_semantics Other dueDateComponents)]
-        pub unsafe fn dueDateComponents(&self) -> Option<Id<NSDateComponents, Shared>>;
+        pub unsafe fn dueDateComponents(&self) -> Option<Id<NSDateComponents>>;
 
         #[cfg(feature = "Foundation_NSDateComponents")]
         #[method(setDueDateComponents:)]
@@ -56,7 +56,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other completionDate)]
-        pub unsafe fn completionDate(&self) -> Option<Id<NSDate, Shared>>;
+        pub unsafe fn completionDate(&self) -> Option<Id<NSDate>>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method(setCompletionDate:)]

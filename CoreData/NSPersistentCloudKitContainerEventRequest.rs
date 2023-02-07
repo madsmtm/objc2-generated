@@ -33,22 +33,20 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other fetchEventsAfterDate:)]
-        pub unsafe fn fetchEventsAfterDate(date: &NSDate) -> Id<Self, Shared>;
+        pub unsafe fn fetchEventsAfterDate(date: &NSDate) -> Id<Self>;
 
         #[cfg(feature = "CoreData_NSPersistentCloudKitContainerEvent")]
         #[method_id(@__retain_semantics Other fetchEventsAfterEvent:)]
         pub unsafe fn fetchEventsAfterEvent(
             event: Option<&NSPersistentCloudKitContainerEvent>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "CoreData_NSFetchRequest")]
         #[method_id(@__retain_semantics Other fetchEventsMatchingFetchRequest:)]
-        pub unsafe fn fetchEventsMatchingFetchRequest(
-            fetch_request: &NSFetchRequest,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn fetchEventsMatchingFetchRequest(fetch_request: &NSFetchRequest) -> Id<Self>;
 
         #[cfg(feature = "CoreData_NSFetchRequest")]
         #[method_id(@__retain_semantics Other fetchRequestForEvents)]
-        pub unsafe fn fetchRequestForEvents() -> Id<NSFetchRequest, Shared>;
+        pub unsafe fn fetchRequestForEvents() -> Id<NSFetchRequest>;
     }
 );

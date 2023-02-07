@@ -29,11 +29,11 @@ extern_methods!(
     unsafe impl DOMHTMLMapElement {
         #[cfg(feature = "WebKit_DOMHTMLCollection")]
         #[method_id(@__retain_semantics Other areas)]
-        pub unsafe fn areas(&self) -> Option<Id<DOMHTMLCollection, Shared>>;
+        pub unsafe fn areas(&self) -> Option<Id<DOMHTMLCollection>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString, Shared>;
+        pub unsafe fn name(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]

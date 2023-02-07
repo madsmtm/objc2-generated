@@ -29,7 +29,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSHelpManager")]
     unsafe impl NSHelpManager {
         #[method_id(@__retain_semantics Other sharedHelpManager)]
-        pub unsafe fn sharedHelpManager() -> Id<NSHelpManager, Shared>;
+        pub unsafe fn sharedHelpManager() -> Id<NSHelpManager>;
 
         #[method(isContextHelpModeActive)]
         pub unsafe fn isContextHelpModeActive() -> bool;
@@ -53,7 +53,7 @@ extern_methods!(
         pub unsafe fn contextHelpForObject(
             &self,
             object: &Object,
-        ) -> Option<Id<NSAttributedString, Shared>>;
+        ) -> Option<Id<NSAttributedString>>;
 
         #[method(showContextHelpForObject:locationHint:)]
         pub unsafe fn showContextHelpForObject_locationHint(
@@ -92,7 +92,7 @@ extern_methods!(
         pub unsafe fn contextHelpForKey(
             &self,
             key: &NSHelpManagerContextHelpKey,
-        ) -> Option<Id<NSAttributedString, Shared>>;
+        ) -> Option<Id<NSAttributedString>>;
     }
 );
 

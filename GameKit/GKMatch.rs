@@ -41,10 +41,10 @@ extern_methods!(
     unsafe impl GKMatch {
         #[cfg(all(feature = "Foundation_NSArray", feature = "GameKit_GKPlayer"))]
         #[method_id(@__retain_semantics Other players)]
-        pub unsafe fn players(&self) -> Id<NSArray<GKPlayer>, Shared>;
+        pub unsafe fn players(&self) -> Id<NSArray<GKPlayer>>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn GKMatchDelegate>, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn GKMatchDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn GKMatchDelegate>>);
@@ -64,7 +64,7 @@ extern_methods!(
             data: &NSData,
             players: &NSArray<GKPlayer>,
             mode: GKMatchSendDataMode,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
         #[method(sendDataToAllPlayers:withDataMode:error:_)]
@@ -72,14 +72,14 @@ extern_methods!(
             &self,
             data: &NSData,
             mode: GKMatchSendDataMode,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
 
         #[method(disconnect)]
         pub unsafe fn disconnect(&self);
 
         #[cfg(all(feature = "Foundation_NSString", feature = "GameKit_GKVoiceChat"))]
         #[method_id(@__retain_semantics Other voiceChatWithName:)]
-        pub unsafe fn voiceChatWithName(&self, name: &NSString) -> Option<Id<GKVoiceChat, Shared>>;
+        pub unsafe fn voiceChatWithName(&self, name: &NSString) -> Option<Id<GKVoiceChat>>;
 
         #[cfg(feature = "GameKit_GKPlayer")]
         #[method(chooseBestHostingPlayerWithCompletionHandler:)]
@@ -217,11 +217,11 @@ extern_methods!(
             data: &NSData,
             player_i_ds: &NSArray<NSString>,
             mode: GKMatchSendDataMode,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[deprecated = "This is never invoked and its implementation does nothing, use players instead."]
         #[method_id(@__retain_semantics Other playerIDs)]
-        pub unsafe fn playerIDs(&self) -> Option<Id<NSArray<NSString>, Shared>>;
+        pub unsafe fn playerIDs(&self) -> Option<Id<NSArray<NSString>>>;
     }
 );

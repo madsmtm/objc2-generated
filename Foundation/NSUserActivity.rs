@@ -27,19 +27,19 @@ extern_methods!(
         pub unsafe fn initWithActivityType(
             this: Option<Allocated<Self>>,
             activity_type: &NSString,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[deprecated = "Use initWithActivityType: with a specific activity type string"]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other activityType)]
-        pub unsafe fn activityType(&self) -> Id<NSString, Shared>;
+        pub unsafe fn activityType(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn title(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setTitle:)]
@@ -47,7 +47,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other userInfo)]
-        pub unsafe fn userInfo(&self) -> Option<Id<NSDictionary, Shared>>;
+        pub unsafe fn userInfo(&self) -> Option<Id<NSDictionary>>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(setUserInfo:)]
@@ -59,7 +59,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other requiredUserInfoKeys)]
-        pub unsafe fn requiredUserInfoKeys(&self) -> Option<Id<NSSet<NSString>, Shared>>;
+        pub unsafe fn requiredUserInfoKeys(&self) -> Option<Id<NSSet<NSString>>>;
 
         #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
         #[method(setRequiredUserInfoKeys:)]
@@ -76,7 +76,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other webpageURL)]
-        pub unsafe fn webpageURL(&self) -> Option<Id<NSURL, Shared>>;
+        pub unsafe fn webpageURL(&self) -> Option<Id<NSURL>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method(setWebpageURL:)]
@@ -84,7 +84,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other referrerURL)]
-        pub unsafe fn referrerURL(&self) -> Option<Id<NSURL, Shared>>;
+        pub unsafe fn referrerURL(&self) -> Option<Id<NSURL>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method(setReferrerURL:)]
@@ -92,7 +92,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other expirationDate)]
-        pub unsafe fn expirationDate(&self) -> Option<Id<NSDate, Shared>>;
+        pub unsafe fn expirationDate(&self) -> Option<Id<NSDate>>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method(setExpirationDate:)]
@@ -100,7 +100,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other keywords)]
-        pub unsafe fn keywords(&self) -> Id<NSSet<NSString>, Shared>;
+        pub unsafe fn keywords(&self) -> Id<NSSet<NSString>>;
 
         #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
         #[method(setKeywords:)]
@@ -113,9 +113,7 @@ extern_methods!(
         pub unsafe fn setSupportsContinuationStreams(&self, supports_continuation_streams: bool);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(
-            &self,
-        ) -> Option<Id<ProtocolObject<dyn NSUserActivityDelegate>, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSUserActivityDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -125,7 +123,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other targetContentIdentifier)]
-        pub unsafe fn targetContentIdentifier(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn targetContentIdentifier(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setTargetContentIdentifier:)]
@@ -179,9 +177,8 @@ extern_methods!(
         pub unsafe fn setEligibleForPrediction(&self, eligible_for_prediction: bool);
 
         #[method_id(@__retain_semantics Other persistentIdentifier)]
-        pub unsafe fn persistentIdentifier(
-            &self,
-        ) -> Option<Id<NSUserActivityPersistentIdentifier, Shared>>;
+        pub unsafe fn persistentIdentifier(&self)
+            -> Option<Id<NSUserActivityPersistentIdentifier>>;
 
         #[method(setPersistentIdentifier:)]
         pub unsafe fn setPersistentIdentifier(

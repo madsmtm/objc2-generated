@@ -29,7 +29,7 @@ extern_methods!(
     unsafe impl DOMHTMLTableElement {
         #[cfg(feature = "WebKit_DOMHTMLTableCaptionElement")]
         #[method_id(@__retain_semantics Other caption)]
-        pub unsafe fn caption(&self) -> Option<Id<DOMHTMLTableCaptionElement, Shared>>;
+        pub unsafe fn caption(&self) -> Option<Id<DOMHTMLTableCaptionElement>>;
 
         #[cfg(feature = "WebKit_DOMHTMLTableCaptionElement")]
         #[method(setCaption:)]
@@ -37,7 +37,7 @@ extern_methods!(
 
         #[cfg(feature = "WebKit_DOMHTMLTableSectionElement")]
         #[method_id(@__retain_semantics Other tHead)]
-        pub unsafe fn tHead(&self) -> Option<Id<DOMHTMLTableSectionElement, Shared>>;
+        pub unsafe fn tHead(&self) -> Option<Id<DOMHTMLTableSectionElement>>;
 
         #[cfg(feature = "WebKit_DOMHTMLTableSectionElement")]
         #[method(setTHead:)]
@@ -45,7 +45,7 @@ extern_methods!(
 
         #[cfg(feature = "WebKit_DOMHTMLTableSectionElement")]
         #[method_id(@__retain_semantics Other tFoot)]
-        pub unsafe fn tFoot(&self) -> Option<Id<DOMHTMLTableSectionElement, Shared>>;
+        pub unsafe fn tFoot(&self) -> Option<Id<DOMHTMLTableSectionElement>>;
 
         #[cfg(feature = "WebKit_DOMHTMLTableSectionElement")]
         #[method(setTFoot:)]
@@ -53,15 +53,15 @@ extern_methods!(
 
         #[cfg(feature = "WebKit_DOMHTMLCollection")]
         #[method_id(@__retain_semantics Other rows)]
-        pub unsafe fn rows(&self) -> Option<Id<DOMHTMLCollection, Shared>>;
+        pub unsafe fn rows(&self) -> Option<Id<DOMHTMLCollection>>;
 
         #[cfg(feature = "WebKit_DOMHTMLCollection")]
         #[method_id(@__retain_semantics Other tBodies)]
-        pub unsafe fn tBodies(&self) -> Option<Id<DOMHTMLCollection, Shared>>;
+        pub unsafe fn tBodies(&self) -> Option<Id<DOMHTMLCollection>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other align)]
-        pub unsafe fn align(&self) -> Id<NSString, Shared>;
+        pub unsafe fn align(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAlign:)]
@@ -69,7 +69,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other bgColor)]
-        pub unsafe fn bgColor(&self) -> Id<NSString, Shared>;
+        pub unsafe fn bgColor(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setBgColor:)]
@@ -77,7 +77,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other border)]
-        pub unsafe fn border(&self) -> Id<NSString, Shared>;
+        pub unsafe fn border(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setBorder:)]
@@ -85,7 +85,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other cellPadding)]
-        pub unsafe fn cellPadding(&self) -> Id<NSString, Shared>;
+        pub unsafe fn cellPadding(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCellPadding:)]
@@ -93,7 +93,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other cellSpacing)]
-        pub unsafe fn cellSpacing(&self) -> Id<NSString, Shared>;
+        pub unsafe fn cellSpacing(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCellSpacing:)]
@@ -101,7 +101,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other frameBorders)]
-        pub unsafe fn frameBorders(&self) -> Id<NSString, Shared>;
+        pub unsafe fn frameBorders(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setFrameBorders:)]
@@ -109,7 +109,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other rules)]
-        pub unsafe fn rules(&self) -> Id<NSString, Shared>;
+        pub unsafe fn rules(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setRules:)]
@@ -117,7 +117,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other summary)]
-        pub unsafe fn summary(&self) -> Id<NSString, Shared>;
+        pub unsafe fn summary(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setSummary:)]
@@ -125,32 +125,32 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other width)]
-        pub unsafe fn width(&self) -> Id<NSString, Shared>;
+        pub unsafe fn width(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setWidth:)]
         pub unsafe fn setWidth(&self, width: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other createTHead)]
-        pub unsafe fn createTHead(&self) -> Option<Id<DOMHTMLElement, Shared>>;
+        pub unsafe fn createTHead(&self) -> Option<Id<DOMHTMLElement>>;
 
         #[method(deleteTHead)]
         pub unsafe fn deleteTHead(&self);
 
         #[method_id(@__retain_semantics Other createTFoot)]
-        pub unsafe fn createTFoot(&self) -> Option<Id<DOMHTMLElement, Shared>>;
+        pub unsafe fn createTFoot(&self) -> Option<Id<DOMHTMLElement>>;
 
         #[method(deleteTFoot)]
         pub unsafe fn deleteTFoot(&self);
 
         #[method_id(@__retain_semantics Other createCaption)]
-        pub unsafe fn createCaption(&self) -> Option<Id<DOMHTMLElement, Shared>>;
+        pub unsafe fn createCaption(&self) -> Option<Id<DOMHTMLElement>>;
 
         #[method(deleteCaption)]
         pub unsafe fn deleteCaption(&self);
 
         #[method_id(@__retain_semantics Other insertRow:)]
-        pub unsafe fn insertRow(&self, index: c_int) -> Option<Id<DOMHTMLElement, Shared>>;
+        pub unsafe fn insertRow(&self, index: c_int) -> Option<Id<DOMHTMLElement>>;
 
         #[method(deleteRow:)]
         pub unsafe fn deleteRow(&self, index: c_int);

@@ -27,11 +27,11 @@ extern_methods!(
     unsafe impl EKParticipant {
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other URL)]
-        pub unsafe fn URL(&self) -> Id<NSURL, Shared>;
+        pub unsafe fn URL(&self) -> Id<NSURL>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn name(&self) -> Option<Id<NSString>>;
 
         #[method(participantStatus)]
         pub unsafe fn participantStatus(&self) -> EKParticipantStatus;
@@ -47,7 +47,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSPredicate")]
         #[method_id(@__retain_semantics Other contactPredicate)]
-        pub unsafe fn contactPredicate(&self) -> Id<NSPredicate, Shared>;
+        pub unsafe fn contactPredicate(&self) -> Id<NSPredicate>;
 
         #[cfg(all(feature = "EventKit_ABAddressBook", feature = "EventKit_ABPerson"))]
         #[deprecated = "Use contactPredicate instead"]
@@ -55,6 +55,6 @@ extern_methods!(
         pub unsafe fn ABPersonInAddressBook(
             &self,
             address_book: &ABAddressBook,
-        ) -> Option<Id<ABPerson, Shared>>;
+        ) -> Option<Id<ABPerson>>;
     }
 );

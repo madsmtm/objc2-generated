@@ -73,7 +73,7 @@ extern_methods!(
             modifier: NSComparisonPredicateModifier,
             r#type: NSPredicateOperatorType,
             options: NSComparisonPredicateOptions,
-        ) -> Id<NSComparisonPredicate, Shared>;
+        ) -> Id<NSComparisonPredicate>;
 
         #[cfg(feature = "Foundation_NSExpression")]
         #[method_id(@__retain_semantics Other predicateWithLeftExpression:rightExpression:customSelector:)]
@@ -81,7 +81,7 @@ extern_methods!(
             lhs: &NSExpression,
             rhs: &NSExpression,
             selector: Sel,
-        ) -> Id<NSComparisonPredicate, Shared>;
+        ) -> Id<NSComparisonPredicate>;
 
         #[cfg(feature = "Foundation_NSExpression")]
         #[method_id(@__retain_semantics Init initWithLeftExpression:rightExpression:modifier:type:options:)]
@@ -92,7 +92,7 @@ extern_methods!(
             modifier: NSComparisonPredicateModifier,
             r#type: NSPredicateOperatorType,
             options: NSComparisonPredicateOptions,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSExpression")]
         #[method_id(@__retain_semantics Init initWithLeftExpression:rightExpression:customSelector:)]
@@ -101,14 +101,14 @@ extern_methods!(
             lhs: &NSExpression,
             rhs: &NSExpression,
             selector: Sel,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[method(predicateOperatorType)]
         pub unsafe fn predicateOperatorType(&self) -> NSPredicateOperatorType;
@@ -118,11 +118,11 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSExpression")]
         #[method_id(@__retain_semantics Other leftExpression)]
-        pub unsafe fn leftExpression(&self) -> Id<NSExpression, Shared>;
+        pub unsafe fn leftExpression(&self) -> Id<NSExpression>;
 
         #[cfg(feature = "Foundation_NSExpression")]
         #[method_id(@__retain_semantics Other rightExpression)]
-        pub unsafe fn rightExpression(&self) -> Id<NSExpression, Shared>;
+        pub unsafe fn rightExpression(&self) -> Id<NSExpression>;
 
         #[method(customSelector)]
         pub unsafe fn customSelector(&self) -> Option<Sel>;

@@ -106,19 +106,19 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             table_view: &NSTableView,
             cell_provider: NSTableViewDiffableDataSourceCellProvider,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSDiffableDataSourceSnapshot")]
         #[method_id(@__retain_semantics Other snapshot)]
         pub unsafe fn snapshot(
             &self,
-        ) -> Id<NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>, Shared>;
+        ) -> Id<NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>>;
 
         #[cfg(feature = "AppKit_NSDiffableDataSourceSnapshot")]
         #[method(applySnapshot:animatingDifferences:)]

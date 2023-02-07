@@ -24,6 +24,6 @@ extern_methods!(
     #[cfg(feature = "Automator_AMWorkspace")]
     unsafe impl AMWorkspace {
         #[method_id(@__retain_semantics Other sharedWorkspace)]
-        pub unsafe fn sharedWorkspace() -> Option<Id<AMWorkspace, Shared>>;
+        pub unsafe fn sharedWorkspace() -> Option<Id<AMWorkspace>>;
     }
 );

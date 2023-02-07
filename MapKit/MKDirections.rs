@@ -33,7 +33,7 @@ extern_methods!(
         pub unsafe fn initWithRequest(
             this: Option<Allocated<Self>>,
             request: &MKDirectionsRequest,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(calculateDirectionsWithCompletionHandler:)]
         pub unsafe fn calculateDirectionsWithCompletionHandler(

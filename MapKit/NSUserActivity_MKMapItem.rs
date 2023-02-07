@@ -13,7 +13,7 @@ extern_methods!(
     unsafe impl NSUserActivity {
         #[cfg(feature = "MapKit_MKMapItem")]
         #[method_id(@__retain_semantics Other mapItem)]
-        pub unsafe fn mapItem(&self) -> Option<Id<MKMapItem, Shared>>;
+        pub unsafe fn mapItem(&self) -> Option<Id<MKMapItem>>;
 
         #[cfg(feature = "MapKit_MKMapItem")]
         #[method(setMapItem:)]

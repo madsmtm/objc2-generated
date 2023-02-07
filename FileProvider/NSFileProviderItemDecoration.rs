@@ -14,9 +14,8 @@ extern_protocol!(
     pub unsafe trait NSFileProviderItemDecorating: NSFileProviderItemProtocol {
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other decorations)]
-        unsafe fn decorations(
-            &self,
-        ) -> Option<Id<NSArray<NSFileProviderItemDecorationIdentifier>, Shared>>;
+        unsafe fn decorations(&self)
+            -> Option<Id<NSArray<NSFileProviderItemDecorationIdentifier>>>;
     }
 
     unsafe impl ProtocolType for dyn NSFileProviderItemDecorating {}

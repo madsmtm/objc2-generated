@@ -29,14 +29,14 @@ extern_methods!(
     unsafe impl DOMEntity {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other publicId)]
-        pub unsafe fn publicId(&self) -> Id<NSString, Shared>;
+        pub unsafe fn publicId(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other systemId)]
-        pub unsafe fn systemId(&self) -> Id<NSString, Shared>;
+        pub unsafe fn systemId(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other notationName)]
-        pub unsafe fn notationName(&self) -> Id<NSString, Shared>;
+        pub unsafe fn notationName(&self) -> Id<NSString>;
     }
 );

@@ -29,10 +29,10 @@ extern_methods!(
     unsafe impl DOMProcessingInstruction {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other target)]
-        pub unsafe fn target(&self) -> Id<NSString, Shared>;
+        pub unsafe fn target(&self) -> Id<NSString>;
 
         #[cfg(feature = "WebKit_DOMStyleSheet")]
         #[method_id(@__retain_semantics Other sheet)]
-        pub unsafe fn sheet(&self) -> Option<Id<DOMStyleSheet, Shared>>;
+        pub unsafe fn sheet(&self) -> Option<Id<DOMStyleSheet>>;
     }
 );

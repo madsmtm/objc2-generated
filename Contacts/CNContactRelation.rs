@@ -29,18 +29,15 @@ extern_methods!(
     unsafe impl CNContactRelation {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other contactRelationWithName:)]
-        pub unsafe fn contactRelationWithName(name: &NSString) -> Id<Self, Shared>;
+        pub unsafe fn contactRelationWithName(name: &NSString) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithName:)]
-        pub unsafe fn initWithName(
-            this: Option<Allocated<Self>>,
-            name: &NSString,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithName(this: Option<Allocated<Self>>, name: &NSString) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString, Shared>;
+        pub unsafe fn name(&self) -> Id<NSString>;
     }
 );
 

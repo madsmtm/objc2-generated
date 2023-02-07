@@ -54,6 +54,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSHapticFeedbackManager")]
     unsafe impl NSHapticFeedbackManager {
         #[method_id(@__retain_semantics Other defaultPerformer)]
-        pub unsafe fn defaultPerformer() -> Id<ProtocolObject<dyn NSHapticFeedbackPerformer>, Shared>;
+        pub unsafe fn defaultPerformer() -> Id<ProtocolObject<dyn NSHapticFeedbackPerformer>>;
     }
 );

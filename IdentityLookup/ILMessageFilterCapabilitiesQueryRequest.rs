@@ -28,6 +28,6 @@ extern_methods!(
     #[cfg(feature = "IdentityLookup_ILMessageFilterCapabilitiesQueryRequest")]
     unsafe impl ILMessageFilterCapabilitiesQueryRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }
 );

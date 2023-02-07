@@ -50,9 +50,7 @@ extern_methods!(
             feature = "Foundation_NSNumber"
         ))]
         #[method_id(@__retain_semantics Other locationsAtPointIndexes:)]
-        pub unsafe fn locationsAtPointIndexes(
-            &self,
-            indexes: &NSIndexSet,
-        ) -> Id<NSArray<NSNumber>, Shared>;
+        pub unsafe fn locationsAtPointIndexes(&self, indexes: &NSIndexSet)
+            -> Id<NSArray<NSNumber>>;
     }
 );

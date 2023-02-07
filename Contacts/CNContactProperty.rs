@@ -29,21 +29,21 @@ extern_methods!(
     unsafe impl CNContactProperty {
         #[cfg(feature = "Contacts_CNContact")]
         #[method_id(@__retain_semantics Other contact)]
-        pub unsafe fn contact(&self) -> Id<CNContact, Shared>;
+        pub unsafe fn contact(&self) -> Id<CNContact>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other key)]
-        pub unsafe fn key(&self) -> Id<NSString, Shared>;
+        pub unsafe fn key(&self) -> Id<NSString>;
 
         #[method_id(@__retain_semantics Other value)]
-        pub unsafe fn value(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn value(&self) -> Option<Id<Object>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn identifier(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
-        pub unsafe fn label(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn label(&self) -> Option<Id<NSString>>;
     }
 );

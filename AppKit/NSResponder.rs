@@ -26,17 +26,17 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSResponder {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[method_id(@__retain_semantics Other nextResponder)]
-        pub unsafe fn nextResponder(&self) -> Option<Id<NSResponder, Shared>>;
+        pub unsafe fn nextResponder(&self) -> Option<Id<NSResponder>>;
 
         #[method(setNextResponder:)]
         pub unsafe fn setNextResponder(&self, next_responder: Option<&NSResponder>);
@@ -53,7 +53,7 @@ extern_methods!(
             &self,
             send_type: Option<&NSPasteboardType>,
             return_type: Option<&NSPasteboardType>,
-        ) -> Option<Id<Object, Shared>>;
+        ) -> Option<Id<Object>>;
 
         #[cfg(feature = "AppKit_NSEvent")]
         #[method(mouseDown:)]
@@ -204,7 +204,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSMenu")]
         #[method_id(@__retain_semantics Other menu)]
-        pub unsafe fn menu(&self) -> Option<Id<NSMenu, Shared>>;
+        pub unsafe fn menu(&self) -> Option<Id<NSMenu>>;
 
         #[cfg(feature = "AppKit_NSMenu")]
         #[method(setMenu:)]
@@ -235,7 +235,7 @@ extern_methods!(
             &self,
             action: Sel,
             sender: Option<&Object>,
-        ) -> Option<Id<Object, Shared>>;
+        ) -> Option<Id<Object>>;
     }
 );
 
@@ -640,7 +640,7 @@ extern_methods!(
     unsafe impl NSResponder {
         #[cfg(feature = "Foundation_NSUndoManager")]
         #[method_id(@__retain_semantics Other undoManager)]
-        pub unsafe fn undoManager(&self) -> Option<Id<NSUndoManager, Shared>>;
+        pub unsafe fn undoManager(&self) -> Option<Id<NSUndoManager>>;
     }
 );
 
@@ -679,7 +679,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other willPresentError:)]
-        pub unsafe fn willPresentError(&self, error: &NSError) -> Id<NSError, Shared>;
+        pub unsafe fn willPresentError(&self, error: &NSError) -> Id<NSError>;
     }
 );
 

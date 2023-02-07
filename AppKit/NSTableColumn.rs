@@ -41,24 +41,21 @@ extern_methods!(
         pub unsafe fn initWithIdentifier(
             this: Option<Allocated<Self>>,
             identifier: &NSUserInterfaceItemIdentifier,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            coder: &NSCoder,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, coder: &NSCoder) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<NSUserInterfaceItemIdentifier, Shared>;
+        pub unsafe fn identifier(&self) -> Id<NSUserInterfaceItemIdentifier>;
 
         #[method(setIdentifier:)]
         pub unsafe fn setIdentifier(&self, identifier: &NSUserInterfaceItemIdentifier);
 
         #[cfg(feature = "AppKit_NSTableView")]
         #[method_id(@__retain_semantics Other tableView)]
-        pub unsafe fn tableView(&self) -> Option<Id<NSTableView, Shared>>;
+        pub unsafe fn tableView(&self) -> Option<Id<NSTableView>>;
 
         #[cfg(feature = "AppKit_NSTableView")]
         #[method(setTableView:)]
@@ -84,7 +81,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Id<NSString, Shared>;
+        pub unsafe fn title(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setTitle:)]
@@ -92,7 +89,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSTableHeaderCell")]
         #[method_id(@__retain_semantics Other headerCell)]
-        pub unsafe fn headerCell(&self) -> Id<NSTableHeaderCell, Shared>;
+        pub unsafe fn headerCell(&self) -> Id<NSTableHeaderCell>;
 
         #[cfg(feature = "AppKit_NSTableHeaderCell")]
         #[method(setHeaderCell:)]
@@ -109,7 +106,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSSortDescriptor")]
         #[method_id(@__retain_semantics Other sortDescriptorPrototype)]
-        pub unsafe fn sortDescriptorPrototype(&self) -> Option<Id<NSSortDescriptor, Shared>>;
+        pub unsafe fn sortDescriptorPrototype(&self) -> Option<Id<NSSortDescriptor>>;
 
         #[cfg(feature = "Foundation_NSSortDescriptor")]
         #[method(setSortDescriptorPrototype:)]
@@ -126,7 +123,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other headerToolTip)]
-        pub unsafe fn headerToolTip(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn headerToolTip(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setHeaderToolTip:)]
@@ -153,12 +150,12 @@ extern_methods!(
         pub unsafe fn isResizable(&self) -> bool;
 
         #[method_id(@__retain_semantics Other dataCell)]
-        pub unsafe fn dataCell(&self) -> Id<Object, Shared>;
+        pub unsafe fn dataCell(&self) -> Id<Object>;
 
         #[method(setDataCell:)]
         pub unsafe fn setDataCell(&self, data_cell: &Object);
 
         #[method_id(@__retain_semantics Other dataCellForRow:)]
-        pub unsafe fn dataCellForRow(&self, row: NSInteger) -> Id<Object, Shared>;
+        pub unsafe fn dataCellForRow(&self, row: NSInteger) -> Id<Object>;
     }
 );

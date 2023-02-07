@@ -97,7 +97,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSValue")]
     unsafe impl NSValue {
         #[method_id(@__retain_semantics Other valueWithCATransform3D:)]
-        pub unsafe fn valueWithCATransform3D(t: CATransform3D) -> Id<NSValue, Shared>;
+        pub unsafe fn valueWithCATransform3D(t: CATransform3D) -> Id<NSValue>;
 
         #[method(CATransform3DValue)]
         pub unsafe fn CATransform3DValue(&self) -> CATransform3D;

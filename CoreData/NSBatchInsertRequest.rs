@@ -24,11 +24,11 @@ extern_methods!(
     unsafe impl NSBatchInsertRequest {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other entityName)]
-        pub unsafe fn entityName(&self) -> Id<NSString, Shared>;
+        pub unsafe fn entityName(&self) -> Id<NSString>;
 
         #[cfg(feature = "CoreData_NSEntityDescription")]
         #[method_id(@__retain_semantics Other entity)]
-        pub unsafe fn entity(&self) -> Option<Id<NSEntityDescription, Shared>>;
+        pub unsafe fn entity(&self) -> Option<Id<NSEntityDescription>>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -36,9 +36,8 @@ extern_methods!(
             feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other objectsToInsert)]
-        pub unsafe fn objectsToInsert(
-            &self,
-        ) -> Option<Id<NSArray<NSDictionary<NSString, Object>>, Shared>>;
+        pub unsafe fn objectsToInsert(&self)
+            -> Option<Id<NSArray<NSDictionary<NSString, Object>>>>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -98,7 +97,7 @@ extern_methods!(
         pub unsafe fn batchInsertRequestWithEntityName_objects(
             entity_name: &NSString,
             dictionaries: &NSArray<NSDictionary<NSString, Object>>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(
             feature = "Foundation_NSMutableDictionary",
@@ -108,18 +107,18 @@ extern_methods!(
         pub unsafe fn batchInsertRequestWithEntityName_dictionaryHandler(
             entity_name: &NSString,
             handler: &Block<(NonNull<NSMutableDictionary<NSString, Object>>,), Bool>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(feature = "CoreData_NSManagedObject", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other batchInsertRequestWithEntityName:managedObjectHandler:)]
         pub unsafe fn batchInsertRequestWithEntityName_managedObjectHandler(
             entity_name: &NSString,
             handler: &Block<(NonNull<NSManagedObject>,), Bool>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -131,7 +130,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             entity_name: &NSString,
             dictionaries: &NSArray<NSDictionary<NSString, Object>>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(
             feature = "CoreData_NSEntityDescription",
@@ -144,7 +143,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             entity: &NSEntityDescription,
             dictionaries: &NSArray<NSDictionary<NSString, Object>>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(
             feature = "CoreData_NSEntityDescription",
@@ -156,7 +155,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             entity: &NSEntityDescription,
             handler: &Block<(NonNull<NSMutableDictionary<NSString, Object>>,), Bool>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(
             feature = "CoreData_NSEntityDescription",
@@ -167,7 +166,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             entity: &NSEntityDescription,
             handler: &Block<(NonNull<NSManagedObject>,), Bool>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(
             feature = "Foundation_NSMutableDictionary",
@@ -178,7 +177,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             entity_name: &NSString,
             handler: &Block<(NonNull<NSMutableDictionary<NSString, Object>>,), Bool>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(feature = "CoreData_NSManagedObject", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithEntityName:managedObjectHandler:)]
@@ -186,6 +185,6 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             entity_name: &NSString,
             handler: &Block<(NonNull<NSManagedObject>,), Bool>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

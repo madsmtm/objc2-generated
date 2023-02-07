@@ -310,11 +310,9 @@ extern_methods!(
             url: &NSURL,
             options: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, Object>,
             dict: Option<
-                &mut Option<
-                    Id<NSDictionary<NSAttributedStringDocumentAttributeKey, Object>, Shared>,
-                >,
+                &mut Option<Id<NSDictionary<NSAttributedStringDocumentAttributeKey, Object>>>,
             >,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self>, Id<NSError>>;
 
         #[cfg(all(
             feature = "Foundation_NSData",
@@ -327,11 +325,9 @@ extern_methods!(
             data: &NSData,
             options: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, Object>,
             dict: Option<
-                &mut Option<
-                    Id<NSDictionary<NSAttributedStringDocumentAttributeKey, Object>, Shared>,
-                >,
+                &mut Option<Id<NSDictionary<NSAttributedStringDocumentAttributeKey, Object>>>,
             >,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self>, Id<NSError>>;
 
         #[cfg(all(
             feature = "Foundation_NSData",
@@ -343,7 +339,7 @@ extern_methods!(
             &self,
             range: NSRange,
             dict: &NSDictionary<NSAttributedStringDocumentAttributeKey, Object>,
-        ) -> Result<Id<NSData, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<NSData>, Id<NSError>>;
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",
@@ -355,7 +351,7 @@ extern_methods!(
             &self,
             range: NSRange,
             dict: &NSDictionary<NSAttributedStringDocumentAttributeKey, Object>,
-        ) -> Result<Id<NSFileWrapper, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<NSFileWrapper>, Id<NSError>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSDictionary"))]
         #[method_id(@__retain_semantics Init initWithRTF:documentAttributes:)]
@@ -363,11 +359,9 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             data: &NSData,
             dict: Option<
-                &mut Option<
-                    Id<NSDictionary<NSAttributedStringDocumentAttributeKey, Object>, Shared>,
-                >,
+                &mut Option<Id<NSDictionary<NSAttributedStringDocumentAttributeKey, Object>>>,
             >,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSDictionary"))]
         #[method_id(@__retain_semantics Init initWithRTFD:documentAttributes:)]
@@ -375,11 +369,9 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             data: &NSData,
             dict: Option<
-                &mut Option<
-                    Id<NSDictionary<NSAttributedStringDocumentAttributeKey, Object>, Shared>,
-                >,
+                &mut Option<Id<NSDictionary<NSAttributedStringDocumentAttributeKey, Object>>>,
             >,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSDictionary"))]
         #[method_id(@__retain_semantics Init initWithHTML:documentAttributes:)]
@@ -387,11 +379,9 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             data: &NSData,
             dict: Option<
-                &mut Option<
-                    Id<NSDictionary<NSAttributedStringDocumentAttributeKey, Object>, Shared>,
-                >,
+                &mut Option<Id<NSDictionary<NSAttributedStringDocumentAttributeKey, Object>>>,
             >,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(all(
             feature = "Foundation_NSData",
@@ -404,11 +394,9 @@ extern_methods!(
             data: &NSData,
             base: &NSURL,
             dict: Option<
-                &mut Option<
-                    Id<NSDictionary<NSAttributedStringDocumentAttributeKey, Object>, Shared>,
-                >,
+                &mut Option<Id<NSDictionary<NSAttributedStringDocumentAttributeKey, Object>>>,
             >,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSDictionary"))]
         #[method_id(@__retain_semantics Init initWithDocFormat:documentAttributes:)]
@@ -416,11 +404,9 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             data: &NSData,
             dict: Option<
-                &mut Option<
-                    Id<NSDictionary<NSAttributedStringDocumentAttributeKey, Object>, Shared>,
-                >,
+                &mut Option<Id<NSDictionary<NSAttributedStringDocumentAttributeKey, Object>>>,
             >,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSDictionary"))]
         #[method_id(@__retain_semantics Init initWithHTML:options:documentAttributes:)]
@@ -429,11 +415,9 @@ extern_methods!(
             data: &NSData,
             options: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, Object>,
             dict: Option<
-                &mut Option<
-                    Id<NSDictionary<NSAttributedStringDocumentAttributeKey, Object>, Shared>,
-                >,
+                &mut Option<Id<NSDictionary<NSAttributedStringDocumentAttributeKey, Object>>>,
             >,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",
@@ -444,11 +428,9 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             wrapper: &NSFileWrapper,
             dict: Option<
-                &mut Option<
-                    Id<NSDictionary<NSAttributedStringDocumentAttributeKey, Object>, Shared>,
-                >,
+                &mut Option<Id<NSDictionary<NSAttributedStringDocumentAttributeKey, Object>>>,
             >,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSDictionary"))]
         #[method_id(@__retain_semantics Other RTFFromRange:documentAttributes:)]
@@ -456,7 +438,7 @@ extern_methods!(
             &self,
             range: NSRange,
             dict: &NSDictionary<NSAttributedStringDocumentAttributeKey, Object>,
-        ) -> Option<Id<NSData, Shared>>;
+        ) -> Option<Id<NSData>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSDictionary"))]
         #[method_id(@__retain_semantics Other RTFDFromRange:documentAttributes:)]
@@ -464,7 +446,7 @@ extern_methods!(
             &self,
             range: NSRange,
             dict: &NSDictionary<NSAttributedStringDocumentAttributeKey, Object>,
-        ) -> Option<Id<NSData, Shared>>;
+        ) -> Option<Id<NSData>>;
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",
@@ -475,7 +457,7 @@ extern_methods!(
             &self,
             range: NSRange,
             dict: &NSDictionary<NSAttributedStringDocumentAttributeKey, Object>,
-        ) -> Option<Id<NSFileWrapper, Shared>>;
+        ) -> Option<Id<NSFileWrapper>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSDictionary"))]
         #[method_id(@__retain_semantics Other docFormatFromRange:documentAttributes:)]
@@ -483,7 +465,7 @@ extern_methods!(
             &self,
             range: NSRange,
             dict: &NSDictionary<NSAttributedStringDocumentAttributeKey, Object>,
-        ) -> Option<Id<NSData, Shared>>;
+        ) -> Option<Id<NSData>>;
     }
 );
 
@@ -502,11 +484,9 @@ extern_methods!(
             url: &NSURL,
             opts: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, Object>,
             dict: Option<
-                &mut Option<
-                    Id<NSDictionary<NSAttributedStringDocumentAttributeKey, Object>, Shared>,
-                >,
+                &mut Option<Id<NSDictionary<NSAttributedStringDocumentAttributeKey, Object>>>,
             >,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
 
         #[cfg(all(
             feature = "Foundation_NSData",
@@ -519,11 +499,9 @@ extern_methods!(
             data: &NSData,
             opts: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, Object>,
             dict: Option<
-                &mut Option<
-                    Id<NSDictionary<NSAttributedStringDocumentAttributeKey, Object>, Shared>,
-                >,
+                &mut Option<Id<NSDictionary<NSAttributedStringDocumentAttributeKey, Object>>>,
             >,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
     }
 );
 
@@ -536,14 +514,14 @@ extern_methods!(
         pub unsafe fn fontAttributesInRange(
             &self,
             range: NSRange,
-        ) -> Id<NSDictionary<NSAttributedStringKey, Object>, Shared>;
+        ) -> Id<NSDictionary<NSAttributedStringKey, Object>>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other rulerAttributesInRange:)]
         pub unsafe fn rulerAttributesInRange(
             &self,
             range: NSRange,
-        ) -> Id<NSDictionary<NSAttributedStringKey, Object>, Shared>;
+        ) -> Id<NSDictionary<NSAttributedStringKey, Object>>;
 
         #[method(containsAttachmentsInRange:)]
         pub unsafe fn containsAttachmentsInRange(&self, range: NSRange) -> bool;
@@ -612,11 +590,11 @@ extern_methods!(
     unsafe impl NSAttributedString {
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other textTypes)]
-        pub unsafe fn textTypes() -> Id<NSArray<NSString>, Shared>;
+        pub unsafe fn textTypes() -> Id<NSArray<NSString>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other textUnfilteredTypes)]
-        pub unsafe fn textUnfilteredTypes() -> Id<NSArray<NSString>, Shared>;
+        pub unsafe fn textUnfilteredTypes() -> Id<NSArray<NSString>>;
     }
 );
 
@@ -694,22 +672,22 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSArray")]
         #[deprecated]
         #[method_id(@__retain_semantics Other textFileTypes)]
-        pub unsafe fn textFileTypes() -> Id<NSArray, Shared>;
+        pub unsafe fn textFileTypes() -> Id<NSArray>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[deprecated]
         #[method_id(@__retain_semantics Other textPasteboardTypes)]
-        pub unsafe fn textPasteboardTypes() -> Id<NSArray, Shared>;
+        pub unsafe fn textPasteboardTypes() -> Id<NSArray>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[deprecated]
         #[method_id(@__retain_semantics Other textUnfilteredFileTypes)]
-        pub unsafe fn textUnfilteredFileTypes() -> Id<NSArray, Shared>;
+        pub unsafe fn textUnfilteredFileTypes() -> Id<NSArray>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[deprecated]
         #[method_id(@__retain_semantics Other textUnfilteredPasteboardTypes)]
-        pub unsafe fn textUnfilteredPasteboardTypes() -> Id<NSArray, Shared>;
+        pub unsafe fn textUnfilteredPasteboardTypes() -> Id<NSArray>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSURL"))]
         #[deprecated = "Use -initWithURL:options:documentAttributes:error: instead"]
@@ -717,8 +695,8 @@ extern_methods!(
         pub unsafe fn initWithURL_documentAttributes(
             this: Option<Allocated<Self>>,
             url: &NSURL,
-            dict: Option<&mut Option<Id<NSDictionary, Shared>>>,
-        ) -> Option<Id<Self, Shared>>;
+            dict: Option<&mut Option<Id<NSDictionary>>>,
+        ) -> Option<Id<Self>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[deprecated = "Use -initWithURL:options:documentAttributes:error: instead"]
@@ -726,8 +704,8 @@ extern_methods!(
         pub unsafe fn initWithPath_documentAttributes(
             this: Option<Allocated<Self>>,
             path: &NSString,
-            dict: Option<&mut Option<Id<NSDictionary, Shared>>>,
-        ) -> Option<Id<Self, Shared>>;
+            dict: Option<&mut Option<Id<NSDictionary>>>,
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[deprecated = "Use NSDataDetector instead"]
@@ -736,7 +714,7 @@ extern_methods!(
             &self,
             location: NSUInteger,
             effective_range: NSRangePointer,
-        ) -> Option<Id<NSURL, Shared>>;
+        ) -> Option<Id<NSURL>>;
     }
 );
 
@@ -751,7 +729,7 @@ extern_methods!(
             &self,
             url: &NSURL,
             options: &NSDictionary,
-            dict: Option<&mut Option<Id<NSDictionary, Shared>>>,
+            dict: Option<&mut Option<Id<NSDictionary>>>,
         ) -> bool;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSDictionary"))]
@@ -761,7 +739,7 @@ extern_methods!(
             &self,
             data: &NSData,
             options: &NSDictionary,
-            dict: Option<&mut Option<Id<NSDictionary, Shared>>>,
+            dict: Option<&mut Option<Id<NSDictionary>>>,
         ) -> bool;
     }
 );

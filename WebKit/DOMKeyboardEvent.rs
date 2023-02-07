@@ -41,7 +41,7 @@ extern_methods!(
     unsafe impl DOMKeyboardEvent {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other keyIdentifier)]
-        pub unsafe fn keyIdentifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn keyIdentifier(&self) -> Id<NSString>;
 
         #[method(location)]
         pub unsafe fn location(&self) -> c_uint;

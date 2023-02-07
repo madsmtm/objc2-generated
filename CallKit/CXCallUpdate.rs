@@ -23,7 +23,7 @@ extern_methods!(
     unsafe impl CXCallUpdate {
         #[cfg(feature = "CallKit_CXHandle")]
         #[method_id(@__retain_semantics Other remoteHandle)]
-        pub unsafe fn remoteHandle(&self) -> Option<Id<CXHandle, Shared>>;
+        pub unsafe fn remoteHandle(&self) -> Option<Id<CXHandle>>;
 
         #[cfg(feature = "CallKit_CXHandle")]
         #[method(setRemoteHandle:)]
@@ -31,7 +31,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedCallerName)]
-        pub unsafe fn localizedCallerName(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn localizedCallerName(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLocalizedCallerName:)]

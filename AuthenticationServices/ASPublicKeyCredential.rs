@@ -8,11 +8,11 @@ extern_protocol!(
     pub unsafe trait ASPublicKeyCredential: ASAuthorizationCredential {
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other rawClientDataJSON)]
-        unsafe fn rawClientDataJSON(&self) -> Id<NSData, Shared>;
+        unsafe fn rawClientDataJSON(&self) -> Id<NSData>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other credentialID)]
-        unsafe fn credentialID(&self) -> Id<NSData, Shared>;
+        unsafe fn credentialID(&self) -> Id<NSData>;
     }
 
     unsafe impl ProtocolType for dyn ASPublicKeyCredential {}

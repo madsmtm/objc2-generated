@@ -52,7 +52,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other allowedTypes)]
-        pub unsafe fn allowedTypes(&self) -> Option<Id<NSArray<NSString>, Shared>>;
+        pub unsafe fn allowedTypes(&self) -> Option<Id<NSArray<NSString>>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(setAllowedTypes:)]
@@ -60,7 +60,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other placeholderString)]
-        pub unsafe fn placeholderString(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn placeholderString(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setPlaceholderString:)]
@@ -68,7 +68,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other placeholderAttributedString)]
-        pub unsafe fn placeholderAttributedString(&self) -> Option<Id<NSAttributedString, Shared>>;
+        pub unsafe fn placeholderAttributedString(&self) -> Option<Id<NSAttributedString>>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setPlaceholderAttributedString:)]
@@ -79,7 +79,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other URL)]
-        pub unsafe fn URL(&self) -> Option<Id<NSURL, Shared>>;
+        pub unsafe fn URL(&self) -> Option<Id<NSURL>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method(setURL:)]
@@ -99,11 +99,11 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSPathControlItem")]
         #[method_id(@__retain_semantics Other clickedPathItem)]
-        pub unsafe fn clickedPathItem(&self) -> Option<Id<NSPathControlItem, Shared>>;
+        pub unsafe fn clickedPathItem(&self) -> Option<Id<NSPathControlItem>>;
 
         #[cfg(all(feature = "AppKit_NSPathControlItem", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other pathItems)]
-        pub unsafe fn pathItems(&self) -> Id<NSArray<NSPathControlItem>, Shared>;
+        pub unsafe fn pathItems(&self) -> Id<NSArray<NSPathControlItem>>;
 
         #[cfg(all(feature = "AppKit_NSPathControlItem", feature = "Foundation_NSArray"))]
         #[method(setPathItems:)]
@@ -111,16 +111,14 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other backgroundColor)]
-        pub unsafe fn backgroundColor(&self) -> Option<Id<NSColor, Shared>>;
+        pub unsafe fn backgroundColor(&self) -> Option<Id<NSColor>>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&NSColor>);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(
-            &self,
-        ) -> Option<Id<ProtocolObject<dyn NSPathControlDelegate>, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSPathControlDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -137,7 +135,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSMenu")]
         #[method_id(@__retain_semantics Other menu)]
-        pub unsafe fn menu(&self) -> Option<Id<NSMenu, Shared>>;
+        pub unsafe fn menu(&self) -> Option<Id<NSMenu>>;
 
         #[cfg(feature = "AppKit_NSMenu")]
         #[method(setMenu:)]
@@ -218,12 +216,12 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSPathComponentCell")]
         #[deprecated = "Use the clickedPathItem property instead"]
         #[method_id(@__retain_semantics Other clickedPathComponentCell)]
-        pub unsafe fn clickedPathComponentCell(&self) -> Option<Id<NSPathComponentCell, Shared>>;
+        pub unsafe fn clickedPathComponentCell(&self) -> Option<Id<NSPathComponentCell>>;
 
         #[cfg(all(feature = "AppKit_NSPathComponentCell", feature = "Foundation_NSArray"))]
         #[deprecated = "Use the pathItems property instead"]
         #[method_id(@__retain_semantics Other pathComponentCells)]
-        pub unsafe fn pathComponentCells(&self) -> Id<NSArray<NSPathComponentCell>, Shared>;
+        pub unsafe fn pathComponentCells(&self) -> Id<NSArray<NSPathComponentCell>>;
 
         #[cfg(all(feature = "AppKit_NSPathComponentCell", feature = "Foundation_NSArray"))]
         #[deprecated = "Use the pathItems property instead"]
@@ -237,9 +235,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSPathControl")]
     unsafe impl NSPathControl {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frame_rect: NSRect,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
 );

@@ -26,20 +26,20 @@ extern_methods!(
     unsafe impl DOMTreeWalker {
         #[cfg(feature = "WebKit_DOMNode")]
         #[method_id(@__retain_semantics Other root)]
-        pub unsafe fn root(&self) -> Option<Id<DOMNode, Shared>>;
+        pub unsafe fn root(&self) -> Option<Id<DOMNode>>;
 
         #[method(whatToShow)]
         pub unsafe fn whatToShow(&self) -> c_uint;
 
         #[method_id(@__retain_semantics Other filter)]
-        pub unsafe fn filter(&self) -> Option<Id<ProtocolObject<dyn DOMNodeFilter>, Shared>>;
+        pub unsafe fn filter(&self) -> Option<Id<ProtocolObject<dyn DOMNodeFilter>>>;
 
         #[method(expandEntityReferences)]
         pub unsafe fn expandEntityReferences(&self) -> bool;
 
         #[cfg(feature = "WebKit_DOMNode")]
         #[method_id(@__retain_semantics Other currentNode)]
-        pub unsafe fn currentNode(&self) -> Option<Id<DOMNode, Shared>>;
+        pub unsafe fn currentNode(&self) -> Option<Id<DOMNode>>;
 
         #[cfg(feature = "WebKit_DOMNode")]
         #[method(setCurrentNode:)]
@@ -47,30 +47,30 @@ extern_methods!(
 
         #[cfg(feature = "WebKit_DOMNode")]
         #[method_id(@__retain_semantics Other parentNode)]
-        pub unsafe fn parentNode(&self) -> Option<Id<DOMNode, Shared>>;
+        pub unsafe fn parentNode(&self) -> Option<Id<DOMNode>>;
 
         #[cfg(feature = "WebKit_DOMNode")]
         #[method_id(@__retain_semantics Other firstChild)]
-        pub unsafe fn firstChild(&self) -> Option<Id<DOMNode, Shared>>;
+        pub unsafe fn firstChild(&self) -> Option<Id<DOMNode>>;
 
         #[cfg(feature = "WebKit_DOMNode")]
         #[method_id(@__retain_semantics Other lastChild)]
-        pub unsafe fn lastChild(&self) -> Option<Id<DOMNode, Shared>>;
+        pub unsafe fn lastChild(&self) -> Option<Id<DOMNode>>;
 
         #[cfg(feature = "WebKit_DOMNode")]
         #[method_id(@__retain_semantics Other previousSibling)]
-        pub unsafe fn previousSibling(&self) -> Option<Id<DOMNode, Shared>>;
+        pub unsafe fn previousSibling(&self) -> Option<Id<DOMNode>>;
 
         #[cfg(feature = "WebKit_DOMNode")]
         #[method_id(@__retain_semantics Other nextSibling)]
-        pub unsafe fn nextSibling(&self) -> Option<Id<DOMNode, Shared>>;
+        pub unsafe fn nextSibling(&self) -> Option<Id<DOMNode>>;
 
         #[cfg(feature = "WebKit_DOMNode")]
         #[method_id(@__retain_semantics Other previousNode)]
-        pub unsafe fn previousNode(&self) -> Option<Id<DOMNode, Shared>>;
+        pub unsafe fn previousNode(&self) -> Option<Id<DOMNode>>;
 
         #[cfg(feature = "WebKit_DOMNode")]
         #[method_id(@__retain_semantics Other nextNode)]
-        pub unsafe fn nextNode(&self) -> Option<Id<DOMNode, Shared>>;
+        pub unsafe fn nextNode(&self) -> Option<Id<DOMNode>>;
     }
 );

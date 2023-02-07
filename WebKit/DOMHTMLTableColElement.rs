@@ -29,7 +29,7 @@ extern_methods!(
     unsafe impl DOMHTMLTableColElement {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other align)]
-        pub unsafe fn align(&self) -> Id<NSString, Shared>;
+        pub unsafe fn align(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAlign:)]
@@ -37,7 +37,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other ch)]
-        pub unsafe fn ch(&self) -> Id<NSString, Shared>;
+        pub unsafe fn ch(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCh:)]
@@ -45,7 +45,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other chOff)]
-        pub unsafe fn chOff(&self) -> Id<NSString, Shared>;
+        pub unsafe fn chOff(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setChOff:)]
@@ -59,7 +59,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other vAlign)]
-        pub unsafe fn vAlign(&self) -> Id<NSString, Shared>;
+        pub unsafe fn vAlign(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setVAlign:)]
@@ -67,7 +67,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other width)]
-        pub unsafe fn width(&self) -> Id<NSString, Shared>;
+        pub unsafe fn width(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setWidth:)]

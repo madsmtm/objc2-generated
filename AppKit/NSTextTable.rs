@@ -76,7 +76,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTextBlock")]
     unsafe impl NSTextBlock {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method(setValue:type:forDimension:)]
         pub unsafe fn setValue_type_forDimension(
@@ -143,7 +143,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other backgroundColor)]
-        pub unsafe fn backgroundColor(&self) -> Option<Id<NSColor, Shared>>;
+        pub unsafe fn backgroundColor(&self) -> Option<Id<NSColor>>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setBackgroundColor:)]
@@ -159,7 +159,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other borderColorForEdge:)]
-        pub unsafe fn borderColorForEdge(&self, edge: NSRectEdge) -> Option<Id<NSColor, Shared>>;
+        pub unsafe fn borderColorForEdge(&self, edge: NSRectEdge) -> Option<Id<NSColor>>;
 
         #[cfg(feature = "AppKit_NSTextContainer")]
         #[method(rectForLayoutAtPoint:inRect:textContainer:characterRange:)]
@@ -226,11 +226,11 @@ extern_methods!(
             row_span: NSInteger,
             col: NSInteger,
             col_span: NSInteger,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSTextTable")]
         #[method_id(@__retain_semantics Other table)]
-        pub unsafe fn table(&self) -> Id<NSTextTable, Shared>;
+        pub unsafe fn table(&self) -> Id<NSTextTable>;
 
         #[method(startingRow)]
         pub unsafe fn startingRow(&self) -> NSInteger;

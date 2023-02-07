@@ -14,6 +14,6 @@ extern_methods!(
         pub unsafe fn localizedUserNotificationStringForKey_arguments(
             key: &NSString,
             arguments: Option<&NSArray>,
-        ) -> Id<NSString, Shared>;
+        ) -> Id<NSString>;
     }
 );

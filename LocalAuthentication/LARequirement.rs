@@ -22,19 +22,19 @@ extern_methods!(
     #[cfg(feature = "LocalAuthentication_LAAuthenticationRequirement")]
     unsafe impl LAAuthenticationRequirement {
         #[method_id(@__retain_semantics Other defaultRequirement)]
-        pub unsafe fn defaultRequirement() -> Id<LAAuthenticationRequirement, Shared>;
+        pub unsafe fn defaultRequirement() -> Id<LAAuthenticationRequirement>;
 
         #[method_id(@__retain_semantics Other biometryRequirement)]
-        pub unsafe fn biometryRequirement() -> Id<LAAuthenticationRequirement, Shared>;
+        pub unsafe fn biometryRequirement() -> Id<LAAuthenticationRequirement>;
 
         #[method_id(@__retain_semantics Other biometryCurrentSetRequirement)]
-        pub unsafe fn biometryCurrentSetRequirement() -> Id<LAAuthenticationRequirement, Shared>;
+        pub unsafe fn biometryCurrentSetRequirement() -> Id<LAAuthenticationRequirement>;
 
         #[cfg(feature = "LocalAuthentication_LABiometryFallbackRequirement")]
         #[method_id(@__retain_semantics Other biometryRequirementWithFallback:)]
         pub unsafe fn biometryRequirementWithFallback(
             fallback: &LABiometryFallbackRequirement,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );
 
@@ -56,9 +56,9 @@ extern_methods!(
     #[cfg(feature = "LocalAuthentication_LABiometryFallbackRequirement")]
     unsafe impl LABiometryFallbackRequirement {
         #[method_id(@__retain_semantics Other defaultRequirement)]
-        pub unsafe fn defaultRequirement() -> Id<LABiometryFallbackRequirement, Shared>;
+        pub unsafe fn defaultRequirement() -> Id<LABiometryFallbackRequirement>;
 
         #[method_id(@__retain_semantics Other devicePasscodeRequirement)]
-        pub unsafe fn devicePasscodeRequirement() -> Id<LABiometryFallbackRequirement, Shared>;
+        pub unsafe fn devicePasscodeRequirement() -> Id<LABiometryFallbackRequirement>;
     }
 );

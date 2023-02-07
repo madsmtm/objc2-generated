@@ -12,7 +12,7 @@ extern_protocol!(
         unsafe fn decodedMessageForMessageData(
             &self,
             data: &NSData,
-        ) -> Option<Id<MEDecodedMessage, Shared>>;
+        ) -> Option<Id<MEDecodedMessage>>;
     }
 
     unsafe impl ProtocolType for dyn MEMessageDecoder {}

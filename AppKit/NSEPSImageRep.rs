@@ -28,14 +28,14 @@ extern_methods!(
     unsafe impl NSEPSImageRep {
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other imageRepWithData:)]
-        pub unsafe fn imageRepWithData(eps_data: &NSData) -> Option<Id<Self, Shared>>;
+        pub unsafe fn imageRepWithData(eps_data: &NSData) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Init initWithData:)]
         pub unsafe fn initWithData(
             this: Option<Allocated<Self>>,
             eps_data: &NSData,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[deprecated]
         #[method(prepareGState)]
@@ -43,7 +43,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other EPSRepresentation)]
-        pub unsafe fn EPSRepresentation(&self) -> Id<NSData, Shared>;
+        pub unsafe fn EPSRepresentation(&self) -> Id<NSData>;
 
         #[method(boundingBox)]
         pub unsafe fn boundingBox(&self) -> NSRect;

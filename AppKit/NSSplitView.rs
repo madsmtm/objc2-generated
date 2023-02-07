@@ -68,15 +68,13 @@ extern_methods!(
         pub unsafe fn setDividerStyle(&self, divider_style: NSSplitViewDividerStyle);
 
         #[method_id(@__retain_semantics Other autosaveName)]
-        pub unsafe fn autosaveName(&self) -> Option<Id<NSSplitViewAutosaveName, Shared>>;
+        pub unsafe fn autosaveName(&self) -> Option<Id<NSSplitViewAutosaveName>>;
 
         #[method(setAutosaveName:)]
         pub unsafe fn setAutosaveName(&self, autosave_name: Option<&NSSplitViewAutosaveName>);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(
-            &self,
-        ) -> Option<Id<ProtocolObject<dyn NSSplitViewDelegate>, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSSplitViewDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -89,7 +87,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other dividerColor)]
-        pub unsafe fn dividerColor(&self) -> Id<NSColor, Shared>;
+        pub unsafe fn dividerColor(&self) -> Id<NSColor>;
 
         #[method(dividerThickness)]
         pub unsafe fn dividerThickness(&self) -> CGFloat;
@@ -146,7 +144,7 @@ extern_methods!(
 
         #[cfg(all(feature = "AppKit_NSView", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other arrangedSubviews)]
-        pub unsafe fn arrangedSubviews(&self) -> Id<NSArray<NSView>, Shared>;
+        pub unsafe fn arrangedSubviews(&self) -> Id<NSArray<NSView>>;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(addArrangedSubview:)]
@@ -298,9 +296,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSSplitView")]
     unsafe impl NSSplitView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frame_rect: NSRect,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
 );

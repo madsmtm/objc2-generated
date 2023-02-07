@@ -35,13 +35,13 @@ extern_methods!(
             fetch: &NSExpression,
             context: &NSExpression,
             count_flag: bool,
-        ) -> Id<NSExpression, Shared>;
+        ) -> Id<NSExpression>;
 
         #[method_id(@__retain_semantics Other requestExpression)]
-        pub unsafe fn requestExpression(&self) -> Id<NSExpression, Shared>;
+        pub unsafe fn requestExpression(&self) -> Id<NSExpression>;
 
         #[method_id(@__retain_semantics Other contextExpression)]
-        pub unsafe fn contextExpression(&self) -> Id<NSExpression, Shared>;
+        pub unsafe fn contextExpression(&self) -> Id<NSExpression>;
 
         #[method(isCountOnlyRequest)]
         pub unsafe fn isCountOnlyRequest(&self) -> bool;
@@ -56,6 +56,6 @@ extern_methods!(
         pub unsafe fn initWithExpressionType(
             this: Option<Allocated<Self>>,
             r#type: NSExpressionType,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

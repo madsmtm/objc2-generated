@@ -37,39 +37,30 @@ extern_methods!(
     unsafe impl NSBrowserCell {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initTextCell:)]
-        pub unsafe fn initTextCell(
-            this: Option<Allocated<Self>>,
-            string: &NSString,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initTextCell(this: Option<Allocated<Self>>, string: &NSString) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Init initImageCell:)]
         pub unsafe fn initImageCell(
             this: Option<Allocated<Self>>,
             image: Option<&NSImage>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            coder: &NSCoder,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, coder: &NSCoder) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other branchImage)]
-        pub unsafe fn branchImage() -> Option<Id<NSImage, Shared>>;
+        pub unsafe fn branchImage() -> Option<Id<NSImage>>;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other highlightedBranchImage)]
-        pub unsafe fn highlightedBranchImage() -> Option<Id<NSImage, Shared>>;
+        pub unsafe fn highlightedBranchImage() -> Option<Id<NSImage>>;
 
         #[cfg(all(feature = "AppKit_NSColor", feature = "AppKit_NSView"))]
         #[method_id(@__retain_semantics Other highlightColorInView:)]
-        pub unsafe fn highlightColorInView(
-            &self,
-            control_view: &NSView,
-        ) -> Option<Id<NSColor, Shared>>;
+        pub unsafe fn highlightColorInView(&self, control_view: &NSView) -> Option<Id<NSColor>>;
 
         #[method(isLeaf)]
         pub unsafe fn isLeaf(&self) -> bool;
@@ -91,7 +82,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other image)]
-        pub unsafe fn image(&self) -> Option<Id<NSImage, Shared>>;
+        pub unsafe fn image(&self) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method(setImage:)]
@@ -99,7 +90,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other alternateImage)]
-        pub unsafe fn alternateImage(&self) -> Option<Id<NSImage, Shared>>;
+        pub unsafe fn alternateImage(&self) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method(setAlternateImage:)]

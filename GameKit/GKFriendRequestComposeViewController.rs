@@ -68,7 +68,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other composeViewDelegate)]
         pub unsafe fn composeViewDelegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn GKFriendRequestComposeViewControllerDelegate>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn GKFriendRequestComposeViewControllerDelegate>>>;
 
         #[deprecated]
         #[method(setComposeViewDelegate:)]
@@ -106,6 +106,6 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             nib_name_or_nil: Option<&NSNibName>,
             nib_bundle_or_nil: Option<&NSBundle>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

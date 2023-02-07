@@ -23,7 +23,7 @@ extern_methods!(
     unsafe impl BGTask {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn identifier(&self) -> Id<NSString>;
 
         #[method(expirationHandler)]
         pub unsafe fn expirationHandler(&self) -> *mut Block<(), ()>;
@@ -32,10 +32,10 @@ extern_methods!(
         pub unsafe fn setExpirationHandler(&self, expiration_handler: Option<&Block<(), ()>>);
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(&self) -> Id<Self, Shared>;
+        pub unsafe fn new(&self) -> Id<Self>;
 
         #[method(setTaskCompletedWithSuccess:)]
         pub unsafe fn setTaskCompletedWithSuccess(&self, success: bool);

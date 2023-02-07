@@ -29,15 +29,15 @@ extern_methods!(
     unsafe impl DOMHTMLDocument {
         #[cfg(feature = "WebKit_DOMHTMLCollection")]
         #[method_id(@__retain_semantics Other embeds)]
-        pub unsafe fn embeds(&self) -> Option<Id<DOMHTMLCollection, Shared>>;
+        pub unsafe fn embeds(&self) -> Option<Id<DOMHTMLCollection>>;
 
         #[cfg(feature = "WebKit_DOMHTMLCollection")]
         #[method_id(@__retain_semantics Other plugins)]
-        pub unsafe fn plugins(&self) -> Option<Id<DOMHTMLCollection, Shared>>;
+        pub unsafe fn plugins(&self) -> Option<Id<DOMHTMLCollection>>;
 
         #[cfg(feature = "WebKit_DOMHTMLCollection")]
         #[method_id(@__retain_semantics Other scripts)]
-        pub unsafe fn scripts(&self) -> Option<Id<DOMHTMLCollection, Shared>>;
+        pub unsafe fn scripts(&self) -> Option<Id<DOMHTMLCollection>>;
 
         #[method(width)]
         pub unsafe fn width(&self) -> c_int;
@@ -47,7 +47,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other dir)]
-        pub unsafe fn dir(&self) -> Id<NSString, Shared>;
+        pub unsafe fn dir(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setDir:)]
@@ -55,7 +55,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other designMode)]
-        pub unsafe fn designMode(&self) -> Id<NSString, Shared>;
+        pub unsafe fn designMode(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setDesignMode:)]
@@ -63,11 +63,11 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other compatMode)]
-        pub unsafe fn compatMode(&self) -> Id<NSString, Shared>;
+        pub unsafe fn compatMode(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other bgColor)]
-        pub unsafe fn bgColor(&self) -> Id<NSString, Shared>;
+        pub unsafe fn bgColor(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setBgColor:)]
@@ -75,7 +75,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fgColor)]
-        pub unsafe fn fgColor(&self) -> Id<NSString, Shared>;
+        pub unsafe fn fgColor(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setFgColor:)]
@@ -83,7 +83,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other alinkColor)]
-        pub unsafe fn alinkColor(&self) -> Id<NSString, Shared>;
+        pub unsafe fn alinkColor(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAlinkColor:)]
@@ -91,7 +91,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other linkColor)]
-        pub unsafe fn linkColor(&self) -> Id<NSString, Shared>;
+        pub unsafe fn linkColor(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLinkColor:)]
@@ -99,7 +99,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other vlinkColor)]
-        pub unsafe fn vlinkColor(&self) -> Id<NSString, Shared>;
+        pub unsafe fn vlinkColor(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setVlinkColor:)]

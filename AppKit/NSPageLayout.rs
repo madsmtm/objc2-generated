@@ -23,7 +23,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSPageLayout")]
     unsafe impl NSPageLayout {
         #[method_id(@__retain_semantics Other pageLayout)]
-        pub unsafe fn pageLayout() -> Id<NSPageLayout, Shared>;
+        pub unsafe fn pageLayout() -> Id<NSPageLayout>;
 
         #[cfg(feature = "AppKit_NSViewController")]
         #[method(addAccessoryController:)]
@@ -35,7 +35,7 @@ extern_methods!(
 
         #[cfg(all(feature = "AppKit_NSViewController", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other accessoryControllers)]
-        pub unsafe fn accessoryControllers(&self) -> Id<NSArray<NSViewController>, Shared>;
+        pub unsafe fn accessoryControllers(&self) -> Id<NSArray<NSViewController>>;
 
         #[cfg(all(feature = "AppKit_NSPrintInfo", feature = "AppKit_NSWindow"))]
         #[method(beginSheetWithPrintInfo:modalForWindow:delegate:didEndSelector:contextInfo:)]
@@ -57,7 +57,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSPrintInfo")]
         #[method_id(@__retain_semantics Other printInfo)]
-        pub unsafe fn printInfo(&self) -> Option<Id<NSPrintInfo, Shared>>;
+        pub unsafe fn printInfo(&self) -> Option<Id<NSPrintInfo>>;
     }
 );
 
@@ -73,7 +73,7 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSView")]
         #[deprecated]
         #[method_id(@__retain_semantics Other accessoryView)]
-        pub unsafe fn accessoryView(&self) -> Option<Id<NSView, Shared>>;
+        pub unsafe fn accessoryView(&self) -> Option<Id<NSView>>;
 
         #[deprecated]
         #[method(readPrintInfo)]

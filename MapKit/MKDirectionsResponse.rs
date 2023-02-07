@@ -26,15 +26,15 @@ extern_methods!(
     unsafe impl MKDirectionsResponse {
         #[cfg(feature = "MapKit_MKMapItem")]
         #[method_id(@__retain_semantics Other source)]
-        pub unsafe fn source(&self) -> Id<MKMapItem, Shared>;
+        pub unsafe fn source(&self) -> Id<MKMapItem>;
 
         #[cfg(feature = "MapKit_MKMapItem")]
         #[method_id(@__retain_semantics Other destination)]
-        pub unsafe fn destination(&self) -> Id<MKMapItem, Shared>;
+        pub unsafe fn destination(&self) -> Id<MKMapItem>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "MapKit_MKRoute"))]
         #[method_id(@__retain_semantics Other routes)]
-        pub unsafe fn routes(&self) -> Id<NSArray<MKRoute>, Shared>;
+        pub unsafe fn routes(&self) -> Id<NSArray<MKRoute>>;
     }
 );
 
@@ -57,11 +57,11 @@ extern_methods!(
     unsafe impl MKRoute {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString, Shared>;
+        pub unsafe fn name(&self) -> Id<NSString>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other advisoryNotices)]
-        pub unsafe fn advisoryNotices(&self) -> Id<NSArray<NSString>, Shared>;
+        pub unsafe fn advisoryNotices(&self) -> Id<NSArray<NSString>>;
 
         #[method(distance)]
         pub unsafe fn distance(&self) -> CLLocationDistance;
@@ -74,11 +74,11 @@ extern_methods!(
 
         #[cfg(feature = "MapKit_MKPolyline")]
         #[method_id(@__retain_semantics Other polyline)]
-        pub unsafe fn polyline(&self) -> Id<MKPolyline, Shared>;
+        pub unsafe fn polyline(&self) -> Id<MKPolyline>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "MapKit_MKRouteStep"))]
         #[method_id(@__retain_semantics Other steps)]
-        pub unsafe fn steps(&self) -> Id<NSArray<MKRouteStep>, Shared>;
+        pub unsafe fn steps(&self) -> Id<NSArray<MKRouteStep>>;
 
         #[method(hasTolls)]
         pub unsafe fn hasTolls(&self) -> bool;
@@ -107,15 +107,15 @@ extern_methods!(
     unsafe impl MKRouteStep {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other instructions)]
-        pub unsafe fn instructions(&self) -> Id<NSString, Shared>;
+        pub unsafe fn instructions(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other notice)]
-        pub unsafe fn notice(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn notice(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "MapKit_MKPolyline")]
         #[method_id(@__retain_semantics Other polyline)]
-        pub unsafe fn polyline(&self) -> Id<MKPolyline, Shared>;
+        pub unsafe fn polyline(&self) -> Id<MKPolyline>;
 
         #[method(distance)]
         pub unsafe fn distance(&self) -> CLLocationDistance;
@@ -144,11 +144,11 @@ extern_methods!(
     unsafe impl MKETAResponse {
         #[cfg(feature = "MapKit_MKMapItem")]
         #[method_id(@__retain_semantics Other source)]
-        pub unsafe fn source(&self) -> Id<MKMapItem, Shared>;
+        pub unsafe fn source(&self) -> Id<MKMapItem>;
 
         #[cfg(feature = "MapKit_MKMapItem")]
         #[method_id(@__retain_semantics Other destination)]
-        pub unsafe fn destination(&self) -> Id<MKMapItem, Shared>;
+        pub unsafe fn destination(&self) -> Id<MKMapItem>;
 
         #[method(expectedTravelTime)]
         pub unsafe fn expectedTravelTime(&self) -> NSTimeInterval;
@@ -158,11 +158,11 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other expectedArrivalDate)]
-        pub unsafe fn expectedArrivalDate(&self) -> Id<NSDate, Shared>;
+        pub unsafe fn expectedArrivalDate(&self) -> Id<NSDate>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other expectedDepartureDate)]
-        pub unsafe fn expectedDepartureDate(&self) -> Id<NSDate, Shared>;
+        pub unsafe fn expectedDepartureDate(&self) -> Id<NSDate>;
 
         #[method(transportType)]
         pub unsafe fn transportType(&self) -> MKDirectionsTransportType;

@@ -11,7 +11,7 @@ extern_methods!(
     unsafe impl NSTextStorage {
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other attributeRuns)]
-        pub unsafe fn attributeRuns(&self) -> Id<NSArray<NSTextStorage>, Shared>;
+        pub unsafe fn attributeRuns(&self) -> Id<NSArray<NSTextStorage>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setAttributeRuns:)]
@@ -19,7 +19,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other paragraphs)]
-        pub unsafe fn paragraphs(&self) -> Id<NSArray<NSTextStorage>, Shared>;
+        pub unsafe fn paragraphs(&self) -> Id<NSArray<NSTextStorage>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setParagraphs:)]
@@ -27,7 +27,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other words)]
-        pub unsafe fn words(&self) -> Id<NSArray<NSTextStorage>, Shared>;
+        pub unsafe fn words(&self) -> Id<NSArray<NSTextStorage>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setWords:)]
@@ -35,7 +35,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other characters)]
-        pub unsafe fn characters(&self) -> Id<NSArray<NSTextStorage>, Shared>;
+        pub unsafe fn characters(&self) -> Id<NSArray<NSTextStorage>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setCharacters:)]
@@ -43,7 +43,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSFont")]
         #[method_id(@__retain_semantics Other font)]
-        pub unsafe fn font(&self) -> Option<Id<NSFont, Shared>>;
+        pub unsafe fn font(&self) -> Option<Id<NSFont>>;
 
         #[cfg(feature = "AppKit_NSFont")]
         #[method(setFont:)]
@@ -51,7 +51,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other foregroundColor)]
-        pub unsafe fn foregroundColor(&self) -> Option<Id<NSColor, Shared>>;
+        pub unsafe fn foregroundColor(&self) -> Option<Id<NSColor>>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setForegroundColor:)]

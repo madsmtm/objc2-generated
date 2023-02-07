@@ -23,7 +23,7 @@ extern_methods!(
     unsafe impl ASAuthorizationProviderExtensionKerberosMapping {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other ticketKeyPath)]
-        pub unsafe fn ticketKeyPath(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn ticketKeyPath(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setTicketKeyPath:)]
@@ -31,7 +31,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other messageBufferKeyName)]
-        pub unsafe fn messageBufferKeyName(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn messageBufferKeyName(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setMessageBufferKeyName:)]
@@ -39,7 +39,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other realmKeyName)]
-        pub unsafe fn realmKeyName(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn realmKeyName(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setRealmKeyName:)]
@@ -47,7 +47,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other serviceNameKeyName)]
-        pub unsafe fn serviceNameKeyName(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn serviceNameKeyName(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setServiceNameKeyName:)]
@@ -55,7 +55,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other clientNameKeyName)]
-        pub unsafe fn clientNameKeyName(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn clientNameKeyName(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setClientNameKeyName:)]
@@ -63,7 +63,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other encryptionKeyTypeKeyName)]
-        pub unsafe fn encryptionKeyTypeKeyName(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn encryptionKeyTypeKeyName(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setEncryptionKeyTypeKeyName:)]
@@ -74,7 +74,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other sessionKeyKeyName)]
-        pub unsafe fn sessionKeyKeyName(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn sessionKeyKeyName(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setSessionKeyKeyName:)]
@@ -100,10 +100,10 @@ extern_methods!(
     #[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionLoginConfiguration")]
     unsafe impl ASAuthorizationProviderExtensionLoginConfiguration {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Init initWithClientID:issuer:tokenEndpointURL:jwksEndpointURL:audience:)]
@@ -114,7 +114,7 @@ extern_methods!(
             token_endpoint_url: &NSURL,
             jwks_endpoint_url: &NSURL,
             audience: Option<&NSString>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(
             feature = "Foundation_NSError",
@@ -137,7 +137,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other invalidCredentialPredicate)]
-        pub unsafe fn invalidCredentialPredicate(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn invalidCredentialPredicate(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setInvalidCredentialPredicate:)]
@@ -148,7 +148,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other accountDisplayName)]
-        pub unsafe fn accountDisplayName(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn accountDisplayName(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAccountDisplayName:)]
@@ -156,15 +156,15 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other clientID)]
-        pub unsafe fn clientID(&self) -> Id<NSString, Shared>;
+        pub unsafe fn clientID(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other issuer)]
-        pub unsafe fn issuer(&self) -> Id<NSString, Shared>;
+        pub unsafe fn issuer(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other audience)]
-        pub unsafe fn audience(&self) -> Id<NSString, Shared>;
+        pub unsafe fn audience(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAudience:)]
@@ -172,7 +172,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other tokenEndpointURL)]
-        pub unsafe fn tokenEndpointURL(&self) -> Id<NSURL, Shared>;
+        pub unsafe fn tokenEndpointURL(&self) -> Id<NSURL>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method(setTokenEndpointURL:)]
@@ -180,7 +180,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other jwksEndpointURL)]
-        pub unsafe fn jwksEndpointURL(&self) -> Id<NSURL, Shared>;
+        pub unsafe fn jwksEndpointURL(&self) -> Id<NSURL>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method(setJwksEndpointURL:)]
@@ -188,7 +188,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other nonceEndpointURL)]
-        pub unsafe fn nonceEndpointURL(&self) -> Id<NSURL, Shared>;
+        pub unsafe fn nonceEndpointURL(&self) -> Id<NSURL>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method(setNonceEndpointURL:)]
@@ -196,7 +196,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other nonceResponseKeypath)]
-        pub unsafe fn nonceResponseKeypath(&self) -> Id<NSString, Shared>;
+        pub unsafe fn nonceResponseKeypath(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setNonceResponseKeypath:)]
@@ -204,7 +204,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other serverNonceClaimName)]
-        pub unsafe fn serverNonceClaimName(&self) -> Id<NSString, Shared>;
+        pub unsafe fn serverNonceClaimName(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setServerNonceClaimName:)]
@@ -212,7 +212,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURLQueryItem"))]
         #[method_id(@__retain_semantics Other customNonceRequestValues)]
-        pub unsafe fn customNonceRequestValues(&self) -> Id<NSArray<NSURLQueryItem>, Shared>;
+        pub unsafe fn customNonceRequestValues(&self) -> Id<NSArray<NSURLQueryItem>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURLQueryItem"))]
         #[method(setCustomNonceRequestValues:)]
@@ -230,7 +230,7 @@ extern_methods!(
         pub unsafe fn setCustomAssertionRequestHeaderClaims_returningError(
             &self,
             claims: &NSDictionary<NSString, Object>,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",
@@ -241,11 +241,11 @@ extern_methods!(
         pub unsafe fn setCustomAssertionRequestBodyClaims_returningError(
             &self,
             claims: &NSDictionary<NSString, Object>,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other additionalScopes)]
-        pub unsafe fn additionalScopes(&self) -> Id<NSString, Shared>;
+        pub unsafe fn additionalScopes(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAdditionalScopes:)]
@@ -262,7 +262,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other previousRefreshTokenClaimName)]
-        pub unsafe fn previousRefreshTokenClaimName(&self) -> Id<NSString, Shared>;
+        pub unsafe fn previousRefreshTokenClaimName(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setPreviousRefreshTokenClaimName:)]
@@ -273,7 +273,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURLQueryItem"))]
         #[method_id(@__retain_semantics Other customLoginRequestValues)]
-        pub unsafe fn customLoginRequestValues(&self) -> Id<NSArray<NSURLQueryItem>, Shared>;
+        pub unsafe fn customLoginRequestValues(&self) -> Id<NSArray<NSURLQueryItem>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURLQueryItem"))]
         #[method(setCustomLoginRequestValues:)]
@@ -291,7 +291,7 @@ extern_methods!(
         pub unsafe fn setCustomLoginRequestHeaderClaims_returningError(
             &self,
             claims: &NSDictionary<NSString, Object>,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",
@@ -302,7 +302,7 @@ extern_methods!(
         pub unsafe fn setCustomLoginRequestBodyClaims_returningError(
             &self,
             claims: &NSDictionary<NSString, Object>,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
 
         #[cfg(all(
             feature = "AuthenticationServices_ASAuthorizationProviderExtensionKerberosMapping",
@@ -311,7 +311,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other kerberosTicketMappings)]
         pub unsafe fn kerberosTicketMappings(
             &self,
-        ) -> Id<NSArray<ASAuthorizationProviderExtensionKerberosMapping>, Shared>;
+        ) -> Id<NSArray<ASAuthorizationProviderExtensionKerberosMapping>>;
 
         #[cfg(all(
             feature = "AuthenticationServices_ASAuthorizationProviderExtensionKerberosMapping",

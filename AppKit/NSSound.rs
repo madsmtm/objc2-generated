@@ -41,7 +41,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSSound")]
     unsafe impl NSSound {
         #[method_id(@__retain_semantics Other soundNamed:)]
-        pub unsafe fn soundNamed(name: &NSSoundName) -> Option<Id<NSSound, Shared>>;
+        pub unsafe fn soundNamed(name: &NSSoundName) -> Option<Id<NSSound>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:byReference:)]
@@ -49,7 +49,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             url: &NSURL,
             by_ref: bool,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithContentsOfFile:byReference:)]
@@ -57,20 +57,20 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             path: &NSString,
             by_ref: bool,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Init initWithData:)]
         pub unsafe fn initWithData(
             this: Option<Allocated<Self>>,
             data: &NSData,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[method(setName:)]
         pub unsafe fn setName(&self, string: Option<&NSSoundName>) -> bool;
 
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Option<Id<NSSoundName, Shared>>;
+        pub unsafe fn name(&self) -> Option<Id<NSSoundName>>;
 
         #[cfg(feature = "AppKit_NSPasteboard")]
         #[method(canInitWithPasteboard:)]
@@ -78,14 +78,14 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other soundUnfilteredTypes)]
-        pub unsafe fn soundUnfilteredTypes() -> Id<NSArray<NSString>, Shared>;
+        pub unsafe fn soundUnfilteredTypes() -> Id<NSArray<NSString>>;
 
         #[cfg(feature = "AppKit_NSPasteboard")]
         #[method_id(@__retain_semantics Init initWithPasteboard:)]
         pub unsafe fn initWithPasteboard(
             this: Option<Allocated<Self>>,
             pasteboard: &NSPasteboard,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "AppKit_NSPasteboard")]
         #[method(writeToPasteboard:)]
@@ -107,7 +107,7 @@ extern_methods!(
         pub unsafe fn isPlaying(&self) -> bool;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSSoundDelegate>, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSSoundDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSSoundDelegate>>);
@@ -136,7 +136,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other playbackDeviceIdentifier)]
         pub unsafe fn playbackDeviceIdentifier(
             &self,
-        ) -> Option<Id<NSSoundPlaybackDeviceIdentifier, Shared>>;
+        ) -> Option<Id<NSSoundPlaybackDeviceIdentifier>>;
 
         #[method(setPlaybackDeviceIdentifier:)]
         pub unsafe fn setPlaybackDeviceIdentifier(
@@ -152,7 +152,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSArray")]
         #[deprecated]
         #[method_id(@__retain_semantics Other channelMapping)]
-        pub unsafe fn channelMapping(&self) -> Option<Id<NSArray, Shared>>;
+        pub unsafe fn channelMapping(&self) -> Option<Id<NSArray>>;
     }
 );
 
@@ -163,12 +163,12 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSArray")]
         #[deprecated]
         #[method_id(@__retain_semantics Other soundUnfilteredFileTypes)]
-        pub unsafe fn soundUnfilteredFileTypes() -> Option<Id<NSArray, Shared>>;
+        pub unsafe fn soundUnfilteredFileTypes() -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[deprecated]
         #[method_id(@__retain_semantics Other soundUnfilteredPasteboardTypes)]
-        pub unsafe fn soundUnfilteredPasteboardTypes() -> Option<Id<NSArray, Shared>>;
+        pub unsafe fn soundUnfilteredPasteboardTypes() -> Option<Id<NSArray>>;
     }
 );
 
@@ -189,9 +189,6 @@ extern_methods!(
     unsafe impl NSBundle {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other pathForSoundResource:)]
-        pub unsafe fn pathForSoundResource(
-            &self,
-            name: &NSSoundName,
-        ) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn pathForSoundResource(&self, name: &NSSoundName) -> Option<Id<NSString>>;
     }
 );

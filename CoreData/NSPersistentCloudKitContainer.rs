@@ -36,7 +36,7 @@ extern_methods!(
         pub unsafe fn initializeCloudKitSchemaWithOptions_error(
             &self,
             options: NSPersistentCloudKitContainerSchemaInitializationOptions,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
 
         #[cfg(feature = "CoreData_NSManagedObjectID")]
         #[method(canUpdateRecordForManagedObjectWithID:)]
@@ -64,7 +64,7 @@ extern_methods!(
     unsafe impl NSPersistentCloudKitContainer {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other persistentContainerWithName:)]
-        pub unsafe fn persistentContainerWithName(name: &NSString) -> Id<Self, Shared>;
+        pub unsafe fn persistentContainerWithName(name: &NSString) -> Id<Self>;
 
         #[cfg(all(
             feature = "CoreData_NSManagedObjectModel",
@@ -74,14 +74,11 @@ extern_methods!(
         pub unsafe fn persistentContainerWithName_managedObjectModel(
             name: &NSString,
             model: &NSManagedObjectModel,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithName:)]
-        pub unsafe fn initWithName(
-            this: Option<Allocated<Self>>,
-            name: &NSString,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithName(this: Option<Allocated<Self>>, name: &NSString) -> Id<Self>;
 
         #[cfg(all(
             feature = "CoreData_NSManagedObjectModel",
@@ -92,6 +89,6 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             name: &NSString,
             model: &NSManagedObjectModel,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

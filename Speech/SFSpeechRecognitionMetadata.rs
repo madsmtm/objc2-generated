@@ -41,6 +41,6 @@ extern_methods!(
 
         #[cfg(feature = "Speech_SFVoiceAnalytics")]
         #[method_id(@__retain_semantics Other voiceAnalytics)]
-        pub unsafe fn voiceAnalytics(&self) -> Option<Id<SFVoiceAnalytics, Shared>>;
+        pub unsafe fn voiceAnalytics(&self) -> Option<Id<SFVoiceAnalytics>>;
     }
 );

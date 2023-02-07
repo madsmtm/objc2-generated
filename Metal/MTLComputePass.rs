@@ -22,9 +22,8 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLComputePassSampleBufferAttachmentDescriptor")]
     unsafe impl MTLComputePassSampleBufferAttachmentDescriptor {
         #[method_id(@__retain_semantics Other sampleBuffer)]
-        pub unsafe fn sampleBuffer(
-            &self,
-        ) -> Option<Id<ProtocolObject<dyn MTLCounterSampleBuffer>, Shared>>;
+        pub unsafe fn sampleBuffer(&self)
+            -> Option<Id<ProtocolObject<dyn MTLCounterSampleBuffer>>>;
 
         #[method(setSampleBuffer:)]
         pub unsafe fn setSampleBuffer(
@@ -71,7 +70,7 @@ extern_methods!(
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             attachment_index: NSUInteger,
-        ) -> Id<MTLComputePassSampleBufferAttachmentDescriptor, Shared>;
+        ) -> Id<MTLComputePassSampleBufferAttachmentDescriptor>;
 
         #[cfg(feature = "Metal_MTLComputePassSampleBufferAttachmentDescriptor")]
         #[method(setObject:atIndexedSubscript:)]
@@ -101,7 +100,7 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLComputePassDescriptor")]
     unsafe impl MTLComputePassDescriptor {
         #[method_id(@__retain_semantics Other computePassDescriptor)]
-        pub unsafe fn computePassDescriptor() -> Id<MTLComputePassDescriptor, Shared>;
+        pub unsafe fn computePassDescriptor() -> Id<MTLComputePassDescriptor>;
 
         #[method(dispatchType)]
         pub unsafe fn dispatchType(&self) -> MTLDispatchType;
@@ -113,6 +112,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other sampleBufferAttachments)]
         pub unsafe fn sampleBufferAttachments(
             &self,
-        ) -> Id<MTLComputePassSampleBufferAttachmentDescriptorArray, Shared>;
+        ) -> Id<MTLComputePassSampleBufferAttachmentDescriptorArray>;
     }
 );

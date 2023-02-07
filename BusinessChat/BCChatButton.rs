@@ -61,7 +61,7 @@ extern_methods!(
         pub unsafe fn initWithStyle(
             this: Option<Allocated<Self>>,
             style: BCChatButtonStyle,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[deprecated]
@@ -69,7 +69,7 @@ extern_methods!(
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
     }
 );
 
@@ -78,9 +78,6 @@ extern_methods!(
     #[cfg(feature = "BusinessChat_BCChatButton")]
     unsafe impl BCChatButton {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frame_rect: NSRect,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
 );

@@ -29,13 +29,13 @@ extern_methods!(
     #[cfg(feature = "MapKit_MKPointAnnotation")]
     unsafe impl MKPointAnnotation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoordinate:)]
         pub unsafe fn initWithCoordinate(
             this: Option<Allocated<Self>>,
             coordinate: CLLocationCoordinate2D,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithCoordinate:title:subtitle:)]
@@ -44,7 +44,7 @@ extern_methods!(
             coordinate: CLLocationCoordinate2D,
             title: Option<&NSString>,
             subtitle: Option<&NSString>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(coordinate)]
         pub unsafe fn coordinate(&self) -> CLLocationCoordinate2D;

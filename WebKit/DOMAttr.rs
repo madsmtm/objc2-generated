@@ -29,14 +29,14 @@ extern_methods!(
     unsafe impl DOMAttr {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString, Shared>;
+        pub unsafe fn name(&self) -> Id<NSString>;
 
         #[method(specified)]
         pub unsafe fn specified(&self) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other value)]
-        pub unsafe fn value(&self) -> Id<NSString, Shared>;
+        pub unsafe fn value(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setValue:)]
@@ -44,10 +44,10 @@ extern_methods!(
 
         #[cfg(feature = "WebKit_DOMElement")]
         #[method_id(@__retain_semantics Other ownerElement)]
-        pub unsafe fn ownerElement(&self) -> Option<Id<DOMElement, Shared>>;
+        pub unsafe fn ownerElement(&self) -> Option<Id<DOMElement>>;
 
         #[cfg(feature = "WebKit_DOMCSSStyleDeclaration")]
         #[method_id(@__retain_semantics Other style)]
-        pub unsafe fn style(&self) -> Option<Id<DOMCSSStyleDeclaration, Shared>>;
+        pub unsafe fn style(&self) -> Option<Id<DOMCSSStyleDeclaration>>;
     }
 );

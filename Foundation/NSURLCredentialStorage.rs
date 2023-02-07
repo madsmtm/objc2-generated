@@ -21,7 +21,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSURLCredentialStorage")]
     unsafe impl NSURLCredentialStorage {
         #[method_id(@__retain_semantics Other sharedCredentialStorage)]
-        pub unsafe fn sharedCredentialStorage() -> Id<NSURLCredentialStorage, Shared>;
+        pub unsafe fn sharedCredentialStorage() -> Id<NSURLCredentialStorage>;
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",
@@ -33,7 +33,7 @@ extern_methods!(
         pub unsafe fn credentialsForProtectionSpace(
             &self,
             space: &NSURLProtectionSpace,
-        ) -> Option<Id<NSDictionary<NSString, NSURLCredential>, Shared>>;
+        ) -> Option<Id<NSDictionary<NSString, NSURLCredential>>>;
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",
@@ -44,7 +44,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other allCredentials)]
         pub unsafe fn allCredentials(
             &self,
-        ) -> Id<NSDictionary<NSURLProtectionSpace, NSDictionary<NSString, NSURLCredential>>, Shared>;
+        ) -> Id<NSDictionary<NSURLProtectionSpace, NSDictionary<NSString, NSURLCredential>>>;
 
         #[cfg(all(
             feature = "Foundation_NSURLCredential",
@@ -90,7 +90,7 @@ extern_methods!(
         pub unsafe fn defaultCredentialForProtectionSpace(
             &self,
             space: &NSURLProtectionSpace,
-        ) -> Option<Id<NSURLCredential, Shared>>;
+        ) -> Option<Id<NSURLCredential>>;
 
         #[cfg(all(
             feature = "Foundation_NSURLCredential",

@@ -72,7 +72,7 @@ extern_methods!(
             image: &NSImage,
             target: Option<&Object>,
             action: Option<Sel>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other buttonWithTitle:target:action:)]
@@ -80,7 +80,7 @@ extern_methods!(
             title: &NSString,
             target: Option<&Object>,
             action: Option<Sel>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other buttonWithImage:target:action:)]
@@ -88,7 +88,7 @@ extern_methods!(
             image: &NSImage,
             target: Option<&Object>,
             action: Option<Sel>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other checkboxWithTitle:target:action:)]
@@ -96,7 +96,7 @@ extern_methods!(
             title: &NSString,
             target: Option<&Object>,
             action: Option<Sel>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other radioButtonWithTitle:target:action:)]
@@ -104,7 +104,7 @@ extern_methods!(
             title: &NSString,
             target: Option<&Object>,
             action: Option<Sel>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );
 
@@ -113,9 +113,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSStatusBarButton")]
     unsafe impl NSStatusBarButton {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frame_rect: NSRect,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
 );

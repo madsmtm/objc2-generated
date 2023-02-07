@@ -27,31 +27,28 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSIndexSet")]
     unsafe impl NSIndexSet {
         #[method_id(@__retain_semantics Other indexSet)]
-        pub unsafe fn indexSet() -> Id<Self, Shared>;
+        pub unsafe fn indexSet() -> Id<Self>;
 
         #[method_id(@__retain_semantics Other indexSetWithIndex:)]
-        pub unsafe fn indexSetWithIndex(value: NSUInteger) -> Id<Self, Shared>;
+        pub unsafe fn indexSetWithIndex(value: NSUInteger) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other indexSetWithIndexesInRange:)]
-        pub unsafe fn indexSetWithIndexesInRange(range: NSRange) -> Id<Self, Shared>;
+        pub unsafe fn indexSetWithIndexesInRange(range: NSRange) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithIndexesInRange:)]
         pub unsafe fn initWithIndexesInRange(
             this: Option<Allocated<Self>>,
             range: NSRange,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithIndexSet:)]
         pub unsafe fn initWithIndexSet(
             this: Option<Allocated<Self>>,
             index_set: &NSIndexSet,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithIndex:)]
-        pub unsafe fn initWithIndex(
-            this: Option<Allocated<Self>>,
-            value: NSUInteger,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithIndex(this: Option<Allocated<Self>>, value: NSUInteger) -> Id<Self>;
 
         #[method(isEqualToIndexSet:)]
         pub unsafe fn isEqualToIndexSet(&self, index_set: &NSIndexSet) -> bool;
@@ -146,14 +143,14 @@ extern_methods!(
         pub unsafe fn indexesPassingTest(
             &self,
             predicate: &Block<(NSUInteger, NonNull<Bool>), Bool>,
-        ) -> Id<NSIndexSet, Shared>;
+        ) -> Id<NSIndexSet>;
 
         #[method_id(@__retain_semantics Other indexesWithOptions:passingTest:)]
         pub unsafe fn indexesWithOptions_passingTest(
             &self,
             opts: NSEnumerationOptions,
             predicate: &Block<(NSUInteger, NonNull<Bool>), Bool>,
-        ) -> Id<NSIndexSet, Shared>;
+        ) -> Id<NSIndexSet>;
 
         #[method_id(@__retain_semantics Other indexesInRange:options:passingTest:)]
         pub unsafe fn indexesInRange_options_passingTest(
@@ -161,7 +158,7 @@ extern_methods!(
             range: NSRange,
             opts: NSEnumerationOptions,
             predicate: &Block<(NSUInteger, NonNull<Bool>), Bool>,
-        ) -> Id<NSIndexSet, Shared>;
+        ) -> Id<NSIndexSet>;
 
         #[method(enumerateRangesUsingBlock:)]
         pub unsafe fn enumerateRangesUsingBlock(&self, block: &Block<(NSRange, NonNull<Bool>), ()>);

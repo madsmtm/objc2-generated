@@ -36,14 +36,14 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             value: NonNull<c_void>,
             r#type: NonNull<c_char>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
     }
 );
 
@@ -55,13 +55,13 @@ extern_methods!(
         pub unsafe fn valueWithBytes_objCType(
             value: NonNull<c_void>,
             r#type: NonNull<c_char>,
-        ) -> Id<NSValue, Shared>;
+        ) -> Id<NSValue>;
 
         #[method_id(@__retain_semantics Other value:withObjCType:)]
         pub unsafe fn value_withObjCType(
             value: NonNull<c_void>,
             r#type: NonNull<c_char>,
-        ) -> Id<NSValue, Shared>;
+        ) -> Id<NSValue>;
     }
 );
 
@@ -70,14 +70,13 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSValue")]
     unsafe impl NSValue {
         #[method_id(@__retain_semantics Other valueWithNonretainedObject:)]
-        pub unsafe fn valueWithNonretainedObject(an_object: Option<&Object>)
-            -> Id<NSValue, Shared>;
+        pub unsafe fn valueWithNonretainedObject(an_object: Option<&Object>) -> Id<NSValue>;
 
         #[method_id(@__retain_semantics Other nonretainedObjectValue)]
-        pub unsafe fn nonretainedObjectValue(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn nonretainedObjectValue(&self) -> Option<Id<Object>>;
 
         #[method_id(@__retain_semantics Other valueWithPointer:)]
-        pub unsafe fn valueWithPointer(pointer: *mut c_void) -> Id<NSValue, Shared>;
+        pub unsafe fn valueWithPointer(pointer: *mut c_void) -> Id<NSValue>;
 
         #[method(pointerValue)]
         pub unsafe fn pointerValue(&self) -> *mut c_void;
@@ -115,81 +114,61 @@ extern_methods!(
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[method_id(@__retain_semantics Init initWithChar:)]
-        pub fn initWithChar(this: Option<Allocated<Self>>, value: c_char) -> Id<NSNumber, Shared>;
+        pub fn initWithChar(this: Option<Allocated<Self>>, value: c_char) -> Id<NSNumber>;
 
         #[method_id(@__retain_semantics Init initWithUnsignedChar:)]
-        pub fn initWithUnsignedChar(
-            this: Option<Allocated<Self>>,
-            value: c_uchar,
-        ) -> Id<NSNumber, Shared>;
+        pub fn initWithUnsignedChar(this: Option<Allocated<Self>>, value: c_uchar) -> Id<NSNumber>;
 
         #[method_id(@__retain_semantics Init initWithShort:)]
-        pub fn initWithShort(this: Option<Allocated<Self>>, value: c_short)
-            -> Id<NSNumber, Shared>;
+        pub fn initWithShort(this: Option<Allocated<Self>>, value: c_short) -> Id<NSNumber>;
 
         #[method_id(@__retain_semantics Init initWithUnsignedShort:)]
         pub fn initWithUnsignedShort(
             this: Option<Allocated<Self>>,
             value: c_ushort,
-        ) -> Id<NSNumber, Shared>;
+        ) -> Id<NSNumber>;
 
         #[method_id(@__retain_semantics Init initWithInt:)]
-        pub fn initWithInt(this: Option<Allocated<Self>>, value: c_int) -> Id<NSNumber, Shared>;
+        pub fn initWithInt(this: Option<Allocated<Self>>, value: c_int) -> Id<NSNumber>;
 
         #[method_id(@__retain_semantics Init initWithUnsignedInt:)]
-        pub fn initWithUnsignedInt(
-            this: Option<Allocated<Self>>,
-            value: c_uint,
-        ) -> Id<NSNumber, Shared>;
+        pub fn initWithUnsignedInt(this: Option<Allocated<Self>>, value: c_uint) -> Id<NSNumber>;
 
         #[method_id(@__retain_semantics Init initWithLong:)]
-        pub fn initWithLong(this: Option<Allocated<Self>>, value: c_long) -> Id<NSNumber, Shared>;
+        pub fn initWithLong(this: Option<Allocated<Self>>, value: c_long) -> Id<NSNumber>;
 
         #[method_id(@__retain_semantics Init initWithUnsignedLong:)]
-        pub fn initWithUnsignedLong(
-            this: Option<Allocated<Self>>,
-            value: c_ulong,
-        ) -> Id<NSNumber, Shared>;
+        pub fn initWithUnsignedLong(this: Option<Allocated<Self>>, value: c_ulong) -> Id<NSNumber>;
 
         #[method_id(@__retain_semantics Init initWithLongLong:)]
-        pub fn initWithLongLong(
-            this: Option<Allocated<Self>>,
-            value: c_longlong,
-        ) -> Id<NSNumber, Shared>;
+        pub fn initWithLongLong(this: Option<Allocated<Self>>, value: c_longlong) -> Id<NSNumber>;
 
         #[method_id(@__retain_semantics Init initWithUnsignedLongLong:)]
         pub fn initWithUnsignedLongLong(
             this: Option<Allocated<Self>>,
             value: c_ulonglong,
-        ) -> Id<NSNumber, Shared>;
+        ) -> Id<NSNumber>;
 
         #[method_id(@__retain_semantics Init initWithFloat:)]
-        pub fn initWithFloat(this: Option<Allocated<Self>>, value: c_float)
-            -> Id<NSNumber, Shared>;
+        pub fn initWithFloat(this: Option<Allocated<Self>>, value: c_float) -> Id<NSNumber>;
 
         #[method_id(@__retain_semantics Init initWithDouble:)]
-        pub fn initWithDouble(
-            this: Option<Allocated<Self>>,
-            value: c_double,
-        ) -> Id<NSNumber, Shared>;
+        pub fn initWithDouble(this: Option<Allocated<Self>>, value: c_double) -> Id<NSNumber>;
 
         #[method_id(@__retain_semantics Init initWithBool:)]
-        pub fn initWithBool(this: Option<Allocated<Self>>, value: bool) -> Id<NSNumber, Shared>;
+        pub fn initWithBool(this: Option<Allocated<Self>>, value: bool) -> Id<NSNumber>;
 
         #[method_id(@__retain_semantics Init initWithInteger:)]
-        pub fn initWithInteger(
-            this: Option<Allocated<Self>>,
-            value: NSInteger,
-        ) -> Id<NSNumber, Shared>;
+        pub fn initWithInteger(this: Option<Allocated<Self>>, value: NSInteger) -> Id<NSNumber>;
 
         #[method_id(@__retain_semantics Init initWithUnsignedInteger:)]
         pub fn initWithUnsignedInteger(
             this: Option<Allocated<Self>>,
             value: NSUInteger,
-        ) -> Id<NSNumber, Shared>;
+        ) -> Id<NSNumber>;
 
         #[method(charValue)]
         pub fn charValue(&self) -> c_char;
@@ -238,7 +217,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringValue)]
-        pub fn stringValue(&self) -> Id<NSString, Shared>;
+        pub fn stringValue(&self) -> Id<NSString>;
 
         #[method(compare:)]
         pub fn compare(&self, other_number: &NSNumber) -> NSComparisonResult;
@@ -248,8 +227,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other descriptionWithLocale:)]
-        pub unsafe fn descriptionWithLocale(&self, locale: Option<&Object>)
-            -> Id<NSString, Shared>;
+        pub unsafe fn descriptionWithLocale(&self, locale: Option<&Object>) -> Id<NSString>;
     }
 );
 
@@ -258,49 +236,49 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSNumber")]
     unsafe impl NSNumber {
         #[method_id(@__retain_semantics Other numberWithChar:)]
-        pub fn numberWithChar(value: c_char) -> Id<NSNumber, Shared>;
+        pub fn numberWithChar(value: c_char) -> Id<NSNumber>;
 
         #[method_id(@__retain_semantics Other numberWithUnsignedChar:)]
-        pub fn numberWithUnsignedChar(value: c_uchar) -> Id<NSNumber, Shared>;
+        pub fn numberWithUnsignedChar(value: c_uchar) -> Id<NSNumber>;
 
         #[method_id(@__retain_semantics Other numberWithShort:)]
-        pub fn numberWithShort(value: c_short) -> Id<NSNumber, Shared>;
+        pub fn numberWithShort(value: c_short) -> Id<NSNumber>;
 
         #[method_id(@__retain_semantics Other numberWithUnsignedShort:)]
-        pub fn numberWithUnsignedShort(value: c_ushort) -> Id<NSNumber, Shared>;
+        pub fn numberWithUnsignedShort(value: c_ushort) -> Id<NSNumber>;
 
         #[method_id(@__retain_semantics Other numberWithInt:)]
-        pub fn numberWithInt(value: c_int) -> Id<NSNumber, Shared>;
+        pub fn numberWithInt(value: c_int) -> Id<NSNumber>;
 
         #[method_id(@__retain_semantics Other numberWithUnsignedInt:)]
-        pub fn numberWithUnsignedInt(value: c_uint) -> Id<NSNumber, Shared>;
+        pub fn numberWithUnsignedInt(value: c_uint) -> Id<NSNumber>;
 
         #[method_id(@__retain_semantics Other numberWithLong:)]
-        pub fn numberWithLong(value: c_long) -> Id<NSNumber, Shared>;
+        pub fn numberWithLong(value: c_long) -> Id<NSNumber>;
 
         #[method_id(@__retain_semantics Other numberWithUnsignedLong:)]
-        pub fn numberWithUnsignedLong(value: c_ulong) -> Id<NSNumber, Shared>;
+        pub fn numberWithUnsignedLong(value: c_ulong) -> Id<NSNumber>;
 
         #[method_id(@__retain_semantics Other numberWithLongLong:)]
-        pub fn numberWithLongLong(value: c_longlong) -> Id<NSNumber, Shared>;
+        pub fn numberWithLongLong(value: c_longlong) -> Id<NSNumber>;
 
         #[method_id(@__retain_semantics Other numberWithUnsignedLongLong:)]
-        pub fn numberWithUnsignedLongLong(value: c_ulonglong) -> Id<NSNumber, Shared>;
+        pub fn numberWithUnsignedLongLong(value: c_ulonglong) -> Id<NSNumber>;
 
         #[method_id(@__retain_semantics Other numberWithFloat:)]
-        pub fn numberWithFloat(value: c_float) -> Id<NSNumber, Shared>;
+        pub fn numberWithFloat(value: c_float) -> Id<NSNumber>;
 
         #[method_id(@__retain_semantics Other numberWithDouble:)]
-        pub fn numberWithDouble(value: c_double) -> Id<NSNumber, Shared>;
+        pub fn numberWithDouble(value: c_double) -> Id<NSNumber>;
 
         #[method_id(@__retain_semantics Other numberWithBool:)]
-        pub fn numberWithBool(value: bool) -> Id<NSNumber, Shared>;
+        pub fn numberWithBool(value: bool) -> Id<NSNumber>;
 
         #[method_id(@__retain_semantics Other numberWithInteger:)]
-        pub fn numberWithInteger(value: NSInteger) -> Id<NSNumber, Shared>;
+        pub fn numberWithInteger(value: NSInteger) -> Id<NSNumber>;
 
         #[method_id(@__retain_semantics Other numberWithUnsignedInteger:)]
-        pub fn numberWithUnsignedInteger(value: NSUInteger) -> Id<NSNumber, Shared>;
+        pub fn numberWithUnsignedInteger(value: NSUInteger) -> Id<NSNumber>;
     }
 );
 
@@ -323,6 +301,6 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             value: NonNull<c_void>,
             r#type: NonNull<c_char>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

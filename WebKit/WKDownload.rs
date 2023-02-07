@@ -27,15 +27,14 @@ extern_methods!(
     unsafe impl WKDownload {
         #[cfg(feature = "Foundation_NSURLRequest")]
         #[method_id(@__retain_semantics Other originalRequest)]
-        pub unsafe fn originalRequest(&self) -> Option<Id<NSURLRequest, Shared>>;
+        pub unsafe fn originalRequest(&self) -> Option<Id<NSURLRequest>>;
 
         #[cfg(feature = "WebKit_WKWebView")]
         #[method_id(@__retain_semantics Other webView)]
-        pub unsafe fn webView(&self) -> Option<Id<WKWebView, Shared>>;
+        pub unsafe fn webView(&self) -> Option<Id<WKWebView>>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self)
-            -> Option<Id<ProtocolObject<dyn WKDownloadDelegate>, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn WKDownloadDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn WKDownloadDelegate>>);

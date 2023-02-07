@@ -22,9 +22,8 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLBlitPassSampleBufferAttachmentDescriptor")]
     unsafe impl MTLBlitPassSampleBufferAttachmentDescriptor {
         #[method_id(@__retain_semantics Other sampleBuffer)]
-        pub unsafe fn sampleBuffer(
-            &self,
-        ) -> Option<Id<ProtocolObject<dyn MTLCounterSampleBuffer>, Shared>>;
+        pub unsafe fn sampleBuffer(&self)
+            -> Option<Id<ProtocolObject<dyn MTLCounterSampleBuffer>>>;
 
         #[method(setSampleBuffer:)]
         pub unsafe fn setSampleBuffer(
@@ -71,7 +70,7 @@ extern_methods!(
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             attachment_index: NSUInteger,
-        ) -> Id<MTLBlitPassSampleBufferAttachmentDescriptor, Shared>;
+        ) -> Id<MTLBlitPassSampleBufferAttachmentDescriptor>;
 
         #[cfg(feature = "Metal_MTLBlitPassSampleBufferAttachmentDescriptor")]
         #[method(setObject:atIndexedSubscript:)]
@@ -101,12 +100,12 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLBlitPassDescriptor")]
     unsafe impl MTLBlitPassDescriptor {
         #[method_id(@__retain_semantics Other blitPassDescriptor)]
-        pub unsafe fn blitPassDescriptor() -> Id<MTLBlitPassDescriptor, Shared>;
+        pub unsafe fn blitPassDescriptor() -> Id<MTLBlitPassDescriptor>;
 
         #[cfg(feature = "Metal_MTLBlitPassSampleBufferAttachmentDescriptorArray")]
         #[method_id(@__retain_semantics Other sampleBufferAttachments)]
         pub unsafe fn sampleBufferAttachments(
             &self,
-        ) -> Id<MTLBlitPassSampleBufferAttachmentDescriptorArray, Shared>;
+        ) -> Id<MTLBlitPassSampleBufferAttachmentDescriptorArray>;
     }
 );

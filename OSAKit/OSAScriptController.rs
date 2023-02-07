@@ -43,7 +43,7 @@ extern_methods!(
     unsafe impl OSAScriptController {
         #[cfg(feature = "OSAKit_OSAScriptView")]
         #[method_id(@__retain_semantics Other scriptView)]
-        pub unsafe fn scriptView(&self) -> Option<Id<OSAScriptView, Shared>>;
+        pub unsafe fn scriptView(&self) -> Option<Id<OSAScriptView>>;
 
         #[cfg(feature = "OSAKit_OSAScriptView")]
         #[method(setScriptView:)]
@@ -51,7 +51,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSTextView")]
         #[method_id(@__retain_semantics Other resultView)]
-        pub unsafe fn resultView(&self) -> Option<Id<NSTextView, Shared>>;
+        pub unsafe fn resultView(&self) -> Option<Id<NSTextView>>;
 
         #[cfg(feature = "AppKit_NSTextView")]
         #[method(setResultView:)]
@@ -59,7 +59,7 @@ extern_methods!(
 
         #[cfg(feature = "OSAKit_OSAScript")]
         #[method_id(@__retain_semantics Other script)]
-        pub unsafe fn script(&self) -> Option<Id<OSAScript, Shared>>;
+        pub unsafe fn script(&self) -> Option<Id<OSAScript>>;
 
         #[cfg(feature = "OSAKit_OSAScript")]
         #[method(setScript:)]
@@ -67,7 +67,7 @@ extern_methods!(
 
         #[cfg(feature = "OSAKit_OSALanguage")]
         #[method_id(@__retain_semantics Other language)]
-        pub unsafe fn language(&self) -> Option<Id<OSALanguage, Shared>>;
+        pub unsafe fn language(&self) -> Option<Id<OSALanguage>>;
 
         #[cfg(feature = "OSAKit_OSALanguage")]
         #[method(setLanguage:)]

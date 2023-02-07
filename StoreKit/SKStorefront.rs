@@ -24,10 +24,10 @@ extern_methods!(
     unsafe impl SKStorefront {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other countryCode)]
-        pub unsafe fn countryCode(&self) -> Id<NSString, Shared>;
+        pub unsafe fn countryCode(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn identifier(&self) -> Id<NSString>;
     }
 );

@@ -49,26 +49,26 @@ extern_methods!(
     unsafe impl GKLeaderboard {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn title(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other groupIdentifier)]
-        pub unsafe fn groupIdentifier(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn groupIdentifier(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other baseLeaderboardID)]
-        pub unsafe fn baseLeaderboardID(&self) -> Id<NSString, Shared>;
+        pub unsafe fn baseLeaderboardID(&self) -> Id<NSString>;
 
         #[method(type)]
         pub unsafe fn r#type(&self) -> GKLeaderboardType;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other startDate)]
-        pub unsafe fn startDate(&self) -> Option<Id<NSDate, Shared>>;
+        pub unsafe fn startDate(&self) -> Option<Id<NSDate>>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other nextStartDate)]
-        pub unsafe fn nextStartDate(&self) -> Option<Id<NSDate, Shared>>;
+        pub unsafe fn nextStartDate(&self) -> Option<Id<NSDate>>;
 
         #[method(duration)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
@@ -168,7 +168,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use identifier instead"]
         #[method_id(@__retain_semantics Other category)]
-        pub unsafe fn category(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn category(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use identifier instead"]
@@ -181,7 +181,7 @@ extern_methods!(
         pub unsafe fn initWithPlayerIDs(
             this: Option<Allocated<Self>>,
             player_i_ds: Option<&NSArray<NSString>>,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -223,7 +223,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use loadEntriesForPlayerScope:timeScope:range:completionHandler: instead."]
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn identifier(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use loadEntriesForPlayerScope:timeScope:range:completionHandler: instead."]
@@ -241,7 +241,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSArray", feature = "GameKit_GKScore"))]
         #[deprecated = "Use loadEntriesForPlayerScope:timeScope:range:completionHandler: to obtain scores."]
         #[method_id(@__retain_semantics Other scores)]
-        pub unsafe fn scores(&self) -> Option<Id<NSArray<GKScore>, Shared>>;
+        pub unsafe fn scores(&self) -> Option<Id<NSArray<GKScore>>>;
 
         #[deprecated = "Use loadEntriesForPlayerScope:timeScope:range:completionHandler: method to obtain the size of the leaderboard."]
         #[method(maxRange)]
@@ -250,7 +250,7 @@ extern_methods!(
         #[cfg(feature = "GameKit_GKScore")]
         #[deprecated = "Use loadEntriesForPlayerScope:timeScope:range:completionHandler: method to obtain scores."]
         #[method_id(@__retain_semantics Other localPlayerScore)]
-        pub unsafe fn localPlayerScore(&self) -> Option<Id<GKScore, Shared>>;
+        pub unsafe fn localPlayerScore(&self) -> Option<Id<GKScore>>;
 
         #[deprecated = "Use loadEntriesForPlayerScope:timeScope:range:completionHandler: method to obtain scores."]
         #[method(isLoading)]
@@ -258,7 +258,7 @@ extern_methods!(
 
         #[deprecated = "Do not instantiate GKLeaderboard directly. Use class method loadLeaderboardsWithIDs:completionHandler: to get the leaderboards."]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "GameKit_GKPlayer"))]
         #[deprecated = "Use instance method loadEntriesForPlayers:timeScope:completionHandler: instead."]
@@ -266,7 +266,7 @@ extern_methods!(
         pub unsafe fn initWithPlayers(
             this: Option<Allocated<Self>>,
             players: &NSArray<GKPlayer>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",

@@ -48,22 +48,22 @@ extern_methods!(
         #[method_id(@__retain_semantics Other descriptorForRequiredKeysForStyle:)]
         pub unsafe fn descriptorForRequiredKeysForStyle(
             style: CNContactFormatterStyle,
-        ) -> Id<ProtocolObject<dyn CNKeyDescriptor>, Shared>;
+        ) -> Id<ProtocolObject<dyn CNKeyDescriptor>>;
 
         #[method_id(@__retain_semantics Other descriptorForRequiredKeysForNameOrder)]
         pub unsafe fn descriptorForRequiredKeysForNameOrder(
-        ) -> Id<ProtocolObject<dyn CNKeyDescriptor>, Shared>;
+        ) -> Id<ProtocolObject<dyn CNKeyDescriptor>>;
 
         #[method_id(@__retain_semantics Other descriptorForRequiredKeysForDelimiter)]
         pub unsafe fn descriptorForRequiredKeysForDelimiter(
-        ) -> Id<ProtocolObject<dyn CNKeyDescriptor>, Shared>;
+        ) -> Id<ProtocolObject<dyn CNKeyDescriptor>>;
 
         #[cfg(all(feature = "Contacts_CNContact", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other stringFromContact:style:)]
         pub unsafe fn stringFromContact_style(
             contact: &CNContact,
             style: CNContactFormatterStyle,
-        ) -> Option<Id<NSString, Shared>>;
+        ) -> Option<Id<NSString>>;
 
         #[cfg(all(
             feature = "Contacts_CNContact",
@@ -75,7 +75,7 @@ extern_methods!(
             contact: &CNContact,
             style: CNContactFormatterStyle,
             attributes: Option<&NSDictionary>,
-        ) -> Option<Id<NSAttributedString, Shared>>;
+        ) -> Option<Id<NSAttributedString>>;
 
         #[cfg(feature = "Contacts_CNContact")]
         #[method(nameOrderForContact:)]
@@ -83,7 +83,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Contacts_CNContact", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other delimiterForContact:)]
-        pub unsafe fn delimiterForContact(contact: &CNContact) -> Id<NSString, Shared>;
+        pub unsafe fn delimiterForContact(contact: &CNContact) -> Id<NSString>;
 
         #[method(style)]
         pub unsafe fn style(&self) -> CNContactFormatterStyle;
@@ -93,8 +93,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Contacts_CNContact", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other stringFromContact:)]
-        pub unsafe fn stringFromContact(&self, contact: &CNContact)
-            -> Option<Id<NSString, Shared>>;
+        pub unsafe fn stringFromContact(&self, contact: &CNContact) -> Option<Id<NSString>>;
 
         #[cfg(all(
             feature = "Contacts_CNContact",
@@ -106,7 +105,7 @@ extern_methods!(
             &self,
             contact: &CNContact,
             attributes: Option<&NSDictionary>,
-        ) -> Option<Id<NSAttributedString, Shared>>;
+        ) -> Option<Id<NSAttributedString>>;
     }
 );
 

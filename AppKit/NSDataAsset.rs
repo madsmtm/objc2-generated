@@ -25,13 +25,13 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSDataAsset")]
     unsafe impl NSDataAsset {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithName:)]
         pub unsafe fn initWithName(
             this: Option<Allocated<Self>>,
             name: &NSDataAssetName,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSBundle")]
         #[method_id(@__retain_semantics Init initWithName:bundle:)]
@@ -39,17 +39,17 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             name: &NSDataAssetName,
             bundle: &NSBundle,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSDataAssetName, Shared>;
+        pub unsafe fn name(&self) -> Id<NSDataAssetName>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other data)]
-        pub unsafe fn data(&self) -> Id<NSData, Shared>;
+        pub unsafe fn data(&self) -> Id<NSData>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other typeIdentifier)]
-        pub unsafe fn typeIdentifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn typeIdentifier(&self) -> Id<NSString>;
     }
 );

@@ -14,14 +14,14 @@ extern_methods!(
             &self,
             partial_name: &NSString,
             content_type: &UTType,
-        ) -> Id<NSString, Shared>;
+        ) -> Id<NSString>;
 
         #[cfg(feature = "UniformTypeIdentifiers_UTType")]
         #[method_id(@__retain_semantics Other stringByAppendingPathExtensionForType:)]
         pub unsafe fn stringByAppendingPathExtensionForType(
             &self,
             content_type: &UTType,
-        ) -> Id<NSString, Shared>;
+        ) -> Id<NSString>;
     }
 );
 
@@ -38,13 +38,11 @@ extern_methods!(
             &self,
             partial_name: &NSString,
             content_type: &UTType,
-        ) -> Id<NSURL, Shared>;
+        ) -> Id<NSURL>;
 
         #[cfg(feature = "UniformTypeIdentifiers_UTType")]
         #[method_id(@__retain_semantics Other URLByAppendingPathExtensionForType:)]
-        pub unsafe fn URLByAppendingPathExtensionForType(
-            &self,
-            content_type: &UTType,
-        ) -> Id<NSURL, Shared>;
+        pub unsafe fn URLByAppendingPathExtensionForType(&self, content_type: &UTType)
+            -> Id<NSURL>;
     }
 );

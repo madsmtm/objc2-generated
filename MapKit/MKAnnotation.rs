@@ -15,12 +15,12 @@ extern_protocol!(
         #[cfg(feature = "Foundation_NSString")]
         #[optional]
         #[method_id(@__retain_semantics Other title)]
-        unsafe fn title(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn title(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[optional]
         #[method_id(@__retain_semantics Other subtitle)]
-        unsafe fn subtitle(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn subtitle(&self) -> Option<Id<NSString>>;
 
         #[optional]
         #[method(setCoordinate:)]

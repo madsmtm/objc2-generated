@@ -51,7 +51,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other matchmakerDelegate)]
         pub unsafe fn matchmakerDelegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn GKMatchmakerViewControllerDelegate>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn GKMatchmakerViewControllerDelegate>>>;
 
         #[method(setMatchmakerDelegate:)]
         pub unsafe fn setMatchmakerDelegate(
@@ -61,7 +61,7 @@ extern_methods!(
 
         #[cfg(feature = "GameKit_GKMatchRequest")]
         #[method_id(@__retain_semantics Other matchRequest)]
-        pub unsafe fn matchRequest(&self) -> Id<GKMatchRequest, Shared>;
+        pub unsafe fn matchRequest(&self) -> Id<GKMatchRequest>;
 
         #[method(isHosted)]
         pub unsafe fn isHosted(&self) -> bool;
@@ -86,14 +86,14 @@ extern_methods!(
         pub unsafe fn initWithMatchRequest(
             this: Option<Allocated<Self>>,
             request: &GKMatchRequest,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "GameKit_GKInvite")]
         #[method_id(@__retain_semantics Init initWithInvite:)]
         pub unsafe fn initWithInvite(
             this: Option<Allocated<Self>>,
             invite: &GKInvite,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "GameKit_GKMatch")]
         #[method(addPlayersToMatch:)]
@@ -106,7 +106,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
         #[method_id(@__retain_semantics Other defaultInvitationMessage)]
-        pub unsafe fn defaultInvitationMessage(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn defaultInvitationMessage(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
@@ -227,6 +227,6 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             nib_name_or_nil: Option<&NSNibName>,
             nib_bundle_or_nil: Option<&NSBundle>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

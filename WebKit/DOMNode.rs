@@ -72,11 +72,11 @@ extern_methods!(
     unsafe impl DOMNode {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other nodeName)]
-        pub unsafe fn nodeName(&self) -> Id<NSString, Shared>;
+        pub unsafe fn nodeName(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other nodeValue)]
-        pub unsafe fn nodeValue(&self) -> Id<NSString, Shared>;
+        pub unsafe fn nodeValue(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setNodeValue:)]
@@ -86,35 +86,35 @@ extern_methods!(
         pub unsafe fn nodeType(&self) -> c_ushort;
 
         #[method_id(@__retain_semantics Other parentNode)]
-        pub unsafe fn parentNode(&self) -> Option<Id<DOMNode, Shared>>;
+        pub unsafe fn parentNode(&self) -> Option<Id<DOMNode>>;
 
         #[cfg(feature = "WebKit_DOMNodeList")]
         #[method_id(@__retain_semantics Other childNodes)]
-        pub unsafe fn childNodes(&self) -> Option<Id<DOMNodeList, Shared>>;
+        pub unsafe fn childNodes(&self) -> Option<Id<DOMNodeList>>;
 
         #[method_id(@__retain_semantics Other firstChild)]
-        pub unsafe fn firstChild(&self) -> Option<Id<DOMNode, Shared>>;
+        pub unsafe fn firstChild(&self) -> Option<Id<DOMNode>>;
 
         #[method_id(@__retain_semantics Other lastChild)]
-        pub unsafe fn lastChild(&self) -> Option<Id<DOMNode, Shared>>;
+        pub unsafe fn lastChild(&self) -> Option<Id<DOMNode>>;
 
         #[method_id(@__retain_semantics Other previousSibling)]
-        pub unsafe fn previousSibling(&self) -> Option<Id<DOMNode, Shared>>;
+        pub unsafe fn previousSibling(&self) -> Option<Id<DOMNode>>;
 
         #[method_id(@__retain_semantics Other nextSibling)]
-        pub unsafe fn nextSibling(&self) -> Option<Id<DOMNode, Shared>>;
+        pub unsafe fn nextSibling(&self) -> Option<Id<DOMNode>>;
 
         #[cfg(feature = "WebKit_DOMDocument")]
         #[method_id(@__retain_semantics Other ownerDocument)]
-        pub unsafe fn ownerDocument(&self) -> Option<Id<DOMDocument, Shared>>;
+        pub unsafe fn ownerDocument(&self) -> Option<Id<DOMDocument>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other namespaceURI)]
-        pub unsafe fn namespaceURI(&self) -> Id<NSString, Shared>;
+        pub unsafe fn namespaceURI(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other prefix)]
-        pub unsafe fn prefix(&self) -> Id<NSString, Shared>;
+        pub unsafe fn prefix(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setPrefix:)]
@@ -122,19 +122,19 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localName)]
-        pub unsafe fn localName(&self) -> Id<NSString, Shared>;
+        pub unsafe fn localName(&self) -> Id<NSString>;
 
         #[cfg(feature = "WebKit_DOMNamedNodeMap")]
         #[method_id(@__retain_semantics Other attributes)]
-        pub unsafe fn attributes(&self) -> Option<Id<DOMNamedNodeMap, Shared>>;
+        pub unsafe fn attributes(&self) -> Option<Id<DOMNamedNodeMap>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other baseURI)]
-        pub unsafe fn baseURI(&self) -> Id<NSString, Shared>;
+        pub unsafe fn baseURI(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other textContent)]
-        pub unsafe fn textContent(&self) -> Id<NSString, Shared>;
+        pub unsafe fn textContent(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setTextContent:)]
@@ -142,7 +142,7 @@ extern_methods!(
 
         #[cfg(feature = "WebKit_DOMElement")]
         #[method_id(@__retain_semantics Other parentElement)]
-        pub unsafe fn parentElement(&self) -> Option<Id<DOMElement, Shared>>;
+        pub unsafe fn parentElement(&self) -> Option<Id<DOMElement>>;
 
         #[method(isContentEditable)]
         pub unsafe fn isContentEditable(&self) -> bool;
@@ -152,32 +152,26 @@ extern_methods!(
             &self,
             new_child: Option<&DOMNode>,
             ref_child: Option<&DOMNode>,
-        ) -> Option<Id<DOMNode, Shared>>;
+        ) -> Option<Id<DOMNode>>;
 
         #[method_id(@__retain_semantics Other replaceChild:oldChild:)]
         pub unsafe fn replaceChild_oldChild(
             &self,
             new_child: Option<&DOMNode>,
             old_child: Option<&DOMNode>,
-        ) -> Option<Id<DOMNode, Shared>>;
+        ) -> Option<Id<DOMNode>>;
 
         #[method_id(@__retain_semantics Other removeChild:)]
-        pub unsafe fn removeChild(
-            &self,
-            old_child: Option<&DOMNode>,
-        ) -> Option<Id<DOMNode, Shared>>;
+        pub unsafe fn removeChild(&self, old_child: Option<&DOMNode>) -> Option<Id<DOMNode>>;
 
         #[method_id(@__retain_semantics Other appendChild:)]
-        pub unsafe fn appendChild(
-            &self,
-            new_child: Option<&DOMNode>,
-        ) -> Option<Id<DOMNode, Shared>>;
+        pub unsafe fn appendChild(&self, new_child: Option<&DOMNode>) -> Option<Id<DOMNode>>;
 
         #[method(hasChildNodes)]
         pub unsafe fn hasChildNodes(&self) -> bool;
 
         #[method_id(@__retain_semantics Other cloneNode:)]
-        pub unsafe fn cloneNode(&self, deep: bool) -> Option<Id<DOMNode, Shared>>;
+        pub unsafe fn cloneNode(&self, deep: bool) -> Option<Id<DOMNode>>;
 
         #[method(normalize)]
         pub unsafe fn normalize(&self);
@@ -201,17 +195,12 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other lookupPrefix:)]
-        pub unsafe fn lookupPrefix(
-            &self,
-            namespace_uri: Option<&NSString>,
-        ) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn lookupPrefix(&self, namespace_uri: Option<&NSString>)
+            -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other lookupNamespaceURI:)]
-        pub unsafe fn lookupNamespaceURI(
-            &self,
-            prefix: Option<&NSString>,
-        ) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn lookupNamespaceURI(&self, prefix: Option<&NSString>) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(isDefaultNamespace:)]
@@ -235,7 +224,7 @@ extern_methods!(
             &self,
             new_child: Option<&DOMNode>,
             ref_child: Option<&DOMNode>,
-        ) -> Option<Id<DOMNode, Shared>>;
+        ) -> Option<Id<DOMNode>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other replaceChild::)]
@@ -243,7 +232,7 @@ extern_methods!(
             &self,
             new_child: Option<&DOMNode>,
             old_child: Option<&DOMNode>,
-        ) -> Option<Id<DOMNode, Shared>>;
+        ) -> Option<Id<DOMNode>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]

@@ -50,7 +50,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSLocale")]
         #[method_id(@__retain_semantics Other locale)]
-        pub unsafe fn locale(&self) -> Id<NSLocale, Shared>;
+        pub unsafe fn locale(&self) -> Id<NSLocale>;
 
         #[cfg(feature = "Foundation_NSLocale")]
         #[method(setLocale:)]
@@ -58,7 +58,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSNumberFormatter")]
         #[method_id(@__retain_semantics Other numberFormatter)]
-        pub unsafe fn numberFormatter(&self) -> Id<NSNumberFormatter, Shared>;
+        pub unsafe fn numberFormatter(&self) -> Id<NSNumberFormatter>;
 
         #[cfg(feature = "Foundation_NSNumberFormatter")]
         #[method(setNumberFormatter:)]
@@ -66,13 +66,10 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSMeasurement", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other stringFromMeasurement:)]
-        pub unsafe fn stringFromMeasurement(
-            &self,
-            measurement: &NSMeasurement,
-        ) -> Id<NSString, Shared>;
+        pub unsafe fn stringFromMeasurement(&self, measurement: &NSMeasurement) -> Id<NSString>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSUnit"))]
         #[method_id(@__retain_semantics Other stringFromUnit:)]
-        pub unsafe fn stringFromUnit(&self, unit: &NSUnit) -> Id<NSString, Shared>;
+        pub unsafe fn stringFromUnit(&self, unit: &NSUnit) -> Id<NSString>;
     }
 );

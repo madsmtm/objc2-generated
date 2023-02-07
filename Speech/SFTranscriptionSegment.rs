@@ -29,7 +29,7 @@ extern_methods!(
     unsafe impl SFTranscriptionSegment {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other substring)]
-        pub unsafe fn substring(&self) -> Id<NSString, Shared>;
+        pub unsafe fn substring(&self) -> Id<NSString>;
 
         #[method(substringRange)]
         pub unsafe fn substringRange(&self) -> NSRange;
@@ -45,11 +45,11 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other alternativeSubstrings)]
-        pub unsafe fn alternativeSubstrings(&self) -> Id<NSArray<NSString>, Shared>;
+        pub unsafe fn alternativeSubstrings(&self) -> Id<NSArray<NSString>>;
 
         #[cfg(feature = "Speech_SFVoiceAnalytics")]
         #[deprecated = "voiceAnalytics is moved to SFSpeechRecognitionMetadata"]
         #[method_id(@__retain_semantics Other voiceAnalytics)]
-        pub unsafe fn voiceAnalytics(&self) -> Option<Id<SFVoiceAnalytics, Shared>>;
+        pub unsafe fn voiceAnalytics(&self) -> Option<Id<SFVoiceAnalytics>>;
     }
 );

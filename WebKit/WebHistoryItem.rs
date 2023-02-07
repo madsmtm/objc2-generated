@@ -32,26 +32,26 @@ extern_methods!(
             url_string: Option<&NSString>,
             title: Option<&NSString>,
             time: NSTimeInterval,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other originalURLString)]
-        pub unsafe fn originalURLString(&self) -> Id<NSString, Shared>;
+        pub unsafe fn originalURLString(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other URLString)]
-        pub unsafe fn URLString(&self) -> Id<NSString, Shared>;
+        pub unsafe fn URLString(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Id<NSString, Shared>;
+        pub unsafe fn title(&self) -> Id<NSString>;
 
         #[method(lastVisitedTimeInterval)]
         pub unsafe fn lastVisitedTimeInterval(&self) -> NSTimeInterval;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other alternateTitle)]
-        pub unsafe fn alternateTitle(&self) -> Id<NSString, Shared>;
+        pub unsafe fn alternateTitle(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAlternateTitle:)]
@@ -59,6 +59,6 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other icon)]
-        pub unsafe fn icon(&self) -> Option<Id<NSImage, Shared>>;
+        pub unsafe fn icon(&self) -> Option<Id<NSImage>>;
     }
 );

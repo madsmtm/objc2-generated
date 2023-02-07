@@ -21,7 +21,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSScriptSuiteRegistry")]
     unsafe impl NSScriptSuiteRegistry {
         #[method_id(@__retain_semantics Other sharedScriptSuiteRegistry)]
-        pub unsafe fn sharedScriptSuiteRegistry() -> Id<NSScriptSuiteRegistry, Shared>;
+        pub unsafe fn sharedScriptSuiteRegistry() -> Id<NSScriptSuiteRegistry>;
 
         #[method(setSharedScriptSuiteRegistry:)]
         pub unsafe fn setSharedScriptSuiteRegistry(registry: &NSScriptSuiteRegistry);
@@ -51,7 +51,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other suiteNames)]
-        pub unsafe fn suiteNames(&self) -> Id<NSArray<NSString>, Shared>;
+        pub unsafe fn suiteNames(&self) -> Id<NSArray<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(appleEventCodeForSuite:)]
@@ -59,7 +59,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSBundle", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other bundleForSuite:)]
-        pub unsafe fn bundleForSuite(&self, suite_name: &NSString) -> Option<Id<NSBundle, Shared>>;
+        pub unsafe fn bundleForSuite(&self, suite_name: &NSString) -> Option<Id<NSBundle>>;
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",
@@ -70,7 +70,7 @@ extern_methods!(
         pub unsafe fn classDescriptionsInSuite(
             &self,
             suite_name: &NSString,
-        ) -> Option<Id<NSDictionary<NSString, NSScriptClassDescription>, Shared>>;
+        ) -> Option<Id<NSDictionary<NSString, NSScriptClassDescription>>>;
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",
@@ -81,21 +81,21 @@ extern_methods!(
         pub unsafe fn commandDescriptionsInSuite(
             &self,
             suite_name: &NSString,
-        ) -> Option<Id<NSDictionary<NSString, NSScriptCommandDescription>, Shared>>;
+        ) -> Option<Id<NSDictionary<NSString, NSScriptCommandDescription>>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other suiteForAppleEventCode:)]
         pub unsafe fn suiteForAppleEventCode(
             &self,
             apple_event_code: FourCharCode,
-        ) -> Option<Id<NSString, Shared>>;
+        ) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSScriptClassDescription")]
         #[method_id(@__retain_semantics Other classDescriptionWithAppleEventCode:)]
         pub unsafe fn classDescriptionWithAppleEventCode(
             &self,
             apple_event_code: FourCharCode,
-        ) -> Option<Id<NSScriptClassDescription, Shared>>;
+        ) -> Option<Id<NSScriptClassDescription>>;
 
         #[cfg(feature = "Foundation_NSScriptCommandDescription")]
         #[method_id(@__retain_semantics Other commandDescriptionWithAppleEventClass:andAppleEventCode:)]
@@ -103,10 +103,10 @@ extern_methods!(
             &self,
             apple_event_class_code: FourCharCode,
             apple_event_id_code: FourCharCode,
-        ) -> Option<Id<NSScriptCommandDescription, Shared>>;
+        ) -> Option<Id<NSScriptCommandDescription>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other aeteResource:)]
-        pub unsafe fn aeteResource(&self, language_name: &NSString) -> Option<Id<NSData, Shared>>;
+        pub unsafe fn aeteResource(&self, language_name: &NSString) -> Option<Id<NSData>>;
     }
 );

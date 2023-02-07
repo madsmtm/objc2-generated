@@ -35,10 +35,10 @@ extern_methods!(
         pub unsafe fn circleWithCenterCoordinate_radius(
             coord: CLLocationCoordinate2D,
             radius: CLLocationDistance,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other circleWithMapRect:)]
-        pub unsafe fn circleWithMapRect(map_rect: MKMapRect) -> Id<Self, Shared>;
+        pub unsafe fn circleWithMapRect(map_rect: MKMapRect) -> Id<Self>;
 
         #[method(coordinate)]
         pub unsafe fn coordinate(&self) -> CLLocationCoordinate2D;

@@ -114,7 +114,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other maskImage)]
-        pub unsafe fn maskImage(&self) -> Option<Id<NSImage, Shared>>;
+        pub unsafe fn maskImage(&self) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method(setMaskImage:)]
@@ -140,9 +140,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSVisualEffectView")]
     unsafe impl NSVisualEffectView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frame_rect: NSRect,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
 );

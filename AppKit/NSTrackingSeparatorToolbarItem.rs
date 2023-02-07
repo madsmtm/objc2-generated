@@ -29,11 +29,11 @@ extern_methods!(
             identifier: &NSToolbarItemIdentifier,
             split_view: &NSSplitView,
             divider_index: NSInteger,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSSplitView")]
         #[method_id(@__retain_semantics Other splitView)]
-        pub unsafe fn splitView(&self) -> Id<NSSplitView, Shared>;
+        pub unsafe fn splitView(&self) -> Id<NSSplitView>;
 
         #[cfg(feature = "AppKit_NSSplitView")]
         #[method(setSplitView:)]
@@ -55,6 +55,6 @@ extern_methods!(
         pub unsafe fn initWithItemIdentifier(
             this: Option<Allocated<Self>>,
             item_identifier: &NSToolbarItemIdentifier,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

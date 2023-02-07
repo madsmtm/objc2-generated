@@ -31,10 +31,10 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other requestingExecutable)]
-        pub unsafe fn requestingExecutable(&self) -> Option<Id<NSURL, Shared>>;
+        pub unsafe fn requestingExecutable(&self) -> Option<Id<NSURL>>;
 
         #[cfg(feature = "FileProvider_NSFileProviderDomainVersion")]
         #[method_id(@__retain_semantics Other domainVersion)]
-        pub unsafe fn domainVersion(&self) -> Option<Id<NSFileProviderDomainVersion, Shared>>;
+        pub unsafe fn domainVersion(&self) -> Option<Id<NSFileProviderDomainVersion>>;
     }
 );

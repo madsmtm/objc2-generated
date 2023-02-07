@@ -29,12 +29,12 @@ extern_methods!(
     unsafe impl BAAppExtensionInfo {
         #[cfg(feature = "Foundation_NSNumber")]
         #[method_id(@__retain_semantics Other restrictedDownloadSizeRemaining)]
-        pub unsafe fn restrictedDownloadSizeRemaining(&self) -> Option<Id<NSNumber, Shared>>;
+        pub unsafe fn restrictedDownloadSizeRemaining(&self) -> Option<Id<NSNumber>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
     }
 );

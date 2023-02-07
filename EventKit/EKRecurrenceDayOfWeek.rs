@@ -31,20 +31,20 @@ extern_methods!(
     #[cfg(feature = "EventKit_EKRecurrenceDayOfWeek")]
     unsafe impl EKRecurrenceDayOfWeek {
         #[method_id(@__retain_semantics Other dayOfWeek:)]
-        pub unsafe fn dayOfWeek(day_of_the_week: EKWeekday) -> Id<Self, Shared>;
+        pub unsafe fn dayOfWeek(day_of_the_week: EKWeekday) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other dayOfWeek:weekNumber:)]
         pub unsafe fn dayOfWeek_weekNumber(
             day_of_the_week: EKWeekday,
             week_number: NSInteger,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithDayOfTheWeek:weekNumber:)]
         pub unsafe fn initWithDayOfTheWeek_weekNumber(
             this: Option<Allocated<Self>>,
             day_of_the_week: EKWeekday,
             week_number: NSInteger,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(dayOfTheWeek)]
         pub unsafe fn dayOfTheWeek(&self) -> EKWeekday;

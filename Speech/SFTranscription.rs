@@ -29,14 +29,14 @@ extern_methods!(
     unsafe impl SFTranscription {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other formattedString)]
-        pub unsafe fn formattedString(&self) -> Id<NSString, Shared>;
+        pub unsafe fn formattedString(&self) -> Id<NSString>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Speech_SFTranscriptionSegment"
         ))]
         #[method_id(@__retain_semantics Other segments)]
-        pub unsafe fn segments(&self) -> Id<NSArray<SFTranscriptionSegment>, Shared>;
+        pub unsafe fn segments(&self) -> Id<NSArray<SFTranscriptionSegment>>;
 
         #[deprecated = "speakingRate is moved to SFSpeechRecognitionMetadata"]
         #[method(speakingRate)]

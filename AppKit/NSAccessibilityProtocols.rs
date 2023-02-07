@@ -11,7 +11,7 @@ extern_protocol!(
         unsafe fn accessibilityFrame(&self) -> NSRect;
 
         #[method_id(@__retain_semantics Other accessibilityParent)]
-        unsafe fn accessibilityParent(&self) -> Option<Id<Object, Shared>>;
+        unsafe fn accessibilityParent(&self) -> Option<Id<Object>>;
 
         #[optional]
         #[method(isAccessibilityFocused)]
@@ -20,7 +20,7 @@ extern_protocol!(
         #[cfg(feature = "Foundation_NSString")]
         #[optional]
         #[method_id(@__retain_semantics Other accessibilityIdentifier)]
-        unsafe fn accessibilityIdentifier(&self) -> Id<NSString, Shared>;
+        unsafe fn accessibilityIdentifier(&self) -> Id<NSString>;
     }
 
     unsafe impl ProtocolType for dyn NSAccessibilityElementProtocol {}
@@ -36,7 +36,7 @@ extern_protocol!(
     pub unsafe trait NSAccessibilityButton: NSAccessibilityElementProtocol {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other accessibilityLabel)]
-        unsafe fn accessibilityLabel(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn accessibilityLabel(&self) -> Option<Id<NSString>>;
 
         #[method(accessibilityPerformPress)]
         unsafe fn accessibilityPerformPress(&self) -> bool;
@@ -49,7 +49,7 @@ extern_protocol!(
     pub unsafe trait NSAccessibilitySwitch: NSAccessibilityButton {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other accessibilityValue)]
-        unsafe fn accessibilityValue(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn accessibilityValue(&self) -> Option<Id<NSString>>;
 
         #[optional]
         #[method(accessibilityPerformIncrement)]
@@ -67,7 +67,7 @@ extern_protocol!(
     pub unsafe trait NSAccessibilityRadioButton: NSAccessibilityButton {
         #[cfg(feature = "Foundation_NSNumber")]
         #[method_id(@__retain_semantics Other accessibilityValue)]
-        unsafe fn accessibilityValue(&self) -> Option<Id<NSNumber, Shared>>;
+        unsafe fn accessibilityValue(&self) -> Option<Id<NSNumber>>;
     }
 
     unsafe impl ProtocolType for dyn NSAccessibilityRadioButton {}
@@ -77,7 +77,7 @@ extern_protocol!(
     pub unsafe trait NSAccessibilityCheckBox: NSAccessibilityButton {
         #[cfg(feature = "Foundation_NSNumber")]
         #[method_id(@__retain_semantics Other accessibilityValue)]
-        unsafe fn accessibilityValue(&self) -> Option<Id<NSNumber, Shared>>;
+        unsafe fn accessibilityValue(&self) -> Option<Id<NSNumber>>;
     }
 
     unsafe impl ProtocolType for dyn NSAccessibilityCheckBox {}
@@ -87,7 +87,7 @@ extern_protocol!(
     pub unsafe trait NSAccessibilityStaticText: NSAccessibilityElementProtocol {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other accessibilityValue)]
-        unsafe fn accessibilityValue(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn accessibilityValue(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[optional]
@@ -95,7 +95,7 @@ extern_protocol!(
         unsafe fn accessibilityAttributedStringForRange(
             &self,
             range: NSRange,
-        ) -> Option<Id<NSAttributedString, Shared>>;
+        ) -> Option<Id<NSAttributedString>>;
 
         #[optional]
         #[method(accessibilityVisibleCharacterRange)]
@@ -109,10 +109,7 @@ extern_protocol!(
     pub unsafe trait NSAccessibilityNavigableStaticText: NSAccessibilityStaticText {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other accessibilityStringForRange:)]
-        unsafe fn accessibilityStringForRange(
-            &self,
-            range: NSRange,
-        ) -> Option<Id<NSString, Shared>>;
+        unsafe fn accessibilityStringForRange(&self, range: NSRange) -> Option<Id<NSString>>;
 
         #[method(accessibilityLineForIndex:)]
         unsafe fn accessibilityLineForIndex(&self, index: NSInteger) -> NSInteger;
@@ -131,7 +128,7 @@ extern_protocol!(
     pub unsafe trait NSAccessibilityProgressIndicator: NSAccessibilityGroup {
         #[cfg(feature = "Foundation_NSNumber")]
         #[method_id(@__retain_semantics Other accessibilityValue)]
-        unsafe fn accessibilityValue(&self) -> Option<Id<NSNumber, Shared>>;
+        unsafe fn accessibilityValue(&self) -> Option<Id<NSNumber>>;
     }
 
     unsafe impl ProtocolType for dyn NSAccessibilityProgressIndicator {}
@@ -141,7 +138,7 @@ extern_protocol!(
     pub unsafe trait NSAccessibilityStepper: NSAccessibilityElementProtocol {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other accessibilityLabel)]
-        unsafe fn accessibilityLabel(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn accessibilityLabel(&self) -> Option<Id<NSString>>;
 
         #[method(accessibilityPerformIncrement)]
         unsafe fn accessibilityPerformIncrement(&self) -> bool;
@@ -151,7 +148,7 @@ extern_protocol!(
 
         #[optional]
         #[method_id(@__retain_semantics Other accessibilityValue)]
-        unsafe fn accessibilityValue(&self) -> Option<Id<Object, Shared>>;
+        unsafe fn accessibilityValue(&self) -> Option<Id<Object>>;
     }
 
     unsafe impl ProtocolType for dyn NSAccessibilityStepper {}
@@ -161,10 +158,10 @@ extern_protocol!(
     pub unsafe trait NSAccessibilitySlider: NSAccessibilityElementProtocol {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other accessibilityLabel)]
-        unsafe fn accessibilityLabel(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn accessibilityLabel(&self) -> Option<Id<NSString>>;
 
         #[method_id(@__retain_semantics Other accessibilityValue)]
-        unsafe fn accessibilityValue(&self) -> Option<Id<Object, Shared>>;
+        unsafe fn accessibilityValue(&self) -> Option<Id<Object>>;
 
         #[method(accessibilityPerformIncrement)]
         unsafe fn accessibilityPerformIncrement(&self) -> bool;
@@ -180,7 +177,7 @@ extern_protocol!(
     pub unsafe trait NSAccessibilityImage: NSAccessibilityElementProtocol {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other accessibilityLabel)]
-        unsafe fn accessibilityLabel(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn accessibilityLabel(&self) -> Option<Id<NSString>>;
     }
 
     unsafe impl ProtocolType for dyn NSAccessibilityImage {}
@@ -207,20 +204,20 @@ extern_protocol!(
     pub unsafe trait NSAccessibilityTable: NSAccessibilityGroup {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other accessibilityLabel)]
-        unsafe fn accessibilityLabel(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn accessibilityLabel(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other accessibilityRows)]
         unsafe fn accessibilityRows(
             &self,
-        ) -> Option<Id<NSArray<ProtocolObject<dyn NSAccessibilityRow>>, Shared>>;
+        ) -> Option<Id<NSArray<ProtocolObject<dyn NSAccessibilityRow>>>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[optional]
         #[method_id(@__retain_semantics Other accessibilitySelectedRows)]
         unsafe fn accessibilitySelectedRows(
             &self,
-        ) -> Option<Id<NSArray<ProtocolObject<dyn NSAccessibilityRow>>, Shared>>;
+        ) -> Option<Id<NSArray<ProtocolObject<dyn NSAccessibilityRow>>>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[optional]
@@ -235,48 +232,48 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other accessibilityVisibleRows)]
         unsafe fn accessibilityVisibleRows(
             &self,
-        ) -> Option<Id<NSArray<ProtocolObject<dyn NSAccessibilityRow>>, Shared>>;
+        ) -> Option<Id<NSArray<ProtocolObject<dyn NSAccessibilityRow>>>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[optional]
         #[method_id(@__retain_semantics Other accessibilityColumns)]
-        unsafe fn accessibilityColumns(&self) -> Option<Id<NSArray, Shared>>;
+        unsafe fn accessibilityColumns(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[optional]
         #[method_id(@__retain_semantics Other accessibilityVisibleColumns)]
-        unsafe fn accessibilityVisibleColumns(&self) -> Option<Id<NSArray, Shared>>;
+        unsafe fn accessibilityVisibleColumns(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[optional]
         #[method_id(@__retain_semantics Other accessibilitySelectedColumns)]
-        unsafe fn accessibilitySelectedColumns(&self) -> Option<Id<NSArray, Shared>>;
+        unsafe fn accessibilitySelectedColumns(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
         #[optional]
         #[method_id(@__retain_semantics Other accessibilityHeaderGroup)]
-        unsafe fn accessibilityHeaderGroup(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn accessibilityHeaderGroup(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[optional]
         #[method_id(@__retain_semantics Other accessibilitySelectedCells)]
-        unsafe fn accessibilitySelectedCells(&self) -> Option<Id<NSArray, Shared>>;
+        unsafe fn accessibilitySelectedCells(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[optional]
         #[method_id(@__retain_semantics Other accessibilityVisibleCells)]
-        unsafe fn accessibilityVisibleCells(&self) -> Option<Id<NSArray, Shared>>;
+        unsafe fn accessibilityVisibleCells(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[optional]
         #[method_id(@__retain_semantics Other accessibilityRowHeaderUIElements)]
-        unsafe fn accessibilityRowHeaderUIElements(&self) -> Option<Id<NSArray, Shared>>;
+        unsafe fn accessibilityRowHeaderUIElements(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[optional]
         #[method_id(@__retain_semantics Other accessibilityColumnHeaderUIElements)]
-        unsafe fn accessibilityColumnHeaderUIElements(&self) -> Option<Id<NSArray, Shared>>;
+        unsafe fn accessibilityColumnHeaderUIElements(&self) -> Option<Id<NSArray>>;
     }
 
     unsafe impl ProtocolType for dyn NSAccessibilityTable {}
@@ -311,18 +308,18 @@ extern_protocol!(
     pub unsafe trait NSAccessibilityLayoutArea: NSAccessibilityGroup {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other accessibilityLabel)]
-        unsafe fn accessibilityLabel(&self) -> Id<NSString, Shared>;
+        unsafe fn accessibilityLabel(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other accessibilityChildren)]
-        unsafe fn accessibilityChildren(&self) -> Option<Id<NSArray, Shared>>;
+        unsafe fn accessibilityChildren(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other accessibilitySelectedChildren)]
-        unsafe fn accessibilitySelectedChildren(&self) -> Option<Id<NSArray, Shared>>;
+        unsafe fn accessibilitySelectedChildren(&self) -> Option<Id<NSArray>>;
 
         #[method_id(@__retain_semantics Other accessibilityFocusedUIElement)]
-        unsafe fn accessibilityFocusedUIElement(&self) -> Id<Object, Shared>;
+        unsafe fn accessibilityFocusedUIElement(&self) -> Id<Object>;
     }
 
     unsafe impl ProtocolType for dyn NSAccessibilityLayoutArea {}
@@ -344,7 +341,7 @@ extern_protocol!(
         unsafe fn accessibilityElementWithToken(
             &self,
             token: &NSAccessibilityLoadingToken,
-        ) -> Option<Id<ProtocolObject<dyn NSAccessibilityElementProtocol>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn NSAccessibilityElementProtocol>>>;
 
         #[optional]
         #[method(accessibilityRangeInTargetElementWithToken:)]
@@ -384,7 +381,7 @@ extern_protocol!(
         unsafe fn setAccessibilityActivationPoint(&self, accessibility_activation_point: NSPoint);
 
         #[method_id(@__retain_semantics Other accessibilityTopLevelUIElement)]
-        unsafe fn accessibilityTopLevelUIElement(&self) -> Option<Id<Object, Shared>>;
+        unsafe fn accessibilityTopLevelUIElement(&self) -> Option<Id<Object>>;
 
         #[method(setAccessibilityTopLevelUIElement:)]
         unsafe fn setAccessibilityTopLevelUIElement(
@@ -394,21 +391,21 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other accessibilityURL)]
-        unsafe fn accessibilityURL(&self) -> Option<Id<NSURL, Shared>>;
+        unsafe fn accessibilityURL(&self) -> Option<Id<NSURL>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method(setAccessibilityURL:)]
         unsafe fn setAccessibilityURL(&self, accessibility_url: Option<&NSURL>);
 
         #[method_id(@__retain_semantics Other accessibilityValue)]
-        unsafe fn accessibilityValue(&self) -> Option<Id<Object, Shared>>;
+        unsafe fn accessibilityValue(&self) -> Option<Id<Object>>;
 
         #[method(setAccessibilityValue:)]
         unsafe fn setAccessibilityValue(&self, accessibility_value: Option<&Object>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other accessibilityValueDescription)]
-        unsafe fn accessibilityValueDescription(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn accessibilityValueDescription(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAccessibilityValueDescription:)]
@@ -419,7 +416,7 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other accessibilityVisibleChildren)]
-        unsafe fn accessibilityVisibleChildren(&self) -> Option<Id<NSArray, Shared>>;
+        unsafe fn accessibilityVisibleChildren(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setAccessibilityVisibleChildren:)]
@@ -429,7 +426,7 @@ extern_protocol!(
         );
 
         #[method_id(@__retain_semantics Other accessibilitySubrole)]
-        unsafe fn accessibilitySubrole(&self) -> Option<Id<NSAccessibilitySubrole, Shared>>;
+        unsafe fn accessibilitySubrole(&self) -> Option<Id<NSAccessibilitySubrole>>;
 
         #[method(setAccessibilitySubrole:)]
         unsafe fn setAccessibilitySubrole(
@@ -439,14 +436,14 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other accessibilityTitle)]
-        unsafe fn accessibilityTitle(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn accessibilityTitle(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAccessibilityTitle:)]
         unsafe fn setAccessibilityTitle(&self, accessibility_title: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other accessibilityTitleUIElement)]
-        unsafe fn accessibilityTitleUIElement(&self) -> Option<Id<Object, Shared>>;
+        unsafe fn accessibilityTitleUIElement(&self) -> Option<Id<Object>>;
 
         #[method(setAccessibilityTitleUIElement:)]
         unsafe fn setAccessibilityTitleUIElement(
@@ -456,7 +453,7 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other accessibilityNextContents)]
-        unsafe fn accessibilityNextContents(&self) -> Option<Id<NSArray, Shared>>;
+        unsafe fn accessibilityNextContents(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setAccessibilityNextContents:)]
@@ -475,7 +472,7 @@ extern_protocol!(
         );
 
         #[method_id(@__retain_semantics Other accessibilityOverflowButton)]
-        unsafe fn accessibilityOverflowButton(&self) -> Option<Id<Object, Shared>>;
+        unsafe fn accessibilityOverflowButton(&self) -> Option<Id<Object>>;
 
         #[method(setAccessibilityOverflowButton:)]
         unsafe fn setAccessibilityOverflowButton(
@@ -484,14 +481,14 @@ extern_protocol!(
         );
 
         #[method_id(@__retain_semantics Other accessibilityParent)]
-        unsafe fn accessibilityParent(&self) -> Option<Id<Object, Shared>>;
+        unsafe fn accessibilityParent(&self) -> Option<Id<Object>>;
 
         #[method(setAccessibilityParent:)]
         unsafe fn setAccessibilityParent(&self, accessibility_parent: Option<&Object>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other accessibilityPlaceholderValue)]
-        unsafe fn accessibilityPlaceholderValue(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn accessibilityPlaceholderValue(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAccessibilityPlaceholderValue:)]
@@ -502,7 +499,7 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other accessibilityPreviousContents)]
-        unsafe fn accessibilityPreviousContents(&self) -> Option<Id<NSArray, Shared>>;
+        unsafe fn accessibilityPreviousContents(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setAccessibilityPreviousContents:)]
@@ -512,14 +509,14 @@ extern_protocol!(
         );
 
         #[method_id(@__retain_semantics Other accessibilityRole)]
-        unsafe fn accessibilityRole(&self) -> Option<Id<NSAccessibilityRole, Shared>>;
+        unsafe fn accessibilityRole(&self) -> Option<Id<NSAccessibilityRole>>;
 
         #[method(setAccessibilityRole:)]
         unsafe fn setAccessibilityRole(&self, accessibility_role: Option<&NSAccessibilityRole>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other accessibilityRoleDescription)]
-        unsafe fn accessibilityRoleDescription(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn accessibilityRoleDescription(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAccessibilityRoleDescription:)]
@@ -529,13 +526,13 @@ extern_protocol!(
         );
 
         #[method_id(@__retain_semantics Other accessibilitySearchButton)]
-        unsafe fn accessibilitySearchButton(&self) -> Option<Id<Object, Shared>>;
+        unsafe fn accessibilitySearchButton(&self) -> Option<Id<Object>>;
 
         #[method(setAccessibilitySearchButton:)]
         unsafe fn setAccessibilitySearchButton(&self, accessibility_search_button: Option<&Object>);
 
         #[method_id(@__retain_semantics Other accessibilitySearchMenu)]
-        unsafe fn accessibilitySearchMenu(&self) -> Option<Id<Object, Shared>>;
+        unsafe fn accessibilitySearchMenu(&self) -> Option<Id<Object>>;
 
         #[method(setAccessibilitySearchMenu:)]
         unsafe fn setAccessibilitySearchMenu(&self, accessibility_search_menu: Option<&Object>);
@@ -548,7 +545,7 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other accessibilitySelectedChildren)]
-        unsafe fn accessibilitySelectedChildren(&self) -> Option<Id<NSArray, Shared>>;
+        unsafe fn accessibilitySelectedChildren(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setAccessibilitySelectedChildren:)]
@@ -559,7 +556,7 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other accessibilityServesAsTitleForUIElements)]
-        unsafe fn accessibilityServesAsTitleForUIElements(&self) -> Option<Id<NSArray, Shared>>;
+        unsafe fn accessibilityServesAsTitleForUIElements(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setAccessibilityServesAsTitleForUIElements:)]
@@ -569,26 +566,26 @@ extern_protocol!(
         );
 
         #[method_id(@__retain_semantics Other accessibilityShownMenu)]
-        unsafe fn accessibilityShownMenu(&self) -> Option<Id<Object, Shared>>;
+        unsafe fn accessibilityShownMenu(&self) -> Option<Id<Object>>;
 
         #[method(setAccessibilityShownMenu:)]
         unsafe fn setAccessibilityShownMenu(&self, accessibility_shown_menu: Option<&Object>);
 
         #[method_id(@__retain_semantics Other accessibilityMinValue)]
-        unsafe fn accessibilityMinValue(&self) -> Option<Id<Object, Shared>>;
+        unsafe fn accessibilityMinValue(&self) -> Option<Id<Object>>;
 
         #[method(setAccessibilityMinValue:)]
         unsafe fn setAccessibilityMinValue(&self, accessibility_min_value: Option<&Object>);
 
         #[method_id(@__retain_semantics Other accessibilityMaxValue)]
-        unsafe fn accessibilityMaxValue(&self) -> Option<Id<Object, Shared>>;
+        unsafe fn accessibilityMaxValue(&self) -> Option<Id<Object>>;
 
         #[method(setAccessibilityMaxValue:)]
         unsafe fn setAccessibilityMaxValue(&self, accessibility_max_value: Option<&Object>);
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other accessibilityLinkedUIElements)]
-        unsafe fn accessibilityLinkedUIElements(&self) -> Option<Id<NSArray, Shared>>;
+        unsafe fn accessibilityLinkedUIElements(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setAccessibilityLinkedUIElements:)]
@@ -598,14 +595,14 @@ extern_protocol!(
         );
 
         #[method_id(@__retain_semantics Other accessibilityWindow)]
-        unsafe fn accessibilityWindow(&self) -> Option<Id<Object, Shared>>;
+        unsafe fn accessibilityWindow(&self) -> Option<Id<Object>>;
 
         #[method(setAccessibilityWindow:)]
         unsafe fn setAccessibilityWindow(&self, accessibility_window: Option<&Object>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other accessibilityIdentifier)]
-        unsafe fn accessibilityIdentifier(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn accessibilityIdentifier(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAccessibilityIdentifier:)]
@@ -613,7 +610,7 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other accessibilityHelp)]
-        unsafe fn accessibilityHelp(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn accessibilityHelp(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAccessibilityHelp:)]
@@ -621,7 +618,7 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other accessibilityFilename)]
-        unsafe fn accessibilityFilename(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn accessibilityFilename(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAccessibilityFilename:)]
@@ -647,7 +644,7 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other accessibilityChildren)]
-        unsafe fn accessibilityChildren(&self) -> Option<Id<NSArray, Shared>>;
+        unsafe fn accessibilityChildren(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setAccessibilityChildren:)]
@@ -657,7 +654,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other accessibilityChildrenInNavigationOrder)]
         unsafe fn accessibilityChildrenInNavigationOrder(
             &self,
-        ) -> Option<Id<NSArray<ProtocolObject<dyn NSAccessibilityElementProtocol>>, Shared>>;
+        ) -> Option<Id<NSArray<ProtocolObject<dyn NSAccessibilityElementProtocol>>>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setAccessibilityChildrenInNavigationOrder:)]
@@ -669,13 +666,13 @@ extern_protocol!(
         );
 
         #[method_id(@__retain_semantics Other accessibilityClearButton)]
-        unsafe fn accessibilityClearButton(&self) -> Option<Id<Object, Shared>>;
+        unsafe fn accessibilityClearButton(&self) -> Option<Id<Object>>;
 
         #[method(setAccessibilityClearButton:)]
         unsafe fn setAccessibilityClearButton(&self, accessibility_clear_button: Option<&Object>);
 
         #[method_id(@__retain_semantics Other accessibilityCancelButton)]
-        unsafe fn accessibilityCancelButton(&self) -> Option<Id<Object, Shared>>;
+        unsafe fn accessibilityCancelButton(&self) -> Option<Id<Object>>;
 
         #[method(setAccessibilityCancelButton:)]
         unsafe fn setAccessibilityCancelButton(&self, accessibility_cancel_button: Option<&Object>);
@@ -688,7 +685,7 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other accessibilityContents)]
-        unsafe fn accessibilityContents(&self) -> Option<Id<NSArray, Shared>>;
+        unsafe fn accessibilityContents(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setAccessibilityContents:)]
@@ -696,7 +693,7 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other accessibilityLabel)]
-        unsafe fn accessibilityLabel(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn accessibilityLabel(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAccessibilityLabel:)]
@@ -713,7 +710,7 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other accessibilitySharedFocusElements)]
-        unsafe fn accessibilitySharedFocusElements(&self) -> Option<Id<NSArray, Shared>>;
+        unsafe fn accessibilitySharedFocusElements(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setAccessibilitySharedFocusElements:)]
@@ -733,9 +730,7 @@ extern_protocol!(
             feature = "Foundation_NSArray"
         ))]
         #[method_id(@__retain_semantics Other accessibilityCustomRotors)]
-        unsafe fn accessibilityCustomRotors(
-            &self,
-        ) -> Id<NSArray<NSAccessibilityCustomRotor>, Shared>;
+        unsafe fn accessibilityCustomRotors(&self) -> Id<NSArray<NSAccessibilityCustomRotor>>;
 
         #[cfg(all(
             feature = "AppKit_NSAccessibilityCustomRotor",
@@ -748,7 +743,7 @@ extern_protocol!(
         );
 
         #[method_id(@__retain_semantics Other accessibilityApplicationFocusedUIElement)]
-        unsafe fn accessibilityApplicationFocusedUIElement(&self) -> Option<Id<Object, Shared>>;
+        unsafe fn accessibilityApplicationFocusedUIElement(&self) -> Option<Id<Object>>;
 
         #[method(setAccessibilityApplicationFocusedUIElement:)]
         unsafe fn setAccessibilityApplicationFocusedUIElement(
@@ -757,7 +752,7 @@ extern_protocol!(
         );
 
         #[method_id(@__retain_semantics Other accessibilityMainWindow)]
-        unsafe fn accessibilityMainWindow(&self) -> Option<Id<Object, Shared>>;
+        unsafe fn accessibilityMainWindow(&self) -> Option<Id<Object>>;
 
         #[method(setAccessibilityMainWindow:)]
         unsafe fn setAccessibilityMainWindow(&self, accessibility_main_window: Option<&Object>);
@@ -775,7 +770,7 @@ extern_protocol!(
         unsafe fn setAccessibilityFrontmost(&self, accessibility_frontmost: bool);
 
         #[method_id(@__retain_semantics Other accessibilityFocusedWindow)]
-        unsafe fn accessibilityFocusedWindow(&self) -> Option<Id<Object, Shared>>;
+        unsafe fn accessibilityFocusedWindow(&self) -> Option<Id<Object>>;
 
         #[method(setAccessibilityFocusedWindow:)]
         unsafe fn setAccessibilityFocusedWindow(
@@ -785,14 +780,14 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other accessibilityWindows)]
-        unsafe fn accessibilityWindows(&self) -> Option<Id<NSArray, Shared>>;
+        unsafe fn accessibilityWindows(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setAccessibilityWindows:)]
         unsafe fn setAccessibilityWindows(&self, accessibility_windows: Option<&NSArray>);
 
         #[method_id(@__retain_semantics Other accessibilityExtrasMenuBar)]
-        unsafe fn accessibilityExtrasMenuBar(&self) -> Option<Id<Object, Shared>>;
+        unsafe fn accessibilityExtrasMenuBar(&self) -> Option<Id<Object>>;
 
         #[method(setAccessibilityExtrasMenuBar:)]
         unsafe fn setAccessibilityExtrasMenuBar(
@@ -801,14 +796,14 @@ extern_protocol!(
         );
 
         #[method_id(@__retain_semantics Other accessibilityMenuBar)]
-        unsafe fn accessibilityMenuBar(&self) -> Option<Id<Object, Shared>>;
+        unsafe fn accessibilityMenuBar(&self) -> Option<Id<Object>>;
 
         #[method(setAccessibilityMenuBar:)]
         unsafe fn setAccessibilityMenuBar(&self, accessibility_menu_bar: Option<&Object>);
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other accessibilityColumnTitles)]
-        unsafe fn accessibilityColumnTitles(&self) -> Option<Id<NSArray, Shared>>;
+        unsafe fn accessibilityColumnTitles(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setAccessibilityColumnTitles:)]
@@ -843,7 +838,7 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other accessibilityHorizontalUnitDescription)]
-        unsafe fn accessibilityHorizontalUnitDescription(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn accessibilityHorizontalUnitDescription(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAccessibilityHorizontalUnitDescription:)]
@@ -854,7 +849,7 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other accessibilityVerticalUnitDescription)]
-        unsafe fn accessibilityVerticalUnitDescription(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn accessibilityVerticalUnitDescription(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAccessibilityVerticalUnitDescription:)]
@@ -877,20 +872,20 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other accessibilityHandles)]
-        unsafe fn accessibilityHandles(&self) -> Option<Id<NSArray, Shared>>;
+        unsafe fn accessibilityHandles(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setAccessibilityHandles:)]
         unsafe fn setAccessibilityHandles(&self, accessibility_handles: Option<&NSArray>);
 
         #[method_id(@__retain_semantics Other accessibilityWarningValue)]
-        unsafe fn accessibilityWarningValue(&self) -> Option<Id<Object, Shared>>;
+        unsafe fn accessibilityWarningValue(&self) -> Option<Id<Object>>;
 
         #[method(setAccessibilityWarningValue:)]
         unsafe fn setAccessibilityWarningValue(&self, accessibility_warning_value: Option<&Object>);
 
         #[method_id(@__retain_semantics Other accessibilityCriticalValue)]
-        unsafe fn accessibilityCriticalValue(&self) -> Option<Id<Object, Shared>>;
+        unsafe fn accessibilityCriticalValue(&self) -> Option<Id<Object>>;
 
         #[method(setAccessibilityCriticalValue:)]
         unsafe fn setAccessibilityCriticalValue(
@@ -905,7 +900,7 @@ extern_protocol!(
         unsafe fn setAccessibilityDisclosed(&self, accessibility_disclosed: bool);
 
         #[method_id(@__retain_semantics Other accessibilityDisclosedByRow)]
-        unsafe fn accessibilityDisclosedByRow(&self) -> Option<Id<Object, Shared>>;
+        unsafe fn accessibilityDisclosedByRow(&self) -> Option<Id<Object>>;
 
         #[method(setAccessibilityDisclosedByRow:)]
         unsafe fn setAccessibilityDisclosedByRow(
@@ -914,7 +909,7 @@ extern_protocol!(
         );
 
         #[method_id(@__retain_semantics Other accessibilityDisclosedRows)]
-        unsafe fn accessibilityDisclosedRows(&self) -> Option<Id<Object, Shared>>;
+        unsafe fn accessibilityDisclosedRows(&self) -> Option<Id<Object>>;
 
         #[method(setAccessibilityDisclosedRows:)]
         unsafe fn setAccessibilityDisclosedRows(
@@ -930,7 +925,7 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other accessibilityMarkerUIElements)]
-        unsafe fn accessibilityMarkerUIElements(&self) -> Option<Id<NSArray, Shared>>;
+        unsafe fn accessibilityMarkerUIElements(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setAccessibilityMarkerUIElements:)]
@@ -940,13 +935,13 @@ extern_protocol!(
         );
 
         #[method_id(@__retain_semantics Other accessibilityMarkerValues)]
-        unsafe fn accessibilityMarkerValues(&self) -> Option<Id<Object, Shared>>;
+        unsafe fn accessibilityMarkerValues(&self) -> Option<Id<Object>>;
 
         #[method(setAccessibilityMarkerValues:)]
         unsafe fn setAccessibilityMarkerValues(&self, accessibility_marker_values: Option<&Object>);
 
         #[method_id(@__retain_semantics Other accessibilityMarkerGroupUIElement)]
-        unsafe fn accessibilityMarkerGroupUIElement(&self) -> Option<Id<Object, Shared>>;
+        unsafe fn accessibilityMarkerGroupUIElement(&self) -> Option<Id<Object>>;
 
         #[method(setAccessibilityMarkerGroupUIElement:)]
         unsafe fn setAccessibilityMarkerGroupUIElement(
@@ -962,7 +957,7 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other accessibilityUnitDescription)]
-        unsafe fn accessibilityUnitDescription(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn accessibilityUnitDescription(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAccessibilityUnitDescription:)]
@@ -982,7 +977,7 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other accessibilityMarkerTypeDescription)]
-        unsafe fn accessibilityMarkerTypeDescription(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn accessibilityMarkerTypeDescription(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAccessibilityMarkerTypeDescription:)]
@@ -992,7 +987,7 @@ extern_protocol!(
         );
 
         #[method_id(@__retain_semantics Other accessibilityHorizontalScrollBar)]
-        unsafe fn accessibilityHorizontalScrollBar(&self) -> Option<Id<Object, Shared>>;
+        unsafe fn accessibilityHorizontalScrollBar(&self) -> Option<Id<Object>>;
 
         #[method(setAccessibilityHorizontalScrollBar:)]
         unsafe fn setAccessibilityHorizontalScrollBar(
@@ -1001,7 +996,7 @@ extern_protocol!(
         );
 
         #[method_id(@__retain_semantics Other accessibilityVerticalScrollBar)]
-        unsafe fn accessibilityVerticalScrollBar(&self) -> Option<Id<Object, Shared>>;
+        unsafe fn accessibilityVerticalScrollBar(&self) -> Option<Id<Object>>;
 
         #[method(setAccessibilityVerticalScrollBar:)]
         unsafe fn setAccessibilityVerticalScrollBar(
@@ -1011,7 +1006,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method_id(@__retain_semantics Other accessibilityAllowedValues)]
-        unsafe fn accessibilityAllowedValues(&self) -> Option<Id<NSArray<NSNumber>, Shared>>;
+        unsafe fn accessibilityAllowedValues(&self) -> Option<Id<NSArray<NSNumber>>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method(setAccessibilityAllowedValues:)]
@@ -1022,7 +1017,7 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other accessibilityLabelUIElements)]
-        unsafe fn accessibilityLabelUIElements(&self) -> Option<Id<NSArray, Shared>>;
+        unsafe fn accessibilityLabelUIElements(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setAccessibilityLabelUIElements:)]
@@ -1039,14 +1034,14 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other accessibilitySplitters)]
-        unsafe fn accessibilitySplitters(&self) -> Option<Id<NSArray, Shared>>;
+        unsafe fn accessibilitySplitters(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setAccessibilitySplitters:)]
         unsafe fn setAccessibilitySplitters(&self, accessibility_splitters: Option<&NSArray>);
 
         #[method_id(@__retain_semantics Other accessibilityDecrementButton)]
-        unsafe fn accessibilityDecrementButton(&self) -> Option<Id<Object, Shared>>;
+        unsafe fn accessibilityDecrementButton(&self) -> Option<Id<Object>>;
 
         #[method(setAccessibilityDecrementButton:)]
         unsafe fn setAccessibilityDecrementButton(
@@ -1055,7 +1050,7 @@ extern_protocol!(
         );
 
         #[method_id(@__retain_semantics Other accessibilityIncrementButton)]
-        unsafe fn accessibilityIncrementButton(&self) -> Option<Id<Object, Shared>>;
+        unsafe fn accessibilityIncrementButton(&self) -> Option<Id<Object>>;
 
         #[method(setAccessibilityIncrementButton:)]
         unsafe fn setAccessibilityIncrementButton(
@@ -1065,14 +1060,14 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other accessibilityTabs)]
-        unsafe fn accessibilityTabs(&self) -> Option<Id<NSArray, Shared>>;
+        unsafe fn accessibilityTabs(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setAccessibilityTabs:)]
         unsafe fn setAccessibilityTabs(&self, accessibility_tabs: Option<&NSArray>);
 
         #[method_id(@__retain_semantics Other accessibilityHeader)]
-        unsafe fn accessibilityHeader(&self) -> Option<Id<Object, Shared>>;
+        unsafe fn accessibilityHeader(&self) -> Option<Id<Object>>;
 
         #[method(setAccessibilityHeader:)]
         unsafe fn setAccessibilityHeader(&self, accessibility_header: Option<&Object>);
@@ -1097,7 +1092,7 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other accessibilityColumns)]
-        unsafe fn accessibilityColumns(&self) -> Option<Id<NSArray, Shared>>;
+        unsafe fn accessibilityColumns(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setAccessibilityColumns:)]
@@ -1105,7 +1100,7 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other accessibilityRows)]
-        unsafe fn accessibilityRows(&self) -> Option<Id<NSArray, Shared>>;
+        unsafe fn accessibilityRows(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setAccessibilityRows:)]
@@ -1113,7 +1108,7 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other accessibilityVisibleRows)]
-        unsafe fn accessibilityVisibleRows(&self) -> Option<Id<NSArray, Shared>>;
+        unsafe fn accessibilityVisibleRows(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setAccessibilityVisibleRows:)]
@@ -1121,7 +1116,7 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other accessibilitySelectedRows)]
-        unsafe fn accessibilitySelectedRows(&self) -> Option<Id<NSArray, Shared>>;
+        unsafe fn accessibilitySelectedRows(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setAccessibilitySelectedRows:)]
@@ -1132,7 +1127,7 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other accessibilityVisibleColumns)]
-        unsafe fn accessibilityVisibleColumns(&self) -> Option<Id<NSArray, Shared>>;
+        unsafe fn accessibilityVisibleColumns(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setAccessibilityVisibleColumns:)]
@@ -1143,7 +1138,7 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other accessibilitySelectedColumns)]
-        unsafe fn accessibilitySelectedColumns(&self) -> Option<Id<NSArray, Shared>>;
+        unsafe fn accessibilitySelectedColumns(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setAccessibilitySelectedColumns:)]
@@ -1163,7 +1158,7 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other accessibilityRowHeaderUIElements)]
-        unsafe fn accessibilityRowHeaderUIElements(&self) -> Option<Id<NSArray, Shared>>;
+        unsafe fn accessibilityRowHeaderUIElements(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setAccessibilityRowHeaderUIElements:)]
@@ -1174,7 +1169,7 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other accessibilitySelectedCells)]
-        unsafe fn accessibilitySelectedCells(&self) -> Option<Id<NSArray, Shared>>;
+        unsafe fn accessibilitySelectedCells(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setAccessibilitySelectedCells:)]
@@ -1185,7 +1180,7 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other accessibilityVisibleCells)]
-        unsafe fn accessibilityVisibleCells(&self) -> Option<Id<NSArray, Shared>>;
+        unsafe fn accessibilityVisibleCells(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setAccessibilityVisibleCells:)]
@@ -1196,7 +1191,7 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other accessibilityColumnHeaderUIElements)]
-        unsafe fn accessibilityColumnHeaderUIElements(&self) -> Option<Id<NSArray, Shared>>;
+        unsafe fn accessibilityColumnHeaderUIElements(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setAccessibilityColumnHeaderUIElements:)]
@@ -1210,7 +1205,7 @@ extern_protocol!(
             &self,
             column: NSInteger,
             row: NSInteger,
-        ) -> Option<Id<Object, Shared>>;
+        ) -> Option<Id<Object>>;
 
         #[method(accessibilityRowIndexRange)]
         unsafe fn accessibilityRowIndexRange(&self) -> NSRange;
@@ -1247,7 +1242,7 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other accessibilitySharedTextUIElements)]
-        unsafe fn accessibilitySharedTextUIElements(&self) -> Option<Id<NSArray, Shared>>;
+        unsafe fn accessibilitySharedTextUIElements(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setAccessibilitySharedTextUIElements:)]
@@ -1276,7 +1271,7 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other accessibilitySelectedText)]
-        unsafe fn accessibilitySelectedText(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn accessibilitySelectedText(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAccessibilitySelectedText:)]
@@ -1296,7 +1291,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[method_id(@__retain_semantics Other accessibilitySelectedTextRanges)]
-        unsafe fn accessibilitySelectedTextRanges(&self) -> Option<Id<NSArray<NSValue>, Shared>>;
+        unsafe fn accessibilitySelectedTextRanges(&self) -> Option<Id<NSArray<NSValue>>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[method(setAccessibilitySelectedTextRanges:)]
@@ -1310,17 +1305,14 @@ extern_protocol!(
         unsafe fn accessibilityAttributedStringForRange(
             &self,
             range: NSRange,
-        ) -> Option<Id<NSAttributedString, Shared>>;
+        ) -> Option<Id<NSAttributedString>>;
 
         #[method(accessibilityRangeForLine:)]
         unsafe fn accessibilityRangeForLine(&self, line: NSInteger) -> NSRange;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other accessibilityStringForRange:)]
-        unsafe fn accessibilityStringForRange(
-            &self,
-            range: NSRange,
-        ) -> Option<Id<NSString, Shared>>;
+        unsafe fn accessibilityStringForRange(&self, range: NSRange) -> Option<Id<NSString>>;
 
         #[method(accessibilityRangeForPosition:)]
         unsafe fn accessibilityRangeForPosition(&self, point: NSPoint) -> NSRange;
@@ -1333,7 +1325,7 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other accessibilityRTFForRange:)]
-        unsafe fn accessibilityRTFForRange(&self, range: NSRange) -> Option<Id<NSData, Shared>>;
+        unsafe fn accessibilityRTFForRange(&self, range: NSRange) -> Option<Id<NSData>>;
 
         #[method(accessibilityStyleRangeForIndex:)]
         unsafe fn accessibilityStyleRangeForIndex(&self, index: NSInteger) -> NSRange;
@@ -1342,7 +1334,7 @@ extern_protocol!(
         unsafe fn accessibilityLineForIndex(&self, index: NSInteger) -> NSInteger;
 
         #[method_id(@__retain_semantics Other accessibilityToolbarButton)]
-        unsafe fn accessibilityToolbarButton(&self) -> Option<Id<Object, Shared>>;
+        unsafe fn accessibilityToolbarButton(&self) -> Option<Id<Object>>;
 
         #[method(setAccessibilityToolbarButton:)]
         unsafe fn setAccessibilityToolbarButton(
@@ -1357,7 +1349,7 @@ extern_protocol!(
         unsafe fn setAccessibilityModal(&self, accessibility_modal: bool);
 
         #[method_id(@__retain_semantics Other accessibilityProxy)]
-        unsafe fn accessibilityProxy(&self) -> Option<Id<Object, Shared>>;
+        unsafe fn accessibilityProxy(&self) -> Option<Id<Object>>;
 
         #[method(setAccessibilityProxy:)]
         unsafe fn setAccessibilityProxy(&self, accessibility_proxy: Option<&Object>);
@@ -1369,7 +1361,7 @@ extern_protocol!(
         unsafe fn setAccessibilityMain(&self, accessibility_main: bool);
 
         #[method_id(@__retain_semantics Other accessibilityFullScreenButton)]
-        unsafe fn accessibilityFullScreenButton(&self) -> Option<Id<Object, Shared>>;
+        unsafe fn accessibilityFullScreenButton(&self) -> Option<Id<Object>>;
 
         #[method(setAccessibilityFullScreenButton:)]
         unsafe fn setAccessibilityFullScreenButton(
@@ -1378,21 +1370,21 @@ extern_protocol!(
         );
 
         #[method_id(@__retain_semantics Other accessibilityGrowArea)]
-        unsafe fn accessibilityGrowArea(&self) -> Option<Id<Object, Shared>>;
+        unsafe fn accessibilityGrowArea(&self) -> Option<Id<Object>>;
 
         #[method(setAccessibilityGrowArea:)]
         unsafe fn setAccessibilityGrowArea(&self, accessibility_grow_area: Option<&Object>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other accessibilityDocument)]
-        unsafe fn accessibilityDocument(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn accessibilityDocument(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAccessibilityDocument:)]
         unsafe fn setAccessibilityDocument(&self, accessibility_document: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other accessibilityDefaultButton)]
-        unsafe fn accessibilityDefaultButton(&self) -> Option<Id<Object, Shared>>;
+        unsafe fn accessibilityDefaultButton(&self) -> Option<Id<Object>>;
 
         #[method(setAccessibilityDefaultButton:)]
         unsafe fn setAccessibilityDefaultButton(
@@ -1401,19 +1393,19 @@ extern_protocol!(
         );
 
         #[method_id(@__retain_semantics Other accessibilityCloseButton)]
-        unsafe fn accessibilityCloseButton(&self) -> Option<Id<Object, Shared>>;
+        unsafe fn accessibilityCloseButton(&self) -> Option<Id<Object>>;
 
         #[method(setAccessibilityCloseButton:)]
         unsafe fn setAccessibilityCloseButton(&self, accessibility_close_button: Option<&Object>);
 
         #[method_id(@__retain_semantics Other accessibilityZoomButton)]
-        unsafe fn accessibilityZoomButton(&self) -> Option<Id<Object, Shared>>;
+        unsafe fn accessibilityZoomButton(&self) -> Option<Id<Object>>;
 
         #[method(setAccessibilityZoomButton:)]
         unsafe fn setAccessibilityZoomButton(&self, accessibility_zoom_button: Option<&Object>);
 
         #[method_id(@__retain_semantics Other accessibilityMinimizeButton)]
-        unsafe fn accessibilityMinimizeButton(&self) -> Option<Id<Object, Shared>>;
+        unsafe fn accessibilityMinimizeButton(&self) -> Option<Id<Object>>;
 
         #[method(setAccessibilityMinimizeButton:)]
         unsafe fn setAccessibilityMinimizeButton(
@@ -1434,7 +1426,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other accessibilityCustomActions)]
         unsafe fn accessibilityCustomActions(
             &self,
-        ) -> Option<Id<NSArray<NSAccessibilityCustomAction>, Shared>>;
+        ) -> Option<Id<NSArray<NSAccessibilityCustomAction>>>;
 
         #[cfg(all(
             feature = "AppKit_NSAccessibilityCustomAction",

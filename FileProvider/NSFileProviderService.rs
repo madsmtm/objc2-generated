@@ -9,7 +9,7 @@ use crate::UniformTypeIdentifiers::*;
 extern_protocol!(
     pub unsafe trait NSFileProviderServiceSource {
         #[method_id(@__retain_semantics Other serviceName)]
-        unsafe fn serviceName(&self) -> Id<NSFileProviderServiceName, Shared>;
+        unsafe fn serviceName(&self) -> Id<NSFileProviderServiceName>;
 
         #[cfg(all(
             feature = "Foundation_NSError",
@@ -18,7 +18,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other makeListenerEndpointAndReturnError:_)]
         unsafe fn makeListenerEndpointAndReturnError(
             &self,
-        ) -> Result<Id<NSXPCListenerEndpoint, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<NSXPCListenerEndpoint>, Id<NSError>>;
 
         #[optional]
         #[method(isRestricted)]
@@ -37,10 +37,7 @@ extern_methods!(
         pub unsafe fn supportedServiceSourcesForItemIdentifier_error(
             &self,
             item_identifier: &NSFileProviderItemIdentifier,
-        ) -> Result<
-            Id<NSArray<ProtocolObject<dyn NSFileProviderServiceSource>>, Shared>,
-            Id<NSError, Shared>,
-        >;
+        ) -> Result<Id<NSArray<ProtocolObject<dyn NSFileProviderServiceSource>>>, Id<NSError>>;
     }
 );
 

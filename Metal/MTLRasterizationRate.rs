@@ -23,7 +23,7 @@ extern_methods!(
     unsafe impl MTLRasterizationRateSampleArray {
         #[cfg(feature = "Foundation_NSNumber")]
         #[method_id(@__retain_semantics Other objectAtIndexedSubscript:)]
-        pub unsafe fn objectAtIndexedSubscript(&self, index: NSUInteger) -> Id<NSNumber, Shared>;
+        pub unsafe fn objectAtIndexedSubscript(&self, index: NSUInteger) -> Id<NSNumber>;
 
         #[cfg(feature = "Foundation_NSNumber")]
         #[method(setObject:atIndexedSubscript:)]
@@ -49,13 +49,13 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLRasterizationRateLayerDescriptor")]
     unsafe impl MTLRasterizationRateLayerDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithSampleCount:)]
         pub unsafe fn initWithSampleCount(
             this: Option<Allocated<Self>>,
             sample_count: MTLSize,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithSampleCount:horizontal:vertical:)]
         pub unsafe fn initWithSampleCount_horizontal_vertical(
@@ -63,7 +63,7 @@ extern_methods!(
             sample_count: MTLSize,
             horizontal: NonNull<c_float>,
             vertical: NonNull<c_float>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(maxSampleCount)]
         pub unsafe fn maxSampleCount(&self) -> MTLSize;
@@ -76,11 +76,11 @@ extern_methods!(
 
         #[cfg(feature = "Metal_MTLRasterizationRateSampleArray")]
         #[method_id(@__retain_semantics Other horizontal)]
-        pub unsafe fn horizontal(&self) -> Id<MTLRasterizationRateSampleArray, Shared>;
+        pub unsafe fn horizontal(&self) -> Id<MTLRasterizationRateSampleArray>;
 
         #[cfg(feature = "Metal_MTLRasterizationRateSampleArray")]
         #[method_id(@__retain_semantics Other vertical)]
-        pub unsafe fn vertical(&self) -> Id<MTLRasterizationRateSampleArray, Shared>;
+        pub unsafe fn vertical(&self) -> Id<MTLRasterizationRateSampleArray>;
     }
 );
 
@@ -111,7 +111,7 @@ extern_methods!(
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             layer_index: NSUInteger,
-        ) -> Option<Id<MTLRasterizationRateLayerDescriptor, Shared>>;
+        ) -> Option<Id<MTLRasterizationRateLayerDescriptor>>;
 
         #[cfg(feature = "Metal_MTLRasterizationRateLayerDescriptor")]
         #[method(setObject:atIndexedSubscript:)]
@@ -143,29 +143,29 @@ extern_methods!(
         #[method_id(@__retain_semantics Other rasterizationRateMapDescriptorWithScreenSize:)]
         pub unsafe fn rasterizationRateMapDescriptorWithScreenSize(
             screen_size: MTLSize,
-        ) -> Id<MTLRasterizationRateMapDescriptor, Shared>;
+        ) -> Id<MTLRasterizationRateMapDescriptor>;
 
         #[cfg(feature = "Metal_MTLRasterizationRateLayerDescriptor")]
         #[method_id(@__retain_semantics Other rasterizationRateMapDescriptorWithScreenSize:layer:)]
         pub unsafe fn rasterizationRateMapDescriptorWithScreenSize_layer(
             screen_size: MTLSize,
             layer: &MTLRasterizationRateLayerDescriptor,
-        ) -> Id<MTLRasterizationRateMapDescriptor, Shared>;
+        ) -> Id<MTLRasterizationRateMapDescriptor>;
 
         #[cfg(feature = "Metal_MTLRasterizationRateLayerDescriptor")]
         #[method_id(@__retain_semantics Other rasterizationRateMapDescriptorWithScreenSize:layerCount:layers:)]
         pub unsafe fn rasterizationRateMapDescriptorWithScreenSize_layerCount_layers(
             screen_size: MTLSize,
             layer_count: NSUInteger,
-            layers: &mut Id<MTLRasterizationRateLayerDescriptor, Shared>,
-        ) -> Id<MTLRasterizationRateMapDescriptor, Shared>;
+            layers: &mut Id<MTLRasterizationRateLayerDescriptor>,
+        ) -> Id<MTLRasterizationRateMapDescriptor>;
 
         #[cfg(feature = "Metal_MTLRasterizationRateLayerDescriptor")]
         #[method_id(@__retain_semantics Other layerAtIndex:)]
         pub unsafe fn layerAtIndex(
             &self,
             layer_index: NSUInteger,
-        ) -> Option<Id<MTLRasterizationRateLayerDescriptor, Shared>>;
+        ) -> Option<Id<MTLRasterizationRateLayerDescriptor>>;
 
         #[cfg(feature = "Metal_MTLRasterizationRateLayerDescriptor")]
         #[method(setLayer:atIndex:)]
@@ -177,7 +177,7 @@ extern_methods!(
 
         #[cfg(feature = "Metal_MTLRasterizationRateLayerArray")]
         #[method_id(@__retain_semantics Other layers)]
-        pub unsafe fn layers(&self) -> Id<MTLRasterizationRateLayerArray, Shared>;
+        pub unsafe fn layers(&self) -> Id<MTLRasterizationRateLayerArray>;
 
         #[method(screenSize)]
         pub unsafe fn screenSize(&self) -> MTLSize;
@@ -187,7 +187,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
-        pub unsafe fn label(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn label(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:)]
@@ -201,11 +201,11 @@ extern_methods!(
 extern_protocol!(
     pub unsafe trait MTLRasterizationRateMap: NSObjectProtocol {
         #[method_id(@__retain_semantics Other device)]
-        unsafe fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>, Shared>;
+        unsafe fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
-        unsafe fn label(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn label(&self) -> Option<Id<NSString>>;
 
         #[method(screenSize)]
         unsafe fn screenSize(&self) -> MTLSize;

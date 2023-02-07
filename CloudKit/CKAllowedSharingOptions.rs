@@ -53,7 +53,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             allowed_participant_permission_options: CKSharingParticipantPermissionOption,
             allowed_participant_access_options: CKSharingParticipantAccessOption,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(allowedParticipantPermissionOptions)]
         pub unsafe fn allowedParticipantPermissionOptions(
@@ -76,6 +76,6 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other standardOptions)]
-        pub unsafe fn standardOptions() -> Id<CKAllowedSharingOptions, Shared>;
+        pub unsafe fn standardOptions() -> Id<CKAllowedSharingOptions>;
     }
 );

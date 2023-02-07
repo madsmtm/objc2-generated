@@ -37,16 +37,16 @@ extern_protocol!(
         unsafe fn enqueueBarrier(&self);
 
         #[method_id(@__retain_semantics Other commandBuffer)]
-        unsafe fn commandBuffer(&self) -> Id<ProtocolObject<dyn MTLIOCommandBuffer>, Shared>;
+        unsafe fn commandBuffer(&self) -> Id<ProtocolObject<dyn MTLIOCommandBuffer>>;
 
         #[method_id(@__retain_semantics Other commandBufferWithUnretainedReferences)]
         unsafe fn commandBufferWithUnretainedReferences(
             &self,
-        ) -> Id<ProtocolObject<dyn MTLIOCommandBuffer>, Shared>;
+        ) -> Id<ProtocolObject<dyn MTLIOCommandBuffer>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
-        unsafe fn label(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn label(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:)]
@@ -59,7 +59,7 @@ extern_protocol!(
 extern_protocol!(
     pub unsafe trait MTLIOScratchBuffer: NSObjectProtocol {
         #[method_id(@__retain_semantics Other buffer)]
-        unsafe fn buffer(&self) -> Id<ProtocolObject<dyn MTLBuffer>, Shared>;
+        unsafe fn buffer(&self) -> Id<ProtocolObject<dyn MTLBuffer>>;
     }
 
     unsafe impl ProtocolType for dyn MTLIOScratchBuffer {}
@@ -71,7 +71,7 @@ extern_protocol!(
         unsafe fn newScratchBufferWithMinimumSize(
             &self,
             minimum_size: NSUInteger,
-        ) -> Option<Id<ProtocolObject<dyn MTLIOScratchBuffer>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLIOScratchBuffer>>>;
     }
 
     unsafe impl ProtocolType for dyn MTLIOScratchBufferAllocator {}
@@ -121,7 +121,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other scratchBufferAllocator)]
         pub unsafe fn scratchBufferAllocator(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn MTLIOScratchBufferAllocator>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MTLIOScratchBufferAllocator>>>;
 
         #[method(setScratchBufferAllocator:)]
         pub unsafe fn setScratchBufferAllocator(
@@ -135,7 +135,7 @@ extern_protocol!(
     pub unsafe trait MTLIOFileHandle: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
-        unsafe fn label(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn label(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setLabel:)]

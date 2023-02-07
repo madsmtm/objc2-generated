@@ -28,24 +28,24 @@ extern_methods!(
         pub unsafe fn initWithRequest(
             this: Option<Allocated<Self>>,
             request: Option<&NSURLRequest>,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other data)]
-        pub unsafe fn data(&self) -> Id<NSData, Shared>;
+        pub unsafe fn data(&self) -> Id<NSData>;
 
         #[method_id(@__retain_semantics Other representation)]
         pub unsafe fn representation(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn WebDocumentRepresentation>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn WebDocumentRepresentation>>>;
 
         #[cfg(feature = "WebKit_WebFrame")]
         #[method_id(@__retain_semantics Other webFrame)]
-        pub unsafe fn webFrame(&self) -> Option<Id<WebFrame, Shared>>;
+        pub unsafe fn webFrame(&self) -> Option<Id<WebFrame>>;
 
         #[cfg(feature = "Foundation_NSURLRequest")]
         #[method_id(@__retain_semantics Other initialRequest)]
-        pub unsafe fn initialRequest(&self) -> Option<Id<NSURLRequest, Shared>>;
+        pub unsafe fn initialRequest(&self) -> Option<Id<NSURLRequest>>;
 
         #[cfg(feature = "Foundation_NSMutableURLRequest")]
         #[method_id(@__retain_semantics Other request)]
@@ -53,41 +53,38 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSURLResponse")]
         #[method_id(@__retain_semantics Other response)]
-        pub unsafe fn response(&self) -> Option<Id<NSURLResponse, Shared>>;
+        pub unsafe fn response(&self) -> Option<Id<NSURLResponse>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other textEncodingName)]
-        pub unsafe fn textEncodingName(&self) -> Id<NSString, Shared>;
+        pub unsafe fn textEncodingName(&self) -> Id<NSString>;
 
         #[method(isLoading)]
         pub unsafe fn isLoading(&self) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other pageTitle)]
-        pub unsafe fn pageTitle(&self) -> Id<NSString, Shared>;
+        pub unsafe fn pageTitle(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other unreachableURL)]
-        pub unsafe fn unreachableURL(&self) -> Option<Id<NSURL, Shared>>;
+        pub unsafe fn unreachableURL(&self) -> Option<Id<NSURL>>;
 
         #[cfg(feature = "WebKit_WebArchive")]
         #[method_id(@__retain_semantics Other webArchive)]
-        pub unsafe fn webArchive(&self) -> Option<Id<WebArchive, Shared>>;
+        pub unsafe fn webArchive(&self) -> Option<Id<WebArchive>>;
 
         #[cfg(feature = "WebKit_WebResource")]
         #[method_id(@__retain_semantics Other mainResource)]
-        pub unsafe fn mainResource(&self) -> Option<Id<WebResource, Shared>>;
+        pub unsafe fn mainResource(&self) -> Option<Id<WebResource>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other subresources)]
-        pub unsafe fn subresources(&self) -> Id<NSArray, Shared>;
+        pub unsafe fn subresources(&self) -> Id<NSArray>;
 
         #[cfg(all(feature = "Foundation_NSURL", feature = "WebKit_WebResource"))]
         #[method_id(@__retain_semantics Other subresourceForURL:)]
-        pub unsafe fn subresourceForURL(
-            &self,
-            url: Option<&NSURL>,
-        ) -> Option<Id<WebResource, Shared>>;
+        pub unsafe fn subresourceForURL(&self, url: Option<&NSURL>) -> Option<Id<WebResource>>;
 
         #[cfg(feature = "WebKit_WebResource")]
         #[method(addSubresource:)]

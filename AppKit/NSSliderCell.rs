@@ -162,7 +162,7 @@ extern_methods!(
 
         #[deprecated = "-titleCell has returned nil since 10.0"]
         #[method_id(@__retain_semantics Other titleCell)]
-        pub unsafe fn titleCell(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn titleCell(&self) -> Option<Id<Object>>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[deprecated = "-setTitleColor: had no effect since 10.0"]
@@ -172,7 +172,7 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSColor")]
         #[deprecated = "-titleColor has returned nil since 10.0"]
         #[method_id(@__retain_semantics Other titleColor)]
-        pub unsafe fn titleColor(&self) -> Option<Id<NSColor, Shared>>;
+        pub unsafe fn titleColor(&self) -> Option<Id<NSColor>>;
 
         #[cfg(feature = "AppKit_NSFont")]
         #[deprecated = "-setTitleFont: had no effect since 10.0"]
@@ -182,12 +182,12 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSFont")]
         #[deprecated = "-titleFont has returned nil since 10.0"]
         #[method_id(@__retain_semantics Other titleFont)]
-        pub unsafe fn titleFont(&self) -> Option<Id<NSFont, Shared>>;
+        pub unsafe fn titleFont(&self) -> Option<Id<NSFont>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "-title has returned nil since 10.0"]
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn title(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "-setTitle: had no effect since 10.0"]
@@ -206,7 +206,7 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSImage")]
         #[deprecated = "-image has returned nil since 10.0"]
         #[method_id(@__retain_semantics Other image)]
-        pub unsafe fn image(&self) -> Option<Id<NSImage, Shared>>;
+        pub unsafe fn image(&self) -> Option<Id<NSImage>>;
     }
 );
 
@@ -228,16 +228,13 @@ extern_methods!(
     unsafe impl NSSliderCell {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initTextCell:)]
-        pub unsafe fn initTextCell(
-            this: Option<Allocated<Self>>,
-            string: &NSString,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initTextCell(this: Option<Allocated<Self>>, string: &NSString) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Init initImageCell:)]
         pub unsafe fn initImageCell(
             this: Option<Allocated<Self>>,
             image: Option<&NSImage>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

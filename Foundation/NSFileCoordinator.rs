@@ -46,18 +46,18 @@ extern_methods!(
         pub unsafe fn readingIntentWithURL_options(
             url: &NSURL,
             options: NSFileCoordinatorReadingOptions,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other writingIntentWithURL:options:)]
         pub unsafe fn writingIntentWithURL_options(
             url: &NSURL,
             options: NSFileCoordinatorWritingOptions,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other URL)]
-        pub unsafe fn URL(&self) -> Id<NSURL, Shared>;
+        pub unsafe fn URL(&self) -> Id<NSURL>;
     }
 );
 
@@ -86,17 +86,17 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other filePresenters)]
-        pub unsafe fn filePresenters() -> Id<NSArray<ProtocolObject<dyn NSFilePresenter>>, Shared>;
+        pub unsafe fn filePresenters() -> Id<NSArray<ProtocolObject<dyn NSFilePresenter>>>;
 
         #[method_id(@__retain_semantics Init initWithFilePresenter:)]
         pub unsafe fn initWithFilePresenter(
             this: Option<Allocated<Self>>,
             file_presenter_or_nil: Option<&ProtocolObject<dyn NSFilePresenter>>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other purposeIdentifier)]
-        pub unsafe fn purposeIdentifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn purposeIdentifier(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setPurposeIdentifier:)]
@@ -122,7 +122,7 @@ extern_methods!(
             &self,
             url: &NSURL,
             options: NSFileCoordinatorReadingOptions,
-            out_error: Option<&mut Option<Id<NSError, Shared>>>,
+            out_error: Option<&mut Option<Id<NSError>>>,
             reader: &Block<(NonNull<NSURL>,), ()>,
         );
 
@@ -132,7 +132,7 @@ extern_methods!(
             &self,
             url: &NSURL,
             options: NSFileCoordinatorWritingOptions,
-            out_error: Option<&mut Option<Id<NSError, Shared>>>,
+            out_error: Option<&mut Option<Id<NSError>>>,
             writer: &Block<(NonNull<NSURL>,), ()>,
         );
 
@@ -144,7 +144,7 @@ extern_methods!(
             reading_options: NSFileCoordinatorReadingOptions,
             writing_url: &NSURL,
             writing_options: NSFileCoordinatorWritingOptions,
-            out_error: Option<&mut Option<Id<NSError, Shared>>>,
+            out_error: Option<&mut Option<Id<NSError>>>,
             reader_writer: &Block<(NonNull<NSURL>, NonNull<NSURL>), ()>,
         );
 
@@ -156,7 +156,7 @@ extern_methods!(
             options1: NSFileCoordinatorWritingOptions,
             url2: &NSURL,
             options2: NSFileCoordinatorWritingOptions,
-            out_error: Option<&mut Option<Id<NSError, Shared>>>,
+            out_error: Option<&mut Option<Id<NSError>>>,
             writer: &Block<(NonNull<NSURL>, NonNull<NSURL>), ()>,
         );
 
@@ -172,7 +172,7 @@ extern_methods!(
             reading_options: NSFileCoordinatorReadingOptions,
             writing_ur_ls: &NSArray<NSURL>,
             writing_options: NSFileCoordinatorWritingOptions,
-            out_error: Option<&mut Option<Id<NSError, Shared>>>,
+            out_error: Option<&mut Option<Id<NSError>>>,
             batch_accessor: &Block<(NonNull<Block<(), ()>>,), ()>,
         );
 

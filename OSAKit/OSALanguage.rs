@@ -38,39 +38,39 @@ extern_methods!(
     unsafe impl OSALanguage {
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other availableLanguages)]
-        pub unsafe fn availableLanguages() -> Id<NSArray<OSALanguage>, Shared>;
+        pub unsafe fn availableLanguages() -> Id<NSArray<OSALanguage>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other languageForName:)]
-        pub unsafe fn languageForName(name: &NSString) -> Option<Id<OSALanguage, Shared>>;
+        pub unsafe fn languageForName(name: &NSString) -> Option<Id<OSALanguage>>;
 
         #[cfg(feature = "Foundation_NSAppleEventDescriptor")]
         #[method_id(@__retain_semantics Other languageForScriptDataDescriptor:)]
         pub unsafe fn languageForScriptDataDescriptor(
             descriptor: &NSAppleEventDescriptor,
-        ) -> Option<Id<OSALanguage, Shared>>;
+        ) -> Option<Id<OSALanguage>>;
 
         #[method_id(@__retain_semantics Other defaultLanguage)]
-        pub unsafe fn defaultLanguage() -> Option<Id<OSALanguage, Shared>>;
+        pub unsafe fn defaultLanguage() -> Option<Id<OSALanguage>>;
 
         #[method(setDefaultLanguage:)]
         pub unsafe fn setDefaultLanguage(default_language: &OSALanguage);
 
         #[cfg(feature = "OSAKit_OSALanguageInstance")]
         #[method_id(@__retain_semantics Other sharedLanguageInstance)]
-        pub unsafe fn sharedLanguageInstance(&self) -> Id<OSALanguageInstance, Shared>;
+        pub unsafe fn sharedLanguageInstance(&self) -> Id<OSALanguageInstance>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn name(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other info)]
-        pub unsafe fn info(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn info(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other version)]
-        pub unsafe fn version(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn version(&self) -> Option<Id<NSString>>;
 
         #[method(type)]
         pub unsafe fn r#type(&self) -> OSType;

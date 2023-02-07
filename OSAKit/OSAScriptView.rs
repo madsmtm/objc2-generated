@@ -85,7 +85,7 @@ extern_methods!(
     unsafe impl OSAScriptView {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other source)]
-        pub unsafe fn source(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn source(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setSource:)]
@@ -139,24 +139,19 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             frame_rect: NSRect,
             container: Option<&NSTextContainer>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frame_rect: NSRect,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initUsingTextLayoutManager:)]
         pub unsafe fn initUsingTextLayoutManager(
             this: Option<Allocated<Self>>,
             using_text_layout_manager: bool,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other textViewUsingTextLayoutManager:)]
-        pub unsafe fn textViewUsingTextLayoutManager(
-            using_text_layout_manager: bool,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn textViewUsingTextLayoutManager(using_text_layout_manager: bool) -> Id<Self>;
     }
 );
 
@@ -167,6 +162,6 @@ extern_methods!(
     #[cfg(feature = "OSAKit_OSAScriptView")]
     unsafe impl OSAScriptView {
         #[method_id(@__retain_semantics Other fieldEditor)]
-        pub unsafe fn fieldEditor() -> Id<Self, Shared>;
+        pub unsafe fn fieldEditor() -> Id<Self>;
     }
 );

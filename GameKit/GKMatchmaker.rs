@@ -77,7 +77,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "GameKit_GKPlayer"))]
         #[method_id(@__retain_semantics Other recipients)]
-        pub unsafe fn recipients(&self) -> Option<Id<NSArray<GKPlayer>, Shared>>;
+        pub unsafe fn recipients(&self) -> Option<Id<NSArray<GKPlayer>>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "GameKit_GKPlayer"))]
         #[method(setRecipients:)]
@@ -85,7 +85,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other inviteMessage)]
-        pub unsafe fn inviteMessage(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn inviteMessage(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setInviteMessage:)]
@@ -141,7 +141,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[deprecated = "This property is obsolete, use recipients instead"]
         #[method_id(@__retain_semantics Other playersToInvite)]
-        pub unsafe fn playersToInvite(&self) -> Option<Id<NSArray<NSString>, Shared>>;
+        pub unsafe fn playersToInvite(&self) -> Option<Id<NSArray<NSString>>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[deprecated = "This property is obsolete, use recipients instead"]
@@ -169,7 +169,7 @@ extern_methods!(
     unsafe impl GKInvite {
         #[cfg(feature = "GameKit_GKPlayer")]
         #[method_id(@__retain_semantics Other sender)]
-        pub unsafe fn sender(&self) -> Id<GKPlayer, Shared>;
+        pub unsafe fn sender(&self) -> Id<GKPlayer>;
 
         #[method(isHosted)]
         pub unsafe fn isHosted(&self) -> bool;
@@ -183,7 +183,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "This property is obsolete, use sender instead"]
         #[method_id(@__retain_semantics Other inviter)]
-        pub unsafe fn inviter(&self) -> Id<NSString, Shared>;
+        pub unsafe fn inviter(&self) -> Id<NSString>;
     }
 );
 
@@ -238,7 +238,7 @@ extern_methods!(
     #[cfg(feature = "GameKit_GKMatchmaker")]
     unsafe impl GKMatchmaker {
         #[method_id(@__retain_semantics Other sharedMatchmaker)]
-        pub unsafe fn sharedMatchmaker() -> Id<GKMatchmaker, Shared>;
+        pub unsafe fn sharedMatchmaker() -> Id<GKMatchmaker>;
 
         #[cfg(all(
             feature = "Foundation_NSError",

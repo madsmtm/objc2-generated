@@ -29,7 +29,7 @@ extern_methods!(
     unsafe impl DOMHTMLHtmlElement {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other version)]
-        pub unsafe fn version(&self) -> Id<NSString, Shared>;
+        pub unsafe fn version(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setVersion:)]

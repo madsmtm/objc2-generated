@@ -35,15 +35,15 @@ extern_methods!(
             configuration_name: Option<&NSString>,
             url: &NSURL,
             options: Option<&NSDictionary>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(load:_)]
-        pub unsafe fn load(&self) -> Result<(), Id<NSError, Shared>>;
+        pub unsafe fn load(&self) -> Result<(), Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(save:_)]
-        pub unsafe fn save(&self) -> Result<(), Id<NSError, Shared>>;
+        pub unsafe fn save(&self) -> Result<(), Id<NSError>>;
 
         #[cfg(all(
             feature = "CoreData_NSAtomicStoreCacheNode",
@@ -53,7 +53,7 @@ extern_methods!(
         pub unsafe fn newCacheNodeForManagedObject(
             &self,
             managed_object: &NSManagedObject,
-        ) -> Id<NSAtomicStoreCacheNode, Shared>;
+        ) -> Id<NSAtomicStoreCacheNode>;
 
         #[cfg(all(
             feature = "CoreData_NSAtomicStoreCacheNode",
@@ -71,7 +71,7 @@ extern_methods!(
             feature = "Foundation_NSSet"
         ))]
         #[method_id(@__retain_semantics Other cacheNodes)]
-        pub unsafe fn cacheNodes(&self) -> Id<NSSet<NSAtomicStoreCacheNode>, Shared>;
+        pub unsafe fn cacheNodes(&self) -> Id<NSSet<NSAtomicStoreCacheNode>>;
 
         #[cfg(all(
             feature = "CoreData_NSAtomicStoreCacheNode",
@@ -95,7 +95,7 @@ extern_methods!(
         pub unsafe fn cacheNodeForObjectID(
             &self,
             object_id: &NSManagedObjectID,
-        ) -> Option<Id<NSAtomicStoreCacheNode, Shared>>;
+        ) -> Option<Id<NSAtomicStoreCacheNode>>;
 
         #[cfg(all(
             feature = "CoreData_NSEntityDescription",
@@ -106,20 +106,20 @@ extern_methods!(
             &self,
             entity: &NSEntityDescription,
             data: &Object,
-        ) -> Id<NSManagedObjectID, Shared>;
+        ) -> Id<NSManagedObjectID>;
 
         #[cfg(feature = "CoreData_NSManagedObject")]
         #[method_id(@__retain_semantics New newReferenceObjectForManagedObject:)]
         pub unsafe fn newReferenceObjectForManagedObject(
             &self,
             managed_object: &NSManagedObject,
-        ) -> Id<Object, Shared>;
+        ) -> Id<Object>;
 
         #[cfg(feature = "CoreData_NSManagedObjectID")]
         #[method_id(@__retain_semantics Other referenceObjectForObjectID:)]
         pub unsafe fn referenceObjectForObjectID(
             &self,
             object_id: &NSManagedObjectID,
-        ) -> Id<Object, Shared>;
+        ) -> Id<Object>;
     }
 );

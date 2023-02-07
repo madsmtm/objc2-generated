@@ -56,7 +56,7 @@ extern_methods!(
         pub unsafe fn initWithChanges(
             this: Option<Allocated<Self>>,
             changes: &NSArray<NSOrderedCollectionChange<ObjectType>>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -71,7 +71,7 @@ extern_methods!(
             removes: &NSIndexSet,
             removed_objects: Option<&NSArray<ObjectType>>,
             changes: &NSArray<NSOrderedCollectionChange<ObjectType>>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSIndexSet"))]
         #[method_id(@__retain_semantics Init initWithInsertIndexes:insertedObjects:removeIndexes:removedObjects:)]
@@ -81,24 +81,21 @@ extern_methods!(
             inserted_objects: Option<&NSArray<ObjectType>>,
             removes: &NSIndexSet,
             removed_objects: Option<&NSArray<ObjectType>>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSOrderedCollectionChange"
         ))]
         #[method_id(@__retain_semantics Other insertions)]
-        pub unsafe fn insertions(
-            &self,
-        ) -> Id<NSArray<NSOrderedCollectionChange<ObjectType>>, Shared>;
+        pub unsafe fn insertions(&self) -> Id<NSArray<NSOrderedCollectionChange<ObjectType>>>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSOrderedCollectionChange"
         ))]
         #[method_id(@__retain_semantics Other removals)]
-        pub unsafe fn removals(&self)
-            -> Id<NSArray<NSOrderedCollectionChange<ObjectType>>, Shared>;
+        pub unsafe fn removals(&self) -> Id<NSArray<NSOrderedCollectionChange<ObjectType>>>;
 
         #[method(hasChanges)]
         pub unsafe fn hasChanges(&self) -> bool;
@@ -111,9 +108,9 @@ extern_methods!(
                 (NonNull<NSOrderedCollectionChange<ObjectType>>,),
                 NonNull<NSOrderedCollectionChange<Object>>,
             >,
-        ) -> Id<NSOrderedCollectionDifference<Object>, Shared>;
+        ) -> Id<NSOrderedCollectionDifference<Object>>;
 
         #[method_id(@__retain_semantics Other inverseDifference)]
-        pub unsafe fn inverseDifference(&self) -> Id<Self, Shared>;
+        pub unsafe fn inverseDifference(&self) -> Id<Self>;
     }
 );

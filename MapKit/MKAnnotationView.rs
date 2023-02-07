@@ -96,18 +96,18 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             annotation: Option<&ProtocolObject<dyn MKAnnotation>>,
             reuse_identifier: Option<&NSString>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             a_decoder: &NSCoder,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other reuseIdentifier)]
-        pub unsafe fn reuseIdentifier(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn reuseIdentifier(&self) -> Option<Id<NSString>>;
 
         #[method(prepareForReuse)]
         pub unsafe fn prepareForReuse(&self);
@@ -116,14 +116,14 @@ extern_methods!(
         pub unsafe fn prepareForDisplay(&self);
 
         #[method_id(@__retain_semantics Other annotation)]
-        pub unsafe fn annotation(&self) -> Option<Id<ProtocolObject<dyn MKAnnotation>, Shared>>;
+        pub unsafe fn annotation(&self) -> Option<Id<ProtocolObject<dyn MKAnnotation>>>;
 
         #[method(setAnnotation:)]
         pub unsafe fn setAnnotation(&self, annotation: Option<&ProtocolObject<dyn MKAnnotation>>);
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other image)]
-        pub unsafe fn image(&self) -> Option<Id<NSImage, Shared>>;
+        pub unsafe fn image(&self) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method(setImage:)]
@@ -181,7 +181,7 @@ extern_methods!(
         pub unsafe fn setCanShowCallout(&self, can_show_callout: bool);
 
         #[method_id(@__retain_semantics Other leftCalloutAccessoryView)]
-        pub unsafe fn leftCalloutAccessoryView(&self) -> Option<Id<NSView, Shared>>;
+        pub unsafe fn leftCalloutAccessoryView(&self) -> Option<Id<NSView>>;
 
         #[method(setLeftCalloutAccessoryView:)]
         pub unsafe fn setLeftCalloutAccessoryView(
@@ -190,7 +190,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other rightCalloutAccessoryView)]
-        pub unsafe fn rightCalloutAccessoryView(&self) -> Option<Id<NSView, Shared>>;
+        pub unsafe fn rightCalloutAccessoryView(&self) -> Option<Id<NSView>>;
 
         #[method(setRightCalloutAccessoryView:)]
         pub unsafe fn setRightCalloutAccessoryView(
@@ -199,7 +199,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other detailCalloutAccessoryView)]
-        pub unsafe fn detailCalloutAccessoryView(&self) -> Option<Id<NSView, Shared>>;
+        pub unsafe fn detailCalloutAccessoryView(&self) -> Option<Id<NSView>>;
 
         #[method(setDetailCalloutAccessoryView:)]
         pub unsafe fn setDetailCalloutAccessoryView(
@@ -228,14 +228,14 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other clusteringIdentifier)]
-        pub unsafe fn clusteringIdentifier(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn clusteringIdentifier(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setClusteringIdentifier:)]
         pub unsafe fn setClusteringIdentifier(&self, clustering_identifier: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other clusterAnnotationView)]
-        pub unsafe fn clusterAnnotationView(&self) -> Option<Id<MKAnnotationView, Shared>>;
+        pub unsafe fn clusterAnnotationView(&self) -> Option<Id<MKAnnotationView>>;
 
         #[method(displayPriority)]
         pub unsafe fn displayPriority(&self) -> MKFeatureDisplayPriority;
@@ -268,9 +268,6 @@ extern_methods!(
     #[cfg(feature = "MapKit_MKAnnotationView")]
     unsafe impl MKAnnotationView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frame_rect: NSRect,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
 );

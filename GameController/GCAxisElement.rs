@@ -8,10 +8,10 @@ use crate::GameController::*;
 extern_protocol!(
     pub unsafe trait GCAxisElement: GCPhysicalInputElement {
         #[method_id(@__retain_semantics Other absoluteInput)]
-        unsafe fn absoluteInput(&self) -> Option<Id<ProtocolObject<dyn GCAxisInput>, Shared>>;
+        unsafe fn absoluteInput(&self) -> Option<Id<ProtocolObject<dyn GCAxisInput>>>;
 
         #[method_id(@__retain_semantics Other relativeInput)]
-        unsafe fn relativeInput(&self) -> Id<ProtocolObject<dyn GCRelativeInput>, Shared>;
+        unsafe fn relativeInput(&self) -> Id<ProtocolObject<dyn GCRelativeInput>>;
     }
 
     unsafe impl ProtocolType for dyn GCAxisElement {}

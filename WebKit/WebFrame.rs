@@ -34,27 +34,27 @@ extern_methods!(
             name: Option<&NSString>,
             view: Option<&WebFrameView>,
             web_view: Option<&WebView>,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString, Shared>;
+        pub unsafe fn name(&self) -> Id<NSString>;
 
         #[cfg(feature = "WebKit_WebView")]
         #[method_id(@__retain_semantics Other webView)]
-        pub unsafe fn webView(&self) -> Option<Id<WebView, Shared>>;
+        pub unsafe fn webView(&self) -> Option<Id<WebView>>;
 
         #[cfg(feature = "WebKit_WebFrameView")]
         #[method_id(@__retain_semantics Other frameView)]
-        pub unsafe fn frameView(&self) -> Option<Id<WebFrameView, Shared>>;
+        pub unsafe fn frameView(&self) -> Option<Id<WebFrameView>>;
 
         #[cfg(feature = "WebKit_DOMDocument")]
         #[method_id(@__retain_semantics Other DOMDocument)]
-        pub unsafe fn DOMDocument(&self) -> Option<Id<DOMDocument, Shared>>;
+        pub unsafe fn DOMDocument(&self) -> Option<Id<DOMDocument>>;
 
         #[cfg(feature = "WebKit_DOMHTMLElement")]
         #[method_id(@__retain_semantics Other frameElement)]
-        pub unsafe fn frameElement(&self) -> Option<Id<DOMHTMLElement, Shared>>;
+        pub unsafe fn frameElement(&self) -> Option<Id<DOMHTMLElement>>;
 
         #[cfg(feature = "Foundation_NSURLRequest")]
         #[method(loadRequest:)]
@@ -93,11 +93,11 @@ extern_methods!(
 
         #[cfg(feature = "WebKit_WebDataSource")]
         #[method_id(@__retain_semantics Other dataSource)]
-        pub unsafe fn dataSource(&self) -> Option<Id<WebDataSource, Shared>>;
+        pub unsafe fn dataSource(&self) -> Option<Id<WebDataSource>>;
 
         #[cfg(feature = "WebKit_WebDataSource")]
         #[method_id(@__retain_semantics Other provisionalDataSource)]
-        pub unsafe fn provisionalDataSource(&self) -> Option<Id<WebDataSource, Shared>>;
+        pub unsafe fn provisionalDataSource(&self) -> Option<Id<WebDataSource>>;
 
         #[method(stopLoading)]
         pub unsafe fn stopLoading(&self);
@@ -110,20 +110,17 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other findFrameNamed:)]
-        pub unsafe fn findFrameNamed(
-            &self,
-            name: Option<&NSString>,
-        ) -> Option<Id<WebFrame, Shared>>;
+        pub unsafe fn findFrameNamed(&self, name: Option<&NSString>) -> Option<Id<WebFrame>>;
 
         #[method_id(@__retain_semantics Other parentFrame)]
-        pub unsafe fn parentFrame(&self) -> Option<Id<WebFrame, Shared>>;
+        pub unsafe fn parentFrame(&self) -> Option<Id<WebFrame>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other childFrames)]
-        pub unsafe fn childFrames(&self) -> Id<NSArray, Shared>;
+        pub unsafe fn childFrames(&self) -> Id<NSArray>;
 
         #[cfg(feature = "WebKit_WebScriptObject")]
         #[method_id(@__retain_semantics Other windowObject)]
-        pub unsafe fn windowObject(&self) -> Option<Id<WebScriptObject, Shared>>;
+        pub unsafe fn windowObject(&self) -> Option<Id<WebScriptObject>>;
     }
 );

@@ -47,7 +47,7 @@ extern_methods!(
             previous_point: NSPoint,
             aligned_point: NSPoint,
             default_point: NSPoint,
-        ) -> Option<Id<ProtocolObject<dyn NSAlignmentFeedbackToken>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn NSAlignmentFeedbackToken>>>;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other alignmentFeedbackTokenForHorizontalMovementInView:previousX:alignedX:defaultX:)]
@@ -57,7 +57,7 @@ extern_methods!(
             previous_x: CGFloat,
             aligned_x: CGFloat,
             default_x: CGFloat,
-        ) -> Option<Id<ProtocolObject<dyn NSAlignmentFeedbackToken>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn NSAlignmentFeedbackToken>>>;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other alignmentFeedbackTokenForVerticalMovementInView:previousY:alignedY:defaultY:)]
@@ -67,7 +67,7 @@ extern_methods!(
             previous_y: CGFloat,
             aligned_y: CGFloat,
             default_y: CGFloat,
-        ) -> Option<Id<ProtocolObject<dyn NSAlignmentFeedbackToken>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn NSAlignmentFeedbackToken>>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(performFeedback:performanceTime:)]

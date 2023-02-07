@@ -23,16 +23,16 @@ extern_methods!(
     unsafe impl SNClassification {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn identifier(&self) -> Id<NSString>;
 
         #[method(confidence)]
         pub unsafe fn confidence(&self) -> c_double;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
     }
 );
 
@@ -61,13 +61,13 @@ extern_methods!(
             feature = "SoundAnalysis_SNClassification"
         ))]
         #[method_id(@__retain_semantics Other classifications)]
-        pub unsafe fn classifications(&self) -> Id<NSArray<SNClassification>, Shared>;
+        pub unsafe fn classifications(&self) -> Id<NSArray<SNClassification>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
 
         #[cfg(all(
             feature = "Foundation_NSString",
@@ -77,6 +77,6 @@ extern_methods!(
         pub unsafe fn classificationForIdentifier(
             &self,
             identifier: &NSString,
-        ) -> Option<Id<SNClassification, Shared>>;
+        ) -> Option<Id<SNClassification>>;
     }
 );

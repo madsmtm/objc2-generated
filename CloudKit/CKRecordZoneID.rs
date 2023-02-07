@@ -29,10 +29,10 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKRecordZoneID")]
     unsafe impl CKRecordZoneID {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithZoneName:ownerName:)]
@@ -40,14 +40,14 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             zone_name: &NSString,
             owner_name: &NSString,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other zoneName)]
-        pub unsafe fn zoneName(&self) -> Id<NSString, Shared>;
+        pub unsafe fn zoneName(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other ownerName)]
-        pub unsafe fn ownerName(&self) -> Id<NSString, Shared>;
+        pub unsafe fn ownerName(&self) -> Id<NSString>;
     }
 );

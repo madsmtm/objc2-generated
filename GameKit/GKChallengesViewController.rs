@@ -42,7 +42,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other challengeDelegate)]
         pub unsafe fn challengeDelegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn GKChallengesViewControllerDelegate>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn GKChallengesViewControllerDelegate>>>;
 
         #[method(setChallengeDelegate:)]
         pub unsafe fn setChallengeDelegate(
@@ -75,6 +75,6 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             nib_name_or_nil: Option<&NSNibName>,
             nib_bundle_or_nil: Option<&NSBundle>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

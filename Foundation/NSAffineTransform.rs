@@ -39,16 +39,16 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSAffineTransform")]
     unsafe impl NSAffineTransform {
         #[method_id(@__retain_semantics Other transform)]
-        pub unsafe fn transform() -> Id<NSAffineTransform, Shared>;
+        pub unsafe fn transform() -> Id<NSAffineTransform>;
 
         #[method_id(@__retain_semantics Init initWithTransform:)]
         pub unsafe fn initWithTransform(
             this: Option<Allocated<Self>>,
             transform: &NSAffineTransform,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method(translateXBy:yBy:)]
         pub unsafe fn translateXBy_yBy(&self, delta_x: CGFloat, delta_y: CGFloat);

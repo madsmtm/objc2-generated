@@ -87,11 +87,11 @@ extern_methods!(
     unsafe impl CNChangeHistoryAddContactEvent {
         #[cfg(feature = "Contacts_CNContact")]
         #[method_id(@__retain_semantics Other contact)]
-        pub unsafe fn contact(&self) -> Id<CNContact, Shared>;
+        pub unsafe fn contact(&self) -> Id<CNContact>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other containerIdentifier)]
-        pub unsafe fn containerIdentifier(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn containerIdentifier(&self) -> Option<Id<NSString>>;
     }
 );
 
@@ -121,7 +121,7 @@ extern_methods!(
     unsafe impl CNChangeHistoryUpdateContactEvent {
         #[cfg(feature = "Contacts_CNContact")]
         #[method_id(@__retain_semantics Other contact)]
-        pub unsafe fn contact(&self) -> Id<CNContact, Shared>;
+        pub unsafe fn contact(&self) -> Id<CNContact>;
     }
 );
 
@@ -151,7 +151,7 @@ extern_methods!(
     unsafe impl CNChangeHistoryDeleteContactEvent {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other contactIdentifier)]
-        pub unsafe fn contactIdentifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn contactIdentifier(&self) -> Id<NSString>;
     }
 );
 
@@ -181,11 +181,11 @@ extern_methods!(
     unsafe impl CNChangeHistoryAddGroupEvent {
         #[cfg(feature = "Contacts_CNGroup")]
         #[method_id(@__retain_semantics Other group)]
-        pub unsafe fn group(&self) -> Id<CNGroup, Shared>;
+        pub unsafe fn group(&self) -> Id<CNGroup>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other containerIdentifier)]
-        pub unsafe fn containerIdentifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn containerIdentifier(&self) -> Id<NSString>;
     }
 );
 
@@ -215,7 +215,7 @@ extern_methods!(
     unsafe impl CNChangeHistoryUpdateGroupEvent {
         #[cfg(feature = "Contacts_CNGroup")]
         #[method_id(@__retain_semantics Other group)]
-        pub unsafe fn group(&self) -> Id<CNGroup, Shared>;
+        pub unsafe fn group(&self) -> Id<CNGroup>;
     }
 );
 
@@ -245,7 +245,7 @@ extern_methods!(
     unsafe impl CNChangeHistoryDeleteGroupEvent {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other groupIdentifier)]
-        pub unsafe fn groupIdentifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn groupIdentifier(&self) -> Id<NSString>;
     }
 );
 
@@ -275,11 +275,11 @@ extern_methods!(
     unsafe impl CNChangeHistoryAddMemberToGroupEvent {
         #[cfg(feature = "Contacts_CNContact")]
         #[method_id(@__retain_semantics Other member)]
-        pub unsafe fn member(&self) -> Id<CNContact, Shared>;
+        pub unsafe fn member(&self) -> Id<CNContact>;
 
         #[cfg(feature = "Contacts_CNGroup")]
         #[method_id(@__retain_semantics Other group)]
-        pub unsafe fn group(&self) -> Id<CNGroup, Shared>;
+        pub unsafe fn group(&self) -> Id<CNGroup>;
     }
 );
 
@@ -309,11 +309,11 @@ extern_methods!(
     unsafe impl CNChangeHistoryRemoveMemberFromGroupEvent {
         #[cfg(feature = "Contacts_CNContact")]
         #[method_id(@__retain_semantics Other member)]
-        pub unsafe fn member(&self) -> Id<CNContact, Shared>;
+        pub unsafe fn member(&self) -> Id<CNContact>;
 
         #[cfg(feature = "Contacts_CNGroup")]
         #[method_id(@__retain_semantics Other group)]
-        pub unsafe fn group(&self) -> Id<CNGroup, Shared>;
+        pub unsafe fn group(&self) -> Id<CNGroup>;
     }
 );
 
@@ -343,11 +343,11 @@ extern_methods!(
     unsafe impl CNChangeHistoryAddSubgroupToGroupEvent {
         #[cfg(feature = "Contacts_CNGroup")]
         #[method_id(@__retain_semantics Other subgroup)]
-        pub unsafe fn subgroup(&self) -> Id<CNGroup, Shared>;
+        pub unsafe fn subgroup(&self) -> Id<CNGroup>;
 
         #[cfg(feature = "Contacts_CNGroup")]
         #[method_id(@__retain_semantics Other group)]
-        pub unsafe fn group(&self) -> Id<CNGroup, Shared>;
+        pub unsafe fn group(&self) -> Id<CNGroup>;
     }
 );
 
@@ -377,11 +377,11 @@ extern_methods!(
     unsafe impl CNChangeHistoryRemoveSubgroupFromGroupEvent {
         #[cfg(feature = "Contacts_CNGroup")]
         #[method_id(@__retain_semantics Other subgroup)]
-        pub unsafe fn subgroup(&self) -> Id<CNGroup, Shared>;
+        pub unsafe fn subgroup(&self) -> Id<CNGroup>;
 
         #[cfg(feature = "Contacts_CNGroup")]
         #[method_id(@__retain_semantics Other group)]
-        pub unsafe fn group(&self) -> Id<CNGroup, Shared>;
+        pub unsafe fn group(&self) -> Id<CNGroup>;
     }
 );
 

@@ -36,7 +36,7 @@ extern_methods!(
             center: CLLocationCoordinate2D,
             radius: CLLocationDistance,
             identifier: &NSString,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(center)]
         pub unsafe fn center(&self) -> CLLocationCoordinate2D;
@@ -61,6 +61,6 @@ extern_methods!(
             center: CLLocationCoordinate2D,
             radius: CLLocationDistance,
             identifier: &NSString,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

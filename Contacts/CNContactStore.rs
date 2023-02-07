@@ -62,7 +62,7 @@ extern_methods!(
             &self,
             predicate: &NSPredicate,
             keys: &NSArray<ProtocolObject<dyn CNKeyDescriptor>>,
-        ) -> Result<Id<NSArray<CNContact>, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<NSArray<CNContact>>, Id<NSError>>;
 
         #[cfg(all(
             feature = "Contacts_CNContact",
@@ -75,7 +75,7 @@ extern_methods!(
             &self,
             identifier: &NSString,
             keys: &NSArray<ProtocolObject<dyn CNKeyDescriptor>>,
-        ) -> Result<Id<CNContact, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<CNContact>, Id<NSError>>;
 
         #[cfg(all(
             feature = "Contacts_CNContact",
@@ -86,7 +86,7 @@ extern_methods!(
         pub unsafe fn unifiedMeContactWithKeysToFetch_error(
             &self,
             keys: &NSArray<ProtocolObject<dyn CNKeyDescriptor>>,
-        ) -> Result<Id<CNContact, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<CNContact>, Id<NSError>>;
 
         #[cfg(all(
             feature = "Contacts_CNContact",
@@ -99,7 +99,7 @@ extern_methods!(
         pub unsafe fn enumeratorForContactFetchRequest_error(
             &self,
             request: &CNContactFetchRequest,
-        ) -> Result<Id<CNFetchResult<NSEnumerator<CNContact>>, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<CNFetchResult<NSEnumerator<CNContact>>>, Id<NSError>>;
 
         #[cfg(all(
             feature = "Contacts_CNChangeHistoryEvent",
@@ -112,10 +112,7 @@ extern_methods!(
         pub unsafe fn enumeratorForChangeHistoryFetchRequest_error(
             &self,
             request: &CNChangeHistoryFetchRequest,
-        ) -> Result<
-            Id<CNFetchResult<NSEnumerator<CNChangeHistoryEvent>>, Shared>,
-            Id<NSError, Shared>,
-        >;
+        ) -> Result<Id<CNFetchResult<NSEnumerator<CNChangeHistoryEvent>>>, Id<NSError>>;
 
         #[cfg(all(
             feature = "Contacts_CNContact",
@@ -126,7 +123,7 @@ extern_methods!(
         pub unsafe fn enumerateContactsWithFetchRequest_error_usingBlock(
             &self,
             fetch_request: &CNContactFetchRequest,
-            error: Option<&mut Option<Id<NSError, Shared>>>,
+            error: Option<&mut Option<Id<NSError>>>,
             block: &Block<(NonNull<CNContact>, NonNull<Bool>), ()>,
         ) -> bool;
 
@@ -140,7 +137,7 @@ extern_methods!(
         pub unsafe fn groupsMatchingPredicate_error(
             &self,
             predicate: Option<&NSPredicate>,
-        ) -> Result<Id<NSArray<CNGroup>, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<NSArray<CNGroup>>, Id<NSError>>;
 
         #[cfg(all(
             feature = "Contacts_CNContainer",
@@ -152,22 +149,22 @@ extern_methods!(
         pub unsafe fn containersMatchingPredicate_error(
             &self,
             predicate: Option<&NSPredicate>,
-        ) -> Result<Id<NSArray<CNContainer>, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<NSArray<CNContainer>>, Id<NSError>>;
 
         #[cfg(all(feature = "Contacts_CNSaveRequest", feature = "Foundation_NSError"))]
         #[method(executeSaveRequest:error:_)]
         pub unsafe fn executeSaveRequest_error(
             &self,
             save_request: &CNSaveRequest,
-        ) -> Result<(), Id<NSError, Shared>>;
+        ) -> Result<(), Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other currentHistoryToken)]
-        pub unsafe fn currentHistoryToken(&self) -> Option<Id<NSData, Shared>>;
+        pub unsafe fn currentHistoryToken(&self) -> Option<Id<NSData>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other defaultContainerIdentifier)]
-        pub unsafe fn defaultContainerIdentifier(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn defaultContainerIdentifier(&self) -> Option<Id<NSString>>;
     }
 );
 

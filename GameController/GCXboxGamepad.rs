@@ -25,22 +25,22 @@ extern_methods!(
     unsafe impl GCXboxGamepad {
         #[cfg(feature = "GameController_GCControllerButtonInput")]
         #[method_id(@__retain_semantics Other paddleButton1)]
-        pub unsafe fn paddleButton1(&self) -> Option<Id<GCControllerButtonInput, Shared>>;
+        pub unsafe fn paddleButton1(&self) -> Option<Id<GCControllerButtonInput>>;
 
         #[cfg(feature = "GameController_GCControllerButtonInput")]
         #[method_id(@__retain_semantics Other paddleButton2)]
-        pub unsafe fn paddleButton2(&self) -> Option<Id<GCControllerButtonInput, Shared>>;
+        pub unsafe fn paddleButton2(&self) -> Option<Id<GCControllerButtonInput>>;
 
         #[cfg(feature = "GameController_GCControllerButtonInput")]
         #[method_id(@__retain_semantics Other paddleButton3)]
-        pub unsafe fn paddleButton3(&self) -> Option<Id<GCControllerButtonInput, Shared>>;
+        pub unsafe fn paddleButton3(&self) -> Option<Id<GCControllerButtonInput>>;
 
         #[cfg(feature = "GameController_GCControllerButtonInput")]
         #[method_id(@__retain_semantics Other paddleButton4)]
-        pub unsafe fn paddleButton4(&self) -> Option<Id<GCControllerButtonInput, Shared>>;
+        pub unsafe fn paddleButton4(&self) -> Option<Id<GCControllerButtonInput>>;
 
         #[cfg(feature = "GameController_GCControllerButtonInput")]
         #[method_id(@__retain_semantics Other buttonShare)]
-        pub unsafe fn buttonShare(&self) -> Option<Id<GCControllerButtonInput, Shared>>;
+        pub unsafe fn buttonShare(&self) -> Option<Id<GCControllerButtonInput>>;
     }
 );

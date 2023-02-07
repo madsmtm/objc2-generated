@@ -32,7 +32,7 @@ extern_methods!(
     #[cfg(feature = "StoreKit_SKProductStorePromotionController")]
     unsafe impl SKProductStorePromotionController {
         #[method_id(@__retain_semantics Other defaultController)]
-        pub unsafe fn defaultController() -> Id<Self, Shared>;
+        pub unsafe fn defaultController() -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "StoreKit_SKProduct"))]
         #[method(fetchStorePromotionVisibilityForProduct:completionHandler:)]

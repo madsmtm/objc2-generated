@@ -110,7 +110,7 @@ extern_methods!(
             opts: NSLayoutFormatOptions,
             metrics: Option<&NSDictionary<NSString, Object>>,
             views: &NSDictionary<NSString, Object>,
-        ) -> Id<NSArray<NSLayoutConstraint>, Shared>;
+        ) -> Id<NSArray<NSLayoutConstraint>>;
 
         #[method_id(@__retain_semantics Other constraintWithItem:attribute:relatedBy:toItem:attribute:multiplier:constant:)]
         pub unsafe fn constraintWithItem_attribute_relatedBy_toItem_attribute_multiplier_constant(
@@ -121,7 +121,7 @@ extern_methods!(
             attr2: NSLayoutAttribute,
             multiplier: CGFloat,
             c: CGFloat,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(priority)]
         pub unsafe fn priority(&self) -> NSLayoutPriority;
@@ -136,10 +136,10 @@ extern_methods!(
         pub unsafe fn setShouldBeArchived(&self, should_be_archived: bool);
 
         #[method_id(@__retain_semantics Other firstItem)]
-        pub unsafe fn firstItem(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn firstItem(&self) -> Option<Id<Object>>;
 
         #[method_id(@__retain_semantics Other secondItem)]
-        pub unsafe fn secondItem(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn secondItem(&self) -> Option<Id<Object>>;
 
         #[method(firstAttribute)]
         pub unsafe fn firstAttribute(&self) -> NSLayoutAttribute;
@@ -149,11 +149,11 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSLayoutAnchor")]
         #[method_id(@__retain_semantics Other firstAnchor)]
-        pub unsafe fn firstAnchor(&self) -> Id<NSLayoutAnchor, Shared>;
+        pub unsafe fn firstAnchor(&self) -> Id<NSLayoutAnchor>;
 
         #[cfg(feature = "AppKit_NSLayoutAnchor")]
         #[method_id(@__retain_semantics Other secondAnchor)]
-        pub unsafe fn secondAnchor(&self) -> Option<Id<NSLayoutAnchor, Shared>>;
+        pub unsafe fn secondAnchor(&self) -> Option<Id<NSLayoutAnchor>>;
 
         #[method(relation)]
         pub unsafe fn relation(&self) -> NSLayoutRelation;
@@ -189,7 +189,7 @@ extern_methods!(
     unsafe impl NSLayoutConstraint {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn identifier(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setIdentifier:)]
@@ -211,55 +211,55 @@ extern_methods!(
     unsafe impl NSView {
         #[cfg(feature = "AppKit_NSLayoutXAxisAnchor")]
         #[method_id(@__retain_semantics Other leadingAnchor)]
-        pub unsafe fn leadingAnchor(&self) -> Id<NSLayoutXAxisAnchor, Shared>;
+        pub unsafe fn leadingAnchor(&self) -> Id<NSLayoutXAxisAnchor>;
 
         #[cfg(feature = "AppKit_NSLayoutXAxisAnchor")]
         #[method_id(@__retain_semantics Other trailingAnchor)]
-        pub unsafe fn trailingAnchor(&self) -> Id<NSLayoutXAxisAnchor, Shared>;
+        pub unsafe fn trailingAnchor(&self) -> Id<NSLayoutXAxisAnchor>;
 
         #[cfg(feature = "AppKit_NSLayoutXAxisAnchor")]
         #[method_id(@__retain_semantics Other leftAnchor)]
-        pub unsafe fn leftAnchor(&self) -> Id<NSLayoutXAxisAnchor, Shared>;
+        pub unsafe fn leftAnchor(&self) -> Id<NSLayoutXAxisAnchor>;
 
         #[cfg(feature = "AppKit_NSLayoutXAxisAnchor")]
         #[method_id(@__retain_semantics Other rightAnchor)]
-        pub unsafe fn rightAnchor(&self) -> Id<NSLayoutXAxisAnchor, Shared>;
+        pub unsafe fn rightAnchor(&self) -> Id<NSLayoutXAxisAnchor>;
 
         #[cfg(feature = "AppKit_NSLayoutYAxisAnchor")]
         #[method_id(@__retain_semantics Other topAnchor)]
-        pub unsafe fn topAnchor(&self) -> Id<NSLayoutYAxisAnchor, Shared>;
+        pub unsafe fn topAnchor(&self) -> Id<NSLayoutYAxisAnchor>;
 
         #[cfg(feature = "AppKit_NSLayoutYAxisAnchor")]
         #[method_id(@__retain_semantics Other bottomAnchor)]
-        pub unsafe fn bottomAnchor(&self) -> Id<NSLayoutYAxisAnchor, Shared>;
+        pub unsafe fn bottomAnchor(&self) -> Id<NSLayoutYAxisAnchor>;
 
         #[cfg(feature = "AppKit_NSLayoutDimension")]
         #[method_id(@__retain_semantics Other widthAnchor)]
-        pub unsafe fn widthAnchor(&self) -> Id<NSLayoutDimension, Shared>;
+        pub unsafe fn widthAnchor(&self) -> Id<NSLayoutDimension>;
 
         #[cfg(feature = "AppKit_NSLayoutDimension")]
         #[method_id(@__retain_semantics Other heightAnchor)]
-        pub unsafe fn heightAnchor(&self) -> Id<NSLayoutDimension, Shared>;
+        pub unsafe fn heightAnchor(&self) -> Id<NSLayoutDimension>;
 
         #[cfg(feature = "AppKit_NSLayoutXAxisAnchor")]
         #[method_id(@__retain_semantics Other centerXAnchor)]
-        pub unsafe fn centerXAnchor(&self) -> Id<NSLayoutXAxisAnchor, Shared>;
+        pub unsafe fn centerXAnchor(&self) -> Id<NSLayoutXAxisAnchor>;
 
         #[cfg(feature = "AppKit_NSLayoutYAxisAnchor")]
         #[method_id(@__retain_semantics Other centerYAnchor)]
-        pub unsafe fn centerYAnchor(&self) -> Id<NSLayoutYAxisAnchor, Shared>;
+        pub unsafe fn centerYAnchor(&self) -> Id<NSLayoutYAxisAnchor>;
 
         #[cfg(feature = "AppKit_NSLayoutYAxisAnchor")]
         #[method_id(@__retain_semantics Other firstBaselineAnchor)]
-        pub unsafe fn firstBaselineAnchor(&self) -> Id<NSLayoutYAxisAnchor, Shared>;
+        pub unsafe fn firstBaselineAnchor(&self) -> Id<NSLayoutYAxisAnchor>;
 
         #[cfg(feature = "AppKit_NSLayoutYAxisAnchor")]
         #[method_id(@__retain_semantics Other lastBaselineAnchor)]
-        pub unsafe fn lastBaselineAnchor(&self) -> Id<NSLayoutYAxisAnchor, Shared>;
+        pub unsafe fn lastBaselineAnchor(&self) -> Id<NSLayoutYAxisAnchor>;
 
         #[cfg(all(feature = "AppKit_NSLayoutConstraint", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other constraints)]
-        pub unsafe fn constraints(&self) -> Id<NSArray<NSLayoutConstraint>, Shared>;
+        pub unsafe fn constraints(&self) -> Id<NSArray<NSLayoutConstraint>>;
 
         #[cfg(feature = "AppKit_NSLayoutConstraint")]
         #[method(addConstraint:)]
@@ -452,7 +452,7 @@ extern_methods!(
         pub unsafe fn constraintsAffectingLayoutForOrientation(
             &self,
             orientation: NSLayoutConstraintOrientation,
-        ) -> Id<NSArray<NSLayoutConstraint>, Shared>;
+        ) -> Id<NSArray<NSLayoutConstraint>>;
 
         #[method(hasAmbiguousLayout)]
         pub unsafe fn hasAmbiguousLayout(&self) -> bool;

@@ -40,6 +40,6 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             identifier: &NSString,
             title: &NSString,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

@@ -29,7 +29,7 @@ extern_methods!(
     unsafe impl ILMessageFilterCapabilitiesQueryResponse {
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method_id(@__retain_semantics Other transactionalSubActions)]
-        pub unsafe fn transactionalSubActions(&self) -> Id<NSArray<NSNumber>, Shared>;
+        pub unsafe fn transactionalSubActions(&self) -> Id<NSArray<NSNumber>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method(setTransactionalSubActions:)]
@@ -40,7 +40,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method_id(@__retain_semantics Other promotionalSubActions)]
-        pub unsafe fn promotionalSubActions(&self) -> Id<NSArray<NSNumber>, Shared>;
+        pub unsafe fn promotionalSubActions(&self) -> Id<NSArray<NSNumber>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method(setPromotionalSubActions:)]

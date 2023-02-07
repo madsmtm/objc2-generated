@@ -35,13 +35,13 @@ extern_methods!(
     unsafe impl GCMouse {
         #[cfg(feature = "GameController_GCMouseInput")]
         #[method_id(@__retain_semantics Other mouseInput)]
-        pub unsafe fn mouseInput(&self) -> Option<Id<GCMouseInput, Shared>>;
+        pub unsafe fn mouseInput(&self) -> Option<Id<GCMouseInput>>;
 
         #[method_id(@__retain_semantics Other current)]
-        pub unsafe fn current() -> Option<Id<GCMouse, Shared>>;
+        pub unsafe fn current() -> Option<Id<GCMouse>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other mice)]
-        pub unsafe fn mice() -> Id<NSArray<GCMouse>, Shared>;
+        pub unsafe fn mice() -> Id<NSArray<GCMouse>>;
     }
 );

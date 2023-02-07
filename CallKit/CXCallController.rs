@@ -22,11 +22,11 @@ extern_methods!(
     #[cfg(feature = "CallKit_CXCallController")]
     unsafe impl CXCallController {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(feature = "CallKit_CXCallObserver")]
         #[method_id(@__retain_semantics Other callObserver)]
-        pub unsafe fn callObserver(&self) -> Id<CXCallObserver, Shared>;
+        pub unsafe fn callObserver(&self) -> Id<CXCallObserver>;
 
         #[cfg(all(feature = "CallKit_CXTransaction", feature = "Foundation_NSError"))]
         #[method(requestTransaction:completion:)]

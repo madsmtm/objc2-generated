@@ -45,7 +45,7 @@ extern_methods!(
     unsafe impl NSSplitViewController {
         #[cfg(feature = "AppKit_NSSplitView")]
         #[method_id(@__retain_semantics Other splitView)]
-        pub unsafe fn splitView(&self) -> Id<NSSplitView, Shared>;
+        pub unsafe fn splitView(&self) -> Id<NSSplitView>;
 
         #[cfg(feature = "AppKit_NSSplitView")]
         #[method(setSplitView:)]
@@ -53,7 +53,7 @@ extern_methods!(
 
         #[cfg(all(feature = "AppKit_NSSplitViewItem", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other splitViewItems)]
-        pub unsafe fn splitViewItems(&self) -> Id<NSArray<NSSplitViewItem>, Shared>;
+        pub unsafe fn splitViewItems(&self) -> Id<NSArray<NSSplitViewItem>>;
 
         #[cfg(all(feature = "AppKit_NSSplitViewItem", feature = "Foundation_NSArray"))]
         #[method(setSplitViewItems:)]
@@ -80,7 +80,7 @@ extern_methods!(
         pub unsafe fn splitViewItemForViewController(
             &self,
             view_controller: &NSViewController,
-        ) -> Option<Id<NSSplitViewItem, Shared>>;
+        ) -> Option<Id<NSSplitViewItem>>;
 
         #[method(minimumThicknessForInlineSidebars)]
         pub unsafe fn minimumThicknessForInlineSidebars(&self) -> CGFloat;
@@ -165,6 +165,6 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             nib_name_or_nil: Option<&NSNibName>,
             nib_bundle_or_nil: Option<&NSBundle>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

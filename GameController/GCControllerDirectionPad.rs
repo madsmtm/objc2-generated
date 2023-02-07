@@ -37,27 +37,27 @@ extern_methods!(
 
         #[cfg(feature = "GameController_GCControllerAxisInput")]
         #[method_id(@__retain_semantics Other xAxis)]
-        pub unsafe fn xAxis(&self) -> Id<GCControllerAxisInput, Shared>;
+        pub unsafe fn xAxis(&self) -> Id<GCControllerAxisInput>;
 
         #[cfg(feature = "GameController_GCControllerAxisInput")]
         #[method_id(@__retain_semantics Other yAxis)]
-        pub unsafe fn yAxis(&self) -> Id<GCControllerAxisInput, Shared>;
+        pub unsafe fn yAxis(&self) -> Id<GCControllerAxisInput>;
 
         #[cfg(feature = "GameController_GCControllerButtonInput")]
         #[method_id(@__retain_semantics Other up)]
-        pub unsafe fn up(&self) -> Id<GCControllerButtonInput, Shared>;
+        pub unsafe fn up(&self) -> Id<GCControllerButtonInput>;
 
         #[cfg(feature = "GameController_GCControllerButtonInput")]
         #[method_id(@__retain_semantics Other down)]
-        pub unsafe fn down(&self) -> Id<GCControllerButtonInput, Shared>;
+        pub unsafe fn down(&self) -> Id<GCControllerButtonInput>;
 
         #[cfg(feature = "GameController_GCControllerButtonInput")]
         #[method_id(@__retain_semantics Other left)]
-        pub unsafe fn left(&self) -> Id<GCControllerButtonInput, Shared>;
+        pub unsafe fn left(&self) -> Id<GCControllerButtonInput>;
 
         #[cfg(feature = "GameController_GCControllerButtonInput")]
         #[method_id(@__retain_semantics Other right)]
-        pub unsafe fn right(&self) -> Id<GCControllerButtonInput, Shared>;
+        pub unsafe fn right(&self) -> Id<GCControllerButtonInput>;
 
         #[method(setValueForXAxis:yAxis:)]
         pub unsafe fn setValueForXAxis_yAxis(&self, x_axis: c_float, y_axis: c_float);

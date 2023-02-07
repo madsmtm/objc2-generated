@@ -31,23 +31,23 @@ extern_methods!(
         #[method_id(@__retain_semantics Other mergedModelFromBundles:)]
         pub unsafe fn mergedModelFromBundles(
             bundles: Option<&NSArray<NSBundle>>,
-        ) -> Option<Id<NSManagedObjectModel, Shared>>;
+        ) -> Option<Id<NSManagedObjectModel>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other modelByMergingModels:)]
         pub unsafe fn modelByMergingModels(
             models: Option<&NSArray<NSManagedObjectModel>>,
-        ) -> Option<Id<NSManagedObjectModel, Shared>>;
+        ) -> Option<Id<NSManagedObjectModel>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
         pub unsafe fn initWithContentsOfURL(
             this: Option<Allocated<Self>>,
             url: &NSURL,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(all(
             feature = "CoreData_NSEntityDescription",
@@ -55,16 +55,14 @@ extern_methods!(
             feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other entitiesByName)]
-        pub unsafe fn entitiesByName(
-            &self,
-        ) -> Id<NSDictionary<NSString, NSEntityDescription>, Shared>;
+        pub unsafe fn entitiesByName(&self) -> Id<NSDictionary<NSString, NSEntityDescription>>;
 
         #[cfg(all(
             feature = "CoreData_NSEntityDescription",
             feature = "Foundation_NSArray"
         ))]
         #[method_id(@__retain_semantics Other entities)]
-        pub unsafe fn entities(&self) -> Id<NSArray<NSEntityDescription>, Shared>;
+        pub unsafe fn entities(&self) -> Id<NSArray<NSEntityDescription>>;
 
         #[cfg(all(
             feature = "CoreData_NSEntityDescription",
@@ -75,7 +73,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other configurations)]
-        pub unsafe fn configurations(&self) -> Id<NSArray<NSString>, Shared>;
+        pub unsafe fn configurations(&self) -> Id<NSArray<NSString>>;
 
         #[cfg(all(
             feature = "CoreData_NSEntityDescription",
@@ -86,7 +84,7 @@ extern_methods!(
         pub unsafe fn entitiesForConfiguration(
             &self,
             configuration: Option<&NSString>,
-        ) -> Option<Id<NSArray<NSEntityDescription>, Shared>>;
+        ) -> Option<Id<NSArray<NSEntityDescription>>>;
 
         #[cfg(all(
             feature = "CoreData_NSEntityDescription",
@@ -113,7 +111,7 @@ extern_methods!(
         pub unsafe fn fetchRequestTemplateForName(
             &self,
             name: &NSString,
-        ) -> Option<Id<NSFetchRequest, Shared>>;
+        ) -> Option<Id<NSFetchRequest>>;
 
         #[cfg(all(
             feature = "CoreData_NSFetchRequest",
@@ -125,13 +123,12 @@ extern_methods!(
             &self,
             name: &NSString,
             variables: &NSDictionary<NSString, Object>,
-        ) -> Option<Id<NSFetchRequest, Shared>>;
+        ) -> Option<Id<NSFetchRequest>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other localizationDictionary)]
-        pub unsafe fn localizationDictionary(
-            &self,
-        ) -> Option<Id<NSDictionary<NSString, NSString>, Shared>>;
+        pub unsafe fn localizationDictionary(&self)
+            -> Option<Id<NSDictionary<NSString, NSString>>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setLocalizationDictionary:)]
@@ -150,7 +147,7 @@ extern_methods!(
         pub unsafe fn mergedModelFromBundles_forStoreMetadata(
             bundles: Option<&NSArray<NSBundle>>,
             metadata: &NSDictionary<NSString, Object>,
-        ) -> Option<Id<NSManagedObjectModel, Shared>>;
+        ) -> Option<Id<NSManagedObjectModel>>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -161,7 +158,7 @@ extern_methods!(
         pub unsafe fn modelByMergingModels_forStoreMetadata(
             models: &NSArray<NSManagedObjectModel>,
             metadata: &NSDictionary<NSString, Object>,
-        ) -> Option<Id<NSManagedObjectModel, Shared>>;
+        ) -> Option<Id<NSManagedObjectModel>>;
 
         #[cfg(all(
             feature = "CoreData_NSFetchRequest",
@@ -171,11 +168,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other fetchRequestTemplatesByName)]
         pub unsafe fn fetchRequestTemplatesByName(
             &self,
-        ) -> Id<NSDictionary<NSString, NSFetchRequest>, Shared>;
+        ) -> Id<NSDictionary<NSString, NSFetchRequest>>;
 
         #[cfg(feature = "Foundation_NSSet")]
         #[method_id(@__retain_semantics Other versionIdentifiers)]
-        pub unsafe fn versionIdentifiers(&self) -> Id<NSSet, Shared>;
+        pub unsafe fn versionIdentifiers(&self) -> Id<NSSet>;
 
         #[cfg(feature = "Foundation_NSSet")]
         #[method(setVersionIdentifiers:)]
@@ -195,8 +192,6 @@ extern_methods!(
             feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other entityVersionHashesByName)]
-        pub unsafe fn entityVersionHashesByName(
-            &self,
-        ) -> Id<NSDictionary<NSString, NSData>, Shared>;
+        pub unsafe fn entityVersionHashesByName(&self) -> Id<NSDictionary<NSString, NSData>>;
     }
 );

@@ -9,7 +9,7 @@ extern_protocol!(
     pub unsafe trait WKURLSchemeTask: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSURLRequest")]
         #[method_id(@__retain_semantics Other request)]
-        unsafe fn request(&self) -> Id<NSURLRequest, Shared>;
+        unsafe fn request(&self) -> Id<NSURLRequest>;
 
         #[cfg(feature = "Foundation_NSURLResponse")]
         #[method(didReceiveResponse:)]

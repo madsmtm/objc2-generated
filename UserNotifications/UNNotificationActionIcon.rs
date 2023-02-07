@@ -30,14 +30,13 @@ extern_methods!(
     unsafe impl UNNotificationActionIcon {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other iconWithTemplateImageName:)]
-        pub unsafe fn iconWithTemplateImageName(template_image_name: &NSString)
-            -> Id<Self, Shared>;
+        pub unsafe fn iconWithTemplateImageName(template_image_name: &NSString) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other iconWithSystemImageName:)]
-        pub unsafe fn iconWithSystemImageName(system_image_name: &NSString) -> Id<Self, Shared>;
+        pub unsafe fn iconWithSystemImageName(system_image_name: &NSString) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }
 );

@@ -34,7 +34,7 @@ extern_methods!(
     unsafe impl NSStatusItem {
         #[cfg(feature = "AppKit_NSStatusBar")]
         #[method_id(@__retain_semantics Other statusBar)]
-        pub unsafe fn statusBar(&self) -> Option<Id<NSStatusBar, Shared>>;
+        pub unsafe fn statusBar(&self) -> Option<Id<NSStatusBar>>;
 
         #[method(length)]
         pub unsafe fn length(&self) -> CGFloat;
@@ -44,7 +44,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSMenu")]
         #[method_id(@__retain_semantics Other menu)]
-        pub unsafe fn menu(&self) -> Option<Id<NSMenu, Shared>>;
+        pub unsafe fn menu(&self) -> Option<Id<NSMenu>>;
 
         #[cfg(feature = "AppKit_NSMenu")]
         #[method(setMenu:)]
@@ -52,7 +52,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSStatusBarButton")]
         #[method_id(@__retain_semantics Other button)]
-        pub unsafe fn button(&self) -> Option<Id<NSStatusBarButton, Shared>>;
+        pub unsafe fn button(&self) -> Option<Id<NSStatusBarButton>>;
 
         #[method(behavior)]
         pub unsafe fn behavior(&self) -> NSStatusItemBehavior;
@@ -67,7 +67,7 @@ extern_methods!(
         pub unsafe fn setVisible(&self, visible: bool);
 
         #[method_id(@__retain_semantics Other autosaveName)]
-        pub unsafe fn autosaveName(&self) -> Id<NSStatusItemAutosaveName, Shared>;
+        pub unsafe fn autosaveName(&self) -> Id<NSStatusItemAutosaveName>;
 
         #[method(setAutosaveName:)]
         pub unsafe fn setAutosaveName(&self, autosave_name: Option<&NSStatusItemAutosaveName>);
@@ -96,7 +96,7 @@ extern_methods!(
 
         #[deprecated = "Use the receiver's button.target instead"]
         #[method_id(@__retain_semantics Other target)]
-        pub unsafe fn target(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn target(&self) -> Option<Id<Object>>;
 
         #[deprecated = "Use the receiver's button.target instead"]
         #[method(setTarget:)]
@@ -105,7 +105,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use the receiver's button.title instead"]
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn title(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use the receiver's button.title instead"]
@@ -115,7 +115,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[deprecated = "Use the receiver's button.attributedTitle instead"]
         #[method_id(@__retain_semantics Other attributedTitle)]
-        pub unsafe fn attributedTitle(&self) -> Option<Id<NSAttributedString, Shared>>;
+        pub unsafe fn attributedTitle(&self) -> Option<Id<NSAttributedString>>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[deprecated = "Use the receiver's button.attributedTitle instead"]
@@ -125,7 +125,7 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSImage")]
         #[deprecated = "Use the receiver's button.image instead"]
         #[method_id(@__retain_semantics Other image)]
-        pub unsafe fn image(&self) -> Option<Id<NSImage, Shared>>;
+        pub unsafe fn image(&self) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[deprecated = "Use the receiver's button.image instead"]
@@ -135,7 +135,7 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSImage")]
         #[deprecated = "Use the receiver's button.alternateImage instead"]
         #[method_id(@__retain_semantics Other alternateImage)]
-        pub unsafe fn alternateImage(&self) -> Option<Id<NSImage, Shared>>;
+        pub unsafe fn alternateImage(&self) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[deprecated = "Use the receiver's button.alternateImage instead"]
@@ -161,7 +161,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use the receiver's button.toolTip instead"]
         #[method_id(@__retain_semantics Other toolTip)]
-        pub unsafe fn toolTip(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn toolTip(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use the receiver's button.toolTip instead"]
@@ -175,7 +175,7 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSView")]
         #[deprecated = "Use the standard button property instead"]
         #[method_id(@__retain_semantics Other view)]
-        pub unsafe fn view(&self) -> Option<Id<NSView, Shared>>;
+        pub unsafe fn view(&self) -> Option<Id<NSView>>;
 
         #[cfg(feature = "AppKit_NSView")]
         #[deprecated = "Use the standard button property instead"]

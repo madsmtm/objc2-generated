@@ -76,13 +76,13 @@ extern_methods!(
     unsafe impl GKChallengeEventHandler {
         #[deprecated]
         #[method_id(@__retain_semantics Other challengeEventHandler)]
-        pub unsafe fn challengeEventHandler() -> Option<Id<GKChallengeEventHandler, Shared>>;
+        pub unsafe fn challengeEventHandler() -> Option<Id<GKChallengeEventHandler>>;
 
         #[deprecated]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn GKChallengeEventHandlerDelegate>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn GKChallengeEventHandlerDelegate>>>;
 
         #[deprecated]
         #[method(setDelegate:)]

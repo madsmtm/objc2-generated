@@ -30,7 +30,7 @@ extern_methods!(
             source_controller: &Object,
             destination_controller: &Object,
             perform_handler: &Block<(), ()>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithIdentifier:source:destination:)]
         pub unsafe fn initWithIdentifier_source_destination(
@@ -38,16 +38,16 @@ extern_methods!(
             identifier: &NSStoryboardSegueIdentifier,
             source_controller: &Object,
             destination_controller: &Object,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Option<Id<NSStoryboardSegueIdentifier, Shared>>;
+        pub unsafe fn identifier(&self) -> Option<Id<NSStoryboardSegueIdentifier>>;
 
         #[method_id(@__retain_semantics Other sourceController)]
-        pub unsafe fn sourceController(&self) -> Id<Object, Shared>;
+        pub unsafe fn sourceController(&self) -> Id<Object>;
 
         #[method_id(@__retain_semantics Other destinationController)]
-        pub unsafe fn destinationController(&self) -> Id<Object, Shared>;
+        pub unsafe fn destinationController(&self) -> Id<Object>;
 
         #[method(perform)]
         pub unsafe fn perform(&self);

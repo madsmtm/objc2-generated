@@ -45,7 +45,7 @@ extern_methods!(
         pub unsafe fn initWithIdentifier(
             this: Option<Allocated<Self>>,
             identifier: Option<&NSString>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "GameKit_GKPlayer"))]
         #[method_id(@__retain_semantics Init initWithIdentifier:player:)]
@@ -53,7 +53,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             identifier: Option<&NSString>,
             player: &GKPlayer,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSError"))]
         #[method(reportAchievements:withCompletionHandler:)]
@@ -64,7 +64,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn identifier(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setIdentifier:)]
@@ -81,7 +81,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other lastReportedDate)]
-        pub unsafe fn lastReportedDate(&self) -> Id<NSDate, Shared>;
+        pub unsafe fn lastReportedDate(&self) -> Id<NSDate>;
 
         #[method(showsCompletionBanner)]
         pub unsafe fn showsCompletionBanner(&self) -> bool;
@@ -91,7 +91,7 @@ extern_methods!(
 
         #[cfg(feature = "GameKit_GKPlayer")]
         #[method_id(@__retain_semantics Other player)]
-        pub unsafe fn player(&self) -> Option<Id<GKPlayer, Shared>>;
+        pub unsafe fn player(&self) -> Option<Id<GKPlayer>>;
     }
 );
 
@@ -123,10 +123,10 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             identifier: Option<&NSString>,
             player_id: &NSString,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other playerID)]
-        pub unsafe fn playerID(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn playerID(&self) -> Option<Id<NSString>>;
     }
 );

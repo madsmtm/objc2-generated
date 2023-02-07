@@ -15,21 +15,21 @@ extern_methods!(
         pub unsafe fn constraintEqualToAnchor(
             &self,
             anchor: &NSLayoutAnchor<AnchorType>,
-        ) -> Id<NSLayoutConstraint, Shared>;
+        ) -> Id<NSLayoutConstraint>;
 
         #[cfg(feature = "AppKit_NSLayoutConstraint")]
         #[method_id(@__retain_semantics Other constraintGreaterThanOrEqualToAnchor:)]
         pub unsafe fn constraintGreaterThanOrEqualToAnchor(
             &self,
             anchor: &NSLayoutAnchor<AnchorType>,
-        ) -> Id<NSLayoutConstraint, Shared>;
+        ) -> Id<NSLayoutConstraint>;
 
         #[cfg(feature = "AppKit_NSLayoutConstraint")]
         #[method_id(@__retain_semantics Other constraintLessThanOrEqualToAnchor:)]
         pub unsafe fn constraintLessThanOrEqualToAnchor(
             &self,
             anchor: &NSLayoutAnchor<AnchorType>,
-        ) -> Id<NSLayoutConstraint, Shared>;
+        ) -> Id<NSLayoutConstraint>;
 
         #[cfg(feature = "AppKit_NSLayoutConstraint")]
         #[method_id(@__retain_semantics Other constraintEqualToAnchor:constant:)]
@@ -37,7 +37,7 @@ extern_methods!(
             &self,
             anchor: &NSLayoutAnchor<AnchorType>,
             c: CGFloat,
-        ) -> Id<NSLayoutConstraint, Shared>;
+        ) -> Id<NSLayoutConstraint>;
 
         #[cfg(feature = "AppKit_NSLayoutConstraint")]
         #[method_id(@__retain_semantics Other constraintGreaterThanOrEqualToAnchor:constant:)]
@@ -45,7 +45,7 @@ extern_methods!(
             &self,
             anchor: &NSLayoutAnchor<AnchorType>,
             c: CGFloat,
-        ) -> Id<NSLayoutConstraint, Shared>;
+        ) -> Id<NSLayoutConstraint>;
 
         #[cfg(feature = "AppKit_NSLayoutConstraint")]
         #[method_id(@__retain_semantics Other constraintLessThanOrEqualToAnchor:constant:)]
@@ -53,21 +53,21 @@ extern_methods!(
             &self,
             anchor: &NSLayoutAnchor<AnchorType>,
             c: CGFloat,
-        ) -> Id<NSLayoutConstraint, Shared>;
+        ) -> Id<NSLayoutConstraint>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString, Shared>;
+        pub unsafe fn name(&self) -> Id<NSString>;
 
         #[method_id(@__retain_semantics Other item)]
-        pub unsafe fn item(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn item(&self) -> Option<Id<Object>>;
 
         #[method(hasAmbiguousLayout)]
         pub unsafe fn hasAmbiguousLayout(&self) -> bool;
 
         #[cfg(all(feature = "AppKit_NSLayoutConstraint", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other constraintsAffectingLayout)]
-        pub unsafe fn constraintsAffectingLayout(&self) -> Id<NSArray<NSLayoutConstraint>, Shared>;
+        pub unsafe fn constraintsAffectingLayout(&self) -> Id<NSArray<NSLayoutConstraint>>;
     }
 );
 
@@ -94,7 +94,7 @@ extern_methods!(
         pub unsafe fn anchorWithOffsetToAnchor(
             &self,
             other_anchor: &NSLayoutXAxisAnchor,
-        ) -> Id<NSLayoutDimension, Shared>;
+        ) -> Id<NSLayoutDimension>;
 
         #[cfg(feature = "AppKit_NSLayoutConstraint")]
         #[method_id(@__retain_semantics Other constraintEqualToSystemSpacingAfterAnchor:multiplier:)]
@@ -102,7 +102,7 @@ extern_methods!(
             &self,
             anchor: &NSLayoutXAxisAnchor,
             multiplier: CGFloat,
-        ) -> Id<NSLayoutConstraint, Shared>;
+        ) -> Id<NSLayoutConstraint>;
 
         #[cfg(feature = "AppKit_NSLayoutConstraint")]
         #[method_id(@__retain_semantics Other constraintGreaterThanOrEqualToSystemSpacingAfterAnchor:multiplier:)]
@@ -110,7 +110,7 @@ extern_methods!(
             &self,
             anchor: &NSLayoutXAxisAnchor,
             multiplier: CGFloat,
-        ) -> Id<NSLayoutConstraint, Shared>;
+        ) -> Id<NSLayoutConstraint>;
 
         #[cfg(feature = "AppKit_NSLayoutConstraint")]
         #[method_id(@__retain_semantics Other constraintLessThanOrEqualToSystemSpacingAfterAnchor:multiplier:)]
@@ -118,7 +118,7 @@ extern_methods!(
             &self,
             anchor: &NSLayoutXAxisAnchor,
             multiplier: CGFloat,
-        ) -> Id<NSLayoutConstraint, Shared>;
+        ) -> Id<NSLayoutConstraint>;
     }
 );
 
@@ -145,7 +145,7 @@ extern_methods!(
         pub unsafe fn anchorWithOffsetToAnchor(
             &self,
             other_anchor: &NSLayoutYAxisAnchor,
-        ) -> Id<NSLayoutDimension, Shared>;
+        ) -> Id<NSLayoutDimension>;
 
         #[cfg(feature = "AppKit_NSLayoutConstraint")]
         #[method_id(@__retain_semantics Other constraintEqualToSystemSpacingBelowAnchor:multiplier:)]
@@ -153,7 +153,7 @@ extern_methods!(
             &self,
             anchor: &NSLayoutYAxisAnchor,
             multiplier: CGFloat,
-        ) -> Id<NSLayoutConstraint, Shared>;
+        ) -> Id<NSLayoutConstraint>;
 
         #[cfg(feature = "AppKit_NSLayoutConstraint")]
         #[method_id(@__retain_semantics Other constraintGreaterThanOrEqualToSystemSpacingBelowAnchor:multiplier:)]
@@ -161,7 +161,7 @@ extern_methods!(
             &self,
             anchor: &NSLayoutYAxisAnchor,
             multiplier: CGFloat,
-        ) -> Id<NSLayoutConstraint, Shared>;
+        ) -> Id<NSLayoutConstraint>;
 
         #[cfg(feature = "AppKit_NSLayoutConstraint")]
         #[method_id(@__retain_semantics Other constraintLessThanOrEqualToSystemSpacingBelowAnchor:multiplier:)]
@@ -169,7 +169,7 @@ extern_methods!(
             &self,
             anchor: &NSLayoutYAxisAnchor,
             multiplier: CGFloat,
-        ) -> Id<NSLayoutConstraint, Shared>;
+        ) -> Id<NSLayoutConstraint>;
     }
 );
 
@@ -193,24 +193,21 @@ extern_methods!(
     unsafe impl NSLayoutDimension {
         #[cfg(feature = "AppKit_NSLayoutConstraint")]
         #[method_id(@__retain_semantics Other constraintEqualToConstant:)]
-        pub unsafe fn constraintEqualToConstant(
-            &self,
-            c: CGFloat,
-        ) -> Id<NSLayoutConstraint, Shared>;
+        pub unsafe fn constraintEqualToConstant(&self, c: CGFloat) -> Id<NSLayoutConstraint>;
 
         #[cfg(feature = "AppKit_NSLayoutConstraint")]
         #[method_id(@__retain_semantics Other constraintGreaterThanOrEqualToConstant:)]
         pub unsafe fn constraintGreaterThanOrEqualToConstant(
             &self,
             c: CGFloat,
-        ) -> Id<NSLayoutConstraint, Shared>;
+        ) -> Id<NSLayoutConstraint>;
 
         #[cfg(feature = "AppKit_NSLayoutConstraint")]
         #[method_id(@__retain_semantics Other constraintLessThanOrEqualToConstant:)]
         pub unsafe fn constraintLessThanOrEqualToConstant(
             &self,
             c: CGFloat,
-        ) -> Id<NSLayoutConstraint, Shared>;
+        ) -> Id<NSLayoutConstraint>;
 
         #[cfg(feature = "AppKit_NSLayoutConstraint")]
         #[method_id(@__retain_semantics Other constraintEqualToAnchor:multiplier:)]
@@ -218,7 +215,7 @@ extern_methods!(
             &self,
             anchor: &NSLayoutDimension,
             m: CGFloat,
-        ) -> Id<NSLayoutConstraint, Shared>;
+        ) -> Id<NSLayoutConstraint>;
 
         #[cfg(feature = "AppKit_NSLayoutConstraint")]
         #[method_id(@__retain_semantics Other constraintGreaterThanOrEqualToAnchor:multiplier:)]
@@ -226,7 +223,7 @@ extern_methods!(
             &self,
             anchor: &NSLayoutDimension,
             m: CGFloat,
-        ) -> Id<NSLayoutConstraint, Shared>;
+        ) -> Id<NSLayoutConstraint>;
 
         #[cfg(feature = "AppKit_NSLayoutConstraint")]
         #[method_id(@__retain_semantics Other constraintLessThanOrEqualToAnchor:multiplier:)]
@@ -234,7 +231,7 @@ extern_methods!(
             &self,
             anchor: &NSLayoutDimension,
             m: CGFloat,
-        ) -> Id<NSLayoutConstraint, Shared>;
+        ) -> Id<NSLayoutConstraint>;
 
         #[cfg(feature = "AppKit_NSLayoutConstraint")]
         #[method_id(@__retain_semantics Other constraintEqualToAnchor:multiplier:constant:)]
@@ -243,7 +240,7 @@ extern_methods!(
             anchor: &NSLayoutDimension,
             m: CGFloat,
             c: CGFloat,
-        ) -> Id<NSLayoutConstraint, Shared>;
+        ) -> Id<NSLayoutConstraint>;
 
         #[cfg(feature = "AppKit_NSLayoutConstraint")]
         #[method_id(@__retain_semantics Other constraintGreaterThanOrEqualToAnchor:multiplier:constant:)]
@@ -252,7 +249,7 @@ extern_methods!(
             anchor: &NSLayoutDimension,
             m: CGFloat,
             c: CGFloat,
-        ) -> Id<NSLayoutConstraint, Shared>;
+        ) -> Id<NSLayoutConstraint>;
 
         #[cfg(feature = "AppKit_NSLayoutConstraint")]
         #[method_id(@__retain_semantics Other constraintLessThanOrEqualToAnchor:multiplier:constant:)]
@@ -261,6 +258,6 @@ extern_methods!(
             anchor: &NSLayoutDimension,
             m: CGFloat,
             c: CGFloat,
-        ) -> Id<NSLayoutConstraint, Shared>;
+        ) -> Id<NSLayoutConstraint>;
     }
 );

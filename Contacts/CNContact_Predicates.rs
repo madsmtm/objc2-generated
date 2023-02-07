@@ -10,19 +10,19 @@ extern_methods!(
     unsafe impl CNContact {
         #[cfg(all(feature = "Foundation_NSPredicate", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other predicateForContactsMatchingName:)]
-        pub unsafe fn predicateForContactsMatchingName(name: &NSString) -> Id<NSPredicate, Shared>;
+        pub unsafe fn predicateForContactsMatchingName(name: &NSString) -> Id<NSPredicate>;
 
         #[cfg(all(feature = "Foundation_NSPredicate", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other predicateForContactsMatchingEmailAddress:)]
         pub unsafe fn predicateForContactsMatchingEmailAddress(
             email_address: &NSString,
-        ) -> Id<NSPredicate, Shared>;
+        ) -> Id<NSPredicate>;
 
         #[cfg(all(feature = "Contacts_CNPhoneNumber", feature = "Foundation_NSPredicate"))]
         #[method_id(@__retain_semantics Other predicateForContactsMatchingPhoneNumber:)]
         pub unsafe fn predicateForContactsMatchingPhoneNumber(
             phone_number: &CNPhoneNumber,
-        ) -> Id<NSPredicate, Shared>;
+        ) -> Id<NSPredicate>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -32,18 +32,18 @@ extern_methods!(
         #[method_id(@__retain_semantics Other predicateForContactsWithIdentifiers:)]
         pub unsafe fn predicateForContactsWithIdentifiers(
             identifiers: &NSArray<NSString>,
-        ) -> Id<NSPredicate, Shared>;
+        ) -> Id<NSPredicate>;
 
         #[cfg(all(feature = "Foundation_NSPredicate", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other predicateForContactsInGroupWithIdentifier:)]
         pub unsafe fn predicateForContactsInGroupWithIdentifier(
             group_identifier: &NSString,
-        ) -> Id<NSPredicate, Shared>;
+        ) -> Id<NSPredicate>;
 
         #[cfg(all(feature = "Foundation_NSPredicate", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other predicateForContactsInContainerWithIdentifier:)]
         pub unsafe fn predicateForContactsInContainerWithIdentifier(
             container_identifier: &NSString,
-        ) -> Id<NSPredicate, Shared>;
+        ) -> Id<NSPredicate>;
     }
 );

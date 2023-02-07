@@ -29,7 +29,7 @@ extern_methods!(
     unsafe impl DOMCharacterData {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other data)]
-        pub unsafe fn data(&self) -> Id<NSString, Shared>;
+        pub unsafe fn data(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setData:)]
@@ -44,7 +44,7 @@ extern_methods!(
             &self,
             offset: c_uint,
             length: c_uint,
-        ) -> Option<Id<NSString, Shared>>;
+        ) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(appendData:)]
@@ -75,11 +75,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
         #[method_id(@__retain_semantics Other substringData::)]
-        pub unsafe fn substringData(
-            &self,
-            offset: c_uint,
-            length: c_uint,
-        ) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn substringData(&self, offset: c_uint, length: c_uint) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]

@@ -29,7 +29,7 @@ extern_methods!(
     unsafe impl SFAcousticFeature {
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method_id(@__retain_semantics Other acousticFeatureValuePerFrame)]
-        pub unsafe fn acousticFeatureValuePerFrame(&self) -> Id<NSArray<NSNumber>, Shared>;
+        pub unsafe fn acousticFeatureValuePerFrame(&self) -> Id<NSArray<NSNumber>>;
 
         #[method(frameDuration)]
         pub unsafe fn frameDuration(&self) -> NSTimeInterval;
@@ -61,18 +61,18 @@ extern_methods!(
     unsafe impl SFVoiceAnalytics {
         #[cfg(feature = "Speech_SFAcousticFeature")]
         #[method_id(@__retain_semantics Other jitter)]
-        pub unsafe fn jitter(&self) -> Id<SFAcousticFeature, Shared>;
+        pub unsafe fn jitter(&self) -> Id<SFAcousticFeature>;
 
         #[cfg(feature = "Speech_SFAcousticFeature")]
         #[method_id(@__retain_semantics Other shimmer)]
-        pub unsafe fn shimmer(&self) -> Id<SFAcousticFeature, Shared>;
+        pub unsafe fn shimmer(&self) -> Id<SFAcousticFeature>;
 
         #[cfg(feature = "Speech_SFAcousticFeature")]
         #[method_id(@__retain_semantics Other pitch)]
-        pub unsafe fn pitch(&self) -> Id<SFAcousticFeature, Shared>;
+        pub unsafe fn pitch(&self) -> Id<SFAcousticFeature>;
 
         #[cfg(feature = "Speech_SFAcousticFeature")]
         #[method_id(@__retain_semantics Other voicing)]
-        pub unsafe fn voicing(&self) -> Id<SFAcousticFeature, Shared>;
+        pub unsafe fn voicing(&self) -> Id<SFAcousticFeature>;
     }
 );

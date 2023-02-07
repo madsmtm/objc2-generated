@@ -26,6 +26,6 @@ extern_methods!(
     unsafe impl DOMCSSCharsetRule {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other encoding)]
-        pub unsafe fn encoding(&self) -> Id<NSString, Shared>;
+        pub unsafe fn encoding(&self) -> Id<NSString>;
     }
 );

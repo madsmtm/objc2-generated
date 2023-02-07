@@ -49,14 +49,14 @@ extern_methods!(
     unsafe impl DOMRange {
         #[cfg(feature = "WebKit_DOMNode")]
         #[method_id(@__retain_semantics Other startContainer)]
-        pub unsafe fn startContainer(&self) -> Option<Id<DOMNode, Shared>>;
+        pub unsafe fn startContainer(&self) -> Option<Id<DOMNode>>;
 
         #[method(startOffset)]
         pub unsafe fn startOffset(&self) -> c_int;
 
         #[cfg(feature = "WebKit_DOMNode")]
         #[method_id(@__retain_semantics Other endContainer)]
-        pub unsafe fn endContainer(&self) -> Option<Id<DOMNode, Shared>>;
+        pub unsafe fn endContainer(&self) -> Option<Id<DOMNode>>;
 
         #[method(endOffset)]
         pub unsafe fn endOffset(&self) -> c_int;
@@ -66,11 +66,11 @@ extern_methods!(
 
         #[cfg(feature = "WebKit_DOMNode")]
         #[method_id(@__retain_semantics Other commonAncestorContainer)]
-        pub unsafe fn commonAncestorContainer(&self) -> Option<Id<DOMNode, Shared>>;
+        pub unsafe fn commonAncestorContainer(&self) -> Option<Id<DOMNode>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other text)]
-        pub unsafe fn text(&self) -> Id<NSString, Shared>;
+        pub unsafe fn text(&self) -> Id<NSString>;
 
         #[cfg(feature = "WebKit_DOMNode")]
         #[method(setStart:offset:)]
@@ -119,11 +119,11 @@ extern_methods!(
 
         #[cfg(feature = "WebKit_DOMDocumentFragment")]
         #[method_id(@__retain_semantics Other extractContents)]
-        pub unsafe fn extractContents(&self) -> Option<Id<DOMDocumentFragment, Shared>>;
+        pub unsafe fn extractContents(&self) -> Option<Id<DOMDocumentFragment>>;
 
         #[cfg(feature = "WebKit_DOMDocumentFragment")]
         #[method_id(@__retain_semantics Other cloneContents)]
-        pub unsafe fn cloneContents(&self) -> Option<Id<DOMDocumentFragment, Shared>>;
+        pub unsafe fn cloneContents(&self) -> Option<Id<DOMDocumentFragment>>;
 
         #[cfg(feature = "WebKit_DOMNode")]
         #[method(insertNode:)]
@@ -134,11 +134,11 @@ extern_methods!(
         pub unsafe fn surroundContents(&self, new_parent: Option<&DOMNode>);
 
         #[method_id(@__retain_semantics Other cloneRange)]
-        pub unsafe fn cloneRange(&self) -> Option<Id<DOMRange, Shared>>;
+        pub unsafe fn cloneRange(&self) -> Option<Id<DOMRange>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other toString)]
-        pub unsafe fn toString(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn toString(&self) -> Option<Id<NSString>>;
 
         #[method(detach)]
         pub unsafe fn detach(&self);
@@ -151,7 +151,7 @@ extern_methods!(
         pub unsafe fn createContextualFragment(
             &self,
             html: Option<&NSString>,
-        ) -> Option<Id<DOMDocumentFragment, Shared>>;
+        ) -> Option<Id<DOMDocumentFragment>>;
 
         #[cfg(feature = "WebKit_DOMNode")]
         #[method(compareNode:)]

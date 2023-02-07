@@ -46,7 +46,7 @@ extern_methods!(
     unsafe impl MKLocalSearchCompleter {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other queryFragment)]
-        pub unsafe fn queryFragment(&self) -> Id<NSString, Shared>;
+        pub unsafe fn queryFragment(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setQueryFragment:)]
@@ -74,7 +74,7 @@ extern_methods!(
 
         #[cfg(feature = "MapKit_MKPointOfInterestFilter")]
         #[method_id(@__retain_semantics Other pointOfInterestFilter)]
-        pub unsafe fn pointOfInterestFilter(&self) -> Option<Id<MKPointOfInterestFilter, Shared>>;
+        pub unsafe fn pointOfInterestFilter(&self) -> Option<Id<MKPointOfInterestFilter>>;
 
         #[cfg(feature = "MapKit_MKPointOfInterestFilter")]
         #[method(setPointOfInterestFilter:)]
@@ -86,7 +86,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn MKLocalSearchCompleterDelegate>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn MKLocalSearchCompleterDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -99,7 +99,7 @@ extern_methods!(
             feature = "MapKit_MKLocalSearchCompletion"
         ))]
         #[method_id(@__retain_semantics Other results)]
-        pub unsafe fn results(&self) -> Id<NSArray<MKLocalSearchCompletion>, Shared>;
+        pub unsafe fn results(&self) -> Id<NSArray<MKLocalSearchCompletion>>;
 
         #[method(isSearching)]
         pub unsafe fn isSearching(&self) -> bool;
@@ -151,19 +151,19 @@ extern_methods!(
     unsafe impl MKLocalSearchCompletion {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Id<NSString, Shared>;
+        pub unsafe fn title(&self) -> Id<NSString>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[method_id(@__retain_semantics Other titleHighlightRanges)]
-        pub unsafe fn titleHighlightRanges(&self) -> Id<NSArray<NSValue>, Shared>;
+        pub unsafe fn titleHighlightRanges(&self) -> Id<NSArray<NSValue>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other subtitle)]
-        pub unsafe fn subtitle(&self) -> Id<NSString, Shared>;
+        pub unsafe fn subtitle(&self) -> Id<NSString>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[method_id(@__retain_semantics Other subtitleHighlightRanges)]
-        pub unsafe fn subtitleHighlightRanges(&self) -> Id<NSArray<NSValue>, Shared>;
+        pub unsafe fn subtitleHighlightRanges(&self) -> Id<NSArray<NSValue>>;
     }
 );
 
@@ -175,6 +175,6 @@ extern_methods!(
         pub unsafe fn initWithCompletion(
             this: Option<Allocated<Self>>,
             completion: &MKLocalSearchCompletion,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

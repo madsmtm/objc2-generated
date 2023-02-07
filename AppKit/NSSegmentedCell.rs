@@ -74,7 +74,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other imageForSegment:)]
-        pub unsafe fn imageForSegment(&self, segment: NSInteger) -> Option<Id<NSImage, Shared>>;
+        pub unsafe fn imageForSegment(&self, segment: NSInteger) -> Option<Id<NSImage>>;
 
         #[method(setImageScaling:forSegment:)]
         pub unsafe fn setImageScaling_forSegment(
@@ -92,7 +92,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other labelForSegment:)]
-        pub unsafe fn labelForSegment(&self, segment: NSInteger) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn labelForSegment(&self, segment: NSInteger) -> Option<Id<NSString>>;
 
         #[method(setSelected:forSegment:)]
         pub unsafe fn setSelected_forSegment(&self, selected: bool, segment: NSInteger);
@@ -112,7 +112,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSMenu")]
         #[method_id(@__retain_semantics Other menuForSegment:)]
-        pub unsafe fn menuForSegment(&self, segment: NSInteger) -> Option<Id<NSMenu, Shared>>;
+        pub unsafe fn menuForSegment(&self, segment: NSInteger) -> Option<Id<NSMenu>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setToolTip:forSegment:)]
@@ -120,7 +120,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other toolTipForSegment:)]
-        pub unsafe fn toolTipForSegment(&self, segment: NSInteger) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn toolTipForSegment(&self, segment: NSInteger) -> Option<Id<NSString>>;
 
         #[method(setTag:forSegment:)]
         pub unsafe fn setTag_forSegment(&self, tag: NSInteger, segment: NSInteger);
@@ -163,16 +163,13 @@ extern_methods!(
     unsafe impl NSSegmentedCell {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initTextCell:)]
-        pub unsafe fn initTextCell(
-            this: Option<Allocated<Self>>,
-            string: &NSString,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initTextCell(this: Option<Allocated<Self>>, string: &NSString) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Init initImageCell:)]
         pub unsafe fn initImageCell(
             this: Option<Allocated<Self>>,
             image: Option<&NSImage>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

@@ -47,7 +47,7 @@ extern_methods!(
         pub unsafe fn printOperationWithView_printInfo(
             view: &NSView,
             print_info: &NSPrintInfo,
-        ) -> Id<NSPrintOperation, Shared>;
+        ) -> Id<NSPrintOperation>;
 
         #[cfg(all(
             feature = "AppKit_NSPrintInfo",
@@ -60,7 +60,7 @@ extern_methods!(
             rect: NSRect,
             data: &NSMutableData,
             print_info: &NSPrintInfo,
-        ) -> Id<NSPrintOperation, Shared>;
+        ) -> Id<NSPrintOperation>;
 
         #[cfg(all(
             feature = "AppKit_NSPrintInfo",
@@ -73,7 +73,7 @@ extern_methods!(
             rect: NSRect,
             path: &NSString,
             print_info: &NSPrintInfo,
-        ) -> Id<NSPrintOperation, Shared>;
+        ) -> Id<NSPrintOperation>;
 
         #[cfg(all(
             feature = "AppKit_NSPrintInfo",
@@ -86,7 +86,7 @@ extern_methods!(
             rect: NSRect,
             data: &NSMutableData,
             print_info: &NSPrintInfo,
-        ) -> Id<NSPrintOperation, Shared>;
+        ) -> Id<NSPrintOperation>;
 
         #[cfg(all(
             feature = "AppKit_NSPrintInfo",
@@ -99,11 +99,11 @@ extern_methods!(
             rect: NSRect,
             path: &NSString,
             print_info: &NSPrintInfo,
-        ) -> Id<NSPrintOperation, Shared>;
+        ) -> Id<NSPrintOperation>;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other printOperationWithView:)]
-        pub unsafe fn printOperationWithView(view: &NSView) -> Id<NSPrintOperation, Shared>;
+        pub unsafe fn printOperationWithView(view: &NSView) -> Id<NSPrintOperation>;
 
         #[cfg(all(feature = "AppKit_NSView", feature = "Foundation_NSMutableData"))]
         #[method_id(@__retain_semantics Other PDFOperationWithView:insideRect:toData:)]
@@ -111,7 +111,7 @@ extern_methods!(
             view: &NSView,
             rect: NSRect,
             data: &NSMutableData,
-        ) -> Id<NSPrintOperation, Shared>;
+        ) -> Id<NSPrintOperation>;
 
         #[cfg(all(feature = "AppKit_NSView", feature = "Foundation_NSMutableData"))]
         #[method_id(@__retain_semantics Other EPSOperationWithView:insideRect:toData:)]
@@ -119,10 +119,10 @@ extern_methods!(
             view: &NSView,
             rect: NSRect,
             data: Option<&NSMutableData>,
-        ) -> Id<NSPrintOperation, Shared>;
+        ) -> Id<NSPrintOperation>;
 
         #[method_id(@__retain_semantics Other currentOperation)]
-        pub unsafe fn currentOperation() -> Option<Id<NSPrintOperation, Shared>>;
+        pub unsafe fn currentOperation() -> Option<Id<NSPrintOperation>>;
 
         #[method(setCurrentOperation:)]
         pub unsafe fn setCurrentOperation(current_operation: Option<&NSPrintOperation>);
@@ -135,7 +135,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other jobTitle)]
-        pub unsafe fn jobTitle(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn jobTitle(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setJobTitle:)]
@@ -155,7 +155,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSPrintPanel")]
         #[method_id(@__retain_semantics Other printPanel)]
-        pub unsafe fn printPanel(&self) -> Id<NSPrintPanel, Shared>;
+        pub unsafe fn printPanel(&self) -> Id<NSPrintPanel>;
 
         #[cfg(feature = "AppKit_NSPrintPanel")]
         #[method(setPrintPanel:)]
@@ -163,7 +163,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSPDFPanel")]
         #[method_id(@__retain_semantics Other PDFPanel)]
-        pub unsafe fn PDFPanel(&self) -> Id<NSPDFPanel, Shared>;
+        pub unsafe fn PDFPanel(&self) -> Id<NSPDFPanel>;
 
         #[cfg(feature = "AppKit_NSPDFPanel")]
         #[method(setPDFPanel:)]
@@ -196,11 +196,11 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other view)]
-        pub unsafe fn view(&self) -> Option<Id<NSView, Shared>>;
+        pub unsafe fn view(&self) -> Option<Id<NSView>>;
 
         #[cfg(feature = "AppKit_NSPrintInfo")]
         #[method_id(@__retain_semantics Other printInfo)]
-        pub unsafe fn printInfo(&self) -> Id<NSPrintInfo, Shared>;
+        pub unsafe fn printInfo(&self) -> Id<NSPrintInfo>;
 
         #[cfg(feature = "AppKit_NSPrintInfo")]
         #[method(setPrintInfo:)]
@@ -208,7 +208,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSGraphicsContext")]
         #[method_id(@__retain_semantics Other context)]
-        pub unsafe fn context(&self) -> Option<Id<NSGraphicsContext, Shared>>;
+        pub unsafe fn context(&self) -> Option<Id<NSGraphicsContext>>;
 
         #[method(pageRange)]
         pub unsafe fn pageRange(&self) -> NSRange;
@@ -218,7 +218,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSGraphicsContext")]
         #[method_id(@__retain_semantics Other createContext)]
-        pub unsafe fn createContext(&self) -> Option<Id<NSGraphicsContext, Shared>>;
+        pub unsafe fn createContext(&self) -> Option<Id<NSGraphicsContext>>;
 
         #[method(destroyContext)]
         pub unsafe fn destroyContext(&self);
@@ -243,7 +243,7 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSView")]
         #[deprecated = "Use -[NSPrintPanel accessoryControllers] instead"]
         #[method_id(@__retain_semantics Other accessoryView)]
-        pub unsafe fn accessoryView(&self) -> Option<Id<NSView, Shared>>;
+        pub unsafe fn accessoryView(&self) -> Option<Id<NSView>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
@@ -253,7 +253,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
         #[method_id(@__retain_semantics Other jobStyleHint)]
-        pub unsafe fn jobStyleHint(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn jobStyleHint(&self) -> Option<Id<NSString>>;
 
         #[deprecated = "Use -setShowsPrintPanel: and -setShowsProgressPanel: instead"]
         #[method(setShowPanels:)]

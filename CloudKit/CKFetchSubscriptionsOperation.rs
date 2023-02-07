@@ -24,21 +24,21 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKFetchSubscriptionsOperation")]
     unsafe impl CKFetchSubscriptionsOperation {
         #[method_id(@__retain_semantics Other fetchAllSubscriptionsOperation)]
-        pub unsafe fn fetchAllSubscriptionsOperation() -> Id<Self, Shared>;
+        pub unsafe fn fetchAllSubscriptionsOperation() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Init initWithSubscriptionIDs:)]
         pub unsafe fn initWithSubscriptionIDs(
             this: Option<Allocated<Self>>,
             subscription_i_ds: &NSArray<CKSubscriptionID>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other subscriptionIDs)]
-        pub unsafe fn subscriptionIDs(&self) -> Option<Id<NSArray<CKSubscriptionID>, Shared>>;
+        pub unsafe fn subscriptionIDs(&self) -> Option<Id<NSArray<CKSubscriptionID>>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setSubscriptionIDs:)]

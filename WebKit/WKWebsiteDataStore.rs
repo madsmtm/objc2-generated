@@ -29,23 +29,23 @@ extern_methods!(
     #[cfg(feature = "WebKit_WKWebsiteDataStore")]
     unsafe impl WKWebsiteDataStore {
         #[method_id(@__retain_semantics Other defaultDataStore)]
-        pub unsafe fn defaultDataStore() -> Id<WKWebsiteDataStore, Shared>;
+        pub unsafe fn defaultDataStore() -> Id<WKWebsiteDataStore>;
 
         #[method_id(@__retain_semantics Other nonPersistentDataStore)]
-        pub unsafe fn nonPersistentDataStore() -> Id<WKWebsiteDataStore, Shared>;
+        pub unsafe fn nonPersistentDataStore() -> Id<WKWebsiteDataStore>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new(&self) -> Id<Self, Shared>;
+        pub unsafe fn new(&self) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method(isPersistent)]
         pub unsafe fn isPersistent(&self) -> bool;
 
         #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other allWebsiteDataTypes)]
-        pub unsafe fn allWebsiteDataTypes() -> Id<NSSet<NSString>, Shared>;
+        pub unsafe fn allWebsiteDataTypes() -> Id<NSSet<NSString>>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -89,6 +89,6 @@ extern_methods!(
 
         #[cfg(feature = "WebKit_WKHTTPCookieStore")]
         #[method_id(@__retain_semantics Other httpCookieStore)]
-        pub unsafe fn httpCookieStore(&self) -> Id<WKHTTPCookieStore, Shared>;
+        pub unsafe fn httpCookieStore(&self) -> Id<WKHTTPCookieStore>;
     }
 );

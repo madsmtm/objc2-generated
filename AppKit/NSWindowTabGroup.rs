@@ -23,11 +23,11 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSWindowTabGroup")]
     unsafe impl NSWindowTabGroup {
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<NSWindowTabbingIdentifier, Shared>;
+        pub unsafe fn identifier(&self) -> Id<NSWindowTabbingIdentifier>;
 
         #[cfg(all(feature = "AppKit_NSWindow", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other windows)]
-        pub unsafe fn windows(&self) -> Id<NSArray<NSWindow>, Shared>;
+        pub unsafe fn windows(&self) -> Id<NSArray<NSWindow>>;
 
         #[method(isOverviewVisible)]
         pub unsafe fn isOverviewVisible(&self) -> bool;
@@ -40,7 +40,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[method_id(@__retain_semantics Other selectedWindow)]
-        pub unsafe fn selectedWindow(&self) -> Option<Id<NSWindow, Shared>>;
+        pub unsafe fn selectedWindow(&self) -> Option<Id<NSWindow>>;
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[method(setSelectedWindow:)]

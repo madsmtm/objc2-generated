@@ -23,11 +23,11 @@ extern_methods!(
     unsafe impl NSPersistentStoreDescription {
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other persistentStoreDescriptionWithURL:)]
-        pub unsafe fn persistentStoreDescriptionWithURL(url: &NSURL) -> Id<Self, Shared>;
+        pub unsafe fn persistentStoreDescriptionWithURL(url: &NSURL) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other type)]
-        pub unsafe fn r#type(&self) -> Id<NSString, Shared>;
+        pub unsafe fn r#type(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setType:)]
@@ -35,7 +35,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other configuration)]
-        pub unsafe fn configuration(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn configuration(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setConfiguration:)]
@@ -43,7 +43,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other URL)]
-        pub unsafe fn URL(&self) -> Option<Id<NSURL, Shared>>;
+        pub unsafe fn URL(&self) -> Option<Id<NSURL>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method(setURL:)]
@@ -51,7 +51,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other options)]
-        pub unsafe fn options(&self) -> Id<NSDictionary<NSString, NSObject>, Shared>;
+        pub unsafe fn options(&self) -> Id<NSDictionary<NSString, NSObject>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setOption:forKey:)]
@@ -71,7 +71,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other sqlitePragmas)]
-        pub unsafe fn sqlitePragmas(&self) -> Id<NSDictionary<NSString, NSObject>, Shared>;
+        pub unsafe fn sqlitePragmas(&self) -> Id<NSDictionary<NSString, NSObject>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setValue:forPragmaNamed:)]
@@ -103,7 +103,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Init initWithURL:)]
-        pub unsafe fn initWithURL(this: Option<Allocated<Self>>, url: &NSURL) -> Id<Self, Shared>;
+        pub unsafe fn initWithURL(this: Option<Allocated<Self>>, url: &NSURL) -> Id<Self>;
     }
 );
 
@@ -115,7 +115,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other cloudKitContainerOptions)]
         pub unsafe fn cloudKitContainerOptions(
             &self,
-        ) -> Option<Id<NSPersistentCloudKitContainerOptions, Shared>>;
+        ) -> Option<Id<NSPersistentCloudKitContainerOptions>>;
 
         #[cfg(feature = "CoreData_NSPersistentCloudKitContainerOptions")]
         #[method(setCloudKitContainerOptions:)]

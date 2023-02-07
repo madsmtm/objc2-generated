@@ -24,34 +24,34 @@ extern_methods!(
     unsafe impl SKPayment {
         #[cfg(feature = "StoreKit_SKProduct")]
         #[method_id(@__retain_semantics Other paymentWithProduct:)]
-        pub unsafe fn paymentWithProduct(product: &SKProduct) -> Id<Self, Shared>;
+        pub unsafe fn paymentWithProduct(product: &SKProduct) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
         #[method_id(@__retain_semantics Other paymentWithProductIdentifier:)]
-        pub unsafe fn paymentWithProductIdentifier(identifier: &NSString) -> Id<Object, Shared>;
+        pub unsafe fn paymentWithProductIdentifier(identifier: &NSString) -> Id<Object>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other productIdentifier)]
-        pub unsafe fn productIdentifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn productIdentifier(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other requestData)]
-        pub unsafe fn requestData(&self) -> Option<Id<NSData, Shared>>;
+        pub unsafe fn requestData(&self) -> Option<Id<NSData>>;
 
         #[method(quantity)]
         pub unsafe fn quantity(&self) -> NSInteger;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other applicationUsername)]
-        pub unsafe fn applicationUsername(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn applicationUsername(&self) -> Option<Id<NSString>>;
 
         #[method(simulatesAskToBuyInSandbox)]
         pub unsafe fn simulatesAskToBuyInSandbox(&self) -> bool;
 
         #[cfg(feature = "StoreKit_SKPaymentDiscount")]
         #[method_id(@__retain_semantics Other paymentDiscount)]
-        pub unsafe fn paymentDiscount(&self) -> Option<Id<SKPaymentDiscount, Shared>>;
+        pub unsafe fn paymentDiscount(&self) -> Option<Id<SKPaymentDiscount>>;
     }
 );
 
@@ -75,7 +75,7 @@ extern_methods!(
     unsafe impl SKMutablePayment {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other applicationUsername)]
-        pub unsafe fn applicationUsername(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn applicationUsername(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setApplicationUsername:)]
@@ -83,7 +83,7 @@ extern_methods!(
 
         #[cfg(feature = "StoreKit_SKPaymentDiscount")]
         #[method_id(@__retain_semantics Other paymentDiscount)]
-        pub unsafe fn paymentDiscount(&self) -> Option<Id<SKPaymentDiscount, Shared>>;
+        pub unsafe fn paymentDiscount(&self) -> Option<Id<SKPaymentDiscount>>;
 
         #[cfg(feature = "StoreKit_SKPaymentDiscount")]
         #[method(setPaymentDiscount:)]
@@ -91,7 +91,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other productIdentifier)]
-        pub unsafe fn productIdentifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn productIdentifier(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setProductIdentifier:)]
@@ -105,7 +105,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other requestData)]
-        pub unsafe fn requestData(&self) -> Option<Id<NSData, Shared>>;
+        pub unsafe fn requestData(&self) -> Option<Id<NSData>>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method(setRequestData:)]
@@ -125,6 +125,6 @@ extern_methods!(
     unsafe impl SKMutablePayment {
         #[cfg(feature = "StoreKit_SKProduct")]
         #[method_id(@__retain_semantics Other paymentWithProduct:)]
-        pub unsafe fn paymentWithProduct(product: &SKProduct) -> Id<Self, Shared>;
+        pub unsafe fn paymentWithProduct(product: &SKProduct) -> Id<Self>;
     }
 );

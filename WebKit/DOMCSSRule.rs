@@ -64,7 +64,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other cssText)]
-        pub unsafe fn cssText(&self) -> Id<NSString, Shared>;
+        pub unsafe fn cssText(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCssText:)]
@@ -72,9 +72,9 @@ extern_methods!(
 
         #[cfg(feature = "WebKit_DOMCSSStyleSheet")]
         #[method_id(@__retain_semantics Other parentStyleSheet)]
-        pub unsafe fn parentStyleSheet(&self) -> Option<Id<DOMCSSStyleSheet, Shared>>;
+        pub unsafe fn parentStyleSheet(&self) -> Option<Id<DOMCSSStyleSheet>>;
 
         #[method_id(@__retain_semantics Other parentRule)]
-        pub unsafe fn parentRule(&self) -> Option<Id<DOMCSSRule, Shared>>;
+        pub unsafe fn parentRule(&self) -> Option<Id<DOMCSSRule>>;
     }
 );

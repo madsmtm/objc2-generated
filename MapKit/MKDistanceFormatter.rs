@@ -49,10 +49,7 @@ extern_methods!(
     unsafe impl MKDistanceFormatter {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringFromDistance:)]
-        pub unsafe fn stringFromDistance(
-            &self,
-            distance: CLLocationDistance,
-        ) -> Id<NSString, Shared>;
+        pub unsafe fn stringFromDistance(&self, distance: CLLocationDistance) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(distanceFromString:)]
@@ -60,7 +57,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSLocale")]
         #[method_id(@__retain_semantics Other locale)]
-        pub unsafe fn locale(&self) -> Id<NSLocale, Shared>;
+        pub unsafe fn locale(&self) -> Id<NSLocale>;
 
         #[cfg(feature = "Foundation_NSLocale")]
         #[method(setLocale:)]

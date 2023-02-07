@@ -59,14 +59,14 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringValue)]
-        pub unsafe fn stringValue(&self) -> Id<NSString, Shared>;
+        pub unsafe fn stringValue(&self) -> Id<NSString>;
 
         #[method(booleanValue)]
         pub unsafe fn booleanValue(&self) -> bool;
 
         #[cfg(feature = "WebKit_DOMNode")]
         #[method_id(@__retain_semantics Other singleNodeValue)]
-        pub unsafe fn singleNodeValue(&self) -> Option<Id<DOMNode, Shared>>;
+        pub unsafe fn singleNodeValue(&self) -> Option<Id<DOMNode>>;
 
         #[method(invalidIteratorState)]
         pub unsafe fn invalidIteratorState(&self) -> bool;
@@ -76,10 +76,10 @@ extern_methods!(
 
         #[cfg(feature = "WebKit_DOMNode")]
         #[method_id(@__retain_semantics Other iterateNext)]
-        pub unsafe fn iterateNext(&self) -> Option<Id<DOMNode, Shared>>;
+        pub unsafe fn iterateNext(&self) -> Option<Id<DOMNode>>;
 
         #[cfg(feature = "WebKit_DOMNode")]
         #[method_id(@__retain_semantics Other snapshotItem:)]
-        pub unsafe fn snapshotItem(&self, index: c_uint) -> Option<Id<DOMNode, Shared>>;
+        pub unsafe fn snapshotItem(&self, index: c_uint) -> Option<Id<DOMNode>>;
     }
 );

@@ -27,7 +27,7 @@ extern_methods!(
     unsafe impl NSExpressionDescription {
         #[cfg(feature = "Foundation_NSExpression")]
         #[method_id(@__retain_semantics Other expression)]
-        pub unsafe fn expression(&self) -> Option<Id<NSExpression, Shared>>;
+        pub unsafe fn expression(&self) -> Option<Id<NSExpression>>;
 
         #[cfg(feature = "Foundation_NSExpression")]
         #[method(setExpression:)]

@@ -24,7 +24,7 @@ extern_methods!(
     unsafe impl CALayer {
         #[cfg(all(feature = "CoreAnimation_CAConstraint", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other constraints)]
-        pub unsafe fn constraints(&self) -> Option<Id<NSArray<CAConstraint>, Shared>>;
+        pub unsafe fn constraints(&self) -> Option<Id<NSArray<CAConstraint>>>;
 
         #[cfg(all(feature = "CoreAnimation_CAConstraint", feature = "Foundation_NSArray"))]
         #[method(setConstraints:)]
@@ -57,7 +57,7 @@ extern_methods!(
     #[cfg(feature = "CoreAnimation_CAConstraintLayoutManager")]
     unsafe impl CAConstraintLayoutManager {
         #[method_id(@__retain_semantics Other layoutManager)]
-        pub unsafe fn layoutManager() -> Id<Self, Shared>;
+        pub unsafe fn layoutManager() -> Id<Self>;
     }
 );
 
@@ -92,7 +92,7 @@ extern_methods!(
             src_attr: CAConstraintAttribute,
             m: CGFloat,
             c: CGFloat,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other constraintWithAttribute:relativeTo:attribute:offset:)]
@@ -101,7 +101,7 @@ extern_methods!(
             src_id: &NSString,
             src_attr: CAConstraintAttribute,
             c: CGFloat,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other constraintWithAttribute:relativeTo:attribute:)]
@@ -109,7 +109,7 @@ extern_methods!(
             attr: CAConstraintAttribute,
             src_id: &NSString,
             src_attr: CAConstraintAttribute,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithAttribute:relativeTo:attribute:scale:offset:)]
@@ -120,14 +120,14 @@ extern_methods!(
             src_attr: CAConstraintAttribute,
             m: CGFloat,
             c: CGFloat,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(attribute)]
         pub unsafe fn attribute(&self) -> CAConstraintAttribute;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other sourceName)]
-        pub unsafe fn sourceName(&self) -> Id<NSString, Shared>;
+        pub unsafe fn sourceName(&self) -> Id<NSString>;
 
         #[method(sourceAttribute)]
         pub unsafe fn sourceAttribute(&self) -> CAConstraintAttribute;

@@ -17,7 +17,7 @@ extern_protocol!(
             &self,
             scrubber: &NSScrubber,
             index: NSInteger,
-        ) -> Id<NSScrubberItemView, Shared>;
+        ) -> Id<NSScrubberItemView>;
     }
 
     unsafe impl ProtocolType for dyn NSScrubberDataSource {}
@@ -110,24 +110,21 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSScrubberSelectionStyle")]
     unsafe impl NSScrubberSelectionStyle {
         #[method_id(@__retain_semantics Other outlineOverlayStyle)]
-        pub unsafe fn outlineOverlayStyle() -> Id<NSScrubberSelectionStyle, Shared>;
+        pub unsafe fn outlineOverlayStyle() -> Id<NSScrubberSelectionStyle>;
 
         #[method_id(@__retain_semantics Other roundedBackgroundStyle)]
-        pub unsafe fn roundedBackgroundStyle() -> Id<NSScrubberSelectionStyle, Shared>;
+        pub unsafe fn roundedBackgroundStyle() -> Id<NSScrubberSelectionStyle>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            coder: &NSCoder,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, coder: &NSCoder) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSScrubberSelectionView")]
         #[method_id(@__retain_semantics Other makeSelectionView)]
-        pub unsafe fn makeSelectionView(&self) -> Option<Id<NSScrubberSelectionView, Shared>>;
+        pub unsafe fn makeSelectionView(&self) -> Option<Id<NSScrubberSelectionView>>;
     }
 );
 
@@ -171,9 +168,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSScrubber")]
     unsafe impl NSScrubber {
         #[method_id(@__retain_semantics Other dataSource)]
-        pub unsafe fn dataSource(
-            &self,
-        ) -> Option<Id<ProtocolObject<dyn NSScrubberDataSource>, Shared>>;
+        pub unsafe fn dataSource(&self) -> Option<Id<ProtocolObject<dyn NSScrubberDataSource>>>;
 
         #[method(setDataSource:)]
         pub unsafe fn setDataSource(
@@ -182,15 +177,14 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self)
-            -> Option<Id<ProtocolObject<dyn NSScrubberDelegate>, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSScrubberDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSScrubberDelegate>>);
 
         #[cfg(feature = "AppKit_NSScrubberLayout")]
         #[method_id(@__retain_semantics Other scrubberLayout)]
-        pub unsafe fn scrubberLayout(&self) -> Id<NSScrubberLayout, Shared>;
+        pub unsafe fn scrubberLayout(&self) -> Id<NSScrubberLayout>;
 
         #[cfg(feature = "AppKit_NSScrubberLayout")]
         #[method(setScrubberLayout:)]
@@ -234,9 +228,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSScrubberSelectionStyle")]
         #[method_id(@__retain_semantics Other selectionBackgroundStyle)]
-        pub unsafe fn selectionBackgroundStyle(
-            &self,
-        ) -> Option<Id<NSScrubberSelectionStyle, Shared>>;
+        pub unsafe fn selectionBackgroundStyle(&self) -> Option<Id<NSScrubberSelectionStyle>>;
 
         #[cfg(feature = "AppKit_NSScrubberSelectionStyle")]
         #[method(setSelectionBackgroundStyle:)]
@@ -247,7 +239,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSScrubberSelectionStyle")]
         #[method_id(@__retain_semantics Other selectionOverlayStyle)]
-        pub unsafe fn selectionOverlayStyle(&self) -> Option<Id<NSScrubberSelectionStyle, Shared>>;
+        pub unsafe fn selectionOverlayStyle(&self) -> Option<Id<NSScrubberSelectionStyle>>;
 
         #[cfg(feature = "AppKit_NSScrubberSelectionStyle")]
         #[method(setSelectionOverlayStyle:)]
@@ -273,30 +265,24 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other backgroundColor)]
-        pub unsafe fn backgroundColor(&self) -> Option<Id<NSColor, Shared>>;
+        pub unsafe fn backgroundColor(&self) -> Option<Id<NSColor>>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&NSColor>);
 
         #[method_id(@__retain_semantics Other backgroundView)]
-        pub unsafe fn backgroundView(&self) -> Option<Id<NSView, Shared>>;
+        pub unsafe fn backgroundView(&self) -> Option<Id<NSView>>;
 
         #[method(setBackgroundView:)]
         pub unsafe fn setBackgroundView(&self, background_view: Option<&NSView>);
 
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frame_rect: NSRect,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            coder: &NSCoder,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, coder: &NSCoder) -> Id<Self>;
 
         #[method(reloadData)]
         pub unsafe fn reloadData(&self);
@@ -331,7 +317,7 @@ extern_methods!(
         pub unsafe fn itemViewForItemAtIndex(
             &self,
             index: NSInteger,
-        ) -> Option<Id<NSScrubberItemView, Shared>>;
+        ) -> Option<Id<NSScrubberItemView>>;
 
         #[method(registerClass:forItemIdentifier:)]
         pub unsafe fn registerClass_forItemIdentifier(
@@ -354,6 +340,6 @@ extern_methods!(
             &self,
             item_identifier: &NSUserInterfaceItemIdentifier,
             owner: Option<&Object>,
-        ) -> Option<Id<NSScrubberItemView, Shared>>;
+        ) -> Option<Id<NSScrubberItemView>>;
     }
 );

@@ -24,7 +24,7 @@ extern_methods!(
     unsafe impl SKAdImpression {
         #[cfg(feature = "Foundation_NSNumber")]
         #[method_id(@__retain_semantics Other sourceAppStoreItemIdentifier)]
-        pub unsafe fn sourceAppStoreItemIdentifier(&self) -> Id<NSNumber, Shared>;
+        pub unsafe fn sourceAppStoreItemIdentifier(&self) -> Id<NSNumber>;
 
         #[cfg(feature = "Foundation_NSNumber")]
         #[method(setSourceAppStoreItemIdentifier:)]
@@ -35,7 +35,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSNumber")]
         #[method_id(@__retain_semantics Other advertisedAppStoreItemIdentifier)]
-        pub unsafe fn advertisedAppStoreItemIdentifier(&self) -> Id<NSNumber, Shared>;
+        pub unsafe fn advertisedAppStoreItemIdentifier(&self) -> Id<NSNumber>;
 
         #[cfg(feature = "Foundation_NSNumber")]
         #[method(setAdvertisedAppStoreItemIdentifier:)]
@@ -46,7 +46,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other adNetworkIdentifier)]
-        pub unsafe fn adNetworkIdentifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn adNetworkIdentifier(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAdNetworkIdentifier:)]
@@ -54,7 +54,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSNumber")]
         #[method_id(@__retain_semantics Other adCampaignIdentifier)]
-        pub unsafe fn adCampaignIdentifier(&self) -> Id<NSNumber, Shared>;
+        pub unsafe fn adCampaignIdentifier(&self) -> Id<NSNumber>;
 
         #[cfg(feature = "Foundation_NSNumber")]
         #[method(setAdCampaignIdentifier:)]
@@ -62,7 +62,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSNumber")]
         #[method_id(@__retain_semantics Other sourceIdentifier)]
-        pub unsafe fn sourceIdentifier(&self) -> Id<NSNumber, Shared>;
+        pub unsafe fn sourceIdentifier(&self) -> Id<NSNumber>;
 
         #[cfg(feature = "Foundation_NSNumber")]
         #[method(setSourceIdentifier:)]
@@ -70,7 +70,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other adImpressionIdentifier)]
-        pub unsafe fn adImpressionIdentifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn adImpressionIdentifier(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAdImpressionIdentifier:)]
@@ -78,7 +78,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other adType)]
-        pub unsafe fn adType(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn adType(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAdType:)]
@@ -86,7 +86,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other adDescription)]
-        pub unsafe fn adDescription(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn adDescription(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAdDescription:)]
@@ -94,7 +94,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other adPurchaserName)]
-        pub unsafe fn adPurchaserName(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn adPurchaserName(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAdPurchaserName:)]
@@ -102,7 +102,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSNumber")]
         #[method_id(@__retain_semantics Other timestamp)]
-        pub unsafe fn timestamp(&self) -> Id<NSNumber, Shared>;
+        pub unsafe fn timestamp(&self) -> Id<NSNumber>;
 
         #[cfg(feature = "Foundation_NSNumber")]
         #[method(setTimestamp:)]
@@ -110,7 +110,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other signature)]
-        pub unsafe fn signature(&self) -> Id<NSString, Shared>;
+        pub unsafe fn signature(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setSignature:)]
@@ -118,7 +118,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other version)]
-        pub unsafe fn version(&self) -> Id<NSString, Shared>;
+        pub unsafe fn version(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setVersion:)]

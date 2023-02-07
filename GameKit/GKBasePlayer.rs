@@ -25,10 +25,10 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "use the teamPlayerID property to identify a player"]
         #[method_id(@__retain_semantics Other playerID)]
-        pub unsafe fn playerID(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn playerID(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other displayName)]
-        pub unsafe fn displayName(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn displayName(&self) -> Option<Id<NSString>>;
     }
 );

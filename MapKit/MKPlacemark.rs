@@ -38,7 +38,7 @@ extern_methods!(
         pub unsafe fn initWithCoordinate(
             this: Option<Allocated<Self>>,
             coordinate: CLLocationCoordinate2D,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithCoordinate:addressDictionary:)]
@@ -46,7 +46,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             coordinate: CLLocationCoordinate2D,
             address_dictionary: Option<&NSDictionary<NSString, Object>>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Contacts_CNPostalAddress")]
         #[method_id(@__retain_semantics Init initWithCoordinate:postalAddress:)]
@@ -54,11 +54,11 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             coordinate: CLLocationCoordinate2D,
             postal_address: &CNPostalAddress,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other countryCode)]
-        pub unsafe fn countryCode(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn countryCode(&self) -> Option<Id<NSString>>;
     }
 );
 
@@ -70,6 +70,6 @@ extern_methods!(
         pub unsafe fn initWithPlacemark(
             this: Option<Allocated<Self>>,
             placemark: &CLPlacemark,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

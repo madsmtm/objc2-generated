@@ -40,7 +40,7 @@ extern_methods!(
     unsafe impl NSLengthFormatter {
         #[cfg(feature = "Foundation_NSNumberFormatter")]
         #[method_id(@__retain_semantics Other numberFormatter)]
-        pub unsafe fn numberFormatter(&self) -> Id<NSNumberFormatter, Shared>;
+        pub unsafe fn numberFormatter(&self) -> Id<NSNumberFormatter>;
 
         #[cfg(feature = "Foundation_NSNumberFormatter")]
         #[method(setNumberFormatter:)]
@@ -64,11 +64,11 @@ extern_methods!(
             &self,
             value: c_double,
             unit: NSLengthFormatterUnit,
-        ) -> Id<NSString, Shared>;
+        ) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringFromMeters:)]
-        pub unsafe fn stringFromMeters(&self, number_in_meters: c_double) -> Id<NSString, Shared>;
+        pub unsafe fn stringFromMeters(&self, number_in_meters: c_double) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other unitStringFromValue:unit:)]
@@ -76,7 +76,7 @@ extern_methods!(
             &self,
             value: c_double,
             unit: NSLengthFormatterUnit,
-        ) -> Id<NSString, Shared>;
+        ) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other unitStringFromMeters:usedUnit:)]
@@ -84,15 +84,15 @@ extern_methods!(
             &self,
             number_in_meters: c_double,
             unitp: *mut NSLengthFormatterUnit,
-        ) -> Id<NSString, Shared>;
+        ) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(getObjectValue:forString:errorDescription:)]
         pub unsafe fn getObjectValue_forString_errorDescription(
             &self,
-            obj: Option<&mut Option<Id<Object, Shared>>>,
+            obj: Option<&mut Option<Id<Object>>>,
             string: &NSString,
-            error: Option<&mut Option<Id<NSString, Shared>>>,
+            error: Option<&mut Option<Id<NSString>>>,
         ) -> bool;
     }
 );

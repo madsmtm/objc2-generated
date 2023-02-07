@@ -29,11 +29,11 @@ extern_methods!(
     unsafe impl DOMHTMLObjectElement {
         #[cfg(feature = "WebKit_DOMHTMLFormElement")]
         #[method_id(@__retain_semantics Other form)]
-        pub unsafe fn form(&self) -> Option<Id<DOMHTMLFormElement, Shared>>;
+        pub unsafe fn form(&self) -> Option<Id<DOMHTMLFormElement>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other code)]
-        pub unsafe fn code(&self) -> Id<NSString, Shared>;
+        pub unsafe fn code(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCode:)]
@@ -41,7 +41,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other align)]
-        pub unsafe fn align(&self) -> Id<NSString, Shared>;
+        pub unsafe fn align(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAlign:)]
@@ -49,7 +49,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other archive)]
-        pub unsafe fn archive(&self) -> Id<NSString, Shared>;
+        pub unsafe fn archive(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setArchive:)]
@@ -57,7 +57,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other border)]
-        pub unsafe fn border(&self) -> Id<NSString, Shared>;
+        pub unsafe fn border(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setBorder:)]
@@ -65,7 +65,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other codeBase)]
-        pub unsafe fn codeBase(&self) -> Id<NSString, Shared>;
+        pub unsafe fn codeBase(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCodeBase:)]
@@ -73,7 +73,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other codeType)]
-        pub unsafe fn codeType(&self) -> Id<NSString, Shared>;
+        pub unsafe fn codeType(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCodeType:)]
@@ -81,7 +81,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other data)]
-        pub unsafe fn data(&self) -> Id<NSString, Shared>;
+        pub unsafe fn data(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setData:)]
@@ -95,7 +95,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other height)]
-        pub unsafe fn height(&self) -> Id<NSString, Shared>;
+        pub unsafe fn height(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setHeight:)]
@@ -109,7 +109,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString, Shared>;
+        pub unsafe fn name(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]
@@ -117,7 +117,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other standby)]
-        pub unsafe fn standby(&self) -> Id<NSString, Shared>;
+        pub unsafe fn standby(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setStandby:)]
@@ -125,7 +125,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other type)]
-        pub unsafe fn r#type(&self) -> Id<NSString, Shared>;
+        pub unsafe fn r#type(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setType:)]
@@ -133,7 +133,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other useMap)]
-        pub unsafe fn useMap(&self) -> Id<NSString, Shared>;
+        pub unsafe fn useMap(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setUseMap:)]
@@ -147,7 +147,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other width)]
-        pub unsafe fn width(&self) -> Id<NSString, Shared>;
+        pub unsafe fn width(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setWidth:)]
@@ -155,10 +155,10 @@ extern_methods!(
 
         #[cfg(feature = "WebKit_DOMDocument")]
         #[method_id(@__retain_semantics Other contentDocument)]
-        pub unsafe fn contentDocument(&self) -> Option<Id<DOMDocument, Shared>>;
+        pub unsafe fn contentDocument(&self) -> Option<Id<DOMDocument>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other absoluteImageURL)]
-        pub unsafe fn absoluteImageURL(&self) -> Id<NSURL, Shared>;
+        pub unsafe fn absoluteImageURL(&self) -> Id<NSURL>;
     }
 );

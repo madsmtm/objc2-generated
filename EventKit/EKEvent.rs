@@ -48,11 +48,11 @@ extern_methods!(
     unsafe impl EKEvent {
         #[cfg(feature = "EventKit_EKEventStore")]
         #[method_id(@__retain_semantics Other eventWithEventStore:)]
-        pub unsafe fn eventWithEventStore(event_store: &EKEventStore) -> Id<EKEvent, Shared>;
+        pub unsafe fn eventWithEventStore(event_store: &EKEventStore) -> Id<EKEvent>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other eventIdentifier)]
-        pub unsafe fn eventIdentifier(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn eventIdentifier(&self) -> Option<Id<NSString>>;
 
         #[method(isAllDay)]
         pub unsafe fn isAllDay(&self) -> bool;
@@ -62,7 +62,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other startDate)]
-        pub unsafe fn startDate(&self) -> Id<NSDate, Shared>;
+        pub unsafe fn startDate(&self) -> Id<NSDate>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method(setStartDate:)]
@@ -70,7 +70,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other endDate)]
-        pub unsafe fn endDate(&self) -> Id<NSDate, Shared>;
+        pub unsafe fn endDate(&self) -> Id<NSDate>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method(setEndDate:)]
@@ -78,7 +78,7 @@ extern_methods!(
 
         #[cfg(feature = "EventKit_EKStructuredLocation")]
         #[method_id(@__retain_semantics Other structuredLocation)]
-        pub unsafe fn structuredLocation(&self) -> Option<Id<EKStructuredLocation, Shared>>;
+        pub unsafe fn structuredLocation(&self) -> Option<Id<EKStructuredLocation>>;
 
         #[cfg(feature = "EventKit_EKStructuredLocation")]
         #[method(setStructuredLocation:)]
@@ -92,7 +92,7 @@ extern_methods!(
 
         #[cfg(feature = "EventKit_EKParticipant")]
         #[method_id(@__retain_semantics Other organizer)]
-        pub unsafe fn organizer(&self) -> Option<Id<EKParticipant, Shared>>;
+        pub unsafe fn organizer(&self) -> Option<Id<EKParticipant>>;
 
         #[method(availability)]
         pub unsafe fn availability(&self) -> EKEventAvailability;
@@ -108,14 +108,14 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other occurrenceDate)]
-        pub unsafe fn occurrenceDate(&self) -> Option<Id<NSDate, Shared>>;
+        pub unsafe fn occurrenceDate(&self) -> Option<Id<NSDate>>;
 
         #[method(refresh)]
         pub unsafe fn refresh(&self) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other birthdayContactIdentifier)]
-        pub unsafe fn birthdayContactIdentifier(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn birthdayContactIdentifier(&self) -> Option<Id<NSString>>;
 
         #[method(birthdayPersonID)]
         pub unsafe fn birthdayPersonID(&self) -> NSInteger;
@@ -123,6 +123,6 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use birthdayContactIdentifier instead"]
         #[method_id(@__retain_semantics Other birthdayPersonUniqueID)]
-        pub unsafe fn birthdayPersonUniqueID(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn birthdayPersonUniqueID(&self) -> Option<Id<NSString>>;
     }
 );

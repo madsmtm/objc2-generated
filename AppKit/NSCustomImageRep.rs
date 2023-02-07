@@ -32,7 +32,7 @@ extern_methods!(
             size: NSSize,
             drawing_handler_should_be_called_with_flipped_context: bool,
             drawing_handler: &Block<(NSRect,), Bool>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(drawingHandler)]
         pub unsafe fn drawingHandler(&self) -> *mut Block<(NSRect,), Bool>;
@@ -42,12 +42,12 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             selector: Sel,
             delegate: &Object,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(drawSelector)]
         pub unsafe fn drawSelector(&self) -> Option<Sel>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<Object>>;
     }
 );

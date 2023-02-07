@@ -24,7 +24,7 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKFetchRecordZoneChangesOperation")]
     unsafe impl CKFetchRecordZoneChangesOperation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(all(
             feature = "CloudKit_CKFetchRecordZoneChangesConfiguration",
@@ -39,11 +39,11 @@ extern_methods!(
             configurations_by_record_zone_id: Option<
                 &NSDictionary<CKRecordZoneID, CKFetchRecordZoneChangesConfiguration>,
             >,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(feature = "CloudKit_CKRecordZoneID", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other recordZoneIDs)]
-        pub unsafe fn recordZoneIDs(&self) -> Option<Id<NSArray<CKRecordZoneID>, Shared>>;
+        pub unsafe fn recordZoneIDs(&self) -> Option<Id<NSArray<CKRecordZoneID>>>;
 
         #[cfg(all(feature = "CloudKit_CKRecordZoneID", feature = "Foundation_NSArray"))]
         #[method(setRecordZoneIDs:)]
@@ -57,7 +57,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other configurationsByRecordZoneID)]
         pub unsafe fn configurationsByRecordZoneID(
             &self,
-        ) -> Option<Id<NSDictionary<CKRecordZoneID, CKFetchRecordZoneChangesConfiguration>, Shared>>;
+        ) -> Option<Id<NSDictionary<CKRecordZoneID, CKFetchRecordZoneChangesConfiguration>>>;
 
         #[cfg(all(
             feature = "CloudKit_CKFetchRecordZoneChangesConfiguration",
@@ -242,7 +242,7 @@ extern_methods!(
             options_by_record_zone_id: Option<
                 &NSDictionary<CKRecordZoneID, CKFetchRecordZoneChangesOptions>,
             >,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(
             feature = "CloudKit_CKFetchRecordZoneChangesOptions",
@@ -253,7 +253,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other optionsByRecordZoneID)]
         pub unsafe fn optionsByRecordZoneID(
             &self,
-        ) -> Option<Id<NSDictionary<CKRecordZoneID, CKFetchRecordZoneChangesOptions>, Shared>>;
+        ) -> Option<Id<NSDictionary<CKRecordZoneID, CKFetchRecordZoneChangesOptions>>>;
 
         #[cfg(all(
             feature = "CloudKit_CKFetchRecordZoneChangesOptions",
@@ -296,7 +296,7 @@ extern_methods!(
     unsafe impl CKFetchRecordZoneChangesConfiguration {
         #[cfg(feature = "CloudKit_CKServerChangeToken")]
         #[method_id(@__retain_semantics Other previousServerChangeToken)]
-        pub unsafe fn previousServerChangeToken(&self) -> Option<Id<CKServerChangeToken, Shared>>;
+        pub unsafe fn previousServerChangeToken(&self) -> Option<Id<CKServerChangeToken>>;
 
         #[cfg(feature = "CloudKit_CKServerChangeToken")]
         #[method(setPreviousServerChangeToken:)]
@@ -313,7 +313,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other desiredKeys)]
-        pub unsafe fn desiredKeys(&self) -> Option<Id<NSArray<CKRecordFieldKey>, Shared>>;
+        pub unsafe fn desiredKeys(&self) -> Option<Id<NSArray<CKRecordFieldKey>>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setDesiredKeys:)]
@@ -347,7 +347,7 @@ extern_methods!(
     unsafe impl CKFetchRecordZoneChangesOptions {
         #[cfg(feature = "CloudKit_CKServerChangeToken")]
         #[method_id(@__retain_semantics Other previousServerChangeToken)]
-        pub unsafe fn previousServerChangeToken(&self) -> Option<Id<CKServerChangeToken, Shared>>;
+        pub unsafe fn previousServerChangeToken(&self) -> Option<Id<CKServerChangeToken>>;
 
         #[cfg(feature = "CloudKit_CKServerChangeToken")]
         #[method(setPreviousServerChangeToken:)]
@@ -364,7 +364,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other desiredKeys)]
-        pub unsafe fn desiredKeys(&self) -> Option<Id<NSArray<CKRecordFieldKey>, Shared>>;
+        pub unsafe fn desiredKeys(&self) -> Option<Id<NSArray<CKRecordFieldKey>>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setDesiredKeys:)]

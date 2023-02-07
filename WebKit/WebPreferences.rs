@@ -42,22 +42,22 @@ extern_methods!(
     #[cfg(feature = "WebKit_WebPreferences")]
     unsafe impl WebPreferences {
         #[method_id(@__retain_semantics Other standardPreferences)]
-        pub unsafe fn standardPreferences() -> Option<Id<WebPreferences, Shared>>;
+        pub unsafe fn standardPreferences() -> Option<Id<WebPreferences>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
             this: Option<Allocated<Self>>,
             an_identifier: Option<&NSString>,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn identifier(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other standardFontFamily)]
-        pub unsafe fn standardFontFamily(&self) -> Id<NSString, Shared>;
+        pub unsafe fn standardFontFamily(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setStandardFontFamily:)]
@@ -65,7 +65,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fixedFontFamily)]
-        pub unsafe fn fixedFontFamily(&self) -> Id<NSString, Shared>;
+        pub unsafe fn fixedFontFamily(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setFixedFontFamily:)]
@@ -73,7 +73,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other serifFontFamily)]
-        pub unsafe fn serifFontFamily(&self) -> Id<NSString, Shared>;
+        pub unsafe fn serifFontFamily(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setSerifFontFamily:)]
@@ -81,7 +81,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other sansSerifFontFamily)]
-        pub unsafe fn sansSerifFontFamily(&self) -> Id<NSString, Shared>;
+        pub unsafe fn sansSerifFontFamily(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setSansSerifFontFamily:)]
@@ -89,7 +89,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other cursiveFontFamily)]
-        pub unsafe fn cursiveFontFamily(&self) -> Id<NSString, Shared>;
+        pub unsafe fn cursiveFontFamily(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCursiveFontFamily:)]
@@ -97,7 +97,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fantasyFontFamily)]
-        pub unsafe fn fantasyFontFamily(&self) -> Id<NSString, Shared>;
+        pub unsafe fn fantasyFontFamily(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setFantasyFontFamily:)]
@@ -129,7 +129,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other defaultTextEncodingName)]
-        pub unsafe fn defaultTextEncodingName(&self) -> Id<NSString, Shared>;
+        pub unsafe fn defaultTextEncodingName(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setDefaultTextEncodingName:)]
@@ -146,7 +146,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other userStyleSheetLocation)]
-        pub unsafe fn userStyleSheetLocation(&self) -> Option<Id<NSURL, Shared>>;
+        pub unsafe fn userStyleSheetLocation(&self) -> Option<Id<NSURL>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method(setUserStyleSheetLocation:)]

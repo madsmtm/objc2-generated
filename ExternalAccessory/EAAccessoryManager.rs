@@ -44,7 +44,7 @@ extern_methods!(
     #[cfg(feature = "ExternalAccessory_EAAccessoryManager")]
     unsafe impl EAAccessoryManager {
         #[method_id(@__retain_semantics Other sharedAccessoryManager)]
-        pub unsafe fn sharedAccessoryManager() -> Id<EAAccessoryManager, Shared>;
+        pub unsafe fn sharedAccessoryManager() -> Id<EAAccessoryManager>;
 
         #[cfg(feature = "Foundation_NSPredicate")]
         #[method(showBluetoothAccessoryPickerWithNameFilter:completion:)]
@@ -65,6 +65,6 @@ extern_methods!(
             feature = "Foundation_NSArray"
         ))]
         #[method_id(@__retain_semantics Other connectedAccessories)]
-        pub unsafe fn connectedAccessories(&self) -> Id<NSArray<EAAccessory>, Shared>;
+        pub unsafe fn connectedAccessories(&self) -> Id<NSArray<EAAccessory>>;
     }
 );

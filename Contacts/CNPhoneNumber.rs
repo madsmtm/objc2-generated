@@ -29,28 +29,26 @@ extern_methods!(
     unsafe impl CNPhoneNumber {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other phoneNumberWithStringValue:)]
-        pub unsafe fn phoneNumberWithStringValue(
-            string_value: &NSString,
-        ) -> Option<Id<Self, Shared>>;
+        pub unsafe fn phoneNumberWithStringValue(string_value: &NSString) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithStringValue:)]
         pub unsafe fn initWithStringValue(
             this: Option<Allocated<Self>>,
             string: &NSString,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[deprecated = "Use initWithStringValue:"]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Option<Id<Self, Shared>>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Option<Id<Self>>;
 
         #[deprecated = "Use phoneNumberWithStringValue:"]
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Option<Id<Self, Shared>>;
+        pub unsafe fn new() -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringValue)]
-        pub unsafe fn stringValue(&self) -> Id<NSString, Shared>;
+        pub unsafe fn stringValue(&self) -> Id<NSString>;
     }
 );
 

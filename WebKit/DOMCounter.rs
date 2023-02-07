@@ -26,14 +26,14 @@ extern_methods!(
     unsafe impl DOMCounter {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn identifier(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other listStyle)]
-        pub unsafe fn listStyle(&self) -> Id<NSString, Shared>;
+        pub unsafe fn listStyle(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other separator)]
-        pub unsafe fn separator(&self) -> Id<NSString, Shared>;
+        pub unsafe fn separator(&self) -> Id<NSString>;
     }
 );

@@ -52,7 +52,7 @@ extern_protocol!(
         unsafe fn presentationAnchorForAuthorizationController(
             &self,
             controller: &ASAuthorizationController,
-        ) -> Id<ASPresentationAnchor, Shared>;
+        ) -> Id<ASPresentationAnchor>;
     }
 
     unsafe impl ProtocolType for dyn ASAuthorizationControllerPresentationContextProviding {}
@@ -87,12 +87,12 @@ extern_methods!(
             feature = "Foundation_NSArray"
         ))]
         #[method_id(@__retain_semantics Other authorizationRequests)]
-        pub unsafe fn authorizationRequests(&self) -> Id<NSArray<ASAuthorizationRequest>, Shared>;
+        pub unsafe fn authorizationRequests(&self) -> Id<NSArray<ASAuthorizationRequest>>;
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn ASAuthorizationControllerDelegate>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn ASAuthorizationControllerDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -103,9 +103,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other presentationContextProvider)]
         pub unsafe fn presentationContextProvider(
             &self,
-        ) -> Option<
-            Id<ProtocolObject<dyn ASAuthorizationControllerPresentationContextProviding>, Shared>,
-        >;
+        ) -> Option<Id<ProtocolObject<dyn ASAuthorizationControllerPresentationContextProviding>>>;
 
         #[method(setPresentationContextProvider:)]
         pub unsafe fn setPresentationContextProvider(
@@ -117,9 +115,8 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other customAuthorizationMethods)]
-        pub unsafe fn customAuthorizationMethods(
-            &self,
-        ) -> Id<NSArray<ASAuthorizationCustomMethod>, Shared>;
+        pub unsafe fn customAuthorizationMethods(&self)
+            -> Id<NSArray<ASAuthorizationCustomMethod>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setCustomAuthorizationMethods:)]
@@ -136,7 +133,7 @@ extern_methods!(
         pub unsafe fn initWithAuthorizationRequests(
             this: Option<Allocated<Self>>,
             authorization_requests: &NSArray<ASAuthorizationRequest>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(performRequests)]
         pub unsafe fn performRequests(&self);
@@ -154,9 +151,9 @@ extern_methods!(
         pub unsafe fn cancel(&self);
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }
 );

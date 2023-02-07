@@ -21,9 +21,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSSpellServer")]
     unsafe impl NSSpellServer {
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(
-            &self,
-        ) -> Option<Id<ProtocolObject<dyn NSSpellServerDelegate>, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSSpellServerDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -84,7 +82,7 @@ extern_protocol!(
             sender: &NSSpellServer,
             word: &NSString,
             language: &NSString,
-        ) -> Option<Id<NSArray<NSString>, Shared>>;
+        ) -> Option<Id<NSArray<NSString>>>;
 
         #[cfg(all(feature = "Foundation_NSSpellServer", feature = "Foundation_NSString"))]
         #[optional]
@@ -119,7 +117,7 @@ extern_protocol!(
             range: NSRange,
             string: &NSString,
             language: &NSString,
-        ) -> Option<Id<NSArray<NSString>, Shared>>;
+        ) -> Option<Id<NSArray<NSString>>>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -134,7 +132,7 @@ extern_protocol!(
             sender: &NSSpellServer,
             string_to_check: &NSString,
             language: Option<&NSString>,
-            details: Option<&mut Option<Id<NSArray<NSDictionary<NSString, Object>>, Shared>>>,
+            details: Option<&mut Option<Id<NSArray<NSDictionary<NSString, Object>>>>>,
         ) -> NSRange;
 
         #[cfg(all(
@@ -156,7 +154,7 @@ extern_protocol!(
             options: Option<&NSDictionary<NSString, Object>>,
             orthography: Option<&NSOrthography>,
             word_count: NonNull<NSInteger>,
-        ) -> Option<Id<NSArray<NSTextCheckingResult>, Shared>>;
+        ) -> Option<Id<NSArray<NSTextCheckingResult>>>;
 
         #[cfg(all(feature = "Foundation_NSSpellServer", feature = "Foundation_NSString"))]
         #[optional]

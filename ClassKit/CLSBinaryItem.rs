@@ -54,6 +54,6 @@ extern_methods!(
             identifier: &NSString,
             title: &NSString,
             value_type: CLSBinaryValueType,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

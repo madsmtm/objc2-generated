@@ -47,16 +47,16 @@ extern_methods!(
         #[method_id(@__retain_semantics Other fileProviderErrorForCollisionWithItem:)]
         pub unsafe fn fileProviderErrorForCollisionWithItem(
             existing_item: &NSFileProviderItem,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other fileProviderErrorForNonExistentItemWithIdentifier:)]
         pub unsafe fn fileProviderErrorForNonExistentItemWithIdentifier(
             item_identifier: &NSFileProviderItemIdentifier,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other fileProviderErrorForRejectedDeletionOfItem:)]
         pub unsafe fn fileProviderErrorForRejectedDeletionOfItem(
             updated_version: &NSFileProviderItem,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

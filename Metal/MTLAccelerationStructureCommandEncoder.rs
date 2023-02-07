@@ -143,9 +143,8 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLAccelerationStructurePassSampleBufferAttachmentDescriptor")]
     unsafe impl MTLAccelerationStructurePassSampleBufferAttachmentDescriptor {
         #[method_id(@__retain_semantics Other sampleBuffer)]
-        pub unsafe fn sampleBuffer(
-            &self,
-        ) -> Option<Id<ProtocolObject<dyn MTLCounterSampleBuffer>, Shared>>;
+        pub unsafe fn sampleBuffer(&self)
+            -> Option<Id<ProtocolObject<dyn MTLCounterSampleBuffer>>>;
 
         #[method(setSampleBuffer:)]
         pub unsafe fn setSampleBuffer(
@@ -192,7 +191,7 @@ extern_methods!(
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             attachment_index: NSUInteger,
-        ) -> Id<MTLAccelerationStructurePassSampleBufferAttachmentDescriptor, Shared>;
+        ) -> Id<MTLAccelerationStructurePassSampleBufferAttachmentDescriptor>;
 
         #[cfg(feature = "Metal_MTLAccelerationStructurePassSampleBufferAttachmentDescriptor")]
         #[method(setObject:atIndexedSubscript:)]
@@ -223,12 +222,12 @@ extern_methods!(
     unsafe impl MTLAccelerationStructurePassDescriptor {
         #[method_id(@__retain_semantics Other accelerationStructurePassDescriptor)]
         pub unsafe fn accelerationStructurePassDescriptor(
-        ) -> Id<MTLAccelerationStructurePassDescriptor, Shared>;
+        ) -> Id<MTLAccelerationStructurePassDescriptor>;
 
         #[cfg(feature = "Metal_MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray")]
         #[method_id(@__retain_semantics Other sampleBufferAttachments)]
         pub unsafe fn sampleBufferAttachments(
             &self,
-        ) -> Id<MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray, Shared>;
+        ) -> Id<MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray>;
     }
 );

@@ -21,11 +21,11 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSUbiquitousKeyValueStore")]
     unsafe impl NSUbiquitousKeyValueStore {
         #[method_id(@__retain_semantics Other defaultStore)]
-        pub unsafe fn defaultStore() -> Id<NSUbiquitousKeyValueStore, Shared>;
+        pub unsafe fn defaultStore() -> Id<NSUbiquitousKeyValueStore>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other objectForKey:)]
-        pub unsafe fn objectForKey(&self, a_key: &NSString) -> Option<Id<Object, Shared>>;
+        pub unsafe fn objectForKey(&self, a_key: &NSString) -> Option<Id<Object>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setObject:forKey:)]
@@ -37,22 +37,22 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringForKey:)]
-        pub unsafe fn stringForKey(&self, a_key: &NSString) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn stringForKey(&self, a_key: &NSString) -> Option<Id<NSString>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other arrayForKey:)]
-        pub unsafe fn arrayForKey(&self, a_key: &NSString) -> Option<Id<NSArray, Shared>>;
+        pub unsafe fn arrayForKey(&self, a_key: &NSString) -> Option<Id<NSArray>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other dictionaryForKey:)]
         pub unsafe fn dictionaryForKey(
             &self,
             a_key: &NSString,
-        ) -> Option<Id<NSDictionary<NSString, Object>, Shared>>;
+        ) -> Option<Id<NSDictionary<NSString, Object>>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other dataForKey:)]
-        pub unsafe fn dataForKey(&self, a_key: &NSString) -> Option<Id<NSData, Shared>>;
+        pub unsafe fn dataForKey(&self, a_key: &NSString) -> Option<Id<NSData>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(longLongForKey:)]
@@ -100,8 +100,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other dictionaryRepresentation)]
-        pub unsafe fn dictionaryRepresentation(&self)
-            -> Id<NSDictionary<NSString, Object>, Shared>;
+        pub unsafe fn dictionaryRepresentation(&self) -> Id<NSDictionary<NSString, Object>>;
 
         #[method(synchronize)]
         pub unsafe fn synchronize(&self) -> bool;

@@ -46,7 +46,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other turnBasedMatchmakerDelegate)]
         pub unsafe fn turnBasedMatchmakerDelegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn GKTurnBasedMatchmakerViewControllerDelegate>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn GKTurnBasedMatchmakerViewControllerDelegate>>>;
 
         #[method(setTurnBasedMatchmakerDelegate:)]
         pub unsafe fn setTurnBasedMatchmakerDelegate(
@@ -73,7 +73,7 @@ extern_methods!(
         pub unsafe fn initWithMatchRequest(
             this: Option<Allocated<Self>>,
             request: &GKMatchRequest,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );
 
@@ -137,6 +137,6 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             nib_name_or_nil: Option<&NSNibName>,
             nib_bundle_or_nil: Option<&NSBundle>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

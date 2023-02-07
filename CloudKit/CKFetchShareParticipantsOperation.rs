@@ -24,7 +24,7 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKFetchShareParticipantsOperation")]
     unsafe impl CKFetchShareParticipantsOperation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(all(
             feature = "CloudKit_CKUserIdentityLookupInfo",
@@ -34,7 +34,7 @@ extern_methods!(
         pub unsafe fn initWithUserIdentityLookupInfos(
             this: Option<Allocated<Self>>,
             user_identity_lookup_infos: &NSArray<CKUserIdentityLookupInfo>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(
             feature = "CloudKit_CKUserIdentityLookupInfo",
@@ -43,7 +43,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other userIdentityLookupInfos)]
         pub unsafe fn userIdentityLookupInfos(
             &self,
-        ) -> Option<Id<NSArray<CKUserIdentityLookupInfo>, Shared>>;
+        ) -> Option<Id<NSArray<CKUserIdentityLookupInfo>>>;
 
         #[cfg(all(
             feature = "CloudKit_CKUserIdentityLookupInfo",

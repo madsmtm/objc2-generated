@@ -33,7 +33,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             nib_name: &NSNibName,
             bundle: Option<&NSBundle>,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(all(feature = "Foundation_NSBundle", feature = "Foundation_NSData"))]
         #[method_id(@__retain_semantics Init initWithNibData:bundle:)]
@@ -41,7 +41,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             nib_data: &NSData,
             bundle: Option<&NSBundle>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );
 
@@ -55,7 +55,7 @@ extern_methods!(
         pub unsafe fn initWithContentsOfURL(
             this: Option<Allocated<Self>>,
             nib_file_url: Option<&NSURL>,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[deprecated]
@@ -71,7 +71,7 @@ extern_methods!(
         pub unsafe fn instantiateNibWithOwner_topLevelObjects(
             &self,
             owner: Option<&Object>,
-            top_level_objects: Option<&mut Option<Id<NSArray, Shared>>>,
+            top_level_objects: Option<&mut Option<Id<NSArray>>>,
         ) -> bool;
     }
 );

@@ -26,7 +26,7 @@ extern_methods!(
     unsafe impl DOMCSSStyleDeclaration {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other cssText)]
-        pub unsafe fn cssText(&self) -> Id<NSString, Shared>;
+        pub unsafe fn cssText(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCssText:)]
@@ -37,35 +37,35 @@ extern_methods!(
 
         #[cfg(feature = "WebKit_DOMCSSRule")]
         #[method_id(@__retain_semantics Other parentRule)]
-        pub unsafe fn parentRule(&self) -> Option<Id<DOMCSSRule, Shared>>;
+        pub unsafe fn parentRule(&self) -> Option<Id<DOMCSSRule>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other getPropertyValue:)]
         pub unsafe fn getPropertyValue(
             &self,
             property_name: Option<&NSString>,
-        ) -> Option<Id<NSString, Shared>>;
+        ) -> Option<Id<NSString>>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_DOMCSSValue"))]
         #[method_id(@__retain_semantics Other getPropertyCSSValue:)]
         pub unsafe fn getPropertyCSSValue(
             &self,
             property_name: Option<&NSString>,
-        ) -> Option<Id<DOMCSSValue, Shared>>;
+        ) -> Option<Id<DOMCSSValue>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other removeProperty:)]
         pub unsafe fn removeProperty(
             &self,
             property_name: Option<&NSString>,
-        ) -> Option<Id<NSString, Shared>>;
+        ) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other getPropertyPriority:)]
         pub unsafe fn getPropertyPriority(
             &self,
             property_name: Option<&NSString>,
-        ) -> Option<Id<NSString, Shared>>;
+        ) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setProperty:value:priority:)]
@@ -78,7 +78,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other item:)]
-        pub unsafe fn item(&self, index: c_uint) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn item(&self, index: c_uint) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
@@ -86,7 +86,7 @@ extern_methods!(
         pub unsafe fn getPropertyShorthand(
             &self,
             property_name: Option<&NSString>,
-        ) -> Option<Id<NSString, Shared>>;
+        ) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(isPropertyImplicit:)]

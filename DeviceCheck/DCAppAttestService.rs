@@ -22,7 +22,7 @@ extern_methods!(
     #[cfg(feature = "DeviceCheck_DCAppAttestService")]
     unsafe impl DCAppAttestService {
         #[method_id(@__retain_semantics Other sharedService)]
-        pub unsafe fn sharedService() -> Id<DCAppAttestService, Shared>;
+        pub unsafe fn sharedService() -> Id<DCAppAttestService>;
 
         #[method(isSupported)]
         pub unsafe fn isSupported(&self) -> bool;

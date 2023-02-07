@@ -31,7 +31,7 @@ extern_methods!(
         pub unsafe fn initWithOptions(
             this: Option<Allocated<Self>>,
             options: &MKMapSnapshotOptions,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(startWithCompletionHandler:)]
         pub unsafe fn startWithCompletionHandler(

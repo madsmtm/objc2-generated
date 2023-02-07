@@ -144,7 +144,7 @@ extern_methods!(
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             index: NSUInteger,
-        ) -> Id<MTLBufferLayoutDescriptor, Shared>;
+        ) -> Id<MTLBufferLayoutDescriptor>;
 
         #[cfg(feature = "Metal_MTLBufferLayoutDescriptor")]
         #[method(setObject:atIndexedSubscript:)]
@@ -215,7 +215,7 @@ extern_methods!(
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             index: NSUInteger,
-        ) -> Id<MTLAttributeDescriptor, Shared>;
+        ) -> Id<MTLAttributeDescriptor>;
 
         #[cfg(feature = "Metal_MTLAttributeDescriptor")]
         #[method(setObject:atIndexedSubscript:)]
@@ -245,15 +245,15 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
     unsafe impl MTLStageInputOutputDescriptor {
         #[method_id(@__retain_semantics Other stageInputOutputDescriptor)]
-        pub fn stageInputOutputDescriptor() -> Id<MTLStageInputOutputDescriptor, Shared>;
+        pub fn stageInputOutputDescriptor() -> Id<MTLStageInputOutputDescriptor>;
 
         #[cfg(feature = "Metal_MTLBufferLayoutDescriptorArray")]
         #[method_id(@__retain_semantics Other layouts)]
-        pub fn layouts(&self) -> Id<MTLBufferLayoutDescriptorArray, Shared>;
+        pub fn layouts(&self) -> Id<MTLBufferLayoutDescriptorArray>;
 
         #[cfg(feature = "Metal_MTLAttributeDescriptorArray")]
         #[method_id(@__retain_semantics Other attributes)]
-        pub fn attributes(&self) -> Id<MTLAttributeDescriptorArray, Shared>;
+        pub fn attributes(&self) -> Id<MTLAttributeDescriptorArray>;
 
         #[method(indexType)]
         pub fn indexType(&self) -> MTLIndexType;

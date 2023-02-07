@@ -42,7 +42,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other achievementDelegate)]
         pub unsafe fn achievementDelegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn GKAchievementViewControllerDelegate>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn GKAchievementViewControllerDelegate>>>;
 
         #[method(setAchievementDelegate:)]
         pub unsafe fn setAchievementDelegate(
@@ -74,7 +74,7 @@ extern_methods!(
         pub unsafe fn initWithState(
             this: Option<Allocated<Self>>,
             state: GKGameCenterViewControllerState,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithLeaderboardID:playerScope:timeScope:)]
@@ -83,7 +83,7 @@ extern_methods!(
             leaderboard_id: &NSString,
             player_scope: GKLeaderboardPlayerScope,
             time_scope: GKLeaderboardTimeScope,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "GameKit_GKLeaderboard")]
         #[method_id(@__retain_semantics Init initWithLeaderboard:playerScope:)]
@@ -91,14 +91,14 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             leaderboard: &GKLeaderboard,
             player_scope: GKLeaderboardPlayerScope,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithAchievementID:)]
         pub unsafe fn initWithAchievementID(
             this: Option<Allocated<Self>>,
             achievement_id: &NSString,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );
 
@@ -112,6 +112,6 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             nib_name_or_nil: Option<&NSNibName>,
             nib_bundle_or_nil: Option<&NSBundle>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

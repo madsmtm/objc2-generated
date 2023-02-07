@@ -80,7 +80,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Id<NSString, Shared>;
+        pub unsafe fn title(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setTitle:)]
@@ -88,7 +88,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSFont")]
         #[method_id(@__retain_semantics Other titleFont)]
-        pub unsafe fn titleFont(&self) -> Id<NSFont, Shared>;
+        pub unsafe fn titleFont(&self) -> Id<NSFont>;
 
         #[cfg(feature = "AppKit_NSFont")]
         #[method(setTitleFont:)]
@@ -101,7 +101,7 @@ extern_methods!(
         pub unsafe fn titleRect(&self) -> NSRect;
 
         #[method_id(@__retain_semantics Other titleCell)]
-        pub unsafe fn titleCell(&self) -> Id<Object, Shared>;
+        pub unsafe fn titleCell(&self) -> Id<Object>;
 
         #[method(contentViewMargins)]
         pub unsafe fn contentViewMargins(&self) -> NSSize;
@@ -116,7 +116,7 @@ extern_methods!(
         pub unsafe fn setFrameFromContentFrame(&self, content_frame: NSRect);
 
         #[method_id(@__retain_semantics Other contentView)]
-        pub unsafe fn contentView(&self) -> Option<Id<NSView, Shared>>;
+        pub unsafe fn contentView(&self) -> Option<Id<NSView>>;
 
         #[method(setContentView:)]
         pub unsafe fn setContentView(&self, content_view: Option<&NSView>);
@@ -141,7 +141,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other borderColor)]
-        pub unsafe fn borderColor(&self) -> Id<NSColor, Shared>;
+        pub unsafe fn borderColor(&self) -> Id<NSColor>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setBorderColor:)]
@@ -149,7 +149,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other fillColor)]
-        pub unsafe fn fillColor(&self) -> Id<NSColor, Shared>;
+        pub unsafe fn fillColor(&self) -> Id<NSColor>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setFillColor:)]
@@ -185,9 +185,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSBox")]
     unsafe impl NSBox {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frame_rect: NSRect,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
 );

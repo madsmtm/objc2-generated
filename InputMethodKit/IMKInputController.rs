@@ -18,7 +18,7 @@ extern_protocol!(
             &self,
             tag: c_long,
             sender: Option<&Object>,
-        ) -> Option<Id<Object, Shared>>;
+        ) -> Option<Id<Object>>;
 
         #[method(setValue:forTag:client:)]
         unsafe fn setValue_forTag_client(
@@ -30,7 +30,7 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other modes:)]
-        unsafe fn modes(&self, sender: Option<&Object>) -> Option<Id<NSDictionary, Shared>>;
+        unsafe fn modes(&self, sender: Option<&Object>) -> Option<Id<NSDictionary>>;
 
         #[method(recognizedEvents:)]
         unsafe fn recognizedEvents(&self, sender: Option<&Object>) -> NSUInteger;
@@ -106,7 +106,7 @@ extern_methods!(
             server: Option<&IMKServer>,
             delegate: Option<&Object>,
             input_client: Option<&Object>,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[method(updateComposition)]
         pub unsafe fn updateComposition(&self);
@@ -133,7 +133,7 @@ extern_methods!(
             &self,
             style: NSInteger,
             range: NSRange,
-        ) -> Option<Id<NSDictionary, Shared>>;
+        ) -> Option<Id<NSDictionary>>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(doCommandBySelector:commandDictionary:)]
@@ -148,20 +148,20 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSMenu")]
         #[method_id(@__retain_semantics Other menu)]
-        pub unsafe fn menu(&self) -> Option<Id<NSMenu, Shared>>;
+        pub unsafe fn menu(&self) -> Option<Id<NSMenu>>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<Object>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, new_delegate: Option<&Object>);
 
         #[cfg(feature = "InputMethodKit_IMKServer")]
         #[method_id(@__retain_semantics Other server)]
-        pub unsafe fn server(&self) -> Option<Id<IMKServer, Shared>>;
+        pub unsafe fn server(&self) -> Option<Id<IMKServer>>;
 
         #[method_id(@__retain_semantics Other client)]
-        pub unsafe fn client(&self) -> Option<Id<TodoProtocols, Shared>>;
+        pub unsafe fn client(&self) -> Option<Id<TodoProtocols>>;
 
         #[method(inputControllerWillClose)]
         pub unsafe fn inputControllerWillClose(&self);

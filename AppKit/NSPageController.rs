@@ -50,9 +50,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSPageController")]
     unsafe impl NSPageController {
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(
-            &self,
-        ) -> Option<Id<ProtocolObject<dyn NSPageControllerDelegate>, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSPageControllerDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -61,7 +59,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other selectedViewController)]
-        pub unsafe fn selectedViewController(&self) -> Option<Id<NSViewController, Shared>>;
+        pub unsafe fn selectedViewController(&self) -> Option<Id<NSViewController>>;
 
         #[method(transitionStyle)]
         pub unsafe fn transitionStyle(&self) -> NSPageControllerTransitionStyle;
@@ -71,7 +69,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other arrangedObjects)]
-        pub unsafe fn arrangedObjects(&self) -> Id<NSArray, Shared>;
+        pub unsafe fn arrangedObjects(&self) -> Id<NSArray>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setArrangedObjects:)]
@@ -109,7 +107,7 @@ extern_protocol!(
             &self,
             page_controller: &NSPageController,
             object: &Object,
-        ) -> Id<NSPageControllerObjectIdentifier, Shared>;
+        ) -> Id<NSPageControllerObjectIdentifier>;
 
         #[cfg(all(
             feature = "AppKit_NSPageController",
@@ -121,7 +119,7 @@ extern_protocol!(
             &self,
             page_controller: &NSPageController,
             identifier: &NSPageControllerObjectIdentifier,
-        ) -> Id<NSViewController, Shared>;
+        ) -> Id<NSViewController>;
 
         #[cfg(feature = "AppKit_NSPageController")]
         #[optional]
@@ -178,6 +176,6 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             nib_name_or_nil: Option<&NSNibName>,
             nib_bundle_or_nil: Option<&NSBundle>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

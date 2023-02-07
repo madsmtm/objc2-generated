@@ -62,7 +62,7 @@ extern_methods!(
     unsafe impl GCMotion {
         #[cfg(feature = "GameController_GCController")]
         #[method_id(@__retain_semantics Other controller)]
-        pub unsafe fn controller(&self) -> Option<Id<GCController, Shared>>;
+        pub unsafe fn controller(&self) -> Option<Id<GCController>>;
 
         #[method(valueChangedHandler)]
         pub unsafe fn valueChangedHandler(&self) -> GCMotionValueChangedHandler;

@@ -41,7 +41,7 @@ extern_methods!(
 
         #[cfg(feature = "WebKit_DOMHTMLFormElement")]
         #[method_id(@__retain_semantics Other form)]
-        pub unsafe fn form(&self) -> Option<Id<DOMHTMLFormElement, Shared>>;
+        pub unsafe fn form(&self) -> Option<Id<DOMHTMLFormElement>>;
 
         #[method(multiple)]
         pub unsafe fn multiple(&self) -> bool;
@@ -51,7 +51,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Id<NSString, Shared>;
+        pub unsafe fn name(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setName:)]
@@ -65,11 +65,11 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other type)]
-        pub unsafe fn r#type(&self) -> Id<NSString, Shared>;
+        pub unsafe fn r#type(&self) -> Id<NSString>;
 
         #[cfg(feature = "WebKit_DOMHTMLOptionsCollection")]
         #[method_id(@__retain_semantics Other options)]
-        pub unsafe fn options(&self) -> Option<Id<DOMHTMLOptionsCollection, Shared>>;
+        pub unsafe fn options(&self) -> Option<Id<DOMHTMLOptionsCollection>>;
 
         #[method(length)]
         pub unsafe fn length(&self) -> c_int;
@@ -82,7 +82,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other value)]
-        pub unsafe fn value(&self) -> Id<NSString, Shared>;
+        pub unsafe fn value(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setValue:)]
@@ -92,11 +92,11 @@ extern_methods!(
         pub unsafe fn willValidate(&self) -> bool;
 
         #[method_id(@__retain_semantics Other item:)]
-        pub unsafe fn item(&self, index: c_uint) -> Option<Id<DOMNode, Shared>>;
+        pub unsafe fn item(&self, index: c_uint) -> Option<Id<DOMNode>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other namedItem:)]
-        pub unsafe fn namedItem(&self, name: Option<&NSString>) -> Option<Id<DOMNode, Shared>>;
+        pub unsafe fn namedItem(&self, name: Option<&NSString>) -> Option<Id<DOMNode>>;
 
         #[method(add:before:)]
         pub unsafe fn add_before(

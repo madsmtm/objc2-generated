@@ -29,7 +29,7 @@ extern_methods!(
     unsafe impl DOMHTMLTableSectionElement {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other align)]
-        pub unsafe fn align(&self) -> Id<NSString, Shared>;
+        pub unsafe fn align(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAlign:)]
@@ -37,7 +37,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other ch)]
-        pub unsafe fn ch(&self) -> Id<NSString, Shared>;
+        pub unsafe fn ch(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCh:)]
@@ -45,7 +45,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other chOff)]
-        pub unsafe fn chOff(&self) -> Id<NSString, Shared>;
+        pub unsafe fn chOff(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setChOff:)]
@@ -53,7 +53,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other vAlign)]
-        pub unsafe fn vAlign(&self) -> Id<NSString, Shared>;
+        pub unsafe fn vAlign(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setVAlign:)]
@@ -61,10 +61,10 @@ extern_methods!(
 
         #[cfg(feature = "WebKit_DOMHTMLCollection")]
         #[method_id(@__retain_semantics Other rows)]
-        pub unsafe fn rows(&self) -> Option<Id<DOMHTMLCollection, Shared>>;
+        pub unsafe fn rows(&self) -> Option<Id<DOMHTMLCollection>>;
 
         #[method_id(@__retain_semantics Other insertRow:)]
-        pub unsafe fn insertRow(&self, index: c_int) -> Option<Id<DOMHTMLElement, Shared>>;
+        pub unsafe fn insertRow(&self, index: c_int) -> Option<Id<DOMHTMLElement>>;
 
         #[method(deleteRow:)]
         pub unsafe fn deleteRow(&self, index: c_int);

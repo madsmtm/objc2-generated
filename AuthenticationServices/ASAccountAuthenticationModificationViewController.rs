@@ -13,7 +13,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other extensionContext)]
         pub unsafe fn extensionContext(
             &self,
-        ) -> Id<ASAccountAuthenticationModificationExtensionContext, Shared>;
+        ) -> Id<ASAccountAuthenticationModificationExtensionContext>;
 
         #[cfg(all(
             feature = "AuthenticationServices_ASCredentialServiceIdentifier",

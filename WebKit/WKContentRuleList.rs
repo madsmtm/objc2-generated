@@ -24,6 +24,6 @@ extern_methods!(
     unsafe impl WKContentRuleList {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn identifier(&self) -> Id<NSString>;
     }
 );

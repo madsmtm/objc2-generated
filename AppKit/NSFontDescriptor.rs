@@ -96,14 +96,14 @@ extern_methods!(
     unsafe impl NSFontDescriptor {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other postscriptName)]
-        pub unsafe fn postscriptName(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn postscriptName(&self) -> Option<Id<NSString>>;
 
         #[method(pointSize)]
         pub unsafe fn pointSize(&self) -> CGFloat;
 
         #[cfg(feature = "Foundation_NSAffineTransform")]
         #[method_id(@__retain_semantics Other matrix)]
-        pub unsafe fn matrix(&self) -> Option<Id<NSAffineTransform, Shared>>;
+        pub unsafe fn matrix(&self) -> Option<Id<NSAffineTransform>>;
 
         #[method(symbolicTraits)]
         pub unsafe fn symbolicTraits(&self) -> NSFontDescriptorSymbolicTraits;
@@ -115,26 +115,26 @@ extern_methods!(
         pub unsafe fn objectForKey(
             &self,
             attribute: &NSFontDescriptorAttributeName,
-        ) -> Option<Id<Object, Shared>>;
+        ) -> Option<Id<Object>>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other fontAttributes)]
         pub unsafe fn fontAttributes(
             &self,
-        ) -> Id<NSDictionary<NSFontDescriptorAttributeName, Object>, Shared>;
+        ) -> Id<NSDictionary<NSFontDescriptorAttributeName, Object>>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other fontDescriptorWithFontAttributes:)]
         pub unsafe fn fontDescriptorWithFontAttributes(
             attributes: Option<&NSDictionary<NSFontDescriptorAttributeName, Object>>,
-        ) -> Id<NSFontDescriptor, Shared>;
+        ) -> Id<NSFontDescriptor>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fontDescriptorWithName:size:)]
         pub unsafe fn fontDescriptorWithName_size(
             font_name: &NSString,
             size: CGFloat,
-        ) -> Id<NSFontDescriptor, Shared>;
+        ) -> Id<NSFontDescriptor>;
 
         #[cfg(all(
             feature = "Foundation_NSAffineTransform",
@@ -144,74 +144,71 @@ extern_methods!(
         pub unsafe fn fontDescriptorWithName_matrix(
             font_name: &NSString,
             matrix: &NSAffineTransform,
-        ) -> Id<NSFontDescriptor, Shared>;
+        ) -> Id<NSFontDescriptor>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Init initWithFontAttributes:)]
         pub unsafe fn initWithFontAttributes(
             this: Option<Allocated<Self>>,
             attributes: Option<&NSDictionary<NSFontDescriptorAttributeName, Object>>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSSet"))]
         #[method_id(@__retain_semantics Other matchingFontDescriptorsWithMandatoryKeys:)]
         pub unsafe fn matchingFontDescriptorsWithMandatoryKeys(
             &self,
             mandatory_keys: Option<&NSSet<NSFontDescriptorAttributeName>>,
-        ) -> Id<NSArray<NSFontDescriptor>, Shared>;
+        ) -> Id<NSArray<NSFontDescriptor>>;
 
         #[cfg(feature = "Foundation_NSSet")]
         #[method_id(@__retain_semantics Other matchingFontDescriptorWithMandatoryKeys:)]
         pub unsafe fn matchingFontDescriptorWithMandatoryKeys(
             &self,
             mandatory_keys: Option<&NSSet<NSFontDescriptorAttributeName>>,
-        ) -> Option<Id<NSFontDescriptor, Shared>>;
+        ) -> Option<Id<NSFontDescriptor>>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other fontDescriptorByAddingAttributes:)]
         pub unsafe fn fontDescriptorByAddingAttributes(
             &self,
             attributes: &NSDictionary<NSFontDescriptorAttributeName, Object>,
-        ) -> Id<NSFontDescriptor, Shared>;
+        ) -> Id<NSFontDescriptor>;
 
         #[method_id(@__retain_semantics Other fontDescriptorWithSymbolicTraits:)]
         pub unsafe fn fontDescriptorWithSymbolicTraits(
             &self,
             symbolic_traits: NSFontDescriptorSymbolicTraits,
-        ) -> Id<NSFontDescriptor, Shared>;
+        ) -> Id<NSFontDescriptor>;
 
         #[method_id(@__retain_semantics Other fontDescriptorWithSize:)]
         pub unsafe fn fontDescriptorWithSize(
             &self,
             new_point_size: CGFloat,
-        ) -> Id<NSFontDescriptor, Shared>;
+        ) -> Id<NSFontDescriptor>;
 
         #[cfg(feature = "Foundation_NSAffineTransform")]
         #[method_id(@__retain_semantics Other fontDescriptorWithMatrix:)]
         pub unsafe fn fontDescriptorWithMatrix(
             &self,
             matrix: &NSAffineTransform,
-        ) -> Id<NSFontDescriptor, Shared>;
+        ) -> Id<NSFontDescriptor>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fontDescriptorWithFace:)]
-        pub unsafe fn fontDescriptorWithFace(
-            &self,
-            new_face: &NSString,
-        ) -> Id<NSFontDescriptor, Shared>;
+        pub unsafe fn fontDescriptorWithFace(&self, new_face: &NSString) -> Id<NSFontDescriptor>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fontDescriptorWithFamily:)]
         pub unsafe fn fontDescriptorWithFamily(
             &self,
             new_family: &NSString,
-        ) -> Id<NSFontDescriptor, Shared>;
+        ) -> Id<NSFontDescriptor>;
 
         #[method_id(@__retain_semantics Other fontDescriptorWithDesign:)]
         pub unsafe fn fontDescriptorWithDesign(
             &self,
             design: &NSFontDescriptorSystemDesign,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
     }
 );
 
@@ -367,6 +364,6 @@ extern_methods!(
         pub unsafe fn preferredFontDescriptorForTextStyle_options(
             style: &NSFontTextStyle,
             options: &NSDictionary<NSFontTextStyleOptionKey, Object>,
-        ) -> Id<NSFontDescriptor, Shared>;
+        ) -> Id<NSFontDescriptor>;
     }
 );

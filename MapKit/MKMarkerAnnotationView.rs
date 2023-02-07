@@ -60,7 +60,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other markerTintColor)]
-        pub unsafe fn markerTintColor(&self) -> Option<Id<NSColor, Shared>>;
+        pub unsafe fn markerTintColor(&self) -> Option<Id<NSColor>>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setMarkerTintColor:)]
@@ -68,7 +68,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other glyphTintColor)]
-        pub unsafe fn glyphTintColor(&self) -> Option<Id<NSColor, Shared>>;
+        pub unsafe fn glyphTintColor(&self) -> Option<Id<NSColor>>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setGlyphTintColor:)]
@@ -76,7 +76,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other glyphText)]
-        pub unsafe fn glyphText(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn glyphText(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setGlyphText:)]
@@ -84,7 +84,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other glyphImage)]
-        pub unsafe fn glyphImage(&self) -> Option<Id<NSImage, Shared>>;
+        pub unsafe fn glyphImage(&self) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method(setGlyphImage:)]
@@ -92,7 +92,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other selectedGlyphImage)]
-        pub unsafe fn selectedGlyphImage(&self) -> Option<Id<NSImage, Shared>>;
+        pub unsafe fn selectedGlyphImage(&self) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method(setSelectedGlyphImage:)]
@@ -116,7 +116,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             annotation: Option<&ProtocolObject<dyn MKAnnotation>>,
             reuse_identifier: Option<&NSString>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );
 
@@ -125,9 +125,6 @@ extern_methods!(
     #[cfg(feature = "MapKit_MKMarkerAnnotationView")]
     unsafe impl MKMarkerAnnotationView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frame_rect: NSRect,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
 );

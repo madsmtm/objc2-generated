@@ -37,7 +37,7 @@ extern_methods!(
     unsafe impl NSFileProviderItemVersion {
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other beforeFirstSyncComponent)]
-        pub unsafe fn beforeFirstSyncComponent() -> Id<NSData, Shared>;
+        pub unsafe fn beforeFirstSyncComponent() -> Id<NSData>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Init initWithContentVersion:metadataVersion:)]
@@ -45,15 +45,15 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             content_version: &NSData,
             metadata_version: &NSData,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other contentVersion)]
-        pub unsafe fn contentVersion(&self) -> Id<NSData, Shared>;
+        pub unsafe fn contentVersion(&self) -> Id<NSData>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other metadataVersion)]
-        pub unsafe fn metadataVersion(&self) -> Id<NSData, Shared>;
+        pub unsafe fn metadataVersion(&self) -> Id<NSData>;
     }
 );
 
@@ -133,25 +133,25 @@ ns_enum!(
 extern_protocol!(
     pub unsafe trait NSFileProviderItemProtocol: NSObjectProtocol {
         #[method_id(@__retain_semantics Other itemIdentifier)]
-        unsafe fn itemIdentifier(&self) -> Id<NSFileProviderItemIdentifier, Shared>;
+        unsafe fn itemIdentifier(&self) -> Id<NSFileProviderItemIdentifier>;
 
         #[method_id(@__retain_semantics Other parentItemIdentifier)]
-        unsafe fn parentItemIdentifier(&self) -> Id<NSFileProviderItemIdentifier, Shared>;
+        unsafe fn parentItemIdentifier(&self) -> Id<NSFileProviderItemIdentifier>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other filename)]
-        unsafe fn filename(&self) -> Id<NSString, Shared>;
+        unsafe fn filename(&self) -> Id<NSString>;
 
         #[cfg(feature = "UniformTypeIdentifiers_UTType")]
         #[optional]
         #[method_id(@__retain_semantics Other contentType)]
-        unsafe fn contentType(&self) -> Id<UTType, Shared>;
+        unsafe fn contentType(&self) -> Id<UTType>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
         #[optional]
         #[method_id(@__retain_semantics Other typeIdentifier)]
-        unsafe fn typeIdentifier(&self) -> Id<NSString, Shared>;
+        unsafe fn typeIdentifier(&self) -> Id<NSString>;
 
         #[optional]
         #[method(typeAndCreator)]
@@ -168,22 +168,22 @@ extern_protocol!(
         #[cfg(feature = "Foundation_NSNumber")]
         #[optional]
         #[method_id(@__retain_semantics Other documentSize)]
-        unsafe fn documentSize(&self) -> Option<Id<NSNumber, Shared>>;
+        unsafe fn documentSize(&self) -> Option<Id<NSNumber>>;
 
         #[cfg(feature = "Foundation_NSNumber")]
         #[optional]
         #[method_id(@__retain_semantics Other childItemCount)]
-        unsafe fn childItemCount(&self) -> Option<Id<NSNumber, Shared>>;
+        unsafe fn childItemCount(&self) -> Option<Id<NSNumber>>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[optional]
         #[method_id(@__retain_semantics Other creationDate)]
-        unsafe fn creationDate(&self) -> Option<Id<NSDate, Shared>>;
+        unsafe fn creationDate(&self) -> Option<Id<NSDate>>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[optional]
         #[method_id(@__retain_semantics Other contentModificationDate)]
-        unsafe fn contentModificationDate(&self) -> Option<Id<NSDate, Shared>>;
+        unsafe fn contentModificationDate(&self) -> Option<Id<NSDate>>;
 
         #[cfg(all(
             feature = "Foundation_NSData",
@@ -192,22 +192,22 @@ extern_protocol!(
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other extendedAttributes)]
-        unsafe fn extendedAttributes(&self) -> Id<NSDictionary<NSString, NSData>, Shared>;
+        unsafe fn extendedAttributes(&self) -> Id<NSDictionary<NSString, NSData>>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[optional]
         #[method_id(@__retain_semantics Other lastUsedDate)]
-        unsafe fn lastUsedDate(&self) -> Option<Id<NSDate, Shared>>;
+        unsafe fn lastUsedDate(&self) -> Option<Id<NSDate>>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[optional]
         #[method_id(@__retain_semantics Other tagData)]
-        unsafe fn tagData(&self) -> Option<Id<NSData, Shared>>;
+        unsafe fn tagData(&self) -> Option<Id<NSData>>;
 
         #[cfg(feature = "Foundation_NSNumber")]
         #[optional]
         #[method_id(@__retain_semantics Other favoriteRank)]
-        unsafe fn favoriteRank(&self) -> Option<Id<NSNumber, Shared>>;
+        unsafe fn favoriteRank(&self) -> Option<Id<NSNumber>>;
 
         #[optional]
         #[method(isTrashed)]
@@ -224,7 +224,7 @@ extern_protocol!(
         #[cfg(feature = "Foundation_NSError")]
         #[optional]
         #[method_id(@__retain_semantics Other uploadingError)]
-        unsafe fn uploadingError(&self) -> Option<Id<NSError, Shared>>;
+        unsafe fn uploadingError(&self) -> Option<Id<NSError>>;
 
         #[optional]
         #[method(isDownloaded)]
@@ -237,7 +237,7 @@ extern_protocol!(
         #[cfg(feature = "Foundation_NSError")]
         #[optional]
         #[method_id(@__retain_semantics Other downloadingError)]
-        unsafe fn downloadingError(&self) -> Option<Id<NSError, Shared>>;
+        unsafe fn downloadingError(&self) -> Option<Id<NSError>>;
 
         #[optional]
         #[method(isMostRecentVersionDownloaded)]
@@ -254,34 +254,32 @@ extern_protocol!(
         #[cfg(feature = "Foundation_NSPersonNameComponents")]
         #[optional]
         #[method_id(@__retain_semantics Other ownerNameComponents)]
-        unsafe fn ownerNameComponents(&self) -> Option<Id<NSPersonNameComponents, Shared>>;
+        unsafe fn ownerNameComponents(&self) -> Option<Id<NSPersonNameComponents>>;
 
         #[cfg(feature = "Foundation_NSPersonNameComponents")]
         #[optional]
         #[method_id(@__retain_semantics Other mostRecentEditorNameComponents)]
-        unsafe fn mostRecentEditorNameComponents(
-            &self,
-        ) -> Option<Id<NSPersonNameComponents, Shared>>;
+        unsafe fn mostRecentEditorNameComponents(&self) -> Option<Id<NSPersonNameComponents>>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[optional]
         #[method_id(@__retain_semantics Other versionIdentifier)]
-        unsafe fn versionIdentifier(&self) -> Option<Id<NSData, Shared>>;
+        unsafe fn versionIdentifier(&self) -> Option<Id<NSData>>;
 
         #[cfg(feature = "FileProvider_NSFileProviderItemVersion")]
         #[optional]
         #[method_id(@__retain_semantics Other itemVersion)]
-        unsafe fn itemVersion(&self) -> Id<NSFileProviderItemVersion, Shared>;
+        unsafe fn itemVersion(&self) -> Id<NSFileProviderItemVersion>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[optional]
         #[method_id(@__retain_semantics Other symlinkTargetPath)]
-        unsafe fn symlinkTargetPath(&self) -> Option<Id<NSString, Shared>>;
+        unsafe fn symlinkTargetPath(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[optional]
         #[method_id(@__retain_semantics Other userInfo)]
-        unsafe fn userInfo(&self) -> Option<Id<NSDictionary, Shared>>;
+        unsafe fn userInfo(&self) -> Option<Id<NSDictionary>>;
 
         #[optional]
         #[method(contentPolicy)]

@@ -59,23 +59,23 @@ extern_methods!(
     unsafe impl SKProduct {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedDescription)]
-        pub unsafe fn localizedDescription(&self) -> Id<NSString, Shared>;
+        pub unsafe fn localizedDescription(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedTitle)]
-        pub unsafe fn localizedTitle(&self) -> Id<NSString, Shared>;
+        pub unsafe fn localizedTitle(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSDecimalNumber")]
         #[method_id(@__retain_semantics Other price)]
-        pub unsafe fn price(&self) -> Id<NSDecimalNumber, Shared>;
+        pub unsafe fn price(&self) -> Id<NSDecimalNumber>;
 
         #[cfg(feature = "Foundation_NSLocale")]
         #[method_id(@__retain_semantics Other priceLocale)]
-        pub unsafe fn priceLocale(&self) -> Id<NSLocale, Shared>;
+        pub unsafe fn priceLocale(&self) -> Id<NSLocale>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other productIdentifier)]
-        pub unsafe fn productIdentifier(&self) -> Id<NSString, Shared>;
+        pub unsafe fn productIdentifier(&self) -> Id<NSString>;
 
         #[method(isDownloadable)]
         pub unsafe fn isDownloadable(&self) -> bool;
@@ -90,35 +90,35 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[deprecated]
         #[method_id(@__retain_semantics Other contentLengths)]
-        pub unsafe fn contentLengths(&self) -> Id<NSArray<NSNumber>, Shared>;
+        pub unsafe fn contentLengths(&self) -> Id<NSArray<NSNumber>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method_id(@__retain_semantics Other downloadContentLengths)]
-        pub unsafe fn downloadContentLengths(&self) -> Id<NSArray<NSNumber>, Shared>;
+        pub unsafe fn downloadContentLengths(&self) -> Id<NSArray<NSNumber>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
         #[method_id(@__retain_semantics Other contentVersion)]
-        pub unsafe fn contentVersion(&self) -> Id<NSString, Shared>;
+        pub unsafe fn contentVersion(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other downloadContentVersion)]
-        pub unsafe fn downloadContentVersion(&self) -> Id<NSString, Shared>;
+        pub unsafe fn downloadContentVersion(&self) -> Id<NSString>;
 
         #[cfg(feature = "StoreKit_SKProductSubscriptionPeriod")]
         #[method_id(@__retain_semantics Other subscriptionPeriod)]
-        pub unsafe fn subscriptionPeriod(&self) -> Option<Id<SKProductSubscriptionPeriod, Shared>>;
+        pub unsafe fn subscriptionPeriod(&self) -> Option<Id<SKProductSubscriptionPeriod>>;
 
         #[cfg(feature = "StoreKit_SKProductDiscount")]
         #[method_id(@__retain_semantics Other introductoryPrice)]
-        pub unsafe fn introductoryPrice(&self) -> Option<Id<SKProductDiscount, Shared>>;
+        pub unsafe fn introductoryPrice(&self) -> Option<Id<SKProductDiscount>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other subscriptionGroupIdentifier)]
-        pub unsafe fn subscriptionGroupIdentifier(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn subscriptionGroupIdentifier(&self) -> Option<Id<NSString>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "StoreKit_SKProductDiscount"))]
         #[method_id(@__retain_semantics Other discounts)]
-        pub unsafe fn discounts(&self) -> Id<NSArray<SKProductDiscount>, Shared>;
+        pub unsafe fn discounts(&self) -> Id<NSArray<SKProductDiscount>>;
     }
 );

@@ -24,15 +24,15 @@ extern_methods!(
     unsafe impl GKSavedGame {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn name(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other deviceName)]
-        pub unsafe fn deviceName(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn deviceName(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other modificationDate)]
-        pub unsafe fn modificationDate(&self) -> Option<Id<NSDate, Shared>>;
+        pub unsafe fn modificationDate(&self) -> Option<Id<NSDate>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
         #[method(loadDataWithCompletionHandler:)]

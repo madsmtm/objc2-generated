@@ -24,11 +24,11 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "No longer supported"]
         #[method_id(@__retain_semantics Other localizedName)]
-        pub unsafe fn localizedName(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn localizedName(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other ringtoneSound)]
-        pub unsafe fn ringtoneSound(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn ringtoneSound(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setRingtoneSound:)]
@@ -36,7 +36,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other iconTemplateImageData)]
-        pub unsafe fn iconTemplateImageData(&self) -> Option<Id<NSData, Shared>>;
+        pub unsafe fn iconTemplateImageData(&self) -> Option<Id<NSData>>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method(setIconTemplateImageData:)]
@@ -68,14 +68,14 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSNumber", feature = "Foundation_NSSet"))]
         #[method_id(@__retain_semantics Other supportedHandleTypes)]
-        pub unsafe fn supportedHandleTypes(&self) -> Id<NSSet<NSNumber>, Shared>;
+        pub unsafe fn supportedHandleTypes(&self) -> Id<NSSet<NSNumber>>;
 
         #[cfg(all(feature = "Foundation_NSNumber", feature = "Foundation_NSSet"))]
         #[method(setSupportedHandleTypes:)]
         pub unsafe fn setSupportedHandleTypes(&self, supported_handle_types: &NSSet<NSNumber>);
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
@@ -83,6 +83,6 @@ extern_methods!(
         pub unsafe fn initWithLocalizedName(
             this: Option<Allocated<Self>>,
             localized_name: &NSString,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

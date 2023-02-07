@@ -29,24 +29,24 @@ extern_methods!(
     unsafe impl CXAction {
         #[cfg(feature = "Foundation_NSUUID")]
         #[method_id(@__retain_semantics Other UUID)]
-        pub unsafe fn UUID(&self) -> Id<NSUUID, Shared>;
+        pub unsafe fn UUID(&self) -> Id<NSUUID>;
 
         #[method(isComplete)]
         pub unsafe fn isComplete(&self) -> bool;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other timeoutDate)]
-        pub unsafe fn timeoutDate(&self) -> Id<NSDate, Shared>;
+        pub unsafe fn timeoutDate(&self) -> Id<NSDate>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             a_decoder: &NSCoder,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[method(fulfill)]
         pub unsafe fn fulfill(&self);

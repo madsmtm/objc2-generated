@@ -48,11 +48,11 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSOpenPanel")]
     unsafe impl NSOpenPanel {
         #[method_id(@__retain_semantics Other openPanel)]
-        pub unsafe fn openPanel() -> Id<NSOpenPanel, Shared>;
+        pub unsafe fn openPanel() -> Id<NSOpenPanel>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other URLs)]
-        pub unsafe fn URLs(&self) -> Id<NSArray<NSURL>, Shared>;
+        pub unsafe fn URLs(&self) -> Id<NSArray<NSURL>>;
 
         #[method(resolvesAliases)]
         pub unsafe fn resolvesAliases(&self) -> bool;
@@ -111,7 +111,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSArray")]
         #[deprecated]
         #[method_id(@__retain_semantics Other filenames)]
-        pub unsafe fn filenames(&self) -> Id<NSArray, Shared>;
+        pub unsafe fn filenames(&self) -> Id<NSArray>;
 
         #[cfg(all(
             feature = "AppKit_NSWindow",
@@ -172,7 +172,7 @@ extern_methods!(
             style: NSWindowStyleMask,
             backing_store_type: NSBackingStoreType,
             flag: bool,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSScreen")]
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:screen:)]
@@ -183,12 +183,12 @@ extern_methods!(
             backing_store_type: NSBackingStoreType,
             flag: bool,
             screen: Option<&NSScreen>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSViewController")]
         #[method_id(@__retain_semantics Other windowWithContentViewController:)]
         pub unsafe fn windowWithContentViewController(
             content_view_controller: &NSViewController,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

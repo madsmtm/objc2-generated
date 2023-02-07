@@ -52,14 +52,14 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSImage")]
     unsafe impl NSImage {
         #[method_id(@__retain_semantics Other imageNamed:)]
-        pub unsafe fn imageNamed(name: &NSImageName) -> Option<Id<NSImage, Shared>>;
+        pub unsafe fn imageNamed(name: &NSImageName) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other imageWithSystemSymbolName:accessibilityDescription:)]
         pub unsafe fn imageWithSystemSymbolName_accessibilityDescription(
             name: &NSString,
             description: Option<&NSString>,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other imageWithSystemSymbolName:variableValue:accessibilityDescription:)]
@@ -67,14 +67,14 @@ extern_methods!(
             name: &NSString,
             value: c_double,
             description: Option<&NSString>,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other imageWithSymbolName:variableValue:)]
         pub unsafe fn imageWithSymbolName_variableValue(
             name: &NSString,
             value: c_double,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(all(feature = "Foundation_NSBundle", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other imageWithSymbolName:bundle:variableValue:)]
@@ -82,74 +82,67 @@ extern_methods!(
             name: &NSString,
             bundle: Option<&NSBundle>,
             value: c_double,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[method_id(@__retain_semantics Init initWithSize:)]
-        pub unsafe fn initWithSize(this: Option<Allocated<Self>>, size: NSSize)
-            -> Id<Self, Shared>;
+        pub unsafe fn initWithSize(this: Option<Allocated<Self>>, size: NSSize) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            coder: &NSCoder,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, coder: &NSCoder) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Init initWithData:)]
         pub unsafe fn initWithData(
             this: Option<Allocated<Self>>,
             data: &NSData,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithContentsOfFile:)]
         pub unsafe fn initWithContentsOfFile(
             this: Option<Allocated<Self>>,
             file_name: &NSString,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
         pub unsafe fn initWithContentsOfURL(
             this: Option<Allocated<Self>>,
             url: &NSURL,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initByReferencingFile:)]
         pub unsafe fn initByReferencingFile(
             this: Option<Allocated<Self>>,
             file_name: &NSString,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Init initByReferencingURL:)]
-        pub unsafe fn initByReferencingURL(
-            this: Option<Allocated<Self>>,
-            url: &NSURL,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initByReferencingURL(this: Option<Allocated<Self>>, url: &NSURL) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSPasteboard")]
         #[method_id(@__retain_semantics Init initWithPasteboard:)]
         pub unsafe fn initWithPasteboard(
             this: Option<Allocated<Self>>,
             pasteboard: &NSPasteboard,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Init initWithDataIgnoringOrientation:)]
         pub unsafe fn initWithDataIgnoringOrientation(
             this: Option<Allocated<Self>>,
             data: &NSData,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[method_id(@__retain_semantics Other imageWithSize:flipped:drawingHandler:)]
         pub unsafe fn imageWithSize_flipped_drawingHandler(
             size: NSSize,
             drawing_handler_should_be_called_with_flipped_context: bool,
             drawing_handler: &Block<(NSRect,), Bool>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method(size)]
         pub unsafe fn size(&self) -> NSSize;
@@ -161,11 +154,11 @@ extern_methods!(
         pub unsafe fn setName(&self, string: Option<&NSImageName>) -> bool;
 
         #[method_id(@__retain_semantics Other name)]
-        pub unsafe fn name(&self) -> Option<Id<NSImageName, Shared>>;
+        pub unsafe fn name(&self) -> Option<Id<NSImageName>>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other backgroundColor)]
-        pub unsafe fn backgroundColor(&self) -> Id<NSColor, Shared>;
+        pub unsafe fn backgroundColor(&self) -> Id<NSColor>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setBackgroundColor:)]
@@ -244,7 +237,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other TIFFRepresentation)]
-        pub unsafe fn TIFFRepresentation(&self) -> Option<Id<NSData, Shared>>;
+        pub unsafe fn TIFFRepresentation(&self) -> Option<Id<NSData>>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other TIFFRepresentationUsingCompression:factor:)]
@@ -252,11 +245,11 @@ extern_methods!(
             &self,
             comp: NSTIFFCompression,
             factor: c_float,
-        ) -> Option<Id<NSData, Shared>>;
+        ) -> Option<Id<NSData>>;
 
         #[cfg(all(feature = "AppKit_NSImageRep", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other representations)]
-        pub unsafe fn representations(&self) -> Id<NSArray<NSImageRep>, Shared>;
+        pub unsafe fn representations(&self) -> Id<NSArray<NSImageRep>>;
 
         #[cfg(all(feature = "AppKit_NSImageRep", feature = "Foundation_NSArray"))]
         #[method(addRepresentations:)]
@@ -286,18 +279,18 @@ extern_methods!(
         pub unsafe fn unlockFocus(&self);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSImageDelegate>, Shared>>;
+        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSImageDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSImageDelegate>>);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other imageTypes)]
-        pub unsafe fn imageTypes() -> Id<NSArray<NSString>, Shared>;
+        pub unsafe fn imageTypes() -> Id<NSArray<NSString>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other imageUnfilteredTypes)]
-        pub unsafe fn imageUnfilteredTypes() -> Id<NSArray<NSString>, Shared>;
+        pub unsafe fn imageUnfilteredTypes() -> Id<NSArray<NSString>>;
 
         #[cfg(feature = "AppKit_NSPasteboard")]
         #[method(canInitWithPasteboard:)]
@@ -326,7 +319,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other accessibilityDescription)]
-        pub unsafe fn accessibilityDescription(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn accessibilityDescription(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAccessibilityDescription:)]
@@ -346,7 +339,7 @@ extern_methods!(
             rect: NSRect,
             reference_context: Option<&NSGraphicsContext>,
             hints: Option<&NSDictionary<NSImageHintKey, Object>>,
-        ) -> Option<Id<NSImageRep, Shared>>;
+        ) -> Option<Id<NSImageRep>>;
 
         #[cfg(all(
             feature = "AppKit_NSGraphicsContext",
@@ -372,7 +365,7 @@ extern_methods!(
         pub unsafe fn layerContentsForContentsScale(
             &self,
             layer_contents_scale: CGFloat,
-        ) -> Id<Object, Shared>;
+        ) -> Id<Object>;
 
         #[method(capInsets)]
         pub unsafe fn capInsets(&self) -> NSEdgeInsets;
@@ -391,11 +384,11 @@ extern_methods!(
         pub unsafe fn imageWithSymbolConfiguration(
             &self,
             configuration: &NSImageSymbolConfiguration,
-        ) -> Option<Id<NSImage, Shared>>;
+        ) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "AppKit_NSImageSymbolConfiguration")]
         #[method_id(@__retain_semantics Other symbolConfiguration)]
-        pub unsafe fn symbolConfiguration(&self) -> Id<NSImageSymbolConfiguration, Shared>;
+        pub unsafe fn symbolConfiguration(&self) -> Id<NSImageSymbolConfiguration>;
     }
 );
 
@@ -433,7 +426,7 @@ extern_protocol!(
             &self,
             sender: &NSImage,
             rect: NSRect,
-        ) -> Option<Id<NSImage, Shared>>;
+        ) -> Option<Id<NSImage>>;
 
         #[cfg(all(feature = "AppKit_NSImage", feature = "AppKit_NSImageRep"))]
         #[optional]
@@ -475,18 +468,15 @@ extern_methods!(
     unsafe impl NSBundle {
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other imageForResource:)]
-        pub unsafe fn imageForResource(&self, name: &NSImageName) -> Option<Id<NSImage, Shared>>;
+        pub unsafe fn imageForResource(&self, name: &NSImageName) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other pathForImageResource:)]
-        pub unsafe fn pathForImageResource(
-            &self,
-            name: &NSImageName,
-        ) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn pathForImageResource(&self, name: &NSImageName) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other URLForImageResource:)]
-        pub unsafe fn URLForImageResource(&self, name: &NSImageName) -> Option<Id<NSURL, Shared>>;
+        pub unsafe fn URLForImageResource(&self, name: &NSImageName) -> Option<Id<NSURL>>;
     }
 );
 
@@ -499,27 +489,27 @@ extern_methods!(
         pub unsafe fn bestRepresentationForDevice(
             &self,
             device_description: Option<&NSDictionary>,
-        ) -> Option<Id<NSImageRep, Shared>>;
+        ) -> Option<Id<NSImageRep>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[deprecated = "Use +imageUnfilteredTypes instead"]
         #[method_id(@__retain_semantics Other imageUnfilteredFileTypes)]
-        pub unsafe fn imageUnfilteredFileTypes() -> Id<NSArray<NSString>, Shared>;
+        pub unsafe fn imageUnfilteredFileTypes() -> Id<NSArray<NSString>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[deprecated = "Use +imageUnfilteredTypes instead"]
         #[method_id(@__retain_semantics Other imageUnfilteredPasteboardTypes)]
-        pub unsafe fn imageUnfilteredPasteboardTypes() -> Id<NSArray<NSPasteboardType>, Shared>;
+        pub unsafe fn imageUnfilteredPasteboardTypes() -> Id<NSArray<NSPasteboardType>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[deprecated = "Use +imageTypes instead"]
         #[method_id(@__retain_semantics Other imageFileTypes)]
-        pub unsafe fn imageFileTypes() -> Id<NSArray<NSString>, Shared>;
+        pub unsafe fn imageFileTypes() -> Id<NSArray<NSString>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[deprecated = "Use +imageTypes instead"]
         #[method_id(@__retain_semantics Other imagePasteboardTypes)]
-        pub unsafe fn imagePasteboardTypes() -> Id<NSArray<NSPasteboardType>, Shared>;
+        pub unsafe fn imagePasteboardTypes() -> Id<NSArray<NSPasteboardType>>;
 
         #[deprecated = "The concept of flippedness for NSImage is deprecated.  Please see the AppKit 10.6 release notes for a discussion of why and for how to replace existing usage."]
         #[method(setFlipped:)]
@@ -928,51 +918,48 @@ extern_methods!(
             point_size: CGFloat,
             weight: NSFontWeight,
             scale: NSImageSymbolScale,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other configurationWithPointSize:weight:)]
         pub unsafe fn configurationWithPointSize_weight(
             point_size: CGFloat,
             weight: NSFontWeight,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other configurationWithTextStyle:scale:)]
         pub unsafe fn configurationWithTextStyle_scale(
             style: &NSFontTextStyle,
             scale: NSImageSymbolScale,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other configurationWithTextStyle:)]
-        pub unsafe fn configurationWithTextStyle(style: &NSFontTextStyle) -> Id<Self, Shared>;
+        pub unsafe fn configurationWithTextStyle(style: &NSFontTextStyle) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other configurationWithScale:)]
-        pub unsafe fn configurationWithScale(scale: NSImageSymbolScale) -> Id<Self, Shared>;
+        pub unsafe fn configurationWithScale(scale: NSImageSymbolScale) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other configurationPreferringMonochrome)]
-        pub unsafe fn configurationPreferringMonochrome() -> Id<Self, Shared>;
+        pub unsafe fn configurationPreferringMonochrome() -> Id<Self>;
 
         #[method_id(@__retain_semantics Other configurationPreferringHierarchical)]
-        pub unsafe fn configurationPreferringHierarchical() -> Id<Self, Shared>;
+        pub unsafe fn configurationPreferringHierarchical() -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other configurationWithHierarchicalColor:)]
-        pub unsafe fn configurationWithHierarchicalColor(
-            hierarchical_color: &NSColor,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn configurationWithHierarchicalColor(hierarchical_color: &NSColor) -> Id<Self>;
 
         #[cfg(all(feature = "AppKit_NSColor", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other configurationWithPaletteColors:)]
-        pub unsafe fn configurationWithPaletteColors(
-            palette_colors: &NSArray<NSColor>,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn configurationWithPaletteColors(palette_colors: &NSArray<NSColor>)
+            -> Id<Self>;
 
         #[method_id(@__retain_semantics Other configurationPreferringMulticolor)]
-        pub unsafe fn configurationPreferringMulticolor() -> Id<Self, Shared>;
+        pub unsafe fn configurationPreferringMulticolor() -> Id<Self>;
 
         #[method_id(@__retain_semantics Other configurationByApplyingConfiguration:)]
         pub unsafe fn configurationByApplyingConfiguration(
             &self,
             configuration: &NSImageSymbolConfiguration,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

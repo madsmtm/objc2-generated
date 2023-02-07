@@ -42,7 +42,7 @@ extern_methods!(
     unsafe impl ASAuthorizationOpenIDRequest {
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other requestedScopes)]
-        pub unsafe fn requestedScopes(&self) -> Option<Id<NSArray<ASAuthorizationScope>, Shared>>;
+        pub unsafe fn requestedScopes(&self) -> Option<Id<NSArray<ASAuthorizationScope>>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setRequestedScopes:)]
@@ -53,7 +53,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other state)]
-        pub unsafe fn state(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn state(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setState:)]
@@ -61,14 +61,14 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other nonce)]
-        pub unsafe fn nonce(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn nonce(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setNonce:)]
         pub unsafe fn setNonce(&self, nonce: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other requestedOperation)]
-        pub unsafe fn requestedOperation(&self) -> Id<ASAuthorizationOpenIDOperation, Shared>;
+        pub unsafe fn requestedOperation(&self) -> Id<ASAuthorizationOpenIDOperation>;
 
         #[method(setRequestedOperation:)]
         pub unsafe fn setRequestedOperation(

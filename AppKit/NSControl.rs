@@ -45,20 +45,17 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSControl")]
     unsafe impl NSControl {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(
-            this: Option<Allocated<Self>>,
-            frame_rect: NSRect,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[method_id(@__retain_semantics Other target)]
-        pub unsafe fn target(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn target(&self) -> Option<Id<Object>>;
 
         #[method(setTarget:)]
         pub unsafe fn setTarget(&self, target: Option<&Object>);
@@ -113,21 +110,21 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSFormatter")]
         #[method_id(@__retain_semantics Other formatter)]
-        pub unsafe fn formatter(&self) -> Option<Id<NSFormatter, Shared>>;
+        pub unsafe fn formatter(&self) -> Option<Id<NSFormatter>>;
 
         #[cfg(feature = "Foundation_NSFormatter")]
         #[method(setFormatter:)]
         pub unsafe fn setFormatter(&self, formatter: Option<&NSFormatter>);
 
         #[method_id(@__retain_semantics Other objectValue)]
-        pub unsafe fn objectValue(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn objectValue(&self) -> Option<Id<Object>>;
 
         #[method(setObjectValue:)]
         pub unsafe fn setObjectValue(&self, object_value: Option<&Object>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringValue)]
-        pub unsafe fn stringValue(&self) -> Id<NSString, Shared>;
+        pub unsafe fn stringValue(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setStringValue:)]
@@ -135,7 +132,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedStringValue)]
-        pub unsafe fn attributedStringValue(&self) -> Id<NSAttributedString, Shared>;
+        pub unsafe fn attributedStringValue(&self) -> Id<NSAttributedString>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setAttributedStringValue:)]
@@ -204,7 +201,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSFont")]
         #[method_id(@__retain_semantics Other font)]
-        pub unsafe fn font(&self) -> Option<Id<NSFont, Shared>>;
+        pub unsafe fn font(&self) -> Option<Id<NSFont>>;
 
         #[cfg(feature = "AppKit_NSFont")]
         #[method(setFont:)]
@@ -254,7 +251,7 @@ extern_methods!(
     unsafe impl NSControl {
         #[cfg(feature = "AppKit_NSText")]
         #[method_id(@__retain_semantics Other currentEditor)]
-        pub unsafe fn currentEditor(&self) -> Option<Id<NSText, Shared>>;
+        pub unsafe fn currentEditor(&self) -> Option<Id<NSText>>;
 
         #[method(abortEditing)]
         pub unsafe fn abortEditing(&self) -> bool;
@@ -374,7 +371,7 @@ extern_protocol!(
             words: &NSArray<NSString>,
             char_range: NSRange,
             index: NonNull<NSInteger>,
-        ) -> Id<NSArray<NSString>, Shared>;
+        ) -> Id<NSArray<NSString>>;
     }
 
     unsafe impl ProtocolType for dyn NSControlTextEditingDelegate {}
@@ -407,7 +404,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSCell")]
         #[method_id(@__retain_semantics Other cell)]
-        pub unsafe fn cell(&self) -> Option<Id<NSCell, Shared>>;
+        pub unsafe fn cell(&self) -> Option<Id<NSCell>>;
 
         #[cfg(feature = "AppKit_NSCell")]
         #[method(setCell:)]
@@ -415,7 +412,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSCell")]
         #[method_id(@__retain_semantics Other selectedCell)]
-        pub unsafe fn selectedCell(&self) -> Option<Id<NSCell, Shared>>;
+        pub unsafe fn selectedCell(&self) -> Option<Id<NSCell>>;
 
         #[method(selectedTag)]
         pub unsafe fn selectedTag(&self) -> NSInteger;

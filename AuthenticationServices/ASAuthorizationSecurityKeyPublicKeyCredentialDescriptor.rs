@@ -72,13 +72,13 @@ extern_methods!(
             allowed_transports: &NSArray<
                 ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport,
             >,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other transports)]
         pub unsafe fn transports(
             &self,
-        ) -> Id<NSArray<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport>, Shared>;
+        ) -> Id<NSArray<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setTransports:)]
@@ -88,9 +88,9 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }
 );

@@ -49,6 +49,6 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             target: Option<&Object>,
             action: Option<Sel>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
     }
 );

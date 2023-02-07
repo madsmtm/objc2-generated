@@ -39,15 +39,15 @@ extern_methods!(
     unsafe impl DOMMutationEvent {
         #[cfg(feature = "WebKit_DOMNode")]
         #[method_id(@__retain_semantics Other relatedNode)]
-        pub unsafe fn relatedNode(&self) -> Option<Id<DOMNode, Shared>>;
+        pub unsafe fn relatedNode(&self) -> Option<Id<DOMNode>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other prevValue)]
-        pub unsafe fn prevValue(&self) -> Id<NSString, Shared>;
+        pub unsafe fn prevValue(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other attrName)]
-        pub unsafe fn attrName(&self) -> Id<NSString, Shared>;
+        pub unsafe fn attrName(&self) -> Id<NSString>;
 
         #[method(attrChange)]
         pub unsafe fn attrChange(&self) -> c_ushort;

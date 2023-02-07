@@ -82,15 +82,15 @@ extern_methods!(
     unsafe impl NSPersistentStoreAsynchronousResult {
         #[cfg(feature = "CoreData_NSManagedObjectContext")]
         #[method_id(@__retain_semantics Other managedObjectContext)]
-        pub unsafe fn managedObjectContext(&self) -> Id<NSManagedObjectContext, Shared>;
+        pub unsafe fn managedObjectContext(&self) -> Id<NSManagedObjectContext>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other operationError)]
-        pub unsafe fn operationError(&self) -> Option<Id<NSError, Shared>>;
+        pub unsafe fn operationError(&self) -> Option<Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSProgress")]
         #[method_id(@__retain_semantics Other progress)]
-        pub unsafe fn progress(&self) -> Option<Id<NSProgress, Shared>>;
+        pub unsafe fn progress(&self) -> Option<Id<NSProgress>>;
 
         #[method(cancel)]
         pub unsafe fn cancel(&self);
@@ -130,11 +130,11 @@ extern_methods!(
     {
         #[cfg(feature = "CoreData_NSAsynchronousFetchRequest")]
         #[method_id(@__retain_semantics Other fetchRequest)]
-        pub unsafe fn fetchRequest(&self) -> Id<NSAsynchronousFetchRequest<ResultType>, Shared>;
+        pub unsafe fn fetchRequest(&self) -> Id<NSAsynchronousFetchRequest<ResultType>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other finalResult)]
-        pub unsafe fn finalResult(&self) -> Option<Id<NSArray<ResultType>, Shared>>;
+        pub unsafe fn finalResult(&self) -> Option<Id<NSArray<ResultType>>>;
     }
 );
 
@@ -157,7 +157,7 @@ extern_methods!(
     #[cfg(feature = "CoreData_NSBatchInsertResult")]
     unsafe impl NSBatchInsertResult {
         #[method_id(@__retain_semantics Other result)]
-        pub unsafe fn result(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn result(&self) -> Option<Id<Object>>;
 
         #[method(resultType)]
         pub unsafe fn resultType(&self) -> NSBatchInsertRequestResultType;
@@ -183,7 +183,7 @@ extern_methods!(
     #[cfg(feature = "CoreData_NSBatchUpdateResult")]
     unsafe impl NSBatchUpdateResult {
         #[method_id(@__retain_semantics Other result)]
-        pub unsafe fn result(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn result(&self) -> Option<Id<Object>>;
 
         #[method(resultType)]
         pub unsafe fn resultType(&self) -> NSBatchUpdateRequestResultType;
@@ -209,7 +209,7 @@ extern_methods!(
     #[cfg(feature = "CoreData_NSBatchDeleteResult")]
     unsafe impl NSBatchDeleteResult {
         #[method_id(@__retain_semantics Other result)]
-        pub unsafe fn result(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn result(&self) -> Option<Id<Object>>;
 
         #[method(resultType)]
         pub unsafe fn resultType(&self) -> NSBatchDeleteRequestResultType;
@@ -235,7 +235,7 @@ extern_methods!(
     #[cfg(feature = "CoreData_NSPersistentHistoryResult")]
     unsafe impl NSPersistentHistoryResult {
         #[method_id(@__retain_semantics Other result)]
-        pub unsafe fn result(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn result(&self) -> Option<Id<Object>>;
 
         #[method(resultType)]
         pub unsafe fn resultType(&self) -> NSPersistentHistoryResultType;
@@ -269,15 +269,15 @@ extern_methods!(
     #[cfg(feature = "CoreData_NSPersistentCloudKitContainerEventResult")]
     unsafe impl NSPersistentCloudKitContainerEventResult {
         #[method_id(@__retain_semantics Other result)]
-        pub unsafe fn result(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn result(&self) -> Option<Id<Object>>;
 
         #[method(resultType)]
         pub unsafe fn resultType(&self) -> NSPersistentCloudKitContainerEventResultType;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Shared>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self, Shared>;
+        pub unsafe fn new() -> Id<Self>;
     }
 );

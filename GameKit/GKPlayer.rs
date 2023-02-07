@@ -30,29 +30,27 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other gamePlayerID)]
-        pub unsafe fn gamePlayerID(&self) -> Id<NSString, Shared>;
+        pub unsafe fn gamePlayerID(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other teamPlayerID)]
-        pub unsafe fn teamPlayerID(&self) -> Id<NSString, Shared>;
+        pub unsafe fn teamPlayerID(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other displayName)]
-        pub unsafe fn displayName(&self) -> Id<NSString, Shared>;
+        pub unsafe fn displayName(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other alias)]
-        pub unsafe fn alias(&self) -> Id<NSString, Shared>;
+        pub unsafe fn alias(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other anonymousGuestPlayerWithIdentifier:)]
-        pub unsafe fn anonymousGuestPlayerWithIdentifier(
-            guest_identifier: &NSString,
-        ) -> Id<Self, Shared>;
+        pub unsafe fn anonymousGuestPlayerWithIdentifier(guest_identifier: &NSString) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other guestIdentifier)]
-        pub unsafe fn guestIdentifier(&self) -> Option<Id<NSString, Shared>>;
+        pub unsafe fn guestIdentifier(&self) -> Option<Id<NSString>>;
 
         #[method(isInvitable)]
         pub unsafe fn isInvitable(&self) -> bool;
@@ -94,7 +92,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "use the teamPlayerID property to identify a player"]
         #[method_id(@__retain_semantics Other playerID)]
-        pub unsafe fn playerID(&self) -> Id<NSString, Shared>;
+        pub unsafe fn playerID(&self) -> Id<NSString>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",

@@ -43,17 +43,17 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             target: Option<&Object>,
             action: Option<Sel>,
-        ) -> Id<Self, Shared>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[method_id(@__retain_semantics Other target)]
-        pub unsafe fn target(&self) -> Option<Id<Object, Shared>>;
+        pub unsafe fn target(&self) -> Option<Id<Object>>;
 
         #[method(setTarget:)]
         pub unsafe fn setTarget(&self, target: Option<&Object>);
@@ -67,7 +67,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
-        ) -> Option<Id<ProtocolObject<dyn NSGestureRecognizerDelegate>, Shared>>;
+        ) -> Option<Id<ProtocolObject<dyn NSGestureRecognizerDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -83,11 +83,11 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other view)]
-        pub unsafe fn view(&self) -> Option<Id<NSView, Shared>>;
+        pub unsafe fn view(&self) -> Option<Id<NSView>>;
 
         #[cfg(feature = "AppKit_NSPressureConfiguration")]
         #[method_id(@__retain_semantics Other pressureConfiguration)]
-        pub unsafe fn pressureConfiguration(&self) -> Id<NSPressureConfiguration, Shared>;
+        pub unsafe fn pressureConfiguration(&self) -> Id<NSPressureConfiguration>;
 
         #[cfg(feature = "AppKit_NSPressureConfiguration")]
         #[method(setPressureConfiguration:)]

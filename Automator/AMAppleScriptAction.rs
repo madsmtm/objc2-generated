@@ -32,7 +32,7 @@ extern_methods!(
     unsafe impl AMAppleScriptAction {
         #[cfg(feature = "OSAKit_OSAScript")]
         #[method_id(@__retain_semantics Other script)]
-        pub unsafe fn script(&self) -> Option<Id<OSAScript, Shared>>;
+        pub unsafe fn script(&self) -> Option<Id<OSAScript>>;
 
         #[cfg(feature = "OSAKit_OSAScript")]
         #[method(setScript:)]
@@ -50,13 +50,13 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             dict: Option<&NSDictionary<NSString, Object>>,
             archived: bool,
-        ) -> Option<Id<Self, Shared>>;
+        ) -> Option<Id<Self>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:error:_)]
         pub unsafe fn initWithContentsOfURL_error(
             this: Option<Allocated<Self>>,
             file_url: &NSURL,
-        ) -> Result<Id<Self, Shared>, Id<NSError, Shared>>;
+        ) -> Result<Id<Self>, Id<NSError>>;
     }
 );

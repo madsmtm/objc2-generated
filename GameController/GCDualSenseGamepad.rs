@@ -25,22 +25,22 @@ extern_methods!(
     unsafe impl GCDualSenseGamepad {
         #[cfg(feature = "GameController_GCControllerButtonInput")]
         #[method_id(@__retain_semantics Other touchpadButton)]
-        pub unsafe fn touchpadButton(&self) -> Id<GCControllerButtonInput, Shared>;
+        pub unsafe fn touchpadButton(&self) -> Id<GCControllerButtonInput>;
 
         #[cfg(feature = "GameController_GCControllerDirectionPad")]
         #[method_id(@__retain_semantics Other touchpadPrimary)]
-        pub unsafe fn touchpadPrimary(&self) -> Id<GCControllerDirectionPad, Shared>;
+        pub unsafe fn touchpadPrimary(&self) -> Id<GCControllerDirectionPad>;
 
         #[cfg(feature = "GameController_GCControllerDirectionPad")]
         #[method_id(@__retain_semantics Other touchpadSecondary)]
-        pub unsafe fn touchpadSecondary(&self) -> Id<GCControllerDirectionPad, Shared>;
+        pub unsafe fn touchpadSecondary(&self) -> Id<GCControllerDirectionPad>;
 
         #[cfg(feature = "GameController_GCDualSenseAdaptiveTrigger")]
         #[method_id(@__retain_semantics Other leftTrigger)]
-        pub unsafe fn leftTrigger(&self) -> Id<GCDualSenseAdaptiveTrigger, Shared>;
+        pub unsafe fn leftTrigger(&self) -> Id<GCDualSenseAdaptiveTrigger>;
 
         #[cfg(feature = "GameController_GCDualSenseAdaptiveTrigger")]
         #[method_id(@__retain_semantics Other rightTrigger)]
-        pub unsafe fn rightTrigger(&self) -> Id<GCDualSenseAdaptiveTrigger, Shared>;
+        pub unsafe fn rightTrigger(&self) -> Id<GCDualSenseAdaptiveTrigger>;
     }
 );
